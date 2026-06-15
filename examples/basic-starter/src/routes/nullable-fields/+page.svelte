@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { extendByRecord } from "@sjsf/form/lib/resolver";
   import {
     createForm,
     BasicForm,
@@ -8,6 +7,7 @@
     type ResolveFieldType,
     getValueSnapshot,
   } from "@sjsf/form";
+  import { extendByRecord } from "@sjsf/form/lib/resolver";
 
   import * as defaults from "$lib/sjsf/defaults";
 

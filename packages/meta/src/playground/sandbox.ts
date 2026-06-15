@@ -5,7 +5,6 @@ import {
   type UiSchemaRoot,
 } from "@sjsf/form";
 
-import { extraPackage, type AbstractPackage } from "../package.ts";
 import {
   type CodegenValidator,
   type ThemeExtension,
@@ -16,13 +15,13 @@ import {
   type CodeTransformer,
   type ComposerOptions,
 } from "../composer/index.ts";
-import { WIDGETS } from "../widgets.generated.ts";
-import { toTheme, type Theme } from "../themes.ts";
-import { WIDGET_EXTRA_FIELD } from "./widget-extra-fields.ts";
 import {
   extraFieldNameToFileName,
   type ExtraFieldFileName,
 } from "../fields.ts";
+import { extraPackage, type AbstractPackage } from "../package.ts";
+import { toTheme, type Theme } from "../themes.ts";
+import { WIDGETS } from "../widgets.generated.ts";
 import { isThemeBaseWidget, type ExtraWidgetFileNames } from "../widgets.ts";
 import type { FormState } from "./form-state.ts";
 import {
@@ -30,6 +29,7 @@ import {
   isEndsWith2020,
   without2020Suffix,
 } from "./model.ts";
+import { WIDGET_EXTRA_FIELD } from "./widget-extra-fields.ts";
 
 export interface CustomComponents {
   markdownDescription: string;

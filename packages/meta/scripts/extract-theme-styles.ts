@@ -1,6 +1,7 @@
-import path from "node:path";
 import fs from "node:fs/promises";
+import path from "node:path";
 import { fileURLToPath } from "node:url";
+
 import { parse, walk, generate } from "css-tree";
 
 import type { PlaygroundTheme } from "../src/playground/model.ts";

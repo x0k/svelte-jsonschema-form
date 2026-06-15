@@ -1,9 +1,10 @@
-import type { Loader, LoaderContext } from "astro/loaders";
-import { docsLoader } from "@astrojs/starlight/loaders";
-import { createSatteriMarkdownProcessor } from "@astrojs/markdown-satteri";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
+
+import { createSatteriMarkdownProcessor } from "@astrojs/markdown-satteri";
+import { docsLoader } from "@astrojs/starlight/loaders";
+import type { Loader, LoaderContext } from "astro/loaders";
 
 import { discoverChangelogs } from "./changelog-discovery";
 

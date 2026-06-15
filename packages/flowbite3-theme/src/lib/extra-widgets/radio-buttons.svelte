@@ -14,8 +14,6 @@
 </script>
 
 <script lang="ts">
-  import RadioButton from "flowbite-svelte/RadioButton.svelte";
-  import ButtonGroup from "flowbite-svelte/ButtonGroup.svelte";
   import {
     customInputAttributes,
     getFormContext,
@@ -23,6 +21,8 @@
     type ComponentProps,
   } from "@sjsf/form";
   import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import ButtonGroup from "flowbite-svelte/ButtonGroup.svelte";
+  import RadioButton from "flowbite-svelte/RadioButton.svelte";
 
   let {
     config,

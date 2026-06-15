@@ -1,5 +1,12 @@
-import { escapeRegex } from "@sjsf/form/lib/reg-exp";
-import { isSchemaObject } from "@sjsf/form/lib/json-schema";
+import {
+  resolveUiRef,
+  type IdentifiableFieldElement,
+  type Schema,
+  type SchemaValue,
+  type UiSchema,
+  type UiSchemaDefinition,
+  type UiSchemaRoot,
+} from "@sjsf/form";
 import {
   getClosestMatchingOption,
   getDiscriminatorFieldFromSchema,
@@ -16,23 +23,16 @@ import {
   type Validator,
   type Path,
 } from "@sjsf/form/core";
-import {
-  resolveUiRef,
-  type IdentifiableFieldElement,
-  type Schema,
-  type SchemaValue,
-  type UiSchema,
-  type UiSchemaDefinition,
-  type UiSchemaRoot,
-} from "@sjsf/form";
+import { isSchemaObject } from "@sjsf/form/lib/json-schema";
+import { escapeRegex } from "@sjsf/form/lib/reg-exp";
 
-import type { Codec, Entries, Entry, EntryConverter } from "$lib/model.js";
 import {
   KEY_INPUT_KEY,
   ONE_OF,
   ANY_OF,
   compilePatterns,
 } from "$lib/internal.js";
+import type { Codec, Entries, Entry, EntryConverter } from "$lib/model.js";
 
 export interface SchemaValueParserOptions<T> {
   schema: Schema;

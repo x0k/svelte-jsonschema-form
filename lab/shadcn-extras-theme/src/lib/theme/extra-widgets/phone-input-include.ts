@@ -1,5 +1,4 @@
 import { definitions } from "../definitions.js";
-
 import PhoneInput from "./phone-input.svelte";
 import "./phone-input.svelte";
 

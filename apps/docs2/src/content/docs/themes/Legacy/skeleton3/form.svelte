@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { fromRecord } from "@sjsf/form/lib/resolver";
   import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
+  import { fromRecord } from "@sjsf/form/lib/resolver";
   import { theme } from "@sjsf/skeleton3-theme";
   import { specs } from "@sjsf/skeleton3-theme/specs";
 
-  import { themeManager } from "@/theme.svelte";
   import * as defaults from "@/lib/sjsf/defaults";
+  import { themeManager } from "@/theme.svelte";
 
   import { createSchemas } from "../../_demo-schema";
 

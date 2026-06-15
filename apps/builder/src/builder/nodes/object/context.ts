@@ -1,5 +1,5 @@
-import { createContext } from "svelte";
 import type { NodeId } from "meta/builder";
+import { createContext } from "svelte";
 
 export interface ObjectContext {
   complementary: NodeId | undefined;

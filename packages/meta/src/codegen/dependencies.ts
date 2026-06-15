@@ -20,14 +20,13 @@ import {
   type ToTheme,
 } from "../themes.ts";
 import {
-  themeExtraWidgetOptionalDependencies,
-  type ExtraWidgetFileNames,
-} from "../widgets.ts";
-import {
   externalValidatorPackage,
   isJsonSchemaValidator,
 } from "../validators.ts";
-
+import {
+  themeExtraWidgetOptionalDependencies,
+  type ExtraWidgetFileNames,
+} from "../widgets.ts";
 import {
   type CodegenValidator,
   type CodegenIconSet,

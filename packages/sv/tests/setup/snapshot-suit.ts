@@ -1,8 +1,9 @@
-import { add, type AddonMap } from "sv";
 import fs from "node:fs";
 import path from "node:path";
-import { beforeEach, inject, TestAPI, test as vitestTest } from "vitest";
+
+import { add, type AddonMap } from "sv";
 import type { AddonTestCase, Fixtures, SetupTestOptions } from "sv/testing";
+import { beforeEach, inject, TestAPI, test as vitestTest } from "vitest";
 
 export function setupSnapshotTest<Addons extends AddonMap>(
   addons: Addons,

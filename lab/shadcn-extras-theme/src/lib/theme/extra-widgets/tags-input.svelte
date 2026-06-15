@@ -1,6 +1,6 @@
 <script lang="ts" module>
-  import type { Component } from "svelte";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type { Component } from "svelte";
 
   import type { TagsInputProps } from "$lib/components/ui/tags-input/types.js";
 

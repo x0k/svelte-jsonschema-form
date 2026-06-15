@@ -1,35 +1,35 @@
 <script lang="ts">
-  import { createMerger as createSchemaMerger } from "@sjsf/form/mergers/modern";
-  import { createComparator, createMerger } from "@sjsf/form/lib/json-schema";
-  import { createDeduplicator, createIntersector } from "@sjsf/form/lib/array";
-  import { fromRecord } from "svelte-tiler/shared/registry";
-  import { Panel, setTilerContext, type Tiles } from "svelte-tiler";
-  import * as Leaf from "svelte-tiler/tiles/leaf.svelte";
-  import * as Split from "svelte-tiler/tiles/split.svelte";
-  import * as Tabs from "svelte-tiler/tiles/tabs.svelte";
   import AlignLeft from "@lucide/svelte/icons/align-left";
+  import { createDeduplicator, createIntersector } from "@sjsf/form/lib/array";
+  import { createComparator, createMerger } from "@sjsf/form/lib/json-schema";
+  import { createMerger as createSchemaMerger } from "@sjsf/form/mergers/modern";
   import {
     playgroundValidator,
     playgroundValidators,
     playgroundValidatorTitle,
     type ValidatorState,
   } from "meta/playground";
+  import { Panel, setTilerContext, type Tiles } from "svelte-tiler";
+  import { fromRecord } from "svelte-tiler/shared/registry";
+  import * as Leaf from "svelte-tiler/tiles/leaf.svelte";
+  import * as Split from "svelte-tiler/tiles/split.svelte";
+  import * as Tabs from "svelte-tiler/tiles/tabs.svelte";
 
-  import Select from "$lib/select.svelte";
+  import * as ButtonGroup from "$lib/components/ui/button-group/index.js";
+  import { Button } from "$lib/components/ui/button/index.js";
   import Editor from "$lib/editor.svelte";
   import { gripHeader } from "$lib/grip-header.svelte";
-  import { Button } from "$lib/components/ui/button/index.js";
-  import * as ButtonGroup from "$lib/components/ui/button-group/index.js";
+  import Select from "$lib/select.svelte";
   import { debouncedEffect } from "$lib/svelte.svelte.js";
 
   import Header from "./header.svelte";
-  import { router } from "./router.js";
   import {
     constraints,
     createApplySplit,
     createTilerContext,
     gapPx,
   } from "./lib/tiler.js";
+  import { router } from "./router.js";
 
   const DEFAULT_PAGE_STATE: ValidatorState = {
     schema: {

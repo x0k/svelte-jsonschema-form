@@ -31,7 +31,7 @@
 </script>
 
 {#each options as option (option.id)}
-  <label class="label cursor-pointer gap-2 justify-start">
+  <label class="label cursor-pointer justify-start gap-2">
     <input
       class={["checkbox", errors.length > 0 && "checkbox-error"]}
       bind:group={mapped.current}

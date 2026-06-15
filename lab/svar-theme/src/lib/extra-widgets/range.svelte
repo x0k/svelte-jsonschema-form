@@ -1,6 +1,6 @@
 <script lang="ts" module>
-  import type { ComponentProps as SvelteComponentProps } from "svelte";
   import { Slider as SvarSlider } from "@svar-ui/svelte-core";
+  import type { ComponentProps as SvelteComponentProps } from "svelte";
   import "@sjsf/form/fields/extra-widgets/range";
 
   declare module "@sjsf/form" {

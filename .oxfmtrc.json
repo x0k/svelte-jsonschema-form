@@ -4,6 +4,11 @@
   "singleQuote": false,
   "trailingComma": "es5",
   "printWidth": 80,
+  "sortImports": {
+    "internalPattern": ["~/", "@/", "#", "$"]
+  },
+  "sortTailwindcss": {},
+  "svelte": {},
   "ignorePatterns": [
     "package-lock.json",
     "pnpm-lock.yaml",
@@ -27,6 +32,5 @@
     "legacy/skeleton3-theme/src/lib/segment-types.d.ts",
     "lab/shadcn-extras-theme/src/lib/components/ui/**/*",
     "!lab/shadcn-extras-theme/src/lib/components/ui/index.ts"
-  ],
-  "svelte": true
+  ]
 }

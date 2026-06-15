@@ -1,5 +1,5 @@
-import type { Config } from "tailwindcss";
 import flowbite from "flowbite/plugin";
+import type { Config } from "tailwindcss";
 
 export const APP_CONTENT = "./src/**/*.{html,js,svelte,ts}";
 export const FLOWBITE_CONTENT =

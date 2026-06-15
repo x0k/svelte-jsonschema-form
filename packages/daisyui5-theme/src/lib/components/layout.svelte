@@ -1,6 +1,6 @@
 <script lang="ts" module>
-  import type { HTMLFieldsetAttributes } from "svelte/elements";
   import type { LayoutType } from "@sjsf/form/fields/exports";
+  import type { HTMLFieldsetAttributes } from "svelte/elements";
   import "@sjsf/basic-theme/components/layout.svelte";
   declare module "@sjsf/form" {
     interface UiOptions {
@@ -83,7 +83,7 @@
         type === "object-property-key-input" ||
         type === "object-property-content",
       "flex-col": isColumn,
-      "grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2":
+      "grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]":
         isProperty,
     }}
     {...attributes}

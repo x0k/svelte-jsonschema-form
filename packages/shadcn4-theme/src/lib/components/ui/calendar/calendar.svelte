@@ -1,10 +1,12 @@
 <script lang="ts">
-  import { Calendar as CalendarPrimitive } from "bits-ui";
-  import * as Calendar from "./index.js";
-  import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
-  import type { ButtonVariant } from "../button/button.svelte";
   import { isEqualMonth, type DateValue } from "@internationalized/date";
+  import { Calendar as CalendarPrimitive } from "bits-ui";
   import type { Snippet } from "svelte";
+
+  import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
+
+  import type { ButtonVariant } from "../button/button.svelte";
+  import * as Calendar from "./index.js";
 
   let {
     ref = $bindable(null),
@@ -50,7 +52,7 @@ get along, so we shut typescript up by casting `value` to `never`.
   {weekdayFormat}
   {disableDaysOutsideMonth}
   class={cn(
-    "p-3 [--cell-radius:var(--radius-md)] [--cell-size:--spacing(8)] bg-background group/calendar in-data-[slot=card-content]:bg-transparent in-data-[slot=popover-content]:bg-transparent",
+    "bg-background group/calendar p-3 [--cell-radius:var(--radius-md)] [--cell-size:--spacing(8)] in-data-[slot=card-content]:bg-transparent in-data-[slot=popover-content]:bg-transparent",
     className
   )}
   {locale}

@@ -1,7 +1,7 @@
 <script lang="ts" module>
-  import type { HTMLInputAttributes } from "svelte/elements";
   import type { Schema, SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type { HTMLInputAttributes } from "svelte/elements";
 
   declare module "@sjsf/form" {
     interface ComponentProps {

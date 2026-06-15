@@ -1,5 +1,4 @@
 <script lang="ts">
-  import type { Snippet } from "svelte";
   import {
     createForm,
     type Schema,
@@ -9,10 +8,10 @@
   } from "@sjsf/form";
   import { clearEdit } from "@sjsf/form/fields/actions/clear-edit.svelte";
   import { displayPrimitiveValue } from "@sjsf/form/fields/actions/display-primitive-value.svelte";
+  import type { Snippet } from "svelte";
 
   import * as defaults from "../lib/form-defaults.js";
   import { s } from "../snapshots/export.js";
-
   import Form from "./form.svelte";
 
   const {

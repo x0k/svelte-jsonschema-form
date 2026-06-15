@@ -1,10 +1,10 @@
 <script lang="ts" module>
-  import { untrack } from "svelte";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import {
     type FileUploadRootProviderProps,
     useFileUpload,
   } from "@skeletonlabs/skeleton-svelte";
+  import { untrack } from "svelte";
 
   declare module "@sjsf/form" {
     interface ComponentProps {

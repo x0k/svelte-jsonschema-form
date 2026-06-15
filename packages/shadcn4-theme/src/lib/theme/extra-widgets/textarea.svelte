@@ -1,6 +1,6 @@
 <script lang="ts" module>
-  import type { Component } from "svelte";
   import type { WithElementRef } from "bits-ui";
+  import type { Component } from "svelte";
   import type { HTMLTextareaAttributes } from "svelte/elements";
 
   declare module "../context.js" {

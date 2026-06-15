@@ -1,6 +1,6 @@
 <script lang="ts" module>
-  import type { ComponentProps as SvelteComponentProps } from "svelte";
   import { CheckboxGroup as SvarCheckboxGroup } from "@svar-ui/svelte-core";
+  import type { ComponentProps as SvelteComponentProps } from "svelte";
   import "@sjsf/form/fields/extra-widgets/checkboxes";
 
   declare module "@sjsf/form" {

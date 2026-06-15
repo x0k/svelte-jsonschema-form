@@ -1,6 +1,7 @@
 import { transforms, type SvelteAst } from "@sveltejs/sv-utils";
 
 import type { AtRule, AtRuleOptions } from "../css.ts";
+import { iconSetAtRules } from "../icons.ts";
 import { tailwindcss4PluginPackage } from "../tailwindcss.ts";
 import {
   isTailwindcss4Theme,
@@ -8,10 +9,8 @@ import {
   themeOrSubThemeAtRules,
   toTheme,
 } from "../themes.ts";
-
-import type { CodegenIconSet, CodegenThemeOrSubTheme } from "./model.ts";
-import { iconSetAtRules } from "../icons.ts";
 import { cssAddPseudoRule } from "./lib.ts";
+import type { CodegenIconSet, CodegenThemeOrSubTheme } from "./model.ts";
 
 export interface StylesOptions {
   nodeModulesPath: string;

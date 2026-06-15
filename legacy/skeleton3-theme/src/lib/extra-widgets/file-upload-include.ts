@@ -1,5 +1,4 @@
 import { definitions } from "../definitions.js";
-
 import FileUpload from "./file-upload.svelte";
 import "./file-upload.svelte";
 

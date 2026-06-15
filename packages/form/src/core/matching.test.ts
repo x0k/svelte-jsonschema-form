@@ -2,6 +2,8 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
+import { beforeEach, describe, expect, it } from "vitest";
+
 import {
   oneOfData,
   oneOfSchema,
@@ -11,14 +13,12 @@ import {
   ONE_OF_SCHEMA_OPTIONS,
   OPTIONAL_ONE_OF_SCHEMA_ONEOF,
 } from "./fixtures/test-data.js";
-
-import type { Schema } from "./schema.js";
 import { calculateIndexScore, getClosestMatchingOption } from "./matching.js";
-import { beforeEach, describe, expect, it } from "vitest";
-import type { Validator } from "./validator.js";
-import { createValidator } from "./test-validator.js";
 import type { Merger } from "./merger.js";
+import type { Schema } from "./schema.js";
 import { createMerger } from "./test-merger.js";
+import { createValidator } from "./test-validator.js";
+import type { Validator } from "./validator.js";
 
 const firstOption = oneOfSchema.definitions.first_option_def satisfies Schema;
 const secondOption = oneOfSchema.definitions.second_option_def satisfies Schema;

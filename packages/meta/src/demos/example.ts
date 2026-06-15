@@ -2,7 +2,6 @@ import type { CatalogEntry } from "../catalog.ts";
 import type { CodegenThemeOrSubTheme } from "../codegen/index.ts";
 import { type CodeTransformer, createComposer } from "../composer/index.ts";
 import { sandboxOpen, type SandboxPlatform } from "../sandbox/index.ts";
-
 import {
   type ExampleMetadata,
   type ExampleContent,

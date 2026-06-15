@@ -1,8 +1,3 @@
-import type { MaybePromise } from "@sjsf/form/lib/types";
-import {
-  getClosestMatchingOption,
-  getFirstMatchingOption,
-} from "@sjsf/form/core";
 import {
   create,
   isAsyncFormValueValidator,
@@ -22,9 +17,14 @@ import {
   type Validator,
   type ValidatorFactoryOptions,
 } from "@sjsf/form";
-import { omitExtraData } from "@sjsf/form/omit-extra-data";
+import {
+  getClosestMatchingOption,
+  getFirstMatchingOption,
+} from "@sjsf/form/core";
 import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
+import type { MaybePromise } from "@sjsf/form/lib/types";
 import { createFormMerger } from "@sjsf/form/mergers/modern";
+import { omitExtraData } from "@sjsf/form/omit-extra-data";
 import {
   insertSubSchemaIds,
   createIdFactory as defaultCreateIdFactory,

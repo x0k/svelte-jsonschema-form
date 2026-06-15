@@ -1,5 +1,11 @@
 import type { Schema, UiSchema } from "@sjsf/form";
 
+import { createComposer } from "../composer/index.ts";
+import type { ExtraFieldFileName } from "../fields.ts";
+import type {
+  PlaygroundTheme,
+  PlaygroundIconSet,
+} from "../playground/index.ts";
 import { type Theme, toTheme } from "../themes.ts";
 import { WIDGETS } from "../widgets.generated.ts";
 import {
@@ -7,13 +13,7 @@ import {
   widgetFileName,
   type ExtraWidgetFileNames,
 } from "../widgets.ts";
-import type { ExtraFieldFileName } from "../fields.ts";
 import type { WidgetType } from "../widgets.ts";
-import { createComposer } from "../composer/index.ts";
-import type {
-  PlaygroundTheme,
-  PlaygroundIconSet,
-} from "../playground/index.ts";
 import type { BuilderValidator } from "./model.ts";
 
 export interface BuilderSandboxOptions {

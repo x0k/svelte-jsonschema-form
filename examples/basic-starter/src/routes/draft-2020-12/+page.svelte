@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { JSONSchema } from "json-schema-typed/draft-2020-12";
   import { createForm, BasicForm } from "@sjsf/form";
   import { convert } from "@sjsf/form/converters/draft-2020-12";
+  import type { JSONSchema } from "json-schema-typed/draft-2020-12";
 
   import * as defaults from "$lib/sjsf/defaults";
 

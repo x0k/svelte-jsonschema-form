@@ -1,11 +1,11 @@
 <script lang="ts">
   import type { NodeType } from "meta/builder";
 
+  import NodeHeader from "../customizable-node-header.svelte";
   import type { NodeProps } from "../model.js";
   import NodeContainer from "../node-container.svelte";
-  import NodeHeader from "../customizable-node-header.svelte";
-  import SingleDropZone from "../single-dropzone.svelte";
   import NodeIssues from "../node-issues.svelte";
+  import SingleDropZone from "../single-dropzone.svelte";
 
   let {
     node = $bindable(),

@@ -1,10 +1,9 @@
 <script lang="ts">
   import { getBuilderContext } from "../context.svelte.js";
   import Form from "../preview/form.svelte";
-
   import Content from "./content.svelte";
-  import Settings from "./settings.svelte";
   import Controls from "./controls.svelte";
+  import Settings from "./settings.svelte";
 
   const ctx = getBuilderContext();
 </script>

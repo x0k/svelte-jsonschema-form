@@ -1,12 +1,11 @@
-import { describe } from "vitest";
 import { widgetTests } from "theme-testing/snapshots/widget-tests";
+import { describe } from "vitest";
 
 import * as defaultUi from "../src/lib/default-ui/index.js";
 import * as newYorkUi from "../src/lib/new-york-ui/index.js";
-import { THEME_CONTEXT } from "../src/lib/theme/internal.js";
-
-import { theme } from "../src/lib/theme/index.js";
 import { specs } from "../src/lib/specs.js";
+import { theme } from "../src/lib/theme/index.js";
+import { THEME_CONTEXT } from "../src/lib/theme/internal.js";
 import Form from "./form.svelte";
 
 describe("default-ui", () => {

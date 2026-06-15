@@ -5,8 +5,10 @@
     type WithoutChildrenOrChild,
   } from "bits-ui";
   import type { Snippet } from "svelte";
-  import Command from "./command.svelte";
+
   import * as Dialog from "$lib/new-york-ui/dialog/index.js";
+
+  import Command from "./command.svelte";
 
   let {
     open = $bindable(false),

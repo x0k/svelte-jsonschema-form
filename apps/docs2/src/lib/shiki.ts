@@ -1,5 +1,5 @@
-import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
 import { createHighlighterCore, type HighlighterCore } from "shiki/core";
+import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
 
 const bundledLanguages = {
   json: () => import("@shikijs/langs/json"),

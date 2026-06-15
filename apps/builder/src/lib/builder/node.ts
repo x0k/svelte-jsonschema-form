@@ -16,8 +16,8 @@ import {
   RANGE_NODE_OPTIONS_SCHEMA,
 } from "meta/builder";
 
-import { mergeUiSchemas } from "$lib/sjsf/ui-schema.js";
 import { mergeSchemas } from "$lib/json-schema.js";
+import { mergeUiSchemas } from "$lib/sjsf/ui-schema.js";
 
 export type {
   Node,

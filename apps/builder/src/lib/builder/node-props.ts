@@ -1,7 +1,6 @@
 import { DEFAULT_BOOLEAN_ENUM } from "@sjsf/form";
-
 import { type NodeId, EnumValueType } from "meta/builder";
-import type { Node } from "./node.js";
+
 import {
   isArrayNode,
   isBooleanNode,
@@ -12,6 +11,7 @@ import {
   isObjectNode,
   isRangeNode,
 } from "./node-guards.js";
+import type { Node } from "./node.js";
 
 export function getNodeTitle(node: Node): string | undefined {
   return isCustomizableNode(node) ? node.options.title : undefined;

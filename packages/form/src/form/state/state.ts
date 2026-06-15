@@ -1,22 +1,16 @@
 import { getContext, setContext } from "svelte";
 import type { SvelteMap } from "svelte/reactivity";
 
-import type { DataURLToBlob } from "@/lib/file.js";
 import type { Schema } from "@/core/index.js";
+import type { DataURLToBlob } from "@/lib/file.js";
 
-import type { Translate, Translation } from "../translation.js";
-import {
-  type ExtraUiOptions,
-  type UiOptionsRegistry,
-  type UiSchema,
-  type UiSchemaRoot,
-} from "../ui-schema.js";
-import type { FormSubmission, FieldsValidation } from "../errors.js";
-import type { Icons } from "../icons.js";
-import type { FormMerger } from "../merger.js";
 import type { Theme } from "../components.js";
-import type { FormValue, KeyedArraysMap, PathTrieRef } from "../model.js";
+import type { Config } from "../config.js";
+import type { FormSubmission, FieldsValidation } from "../errors.js";
+import type { FieldState } from "../field-state.js";
 import type { ResolveFieldType } from "../fields.js";
+import type { Icons } from "../icons.js";
+import type { FieldPath, Id } from "../id.js";
 import {
   FORM_CONTEXT,
   FORM_DATA_URL_TO_BLOB,
@@ -47,10 +41,16 @@ import {
   FORM_RETRIEVED_SCHEMA,
   FORM_CONFIGS_CACHE,
 } from "../internals.js";
-import type { FieldPath, Id } from "../id.js";
-import type { FieldState } from "../field-state.js";
+import type { FormMerger } from "../merger.js";
+import type { FormValue, KeyedArraysMap, PathTrieRef } from "../model.js";
+import type { Translate, Translation } from "../translation.js";
+import {
+  type ExtraUiOptions,
+  type UiOptionsRegistry,
+  type UiSchema,
+  type UiSchemaRoot,
+} from "../ui-schema.js";
 import type { FormValidator } from "../validator.js";
-import type { Config } from "../config.js";
 
 export interface FormState<T> {
   readonly submission: FormSubmission<T>;

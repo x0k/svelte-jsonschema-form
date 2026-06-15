@@ -1,13 +1,14 @@
 <script lang="ts">
-  import type { ComponentProps } from "svelte";
-  import type Calendar from "./calendar.svelte";
-  import CalendarMonthSelect from "./calendar-month-select.svelte";
-  import CalendarYearSelect from "./calendar-year-select.svelte";
   import {
     DateFormatter,
     getLocalTimeZone,
     type DateValue,
   } from "@internationalized/date";
+  import type { ComponentProps } from "svelte";
+
+  import CalendarMonthSelect from "./calendar-month-select.svelte";
+  import CalendarYearSelect from "./calendar-year-select.svelte";
+  import type Calendar from "./calendar.svelte";
 
   let {
     captionLayout,

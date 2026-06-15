@@ -1,6 +1,6 @@
 <script lang="ts" module>
-  import type { ComponentProps as SvelteComponentProps } from "svelte";
   import { Combobox as SkeletonCombobox } from "@skeletonlabs/skeleton-svelte";
+  import type { ComponentProps as SvelteComponentProps } from "svelte";
   import "@sjsf/form/fields/extra-widgets/combobox";
 
   declare module "@sjsf/form" {

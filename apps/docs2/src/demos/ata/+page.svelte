@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { createFormValidator } from "@sjsf-lab/ata-validator";
   import {
     ON_INPUT,
     BasicForm,
@@ -7,7 +8,6 @@
     ON_ARRAY_CHANGE,
     getValueSnapshot,
   } from "@sjsf/form";
-  import { createFormValidator } from "@sjsf-lab/ata-validator";
 
   import { getDemoContext } from "@/lib/demo";
 

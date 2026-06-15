@@ -1,13 +1,13 @@
 <script lang="ts">
+  import { theme } from "@sjsf-lab/shadcn-extras-theme";
+  import { specs } from "@sjsf-lab/shadcn-extras-theme/specs";
+  import * as extraComponents from "@sjsf-lab/shadcn-extras-theme/ui";
   import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
   import { setThemeContext } from "@sjsf/shadcn4-theme";
-  import { theme } from "@sjsf-lab/shadcn-extras-theme";
   import * as components from "@sjsf/shadcn4-theme/new-york";
-  import * as extraComponents from "@sjsf-lab/shadcn-extras-theme/ui";
-  import { specs } from "@sjsf-lab/shadcn-extras-theme/specs";
 
-  import { themeManager } from "@/theme.svelte";
   import * as defaults from "@/lib/sjsf/defaults";
+  import { themeManager } from "@/theme.svelte";
 
   import { createSchemas } from "../_demo-schema";
 

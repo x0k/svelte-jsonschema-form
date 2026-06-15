@@ -1,12 +1,3 @@
-import type {
-  HTMLAttributes,
-  HTMLButtonAttributes,
-  HTMLFormAttributes,
-  HTMLInputAttributes,
-  HTMLLabelAttributes,
-  HTMLSelectAttributes,
-  HTMLTextareaAttributes,
-} from "svelte/elements";
 import type { ButtonType, LayoutType } from "@sjsf/form/fields/components";
 import type {
   ComboboxRootProps,
@@ -20,6 +11,15 @@ import type {
   SwitchRootProps,
   TagsInputRootProps,
 } from "@skeletonlabs/skeleton-svelte4";
+import type {
+  HTMLAttributes,
+  HTMLButtonAttributes,
+  HTMLFormAttributes,
+  HTMLInputAttributes,
+  HTMLLabelAttributes,
+  HTMLSelectAttributes,
+  HTMLTextareaAttributes,
+} from "svelte/elements";
 
 export interface UiOptions {
   /**

@@ -1,7 +1,7 @@
 <script lang="ts" module>
-  import { untrack, type ComponentProps as SvelteComponentProps } from "svelte";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import { FileUpload as SkeletonFileUpload } from "@skeletonlabs/skeleton-svelte";
+  import { untrack, type ComponentProps as SvelteComponentProps } from "svelte";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
@@ -21,13 +21,13 @@
 </script>
 
 <script lang="ts">
-  import { type FileUploadApi } from "@skeletonlabs/skeleton-svelte";
   import {
     customInputAttributes,
     getFormContext,
     getId,
     type ComponentProps,
   } from "@sjsf/form";
+  import { type FileUploadApi } from "@skeletonlabs/skeleton-svelte";
 
   let {
     config,

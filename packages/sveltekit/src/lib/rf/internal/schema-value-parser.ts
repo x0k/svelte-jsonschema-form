@@ -1,5 +1,11 @@
-import { isSchemaObject } from "@sjsf/form/lib/json-schema";
-import { isRecord } from "@sjsf/form/lib/object";
+import {
+  resolveUiRef,
+  type Schema,
+  type UiSchema,
+  type UiSchemaDefinition,
+  type UiSchemaRoot,
+  type Validator,
+} from "@sjsf/form";
 import {
   getClosestMatchingOption,
   getDiscriminatorFieldFromSchema,
@@ -16,22 +22,16 @@ import {
   type SchemaObjectValue,
   type SchemaValue,
 } from "@sjsf/form/core";
-import {
-  resolveUiRef,
-  type Schema,
-  type UiSchema,
-  type UiSchemaDefinition,
-  type UiSchemaRoot,
-  type Validator,
-} from "@sjsf/form";
+import { isSchemaObject } from "@sjsf/form/lib/json-schema";
+import { isRecord } from "@sjsf/form/lib/object";
 
-import type { Codec, EntryConverter } from "$lib/model.js";
 import {
   ANY_OF,
   compilePatterns,
   KEY_INPUT_KEY,
   ONE_OF,
 } from "$lib/internal.js";
+import type { Codec, EntryConverter } from "$lib/model.js";
 
 export type Input<T> = T | { [key: string]: Input<T> } | Input<T>[] | undefined;
 

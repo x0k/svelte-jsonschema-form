@@ -8,7 +8,6 @@ import {
   precompiledValidatorSubPath,
   zod4ValidatorVersionSubPath,
 } from "../validators.ts";
-
 import type { NamedImportOptions, NamespaceImportOptions } from "./lib.ts";
 import {
   type Codegen2020Validator,

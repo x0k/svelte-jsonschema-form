@@ -1,6 +1,5 @@
 <script lang="ts" module>
   import "@sjsf/form/fields/extra-widgets/checkboxes";
-
   import type { CheckboxProps } from "../types/checkbox.js";
   import "../types/label.js";
 

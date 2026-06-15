@@ -1,6 +1,6 @@
 <script lang="ts" module>
-  import type { ComponentProps as SvelteComponentProps } from "svelte";
   import { DatePicker as SvarDatePicker } from "@svar-ui/svelte-core";
+  import type { ComponentProps as SvelteComponentProps } from "svelte";
   import "@sjsf/form/fields/extra-widgets/date-picker";
 
   declare module "@sjsf/form" {

@@ -1,11 +1,11 @@
 <script lang="ts">
-  import type { SchemaObjectValue } from "@sjsf/form/core";
   import {
     createForm,
     BasicForm,
     type Schema,
     type UiSchemaRoot,
   } from "@sjsf/form";
+  import type { SchemaObjectValue } from "@sjsf/form/core";
   import type { FromSchema } from "json-schema-to-ts";
 
   import * as defaults from "$lib/sjsf/defaults";

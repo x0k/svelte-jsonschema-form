@@ -7,7 +7,6 @@
 </script>
 
 <script lang="ts">
-  import { createAsyncBinding } from "@sjsf/form/lib/svelte.svelte";
   import {
     makeEventHandlers,
     validateField,
@@ -18,7 +17,7 @@
     FileListValidationError,
     getFieldErrors,
   } from "@sjsf/form";
-
+  import { createAsyncBinding } from "@sjsf/form/lib/svelte.svelte";
   import "@sjsf/form/fields/extra-widgets/file";
 
   import { getStoreContext } from "./context";

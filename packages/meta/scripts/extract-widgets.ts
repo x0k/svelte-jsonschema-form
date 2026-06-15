@@ -1,6 +1,7 @@
-import path from "node:path";
 import fs from "node:fs/promises";
+import path from "node:path";
 
+import type { AbstractPackage } from "../src/package.ts";
 import {
   isLegacyTheme,
   isTheme,
@@ -14,7 +15,6 @@ import {
   isThemeClientSideOnlyExtraWidget,
   type ExtraWidgetFileNames,
 } from "../src/widgets.ts";
-import type { AbstractPackage } from "../src/package.ts";
 import { extractComponentPropsIndex, resolveComponentName } from "./analyze.ts";
 
 async function extractWidgetData(

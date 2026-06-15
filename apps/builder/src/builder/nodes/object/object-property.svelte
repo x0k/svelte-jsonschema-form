@@ -7,14 +7,13 @@
   } from "$lib/builder/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
 
-  import type { NodeProps } from "../../model.js";
   import { getBuilderContext } from "../../context.svelte.js";
-  import { setPredicateContext } from "../predicate/context.js";
-  import NodeContainer from "../../node-container.svelte";
+  import type { NodeProps } from "../../model.js";
   import MultiDropzone from "../../multi-dropzone.svelte";
+  import NodeContainer from "../../node-container.svelte";
   import NodeIssues from "../../node-issues.svelte";
   import { NODES } from "../index.js";
-
+  import { setPredicateContext } from "../predicate/context.js";
   import { setObjectContext } from "./context.js";
 
   let {
@@ -57,7 +56,7 @@
   {draggable}
   bind:node={node.property}
   class={[
-    "relative flex flex-col gap-1 border-none bg-border p-0",
+    "bg-border relative flex flex-col gap-1 border-none p-0",
     isSelected
       ? "shadow-[inset_0_0_0_1px_var(--primary)]"
       : isError

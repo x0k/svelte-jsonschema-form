@@ -1,11 +1,11 @@
 <script lang="ts" module>
-  import type { Component } from "svelte";
   import type {
     RadioGroup,
     RadioGroupItemProps,
     RadioGroupRootProps,
     WithoutChildrenOrChild,
   } from "bits-ui";
+  import type { Component } from "svelte";
   import "@sjsf/form/fields/extra-widgets/radio";
 
   import "../types/label.js";

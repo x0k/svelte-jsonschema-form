@@ -1,10 +1,10 @@
-import { describe, expect, it } from "vitest";
 import { isSchemaObject } from "@sjsf/form/lib/json-schema";
 import { toJsonSchema } from "@valibot/to-json-schema";
 import * as v from "valibot";
+import { describe, expect, it } from "vitest";
 
-import { createSchemaRegistry } from "./schemas-registry.js";
 import { createAugmentedId } from "./model.js";
+import { createSchemaRegistry } from "./schemas-registry.js";
 
 describe("SchemasRegistry", () => {
   it("toJsonSchema should generate expected JSON elements", () => {

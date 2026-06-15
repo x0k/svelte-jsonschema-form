@@ -1,5 +1,4 @@
 import { definitions } from "../definitions.js";
-
 import NlpDateInput from "./nlp-date-input.svelte";
 import "./nlp-date-input.svelte";
 

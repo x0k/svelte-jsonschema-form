@@ -1,7 +1,7 @@
-import { describe, beforeEach, expect, it } from "vitest";
+import { createFormValidator } from "@sjsf/ajv8-validator";
 import { DEFAULT_ID_PREFIX, SJSF_ID_PREFIX, type Schema } from "@sjsf/form";
 import { createMerger } from "@sjsf/form/mergers/modern";
-import { createFormValidator } from "@sjsf/ajv8-validator";
+import { describe, beforeEach, expect, it } from "vitest";
 
 import {
   createEnumItemDecoder,
@@ -12,12 +12,12 @@ import {
   DEFAULT_PSEUDO_PREFIX,
   createOptionIndexDecoder,
 } from "../id-builder.js";
+import { decode, encode } from "./codec.js";
 import {
   parseSchemaValue,
   type Input,
   type SchemaValueParserOptions,
 } from "./schema-value-parser.js";
-import { decode, encode } from "./codec.js";
 
 const opts = ({
   idPrefix = DEFAULT_ID_PREFIX,

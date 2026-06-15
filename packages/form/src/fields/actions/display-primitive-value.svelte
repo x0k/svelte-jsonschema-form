@@ -1,6 +1,6 @@
 <script lang="ts" module>
-  import type { Ref } from "@/lib/svelte.svelte.js";
   import type { Config, SchemaValue, FormState } from "@/form/index.js";
+  import type { Ref } from "@/lib/svelte.svelte.js";
   import { isNil } from "@/lib/types.js";
 
   export { displayPrimitiveValue };

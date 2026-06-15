@@ -1,9 +1,9 @@
 import { describe, it, expect } from "vitest";
 
 import { codegenThemeOrSubTheme } from "../codegen/model.ts";
-import { createSandboxFiles, type CustomComponents } from "./sandbox.ts";
 import type { FormState } from "./form-state.ts";
 import { playgroundValidators } from "./model.ts";
+import { createSandboxFiles, type CustomComponents } from "./sandbox.ts";
 
 const BASE_FORM_STATE: FormState = {
   schema: {

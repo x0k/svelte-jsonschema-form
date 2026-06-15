@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { BitsConfig } from "bits-ui";
-  import { Willow, WillowDark } from "@svar-ui/svelte-core";
-  import { extendByRecord, fromRecord } from "@sjsf/form/lib/resolver";
-  import { createComparator, createMerger } from "@sjsf/form/lib/json-schema";
-  import { createDeduplicator, createIntersector } from "@sjsf/form/lib/array";
+  import AlignLeft from "@lucide/svelte/icons/align-left";
+  import ChevronDown from "@lucide/svelte/icons/chevron-down";
+  import Copy from "@lucide/svelte/icons/copy";
+  import Download from "@lucide/svelte/icons/download";
+  import ExternalLink from "@lucide/svelte/icons/external-link";
   import {
     ON_BLUR,
     ON_CHANGE,
@@ -22,23 +22,18 @@
     getValueSnapshot,
     setValue,
   } from "@sjsf/form";
-  import { translation } from "@sjsf/form/translations/en";
-  import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-  import { omitExtraData } from "@sjsf/form/omit-extra-data";
-  import { createFormMerger } from "@sjsf/form/mergers/modern";
-  import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
   import { convert } from "@sjsf/form/converters/draft-2020-12";
+  import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+  import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
+  import { createDeduplicator, createIntersector } from "@sjsf/form/lib/array";
+  import { createComparator, createMerger } from "@sjsf/form/lib/json-schema";
+  import { extendByRecord, fromRecord } from "@sjsf/form/lib/resolver";
+  import { createFormMerger } from "@sjsf/form/mergers/modern";
+  import { omitExtraData } from "@sjsf/form/omit-extra-data";
   import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
-  import { fromRecord as registryFromRecord } from "svelte-tiler/shared/registry";
-  import { Panel, setTilerContext, type Tiles } from "svelte-tiler";
-  import * as Leaf from "svelte-tiler/tiles/leaf.svelte";
-  import * as Split from "svelte-tiler/tiles/split.svelte";
-  import * as Tabs from "svelte-tiler/tiles/tabs.svelte";
-  import AlignLeft from "@lucide/svelte/icons/align-left";
-  import ChevronDown from "@lucide/svelte/icons/chevron-down";
-  import ExternalLink from "@lucide/svelte/icons/external-link";
-  import Download from "@lucide/svelte/icons/download";
-  import Copy from "@lucide/svelte/icons/copy";
+  import { translation } from "@sjsf/form/translations/en";
+  import { Willow, WillowDark } from "@svar-ui/svelte-core";
+  import { BitsConfig } from "bits-ui";
   import { themeOrSubThemeTitle } from "meta";
   import {
     ALL_OF_STATE_BEHAVIOR,
@@ -67,46 +62,50 @@
     playgroundValidators,
     type FormState,
   } from "meta/playground";
-  import "meta/playground/augmentations";
   import {
     SANDBOX_PLATFORMS,
     sandboxPlatformLabel,
     sandboxPlatformIcon,
   } from "meta/sandbox";
   import { toast } from "svelte-sonner";
+  import { Panel, setTilerContext, type Tiles } from "svelte-tiler";
+  import { fromRecord as registryFromRecord } from "svelte-tiler/shared/registry";
+  import * as Leaf from "svelte-tiler/tiles/leaf.svelte";
+  import "meta/playground/augmentations";
+  import * as Split from "svelte-tiler/tiles/split.svelte";
+  import * as Tabs from "svelte-tiler/tiles/tabs.svelte";
 
-  import { Button, buttonVariants } from "$lib/components/ui/button/index.js";
+  import Bits from "$lib/bits.svelte";
   import * as ButtonGroup from "$lib/components/ui/button-group/index.js";
-  import { Label } from "$lib/components/ui/label/index.js";
+  import { Button, buttonVariants } from "$lib/components/ui/button/index.js";
   import { Checkbox } from "$lib/components/ui/checkbox/index.js";
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
+  import { Label } from "$lib/components/ui/label/index.js";
   import * as Separator from "$lib/components/ui/separator/index.js";
-  import { debouncedEffect } from "$lib/svelte.svelte.js";
-  import { ShadowHost } from "$lib/shadow/index.js";
-  import Editor from "$lib/editor.svelte";
-  import Popup from "$lib/popup.svelte";
-  import Bits from "$lib/bits.svelte";
-  import Select from "$lib/select.svelte";
-  import Noop from "$lib/noop.svelte";
-  import { gripHeader } from "$lib/grip-header.svelte";
   import { copyTextToClipboard } from "$lib/copy-to-clipboard";
+  import Editor from "$lib/editor.svelte";
+  import { gripHeader } from "$lib/grip-header.svelte";
+  import Noop from "$lib/noop.svelte";
+  import Popup from "$lib/popup.svelte";
+  import Select from "$lib/select.svelte";
+  import { ShadowHost } from "$lib/shadow/index.js";
+  import { debouncedEffect } from "$lib/svelte.svelte.js";
   import {
     constraints,
     createApplySplit,
     createTilerContext,
     gapPx,
   } from "$lib/tiler.js";
-
-  import { themeManager } from "@/theme.svelte";
-  import { setShadcnContext } from "@/shadcn-context.js";
   import Header from "@/header.svelte";
   import { router } from "@/router.js";
+  import { setShadcnContext } from "@/shadcn-context.js";
+  import { themeManager } from "@/theme.svelte";
 
-  import { getChangedMergerOptionsCount } from "./merger-options";
-  import * as customComponents from "./custom-form-components/index.js";
-  import SamplePicker from "./sample-picker.svelte";
   import CopyFormData from "./copy-form-data.svelte";
+  import * as customComponents from "./custom-form-components/index.js";
+  import { getChangedMergerOptionsCount } from "./merger-options";
   import { openSandbox } from "./open-sandbox";
+  import SamplePicker from "./sample-picker.svelte";
 
   const DEFAULT_PLAYGROUND_STATE: FormState = {
     schema: {
@@ -649,7 +648,7 @@
 {#snippet preview()}
   <ShadowHost
     id="shadow-host"
-    class="min-h-full flex flex-col"
+    class="flex min-h-full flex-col"
     style={`${themeStyle}\n${iconSetStyle}`}
     data-theme={themeManager.darkOrLight}
   >

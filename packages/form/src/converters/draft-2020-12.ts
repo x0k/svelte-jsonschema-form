@@ -1,7 +1,7 @@
 import type { JSONSchema } from "json-schema-typed/draft-2020-12";
 
-import { noop } from "@/lib/function.js";
 import type { SchemaDefinition, Schema } from "@/core/index.js";
+import { noop } from "@/lib/function.js";
 
 interface Context {
   baseUrl: string | undefined;

@@ -12,7 +12,6 @@
 </script>
 
 <script lang="ts">
-  import { chain, fromRecord, fromFactories } from "@sjsf/form/lib/resolver";
   import {
     createForm,
     BasicForm,
@@ -22,9 +21,11 @@
     type UiSchema,
     getValueSnapshot,
   } from "@sjsf/form";
+  import { chain, fromRecord, fromFactories } from "@sjsf/form/lib/resolver";
   import "@sjsf/form/fields/extra/enum-include";
 
   import * as defaults from "$lib/sjsf/defaults";
+
   import RadioWithOther, { OTHER_VALUE } from "./radio-with-other.svelte";
 
   const schema = {

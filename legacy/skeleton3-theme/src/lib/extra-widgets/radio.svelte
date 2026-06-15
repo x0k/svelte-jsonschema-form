@@ -28,7 +28,7 @@
 </script>
 
 {#each options as option (option.id)}
-  <label class="flex items-center space-x-2 cursor-pointer">
+  <label class="flex cursor-pointer items-center space-x-2">
     <input
       class="radio"
       bind:group={mapped.current}

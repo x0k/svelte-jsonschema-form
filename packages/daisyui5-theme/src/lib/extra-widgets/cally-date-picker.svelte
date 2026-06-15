@@ -1,11 +1,11 @@
 <script lang="ts" module>
-  import type { ClassValue, HTMLButtonAttributes } from "svelte/elements";
+  import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type {
     CalendarRangeProps,
     CalendarMonthProps,
     CalendarDateProps,
   } from "cally";
-  import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type { ClassValue, HTMLButtonAttributes } from "svelte/elements";
 
   type MapEvents<T> = {
     [K in keyof T as K extends `on${infer E}` ? `on:${Lowercase<E>}` : K]: T[K];
@@ -43,7 +43,6 @@
 </script>
 
 <script lang="ts">
-  import { formatAsCustomPropertyName } from "@sjsf/form/lib/css";
   import {
     buttonAttributes,
     getFormContext,
@@ -51,6 +50,7 @@
     uiOptionProps,
     type ComponentProps,
   } from "@sjsf/form";
+  import { formatAsCustomPropertyName } from "@sjsf/form/lib/css";
   import "cally";
 
   let {

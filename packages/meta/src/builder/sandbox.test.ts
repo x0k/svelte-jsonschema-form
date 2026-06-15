@@ -1,8 +1,8 @@
 import { describe, it, expect } from "vitest";
 
 import { codegenThemeOrSubTheme } from "../codegen/index.ts";
-import { createSandboxFiles, type BuilderSandboxOptions } from "./sandbox.ts";
 import { builderValidators } from "./model.ts";
+import { createSandboxFiles, type BuilderSandboxOptions } from "./sandbox.ts";
 
 const BASE_OPTIONS: BuilderSandboxOptions = {
   name: "Sandbox",

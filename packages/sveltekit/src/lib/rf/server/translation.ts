@@ -1,5 +1,5 @@
-import { fromRecord, type Resolver } from "@sjsf/form/lib/resolver";
 import { SJSF_ID_PREFIX, type TranslatorDefinitions } from "@sjsf/form";
+import { fromRecord, type Resolver } from "@sjsf/form/lib/resolver";
 
 export interface Labels {
   "expected-record": { input: unknown };

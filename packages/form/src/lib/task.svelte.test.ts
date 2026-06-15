@@ -1,6 +1,7 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { tick } from "svelte";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
+import { noop } from "./function.js";
 import {
   abortPrevious,
   forgetPrevious,
@@ -9,7 +10,6 @@ import {
   CompletionError,
   InitializationError,
 } from "./task.svelte.js";
-import { noop } from "./function.js";
 
 describe("createTask", () => {
   beforeEach(() => {

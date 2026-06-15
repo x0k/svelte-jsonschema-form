@@ -1,5 +1,5 @@
-import type { Component } from "svelte";
 import type { CheckboxRootProps, WithoutChildrenOrChild } from "bits-ui";
+import type { Component } from "svelte";
 
 export type CheckboxProps = WithoutChildrenOrChild<CheckboxRootProps>;
 

@@ -2,15 +2,15 @@ import {
   fragmentSchema,
   fromValidators,
 } from "@sjsf/form/validators/precompile";
-import standaloneCode from "ajv/dist/standalone/index.js";
 import { Ajv } from "ajv";
+import standaloneCode from "ajv/dist/standalone/index.js";
+import { build } from "esbuild";
 import {
   formValueValidatorTests,
   importModule,
   validatorTests,
   createPrecompiledValidatorFactory,
 } from "validator-testing";
-import { build } from "esbuild";
 
 import { addFormComponents, DEFAULT_AJV_CONFIG } from "../model.js";
 import {

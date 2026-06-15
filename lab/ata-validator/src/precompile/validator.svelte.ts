@@ -1,25 +1,25 @@
-import { DATA_URL_FORMAT } from "@sjsf/form/core";
 import type {
   FieldValueValidator,
   FormValueValidator,
   Schema,
   Validator,
 } from "@sjsf/form";
+import { DATA_URL_FORMAT } from "@sjsf/form/core";
 import { fromValidators } from "@sjsf/form/validators/precompile";
 import type { ValidationError } from "ata-validator";
 import type { BundleStandaloneOptions } from "ata-validator/build";
 
+import {
+  createFormErrorsTransformer,
+  transformFieldErrors,
+  type ErrorsTransformerOptions,
+} from "../errors.js";
 import {
   COLOR_FORMAT_REGEX,
   DATA_URL_FORMAT_REGEX,
   DEFAULT_VALIDATOR_OPTIONS,
   type ValueCloner,
 } from "../validator.svelte.js";
-import {
-  createFormErrorsTransformer,
-  transformFieldErrors,
-  type ErrorsTransformerOptions,
-} from "../errors.js";
 
 type FormatPredicate = NonNullable<BundleStandaloneOptions["formats"]>[string];
 

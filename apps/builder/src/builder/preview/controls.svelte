@@ -1,10 +1,9 @@
 <script lang="ts">
-  import Eye from "@lucide/svelte/icons/eye";
-  import Code from "@lucide/svelte/icons/code";
   import Braces from "@lucide/svelte/icons/braces";
+  import Code from "@lucide/svelte/icons/code";
+  import Eye from "@lucide/svelte/icons/eye";
 
   import { getBuilderContext } from "../context.svelte.js";
-
   import { PreviewSubRouteName, RouteName } from "../model.js";
 
   const ctx = getBuilderContext();
@@ -20,9 +19,9 @@
   );
 </script>
 
-<div class="flex flex-col gap-2 text-sm text-foreground">
+<div class="text-foreground flex flex-col gap-2 text-sm">
   <button
-    class="flex cursor-pointer items-center gap-2 rounded-md border p-2 hover:bg-accent data-[active=true]:font-bold"
+    class="hover:bg-accent flex cursor-pointer items-center gap-2 rounded-md border p-2 data-[active=true]:font-bold"
     onclick={preview(PreviewSubRouteName.Code)}
     data-active={subRoute === PreviewSubRouteName.Code}
   >
@@ -30,7 +29,7 @@
     Code
   </button>
   <button
-    class="flex cursor-pointer items-center gap-2 rounded-md border p-2 hover:bg-accent data-[active=true]:font-bold"
+    class="hover:bg-accent flex cursor-pointer items-center gap-2 rounded-md border p-2 data-[active=true]:font-bold"
     onclick={preview(PreviewSubRouteName.Schema)}
     data-active={subRoute === PreviewSubRouteName.Schema}
   >
@@ -38,7 +37,7 @@
     Schemas
   </button>
   <button
-    class="flex cursor-pointer items-center gap-2 rounded-md border p-2 hover:bg-accent data-[active=true]:font-bold"
+    class="hover:bg-accent flex cursor-pointer items-center gap-2 rounded-md border p-2 data-[active=true]:font-bold"
     onclick={preview()}
     data-active={subRoute === undefined}
   >

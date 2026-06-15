@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onDestroy, untrack } from "svelte";
+  import XIcon from "@lucide/svelte/icons/x";
   import {
     Content,
     createForm,
@@ -9,12 +9,12 @@
     validate,
   } from "@sjsf/form";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
-  import XIcon from "@lucide/svelte/icons/x";
+  import { onDestroy, untrack } from "svelte";
 
-  import { mergeUiSchemas } from "$lib/sjsf/ui-schema";
-  import { Button } from "$lib/components/ui/button/index.js";
   import type { CustomizableNode } from "$lib/builder/index.js";
+  import { Button } from "$lib/components/ui/button/index.js";
   import * as defaults from "$lib/sjsf/defaults.js";
+  import { mergeUiSchemas } from "$lib/sjsf/ui-schema";
 
   import { getBuilderContext } from "../context.svelte.js";
 

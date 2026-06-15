@@ -1,11 +1,5 @@
 import mergeAllOf, { type Options } from "json-schema-merge-allof";
 
-import { unique as uniqueItems } from "@/lib/array.js";
-import {
-  ARRAYS_OF_SUB_SCHEMAS,
-  RECORDS_OF_SUB_SCHEMAS,
-  SUB_SCHEMAS,
-} from "@/lib/json-schema/index.js";
 import {
   DEPENDENCIES_KEY,
   getDefaultFormState,
@@ -19,6 +13,12 @@ import {
   type Validator,
 } from "@/core/index.js";
 import type { FormMerger } from "@/form/index.js";
+import { unique as uniqueItems } from "@/lib/array.js";
+import {
+  ARRAYS_OF_SUB_SCHEMAS,
+  RECORDS_OF_SUB_SCHEMAS,
+  SUB_SCHEMAS,
+} from "@/lib/json-schema/index.js";
 
 function mergeRecords<T>(
   left: Record<string, T>,

@@ -9,10 +9,10 @@
     type CustomizableNode,
   } from "$lib/builder/index.js";
 
-  import type { NodeProps } from "../../model.js";
   import { getBuilderContext } from "../../context.svelte.js";
-  import MultiDropZone from "../../multi-dropzone.svelte";
   import NodeHeader from "../../customizable-node-header.svelte";
+  import type { NodeProps } from "../../model.js";
+  import MultiDropZone from "../../multi-dropzone.svelte";
   import NodeContainer from "../../node-container.svelte";
   import NodeIssues from "../../node-issues.svelte";
 

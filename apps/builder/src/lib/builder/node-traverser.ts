@@ -2,8 +2,8 @@ import { NodeType } from "meta/builder";
 
 import type { Visitor } from "$lib/visitor.js";
 
-import type { Node } from "./node.js";
 import { isUOperator, isNOperator, isPropertyOperator } from "./node-guards.js";
+import type { Node } from "./node.js";
 
 export interface NodeTraverserContext<T extends NodeType> {
   parentType: T | "root";

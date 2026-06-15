@@ -1,7 +1,12 @@
-import { transforms, type AstTypes } from "@sveltejs/sv-utils";
-import type { DeepPartial } from "@sjsf/form/lib/types";
 import { isRecordEmpty } from "@sjsf/form/lib/object";
+import type { DeepPartial } from "@sjsf/form/lib/types";
+import { transforms, type AstTypes } from "@sveltejs/sv-utils";
 
+import {
+  extraFields,
+  extraFieldSubPath,
+  type ExtraFieldFileName,
+} from "../fields.ts";
 import {
   formCoreSubpath,
   formIdBuilderSubPath,
@@ -11,6 +16,8 @@ import {
   formTranslationSubPath,
   type Resolver,
 } from "../form.ts";
+import { iconSetPackage } from "../icons.ts";
+import { sveltekitPackage, svelteKitRfSubPath } from "../sveltekit.ts";
 import {
   isThemeExtension,
   themeExtensionOrigin,
@@ -18,26 +25,22 @@ import {
   toTheme,
   type ToTheme,
 } from "../themes.ts";
-import { sveltekitPackage, svelteKitRfSubPath } from "../sveltekit.ts";
-import {
-  extraFields,
-  extraFieldSubPath,
-  type ExtraFieldFileName,
-} from "../fields.ts";
-import {
-  themeExtraWidgets,
-  themeExtraWidgetSubPath,
-  type ExtraWidgetFileNames,
-} from "../widgets.ts";
-import { iconSetPackage } from "../icons.ts";
 import {
   externalValidatorPackage,
   internalValidatorSubPath,
   isInternalValidator,
   isJsonSchemaValidator,
 } from "../validators.ts";
-
-import { createDraft2020ValidatorExport } from "./validator.ts";
+import {
+  themeExtraWidgets,
+  themeExtraWidgetSubPath,
+  type ExtraWidgetFileNames,
+} from "../widgets.ts";
+import {
+  createReExport,
+  getTopLevelFunction,
+  type NamedImportOptions,
+} from "./lib.ts";
 import type {
   CodegenIconSet,
   CodegenThemeOrSubTheme,
@@ -45,11 +48,7 @@ import type {
   ConditionalPrinter,
   CodegenSvelteKitIntegration,
 } from "./model.ts";
-import {
-  createReExport,
-  getTopLevelFunction,
-  type NamedImportOptions,
-} from "./lib.ts";
+import { createDraft2020ValidatorExport } from "./validator.ts";
 
 export interface MergerOptions {
   allOf: "populateDefaults" | "skipDefaults";

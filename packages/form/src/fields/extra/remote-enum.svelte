@@ -1,13 +1,13 @@
 <script lang="ts" module>
   import { getContext, hasContext, setContext } from "svelte";
 
-  import type { Query } from "@/lib/task.svelte.js";
   import type { EnumOption } from "@/core/index.js";
   import {
     type Config,
     type FormState,
     retrieveUiOption,
   } from "@/form/index.js";
+  import type { Query } from "@/lib/task.svelte.js";
 
   const field = "remoteEnumField";
   export interface EnumOptionsQueries {}

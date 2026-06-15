@@ -2,6 +2,7 @@
   import { BasicForm, createForm, type FormOptions } from "@sjsf/form";
 
   import "../src/lib/extra-widgets/checkboxes-include.js";
+
   import "../src/app.css";
 
   const props: FormOptions<any> = $props();

@@ -6,15 +6,15 @@ import type {
   JSONSchema7Object,
 } from "json-schema";
 
-import { type Comparator, ascComparator } from "@/lib/ord.js";
-import { isAllowAnySchema, isSchemaObject } from "@/lib/json-schema/index.js";
 import {
   createArrayComparator,
   createDeduplicator,
   isArrayEmpty,
 } from "@/lib/array.js";
-import { isRecordEmpty } from "@/lib/object.js";
+import { isAllowAnySchema, isSchemaObject } from "@/lib/json-schema/index.js";
 import { weakMemoize } from "@/lib/memoize.js";
+import { isRecordEmpty } from "@/lib/object.js";
+import { type Comparator, ascComparator } from "@/lib/ord.js";
 
 const zero = () => 0;
 const isUndefined = <T>(v: T | undefined): v is undefined => v === undefined;

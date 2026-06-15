@@ -1,6 +1,5 @@
 <script lang="ts" module>
   import "@sjsf/form/fields/extra-widgets/multi-select";
-
   import type {
     SelectMultipleRootProps,
     SelectTriggerProps,

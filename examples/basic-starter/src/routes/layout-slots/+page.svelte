@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { overrideByRecord } from "@sjsf/form/lib/resolver";
   import {
     createForm,
     BasicForm,
@@ -7,6 +6,7 @@
     type UiSchemaRoot,
     type Config,
   } from "@sjsf/form";
+  import { overrideByRecord } from "@sjsf/form/lib/resolver";
 
   import * as defaults from "$lib/sjsf/defaults";
 

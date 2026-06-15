@@ -4,9 +4,11 @@
     Dialog as DialogPrimitive,
   } from "bits-ui";
   import type { Snippet } from "svelte";
-  import Command from "./command.svelte";
+
   import * as Dialog from "$lib/components/ui/dialog/index.js";
   import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
+
+  import Command from "./command.svelte";
 
   let {
     open = $bindable(false),

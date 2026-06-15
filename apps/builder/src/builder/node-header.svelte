@@ -1,9 +1,9 @@
 <script lang="ts">
-  import type { Snippet } from "svelte";
   import GripVertical from "@lucide/svelte/icons/grip-vertical";
+  import type { Snippet } from "svelte";
 
-  import RemoveButton from "./remove-button.svelte";
   import type { BuilderDraggable } from "./context.svelte.js";
+  import RemoveButton from "./remove-button.svelte";
 
   const {
     draggable,

@@ -14,7 +14,7 @@
 </script>
 
 <div class="flex items-center gap-2">
-  <Label class="text-base text-muted-foreground" for={selectId}
+  <Label class="text-muted-foreground text-base" for={selectId}
     >Value type</Label
   >
   <Select.Root type="single" bind:value>

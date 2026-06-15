@@ -1,20 +1,20 @@
 <script lang="ts">
-  import type { ClassNameValue } from "tailwind-merge";
-  import GitFork from "@lucide/svelte/icons/git-fork";
-  import Trash from "@lucide/svelte/icons/trash-2";
   import ChevronDown from "@lucide/svelte/icons/chevron-down";
   import Download from "@lucide/svelte/icons/download";
   import Folder from "@lucide/svelte/icons/folder-code";
-  import Upload from "@lucide/svelte/icons/upload";
-  import Plus from "@lucide/svelte/icons/plus";
+  import GitFork from "@lucide/svelte/icons/git-fork";
   import Pencil from "@lucide/svelte/icons/pencil";
+  import Plus from "@lucide/svelte/icons/plus";
+  import Trash from "@lucide/svelte/icons/trash-2";
+  import Upload from "@lucide/svelte/icons/upload";
+  import type { ClassNameValue } from "tailwind-merge";
 
   import { ButtonGroup } from "$lib/components/ui/button-group/index.js";
   import { Button, buttonVariants } from "$lib/components/ui/button/index.js";
-  import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
   import * as Dialog from "$lib/components/ui/dialog/index.js";
-  import * as Item from "$lib/components/ui/item/index.js";
+  import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
   import * as Empty from "$lib/components/ui/empty/index.js";
+  import * as Item from "$lib/components/ui/item/index.js";
 
   import type { ProjectsContext } from "./context.svelte.js";
 

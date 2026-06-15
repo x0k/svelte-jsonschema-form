@@ -1,15 +1,15 @@
 import type { Json, Validate } from "@exodus/schemasafe";
-import type { Merger } from "@sjsf/form/core";
 import type {
   FieldValueValidator,
   FormValueValidator,
   Schema,
   Validator,
 } from "@sjsf/form";
+import type { Merger } from "@sjsf/form/core";
 import { fromValidators } from "@sjsf/form/validators/precompile";
 
-import type { ValueToJSON } from "../validator.js";
 import { transformFormErrors, transformFieldErrors } from "../errors.js";
+import type { ValueToJSON } from "../validator.js";
 
 export type CompiledValidateFunction = (data: unknown) => boolean;
 

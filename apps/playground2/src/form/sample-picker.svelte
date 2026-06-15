@@ -6,8 +6,8 @@
     type FormPreset,
   } from "meta/playground";
 
-  import * as Dialog from "$lib/components/ui/dialog/index.js";
   import { Button, buttonVariants } from "$lib/components/ui/button/index.js";
+  import * as Dialog from "$lib/components/ui/dialog/index.js";
 
   interface Props {
     onSelect: (sample: FormPreset) => void;
@@ -29,7 +29,7 @@
     <div class="flex flex-col gap-2">
       {#each formPresetCategories() as category}
         <p class="pt-4 font-semibold">{category}</p>
-        <div class="flex gap-2 flex-wrap justify-center">
+        <div class="flex flex-wrap justify-center gap-2">
           {#each GROUPED_FORM_PRESETS[category] as { meta, load } (meta.title)}
             <Button
               variant="secondary"

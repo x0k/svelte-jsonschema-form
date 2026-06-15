@@ -4,6 +4,15 @@
 
 import { isRecordEmpty, isObject } from "@/lib/object.js";
 
+import { isSchemaOfConstantValue } from "./constant-schema.js";
+import { isSchemaValueDeepEqual } from "./deep-equal.js";
+import { findSchemaDefinition } from "./definitions.js";
+import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
+import { isFixedItems } from "./is-fixed-items.js";
+import { getSelectOptionValues, isMultiSelect, isSelect } from "./is-select.js";
+import { getClosestMatchingOption } from "./matching.js";
+import { mergeDefaultsWithFormData, mergeSchemaObjects } from "./merge.js";
+import type { Merger } from "./merger.js";
 import { resolveDependencies, retrieveSchema } from "./resolve.js";
 import {
   ALL_OF_KEY,
@@ -15,22 +24,13 @@ import {
   type SchemaType,
   type SchemaValue,
 } from "./schema.js";
-import type { Validator } from "./validator.js";
-import { findSchemaDefinition } from "./definitions.js";
-import { isFixedItems } from "./is-fixed-items.js";
-import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
-import { isSchemaObjectValue, isSchemaValueEmpty } from "./value.js";
-import { mergeDefaultsWithFormData, mergeSchemaObjects } from "./merge.js";
 import {
   getSimpleSchemaType,
   isPrimitiveSchemaType,
   typeOfSchema,
 } from "./type.js";
-import { getSelectOptionValues, isMultiSelect, isSelect } from "./is-select.js";
-import { getClosestMatchingOption } from "./matching.js";
-import type { Merger } from "./merger.js";
-import { isSchemaOfConstantValue } from "./constant-schema.js";
-import { isSchemaValueDeepEqual } from "./deep-equal.js";
+import type { Validator } from "./validator.js";
+import { isSchemaObjectValue, isSchemaValueEmpty } from "./value.js";
 
 export function getDefaultValueForType(type: SchemaType) {
   switch (type) {

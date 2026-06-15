@@ -1,10 +1,10 @@
 <script lang="ts" module>
-  import type { Component } from "svelte";
   import type {
     Switch as Shadcn4Switch,
     SwitchRootProps,
     WithoutChildrenOrChild,
   } from "bits-ui";
+  import type { Component } from "svelte";
   import "@sjsf/form/fields/extra-widgets/switch";
 
   import "../types/label.js";

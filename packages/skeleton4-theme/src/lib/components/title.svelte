@@ -14,7 +14,7 @@
 </script>
 
 <div
-  class={isFieldTemplate ? "label-text" : "font-bold text-xl"}
+  class={isFieldTemplate ? "label-text" : "text-xl font-bold"}
   {...titleAttributes(ctx, config, "titleAttributes", {})}
 >
   {title}

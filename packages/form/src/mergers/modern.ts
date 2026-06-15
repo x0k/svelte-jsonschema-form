@@ -1,14 +1,14 @@
 import {
-  createMerger as createJsonSchemaMerger,
-  createShallowAllOfMerge,
-} from "@/lib/json-schema/index.js";
-import {
   getDefaultFormState,
   type Experimental_DefaultFormStateBehavior,
   type Merger,
   type Validator,
 } from "@/core/index.js";
 import type { FormMerger, Schema } from "@/form/main.js";
+import {
+  createMerger as createJsonSchemaMerger,
+  createShallowAllOfMerge,
+} from "@/lib/json-schema/index.js";
 
 export interface MergerOptions {
   jsonSchemaMerger?: ReturnType<typeof createJsonSchemaMerger>;

@@ -6,15 +6,15 @@ import {
 import { isRecord } from "@/lib/object.js";
 
 import { resolveRef } from "./definitions.js";
+import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
+import { getClosestMatchingOption } from "./matching.js";
+import type { Merger } from "./merger.js";
 import {
   type Schema,
   type SchemaDefinition,
   type SchemaValue,
 } from "./schema.js";
 import type { Validator } from "./validator.js";
-import type { Merger } from "./merger.js";
-import { getClosestMatchingOption } from "./matching.js";
-import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
 import { isSchemaArrayValue, isSchemaObjectValue } from "./value.js";
 
 export type Path = Array<string | number>;

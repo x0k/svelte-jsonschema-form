@@ -1,5 +1,5 @@
-import { formatFileSize } from "@sjsf/form/validators/file-size";
 import type { Schema, UiSchemaRoot } from "@sjsf/form";
+import { formatFileSize } from "@sjsf/form/validators/file-size";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {

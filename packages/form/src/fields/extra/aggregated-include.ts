@@ -1,5 +1,4 @@
 import { definitions } from "../../theme/definitions.js";
-
 import Aggregated from "./aggregated.svelte";
 import "./aggregated.svelte";
 

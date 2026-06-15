@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { NodeType } from "meta/builder";
   import Info from "@lucide/svelte/icons/info";
+  import type { NodeType } from "meta/builder";
 
   import {
     type CustomizableNode,
@@ -13,14 +13,13 @@
   import { Label } from "$lib/components/ui/label/index.js";
   import * as Tooltip from "$lib/components/ui/tooltip/index.js";
 
-  import type { NodeProps } from "../../model.js";
   import { getBuilderContext } from "../../context.svelte.js";
   import { getIndexContext } from "../../index.svelte";
-  import NodeHeader from "../../node-header.svelte";
-  import NodeContainer from "../../node-container.svelte";
+  import type { NodeProps } from "../../model.js";
   import MultiDropZone from "../../multi-dropzone.svelte";
+  import NodeContainer from "../../node-container.svelte";
+  import NodeHeader from "../../node-header.svelte";
   import NodeIssues from "../../node-issues.svelte";
-
   import { PredicateDropzone } from "../predicate/index.js";
   import { getObjectContext } from "./context.js";
 
@@ -90,14 +89,14 @@
         />
         <Label
           for={checkboxId}
-          class="text-base text-muted-foreground"
+          class="text-muted-foreground text-base"
           onclick={(e) => e.stopPropagation()}
         >
           Complement
         </Label>
         <Tooltip.Root>
           <Tooltip.Trigger>
-            <Info class="size-5 text-muted-foreground" />
+            <Info class="text-muted-foreground size-5" />
           </Tooltip.Trigger>
           <Tooltip.Content>
             <p>Field values must be split between branches without gaps.</p>

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
-import type { Schema } from "./schema.js";
 import { isOrderedSchemaDeepEqual, isSchemaDeepEqual } from "./deep-equal.js";
+import type { Schema } from "./schema.js";
 
 describe("isSchemaDeepEqual", () => {
   it.each([[isSchemaDeepEqual], [isOrderedSchemaDeepEqual]])(

@@ -1,7 +1,7 @@
-import { beforeEach, describe, expect, it } from "vitest";
+import { createFormValidator } from "@sjsf/ajv8-validator";
 import type { RPath, Schema } from "@sjsf/form/core";
 import { createMerger } from "@sjsf/form/mergers/modern";
-import { createFormValidator } from "@sjsf/ajv8-validator";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import {
   createOptionIndexDecoder,

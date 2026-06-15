@@ -1,4 +1,3 @@
-import { createContext, type Component } from "svelte";
 import type {
   Creatable,
   ExtraUiOptions,
@@ -21,6 +20,7 @@ import type {
   Theme as MetaTheme,
 } from "meta";
 import type { CodegenDraft7Validator } from "meta/codegen";
+import { createContext, type Component } from "svelte";
 
 interface Defaults {
   idPrefix: string;

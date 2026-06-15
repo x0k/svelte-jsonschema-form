@@ -1,7 +1,14 @@
-import type { FromSchema } from "json-schema-to-ts";
 import type { Schema } from "@sjsf/form";
+import type { FromSchema } from "json-schema-to-ts";
 
+import { EnumValueType } from "./enum.ts";
+import {
+  type AbstractCustomizableNode,
+  type AbstractNode,
+  type NodeId,
+} from "./node-base.ts";
 import { NodeType } from "./node-types.ts";
+import { type NumberNode } from "./number-node.ts";
 import {
   OperatorType,
   type AbstractOperator,
@@ -10,15 +17,8 @@ import {
   type SOperatorType,
   type UOperatorType,
 } from "./operator.ts";
-import { EnumValueType } from "./enum.ts";
-import {
-  type AbstractCustomizableNode,
-  type AbstractNode,
-  type NodeId,
-} from "./node-base.ts";
-import { type StringNode } from "./string-node.ts";
-import { type NumberNode } from "./number-node.ts";
 import { type RangeNode } from "./range-node.ts";
+import { type StringNode } from "./string-node.ts";
 
 export interface PredicateNode extends AbstractNode<NodeType.Predicate> {
   operator: OperatorNode | undefined;

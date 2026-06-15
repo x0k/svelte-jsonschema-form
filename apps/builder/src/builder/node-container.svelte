@@ -11,12 +11,12 @@
   } from "$lib/builder/index.js";
   import { cn } from "$lib/utils.js";
 
+  import Container from "./container.svelte";
   import {
     getBuilderContext,
     type BuilderDraggable,
     type NodeRef,
   } from "./context.svelte.js";
-  import Container from "./container.svelte";
 
   interface Props {
     node: Node;

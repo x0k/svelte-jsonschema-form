@@ -1,3 +1,4 @@
+import { validator } from "@exodus/schemasafe";
 import {
   fragmentSchema,
   fromValidators,
@@ -9,7 +10,6 @@ import {
   importModule,
   validatorTests,
 } from "validator-testing";
-import { validator } from "@exodus/schemasafe";
 
 import { DEFAULT_VALIDATOR_OPTIONS } from "../model.js";
 import {

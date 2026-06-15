@@ -1,10 +1,12 @@
 <script lang="ts">
-  import { RangeCalendar as RangeCalendarPrimitive } from "bits-ui";
-  import * as RangeCalendar from "./index.js";
-  import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
-  import type { ButtonVariant } from "$lib/components/ui/button/index.js";
-  import type { Snippet } from "svelte";
   import { isEqualMonth, type DateValue } from "@internationalized/date";
+  import { RangeCalendar as RangeCalendarPrimitive } from "bits-ui";
+  import type { Snippet } from "svelte";
+
+  import type { ButtonVariant } from "$lib/components/ui/button/index.js";
+  import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
+
+  import * as RangeCalendar from "./index.js";
 
   let {
     ref = $bindable(null),
@@ -46,7 +48,7 @@
   {weekdayFormat}
   {disableDaysOutsideMonth}
   class={cn(
-    "p-3 [--cell-radius:var(--radius-md)] [--cell-size:--spacing(8)] bg-background group/calendar p-3 [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent",
+    "bg-background group/calendar p-3 p-3 [--cell-radius:var(--radius-md)] [--cell-size:--spacing(8)] [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent",
     className
   )}
   {locale}

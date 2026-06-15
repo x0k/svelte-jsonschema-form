@@ -1,6 +1,5 @@
 <script lang="ts" module>
   import type { HTMLInputAttributes } from "svelte/elements";
-
   import "@sjsf/form/fields/extra-widgets/combobox";
 
   declare module "@sjsf/form" {
@@ -16,11 +15,11 @@
     inputAttributes,
     type ComponentProps,
   } from "@sjsf/form";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
   import {
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
+  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),

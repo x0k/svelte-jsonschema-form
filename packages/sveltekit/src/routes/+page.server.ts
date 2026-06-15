@@ -1,11 +1,11 @@
 import { fail } from "@sveltejs/kit";
 
-import { isValid, createFormHandler, createAction } from "$lib/server/index.js";
 import type { InitialFormData } from "$lib/model.js";
+import { isValid, createFormHandler, createAction } from "$lib/server/index.js";
 
 import type { Actions } from "./$types.js";
-import { schema, uiSchema } from "./model.js";
 import * as defaults from "./form-defaults.js";
+import { schema, uiSchema } from "./model.js";
 
 type Model = Record<string, string>;
 

@@ -16,5 +16,5 @@
 </script>
 
 <div class="flex h-2 w-full flex-col justify-center" {@attach droppable.attach}>
-  <div class={["h-0.5 w-full bg-chart-2", !droppable.isOver && "hidden"]}></div>
+  <div class={["bg-chart-2 h-0.5 w-full", !droppable.isOver && "hidden"]}></div>
 </div>

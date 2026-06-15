@@ -1,12 +1,11 @@
 import { transforms } from "@sveltejs/sv-utils";
 
-import { extraPackage } from "../package.ts";
 import { formPackage } from "../form.ts";
+import { extraPackage } from "../package.ts";
 import {
   externalValidatorPackage,
   internalValidatorSubPath,
 } from "../validators.ts";
-
 import {
   fieldsValidationModeFlags,
   type CodegenPrecompiledValidator,

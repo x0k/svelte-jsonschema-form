@@ -8,8 +8,8 @@
 
   import * as defaults from "$lib/sjsf/defaults";
 
-  import StoredFileField from "./stored-file-field.svelte";
   import { setStoreContext } from "./context";
+  import StoredFileField from "./stored-file-field.svelte";
 
   const {
     initialValue,

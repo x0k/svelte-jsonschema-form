@@ -1,5 +1,3 @@
-import { isObject, isRecordEmpty } from "@/lib/object.js";
-import { isSchemaObject } from "@/lib/json-schema/index.js";
 import {
   getKnownProperties,
   resolveRef,
@@ -17,6 +15,8 @@ import {
   getClosestMatchingOption,
   getDiscriminatorFieldFromSchema,
 } from "@/core/index.js";
+import { isSchemaObject } from "@/lib/json-schema/index.js";
+import { isObject, isRecordEmpty } from "@/lib/object.js";
 
 // WARN: Any change to this function must be synchronized with `validators/precompile`
 export function allowAdditionalProperties(s: Schema): Schema {

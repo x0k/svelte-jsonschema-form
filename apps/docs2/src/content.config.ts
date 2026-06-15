@@ -1,9 +1,9 @@
 import { docsSchema } from "@astrojs/starlight/schema";
-import { defineCollection, type CollectionEntry } from "astro:content";
 import { z } from "astro/zod";
+import { defineCollection, type CollectionEntry } from "astro:content";
 
-import { isValidPackageCodeName } from "./shared";
 import { changelogsLoader } from "./loaders/changelogs";
+import { isValidPackageCodeName } from "./shared";
 
 export const baseSchema = z.object({
   type: z.literal("base").optional().default("base"),

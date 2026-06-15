@@ -1,5 +1,4 @@
 import { definitions } from "../definitions.js";
-
 import TagsInput from "./tags-input.svelte";
 import "./tags-input.svelte";
 

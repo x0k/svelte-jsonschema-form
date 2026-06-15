@@ -1,5 +1,4 @@
 import { definitions } from "../../theme/definitions.js";
-
 import Files from "./files.svelte";
 import "./files.svelte";
 

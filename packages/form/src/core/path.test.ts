@@ -1,11 +1,11 @@
 import { describe, it, expect, beforeEach } from "vitest";
 
+import type { Merger } from "./merger.js";
 import { getSchemaDefinitionByPath, type RPath } from "./path.js";
 import type { Schema, SchemaValue } from "./schema.js";
-import type { Validator } from "./validator.js";
-import type { Merger } from "./merger.js";
-import { createValidator } from "./test-validator.js";
 import { createMerger } from "./test-merger.js";
+import { createValidator } from "./test-validator.js";
+import type { Validator } from "./validator.js";
 
 describe("getSchemaDefinitionByPath", () => {
   let testValidator: Validator;

@@ -9,13 +9,13 @@ import {
   getClosestMatchingOption as getClosestMatchingOptionInternal,
 } from "@/core/index.js";
 
-import type { MergeFormDataAndSchemaDefaultsOptions } from "../merger.js";
 import {
   FORM_MARK_SCHEMA_CHANGE,
   FORM_MERGER,
   FORM_SCHEMA,
   FORM_VALIDATOR,
 } from "../internals.js";
+import type { MergeFormDataAndSchemaDefaultsOptions } from "../merger.js";
 import type { FormState } from "./state.js";
 
 /**

@@ -3,5 +3,6 @@
     "**/.direnv": true,
     "**/node_modules": true,
     "**/.turbo": true
-  }
+  },
+  "editor.defaultFormatter": "oxc.oxc-vscode"
 }

@@ -1,10 +1,10 @@
 import type { Resolved } from "@/lib/resolver.js";
 
-import type { Config } from "../config.js";
 import type {
   CompatibleComponentDefinitions,
   FoundationalComponentType,
 } from "../components.js";
+import type { Config } from "../config.js";
 import { createMessage } from "../error-message.svelte";
 import { FORM_RESOLVER, FORM_THEME, FORM_TRANSLATE } from "../internals.js";
 import type { FormState } from "./state.js";

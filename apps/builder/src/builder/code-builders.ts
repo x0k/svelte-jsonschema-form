@@ -1,10 +1,9 @@
-import { parse, print } from "svelte/compiler";
 import type { Schema, UiSchema } from "@sjsf/form";
-import { jsonSchemaToZod } from "json-schema-to-zod";
 import {
   jsonSchemaToValibot,
   type JsonSchema as ValibotJsonSchema,
 } from "json-schema-to-valibot";
+import { jsonSchemaToZod } from "json-schema-to-zod";
 import {
   externalValidatorPackage,
   extraFieldSubPath,
@@ -31,13 +30,14 @@ import {
   type WidgetTypes,
   type ToTheme,
 } from "meta";
+import { type BuilderValidator, type WidgetType } from "meta/builder";
 import {
   WIDGET_EXTRA_FIELD,
   type PlaygroundIconSet,
   type PlaygroundResolver,
   type PlaygroundTheme,
 } from "meta/playground";
-import { type BuilderValidator, type WidgetType } from "meta/builder";
+import { parse, print } from "svelte/compiler";
 
 import {
   isBaseWidget,

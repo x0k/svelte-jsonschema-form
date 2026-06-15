@@ -1,5 +1,5 @@
-import type { FromSchema } from "json-schema-to-ts";
 import type { Schema, UiSchema } from "@sjsf/form";
+import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
   type: "object",

@@ -1,15 +1,15 @@
 import type { Schema } from "@sjsf/form";
-import type { $ZodType, output as InferOutput } from "zod/v4/core";
 import { safeParse, safeParseAsync, ZodObject } from "zod";
+import type { $ZodType, output as InferOutput } from "zod/v4/core";
 
 import type { AugmentedSchemaFactory, SchemaRegistry } from "../model.js";
+import { createFormValidatorFactory } from "../setup.js";
 import {
   createAsyncFormValidator,
   createFormValidator,
   type AsyncFormValidatorOptions,
   type FormValidatorOptions,
 } from "../validator.js";
-import { createFormValidatorFactory } from "../setup.js";
 
 export const createAugmentedSchema: AugmentedSchemaFactory = (schema) => {
   // TODO: Turn records into partial records

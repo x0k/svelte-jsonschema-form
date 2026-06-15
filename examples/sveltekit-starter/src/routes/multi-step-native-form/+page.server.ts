@@ -1,11 +1,11 @@
-import { fail } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createFormHandler } from "@sjsf/sveltekit/server";
+import { fail } from "@sveltejs/kit";
 
 import * as defaults from "$lib/sjsf/defaults";
 
-import { schema, STEP_KEY, stepNames, type Stepped } from "./model";
 import type { Actions } from "./$types";
+import { schema, STEP_KEY, stepNames, type Stepped } from "./model";
 
 export const load = async () => {
   return {

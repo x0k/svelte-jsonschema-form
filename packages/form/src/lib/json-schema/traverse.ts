@@ -3,7 +3,6 @@ import type {
   JSONSchema7Definition as SchemaDefinition,
 } from "json-schema";
 
-import type { Visitor } from "@/lib/traverser.js";
 import {
   isSchemaObject,
   isSubSchemaKey,
@@ -14,6 +13,7 @@ import {
   type SubSchemasArrayKey,
   type SubSchemasRecordKey,
 } from "@/lib/json-schema/index.js";
+import type { Visitor } from "@/lib/traverser.js";
 
 export type SchemaTraverserContextType = "array" | "record" | "sub" | "root";
 

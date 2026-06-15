@@ -16,19 +16,19 @@ import type {
   BuilderState,
 } from "../builder/context.svelte.js";
 import {
-  type CreateProject,
-  type Project,
-  type ProjectId,
-  type ProjectMeta,
-} from "./model.js";
+  DEFAULT_CONFIRMATION_DIALOG_OPTIONS,
+  type ConfirmationDialogOptions,
+} from "./confirmation-dialog.svelte";
 import {
   DEFAULT_GENERIC_PROJECT_DIALOG_OPTIONS,
   type GenericProjectDialogOptions,
 } from "./generic-project-dialog.svelte";
 import {
-  DEFAULT_CONFIRMATION_DIALOG_OPTIONS,
-  type ConfirmationDialogOptions,
-} from "./confirmation-dialog.svelte";
+  type CreateProject,
+  type Project,
+  type ProjectId,
+  type ProjectMeta,
+} from "./model.js";
 
 export interface ProjectsRepository<S> {
   validateProjectName(title: string): Promise<boolean>;

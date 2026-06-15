@@ -1,25 +1,25 @@
-import _basicPackageJson from "@sjsf/basic-theme/package.json" with { type: "json" };
-import _daisyui5PackageJson from "@sjsf/daisyui5-theme/package.json" with { type: "json" };
-import _flowbite3PackageJson from "@sjsf/flowbite3-theme/package.json" with { type: "json" };
-import _skeleton4PackageJson from "@sjsf/skeleton4-theme/package.json" with { type: "json" };
-import _shadcn4PackageJson from "@sjsf/shadcn4-theme/package.json" with { type: "json" };
+import _beercssPackageJson from "@sjsf-lab/beercss-theme/package.json" with { type: "json" };
 // Lab
 import _shadcnExtrasPackageJson from "@sjsf-lab/shadcn-extras-theme/package.json" with { type: "json" };
 import _svarPackageJson from "@sjsf-lab/svar-theme/package.json" with { type: "json" };
-import _beercssPackageJson from "@sjsf-lab/beercss-theme/package.json" with { type: "json" };
+import _basicPackageJson from "@sjsf/basic-theme/package.json" with { type: "json" };
 // Legacy
 import _daisyuiPackageJson from "@sjsf/daisyui-theme/package.json" with { type: "json" };
+import _daisyui5PackageJson from "@sjsf/daisyui5-theme/package.json" with { type: "json" };
 import _flowbitePackageJson from "@sjsf/flowbite-theme/package.json" with { type: "json" };
-import _skeleton3PackageJson from "@sjsf/skeleton3-theme/package.json" with { type: "json" };
+import _flowbite3PackageJson from "@sjsf/flowbite3-theme/package.json" with { type: "json" };
 import _shadcnPackageJson from "@sjsf/shadcn-theme/package.json" with { type: "json" };
+import _shadcn4PackageJson from "@sjsf/shadcn4-theme/package.json" with { type: "json" };
+import _skeleton3PackageJson from "@sjsf/skeleton3-theme/package.json" with { type: "json" };
+import _skeleton4PackageJson from "@sjsf/skeleton4-theme/package.json" with { type: "json" };
 
+import type { AtRule, AtRuleOptions } from "./css.ts";
 import {
   type Package,
   type PackageDependency,
   extraPackage,
   fromPackageJson,
 } from "./package.ts";
-import type { AtRule, AtRuleOptions } from "./css.ts";
 import type { Tailwindcss4Plugin } from "./tailwindcss.ts";
 
 const THEMES = [

@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { fromFactories } from "@sjsf/form/lib/resolver";
-  import { isRecord } from "@sjsf/form/lib/object";
   import {
     setFormContext,
     Content,
@@ -8,6 +6,8 @@
     type Config,
     getValueSnapshot,
   } from "@sjsf/form";
+  import { isRecord } from "@sjsf/form/lib/object";
+  import { fromFactories } from "@sjsf/form/lib/resolver";
   import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit/client";
 
   import * as defaults from "$lib/sjsf/defaults";

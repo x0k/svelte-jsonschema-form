@@ -1,11 +1,13 @@
-import type { Component } from "svelte";
 import { NodeType } from "meta/builder";
+import type { Component } from "svelte";
 
 import type { CustomizableNodeType } from "$lib/builder/index.js";
 
 import type { NodeProps } from "../model.js";
-
+import ArrayNode from "./array.svelte";
+import BasicField from "./basic-field.svelte";
 import { EnumNode } from "./enum/index.js";
+import GridNode from "./grid.svelte";
 import {
   ObjectNode,
   ObjectPropertyDependencyNode,
@@ -13,9 +15,6 @@ import {
 } from "./object/index.js";
 import { OperatorNode, Predicate } from "./predicate/index.js";
 import RangeNode from "./range.svelte";
-import GridNode from "./grid.svelte";
-import ArrayNode from "./array.svelte";
-import BasicField from "./basic-field.svelte";
 
 type NodeComponent<T extends NodeType> = Component<NodeProps<T>, {}, "node">;
 

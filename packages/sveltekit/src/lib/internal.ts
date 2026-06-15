@@ -1,5 +1,5 @@
-import type { SchemaDefinition } from "@sjsf/form/core";
 import type { IdentifiableFieldElement } from "@sjsf/form";
+import type { SchemaDefinition } from "@sjsf/form/core";
 
 type SerializablePrimitive =
   | string

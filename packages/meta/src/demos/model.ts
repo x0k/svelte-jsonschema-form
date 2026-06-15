@@ -1,14 +1,14 @@
 import type { CatalogMeta } from "../catalog.ts";
-import type { AbstractPackage } from "../package.ts";
-import type { ExtraWidgetFileNames } from "../widgets.ts";
-import type { ToTheme } from "../themes.ts";
 import {
   codegenValidators,
   type CodegenThemeOrSubTheme,
   type CodegenSvelteKitIntegration,
 } from "../codegen/index.ts";
 import type { CodeTransformer, ComposerOptions } from "../composer/index.ts";
+import type { AbstractPackage } from "../package.ts";
+import type { ToTheme } from "../themes.ts";
 import type { Generated } from "../types.ts";
+import type { ExtraWidgetFileNames } from "../widgets.ts";
 
 // NOTE: Order is important
 export enum ExampleCategory {

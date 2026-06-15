@@ -1,6 +1,6 @@
 <script lang="ts" module>
-  import type { Component } from "svelte";
   import type { Command } from "bits-ui";
+  import type { Component } from "svelte";
   import "@sjsf/form/fields/extra-widgets/combobox";
 
   import type { ButtonProps } from "../types/button.js";
@@ -35,7 +35,8 @@
 </script>
 
 <script lang="ts">
-  import { tick } from "svelte";
+  import Check from "@lucide/svelte/icons/check";
+  import ChevronsUpDown from "@lucide/svelte/icons/chevrons-up-down";
   import {
     ariaInvalidProp,
     composeProps,
@@ -48,8 +49,7 @@
     type ComponentProps,
   } from "@sjsf/form";
   import { idMapper, singleOption } from "@sjsf/form/options.svelte";
-  import Check from "@lucide/svelte/icons/check";
-  import ChevronsUpDown from "@lucide/svelte/icons/chevrons-up-down";
+  import { tick } from "svelte";
 
   import { cn } from "$lib/utils.js";
 

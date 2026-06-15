@@ -1,6 +1,12 @@
 import type { FieldsValidationMode, Schema, UiSchemaRoot } from "@sjsf/form";
 
 import { iconSets } from "../icons.ts";
+import {
+  isLegacyTheme,
+  isThemeWithSubThemes,
+  themes,
+  themeSubThemes,
+} from "../themes.ts";
 import type { Generated } from "../types.ts";
 import {
   FIELD_VALIDATION_FLAGS,
@@ -16,12 +22,6 @@ import {
   type JsonSchemaValidator,
   type Validator,
 } from "../validators.ts";
-import {
-  isLegacyTheme,
-  isThemeWithSubThemes,
-  themes,
-  themeSubThemes,
-} from "../themes.ts";
 
 export type { FieldsValidationMode, Schema, UiSchemaRoot };
 

@@ -17,6 +17,6 @@
 
 <input
   bind:value={() => value ?? 0, (v) => (value = v)}
-  class="range grow w-0"
+  class="range w-0 grow"
   {...inputAttributes(ctx, config, "range", handlers, { type: "range" })}
 />

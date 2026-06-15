@@ -1,10 +1,9 @@
 import { neverError } from "../errors.ts";
 import { svelteKitRfSubPath, svelteKitSubPath } from "../sveltekit.ts";
-
+import { internalValidatorSubPath } from "../validators.ts";
 import type { NamedImportOptions, NamespaceImportOptions } from "./lib.ts";
 import type { CodegenSvelteKitIntegration } from "./model.ts";
 import { validatorProp, type ValidatorDefinition } from "./validator.ts";
-import { internalValidatorSubPath } from "../validators.ts";
 
 export interface FormOptions {
   isTs: boolean;

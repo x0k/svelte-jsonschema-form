@@ -1,4 +1,3 @@
-import { isRecord } from "@sjsf/form/lib/object";
 import {
   createForm,
   type Schema,
@@ -8,11 +7,11 @@ import {
   setValue,
   getValueSnapshot,
 } from "@sjsf/form";
+import { isRecord } from "@sjsf/form/lib/object";
 
 import { page } from "$app/state";
 
 import type { InitialFormData, ValidatedFormData } from "../model.js";
-
 import type { SvelteKitFormMeta } from "./meta.js";
 import {
   createSvelteKitRequest,

@@ -1,46 +1,44 @@
 <script lang="ts">
-  import type { Component } from "svelte";
-  import type { SVGAttributes } from "svelte/elements";
   import {
     NodeType,
     OPERATOR_TITLES,
     OPERATOR_TYPES,
     OperatorType,
   } from "meta/builder";
-
-  import MdiSegment from "~icons/mdi/segment";
-  import MdiGridLarge from "~icons/mdi/grid-large";
-  import MdiFormatListBulleted from "~icons/mdi/format-list-bulleted";
-  import MdiRadioboxBlank from "~icons/mdi/radiobox-blank";
-  import MdiCheckboxBlankOutline from "~icons/mdi/checkbox-blank-outline";
-  import MdiCursorText from "~icons/mdi/cursor-text";
-  import MdiHashtag from "~icons/mdi/hashtag";
-  import MdiToggleSwitchOffOutline from "~icons/mdi/toggle-switch-off-outline";
-  import MdiAttachFile from "~icons/mdi/attach-file";
-  import MdiTag from "~icons/mdi/tag";
-
-  import MdiSetAnd from "~icons/mdi/set-and";
-  import MdiSetOr from "~icons/mdi/set-or";
-  import MdiSetXor from "~icons/mdi/set-xor";
-  import MdiSetNot from "~icons/mdi/set-not";
-  import MdiEqual from "~icons/mdi/equal";
-  import MdiFormatListChecks from "~icons/mdi/format-list-checks";
-  import MdiRegex from "~icons/mdi/regex";
-  import MdiArrowExpandHorizontal from "~icons/mdi/arrow-expand-horizontal";
+  import type { Component } from "svelte";
+  import type { SVGAttributes } from "svelte/elements";
   import MdiArrowCollapseHorizontal from "~icons/mdi/arrow-collapse-horizontal";
-  import MdiLessThan from "~icons/mdi/less-than";
-  import MdiLessThanOrEqual from "~icons/mdi/less-than-or-equal";
+  import MdiArrowExpandHorizontal from "~icons/mdi/arrow-expand-horizontal";
+  import MdiArrowLeftRight from "~icons/mdi/arrow-left-right";
+  import MdiAttachFile from "~icons/mdi/attach-file";
+  import MdiCheckboxBlankOutline from "~icons/mdi/checkbox-blank-outline";
+  import MdiContain from "~icons/mdi/contain";
+  import MdiCursorText from "~icons/mdi/cursor-text";
+  import MdiEqual from "~icons/mdi/equal";
+  import MdiFileTree from "~icons/mdi/file-tree";
+  import MdiFormatListBulleted from "~icons/mdi/format-list-bulleted";
+  import MdiFormatListChecks from "~icons/mdi/format-list-checks";
+  import MdiFormatText from "~icons/mdi/format-text";
   import MdiGreaterThan from "~icons/mdi/greater-than";
   import MdiGreaterThanOrEqual from "~icons/mdi/greater-than-or-equal";
-  import MdiMultiplication from "~icons/mdi/multiplication";
-  import MdiContain from "~icons/mdi/contain";
+  import MdiGridLarge from "~icons/mdi/grid-large";
+  import MdiHashtag from "~icons/mdi/hashtag";
+  import MdiLessThan from "~icons/mdi/less-than";
+  import MdiLessThanOrEqual from "~icons/mdi/less-than-or-equal";
   import MdiMinusBox from "~icons/mdi/minus-box";
-  import MdiPlusBox from "~icons/mdi/plus-box";
-  import MdiVectorArrangeAbove from "~icons/mdi/vector-arrange-above";
+  import MdiMultiplication from "~icons/mdi/multiplication";
   import MdiPageNextOutline from "~icons/mdi/page-next-outline";
-  import MdiFileTree from "~icons/mdi/file-tree";
-  import MdiArrowLeftRight from "~icons/mdi/arrow-left-right";
-  import MdiFormatText from "~icons/mdi/format-text";
+  import MdiPlusBox from "~icons/mdi/plus-box";
+  import MdiRadioboxBlank from "~icons/mdi/radiobox-blank";
+  import MdiRegex from "~icons/mdi/regex";
+  import MdiSegment from "~icons/mdi/segment";
+  import MdiSetAnd from "~icons/mdi/set-and";
+  import MdiSetNot from "~icons/mdi/set-not";
+  import MdiSetOr from "~icons/mdi/set-or";
+  import MdiSetXor from "~icons/mdi/set-xor";
+  import MdiTag from "~icons/mdi/tag";
+  import MdiToggleSwitchOffOutline from "~icons/mdi/toggle-switch-off-outline";
+  import MdiVectorArrangeAbove from "~icons/mdi/vector-arrange-above";
 
   import {
     createNode,
@@ -51,8 +49,8 @@
   } from "$lib/builder/index.js";
 
   import { getBuilderContext } from "../context.svelte.js";
-  import { THEME_NODE_OVERRIDES } from "../theme-schemas.js";
   import NodeFactory from "../node-factory.svelte";
+  import { THEME_NODE_OVERRIDES } from "../theme-schemas.js";
 
   const NODE_ICONS: Record<
     NodeType,
@@ -149,7 +147,7 @@
       {/snippet}
     </NodeFactory>
   {/each}
-  <p class="pt-2 text-sm text-muted-foreground">
+  <p class="text-muted-foreground pt-2 text-sm">
     The set of available fields and their corresponding widgets depends on the
     selected theme.
   </p>

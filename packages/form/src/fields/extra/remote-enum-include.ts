@@ -1,5 +1,4 @@
 import { definitions } from "../../theme/definitions.js";
-
 import AsyncEnum from "./remote-enum.svelte";
 import "./remote-enum.svelte";
 

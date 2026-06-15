@@ -21,14 +21,13 @@
 </script>
 
 <script lang="ts" generics="T">
-  import { untrack } from "svelte";
-
   import {
     abortPrevious,
     createTask,
     debounce,
     type Task,
   } from "@sjsf/form/lib/task.svelte";
+  import { untrack } from "svelte";
 
   let {
     searchFn,

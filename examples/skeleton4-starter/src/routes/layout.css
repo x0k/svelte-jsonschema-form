@@ -4,7 +4,7 @@
 @import "@sjsf/skeleton4-theme/styles.css";
 /* @source "../node_modules/@sjsf/skeleton4-theme/dist"; */
 
-@plugin '@tailwindcss/forms';
+@plugin "@tailwindcss/forms";
 
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";

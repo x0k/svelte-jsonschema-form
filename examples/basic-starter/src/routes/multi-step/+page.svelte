@@ -1,5 +1,4 @@
 <script lang="ts">
-  import type { Ref } from "@sjsf/form/lib/svelte.svelte";
   import {
     Content,
     Form,
@@ -9,6 +8,7 @@
     type UiSchemaRoot,
   } from "@sjsf/form";
   import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+  import type { Ref } from "@sjsf/form/lib/svelte.svelte";
 
   import * as defaults from "$lib/sjsf/defaults";
 

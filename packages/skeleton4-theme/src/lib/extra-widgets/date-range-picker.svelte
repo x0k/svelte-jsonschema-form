@@ -1,10 +1,10 @@
 <script lang="ts" module>
+  import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type { Range } from "@sjsf/form/lib/range";
   import {
     type DatePickerRootProps,
     type PortalRootProps,
   } from "@skeletonlabs/skeleton-svelte";
-  import type { Range } from "@sjsf/form/lib/range";
-  import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import "@sjsf/form/fields/extra-widgets/date-range-picker";
 
   declare module "@sjsf/form" {

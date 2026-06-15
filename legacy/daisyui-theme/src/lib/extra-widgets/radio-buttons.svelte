@@ -43,7 +43,7 @@
 <div class="join">
   {#each options as option (option.id)}
     <input
-      class={["join-item btn", errors.length > 0 && "btn-error"]}
+      class={["btn join-item", errors.length > 0 && "btn-error"]}
       bind:group={mapped.current}
       value={option.id}
       aria-label={option.label}

@@ -1,12 +1,9 @@
-import type { ComponentProps } from "svelte";
+import type { ButtonType, LayoutType } from "@sjsf/form/fields/components";
 import type {
-  HTMLAttributes,
-  HTMLFieldsetAttributes,
-  HTMLFormAttributes,
-  HTMLInputAttributes,
-  HTMLInputTypeAttribute,
-  HTMLTextareaAttributes,
-} from "svelte/elements";
+  ButtonGroupProps,
+  FieldProps,
+} from "@sjsf/shadcn4-theme/components/layout.svelte";
+import type { Button } from "@sjsf/shadcn4-theme/new-york";
 import type {
   CalendarSingleRootProps,
   CheckboxRootProps,
@@ -27,12 +24,15 @@ import type {
   ToggleGroupRootPropsWithoutHTML,
   ToggleGroupItemProps,
 } from "bits-ui";
-import type { ButtonType, LayoutType } from "@sjsf/form/fields/components";
-import type { Button } from "@sjsf/shadcn4-theme/new-york";
+import type { ComponentProps } from "svelte";
 import type {
-  ButtonGroupProps,
-  FieldProps,
-} from "@sjsf/shadcn4-theme/components/layout.svelte";
+  HTMLAttributes,
+  HTMLFieldsetAttributes,
+  HTMLFormAttributes,
+  HTMLInputAttributes,
+  HTMLInputTypeAttribute,
+  HTMLTextareaAttributes,
+} from "svelte/elements";
 
 type InputType = Exclude<HTMLInputTypeAttribute, "file">;
 

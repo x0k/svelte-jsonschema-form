@@ -2,9 +2,9 @@
   import { ComponentsAndWidgets } from "theme-testing/demo";
 
   import "../app.css";
-  import { setThemeContext, theme } from "../lib/theme/index.js";
-  import { specs } from "../lib/specs.js";
   import * as components from "../lib/components/ui/index.js";
+  import { specs } from "../lib/specs.js";
+  import { setThemeContext, theme } from "../lib/theme/index.js";
 
   setThemeContext({ components });
 </script>

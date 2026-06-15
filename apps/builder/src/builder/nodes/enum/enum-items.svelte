@@ -3,18 +3,18 @@
 </script>
 
 <script lang="ts">
-  import { untrack } from "svelte";
-  import { identity } from "@sjsf/form/lib/function";
   import Plus from "@lucide/svelte/icons/plus";
+  import { identity } from "@sjsf/form/lib/function";
   import { EnumValueType } from "meta/builder";
+  import { untrack } from "svelte";
 
   import {
     isEnumItemNode,
     createEnumItemNode,
     type EnumItemNode,
   } from "$lib/builder/index.js";
-  import { Input } from "$lib/components/ui/input/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
+  import { Input } from "$lib/components/ui/input/index.js";
 
   import { getBuilderContext } from "../../context.svelte.js";
   import DropIndicator from "../../drop-indicator.svelte";

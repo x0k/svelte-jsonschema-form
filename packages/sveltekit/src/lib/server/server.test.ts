@@ -1,7 +1,7 @@
-import { beforeEach, describe, expect, it } from "vitest";
+import { createFormValidator } from "@sjsf/ajv8-validator";
 import { DEFAULT_ID_PREFIX, SJSF_ID_PREFIX } from "@sjsf/form";
 import { createFormMerger } from "@sjsf/form/mergers/modern";
-import { createFormValidator } from "@sjsf/ajv8-validator";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { createFormHandler } from "./server.js";
 

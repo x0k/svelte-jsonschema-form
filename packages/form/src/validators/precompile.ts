@@ -1,11 +1,3 @@
-import { getValueByKeys, insertValue, type Trie } from "@/lib/trie.js";
-import {
-  makeSchemaDefinitionTraverser,
-  ALL_SUB_SCHEMA_KEYS,
-  type AnySubSchemaKey,
-  type SchemaTraverserContext,
-  transformSchemaDefinition,
-} from "@/lib/json-schema/index.js";
 import {
   createAugmentSchema,
   isPrimitiveSchemaType,
@@ -25,6 +17,14 @@ import {
   type FieldsValidationMode,
   type Schema,
 } from "@/form/main.js";
+import {
+  makeSchemaDefinitionTraverser,
+  ALL_SUB_SCHEMA_KEYS,
+  type AnySubSchemaKey,
+  type SchemaTraverserContext,
+  transformSchemaDefinition,
+} from "@/lib/json-schema/index.js";
+import { getValueByKeys, insertValue, type Trie } from "@/lib/trie.js";
 import { allowAdditionalProperties } from "@/omit-extra-data.js";
 
 export interface SchemaMeta {

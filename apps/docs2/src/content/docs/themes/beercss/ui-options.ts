@@ -1,3 +1,4 @@
+import type { ButtonType, LayoutType } from "@sjsf/form/fields/components";
 import type {
   HTMLAttributes,
   HTMLButtonAttributes,
@@ -7,7 +8,6 @@ import type {
   HTMLSelectAttributes,
   HTMLTextareaAttributes,
 } from "svelte/elements";
-import type { ButtonType, LayoutType } from "@sjsf/form/fields/components";
 
 export interface UiOptions {
   /**

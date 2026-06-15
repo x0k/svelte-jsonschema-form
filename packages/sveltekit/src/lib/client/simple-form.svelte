@@ -4,11 +4,11 @@
 >
   import { BasicForm } from "@sjsf/form";
 
-  import type { SvelteKitFormMeta } from "./meta.js";
   import {
     setupSvelteKitForm,
     type SvelteKitFormSetupOptions,
   } from "./form.svelte.js";
+  import type { SvelteKitFormMeta } from "./meta.js";
 
   type Props = SvelteKitFormSetupOptions<Meta> & {
     meta: Meta;

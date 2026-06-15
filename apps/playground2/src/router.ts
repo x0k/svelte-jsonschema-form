@@ -1,8 +1,8 @@
-import { createSubscriber } from "svelte/reactivity";
 import {
   compressToEncodedURIComponent,
   decompressFromEncodedURIComponent,
 } from "lz-string";
+import { createSubscriber } from "svelte/reactivity";
 
 export type Page = "" | "v" | "m";
 

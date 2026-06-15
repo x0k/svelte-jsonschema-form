@@ -1,10 +1,10 @@
 <script lang="ts">
-  import Markdown from "svelte-exmarkdown";
   import {
     descriptionAttributes,
     getFormContext,
     type ComponentProps,
   } from "@sjsf/form";
+  import Markdown from "svelte-exmarkdown";
 
   const { config, description }: ComponentProps["description"] = $props();
 

@@ -1,21 +1,21 @@
 <script lang="ts">
-  import { array } from "@sjsf/form/lib/array";
-  import type { NodeType, NodeId } from "meta/builder";
+  import ChevronDown from "@lucide/svelte/icons/chevron-down";
   import ChevronLeft from "@lucide/svelte/icons/chevron-left";
   import ChevronRight from "@lucide/svelte/icons/chevron-right";
   import ChevronUp from "@lucide/svelte/icons/chevron-up";
-  import ChevronDown from "@lucide/svelte/icons/chevron-down";
+  import { array } from "@sjsf/form/lib/array";
+  import type { NodeType, NodeId } from "meta/builder";
 
   import type { GridCell } from "$lib/builder/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
   import Updown from "$lib/components/updown.svelte";
 
-  import type { NodeProps } from "../model.js";
-  import SingleDropZone from "../single-dropzone.svelte";
   import { getBuilderContext } from "../context.svelte.js";
   import NodeHeader from "../customizable-node-header.svelte";
+  import type { NodeProps } from "../model.js";
   import NodeContainer from "../node-container.svelte";
   import NodeIssues from "../node-issues.svelte";
+  import SingleDropZone from "../single-dropzone.svelte";
   import {
     createShrinkOrMove,
     isFailed,

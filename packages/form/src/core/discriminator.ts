@@ -7,8 +7,8 @@ import {
   type SchemaDefinition,
   type SchemaValue,
 } from "./schema.js";
-import { isSchemaObjectValue } from "./value.js";
 import { getSimpleSchemaType, isArrayOrObjectSchemaType } from "./type.js";
+import { isSchemaObjectValue } from "./value.js";
 
 export function getDiscriminatorFieldFromSchema(
   schema: Schema

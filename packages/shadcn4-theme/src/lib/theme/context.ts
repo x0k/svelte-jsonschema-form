@@ -1,4 +1,5 @@
 import { getContext, setContext } from "svelte";
+
 import { THEME_CONTEXT } from "./internal.js";
 
 export interface ThemeComponents {}

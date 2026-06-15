@@ -1,10 +1,10 @@
-import type { FromSchema } from "json-schema-to-ts";
 import type { Schema } from "@sjsf/form";
+import type { FromSchema } from "json-schema-to-ts";
 
-import { NodeType, RangeValueType } from "./node-types.ts";
 import type { AbstractCustomizableNode } from "./node-base.ts";
-import type { StringNode } from "./string-node.ts";
+import { NodeType, RangeValueType } from "./node-types.ts";
 import type { NumberNode } from "./number-node.ts";
+import type { StringNode } from "./string-node.ts";
 
 export const RANGE_NODE_OPTIONS_SCHEMA = {
   title: "Range options",

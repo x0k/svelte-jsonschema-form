@@ -14,10 +14,10 @@
   let { value = $bindable(), onUp, onDown, minimum }: Props = $props();
 </script>
 
-<div class="flex items-center rounded-sm bg-background">
+<div class="bg-background flex items-center rounded-sm">
   <Button
     variant="outline"
-    class="size-8 hover:bg-accent hover:text-accent-foreground"
+    class="hover:bg-accent hover:text-accent-foreground size-8"
     size="icon"
     onclick={onDown}
     disabled={value <= minimum}
@@ -29,7 +29,7 @@
   </div>
   <Button
     variant="outline"
-    class="size-8 hover:bg-accent hover:text-accent-foreground"
+    class="hover:bg-accent hover:text-accent-foreground size-8"
     size="icon"
     onclick={onUp}
   >

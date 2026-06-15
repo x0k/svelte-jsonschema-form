@@ -1,6 +1,6 @@
 <script lang="ts" module>
-  import type { Component } from "svelte";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type { Component } from "svelte";
 
   import type { FileDropZoneRootProps } from "$lib/components/ui/file-drop-zone/index.js";
 
@@ -87,7 +87,7 @@
         <div class="flex place-items-center gap-2">
           <div class="flex flex-col">
             <span>{file.name}</span>
-            <span class="text-xs text-muted-foreground"
+            <span class="text-muted-foreground text-xs"
               >{displaySize(file.size)}</span
             >
           </div>

@@ -8,8 +8,8 @@ import type {
 } from "@sjsf/form";
 import * as v from "valibot";
 
-import { createAugmentedId, type SchemaRegistry } from "./model.js";
 import { transformFormErrors, transformFieldErrors } from "./errors.js";
+import { createAugmentedId, type SchemaRegistry } from "./model.js";
 
 function getValibotSchema(
   registry: SchemaRegistry,

@@ -12,7 +12,7 @@
 </script>
 
 <ul
-  class="text-error-500 list-disc list-inside"
+  class="text-error-500 list-inside list-disc"
   {...errorsListAttributes(ctx, config, "errorsList", {})}
 >
   {#each errors as err}

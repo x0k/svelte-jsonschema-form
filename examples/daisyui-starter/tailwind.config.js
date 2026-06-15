@@ -1,5 +1,5 @@
-import daisyui from "daisyui";
 import { THEME_CONTENT } from "@sjsf/daisyui-theme/preset";
+import daisyui from "daisyui";
 
 /** @type {import('tailwindcss').Config} */
 export default {

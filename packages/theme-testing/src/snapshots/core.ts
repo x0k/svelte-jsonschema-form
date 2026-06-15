@@ -1,7 +1,7 @@
+import { DEFAULT_ID_PREFIX, type FormOptions } from "@sjsf/form";
 import type { Component } from "svelte";
 import { expect, test } from "vitest";
 import { render } from "vitest-browser-svelte";
-import { DEFAULT_ID_PREFIX, type FormOptions } from "@sjsf/form";
 
 import * as defaults from "../lib/form-defaults.js";
 import DefaultForm from "./form.svelte";

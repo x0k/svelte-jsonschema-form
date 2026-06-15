@@ -5,8 +5,8 @@
 import { describe, expect, it } from "vitest";
 
 import { createDeduplicator, createIntersector } from "@/lib/array.js";
-import { createComparator } from "@/lib/json-schema/compare/index.js";
 import { identity } from "@/lib/function.js";
+import { createComparator } from "@/lib/json-schema/compare/index.js";
 
 import {
   createDeepAllOfMerge,

@@ -1,5 +1,4 @@
 import { definitions } from "../../theme/definitions.js";
-
 import BooleanSelect from "./boolean-select.svelte";
 import "./boolean-select.svelte";
 

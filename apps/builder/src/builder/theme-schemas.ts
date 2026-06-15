@@ -1,6 +1,5 @@
-import { isObject } from "@sjsf/form/lib/object";
 import type { Schema, UiSchemaRoot } from "@sjsf/form";
-import type { PlaygroundTheme } from "meta/playground";
+import { isObject } from "@sjsf/form/lib/object";
 import {
   themeWidgetAvailability,
   WIDGET_RANGE_VALUE_TYPE,
@@ -10,6 +9,7 @@ import {
   type Node,
   type NodeOverridesMap,
 } from "meta/builder";
+import type { PlaygroundTheme } from "meta/playground";
 
 export function themeNodeWidgetSchema(
   theme: PlaygroundTheme,

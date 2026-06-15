@@ -1,4 +1,5 @@
 import { extraPackage } from "meta";
+
 import type { DemoMeta } from "@/lib/demo";
 
 export default {

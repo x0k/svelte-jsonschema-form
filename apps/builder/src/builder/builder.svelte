@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { RouteName } from "./model.js";
   import { BuilderContext, setBuilderContext } from "./context.svelte.js";
   import Builder from "./editor/editor.svelte";
+  import { RouteName } from "./model.js";
   import Preview from "./preview/preview.svelte";
 
   const { ctx }: { ctx: BuilderContext } = $props();

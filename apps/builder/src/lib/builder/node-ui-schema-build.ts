@@ -1,5 +1,5 @@
-import { identity } from "@sjsf/form/lib/function";
 import type { UiOptions, UiSchema } from "@sjsf/form";
+import { identity } from "@sjsf/form/lib/function";
 import {
   NodeType,
   type AbstractNode,

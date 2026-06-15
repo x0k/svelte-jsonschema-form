@@ -11,15 +11,6 @@ import {
 import { assertThing } from "$lib/assert.js";
 import { mergeSchemas } from "$lib/json-schema.js";
 
-import type {
-  CustomizableNode,
-  EnumItemNode,
-  Node,
-  ObjectNode,
-  ObjectPropertyDependencyNode,
-  ObjectPropertyNode,
-  OperatorNode,
-} from "./node.js";
 import {
   isArrayNode,
   isCustomizableNode,
@@ -29,6 +20,15 @@ import {
   isTagsNode,
 } from "./node-guards.js";
 import { getNodeChild, getNodeProperty } from "./node-props.js";
+import type {
+  CustomizableNode,
+  EnumItemNode,
+  Node,
+  ObjectNode,
+  ObjectPropertyDependencyNode,
+  ObjectPropertyNode,
+  OperatorNode,
+} from "./node.js";
 
 export interface Scope {
   id: (node: CustomizableNode) => string;

@@ -1,7 +1,8 @@
+import ts from "typescript-eslint";
+
 // @ts-check
 import { svelteConfig } from "../../eslint.config.js";
 import sveltePluginConfig from "./svelte.config.js";
-import ts from "typescript-eslint";
 
 export default [
   ...svelteConfig,

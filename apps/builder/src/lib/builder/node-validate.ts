@@ -9,6 +9,7 @@ import {
   type AbstractOperator,
 } from "meta/builder";
 
+import { isKnownJsonSchemaFormat } from "$lib/json-schema.js";
 import {
   isJsonValueArray,
   isJsonValueBoolean,
@@ -18,18 +19,7 @@ import {
   isValidJson,
 } from "$lib/json.js";
 import { isValidRegExp } from "$lib/reg-exp.js";
-import { isKnownJsonSchemaFormat } from "$lib/json-schema.js";
-import {
-  type ComparisonOperator,
-  type CustomizableNode,
-  type EnumNode,
-  type MultiEnumNode,
-  type Node,
-  type NOperator,
-  type Operator,
-  type OperatorNode,
-  type UOperator,
-} from "./node.js";
+
 import {
   isArrayNode,
   isBooleanNode,
@@ -42,6 +32,17 @@ import {
   isTagsNode,
 } from "./node-guards.js";
 import { getNodeChild, getNodeOptions, getNodeProperty } from "./node-props.js";
+import {
+  type ComparisonOperator,
+  type CustomizableNode,
+  type EnumNode,
+  type MultiEnumNode,
+  type Node,
+  type NOperator,
+  type Operator,
+  type OperatorNode,
+  type UOperator,
+} from "./node.js";
 import { RANGE_VALUE_TYPE_TITLES } from "./range-node.js";
 
 export interface ValidatorRegistries {

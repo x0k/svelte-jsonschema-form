@@ -16,10 +16,6 @@ import {
   type MockInstance,
 } from "vitest";
 
-import type { Schema } from "./schema.js";
-import type { Validator } from "./validator.js";
-import { createValidator } from "./test-validator.js";
-import { RECURSIVE_REF, RECURSIVE_REF_ALLOF } from "./fixtures/test-data.js";
 import {
   AdditionalItemsHandling,
   computeDefaults,
@@ -32,8 +28,12 @@ import {
   computeDefaultBasedOnSchemaTypeAndDefaults,
   type Experimental_DefaultFormStateBehavior,
 } from "./default-state.js";
+import { RECURSIVE_REF, RECURSIVE_REF_ALLOF } from "./fixtures/test-data.js";
 import type { Merger } from "./merger.js";
+import type { Schema } from "./schema.js";
 import { createMerger } from "./test-merger.js";
+import { createValidator } from "./test-validator.js";
+import type { Validator } from "./validator.js";
 
 let testValidator: Validator;
 let defaultMerger: Merger;

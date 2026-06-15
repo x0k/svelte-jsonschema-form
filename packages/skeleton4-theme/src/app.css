@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@plugin '@tailwindcss/forms';
+@plugin "@tailwindcss/forms";
 
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";

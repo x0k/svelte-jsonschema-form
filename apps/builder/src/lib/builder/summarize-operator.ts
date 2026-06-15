@@ -1,9 +1,10 @@
+import { OperatorType } from "meta/builder";
+
 import { isValidRegExp } from "$lib/reg-exp.js";
 
-import { OperatorType } from "meta/builder";
-import { type Node, type OperatorNode } from "./node.js";
-import { getNodeChild, getNodeProperty, getNodeTitle } from "./node-props.js";
 import { isContainsOperator } from "./node-guards.js";
+import { getNodeChild, getNodeProperty, getNodeTitle } from "./node-props.js";
+import { type Node, type OperatorNode } from "./node.js";
 
 export type OperatorStatus = number;
 

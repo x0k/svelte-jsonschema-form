@@ -52,7 +52,7 @@
     "items-start": isItemOrControls,
     grow: isGrowable,
     "flex-col": isColumn || isField,
-    "grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2":
+    "grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]":
       isObjectProperty,
   }}
   {...layoutAttributes(ctx, config, "layout", "layouts", type, {})}

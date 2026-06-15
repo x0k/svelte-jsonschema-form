@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { Label } from "$lib/components/ui/label/index.js";
   import { Checkbox } from "$lib/components/ui/checkbox/index.js";
+  import { Label } from "$lib/components/ui/label/index.js";
 
   let {
     value = $bindable(),

@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { onDestroy } from "svelte";
-  import Ajv, { type AsyncSchema, type SchemaValidateFunction } from "ajv";
   import {
     addFormComponents,
     createAsyncFormValidator,
   } from "@sjsf/ajv8-validator";
   import { ON_INPUT, BasicForm, createForm, hasErrors } from "@sjsf/form";
+  import Ajv, { type AsyncSchema, type SchemaValidateFunction } from "ajv";
+  import { onDestroy } from "svelte";
 
   import { getDemoContext } from "@/lib/demo";
 

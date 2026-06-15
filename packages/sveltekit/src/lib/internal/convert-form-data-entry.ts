@@ -1,4 +1,9 @@
-import { fileToDataURL } from "@sjsf/form/lib/file";
+import {
+  DEFAULT_BOOLEAN_ENUM,
+  type FieldValue,
+  type Schema,
+  type UiSchemaRoot,
+} from "@sjsf/form";
 import {
   getSchemaConstantValue,
   isNullableSchemaType,
@@ -10,12 +15,7 @@ import {
   type SchemaValue,
   type Validator,
 } from "@sjsf/form/core";
-import {
-  DEFAULT_BOOLEAN_ENUM,
-  type FieldValue,
-  type Schema,
-  type UiSchemaRoot,
-} from "@sjsf/form";
+import { fileToDataURL } from "@sjsf/form/lib/file";
 
 import type {
   EntryConverter,

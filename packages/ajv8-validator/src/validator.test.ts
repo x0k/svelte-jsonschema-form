@@ -1,5 +1,5 @@
-import { validatorTests, formValueValidatorTests } from "validator-testing";
 import { Ajv, type AsyncSchema } from "ajv";
+import { validatorTests, formValueValidatorTests } from "validator-testing";
 
 import { addFormComponents, DEFAULT_AJV_CONFIG } from "./model.js";
 import { createAsyncFormValidator, createFormValidator } from "./validator.js";

@@ -1,5 +1,4 @@
 import { definitions } from "../definitions.js";
-
 import Slider from "./slider.svelte";
 import "./slider.svelte";
 

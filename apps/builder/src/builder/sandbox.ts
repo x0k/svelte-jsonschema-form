@@ -1,14 +1,14 @@
 import type { Schema, UiSchema } from "@sjsf/form";
-import type {
-  PlaygroundIconSet,
-  PlaygroundResolver,
-  PlaygroundTheme,
-} from "meta/playground";
 import {
   createSandboxFiles,
   type BuilderValidator,
   type WidgetType,
 } from "meta/builder";
+import type {
+  PlaygroundIconSet,
+  PlaygroundResolver,
+  PlaygroundTheme,
+} from "meta/playground";
 import { sandboxOpen, SandboxPlatform } from "meta/sandbox";
 
 import { fileFieldModeToFields, type FileFieldMode } from "./model.js";

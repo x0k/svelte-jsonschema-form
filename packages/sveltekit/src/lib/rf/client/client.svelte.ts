@@ -1,8 +1,3 @@
-import { getAbortSignal, onMount, tick, untrack, hydratable } from "svelte";
-import type { StandardSchemaV1 } from "@standard-schema/spec";
-import type { RemoteForm, RemoteFormInput } from "@sveltejs/kit";
-import type { DeepPartial } from "@sjsf/form/lib/types";
-import { isRecordEmpty } from "@sjsf/form/lib/object";
 import {
   DEFAULT_ID_PREFIX,
   isUiSchemaRef,
@@ -16,9 +11,14 @@ import {
   type UiSchema,
   type UiSchemaRoot,
 } from "@sjsf/form";
+import { isRecordEmpty } from "@sjsf/form/lib/object";
+import type { DeepPartial } from "@sjsf/form/lib/types";
+import type { StandardSchemaV1 } from "@standard-schema/spec";
+import type { RemoteForm, RemoteFormInput } from "@sveltejs/kit";
+import { getAbortSignal, onMount, tick, untrack, hydratable } from "svelte";
 
-import { FORM_DATA_FILE_PREFIX, JSON_CHUNKS_KEY } from "$lib/model.js";
 import { chunks } from "$lib/internal.js";
+import { FORM_DATA_FILE_PREFIX, JSON_CHUNKS_KEY } from "$lib/model.js";
 
 import { encode } from "../internal/codec.js";
 import {

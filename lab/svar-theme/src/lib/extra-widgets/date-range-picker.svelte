@@ -1,8 +1,8 @@
 <script lang="ts" module>
-  import type { ComponentProps as SvelteComponentProps } from "svelte";
-  import { DateRangePicker as SvarDateRangePicker } from "@svar-ui/svelte-core";
-  import type { Range } from "@sjsf/form/lib/range";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type { Range } from "@sjsf/form/lib/range";
+  import { DateRangePicker as SvarDateRangePicker } from "@svar-ui/svelte-core";
+  import type { ComponentProps as SvelteComponentProps } from "svelte";
   import "@sjsf/form/fields/extra-widgets/date-range-picker";
 
   declare module "@sjsf/form" {

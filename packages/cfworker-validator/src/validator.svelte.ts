@@ -3,7 +3,13 @@ import {
   type OutputUnit,
   type Schema as CfSchema,
 } from "@cfworker/json-schema";
-import { memoize, weakMemoize, type MapLike } from "@sjsf/form/lib/memoize";
+import type {
+  Config,
+  Schema,
+  FieldValueValidator,
+  FormValueValidator,
+  FormValue,
+} from "@sjsf/form";
 import {
   ID_KEY,
   prefixSchemaRefs,
@@ -12,13 +18,7 @@ import {
   type Validator,
   pathFromLocation,
 } from "@sjsf/form/core";
-import type {
-  Config,
-  Schema,
-  FieldValueValidator,
-  FormValueValidator,
-  FormValue,
-} from "@sjsf/form";
+import { memoize, weakMemoize, type MapLike } from "@sjsf/form/lib/memoize";
 
 export interface ValueToJSON {
   valueToJSON: (value: FormValue) => SchemaValue;

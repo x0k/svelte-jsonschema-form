@@ -1,6 +1,5 @@
-import { WIDGETS } from "./widgets.generated.ts";
-
 import { themePackage, type Theme } from "./themes.ts";
+import { WIDGETS } from "./widgets.generated.ts";
 
 type Widgets = typeof WIDGETS;
 

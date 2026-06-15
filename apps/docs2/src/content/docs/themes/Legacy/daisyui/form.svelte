@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
   import { theme } from "@sjsf/daisyui-theme";
   import { specs } from "@sjsf/daisyui-theme/specs";
+  import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
 
-  import { themeManager } from "@/theme.svelte";
   import * as defaults from "@/lib/sjsf/defaults";
+  import { themeManager } from "@/theme.svelte";
 
   import { createSchemas } from "../../_demo-schema";
 

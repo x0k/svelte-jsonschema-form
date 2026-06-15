@@ -1,5 +1,5 @@
-import type { DeepPartial } from "@sjsf/form/lib/types";
 import type { Schema, UiSchemaRoot, FormValue } from "@sjsf/form";
+import type { DeepPartial } from "@sjsf/form/lib/types";
 
 import {
   type CodegenThemeOrSubTheme,
@@ -27,6 +27,7 @@ import {
   createForm,
   type CodegenValidator,
 } from "../codegen/index.ts";
+import type { ExtraFieldFileName } from "../fields.ts";
 import {
   extraPackage,
   filterPackageDependencies,
@@ -35,8 +36,6 @@ import {
 import { sveltekitPackage } from "../sveltekit.ts";
 import type { ToTheme } from "../themes.ts";
 import type { ExtraWidgetFileNames } from "../widgets.ts";
-import type { ExtraFieldFileName } from "../fields.ts";
-
 import { buildPackageJson } from "./package-json.ts";
 
 export type CodeTransformer = (filepath: string, code: string) => string;

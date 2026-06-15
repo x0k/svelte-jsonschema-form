@@ -1,4 +1,3 @@
-import type { Component } from "svelte";
 import type {
   Select,
   WithoutChild,
@@ -6,6 +5,7 @@ import type {
   SelectSingleRootProps,
   SelectMultipleRootProps,
 } from "bits-ui";
+import type { Component } from "svelte";
 
 export type {
   SelectTriggerProps,

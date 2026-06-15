@@ -8,8 +8,8 @@ import type {
 } from "@sjsf/form";
 import type { $ZodIssue, $ZodTypes, util } from "zod/v4/core";
 
-import { createAugmentedId, type SchemaRegistry } from "./model.js";
 import { transformFormErrors, transformFieldErrors } from "./errors.js";
+import { createAugmentedId, type SchemaRegistry } from "./model.js";
 
 function getZodSchema(registry: SchemaRegistry, { $id: id, allOf }: Schema) {
   if (id === undefined) {

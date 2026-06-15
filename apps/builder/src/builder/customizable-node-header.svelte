@@ -1,11 +1,11 @@
 <script lang="ts">
-  import type { Snippet } from "svelte";
   import { type WidgetType, WIDGET_NAMES } from "meta/builder";
+  import type { Snippet } from "svelte";
 
   import type { CustomizableNodeType } from "$lib/builder/index.js";
 
-  import { type NodeProps } from "./model.js";
   import type { BuilderDraggable } from "./context.svelte.js";
+  import { type NodeProps } from "./model.js";
   import NodeHeader from "./node-header.svelte";
 
   const {

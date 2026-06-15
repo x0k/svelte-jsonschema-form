@@ -1,7 +1,7 @@
 import type { SchemaArrayValue } from "@/core/index.js";
 
-import type { KeyedFieldValues } from "../model.js";
 import { FORM_KEYED_ARRAYS } from "../internals.js";
+import type { KeyedFieldValues } from "../model.js";
 import type { FormState } from "./state.js";
 
 export function createKeyedArrayDeriver<T>(

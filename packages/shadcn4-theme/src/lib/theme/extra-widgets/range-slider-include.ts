@@ -1,5 +1,4 @@
 import { definitions } from "../definitions.js";
-
 import RangeSlider from "./range-slider.svelte";
 import "./range-slider.svelte";
 

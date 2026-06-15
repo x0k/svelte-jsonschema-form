@@ -4,9 +4,9 @@
 
 import { beforeEach, describe, expect, it } from "vitest";
 
-import type { Schema } from "./schema.js";
 import { findSchemaDefinition } from "./definitions.js";
 import type { Merger } from "./merger.js";
+import type { Schema } from "./schema.js";
 import { createMerger } from "./test-merger.js";
 // import { findSchemaDefinitionRecursive } from './definitions';
 

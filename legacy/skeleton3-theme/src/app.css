@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
-@plugin '@tailwindcss/forms';
+@plugin "@tailwindcss/forms";
 
-@source '../node_modules/@skeletonlabs/skeleton-svelte/dist';
+@source "../node_modules/@skeletonlabs/skeleton-svelte/dist";
 
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton/optional/presets";

@@ -1,3 +1,6 @@
+import type { ButtonType, LayoutType } from "@sjsf/form/fields/components";
+import type { CalendarDateProps } from "cally";
+import type { PikadayOptions } from "pikaday";
 import type {
   ClassValue,
   HTMLAttributes,
@@ -8,9 +11,6 @@ import type {
   HTMLSelectAttributes,
   HTMLTextareaAttributes,
 } from "svelte/elements";
-import type { ButtonType, LayoutType } from "@sjsf/form/fields/components";
-import type { CalendarDateProps } from "cally";
-import type { PikadayOptions } from "pikaday";
 
 type MapEvents<T> = {
   [K in keyof T as K extends `on${infer E}` ? `on:${Lowercase<E>}` : K]: T[K];

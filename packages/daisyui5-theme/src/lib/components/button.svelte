@@ -1,5 +1,4 @@
 <script lang="ts">
-  import type { HTMLButtonAttributes } from "svelte/elements";
   import {
     composeProps,
     disabledProp,
@@ -8,6 +7,7 @@
     uiOptionProps,
     type ComponentProps,
   } from "@sjsf/form";
+  import type { HTMLButtonAttributes } from "svelte/elements";
   import "@sjsf/basic-theme/components/button.svelte";
 
   const {

@@ -1,5 +1,3 @@
-import { fail, type ActionFailure, type RequestEvent } from "@sveltejs/kit";
-import type { MaybePromise } from "@sjsf/form/lib/types";
 import {
   type Schema,
   type UiSchemaRoot,
@@ -15,7 +13,10 @@ import {
   type ValidationResult,
   type FormValidator,
 } from "@sjsf/form";
+import type { MaybePromise } from "@sjsf/form/lib/types";
+import { fail, type ActionFailure, type RequestEvent } from "@sveltejs/kit";
 
+import { createCodec, DEFAULT_ESCAPE_CHAR } from "$lib/internal/codec.js";
 import {
   FORM_DATA_FILE_PREFIX,
   JSON_CHUNKS_KEY,
@@ -27,13 +28,6 @@ import {
   type ValidFormData,
 } from "$lib/model.js";
 
-import { parseSchemaValue } from "../internal/schema-value-parser.js";
-import {
-  createEnumItemDecoder,
-  createFormDataEntryConverter,
-  type FormDataConverterOptions,
-  type UnknownEntryConverter,
-} from "../internal/convert-form-data-entry.js";
 import {
   createOptionIndexDecoder,
   DEFAULT_INDEX_SEPARATOR,
@@ -41,7 +35,13 @@ import {
   DEFAULT_PSEUDO_SEPARATOR,
   type IdOptions,
 } from "../id-builder.js";
-import { createCodec, DEFAULT_ESCAPE_CHAR } from "$lib/internal/codec.js";
+import {
+  createEnumItemDecoder,
+  createFormDataEntryConverter,
+  type FormDataConverterOptions,
+  type UnknownEntryConverter,
+} from "../internal/convert-form-data-entry.js";
+import { parseSchemaValue } from "../internal/schema-value-parser.js";
 
 export interface FormHandlerOptions<T, SD extends SendData> extends Omit<
   IdOptions,

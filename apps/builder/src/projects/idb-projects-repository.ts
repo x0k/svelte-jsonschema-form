@@ -1,6 +1,7 @@
 import type { IDBPDatabase } from "idb";
 
 import type { AppDBSchema, ProjectSchema } from "../shared/db.js";
+import type { ProjectsRepository } from "./context.svelte.js";
 import {
   createProject,
   type CreateProject,
@@ -8,7 +9,6 @@ import {
   type ProjectId,
   type ProjectMeta,
 } from "./model.js";
-import type { ProjectsRepository } from "./context.svelte.js";
 
 export class IDBProjectsRepository<S> implements ProjectsRepository<S> {
   constructor(protected readonly db: IDBPDatabase<AppDBSchema>) {}

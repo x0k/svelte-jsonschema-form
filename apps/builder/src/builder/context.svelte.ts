@@ -1,21 +1,13 @@
-import { createContext, flushSync, onDestroy, untrack } from "svelte";
-import { isSchemaValueDeepEqual } from "@sjsf/form/core";
-import type { FormValue, Schema, SchemaValue, UiSchema } from "@sjsf/form";
-import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import { DragDropManager, Draggable, Droppable, Feedback } from "@dnd-kit/dom";
-import type { HighlighterCore } from "shiki/core";
+import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
+import type { FormValue, Schema, SchemaValue, UiSchema } from "@sjsf/form";
+import { isSchemaValueDeepEqual } from "@sjsf/form/core";
 import {
   iconSetAtRules,
   isSchemaValidator,
   renderAtRule,
   themeOrSubThemeAtRules,
 } from "meta";
-import type {
-  FormPreset,
-  PlaygroundIconSet,
-  PlaygroundResolver,
-  PlaygroundTheme,
-} from "meta/playground";
 import {
   themeCustomizableNodeTypes,
   themeRangeValueTypes,
@@ -25,7 +17,16 @@ import {
   getUseLabel,
   type NodeId,
 } from "meta/builder";
+import type {
+  FormPreset,
+  PlaygroundIconSet,
+  PlaygroundResolver,
+  PlaygroundTheme,
+} from "meta/playground";
+import type { HighlighterCore } from "shiki/core";
+import { createContext, flushSync, onDestroy, untrack } from "svelte";
 
+import { addBuilderFormats } from "$lib/ajv.js";
 import {
   createNode,
   type Node,
@@ -48,11 +49,16 @@ import {
   isFileNode,
   createObjectProperty,
 } from "$lib/builder/index.js";
-import { mergeUiSchemas } from "$lib/sjsf/ui-schema.js";
-import { highlight, type SupportedLanguage } from "$lib/shiki.js";
 import { mergeSchemas } from "$lib/json-schema.js";
-import { addBuilderFormats } from "$lib/ajv.js";
+import { highlight, type SupportedLanguage } from "$lib/shiki.js";
+import { mergeUiSchemas } from "$lib/sjsf/ui-schema.js";
 
+import {
+  buildFormDefaults,
+  buildFormDotSvelte,
+  buildInstallSh,
+  join,
+} from "./code-builders.js";
 import {
   type Route,
   CHECKBOXES_WIDGET_OPTIONS,
@@ -72,12 +78,6 @@ import {
   themeNodeWidgetUiSchema,
   THEME_NODE_OVERRIDES,
 } from "./theme-schemas.js";
-import {
-  buildFormDefaults,
-  buildFormDotSvelte,
-  buildInstallSh,
-  join,
-} from "./code-builders.js";
 
 export const [getBuilderContext, setBuilderContext] =
   createContext<BuilderContext>();

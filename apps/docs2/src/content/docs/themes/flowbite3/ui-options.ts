@@ -1,8 +1,3 @@
-import type {
-  HTMLAttributes,
-  HTMLButtonAttributes,
-  HTMLFormAttributes,
-} from "svelte/elements";
 import type { ButtonType, LayoutType } from "@sjsf/form/fields/exports";
 import type {
   ButtonGroupProps,
@@ -24,6 +19,11 @@ import type {
   TextareaProps,
   ToggleProps,
 } from "flowbite-svelte";
+import type {
+  HTMLAttributes,
+  HTMLButtonAttributes,
+  HTMLFormAttributes,
+} from "svelte/elements";
 
 type ButtonProps = Extract<
   ButtonPropsUnion,

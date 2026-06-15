@@ -8,8 +8,8 @@
   } from "$lib/client/index.js";
 
   import type { PageData, ActionData } from "./$types.js";
-  import { ERROR_TYPE_OBJECTS } from "./model.js";
   import * as defaults from "./form-defaults.js";
+  import { ERROR_TYPE_OBJECTS } from "./model.js";
 
   const meta = createMeta<ActionData, PageData>().form2;
   const { form } = setupSvelteKitForm(meta, {

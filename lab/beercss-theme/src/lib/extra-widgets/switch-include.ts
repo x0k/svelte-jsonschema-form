@@ -1,5 +1,4 @@
 import { definitions } from "../definitions.js";
-
 import Switch from "./switch.svelte";
 import "./switch.svelte";
 

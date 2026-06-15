@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { Snippet } from "svelte";
   import { noop } from "@sjsf/form/lib/function";
+  import type { Snippet } from "svelte";
 
   import type { Node } from "$lib/builder/index.js";
 
@@ -25,11 +25,11 @@
 
 <div
   class={[
-    "flex cursor-grab items-center gap-2 rounded-md border bg-background p-2 select-none hover:bg-accent",
+    "bg-background hover:bg-accent flex cursor-grab items-center gap-2 rounded-md border p-2 select-none",
     draggable.isDragged && "bg-accent",
   ]}
   {@attach draggable.attach}
 >
   {@render icon()}
-  <span class="text-sm font-medium text-foreground">{title}</span>
+  <span class="text-foreground text-sm font-medium">{title}</span>
 </div>

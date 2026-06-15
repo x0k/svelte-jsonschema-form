@@ -1,5 +1,5 @@
-import flowbite from "flowbite/plugin";
 import { THEME_CONTENT, FLOWBITE_CONTENT } from "@sjsf/flowbite-theme/preset";
+import flowbite from "flowbite/plugin";
 
 /** @type {import('tailwindcss').Config} */
 export default {

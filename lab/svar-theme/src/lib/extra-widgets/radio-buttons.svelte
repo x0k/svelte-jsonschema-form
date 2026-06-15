@@ -1,6 +1,6 @@
 <script lang="ts" module>
-  import type { ComponentProps as SvelteComponentProps } from "svelte";
   import { Segmented } from "@svar-ui/svelte-core";
+  import type { ComponentProps as SvelteComponentProps } from "svelte";
   import "@sjsf/form/fields/extra-widgets/radio-buttons";
 
   declare module "@sjsf/form" {
@@ -11,13 +11,13 @@
 </script>
 
 <script lang="ts">
-  import { on } from "svelte/events";
   import {
     getFormContext,
     uiOptionProps,
     type ComponentProps,
   } from "@sjsf/form";
   import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { on } from "svelte/events";
 
   let {
     value = $bindable(),

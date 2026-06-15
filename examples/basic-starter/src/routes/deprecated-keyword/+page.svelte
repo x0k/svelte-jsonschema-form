@@ -7,9 +7,9 @@
 </script>
 
 <script lang="ts">
-  import type { HTMLAttributes } from "svelte/elements";
-  import { fromFactories } from "@sjsf/form/lib/resolver";
   import { createForm, BasicForm, type Schema, type Config } from "@sjsf/form";
+  import { fromFactories } from "@sjsf/form/lib/resolver";
+  import type { HTMLAttributes } from "svelte/elements";
 
   import * as defaults from "$lib/sjsf/defaults";
 

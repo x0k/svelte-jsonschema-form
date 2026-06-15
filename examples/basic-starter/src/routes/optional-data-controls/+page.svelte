@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { chain, fromFactories } from "@sjsf/form/lib/resolver";
-  import { getSimpleSchemaType } from "@sjsf/form/core";
   import {
     createForm,
     BasicForm,
@@ -8,10 +6,12 @@
     type Config,
     type ActionField,
   } from "@sjsf/form";
-  import OptionalObjectTemplate from "@sjsf/form/templates/extra/optional-object.svelte";
+  import { getSimpleSchemaType } from "@sjsf/form/core";
+  import { clearEdit } from "@sjsf/form/fields/actions/clear-edit.svelte";
+  import { chain, fromFactories } from "@sjsf/form/lib/resolver";
   import OptionalArrayTemplate from "@sjsf/form/templates/extra/optional-array.svelte";
   import OptionalMultiFieldTemplate from "@sjsf/form/templates/extra/optional-multi-field.svelte";
-  import { clearEdit } from "@sjsf/form/fields/actions/clear-edit.svelte";
+  import OptionalObjectTemplate from "@sjsf/form/templates/extra/optional-object.svelte";
 
   import * as defaults from "$lib/sjsf/defaults";
 

@@ -1,24 +1,24 @@
 <script lang="ts">
   import {
-    transformSchemaDefinition,
-    isSchemaObject,
-  } from "@sjsf/form/lib/json-schema";
-  import { HashedKeyCache, LRUCache } from "@sjsf/form/lib/cache";
-  import { weakMemoize } from "@sjsf/form/lib/memoize";
-  import { fromFactories } from "@sjsf/form/lib/resolver";
-  import {
-    isSelect,
-    retrieveSchema,
-    schemaHash,
-    type SchemaDefinition,
-  } from "@sjsf/form/core";
-  import {
     SimpleForm,
     type Schema,
     type FormValue,
     type Config,
     type FormValueValidator,
   } from "@sjsf/form";
+  import {
+    isSelect,
+    retrieveSchema,
+    schemaHash,
+    type SchemaDefinition,
+  } from "@sjsf/form/core";
+  import { HashedKeyCache, LRUCache } from "@sjsf/form/lib/cache";
+  import {
+    transformSchemaDefinition,
+    isSchemaObject,
+  } from "@sjsf/form/lib/json-schema";
+  import { weakMemoize } from "@sjsf/form/lib/memoize";
+  import { fromFactories } from "@sjsf/form/lib/resolver";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
   import { resolver } from "@sjsf/form/resolvers/compat";
   import "@sjsf/form/fields/extra/enum-include";

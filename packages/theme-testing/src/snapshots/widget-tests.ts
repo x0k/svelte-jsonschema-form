@@ -1,15 +1,15 @@
-import { render } from "vitest-browser-svelte";
-import { describe, expect, test } from "vitest";
-import { isRecordEmpty } from "@sjsf/form/lib/object";
 import {
   type FieldValueValidator,
   type Theme,
   type Validator,
 } from "@sjsf/form";
+import { isRecordEmpty } from "@sjsf/form/lib/object";
+import { describe, expect, test } from "vitest";
+import { render } from "vitest-browser-svelte";
 
 import * as defaults from "../lib/form-defaults.js";
-import * as triggers from "../specs/triggers.js";
 import * as schemas from "../specs/schemas.js";
+import * as triggers from "../specs/triggers.js";
 import {
   testMatchSnapshot,
   type MatchSnapshotOptions,

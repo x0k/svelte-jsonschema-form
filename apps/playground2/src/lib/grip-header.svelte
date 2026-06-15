@@ -1,6 +1,6 @@
 <script lang="ts" module>
-  import type { HTMLAttributes } from "svelte/elements";
   import type { Tiles } from "svelte-tiler";
+  import type { HTMLAttributes } from "svelte/elements";
 
   import Grip from "./grip.svelte";
 

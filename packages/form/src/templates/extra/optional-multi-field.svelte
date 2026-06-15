@@ -1,16 +1,15 @@
 <script lang="ts" module>
   import "@/fields/extra-templates/optional-multi-field.js";
-
   import "../multi-field-layout.js";
 </script>
 
 <script lang="ts">
-  import { isNil } from "@/lib/types.js";
   import {
     getComponent,
     getFormContext,
     type ComponentProps,
   } from "@/form/index.js";
+  import { isNil } from "@/lib/types.js";
 
   const {
     children,

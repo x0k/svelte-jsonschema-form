@@ -1,4 +1,5 @@
 import { describe, it, expect } from "vitest";
+
 import * as patternsMergers from "./patterns.js";
 
 interface TestCase {

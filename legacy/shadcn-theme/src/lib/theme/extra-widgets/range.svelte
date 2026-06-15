@@ -1,10 +1,10 @@
 <script lang="ts" module>
-  import type { Component } from "svelte";
   import type {
     Slider,
     SliderSingleRootProps,
     WithoutChildrenOrChild,
   } from "bits-ui";
+  import type { Component } from "svelte";
   import "@sjsf/form/fields/extra-widgets/range";
 
   declare module "@sjsf/form" {

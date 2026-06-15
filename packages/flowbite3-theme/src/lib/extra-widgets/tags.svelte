@@ -10,7 +10,6 @@
 </script>
 
 <script lang="ts">
-  import type { HTMLInputAttributes } from "svelte/elements";
   import {
     customInputAttributes,
     getFormContext,
@@ -19,6 +18,7 @@
     type ComponentProps,
   } from "@sjsf/form";
   import TagsInput from "flowbite-svelte/Tags.svelte";
+  import type { HTMLInputAttributes } from "svelte/elements";
 
   let {
     value = $bindable(),

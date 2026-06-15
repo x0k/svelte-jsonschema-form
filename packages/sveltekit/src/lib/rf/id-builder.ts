@@ -1,11 +1,3 @@
-import type { Ref } from "@sjsf/form/lib/svelte.svelte";
-import { isSchemaObject } from "@sjsf/form/lib/json-schema";
-import {
-  getSchemaDefinitionByPath,
-  isMultiSelect,
-  isSchemaObjectValue,
-  type SchemaDefinition,
-} from "@sjsf/form/core";
 import {
   decodePseudoElement,
   type FieldPath,
@@ -16,6 +8,14 @@ import {
   type Schema,
   type Validator,
 } from "@sjsf/form";
+import {
+  getSchemaDefinitionByPath,
+  isMultiSelect,
+  isSchemaObjectValue,
+  type SchemaDefinition,
+} from "@sjsf/form/core";
+import { isSchemaObject } from "@sjsf/form/lib/json-schema";
+import type { Ref } from "@sjsf/form/lib/svelte.svelte";
 
 import { encode } from "./internal/codec.js";
 

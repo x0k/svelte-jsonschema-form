@@ -1,15 +1,14 @@
-import type { UiSchema } from "@sjsf/form";
-import { transpose } from "@json-table/core/lib/matrix";
 import { createMatrix, fromMatrix } from "@json-table/core/block-matrix";
-import { makeBlockFactory } from "@json-table/core/json-to-table";
 import { blockToHTML } from "@json-table/core/block-to-html";
+import { makeBlockFactory } from "@json-table/core/json-to-table";
+import { transpose } from "@json-table/core/lib/matrix";
+import type { UiSchema } from "@sjsf/form";
 import {
   themeExtraWidgetSubPath,
   type ExtraFieldName,
   type ExtraWidgetFileNames,
   type Theme,
 } from "meta";
-
 import { s } from "theme-testing/specs";
 
 const WIDGET_USED_AS_DEFAULT_IN_FIELDS: Partial<

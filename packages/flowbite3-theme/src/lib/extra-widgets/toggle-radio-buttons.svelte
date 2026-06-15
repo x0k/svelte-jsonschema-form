@@ -1,13 +1,13 @@
 <script lang="ts" module>
-  import type {
-    ButtonToggleGroupProps,
-    ButtonToggleProps,
-  } from "flowbite-svelte/types";
   import type { SchemaValue } from "@sjsf/form";
   import type {
     SingleSelectOptions,
     WidgetCommonProps,
   } from "@sjsf/form/fields/widgets";
+  import type {
+    ButtonToggleGroupProps,
+    ButtonToggleProps,
+  } from "flowbite-svelte/types";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
@@ -25,8 +25,6 @@
 </script>
 
 <script lang="ts">
-  import ButtonToggle from "flowbite-svelte/ButtonToggle.svelte";
-  import ButtonToggleGroup from "flowbite-svelte/ButtonToggleGroup.svelte";
   import {
     composeProps,
     customInputAttributes,
@@ -40,6 +38,8 @@
     singleOption,
     EMPTY_VALUE,
   } from "@sjsf/form/options.svelte";
+  import ButtonToggle from "flowbite-svelte/ButtonToggle.svelte";
+  import ButtonToggleGroup from "flowbite-svelte/ButtonToggleGroup.svelte";
 
   let {
     config,

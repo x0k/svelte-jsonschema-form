@@ -1,5 +1,5 @@
-import type { WidgetType } from "./widget-names.ts";
 import { NodeType, RangeValueType } from "./node-types.ts";
+import type { WidgetType } from "./widget-names.ts";
 
 export const WIDGET_NODE_TYPE: Record<WidgetType, NodeType> = {
   textWidget: NodeType.String,

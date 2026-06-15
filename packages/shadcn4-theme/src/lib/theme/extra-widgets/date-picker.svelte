@@ -1,10 +1,10 @@
 <script lang="ts" module>
-  import type { Component } from "svelte";
   import type {
     Calendar,
     CalendarSingleRootProps,
     WithoutChildrenOrChild,
   } from "bits-ui";
+  import type { Component } from "svelte";
   import "@sjsf/form/fields/extra-widgets/date-picker";
 
   import type { ButtonProps } from "../types/button.js";
@@ -35,6 +35,7 @@
 
 <script lang="ts">
   import { getLocalTimeZone, parseDate } from "@internationalized/date";
+  import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
   import {
     ariaInvalidProp,
     composeProps,
@@ -45,7 +46,6 @@
     uiOptionProps,
     type ComponentProps,
   } from "@sjsf/form";
-  import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
 
   import { getThemeContext } from "../context.js";
 

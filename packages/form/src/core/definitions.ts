@@ -6,8 +6,8 @@ import jsonpointer from "jsonpointer";
 
 import { isSchemaObject } from "@/lib/json-schema/index.js";
 
-import { REF_KEY, type Schema, type SchemaDefinition } from "./schema.js";
 import type { Merger } from "./merger.js";
+import { REF_KEY, type Schema, type SchemaDefinition } from "./schema.js";
 
 export function resolveRef(ref: string, rootSchema: Schema) {
   if (!ref.startsWith("#")) {

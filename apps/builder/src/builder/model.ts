@@ -1,7 +1,6 @@
-import { pickSchemaType, typeOfValue } from "@sjsf/form/core";
 import type { UiOptions, UiSchema } from "@sjsf/form";
+import { pickSchemaType, typeOfValue } from "@sjsf/form/core";
 import type { ExtraFieldFileName } from "meta";
-import type { PlaygroundResolver, PlaygroundTheme } from "meta/playground";
 import {
   type WidgetType,
   NodeType,
@@ -9,8 +8,8 @@ import {
   NUMBER_NODE_OPTIONS_SCHEMA,
   STRING_NODE_OPTIONS_SCHEMA,
 } from "meta/builder";
+import type { PlaygroundResolver, PlaygroundTheme } from "meta/playground";
 
-import { constant } from "$lib/function.js";
 import {
   BOOLEAN_NODE_OPTIONS_SCHEMA,
   buildEnumValues,
@@ -23,6 +22,7 @@ import {
   type WidgetNode,
   type WidgetNodeType,
 } from "$lib/builder/index.js";
+import { constant } from "$lib/function.js";
 
 import type { BuilderDraggable } from "./context.svelte.js";
 

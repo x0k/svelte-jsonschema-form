@@ -1,17 +1,16 @@
 <script lang="ts">
   import type { NodeType } from "meta/builder";
 
-  import type { NodeProps } from "../../model.js";
   import {
     getBuilderContext,
     type ReadonlyNodeRef,
   } from "../../context.svelte.js";
-  import NodeHeader from "../../node-header.svelte";
+  import type { NodeProps } from "../../model.js";
   import NodeContainer from "../../node-container.svelte";
+  import NodeHeader from "../../node-header.svelte";
   import NodeIssues from "../../node-issues.svelte";
-
-  import OperatorDropzone from "./operator-dropzone.svelte";
   import { getPredicateContext } from "./context.js";
+  import OperatorDropzone from "./operator-dropzone.svelte";
 
   let {
     draggable,

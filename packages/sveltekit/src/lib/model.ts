@@ -1,5 +1,3 @@
-import type { DeepPartial, MaybePromise } from "@sjsf/form/lib/types";
-import type { RPath, SchemaDefinition, SchemaValue } from "@sjsf/form/core";
 import type {
   FieldValue,
   FormOptions,
@@ -9,6 +7,8 @@ import type {
   UiSchemaRoot,
   ValidationError,
 } from "@sjsf/form";
+import type { RPath, SchemaDefinition, SchemaValue } from "@sjsf/form/core";
+import type { DeepPartial, MaybePromise } from "@sjsf/form/lib/types";
 
 import type { PickOptionalSerializable } from "./internal.js";
 

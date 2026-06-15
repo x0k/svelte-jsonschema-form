@@ -1,6 +1,6 @@
+import type { Program } from "estree";
 import { print, type AST } from "svelte/compiler";
 import { walk } from "zimmerframe";
-import type { Program } from "estree";
 
 import {
   isSchemaPage,

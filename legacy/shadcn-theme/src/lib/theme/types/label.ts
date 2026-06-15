@@ -1,5 +1,5 @@
-import type { Component } from "svelte";
 import type { LabelRootProps } from "bits-ui";
+import type { Component } from "svelte";
 
 export type LabelProps = LabelRootProps;
 

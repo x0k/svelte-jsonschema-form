@@ -1,6 +1,6 @@
 <script lang="ts">
-  import TopTabs from "./top-tabs.svelte";
   import SubTabs from "./sub-tabs.svelte";
+  import TopTabs from "./top-tabs.svelte";
 
   let subTabs = $state.raw(false);
 

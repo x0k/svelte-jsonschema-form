@@ -1,11 +1,11 @@
-import type { Ref } from "@/lib/svelte.svelte.js";
-import { isObject } from "@/lib/object.js";
 import {
   isSchemaValueDeepEqual,
   type EnumOption,
   type SchemaArrayValue,
   type SchemaValue,
 } from "@/core/index.js";
+import { isObject } from "@/lib/object.js";
+import type { Ref } from "@/lib/svelte.svelte.js";
 
 export interface OptionsMapper<V> {
   fromValue: (value: SchemaValue | undefined) => V;

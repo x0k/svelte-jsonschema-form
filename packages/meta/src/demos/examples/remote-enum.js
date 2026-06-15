@@ -1,6 +1,6 @@
-import countriesTs from "examples/basic-starter/src/routes/remote-enum/countries.ts?raw";
 import pageSvelte from "examples/basic-starter/src/routes/remote-enum/+page.svelte?raw";
 import comboboxSvelte from "examples/basic-starter/src/routes/remote-enum/combobox.svelte?raw";
+import countriesTs from "examples/basic-starter/src/routes/remote-enum/countries.ts?raw";
 
 import { defineExample, defineMeta, Tag, ExampleCategory } from "../model.js";
 

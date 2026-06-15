@@ -1,5 +1,8 @@
-import type { FormValue, Schema, SchemaValue } from "@sjsf/form";
-import { createValidatorRetriever } from "@sjsf/form/validators/precompile";
+import {
+  getErrors,
+  type Localization,
+  type Json as HyperjumpJson,
+} from "@hyperjump/json-schema-errors";
 import {
   Validation,
   type AST,
@@ -9,11 +12,8 @@ import {
   fromJs,
   type JsonNode,
 } from "@hyperjump/json-schema/instance/experimental";
-import {
-  getErrors,
-  type Localization,
-  type Json as HyperjumpJson,
-} from "@hyperjump/json-schema-errors";
+import type { FormValue, Schema, SchemaValue } from "@sjsf/form";
+import { createValidatorRetriever } from "@sjsf/form/validators/precompile";
 
 import { JsonSchemaErrorsOutputPlugin } from "./output-plugin.js";
 

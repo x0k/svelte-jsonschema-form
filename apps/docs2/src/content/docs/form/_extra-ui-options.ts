@@ -1,5 +1,5 @@
-import { fromRecord } from "@sjsf/form/lib/resolver";
 import { createForm } from "@sjsf/form";
+import { fromRecord } from "@sjsf/form/lib/resolver";
 
 import * as defaults from "@/lib/sjsf/defaults";
 

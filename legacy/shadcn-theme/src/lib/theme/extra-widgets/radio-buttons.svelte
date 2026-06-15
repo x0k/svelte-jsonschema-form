@@ -1,5 +1,4 @@
 <script lang="ts" module>
-  import type { Component } from "svelte";
   import type {
     BitsPrimitiveDivAttributes,
     SingleToggleGroupRootPropsWithoutHTML,
@@ -7,6 +6,7 @@
     ToggleGroupRootPropsWithoutHTML,
     Without,
   } from "bits-ui";
+  import type { Component } from "svelte";
   import "@sjsf/form/fields/extra-widgets/radio-buttons";
 
   import type { ToggleVariants } from "$lib/default-ui/toggle";

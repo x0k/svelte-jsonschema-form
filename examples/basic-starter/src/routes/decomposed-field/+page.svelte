@@ -1,5 +1,4 @@
 <script lang="ts">
-  import type { FromSchema } from "json-schema-to-ts";
   import {
     type Schema,
     createForm,
@@ -11,6 +10,7 @@
     validateField,
   } from "@sjsf/form";
   import { getTemplateProps } from "@sjsf/form/templates/get-template-props";
+  import type { FromSchema } from "json-schema-to-ts";
 
   import * as defaults from "$lib/sjsf/defaults";
 

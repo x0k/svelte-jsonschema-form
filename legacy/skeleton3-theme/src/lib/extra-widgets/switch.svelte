@@ -1,6 +1,6 @@
 <script lang="ts" module>
-  import type { ComponentProps as SvelteComponentProps } from "svelte";
   import { Switch as SkeletonSwitch } from "@skeletonlabs/skeleton-svelte";
+  import type { ComponentProps as SvelteComponentProps } from "svelte";
   import "@sjsf/form/fields/extra-widgets/switch";
 
   declare module "@sjsf/form" {

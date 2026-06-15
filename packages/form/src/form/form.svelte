@@ -2,13 +2,13 @@
   import type { Snippet } from "svelte";
   import type { HTMLFormAttributes } from "svelte/elements";
 
+  import type { Config } from "./config.js";
+  import { FORM_ROOT_PATH, FORM_SCHEMA, FORM_UI_SCHEMA } from "./internals.js";
   import {
     getPseudoPath,
     getComponent,
     getFormContext,
   } from "./state/index.js";
-  import { FORM_ROOT_PATH, FORM_SCHEMA, FORM_UI_SCHEMA } from "./internals.js";
-  import type { Config } from "./config.js";
 
   let {
     ref = $bindable(),

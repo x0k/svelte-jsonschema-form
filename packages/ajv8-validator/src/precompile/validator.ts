@@ -1,4 +1,3 @@
-import type { AsyncValidateFunction } from "ajv";
 import type {
   AsyncFieldValueValidator,
   AsyncFormValueValidator,
@@ -8,6 +7,7 @@ import type {
   Validator,
 } from "@sjsf/form";
 import { fromValidators } from "@sjsf/form/validators/precompile";
+import type { AsyncValidateFunction } from "ajv";
 
 import {
   createFormErrorsTransformer,

@@ -15,7 +15,7 @@
   const ctx = getFormContext();
 </script>
 
-<label class="flex items-center space-x-2 cursor-pointer">
+<label class="flex cursor-pointer items-center space-x-2">
   <input
     type="checkbox"
     class="checkbox"

@@ -1,9 +1,10 @@
 <script lang="ts">
+  import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
   import { fromRecord } from "@sjsf/form/lib/resolver";
   import { formatFileSize } from "@sjsf/form/validators/file-size";
-  import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
-  import { BitsConfig } from "bits-ui";
   import { Willow, WillowDark } from "@svar-ui/svelte-core";
+  import { BitsConfig } from "bits-ui";
+  import { BUILDER_VALIDATORS } from "meta/builder";
   import {
     PLAYGROUND_ICON_SET_STYLES,
     PLAYGROUND_ICON_SETS,
@@ -12,7 +13,6 @@
     PLAYGROUND_SJSF_THEMES,
     type PlaygroundTheme,
   } from "meta/playground";
-  import { BUILDER_VALIDATORS } from "meta/builder";
 
   import { ShadowHost } from "$lib/components/shadow/index.js";
   import * as defaults from "$lib/sjsf/defaults.js";

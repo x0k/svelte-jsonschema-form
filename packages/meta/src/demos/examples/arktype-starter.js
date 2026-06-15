@@ -1,5 +1,4 @@
 import sveltePage from "examples/basic-starter/src/routes/arktype-starter/+page.svelte?raw";
-
 import { extraPackage } from "meta";
 
 import { defineExample, defineMeta, Tag, ExampleCategory } from "../model.js";

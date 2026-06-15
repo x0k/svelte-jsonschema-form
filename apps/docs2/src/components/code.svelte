@@ -9,13 +9,13 @@
 </script>
 
 <script lang="ts">
-  import Copy from "@lucide/svelte/icons/copy";
   import Check from "@lucide/svelte/icons/check";
   import ChevronDown from "@lucide/svelte/icons/chevron-down";
   import ChevronUp from "@lucide/svelte/icons/chevron-up";
+  import Copy from "@lucide/svelte/icons/copy";
 
-  import { highlight, highlighterPromise } from "@/lib/shiki";
   import { copyTextToClipboard } from "@/lib/copy-to-clipboard";
+  import { highlight, highlighterPromise } from "@/lib/shiki";
 
   import Button from "./button.svelte";
 

@@ -23,7 +23,7 @@
 
 <input
   bind:value={() => value ?? null, (v) => (value = v ?? undefined)}
-  class={["w-full input input-bordered", errors.length > 0 && "input-error"]}
+  class={["input input-bordered w-full", errors.length > 0 && "input-error"]}
   {...attributes}
 />
 <Datalist id={attributes.list} {config} />

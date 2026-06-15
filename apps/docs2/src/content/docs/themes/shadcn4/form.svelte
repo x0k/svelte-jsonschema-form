@@ -4,8 +4,8 @@
   import * as components from "@sjsf/shadcn4-theme/new-york";
   import { specs } from "@sjsf/shadcn4-theme/specs";
 
-  import { themeManager } from "@/theme.svelte";
   import * as defaults from "@/lib/sjsf/defaults";
+  import { themeManager } from "@/theme.svelte";
 
   import { createSchemas } from "../_demo-schema";
 

@@ -1,12 +1,12 @@
 <script lang="ts" module>
-  import type { Component } from "svelte";
+  import type { DateValue } from "@internationalized/date";
+  import type { Range } from "@sjsf/form/lib/range";
   import type {
     RangeCalendarRootProps,
     RangeCalendar,
     WithoutChildrenOrChild,
   } from "bits-ui";
-  import type { DateValue } from "@internationalized/date";
-  import type { Range } from "@sjsf/form/lib/range";
+  import type { Component } from "svelte";
   import "@sjsf/form/fields/extra-widgets/date-range-picker";
 
   import "../types/popover.js";
@@ -48,6 +48,7 @@
     getLocalTimeZone,
     parseDate,
   } from "@internationalized/date";
+  import CalendarIcon from "@lucide/svelte/icons/calendar";
   import {
     customInputAttributes,
     getFormContext,
@@ -55,7 +56,6 @@
     type ComponentProps,
   } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
-  import CalendarIcon from "@lucide/svelte/icons/calendar";
 
   import { buttonVariants } from "$lib/components/ui/button/index.js";
   import { cn } from "$lib/utils.js";

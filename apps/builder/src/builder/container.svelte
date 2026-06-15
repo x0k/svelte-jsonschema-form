@@ -11,7 +11,7 @@
 </script>
 
 <div
-  class={cn("w-full rounded-md border bg-background p-2", className)}
+  class={cn("bg-background w-full rounded-md border p-2", className)}
   {...rest}
 >
   {@render children?.()}

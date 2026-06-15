@@ -4,7 +4,7 @@
 
 @import "@fontsource-variable/inter";
 
-@source '../node_modules/@sjsf/shadcn4-theme/dist';
+@source "../node_modules/@sjsf/shadcn4-theme/dist";
 
 @custom-variant dark (&:is(.dark *));
 

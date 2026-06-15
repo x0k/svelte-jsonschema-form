@@ -1,10 +1,10 @@
 <script lang="ts" generics="T">
-  import { basicSetup } from "codemirror";
   import { json } from "@codemirror/lang-json";
-  import { EditorView } from "@codemirror/view";
   import { Annotation } from "@codemirror/state";
-  import { githubLight } from "@ddietr/codemirror-themes/github-light";
+  import { EditorView } from "@codemirror/view";
   import { githubDark } from "@ddietr/codemirror-themes/github-dark";
+  import { githubLight } from "@ddietr/codemirror-themes/github-light";
+  import { basicSetup } from "codemirror";
 
   import { themeManager } from "../theme.svelte.js";
 

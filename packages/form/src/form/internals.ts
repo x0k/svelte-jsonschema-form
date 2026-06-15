@@ -1,12 +1,12 @@
 import { SvelteMap } from "svelte/reactivity";
 
-import { getNodeByKeys, insertValue } from "@/lib/trie.js";
 import type { RPath } from "@/core/index.js";
+import { getNodeByKeys, insertValue } from "@/lib/trie.js";
 
-import type { ValidationError } from "./validator.js";
-import type { PathTrieRef, Update } from "./model.js";
-import type { FieldPath } from "./id.js";
 import type { FieldState } from "./field-state.js";
+import type { FieldPath } from "./id.js";
+import type { PathTrieRef, Update } from "./model.js";
+import type { ValidationError } from "./validator.js";
 
 export const FORM_CONTEXT = Symbol("form-context");
 

@@ -1,15 +1,15 @@
-import * as acorn from "acorn";
-import { tsPlugin } from "@sveltejs/acorn-typescript";
 import type {
   SchemaValue,
   SchemaObjectValue,
   SchemaArrayValue,
   Schema,
 } from "@sjsf/form/core";
+import { tsPlugin } from "@sveltejs/acorn-typescript";
 import { AST_NODE_TYPES, type TSESTree } from "@typescript-eslint/types";
+import * as acorn from "acorn";
+import type { Expression, Program, VariableDeclaration } from "estree";
 import { parse, print, type AST } from "svelte/compiler";
 import { walk } from "zimmerframe";
-import type { Expression, Program, VariableDeclaration } from "estree";
 
 export const acornTsParser = acorn.Parser.extend(tsPlugin());
 

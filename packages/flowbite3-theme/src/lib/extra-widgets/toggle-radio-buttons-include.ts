@@ -1,5 +1,4 @@
 import { definitions } from "../definitions.js";
-
 import ToggleRadioButtons from "./toggle-radio-buttons.svelte";
 import "./toggle-radio-buttons.svelte";
 

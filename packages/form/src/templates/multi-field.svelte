@@ -1,6 +1,5 @@
 <script lang="ts" module>
   import "@/fields/extra-templates/multi-field.js";
-
   import "./multi-field-layout.js";
 </script>
 

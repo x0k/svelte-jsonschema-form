@@ -2,8 +2,8 @@ import { NodeType, type AbstractNode, OperatorType } from "meta/builder";
 
 import { constant } from "$lib/function.js";
 
-import type { Node } from "./node.js";
 import { createNodeTraverser } from "./node-traverser.js";
+import type { Node } from "./node.js";
 
 const empty: OperatorType[] = [];
 const noExtraOperators = constant(empty);

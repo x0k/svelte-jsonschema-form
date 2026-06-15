@@ -11,20 +11,20 @@ import {
   type ValidatorFactoryOptions,
 } from "@sjsf/form";
 
-import type { EntryConverter, EnumItemDecoder } from "$lib/model.js";
 import {
   createEnumItemDecoder,
   createFormDataEntryConverter,
   type FormDataConverterOptions,
   type UnknownEntryConverter,
 } from "$lib/internal/convert-form-data-entry.js";
+import type { EntryConverter, EnumItemDecoder } from "$lib/model.js";
 
 import {
   createOptionIndexDecoder,
   DEFAULT_PSEUDO_PREFIX,
 } from "../id-builder.js";
-import { parseSchemaValue, type Input } from "./schema-value-parser.js";
 import { decode, encode } from "./codec.js";
+import { parseSchemaValue, type Input } from "./schema-value-parser.js";
 
 export interface SvelteKitDataParserOptions {
   schema: Schema;

@@ -1,4 +1,3 @@
-import { defineAddon, defineAddonOptions, type SelectQuestion } from "sv";
 import {
   isLabTheme,
   themeOrSubThemeTitle,
@@ -28,6 +27,7 @@ import {
   type ValidatorDefinition,
 } from "meta/codegen";
 import type * as _uiSchemaAugmentation from "meta/playground";
+import { defineAddon, defineAddonOptions, type SelectQuestion } from "sv";
 
 import packageJson from "../package.json" with { type: "json" };
 import { createPrinter } from "./sv-utils.js";

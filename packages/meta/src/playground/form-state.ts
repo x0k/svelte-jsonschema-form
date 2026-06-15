@@ -1,13 +1,13 @@
 import type {
-  Experimental_ArrayMinItems,
-  Experimental_DefaultFormStateBehavior,
-} from "@sjsf/form/core";
-import type {
   FieldsValidationMode,
   FormValue,
   Schema,
   UiSchemaRoot,
 } from "@sjsf/form";
+import type {
+  Experimental_ArrayMinItems,
+  Experimental_DefaultFormStateBehavior,
+} from "@sjsf/form/core";
 
 import type {
   PlaygroundValidator,

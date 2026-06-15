@@ -1,5 +1,6 @@
 <script lang="ts">
   import { ComponentsAndWidgets } from "theme-testing/demo";
+
   import "beercss/dist/cdn/beer.css";
 
   import { theme } from "../lib/index.js";

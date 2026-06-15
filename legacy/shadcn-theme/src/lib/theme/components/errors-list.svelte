@@ -12,7 +12,7 @@
 </script>
 
 <ul
-  class="text-destructive list-disc list-inside"
+  class="list-inside list-disc text-destructive"
   {...errorsListAttributes(ctx, config, "errorsList", {})}
 >
   {#each errors as err}

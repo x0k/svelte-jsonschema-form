@@ -1,7 +1,3 @@
-import type { StandardSchemaV1 } from "@standard-schema/spec";
-import type { RemoteFormInput } from "@sveltejs/kit";
-import type { MaybePromise } from "@sjsf/form/lib/types";
-import { isRecord } from "@sjsf/form/lib/object";
 import {
   create,
   createTranslate,
@@ -15,23 +11,26 @@ import {
   type UiSchemaRoot,
   type ValidatorFactoryOptions,
 } from "@sjsf/form";
+import { isRecord } from "@sjsf/form/lib/object";
+import type { MaybePromise } from "@sjsf/form/lib/types";
+import type { StandardSchemaV1 } from "@standard-schema/spec";
+import type { RemoteFormInput } from "@sveltejs/kit";
 
+import { getRequestEvent } from "$app/server";
 import {
   createFormDataEntryConverter,
   type FormDataConverterOptions,
   type UnknownEntryConverter,
 } from "$lib/internal/convert-form-data-entry.js";
-
-import { getRequestEvent } from "$app/server";
 import {
   FORM_DATA_FILE_PREFIX,
   JSON_CHUNKS_KEY,
   type EntryConverter,
 } from "$lib/model.js";
 
+import { DEFAULT_PSEUDO_PREFIX } from "../id-builder.js";
 import { decode } from "../internal/codec.js";
 import { createSvelteKitDataParser } from "../internal/sveltekit-data-parser.js";
-import { DEFAULT_PSEUDO_PREFIX } from "../id-builder.js";
 import { enServerTranslation, type ServerTranslation } from "./translation.js";
 
 export interface SvelteKitFormValidatorOptions<T> {

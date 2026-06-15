@@ -9,9 +9,8 @@
 
   import { createFormIdBuilder } from "$lib/rf/index.js";
 
-  import { schema, uiSchema } from "../model.js";
   import * as defaults from "../form-defaults.js";
-
+  import { schema, uiSchema } from "../model.js";
   import { createPost } from "./data.remote.js";
 
   const native = createPost.for("native");

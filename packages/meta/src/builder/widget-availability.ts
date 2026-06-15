@@ -1,14 +1,14 @@
-import { WIDGETS } from "../widgets.generated.ts";
-import { isThemeExtension, themeExtensionOrigin, toTheme } from "../themes.ts";
 import type { PlaygroundTheme } from "../playground/index.ts";
+import { isThemeExtension, themeExtensionOrigin, toTheme } from "../themes.ts";
+import { WIDGETS } from "../widgets.generated.ts";
+import { BASE_CUSTOMIZABLE_NODE_TYPES } from "./customizable-node-types.ts";
+import type { CustomizableNodeType } from "./node-types-full.ts";
+import { NodeType, RangeValueType } from "./node-types.ts";
+import type { WidgetType } from "./widget-names.ts";
 import {
   WIDGET_NODE_TYPE,
   WIDGET_RANGE_VALUE_TYPE,
 } from "./widget-node-type.ts";
-import type { WidgetType } from "./widget-names.ts";
-import { NodeType, RangeValueType } from "./node-types.ts";
-import type { CustomizableNodeType } from "./node-types-full.ts";
-import { BASE_CUSTOMIZABLE_NODE_TYPES } from "./customizable-node-types.ts";
 
 export function themeWidgetAvailability(theme: PlaygroundTheme) {
   const actualTheme = toTheme(theme);

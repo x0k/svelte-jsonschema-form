@@ -1,9 +1,11 @@
-// @ts-check
-import { svelteConfig } from "../../eslint.config.js";
+import { dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+
 import { loadConfig } from "@sveltejs/load-config";
 import ts from "typescript-eslint";
-import { fileURLToPath } from "node:url";
-import { dirname } from "node:path";
+
+// @ts-check
+import { svelteConfig } from "../../eslint.config.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const loaded = await loadConfig(__dirname, { traverse: false });

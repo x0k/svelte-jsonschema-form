@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Separator as SeparatorPrimitive } from "bits-ui";
+
   import { Separator } from "$lib/default-ui/separator/index.js";
   import { cn } from "$lib/utils.js";
 
@@ -12,6 +13,6 @@
 
 <Separator
   bind:ref
-  class={cn("bg-muted -mx-1 my-1 h-px", className)}
+  class={cn("-mx-1 my-1 h-px bg-muted", className)}
   {...restProps}
 />

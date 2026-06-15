@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
   import { theme } from "@sjsf/basic-theme";
   import { specs } from "@sjsf/basic-theme/specs";
+  import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
 
   import * as defaults from "@/lib/sjsf/defaults";
   import { themeManager } from "@/theme.svelte";

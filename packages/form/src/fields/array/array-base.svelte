@@ -1,7 +1,8 @@
 <script lang="ts" module>
-  import type { Expand } from "@/lib/types.js";
   import type { ActionField } from "@/form/index.js";
+  import type { Expand } from "@/lib/types.js";
   import "@/form/extra-fields/array-item.js";
+
   import "../extra-templates/array.js";
 
   declare module "../components.js" {
@@ -19,7 +20,6 @@
 </script>
 
 <script lang="ts" generics="F extends ArrayFields">
-  import { SimpleKeyedArray } from "@/lib/keyed-array.svelte.js";
   import {
     getComponent,
     getFormContext,
@@ -30,6 +30,7 @@
     createKeyedArrayDeriver,
     getFieldAction,
   } from "@/form/index.js";
+  import { SimpleKeyedArray } from "@/lib/keyed-array.svelte.js";
 
   import {
     setArrayContext,

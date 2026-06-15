@@ -1,7 +1,7 @@
 <script lang="ts" module>
-  import type { ComponentProps as SvelteComponentProps } from "svelte";
-  import { ColorSelect as SvarColorSelect } from "@svar-ui/svelte-core";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import { ColorSelect as SvarColorSelect } from "@svar-ui/svelte-core";
+  import type { ComponentProps as SvelteComponentProps } from "svelte";
 
   declare module "@sjsf/form" {
     interface ComponentProps {

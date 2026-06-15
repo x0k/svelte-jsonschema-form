@@ -1,11 +1,11 @@
-import { weakMemoize } from "@/lib/memoize.js";
-import { transformSchemaDefinition } from "@/lib/json-schema/index.js";
 import {
   ADDITIONAL_PROPERTY_FLAG,
   type Schema,
   type SchemaDefinition,
 } from "@/core/index.js";
 import type { AdditionalPropertyKeyValidator, Config } from "@/form/main.js";
+import { transformSchemaDefinition } from "@/lib/json-schema/index.js";
+import { weakMemoize } from "@/lib/memoize.js";
 
 // This is an attempt to restore the original scheme for correct field validation
 // TODO: Remove when we are not using custom schema properties

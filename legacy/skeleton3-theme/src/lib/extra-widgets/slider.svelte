@@ -1,8 +1,8 @@
 <script lang="ts" module>
-  import type { ComponentProps as SvelteComponentProps } from "svelte";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   // NOTE: avoids types collision
   import { Slider as SkeletonSlider } from "@skeletonlabs/skeleton-svelte";
+  import type { ComponentProps as SvelteComponentProps } from "svelte";
 
   declare module "@sjsf/form" {
     interface ComponentProps {

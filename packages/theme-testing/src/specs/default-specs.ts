@@ -3,7 +3,6 @@ import "@sjsf/form/fields/extra/enum-include";
 import "@sjsf/form/fields/extra/multi-enum-include";
 import "@sjsf/form/fields/extra/file-include";
 import "@sjsf/form/fields/extra/files-include";
-
 import {
   boolean,
   enumeration,

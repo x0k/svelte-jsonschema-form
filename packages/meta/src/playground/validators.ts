@@ -1,20 +1,3 @@
-import { ROOT_SCHEMA_PREFIX } from "@sjsf/form/core";
-import type { FormValidator } from "@sjsf/form";
-import {
-  addFormComponents,
-  createFormValidator as ajv8,
-} from "@sjsf/ajv8-validator";
-import { createFormValidator as cfworker } from "@sjsf/cfworker-validator";
-import {
-  DEFAULT_VALIDATOR_OPTIONS as DEFAULT_SCHEMASAFE_OPTIONS,
-  createFormValidator as schemasafe,
-} from "@sjsf/schemasafe-validator";
-import {
-  createFormValidator as ata,
-  DEFAULT_VALIDATOR_OPTIONS as DEFAULT_ATA_OPTIONS,
-} from "@sjsf-lab/ata-validator";
-import { Ajv2020 } from "ajv/dist/2020.js";
-import _addFormats, { type FormatsPlugin } from "ajv-formats";
 import {
   Validator as CfValidator,
   type Schema as CfSchema,
@@ -23,7 +6,25 @@ import {
   validator as safeValidator,
   type Schema as SafeSchema,
 } from "@exodus/schemasafe";
+import {
+  createFormValidator as ata,
+  DEFAULT_VALIDATOR_OPTIONS as DEFAULT_ATA_OPTIONS,
+} from "@sjsf-lab/ata-validator";
+import {
+  addFormComponents,
+  createFormValidator as ajv8,
+} from "@sjsf/ajv8-validator";
+import { createFormValidator as cfworker } from "@sjsf/cfworker-validator";
+import type { FormValidator } from "@sjsf/form";
+import { ROOT_SCHEMA_PREFIX } from "@sjsf/form/core";
+import {
+  DEFAULT_VALIDATOR_OPTIONS as DEFAULT_SCHEMASAFE_OPTIONS,
+  createFormValidator as schemasafe,
+} from "@sjsf/schemasafe-validator";
+import _addFormats, { type FormatsPlugin } from "ajv-formats";
+import { Ajv2020 } from "ajv/dist/2020.js";
 import { Validator as AtaValidator } from "ata-validator";
+
 import type { PlaygroundValidator } from "./model.ts";
 
 const addFormats = _addFormats as unknown as FormatsPlugin;

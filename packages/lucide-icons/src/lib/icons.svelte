@@ -1,8 +1,8 @@
 <script lang="ts" module>
-  import ArrowUp from "@lucide/svelte/icons/arrow-up";
   import ArrowDown from "@lucide/svelte/icons/arrow-down";
-  import Trash from "@lucide/svelte/icons/trash";
+  import ArrowUp from "@lucide/svelte/icons/arrow-up";
   import Copy from "@lucide/svelte/icons/copy";
+  import Trash from "@lucide/svelte/icons/trash";
 
   export { arrowDownOutline, arrowUpOutline, trashBinOutline, fileCopyOutline };
 </script>

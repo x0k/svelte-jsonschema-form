@@ -1,6 +1,6 @@
-import type { FromSchema } from "json-schema-to-ts";
-import type { Brand } from "@sjsf/form/lib/types";
 import type { Schema } from "@sjsf/form";
+import type { Brand } from "@sjsf/form/lib/types";
+import type { FromSchema } from "json-schema-to-ts";
 
 import { NodeType } from "./node-types.ts";
 

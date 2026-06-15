@@ -1,13 +1,13 @@
+import _ataPackageJson from "@sjsf-lab/ata-validator/package.json" with { type: "json" };
+import _hyperjumpPackageJson from "@sjsf-lab/hyperjump-validator/package.json" with { type: "json" };
 import _ajv8PackageJson from "@sjsf/ajv8-validator/package.json" with { type: "json" };
 import _cfworkerPackageJson from "@sjsf/cfworker-validator/package.json" with { type: "json" };
 import _schemasafePackageJson from "@sjsf/schemasafe-validator/package.json" with { type: "json" };
-import _zod4PackageJson from "@sjsf/zod4-validator/package.json" with { type: "json" };
 import _valibotPackageJson from "@sjsf/valibot-validator/package.json" with { type: "json" };
-import _hyperjumpPackageJson from "@sjsf-lab/hyperjump-validator/package.json" with { type: "json" };
-import _ataPackageJson from "@sjsf-lab/ata-validator/package.json" with { type: "json" };
+import _zod4PackageJson from "@sjsf/zod4-validator/package.json" with { type: "json" };
 
-import { type Package, fromPackageJson } from "./package.ts";
 import { formPackage } from "./form.ts";
+import { type Package, fromPackageJson } from "./package.ts";
 
 const VALIDATORS = [
   "ajv8",

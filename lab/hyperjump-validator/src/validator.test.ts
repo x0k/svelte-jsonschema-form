@@ -19,8 +19,8 @@ import {
   validatorTests,
 } from "validator-testing";
 
-import { createFormValidatorFactory } from "./validator.js";
 import { localization } from "./localizations/en-us.js";
+import { createFormValidatorFactory } from "./validator.js";
 
 const toId = (n: number) => `https://example.com/v${n}`;
 const createIdFactory = (): IdFactory => {

@@ -1,5 +1,4 @@
 <script lang="ts" module>
-  import type { Ref } from "@/lib/svelte.svelte.js";
   import {
     getComponent,
     isDisabled,
@@ -10,7 +9,7 @@
     type FormState,
     type SchemaValue,
   } from "@/form/index.js";
-
+  import type { Ref } from "@/lib/svelte.svelte.js";
   import "@/form/extra-labels/clear.js";
 
   declare module "../components.js" {

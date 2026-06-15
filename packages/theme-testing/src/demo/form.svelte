@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { HTMLAttributes } from "svelte/elements";
-  import Tree from "@sveltejs/svelte-json-tree";
   import { BasicForm, getValueSnapshot, type FormState } from "@sjsf/form";
+  import Tree from "@sveltejs/svelte-json-tree";
+  import type { HTMLAttributes } from "svelte/elements";
 
   import { ShadowHost } from "../lib/shadow/index.js";
 

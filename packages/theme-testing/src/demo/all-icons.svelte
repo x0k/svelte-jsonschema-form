@@ -1,5 +1,4 @@
 <script lang="ts">
-  import type { HTMLAttributes } from "svelte/elements";
   import type {
     Config,
     FieldPath,
@@ -7,6 +6,7 @@
     Icons,
     Labels,
   } from "@sjsf/form";
+  import type { HTMLAttributes } from "svelte/elements";
   import "@sjsf/form/extra-labels/clear";
   import "@sjsf/form/extra-labels/edit";
 

@@ -1,5 +1,5 @@
-import type { Component } from "svelte";
 import type { Slider, WithoutChildrenOrChild } from "bits-ui";
+import type { Component } from "svelte";
 
 declare module "../context.js" {
   interface ThemeComponents {

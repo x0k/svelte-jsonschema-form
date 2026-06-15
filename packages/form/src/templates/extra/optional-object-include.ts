@@ -1,5 +1,4 @@
 import { definitions } from "../../theme/definitions.js";
-
 import OptionalObject from "./optional-object.svelte";
 import "./optional-object.svelte";
 

@@ -1,8 +1,8 @@
 import { isRecord } from "@/lib/object.js";
 import type { Visitor } from "@/lib/traverser.js";
 
-import type { SchemaValue } from "./schema.js";
 import type { Path } from "./path.js";
+import type { SchemaValue } from "./schema.js";
 
 export type SchemaValueTraverserContextType = "root" | "array" | "record";
 

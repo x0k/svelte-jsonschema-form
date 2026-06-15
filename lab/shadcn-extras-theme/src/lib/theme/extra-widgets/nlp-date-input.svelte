@@ -1,8 +1,8 @@
 <script lang="ts" module>
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type { Component } from "svelte";
 
   import type { NLPDateInputProps } from "$lib/components/ui/nlp-date-input/types.js";
-  import type { Component } from "svelte";
 
   declare module "@sjsf/form" {
     interface ComponentProps {

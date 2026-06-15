@@ -3,12 +3,6 @@ import type {
   JSONSchema7Definition as SchemaDefinition,
 } from "json-schema";
 
-import type {
-  ArraySchemaTraverserContext,
-  RecordSchemaTraverserContext,
-  SchemaTraverserContext,
-  SubSchemaTraverserContext,
-} from "@/lib/json-schema/traverse.js";
 import {
   SUB_SCHEMAS,
   RECORDS_OF_SUB_SCHEMAS,
@@ -18,6 +12,12 @@ import {
   type TransformedSchemaDefinition,
   type TransformedSchema,
 } from "@/lib/json-schema/index.js";
+import type {
+  ArraySchemaTraverserContext,
+  RecordSchemaTraverserContext,
+  SchemaTraverserContext,
+  SubSchemaTraverserContext,
+} from "@/lib/json-schema/traverse.js";
 
 export function transformSchemaDefinition<R>(
   schema: SchemaDefinition,

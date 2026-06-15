@@ -1,5 +1,4 @@
 import { definitions } from "../definitions.js";
-
 import StarRating from "./star-rating.svelte";
 import "./star-rating.svelte";
 

@@ -7,11 +7,11 @@
   import Github from "$lib/components/github.svelte";
   import { Button } from "$lib/components/ui/button/index.js";
 
+  import ConfirmationDialog from "./projects/confirmation-dialog.svelte";
   import type { ProjectsContext } from "./projects/context.svelte.js";
+  import GenericProjectDialog from "./projects/generic-project-dialog.svelte";
   import ProjectsControls from "./projects/project-controls.svelte";
   import ProjectsDialog from "./projects/projects-dialog.svelte";
-  import ConfirmationDialog from "./projects/confirmation-dialog.svelte";
-  import GenericProjectDialog from "./projects/generic-project-dialog.svelte";
   import { themeManager } from "./theme.svelte.js";
 
   const { ctx }: { ctx: ProjectsContext } = $props();

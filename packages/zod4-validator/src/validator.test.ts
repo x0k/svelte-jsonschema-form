@@ -1,6 +1,6 @@
-import { describe, expect, it } from "vitest";
-import { isSchemaObject } from "@sjsf/form/lib/json-schema";
 import { createAugmentSchema, isSchemaWithProperties } from "@sjsf/form/core";
+import { isSchemaObject } from "@sjsf/form/lib/json-schema";
+import { describe, expect, it } from "vitest";
 import { z as zz } from "zod/v4";
 import { z as zm } from "zod/v4-mini";
 

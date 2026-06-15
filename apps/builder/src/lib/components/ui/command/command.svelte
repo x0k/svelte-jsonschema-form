@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { cn } from "$lib/utils.js";
   import { Command as CommandPrimitive } from "bits-ui";
+
+  import { cn } from "$lib/utils.js";
 
   export type CommandRootApi = CommandPrimitive.Root;
 
@@ -21,7 +22,7 @@
   bind:ref
   data-slot="command"
   class={cn(
-    "flex size-full flex-col overflow-hidden rounded-xl! bg-popover p-1 text-popover-foreground",
+    "bg-popover text-popover-foreground flex size-full flex-col overflow-hidden rounded-xl! p-1",
     className
   )}
   {...restProps}

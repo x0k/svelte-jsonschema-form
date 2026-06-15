@@ -7,13 +7,12 @@
     RANGE_VALUE_TYPES,
   } from "$lib/builder/index.js";
 
+  import { getBuilderContext } from "../context.svelte.js";
+  import NodeHeader from "../customizable-node-header.svelte";
   import type { NodeProps } from "../model.js";
   import NodeContainer from "../node-container.svelte";
-  import NodeHeader from "../customizable-node-header.svelte";
   import NodeIssues from "../node-issues.svelte";
-  import { getBuilderContext } from "../context.svelte.js";
   import { THEME_NODE_OVERRIDES } from "../theme-schemas.js";
-
   import ValueTypeSelect from "./value-type-select.svelte";
 
   let {

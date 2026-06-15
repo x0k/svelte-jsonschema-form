@@ -1,6 +1,6 @@
-import { fontFamily } from "tailwindcss/defaultTheme";
-import tailwindcssAnimate from "tailwindcss-animate";
 import { THEME_CONTENT } from "@sjsf/shadcn-theme/preset";
+import tailwindcssAnimate from "tailwindcss-animate";
+import { fontFamily } from "tailwindcss/defaultTheme";
 
 /** @type {import('tailwindcss').Config} */
 const config = {
