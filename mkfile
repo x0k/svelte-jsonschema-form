@@ -21,6 +21,9 @@ t:
 fmt:
   pnpm run format
 
+fcheck:
+  pnpm run format:check
+
 lint:
   pnpm run lint
 

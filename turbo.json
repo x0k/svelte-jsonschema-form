@@ -24,6 +24,7 @@
       "outputs": []
     },
     "//#format:check": {
+      "dependsOn": ["^build"],
       "outputs": []
     },
     "//#quality": {
