@@ -49,9 +49,9 @@
 
   const errors = $derived(getFieldErrors(ctx, config.path));
 
-  const setValue = createTask({
+  const setValue = createTask<[FileList | undefined], File[] | undefined>({
     combinator: abortPrevious,
-    async execute(signal, files: FileList | undefined) {
+    async execute(signal, files) {
       if (files === undefined) {
         return undefined;
       }
@@ -61,7 +61,7 @@
       }
       return array;
     },
-    onSuccess(file: File[] | undefined) {
+    onSuccess(file) {
       value = file;
     },
   });

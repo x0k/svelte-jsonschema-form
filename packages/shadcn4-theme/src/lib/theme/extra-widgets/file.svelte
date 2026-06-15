@@ -1,31 +1,35 @@
 <script lang="ts">
-	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
-	import '@sjsf/basic-theme/extra-widgets/file.svelte';
+  import {
+    getFormContext,
+    inputAttributes,
+    type ComponentProps,
+  } from "@sjsf/form";
+  import "@sjsf/basic-theme/extra-widgets/file.svelte";
 
-	import { getThemeContext } from '../context.js';
-	import '../types/input';
+  import { getThemeContext } from "../context.js";
+  import "../types/input.js";
 
-	const ctx = getFormContext();
-	const themeCtx = getThemeContext();
+  const ctx = getFormContext();
+  const themeCtx = getThemeContext();
 
-	const { Input } = $derived(themeCtx.components);
+  const { Input } = $derived(themeCtx.components);
 
-	let {
-		config,
-		handlers,
-		multiple,
-		loading,
-		processing,
-		value = $bindable()
-	}: ComponentProps['fileWidget'] = $props();
+  let {
+    config,
+    handlers,
+    multiple,
+    loading,
+    processing,
+    value = $bindable(),
+  }: ComponentProps["fileWidget"] = $props();
 </script>
 
 <Input
-	{...inputAttributes(ctx, config, 'file', handlers, {
-		multiple
-	})}
-	bind:files={value}
-	type="file"
-	data-loading={loading}
-	data-processing={processing}
+  {...inputAttributes(ctx, config, "file", handlers, {
+    multiple,
+  })}
+  bind:files={value}
+  type="file"
+  data-loading={loading}
+  data-processing={processing}
 />

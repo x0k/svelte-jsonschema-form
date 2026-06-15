@@ -359,7 +359,6 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
           new Promise((resolve, reject) => {
             setTimeout(() => {
               if (signal.aborted) {
-                // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors
                 reject(signal.reason);
               } else {
                 resolve();
@@ -429,18 +428,19 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     },
   });
 
-  const validateFields: AsyncFieldValueValidator["validateFieldValueAsync"] =
-    $derived.by(() => {
-      if (isAsyncFieldValueValidator(validator)) {
-        return (signal, config, value) =>
-          validator.validateFieldValueAsync(signal, config, value);
-      }
-      if (isFieldValueValidator(validator)) {
-        return (_, config, value) =>
-          Promise.resolve(validator.validateFieldValue(config, value));
-      }
-      return () => Promise.resolve([]);
-    });
+  const validateFields = $derived.by<
+    AsyncFieldValueValidator["validateFieldValueAsync"]
+  >(() => {
+    if (isAsyncFieldValueValidator(validator)) {
+      return (signal, config, value) =>
+        validator.validateFieldValueAsync(signal, config, value);
+    }
+    if (isFieldValueValidator(validator)) {
+      return (_, config, value) =>
+        Promise.resolve(validator.validateFieldValue(config, value));
+    }
+    return () => Promise.resolve([]);
+  });
 
   const fieldsValidation: FieldsValidation = createTask({
     execute: debounce(

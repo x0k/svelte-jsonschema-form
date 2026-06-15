@@ -1,7 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import type { Schema, SchemaValue } from '@sjsf/form';
+import type { Schema, SchemaValue } from "@sjsf/form";
 
-import type { ValidatedFormData, InitialFormData, ValidFormData } from '../model.js';
+import type {
+  ValidatedFormData,
+  InitialFormData,
+  ValidFormData,
+} from "../model.js";
 
 export interface SvelteKitFormMeta<
   ActionData,
@@ -9,7 +12,7 @@ export interface SvelteKitFormMeta<
   Name extends FormNameFromActionDataUnion<ActionData>,
   FallbackValue,
   IFD = InitialFromDataFromPageData<PageData, Name>,
-  VFD = ValidatedFormDataFromActionDataUnion<ActionData, Name>
+  VFD = ValidatedFormDataFromActionDataUnion<ActionData, Name>,
 > {
   name: Name;
   __actionData: ActionData;
@@ -27,11 +30,15 @@ const proxy = new Proxy(
   {
     get(_, name) {
       return { name };
-    }
+    },
   }
 );
 
-export function createMeta<ActionData, PageData, FallbackValue = SchemaValue>() {
+export function createMeta<
+  ActionData,
+  PageData,
+  FallbackValue = SchemaValue,
+>() {
   return proxy as {
     [K in FormNameFromActionDataUnion<ActionData>]: SvelteKitFormMeta<
       ActionData,
@@ -43,22 +50,34 @@ export function createMeta<ActionData, PageData, FallbackValue = SchemaValue>() 
 }
 
 type FormNameFromActionDataBranch<ActionData> = keyof {
-  [K in keyof ActionData]: ActionData[K] extends ValidatedFormData<any, any> ? K : never;
+  [K in keyof ActionData]: ActionData[K] extends ValidatedFormData<any, any>
+    ? K
+    : never;
 };
 
 type FormNameFromActionDataUnion<ActionData> = ActionData extends any
   ? FormNameFromActionDataBranch<ActionData>
   : never;
 
-type ValidatedFormDataFromActionDataBranch<ActionData, FormName extends keyof ActionData> =
-  ActionData[FormName] extends ValidatedFormData<any, any> ? ActionData[FormName] : never;
+type ValidatedFormDataFromActionDataBranch<
+  ActionData,
+  FormName extends keyof ActionData,
+> =
+  ActionData[FormName] extends ValidatedFormData<any, any>
+    ? ActionData[FormName]
+    : never;
 
 type ValidatedFormDataFromActionDataUnion<
   ActionData,
-  FormName extends keyof ActionData
-> = ActionData extends any ? ValidatedFormDataFromActionDataBranch<ActionData, FormName> : never;
+  FormName extends keyof ActionData,
+> = ActionData extends any
+  ? ValidatedFormDataFromActionDataBranch<ActionData, FormName>
+  : never;
 
-type InitialFromDataFromPageData<PageData, FormName extends PropertyKey> = PageData extends {
+type InitialFromDataFromPageData<
+  PageData,
+  FormName extends PropertyKey,
+> = PageData extends {
   [K in FormName]: InitialFormData<any>;
 }
   ? PageData[FormName]
@@ -80,4 +99,6 @@ type FormValueFromInitialFormData<IFD, FallbackValue> = unknown extends IFD
 type SendDataFromValidatedFormData<VFD> =
   VFD extends ValidatedFormData<any, infer SendData> ? SendData : false;
 
-type SendSchemaFromInitialFormData<IFD> = IFD extends { schema: Schema } ? true : false;
+type SendSchemaFromInitialFormData<IFD> = IFD extends { schema: Schema }
+  ? true
+  : false;
