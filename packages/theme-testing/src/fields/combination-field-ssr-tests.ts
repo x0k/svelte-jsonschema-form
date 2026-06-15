@@ -1,8 +1,7 @@
+import { type Theme } from "@sjsf/form";
 import { render as renderServer } from "svelte/server";
 import { describe, expect, test } from "vitest";
-import { type Theme } from "@sjsf/form";
 
-import TestForm from "./test-form.svelte";
 import * as defaults from "../lib/form-defaults.js";
 import {
   type CombinationFieldTestOptions,
@@ -14,10 +13,11 @@ import {
   discriminatedUiSchema,
   plainOneOfSchema,
 } from "./test-data/combination-defaults.js";
+import TestForm from "./test-form.svelte";
 
 function ssrForm(
   options: CombinationTestFormOptions,
-  testOptions?: CombinationFieldTestOptions,
+  testOptions?: CombinationFieldTestOptions
 ) {
   return renderServer(TestForm, {
     context: testOptions?.context,
@@ -31,7 +31,7 @@ function ssrForm(
 
 export function combinationFieldSsrTests(
   theme: Theme,
-  testOptions?: CombinationFieldTestOptions,
+  testOptions?: CombinationFieldTestOptions
 ) {
   describe("combination fields SSR", () => {
     test("renders selected option and defaults", () => {
@@ -42,7 +42,7 @@ export function combinationFieldSsrTests(
           uiSchema: discriminatedUiSchema,
           initialValue: { kind: "company", shared: "kept" },
         },
-        testOptions,
+        testOptions
       );
 
       expect(body).toContain("Company kind");
@@ -57,7 +57,7 @@ export function combinationFieldSsrTests(
           schema: discriminatedSchema,
           uiSchema: discriminatedUiSchema,
         },
-        testOptions,
+        testOptions
       );
 
       expect(body).toContain("Person from UI");
@@ -70,7 +70,7 @@ export function combinationFieldSsrTests(
           theme,
           schema: ambiguousSchema,
         },
-        testOptions,
+        testOptions
       );
 
       expect(body).toContain("String branch");
@@ -83,7 +83,7 @@ export function combinationFieldSsrTests(
           theme,
           schema: plainOneOfSchema,
         },
-        testOptions,
+        testOptions
       );
 
       expect(body).toContain("First");

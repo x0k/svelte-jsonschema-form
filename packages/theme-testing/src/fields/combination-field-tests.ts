@@ -1,10 +1,9 @@
-import { render } from "vitest-browser-svelte";
-import { describe, expect, test } from "vitest";
 import { type Theme } from "@sjsf/form";
+import { describe, expect, test } from "vitest";
+import { render } from "vitest-browser-svelte";
 import { type Locator } from "vitest/browser";
 
 import * as defaults from "../lib/form-defaults.js";
-import TestForm from "./test-form.svelte";
 import {
   type CombinationFieldTestOptions,
   type CombinationTestFormOptions,
@@ -14,10 +13,11 @@ import {
   discriminatedSchema,
   discriminatedUiSchema,
 } from "./test-data/combination-defaults.js";
+import TestForm from "./test-form.svelte";
 
 function renderForm(
   options: CombinationTestFormOptions,
-  testOptions?: CombinationFieldTestOptions,
+  testOptions?: CombinationFieldTestOptions
 ) {
   const target = document.body.appendChild(document.createElement("div"));
   return render(TestForm, {
@@ -45,7 +45,7 @@ async function defaultSelectOption(locator: Locator, label: string) {
   const selector = getCombinationSelector(locator);
   const select = selector.element() as HTMLSelectElement;
   const option = Array.from(select.options).find(
-    (option) => option.textContent?.trim() === label,
+    (option) => option.textContent?.trim() === label
   );
   expect(option).toBeDefined();
   await selector.selectOptions(option!.value);
@@ -55,7 +55,7 @@ async function defaultAssertSelectedOption(locator: Locator, label: string) {
   const selector = getCombinationSelector(locator);
   const select = selector.element() as HTMLSelectElement;
   const selected = Array.from(select.selectedOptions).some(
-    (option) => option.textContent?.trim() === label,
+    (option) => option.textContent?.trim() === label
   );
   expect(selected).toBe(true);
 }
@@ -63,11 +63,11 @@ async function defaultAssertSelectedOption(locator: Locator, label: string) {
 async function assertSelectedOption(
   screen: ReturnType<typeof render>,
   testOptions: CombinationFieldTestOptions | undefined,
-  label: string,
+  label: string
 ) {
   await (testOptions?.assertSelectedOption ?? defaultAssertSelectedOption)(
     screen.locator,
-    label,
+    label
   );
 }
 
@@ -82,28 +82,28 @@ async function defaultAssertOptionLabels(locator: Locator, labels: string[]) {
 async function assertOptionLabels(
   screen: ReturnType<typeof render>,
   testOptions: CombinationFieldTestOptions | undefined,
-  labels: string[],
+  labels: string[]
 ) {
   await (testOptions?.assertOptionLabels ?? defaultAssertOptionLabels)(
     screen.locator,
-    labels,
+    labels
   );
 }
 
 async function selectOption(
   screen: ReturnType<typeof render>,
   testOptions: CombinationFieldTestOptions | undefined,
-  label: string,
+  label: string
 ) {
   await (testOptions?.selectOption ?? defaultSelectOption)(
     screen.locator,
-    label,
+    label
   );
 }
 
 export function combinationFieldTests(
   theme: Theme,
-  testOptions?: CombinationFieldTestOptions,
+  testOptions?: CombinationFieldTestOptions
 ) {
   describe("combination fields", () => {
     test("selects initial option from discriminator value", async () => {
@@ -114,7 +114,7 @@ export function combinationFieldTests(
           uiSchema: discriminatedUiSchema,
           initialValue: { kind: "company", shared: "kept" },
         },
-        testOptions,
+        testOptions
       );
 
       await assertSelectedOption(screen, testOptions, "Company kind");
@@ -133,7 +133,7 @@ export function combinationFieldTests(
           uiSchema: discriminatedUiSchema,
           initialValue: { kind: "company", shared: "kept" },
         },
-        testOptions,
+        testOptions
       );
 
       await expect
@@ -152,7 +152,7 @@ export function combinationFieldTests(
           theme,
           schema: ambiguousSchema,
         },
-        testOptions,
+        testOptions
       );
 
       await assertSelectedOption(screen, testOptions, "String branch");
@@ -171,7 +171,7 @@ export function combinationFieldTests(
             shared: "kept",
           },
         },
-        testOptions,
+        testOptions
       );
 
       await selectOption(screen, testOptions, "Company kind");
@@ -190,7 +190,7 @@ export function combinationFieldTests(
           schema: discriminatedSchema,
           uiSchema: discriminatedUiSchema,
         },
-        testOptions,
+        testOptions
       );
 
       await assertOptionLabels(screen, testOptions, [
