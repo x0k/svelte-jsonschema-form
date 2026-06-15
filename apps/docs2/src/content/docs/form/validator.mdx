@@ -24,7 +24,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     validateFormValue(rootSchema, formValue) {
       const errors = validator.validateFormValue(rootSchema, formValue);
       // Your logic
-      return errors
+      return errors;
     },
   } satisfies FormValueValidator<T>;
 }
@@ -116,3 +116,4 @@ export interface AsyncFileListValidator {
     config: Config
   ) => Promise<Update<string[]>>;
 }
+```

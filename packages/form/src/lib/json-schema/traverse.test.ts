@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
 import type { JSONSchema7 } from "json-schema";
+import { describe, expect, it } from "vitest";
 
 import { makeSchemaDefinitionTraverser } from "./traverse.js";
 

@@ -1,12 +1,11 @@
 <script lang="ts">
-  import { untrack } from "svelte";
   import Plus from "@lucide/svelte/icons/plus";
+  import { untrack } from "svelte";
 
   import { getNodeOptions, type InOperator } from "$lib/builder/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
 
   import RemoveButton from "../../remove-button.svelte";
-
   import { getPredicateContext } from "./context.js";
   import NodeOptionInput from "./node-option-input.svelte";
 
@@ -42,7 +41,12 @@
 
 <div class="flex flex-col gap-2">
   <div class="flex items-center gap-2">
-    <NodeOptionInput bind:this={input} {options} bind:value onEnter={pushItem} />
+    <NodeOptionInput
+      bind:this={input}
+      {options}
+      bind:value
+      onEnter={pushItem}
+    />
     {#if options.length === 0}
       <Button variant="outline" size="icon" class="size-8" onclick={pushItem}>
         <Plus class="size-4" />

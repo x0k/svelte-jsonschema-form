@@ -1,5 +1,4 @@
 import { definitions } from "../../theme/definitions.js";
-
 import Enum from "./enum.svelte";
 import "./enum.svelte";
 

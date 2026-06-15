@@ -1,10 +1,10 @@
 const RADIX = 36; // Maximum radix supported by toString/parseInt (0-9, a-z)
-const UTF16_MAX_SINGLE_UNIT = 0xFFFF; 
+const UTF16_MAX_SINGLE_UNIT = 0xffff;
 
 const FIRST_CHAR_REGEXP = /[a-zA-Z_$]/;
 const CHAR_REGEXP = /[a-zA-Z0-9_]/;
 
-const ESCAPE_CHAR = 'X';
+const ESCAPE_CHAR = "X";
 
 const parts: string[] = [];
 
@@ -15,7 +15,8 @@ export function encode(str: string): string {
   for (let i = 0; i < str.length; i++) {
     const char = str[i];
     const needsEncoding =
-      char === ESCAPE_CHAR || (i === 0 ? !FIRST_CHAR_REGEXP.test(char) : !CHAR_REGEXP.test(char));
+      char === ESCAPE_CHAR ||
+      (i === 0 ? !FIRST_CHAR_REGEXP.test(char) : !CHAR_REGEXP.test(char));
 
     if (needsEncoding) {
       if (i > chunkStart) {
@@ -41,7 +42,7 @@ export function encode(str: string): string {
   if (chunkStart < str.length) {
     parts.push(str.slice(chunkStart));
   }
-  return parts.join('');
+  return parts.join("");
 }
 
 export function decode(encoded: string): string {
@@ -83,5 +84,5 @@ export function decode(encoded: string): string {
   if (chunkStart < encoded.length) {
     parts.push(encoded.slice(chunkStart));
   }
-  return parts.join('');
+  return parts.join("");
 }

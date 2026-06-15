@@ -1,5 +1,5 @@
-import type { Ajv, ValidateFunction } from "ajv";
 import type { FormValue } from "@sjsf/form";
+import type { Ajv, ValidateFunction } from "ajv";
 
 export const CAST_FORM_DATA = <T>(data: FormValue) => ({ value: data as T });
 export const NO_FILED_ERRORS = (): string[] => [];

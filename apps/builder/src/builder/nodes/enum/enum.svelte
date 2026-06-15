@@ -1,24 +1,31 @@
 <script lang="ts">
-  import { ENUM_VALUE_TYPE_TITLES, ENUM_VALUE_TYPES, type NodeType } from "meta/builder";
+  import {
+    ENUM_VALUE_TYPE_TITLES,
+    ENUM_VALUE_TYPES,
+    type NodeType,
+  } from "meta/builder";
 
+  import NodeHeader from "../../customizable-node-header.svelte";
   import type { NodeProps } from "../../model.js";
   import NodeContainer from "../../node-container.svelte";
-  import NodeHeader from "../../customizable-node-header.svelte";
   import NodeIssues from "../../node-issues.svelte";
-
   import ValueTypeSelect from "../value-type-select.svelte";
-
   import EnumItems from "./enum-items.svelte";
 
   let {
     node = $bindable(),
     draggable,
     unmount,
-    showRequired
+    showRequired,
   }: NodeProps<NodeType.Enum> | NodeProps<NodeType.MultiEnum> = $props();
 </script>
 
-<NodeContainer bind:node {draggable} {showRequired} class="flex flex-col gap-0.5">
+<NodeContainer
+  bind:node
+  {draggable}
+  {showRequired}
+  class="flex flex-col gap-0.5"
+>
   <NodeHeader {node} {draggable} {unmount} {showRequired}>
     {#snippet append()}
       <ValueTypeSelect

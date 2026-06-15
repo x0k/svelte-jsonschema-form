@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 // This file was copied and modified from https://github.com/rjsf-team/react-jsonschema-form/blob/b12175679079be956570349771dddd65406b3773/packages/utils/test/schema/getDefaultFormStateTest.ts
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
@@ -16,10 +14,6 @@ import {
   type MockInstance,
 } from "vitest";
 
-import type { Schema } from "./schema.js";
-import type { Validator } from "./validator.js";
-import { createValidator } from "./test-validator.js";
-import { RECURSIVE_REF, RECURSIVE_REF_ALLOF } from "./fixtures/test-data.js";
 import {
   AdditionalItemsHandling,
   computeDefaults,
@@ -32,8 +26,12 @@ import {
   computeDefaultBasedOnSchemaTypeAndDefaults,
   type Experimental_DefaultFormStateBehavior,
 } from "./default-state.js";
+import { RECURSIVE_REF, RECURSIVE_REF_ALLOF } from "./fixtures/test-data.js";
 import type { Merger } from "./merger.js";
+import type { Schema } from "./schema.js";
 import { createMerger } from "./test-merger.js";
+import { createValidator } from "./test-validator.js";
+import type { Validator } from "./validator.js";
 
 let testValidator: Validator;
 let defaultMerger: Merger;

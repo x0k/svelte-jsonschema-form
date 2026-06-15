@@ -1,4 +1,3 @@
-import { defineAddon, defineAddonOptions, type SelectQuestion } from "sv";
 import {
   isLabTheme,
   themeOrSubThemeTitle,
@@ -28,11 +27,12 @@ import {
   type ValidatorDefinition,
 } from "meta/codegen";
 import type * as _uiSchemaAugmentation from "meta/playground";
+import { defineAddon, defineAddonOptions, type SelectQuestion } from "sv";
 
 import packageJson from "../package.json" with { type: "json" };
 import { createPrinter } from "./sv-utils.js";
 
-const ADDON_ID = packageJson.name;
+const _ADDON_ID = packageJson.name;
 
 type SelectOption = SelectQuestion<string>["options"][number];
 
@@ -148,7 +148,7 @@ export const createOptions = (options: AddonSetupOptions) =>
     .build();
 
 type Addon = ReturnType<
-  typeof defineAddon<typeof ADDON_ID, ReturnType<typeof createOptions>>
+  typeof defineAddon<typeof _ADDON_ID, ReturnType<typeof createOptions>>
 >;
 
 type Workspace = Parameters<Addon["run"]>[0];

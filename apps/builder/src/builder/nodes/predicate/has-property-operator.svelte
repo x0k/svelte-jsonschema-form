@@ -1,6 +1,10 @@
 <script lang="ts">
-  import { getNodeProperties, type HasPropertyOperator } from "$lib/builder/index.js";
   import { untrack } from "svelte";
+
+  import {
+    getNodeProperties,
+    type HasPropertyOperator,
+  } from "$lib/builder/index.js";
 
   import { getPredicateContext } from "./context.js";
   import PropertySelect from "./property-select.svelte";

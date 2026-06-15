@@ -1,17 +1,8 @@
-import type { ObjectProperties } from "@/lib/types.js";
-import { overrideByRecord } from "@/lib/resolver.js";
 import { getSchemaDefinitionByPath, type RPath } from "@/core/index.js";
+import { overrideByRecord } from "@/lib/resolver.js";
+import type { ObjectProperties } from "@/lib/types.js";
 
 import type { Config } from "../config.js";
-import {
-  resolveUiRef,
-  type UiSchema,
-  type UiSchemaDefinition,
-  resolveUiOption as resolveUiOptionInternal,
-  type UiOptions,
-  getUiSchemaByPath,
-} from "../ui-schema.js";
-import { createTranslate } from "../translation.js";
 import type { ActionField } from "../field-actions.js";
 import {
   FORM_UI_EXTRA_OPTIONS,
@@ -23,6 +14,15 @@ import {
   FORM_MERGER,
   FORM_VALUE,
 } from "../internals.js";
+import { createTranslate } from "../translation.js";
+import {
+  resolveUiRef,
+  type UiSchema,
+  type UiSchemaDefinition,
+  resolveUiOption as resolveUiOptionInternal,
+  type UiOptions,
+  getUiSchemaByPath,
+} from "../ui-schema.js";
 import type { FormState } from "./state.js";
 
 /**

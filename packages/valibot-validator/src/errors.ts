@@ -1,5 +1,5 @@
-import type { Path } from "@sjsf/form/core";
 import type { FormValue, ValidationResult } from "@sjsf/form";
+import type { Path } from "@sjsf/form/core";
 import * as v from "valibot";
 
 import type { ValibotIssue, ValibotSchema } from "./model.js";

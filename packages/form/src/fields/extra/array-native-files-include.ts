@@ -1,5 +1,4 @@
 import { definitions } from "../../theme/definitions.js";
-
 import ArrayNativeFiles from "./array-native-files.svelte";
 import "./array-native-files.svelte";
 

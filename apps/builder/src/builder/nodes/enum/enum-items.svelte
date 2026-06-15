@@ -3,14 +3,18 @@
 </script>
 
 <script lang="ts">
-  import { untrack } from "svelte";
-  import { identity } from "@sjsf/form/lib/function";
   import Plus from "@lucide/svelte/icons/plus";
+  import { identity } from "@sjsf/form/lib/function";
   import { EnumValueType } from "meta/builder";
+  import { untrack } from "svelte";
 
-  import { isEnumItemNode, createEnumItemNode, type EnumItemNode } from "$lib/builder/index.js";
-  import { Input } from "$lib/components/ui/input/index.js";
+  import {
+    isEnumItemNode,
+    createEnumItemNode,
+    type EnumItemNode,
+  } from "$lib/builder/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
+  import { Input } from "$lib/components/ui/input/index.js";
 
   import { getBuilderContext } from "../../context.svelte.js";
   import DropIndicator from "../../drop-indicator.svelte";
@@ -31,7 +35,7 @@
             return value;
           }
           return JSON.stringify(value);
-        }
+        },
       };
     }
     return { toValue: identity };
@@ -46,7 +50,7 @@
         return value;
       }
     },
-    [EnumValueType.String]: identity
+    [EnumValueType.String]: identity,
   };
 
   let previousValueType: EnumValueType | undefined;
@@ -101,7 +105,11 @@
     }
     onkeydown={onEnter}
   />
-  <Input placeholder="Enter value..." bind:value={nextValue} onkeydown={onEnter} />
+  <Input
+    placeholder="Enter value..."
+    bind:value={nextValue}
+    onkeydown={onEnter}
+  />
   <Button variant="outline" size="icon" class="size-8" onclick={pushItem}>
     <Plus class="size-4" />
   </Button>
@@ -115,7 +123,7 @@
       unmount,
       get node() {
         return items[i];
-      }
+      },
     })}
     <DropIndicator
       accept={isEnumItemNode}
@@ -123,7 +131,13 @@
         items.splice(i, 0, item);
       }}
     />
-    <EnumItem showRequired={false} bind:node={items[i]} {draggable} {toValue} {unmount} />
+    <EnumItem
+      showRequired={false}
+      bind:node={items[i]}
+      {draggable}
+      {toValue}
+      {unmount}
+    />
   {/each}
   <DropIndicator
     accept={isEnumItemNode}

@@ -52,7 +52,7 @@ export function* extraFields({ wrappedFields = true }: ExtraFieldsFilter = {}) {
 
 export function extraFieldSubPath(
   extraFieldName: ExtraFieldFileName,
-  include = false,
+  include = false
 ) {
   return `${formPackage.name}/fields/extra/${extraFieldName}${include ? "-include" : ""}`;
 }
@@ -64,7 +64,7 @@ for (const [filename, entry] of Object.entries(EXTRA_FIELDS)) {
 }
 
 export function extraFieldNameToFileName(
-  name: string,
+  name: string
 ): ExtraFieldFileName | undefined {
   return EXTRA_FIELD_NAME_TO_FILE.get(name);
 }

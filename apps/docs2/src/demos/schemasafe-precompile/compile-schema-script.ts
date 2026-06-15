@@ -2,7 +2,6 @@ import fs from "node:fs";
 import path from "node:path";
 
 import { validator } from "@exodus/schemasafe";
-
 import { ON_ARRAY_CHANGE, ON_CHANGE, ON_INPUT } from "@sjsf/form";
 import {
   insertSubSchemaIds,

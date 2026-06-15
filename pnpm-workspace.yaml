@@ -68,7 +68,7 @@ catalog:
   svelte-exmarkdown: ^5.0.2
   tailwindcss: ^4.3.0
   typebox: ^1.2.8
-  typescript: ^5.9.3
+  typescript: ^6.0.3
   valibot: ^1.4.1
   vite: ^8.0.16
   vitest: ^4.1.8

@@ -1,7 +1,12 @@
-import { transforms, type AstTypes } from "@sveltejs/sv-utils";
-import type { DeepPartial } from "@sjsf/form/lib/types";
 import { isRecordEmpty } from "@sjsf/form/lib/object";
+import type { DeepPartial } from "@sjsf/form/lib/types";
+import { transforms, type AstTypes } from "@sveltejs/sv-utils";
 
+import {
+  extraFields,
+  extraFieldSubPath,
+  type ExtraFieldFileName,
+} from "../fields.ts";
 import {
   formCoreSubpath,
   formIdBuilderSubPath,
@@ -11,6 +16,8 @@ import {
   formTranslationSubPath,
   type Resolver,
 } from "../form.ts";
+import { iconSetPackage } from "../icons.ts";
+import { sveltekitPackage, svelteKitRfSubPath } from "../sveltekit.ts";
 import {
   isThemeExtension,
   themeExtensionOrigin,
@@ -18,26 +25,22 @@ import {
   toTheme,
   type ToTheme,
 } from "../themes.ts";
-import { sveltekitPackage, svelteKitRfSubPath } from "../sveltekit.ts";
-import {
-  extraFields,
-  extraFieldSubPath,
-  type ExtraFieldFileName,
-} from "../fields.ts";
-import {
-  themeExtraWidgets,
-  themeExtraWidgetSubPath,
-  type ExtraWidgetFileNames,
-} from "../widgets.ts";
-import { iconSetPackage } from "../icons.ts";
 import {
   externalValidatorPackage,
   internalValidatorSubPath,
   isInternalValidator,
   isJsonSchemaValidator,
 } from "../validators.ts";
-
-import { createDraft2020ValidatorExport } from "./validator.ts";
+import {
+  themeExtraWidgets,
+  themeExtraWidgetSubPath,
+  type ExtraWidgetFileNames,
+} from "../widgets.ts";
+import {
+  createReExport,
+  getTopLevelFunction,
+  type NamedImportOptions,
+} from "./lib.ts";
 import type {
   CodegenIconSet,
   CodegenThemeOrSubTheme,
@@ -45,11 +48,7 @@ import type {
   ConditionalPrinter,
   CodegenSvelteKitIntegration,
 } from "./model.ts";
-import {
-  createReExport,
-  getTopLevelFunction,
-  type NamedImportOptions,
-} from "./lib.ts";
+import { createDraft2020ValidatorExport } from "./validator.ts";
 
 export interface MergerOptions {
   allOf: "populateDefaults" | "skipDefaults";
@@ -143,7 +142,7 @@ export function createDefaults<T extends CodegenThemeOrSubTheme>({
         }
         const extraFieldImports = Array.from(
           extraFields({ wrappedFields: false }),
-          (f) => `// import "${extraFieldSubPath(f, true)}";`,
+          (f) => `// import "${extraFieldSubPath(f, true)}";`
         );
         const resolverCode = `${extraFieldImports.join("\n")}\n${LINK_COMMENT}\n${ts(
           `export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {`,
@@ -152,7 +151,7 @@ export function createDefaults<T extends CodegenThemeOrSubTheme>({
  * @param {import("@sjsf/form").FormState<T>} ctx
  * @returns {import("@sjsf/form").ResolveFieldType}
  */
-export function resolver(_ctx) {`,
+export function resolver(_ctx) {`
         )}
   return ({ schema }) => {
     if (schema.oneOf !== undefined) {
@@ -259,11 +258,11 @@ export function resolver(_ctx) {`,
       }
       const names = themeExtension
         .flatMap((c) =>
-          Array.isArray(c.imports) ? c.imports : Object.values(c.imports),
+          Array.isArray(c.imports) ? c.imports : Object.values(c.imports)
         )
         .join(", ");
       const themeExpression = jsApi.common.parseExpression(
-        `extendByRecord(base, { ${names} })`,
+        `extendByRecord(base, { ${names} })`
       );
       const themeDeclaration = jsApi.variables.declaration(ast, {
         kind: "const",
@@ -328,7 +327,7 @@ export function resolver(_ctx) {`,
         from: "@sjsf/form/focus-on-first-error",
       });
       const onSubmitErrorExpression = jsApi.common.parseExpression(
-        "createFocusOnFirstError()",
+        "createFocusOnFirstError()"
       );
       const onSubmitErrorDeclaration = jsApi.variables.declaration(ast, {
         kind: "const",
@@ -381,7 +380,7 @@ export function resolver(_ctx) {`,
         jsApi.common.appendFromString(ast, {
           code: `/**
  * @typedef {import("${formPackage.name}").${typeNames.join(
-   " & ",
+   " & "
  )}} _ModuleAugmentation
  */`,
           comments,

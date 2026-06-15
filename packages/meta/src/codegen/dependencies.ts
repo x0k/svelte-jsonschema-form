@@ -20,14 +20,13 @@ import {
   type ToTheme,
 } from "../themes.ts";
 import {
-  themeExtraWidgetOptionalDependencies,
-  type ExtraWidgetFileNames,
-} from "../widgets.ts";
-import {
   externalValidatorPackage,
   isJsonSchemaValidator,
 } from "../validators.ts";
-
+import {
+  themeExtraWidgetOptionalDependencies,
+  type ExtraWidgetFileNames,
+} from "../widgets.ts";
 import {
   type CodegenValidator,
   type CodegenIconSet,
@@ -55,7 +54,7 @@ export function resolveDependencies<T extends CodegenThemeOrSubTheme>({
 }: DependenciesOptions<T>) {
   function addDependencies(
     deps: Iterable<PackageDependency>,
-    filter: IncludeOptional = false,
+    filter: IncludeOptional = false
   ) {
     for (const d of filterPackageDependencies(deps, filter)) {
       addDependency(d);
@@ -78,7 +77,7 @@ export function resolveDependencies<T extends CodegenThemeOrSubTheme>({
     optionalDeps.push(
       optionalPackageName("pikaday"),
       optionalPackageName("skeletonSvelte"),
-      optionalPackageName("internationalizedDate"),
+      optionalPackageName("internationalizedDate")
     );
   }
   addDependencies(themePkg.dependencies, optionalDeps);

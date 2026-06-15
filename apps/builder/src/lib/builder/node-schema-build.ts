@@ -5,12 +5,21 @@ import {
   type NodeId,
   EnumValueType,
   OperatorType,
-  type AbstractOperator
+  type AbstractOperator,
 } from "meta/builder";
 
 import { assertThing } from "$lib/assert.js";
 import { mergeSchemas } from "$lib/json-schema.js";
 
+import {
+  isArrayNode,
+  isCustomizableNode,
+  isFileNode,
+  isMultiEnumNode,
+  isObjectNode,
+  isTagsNode,
+} from "./node-guards.js";
+import { getNodeChild, getNodeProperty } from "./node-props.js";
 import type {
   CustomizableNode,
   EnumItemNode,
@@ -18,17 +27,8 @@ import type {
   ObjectNode,
   ObjectPropertyDependencyNode,
   ObjectPropertyNode,
-  OperatorNode
+  OperatorNode,
 } from "./node.js";
-import {
-  isArrayNode,
-  isCustomizableNode,
-  isFileNode,
-  isMultiEnumNode,
-  isObjectNode,
-  isTagsNode
-} from "./node-guards.js";
-import { getNodeChild, getNodeProperty } from "./node-props.js";
 
 export interface Scope {
   id: (node: CustomizableNode) => string;
@@ -71,19 +71,19 @@ function buildPropertyDependencies(
           mergeSchemas(
             {
               properties: {
-                [triggerPropertyName]: predicate
-              }
+                [triggerPropertyName]: predicate,
+              },
             },
             schema
           ),
           {
             properties: {
               [triggerPropertyName]: {
-                not: predicate
-              }
-            }
-          }
-        ]
+                not: predicate,
+              },
+            },
+          },
+        ],
       };
     }
     if (dependency.id !== complementId) {
@@ -107,20 +107,20 @@ function buildPropertyDependencies(
             {
               properties: {
                 [triggerPropertyName]: {
-                  minItems: 1
-                }
-              }
+                  minItems: 1,
+                },
+              },
             },
             schema
           ),
           {
             properties: {
               [triggerPropertyName]: {
-                maxItems: 0
-              }
-            }
-          }
-        ]
+                maxItems: 0,
+              },
+            },
+          },
+        ],
       };
     }
     return schema;
@@ -138,8 +138,8 @@ function buildPropertyDependencies(
     return mergeSchemas(
       {
         properties: {
-          [triggerPropertyName]: predicate
-        }
+          [triggerPropertyName]: predicate,
+        },
       },
       buildSchema(ctx, d)
     );
@@ -152,8 +152,8 @@ function buildPropertyDependencies(
         predicates.length === 1
           ? predicates[0]
           : {
-              anyOf: predicates
-            }
+              anyOf: predicates,
+            },
     };
   }
   return { oneOf };
@@ -186,7 +186,7 @@ function buildObjectSchema(
   }
   const obj: Schema = {
     type: "object",
-    properties: Object.fromEntries(properties)
+    properties: Object.fromEntries(properties),
   };
   if (required.length > 0) {
     obj.required = required;
@@ -204,13 +204,13 @@ const OPERATOR_SCHEMA_BUILDERS: {
   ) => Schema;
 } = {
   [OperatorType.And]: (ctx, op) => ({
-    allOf: op.operands.map((o) => buildOperator(ctx, o))
+    allOf: op.operands.map((o) => buildOperator(ctx, o)),
   }),
   [OperatorType.Or]: (ctx, op) => ({
-    anyOf: op.operands.map((o) => buildOperator(ctx, o))
+    anyOf: op.operands.map((o) => buildOperator(ctx, o)),
   }),
   [OperatorType.Xor]: (ctx, op) => ({
-    oneOf: op.operands.map((o) => buildOperator(ctx, o))
+    oneOf: op.operands.map((o) => buildOperator(ctx, o)),
   }),
   [OperatorType.Not]: (ctx, op) => {
     assertThing(op.operand, "not operator operand");
@@ -224,7 +224,7 @@ const OPERATOR_SCHEMA_BUILDERS: {
     return isMultiEnumNode(affected)
       ? {
           items: schema,
-          minItems: 1
+          minItems: 1,
         }
       : schema;
   },
@@ -232,12 +232,12 @@ const OPERATOR_SCHEMA_BUILDERS: {
     const affected = ctx.peek("affectedNode");
     assertThing(affected, "in operator affected node");
     const schema: Schema = {
-      enum: op.values.map((v) => JSON.parse(v))
+      enum: op.values.map((v) => JSON.parse(v)),
     };
     return isMultiEnumNode(affected)
       ? {
           items: schema,
-          minItems: 1
+          minItems: 1,
         }
       : schema;
   },
@@ -279,18 +279,20 @@ const OPERATOR_SCHEMA_BUILDERS: {
     assertThing(affected, "property operator affected node");
     const prop = getNodeProperty(affected, propertyId);
     if (!prop) {
-      throw new Error(`Property "${propertyId}" not found in "${affected.type}" node`);
+      throw new Error(
+        `Property "${propertyId}" not found in "${affected.type}" node`
+      );
     }
     const name = ctx.propertyNames.get(prop.id);
     assertThing(name, "property operator property name");
     using _affected = ctx.push("affectedNode", prop);
     return {
       properties: {
-        [name]: buildOperator(ctx, operator)
+        [name]: buildOperator(ctx, operator),
       },
-      required: [name]
+      required: [name],
     };
-  }
+  },
 };
 
 function buildOperator(ctx: SchemaBuilderContext, node: OperatorNode): Schema {
@@ -325,13 +327,12 @@ const SCHEMA_OPTIONS_KEYS = [
   "exclusiveMinimum",
   "maximum",
   "exclusiveMaximum",
-  "multipleOf"
+  "multipleOf",
 ] as const satisfies (keyof Schema)[];
 
-function assignSchemaOptions<T extends Pick<Schema, (typeof SCHEMA_OPTIONS_KEYS)[number]>>(
-  target: Schema,
-  source: T
-) {
+function assignSchemaOptions<
+  T extends Pick<Schema, (typeof SCHEMA_OPTIONS_KEYS)[number]>,
+>(target: Schema, source: T) {
   for (const key of SCHEMA_OPTIONS_KEYS) {
     const v = source[key];
     if (v !== undefined) {
@@ -345,7 +346,10 @@ function assignSchemaOptions<T extends Pick<Schema, (typeof SCHEMA_OPTIONS_KEYS)
 }
 
 const NODE_SCHEMA_BUILDERS: {
-  [T in NodeType]: (ctx: SchemaBuilderContext, node: Extract<Node, AbstractNode<T>>) => Schema;
+  [T in NodeType]: (
+    ctx: SchemaBuilderContext,
+    node: Extract<Node, AbstractNode<T>>
+  ) => Schema;
 } = {
   [NodeType.Object]: (ctx, node) => {
     using _scope = ctx.createAndPushScope();
@@ -366,7 +370,7 @@ const NODE_SCHEMA_BUILDERS: {
       {
         type: "array",
         items: buildSchema(ctx, item),
-        default: defaultArrayValue(options.defaultValue)
+        default: defaultArrayValue(options.defaultValue),
       },
       options
     );
@@ -388,7 +392,7 @@ const NODE_SCHEMA_BUILDERS: {
     }
     const obj: Schema = {
       type: "object",
-      properties: Object.fromEntries(properties)
+      properties: Object.fromEntries(properties),
     };
     if (required.length > 0) {
       obj.required = required;
@@ -399,7 +403,7 @@ const NODE_SCHEMA_BUILDERS: {
     return assignSchemaOptions(
       {
         enum: buildEnumValues(valueType, items),
-        default: options.defaultValue && JSON.parse(options.defaultValue)
+        default: options.defaultValue && JSON.parse(options.defaultValue),
       },
       options
     );
@@ -410,9 +414,9 @@ const NODE_SCHEMA_BUILDERS: {
         type: "array",
         uniqueItems: true,
         items: {
-          enum: buildEnumValues(valueType, items)
+          enum: buildEnumValues(valueType, items),
         },
-        default: defaultArrayValue(options.defaultValue)
+        default: defaultArrayValue(options.defaultValue),
       },
       options
     );
@@ -423,7 +427,7 @@ const NODE_SCHEMA_BUILDERS: {
   [NodeType.String]: (_, { options }) => {
     return assignSchemaOptions(
       {
-        type: "string"
+        type: "string",
       },
       options
     );
@@ -431,7 +435,7 @@ const NODE_SCHEMA_BUILDERS: {
   [NodeType.Number]: (_, { options }) => {
     return assignSchemaOptions(
       {
-        type: options.integer ? "integer" : "number"
+        type: options.integer ? "integer" : "number",
       },
       options
     );
@@ -439,7 +443,7 @@ const NODE_SCHEMA_BUILDERS: {
   [NodeType.Boolean]: (_, { options }) => {
     return assignSchemaOptions(
       {
-        type: "boolean"
+        type: "boolean",
       },
       options
     );
@@ -449,13 +453,13 @@ const NODE_SCHEMA_BUILDERS: {
       ? {}
       : {
           type: "string",
-          format: "data-url"
+          format: "data-url",
         };
     return assignSchemaOptions(
       options.multiple
         ? {
             type: "array",
-            items: file
+            items: file,
           }
         : file,
       options
@@ -467,8 +471,8 @@ const NODE_SCHEMA_BUILDERS: {
         type: "array",
         uniqueItems: true,
         items: {
-          type: "string"
-        }
+          type: "string",
+        },
       },
       options
     );
@@ -477,20 +481,20 @@ const NODE_SCHEMA_BUILDERS: {
     ctx.propertyNames.set(startNode.id, "start");
     ctx.propertyNames.set(endNode.id, "end");
     const subSchema: Schema = {
-      type: valueType
+      type: valueType,
     };
     const schema: Schema = {
       type: "object",
       properties: {
         start: subSchema,
-        end: subSchema
-      }
+        end: subSchema,
+      },
     };
     if (options.required) {
       schema.required = ["start", "end"];
     }
     return assignSchemaOptions(schema, options);
-  }
+  },
 };
 
 export function buildSchema(ctx: SchemaBuilderContext, node: Node): Schema {

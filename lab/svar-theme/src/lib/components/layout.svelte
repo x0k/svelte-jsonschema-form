@@ -4,8 +4,8 @@
     layoutAttributes,
     type ComponentProps,
   } from "@sjsf/form";
-  import type { LayoutType } from '@sjsf/form/fields/components';
-  import "@sjsf/basic-theme/components/layout.svelte"
+  import type { LayoutType } from "@sjsf/form/fields/components";
+  import "@sjsf/basic-theme/components/layout.svelte";
 
   const { type, children, config }: ComponentProps["layout"] = $props();
 
@@ -16,7 +16,7 @@
       case "array-item":
       case "array-item-controls":
         return "display: flex; gap: 0.2rem; align-items: start;";
-      case 'multi-field-controls':
+      case "multi-field-controls":
         return "display: flex; gap: 0.5rem; align-items: center;";
       case "array-item-content":
         return "flex-grow: 1;";

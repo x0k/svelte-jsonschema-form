@@ -2,11 +2,11 @@
   import type { Node } from "$lib/builder/index.js";
 
   import { getBuilderContext } from "./context.svelte.js";
-  import { getNodeContext } from "./node-context.js";
-  import DropZone from "./drop-zone.svelte";
   import DropIndicator from "./drop-indicator.svelte";
-  import RootNode from "./root-node.svelte";
+  import DropZone from "./drop-zone.svelte";
   import Index from "./index.svelte";
+  import { getNodeContext } from "./node-context.js";
+  import RootNode from "./root-node.svelte";
 
   interface Props {
     nodes: Node[];
@@ -26,7 +26,7 @@
     accept,
     onDrop(node) {
       onDrop(node, 0);
-    }
+    },
   })}
   <DropZone {droppable}>
     {#snippet placeholder()}

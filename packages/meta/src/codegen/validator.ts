@@ -8,7 +8,6 @@ import {
   precompiledValidatorSubPath,
   zod4ValidatorVersionSubPath,
 } from "../validators.ts";
-
 import type { NamedImportOptions, NamespaceImportOptions } from "./lib.ts";
 import {
   type Codegen2020Validator,
@@ -198,7 +197,7 @@ export interface Draft2020ValidatorExport {
 
 function buildValidatorFactoryCode(
   ts: ConditionalPrinter,
-  body: string,
+  body: string
 ): string {
   return ts(
     `export function validator<T>(options: ValidatorFactoryOptions) {
@@ -215,13 +214,13 @@ function buildValidatorFactoryCode(
 export const validator = (options) => createFormValidator({
   ...options,
   ${body}
-});`,
+});`
   );
 }
 
 function buildPrecompiledValidatorFactoryCode(
   ts: ConditionalPrinter,
-  body: string,
+  body: string
 ): string {
   return ts(
     `export function validator<T>(options: ValidatorFactoryOptions) {
@@ -237,13 +236,13 @@ function buildPrecompiledValidatorFactoryCode(
 export const validator = (options) => createFormValidatorFactory({
   ${body}
   ...options,
-});`,
+});`
   );
 }
 
 export function createDraft2020ValidatorExport(
   validator: Codegen2020Validator,
-  ts: ConditionalPrinter,
+  ts: ConditionalPrinter
 ): Draft2020ValidatorExport {
   switch (validator.name) {
     case "ajv8": {
@@ -262,7 +261,7 @@ export function createDraft2020ValidatorExport(
         ],
         code: buildValidatorFactoryCode(
           ts,
-          "Ajv: Ajv2020, ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))",
+          "Ajv: Ajv2020, ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))"
         ),
       };
     }
@@ -280,7 +279,7 @@ export function createDraft2020ValidatorExport(
         ],
         code: buildValidatorFactoryCode(
           ts,
-          `factory: (schema) => new Validator(schema, "2020-12", false)`,
+          `factory: (schema) => new Validator(schema, "2020-12", false)`
         ),
       };
     }
@@ -309,7 +308,7 @@ export function createDraft2020ValidatorExport(
         schemas: {
           [ROOT_SCHEMA_PREFIX]: rootSchema,
         },
-      })`,
+      })`
         ),
       };
     }
@@ -327,7 +326,7 @@ export function createDraft2020ValidatorExport(
         ],
         code: buildValidatorFactoryCode(
           ts,
-          `factory: (schema) => new Validator(schema, DEFAULT_ATA_OPTIONS)`,
+          `factory: (schema) => new Validator(schema, DEFAULT_ATA_OPTIONS)`
         ),
       };
     }
@@ -364,7 +363,7 @@ export function createDraft2020ValidatorExport(
       },
     },
   }),
-  localization`,
+  localization`
         ),
       };
     }
@@ -383,7 +382,7 @@ export function validatorProp({ validatorProp }: ValidatorDefinition) {
 
 export function schemaAndValidatorProp(
   modelName: string,
-  { canInferFormType, validatorProp }: ValidatorDefinition,
+  { canInferFormType, validatorProp }: ValidatorDefinition
 ) {
   const validator = wrap(validatorProp);
   return canInferFormType ? validator : `...${modelName},\n  ${validator}`;

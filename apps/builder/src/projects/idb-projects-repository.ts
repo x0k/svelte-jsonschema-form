@@ -1,14 +1,14 @@
 import type { IDBPDatabase } from "idb";
 
 import type { AppDBSchema, ProjectSchema } from "../shared/db.js";
+import type { ProjectsRepository } from "./context.svelte.js";
 import {
   createProject,
   type CreateProject,
   type Project,
   type ProjectId,
-  type ProjectMeta
+  type ProjectMeta,
 } from "./model.js";
-import type { ProjectsRepository } from "./context.svelte.js";
 
 export class IDBProjectsRepository<S> implements ProjectsRepository<S> {
   constructor(protected readonly db: IDBPDatabase<AppDBSchema>) {}
@@ -36,7 +36,7 @@ export class IDBProjectsRepository<S> implements ProjectsRepository<S> {
         id: id as ProjectId,
         title,
         createdAt,
-        updatedAt
+        updatedAt,
       });
       cursor = await cursor.continue();
     }
@@ -113,7 +113,7 @@ function projectToSchema<S>(project: Project<S>): ProjectSchema {
     title: project.title,
     createdAt: project.createdAt,
     updatedAt: project.updatedAt,
-    state: project.state
+    state: project.state,
   };
 }
 
@@ -123,6 +123,6 @@ function schemaToProject<S>(data: ProjectSchema): Project<S> {
     title: data.title,
     createdAt: data.createdAt,
     updatedAt: data.updatedAt,
-    state: data.state as S
+    state: data.state as S,
   };
 }

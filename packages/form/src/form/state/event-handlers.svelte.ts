@@ -2,23 +2,6 @@ import { onMount, untrack } from "svelte";
 
 import type { RPath } from "@/core/index.js";
 
-import {
-  AFTER_SUBMITTED,
-  AFTER_CHANGED,
-  AFTER_TOUCHED,
-  ON_INPUT,
-  ON_CHANGE,
-  ON_BLUR,
-} from "../validation.js";
-import {
-  FORM_ERRORS,
-  FORM_FIELDS_STATE_MAP,
-  FORM_FIELDS_VALIDATION_MODE,
-  FORM_PATHS_TRIE_REF,
-  internalHasFieldState,
-  internalRegisterFieldPath,
-} from "../internals.js";
-import type { FieldPath } from "../id.js";
 import type { Config } from "../config.js";
 import {
   FIELD_BLURRED,
@@ -27,6 +10,23 @@ import {
   FIELD_INPUTTED,
   type FieldState,
 } from "../field-state.js";
+import type { FieldPath } from "../id.js";
+import {
+  FORM_ERRORS,
+  FORM_FIELDS_STATE_MAP,
+  FORM_FIELDS_VALIDATION_MODE,
+  FORM_PATHS_TRIE_REF,
+  internalHasFieldState,
+  internalRegisterFieldPath,
+} from "../internals.js";
+import {
+  AFTER_SUBMITTED,
+  AFTER_CHANGED,
+  AFTER_TOUCHED,
+  ON_INPUT,
+  ON_CHANGE,
+  ON_BLUR,
+} from "../validation.js";
 import type { FormState } from "./state.js";
 import { retrieveUiOption } from "./ui-schema.js";
 

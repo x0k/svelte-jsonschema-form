@@ -1,29 +1,17 @@
 <script lang="ts" generics="T, P extends JsonPaths<T>">
-  import type { Snippet } from "svelte";
   import { DEV } from "esm-env";
+  import type { Snippet } from "svelte";
 
-  import type { Ref } from '@/lib/svelte.svelte.js';
-  import type { JsonPaths } from "@/lib/types.js";
+  import {
+    getSchemaDefinitionByPath,
+    isSchemaObjectValue,
+  } from "@/core/index.js";
   import { isObject } from "@/lib/object.js";
-  import { getSchemaDefinitionByPath, isSchemaObjectValue } from "@/core/index.js";
+  import type { Ref } from "@/lib/svelte.svelte.js";
+  import type { JsonPaths } from "@/lib/types.js";
 
-  import {
-    getFieldComponent,
-    retrieveSchema,
-    retrieveTranslate,
-    retrieveUiOption,
-    setFormContext,
-    uiTitleOption,
-    type FormState,
-  } from "./state/index.js";
-  import type { FieldValue } from "./model.js";
-  import {
-    getUiSchemaByPath,
-    type UiOption,
-    type UiSchema,
-  } from "./ui-schema.js";
-  import type { Config } from "./config.js";
   import type { ComponentProps } from "./components.js";
+  import type { Config } from "./config.js";
   import type { FoundationalFieldType } from "./fields.js";
   import {
     FORM_MERGER,
@@ -35,6 +23,21 @@
     FORM_VALUE,
     internalRegisterFieldPath,
   } from "./internals.js";
+  import type { FieldValue } from "./model.js";
+  import {
+    getFieldComponent,
+    retrieveSchema,
+    retrieveTranslate,
+    retrieveUiOption,
+    setFormContext,
+    uiTitleOption,
+    type FormState,
+  } from "./state/index.js";
+  import {
+    getUiSchemaByPath,
+    type UiOption,
+    type UiSchema,
+  } from "./ui-schema.js";
 
   interface Props {
     form: FormState<T>;
@@ -85,7 +88,7 @@
     let i = -1;
     const lastIndex = path.length - 1;
     while (isObject(node) && ++i < lastIndex) {
-      // @ts-expect-error
+      // @ts-expect-error not checked by generic parameter
       node = node[path[i]];
     }
     if (i !== lastIndex) {
@@ -97,11 +100,11 @@
     const lastKey = path[lastIndex]!;
     return {
       get current() {
-        //@ts-expect-error
+        //@ts-expect-error not checked by generic parameter
         return node[lastKey];
       },
       set current(v) {
-        //@ts-expect-error
+        //@ts-expect-error not checked by generic parameter
         node[lastKey] = v;
       },
     };
@@ -128,13 +131,13 @@
       return form[FORM_SCHEMA];
     }
     let val: FieldValue = valueRef.current;
-    const parentPath = path.slice(0, -1)
+    const parentPath = path.slice(0, -1);
     for (let i = 0; i < parentPath.length && val !== undefined; i++) {
       const p = parentPath[i]!;
-      if (typeof p === 'number') {
-        val = Array.isArray(val) ? val[p] : undefined
+      if (typeof p === "number") {
+        val = Array.isArray(val) ? val[p] : undefined;
       } else {
-        val = isSchemaObjectValue(val) ? val[p] : undefined
+        val = isSchemaObjectValue(val) ? val[p] : undefined;
       }
     }
     const def = getSchemaDefinitionByPath(

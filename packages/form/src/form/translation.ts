@@ -1,6 +1,6 @@
+import type { Schema } from "@/core/index.js";
 import type { Resolver } from "@/lib/resolver.js";
 import type { FailedTask } from "@/lib/task.svelte.js";
-import type { Schema } from "@/core/index.js";
 
 export interface Labels {
   submit: {};

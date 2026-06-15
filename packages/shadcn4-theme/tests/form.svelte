@@ -1,18 +1,19 @@
 <script lang="ts">
-	import { BasicForm, createForm, type FormOptions } from '@sjsf/form';
-	import { BitsConfig } from 'bits-ui';
+  import { BasicForm, createForm, type FormOptions } from "@sjsf/form";
+  import { BitsConfig } from "bits-ui";
 
-	import '../src/lib/theme/extra-widgets/checkboxes-include.js';
-	import '../src/app.css';
+  import "../src/lib/theme/extra-widgets/checkboxes-include.js";
 
-	const props: FormOptions<any> = $props();
+  import "../src/app.css";
 
-	const form = createForm(props);
+  const props: FormOptions<any> = $props();
 
-	let portalEl = $state.raw() as HTMLDivElement;
+  const form = createForm(props);
+
+  let portalEl = $state.raw() as HTMLDivElement;
 </script>
 
 <BitsConfig defaultPortalTo={portalEl}>
-	<BasicForm {form} />
+  <BasicForm {form} />
 </BitsConfig>
 <div bind:this={portalEl}></div>

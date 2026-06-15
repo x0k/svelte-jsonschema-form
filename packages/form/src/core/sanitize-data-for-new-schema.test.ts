@@ -10,13 +10,13 @@ import {
   oneOfSchema,
   SECOND_ONE_OF,
 } from "./fixtures/test-data.js";
-import type { Validator } from "./validator.js";
-import { sanitizeDataForNewSchema } from "./sanitize-data-for-new-schema.js";
-import { retrieveSchema } from "./resolve.js";
-import type { Schema } from "./schema.js";
-import { createValidator } from "./test-validator.js";
 import type { Merger } from "./merger.js";
+import { retrieveSchema } from "./resolve.js";
+import { sanitizeDataForNewSchema } from "./sanitize-data-for-new-schema.js";
+import type { Schema } from "./schema.js";
 import { createMerger } from "./test-merger.js";
+import { createValidator } from "./test-validator.js";
+import type { Validator } from "./validator.js";
 
 let testValidator: Validator;
 let defaultMerger: Merger;

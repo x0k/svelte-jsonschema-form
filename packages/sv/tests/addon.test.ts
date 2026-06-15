@@ -1,4 +1,3 @@
-import { expect } from "vitest";
 import {
   codegenIconSets,
   codegenSvelteKitIntegrations,
@@ -6,6 +5,7 @@ import {
   CodegenValidator,
   codegenValidators,
 } from "meta/codegen";
+import { expect } from "vitest";
 
 import addon from "../src/index.js";
 import { AddonOptions, SvValidator } from "../src/model";
@@ -99,7 +99,7 @@ const { test, testCases } = setupSnapshotTest(
       }
       return true;
     },
-  },
+  }
 );
 
 test.for(testCases)("@sjsf/sv $kind.type $variant", async (testCase, ctx) => {

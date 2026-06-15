@@ -100,7 +100,7 @@
 	class={cn(buttonVariants({ variant, size }), className)}
 	bind:this={ref}
 	onclick={async (
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		 
 		e: any
 	) => {
 		onclick?.(e);

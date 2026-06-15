@@ -6,22 +6,33 @@ sidebar:
   order: 1
 ---
 
-import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/components';
-import { specs, extraWidgets } from '@sjsf/daisyui5-theme/specs';
-import styles from '@sjsf/daisyui5-theme/styles.css?inline';
+import {
+  Code,
+  Card,
+  TabItem,
+  Tabs,
+  LinkButton,
+} from "@astrojs/starlight/components";
+import { specs, extraWidgets } from "@sjsf/daisyui5-theme/specs";
+import styles from "@sjsf/daisyui5-theme/styles.css?inline";
 import { themePackage } from "meta";
 
-import { getPackageDependencies } from '@/shared';
-import Npm from '@/components/npm.astro';
-import Deps from '@/components/peer-dependencies.astro';
-import FormCard from '@/components/form-card.astro';
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import Deps from "@/components/peer-dependencies.astro";
+import FormCard from "@/components/form-card.astro";
 
-import Form from './daisyui5/form.svelte'
-import uiOptionsCode from './daisyui5/ui-options?raw';
-import { createSchemas, replacer, createExtraImports, validationEvents } from "./_demo-schema";
+import Form from "./daisyui5/form.svelte";
+import uiOptionsCode from "./daisyui5/ui-options?raw";
+import {
+  createSchemas,
+  replacer,
+  createExtraImports,
+  validationEvents,
+} from "./_demo-schema";
 
-export const schemas = createSchemas(specs)
-export const pkg = themePackage('daisyui5')
+export const schemas = createSchemas(specs);
+export const pkg = themePackage("daisyui5");
 
 ## Installation
 
@@ -31,7 +42,12 @@ export const pkg = themePackage('daisyui5')
 
 ### Install daisyUI v5
 
-<LinkButton href="https://daisyui.com/docs/install/" variant='secondary' target="_blank" icon="external">
+<LinkButton
+  href="https://daisyui.com/docs/install/"
+  variant="secondary"
+  target="_blank"
+  icon="external"
+>
   Install daisyUI as a Tailwind plugin
 </LinkButton>
 
@@ -55,17 +71,17 @@ or used in the field as the default widget.
 
 :::
 
-<Code lang='ts' code={createExtraImports("daisyui5", extraWidgets)} />
+<Code lang="ts" code={createExtraImports("daisyui5", extraWidgets)} />
 
 ## Widgets demo
 
 <Tabs>
-  <TabItem label='Form'>
+  <TabItem label="Form">
     <FormCard style={styles}>
       <Form client:only="svelte" />
     </FormCard>
   </TabItem>
-  <TabItem label="JSON Schema" >
+  <TabItem label="JSON Schema">
     <Code lang="json" code={JSON.stringify(schemas.schema, replacer, 2)} />
   </TabItem>
   <TabItem label="UI Schema">

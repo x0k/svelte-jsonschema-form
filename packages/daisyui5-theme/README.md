@@ -14,7 +14,7 @@ npm install @sjsf/form @sjsf/daisyui5-theme
 ## Usage
 
 1. Install daisyUI v5
-  
+
 [Install daisyUI as a Tailwind plugin](https://daisyui.com/docs/install/)
 
 2. Configuration

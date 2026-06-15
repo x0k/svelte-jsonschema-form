@@ -4,7 +4,7 @@
 @import "@sjsf/flowbite3-theme/styles.css";
 /* @source "../node_modules/@sjsf/flowbite3-theme/dist"; */
 
-@plugin 'flowbite/plugin';
+@plugin "flowbite/plugin";
 
 @custom-variant dark (&:where(.dark, .dark *));
 

@@ -22,19 +22,19 @@
 </script>
 
 <script lang="ts">
-  import type { Snippet } from "svelte";
-  import Sun from "@lucide/svelte/icons/sun";
-  import Moon from "@lucide/svelte/icons/moon";
   import Monitor from "@lucide/svelte/icons/monitor";
+  import Moon from "@lucide/svelte/icons/moon";
+  import Sun from "@lucide/svelte/icons/sun";
+  import type { Snippet } from "svelte";
 
-  import { Button } from "$lib/components/ui/button/index.js";
   import * as ButtonGroup from "$lib/components/ui/button-group/index.js";
-  import { Theme } from "$lib/theme.js";
+  import { Button } from "$lib/components/ui/button/index.js";
   import Github from "$lib/github.svelte";
   import OpenBook from "$lib/open-book.svelte";
+  import { Theme } from "$lib/theme.js";
 
-  import { themeManager } from "./theme.svelte.js";
   import { router } from "./router.js";
+  import { themeManager } from "./theme.svelte.js";
 
   const {
     children,
@@ -58,7 +58,7 @@
 {/snippet}
 
 <div class="flex flex-wrap items-center gap-2">
-  <a href={clearHref} class="text-3xl font-bold mr-2">Playground</a>
+  <a href={clearHref} class="mr-2 text-3xl font-bold">Playground</a>
   <ButtonGroup.Root>
     {@render link("")}
     {@render link("v")}

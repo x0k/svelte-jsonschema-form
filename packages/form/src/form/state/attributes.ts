@@ -1,3 +1,4 @@
+import { createAttachmentKey, type Attachment } from "svelte/attachments";
 import type {
   AriaAttributes,
   HTMLButtonAttributes,
@@ -6,24 +7,22 @@ import type {
   HTMLSelectAttributes,
   HTMLTextareaAttributes,
 } from "svelte/elements";
-import { createAttachmentKey, type Attachment } from "svelte/attachments";
 import { on } from "svelte/events";
 
-import type { Nullable, ObjectProperties } from "@/lib/types.js";
 import { weakMemoize } from "@/lib/memoize.js";
+import type { Nullable, ObjectProperties } from "@/lib/types.js";
 
 import type { Config, EventHandlers } from "../config.js";
 import type { FieldPseudoElement } from "../id.js";
-import type { UiOptions } from "../ui-schema.js";
 import { FORM_DISABLED, FORM_ERRORS } from "../internals.js";
-
+import type { UiOptions } from "../ui-schema.js";
+import { getId, getPseudoId } from "./path.js";
+import type { FormState } from "./state.js";
 import {
   uiOptionNestedProps,
   uiOptionProps,
   type ObjectUiOptions,
 } from "./ui-schema.js";
-import type { FormState } from "./state.js";
-import { getId, getPseudoId } from "./path.js";
 
 interface Disabled {
   disabled: boolean;

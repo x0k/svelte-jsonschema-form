@@ -2,6 +2,8 @@ import {
   codegemIsJsonSchemaValidator,
   codegenValidators,
 } from "../codegen/index.ts";
+import { resolvers, type Resolver } from "../form.ts";
+import { iconSets, iconSetTitle } from "../icons.ts";
 import {
   isLegacyTheme,
   isThemeWithSubThemes,
@@ -10,8 +12,6 @@ import {
 } from "../themes.ts";
 import type { Generated } from "../types.ts";
 import { validatorTitle } from "../validators.ts";
-import { iconSets, iconSetTitle } from "../icons.ts";
-import { resolvers, type Resolver } from "../form.ts";
 
 const DRAFT_2020_SUFFIX = `_2020`;
 
@@ -22,7 +22,7 @@ export function isEndsWith2020(v: string): v is With2020Suffix<string> {
 }
 
 export function without2020Suffix<V extends string>(
-  v: V | With2020Suffix<V>,
+  v: V | With2020Suffix<V>
 ): V {
   return isEndsWith2020(v) ? (v.slice(0, -DRAFT_2020_SUFFIX.length) as V) : v;
 }

@@ -1,5 +1,4 @@
 import { definitions } from "../definitions.js";
-
 import Radio from "./radio.svelte";
 import "./radio.svelte";
 
@@ -8,6 +7,5 @@ declare module "../definitions.js" {
     radioWidget: {};
   }
 }
-
 
 definitions.radioWidget = Radio;

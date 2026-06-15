@@ -1,6 +1,7 @@
-import path from "node:path";
 import fs from "node:fs/promises";
+import path from "node:path";
 
+import type { AbstractPackage } from "../src/package.ts";
 import {
   isLegacyTheme,
   isTheme,
@@ -14,12 +15,11 @@ import {
   isThemeClientSideOnlyExtraWidget,
   type ExtraWidgetFileNames,
 } from "../src/widgets.ts";
-import type { AbstractPackage } from "../src/package.ts";
 import { extractComponentPropsIndex, resolveComponentName } from "./analyze.ts";
 
 async function extractWidgetData(
   extraWidgetsDir: string,
-  themeOptionalDeps: AbstractPackage[],
+  themeOptionalDeps: AbstractPackage[]
 ) {
   const widgets: Record<string, string> = {};
   const widgetOptionalDeps: Record<string, string[]> = {};
@@ -35,7 +35,7 @@ async function extractWidgetData(
 
     if (!name) {
       throw new Error(
-        `Failed to detect component name for "${widgetFilepath}"`,
+        `Failed to detect component name for "${widgetFilepath}"`
       );
     }
     const widgetFileName = path.basename(e.name, ".svelte");
@@ -68,7 +68,7 @@ function formatExportPath(theme: Theme, exportPath: string) {
     !exportPath.endsWith(STAR_SUFFIX)
   ) {
     throw new Error(
-      `Unexpected extra widgets export path: "${exportPath}", expected string starting with '${DIST_PREFIX}' and ends with '${STAR_SUFFIX}' in "${theme}" theme`,
+      `Unexpected extra widgets export path: "${exportPath}", expected string starting with '${DIST_PREFIX}' and ends with '${STAR_SUFFIX}' in "${theme}" theme`
     );
   }
   return exportPath.slice(DIST_PREFIX.length, -STAR_SUFFIX.length);
@@ -105,18 +105,18 @@ async function main() {
       path.join(e.parentPath, e.name, ...paths);
     const packageJsonPath = packagePath("package.json");
     const packageJson = JSON.parse(
-      await fs.readFile(packageJsonPath, { encoding: "utf-8" }),
+      await fs.readFile(packageJsonPath, { encoding: "utf-8" })
     );
     const svelteConfigPath = packagePath("svelte.config.js");
     const svelteConfig = await import(svelteConfigPath);
     const libDir = svelteConfig.default.kit?.files?.lib ?? "src/lib";
     const themeOptionalDeps = themePackage(theme).dependencies.filter(
-      (d) => d.optional,
+      (d) => d.optional
     );
     const extract = (path: string) =>
       extractWidgetData(
         packagePath(libDir, formatExportPath(theme, path)),
-        themeOptionalDeps,
+        themeOptionalDeps
       );
 
     let widgets: Record<string, string> = {};
@@ -131,7 +131,7 @@ async function main() {
     const extraWidgetsExportPath = getExportPath(packageJson, "extra-widgets");
     if (extraWidgetsExportPath) {
       [extraWidgets, extraWidgetOptionalDeps] = await extract(
-        extraWidgetsExportPath,
+        extraWidgetsExportPath
       );
     }
 
@@ -150,13 +150,13 @@ async function main() {
   }
   const widgetsOutPath = path.join(
     import.meta.dirname,
-    "../src/widgets.generated.ts",
+    "../src/widgets.generated.ts"
   );
   const widgetsContent = `export const WIDGETS = ${JSON.stringify(libs, null, 2)} as const;\n`;
   await fs.writeFile(widgetsOutPath, widgetsContent, "utf-8");
   const themesOutPath = path.join(
     import.meta.dirname,
-    "../src/playground/themes.generated.ts",
+    "../src/playground/themes.generated.ts"
   );
   const themesContent = `import { extendByRecord } from "@sjsf/form/lib/resolver";
 import { clientOnly } from "@sjsf/form/lib/env";
@@ -168,7 +168,7 @@ ${Object.entries(libs)
   .map(([theme, { extraWidgets }]) => {
     if (!isTheme(theme)) {
       throw new Error(
-        `Unknown theme "${theme}", expected: "${Array.from(themes()).join('" | "')}"`,
+        `Unknown theme "${theme}", expected: "${Array.from(themes()).join('" | "')}"`
       );
     }
     if (isLegacyTheme(theme)) {
@@ -188,7 +188,7 @@ ${Object.entries(extraWidgets)
     importedWidgets.add(widgetName);
     return isThemeClientSideOnlyExtraWidget(
       theme,
-      filename as ExtraWidgetFileNames[typeof theme],
+      filename as ExtraWidgetFileNames[typeof theme]
     )
       ? `export type * as ${themeEscaped}_${widgetName} from "${themePkgName}/extra-widgets/${filename}.svelte";`
       : `import ${themeEscaped}_${widgetName} from "${themePkgName}/extra-widgets/${filename}.svelte";
@@ -201,7 +201,7 @@ export const ${themeEscaped}Theme = extendByRecord(${isExtension ? `${escapeThem
     .map(([filename, widgetName]) => {
       const definition = isThemeClientSideOnlyExtraWidget(
         theme,
-        filename as ExtraWidgetFileNames[typeof theme],
+        filename as ExtraWidgetFileNames[typeof theme]
       )
         ? `${widgetName}: clientOnly(() => import("${themePkgName}/extra-widgets/${filename}.svelte"))`
         : `${widgetName}: ${themeEscaped}_${widgetName}`;

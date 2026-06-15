@@ -6,4 +6,5 @@ interface PredicateContext {
   node: Node;
 }
 
-export const [getPredicateContext, setPredicateContext] = createContext<PredicateContext>();
+export const [getPredicateContext, setPredicateContext] =
+  createContext<PredicateContext>();

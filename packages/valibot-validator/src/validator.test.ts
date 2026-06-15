@@ -1,7 +1,7 @@
-import { describe, expect, it } from "vitest";
-import { isSchemaObject } from "@sjsf/form/lib/json-schema";
 import { createAugmentSchema, isSchemaWithProperties } from "@sjsf/form/core";
+import { isSchemaObject } from "@sjsf/form/lib/json-schema";
 import * as v from "valibot";
+import { describe, expect, it } from "vitest";
 
 import { adapt } from "./setup.js";
 

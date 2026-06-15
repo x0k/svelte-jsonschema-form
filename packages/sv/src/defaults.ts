@@ -26,6 +26,6 @@ export function defaultsTs({
       themeExtension: [],
       moduleAugmentation: {},
       uiOptionsRegistry: {},
-    }),
+    })
   );
 }

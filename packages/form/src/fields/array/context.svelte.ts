@@ -1,6 +1,5 @@
 import { getContext, setContext } from "svelte";
 
-import { noop } from "@/lib/function.js";
 import {
   getDefaultValueForType,
   getSimpleSchemaType,
@@ -32,6 +31,7 @@ import {
   type FieldErrors,
   getStableConfig,
 } from "@/form/index.js";
+import { noop } from "@/lib/function.js";
 
 import { titleWithIndex, type ItemTitle } from "./model.js";
 

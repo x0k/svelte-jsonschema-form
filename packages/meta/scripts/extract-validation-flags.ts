@@ -1,5 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+
 import ts from "typescript";
 
 import { formPackage } from "../src/form.ts";
@@ -14,7 +15,7 @@ function extractFlagEntries(source: string, sourcePath: string): FlagEntry[] {
     sourcePath,
     source,
     ts.ScriptTarget.ES2022,
-    true,
+    true
   );
   const entries: FlagEntry[] = [];
   for (const stmt of sf.statements) {
@@ -40,7 +41,7 @@ function extractFlagEntries(source: string, sourcePath: string): FlagEntry[] {
 async function main() {
   const sourcePath = path.join(
     import.meta.dirname,
-    "../../form/src/form/validation.ts",
+    "../../form/src/form/validation.ts"
   );
   const source = await fs.readFile(sourcePath, "utf-8");
   const entries = extractFlagEntries(source, sourcePath);
@@ -69,7 +70,7 @@ export const FIELD_VALIDATION_FLAGS: Record<FieldValidationFlag, FieldsValidatio
 
   const outPath = path.join(
     import.meta.dirname,
-    "../src/validation.generated.ts",
+    "../src/validation.generated.ts"
   );
   await fs.writeFile(outPath, content, "utf-8");
 }

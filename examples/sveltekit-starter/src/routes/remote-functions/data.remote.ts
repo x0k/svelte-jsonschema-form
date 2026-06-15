@@ -1,10 +1,10 @@
-import { invalid } from "@sveltejs/kit";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createServerValidator } from "@sjsf/sveltekit/rf/server";
+import { invalid } from "@sveltejs/kit";
 
 import { form, query } from "$app/server";
-import * as defaults from "$lib/sjsf/remote-defaults";
 import { schema, type CreatePost } from "$lib/post";
+import * as defaults from "$lib/sjsf/remote-defaults";
 
 export const getInitialData = query(async () => {
   return {
@@ -24,5 +24,5 @@ export const createPost = form(
     }
     console.log(data);
     return { ...data, id: "new-post" };
-  },
+  }
 );

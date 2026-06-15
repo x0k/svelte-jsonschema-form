@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { isFixedItems } from "@sjsf/form/core";
-  import type { ComponentProps } from "@sjsf/form";
-  import { getArrayContext } from "@sjsf/form/fields/array/context.svelte";
   import Layout from "@sjsf/basic-theme/components/layout.svelte";
+  import type { ComponentProps } from "@sjsf/form";
+  import { isFixedItems } from "@sjsf/form/core";
+  import { getArrayContext } from "@sjsf/form/fields/array/context.svelte";
 
-  import Tabs from "./tabs.svelte";
   import Tab from "./tab.svelte";
+  import Tabs from "./tabs.svelte";
 
   const props: ComponentProps["layout"] = $props();
 

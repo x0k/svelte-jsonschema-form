@@ -1,32 +1,32 @@
-import { DATA_URL_FORMAT } from "@sjsf/form/core";
 import type {
   FieldValueValidator,
   FormValueValidator,
   Schema,
   Validator,
 } from "@sjsf/form";
+import { DATA_URL_FORMAT } from "@sjsf/form/core";
 import { fromValidators } from "@sjsf/form/validators/precompile";
 import type { ValidationError } from "ata-validator";
 import type { BundleStandaloneOptions } from "ata-validator/build";
 
+import {
+  createFormErrorsTransformer,
+  transformFieldErrors,
+  type ErrorsTransformerOptions,
+} from "../errors.js";
 import {
   COLOR_FORMAT_REGEX,
   DATA_URL_FORMAT_REGEX,
   DEFAULT_VALIDATOR_OPTIONS,
   type ValueCloner,
 } from "../validator.svelte.js";
-import {
-  createFormErrorsTransformer,
-  transformFieldErrors,
-  type ErrorsTransformerOptions,
-} from "../errors.js";
 
 type FormatPredicate = NonNullable<BundleStandaloneOptions["formats"]>[string];
 
 function createFormatPredicate(regExp: RegExp) {
   return new Function(
     "value",
-    `return ${regExp}.test(value)`,
+    `return ${regExp}.test(value)`
   ) as FormatPredicate;
 }
 
@@ -42,9 +42,8 @@ export const DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS = {
   >,
 } satisfies BundleStandaloneOptions;
 
-export type CompiledValidator = (
-  data: unknown,
-) => // NOTE: The result has been extended to support
+export type CompiledValidator = (data: unknown) =>
+  // NOTE: The result has been extended to support
   // inferred types of precompiled functions
   | { valid: boolean; errors: ValidationError[] }
   | { valid: true; errors: ReadonlyArray<never> };
@@ -80,7 +79,7 @@ function createRetriever(options: CoreValidatorOptions) {
                   combination: (id) => id + options.augmentSuffix,
                 },
               }
-            : undefined,
+            : undefined
         ))
     : options.validatorRetriever;
 }
@@ -105,7 +104,7 @@ export type FormValueValidatorOptions = ValidatorOptions &
   ValueCloner;
 
 export function createFormValueValidator<T>(
-  options: FormValueValidatorOptions,
+  options: FormValueValidatorOptions
 ): FormValueValidator<T> {
   const getValidator = createRetriever(options);
   const transformErrors = createFormErrorsTransformer(options);
@@ -126,7 +125,7 @@ export function createFormValueValidator<T>(
 export type FieldValueValidatorOptions = ValidatorOptions & ValueCloner;
 
 export function createFieldValueValidator(
-  options: FieldValueValidatorOptions,
+  options: FieldValueValidatorOptions
 ): FieldValueValidator {
   const getValidator = createRetriever(options);
   return {
@@ -146,7 +145,7 @@ export type FormValidatorOptions = ValidatorOptions &
   FieldValueValidatorOptions;
 
 export function createFormValidatorFactory<T>(
-  vOptions: CoreValidatorOptions & Partial<ValueCloner>,
+  vOptions: CoreValidatorOptions & Partial<ValueCloner>
 ) {
   return (options: Omit<FormValidatorOptions, keyof ValidatorOptions>) => {
     const full: FormValidatorOptions = {
@@ -159,7 +158,7 @@ export function createFormValidatorFactory<T>(
     return Object.assign(
       createValidator(full),
       createFormValueValidator<T>(full),
-      createFieldValueValidator(full),
+      createFieldValueValidator(full)
     );
   };
 }

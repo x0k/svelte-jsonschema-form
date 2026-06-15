@@ -1,12 +1,11 @@
-import { transforms, type AstTypes } from "@sveltejs/sv-utils";
 import type { Schema, UiSchemaRoot, FormValue } from "@sjsf/form";
 import { isRecordEmpty } from "@sjsf/form/lib/object";
+import { transforms, type AstTypes } from "@sveltejs/sv-utils";
 
-import { isJsonSchemaValidator } from "../validators.ts";
-import { extraPackage } from "../package.ts";
-import { formPackage } from "../form.ts";
 import { neverError } from "../errors.ts";
-
+import { formPackage } from "../form.ts";
+import { extraPackage } from "../package.ts";
+import { isJsonSchemaValidator } from "../validators.ts";
 import {
   fieldsValidationModeFlags,
   type CodegenNonPrecompiledValidator,
@@ -55,8 +54,8 @@ export function createModel({
           from: formPackage.name,
         });
       }
-      let schemaExpression: AstTypes.Expression = js.common.parseFromString(
-        `(${JSON.stringify(schema)}${ts(" as const satisfies Schema")})`,
+      const schemaExpression: AstTypes.Expression = js.common.parseFromString(
+        `(${JSON.stringify(schema)}${ts(" as const satisfies Schema")})`
       );
       const schemaDeclaration = js.variables.declaration(ast, {
         kind: "const",
@@ -215,7 +214,7 @@ export const schema${ts(": StandardSchemaV1<InternalModel> & StandardJSONSchemaV
         });
       }
       const expression: AstTypes.Expression = js.common.parseFromString(
-        `(${JSON.stringify(uiSchema)}${ts(" as const satisfies UiSchemaRoot")})`,
+        `(${JSON.stringify(uiSchema)}${ts(" as const satisfies UiSchemaRoot")})`
       );
       const declaration = js.variables.declaration(ast, {
         kind: "const",
@@ -230,7 +229,7 @@ export const schema${ts(": StandardSchemaV1<InternalModel> & StandardJSONSchemaV
 
     if (initialValue !== undefined) {
       const expression: AstTypes.Expression = js.common.parseFromString(
-        `(${JSON.stringify(initialValue)})`,
+        `(${JSON.stringify(initialValue)})`
       );
       const declaration = js.variables.declaration(ast, {
         kind: "const",

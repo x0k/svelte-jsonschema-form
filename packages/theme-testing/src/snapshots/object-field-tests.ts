@@ -2,7 +2,6 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { describe, test } from "vitest";
 import {
   encodePseudoElement,
   type Schema,
@@ -11,13 +10,13 @@ import {
   type UiSchemaRoot,
 } from "@sjsf/form";
 import { resolver } from "@sjsf/form/resolvers/compat";
+import { describe, test } from "vitest";
 
 import {
   matchSnapshot,
   type MatchSnapshotOptions,
   type SnapshotFormOptions,
 } from "./core.js";
-
 import * as oneOfDefaults from "./test-data/one-of-defaults.js";
 
 const titleAndDesc = {

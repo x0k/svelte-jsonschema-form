@@ -13,17 +13,17 @@ const THEME_STORAGE_KEY = "theme";
 
 function createThemeManager(sync: (manager: ThemeManager) => void) {
   const preferredColorSchemeQuery = new MediaQuery(
-    "(prefers-color-scheme: dark)",
+    "(prefers-color-scheme: dark)"
   );
   let theme = $state(
-    (localStorage.getItem(THEME_STORAGE_KEY) as Theme) ?? Theme.System,
+    (localStorage.getItem(THEME_STORAGE_KEY) as Theme) ?? Theme.System
   );
   const darkOrLight = $derived(
     theme === Theme.System
       ? preferredColorSchemeQuery.current
         ? Theme.Dark
         : Theme.Light
-      : theme,
+      : theme
   );
   const isDark = $derived(darkOrLight === Theme.Dark);
   const manager = {

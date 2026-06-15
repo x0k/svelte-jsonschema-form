@@ -2,6 +2,8 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
+import type { Merger } from "./merger.js";
+import { retrieveSchema } from "./resolve.js";
 import {
   REF_KEY,
   type Schema,
@@ -9,9 +11,7 @@ import {
   type SchemaObjectValue,
   type SchemaValue,
 } from "./schema.js";
-import { retrieveSchema } from "./resolve.js";
 import type { Validator } from "./validator.js";
-import type { Merger } from "./merger.js";
 import { isSchemaObjectValue } from "./value.js";
 
 const NO_VALUE = Symbol("no Value");

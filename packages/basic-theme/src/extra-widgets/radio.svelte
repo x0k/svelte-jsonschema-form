@@ -34,7 +34,7 @@
   const attributes = $derived(
     inputAttributes(ctx, config, "radio", handlers, {
       type: "radio",
-    }),
+    })
   );
 </script>
 

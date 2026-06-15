@@ -17,7 +17,7 @@ export const meta = defineMetadata({
 
 function propertyStyles(
   style: string,
-  layouts?: UiOptions["layouts"],
+  layouts?: UiOptions["layouts"]
 ): UiSchema {
   return {
     "ui:options": {

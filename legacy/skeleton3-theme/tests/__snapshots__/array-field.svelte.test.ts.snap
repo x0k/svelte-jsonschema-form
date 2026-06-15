@@ -506,7 +506,7 @@ exports[`array fields > checkboxes 1`] = `
         <!---->
         <!---->
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -524,7 +524,7 @@ exports[`array fields > checkboxes 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -542,7 +542,7 @@ exports[`array fields > checkboxes 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -629,7 +629,7 @@ exports[`array fields > empty errors array 1`] = `
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -733,7 +733,7 @@ exports[`array fields > empty errors array 1`] = `
        
       <!---->
       <ul
-        class="text-error-500 list-disc list-inside"
+        class="text-error-500 list-inside list-disc"
         id="root__errors"
         tabindex="-1"
       >
@@ -1004,7 +1004,7 @@ exports[`with title and description > array 1`] = `
         >
           <!---->
           <div
-            class="font-bold text-xl"
+            class="text-xl font-bold"
             id="root__title"
           >
             Test field
@@ -1117,7 +1117,7 @@ exports[`with title and description > array icons 1`] = `
         >
           <!---->
           <div
-            class="font-bold text-xl"
+            class="text-xl font-bold"
             id="root__title"
           >
             Test field
@@ -1603,7 +1603,7 @@ exports[`with title and description > checkboxes 1`] = `
         <!---->
         <!---->
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -1621,7 +1621,7 @@ exports[`with title and description > checkboxes 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -1639,7 +1639,7 @@ exports[`with title and description > checkboxes 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -1726,7 +1726,7 @@ exports[`with title and description > fixed array 1`] = `
         >
           <!---->
           <div
-            class="font-bold text-xl"
+            class="text-xl font-bold"
             id="root__title"
           >
             Test field
@@ -2045,7 +2045,7 @@ exports[`with title and description from both > array 1`] = `
         >
           <!---->
           <div
-            class="font-bold text-xl"
+            class="text-xl font-bold"
             id="root__title"
           >
             My Field
@@ -2158,7 +2158,7 @@ exports[`with title and description from both > array icons 1`] = `
         >
           <!---->
           <div
-            class="font-bold text-xl"
+            class="text-xl font-bold"
             id="root__title"
           >
             My Field
@@ -2644,7 +2644,7 @@ exports[`with title and description from both > checkboxes 1`] = `
         <!---->
         <!---->
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -2662,7 +2662,7 @@ exports[`with title and description from both > checkboxes 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -2680,7 +2680,7 @@ exports[`with title and description from both > checkboxes 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -2767,7 +2767,7 @@ exports[`with title and description from both > fixed array 1`] = `
         >
           <!---->
           <div
-            class="font-bold text-xl"
+            class="text-xl font-bold"
             id="root__title"
           >
             My Field
@@ -3086,7 +3086,7 @@ exports[`with title and description from uiSchema > array 1`] = `
         >
           <!---->
           <div
-            class="font-bold text-xl"
+            class="text-xl font-bold"
             id="root__title"
           >
             My Field
@@ -3199,7 +3199,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
         >
           <!---->
           <div
-            class="font-bold text-xl"
+            class="text-xl font-bold"
             id="root__title"
           >
             My Field
@@ -3685,7 +3685,7 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
         <!---->
         <!---->
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -3703,7 +3703,7 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -3721,7 +3721,7 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -3808,7 +3808,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
         >
           <!---->
           <div
-            class="font-bold text-xl"
+            class="text-xl font-bold"
             id="root__title"
           >
             My Field
@@ -4533,7 +4533,7 @@ exports[`with title and description with global label off > checkboxes 1`] = `
         <!---->
         <!---->
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -4551,7 +4551,7 @@ exports[`with title and description with global label off > checkboxes 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -4569,7 +4569,7 @@ exports[`with title and description with global label off > checkboxes 1`] = `
           </p>
         </label>
         <label
-          class="flex items-center space-x-2 cursor-pointer"
+          class="flex cursor-pointer items-center space-x-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"

@@ -1,14 +1,14 @@
 import {
-  createMerger as createJsonSchemaMerger,
-  createShallowAllOfMerge,
-} from "@/lib/json-schema/index.js";
-import {
   getDefaultFormState,
   type Experimental_DefaultFormStateBehavior,
   type Merger,
   type Validator,
 } from "@/core/index.js";
 import type { FormMerger, Schema } from "@/form/main.js";
+import {
+  createMerger as createJsonSchemaMerger,
+  createShallowAllOfMerge,
+} from "@/lib/json-schema/index.js";
 
 export interface MergerOptions {
   jsonSchemaMerger?: ReturnType<typeof createJsonSchemaMerger>;
@@ -33,8 +33,7 @@ export function createMerger({
 }
 
 export interface FormMergerOptions
-  extends Experimental_DefaultFormStateBehavior,
-    MergerOptions {
+  extends Experimental_DefaultFormStateBehavior, MergerOptions {
   validator: Validator;
   schema: Schema;
 }
@@ -47,7 +46,7 @@ export function createFormMerger(options: FormMergerOptions): FormMerger {
       formData,
       schema,
       initialDefaultsGenerated = false,
-      includeUndefinedValues = false
+      includeUndefinedValues = false,
     }) {
       return getDefaultFormState(
         options.validator,

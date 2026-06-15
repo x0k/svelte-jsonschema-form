@@ -1,6 +1,6 @@
 import postModelTs from "examples/sveltekit-starter/src/lib/post.ts?raw";
-import dataRemoteTs from "examples/sveltekit-starter/src/routes/remote-functions-enhance/data.remote?raw";
 import pageSvelte from "examples/sveltekit-starter/src/routes/remote-functions-enhance/+page.svelte?raw";
+import dataRemoteTs from "examples/sveltekit-starter/src/routes/remote-functions-enhance/data.remote?raw";
 
 import {
   defineExample,

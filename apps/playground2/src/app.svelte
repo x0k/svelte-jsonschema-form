@@ -3,11 +3,11 @@
 
   import { Toaster } from "$lib/components/ui/sonner/index.js";
 
-  import { router, type Page } from "./router.js";
   import Form from "./form/form.svelte";
-  import Validator from "./validator.svelte";
   import Merger from "./merger.svelte";
+  import { router, type Page } from "./router.js";
   import { themeManager } from "./theme.svelte";
+  import Validator from "./validator.svelte";
 
   const PAGES: Record<Page, Component<{}, {}, any>> = {
     "": Form,
@@ -20,7 +20,7 @@
 
 <Toaster richColors theme={themeManager.theme} />
 <div
-  class="p-4 gap-4 h-screen grid grid-rows-[auto_1fr] grid-cols-1 dark:scheme-dark"
+  class="grid h-screen grid-cols-1 grid-rows-[auto_1fr] gap-4 p-4 dark:scheme-dark"
 >
   <PageComponent />
 </div>
@@ -53,20 +53,20 @@
       transform: translateY(var(--resizer-offset));
     }
     [data-tabs] {
-      @apply flex flex-col rounded-md border h-full bg-background;
+      @apply bg-background flex h-full flex-col rounded-md border;
       &:has([data-error="true"]) {
         @apply border-destructive;
       }
     }
     [data-tabs-bar] {
-      @apply flex border-b p-2 gap-1;
+      @apply flex gap-1 border-b p-2;
     }
     [data-tabs-list] {
       @apply flex gap-1 overflow-x-auto;
       scrollbar-width: thin;
     }
     [data-tabs-header] {
-      @apply flex gap-1 items-center py-1 pl-2 pr-3 rounded-sm;
+      @apply flex items-center gap-1 rounded-sm py-1 pr-3 pl-2;
       > svg {
         @apply size-5;
       }
@@ -81,7 +81,7 @@
       }
     }
     [data-tabs-spacer] {
-      @apply grow h-full rounded-sm;
+      @apply h-full grow rounded-sm;
       &[data-over="true"] {
         @apply bg-chart-2/70;
       }
@@ -90,7 +90,7 @@
       @apply flex;
     }
     [data-tabs-content] {
-      @apply grow overflow-auto relative;
+      @apply relative grow overflow-auto;
       &::after {
         @apply bg-chart-2/70 rounded-md;
         content: "";

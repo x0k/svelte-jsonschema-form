@@ -6,23 +6,29 @@ sidebar:
   order: 206
 ---
 
-import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/components';
-import { specs, extraWidgets } from '@sjsf/daisyui-theme/specs';
-import styles from '@sjsf/daisyui-theme/styles.css?inline';
+import {
+  Code,
+  Card,
+  TabItem,
+  Tabs,
+  LinkButton,
+} from "@astrojs/starlight/components";
+import { specs, extraWidgets } from "@sjsf/daisyui-theme/specs";
+import styles from "@sjsf/daisyui-theme/styles.css?inline";
 import { themePackage } from "meta";
 
-import { getPackageDependencies } from '@/shared';
-import Npm from '@/components/npm.astro';
-import Picker from '@/components/picker.astro';
-import FormCard from '@/components/form-card.astro';
-import Deps from '@/components/peer-dependencies.astro'
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import Picker from "@/components/picker.astro";
+import FormCard from "@/components/form-card.astro";
+import Deps from "@/components/peer-dependencies.astro";
 
-import Form from './daisyui/form.svelte';
-import uiOptionsCode from './daisyui/ui-options?raw';
+import Form from "./daisyui/form.svelte";
+import uiOptionsCode from "./daisyui/ui-options?raw";
 import { createSchemas, replacer, createExtraImports } from "../_demo-schema";
 
-export const schemas = createSchemas(specs)
-export const pkg = themePackage('daisyui')
+export const schemas = createSchemas(specs);
+export const pkg = themePackage("daisyui");
 
 ## Installation
 
@@ -32,7 +38,12 @@ export const pkg = themePackage('daisyui')
 
 ### Install daisyUI
 
-<LinkButton href="https://v4.daisyui.com/docs/install/" variant='secondary' target="_blank" icon="external">
+<LinkButton
+  href="https://v4.daisyui.com/docs/install/"
+  variant="secondary"
+  target="_blank"
+  icon="external"
+>
   Install daisyUI as a Tailwind CSS plugin
 </LinkButton>
 
@@ -43,14 +54,14 @@ There is two ways to setup styles:
 1. Use tailwindcss config
 
 ```typescript
-import daisyui from 'daisyui';
-import { THEME_CONTENT } from '@sjsf/daisyui-theme/preset'
+import daisyui from "daisyui";
+import { THEME_CONTENT } from "@sjsf/daisyui-theme/preset";
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./src/**/*.{html,js,svelte,ts}', THEME_CONTENT],
+  content: ["./src/**/*.{html,js,svelte,ts}", THEME_CONTENT],
   plugins: [daisyui],
-}
+};
 ```
 
 2. Inject prepared styles (not recommended)
@@ -72,17 +83,17 @@ or used in the field as the default widget.
 
 :::
 
-<Code lang='ts' code={createExtraImports("daisyui", extraWidgets)} />
+<Code lang="ts" code={createExtraImports("daisyui", extraWidgets)} />
 
 ## Widgets demo
 
 <Tabs>
-  <TabItem label='Form'>
+  <TabItem label="Form">
     <FormCard style={styles}>
       <Form client:only="svelte" />
     </FormCard>
   </TabItem>
-  <TabItem label="JSON Schema" >
+  <TabItem label="JSON Schema">
     <Code lang="json" code={JSON.stringify(schemas.schema, replacer, 2)} />
   </TabItem>
   <TabItem label="UI Schema">

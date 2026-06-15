@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { untrack } from "svelte";
   import {
     createForm,
     BasicForm,
@@ -9,6 +8,7 @@
     updateErrors,
     validate,
   } from "@sjsf/form";
+  import { untrack } from "svelte";
 
   import { getDemoContext } from "@/lib/demo";
 

@@ -1,16 +1,16 @@
-import { sveltekit } from '@sveltejs/kit/vite';
-import { defineConfig } from 'vitest/config';
-import { playwright } from '@vitest/browser-playwright';
+import { sveltekit } from "@sveltejs/kit/vite";
+import { playwright } from "@vitest/browser-playwright";
+import { defineConfig } from "vitest/config";
 
 export default defineConfig({
-	plugins: [sveltekit()],
+  plugins: [sveltekit()],
   test: {
     projects: [
       {
         extends: "./vite.config.ts",
-				optimizeDeps: {
-					exclude: ['theme-testing/demo']
-				},
+        optimizeDeps: {
+          exclude: ["theme-testing/demo"],
+        },
         test: {
           name: "client",
           include: [

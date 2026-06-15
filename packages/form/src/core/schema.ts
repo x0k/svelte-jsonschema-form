@@ -7,8 +7,10 @@ export interface OpenAPIDiscriminator {
   // mapping?: Record<string, string>;
 }
 
-export interface Schema
-  extends TransformedSchema<SchemaDefinition, JSONSchema7> {
+export interface Schema extends TransformedSchema<
+  SchemaDefinition,
+  JSONSchema7
+> {
   discriminator?: OpenAPIDiscriminator;
   [ADDITIONAL_PROPERTY_FLAG]?: boolean;
 }

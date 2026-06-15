@@ -30,7 +30,7 @@ export function createValidator(options: ValidatorOptions): Validator {
 export type FormValueValidatorOptions = ValidatorOptions;
 
 export function createFormValueValidator<T>(
-  options: FormValueValidatorOptions,
+  options: FormValueValidatorOptions
 ): FormValueValidator<T> {
   return {
     validateFormValue(rootSchema, formValue) {
@@ -44,7 +44,7 @@ export function createFormValueValidator<T>(
 export type FieldValueValidatorOptions = ValidatorOptions;
 
 export function createFieldValueValidator(
-  options: FieldValueValidatorOptions,
+  options: FieldValueValidatorOptions
 ): FieldValueValidator {
   return {
     validateFieldValue(field, fieldValue) {
@@ -60,7 +60,7 @@ export type FormValidatorOptions = ValidatorOptions &
   FieldValueValidatorOptions;
 
 export function createFormValidatorFactory<T>(
-  vOptions: CoreValidatorOptions & Partial<ValueToJSON>,
+  vOptions: CoreValidatorOptions & Partial<ValueToJSON>
 ) {
   return (options: Omit<FormValidatorOptions, keyof ValidatorOptions>) => {
     const full: FormValidatorOptions = {
@@ -80,7 +80,7 @@ export function createFormValidatorFactory<T>(
     return Object.assign(
       createValidator(full),
       createFormValueValidator<T>(full),
-      createFieldValueValidator(full),
+      createFieldValueValidator(full)
     );
   };
 }

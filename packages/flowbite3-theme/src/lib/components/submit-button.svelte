@@ -1,33 +1,40 @@
 <script lang="ts" module>
-	import type { HTMLButtonAttributes } from 'svelte/elements';
-	import type { ButtonProps as ButtonPropsUnion } from 'flowbite-svelte/types';
+  import type { ButtonProps as ButtonPropsUnion } from "flowbite-svelte/types";
+  import type { HTMLButtonAttributes } from "svelte/elements";
 
-	type ButtonProps = Extract<ButtonPropsUnion, { type?: HTMLButtonAttributes['type'] }>;
+  type ButtonProps = Extract<
+    ButtonPropsUnion,
+    { type?: HTMLButtonAttributes["type"] }
+  >;
 
-	declare module '@sjsf/form' {
-		interface UiOptions {
-			flowbite3SubmitButton?: ButtonProps;
-		}
-	}
+  declare module "@sjsf/form" {
+    interface UiOptions {
+      flowbite3SubmitButton?: ButtonProps;
+    }
+  }
 </script>
 
 <script lang="ts">
-	import { getFormContext, buttonAttributes, type ComponentProps } from '@sjsf/form';
-	import Button from 'flowbite-svelte/Button.svelte';
+  import {
+    getFormContext,
+    buttonAttributes,
+    type ComponentProps,
+  } from "@sjsf/form";
+  import Button from "flowbite-svelte/Button.svelte";
 
-	const { children, config }: ComponentProps['submitButton'] = $props();
+  const { children, config }: ComponentProps["submitButton"] = $props();
 
-	const ctx = getFormContext();
+  const ctx = getFormContext();
 </script>
 
 <Button
-	color="primary"
-	type="submit"
-	size="md"
-	{...buttonAttributes(ctx, config, 'flowbite3SubmitButton', 'submit', {
-		type: 'submit',
-		size: 'md'
-	})}
+  color="primary"
+  type="submit"
+  size="md"
+  {...buttonAttributes(ctx, config, "flowbite3SubmitButton", "submit", {
+    type: "submit",
+    size: "md",
+  })}
 >
-	{@render children()}
+  {@render children()}
 </Button>

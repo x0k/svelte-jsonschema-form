@@ -1,6 +1,5 @@
-import { isObject } from "@sjsf/form/lib/object";
 import type { Schema, UiSchemaRoot } from "@sjsf/form";
-import type { PlaygroundTheme } from "meta/playground";
+import { isObject } from "@sjsf/form/lib/object";
 import {
   themeWidgetAvailability,
   WIDGET_RANGE_VALUE_TYPE,
@@ -8,8 +7,9 @@ import {
   NodeType,
   type WidgetType,
   type Node,
-  type NodeOverridesMap
+  type NodeOverridesMap,
 } from "meta/builder";
+import type { PlaygroundTheme } from "meta/playground";
 
 export function themeNodeWidgetSchema(
   theme: PlaygroundTheme,
@@ -55,9 +55,9 @@ export function themeNodeWidgetUiSchema(
   return {
     widget: {
       "ui:options": {
-        enumNames: widget.enum.map((v) => WIDGET_NAMES[v as WidgetType])
-      }
-    }
+        enumNames: widget.enum.map((v) => WIDGET_NAMES[v as WidgetType]),
+      },
+    },
   };
 }
 
@@ -71,6 +71,6 @@ export const THEME_NODE_OVERRIDES: Record<PlaygroundTheme, NodeOverridesMap> = {
   svar: {},
   beercss: {},
   "shadcn-extras": {
-    [NodeType.Tags]: { widget: "shadcnExtrasTagsInputWidget" }
-  }
+    [NodeType.Tags]: { widget: "shadcnExtrasTagsInputWidget" },
+  },
 };

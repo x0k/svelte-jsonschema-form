@@ -1,10 +1,10 @@
-import type { Component } from 'svelte';
-import type { LabelRootProps } from 'bits-ui';
+import type { LabelRootProps } from "bits-ui";
+import type { Component } from "svelte";
 
 export type LabelProps = LabelRootProps;
 
-declare module '../context.js' {
-	interface ThemeComponents {
-		Label: Component<LabelRootProps>;
-	}
+declare module "../context.js" {
+  interface ThemeComponents {
+    Label: Component<LabelRootProps>;
+  }
 }

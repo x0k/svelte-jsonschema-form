@@ -1,10 +1,21 @@
 <script lang="ts">
-	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
-	import '@sjsf/basic-theme/extra-widgets/date-picker.svelte';
+  import {
+    getFormContext,
+    inputAttributes,
+    type ComponentProps,
+  } from "@sjsf/form";
+  import "@sjsf/basic-theme/extra-widgets/date-picker.svelte";
 
-	let { value = $bindable(), handlers, config }: ComponentProps['datePickerWidget'] = $props();
+  let {
+    value = $bindable(),
+    handlers,
+    config,
+  }: ComponentProps["datePickerWidget"] = $props();
 
-	const ctx = getFormContext();
+  const ctx = getFormContext();
 </script>
 
-<input {...inputAttributes(ctx, config, 'datePicker', handlers, { type: 'date' })} bind:value />
+<input
+  {...inputAttributes(ctx, config, "datePicker", handlers, { type: "date" })}
+  bind:value
+/>

@@ -4,14 +4,14 @@ sidebar:
   order: 2
 ---
 
-import { TabItem, Tabs } from '@astrojs/starlight/components';
-import { extraFields } from 'meta';
+import { TabItem, Tabs } from "@astrojs/starlight/components";
+import { extraFields } from "meta";
 
 Essentially theme is a simple function:
 
 ```js
-const fromRecord = (record) => (type) => record[type]
-const theme = fromRecord({ ...components })
+const fromRecord = (record) => (type) => record[type];
+const theme = fromRecord({ ...components });
 ```
 
 ## Component types
@@ -97,6 +97,7 @@ Below are examples of the components required to render the following JSON schem
       />
     </Template>
     ```
+
   </TabItem>
   <TabItem label="Field template">
     ```svelte
@@ -145,6 +146,7 @@ Below are examples of the components required to render the following JSON schem
       {/if}
     </Layout>
     ```
+
   </TabItem>
   <TabItem label="Text widget">
     ```svelte
@@ -161,6 +163,7 @@ Below are examples of the components required to render the following JSON schem
     <input bind:value {...attributes} />
     <Datalist id={attributes.list} {config} />
     ```
+
   </TabItem>
   <TabItem label="Label component">
     ```svelte
@@ -214,7 +217,11 @@ fields, as well as a set of definitions for extra widgets.
 Here is a list of extra fields that can be imported from `@sjsf/form/fields/extra/*`.
 
 <ul>
-  {Array.from(extraFields()).map(f => <li><code>{f}</code></li>)}
+  {Array.from(extraFields()).map((f) => (
+    <li>
+      <code>{f}</code>
+    </li>
+  ))}
 </ul>
 
 To use them you can import them directly
@@ -236,9 +243,9 @@ const uiSchema: UISchema = {
   "ui:components": {
     stringField: EnumField,
     // Or if you used the `include` import
-    stringField: "enumField"
-  }
-}
+    stringField: "enumField",
+  },
+};
 ```
 
 ### Templates
@@ -254,11 +261,11 @@ These templates are intended for rendering optional fields and
 differ from the original templates by the presence of the following condition:
 
 ```svelte
-  {#if config.required || !isNil(value)}
-    <Layout type="field-content" {config} {errors}>
-      {@render children()}
-    </Layout>
-  {/if}
+{#if config.required || !isNil(value)}
+  <Layout type="field-content" {config} {errors}>
+    {@render children()}
+  </Layout>
+{/if}
 ```
 
 ### Widgets

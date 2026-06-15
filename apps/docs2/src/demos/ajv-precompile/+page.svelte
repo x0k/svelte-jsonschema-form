@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
-  import { fromValidators } from "@sjsf/form/validators/precompile";
   import { createFormValidatorFactory } from "@sjsf/ajv8-validator/precompile";
+  import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
   import { resolver } from "@sjsf/form/resolvers/compat";
+  import { fromValidators } from "@sjsf/form/validators/precompile";
 
   import { getDemoContext } from "@/lib/demo";
 

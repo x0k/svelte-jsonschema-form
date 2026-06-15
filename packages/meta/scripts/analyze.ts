@@ -23,7 +23,7 @@ export function extractComponentPropsIndex(code: string): string | null {
 
 export function resolveComponentName(
   raw: string,
-  moduleConstants: Map<string, string> = new Map(),
+  moduleConstants: Map<string, string> = new Map()
 ): string | null {
   // "arrayFilesField"
   if (raw.startsWith('"') || raw.startsWith("'")) {

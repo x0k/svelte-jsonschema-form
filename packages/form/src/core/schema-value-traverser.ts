@@ -1,8 +1,8 @@
 import { isRecord } from "@/lib/object.js";
 import type { Visitor } from "@/lib/traverser.js";
 
-import type { SchemaValue } from "./schema.js";
 import type { Path } from "./path.js";
+import type { SchemaValue } from "./schema.js";
 
 export type SchemaValueTraverserContextType = "root" | "array" | "record";
 
@@ -13,14 +13,11 @@ export interface AbstractSchemaValueTraverserContext<
   path: Path;
 }
 
-export interface RootSchemaValueTraverserContext
-  extends AbstractSchemaValueTraverserContext<"root"> {}
-export interface ArraySchemaValueTraverserContext
-  extends AbstractSchemaValueTraverserContext<"array"> {
+export interface RootSchemaValueTraverserContext extends AbstractSchemaValueTraverserContext<"root"> {}
+export interface ArraySchemaValueTraverserContext extends AbstractSchemaValueTraverserContext<"array"> {
   index: number;
 }
-export interface RecordSchemaValueTraverserContext
-  extends AbstractSchemaValueTraverserContext<"record"> {
+export interface RecordSchemaValueTraverserContext extends AbstractSchemaValueTraverserContext<"record"> {
   key: string;
 }
 

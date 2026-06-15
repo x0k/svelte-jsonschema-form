@@ -1,26 +1,37 @@
 <script lang="ts" module>
-	import type { InputProps } from '../types/input';
+  import type { InputProps } from "../types/input";
 
-	declare module '@sjsf/form' {
-		interface UiOptions {
-			shadcnText?: InputProps;
-		}
-	}
+  declare module "@sjsf/form" {
+    interface UiOptions {
+      shadcnText?: InputProps;
+    }
+  }
 </script>
 
 <script lang="ts">
-	import { Datalist, getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
+  import {
+    Datalist,
+    getFormContext,
+    inputAttributes,
+    type ComponentProps,
+  } from "@sjsf/form";
 
-	import { getThemeContext } from '../context';
+  import { getThemeContext } from "../context";
 
-	const ctx = getFormContext();
-	const themeCtx = getThemeContext();
+  const ctx = getFormContext();
+  const themeCtx = getThemeContext();
 
-	const { Input } = $derived(themeCtx.components);
+  const { Input } = $derived(themeCtx.components);
 
-	let { value = $bindable(), config, handlers }: ComponentProps['textWidget'] = $props();
+  let {
+    value = $bindable(),
+    config,
+    handlers,
+  }: ComponentProps["textWidget"] = $props();
 
-	const attributes = $derived(inputAttributes(ctx, config, 'shadcnText', handlers, {}));
+  const attributes = $derived(
+    inputAttributes(ctx, config, "shadcnText", handlers, {})
+  );
 </script>
 
 <Input bind:value {...attributes} />

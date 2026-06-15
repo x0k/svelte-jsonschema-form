@@ -1,16 +1,23 @@
-import { some } from '@sjsf/form/lib/array';
-import { isSchemaObject } from '@sjsf/form/lib/json-schema';
-import { isArrayOrObjectSchemaType, isPrimitiveSchemaType, typeOfSchema } from '@sjsf/form/core';
 import {
   type IdentifiableFieldElement,
   type Schema,
-  type AdditionalPropertyKeyValidator
-} from '@sjsf/form';
-import { DEFAULT_ID_SEPARATOR, DEFAULT_ID_PSEUDO_SEPARATOR } from '@sjsf/form/id-builders/legacy';
+  type AdditionalPropertyKeyValidator,
+} from "@sjsf/form";
+import {
+  isArrayOrObjectSchemaType,
+  isPrimitiveSchemaType,
+  typeOfSchema,
+} from "@sjsf/form/core";
+import {
+  DEFAULT_ID_SEPARATOR,
+  DEFAULT_ID_PSEUDO_SEPARATOR,
+} from "@sjsf/form/id-builders/legacy";
+import { some } from "@sjsf/form/lib/array";
+import { isSchemaObject } from "@sjsf/form/lib/json-schema";
 
 export enum AdditionalPropertyKeyValidationErrorType {
-  ForbiddenSequence = 'forbidden-sequence',
-  ForbiddenSuffix = 'forbidden-suffix'
+  ForbiddenSequence = "forbidden-sequence",
+  ForbiddenSuffix = "forbidden-suffix",
 }
 
 export interface ErrorFactoryOptions {
@@ -28,22 +35,26 @@ export interface AdditionalPropertyKeyValidatorOptions {
 }
 
 const IDENTIFIABLE_INPUT_ELEMENTS: (keyof IdentifiableFieldElement)[] = [
-  'key-input',
-  'anyof',
-  'oneof'
+  "key-input",
+  "anyof",
+  "oneof",
 ];
-
 
 export function createAdditionalPropertyKeyValidator({
   idSeparator = DEFAULT_ID_SEPARATOR,
   idPseudoSeparator = DEFAULT_ID_PSEUDO_SEPARATOR,
   identifiableFieldElements = IDENTIFIABLE_INPUT_ELEMENTS,
-  error
+  error,
 }: AdditionalPropertyKeyValidatorOptions): AdditionalPropertyKeyValidator {
   const separators = [idSeparator];
-  const suffixes = identifiableFieldElements.map((el) => `${idPseudoSeparator}${el}`);
+  const suffixes = identifiableFieldElements.map(
+    (el) => `${idPseudoSeparator}${el}`
+  );
   return {
-    validateAdditionalPropertyKey(key: string, { additionalProperties }: Schema): string[] {
+    validateAdditionalPropertyKey(
+      key: string,
+      { additionalProperties }: Schema
+    ): string[] {
       const messages: string[] = [];
       if (additionalProperties === undefined) {
         return messages;
@@ -54,17 +65,19 @@ export function createAdditionalPropertyKeyValidator({
         values: string[]
       ) =>
         messages.push(
-          typeof error === 'string'
+          typeof error === "string"
             ? error
             : error({
                 type,
                 key,
                 value,
-                values
+                values,
               })
         );
       // TODO: handle `$ref` in `additionalProperties`
-      const types = isSchemaObject(additionalProperties) ? typeOfSchema(additionalProperties) : [];
+      const types = isSchemaObject(additionalProperties)
+        ? typeOfSchema(additionalProperties)
+        : [];
       for (const separator of separators) {
         if (!key.includes(separator)) {
           continue;
@@ -84,9 +97,13 @@ export function createAdditionalPropertyKeyValidator({
         if (!key.endsWith(suffix) || !some(types, isPrimitiveSchemaType)) {
           continue;
         }
-        pushMessage(AdditionalPropertyKeyValidationErrorType.ForbiddenSuffix, suffix, suffixes);
+        pushMessage(
+          AdditionalPropertyKeyValidationErrorType.ForbiddenSuffix,
+          suffix,
+          suffixes
+        );
       }
       return messages;
-    }
+    },
   };
 }

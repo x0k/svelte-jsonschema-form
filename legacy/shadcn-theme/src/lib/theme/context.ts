@@ -1,17 +1,17 @@
-import { getContext, setContext } from 'svelte';
+import { getContext, setContext } from "svelte";
 
-import { THEME_CONTEXT } from './internal';
+import { THEME_CONTEXT } from "./internal";
 
 export interface ThemeComponents {}
 
 export interface ThemeContext {
-	components: ThemeComponents;
+  components: ThemeComponents;
 }
 
 export function getThemeContext(): ThemeContext {
-	return getContext(THEME_CONTEXT);
+  return getContext(THEME_CONTEXT);
 }
 
 export function setThemeContext(ctx: ThemeContext) {
-	setContext(THEME_CONTEXT, ctx);
+  setContext(THEME_CONTEXT, ctx);
 }

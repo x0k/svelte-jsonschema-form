@@ -1,16 +1,16 @@
 <script lang="ts">
-  import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
-  import { createValidatorRetriever } from "@sjsf/form/validators/precompile";
-  import { createFormValidatorFactory } from "@sjsf-lab/hyperjump-validator/precompile";
   import { localization } from "@sjsf-lab/hyperjump-validator/localizations/en-us";
+  import { createFormValidatorFactory } from "@sjsf-lab/hyperjump-validator/precompile";
+  import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
   import { resolver } from "@sjsf/form/resolvers/compat";
+  import { createValidatorRetriever } from "@sjsf/form/validators/precompile";
   import "@hyperjump/json-schema/formats-lite";
   import "@hyperjump/json-schema/draft-07";
 
   import { getDemoContext } from "@/lib/demo";
 
-  import { schema, fieldsValidationMode } from "./patched-schema";
   import { ast } from "./ast";
+  import { schema, fieldsValidationMode } from "./patched-schema";
 
   const { defaults } = getDemoContext();
 

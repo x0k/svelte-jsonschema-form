@@ -1,12 +1,11 @@
-import { definitions } from '../definitions.js';
-
-import DatePicker from './date-picker.svelte';
-import './date-picker.svelte';
+import { definitions } from "../definitions.js";
+import DatePicker from "./date-picker.svelte";
+import "./date-picker.svelte";
 
 declare module "../definitions.js" {
   interface ExtraWidgets {
-    datePickerWidget: {}
+    datePickerWidget: {};
   }
 }
 
-definitions.datePickerWidget = DatePicker
+definitions.datePickerWidget = DatePicker;

@@ -1,22 +1,23 @@
 <script lang="ts">
-  import { Willow, WillowDark } from '@svar-ui/svelte-core'
-  import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
   import { theme } from "@sjsf-lab/svar-theme";
-  import { specs } from '@sjsf-lab/svar-theme/specs';
+  import { specs } from "@sjsf-lab/svar-theme/specs";
+  import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
+  import { Willow, WillowDark } from "@svar-ui/svelte-core";
 
   import * as defaults from "@/lib/sjsf/defaults";
-  import { themeManager } from '@/theme.svelte';
+  import { themeManager } from "@/theme.svelte";
 
   import { createSchemas } from "../_demo-schema";
 
-  
   const form = createForm({
     ...defaults,
     ...createSchemas(specs),
     theme,
   });
 
-  const Theme = $derived(themeManager.darkOrLight === 'dark' ? WillowDark : Willow)
+  const Theme = $derived(
+    themeManager.darkOrLight === "dark" ? WillowDark : Willow
+  );
 </script>
 
 <div>

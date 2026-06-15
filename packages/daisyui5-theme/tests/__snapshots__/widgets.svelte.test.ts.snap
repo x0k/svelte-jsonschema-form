@@ -111,7 +111,7 @@ exports[`widgets > callyDatePicker > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="text-error list-inside list-disc"
         id="root__errors"
         tabindex="-1"
       >
@@ -421,7 +421,7 @@ exports[`widgets > checkbox > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="text-error list-inside list-disc"
         id="root__errors"
         tabindex="-1"
       >
@@ -851,7 +851,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="text-error list-inside list-disc"
         id="root__errors"
         tabindex="-1"
       >
@@ -1271,7 +1271,7 @@ exports[`widgets > datePicker > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="text-error list-inside list-disc"
         id="root__errors"
         tabindex="-1"
       >
@@ -1586,7 +1586,7 @@ exports[`widgets > file > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="text-error list-inside list-disc"
         id="root__errors"
         tabindex="-1"
       >
@@ -2007,7 +2007,7 @@ exports[`widgets > filterRadioButtons > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="text-error list-inside list-disc"
         id="root__errors"
         tabindex="-1"
       >
@@ -2430,7 +2430,7 @@ exports[`widgets > multiFile > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="text-error list-inside list-disc"
         id="root__errors"
         tabindex="-1"
       >
@@ -2791,7 +2791,7 @@ exports[`widgets > multiSelect > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="text-error list-inside list-disc"
         id="root__errors"
         tabindex="-1"
       >
@@ -3055,7 +3055,7 @@ exports[`widgets > number > snapshots > disabled 1`] = `
       <input
         aria-describedby="root__description root__help root__errors"
         aria-invalid="false"
-        class="w-full input input-bordered"
+        class="input input-bordered w-full"
         disabled=""
         id="root"
         name="root"
@@ -3136,7 +3136,7 @@ exports[`widgets > number > snapshots > error 1`] = `
       <input
         aria-describedby="root__description root__help root__errors"
         aria-invalid="true"
-        class="w-full input input-bordered input-error"
+        class="input input-bordered w-full input-error"
         id="root"
         name="root"
         required=""
@@ -3155,7 +3155,7 @@ exports[`widgets > number > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="text-error list-inside list-disc"
         id="root__errors"
         tabindex="-1"
       >
@@ -3227,7 +3227,7 @@ exports[`widgets > number > snapshots > normal 1`] = `
       <input
         aria-describedby="root__description root__help root__errors"
         aria-invalid="false"
-        class="w-full input input-bordered"
+        class="input input-bordered w-full"
         id="root"
         name="root"
         required=""
@@ -3306,7 +3306,7 @@ exports[`widgets > number > snapshots > readonly 1`] = `
       <input
         aria-describedby="root__description root__help root__errors"
         aria-invalid="false"
-        class="w-full input input-bordered"
+        class="input input-bordered w-full"
         id="root"
         name="root"
         readonly=""
@@ -3585,7 +3585,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="text-error list-inside list-disc"
         id="root__errors"
         tabindex="-1"
       >
@@ -4088,7 +4088,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="text-error list-inside list-disc"
         id="root__errors"
         tabindex="-1"
       >
@@ -4392,7 +4392,7 @@ exports[`widgets > range > snapshots > disabled 1`] = `
       <input
         aria-describedby="root__description root__help root__errors"
         aria-invalid="false"
-        class="w-full range"
+        class="range w-full"
         disabled=""
         id="root"
         name="root"
@@ -4469,7 +4469,7 @@ exports[`widgets > range > snapshots > error 1`] = `
       <input
         aria-describedby="root__description root__help root__errors"
         aria-invalid="true"
-        class="w-full range range-error"
+        class="range w-full range-error"
         id="root"
         name="root"
         required=""
@@ -4484,7 +4484,7 @@ exports[`widgets > range > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="text-error list-inside list-disc"
         id="root__errors"
         tabindex="-1"
       >
@@ -4556,7 +4556,7 @@ exports[`widgets > range > snapshots > normal 1`] = `
       <input
         aria-describedby="root__description root__help root__errors"
         aria-invalid="false"
-        class="w-full range"
+        class="range w-full"
         id="root"
         name="root"
         required=""
@@ -4631,7 +4631,7 @@ exports[`widgets > range > snapshots > readonly 1`] = `
       <input
         aria-describedby="root__description root__help root__errors"
         aria-invalid="false"
-        class="w-full range"
+        class="range w-full"
         id="root"
         name="root"
         readonly=""
@@ -4903,7 +4903,7 @@ exports[`widgets > rating > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="text-error list-inside list-disc"
         id="root__errors"
         tabindex="-1"
       >
@@ -5364,7 +5364,7 @@ exports[`widgets > select > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="text-error list-inside list-disc"
         id="root__errors"
         tabindex="-1"
       >
@@ -5728,7 +5728,7 @@ exports[`widgets > switch > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="text-error list-inside list-disc"
         id="root__errors"
         tabindex="-1"
       >
@@ -6057,7 +6057,7 @@ exports[`widgets > text > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="text-error list-inside list-disc"
         id="root__errors"
         tabindex="-1"
       >
@@ -6374,7 +6374,7 @@ exports[`widgets > textarea > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="text-error list-inside list-disc"
         id="root__errors"
         tabindex="-1"
       >

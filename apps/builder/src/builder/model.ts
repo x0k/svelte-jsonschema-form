@@ -1,16 +1,15 @@
-import { pickSchemaType, typeOfValue } from "@sjsf/form/core";
 import type { UiOptions, UiSchema } from "@sjsf/form";
+import { pickSchemaType, typeOfValue } from "@sjsf/form/core";
 import type { ExtraFieldFileName } from "meta";
-import type { PlaygroundResolver, PlaygroundTheme } from "meta/playground";
 import {
   type WidgetType,
   NodeType,
   type AbstractNode,
   NUMBER_NODE_OPTIONS_SCHEMA,
-  STRING_NODE_OPTIONS_SCHEMA
+  STRING_NODE_OPTIONS_SCHEMA,
 } from "meta/builder";
+import type { PlaygroundResolver, PlaygroundTheme } from "meta/playground";
 
-import { constant } from "$lib/function.js";
 import {
   BOOLEAN_NODE_OPTIONS_SCHEMA,
   buildEnumValues,
@@ -21,8 +20,9 @@ import {
   type Node,
   type TextWidgetParams,
   type WidgetNode,
-  type WidgetNodeType
+  type WidgetNodeType,
 } from "$lib/builder/index.js";
+import { constant } from "$lib/function.js";
 
 import type { BuilderDraggable } from "./context.svelte.js";
 
@@ -35,7 +35,7 @@ export interface NodeProps<T extends NodeType> {
 
 export enum RouteName {
   Editor = "editor",
-  Preview = "preview"
+  Preview = "preview",
 }
 
 export interface AbstractRoute<N extends RouteName> {
@@ -46,7 +46,7 @@ export interface EditorRoute extends AbstractRoute<RouteName.Editor> {}
 
 export enum PreviewSubRouteName {
   Code = "code",
-  Schema = "schema"
+  Schema = "schema",
 }
 
 export interface PreviewRoute extends AbstractRoute<RouteName.Preview> {
@@ -59,31 +59,36 @@ function basicTextOptions(params: TextWidgetParams): UiOptions {
   return { text: { ...params } };
 }
 
-export const TEXT_WIDGET_OPTIONS: Record<PlaygroundTheme, (params: TextWidgetParams) => UiOptions> =
-  {
-    basic: basicTextOptions,
-    pico: basicTextOptions,
-    daisyui5: basicTextOptions,
-    flowbite3: (params) => ({ flowbite3Text: { ...params } }),
-    skeleton4: basicTextOptions,
-    shadcn4: (params) => ({ shadcn4Text: { ...params } }),
-    svar: (params) => ({
-      svarText: { placeholder: params.placeholder, type: params.type as any }
-    }),
-    beercss: basicTextOptions,
-    "shadcn-extras": (params) => ({ shadcn4Text: { ...params } })
-  };
+export const TEXT_WIDGET_OPTIONS: Record<
+  PlaygroundTheme,
+  (params: TextWidgetParams) => UiOptions
+> = {
+  basic: basicTextOptions,
+  pico: basicTextOptions,
+  daisyui5: basicTextOptions,
+  flowbite3: (params) => ({ flowbite3Text: { ...params } }),
+  skeleton4: basicTextOptions,
+  shadcn4: (params) => ({ shadcn4Text: { ...params } }),
+  svar: (params) => ({
+    svarText: { placeholder: params.placeholder, type: params.type as any },
+  }),
+  beercss: basicTextOptions,
+  "shadcn-extras": (params) => ({ shadcn4Text: { ...params } }),
+};
 
-export const CHECKBOXES_WIDGET_OPTIONS: Record<PlaygroundTheme, (inline: boolean) => UiOptions> = {
+export const CHECKBOXES_WIDGET_OPTIONS: Record<
+  PlaygroundTheme,
+  (inline: boolean) => UiOptions
+> = {
   basic: (inline) =>
     inline
       ? {}
       : {
           layouts: {
             "field-content": {
-              style: "display: flex; flex-direction: column; gap: 0.2rem;"
-            }
-          }
+              style: "display: flex; flex-direction: column; gap: 0.2rem;",
+            },
+          },
         },
   pico: (inline) =>
     inline
@@ -91,18 +96,18 @@ export const CHECKBOXES_WIDGET_OPTIONS: Record<PlaygroundTheme, (inline: boolean
       : {
           layouts: {
             "field-content": {
-              style: "display: flex; flex-direction: column; gap: 0.2rem;"
-            }
-          }
+              style: "display: flex; flex-direction: column; gap: 0.2rem;",
+            },
+          },
         },
   daisyui5: (inline) =>
     inline
       ? {
           layouts: {
             "field-content": {
-              style: "display: flex; gap: 0.5rem;"
-            }
-          }
+              style: "display: flex; gap: 0.5rem;",
+            },
+          },
         }
       : {},
   flowbite3: (inline) =>
@@ -111,9 +116,9 @@ export const CHECKBOXES_WIDGET_OPTIONS: Record<PlaygroundTheme, (inline: boolean
       : {
           layouts: {
             "field-content": {
-              style: "flex-direction: column; gap: 0.2rem;"
-            }
-          }
+              style: "flex-direction: column; gap: 0.2rem;",
+            },
+          },
         },
   skeleton4: (inline) =>
     inline
@@ -121,26 +126,26 @@ export const CHECKBOXES_WIDGET_OPTIONS: Record<PlaygroundTheme, (inline: boolean
       : {
           layouts: {
             "field-content": {
-              style: "flex-direction: column; gap: 0.2rem;"
-            }
-          }
+              style: "flex-direction: column; gap: 0.2rem;",
+            },
+          },
         },
   shadcn4: (inline) =>
     inline
       ? {
           layouts: {
             "field-content": {
-              style: "display: flex; gap: 1rem;"
-            }
-          }
+              style: "display: flex; gap: 1rem;",
+            },
+          },
         }
       : {},
   svar: (inline) =>
     inline
       ? {
           svarCheckboxes: {
-            type: "inline"
-          }
+            type: "inline",
+          },
         }
       : {},
   beercss: (inline) =>
@@ -148,37 +153,40 @@ export const CHECKBOXES_WIDGET_OPTIONS: Record<PlaygroundTheme, (inline: boolean
       ? {}
       : {
           beercssCheckboxesContainer: {
-            class: "vertical"
-          }
+            class: "vertical",
+          },
         },
   "shadcn-extras": (inline) =>
     inline
       ? {
           layouts: {
             "field-content": {
-              style: "display: flex; gap: 1rem;"
-            }
-          }
+              style: "display: flex; gap: 1rem;",
+            },
+          },
         }
-      : {}
+      : {},
 };
 
-export const RADIO_WIDGET_OPTIONS: Record<PlaygroundTheme, (inline: boolean) => UiOptions> = {
+export const RADIO_WIDGET_OPTIONS: Record<
+  PlaygroundTheme,
+  (inline: boolean) => UiOptions
+> = {
   ...CHECKBOXES_WIDGET_OPTIONS,
   shadcn4: (inline) =>
     inline
       ? {
           shadcn4RadioGroup: {
-            style: "grid-auto-flow: column; grid-auto-columns: max-content;"
-          }
+            style: "grid-auto-flow: column; grid-auto-columns: max-content;",
+          },
         }
       : {},
   svar: (inline) =>
     inline
       ? {
           svarRadio: {
-            type: "inline"
-          }
+            type: "inline",
+          },
         }
       : {},
   beercss: (inline) =>
@@ -186,17 +194,17 @@ export const RADIO_WIDGET_OPTIONS: Record<PlaygroundTheme, (inline: boolean) => 
       ? {}
       : {
           beercssRadioContainer: {
-            class: "vertical"
-          }
+            class: "vertical",
+          },
         },
   "shadcn-extras": (inline) =>
     inline
       ? {
           shadcn4RadioGroup: {
-            style: "grid-auto-flow: column; grid-auto-columns: max-content;"
-          }
+            style: "grid-auto-flow: column; grid-auto-columns: max-content;",
+          },
         }
-      : {}
+      : {},
 };
 
 export const DEFAULT_COMPONENTS: Record<
@@ -212,11 +220,11 @@ export const DEFAULT_COMPONENTS: Record<
       const items = buildEnumValues(node.valueType, node.items);
       const type = pickSchemaType(items.map(typeOfValue));
       return {
-        [`${type}Field`]: "enumField"
+        [`${type}Field`]: "enumField",
       } satisfies UiSchema["ui:components"];
     },
     [NodeType.MultiEnum]: constant({
-      arrayField: "multiEnumField"
+      arrayField: "multiEnumField",
     }),
     [NodeType.String]: constant(undefined),
     [NodeType.Number]: constant(undefined),
@@ -224,23 +232,25 @@ export const DEFAULT_COMPONENTS: Record<
     [NodeType.File]: (node): UiSchema["ui:components"] => {
       if (node.options.multiple) {
         return {
-          arrayField: node.options.native ? "arrayNativeFilesField" : "arrayFilesField"
+          arrayField: node.options.native
+            ? "arrayNativeFilesField"
+            : "arrayFilesField",
         };
       }
       return node.options.native
         ? {
-            unknownField: "unknownNativeFileField"
+            unknownField: "unknownNativeFileField",
           }
         : {
-            stringField: "fileField"
+            stringField: "fileField",
           };
     },
     [NodeType.Tags]: constant({
-      arrayField: "arrayTagsField"
+      arrayField: "arrayTagsField",
     }),
     [NodeType.Range]: constant({
-      objectField: "aggregatedField"
-    })
+      objectField: "aggregatedField",
+    }),
   },
   compat: {
     [NodeType.Enum]: constant(undefined),
@@ -254,19 +264,19 @@ export const DEFAULT_COMPONENTS: Record<
       }
       return node.options.multiple
         ? {
-            arrayField: "arrayNativeFilesField"
+            arrayField: "arrayNativeFilesField",
           }
         : {
-            unknownField: "unknownNativeFileField"
+            unknownField: "unknownNativeFileField",
           };
     },
     [NodeType.Tags]: constant({
-      arrayField: "arrayTagsField"
+      arrayField: "arrayTagsField",
     }),
     [NodeType.Range]: constant({
-      objectField: "aggregatedField"
-    })
-  }
+      objectField: "aggregatedField",
+    }),
+  },
 };
 
 export const DEFAULT_WIDGETS: Record<WidgetNodeType, WidgetType> = {
@@ -277,14 +287,14 @@ export const DEFAULT_WIDGETS: Record<WidgetNodeType, WidgetType> = {
   [NodeType.Boolean]: BOOLEAN_NODE_OPTIONS_SCHEMA.properties.widget.default,
   [NodeType.File]: FILE_NODE_OPTIONS_SCHEMA.properties.widget.default,
   [NodeType.Tags]: TAGS_NODE_OPTIONS_SCHEMA.properties.widget.default,
-  [NodeType.Range]: "aggregatedWidget"
+  [NodeType.Range]: "aggregatedWidget",
 };
 
 const BASE_WIDGETS = [
   "textWidget",
   "numberWidget",
   "checkboxWidget",
-  "selectWidget"
+  "selectWidget",
 ] as const satisfies WidgetType[];
 
 export type BaseWidgetType = (typeof BASE_WIDGETS)[number];
@@ -299,9 +309,12 @@ export type FileFieldMode = number;
 export const FILE_FIELD_SINGLE_MODE = 1;
 export const FILE_FIELD_MULTIPLE_MODE = FILE_FIELD_SINGLE_MODE << 1;
 export const FILE_FIELD_NATIVE_SINGLE_MODE = FILE_FIELD_MULTIPLE_MODE << 1;
-export const FILE_FIELD_NATIVE_MULTIPLE_MODE = FILE_FIELD_NATIVE_SINGLE_MODE << 1;
+export const FILE_FIELD_NATIVE_MULTIPLE_MODE =
+  FILE_FIELD_NATIVE_SINGLE_MODE << 1;
 
-export function fileFieldModeToFields(mode: FileFieldMode): ExtraFieldFileName[] {
+export function fileFieldModeToFields(
+  mode: FileFieldMode
+): ExtraFieldFileName[] {
   const fields: ExtraFieldFileName[] = [];
   if (mode & FILE_FIELD_SINGLE_MODE) {
     fields.push("file");

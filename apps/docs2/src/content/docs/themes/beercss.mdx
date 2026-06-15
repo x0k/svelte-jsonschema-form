@@ -9,22 +9,27 @@ sidebar:
     variant: caution
 ---
 
-import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
-import { specs, extraWidgets } from '@sjsf-lab/beercss-theme/specs';
+import { Code, Card, TabItem, Tabs } from "@astrojs/starlight/components";
+import { specs, extraWidgets } from "@sjsf-lab/beercss-theme/specs";
 import { themePackage } from "meta";
 
-import { getPackageDependencies } from '@/shared';
-import Npm from '@/components/npm.astro';
-import FormCard from '@/components/form-card.astro';
-import Deps from '@/components/peer-dependencies.astro';
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import FormCard from "@/components/form-card.astro";
+import Deps from "@/components/peer-dependencies.astro";
 
-import { createExtraImports, createSchemas, replacer, validationEvents } from "./_demo-schema";
-import Form from './beercss/form.svelte';
-import uiOptionsCode from './beercss/ui-options?raw';
-import { PLAYGROUND_SJSF_THEME_STYLES } from 'pkgs/meta/dist/playground';
+import {
+  createExtraImports,
+  createSchemas,
+  replacer,
+  validationEvents,
+} from "./_demo-schema";
+import Form from "./beercss/form.svelte";
+import uiOptionsCode from "./beercss/ui-options?raw";
+import { PLAYGROUND_SJSF_THEME_STYLES } from "pkgs/meta/dist/playground";
 
-export const schemas = createSchemas(specs)
-export const pkg = themePackage('beercss')
+export const schemas = createSchemas(specs);
+export const pkg = themePackage("beercss");
 
 ## Installation
 
@@ -44,17 +49,17 @@ or used in the field as the default widget.
 
 :::
 
-<Code lang='ts' code={createExtraImports("beercss", extraWidgets)} />
+<Code lang="ts" code={createExtraImports("beercss", extraWidgets)} />
 
 ## Widgets demo
 
 <Tabs>
-  <TabItem label='Form'>
-    <FormCard style={PLAYGROUND_SJSF_THEME_STYLES['beercss']}>
+  <TabItem label="Form">
+    <FormCard style={PLAYGROUND_SJSF_THEME_STYLES["beercss"]}>
       <Form client:only="svelte" />
     </FormCard>
   </TabItem>
-  <TabItem label="JSON Schema" >
+  <TabItem label="JSON Schema">
     <Code lang="json" code={JSON.stringify(schemas.schema, replacer, 2)} />
   </TabItem>
   <TabItem label="UI Schema">
@@ -65,7 +70,3 @@ or used in the field as the default widget.
 ## Supported validation events
 
 <div set:html={validationEvents(specs)}></div>
-
-{/* ## UI options
-
-<Code code={uiOptionsCode} lang="typescript" /> */}

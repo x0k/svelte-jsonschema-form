@@ -7,6 +7,6 @@ declare module "../components.js" {
     aggregatedField: FieldCommonProps<SchemaObjectValue>;
   }
   interface ComponentBindings {
-    aggregatedField: "value"
+    aggregatedField: "value";
   }
 }

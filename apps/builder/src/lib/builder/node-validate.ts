@@ -6,30 +6,20 @@ import {
   type NodeId,
   EnumValueType,
   OperatorType,
-  type AbstractOperator
+  type AbstractOperator,
 } from "meta/builder";
 
+import { isKnownJsonSchemaFormat } from "$lib/json-schema.js";
 import {
   isJsonValueArray,
   isJsonValueBoolean,
   isJsonValueNumber,
   isJsonValueObject,
   isJsonValueString,
-  isValidJson
+  isValidJson,
 } from "$lib/json.js";
 import { isValidRegExp } from "$lib/reg-exp.js";
-import { isKnownJsonSchemaFormat } from "$lib/json-schema.js";
-import {
-  type ComparisonOperator,
-  type CustomizableNode,
-  type EnumNode,
-  type MultiEnumNode,
-  type Node,
-  type NOperator,
-  type Operator,
-  type OperatorNode,
-  type UOperator
-} from "./node.js";
+
 import {
   isArrayNode,
   isBooleanNode,
@@ -39,9 +29,20 @@ import {
   isNumberNode,
   isObjectNode,
   isStringNode,
-  isTagsNode
+  isTagsNode,
 } from "./node-guards.js";
 import { getNodeChild, getNodeOptions, getNodeProperty } from "./node-props.js";
+import {
+  type ComparisonOperator,
+  type CustomizableNode,
+  type EnumNode,
+  type MultiEnumNode,
+  type Node,
+  type NOperator,
+  type Operator,
+  type OperatorNode,
+  type UOperator,
+} from "./node.js";
 import { RANGE_VALUE_TYPE_TITLES } from "./range-node.js";
 
 export interface ValidatorRegistries {
@@ -55,14 +56,26 @@ export interface ValidatorContext {
   getAvailableRangeValueTypes(): RangeValueType[];
   addError: (node: Node, message: string) => void;
   addWarning: (node: Node, message: string) => void;
-  push<K extends keyof ValidatorRegistries>(registry: K, value: ValidatorRegistries[K]): Disposable;
-  peek<K extends keyof ValidatorRegistries>(registry: K): ValidatorRegistries[K] | undefined;
+  push<K extends keyof ValidatorRegistries>(
+    registry: K,
+    value: ValidatorRegistries[K]
+  ): Disposable;
+  peek<K extends keyof ValidatorRegistries>(
+    registry: K
+  ): ValidatorRegistries[K] | undefined;
 }
 
-function checkAffected<R>(ctx: ValidatorContext, node: Node, check: (node: Node) => R) {
+function checkAffected<R>(
+  ctx: ValidatorContext,
+  node: Node,
+  check: (node: Node) => R
+) {
   const affected = ctx.peek("affectedNode");
   if (affected === undefined) {
-    ctx.addError(node, "It looks like you deleted the field to which this operator was applied");
+    ctx.addError(
+      node,
+      "It looks like you deleted the field to which this operator was applied"
+    );
   } else {
     return check(affected);
   }
@@ -74,19 +87,23 @@ enum ExpectedValueType {
   JsonArray = "json-array",
   JsonString = "json-string",
   JsonNumber = "json-number",
-  Boolean = "boolean"
+  Boolean = "boolean",
 }
 
 const EXPECTED_VALUE_TYPE_ERRORS: Record<ExpectedValueType, string> = {
-  [ExpectedValueType.EnumMember]: "does not correspond to the possible field values",
+  [ExpectedValueType.EnumMember]:
+    "does not correspond to the possible field values",
   [ExpectedValueType.JsonObject]: "should be a JSON object",
   [ExpectedValueType.JsonArray]: "should be a JSON array",
   [ExpectedValueType.JsonString]: "should be a JSON string",
   [ExpectedValueType.JsonNumber]: "should be a JSON number",
-  [ExpectedValueType.Boolean]: "should be a boolean"
+  [ExpectedValueType.Boolean]: "should be a boolean",
 };
 
-function createValueTypeCheckAgainstAffectedNode(ctx: ValidatorContext, node: Node) {
+function createValueTypeCheckAgainstAffectedNode(
+  ctx: ValidatorContext,
+  node: Node
+) {
   return checkAffected(ctx, node, (affected) => {
     const options = getNodeOptions(affected);
     return (value: string) => {
@@ -133,7 +150,10 @@ function createValueTypeCheckAgainstAffectedNode(ctx: ValidatorContext, node: No
   });
 }
 
-function validateNOperator(ctx: ValidatorContext, op: AbstractNode<NodeType.Operator> & NOperator) {
+function validateNOperator(
+  ctx: ValidatorContext,
+  op: AbstractNode<NodeType.Operator> & NOperator
+) {
   if (op.operands.length === 0) {
     ctx.addError(op, "Missing operands");
   } else if (op.operands.length === 1) {
@@ -145,7 +165,10 @@ function validateNOperator(ctx: ValidatorContext, op: AbstractNode<NodeType.Oper
   }
 }
 
-function validateUOperator(ctx: ValidatorContext, op: AbstractNode<NodeType.Operator> & UOperator) {
+function validateUOperator(
+  ctx: ValidatorContext,
+  op: AbstractNode<NodeType.Operator> & UOperator
+) {
   if (op.operand === undefined) {
     ctx.addError(op, "Missing operand");
   } else {
@@ -160,7 +183,10 @@ function createComparisonOperatorValidator(
     affected: Node
   ) => void
 ) {
-  return (ctx: ValidatorContext, op: AbstractNode<NodeType.Operator> & ComparisonOperator) => {
+  return (
+    ctx: ValidatorContext,
+    op: AbstractNode<NodeType.Operator> & ComparisonOperator
+  ) => {
     if (op.value === undefined) {
       ctx.addError(op, "Missing value");
     } else {
@@ -171,23 +197,29 @@ function createComparisonOperatorValidator(
   };
 }
 
-const validateStringComparisonOperator = createComparisonOperatorValidator((ctx, op, affected) => {
-  if (!isStringNode(affected)) {
-    ctx.addError(op, "The operator can only be applied to string field");
+const validateStringComparisonOperator = createComparisonOperatorValidator(
+  (ctx, op, affected) => {
+    if (!isStringNode(affected)) {
+      ctx.addError(op, "The operator can only be applied to string field");
+    }
   }
-});
+);
 
-const validateNumberComparisonOperator = createComparisonOperatorValidator((ctx, op, affected) => {
-  if (!isNumberNode(affected)) {
-    ctx.addError(op, "The operator can only be applied to number field");
+const validateNumberComparisonOperator = createComparisonOperatorValidator(
+  (ctx, op, affected) => {
+    if (!isNumberNode(affected)) {
+      ctx.addError(op, "The operator can only be applied to number field");
+    }
   }
-});
+);
 
-const validateArrayComparisonOperator = createComparisonOperatorValidator((ctx, op, affected) => {
-  if (!isArrayNode(affected)) {
-    ctx.addError(op, "The operator can only be applied to list field");
+const validateArrayComparisonOperator = createComparisonOperatorValidator(
+  (ctx, op, affected) => {
+    if (!isArrayNode(affected)) {
+      ctx.addError(op, "The operator can only be applied to list field");
+    }
   }
-});
+);
 
 const OPERATOR_VALIDATORS: {
   [T in OperatorType]: (
@@ -204,9 +236,15 @@ const OPERATOR_VALIDATORS: {
     if (!isValidJson(op.value)) {
       ctx.addError(op, "The value must be in JSON format");
     } else {
-      const expected = createValueTypeCheckAgainstAffectedNode(ctx, op)?.(op.value);
+      const expected = createValueTypeCheckAgainstAffectedNode(
+        ctx,
+        op
+      )?.(op.value);
       if (expected !== undefined) {
-        ctx.addError(op, `The entered value ${EXPECTED_VALUE_TYPE_ERRORS[expected]}`);
+        ctx.addError(
+          op,
+          `The entered value ${EXPECTED_VALUE_TYPE_ERRORS[expected]}`
+        );
       }
     }
   },
@@ -222,7 +260,10 @@ const OPERATOR_VALIDATORS: {
       }
       const invalid = op.values.filter((v) => !isValidJson(v));
       if (invalid.length > 0) {
-        ctx.addError(op, `The following values must be in JSON format: "${invalid.join('", "')}"`);
+        ctx.addError(
+          op,
+          `The following values must be in JSON format: "${invalid.join('", "')}"`
+        );
       } else {
         const check = createValueTypeCheckAgainstAffectedNode(ctx, op);
         if (check !== undefined) {
@@ -232,7 +273,10 @@ const OPERATOR_VALIDATORS: {
             const value = op.values[i];
             const expected = check(value);
             if (expected !== undefined) {
-              ctx.addError(op, `The value "${value}" ${EXPECTED_VALUE_TYPE_ERRORS[expected]}`);
+              ctx.addError(
+                op,
+                `The value "${value}" ${EXPECTED_VALUE_TYPE_ERRORS[expected]}`
+              );
             } else if (values.has(value)) {
               duplicatedValues.push(value);
             } else {
@@ -240,7 +284,10 @@ const OPERATOR_VALIDATORS: {
             }
           }
           if (duplicatedValues.length > 0) {
-            ctx.addError(op, `Duplicated values: '${duplicatedValues.join("', '")}'`);
+            ctx.addError(
+              op,
+              `Duplicated values: '${duplicatedValues.join("', '")}'`
+            );
           }
         }
       }
@@ -315,7 +362,10 @@ const OPERATOR_VALIDATORS: {
       checkAffected(ctx, op, (affected) => {
         const prop = getNodeProperty(affected, propId);
         if (prop === null) {
-          ctx.addError(op, `The operator cannot be applied to "${affected.type}" field`);
+          ctx.addError(
+            op,
+            `The operator cannot be applied to "${affected.type}" field`
+          );
         } else if (prop === undefined) {
           ctx.addError(op, "Specified field not found");
         }
@@ -330,7 +380,10 @@ const OPERATOR_VALIDATORS: {
       checkAffected(ctx, op, (affected) => {
         const prop = getNodeProperty(affected, propId);
         if (prop === null) {
-          ctx.addError(op, `The operator cannot be applied to "${affected.type}" field`);
+          ctx.addError(
+            op,
+            `The operator cannot be applied to "${affected.type}" field`
+          );
         } else if (prop === undefined) {
           ctx.addError(op, "Specified field not found");
         } else if (op.operator === undefined) {
@@ -341,19 +394,25 @@ const OPERATOR_VALIDATORS: {
         }
       });
     }
-  }
+  },
 };
 
 function validateOperator(ctx: ValidatorContext, op: Operator) {
   OPERATOR_VALIDATORS[op.op](ctx, op as never);
 }
 
-function validateEnumNode(ctx: ValidatorContext, node: EnumNode | MultiEnumNode) {
+function validateEnumNode(
+  ctx: ValidatorContext,
+  node: EnumNode | MultiEnumNode
+) {
   if (node.items.length === 0) {
     ctx.addError(node, "Add at least one element");
   } else {
     if (node.items.length === 1) {
-      ctx.addWarning(node, "Use the `Boolean` field if you need to select from a single item");
+      ctx.addWarning(
+        node,
+        "Use the `Boolean` field if you need to select from a single item"
+      );
     }
     const labels = new Set<string>();
     const duplicatedLabels: Node[] = [];
@@ -384,7 +443,10 @@ function validateEnumNode(ctx: ValidatorContext, node: EnumNode | MultiEnumNode)
   }
 }
 const NODE_VALIDATORS: {
-  [T in NodeType]: (ctx: ValidatorContext, node: Extract<Node, AbstractNode<T>>) => void;
+  [T in NodeType]: (
+    ctx: ValidatorContext,
+    node: Extract<Node, AbstractNode<T>>
+  ) => void;
 } = {
   [NodeType.Object]: (ctx, node) => {
     if (node.properties.length === 0) {
@@ -399,7 +461,10 @@ const NODE_VALIDATORS: {
       node.complementary !== undefined &&
       node.dependencies.find((d) => d.id === node.complementary) === undefined
     ) {
-      ctx.addError(node, "Invalid `Complement` mark, try selecting/unselecting this mark");
+      ctx.addError(
+        node,
+        "Invalid `Complement` mark, try selecting/unselecting this mark"
+      );
     } else if (node.dependencies.length === 1) {
       if (node.complementary === undefined) {
         if (node.dependencies[0].predicate?.operator === undefined) {
@@ -408,7 +473,10 @@ const NODE_VALIDATORS: {
             "The only dependency should be marked as `Complement`"
           );
         }
-      } else if (isCustomizableNode(node.property) && node.property.options.required) {
+      } else if (
+        isCustomizableNode(node.property) &&
+        node.property.options.required
+      ) {
         ctx.addWarning(
           node.dependencies[0],
           "Redundant dependency, because current condition (field value presence) is always true for required field"
@@ -448,7 +516,10 @@ const NODE_VALIDATORS: {
     // NOTE: dependency may not have properties
     if (!isComplement) {
       if (node.predicate === undefined) {
-        ctx.addError(node, "Specify the predicate or mark the dependency as `Complement`");
+        ctx.addError(
+          node,
+          "Specify the predicate or mark the dependency as `Complement`"
+        );
       } else {
         validateNode(ctx, node.predicate);
       }
@@ -511,7 +582,7 @@ const NODE_VALIDATORS: {
         `Invalid range value type "${RANGE_VALUE_TYPE_TITLES[node.valueType]}", one of the following values is expected: ${JSON.stringify(allowed.map((t) => RANGE_VALUE_TYPE_TITLES[t]))}`
       );
     }
-  }
+  },
 };
 
 export function validateNode(ctx: ValidatorContext, node: Node) {

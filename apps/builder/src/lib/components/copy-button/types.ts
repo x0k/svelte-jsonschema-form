@@ -1,6 +1,6 @@
+import type { WithChildren, WithoutChildren } from "bits-ui";
 import type { Snippet } from "svelte";
 import type { HTMLAttributes } from "svelte/elements";
-import type { WithChildren, WithoutChildren } from "bits-ui";
 
 import type { ButtonProps } from "$lib/components/ui/button/button.svelte";
 

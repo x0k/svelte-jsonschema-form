@@ -4,9 +4,9 @@ sidebar:
   order: 130
 ---
 
-import { Tabs, TabItem, Code } from '@astrojs/starlight/components';
+import { Tabs, TabItem, Code } from "@astrojs/starlight/components";
 
-import attributesTypesCode from 'pkgs/form/dist/form/state/attributes.d.ts?raw'
+import attributesTypesCode from "pkgs/form/dist/form/state/attributes.d.ts?raw";
 
 You can create your own form components. Any built-in component can be replaced
 with a custom one, giving you full control over rendering and behavior.
@@ -35,14 +35,14 @@ import type { Schema, UiSchema } from "@sjsf/form";
 import MyNumberWidget from "./my-number-widget";
 
 const schema: Schema = {
-  type: "number"
-}
+  type: "number",
+};
 
 const uiSchema: UiSchema = {
   "ui:components": {
-    "numberWidget": MyNumberWidget
-  }
-}
+    numberWidget: MyNumberWidget,
+  },
+};
 ```
 
 You can also register a new or overwrite an old component in the selected theme as follows:
@@ -66,11 +66,15 @@ declare module "@sjsf/form" {
   }
 }
 
-export const myTheme = extendByRecord(theme, { myNumberWidget: MyNumberWidget });
+export const myTheme = extendByRecord(theme, {
+  myNumberWidget: MyNumberWidget,
+});
 
 /** Override the default component **/
 
-export const myTheme = overrideByRecord(theme, { numberWidget: MyNumberWidget })
+export const myTheme = overrideByRecord(theme, {
+  numberWidget: MyNumberWidget,
+});
 ```
 
 ## Retrieving attributes
@@ -84,7 +88,9 @@ to generate attributes:
 ```ts
 const { config, uiOption }: ComponentProps["arrayTemplate"] = $props();
 
-const description = $derived(uiOption("description") ?? config.schema.description);
+const description = $derived(
+  uiOption("description") ?? config.schema.description
+);
 ```
 
 ### UI options
@@ -121,24 +127,27 @@ You can use the `uiOptionProps` function to merge object values from
 the UI schema and `extraUiOptions`:
 
 ```ts
-import type { RadioGroupItemProps, WithoutChildrenOrChild } from 'bits-ui';
+import type { RadioGroupItemProps, WithoutChildrenOrChild } from "bits-ui";
 
-import { getFormContext, uiOptionProps, type ComponentProps } from '@sjsf/form';
+import { getFormContext, uiOptionProps, type ComponentProps } from "@sjsf/form";
 
-declare module '@sjsf/form' {
+declare module "@sjsf/form" {
   interface UiOptions {
-    shadcnRadioItem?: Omit<WithoutChildrenOrChild<RadioGroupItemProps>, 'value'>;
+    shadcnRadioItem?: Omit<
+      WithoutChildrenOrChild<RadioGroupItemProps>,
+      "value"
+    >;
   }
 }
 
 const ctx = getFormContext();
-const { config, handlers }: ComponentProps['radioWidget'] = $props();
+const { config, handlers }: ComponentProps["radioWidget"] = $props();
 
 const itemAttributes = $derived(
-  uiOptionProps('shadcnRadioItem')(
+  uiOptionProps("shadcnRadioItem")(
     {
       onclick: handlers.oninput,
-      onblur: handlers.onblur
+      onblur: handlers.onblur,
     },
     config,
     ctx
@@ -213,6 +222,7 @@ previous category, have the suffix `Attributes`.
       disabledProp
     ))
     ```
+
   </TabItem>
   <TabItem label="inputAttributes">
     ```ts
@@ -241,6 +251,7 @@ previous category, have the suffix `Attributes`.
       })
     );
     ```
+
   </TabItem>
   <TabItem label="customInputAttributes">
     ```ts
@@ -274,6 +285,7 @@ previous category, have the suffix `Attributes`.
       checked: value
     }))
     ```
+
   </TabItem>
 </Tabs>
 
@@ -364,8 +376,8 @@ const Widget = $derived(getComponent(ctx, "myNumberWidget", config));
 
 const uiSchema: UiSchema = {
   "ui:components": {
-    myNumberWidget: "numberWidget"
-  }
+    myNumberWidget: "numberWidget",
+  },
 };
 ```
 

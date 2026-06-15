@@ -5,7 +5,7 @@ import {
   svelteKitRfSubPath,
   svelteKitSubPath,
 } from "../sveltekit.ts";
-
+import { renderImports } from "./lib.ts";
 import type {
   ConditionalPrinter,
   CodegenSvelteKitIntegration,
@@ -15,7 +15,6 @@ import {
   schemaAndValidatorProp,
   type ValidatorDefinition,
 } from "./validator.ts";
-import { renderImports } from "./lib.ts";
 
 export interface SvelteKitIntegrationOptions {
   validator: ValidatorDefinition;
@@ -35,7 +34,7 @@ export function createSvelteKitIntegration({
   modelName,
 }: SvelteKitIntegrationOptions) {
   const validatorImports = renderImports(
-    validator.imports.concat(validator.schemaImports),
+    validator.imports.concat(validator.schemaImports)
   );
   const isInputTypeRequired = isTs && !validator.canInferFormType;
   const inputType = `${modelName}.Model`;

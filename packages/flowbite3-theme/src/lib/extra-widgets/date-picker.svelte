@@ -1,53 +1,58 @@
 <script lang="ts" module>
-	import type { DatepickerProps } from 'flowbite-svelte/types';
-	import '@sjsf/form/fields/extra-widgets/date-picker';
+  import type { DatepickerProps } from "flowbite-svelte/types";
+  import "@sjsf/form/fields/extra-widgets/date-picker";
 
-	declare module '@sjsf/form' {
-		interface UiOptions {
-			flowbite3Datepicker?: DatepickerProps;
-		}
-	}
+  declare module "@sjsf/form" {
+    interface UiOptions {
+      flowbite3Datepicker?: DatepickerProps;
+    }
+  }
 </script>
 
 <script lang="ts">
-	import {
-		customInputAttributes,
-		getFormContext,
-		handlersAttachment,
-		getId,
-		type ComponentProps
-	} from '@sjsf/form';
-	import Datepicker from 'flowbite-svelte/Datepicker.svelte';
+  import {
+    customInputAttributes,
+    getFormContext,
+    handlersAttachment,
+    getId,
+    type ComponentProps,
+  } from "@sjsf/form";
+  import Datepicker from "flowbite-svelte/Datepicker.svelte";
 
-	import { parseLocalDate, toLocalDate } from '$lib/local-date.js';
+  import { parseLocalDate, toLocalDate } from "$lib/local-date.js";
 
-	let { value = $bindable(), config, handlers }: ComponentProps['datePickerWidget'] = $props();
+  let {
+    value = $bindable(),
+    config,
+    handlers,
+  }: ComponentProps["datePickerWidget"] = $props();
 
-	const ctx = getFormContext();
+  const ctx = getFormContext();
 
-	const id = $derived(getId(ctx, config.path));
+  const id = $derived(getId(ctx, config.path));
 
-	function onChange() {
-		handlers.oninput?.();
-		handlers.onchange?.();
-	}
+  function onChange() {
+    handlers.oninput?.();
+    handlers.onchange?.();
+  }
 </script>
 
 <div class="w-full">
-	<Datepicker
-		bind:value={
-			() => (value ? parseLocalDate(value) : undefined), (v) => (value = v && toLocalDate(v))
-		}
-		{...customInputAttributes(ctx, config, 'flowbite3Datepicker', {
-			inputProps: handlersAttachment(handlers)({
-				id,
-				name: id
-			}),
-			required: config.required,
-			showActionButtons: true,
-			autohide: false,
-			onselect: onChange,
-			onclear: onChange
-		})}
-	/>
+  <Datepicker
+    bind:value={
+      () => (value ? parseLocalDate(value) : undefined),
+      (v) => (value = v && toLocalDate(v))
+    }
+    {...customInputAttributes(ctx, config, "flowbite3Datepicker", {
+      inputProps: handlersAttachment(handlers)({
+        id,
+        name: id,
+      }),
+      required: config.required,
+      showActionButtons: true,
+      autohide: false,
+      onselect: onChange,
+      onclear: onChange,
+    })}
+  />
 </div>

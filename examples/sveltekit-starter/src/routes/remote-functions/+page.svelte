@@ -12,7 +12,7 @@
     await connect(createPost, {
       ...defaults,
       ...initialData,
-    }),
+    })
   );
 </script>
 

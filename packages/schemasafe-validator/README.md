@@ -16,7 +16,7 @@ npm install @sjsf/schemasafe-validator @exodus/schemasafe
 ```typescript
 import { createFormValidator } from "@sjsf/schemasafe-validator";
 
-const validator = createFormValidator()
+const validator = createFormValidator();
 ```
 
 ## License

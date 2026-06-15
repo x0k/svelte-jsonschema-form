@@ -3,8 +3,9 @@
 
   import type { Props } from "./async-combobox.svelte";
 
-  export interface MyAsyncComboboxOptions<T extends SchemaValue>
-    extends Props<T> {}
+  export interface MyAsyncComboboxOptions<
+    T extends SchemaValue,
+  > extends Props<T> {}
 
   declare module "@sjsf/form" {
     interface UiOptions {

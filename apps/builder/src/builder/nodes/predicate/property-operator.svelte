@@ -1,7 +1,11 @@
 <script lang="ts">
   import { untrack } from "svelte";
 
-  import { getNodeProperties, getNodeProperty, type PropertyOperator } from "$lib/builder/index.js";
+  import {
+    getNodeProperties,
+    getNodeProperty,
+    type PropertyOperator,
+  } from "$lib/builder/index.js";
 
   import { getPredicateContext, setPredicateContext } from "./context.js";
   import OperatorDropzone from "./operator-dropzone.svelte";
@@ -37,7 +41,7 @@
   setPredicateContext({
     get node() {
       return selectedNode!;
-    }
+    },
   });
 </script>
 

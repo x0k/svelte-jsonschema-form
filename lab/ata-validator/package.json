@@ -2,35 +2,27 @@
   "name": "@sjsf-lab/ata-validator",
   "version": "3.1.1",
   "description": "The ata based validator for svelte-jsonschema-form",
-  "license": "MIT",
   "keywords": [
-    "validator",
+    "ata",
     "jsonschema",
-    "ata"
+    "validator"
   ],
-  "type": "module",
-  "files": [
-    "dist",
-    "!dist/**/*.test.*",
-    "!dist/**/*.spec.*"
-  ],
-  "publishConfig": {
-    "provenance": true
-  },
+  "homepage": "https://x0k.github.io/svelte-jsonschema-form/",
+  "bugs": "https://github.com/x0k/svelte-jsonschema-form/issues",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/x0k/svelte-jsonschema-form.git",
     "directory": "lab/ata-validator"
   },
-  "bugs": "https://github.com/x0k/svelte-jsonschema-form/issues",
-  "homepage": "https://x0k.github.io/svelte-jsonschema-form/",
-  "scripts": {
-    "test": "vitest run",
-    "build": "tsc && publint",
-    "dev": "tsc --watch"
-  },
-  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "!dist/**/*.test.*",
+    "!dist/**/*.spec.*"
+  ],
+  "type": "module",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -44,14 +36,24 @@
       "default": "./dist/precompile/index.js"
     }
   },
-  "peerDependencies": {
-    "@sjsf/form": "workspace:^3.5.0",
-    "ata-validator": "^0.21.0"
+  "publishConfig": {
+    "provenance": true
+  },
+  "scripts": {
+    "test": "vitest run",
+    "build": "tsc && publint",
+    "dev": "tsc --watch",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check ."
   },
   "devDependencies": {
     "@sjsf/form": "workspace:*",
     "ata-validator": "catalog:",
     "svelte": "catalog:",
     "validator-testing": "workspace:*"
+  },
+  "peerDependencies": {
+    "@sjsf/form": "workspace:^3.5.0",
+    "ata-validator": "^0.21.0"
   }
 }

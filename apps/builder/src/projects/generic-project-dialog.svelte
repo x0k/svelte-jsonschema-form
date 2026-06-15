@@ -5,33 +5,37 @@
     open?: boolean;
     title: string;
     projectName: string;
-    validateProjectName: (signal: AbortSignal, title: string) => Promise<boolean>;
+    validateProjectName: (
+      signal: AbortSignal,
+      title: string
+    ) => Promise<boolean>;
     projectAction: (title: string) => void;
   }
 
   const resolvedTrue = Promise.resolve(true);
-  export const DEFAULT_GENERIC_PROJECT_DIALOG_OPTIONS: GenericProjectDialogOptions = {
-    title: "",
-    projectName: "",
-    validateProjectName: () => resolvedTrue,
-    projectAction: noop
-  };
+  export const DEFAULT_GENERIC_PROJECT_DIALOG_OPTIONS: GenericProjectDialogOptions =
+    {
+      title: "",
+      projectName: "",
+      validateProjectName: () => resolvedTrue,
+      projectAction: noop,
+    };
 </script>
 
 <script lang="ts">
   import { abortPrevious, createTask } from "@sjsf/form/lib/task.svelte";
 
-  import * as Dialog from "$lib/components/ui/dialog/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
-  import { Label } from "$lib/components/ui/label/index.js";
+  import * as Dialog from "$lib/components/ui/dialog/index.js";
   import { Input } from "$lib/components/ui/input/index.js";
+  import { Label } from "$lib/components/ui/label/index.js";
 
   let {
     open = $bindable(),
     title,
     projectName,
     validateProjectName,
-    projectAction
+    projectAction,
   }: GenericProjectDialogOptions = $props();
 
   let isValid = $state.raw<undefined | boolean>();
@@ -39,7 +43,7 @@
     combinator: abortPrevious,
     // WARN: Do not optimize next line, breaks reactivity
     execute: (s, title) => validateProjectName(s, title),
-    onSuccess: (result) => (isValid = result)
+    onSuccess: (result) => (isValid = result),
   });
 
   $effect(() => {

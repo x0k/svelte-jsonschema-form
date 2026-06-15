@@ -4,10 +4,7 @@
 
   import { getDemoContext } from "@/lib/demo";
 
-  import {
-    objectSchema,
-    objectUiSchema,
-  } from "../demo-schemas";
+  import { objectSchema, objectUiSchema } from "../demo-schemas";
 
   const { defaults } = getDemoContext();
 </script>

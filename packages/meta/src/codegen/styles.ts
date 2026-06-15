@@ -1,6 +1,7 @@
 import { transforms, type SvelteAst } from "@sveltejs/sv-utils";
 
 import type { AtRule, AtRuleOptions } from "../css.ts";
+import { iconSetAtRules } from "../icons.ts";
 import { tailwindcss4PluginPackage } from "../tailwindcss.ts";
 import {
   isTailwindcss4Theme,
@@ -8,10 +9,8 @@ import {
   themeOrSubThemeAtRules,
   toTheme,
 } from "../themes.ts";
-
-import type { CodegenIconSet, CodegenThemeOrSubTheme } from "./model.ts";
-import { iconSetAtRules } from "../icons.ts";
 import { cssAddPseudoRule } from "./lib.ts";
+import type { CodegenIconSet, CodegenThemeOrSubTheme } from "./model.ts";
 
 export interface StylesOptions {
   nodeModulesPath: string;
@@ -27,7 +26,7 @@ export function createStyles({
   sandbox,
 }: StylesOptions) {
   return transforms.css(({ ast, css }) => {
-    let uiLibIsNotConfigured = isStyleSheetEmpty(ast);
+    const uiLibIsNotConfigured = isStyleSheetEmpty(ast);
 
     const theme = toTheme(themeOrSubTheme);
     if (isTailwindcss4Theme(theme)) {
@@ -304,13 +303,13 @@ const INITIAL_AT_RULES = [
 ] satisfies AtRule[];
 
 export function isStyleSheetEmpty(
-  ast: Omit<SvelteAst.CSS.StyleSheetBase, "attributes" | "content">,
+  ast: Omit<SvelteAst.CSS.StyleSheetBase, "attributes" | "content">
 ) {
   for (const c of ast.children) {
     if (
       c.type !== "Atrule" ||
       INITIAL_AT_RULES.findIndex(
-        (r) => r.name === c.name && c.prelude.includes(r.params),
+        (r) => r.name === c.name && c.prelude.includes(r.params)
       ) < 0
     ) {
       return false;

@@ -1,14 +1,16 @@
 {
   "name": "playground2",
+  "version": "1.6.2",
   "private": true,
   "type": "module",
-  "version": "1.6.2",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
-    "test": "vitest run --passWithNoTests"
+    "test": "vitest run --passWithNoTests",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check ."
   },
   "dependencies": {
     "@cfworker/json-schema": "catalog:",

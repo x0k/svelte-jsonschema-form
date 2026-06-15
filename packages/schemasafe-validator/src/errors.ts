@@ -1,12 +1,4 @@
 import type { ValidationError } from "@exodus/schemasafe";
-import { getValueByPath } from "@sjsf/form/lib/object";
-import {
-  getSchemaDefinitionByPath,
-  pathFromLocation,
-  pathFromRef,
-  type Merger,
-  type Path,
-} from "@sjsf/form/core";
 import type {
   Config,
   FieldValue,
@@ -15,6 +7,14 @@ import type {
   ValidationResult,
   Validator,
 } from "@sjsf/form";
+import {
+  getSchemaDefinitionByPath,
+  pathFromLocation,
+  pathFromRef,
+  type Merger,
+  type Path,
+} from "@sjsf/form/core";
+import { getValueByPath } from "@sjsf/form/lib/object";
 
 function extractKeywordValue(
   validator: Validator,

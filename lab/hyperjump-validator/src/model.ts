@@ -1,5 +1,8 @@
-import type { FormValue, Schema, SchemaValue } from "@sjsf/form";
-import { createValidatorRetriever } from "@sjsf/form/validators/precompile";
+import {
+  getErrors,
+  type Localization,
+  type Json as HyperjumpJson,
+} from "@hyperjump/json-schema-errors";
 import {
   Validation,
   type AST,
@@ -9,11 +12,8 @@ import {
   fromJs,
   type JsonNode,
 } from "@hyperjump/json-schema/instance/experimental";
-import {
-  getErrors,
-  type Localization,
-  type Json as HyperjumpJson,
-} from "@hyperjump/json-schema-errors";
+import type { FormValue, Schema, SchemaValue } from "@sjsf/form";
+import { createValidatorRetriever } from "@sjsf/form/validators/precompile";
 
 import { JsonSchemaErrorsOutputPlugin } from "./output-plugin.js";
 
@@ -75,7 +75,7 @@ export interface Context extends CompiledSchema {
 export function createContext(
   options: ValidatorOptions,
   schema: Schema,
-  value: FormValue,
+  value: FormValue
 ): Context {
   const getCompiledSchema = createRetriever(options);
   return {
@@ -93,7 +93,7 @@ export function validate(ctx: Context) {
 
 export function evaluateCompiledSchema(
   ctx: Context,
-  localization: Localization,
+  localization: Localization
 ) {
   const outputPlugin = new JsonSchemaErrorsOutputPlugin();
   const context = {
@@ -109,7 +109,7 @@ export function evaluateCompiledSchema(
           outputPlugin.output,
           ctx.value,
           localization,
-          ctx.ast,
+          ctx.ast
         ),
       };
 }

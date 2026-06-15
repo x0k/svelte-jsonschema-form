@@ -41,7 +41,7 @@ const jsonSchemaFormats = new Set([
   "relative-json-pointer", // draft-07
 
   // Regular Expressions
-  "regex" // draft-07
+  "regex", // draft-07
 ]);
 
 export function isKnownJsonSchemaFormat(format: string) {

@@ -1,8 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import type { StandardSchemaV1 } from '@standard-schema/spec';
-import type { RemoteFormInput } from '@sveltejs/kit';
-import type { MaybePromise } from '@sjsf/form/lib/types';
-import { isRecord } from '@sjsf/form/lib/object';
 import {
   create,
   createTranslate,
@@ -14,22 +9,29 @@ import {
   type Schema,
   type UiOptionsRegistry,
   type UiSchemaRoot,
-  type ValidatorFactoryOptions
-} from '@sjsf/form';
+  type ValidatorFactoryOptions,
+} from "@sjsf/form";
+import { isRecord } from "@sjsf/form/lib/object";
+import type { MaybePromise } from "@sjsf/form/lib/types";
+import type { StandardSchemaV1 } from "@standard-schema/spec";
+import type { RemoteFormInput } from "@sveltejs/kit";
 
+import { getRequestEvent } from "$app/server";
 import {
   createFormDataEntryConverter,
   type FormDataConverterOptions,
-  type UnknownEntryConverter
-} from '$lib/internal/convert-form-data-entry.js';
+  type UnknownEntryConverter,
+} from "$lib/internal/convert-form-data-entry.js";
+import {
+  FORM_DATA_FILE_PREFIX,
+  JSON_CHUNKS_KEY,
+  type EntryConverter,
+} from "$lib/model.js";
 
-import { getRequestEvent } from '$app/server';
-import { FORM_DATA_FILE_PREFIX, JSON_CHUNKS_KEY, type EntryConverter } from '$lib/model.js';
-
-import { decode } from '../internal/codec.js';
-import { createSvelteKitDataParser } from '../internal/sveltekit-data-parser.js';
-import { DEFAULT_PSEUDO_PREFIX } from '../id-builder.js';
-import { enServerTranslation, type ServerTranslation } from './translation.js';
+import { DEFAULT_PSEUDO_PREFIX } from "../id-builder.js";
+import { decode } from "../internal/codec.js";
+import { createSvelteKitDataParser } from "../internal/sveltekit-data-parser.js";
+import { enServerTranslation, type ServerTranslation } from "./translation.js";
 
 export interface SvelteKitFormValidatorOptions<T> {
   schema: Schema;
@@ -37,11 +39,16 @@ export interface SvelteKitFormValidatorOptions<T> {
   merger: Creatable<FormMerger, MergerFactoryOptions>;
   uiSchema?: UiSchemaRoot;
   uiOptionsRegistry?: UiOptionsRegistry;
-  createEntryConverter?: Creatable<EntryConverter<FormDataEntryValue>, FormDataConverterOptions>;
+  createEntryConverter?: Creatable<
+    EntryConverter<FormDataEntryValue>,
+    FormDataConverterOptions
+  >;
   convertUnknownEntry?: UnknownEntryConverter;
   pseudoPrefix?: string;
   /** By default, handles conversion of `File` */
-  createReviver?: (input: Record<string, unknown>) => (key: string, value: any) => any;
+  createReviver?: (
+    input: Record<string, unknown>
+  ) => (key: string, value: any) => any;
   serverTranslation?: ServerTranslation;
 }
 
@@ -54,15 +61,15 @@ function failure(message: string): StandardSchemaV1.FailureResult {
     issues: [
       {
         message,
-        path: []
-      }
-    ]
+        path: [],
+      },
+    ],
   };
 }
 
 function createDefaultReviver(input: Record<string, unknown>) {
   return (_: string, value: any) => {
-    if (typeof value === 'string' && value.startsWith(FORM_DATA_FILE_PREFIX)) {
+    if (typeof value === "string" && value.startsWith(FORM_DATA_FILE_PREFIX)) {
       return input[decode(value)];
     }
     return value;
@@ -84,22 +91,27 @@ export function createServerValidator<T>({
   createEntryConverter = createFormDataEntryConverter,
   convertUnknownEntry,
   pseudoPrefix = DEFAULT_PSEUDO_PREFIX,
-  createReviver = createDefaultReviver
-}: SvelteKitFormValidatorOptions<T>): StandardSchemaV1<RemoteFormInput & T, ValidationResult<T>> & {
-  validate: (input: unknown) => MaybePromise<StandardSchemaV1.Result<ValidationResult<T>>>;
+  createReviver = createDefaultReviver,
+}: SvelteKitFormValidatorOptions<T>): StandardSchemaV1<
+  RemoteFormInput & T,
+  ValidationResult<T>
+> & {
+  validate: (
+    input: unknown
+  ) => MaybePromise<StandardSchemaV1.Result<ValidationResult<T>>>;
 } {
   const t = createTranslate(serverTranslation);
   const validator = create(createValidator, {
     schema: schema,
     uiSchema: uiSchema,
     uiOptionsRegistry,
-    merger: () => merger
+    merger: () => merger,
   });
   const merger: FormMerger = create(createMerger, {
     schema: schema,
     uiSchema: uiSchema,
     validator,
-    uiOptionsRegistry
+    uiOptionsRegistry,
   });
   const parseSvelteKitData = createSvelteKitDataParser({
     schema,
@@ -109,52 +121,64 @@ export function createServerValidator<T>({
     convertUnknownEntry,
     createEntryConverter,
     pseudoPrefix,
-    uiOptionsRegistry
+    uiOptionsRegistry,
   });
   function parseIdPrefix(input: Record<string, unknown>) {
     const idPrefix = input[SJSF_ID_PREFIX];
-    if (typeof idPrefix === 'string') {
+    if (typeof idPrefix === "string") {
       return idPrefix;
     }
-    throw new PublicError(t('missing-or-invalid-id-prefix-key', {}));
+    throw new PublicError(t("missing-or-invalid-id-prefix-key", {}));
   }
-  function parseData(signal: AbortSignal, idPrefix: string, input: Record<string, unknown>) {
+  function parseData(
+    signal: AbortSignal,
+    idPrefix: string,
+    input: Record<string, unknown>
+  ) {
     const data = input[JSON_CHUNKS_KEY];
-    if (Array.isArray(data) && data.every((t) => typeof t === 'string')) {
-      return JSON.parse(data.join(''), createReviver(input));
+    if (Array.isArray(data) && data.every((t) => typeof t === "string")) {
+      return JSON.parse(data.join(""), createReviver(input));
     }
     return parseSvelteKitData(signal, idPrefix, input);
   }
-  async function validate(input: unknown): Promise<StandardSchemaV1.Result<ValidationResult<T>>> {
+  async function validate(
+    input: unknown
+  ): Promise<StandardSchemaV1.Result<ValidationResult<T>>> {
     if (!isRecord(input)) {
-      return failure(t('expected-record', { input }));
+      return failure(t("expected-record", { input }));
     }
     const { request } = getRequestEvent();
     try {
       const idPrefix = parseIdPrefix(input);
       const value = await parseData(request.signal, idPrefix, input);
       const result =
-        'validateFormValueAsync' in validator
-          ? await validator.validateFormValueAsync(request.signal, schema, value)
+        "validateFormValueAsync" in validator
+          ? await validator.validateFormValueAsync(
+              request.signal,
+              schema,
+              value
+            )
           : validator.validateFormValue(schema, value);
       return result.errors
         ? { issues: result.errors }
         : {
             value: {
               data: result.value,
-              idPrefix
-            }
+              idPrefix,
+            },
           };
     } catch (e) {
-      return failure(e instanceof PublicError ? e.message : t('unexpected-error', {}));
+      return failure(
+        e instanceof PublicError ? e.message : t("unexpected-error", {})
+      );
     }
   }
   return {
     validate,
-    '~standard': {
+    "~standard": {
       version: 1,
-      vendor: 'svelte-jsonschema-form',
-      validate
-    }
+      vendor: "svelte-jsonschema-form",
+      validate,
+    },
   };
 }

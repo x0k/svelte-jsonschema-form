@@ -14,8 +14,18 @@
 </script>
 
 <script lang="ts">
-  import { untrack } from "svelte";
+  import Astroid from "@lucide/svelte/icons/astroid";
+  import Palette from "@lucide/svelte/icons/palette";
+  import Terminal from "@lucide/svelte/icons/square-terminal";
+  import * as extraComponents from "@sjsf-lab/shadcn-extras-theme/ui";
+  import type { ExtraUiOptions } from "@sjsf/form";
+  import { fromRecord } from "@sjsf/form/lib/resolver";
+  import { setThemeContext } from "@sjsf/shadcn4-theme";
+  import * as components from "@sjsf/shadcn4-theme/new-york";
+  import { Willow, WillowDark } from "@svar-ui/svelte-core";
+  import { BitsConfig } from "bits-ui";
   import { themeOrSubThemeTitle, type IconSet, extraPackage } from "meta";
+  import { openDemo } from "meta/demos";
   import {
     PLAYGROUND_SJSF_THEMES,
     PLAYGROUND_SJSF_THEME_STYLES,
@@ -27,30 +37,19 @@
     playgroundIconSets,
   } from "meta/playground";
   import { SANDBOX_PLATFORMS, sandboxPlatformLabel } from "meta/sandbox";
-  import { openDemo } from "meta/demos";
-  import { Willow, WillowDark } from "@svar-ui/svelte-core";
-  import { BitsConfig } from "bits-ui";
-  import { fromRecord } from "@sjsf/form/lib/resolver";
-  import type { ExtraUiOptions } from "@sjsf/form";
-  import { setThemeContext } from "@sjsf/shadcn4-theme";
-  import * as components from "@sjsf/shadcn4-theme/new-york";
-  import * as extraComponents from "@sjsf-lab/shadcn-extras-theme/ui";
+  import { untrack } from "svelte";
 
-  import Palette from "@lucide/svelte/icons/palette";
-  import Terminal from "@lucide/svelte/icons/square-terminal";
-  import Astroid from "@lucide/svelte/icons/astroid";
-
+  import { setDemoContext } from "@/lib/demo";
   import { type DemoName, DEMOS } from "@/lib/demo.generated";
   import type { SupportedLanguage } from "@/lib/shiki";
   import * as baseDefaults from "@/lib/sjsf/defaults";
   import { createRef } from "@/lib/svelte.svelte";
   import { themeManager } from "@/theme.svelte";
-  import { setDemoContext } from "@/lib/demo";
 
+  import Button from "./button.svelte";
+  import CodeView from "./code.svelte";
   import { ShadowHost } from "./shadow";
   import Noop from "./shadow/root.svelte";
-  import CodeView from "./code.svelte";
-  import Button from "./button.svelte";
 
   setThemeContext({ components: { ...components, ...extraComponents } });
 

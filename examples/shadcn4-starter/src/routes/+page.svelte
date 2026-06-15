@@ -20,7 +20,6 @@
     schema,
     onSubmit: console.log,
   });
-
 </script>
 
 <BasicForm {form} />

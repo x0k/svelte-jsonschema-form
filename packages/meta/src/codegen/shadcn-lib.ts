@@ -1,7 +1,5 @@
 import { transforms, type SvelteAst, js as jsUtils } from "@sveltejs/sv-utils";
 
-import { themePackage, type ToTheme } from "../themes.ts";
-import type { ExtraWidgetFileNames } from "../widgets.ts";
 import {
   shadcn4ExtraWidgetComponents,
   shadcnExtrasExtraWidgetComponents,
@@ -9,6 +7,8 @@ import {
   shadcnNewYorkThemeSubPath,
   shadcnExtrasUiSubPath,
 } from "../shadcn.ts";
+import { themePackage, type ToTheme } from "../themes.ts";
+import type { ExtraWidgetFileNames } from "../widgets.ts";
 import { getTopLevelFunction } from "./lib.ts";
 import type { CodegenThemeOrSubTheme, PathFactory } from "./model.ts";
 
@@ -173,7 +173,7 @@ export function setupShadcnContext({
     from: lib("sjsf/shadcn"),
   });
   const statement = js.common.parseStatement(
-    `${SET_SHADCN_THEME_CONTEXT_FN_NAME}();`,
+    `${SET_SHADCN_THEME_CONTEXT_FN_NAME}();`
   );
   js.common.appendStatement(instance.content, { statement });
 }

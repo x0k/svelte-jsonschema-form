@@ -1,12 +1,16 @@
 <script lang="ts">
-	import { ComponentsAndWidgets } from 'theme-testing/demo';
+  import { ComponentsAndWidgets } from "theme-testing/demo";
 
-	import { theme, setThemeContext, type ThemeComponents } from '../lib/theme/index.js';
-	import { specs } from '../lib/specs';
+  import { specs } from "../lib/specs";
+  import {
+    theme,
+    setThemeContext,
+    type ThemeComponents,
+  } from "../lib/theme/index.js";
 
-	const { components }: { components: ThemeComponents } = $props();
+  const { components }: { components: ThemeComponents } = $props();
 
-	setThemeContext({ components });
+  setThemeContext({ components });
 </script>
 
 <ComponentsAndWidgets {theme} {specs} />

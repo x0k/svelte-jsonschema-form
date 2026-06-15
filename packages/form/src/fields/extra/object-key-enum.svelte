@@ -27,8 +27,8 @@
   } from "@/form/index.js";
   import { singleOption } from "@/options.svelte.js";
 
-  import { getObjectContext } from "../object/context.svelte.js";
   import { createFormOptions } from "../enum.js";
+  import { getObjectContext } from "../object/context.svelte.js";
 
   let {
     config,

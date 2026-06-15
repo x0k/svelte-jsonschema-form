@@ -1,9 +1,47 @@
 {
   "name": "meta",
   "version": "1.0.3",
-  "license": "MIT",
   "private": true,
+  "license": "MIT",
   "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./playground": {
+      "types": "./dist/playground/index.d.ts",
+      "default": "./dist/playground/index.js"
+    },
+    "./playground/augmentations": {
+      "types": "./dist/playground/augmentations.d.ts",
+      "default": "./dist/playground/augmentations.js"
+    },
+    "./playground/form-presets/*": {
+      "types": "./dist/playground/form-presets/*.d.ts",
+      "default": "./dist/playground/form-presets/*.js"
+    },
+    "./composer": {
+      "types": "./dist/composer/index.d.ts",
+      "default": "./dist/composer/index.js"
+    },
+    "./sandbox": {
+      "types": "./dist/sandbox/index.d.ts",
+      "default": "./dist/sandbox/index.js"
+    },
+    "./codegen": {
+      "types": "./dist/codegen/index.d.ts",
+      "default": "./dist/codegen/index.js"
+    },
+    "./builder": {
+      "types": "./dist/builder/index.d.ts",
+      "default": "./dist/builder/index.js"
+    },
+    "./demos": {
+      "types": "./dist/demos/index.d.ts",
+      "default": "./dist/demos/index.js"
+    }
+  },
   "scripts": {
     "extract-fields": "node scripts/extract-fields.ts",
     "extract-widgets": "node scripts/extract-widgets.ts",
@@ -12,36 +50,11 @@
     "extract-theme-styles": "node scripts/extract-theme-styles.ts",
     "extract-metadata": "npm run extract-fields && npm run extract-widgets && npm run extract-packages && npm run extract-validation-flags && npm run extract-theme-styles",
     "check": "npm run extract-metadata && svelte-check --tsconfig ./tsconfig.json",
+    "lint": "eslint .",
     "build": "svelte-package && publint",
-    "test": "vitest run"
-  },
-  "peerDependencies": {
-    "@cfworker/json-schema": "catalog:",
-    "@exodus/schemasafe": "catalog:",
-    "@picocss/pico": "catalog:",
-    "@stackblitz/sdk": "catalog:",
-    "@sveltejs/acorn-typescript": "catalog:",
-    "@sveltejs/kit": "catalog:",
-    "@types/estree": "catalog:",
-    "@webcontainer/api": "catalog:",
-    "acorn": "catalog:",
-    "ajv": "catalog:",
-    "ajv-formats": "catalog:",
-    "ata-validator": "catalog:",
-    "beercss": "catalog:",
-    "fflate": "catalog:",
-    "json-schema-to-ts": "catalog:",
-    "json-schema-to-valibot": "catalog:",
-    "json-schema-to-zod": "catalog:",
-    "lz-string": "catalog:",
-    "svelte": "^5.34.8",
-    "zimmerframe": "catalog:",
-    "@sveltejs/sv-utils": "catalog:"
-  },
-  "peerDependenciesMeta": {
-    "@sveltejs/kit": {
-      "optional": true
-    }
+    "test": "vitest run",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check ."
   },
   "dependencies": {
     "@sjsf-lab/ata-validator": "workspace:*",
@@ -97,42 +110,32 @@
     "yaml": "^2.8.3",
     "zimmerframe": "catalog:"
   },
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    },
-    "./playground": {
-      "types": "./dist/playground/index.d.ts",
-      "default": "./dist/playground/index.js"
-    },
-    "./playground/augmentations": {
-      "types": "./dist/playground/augmentations.d.ts",
-      "default": "./dist/playground/augmentations.js"
-    },
-    "./playground/form-presets/*": {
-      "types": "./dist/playground/form-presets/*.d.ts",
-      "default": "./dist/playground/form-presets/*.js"
-    },
-    "./composer": {
-      "types": "./dist/composer/index.d.ts",
-      "default": "./dist/composer/index.js"
-    },
-    "./sandbox": {
-      "types": "./dist/sandbox/index.d.ts",
-      "default": "./dist/sandbox/index.js"
-    },
-    "./codegen": {
-      "types": "./dist/codegen/index.d.ts",
-      "default": "./dist/codegen/index.js"
-    },
-    "./builder": {
-      "types": "./dist/builder/index.d.ts",
-      "default": "./dist/builder/index.js"
-    },
-    "./demos": {
-      "types": "./dist/demos/index.d.ts",
-      "default": "./dist/demos/index.js"
+  "peerDependencies": {
+    "@cfworker/json-schema": "catalog:",
+    "@exodus/schemasafe": "catalog:",
+    "@picocss/pico": "catalog:",
+    "@stackblitz/sdk": "catalog:",
+    "@sveltejs/acorn-typescript": "catalog:",
+    "@sveltejs/kit": "catalog:",
+    "@sveltejs/sv-utils": "catalog:",
+    "@types/estree": "catalog:",
+    "@webcontainer/api": "catalog:",
+    "acorn": "catalog:",
+    "ajv": "catalog:",
+    "ajv-formats": "catalog:",
+    "ata-validator": "catalog:",
+    "beercss": "catalog:",
+    "fflate": "catalog:",
+    "json-schema-to-ts": "catalog:",
+    "json-schema-to-valibot": "catalog:",
+    "json-schema-to-zod": "catalog:",
+    "lz-string": "catalog:",
+    "svelte": "^5.34.8",
+    "zimmerframe": "catalog:"
+  },
+  "peerDependenciesMeta": {
+    "@sveltejs/kit": {
+      "optional": true
     }
   }
 }

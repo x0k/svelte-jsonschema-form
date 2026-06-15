@@ -1,30 +1,33 @@
 <script lang="ts" module>
-	import '@sjsf/form/fields/extra-components/label';
+  import "@sjsf/form/fields/extra-components/label";
+  import type { LabelProps } from "../types/label.js";
 
-	import type { LabelProps } from '../types/label.js';
-
-	declare module '@sjsf/form' {
-		interface UiOptions {
-			shadcn4Label?: LabelProps;
-		}
-	}
+  declare module "@sjsf/form" {
+    interface UiOptions {
+      shadcn4Label?: LabelProps;
+    }
+  }
 </script>
 
 <script lang="ts">
-	import { getFormContext, labelAttributes, type ComponentProps } from '@sjsf/form';
+  import {
+    getFormContext,
+    labelAttributes,
+    type ComponentProps,
+  } from "@sjsf/form";
 
-	import { getThemeContext } from '../context.js';
+  import { getThemeContext } from "../context.js";
 
-	const { title, config }: ComponentProps['label'] = $props();
+  const { title, config }: ComponentProps["label"] = $props();
 
-	const ctx = getFormContext();
-	const themeCtx = getThemeContext();
-	const { FieldLabel } = $derived(themeCtx.components);
+  const ctx = getFormContext();
+  const themeCtx = getThemeContext();
+  const { FieldLabel } = $derived(themeCtx.components);
 </script>
 
-<FieldLabel {...labelAttributes(ctx, config, 'shadcn4Label', {})}>
-	{title}
-	{#if config.required}
-		<span>*</span>
-	{/if}
+<FieldLabel {...labelAttributes(ctx, config, "shadcn4Label", {})}>
+  {title}
+  {#if config.required}
+    <span>*</span>
+  {/if}
 </FieldLabel>

@@ -3,7 +3,13 @@ import {
   type OutputUnit,
   type Schema as CfSchema,
 } from "@cfworker/json-schema";
-import { memoize, weakMemoize, type MapLike } from "@sjsf/form/lib/memoize";
+import type {
+  Config,
+  Schema,
+  FieldValueValidator,
+  FormValueValidator,
+  FormValue,
+} from "@sjsf/form";
 import {
   ID_KEY,
   prefixSchemaRefs,
@@ -12,13 +18,7 @@ import {
   type Validator,
   pathFromLocation,
 } from "@sjsf/form/core";
-import type {
-  Config,
-  Schema,
-  FieldValueValidator,
-  FormValueValidator,
-  FormValue,
-} from "@sjsf/form";
+import { memoize, weakMemoize, type MapLike } from "@sjsf/form/lib/memoize";
 
 export interface ValueToJSON {
   valueToJSON: (value: FormValue) => SchemaValue;
@@ -36,7 +36,7 @@ export type ValidatorsCache = MapLike<Schema, CfValidator>;
 
 export function createSchemaValidatorFactory(
   factory: CfValidatorFactory,
-  validatorsCache: ValidatorsCache = new WeakMap(),
+  validatorsCache: ValidatorsCache = new WeakMap()
 ) {
   let rootSchemaId = "";
   let usePrefixSchemaRefs = false;
@@ -48,9 +48,9 @@ export function createSchemaValidatorFactory(
       return factory(
         usePrefixSchemaRefs
           ? prefixSchemaRefs(snapshot, rootSchemaId)
-          : snapshot,
+          : snapshot
       );
-    },
+    }
   );
   return (schema: Schema, rootSchema: Schema) => {
     rootSchemaId = rootSchema[ID_KEY] ?? ROOT_SCHEMA_PREFIX;
@@ -60,7 +60,7 @@ export function createSchemaValidatorFactory(
       lastRootSchema = new WeakRef(rootSchema);
       validator.addSchema(
         $state.snapshot(rootSchema) as CfSchema,
-        rootSchemaId,
+        rootSchemaId
       );
     }
     return validator;
@@ -91,13 +91,13 @@ export function createValidator({
 export interface FormValueValidatorOptions extends ValidatorOptions {}
 
 export function createFormValueValidator<T>(
-  options: FormValueValidatorOptions,
+  options: FormValueValidatorOptions
 ): FormValueValidator<T> {
   return {
     validateFormValue(rootSchema, formValue) {
       const validator = options.createSchemaValidator(rootSchema, rootSchema);
       const { valid, errors } = validator.validate(
-        options.valueToJSON(formValue),
+        options.valueToJSON(formValue)
       );
       if (valid) {
         return {
@@ -156,7 +156,7 @@ export function createFormValidator<T>({
   validatorsCache,
   createSchemaValidator = createSchemaValidatorFactory(
     factory,
-    validatorsCache,
+    validatorsCache
   ),
   createFieldSchemaValidator = createFieldSchemaValidatorFactory(factory),
   valueToJSON = (v) =>
@@ -179,6 +179,6 @@ export function createFormValidator<T>({
   return Object.assign(
     createValidator(options),
     createFormValueValidator<T>(options),
-    createFieldValueValidator(options),
+    createFieldValueValidator(options)
   );
 }

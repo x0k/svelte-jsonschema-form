@@ -34,7 +34,7 @@ export function appCss(ctx: Context) {
       icons,
       themeOrSubTheme,
       sandbox: false,
-    }),
+    })
   );
 
   if (uiLibIsNotConfigured) {
@@ -68,6 +68,6 @@ export function appCss(ctx: Context) {
       lib,
       isKit,
       stylesheetPath,
-    }),
+    })
   );
 }

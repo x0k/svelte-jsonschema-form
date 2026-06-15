@@ -1,8 +1,3 @@
-import type { MaybePromise } from "@sjsf/form/lib/types";
-import {
-  getClosestMatchingOption,
-  getFirstMatchingOption,
-} from "@sjsf/form/core";
 import {
   create,
   isAsyncFormValueValidator,
@@ -22,9 +17,14 @@ import {
   type Validator,
   type ValidatorFactoryOptions,
 } from "@sjsf/form";
-import { omitExtraData } from "@sjsf/form/omit-extra-data";
+import {
+  getClosestMatchingOption,
+  getFirstMatchingOption,
+} from "@sjsf/form/core";
 import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
+import type { MaybePromise } from "@sjsf/form/lib/types";
 import { createFormMerger } from "@sjsf/form/mergers/modern";
+import { omitExtraData } from "@sjsf/form/omit-extra-data";
 import {
   insertSubSchemaIds,
   createIdFactory as defaultCreateIdFactory,
@@ -50,7 +50,7 @@ function createInitializer<V extends Validator>(
   {
     createIdFactory = defaultCreateIdFactory,
     useOriginalSchema = false,
-  }: InitializerOptions = {},
+  }: InitializerOptions = {}
 ) {
   return async ({
     schema: originalSchema,
@@ -99,7 +99,7 @@ export function validatorTests(
     MaybePromise<Validator>,
     ExtraValidatorFactoryOptions
   >,
-  options?: ValidatorTestOptions,
+  options?: ValidatorTestOptions
 ) {
   const init = createInitializer(createValidator, options);
   describe("Validator", () => {
@@ -165,7 +165,7 @@ export function validatorTests(
           validator,
           { kind: "cat" },
           options,
-          schema,
+          schema
         );
         expect(index).toBe(0);
       });
@@ -191,7 +191,7 @@ export function validatorTests(
           validator,
           undefined,
           schema.oneOf as Schema[],
-          schema,
+          schema
         );
         expect(index).toBe(0);
       });
@@ -222,7 +222,7 @@ export function validatorTests(
           validator,
           { y: "hello" },
           schema.oneOf as Schema[],
-          schema,
+          schema
         );
         expect(index).toBe(1);
       });
@@ -257,7 +257,7 @@ export function validatorTests(
           merger,
           schema,
           { kind: "x", count: 3, label: "foo" },
-          schema.oneOf as Schema[],
+          schema.oneOf as Schema[]
         );
         expect(index).toBe(1);
       });
@@ -287,7 +287,7 @@ export function validatorTests(
           schema,
           {},
           schema.oneOf as Schema[],
-          1, // selectedOption
+          1 // selectedOption
         );
         expect(index).toBe(1);
       });
@@ -324,7 +324,7 @@ export function validatorTests(
           { kind: "rect", width: 100 },
           schema.oneOf as Schema[],
           0,
-          "kind",
+          "kind"
         );
         expect(index).toBe(1);
       });
@@ -512,7 +512,7 @@ export function formValueValidatorTests<T>(
     >,
     ExtraValidatorFactoryOptions
   >,
-  options: FormValueValidatorTestsOptions = {},
+  options: FormValueValidatorTestsOptions = {}
 ) {
   const init = createInitializer(createFormValueValidator, options);
   async function createValidator(params: Parameters<typeof init>[0]) {
@@ -522,14 +522,14 @@ export function formValueValidatorTests<T>(
           validator.validateFormValueAsync(
             signal,
             options.useOriginalSchema ? originalSchema : schema,
-            value,
+            value
           )
       : (_: AbortSignal, originalSchema: Schema, value: FormValue) =>
           Promise.resolve(
             validator.validateFormValue(
               options.useOriginalSchema ? originalSchema : schema,
-              value,
-            ),
+              value
+            )
           );
   }
 
@@ -546,7 +546,7 @@ export function formValueValidatorTests<T>(
 
       const { errors = [] } = await validate(signal, schema, ["foo"]);
       const error = errors.find(
-        ({ path }) => path.length === 1 && path[0] === 0,
+        ({ path }) => path.length === 1 && path[0] === 0
       );
       expect(error).toBeDefined();
     });

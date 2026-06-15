@@ -4,6 +4,7 @@ import {
   isFixedItems,
 } from "@/core/index.js";
 
+import type { ResolveFieldType } from "../fields.js";
 import {
   isFilesArray,
   isMultiSelect,
@@ -11,8 +12,6 @@ import {
   retrieveUiOption,
   type FormState,
 } from "../state/index.js";
-import type { ResolveFieldType } from "../fields.js";
-
 import "../extra-fields/enum.js";
 import "../extra-fields/multi-enum.js";
 import "../extra-fields/file.js";

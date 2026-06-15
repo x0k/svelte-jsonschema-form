@@ -1,7 +1,8 @@
 <script lang="ts">
-  import { cn } from "$lib/utils.js";
   import type { ComponentProps } from "svelte";
+
   import { Separator } from "$lib/components/ui/separator/index.js";
+  import { cn } from "$lib/utils.js";
 
   let {
     ref = $bindable(null),
@@ -16,7 +17,7 @@
   data-slot="button-group-separator"
   {orientation}
   class={cn(
-    "relative self-stretch bg-input data-[orientation=horizontal]:mx-px data-[orientation=horizontal]:w-auto data-[orientation=vertical]:my-px data-[orientation=vertical]:h-auto",
+    "bg-input relative self-stretch data-[orientation=horizontal]:mx-px data-[orientation=horizontal]:w-auto data-[orientation=vertical]:my-px data-[orientation=vertical]:h-auto",
     className
   )}
   {...restProps}

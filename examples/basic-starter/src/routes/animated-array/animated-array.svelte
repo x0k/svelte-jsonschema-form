@@ -1,8 +1,4 @@
 <script lang="ts">
-  import { flip } from "svelte/animate";
-  import { fade } from "svelte/transition";
-
-  import { SimpleKeyedArray } from "@sjsf/form/lib/keyed-array.svelte";
   import {
     getComponent,
     getFormContext,
@@ -12,11 +8,14 @@
     retrieveTranslate,
     createKeyedArrayDeriver,
   } from "@sjsf/form";
-  import { VirtualKeyedArray } from "@sjsf/form/fields/array/virtual-keyed-array";
   import {
     createArrayContext,
     setArrayContext,
   } from "@sjsf/form/fields/array/context.svelte";
+  import { VirtualKeyedArray } from "@sjsf/form/fields/array/virtual-keyed-array";
+  import { SimpleKeyedArray } from "@sjsf/form/lib/keyed-array.svelte";
+  import { flip } from "svelte/animate";
+  import { fade } from "svelte/transition";
 
   let {
     value = $bindable(),

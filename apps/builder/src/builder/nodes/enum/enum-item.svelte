@@ -1,19 +1,19 @@
 <script lang="ts">
-  import type { NodeType } from "meta/builder";
   import GripVertical from "@lucide/svelte/icons/grip-vertical";
+  import type { NodeType } from "meta/builder";
 
   import { Input } from "$lib/components/ui/input/index.js";
 
   import type { NodeProps } from "../../model.js";
-  import RemoveButton from "../../remove-button.svelte";
   import NodeContainer from "../../node-container.svelte";
   import NodeIssues from "../../node-issues.svelte";
+  import RemoveButton from "../../remove-button.svelte";
 
   let {
     node = $bindable(),
     draggable,
     unmount,
-    toValue
+    toValue,
   }: NodeProps<NodeType.EnumItem> & {
     toValue: (v: string) => string;
   } = $props();

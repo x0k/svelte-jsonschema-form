@@ -1,11 +1,11 @@
 <script lang="ts">
-  import type { Snippet } from "svelte";
   import { type WidgetType, WIDGET_NAMES } from "meta/builder";
+  import type { Snippet } from "svelte";
 
   import type { CustomizableNodeType } from "$lib/builder/index.js";
 
-  import { type NodeProps } from "./model.js";
   import type { BuilderDraggable } from "./context.svelte.js";
+  import { type NodeProps } from "./model.js";
   import NodeHeader from "./node-header.svelte";
 
   const {
@@ -14,7 +14,7 @@
     unmount,
     disablePadding,
     showRequired,
-    append = defaultAppend
+    append = defaultAppend,
   }: NodeProps<CustomizableNodeType> & {
     draggable: BuilderDraggable;
     disablePadding?: boolean;
@@ -24,7 +24,9 @@
 
 {#snippet defaultAppend()}
   {#if "widget" in node.options}
-    <span class="text-muted-foreground">{WIDGET_NAMES[node.options.widget as WidgetType]}</span>
+    <span class="text-muted-foreground"
+      >{WIDGET_NAMES[node.options.widget as WidgetType]}</span
+    >
   {/if}
 {/snippet}
 <NodeHeader {draggable} {unmount} {disablePadding} {append}>

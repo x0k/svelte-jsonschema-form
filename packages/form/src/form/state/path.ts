@@ -1,5 +1,5 @@
-import { getNodeByKeys, type Node } from "@/lib/trie.js";
 import type { RPath } from "@/core/index.js";
+import { getNodeByKeys, type Node } from "@/lib/trie.js";
 
 import {
   encodePseudoElement,
@@ -12,7 +12,6 @@ import {
   FORM_PATHS_TRIE_REF,
   internalRegisterFieldPath,
 } from "../internals.js";
-
 import type { FormState } from "./state.js";
 
 /**

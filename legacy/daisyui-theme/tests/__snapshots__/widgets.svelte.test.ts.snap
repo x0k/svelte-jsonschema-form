@@ -143,7 +143,7 @@ exports[`widgets > checkbox > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="list-inside list-disc text-error"
         id="root__errors"
         tabindex="-1"
       >
@@ -383,7 +383,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
         <!---->
         <!---->
         <label
-          class="label cursor-pointer gap-2 justify-start"
+          class="label cursor-pointer justify-start gap-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -404,7 +404,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
           </span>
         </label>
         <label
-          class="label cursor-pointer gap-2 justify-start"
+          class="label cursor-pointer justify-start gap-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -425,7 +425,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
           </span>
         </label>
         <label
-          class="label cursor-pointer gap-2 justify-start"
+          class="label cursor-pointer justify-start gap-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -446,7 +446,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
           </span>
         </label>
         <label
-          class="label cursor-pointer gap-2 justify-start"
+          class="label cursor-pointer justify-start gap-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -535,7 +535,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
         <!---->
         <!---->
         <label
-          class="label cursor-pointer gap-2 justify-start"
+          class="label cursor-pointer justify-start gap-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -555,7 +555,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
           </span>
         </label>
         <label
-          class="label cursor-pointer gap-2 justify-start"
+          class="label cursor-pointer justify-start gap-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -575,7 +575,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
           </span>
         </label>
         <label
-          class="label cursor-pointer gap-2 justify-start"
+          class="label cursor-pointer justify-start gap-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -595,7 +595,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
           </span>
         </label>
         <label
-          class="label cursor-pointer gap-2 justify-start"
+          class="label cursor-pointer justify-start gap-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -623,7 +623,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="list-inside list-disc text-error"
         id="root__errors"
         tabindex="-1"
       >
@@ -694,7 +694,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
         <!---->
         <!---->
         <label
-          class="label cursor-pointer gap-2 justify-start"
+          class="label cursor-pointer justify-start gap-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -714,7 +714,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
           </span>
         </label>
         <label
-          class="label cursor-pointer gap-2 justify-start"
+          class="label cursor-pointer justify-start gap-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -734,7 +734,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
           </span>
         </label>
         <label
-          class="label cursor-pointer gap-2 justify-start"
+          class="label cursor-pointer justify-start gap-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -754,7 +754,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
           </span>
         </label>
         <label
-          class="label cursor-pointer gap-2 justify-start"
+          class="label cursor-pointer justify-start gap-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -841,7 +841,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
         <!---->
         <!---->
         <label
-          class="label cursor-pointer gap-2 justify-start"
+          class="label cursor-pointer justify-start gap-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -862,7 +862,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
           </span>
         </label>
         <label
-          class="label cursor-pointer gap-2 justify-start"
+          class="label cursor-pointer justify-start gap-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -883,7 +883,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
           </span>
         </label>
         <label
-          class="label cursor-pointer gap-2 justify-start"
+          class="label cursor-pointer justify-start gap-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -904,7 +904,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
           </span>
         </label>
         <label
-          class="label cursor-pointer gap-2 justify-start"
+          class="label cursor-pointer justify-start gap-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -1083,7 +1083,7 @@ exports[`widgets > datePicker > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="list-inside list-disc text-error"
         id="root__errors"
         tabindex="-1"
       >
@@ -1398,7 +1398,7 @@ exports[`widgets > file > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="list-inside list-disc text-error"
         id="root__errors"
         tabindex="-1"
       >
@@ -1719,7 +1719,7 @@ exports[`widgets > multiFile > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="list-inside list-disc text-error"
         id="root__errors"
         tabindex="-1"
       >
@@ -2080,7 +2080,7 @@ exports[`widgets > multiSelect > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="list-inside list-disc text-error"
         id="root__errors"
         tabindex="-1"
       >
@@ -2444,7 +2444,7 @@ exports[`widgets > number > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="list-inside list-disc text-error"
         id="root__errors"
         tabindex="-1"
       >
@@ -2914,7 +2914,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="list-inside list-disc text-error"
         id="root__errors"
         tabindex="-1"
       >
@@ -3288,7 +3288,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
             aria-describedby="root__description root__help root__errors"
             aria-invalid="false"
             aria-label="foo"
-            class="join-item btn"
+            class="btn join-item"
             disabled=""
             id="root__0"
             name="root"
@@ -3300,7 +3300,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
             aria-describedby="root__description root__help root__errors"
             aria-invalid="false"
             aria-label="bar"
-            class="join-item btn"
+            class="btn join-item"
             disabled=""
             id="root__1"
             name="root"
@@ -3312,7 +3312,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
             aria-describedby="root__description root__help root__errors"
             aria-invalid="false"
             aria-label="fuzz"
-            class="join-item btn"
+            class="btn join-item"
             disabled=""
             id="root__2"
             name="root"
@@ -3324,7 +3324,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
             aria-describedby="root__description root__help root__errors"
             aria-invalid="false"
             aria-label="qux"
-            class="join-item btn"
+            class="btn join-item"
             disabled=""
             id="root__3"
             name="root"
@@ -3407,7 +3407,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
             aria-describedby="root__description root__help root__errors"
             aria-invalid="true"
             aria-label="foo"
-            class="join-item btn btn-error"
+            class="btn join-item btn-error"
             id="root__0"
             name="root"
             required=""
@@ -3418,7 +3418,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
             aria-describedby="root__description root__help root__errors"
             aria-invalid="true"
             aria-label="bar"
-            class="join-item btn btn-error"
+            class="btn join-item btn-error"
             id="root__1"
             name="root"
             required=""
@@ -3429,7 +3429,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
             aria-describedby="root__description root__help root__errors"
             aria-invalid="true"
             aria-label="fuzz"
-            class="join-item btn btn-error"
+            class="btn join-item btn-error"
             id="root__2"
             name="root"
             required=""
@@ -3440,7 +3440,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
             aria-describedby="root__description root__help root__errors"
             aria-invalid="true"
             aria-label="qux"
-            class="join-item btn btn-error"
+            class="btn join-item btn-error"
             id="root__3"
             name="root"
             required=""
@@ -3457,7 +3457,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="list-inside list-disc text-error"
         id="root__errors"
         tabindex="-1"
       >
@@ -3533,7 +3533,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
             aria-describedby="root__description root__help root__errors"
             aria-invalid="false"
             aria-label="foo"
-            class="join-item btn"
+            class="btn join-item"
             id="root__0"
             name="root"
             required=""
@@ -3544,7 +3544,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
             aria-describedby="root__description root__help root__errors"
             aria-invalid="false"
             aria-label="bar"
-            class="join-item btn"
+            class="btn join-item"
             id="root__1"
             name="root"
             required=""
@@ -3555,7 +3555,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
             aria-describedby="root__description root__help root__errors"
             aria-invalid="false"
             aria-label="fuzz"
-            class="join-item btn"
+            class="btn join-item"
             id="root__2"
             name="root"
             required=""
@@ -3566,7 +3566,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
             aria-describedby="root__description root__help root__errors"
             aria-invalid="false"
             aria-label="qux"
-            class="join-item btn"
+            class="btn join-item"
             id="root__3"
             name="root"
             required=""
@@ -3647,7 +3647,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             aria-describedby="root__description root__help root__errors"
             aria-invalid="false"
             aria-label="foo"
-            class="join-item btn"
+            class="btn join-item"
             id="root__0"
             name="root"
             readonly=""
@@ -3659,7 +3659,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             aria-describedby="root__description root__help root__errors"
             aria-invalid="false"
             aria-label="bar"
-            class="join-item btn"
+            class="btn join-item"
             id="root__1"
             name="root"
             readonly=""
@@ -3671,7 +3671,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             aria-describedby="root__description root__help root__errors"
             aria-invalid="false"
             aria-label="fuzz"
-            class="join-item btn"
+            class="btn join-item"
             id="root__2"
             name="root"
             readonly=""
@@ -3683,7 +3683,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             aria-describedby="root__description root__help root__errors"
             aria-invalid="false"
             aria-label="qux"
-            class="join-item btn"
+            class="btn join-item"
             id="root__3"
             name="root"
             readonly=""
@@ -3853,7 +3853,7 @@ exports[`widgets > range > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="list-inside list-disc text-error"
         id="root__errors"
         tabindex="-1"
       >
@@ -4220,7 +4220,7 @@ exports[`widgets > select > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="list-inside list-disc text-error"
         id="root__errors"
         tabindex="-1"
       >
@@ -4604,7 +4604,7 @@ exports[`widgets > switch > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="list-inside list-disc text-error"
         id="root__errors"
         tabindex="-1"
       >
@@ -4943,7 +4943,7 @@ exports[`widgets > text > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="list-inside list-disc text-error"
         id="root__errors"
         tabindex="-1"
       >
@@ -5260,7 +5260,7 @@ exports[`widgets > textarea > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="list-inside list-disc text-error"
         id="root__errors"
         tabindex="-1"
       >

@@ -23,7 +23,7 @@ export function pageSvelte({
   if (isKit) {
     sv.file(
       `${directory.kitRoutes}/demo/+page.svelte`,
-      addToDemoPage("sjsf", language),
+      addToDemoPage("sjsf", language)
     );
   }
 
@@ -42,6 +42,6 @@ export function pageSvelte({
       language,
       form,
       lib,
-    }),
+    })
   );
 }

@@ -4,10 +4,10 @@ sidebar:
   order: 70
 ---
 
-import { Code, LinkCard } from '@astrojs/starlight/components';
+import { Code, LinkCard } from "@astrojs/starlight/components";
 
-import { withBase } from '@/lib/base-path';
-import Demo from '@/components/demo.svelte';
+import { withBase } from "@/lib/base-path";
+import Demo from "@/components/demo.svelte";
 
 You can bind to the from element to control it programmatically:
 
@@ -15,4 +15,7 @@ You can bind to the from element to control it programmatically:
 
 Use the form methods to control and access the form state:
 
-<LinkCard title="Form Methods API Reference" href={withBase("/form/state/#methods")} />
+<LinkCard
+  title="Form Methods API Reference"
+  href={withBase("/form/state/#methods")}
+/>

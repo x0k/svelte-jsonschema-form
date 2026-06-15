@@ -1,12 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { toJSONSchema } from "zod/v4/core";
 import { z as zz } from "zod/v4";
 import { z as zm } from "zod/v4-mini";
+import { toJSONSchema } from "zod/v4/core";
 
 import { createAugmentedSchema as createAugmentedSchemaClassic } from "./classic/index.js";
 import { createAugmentedSchema as createAugmentedSchemaMini } from "./mini/index.js";
-import { createSchemaRegistry } from "./schemas-registry.js";
 import { createAugmentedId } from "./model.js";
+import { createSchemaRegistry } from "./schemas-registry.js";
 
 describe("SchemasRegistry", () => {
   it.each([

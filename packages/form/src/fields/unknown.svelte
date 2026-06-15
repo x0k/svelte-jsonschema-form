@@ -8,6 +8,7 @@
   } from "@/form/index.js";
 
   const {
+    // eslint-disable-next-line no-useless-assignment
     value = $bindable(),
     config,
     uiOption,

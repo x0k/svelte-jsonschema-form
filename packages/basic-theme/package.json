@@ -2,46 +2,26 @@
   "name": "@sjsf/basic-theme",
   "version": "3.6.0",
   "description": "Basic theme for svelte-jsonschema-form",
-  "license": "MIT",
   "keywords": [
-    "svelte",
     "jsonschema",
+    "svelte",
     "theme"
   ],
-  "type": "module",
+  "homepage": "https://x0k.github.io/svelte-jsonschema-form/",
+  "bugs": "https://github.com/x0k/svelte-jsonschema-form/issues",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/x0k/svelte-jsonschema-form.git",
+    "directory": "packages/basic-theme"
+  },
   "files": [
     "dist",
     "!app.*",
     "!dist/**/*.test.*",
     "!dist/**/*.spec.*"
   ],
-  "publishConfig": {
-    "provenance": true
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/x0k/svelte-jsonschema-form.git",
-    "directory": "packages/basic-theme"
-  },
-  "bugs": "https://github.com/x0k/svelte-jsonschema-form/issues",
-  "homepage": "https://x0k.github.io/svelte-jsonschema-form/",
-  "scripts": {
-    "dev": "vite",
-    "test": "vitest run --exclude '.svelte-kit/**'",
-    "build": "svelte-package && publint",
-    "check": "svelte-check --tsconfig ./tsconfig.json"
-  },
-  "peerDependencies": {
-    "@sjsf/form": "workspace:^3.5.0",
-    "svelte": "^5.34.8"
-  },
-  "devDependencies": {
-    "@picocss/pico": "catalog:",
-    "@sjsf/form": "workspace:*",
-    "svelte": "catalog:",
-    "theme-testing": "workspace:*",
-    "vite": "catalog:"
-  },
+  "type": "module",
   "types": "./dist/index.d.ts",
   "svelte": "./dist/index.js",
   "exports": {
@@ -67,5 +47,27 @@
       "types": "./dist/specs.d.ts",
       "svelte": "./dist/specs.js"
     }
+  },
+  "publishConfig": {
+    "provenance": true
+  },
+  "scripts": {
+    "dev": "vite",
+    "test": "vitest run --exclude '.svelte-kit/**'",
+    "build": "svelte-package && publint",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check ."
+  },
+  "devDependencies": {
+    "@picocss/pico": "catalog:",
+    "@sjsf/form": "workspace:*",
+    "svelte": "catalog:",
+    "theme-testing": "workspace:*",
+    "vite": "catalog:"
+  },
+  "peerDependencies": {
+    "@sjsf/form": "workspace:^3.5.0",
+    "svelte": "^5.34.8"
   }
 }

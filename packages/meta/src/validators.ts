@@ -1,13 +1,13 @@
+import _ataPackageJson from "@sjsf-lab/ata-validator/package.json" with { type: "json" };
+import _hyperjumpPackageJson from "@sjsf-lab/hyperjump-validator/package.json" with { type: "json" };
 import _ajv8PackageJson from "@sjsf/ajv8-validator/package.json" with { type: "json" };
 import _cfworkerPackageJson from "@sjsf/cfworker-validator/package.json" with { type: "json" };
 import _schemasafePackageJson from "@sjsf/schemasafe-validator/package.json" with { type: "json" };
-import _zod4PackageJson from "@sjsf/zod4-validator/package.json" with { type: "json" };
 import _valibotPackageJson from "@sjsf/valibot-validator/package.json" with { type: "json" };
-import _hyperjumpPackageJson from "@sjsf-lab/hyperjump-validator/package.json" with { type: "json" };
-import _ataPackageJson from "@sjsf-lab/ata-validator/package.json" with { type: "json" };
+import _zod4PackageJson from "@sjsf/zod4-validator/package.json" with { type: "json" };
 
-import { type Package, fromPackageJson } from "./package.ts";
 import { formPackage } from "./form.ts";
+import { type Package, fromPackageJson } from "./package.ts";
 
 const VALIDATORS = [
   "ajv8",
@@ -63,7 +63,7 @@ const PRECOMPILED_ONLY_VALIDATORS = [
 ] satisfies PrecompiledValidator[];
 
 const PRECOMPILED_ONLY_VALIDATORS_SET = new Set<Validator>(
-  PRECOMPILED_ONLY_VALIDATORS,
+  PRECOMPILED_ONLY_VALIDATORS
 );
 
 export type PrecompiledOnlyValidator =
@@ -81,14 +81,14 @@ const INTERNAL_VALIDATORS_SET = new Set<Validator>(INTERNAL_VALIDATORS);
 
 export type InternalValidator = (typeof INTERNAL_VALIDATORS)[number];
 
-const INTERNAL_VALIDATOR_MODULES = [
+const _INTERNAL_VALIDATOR_MODULES = [
   "precompile",
   "file-size",
   "omit-extra-data",
 ] as const;
 
 export type InternalValidatorModule =
-  (typeof INTERNAL_VALIDATOR_MODULES)[number];
+  (typeof _INTERNAL_VALIDATOR_MODULES)[number];
 
 export type ExternalValidator = Exclude<Validator, InternalValidator>;
 
@@ -127,49 +127,49 @@ export function isValidator(v: string): v is Validator {
 }
 
 export function isJsonSchemaValidator(
-  validator: Validator,
+  validator: Validator
 ): validator is JsonSchemaValidator {
   return JSON_SCHEMA_VALIDATORS_SET.has(validator);
 }
 
 export function isSchemaValidator(
-  validator: Validator,
+  validator: Validator
 ): validator is SchemaValidator {
   return SCHEMA_VALIDATORS_SET.has(validator);
 }
 
 export function isInternalValidator(
-  validator: Validator,
+  validator: Validator
 ): validator is InternalValidator {
   return INTERNAL_VALIDATORS_SET.has(validator);
 }
 
 export function isPrecompiledValidator(
-  validator: Validator,
+  validator: Validator
 ): validator is PrecompiledValidator {
   return PRECOMPILED_VALIDATORS_SET.has(validator);
 }
 
 export function isPrecompiledOnlyValidator(
-  validator: Validator,
+  validator: Validator
 ): validator is PrecompiledOnlyValidator {
   return PRECOMPILED_ONLY_VALIDATORS_SET.has(validator);
 }
 
 export function isLabValidator(
-  validator: Validator,
+  validator: Validator
 ): validator is LabValidator {
   return LAB_VALIDATORS_SET.has(validator);
 }
 
 export function externalValidatorPackage(
-  validator: ExternalValidator,
+  validator: ExternalValidator
 ): Package {
   return EXTERNAL_VALIDATOR_PACKAGES[validator];
 }
 
 export function internalValidatorSubPath(
-  validator: InternalValidator | InternalValidatorModule,
+  validator: InternalValidator | InternalValidatorModule
 ) {
   return `${formPackage.name}/validators/${validator}`;
 }
@@ -178,17 +178,17 @@ export function precompiledValidatorSubPath(validator: PrecompiledValidator) {
   return `${externalValidatorPackage(validator).name}/precompile`;
 }
 
-const HYPERJUMP_LOCALES = ["en-us"] as const;
+const _HYPERJUMP_LOCALES = ["en-us"] as const;
 
-type HyperjumpLocale = (typeof HYPERJUMP_LOCALES)[number];
+type HyperjumpLocale = (typeof _HYPERJUMP_LOCALES)[number];
 
 export function hyperjumpValidatorLocalizationSubPath(locale: HyperjumpLocale) {
   return `${externalValidatorPackage("hyperjump").name}/localizations/${locale}`;
 }
 
-const ZOD4_VERSIONS = ["classic", "mini"] as const;
+const _ZOD4_VERSIONS = ["classic", "mini"] as const;
 
-type Zod4Version = (typeof ZOD4_VERSIONS)[number];
+type Zod4Version = (typeof _ZOD4_VERSIONS)[number];
 
 export function zod4ValidatorVersionSubPath(v: Zod4Version) {
   return `${externalValidatorPackage("zod4").name}/${v}`;

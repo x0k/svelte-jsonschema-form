@@ -17,8 +17,8 @@
 
   import Button from "@/components/button.svelte";
 
-  import ExampleCards from "./example-cards.svelte";
   import CatalogFilter from "./catalog-filter.svelte";
+  import ExampleCards from "./example-cards.svelte";
 
   let platform: SandboxPlatform = $state.raw(SandboxPlatform.StackBlitz);
   let theme: CodegenThemeOrSubTheme = $state.raw("basic");

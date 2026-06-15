@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { chain, fromFactories, fromRecord } from "@sjsf/form/lib/resolver";
   import { Content, createForm, setFormContext, type Config } from "@sjsf/form";
+  import { chain, fromFactories, fromRecord } from "@sjsf/form/lib/resolver";
 
   import { getDemoContext } from "@/lib/demo";
 

@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { getValueByKeys } from "@sjsf/form/lib/trie";
   import type { ComponentProps } from "@sjsf/form";
+  import { getValueByKeys } from "@sjsf/form/lib/trie";
 
   import { getTabsContext } from "./context.svelte";
 

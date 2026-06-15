@@ -1,4 +1,4 @@
-import type { Schema } from '@sjsf/form';
+import type { Schema } from "@sjsf/form";
 
 export const schema = {
   title: "Multi page form",

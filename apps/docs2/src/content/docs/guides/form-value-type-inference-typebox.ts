@@ -1,5 +1,5 @@
-import { Type, type Static } from "typebox";
 import { createForm, type UiSchema } from "@sjsf/form";
+import { Type, type Static } from "typebox";
 
 import * as defaults from "@/lib/sjsf/defaults";
 

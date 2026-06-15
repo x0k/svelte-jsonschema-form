@@ -4,11 +4,13 @@
   import Type from "typebox";
 
   import * as defaults from "$lib/sjsf/defaults";
-  import { StandardSchemaV1 } from '$lib/standard';
+  import { StandardSchemaV1 } from "$lib/standard";
 
-  const schema = StandardSchemaV1(Type.Object({
-    hello: Type.String(),
-  }));
+  const schema = StandardSchemaV1(
+    Type.Object({
+      hello: Type.String(),
+    })
+  );
 
   const form = createForm({
     ...defaults,

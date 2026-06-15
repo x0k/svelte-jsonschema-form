@@ -727,7 +727,6 @@ export function createMerger({
         continue;
       }
       const merge = MERGERS[rKey] ?? defaultMerger;
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       target[rKey] = merge(lv as never, rv as never);
     }
     for (const assign of assigners) {

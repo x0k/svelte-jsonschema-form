@@ -1,18 +1,18 @@
 <script lang="ts">
+  import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
   import { fromRecord } from "@sjsf/form/lib/resolver";
   import { formatFileSize } from "@sjsf/form/validators/file-size";
-  import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
-  import { BitsConfig } from "bits-ui";
   import { Willow, WillowDark } from "@svar-ui/svelte-core";
+  import { BitsConfig } from "bits-ui";
+  import { BUILDER_VALIDATORS } from "meta/builder";
   import {
     PLAYGROUND_ICON_SET_STYLES,
     PLAYGROUND_ICON_SETS,
     PLAYGROUND_RESOLVERS,
     PLAYGROUND_SJSF_THEME_STYLES,
     PLAYGROUND_SJSF_THEMES,
-    type PlaygroundTheme
+    type PlaygroundTheme,
   } from "meta/playground";
-  import { BUILDER_VALIDATORS } from "meta/builder";
 
   import { ShadowHost } from "$lib/components/shadow/index.js";
   import * as defaults from "$lib/sjsf/defaults.js";
@@ -29,13 +29,13 @@
   const options = {
     getRootNode() {
       return rootNode;
-    }
+    },
   };
 
   const portalOptions = {
     get target() {
       return portalEl;
-    }
+    },
   };
 
   const form = createForm({
@@ -71,11 +71,11 @@
       skeleton4DatePicker: options,
       skeleton4DatePickerPortal: portalOptions,
       skeleton4DateRangePicker: options,
-      skeleton4DateRangePickerPortal: portalOptions
+      skeleton4DateRangePickerPortal: portalOptions,
     }),
     onSubmit: console.log,
     onSubmitError: console.warn,
-    onSubmissionFailure: console.error
+    onSubmissionFailure: console.error,
   });
 
   function withFile(_: string, value: any) {
@@ -113,7 +113,9 @@
             novalidate={!ctx.html5Validation}
             class={themeManager.darkOrLight}
             style="padding: 1rem; display: flex; flex-direction: column; gap: 1rem;"
-            data-theme={ctx.theme.startsWith("skeleton4" satisfies PlaygroundTheme)
+            data-theme={ctx.theme.startsWith(
+              "skeleton4" satisfies PlaygroundTheme
+            )
               ? "cerberus"
               : themeManager.darkOrLight}
           />

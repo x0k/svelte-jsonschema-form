@@ -24,7 +24,7 @@ export function sandboxPlatformLabel(platform: SandboxPlatform): string {
 }
 
 export function sandboxPlatformIcon(
-  platform: SandboxPlatform,
+  platform: SandboxPlatform
 ): "external-link" | "download" {
   switch (platform) {
     case SandboxPlatform.Local:

@@ -5,7 +5,6 @@
 // Modifications made by Roman Krasilnikov.
 
 import type { FluentBundle, FluentVariable } from "@fluent/bundle";
-
 import type {
   Json as HyperjumpJson,
   ContainsRange,

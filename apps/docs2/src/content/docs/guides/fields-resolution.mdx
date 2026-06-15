@@ -4,10 +4,10 @@ sidebar:
   order: 3
 ---
 
-import { Code } from '@astrojs/starlight/components'
+import { Code } from "@astrojs/starlight/components";
 
-import basicResolverCode from 'pkgs/form/src/form/resolvers/basic?raw'
-import compatResolverCode from 'pkgs/form/src/form/resolvers/compat?raw'
+import basicResolverCode from "pkgs/form/src/form/resolvers/basic?raw";
+import compatResolverCode from "pkgs/form/src/form/resolvers/compat?raw";
 
 To determine which field to use to display your JSON schema,
 the form uses `resolver` function.
@@ -15,7 +15,7 @@ the form uses `resolver` function.
 Let's take a look at the `basic` resolver implementation
 (`@sjsf/form/resolvers/basic`):
 
-<Code code={basicResolverCode} lang='typescript' />
+<Code code={basicResolverCode} lang="typescript" />
 
 As you can see `resolver` just selects the field according to the schema type.
 
@@ -25,8 +25,8 @@ Suppose you have the following scheme:
 
 ```ts
 const schema: Schema = {
-  enum: ["foo", "bar", "baz"]
-}
+  enum: ["foo", "bar", "baz"],
+};
 ```
 
 For this scheme, the `basic` resolver will select `stringField`,
@@ -42,8 +42,8 @@ const uiSchema: UiSchema = {
     stringField: "enumField",
     // You can also replace `selectWidget` with `radioWidget`
     // selectWidget: "radioWidget"
-  }
-}
+  },
+};
 ```
 
 Or you can modify `resolver` so that `enumField` is always used
@@ -64,4 +64,4 @@ modify it to suit your needs.
 As an example (or temporary solution) you can use the `compat` resolver
 (`@sjsf/form/resolvers/compat`) that reproduces resolution logic from v1:
 
-<Code code={compatResolverCode} lang='typescript' />
+<Code code={compatResolverCode} lang="typescript" />

@@ -1,14 +1,13 @@
 import { transforms } from "@sveltejs/sv-utils";
 
 import { formPackage } from "../form.ts";
-
+import type { FormDefinition } from "./form.ts";
 import type {
   CodegenThemeOrSubTheme,
   CodegenValidator,
   Language,
   PathFactory,
 } from "./model.ts";
-import type { FormDefinition } from "./form.ts";
 
 export interface PageOptions {
   lib: PathFactory;

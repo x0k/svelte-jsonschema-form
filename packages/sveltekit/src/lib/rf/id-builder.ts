@@ -1,11 +1,3 @@
-import type { Ref } from '@sjsf/form/lib/svelte.svelte';
-import { isSchemaObject } from '@sjsf/form/lib/json-schema';
-import {
-  getSchemaDefinitionByPath,
-  isMultiSelect,
-  isSchemaObjectValue,
-  type SchemaDefinition
-} from '@sjsf/form/core';
 import {
   decodePseudoElement,
   type FieldPath,
@@ -14,10 +6,18 @@ import {
   type FormMerger,
   type FormValue,
   type Schema,
-  type Validator
-} from '@sjsf/form';
+  type Validator,
+} from "@sjsf/form";
+import {
+  getSchemaDefinitionByPath,
+  isMultiSelect,
+  isSchemaObjectValue,
+  type SchemaDefinition,
+} from "@sjsf/form/core";
+import { isSchemaObject } from "@sjsf/form/lib/json-schema";
+import type { Ref } from "@sjsf/form/lib/svelte.svelte";
 
-import { encode } from './internal/codec.js';
+import { encode } from "./internal/codec.js";
 
 export interface FormIdBuilderOptions {
   schema: Schema;
@@ -29,7 +29,7 @@ export interface FormIdBuilderOptions {
   isPrivate?: (path: FieldPath) => boolean;
 }
 
-export const DEFAULT_PSEUDO_PREFIX = '::';
+export const DEFAULT_PSEUDO_PREFIX = "::";
 
 export function createFormIdBuilder({
   schema: rootSchema,
@@ -38,7 +38,7 @@ export function createFormIdBuilder({
   merger,
   valueRef,
   pseudoPrefix = DEFAULT_PSEUDO_PREFIX,
-  isPrivate = () => false
+  isPrivate = () => false,
 }: FormIdBuilderOptions): FormIdBuilder {
   const parts: string[] = [];
   const encodedIdPrefix = encode(idPrefix);
@@ -47,15 +47,15 @@ export function createFormIdBuilder({
     fromPath: (path) => {
       parts.length = 0;
       if (isPrivate?.(path)) {
-        parts.push('_');
+        parts.push("_");
       }
       let i = path.length - 1;
       let pseudo: FieldPseudoElement | undefined;
       while (i >= 0 && (pseudo = decodePseudoElement(path[i])) !== undefined) {
         parts.push(
           encodedPseudoPrefix,
-          typeof pseudo === 'string' ? encode(pseudo) : pseudo.toString(),
-          '.'
+          typeof pseudo === "string" ? encode(pseudo) : pseudo.toString(),
+          "."
         );
         i--;
       }
@@ -72,12 +72,16 @@ export function createFormIdBuilder({
           [p],
           currentValue
         );
-        if (typeof p === 'string') {
-          parts.push('.', encode(p));
-          currentValue = isSchemaObjectValue(currentValue) ? currentValue[p] : undefined;
+        if (typeof p === "string") {
+          parts.push(".", encode(p));
+          currentValue = isSchemaObjectValue(currentValue)
+            ? currentValue[p]
+            : undefined;
         } else {
-          parts.push('[', p.toString(), ']');
-          currentValue = Array.isArray(currentValue) ? currentValue[p] : undefined;
+          parts.push("[", p.toString(), "]");
+          currentValue = Array.isArray(currentValue)
+            ? currentValue[p]
+            : undefined;
         }
       }
       // no pseudo elements
@@ -87,20 +91,20 @@ export function createFormIdBuilder({
           isSchemaObject(currentSchema) &&
           isMultiSelect(validator, merger, currentSchema, rootSchema)
         ) {
-          parts.push('[]');
+          parts.push("[]");
         }
       } else {
-        parts.push('.', encodedPseudoPrefix);
+        parts.push(".", encodedPseudoPrefix);
       }
-      return parts.join('');
-    }
+      return parts.join("");
+    },
   };
 }
 
 export function createOptionIndexDecoder(encodedPseudoPrefix: string) {
   return (value: string): number | undefined => {
     if (value.startsWith(encodedPseudoPrefix)) {
-      const dotIndex = value.indexOf('.', encodedPseudoPrefix.length + 1);
+      const dotIndex = value.indexOf(".", encodedPseudoPrefix.length + 1);
       if (dotIndex >= 0) {
         const n = Number(value.slice(encodedPseudoPrefix.length, dotIndex));
         if (Number.isInteger(n)) {

@@ -9,7 +9,7 @@ export function getChangedMergerOptionsCount(
     | "constAsDefault"
     | "emptyObjectFields"
     | "mergeDefaultsIntoFormData"
-  >,
+  >
 ): number {
   let count = 0;
   if (options.arrayMinItemsPopulate !== "all") count++;

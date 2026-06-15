@@ -1,5 +1,4 @@
 import { definitions } from "../../theme/definitions.js";
-
 import MultiEnum from "./multi-enum.svelte";
 import "./multi-enum.svelte";
 

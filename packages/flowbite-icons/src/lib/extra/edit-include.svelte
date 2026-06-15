@@ -1,18 +1,18 @@
 <script lang="ts" module>
-	import PenOutline from 'flowbite-svelte-icons/PenOutline.svelte';
-	import '@sjsf/form/extra-labels/edit';
+  import PenOutline from "flowbite-svelte-icons/PenOutline.svelte";
+  import "@sjsf/form/extra-labels/edit";
 
-	declare module '../definitions.js' {
-		interface ExtraIcons {
-			edit: {};
-		}
-	}
+  declare module "../definitions.js" {
+    interface ExtraIcons {
+      edit: {};
+    }
+  }
 
-	import { definitions } from '../definitions.js';
+  import { definitions } from "../definitions.js";
 
-	definitions.edit = edit;
+  definitions.edit = edit;
 </script>
 
 {#snippet edit()}
-	<PenOutline />
+  <PenOutline />
 {/snippet}

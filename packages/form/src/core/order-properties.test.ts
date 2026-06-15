@@ -48,21 +48,21 @@ describe("orderProperties()", () => {
   it("throws error when * is missing and there is one more prop than ordered", () => {
     const properties = fix(["foo", "bar", "baz"]);
     const order = ["foo", "baz"];
-    expect(() => orderProperties(properties, order)).toThrowError(
+    expect(() => orderProperties(properties, order)).toThrow(
       "uiSchema order list does not contain property 'bar'"
     );
   });
   it("throws error when * is missing and there are a few more props than ordered", () => {
     const properties = fix(["foo", "bar", "baz"]);
     const order = ["foo"];
-    expect(() => orderProperties(properties, order)).toThrowError(
+    expect(() => orderProperties(properties, order)).toThrow(
       "uiSchema order list does not contain properties 'bar', 'baz'"
     );
   });
   it("throws error when there are multiple *s in order", () => {
     const properties = fix(["foo", "bar", "baz"]);
     const order = ["*", "foo", "*"];
-    expect(() => orderProperties(properties, order)).toThrowError(
+    expect(() => orderProperties(properties, order)).toThrow(
       "uiSchema order list contains more than one wildcard item"
     );
   });

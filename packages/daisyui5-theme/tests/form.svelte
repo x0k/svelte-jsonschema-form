@@ -1,12 +1,13 @@
 <script lang="ts">
-	import { BasicForm, createForm, type FormOptions } from '@sjsf/form';
+  import { BasicForm, createForm, type FormOptions } from "@sjsf/form";
 
-	import '../src/lib/extra-widgets/checkboxes-include.js';
-	import '../src/app.css';
+  import "../src/lib/extra-widgets/checkboxes-include.js";
 
-	const props: FormOptions<any> = $props();
+  import "../src/app.css";
 
-	const form = createForm(props);
+  const props: FormOptions<any> = $props();
+
+  const form = createForm(props);
 </script>
 
 <BasicForm {form} />

@@ -1,9 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { getAbortSignal, onMount, tick, untrack, hydratable } from 'svelte';
-import type { StandardSchemaV1 } from '@standard-schema/spec';
-import type { RemoteForm, RemoteFormInput } from '@sveltejs/kit';
-import type { DeepPartial } from '@sjsf/form/lib/types';
-import { isRecordEmpty } from '@sjsf/form/lib/object';
 import {
   DEFAULT_ID_PREFIX,
   isUiSchemaRef,
@@ -15,35 +9,40 @@ import {
   type FormState,
   type ResolvableUiOptions,
   type UiSchema,
-  type UiSchemaRoot
-} from '@sjsf/form';
+  type UiSchemaRoot,
+} from "@sjsf/form";
+import { isRecordEmpty } from "@sjsf/form/lib/object";
+import type { DeepPartial } from "@sjsf/form/lib/types";
+import type { StandardSchemaV1 } from "@standard-schema/spec";
+import type { RemoteForm, RemoteFormInput } from "@sveltejs/kit";
+import { getAbortSignal, onMount, tick, untrack, hydratable } from "svelte";
 
-import { FORM_DATA_FILE_PREFIX, JSON_CHUNKS_KEY } from '$lib/model.js';
-import { chunks } from '$lib/internal.js';
+import { chunks } from "$lib/internal.js";
+import { FORM_DATA_FILE_PREFIX, JSON_CHUNKS_KEY } from "$lib/model.js";
 
-import { encode } from '../internal/codec.js';
+import { encode } from "../internal/codec.js";
 import {
   createSvelteKitDataParser,
-  type SvelteKitDataParserOptions
-} from '../internal/sveltekit-data-parser.js';
+  type SvelteKitDataParserOptions,
+} from "../internal/sveltekit-data-parser.js";
 
 export function createClientValidator<T>(form: FormState<T>) {
   return {
-    '~standard': {
+    "~standard": {
       version: 1,
-      vendor: 'svelte-jsonschema-form',
+      vendor: "svelte-jsonschema-form",
       validate(): StandardSchemaV1.Result<void> {
         const result = validate(form);
         if (result.errors) {
           return {
-            issues: result.errors
+            issues: result.errors,
           };
         }
         return {
-          value: undefined
+          value: undefined,
         };
-      }
-    }
+      },
+    },
   } satisfies StandardSchemaV1<RemoteFormInput, void>;
 }
 
@@ -52,8 +51,8 @@ const CHUNK_KEY = `${JSON_CHUNKS_KEY}[]`;
 function createDefaultReplacer(formElement: HTMLFormElement) {
   const seen = new Set<string>();
   function fileInput(name: string, value: File) {
-    const fileInput = document.createElement('input');
-    fileInput.type = 'file';
+    const fileInput = document.createElement("input");
+    fileInput.type = "file";
     fileInput.name = name;
     const dt = new DataTransfer();
     dt.items.add(value);
@@ -75,18 +74,20 @@ function createDefaultReplacer(formElement: HTMLFormElement) {
 
 export interface ConnectOptions extends SvelteKitDataParserOptions {
   /** By default, handles conversion of `File` */
-  createReplacer?: (formElement: HTMLFormElement) => (key: string, value: any) => any;
+  createReplacer?: (
+    formElement: HTMLFormElement
+  ) => (key: string, value: any) => any;
   /** @default 500000 */
   jsonChunkSize?: number;
 }
 
-type RemoteFieldsContainer = Pick<RemoteForm<any, any>, 'fields'>;
+type RemoteFieldsContainer = Pick<RemoteForm<any, any>, "fields">;
 
-const HYDRATABLE_KEY_PREFIX = '__sjsf_sveltekit_h__';
+const HYDRATABLE_KEY_PREFIX = "__sjsf_sveltekit_h__";
 
 export async function connect<
   T,
-  F extends RemoteForm<any, any> | ReturnType<RemoteForm<any, any>['enhance']>
+  F extends RemoteForm<any, any> | ReturnType<RemoteForm<any, any>["enhance"]>,
 >(
   remoteForm: F,
   options: FormOptions<T> &
@@ -96,7 +97,7 @@ export async function connect<
   let formElement: HTMLFormElement;
   let originalFormElement: HTMLFormElement;
   const enhancedRemoteForm =
-    'enhance' in remoteForm
+    "enhance" in remoteForm
       ? remoteForm.enhance(async ({ submit }) => {
           await submit();
           if (fields.allIssues()) {
@@ -113,8 +114,8 @@ export async function connect<
         `The remote form specification was changed; only one custom symbol was expected, but got "${symbols.length}"`
       );
     }
-    formElement = document.createElement('form');
-    formElement.style.display = 'none';
+    formElement = document.createElement("form");
+    formElement.style.display = "none";
     const attach = enhancedRemoteForm[symbols[0]];
     return attach(formElement);
   });
@@ -124,13 +125,13 @@ export async function connect<
   const idPrefix = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX);
 
   const fields = $derived.by(() => {
-    if ('fields' in remoteForm) {
+    if ("fields" in remoteForm) {
       return remoteForm.fields;
-    } else if ('fields' in options) {
+    } else if ("fields" in options) {
       return options.fields;
     } else {
       throw new Error(
-        '`remoteForm.fields` is undefined, if you use `enhance`, pass `fields` through the form options'
+        "`remoteForm.fields` is undefined, if you use `enhance`, pass `fields` through the form options"
       );
     }
   });
@@ -140,7 +141,11 @@ export async function connect<
     if (isRecordEmpty(formValue)) {
       return undefined;
     }
-    return (await dataParser(getAbortSignal(), idPrefix, formValue)) as DeepPartial<T>;
+    return (await dataParser(
+      getAbortSignal(),
+      idPrefix,
+      formValue
+    )) as DeepPartial<T>;
   }
   // svelte-ignore await_waterfall
   const initialValue = $derived(
@@ -148,15 +153,17 @@ export async function connect<
   );
 
   function hiddenInput(name: string, value: string) {
-    const input = document.createElement('input');
-    input.type = 'hidden';
+    const input = document.createElement("input");
+    input.type = "hidden";
     input.name = name;
     input.value = value;
     formElement.append(input);
   }
 
   const jsonChunkSize = $derived(options.jsonChunkSize ?? 500000);
-  const createReplacer = $derived(options.createReplacer ?? createDefaultReplacer);
+  const createReplacer = $derived(
+    options.createReplacer ?? createDefaultReplacer
+  );
 
   const uiSchema: UiSchemaRoot = $derived.by(() => {
     let schema = options.uiSchema;
@@ -166,49 +173,51 @@ export async function connect<
       }
       if (schema === undefined) {
         return {
-          'ui:options': {
+          "ui:options": {
             form: {
               get action() {
                 return remoteForm.action;
               },
               get method() {
                 return remoteForm.method;
-              }
-            }
-          }
+              },
+            },
+          },
         };
       }
       return new Proxy(schema, {
         get(t, p, r) {
           const value: UiSchema[keyof UiSchema] = Reflect.get(t, p, r);
-          return p === 'ui:options'
-            ? new Proxy((value as UiSchema['ui:options']) ?? {}, {
+          return p === "ui:options"
+            ? new Proxy((value as UiSchema["ui:options"]) ?? {}, {
                 get(t, p, r) {
                   const resolvableOption: ResolvableUiOptions[keyof ResolvableUiOptions] =
                     Reflect.get(t, p, r);
-                  if (p !== 'form') {
+                  if (p !== "form") {
                     return resolvableOption;
                   }
                   const resolvableFormOption =
-                    (resolvableOption as ResolvableUiOptions['form']) ?? {};
+                    (resolvableOption as ResolvableUiOptions["form"]) ?? {};
                   const formOptionValue =
-                    resolveUiOptionValue(options.uiOptionsRegistry ?? {}, resolvableFormOption) ??
-                    {};
+                    resolveUiOptionValue(
+                      options.uiOptionsRegistry ?? {},
+                      resolvableFormOption
+                    ) ?? {};
                   return new Proxy(formOptionValue, {
                     get(t, p, r) {
                       switch (p) {
-                        case 'action':
-                        case 'method':
+                        case "action":
+                        case "method":
                           return remoteForm[p];
                         default:
                           return Reflect.get(t, p, r);
                       }
-                    }
+                    },
                   });
-                }
+                },
               })
             : value;
-        }
+        },
       });
     });
   });
@@ -226,7 +235,7 @@ export async function connect<
       },
       onSubmit(value, e) {
         if (!(e.target instanceof HTMLFormElement)) {
-          throw new Error('HTMLFormElement expected as submit event target');
+          throw new Error("HTMLFormElement expected as submit event target");
         }
         originalFormElement = e.target;
         formElement.enctype = originalFormElement.enctype;
@@ -248,7 +257,7 @@ export async function connect<
         formElement.remove();
         formElement.replaceChildren();
         options.onSubmit?.(value, e);
-      }
+      },
     } satisfies Partial<FormOptions<T>>,
     options
   );

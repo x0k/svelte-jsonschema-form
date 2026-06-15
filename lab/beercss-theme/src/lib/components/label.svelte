@@ -1,15 +1,19 @@
 <script lang="ts">
-	import { getFormContext, labelAttributes, type ComponentProps } from '@sjsf/form';
-	import '@sjsf/basic-theme/components/label.svelte';
+  import {
+    getFormContext,
+    labelAttributes,
+    type ComponentProps,
+  } from "@sjsf/form";
+  import "@sjsf/basic-theme/components/label.svelte";
 
-	const { title, config }: ComponentProps['label'] = $props();
+  const { title, config }: ComponentProps["label"] = $props();
 
-	const ctx = getFormContext();
+  const ctx = getFormContext();
 </script>
 
-<label {...labelAttributes(ctx, config, 'labelAttributes', {})}>
-	{title}
-	{#if config.required}
-		*
-	{/if}
+<label {...labelAttributes(ctx, config, "labelAttributes", {})}>
+  {title}
+  {#if config.required}
+    *
+  {/if}
 </label>

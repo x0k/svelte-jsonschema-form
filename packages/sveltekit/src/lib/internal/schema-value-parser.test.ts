@@ -1,33 +1,43 @@
-import { beforeEach, describe, expect, it } from 'vitest';
-import { DEFAULT_ID_PREFIX, SJSF_ID_PREFIX, type Schema } from '@sjsf/form';
-import { createMerger } from '@sjsf/form/mergers/modern';
-import { createFormValidator } from '@sjsf/ajv8-validator';
+import { createFormValidator } from "@sjsf/ajv8-validator";
+import { DEFAULT_ID_PREFIX, SJSF_ID_PREFIX, type Schema } from "@sjsf/form";
+import { createMerger } from "@sjsf/form/mergers/modern";
+import { beforeEach, describe, expect, it } from "vitest";
 
-import type { Entries } from '$lib/model.js';
+import type { Entries } from "$lib/model.js";
 
-import { createOptionIndexDecoder } from '../id-builder.js';
-import { createEnumItemDecoder, createFormDataEntryConverter } from './convert-form-data-entry.js';
-import { parseSchemaValue, type SchemaValueParserOptions } from './schema-value-parser.js';
-import { createCodec } from './codec.js';
+import { createOptionIndexDecoder } from "../id-builder.js";
+import { createCodec } from "./codec.js";
+import {
+  createEnumItemDecoder,
+  createFormDataEntryConverter,
+} from "./convert-form-data-entry.js";
+import {
+  parseSchemaValue,
+  type SchemaValueParserOptions,
+} from "./schema-value-parser.js";
 
 const opts = ({
   schema = {},
   entries = [],
   uiSchema = {},
   idPrefix = DEFAULT_ID_PREFIX,
-  idSeparator = '.',
-  idIndexSeparator = '@',
-  idPseudoSeparator = '::',
+  idSeparator = ".",
+  idIndexSeparator = "@",
+  idPseudoSeparator = "::",
   validator = createFormValidator(),
   merger = createMerger(),
-  codec = createCodec({ sequencesToEncode: [idSeparator, idIndexSeparator, idPseudoSeparator] }),
+  codec = createCodec({
+    sequencesToEncode: [idSeparator, idIndexSeparator, idPseudoSeparator],
+  }),
   convertEntry = createFormDataEntryConverter({
     merger,
     validator,
     rootSchema: schema,
     rootUiSchema: uiSchema,
-    enumItemDecoder: createEnumItemDecoder(createOptionIndexDecoder(idPseudoSeparator))
-  })
+    enumItemDecoder: createEnumItemDecoder(
+      createOptionIndexDecoder(idPseudoSeparator)
+    ),
+  }),
 }: Partial<
   SchemaValueParserOptions<FormDataEntryValue>
 > = {}): SchemaValueParserOptions<FormDataEntryValue> => ({
@@ -41,1230 +51,1273 @@ const opts = ({
   validator,
   merger,
   convertEntry,
-  codec
+  codec,
 });
 
-describe('parseSchemaValue', async () => {
+describe("parseSchemaValue", async () => {
   let c: AbortController;
 
   beforeEach(() => {
     c = new AbortController();
   });
 
-  it('Should parse empty entries', async () => {
+  it("Should parse empty entries", async () => {
     await expect(parseSchemaValue(c.signal, opts())).resolves.toBeUndefined();
   });
-  it('Should parse root value', async () => {
+  it("Should parse root value", async () => {
     await expect(
       parseSchemaValue(
         c.signal,
         opts({
-          schema: { type: 'string' },
-          entries: [['root', 'value']]
+          schema: { type: "string" },
+          entries: [["root", "value"]],
         })
       )
-    ).resolves.toBe('value');
+    ).resolves.toBe("value");
   });
-  it('Should parse simple schema', async () => {
+  it("Should parse simple schema", async () => {
     const schema: Schema = {
-      title: 'A registration form',
-      description: 'A simple form example.',
-      type: 'object',
-      required: ['firstName', 'lastName'],
+      title: "A registration form",
+      description: "A simple form example.",
+      type: "object",
+      required: ["firstName", "lastName"],
       properties: {
         firstName: {
-          type: 'string',
-          title: 'First name',
-          default: 'Chuck'
+          type: "string",
+          title: "First name",
+          default: "Chuck",
         },
         lastName: {
-          type: 'string',
-          title: 'Last name'
+          type: "string",
+          title: "Last name",
         },
         age: {
-          type: 'integer',
-          title: 'Age'
+          type: "integer",
+          title: "Age",
         },
         bio: {
-          type: 'string',
-          title: 'Bio'
+          type: "string",
+          title: "Bio",
         },
         password: {
-          type: 'string',
-          title: 'Password',
-          minLength: 3
+          type: "string",
+          title: "Password",
+          minLength: 3,
         },
         telephone: {
-          type: 'string',
-          title: 'Telephone',
-          minLength: 10
-        }
-      }
+          type: "string",
+          title: "Telephone",
+          minLength: 10,
+        },
+      },
     };
     const entries: Entries<string> = [
-      ['root.firstName', 'Chuck'],
-      ['root.lastName', 'Norris'],
-      ['root.age', '75'],
-      ['root.bio', 'Roundhouse kicking asses since 1940'],
-      ['root.password', 'noneed'],
-      ['root.telephone', '1-800-KICKASS']
+      ["root.firstName", "Chuck"],
+      ["root.lastName", "Norris"],
+      ["root.age", "75"],
+      ["root.bio", "Roundhouse kicking asses since 1940"],
+      ["root.password", "noneed"],
+      ["root.telephone", "1-800-KICKASS"],
     ];
-    await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
-      firstName: 'Chuck',
-      lastName: 'Norris',
+    await expect(
+      parseSchemaValue(c.signal, opts({ schema, entries }))
+    ).resolves.toEqual({
+      firstName: "Chuck",
+      lastName: "Norris",
       age: 75,
-      bio: 'Roundhouse kicking asses since 1940',
-      password: 'noneed',
-      telephone: '1-800-KICKASS'
+      bio: "Roundhouse kicking asses since 1940",
+      password: "noneed",
+      telephone: "1-800-KICKASS",
     });
   });
-  it('Should parse nested schema', async () => {
+  it("Should parse nested schema", async () => {
     const schema: Schema = {
-      title: 'A list of tasks',
-      type: 'object',
-      required: ['title'],
+      title: "A list of tasks",
+      type: "object",
+      required: ["title"],
       properties: {
         title: {
-          type: 'string',
-          title: 'Task list title'
+          type: "string",
+          title: "Task list title",
         },
         tasks: {
-          type: 'array',
-          title: 'Tasks',
+          type: "array",
+          title: "Tasks",
           items: {
-            type: 'object',
-            required: ['title'],
+            type: "object",
+            required: ["title"],
             properties: {
               title: {
-                type: 'string',
-                title: 'Title',
-                description: 'A sample title'
+                type: "string",
+                title: "Title",
+                description: "A sample title",
               },
               details: {
-                type: 'string',
-                title: 'Task details',
-                description: 'Enter the task details'
+                type: "string",
+                title: "Task details",
+                description: "Enter the task details",
               },
               done: {
-                type: 'boolean',
-                title: 'Done?',
-                default: false
-              }
-            }
-          }
-        }
-      }
+                type: "boolean",
+                title: "Done?",
+                default: false,
+              },
+            },
+          },
+        },
+      },
     };
     const entries: Entries<string> = [
-      [SJSF_ID_PREFIX, 'root'],
-      ['root.title', 'My current tasks'],
-      ['root.tasks@0.title', 'My first task'],
+      [SJSF_ID_PREFIX, "root"],
+      ["root.title", "My current tasks"],
+      ["root.tasks@0.title", "My first task"],
       [
-        'root.tasks@0.details',
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+        "root.tasks@0.details",
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       ],
-      ['root.tasks@0.done', 'on'],
-      ['root.tasks@1.title', 'My second task'],
+      ["root.tasks@0.done", "on"],
+      ["root.tasks@1.title", "My second task"],
       [
-        'root.tasks@1.details',
-        'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
-      ]
+        "root.tasks@1.details",
+        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+      ],
     ];
-    await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
+    await expect(
+      parseSchemaValue(c.signal, opts({ schema, entries }))
+    ).resolves.toEqual({
       tasks: [
         {
           done: true,
-          title: 'My first task',
+          title: "My first task",
           details:
-            'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+            "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         },
         {
           done: false,
-          title: 'My second task',
+          title: "My second task",
           details:
-            'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
-        }
+            "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+        },
       ],
-      title: 'My current tasks'
+      title: "My current tasks",
     });
   });
-  it('Should parse schema with `additionalProperties`', async () => {
+  it("Should parse schema with `additionalProperties`", async () => {
     const schema: Schema = {
-      title: 'A customizable registration form',
-      description: 'A simple form with additional properties example.',
-      type: 'object',
-      required: ['firstName', 'lastName'],
+      title: "A customizable registration form",
+      description: "A simple form with additional properties example.",
+      type: "object",
+      required: ["firstName", "lastName"],
       additionalProperties: {
-        type: 'string'
+        type: "string",
       },
       properties: {
         firstName: {
-          type: 'string',
-          title: 'First name'
+          type: "string",
+          title: "First name",
         },
         lastName: {
-          type: 'string',
-          title: 'Last name'
-        }
-      }
+          type: "string",
+          title: "Last name",
+        },
+      },
     };
     const entries: Entries<string> = [
-      ['root.firstName', 'Chuck'],
-      ['root.lastName', 'Norris'],
-      ['root.assKickCount::key-input', 'assKickCountChanged'],
-      ['root.assKickCount', 'infinity'],
-      ['root.new~21akey::key-input', 'new.keyChanged'],
-      ['root.new~21akey', 'foo']
+      ["root.firstName", "Chuck"],
+      ["root.lastName", "Norris"],
+      ["root.assKickCount::key-input", "assKickCountChanged"],
+      ["root.assKickCount", "infinity"],
+      ["root.new~21akey::key-input", "new.keyChanged"],
+      ["root.new~21akey", "foo"],
     ];
-    await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
-      firstName: 'Chuck',
-      lastName: 'Norris',
-      assKickCountChanged: 'infinity',
-      'new.keyChanged': 'foo'
+    await expect(
+      parseSchemaValue(c.signal, opts({ schema, entries }))
+    ).resolves.toEqual({
+      firstName: "Chuck",
+      lastName: "Norris",
+      assKickCountChanged: "infinity",
+      "new.keyChanged": "foo",
     });
   });
-  it('Should resolve references', async () => {
+  it("Should resolve references", async () => {
     const schema: Schema = {
       definitions: {
         address: {
-          type: 'object',
+          type: "object",
           properties: {
             street_address: {
-              type: 'string'
+              type: "string",
             },
             city: {
-              type: 'string'
+              type: "string",
             },
             state: {
-              type: 'string'
-            }
+              type: "string",
+            },
           },
-          required: ['street_address', 'city', 'state']
+          required: ["street_address", "city", "state"],
         },
         node: {
-          type: 'object',
+          type: "object",
           properties: {
             name: {
-              type: 'string'
+              type: "string",
             },
             children: {
-              type: 'array',
+              type: "array",
               items: {
-                $ref: '#/definitions/node'
-              }
-            }
-          }
-        }
+                $ref: "#/definitions/node",
+              },
+            },
+          },
+        },
       },
-      type: 'object',
+      type: "object",
       properties: {
         billing_address: {
-          title: 'Billing address',
-          $ref: '#/definitions/address'
+          title: "Billing address",
+          $ref: "#/definitions/address",
         },
         shipping_address: {
-          title: 'Shipping address',
-          $ref: '#/definitions/address'
+          title: "Shipping address",
+          $ref: "#/definitions/address",
         },
         tree: {
-          title: 'Recursive references',
-          $ref: '#/definitions/node'
-        }
-      }
+          title: "Recursive references",
+          $ref: "#/definitions/node",
+        },
+      },
     };
     const entries: Entries<string> = [
-      [SJSF_ID_PREFIX, 'root'],
-      ['root.shipping_address.street_address', '221B, Baker Street'],
-      ['root.shipping_address.city', 'London'],
-      ['root.shipping_address.state', 'N/A'],
-      ['root.billing_address.street_address', '21, Jump Street'],
-      ['root.billing_address.city', 'Babel'],
-      ['root.billing_address.state', 'Neverland'],
-      ['root.tree.name', 'root'],
-      ['root.tree.children@0.name', 'leaf'],
-      ['root.tree.children@0.children@0.name', 'bar'],
-      ['root.tree.children@1.name', 'foo']
+      [SJSF_ID_PREFIX, "root"],
+      ["root.shipping_address.street_address", "221B, Baker Street"],
+      ["root.shipping_address.city", "London"],
+      ["root.shipping_address.state", "N/A"],
+      ["root.billing_address.street_address", "21, Jump Street"],
+      ["root.billing_address.city", "Babel"],
+      ["root.billing_address.state", "Neverland"],
+      ["root.tree.name", "root"],
+      ["root.tree.children@0.name", "leaf"],
+      ["root.tree.children@0.children@0.name", "bar"],
+      ["root.tree.children@1.name", "foo"],
     ];
-    await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
+    await expect(
+      parseSchemaValue(c.signal, opts({ schema, entries }))
+    ).resolves.toEqual({
       tree: {
         children: [
           {
             children: [
               {
                 children: [],
-                name: 'bar'
-              }
+                name: "bar",
+              },
             ],
-            name: 'leaf'
+            name: "leaf",
           },
           {
             children: [],
-            name: 'foo'
-          }
+            name: "foo",
+          },
         ],
-        name: 'root'
+        name: "root",
       },
       billing_address: {
-        street_address: '21, Jump Street',
-        city: 'Babel',
-        state: 'Neverland'
+        street_address: "21, Jump Street",
+        city: "Babel",
+        state: "Neverland",
       },
       shipping_address: {
-        street_address: '221B, Baker Street',
-        city: 'London',
-        state: 'N/A'
-      }
+        street_address: "221B, Baker Street",
+        city: "London",
+        state: "N/A",
+      },
     });
   });
-  it('Should parse schema with oneOf (select)', async () => {
+  it("Should parse schema with oneOf (select)", async () => {
     const schema: Schema = {
       definitions: {
         Color: {
-          title: 'Color',
-          type: 'string',
+          title: "Color",
+          type: "string",
           anyOf: [
             {
-              type: 'string',
-              enum: ['#ff0000'],
-              title: 'Red'
+              type: "string",
+              enum: ["#ff0000"],
+              title: "Red",
             },
             {
-              type: 'string',
-              enum: ['#00ff00'],
-              title: 'Green'
+              type: "string",
+              enum: ["#00ff00"],
+              title: "Green",
             },
             {
-              type: 'string',
-              enum: ['#0000ff'],
-              title: 'Blue'
-            }
-          ]
+              type: "string",
+              enum: ["#0000ff"],
+              title: "Blue",
+            },
+          ],
         },
         Toggle: {
-          title: 'Toggle',
-          type: 'boolean',
+          title: "Toggle",
+          type: "boolean",
           oneOf: [
             {
-              title: 'Enable',
-              const: true
+              title: "Enable",
+              const: true,
             },
             {
-              title: 'Disable',
-              const: false
-            }
-          ]
-        }
+              title: "Disable",
+              const: false,
+            },
+          ],
+        },
       },
-      title: 'Image editor',
-      type: 'object',
-      required: ['currentColor', 'colorMask', 'blendMode'],
+      title: "Image editor",
+      type: "object",
+      required: ["currentColor", "colorMask", "blendMode"],
       properties: {
         currentColor: {
-          $ref: '#/definitions/Color',
-          title: 'Brush color'
+          $ref: "#/definitions/Color",
+          title: "Brush color",
         },
         colorMask: {
-          type: 'array',
+          type: "array",
           uniqueItems: true,
           items: {
-            $ref: '#/definitions/Color'
+            $ref: "#/definitions/Color",
           },
-          title: 'Color mask'
+          title: "Color mask",
         },
         toggleMask: {
-          title: 'Apply color mask',
-          $ref: '#/definitions/Toggle'
+          title: "Apply color mask",
+          $ref: "#/definitions/Toggle",
         },
         colorPalette: {
-          type: 'array',
-          title: 'Color palette',
+          type: "array",
+          title: "Color palette",
           items: {
-            $ref: '#/definitions/Color'
-          }
+            $ref: "#/definitions/Color",
+          },
         },
         blendMode: {
-          title: 'Blend mode',
-          type: 'string',
+          title: "Blend mode",
+          type: "string",
           oneOf: [
             {
-              const: 'screen',
-              title: 'Screen'
+              const: "screen",
+              title: "Screen",
             },
             {
-              const: 'multiply',
-              title: 'Multiply'
+              const: "multiply",
+              title: "Multiply",
             },
             {
-              const: 'overlay',
-              title: 'Overlay'
-            }
-          ]
-        }
-      }
+              const: "overlay",
+              title: "Overlay",
+            },
+          ],
+        },
+      },
     };
     const entries: Entries<string> = [
-      [SJSF_ID_PREFIX, 'root'],
-      ['root.currentColor', 'root.currentColor::1'],
-      ['root.colorMask', 'root.colorMask::2'],
-      ['root.toggleMask', 'root.toggleMask::0'],
-      ['root.colorPalette@0', 'root.colorPalette@0::0'],
-      ['root.blendMode', 'root.blendMode::0']
+      [SJSF_ID_PREFIX, "root"],
+      ["root.currentColor", "root.currentColor::1"],
+      ["root.colorMask", "root.colorMask::2"],
+      ["root.toggleMask", "root.toggleMask::0"],
+      ["root.colorPalette@0", "root.colorPalette@0::0"],
+      ["root.blendMode", "root.blendMode::0"],
     ];
-    await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
-      colorMask: ['#0000ff'],
+    await expect(
+      parseSchemaValue(c.signal, opts({ schema, entries }))
+    ).resolves.toEqual({
+      colorMask: ["#0000ff"],
       toggleMask: true,
-      colorPalette: ['#ff0000'],
-      blendMode: 'screen',
-      currentColor: '#00ff00'
+      colorPalette: ["#ff0000"],
+      blendMode: "screen",
+      currentColor: "#00ff00",
     });
   });
-  it('Should parse schema with oneOf', async () => {
+  it("Should parse schema with oneOf", async () => {
     const schema: Schema = {
-      oneOf: [{ type: 'string' }, { type: 'number' }]
+      oneOf: [{ type: "string" }, { type: "number" }],
     };
     const entries: Entries<string> = [
-      ['root::oneof', '1'],
-      ['root', '123']
+      ["root::oneof", "1"],
+      ["root", "123"],
     ];
-    await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual(123);
+    await expect(
+      parseSchemaValue(c.signal, opts({ schema, entries }))
+    ).resolves.toEqual(123);
   });
-  it('Should parse schema with oneOf 2', async () => {
+  it("Should parse schema with oneOf 2", async () => {
     const schema: Schema = {
-      type: 'object',
+      type: "object",
       oneOf: [
         {
           properties: {
             ipsum: {
-              type: 'string'
-            }
+              type: "string",
+            },
           },
-          required: ['ipsum']
+          required: ["ipsum"],
         },
         {
           properties: {
             ipsum: {
-              type: 'number'
-            }
+              type: "number",
+            },
           },
-          required: ['ipsum']
-        }
-      ]
+          required: ["ipsum"],
+        },
+      ],
     };
     const entries: Entries<string> = [
-      ['root::oneof', '1'],
-      ['root.ipsum', '123']
+      ["root::oneof", "1"],
+      ["root.ipsum", "123"],
     ];
-    await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
-      ipsum: 123
+    await expect(
+      parseSchemaValue(c.signal, opts({ schema, entries }))
+    ).resolves.toEqual({
+      ipsum: 123,
     });
   });
-  it('Should parse schema with anyOf', async () => {
+  it("Should parse schema with anyOf", async () => {
     const schema: Schema = {
-      type: 'object',
+      type: "object",
       properties: {
         age: {
-          type: 'integer',
-          title: 'Age'
+          type: "integer",
+          title: "Age",
         },
         items: {
-          type: 'array',
+          type: "array",
           items: {
-            type: 'object',
+            type: "object",
             anyOf: [
               {
                 properties: {
                   foo: {
-                    type: 'string'
-                  }
-                }
+                    type: "string",
+                  },
+                },
               },
               {
                 properties: {
                   bar: {
-                    type: 'string'
-                  }
-                }
-              }
-            ]
-          }
-        }
+                    type: "string",
+                  },
+                },
+              },
+            ],
+          },
+        },
       },
       anyOf: [
         {
-          title: 'First method of identification',
+          title: "First method of identification",
           properties: {
             firstName: {
-              type: 'string',
-              title: 'First name',
-              default: 'Chuck'
+              type: "string",
+              title: "First name",
+              default: "Chuck",
             },
             lastName: {
-              type: 'string',
-              title: 'Last name'
-            }
-          }
+              type: "string",
+              title: "Last name",
+            },
+          },
         },
         {
-          title: 'Second method of identification',
+          title: "Second method of identification",
           properties: {
             idCode: {
-              type: 'string',
-              title: 'ID code'
-            }
-          }
-        }
-      ]
+              type: "string",
+              title: "ID code",
+            },
+          },
+        },
+      ],
     };
     const entries: Entries<string> = [
-      ['root.age', '123'],
-      ['root.items@0::anyof', '1'],
-      ['root.items@0.bar', 'bar'],
-      ['root.items@1::anyof', '0'],
-      ['root.items@1.foo', 'foo'],
-      ['root::anyof', '0'],
-      ['root.firstName', 'Chuck'],
-      ['root.lastName', '']
+      ["root.age", "123"],
+      ["root.items@0::anyof", "1"],
+      ["root.items@0.bar", "bar"],
+      ["root.items@1::anyof", "0"],
+      ["root.items@1.foo", "foo"],
+      ["root::anyof", "0"],
+      ["root.firstName", "Chuck"],
+      ["root.lastName", ""],
     ];
-    await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
-      firstName: 'Chuck',
+    await expect(
+      parseSchemaValue(c.signal, opts({ schema, entries }))
+    ).resolves.toEqual({
+      firstName: "Chuck",
       items: [
         {
-          bar: 'bar'
+          bar: "bar",
         },
         {
-          foo: 'foo'
-        }
+          foo: "foo",
+        },
       ],
-      age: 123
+      age: 123,
     });
   });
-  it('Should parse schema with allOf', async () => {
+  it("Should parse schema with allOf", async () => {
     const schema: Schema = {
-      type: 'object',
+      type: "object",
       allOf: [
         {
           properties: {
             lorem: {
-              type: ['string', 'boolean'],
-              default: true
-            }
-          }
+              type: ["string", "boolean"],
+              default: true,
+            },
+          },
         },
         {
           properties: {
             lorem: {
-              type: 'boolean'
+              type: "boolean",
             },
             ipsum: {
-              type: 'string'
-            }
-          }
-        }
-      ]
+              type: "string",
+            },
+          },
+        },
+      ],
     };
     const entries: Entries<string> = [
-      ['root.lorem', 'on'],
-      ['root.ipsum', 'foo']
+      ["root.lorem", "on"],
+      ["root.ipsum", "foo"],
     ];
-    await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
-      lorem: 'on',
-      ipsum: 'foo'
+    await expect(
+      parseSchemaValue(c.signal, opts({ schema, entries }))
+    ).resolves.toEqual({
+      lorem: "on",
+      ipsum: "foo",
     });
   });
-  it('Should parse schema with fixed arrays and additional items', async () => {
+  it("Should parse schema with fixed arrays and additional items", async () => {
     const schema: Schema = {
       definitions: {
         Thing: {
-          type: 'object',
+          type: "object",
           properties: {
             name: {
-              type: 'string',
-              default: 'Default name'
-            }
-          }
-        }
+              type: "string",
+              default: "Default name",
+            },
+          },
+        },
       },
-      type: 'object',
+      type: "object",
       properties: {
         listOfStrings: {
-          type: 'array',
-          title: 'A list of strings',
+          type: "array",
+          title: "A list of strings",
           items: {
-            type: 'string',
-            default: 'bazinga'
-          }
+            type: "string",
+            default: "bazinga",
+          },
         },
         multipleChoicesList: {
-          type: 'array',
-          title: 'A multiple choices list',
+          type: "array",
+          title: "A multiple choices list",
           items: {
-            type: 'string',
-            enum: ['foo', 'bar', 'fuzz', 'qux']
+            type: "string",
+            enum: ["foo", "bar", "fuzz", "qux"],
           },
-          uniqueItems: true
+          uniqueItems: true,
         },
         fixedItemsList: {
-          type: 'array',
-          title: 'A list of fixed items',
+          type: "array",
+          title: "A list of fixed items",
           items: [
             {
-              title: 'A string value',
-              type: 'string',
-              default: 'lorem ipsum'
+              title: "A string value",
+              type: "string",
+              default: "lorem ipsum",
             },
             {
-              title: 'a boolean value',
-              type: 'boolean'
-            }
+              title: "a boolean value",
+              type: "boolean",
+            },
           ],
           additionalItems: {
-            title: 'Additional item',
-            type: 'number'
-          }
+            title: "Additional item",
+            type: "number",
+          },
         },
         minItemsList: {
-          type: 'array',
-          title: 'A list with a minimal number of items',
+          type: "array",
+          title: "A list with a minimal number of items",
           minItems: 3,
           items: {
-            $ref: '#/definitions/Thing'
-          }
+            $ref: "#/definitions/Thing",
+          },
         },
         defaultsAndMinItems: {
-          type: 'array',
-          title: 'List and item level defaults',
+          type: "array",
+          title: "List and item level defaults",
           minItems: 5,
-          default: ['carp', 'trout', 'bream'],
+          default: ["carp", "trout", "bream"],
           items: {
-            type: 'string',
-            default: 'unidentified'
-          }
+            type: "string",
+            default: "unidentified",
+          },
         },
         nestedList: {
-          type: 'array',
-          title: 'Nested list',
+          type: "array",
+          title: "Nested list",
           items: {
-            type: 'array',
-            title: 'Inner list',
+            type: "array",
+            title: "Inner list",
             items: {
-              type: 'string',
-              default: 'lorem ipsum'
-            }
-          }
+              type: "string",
+              default: "lorem ipsum",
+            },
+          },
         },
         unorderable: {
-          title: 'Unorderable items',
-          type: 'array',
+          title: "Unorderable items",
+          type: "array",
           items: {
-            type: 'string',
-            default: 'lorem ipsum'
-          }
+            type: "string",
+            default: "lorem ipsum",
+          },
         },
         copyable: {
-          title: 'Copyable items',
-          type: 'array',
+          title: "Copyable items",
+          type: "array",
           items: {
-            type: 'string',
-            default: 'lorem ipsum'
-          }
+            type: "string",
+            default: "lorem ipsum",
+          },
         },
         unremovable: {
-          title: 'Unremovable items',
-          type: 'array',
+          title: "Unremovable items",
+          type: "array",
           items: {
-            type: 'string',
-            default: 'lorem ipsum'
-          }
+            type: "string",
+            default: "lorem ipsum",
+          },
         },
         noToolbar: {
-          title: 'No add, remove and order buttons',
-          type: 'array',
+          title: "No add, remove and order buttons",
+          type: "array",
           items: {
-            type: 'string',
-            default: 'lorem ipsum'
-          }
+            type: "string",
+            default: "lorem ipsum",
+          },
         },
         fixedNoToolbar: {
-          title: 'Fixed array without buttons',
-          type: 'array',
+          title: "Fixed array without buttons",
+          type: "array",
           items: [
             {
-              title: 'A number',
-              type: 'number',
-              default: 42
+              title: "A number",
+              type: "number",
+              default: 42,
             },
             {
-              title: 'A boolean',
-              type: 'boolean',
-              default: false
-            }
+              title: "A boolean",
+              type: "boolean",
+              default: false,
+            },
           ],
           additionalItems: {
-            title: 'A string',
-            type: 'string',
-            default: 'lorem ipsum'
-          }
-        }
-      }
+            title: "A string",
+            type: "string",
+            default: "lorem ipsum",
+          },
+        },
+      },
     };
     const entries: Entries<string> = [
-      [SJSF_ID_PREFIX, 'root'],
-      ['root.listOfStrings@0', 'foo'],
-      ['root.listOfStrings@1', 'bar'],
-      ['root.multipleChoicesList', 'root.multipleChoicesList::0'],
-      ['root.multipleChoicesList', 'root.multipleChoicesList::1'],
-      ['root.fixedItemsList@0', 'Some text'],
-      ['root.fixedItemsList@1', 'root.fixedItemsList@1::0'],
-      ['root.fixedItemsList@2', '123'],
-      ['root.minItemsList@0.name', 'Default name'],
-      ['root.minItemsList@1.name', 'Default name'],
-      ['root.minItemsList@2.name', 'Default name'],
-      ['root.defaultsAndMinItems@0', 'carp'],
-      ['root.defaultsAndMinItems@1', 'trout'],
-      ['root.defaultsAndMinItems@2', 'bream'],
-      ['root.defaultsAndMinItems@3', 'unidentified'],
-      ['root.defaultsAndMinItems@4', 'unidentified'],
-      ['root.nestedList@0@0', 'lorem'],
-      ['root.nestedList@0@1', 'ipsum'],
-      ['root.nestedList@1@0', 'dolor'],
-      ['root.unorderable@0', 'one'],
-      ['root.unorderable@1', 'two'],
-      ['root.copyable@0', 'one'],
-      ['root.copyable@1', 'two'],
-      ['root.unremovable@0', 'one'],
-      ['root.unremovable@1', 'two'],
-      ['root.noToolbar@0', 'one'],
-      ['root.noToolbar@1', 'two'],
-      ['root.fixedNoToolbar@0', '42'],
-      ['root.fixedNoToolbar@1', 'on'],
-      ['root.fixedNoToolbar@2', 'additional item one'],
-      ['root.fixedNoToolbar@3', 'additional item two']
+      [SJSF_ID_PREFIX, "root"],
+      ["root.listOfStrings@0", "foo"],
+      ["root.listOfStrings@1", "bar"],
+      ["root.multipleChoicesList", "root.multipleChoicesList::0"],
+      ["root.multipleChoicesList", "root.multipleChoicesList::1"],
+      ["root.fixedItemsList@0", "Some text"],
+      ["root.fixedItemsList@1", "root.fixedItemsList@1::0"],
+      ["root.fixedItemsList@2", "123"],
+      ["root.minItemsList@0.name", "Default name"],
+      ["root.minItemsList@1.name", "Default name"],
+      ["root.minItemsList@2.name", "Default name"],
+      ["root.defaultsAndMinItems@0", "carp"],
+      ["root.defaultsAndMinItems@1", "trout"],
+      ["root.defaultsAndMinItems@2", "bream"],
+      ["root.defaultsAndMinItems@3", "unidentified"],
+      ["root.defaultsAndMinItems@4", "unidentified"],
+      ["root.nestedList@0@0", "lorem"],
+      ["root.nestedList@0@1", "ipsum"],
+      ["root.nestedList@1@0", "dolor"],
+      ["root.unorderable@0", "one"],
+      ["root.unorderable@1", "two"],
+      ["root.copyable@0", "one"],
+      ["root.copyable@1", "two"],
+      ["root.unremovable@0", "one"],
+      ["root.unremovable@1", "two"],
+      ["root.noToolbar@0", "one"],
+      ["root.noToolbar@1", "two"],
+      ["root.fixedNoToolbar@0", "42"],
+      ["root.fixedNoToolbar@1", "on"],
+      ["root.fixedNoToolbar@2", "additional item one"],
+      ["root.fixedNoToolbar@3", "additional item two"],
     ];
-    await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
-      listOfStrings: ['foo', 'bar'],
-      multipleChoicesList: ['foo', 'bar'],
-      fixedItemsList: ['Some text', true, 123],
+    await expect(
+      parseSchemaValue(c.signal, opts({ schema, entries }))
+    ).resolves.toEqual({
+      listOfStrings: ["foo", "bar"],
+      multipleChoicesList: ["foo", "bar"],
+      fixedItemsList: ["Some text", true, 123],
       minItemsList: [
         {
-          name: 'Default name'
+          name: "Default name",
         },
         {
-          name: 'Default name'
+          name: "Default name",
         },
         {
-          name: 'Default name'
-        }
+          name: "Default name",
+        },
       ],
-      defaultsAndMinItems: ['carp', 'trout', 'bream', 'unidentified', 'unidentified'],
-      nestedList: [['lorem', 'ipsum'], ['dolor']],
-      unorderable: ['one', 'two'],
-      copyable: ['one', 'two'],
-      unremovable: ['one', 'two'],
-      noToolbar: ['one', 'two'],
-      fixedNoToolbar: [42, true, 'additional item one', 'additional item two']
+      defaultsAndMinItems: [
+        "carp",
+        "trout",
+        "bream",
+        "unidentified",
+        "unidentified",
+      ],
+      nestedList: [["lorem", "ipsum"], ["dolor"]],
+      unorderable: ["one", "two"],
+      copyable: ["one", "two"],
+      unremovable: ["one", "two"],
+      noToolbar: ["one", "two"],
+      fixedNoToolbar: [42, true, "additional item one", "additional item two"],
     });
   });
-  it('Should parse schema with dependencies', async () => {
+  it("Should parse schema with dependencies", async () => {
     const schema: Schema = {
-      title: 'Schema dependencies',
-      description: 'These samples are best viewed without live validation.',
-      type: 'object',
+      title: "Schema dependencies",
+      description: "These samples are best viewed without live validation.",
+      type: "object",
       properties: {
         simple: {
-          title: 'Simple',
-          type: 'object',
+          title: "Simple",
+          type: "object",
           properties: {
             name: {
-              type: 'string'
+              type: "string",
             },
             credit_card: {
-              type: 'number'
-            }
+              type: "number",
+            },
           },
-          required: ['name'],
+          required: ["name"],
           dependencies: {
             credit_card: {
               properties: {
                 billing_address: {
-                  type: 'string'
-                }
+                  type: "string",
+                },
               },
-              required: ['billing_address']
-            }
-          }
+              required: ["billing_address"],
+            },
+          },
         },
         conditional: {
-          title: 'Conditional',
-          $ref: '#/definitions/person'
+          title: "Conditional",
+          $ref: "#/definitions/person",
         },
         arrayOfConditionals: {
-          title: 'Array of conditionals',
-          type: 'array',
+          title: "Array of conditionals",
+          type: "array",
           items: {
-            $ref: '#/definitions/person'
-          }
+            $ref: "#/definitions/person",
+          },
         },
         fixedArrayOfConditionals: {
-          title: 'Fixed array of conditionals',
-          type: 'array',
+          title: "Fixed array of conditionals",
+          type: "array",
           items: [
             {
-              title: 'Primary person',
-              $ref: '#/definitions/person'
-            }
+              title: "Primary person",
+              $ref: "#/definitions/person",
+            },
           ],
           additionalItems: {
-            title: 'Additional person',
-            $ref: '#/definitions/person'
-          }
-        }
+            title: "Additional person",
+            $ref: "#/definitions/person",
+          },
+        },
       },
       definitions: {
         person: {
-          title: 'Person',
-          type: 'object',
+          title: "Person",
+          type: "object",
           properties: {
-            'Do you have any pets?': {
-              type: 'string',
-              enum: ['No', 'Yes: One', 'Yes: More than one'],
-              default: 'No'
-            }
+            "Do you have any pets?": {
+              type: "string",
+              enum: ["No", "Yes: One", "Yes: More than one"],
+              default: "No",
+            },
           },
-          required: ['Do you have any pets?'],
+          required: ["Do you have any pets?"],
           dependencies: {
-            'Do you have any pets?': {
+            "Do you have any pets?": {
               oneOf: [
                 {
                   properties: {
-                    'Do you have any pets?': {
-                      enum: ['No']
-                    }
-                  }
+                    "Do you have any pets?": {
+                      enum: ["No"],
+                    },
+                  },
                 },
                 {
                   properties: {
-                    'Do you have any pets?': {
-                      enum: ['Yes: One']
+                    "Do you have any pets?": {
+                      enum: ["Yes: One"],
                     },
-                    'How old is your pet?': {
-                      type: 'number'
-                    }
+                    "How old is your pet?": {
+                      type: "number",
+                    },
                   },
-                  required: ['How old is your pet?']
+                  required: ["How old is your pet?"],
                 },
                 {
                   properties: {
-                    'Do you have any pets?': {
-                      enum: ['Yes: More than one']
+                    "Do you have any pets?": {
+                      enum: ["Yes: More than one"],
                     },
-                    'Do you want to get rid of any?': {
-                      type: 'boolean'
-                    }
+                    "Do you want to get rid of any?": {
+                      type: "boolean",
+                    },
                   },
-                  required: ['Do you want to get rid of any?']
-                }
-              ]
-            }
-          }
-        }
-      }
+                  required: ["Do you want to get rid of any?"],
+                },
+              ],
+            },
+          },
+        },
+      },
     };
     const entries: Entries<string> = [
-      [SJSF_ID_PREFIX, 'root'],
-      ['root.simple.name', 'Randy'],
-      ['root.simple.credit_card', ''],
-      ['root.conditional.Do you have any pets?', 'root.conditional.Do you have any pets?::0'],
+      [SJSF_ID_PREFIX, "root"],
+      ["root.simple.name", "Randy"],
+      ["root.simple.credit_card", ""],
       [
-        'root.arrayOfConditionals@0.Do you have any pets?',
-        'root.arrayOfConditionals@0.Do you have any pets?::1'
-      ],
-      ['root.arrayOfConditionals@0.How old is your pet?', '6'],
-      [
-        'root.arrayOfConditionals@1.Do you have any pets?',
-        'root.arrayOfConditionals@1.Do you have any pets?::2'
+        "root.conditional.Do you have any pets?",
+        "root.conditional.Do you have any pets?::0",
       ],
       [
-        'root.arrayOfConditionals@1.Do you want to get rid of any?',
-        'root.arrayOfConditionals@1.Do you want to get rid of any?::1'
+        "root.arrayOfConditionals@0.Do you have any pets?",
+        "root.arrayOfConditionals@0.Do you have any pets?::1",
+      ],
+      ["root.arrayOfConditionals@0.How old is your pet?", "6"],
+      [
+        "root.arrayOfConditionals@1.Do you have any pets?",
+        "root.arrayOfConditionals@1.Do you have any pets?::2",
       ],
       [
-        'root.fixedArrayOfConditionals@0.Do you have any pets?',
-        'root.fixedArrayOfConditionals@0.Do you have any pets?::0'
+        "root.arrayOfConditionals@1.Do you want to get rid of any?",
+        "root.arrayOfConditionals@1.Do you want to get rid of any?::1",
       ],
       [
-        'root.fixedArrayOfConditionals@1.Do you have any pets?',
-        'root.fixedArrayOfConditionals@1.Do you have any pets?::1'
-      ],
-      ['root.fixedArrayOfConditionals@1.How old is your pet?', '6'],
-      [
-        'root.fixedArrayOfConditionals@2.Do you have any pets?',
-        'root.fixedArrayOfConditionals@2.Do you have any pets?::2'
+        "root.fixedArrayOfConditionals@0.Do you have any pets?",
+        "root.fixedArrayOfConditionals@0.Do you have any pets?::0",
       ],
       [
-        'root.fixedArrayOfConditionals@2.Do you want to get rid of any?',
-        'root.fixedArrayOfConditionals@2.Do you want to get rid of any?::0'
-      ]
+        "root.fixedArrayOfConditionals@1.Do you have any pets?",
+        "root.fixedArrayOfConditionals@1.Do you have any pets?::1",
+      ],
+      ["root.fixedArrayOfConditionals@1.How old is your pet?", "6"],
+      [
+        "root.fixedArrayOfConditionals@2.Do you have any pets?",
+        "root.fixedArrayOfConditionals@2.Do you have any pets?::2",
+      ],
+      [
+        "root.fixedArrayOfConditionals@2.Do you want to get rid of any?",
+        "root.fixedArrayOfConditionals@2.Do you want to get rid of any?::0",
+      ],
     ];
-    await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
+    await expect(
+      parseSchemaValue(c.signal, opts({ schema, entries }))
+    ).resolves.toEqual({
       conditional: {
-        'Do you have any pets?': 'No'
+        "Do you have any pets?": "No",
       },
       arrayOfConditionals: [
         {
-          'Do you have any pets?': 'Yes: One',
-          'How old is your pet?': 6
+          "Do you have any pets?": "Yes: One",
+          "How old is your pet?": 6,
         },
         {
-          'Do you have any pets?': 'Yes: More than one',
-          'Do you want to get rid of any?': false
-        }
+          "Do you have any pets?": "Yes: More than one",
+          "Do you want to get rid of any?": false,
+        },
       ],
       fixedArrayOfConditionals: [
         {
-          'Do you have any pets?': 'No'
+          "Do you have any pets?": "No",
         },
         {
-          'Do you have any pets?': 'Yes: One',
-          'How old is your pet?': 6
+          "Do you have any pets?": "Yes: One",
+          "How old is your pet?": 6,
         },
         {
-          'Do you have any pets?': 'Yes: More than one',
-          'Do you want to get rid of any?': true
-        }
+          "Do you have any pets?": "Yes: More than one",
+          "Do you want to get rid of any?": true,
+        },
       ],
       simple: {
-        name: 'Randy'
-      }
+        name: "Randy",
+      },
     });
   });
-  it('Should parse schema with If/Then/Else', async () => {
+  it("Should parse schema with If/Then/Else", async () => {
     const schema: Schema = {
-      type: 'object',
+      type: "object",
       properties: {
         animal: {
-          enum: ['0', '1']
-        }
+          enum: ["0", "1"],
+        },
       },
       allOf: [
         {
           if: {
             properties: {
               animal: {
-                const: '0'
-              }
-            }
+                const: "0",
+              },
+            },
           },
           then: {
             properties: {
               food: {
-                type: 'string',
-                enum: ['meat', 'grass', 'fish']
-              }
+                type: "string",
+                enum: ["meat", "grass", "fish"],
+              },
             },
-            required: ['food']
-          }
+            required: ["food"],
+          },
         },
         {
           if: {
             properties: {
               animal: {
-                const: '1'
-              }
-            }
+                const: "1",
+              },
+            },
           },
           then: {
             properties: {
               food: {
-                type: 'string',
-                enum: ['insect', 'worms']
+                type: "string",
+                enum: ["insect", "worms"],
               },
               water: {
-                type: 'string',
-                enum: ['lake', 'sea']
-              }
+                type: "string",
+                enum: ["lake", "sea"],
+              },
             },
-            required: ['food', 'water']
-          }
+            required: ["food", "water"],
+          },
         },
         {
-          required: ['animal']
-        }
-      ]
+          required: ["animal"],
+        },
+      ],
     };
     const entries: Entries<string> = [
-      [SJSF_ID_PREFIX, 'root'],
-      ['root.animal', 'root.animal::1'],
-      ['root.food', 'root.food::0'],
-      ['root.water', 'root.water::1']
+      [SJSF_ID_PREFIX, "root"],
+      ["root.animal", "root.animal::1"],
+      ["root.food", "root.food::0"],
+      ["root.water", "root.water::1"],
     ];
-    await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
-      animal: '1',
-      food: 'insect',
-      water: 'sea'
+    await expect(
+      parseSchemaValue(c.signal, opts({ schema, entries }))
+    ).resolves.toEqual({
+      animal: "1",
+      food: "insect",
+      water: "sea",
     });
   });
 
-  it('Should convert form data entries', async () => {
+  it("Should convert form data entries", async () => {
     const schema: Schema = {
       definitions: {
         Thing: {
-          type: 'object',
+          type: "object",
           properties: {
             name: {
-              type: 'string',
-              default: 'Default name'
-            }
-          }
-        }
+              type: "string",
+              default: "Default name",
+            },
+          },
+        },
       },
-      type: 'object',
+      type: "object",
       properties: {
         listOfStrings: {
-          type: 'array',
-          title: 'A list of strings',
+          type: "array",
+          title: "A list of strings",
           items: {
-            type: 'string',
-            default: 'bazinga'
-          }
+            type: "string",
+            default: "bazinga",
+          },
         },
         multipleChoicesList: {
-          type: 'array',
-          title: 'A multiple choices list',
+          type: "array",
+          title: "A multiple choices list",
           items: {
-            type: 'string',
-            enum: ['foo', 'bar', 'fuzz', 'qux']
+            type: "string",
+            enum: ["foo", "bar", "fuzz", "qux"],
           },
-          uniqueItems: true
+          uniqueItems: true,
         },
         fixedItemsList: {
-          type: 'array',
-          title: 'A list of fixed items',
+          type: "array",
+          title: "A list of fixed items",
           items: [
             {
-              title: 'A string value',
-              type: 'string',
-              default: 'lorem ipsum'
+              title: "A string value",
+              type: "string",
+              default: "lorem ipsum",
             },
             {
-              title: 'a boolean value',
-              type: 'boolean',
-              enum: [true, false]
-            }
+              title: "a boolean value",
+              type: "boolean",
+              enum: [true, false],
+            },
           ],
           additionalItems: {
-            title: 'Additional item',
-            type: 'number'
-          }
+            title: "Additional item",
+            type: "number",
+          },
         },
         minItemsList: {
-          type: 'array',
-          title: 'A list with a minimal number of items',
+          type: "array",
+          title: "A list with a minimal number of items",
           minItems: 3,
           items: {
-            $ref: '#/definitions/Thing'
-          }
+            $ref: "#/definitions/Thing",
+          },
         },
         defaultsAndMinItems: {
-          type: 'array',
-          title: 'List and item level defaults',
+          type: "array",
+          title: "List and item level defaults",
           minItems: 5,
-          default: ['carp', 'trout', 'bream'],
+          default: ["carp", "trout", "bream"],
           items: {
-            type: 'string',
-            default: 'unidentified'
-          }
+            type: "string",
+            default: "unidentified",
+          },
         },
         nestedList: {
-          type: 'array',
-          title: 'Nested list',
+          type: "array",
+          title: "Nested list",
           items: {
-            type: 'array',
-            title: 'Inner list',
+            type: "array",
+            title: "Inner list",
             items: {
-              type: 'string',
-              default: 'lorem ipsum'
-            }
-          }
+              type: "string",
+              default: "lorem ipsum",
+            },
+          },
         },
         unorderable: {
-          title: 'Unorderable items',
-          type: 'array',
+          title: "Unorderable items",
+          type: "array",
           items: {
-            type: 'string',
-            default: 'lorem ipsum'
-          }
+            type: "string",
+            default: "lorem ipsum",
+          },
         },
         copyable: {
-          title: 'Copyable items',
-          type: 'array',
+          title: "Copyable items",
+          type: "array",
           items: {
-            type: 'string',
-            default: 'lorem ipsum'
-          }
+            type: "string",
+            default: "lorem ipsum",
+          },
         },
         unremovable: {
-          title: 'Unremovable items',
-          type: 'array',
+          title: "Unremovable items",
+          type: "array",
           items: {
-            type: 'string',
-            default: 'lorem ipsum'
-          }
+            type: "string",
+            default: "lorem ipsum",
+          },
         },
         noToolbar: {
-          title: 'No add, remove and order buttons',
-          type: 'array',
+          title: "No add, remove and order buttons",
+          type: "array",
           items: {
-            type: 'string',
-            default: 'lorem ipsum'
-          }
+            type: "string",
+            default: "lorem ipsum",
+          },
         },
         fixedNoToolbar: {
-          title: 'Fixed array without buttons',
-          type: 'array',
+          title: "Fixed array without buttons",
+          type: "array",
           items: [
             {
-              title: 'A number',
-              type: 'number',
-              default: 42
+              title: "A number",
+              type: "number",
+              default: 42,
             },
             {
-              title: 'A boolean',
-              type: 'boolean',
-              default: false
-            }
+              title: "A boolean",
+              type: "boolean",
+              default: false,
+            },
           ],
           additionalItems: {
-            title: 'A string',
-            type: 'string',
-            default: 'lorem ipsum'
-          }
-        }
-      }
+            title: "A string",
+            type: "string",
+            default: "lorem ipsum",
+          },
+        },
+      },
     };
     const entries: Entries<string> = [
-      [SJSF_ID_PREFIX, 'root'],
-      ['root.listOfStrings@0', 'foo'],
-      ['root.listOfStrings@1', 'bar'],
-      ['root.multipleChoicesList', 'root.multipleChoicesList::0'],
-      ['root.multipleChoicesList', 'root.multipleChoicesList::1'],
-      ['root.fixedItemsList@0', 'Some text'],
-      ['root.fixedItemsList@1', 'root.fixedItemsList@1::0'],
-      ['root.fixedItemsList@2', '123'],
-      ['root.minItemsList@0.name', 'Default name'],
-      ['root.minItemsList@1.name', 'Default name'],
-      ['root.minItemsList@2.name', 'Default name'],
-      ['root.defaultsAndMinItems@0', 'carp'],
-      ['root.defaultsAndMinItems@1', 'trout'],
-      ['root.defaultsAndMinItems@2', 'bream'],
-      ['root.defaultsAndMinItems@3', 'unidentified'],
-      ['root.defaultsAndMinItems@4', 'unidentified'],
-      ['root.nestedList@0@0', 'lorem'],
-      ['root.nestedList@0@1', 'ipsum'],
-      ['root.nestedList@1@0', 'dolor'],
-      ['root.unorderable@0', 'one'],
-      ['root.unorderable@1', 'two'],
-      ['root.copyable@0', 'one'],
-      ['root.copyable@1', 'two'],
-      ['root.unremovable@0', 'one'],
-      ['root.unremovable@1', 'two'],
-      ['root.noToolbar@0', 'one'],
-      ['root.noToolbar@1', 'two'],
-      ['root.fixedNoToolbar@0', '42'],
-      ['root.fixedNoToolbar@1', 'on'],
-      ['root.fixedNoToolbar@2', 'additional item one'],
-      ['root.fixedNoToolbar@3', 'additional item two']
+      [SJSF_ID_PREFIX, "root"],
+      ["root.listOfStrings@0", "foo"],
+      ["root.listOfStrings@1", "bar"],
+      ["root.multipleChoicesList", "root.multipleChoicesList::0"],
+      ["root.multipleChoicesList", "root.multipleChoicesList::1"],
+      ["root.fixedItemsList@0", "Some text"],
+      ["root.fixedItemsList@1", "root.fixedItemsList@1::0"],
+      ["root.fixedItemsList@2", "123"],
+      ["root.minItemsList@0.name", "Default name"],
+      ["root.minItemsList@1.name", "Default name"],
+      ["root.minItemsList@2.name", "Default name"],
+      ["root.defaultsAndMinItems@0", "carp"],
+      ["root.defaultsAndMinItems@1", "trout"],
+      ["root.defaultsAndMinItems@2", "bream"],
+      ["root.defaultsAndMinItems@3", "unidentified"],
+      ["root.defaultsAndMinItems@4", "unidentified"],
+      ["root.nestedList@0@0", "lorem"],
+      ["root.nestedList@0@1", "ipsum"],
+      ["root.nestedList@1@0", "dolor"],
+      ["root.unorderable@0", "one"],
+      ["root.unorderable@1", "two"],
+      ["root.copyable@0", "one"],
+      ["root.copyable@1", "two"],
+      ["root.unremovable@0", "one"],
+      ["root.unremovable@1", "two"],
+      ["root.noToolbar@0", "one"],
+      ["root.noToolbar@1", "two"],
+      ["root.fixedNoToolbar@0", "42"],
+      ["root.fixedNoToolbar@1", "on"],
+      ["root.fixedNoToolbar@2", "additional item one"],
+      ["root.fixedNoToolbar@3", "additional item two"],
     ];
     await expect(
       parseSchemaValue(
         c.signal,
         opts({
           schema,
-          entries
+          entries,
         })
       )
     ).resolves.toEqual({
-      listOfStrings: ['foo', 'bar'],
-      multipleChoicesList: ['foo', 'bar'],
-      fixedItemsList: ['Some text', true, 123],
+      listOfStrings: ["foo", "bar"],
+      multipleChoicesList: ["foo", "bar"],
+      fixedItemsList: ["Some text", true, 123],
       minItemsList: [
         {
-          name: 'Default name'
+          name: "Default name",
         },
         {
-          name: 'Default name'
+          name: "Default name",
         },
         {
-          name: 'Default name'
-        }
+          name: "Default name",
+        },
       ],
-      defaultsAndMinItems: ['carp', 'trout', 'bream', 'unidentified', 'unidentified'],
-      nestedList: [['lorem', 'ipsum'], ['dolor']],
-      unorderable: ['one', 'two'],
-      copyable: ['one', 'two'],
-      unremovable: ['one', 'two'],
-      noToolbar: ['one', 'two'],
-      fixedNoToolbar: [42, true, 'additional item one', 'additional item two']
+      defaultsAndMinItems: [
+        "carp",
+        "trout",
+        "bream",
+        "unidentified",
+        "unidentified",
+      ],
+      nestedList: [["lorem", "ipsum"], ["dolor"]],
+      unorderable: ["one", "two"],
+      copyable: ["one", "two"],
+      unremovable: ["one", "two"],
+      noToolbar: ["one", "two"],
+      fixedNoToolbar: [42, true, "additional item one", "additional item two"],
     });
   });
 
-  it('Should revive empty array', async () => {
+  it("Should revive empty array", async () => {
     const schema: Schema = {
-      title: 'Locations Checkboxes',
-      type: 'array',
+      title: "Locations Checkboxes",
+      type: "array",
       uniqueItems: true,
       items: {
-        enum: ['foo', 'bar', 'baz']
-      }
+        enum: ["foo", "bar", "baz"],
+      },
     };
     const entries: Entries<FormDataEntryValue> = [];
-    await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual([]);
+    await expect(
+      parseSchemaValue(c.signal, opts({ schema, entries }))
+    ).resolves.toEqual([]);
   });
 
-  it('Should support pattern properties', async () => {
+  it("Should support pattern properties", async () => {
     const schema: Schema = {
-      title: 'A customizable registration form',
-      description: 'A simple form with pattern properties example.',
-      type: 'object',
-      required: ['firstName', 'lastName'],
+      title: "A customizable registration form",
+      description: "A simple form with pattern properties example.",
+      type: "object",
+      required: ["firstName", "lastName"],
       properties: {
         firstName: {
-          type: 'string',
-          title: 'First name'
+          type: "string",
+          title: "First name",
         },
         lastName: {
-          type: 'string',
-          title: 'Last name'
-        }
+          type: "string",
+          title: "Last name",
+        },
       },
       additionalProperties: {
-        type: 'boolean'
+        type: "boolean",
       },
       patternProperties: {
-        '^foo.*$': {
-          type: 'string'
+        "^foo.*$": {
+          type: "string",
         },
-        '^bar.*$': {
-          type: 'number'
-        }
-      }
+        "^bar.*$": {
+          type: "number",
+        },
+      },
     };
     const entries: Entries<string> = [
-      [SJSF_ID_PREFIX, 'root'],
-      ['root.firstName', 'Chuck'],
-      ['root.lastName', 'Norris'],
-      ['root.fooPropertyExample::key-input', 'fooProperty'],
-      ['root.fooPropertyExample', 'foo'],
-      ['root.barPropertyExample::key-input', 'barProperty'],
-      ['root.barPropertyExample', '123'],
-      ['root.baz::key-input', 'baz'],
-      ['root.baz', 'on']
+      [SJSF_ID_PREFIX, "root"],
+      ["root.firstName", "Chuck"],
+      ["root.lastName", "Norris"],
+      ["root.fooPropertyExample::key-input", "fooProperty"],
+      ["root.fooPropertyExample", "foo"],
+      ["root.barPropertyExample::key-input", "barProperty"],
+      ["root.barPropertyExample", "123"],
+      ["root.baz::key-input", "baz"],
+      ["root.baz", "on"],
     ];
-    await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
-      firstName: 'Chuck',
-      lastName: 'Norris',
-      fooProperty: 'foo',
+    await expect(
+      parseSchemaValue(c.signal, opts({ schema, entries }))
+    ).resolves.toEqual({
+      firstName: "Chuck",
+      lastName: "Norris",
+      fooProperty: "foo",
       barProperty: 123,
-      baz: true
+      baz: true,
     });
   });
 });

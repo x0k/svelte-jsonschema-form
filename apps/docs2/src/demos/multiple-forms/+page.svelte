@@ -1,6 +1,6 @@
 <script lang="ts">
   import { type Schema, SimpleForm } from "@sjsf/form";
-  
+
   import { getDemoContext } from "@/lib/demo";
 
   const { defaults } = getDemoContext();

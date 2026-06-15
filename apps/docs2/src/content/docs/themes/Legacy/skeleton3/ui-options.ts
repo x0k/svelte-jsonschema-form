@@ -1,13 +1,3 @@
-import type { Component } from "svelte";
-import type {
-  HTMLAttributes,
-  HTMLButtonAttributes,
-  HTMLFormAttributes,
-  HTMLInputAttributes,
-  HTMLLabelAttributes,
-  HTMLSelectAttributes,
-  HTMLTextareaAttributes,
-} from "svelte/elements";
 import type { ButtonType, LayoutType } from "@sjsf/form/fields/components";
 import type {
   FileUpload as SkeletonFileUpload,
@@ -18,8 +8,18 @@ import type {
   TagsInput,
   Combobox as SkeletonCombobox,
 } from "@skeletonlabs/skeleton-svelte";
+import type { Component } from "svelte";
+import type {
+  HTMLAttributes,
+  HTMLButtonAttributes,
+  HTMLFormAttributes,
+  HTMLInputAttributes,
+  HTMLLabelAttributes,
+  HTMLSelectAttributes,
+  HTMLTextareaAttributes,
+} from "svelte/elements";
 
-type Props<T> = T extends Component<infer P, any, any> ? P : never
+type Props<T> = T extends Component<infer P, any, any> ? P : never;
 
 export interface UiOptions {
   /**

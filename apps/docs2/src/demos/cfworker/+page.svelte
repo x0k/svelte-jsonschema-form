@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { createFormValidator } from "@sjsf/cfworker-validator";
   import {
     BasicForm,
     createForm,
@@ -7,7 +8,6 @@
     ON_CHANGE,
     ON_INPUT,
   } from "@sjsf/form";
-  import { createFormValidator } from "@sjsf/cfworker-validator";
 
   import { getDemoContext } from "@/lib/demo";
 

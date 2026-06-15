@@ -1,11 +1,3 @@
-import { getValueByKeys, insertValue, type Trie } from "@/lib/trie.js";
-import {
-  makeSchemaDefinitionTraverser,
-  ALL_SUB_SCHEMA_KEYS,
-  type AnySubSchemaKey,
-  type SchemaTraverserContext,
-  transformSchemaDefinition,
-} from "@/lib/json-schema/index.js";
 import {
   createAugmentSchema,
   isPrimitiveSchemaType,
@@ -25,6 +17,14 @@ import {
   type FieldsValidationMode,
   type Schema,
 } from "@/form/main.js";
+import {
+  makeSchemaDefinitionTraverser,
+  ALL_SUB_SCHEMA_KEYS,
+  type AnySubSchemaKey,
+  type SchemaTraverserContext,
+  transformSchemaDefinition,
+} from "@/lib/json-schema/index.js";
+import { getValueByKeys, insertValue, type Trie } from "@/lib/trie.js";
 import { allowAdditionalProperties } from "@/omit-extra-data.js";
 
 export interface SchemaMeta {
@@ -169,12 +169,14 @@ export interface FragmentSchemaOptions {
 }
 
 const DEFAULT_ID_AUGMENTATIONS: IdAugmentations = {
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   combination: (id) => id + DEFAULT_AUGMENT_SUFFIX,
 };
 
 export function fragmentSchema({
   schema,
   subSchemas,
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   augmentSuffix = DEFAULT_AUGMENT_SUFFIX,
   idAugmentations,
 }: FragmentSchemaOptions): Schema[] {

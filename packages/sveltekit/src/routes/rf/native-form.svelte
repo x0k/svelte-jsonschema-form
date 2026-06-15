@@ -1,29 +1,33 @@
 <script lang="ts">
-  import { Content, createForm, setFormContext, SubmitButton } from '@sjsf/form';
-  import { resolver } from '@sjsf/form/resolvers/compat';
+  import {
+    Content,
+    createForm,
+    setFormContext,
+    SubmitButton,
+  } from "@sjsf/form";
+  import { resolver } from "@sjsf/form/resolvers/compat";
 
-  import { createFormIdBuilder } from '$lib/rf/index.js';
+  import { createFormIdBuilder } from "$lib/rf/index.js";
 
-  import { schema, uiSchema } from '../model.js';
-  import * as defaults from '../form-defaults.js';
+  import * as defaults from "../form-defaults.js";
+  import { schema, uiSchema } from "../model.js";
+  import { createPost } from "./data.remote.js";
 
-  import { createPost } from './data.remote.js';
-
-  const native = createPost.for('native')
+  const native = createPost.for("native");
 
   const form = createForm({
     ...defaults,
-    idPrefix: 'native',
+    idPrefix: "native",
     get initialErrors() {
       return native.fields.allIssues()?.map((i) => ({
         path: [],
-        message: i.message
+        message: i.message,
       }));
     },
     resolver,
     idBuilder: createFormIdBuilder,
     schema,
-    uiSchema
+    uiSchema,
   });
   setFormContext(form);
 </script>

@@ -1,4 +1,3 @@
-import type { Ref } from "@/lib/svelte.svelte.js";
 import type {
   ComponentProps,
   ComponentType,
@@ -9,6 +8,7 @@ import type {
   SchemaValue,
   UiOption,
 } from "@/form/index.js";
+import type { Ref } from "@/lib/svelte.svelte.js";
 import type { EnumValueMapper } from "@/options.svelte.js";
 
 export interface Handlers {

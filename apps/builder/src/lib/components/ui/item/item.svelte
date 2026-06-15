@@ -7,18 +7,18 @@
       variant: {
         default: "border-transparent",
         outline: "border-border",
-        muted: "bg-muted/50 border-transparent"
+        muted: "bg-muted/50 border-transparent",
       },
       size: {
         default: "gap-3.5 px-4 py-3.5",
         sm: "gap-2.5 px-3 py-2.5",
-        xs: "gap-2 px-2.5 py-2 in-data-[slot=dropdown-menu-content]:p-0"
-      }
+        xs: "gap-2 px-2.5 py-2 in-data-[slot=dropdown-menu-content]:p-0",
+      },
     },
     defaultVariants: {
       variant: "default",
-      size: "default"
-    }
+      size: "default",
+    },
   });
 
   export type ItemSize = VariantProps<typeof itemVariants>["size"];
@@ -26,9 +26,10 @@
 </script>
 
 <script lang="ts">
-  import { cn, type WithElementRef } from "$lib/utils.js";
-  import type { HTMLAttributes } from "svelte/elements";
   import type { Snippet } from "svelte";
+  import type { HTMLAttributes } from "svelte/elements";
+
+  import { cn, type WithElementRef } from "$lib/utils.js";
 
   let {
     ref = $bindable(null),
@@ -48,7 +49,7 @@
     "data-slot": "item",
     "data-variant": variant,
     "data-size": size,
-    ...restProps
+    ...restProps,
   });
 </script>
 

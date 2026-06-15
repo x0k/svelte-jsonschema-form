@@ -1,28 +1,37 @@
 <script lang="ts" module>
-	import type { InputProps, InputValue } from 'flowbite-svelte/types';
+  import type { InputProps, InputValue } from "flowbite-svelte/types";
 
-	declare module '@sjsf/form' {
-		interface UiOptions {
-			flowbite3Text?: InputProps<string | undefined>;
-		}
-	}
+  declare module "@sjsf/form" {
+    interface UiOptions {
+      flowbite3Text?: InputProps<string | undefined>;
+    }
+  }
 </script>
 
 <script lang="ts">
-	import { Datalist, getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
-	import Input from 'flowbite-svelte/Input.svelte';
+  import {
+    Datalist,
+    getFormContext,
+    inputAttributes,
+    type ComponentProps,
+  } from "@sjsf/form";
+  import Input from "flowbite-svelte/Input.svelte";
 
-	let { value = $bindable(), config, handlers }: ComponentProps['textWidget'] = $props();
+  let {
+    value = $bindable(),
+    config,
+    handlers,
+  }: ComponentProps["textWidget"] = $props();
 
-	const ctx = getFormContext();
+  const ctx = getFormContext();
 
-	const attributes = $derived(
-		inputAttributes(ctx, config, 'flowbite3Text', handlers, {
-			type: 'text',
-			onBlur: handlers.onblur,
-			onInput: handlers.oninput
-		})
-	);
+  const attributes = $derived(
+    inputAttributes(ctx, config, "flowbite3Text", handlers, {
+      type: "text",
+      onBlur: handlers.onblur,
+      onInput: handlers.oninput,
+    })
+  );
 </script>
 
 <Input bind:value {...attributes as InputProps<InputValue>} />

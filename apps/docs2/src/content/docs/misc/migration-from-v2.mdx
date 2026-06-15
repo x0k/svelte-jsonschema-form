@@ -4,7 +4,7 @@ sidebar:
   order: 0
 ---
 
-import Npm from '@/components/npm.astro';
+import Npm from "@/components/npm.astro";
 
 Before migrating, make sure you are using the latest version of SJSF and
 that you are not using any deprecated APIs.
@@ -45,7 +45,7 @@ This change addresses several issues:
 - A single validator instance was shared across all forms
 - Form parameters had to be passed manually to validator and merger (`uiSchema`, `idPrefix`, etc.)
 - The default merger relied on a [heavy library](https://github.com/x0k/svelte-jsonschema-form/issues/147)
-as a dependency
+  as a dependency
 - Uncontrolled ID generation system
 
 Now:
@@ -53,7 +53,7 @@ Now:
 - Each form creates its own validator and merger instances, passing the necessary parameters automatically
 - The merger is specified explicitly, making it easy to replace if needed
 - A new merger is available with significant improvements in both performance and bundle size
-(`@sjsf/form/mergers/modern`)
+  (`@sjsf/form/mergers/modern`)
 - A controlled and configurable ID generation system
 
 ### All form options now can be reactive
@@ -61,11 +61,11 @@ Now:
 All form options now support reactivity. For example:
 
 ```ts
-import { createForm } from '@sjsf/form';
+import { createForm } from "@sjsf/form";
 
-import { getInitialData } from './data.remote';
+import { getInitialData } from "./data.remote";
 
-const initialData = $derived(await getInitialData())
+const initialData = $derived(await getInitialData());
 
 const form = createForm({
   get initialValue() {
@@ -74,9 +74,9 @@ const form = createForm({
   get initialErrors() {
     initialData;
     return undefined;
-  }
+  },
   /// ...
-})
+});
 ```
 
 When `initialData` changes, the form state will be updated!
@@ -185,6 +185,7 @@ setObjectContext(myObjCtx)
 #### Forced support for nullable fields
 
 The `FieldCommonProps` interface has been updated:
+
 ```diff
 export interface FieldCommonProps<V> {
   ...
@@ -268,11 +269,11 @@ have been replaced with `createFormValidatorFactory`.
 For convenient use with `createForm`:
 
 ```ts
-  const form = createForm({
-    ...defaults,
-    schema,
-    validator: createFormValidatorFactory({ validateFunctions }),
-  });
+const form = createForm({
+  ...defaults,
+  schema,
+  validator: createFormValidatorFactory({ validateFunctions }),
+});
 ```
 
 ### Standard schema
@@ -295,10 +296,12 @@ import "@sjsf/basic-theme/css/basic.css";
 ### daisyUI v5
 
 File renames:
+
 - `@sjsf/daisyui5-theme/extra-widgets/pikaday-date-picker.svelte` → `@sjsf/daisyui5-theme/extra-widgets/date-picker.svelte`
 - `@sjsf/daisyui5-theme/extra-widgets/pikaday-date-picker-include` → `@sjsf/daisyui5-theme/extra-widgets/date-picker-include`
 
 Widget changes:
+
 - `@sjsf/daisyui5-theme/extra-widgets/cally-date-picker-include`
   now includes `daisyui5CallyDatePickerWidget` instead of `datePickerWidget`
 - `@sjsf/daisyui5-theme/extra-widgets/filter-radio-buttons-include`
@@ -318,6 +321,7 @@ import "@sjsf/flowbite3-theme/extra-widgets/toggle-radio-buttons-include";
 ### Skeleton v3
 
 Widget changes:
+
 - `@sjsf/skeleton3-theme/extra-widgets/file-upload-include`
   now includes `skeleton3FileUploadWidget` instead of `fileWidget`
 - `@sjsf/skeleton3-theme/extra-widgets/slider-include`
@@ -333,7 +337,7 @@ Now, for the integration to work correctly,
 you must use ID Builder from the `@sjsf/sveltekit` module.
 
 ```ts
-export { createFormIdBuilder as idBuilder } from '@sjsf/sveltekit'
+export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit";
 ```
 
 The `makeFormDataParser` and `validateForm` functions

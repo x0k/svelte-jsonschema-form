@@ -19,8 +19,8 @@ import {
   validatorTests,
 } from "validator-testing";
 
-import { createFormValidatorFactory } from "./validator.js";
 import { localization } from "./localizations/en-us.js";
+import { createFormValidatorFactory } from "./validator.js";
 
 const toId = (n: number) => `https://example.com/v${n}`;
 const createIdFactory = (): IdFactory => {
@@ -35,8 +35,8 @@ const createFormValidator = createPrecompiledValidatorFactory(
       registerSchema(
         Object.assign(
           { $schema: "http://json-schema.org/draft-07/schema" },
-          schema as SchemaObject,
-        ),
+          schema as SchemaObject
+        )
       );
     }
     try {
@@ -68,7 +68,7 @@ const createFormValidator = createPrecompiledValidatorFactory(
         unregisterSchema(s.$id!);
       }
     }
-  },
+  }
 );
 
 validatorTests(createFormValidator, { createIdFactory });

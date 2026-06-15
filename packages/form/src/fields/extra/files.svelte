@@ -11,8 +11,6 @@
 </script>
 
 <script lang="ts">
-  import { fileToDataURL } from "@/lib/file.js";
-  import { createAsyncBinding } from "@/lib/svelte.svelte.js";
   import {
     makeEventHandlers,
     getFieldErrors,
@@ -25,6 +23,8 @@
     FileListValidationError,
     getFieldAction,
   } from "@/form/index.js";
+  import { fileToDataURL } from "@/lib/file.js";
+  import { createAsyncBinding } from "@/lib/svelte.svelte.js";
   import "@/form/extra-fields/files.js";
 
   import "../extra-widgets/file.js";

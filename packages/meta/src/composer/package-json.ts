@@ -23,6 +23,6 @@ export function buildPackageJson({ name, dependencies: deps }: PackageJson) {
       },
     },
     null,
-    2,
+    2
   );
 }

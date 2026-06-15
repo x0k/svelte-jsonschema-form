@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  const field = "integerField"
+  const field = "integerField";
   declare module "../form/index.js" {
     interface ActionFields {
       [field]: {};
@@ -11,8 +11,8 @@
 </script>
 
 <script lang="ts">
-  import { identity } from "@/lib/function.js";
   import type { ComponentProps } from "@/form/index.js";
+  import { identity } from "@/lib/function.js";
 
   import FieldBase from "./field-base.svelte";
 

@@ -1,8 +1,9 @@
 import { resolve } from "node:path";
-import { defineConfig } from "vite";
-import tailwindcss from "@tailwindcss/vite";
+
 import { svelte } from "@sveltejs/vite-plugin-svelte";
+import tailwindcss from "@tailwindcss/vite";
 import Icons from "unplugin-icons/vite";
+import { defineConfig } from "vite";
 
 export default defineConfig({
   base: "/svelte-jsonschema-form/builder3/",
@@ -10,11 +11,11 @@ export default defineConfig({
   resolve: {
     alias: {
       $lib: resolve("./src/lib"),
-      examples: resolve(__dirname, "../../examples")
-    }
+      examples: resolve(__dirname, "../../examples"),
+    },
   },
   optimizeDeps: {
     exclude: ["@jis3r/icons"],
-    include: ["@svar-ui/svelte-core", "svelte-sonner"]
-  }
+    include: ["@svar-ui/svelte-core", "svelte-sonner"],
+  },
 });

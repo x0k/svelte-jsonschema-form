@@ -4,12 +4,11 @@ import type {
   CodegenThemeOrSubTheme,
 } from "../codegen/index.ts";
 import { createComposer } from "../composer/index.ts";
-import type { AbstractPackage } from "../package.ts";
 import type { ExtraFieldFileName } from "../fields.ts";
-import type { ExtraWidgetFileNames } from "../widgets.ts";
-import type { ToTheme } from "../themes.ts";
+import type { AbstractPackage } from "../package.ts";
 import { sandboxOpen, type SandboxPlatform } from "../sandbox/index.ts";
-
+import type { ToTheme } from "../themes.ts";
+import type { ExtraWidgetFileNames } from "../widgets.ts";
 import { COMPOSER_DEFAULTS } from "./model.ts";
 
 export interface OpenDemoOptions {

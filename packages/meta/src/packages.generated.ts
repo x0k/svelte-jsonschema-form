@@ -33,7 +33,7 @@ export const EXTRA_PACKAGES = {
   },
   "typescript": {
     "name": "typescript",
-    "version": "5.9.3",
+    "version": "6.0.3",
     "dev": true
   },
   "svelteVitePlugin": {

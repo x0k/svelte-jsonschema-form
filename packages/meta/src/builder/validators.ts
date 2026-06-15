@@ -1,11 +1,11 @@
-import type { FormValidator } from "@sjsf/form";
+import { createFormValidator as ata } from "@sjsf-lab/ata-validator";
 import {
   addFormComponents,
   createFormValidator as ajv8,
 } from "@sjsf/ajv8-validator";
 import { createFormValidator as cfworker } from "@sjsf/cfworker-validator";
+import type { FormValidator } from "@sjsf/form";
 import { createFormValidator as schemasafe } from "@sjsf/schemasafe-validator";
-import { createFormValidator as ata } from "@sjsf-lab/ata-validator";
 import _addFormats, { type FormatsPlugin } from "ajv-formats";
 
 import type { BuilderValidator } from "./model.ts";

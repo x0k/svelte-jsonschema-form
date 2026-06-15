@@ -1,5 +1,6 @@
 <script lang="ts">
   import { Command as CommandPrimitive } from "bits-ui";
+
   import { cn } from "$lib/utils.js";
 
   let {
@@ -12,6 +13,6 @@
 <CommandPrimitive.Separator
   bind:ref
   data-slot="command-separator"
-  class={cn("-mx-1 h-px w-auto bg-border", className)}
+  class={cn("bg-border -mx-1 h-px w-auto", className)}
   {...restProps}
 />

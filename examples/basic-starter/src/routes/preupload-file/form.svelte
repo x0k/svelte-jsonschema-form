@@ -8,8 +8,8 @@
 
   import * as defaults from "$lib/sjsf/defaults";
 
-  import StoredFileField from "./stored-file-field.svelte";
   import { setStoreContext } from "./context";
+  import StoredFileField from "./stored-file-field.svelte";
 
   const {
     initialValue,
@@ -56,7 +56,7 @@
   setStoreContext({
     async storeFile(_, file) {
       const root = await navigator.storage.getDirectory();
-      const key = file.name
+      const key = file.name;
       const handle = await root.getFileHandle(key, { create: true });
       const writable = await handle.createWritable();
       await writable.write(file);

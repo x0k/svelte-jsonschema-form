@@ -18,9 +18,9 @@ or see how a component looks in place.
 const uiSchema: UiSchema = {
   "ui:components": {
     // @ts-expect-error
-    arrayField: "tagsField"
-  }
-}
+    arrayField: "tagsField",
+  },
+};
 ```
 
 ## Create an adapter component
@@ -30,37 +30,38 @@ You can create a new component that adapts the interface of the original compone
 
 ```svelte
 <script lang="ts" module>
-	import type { SchemaArrayValue } from '@sjsf/form/core';
-	import type { FieldCommonProps } from '@sjsf/form';
+  import type { SchemaArrayValue } from "@sjsf/form/core";
+  import type { FieldCommonProps } from "@sjsf/form";
 
-	declare module '@sjsf/form' {
-		interface ComponentProps {
-			arrayTagsField: FieldCommonProps<SchemaArrayValue>;
-		}
-		interface ComponentBindings {
-			arrayTagsField: 'value';
-		}
-	}
+  declare module "@sjsf/form" {
+    interface ComponentProps {
+      arrayTagsField: FieldCommonProps<SchemaArrayValue>;
+    }
+    interface ComponentBindings {
+      arrayTagsField: "value";
+    }
+  }
 </script>
 
 <script lang="ts">
-	import type { ComponentProps } from '@sjsf/form';
-	import TagsField from '@sjsf/form/fields/extra/tags.svelte';
+  import type { ComponentProps } from "@sjsf/form";
+  import TagsField from "@sjsf/form/fields/extra/tags.svelte";
 
-	import { assertStrings } from '$lib/form/cast';
+  import { assertStrings } from "$lib/form/cast";
 
-	let { value = $bindable(), ...rest }: ComponentProps['arrayTagsField'] = $props();
+  let { value = $bindable(), ...rest }: ComponentProps["arrayTagsField"] =
+    $props();
 </script>
 
 <TagsField
-	{...rest}
-	bind:value={
-		() => {
-			assertStrings(value);
-			return value;
-		},
-		(v) => (value = v)
-	}
+  {...rest}
+  bind:value={
+    () => {
+      assertStrings(value);
+      return value;
+    },
+    (v) => (value = v)
+  }
 />
 ```
 
@@ -70,6 +71,7 @@ and implement it according to your needs.
 
 However, if you're fine with the `assert`-based approach,
 you can use the following prebuilt field components:
+
 - `array-files`
 - `array-native-files`
 - `array-tags`
@@ -89,8 +91,8 @@ Use it with care.
 import { cast } from "@sjsf/form/lib/component";
 import type { ComponentDefinition } from "@sjsf/form";
 import TagsField from "@sjsf/form/fields/extra/tags.svelte";
- 
-import { assertStrings } from '$lib/form/cast';
+
+import { assertStrings } from "$lib/form/cast";
 
 declare module "@sjsf/form" {
   interface ComponentProps {

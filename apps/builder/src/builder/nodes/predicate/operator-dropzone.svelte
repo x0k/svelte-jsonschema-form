@@ -2,12 +2,12 @@
   import {
     type OperatorNode,
     detectApplicableOperators,
-    isOperatorNode
+    isOperatorNode,
   } from "$lib/builder/index.js";
 
   import { getBuilderContext } from "../../context.svelte.js";
-  import { getNodeContext } from "../../node-context.js";
   import DropZone from "../../drop-zone.svelte";
+  import { getNodeContext } from "../../node-context.js";
   import RootNode from "../../root-node.svelte";
   import { getPredicateContext } from "./context.js";
 
@@ -20,7 +20,9 @@
   const ctx = getBuilderContext();
   const nodeCtx = getNodeContext();
   const pCtx = getPredicateContext();
-  const applicableOperators = $derived(detectApplicableOperators(pCtx.node, true));
+  const applicableOperators = $derived(
+    detectApplicableOperators(pCtx.node, true)
+  );
 </script>
 
 {#if node}
@@ -37,7 +39,7 @@
       isOperatorNode(node) && applicableOperators.has(node.op),
     onDrop(n) {
       node = n;
-    }
+    },
   })}
   <DropZone {droppable}>
     {#snippet placeholder()}

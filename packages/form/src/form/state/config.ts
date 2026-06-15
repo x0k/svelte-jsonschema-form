@@ -1,5 +1,5 @@
-import { FORM_CONFIGS_CACHE } from "../internals.js";
 import { isConfigEqual, type Config } from "../config.js";
+import { FORM_CONFIGS_CACHE } from "../internals.js";
 import type { FormState } from "./state.js";
 
 /**

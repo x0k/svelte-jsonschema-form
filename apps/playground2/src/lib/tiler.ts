@@ -1,11 +1,10 @@
-import { ClonedGhost, DndContext } from "svelte-tiler/shared/dnd.svelte";
-import type { Constraint } from "svelte-tiler/shared/constraints";
 import { TilerContext, type Tile, type Tiles } from "svelte-tiler";
-
+import type { Constraint } from "svelte-tiler/shared/constraints";
+import { ClonedGhost, DndContext } from "svelte-tiler/shared/dnd.svelte";
+import type { Direction } from "svelte-tiler/shared/spatial";
 import * as Leaf from "svelte-tiler/tiles/leaf.svelte";
 import * as Split from "svelte-tiler/tiles/split.svelte";
 import * as Tabs from "svelte-tiler/tiles/tabs.svelte";
-import type { Direction } from "svelte-tiler/shared/spatial";
 
 export function createTilerContext() {
   return new TilerContext({
@@ -49,7 +48,7 @@ export function createApplySplit(ctx: TilerContext) {
         direction: type,
         children: tiles,
         gapPx,
-      }),
+      })
     );
   };
 }

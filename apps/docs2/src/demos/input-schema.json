@@ -1,12 +1,7 @@
 {
   "title": "User",
   "type": "object",
-  "required": [
-    "id",
-    "email",
-    "age",
-    "roles"
-  ],
+  "required": ["id", "email", "age", "roles"],
   "properties": {
     "id": {
       "type": "integer",
@@ -25,11 +20,7 @@
       "type": "array",
       "items": {
         "type": "string",
-        "enum": [
-          "admin",
-          "editor",
-          "viewer"
-        ]
+        "enum": ["admin", "editor", "viewer"]
       },
       "uniqueItems": true,
       "minItems": 1

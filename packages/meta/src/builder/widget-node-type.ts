@@ -1,5 +1,5 @@
-import type { WidgetType } from "./widget-names.ts";
 import { NodeType, RangeValueType } from "./node-types.ts";
+import type { WidgetType } from "./widget-names.ts";
 
 export const WIDGET_NODE_TYPE: Record<WidgetType, NodeType> = {
   textWidget: NodeType.String,
@@ -45,5 +45,5 @@ export const WIDGET_RANGE_VALUE_TYPE: Partial<
 };
 
 export const RANGE_VALUE_TYPE_TO_WIDGET = Object.fromEntries(
-  Object.entries(WIDGET_RANGE_VALUE_TYPE).map(([k, v]) => [v, k]),
+  Object.entries(WIDGET_RANGE_VALUE_TYPE).map(([k, v]) => [v, k])
 ) as Record<RangeValueType, string>;

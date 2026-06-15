@@ -1,6 +1,14 @@
 import type { Schema, UiSchema } from "@sjsf/form";
-import type { PlaygroundIconSet, PlaygroundResolver, PlaygroundTheme } from "meta/playground";
-import { createSandboxFiles, type BuilderValidator, type WidgetType } from "meta/builder";
+import {
+  createSandboxFiles,
+  type BuilderValidator,
+  type WidgetType,
+} from "meta/builder";
+import type {
+  PlaygroundIconSet,
+  PlaygroundResolver,
+  PlaygroundTheme,
+} from "meta/playground";
 import { sandboxOpen, SandboxPlatform } from "meta/sandbox";
 
 import { fileFieldModeToFields, type FileFieldMode } from "./model.js";
@@ -26,7 +34,7 @@ export async function openSandbox({
   uiSchema,
   icons,
   widgets,
-  fileFieldMode
+  fileFieldMode,
 }: OpenSandboxOptions) {
   const name = `Builder (${theme}, ${validator})`;
   const files = createSandboxFiles({
@@ -37,7 +45,7 @@ export async function openSandbox({
     uiSchema,
     icons,
     widgets: Array.from(widgets),
-    fields: fileFieldModeToFields(fileFieldMode)
+    fields: fileFieldModeToFields(fileFieldMode),
   });
   await sandboxOpen({ name, platform, files });
 }

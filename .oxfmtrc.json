@@ -1,0 +1,36 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "useTabs": false,
+  "singleQuote": false,
+  "trailingComma": "es5",
+  "printWidth": 80,
+  "sortImports": {
+    "internalPattern": ["~/", "@/", "#", "$"]
+  },
+  "sortTailwindcss": {},
+  "svelte": {},
+  "ignorePatterns": [
+    "package-lock.json",
+    "pnpm-lock.yaml",
+    "yarn.lock",
+    "bun.lock",
+    "bun.lockb",
+    "**/.svelte-kit",
+    "**/build",
+    "**/dist",
+    "**/.turbo",
+    "packages/sv/.test-output",
+    "packages/sv/demo",
+    "**/node_modules",
+    "static/",
+    "packages/meta/src/**/*.generated.ts",
+    "apps/docs2/src/lib/demo.generated.ts",
+    "apps/docs2/src/lib/demos/**",
+    "apps/docs2/src/demos/*/patched-schema.ts",
+    "apps/docs2/src/demos/*/validate-functions.js",
+    "apps/docs2/src/demos/*/ast.ts",
+    "legacy/skeleton3-theme/src/lib/segment-types.d.ts",
+    "lab/shadcn-extras-theme/src/lib/components/ui/**/*",
+    "!lab/shadcn-extras-theme/src/lib/components/ui/index.ts"
+  ]
+}

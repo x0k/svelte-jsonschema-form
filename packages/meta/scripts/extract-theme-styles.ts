@@ -1,6 +1,7 @@
-import path from "node:path";
 import fs from "node:fs/promises";
+import path from "node:path";
 import { fileURLToPath } from "node:url";
+
 import { parse, walk, generate } from "css-tree";
 
 import type { PlaygroundTheme } from "../src/playground/model.ts";
@@ -236,7 +237,7 @@ export const PLAYGROUND_SJSF_GLOBAL_THEME_STYLES = ${JSON.stringify(globalThemeS
 
   const outPath = path.join(
     META_DIR,
-    "src/playground/theme-styles.generated.ts",
+    "src/playground/theme-styles.generated.ts"
   );
   await fs.writeFile(outPath, content, "utf-8");
 }

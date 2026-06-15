@@ -1,3 +1,6 @@
+import type { Config, Schema } from "@sjsf/form";
+import { ID_KEY, prefixSchemaRefs, ROOT_SCHEMA_PREFIX } from "@sjsf/form/core";
+import { memoize, weakMemoize, type MapLike } from "@sjsf/form/lib/memoize";
 import type {
   Ajv,
   AnySchema,
@@ -5,9 +8,6 @@ import type {
   ValidateFunction,
 } from "ajv";
 import type { AnyValidateFunction } from "ajv/dist/core.js";
-import { memoize, weakMemoize, type MapLike } from "@sjsf/form/lib/memoize";
-import { ID_KEY, prefixSchemaRefs, ROOT_SCHEMA_PREFIX } from "@sjsf/form/core";
-import type { Config, Schema } from "@sjsf/form";
 
 export interface ValidatorsCache extends MapLike<Schema, AnyValidateFunction> {
   delete(schema: Schema): boolean;

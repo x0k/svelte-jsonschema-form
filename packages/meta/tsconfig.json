@@ -5,24 +5,12 @@
     "moduleResolution": "nodenext",
     "outDir": "dist",
     "rootDir": "src",
-    "types": [
-      "vite/client",
-    ],
-    "lib": [
-      "es2024",
-      "DOM.Iterable",
-      "DOM"
-    ],
+    "types": ["vite/client"],
+    "lib": ["es2024", "DOM.Iterable", "DOM"],
     "rewriteRelativeImportExtensions": true,
     "paths": {
-      "examples/*": [
-        "../../examples/*"
-      ],
+      "examples/*": ["../../examples/*"]
     }
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.js",
-    "src/**/*.svelte"
-  ]
+  "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.svelte"]
 }

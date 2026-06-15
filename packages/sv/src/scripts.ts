@@ -28,7 +28,7 @@ export function scriptsFolder(ctx: Context) {
       language,
       ts,
       fieldsValidationMode: POST_FIELDS_VALIDATION_MODE,
-    }),
+    })
   );
 
   sv.file(
@@ -37,9 +37,9 @@ export function scriptsFolder(ctx: Context) {
       json.packageScriptsUpsert(
         data,
         "sjsf:compile",
-        `node scripts/compile-validators.${language}`,
+        `node scripts/compile-validators.${language}`
       );
       json.packageScriptsUpsert(data, "prepare", "npm run sjsf:compile");
-    }),
+    })
   );
 }

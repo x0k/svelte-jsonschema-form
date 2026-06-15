@@ -1,8 +1,8 @@
-import { createSubscriber } from "svelte/reactivity";
 import {
   compressToEncodedURIComponent,
   decompressFromEncodedURIComponent,
 } from "lz-string";
+import { createSubscriber } from "svelte/reactivity";
 
 export type Page = "" | "v" | "m";
 
@@ -58,7 +58,7 @@ class Router {
       return Object.assign(
         {},
         defaultData,
-        JSON.parse(decompressFromEncodedURIComponent(hash.substring(1))),
+        JSON.parse(decompressFromEncodedURIComponent(hash.substring(1)))
       );
     } catch {
       console.error("Failed to decode state from URL");

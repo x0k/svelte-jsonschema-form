@@ -1,140 +1,140 @@
 {
-	"name": "@sjsf-lab/shadcn-extras-theme",
-	"version": "3.4.1",
-	"description": "The shadcn-svelte-extras based theme for svelte-jsonschema-form",
-	"license": "MIT",
-	"scripts": {
-		"dev": "vite dev",
-		"build": "svelte-package && vite build && mv $(find .svelte-kit/output/server/_app/immutable/assets/ -name \"_page*.css\" | head -n 1) dist/styles.css && ../../scripts/validate-theme-css.sh && publint",
-		"preview": "vite preview",
-		"test": "npm run test:unit -- --run",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"lint": "prettier --check . && eslint .",
-		"format": "prettier --write .",
-		"test:integration": "playwright test",
-		"test:unit": "vitest"
-	},
-	"files": [
-		"dist",
-		"!dist/**/*.test.*",
-		"!dist/**/*.spec.*"
-	],
-	"publishConfig": {
-		"provenance": true
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/x0k/svelte-jsonschema-form.git",
-		"directory": "lab/shadcn-extras-theme"
-	},
-	"bugs": "https://github.com/x0k/svelte-jsonschema-form/issues",
-	"homepage": "https://x0k.github.io/svelte-jsonschema-form/",
-	"svelte": "./dist/theme/index.js",
-	"types": "./dist/theme/index.d.ts",
-	"type": "module",
-	"exports": {
-		"./package.json": "./package.json",
-		"./extra-widgets/*": {
-			"types": "./dist/theme/extra-widgets/*.d.ts",
-			"svelte": "./dist/theme/extra-widgets/*"
-		},
-		".": {
-			"types": "./dist/theme/index.d.ts",
-			"svelte": "./dist/theme/index.js"
-		},
-		"./ui": {
-			"types": "./dist/components/ui/index.d.ts",
-			"svelte": "./dist/components/ui/index.js"
-		},
-		"./styles.css": "./dist/styles.css",
-		"./specs": {
-			"types": "./dist/specs.d.ts",
-			"svelte": "./dist/specs.js"
-		}
-	},
-	"peerDependencies": {
-		"@lucide/svelte": ">=0.479.0 <1.0.0 || ^1.0.0",
-		"@sjsf/form": "workspace:^3.5.0",
-		"@sjsf/shadcn4-theme": "workspace:^3.5.0",
-		"@zxcvbn-ts/core": "^3.0.0",
-		"@zxcvbn-ts/language-common": "^3.0.0",
-		"@zxcvbn-ts/language-en": "^3.0.0",
-		"bits-ui": "^2.14.0",
-		"clsx": "^2.1.0",
-		"country-flag-icons": "^1.5.0",
-		"runed": ">=0.35.0 <0.38.0",
-		"svelte": "^5.34.8",
-		"svelte-tel-input": "^4.0.0",
-		"svelte-toolbelt": "^0.10.0",
-		"tailwind-merge": "^3.3.0",
-		"tailwind-variants": "^3.2.0",
-		"yeezy-dates": "^1.0.0"
-	},
-	"peerDependenciesMeta": {
-		"yeezy-dates": {
-			"optional": true
-		},
-		"@lucide/svelte": {
-			"optional": true
-		},
-		"@zxcvbn-ts/core": {
-			"optional": true
-		},
-		"@zxcvbn-ts/language-common": {
-			"optional": true
-		},
-		"@zxcvbn-ts/language-en": {
-			"optional": true
-		},
-		"runed": {
-			"optional": true
-		},
-		"svelte-toolbelt": {
-			"optional": true
-		},
-		"tailwind-variants": {
-			"optional": true
-		},
-		"country-flag-icons": {
-			"optional": true
-		},
-		"svelte-tel-input": {
-			"optional": true
-		}
-	},
-	"devDependencies": {
-		"@fontsource-variable/inter": "catalog:",
-		"@jsrepo/transform-prettier": "^7.0.0",
-		"jsrepo": "^3.7.0",
-		"@lucide/svelte": "catalog:",
-		"@sjsf/ajv8-validator": "workspace:*",
-		"@sjsf/form": "workspace:*",
-		"@sjsf/shadcn4-theme": "workspace:*",
-		"@tailwindcss/vite": "catalog:",
-		"ajv": "catalog:",
-		"bits-ui": "catalog:",
-		"globals": "catalog:",
-		"svelte": "catalog:",
-		"@zxcvbn-ts/core": "catalog:shadcn",
-		"@zxcvbn-ts/language-common": "catalog:shadcn",
-		"@zxcvbn-ts/language-en": "catalog:shadcn",
-		"clsx": "catalog:shadcn",
-		"country-flag-icons": "catalog:shadcn",
-		"runed": "catalog:shadcn",
-		"svelte-tel-input": "catalog:shadcn",
-		"svelte-toolbelt": "catalog:shadcn",
-		"tailwind-merge": "catalog:shadcn",
-		"tailwind-variants": "catalog:shadcn",
-		"tw-animate-css": "catalog:shadcn",
-		"yeezy-dates": "catalog:shadcn",
-		"tailwindcss": "catalog:",
-		"theme-testing": "workspace:*"
-	},
-	"keywords": [
-		"theme",
-		"shadcn-svelte",
-		"shadcn-svelte-extras",
-		"form"
-	]
+  "name": "@sjsf-lab/shadcn-extras-theme",
+  "version": "3.4.1",
+  "description": "The shadcn-svelte-extras based theme for svelte-jsonschema-form",
+  "keywords": [
+    "form",
+    "shadcn-svelte",
+    "shadcn-svelte-extras",
+    "theme"
+  ],
+  "homepage": "https://x0k.github.io/svelte-jsonschema-form/",
+  "bugs": "https://github.com/x0k/svelte-jsonschema-form/issues",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/x0k/svelte-jsonschema-form.git",
+    "directory": "lab/shadcn-extras-theme"
+  },
+  "files": [
+    "dist",
+    "!dist/**/*.test.*",
+    "!dist/**/*.spec.*"
+  ],
+  "type": "module",
+  "types": "./dist/theme/index.d.ts",
+  "svelte": "./dist/theme/index.js",
+  "exports": {
+    "./package.json": "./package.json",
+    "./extra-widgets/*": {
+      "types": "./dist/theme/extra-widgets/*.d.ts",
+      "svelte": "./dist/theme/extra-widgets/*"
+    },
+    ".": {
+      "types": "./dist/theme/index.d.ts",
+      "svelte": "./dist/theme/index.js"
+    },
+    "./ui": {
+      "types": "./dist/components/ui/index.d.ts",
+      "svelte": "./dist/components/ui/index.js"
+    },
+    "./styles.css": "./dist/styles.css",
+    "./specs": {
+      "types": "./dist/specs.d.ts",
+      "svelte": "./dist/specs.js"
+    }
+  },
+  "publishConfig": {
+    "provenance": true
+  },
+  "scripts": {
+    "dev": "vite dev",
+    "build": "svelte-package && vite build && mv $(find .svelte-kit/output/server/_app/immutable/assets/ -name \"_page*.css\" | head -n 1) dist/styles.css && ../../scripts/validate-theme-css.sh && publint",
+    "preview": "vite preview",
+    "test": "npm run test:unit -- --run",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "lint": "eslint .",
+    "test:integration": "playwright test",
+    "test:unit": "vitest",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check ."
+  },
+  "devDependencies": {
+    "@fontsource-variable/inter": "catalog:",
+    "@lucide/svelte": "catalog:",
+    "@sjsf/ajv8-validator": "workspace:*",
+    "@sjsf/form": "workspace:*",
+    "@sjsf/shadcn4-theme": "workspace:*",
+    "@tailwindcss/vite": "catalog:",
+    "@zxcvbn-ts/core": "catalog:shadcn",
+    "@zxcvbn-ts/language-common": "catalog:shadcn",
+    "@zxcvbn-ts/language-en": "catalog:shadcn",
+    "ajv": "catalog:",
+    "bits-ui": "catalog:",
+    "clsx": "catalog:shadcn",
+    "country-flag-icons": "catalog:shadcn",
+    "globals": "catalog:",
+    "jsrepo": "^3.7.0",
+    "runed": "catalog:shadcn",
+    "svelte": "catalog:",
+    "svelte-tel-input": "catalog:shadcn",
+    "svelte-toolbelt": "catalog:shadcn",
+    "tailwind-merge": "catalog:shadcn",
+    "tailwind-variants": "catalog:shadcn",
+    "tailwindcss": "catalog:",
+    "theme-testing": "workspace:*",
+    "tw-animate-css": "catalog:shadcn",
+    "yeezy-dates": "catalog:shadcn"
+  },
+  "peerDependencies": {
+    "@lucide/svelte": ">=0.479.0 <1.0.0 || ^1.0.0",
+    "@sjsf/form": "workspace:^3.5.0",
+    "@sjsf/shadcn4-theme": "workspace:^3.5.0",
+    "@zxcvbn-ts/core": "^3.0.0",
+    "@zxcvbn-ts/language-common": "^3.0.0",
+    "@zxcvbn-ts/language-en": "^3.0.0",
+    "bits-ui": "^2.14.0",
+    "clsx": "^2.1.0",
+    "country-flag-icons": "^1.5.0",
+    "runed": ">=0.35.0 <0.38.0",
+    "svelte": "^5.34.8",
+    "svelte-tel-input": "^4.0.0",
+    "svelte-toolbelt": "^0.10.0",
+    "tailwind-merge": "^3.3.0",
+    "tailwind-variants": "^3.2.0",
+    "yeezy-dates": "^1.0.0"
+  },
+  "peerDependenciesMeta": {
+    "yeezy-dates": {
+      "optional": true
+    },
+    "@lucide/svelte": {
+      "optional": true
+    },
+    "@zxcvbn-ts/core": {
+      "optional": true
+    },
+    "@zxcvbn-ts/language-common": {
+      "optional": true
+    },
+    "@zxcvbn-ts/language-en": {
+      "optional": true
+    },
+    "runed": {
+      "optional": true
+    },
+    "svelte-toolbelt": {
+      "optional": true
+    },
+    "tailwind-variants": {
+      "optional": true
+    },
+    "country-flag-icons": {
+      "optional": true
+    },
+    "svelte-tel-input": {
+      "optional": true
+    }
+  }
 }

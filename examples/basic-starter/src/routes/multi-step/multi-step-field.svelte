@@ -6,8 +6,6 @@
 </script>
 
 <script lang="ts">
-  import { isSchemaObject } from "@sjsf/form/lib/json-schema";
-  import type { Ref } from "@sjsf/form/lib/svelte.svelte";
   import {
     getChildPath,
     getFieldComponent,
@@ -21,6 +19,8 @@
     validate,
     updateErrors,
   } from "@sjsf/form";
+  import { isSchemaObject } from "@sjsf/form/lib/json-schema";
+  import type { Ref } from "@sjsf/form/lib/svelte.svelte";
 
   let { config, value = $bindable() }: ComponentProps["tupleField"] = $props();
 

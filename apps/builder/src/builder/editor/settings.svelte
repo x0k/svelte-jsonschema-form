@@ -1,21 +1,24 @@
 <script lang="ts">
-  import CircleX from "@lucide/svelte/icons/circle-x";
   import CircleAlert from "@lucide/svelte/icons/circle-alert";
+  import CircleX from "@lucide/svelte/icons/circle-x";
   import { themeOrSubThemeTitle } from "meta";
-  import { playgroundIconSets, playgroundIconSetTitle, playgroundThemes } from "meta/playground";
+  import {
+    playgroundIconSets,
+    playgroundIconSetTitle,
+    playgroundThemes,
+  } from "meta/playground";
 
   import { isCustomizableNode } from "$lib/builder/index.js";
-  import { Button } from "$lib/components/ui/button/index.js";
   import { CopyButton } from "$lib/components/copy-button/index.js";
-  import { Label } from "$lib/components/ui/label/index.js";
-  import { Checkbox } from "$lib/components/ui/checkbox/index.js";
   import Select from "$lib/components/select.svelte";
+  import { Button } from "$lib/components/ui/button/index.js";
+  import { Checkbox } from "$lib/components/ui/checkbox/index.js";
+  import { Label } from "$lib/components/ui/label/index.js";
   import { encodeJson } from "$lib/url.js";
 
-  import { PreviewSubRouteName, RouteName } from "../model.js";
-  import { getBuilderContext } from "../context.svelte.js";
   import Container from "../container.svelte";
-
+  import { getBuilderContext } from "../context.svelte.js";
+  import { PreviewSubRouteName, RouteName } from "../model.js";
   import NodeSettings from "./node-settings.svelte";
 
   const ctx = getBuilderContext();
@@ -25,7 +28,9 @@
 
 {#if selected && isCustomizableNode(selected)}
   <Container class="mb-4 p-3">
-    <NodeSettings bind:node={() => selected, (n) => ctx.updateSelectedNode(n)} />
+    <NodeSettings
+      bind:node={() => selected, (n) => ctx.updateSelectedNode(n)}
+    />
   </Container>
 {/if}
 <Container class="flex flex-col gap-4 p-3">
@@ -63,7 +68,10 @@
     onclick={() => {
       if (ctx.validate()) {
         ctx.build();
-        ctx.route = { name: RouteName.Preview, subRoute: PreviewSubRouteName.Code };
+        ctx.route = {
+          name: RouteName.Preview,
+          subRoute: PreviewSubRouteName.Code,
+        };
       }
     }}
   >

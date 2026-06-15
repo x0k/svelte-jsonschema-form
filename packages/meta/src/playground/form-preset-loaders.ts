@@ -22,5 +22,5 @@ export const SORTED_PRESETS: PresetEntry[] = Object.keys(PRESET_LOADERS)
 
 export const GROUPED_FORM_PRESETS = Object.groupBy(
   SORTED_PRESETS,
-  (s) => s.meta.category,
+  (s) => s.meta.category
 );

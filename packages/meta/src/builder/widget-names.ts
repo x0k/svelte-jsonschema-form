@@ -1,6 +1,6 @@
-import type { WidgetTypes } from "../widgets.ts";
-import type { ToTheme } from "../themes.ts";
 import type { PlaygroundTheme } from "../playground/index.ts";
+import type { ToTheme } from "../themes.ts";
+import type { WidgetTypes } from "../widgets.ts";
 
 export type WidgetType = WidgetTypes[ToTheme<PlaygroundTheme>];
 

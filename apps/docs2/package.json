@@ -1,8 +1,8 @@
 {
   "name": "docs2",
+  "version": "1.16.2",
   "private": true,
   "type": "module",
-  "version": "1.16.2",
   "scripts": {
     "dev": "astro dev",
     "generate-demos": "node scripts/generate-demos.ts",
@@ -13,7 +13,9 @@
     "precompile-validators": "pnpm run precompile-ajv-validator && pnpm run precompile-ajv-validator && pnpm run precompile-hyperjump-validator && pnpm run precompile-schemasafe-validator",
     "build": "CHECK_LINKS=true astro build",
     "preview": "astro preview",
-    "check": "pnpm run generate-demos && pnpm run precompile-validators && astro check && svelte-check --tsconfig ./tsconfig.json"
+    "check": "pnpm run generate-demos && pnpm run precompile-validators && astro check && svelte-check --tsconfig ./tsconfig.json",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check ."
   },
   "dependencies": {
     "@cfworker/json-schema": "catalog:",

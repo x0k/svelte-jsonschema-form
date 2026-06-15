@@ -6,9 +6,9 @@
   TItem extends { meta: { tags: readonly TTag[] } }
 "
 >
+  import { filterByTags } from "meta";
   import type { Snippet } from "svelte";
   import { SvelteSet } from "svelte/reactivity";
-  import { filterByTags } from "meta";
 
   import Button from "@/components/button.svelte";
 

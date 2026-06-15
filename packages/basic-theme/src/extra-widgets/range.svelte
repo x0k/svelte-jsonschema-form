@@ -27,7 +27,7 @@
   const attributes = $derived(
     inputAttributes(ctx, config, "range", handlers, {
       type: "range",
-      class: "sjsf-range"
+      class: "sjsf-range",
     })
   );
 </script>

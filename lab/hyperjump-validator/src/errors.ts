@@ -1,10 +1,10 @@
-import { pathFromLocation } from "@sjsf/form/core";
-import type { FormValue, ValidationResult } from "@sjsf/form";
 import type * as H from "@hyperjump/json-schema-errors";
+import type { FormValue, ValidationResult } from "@sjsf/form";
+import { pathFromLocation } from "@sjsf/form/core";
 
 export function transformFormErrors<T>(
   out: H.ValidationResult,
-  data: FormValue,
+  data: FormValue
 ): ValidationResult<T> {
   return out.valid
     ? {

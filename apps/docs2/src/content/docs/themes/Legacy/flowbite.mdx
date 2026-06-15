@@ -6,27 +6,33 @@ sidebar:
   order: 207
 ---
 
-import { Code, Card, LinkButton, Tabs, TabItem } from '@astrojs/starlight/components';
-import { specs, extraWidgets } from '@sjsf/flowbite-theme/specs';
-import styles from '@sjsf/flowbite-theme/styles.css?inline';
+import {
+  Code,
+  Card,
+  LinkButton,
+  Tabs,
+  TabItem,
+} from "@astrojs/starlight/components";
+import { specs, extraWidgets } from "@sjsf/flowbite-theme/specs";
+import styles from "@sjsf/flowbite-theme/styles.css?inline";
 import { themePackage } from "meta";
 
-import { getPackageDependencies } from '@/shared';
-import Npm from '@/components/npm.astro';
-import Picker from '@/components/picker.astro';
-import FormCard from '@/components/form-card.astro';
-import Deps from '@/components/peer-dependencies.astro'
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import Picker from "@/components/picker.astro";
+import FormCard from "@/components/form-card.astro";
+import Deps from "@/components/peer-dependencies.astro";
 
 import { createSchemas, replacer, createExtraImports } from "../_demo-schema";
-import Form from './flowbite/form.svelte';
-import uiOptionsCode from './flowbite/ui-options?raw';
+import Form from "./flowbite/form.svelte";
+import uiOptionsCode from "./flowbite/ui-options?raw";
 
-export const schemas = createSchemas(specs)
-export const pkg = themePackage('flowbite')
+export const schemas = createSchemas(specs);
+export const pkg = themePackage("flowbite");
 
 > Flowbite™ is a registered trademark of Bergside Inc.
-This website is not affiliated with, endorsed by, or sponsored by Bergside Inc.
-All rights to the trademark are owned by Bergside Inc.
+> This website is not affiliated with, endorsed by, or sponsored by Bergside Inc.
+> All rights to the trademark are owned by Bergside Inc.
 
 ## Installation
 
@@ -36,7 +42,12 @@ All rights to the trademark are owned by Bergside Inc.
 
 ### Install Flowbite Svelte
 
-<LinkButton href="https://flowbite-svelte.com/docs/pages/quickstart" variant='secondary' target="_blank" icon="external" >
+<LinkButton
+  href="https://flowbite-svelte.com/docs/pages/quickstart"
+  variant="secondary"
+  target="_blank"
+  icon="external"
+>
   Quickstart - Flowbite Svelte
 </LinkButton>
 
@@ -47,14 +58,14 @@ There is two ways to setup styles:
 1. Tailwind configuration
 
 ```typescript
-import flowbite from 'flowbite/plugin';
-import { THEME_CONTENT, FLOWBITE_CONTENT } from '@sjsf/flowbite-theme/preset'
+import flowbite from "flowbite/plugin";
+import { THEME_CONTENT, FLOWBITE_CONTENT } from "@sjsf/flowbite-theme/preset";
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./src/**/*.{html,js,svelte,ts}', THEME_CONTENT, FLOWBITE_CONTENT],
+  content: ["./src/**/*.{html,js,svelte,ts}", THEME_CONTENT, FLOWBITE_CONTENT],
   plugins: [flowbite],
-}
+};
 ```
 
 2. Inject prepared styles (not recommended)
@@ -76,17 +87,17 @@ or used in the field as the default widget.
 
 :::
 
-<Code lang='ts' code={createExtraImports("flowbite", extraWidgets)} />
+<Code lang="ts" code={createExtraImports("flowbite", extraWidgets)} />
 
 ## Widgets demo
 
 <Tabs>
-  <TabItem label='Form'>
+  <TabItem label="Form">
     <FormCard style={styles}>
       <Form client:only="svelte" />
     </FormCard>
   </TabItem>
-  <TabItem label="JSON Schema" >
+  <TabItem label="JSON Schema">
     <Code lang="json" code={JSON.stringify(schemas.schema, replacer, 2)} />
   </TabItem>
   <TabItem label="UI Schema">

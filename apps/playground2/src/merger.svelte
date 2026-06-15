@@ -1,4 +1,5 @@
 <script lang="ts">
+  import AlignLeft from "@lucide/svelte/icons/align-left";
   import { createDeduplicator, createIntersector } from "@sjsf/form/lib/array";
   import {
     createComparator,
@@ -6,22 +7,21 @@
     createMerger,
     createShallowAllOfMerge,
   } from "@sjsf/form/lib/json-schema";
-  import { fromRecord } from "svelte-tiler/shared/registry";
+  import type { MergerState } from "meta/playground";
   import { Panel, setTilerContext, type Tiles } from "svelte-tiler";
+  import { fromRecord } from "svelte-tiler/shared/registry";
   import * as Leaf from "svelte-tiler/tiles/leaf.svelte";
   import * as Split from "svelte-tiler/tiles/split.svelte";
   import * as Tabs from "svelte-tiler/tiles/tabs.svelte";
-  import AlignLeft from "@lucide/svelte/icons/align-left";
-  import type { MergerState } from "meta/playground";
 
-  import { debouncedEffect } from "$lib/svelte.svelte.js";
-  import { Button } from "$lib/components/ui/button/index.js";
   import * as ButtonGroup from "$lib/components/ui/button-group/index.js";
-  import Editor from "$lib/editor.svelte";
-  import Popup from "$lib/popup.svelte";
-  import { Label } from "$lib/components/ui/label/index.js";
+  import { Button } from "$lib/components/ui/button/index.js";
   import { Checkbox } from "$lib/components/ui/checkbox/index.js";
+  import { Label } from "$lib/components/ui/label/index.js";
+  import Editor from "$lib/editor.svelte";
   import { gripHeader } from "$lib/grip-header.svelte";
+  import Popup from "$lib/popup.svelte";
+  import { debouncedEffect } from "$lib/svelte.svelte.js";
   import {
     constraints,
     createApplySplit,
@@ -88,7 +88,7 @@
     fromRecord({
       schema,
       output,
-    }),
+    })
   );
   const createTabs = Tabs.setup({
     headers: fromRecord({
@@ -125,7 +125,7 @@
               }),
             },
           ],
-        }),
+        })
   );
 
   debouncedEffect(() => {

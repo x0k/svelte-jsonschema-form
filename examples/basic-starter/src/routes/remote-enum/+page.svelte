@@ -1,6 +1,6 @@
 <script lang="ts" module>
-  import type { Query } from "@sjsf/form/lib/task.svelte";
   import type { EnumOption, SchemaValue } from "@sjsf/form/core";
+  import type { Query } from "@sjsf/form/lib/task.svelte";
 
   declare module "@sjsf/form/fields/extra/remote-enum.svelte" {
     interface EnumOptionsQueries {
@@ -10,9 +10,6 @@
 </script>
 
 <script lang="ts">
-  import { extendByRecord } from "@sjsf/form/lib/resolver";
-  import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
   import {
     createForm,
     BasicForm,
@@ -24,11 +21,14 @@
     setEnumOptionsQueriesContext,
     type EnumOptionsQueries,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
+  import { extendByRecord } from "@sjsf/form/lib/resolver";
+  import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
+  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
   import * as defaults from "$lib/sjsf/defaults";
 
-  import { COUNTRIES } from "./countries";
   import comboboxWidget from "./combobox.svelte";
+  import { COUNTRIES } from "./countries";
 
   const options: EnumOption<SchemaValue>[] = COUNTRIES.map((c) => ({
     id: crypto.randomUUID(),

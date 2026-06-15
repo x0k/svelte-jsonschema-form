@@ -4,8 +4,8 @@
 
 import { describe, it, expect } from "vitest";
 
-import { createMerger } from "./merge.js";
 import { createShallowAllOfMerge } from "./all-of-merge.js";
+import { createMerger } from "./merge.js";
 
 const { mergeArrayOfSchemaDefinitions } = createMerger();
 const mergeAllOf = createShallowAllOfMerge(mergeArrayOfSchemaDefinitions);

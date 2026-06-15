@@ -7,10 +7,10 @@
 </script>
 
 <script lang="ts">
-  import { type Ajv } from "ajv";
+  import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
   import { BasicForm, createForm, ON_CHANGE } from "@sjsf/form";
   import { formatFileSize } from "@sjsf/form/validators/file-size";
-  import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
+  import { type Ajv } from "ajv";
 
   import { getDemoContext } from "@/lib/demo";
 

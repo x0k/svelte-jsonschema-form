@@ -20,25 +20,25 @@ There is two ways to setup styles:
 1. Use tailwindcss config
 
 ```typescript
-import daisyui from 'daisyui';
-import { THEME_CONTENT } from '@sjsf/daisyui-theme/preset'
+import daisyui from "daisyui";
+import { THEME_CONTENT } from "@sjsf/daisyui-theme/preset";
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./src/**/*.{html,js,svelte,ts}', THEME_CONTENT],
+  content: ["./src/**/*.{html,js,svelte,ts}", THEME_CONTENT],
   plugins: [daisyui],
-}
+};
 ```
 
 Or with a preset
 
 ```typescript
-import themePreset from '@sjsf/daisyui-theme/preset'
+import themePreset from "@sjsf/daisyui-theme/preset";
 
 /** @type {import('tailwindcss').Config} */
 export default {
   presets: [themePreset],
-}
+};
 ```
 
 2. Inject prepared styles (not recommended)

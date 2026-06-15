@@ -1,10 +1,9 @@
 <script lang="ts">
   import { isRecordEmpty } from "@sjsf/form/lib/object";
-
-  import DeviconPlainSvelte from "~icons/devicon-plain/svelte";
-  import DeviconPlainTypescript from "~icons/devicon-plain/typescript";
   import DeviconPlainBash from "~icons/devicon-plain/bash";
   import DeviconPlainCss from "~icons/devicon-plain/css";
+  import DeviconPlainSvelte from "~icons/devicon-plain/svelte";
+  import DeviconPlainTypescript from "~icons/devicon-plain/typescript";
   import MdiCodeJson from "~icons/mdi/code-json";
 
   import Code, { type CodeFile } from "$lib/components/code.svelte";
@@ -25,22 +24,22 @@
           title: "form.svelte",
           get content() {
             return ctx.formDotSvelte;
-          }
+          },
         },
         {
           Icon: DeviconPlainTypescript,
           title: "defaults.ts",
           get content() {
             return ctx.formDefaults;
-          }
+          },
         },
         {
           Icon: DeviconPlainBash,
           title: "install.sh",
           get content() {
             return ctx.installSh;
-          }
-        }
+          },
+        },
       ];
       if (ctx.appCss.length > 0) {
         files.splice(2, 0, {
@@ -48,7 +47,7 @@
           title: "app.css",
           get content() {
             return ctx.appCss;
-          }
+          },
         });
       }
       return files;
@@ -60,20 +59,23 @@
           title: "schema.json",
           get content() {
             return ctx.highlight("json", JSON.stringify(ctx.schema, null, 2));
-          }
-        }
+          },
+        },
       ];
       if (ctx.uiSchema && !isRecordEmpty(ctx.uiSchema)) {
         files.push({
           Icon: MdiCodeJson,
           title: "ui-schema.json",
           get content() {
-            return ctx.highlight("json", JSON.stringify(ctx.uiSchema ?? {}, null, 2));
-          }
+            return ctx.highlight(
+              "json",
+              JSON.stringify(ctx.uiSchema ?? {}, null, 2)
+            );
+          },
         });
       }
       return files;
-    }
+    },
   };
 </script>
 

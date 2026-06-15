@@ -7,18 +7,21 @@ sidebar:
 ---
 
 import { Code, Tabs, TabItem } from "@astrojs/starlight/components";
-import { DEFAULT_ID_SEPARATOR, DEFAULT_ID_PSEUDO_SEPARATOR } from '@sjsf/form/id-builders/legacy';
-import { sveltekitPackage } from 'meta';
+import {
+  DEFAULT_ID_SEPARATOR,
+  DEFAULT_ID_PSEUDO_SEPARATOR,
+} from "@sjsf/form/id-builders/legacy";
+import { sveltekitPackage } from "meta";
 
-import { getPackageDependencies } from '@/shared';
-import Npm from '@/components/npm.astro';
-import Deps from '@/components/peer-dependencies.astro';
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import Deps from "@/components/peer-dependencies.astro";
 
-import modelCode from 'examples/sveltekit-starter/src/lib/post.ts?raw'
-import clientCode from 'examples/sveltekit-starter/src/routes/form-actions/+page.svelte?raw';
-import serverCode from 'examples/sveltekit-starter/src/routes/form-actions/+page.server?raw'
-import clientFlexCode from 'examples/sveltekit-starter/src/routes/form-actions-flex/+page.svelte?raw';
-import serverFlexCode from 'examples/sveltekit-starter/src/routes/form-actions-flex/+page.server?raw';
+import modelCode from "examples/sveltekit-starter/src/lib/post.ts?raw";
+import clientCode from "examples/sveltekit-starter/src/routes/form-actions/+page.svelte?raw";
+import serverCode from "examples/sveltekit-starter/src/routes/form-actions/+page.server?raw";
+import clientFlexCode from "examples/sveltekit-starter/src/routes/form-actions-flex/+page.svelte?raw";
+import serverFlexCode from "examples/sveltekit-starter/src/routes/form-actions-flex/+page.server?raw";
 
 Since this is a `Svelte` library, you may want to use it with the `SvelteKit`.
 
@@ -42,14 +45,14 @@ For correct operation, you must use ID Builder from the `@sjsf/sveltekit`.
 :::
 
 <Tabs>
-  <TabItem label='+page.svelte' >
-    <Code code={clientCode} lang='svelte' />
+  <TabItem label="+page.svelte">
+    <Code code={clientCode} lang="svelte" />
   </TabItem>
-  <TabItem label='+page.server.ts'>
-    <Code code={serverCode} lang='typescript' />
+  <TabItem label="+page.server.ts">
+    <Code code={serverCode} lang="typescript" />
   </TabItem>
-  <TabItem label='lib/post.ts'>
-    <Code code={modelCode} lang='typescript' />
+  <TabItem label="lib/post.ts">
+    <Code code={modelCode} lang="typescript" />
   </TabItem>
 </Tabs>
 
@@ -102,6 +105,7 @@ if (title.length > 100) {
 ### Advanced API
 
 By using the `createFormHandler` API, you can gain more control over the action handler, for example to:
+
 - run checks before processing the form data
 - work with dynamic schemas (call `createFormHandler` inside the action handler)
 
@@ -114,11 +118,11 @@ in every branch of the handler's code.
 :::
 
 <Tabs>
-  <TabItem label='+page.server.ts'>
-    <Code code={serverFlexCode} lang='typescript' />
+  <TabItem label="+page.server.ts">
+    <Code code={serverFlexCode} lang="typescript" />
   </TabItem>
-  <TabItem label='lib/post.ts'>
-    <Code code={modelCode} lang='typescript' />
+  <TabItem label="lib/post.ts">
+    <Code code={modelCode} lang="typescript" />
   </TabItem>
 </Tabs>
 
@@ -127,7 +131,7 @@ in every branch of the handler's code.
 On the client side you can use `SvelteKitForm` component ([see example](#example)).
 Or use more flexible solution:
 
-<Code code={clientFlexCode} lang='svelte' />
+<Code code={clientFlexCode} lang="svelte" />
 
 The form data type will be inferred from the `ActionData` and `PageData` type.
 
@@ -135,7 +139,6 @@ If the value of the form cannot be inferred from `action` and
 you did not use `load` function, then the third generic parameter of
 the `createMeta` function will be used as the form data type
 (default type is `SchemaValue`).
-
 
 According to Svelte documentation your form should always use `POST` requests.
 
@@ -145,7 +148,7 @@ By default, the form will work even with JavaScript disabled, but you should con
 
 - `action` should be created with `sendData: true` to persist form data between page updates
 - Form fields for `oneOf`, `anyOf`, `dependencies`, `additionalProperties` and `additionalItems`
-will not expand/switch their state.
+  will not expand/switch their state.
 - Some widgets (like multiselect, depends on the theme) may will not work, because they require `JavaScript`.
 
 ## Comparison with Superforms
@@ -170,23 +173,26 @@ until the form is either successfully submitted or reset.
 You can use the following code to check whether any changes have been made.
 
 ```ts
-import { isSchemaValueDeepEqual } from '@sjsf/form/core';
-import { getValueSnapshot } from '@sjsf/form';
-import { preventPageReload } from '@sjsf/form/prevent-page-reload.svelte';
+import { isSchemaValueDeepEqual } from "@sjsf/form/core";
+import { getValueSnapshot } from "@sjsf/form";
+import { preventPageReload } from "@sjsf/form/prevent-page-reload.svelte";
 
 preventPageReload({
   get isChanged() {
-    return form.isChanged && !isSchemaValueDeepEqual(initialValue, getValueSnapshot(form))
-  }
-})
+    return (
+      form.isChanged &&
+      !isSchemaValueDeepEqual(initialValue, getValueSnapshot(form))
+    );
+  },
+});
 ```
 
 ### Available events
 
 - `onSuccess` — triggered when a request completes successfully,
-receiving an `ActionResult<NonNullable<ActionData>>` as the result
+  receiving an `ActionResult<NonNullable<ActionData>>` as the result
 - `onFailure` — triggered when a request fails,
-receiving a `FailedTask<unknown>` as the argument
+  receiving a `FailedTask<unknown>` as the argument
 - `onSubmitError` — triggered when client-side validation errors are present
 - `onSubmissionFailure` — triggered when an error occurs during validation
 
@@ -226,8 +232,8 @@ export const actions = {
     (data: Model, _event, { idPrefix }) => {
       console.log(idPrefix, data);
     }
-  )
-} satisfies Actions
+  ),
+} satisfies Actions;
 ```
 
 ### Submit behavior

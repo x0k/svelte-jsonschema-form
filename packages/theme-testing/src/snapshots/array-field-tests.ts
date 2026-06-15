@@ -2,9 +2,9 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { describe, test } from "vitest";
 import type { Schema, Theme, UiSchema, UiSchemaRoot } from "@sjsf/form";
 import { resolver } from "@sjsf/form/resolvers/compat";
+import { describe, test } from "vitest";
 
 import {
   matchSnapshot,

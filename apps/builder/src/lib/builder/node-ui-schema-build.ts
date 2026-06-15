@@ -1,6 +1,11 @@
-import { identity } from "@sjsf/form/lib/function";
 import type { UiOptions, UiSchema } from "@sjsf/form";
-import { NodeType, type AbstractNode, type NodeId, EnumValueType } from "meta/builder";
+import { identity } from "@sjsf/form/lib/function";
+import {
+  NodeType,
+  type AbstractNode,
+  type NodeId,
+  EnumValueType,
+} from "meta/builder";
 
 import { assertThing } from "$lib/assert.js";
 import { mergeUiSchemas } from "$lib/sjsf/ui-schema.js";
@@ -24,10 +29,9 @@ export interface UiSchemaBuilderContext {
 
 const UI_OPTIONS_KEYS = ["help"] as const satisfies (keyof UiOptions)[];
 
-function assignUiOptions<T extends Pick<UiOptions, (typeof UI_OPTIONS_KEYS)[number]> | {}>(
-  target: UiOptions,
-  source: T
-) {
+function assignUiOptions<
+  T extends Pick<UiOptions, (typeof UI_OPTIONS_KEYS)[number]> | {},
+>(target: UiOptions, source: T) {
   for (const key of UI_OPTIONS_KEYS) {
     if (!(key in source)) {
       continue;
@@ -45,10 +49,17 @@ const invalidNode = () => {
   throw new Error("Invalid node");
 };
 
-function leafNode(ctx: UiSchemaBuilderContext, node: WidgetNode, options: UiOptions = {}) {
+function leafNode(
+  ctx: UiSchemaBuilderContext,
+  node: WidgetNode,
+  options: UiOptions = {}
+) {
   return {
     "ui:components": ctx.uiComponents(node),
-    "ui:options": assignUiOptions(Object.assign(ctx.useLabelOptions(node), options), node.options)
+    "ui:options": assignUiOptions(
+      Object.assign(ctx.useLabelOptions(node), options),
+      node.options
+    ),
   };
 }
 
@@ -58,7 +69,7 @@ function buildEnumNames(type: EnumValueType, items: EnumItemNode[]): UiOptions {
     return {};
   }
   return {
-    enumNames: items.map((item) => item.label)
+    enumNames: items.map((item) => item.label),
   };
 }
 
@@ -80,7 +91,7 @@ const NODE_UI_SCHEMA_BUILDERS: {
     schema["ui:options"] = assignUiOptions(
       haveDependencies
         ? {
-            order: ctx.propertiesOrder
+            order: ctx.propertiesOrder,
           }
         : {},
       options
@@ -111,7 +122,7 @@ const NODE_UI_SCHEMA_BUILDERS: {
     assertThing(item, "array item");
     return {
       "ui:options": assignUiOptions({}, options),
-      items: buildUiSchema(ctx, item)
+      items: buildUiSchema(ctx, item),
     };
   },
   [NodeType.Grid]: (ctx, { options, height, width, cells }) =>
@@ -121,12 +132,12 @@ const NODE_UI_SCHEMA_BUILDERS: {
           {
             layouts: {
               "object-properties": {
-                style: `display: grid; grid-template-columns: repeat(${width}, ${options.cellSize}); grid-template-rows: repeat(${height}, ${options.cellSize}); gap: ${options.gap};${options.additionalStyles ?? ""}`
-              }
-            }
+                style: `display: grid; grid-template-columns: repeat(${width}, ${options.cellSize}); grid-template-rows: repeat(${height}, ${options.cellSize}); gap: ${options.gap};${options.additionalStyles ?? ""}`,
+              },
+            },
           },
           options
-        )
+        ),
       },
       ...cells.map(({ node, x, y, w, h }) => {
         const schema = buildUiSchema(ctx, node);
@@ -136,13 +147,13 @@ const NODE_UI_SCHEMA_BUILDERS: {
           "ui:options": {
             layouts: {
               "object-property": {
-                style: `grid-column: ${x + 1} / span ${w}; grid-row: ${y + 1} / span ${h};`
-              }
-            }
-          }
+                style: `grid-column: ${x + 1} / span ${w}; grid-row: ${y + 1} / span ${h};`,
+              },
+            },
+          },
         };
         return {
-          [name]: schema ? mergeUiSchemas(schema, uiSchema) : uiSchema
+          [name]: schema ? mergeUiSchemas(schema, uiSchema) : uiSchema,
         };
       })
     ),
@@ -179,7 +190,7 @@ const NODE_UI_SCHEMA_BUILDERS: {
       node.options.widget === "textWidget"
         ? ctx.textWidgetOptions({
             type: node.options.inputType,
-            placeholder: node.options.placeholder
+            placeholder: node.options.placeholder,
           })
         : {}
     ),
@@ -189,11 +200,14 @@ const NODE_UI_SCHEMA_BUILDERS: {
   [NodeType.Tags]: leafNode,
   [NodeType.Range]: (ctx, node) =>
     leafNode(ctx, node, {
-      collectErrors: true
-    })
+      collectErrors: true,
+    }),
 };
 
-export function buildUiSchema(ctx: UiSchemaBuilderContext, node: Node): UiSchema | undefined {
+export function buildUiSchema(
+  ctx: UiSchemaBuilderContext,
+  node: Node
+): UiSchema | undefined {
   const schema = NODE_UI_SCHEMA_BUILDERS[node.type](ctx, node as never);
   if (schema) {
     const entries = Object.entries(schema).filter(

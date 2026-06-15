@@ -1,11 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import { ON_ARRAY_CHANGE, ON_CHANGE, ON_INPUT } from "@sjsf/form";
-import {
-  insertSubSchemaIds,
-  fragmentSchema,
-} from "@sjsf/form/validators/precompile";
 import {
   registerSchema,
   type SchemaObject,
@@ -15,6 +10,11 @@ import {
   Validation,
   type AST,
 } from "@hyperjump/json-schema/experimental";
+import { ON_ARRAY_CHANGE, ON_CHANGE, ON_INPUT } from "@sjsf/form";
+import {
+  insertSubSchemaIds,
+  fragmentSchema,
+} from "@sjsf/form/validators/precompile";
 import { uneval } from "devalue";
 
 import inputSchema from "../input-schema.json" with { type: "json" };

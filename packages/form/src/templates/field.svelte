@@ -4,7 +4,6 @@
   import "@/fields/extra-components/description.js";
   import "@/fields/extra-components/errors-list.js";
   import "@/fields/extra-components/help.js";
-
   import "./field-layouts.js";
 </script>
 

@@ -2,12 +2,15 @@ import { NodeType, type AbstractNode, OperatorType } from "meta/builder";
 
 import { constant } from "$lib/function.js";
 
-import type { Node } from "./node.js";
 import { createNodeTraverser } from "./node-traverser.js";
+import type { Node } from "./node.js";
 
 const empty: OperatorType[] = [];
 const noExtraOperators = constant(empty);
-const objectOperators = constant([OperatorType.HasProperty, OperatorType.Property]);
+const objectOperators = constant([
+  OperatorType.HasProperty,
+  OperatorType.Property,
+]);
 const multiEnumOperators = [OperatorType.MinItems, OperatorType.MaxItems];
 const multiEnumOperatorsConstant = constant(multiEnumOperators);
 const filesOperators = multiEnumOperators.concat(OperatorType.UniqueItems);
@@ -16,14 +19,14 @@ const stringOperators = constant([
   OperatorType.Format,
   OperatorType.Pattern,
   OperatorType.MinLength,
-  OperatorType.MaxLength
+  OperatorType.MaxLength,
 ]);
 const numberOperators = constant([
   OperatorType.Less,
   OperatorType.LessOrEq,
   OperatorType.Greater,
   OperatorType.GreaterOrEq,
-  OperatorType.MultipleOf
+  OperatorType.MultipleOf,
 ]);
 const NODE_TO_OPERATORS: {
   [T in NodeType]: (node: Extract<Node, AbstractNode<T>>) => OperatorType[];
@@ -43,7 +46,7 @@ const NODE_TO_OPERATORS: {
   [NodeType.Boolean]: noExtraOperators,
   [NodeType.File]: (node) => (node.options.multiple ? filesOperators : empty),
   [NodeType.Tags]: multiEnumOperatorsConstant,
-  [NodeType.Range]: objectOperators
+  [NodeType.Range]: objectOperators,
 };
 
 const COMMON_OPERATORS = new Set([
@@ -52,13 +55,13 @@ const COMMON_OPERATORS = new Set([
   OperatorType.Xor,
   OperatorType.Not,
   OperatorType.Eq,
-  OperatorType.In
+  OperatorType.In,
 ]);
 
 const detectOperators = createNodeTraverser({
   *onEnter(node) {
     yield NODE_TO_OPERATORS[node.type](node as never);
-  }
+  },
 });
 
 export function detectApplicableOperators(node: Node, current = false) {

@@ -20,7 +20,7 @@ const createFormValidator = createPrecompiledValidatorFactory(
   async (options) => {
     const base = { $schema: "http://json-schema.org/draft-07/schema" };
     const schemas = fragmentSchema(options.patch).map((s) =>
-      Object.assign(s, base),
+      Object.assign(s, base)
     );
     const bundle = Validator.bundleStandalone(schemas, {
       ...DEFAULT_VALIDATOR_OPTIONS,
@@ -28,7 +28,7 @@ const createFormValidator = createPrecompiledValidatorFactory(
     })
       .replace(
         "const validators",
-        `export const [${schemas.map((s) => s.$id).join(", ")}]`,
+        `export const [${schemas.map((s) => s.$id).join(", ")}]`
       )
       .slice(0, -50);
     const validateFunctions = await importModule<ValidateFunctions>(bundle);
@@ -36,7 +36,7 @@ const createFormValidator = createPrecompiledValidatorFactory(
       validatorRetriever: fromValidators(validateFunctions),
     });
     return factory(options);
-  },
+  }
 );
 
 validatorTests(createFormValidator);

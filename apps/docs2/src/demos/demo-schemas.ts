@@ -26,7 +26,7 @@ export const objectSchema: Schema = {
 export const objectUiSchema: UiSchemaRoot = {
   "ui:options": {
     form: {
-      novalidate: true
-    }
-  }
-}
+      novalidate: true,
+    },
+  },
+};

@@ -1,5 +1,3 @@
-import type { Locator } from "vitest/browser";
-import type { SchemaArrayValue } from "@sjsf/form/core";
 import {
   ON_BLUR,
   ON_CHANGE,
@@ -9,6 +7,8 @@ import {
   type UiSchemaRoot,
   type ValidationError,
 } from "@sjsf/form";
+import type { SchemaArrayValue } from "@sjsf/form/core";
+import type { Locator } from "vitest/browser";
 
 import type * as triggers from "./triggers.js";
 
@@ -18,7 +18,7 @@ export const states = (schema: Schema): Schema => ({
     default: schema,
     error: schema,
   },
-  required: ['default']
+  required: ["default"],
 });
 
 export const boolean: Schema = {

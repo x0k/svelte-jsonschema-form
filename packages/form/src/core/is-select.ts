@@ -4,14 +4,14 @@
 
 import { isSchemaObject } from "@/lib/json-schema/index.js";
 
-import type { Schema, SchemaValue } from "./schema.js";
-import type { Validator } from "./validator.js";
-import { retrieveSchema } from "./resolve.js";
 import {
   getSchemaConstantValue,
   isSchemaOfConstantValue,
 } from "./constant-schema.js";
 import type { Merger } from "./merger.js";
+import { retrieveSchema } from "./resolve.js";
+import type { Schema, SchemaValue } from "./schema.js";
+import type { Validator } from "./validator.js";
 import { isSchemaObjectValue } from "./value.js";
 
 /**

@@ -4,10 +4,10 @@ sidebar:
   order: 4
 ---
 
-import { Code, LinkCard } from '@astrojs/starlight/components'
+import { Code, LinkCard } from "@astrojs/starlight/components";
 
-import uiSchemaExampleCode from './_ui-schema-example.ts?raw'
-import extraUiOptionsCode from './_extra-ui-options.ts?raw'
+import uiSchemaExampleCode from "./_ui-schema-example.ts?raw";
+import extraUiOptionsCode from "./_extra-ui-options.ts?raw";
 
 UI schema allows you to customize the appearance of the form and influence its
 behavior.
@@ -55,6 +55,7 @@ export type UiSchemaRoot = UiSchemaDefinition & {
   "ui:definitions"?: Record<string, UiSchema>;
 };
 ```
+
 ## Evaluation rules
 
 Usually UI schema corresponds to the data structure described by json schema.

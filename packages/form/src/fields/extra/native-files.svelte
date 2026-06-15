@@ -13,7 +13,6 @@
 <script lang="ts">
   import { BROWSER } from "esm-env";
 
-  import { abortPrevious, createTask } from "@/lib/task.svelte.js";
   import {
     makeEventHandlers,
     getFieldErrors,
@@ -25,6 +24,7 @@
     FileListValidationError,
     getFieldAction,
   } from "@/form/index.js";
+  import { abortPrevious, createTask } from "@/lib/task.svelte.js";
   import "@/form/extra-fields/native-files.js";
 
   import "../extra-widgets/file.js";
@@ -49,19 +49,19 @@
 
   const errors = $derived(getFieldErrors(ctx, config.path));
 
-  const setValue = createTask({
+  const setValue = createTask<[FileList | undefined], File[] | undefined>({
     combinator: abortPrevious,
-    async execute(signal, files: FileList | undefined) {
+    async execute(signal, files) {
       if (files === undefined) {
         return undefined;
       }
-      const array = Array.from(files)
+      const array = Array.from(files);
       if (!(await validateFileList(signal, ctx, config, files))) {
         throw new FileListValidationError();
       }
       return array;
     },
-    onSuccess(file: File[] | undefined) {
+    onSuccess(file) {
       value = file;
     },
   });

@@ -6,13 +6,13 @@ sidebar:
   order: 0
 ---
 
-import { Code, Card, LinkCard } from '@astrojs/starlight/components';
-import { formPackage } from 'meta';
+import { Code, Card, LinkCard } from "@astrojs/starlight/components";
+import { formPackage } from "meta";
 
-import { withBase } from '@/lib/base-path';
+import { withBase } from "@/lib/base-path";
 import Npm from "@/components/npm.astro";
-import Deps from '@/components/peer-dependencies.astro';
-import Demo from '@/components/demo.svelte';
+import Deps from "@/components/peer-dependencies.astro";
+import Demo from "@/components/demo.svelte";
 
 ## Installation
 
@@ -35,7 +35,7 @@ Although this is an extremely simple example, it turned out to be quite verbose,
 
 - **Explicit Configuration**: The library favors explicit configuration over "magic" defaults.
 - **Tree-Shakeable Architecture**: Each feature is located in its own [submodule](https://nodejs.org/api/packages.html#subpath-exports)
-so you can import only the functionality you need, keeping your bundle lean and optimized.
+  so you can import only the functionality you need, keeping your bundle lean and optimized.
 - **Highly Customizable**: We provide extensive customization options so that you can tailor every aspect of the library to your needs.
 
 <LinkCard title="Schema" href={withBase("/form/schema/")} />

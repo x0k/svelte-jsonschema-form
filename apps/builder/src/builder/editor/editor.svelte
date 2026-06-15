@@ -1,10 +1,9 @@
 <script lang="ts">
   import { getBuilderContext } from "../context.svelte.js";
   import Form from "../preview/form.svelte";
-
   import Content from "./content.svelte";
-  import Settings from "./settings.svelte";
   import Controls from "./controls.svelte";
+  import Settings from "./settings.svelte";
 
   const ctx = getBuilderContext();
 </script>
@@ -12,7 +11,7 @@
 <div
   class={[
     "mx-auto grid gap-6",
-    ctx.livePreview ? "grid-cols-[1fr_3fr_3fr_2fr]" : "grid-cols-[1fr_6fr_2fr]"
+    ctx.livePreview ? "grid-cols-[1fr_3fr_3fr_2fr]" : "grid-cols-[1fr_6fr_2fr]",
   ]}
 >
   <div

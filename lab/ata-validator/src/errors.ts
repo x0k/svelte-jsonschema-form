@@ -16,7 +16,7 @@ export interface ErrorsTransformerOptions {
 
 function createInstancePath(
   { params: { missingProperty, propertyName } }: ValidationError,
-  path: Path,
+  path: Path
 ) {
   let id = path;
   id = typeof missingProperty === "string" ? path.concat(missingProperty) : id;
@@ -31,8 +31,8 @@ function errorObjectToMessage(
   { params: { missingProperty }, message, parentSchema }: ValidationError,
   getPropertyTitle: (
     missingProperty: string,
-    parentSchema?: Schema,
-  ) => string | undefined,
+    parentSchema?: Schema
+  ) => string | undefined
 ): string {
   if (!message) {
     return "";
@@ -52,7 +52,7 @@ export function createFormErrorsTransformer({
 }: ErrorsTransformerOptions) {
   return (
     errors: ValidationError[],
-    data: FormValue,
+    data: FormValue
   ): FailureValidationResult => {
     return {
       value: data,
@@ -65,7 +65,7 @@ export function createFormErrorsTransformer({
             (missingProperty, parentSchema) => {
               const uiSchemaTitle = getRootUiSchemaTitleByPath(
                 uiSchema,
-                path.concat(missingProperty),
+                path.concat(missingProperty)
               );
               if (uiSchemaTitle !== undefined) {
                 return uiSchemaTitle;
@@ -75,7 +75,7 @@ export function createFormErrorsTransformer({
                 return prop.title;
               }
               return undefined;
-            },
+            }
           ),
         };
       }),
@@ -93,7 +93,7 @@ function isRootAndNonTypeError(error: ValidationError): boolean {
 
 export function transformFieldErrors(
   config: Config,
-  errors: ValidationError[],
+  errors: ValidationError[]
 ) {
   return errors
     .filter(config.required ? isRootFieldError : isRootAndNonTypeError)

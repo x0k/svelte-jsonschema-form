@@ -1,10 +1,9 @@
 import { describe, expect, it, beforeEach } from "vitest";
 
 import type { Merger, Schema, Validator } from "./core/index.js";
-import { createValidator } from "./core/test-validator.js";
-
-import { omitExtraData } from "./omit-extra-data.js";
 import { createMerger } from "./core/test-merger.js";
+import { createValidator } from "./core/test-validator.js";
+import { omitExtraData } from "./omit-extra-data.js";
 
 let validator: Validator;
 let defaultMerger: Merger;

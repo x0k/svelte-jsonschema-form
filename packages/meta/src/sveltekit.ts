@@ -4,9 +4,9 @@ import { fromPackageJson } from "./package.ts";
 
 export const sveltekitPackage = fromPackageJson(_packageJson);
 
-const SUB_PATHS = ["client", "server"] as const;
+const _SUB_PATHS = ["client", "server"] as const;
 
-type SvelteKitSubPath = (typeof SUB_PATHS)[number];
+type SvelteKitSubPath = (typeof _SUB_PATHS)[number];
 
 export function svelteKitSubPath(subPath: SvelteKitSubPath) {
   return `${sveltekitPackage.name}/${subPath}`;

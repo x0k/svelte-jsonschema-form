@@ -1,11 +1,12 @@
 import type { Attachment } from "svelte/attachments";
-import { SvelteMap } from "svelte/reactivity";
 import { on } from "svelte/events";
+import { SvelteMap } from "svelte/reactivity";
 
-import type { DeepPartial } from "@/lib/types.js";
+import { retrieveSchema, type Schema, type Validator } from "@/core/index.js";
+import { createDataURLtoBlob } from "@/lib/file.js";
+import { weakMemoize } from "@/lib/memoize.js";
 import type { SchedulerYield } from "@/lib/scheduler.js";
 import { refFromBind, type Bind } from "@/lib/svelte.svelte.js";
-import { createDataURLtoBlob } from "@/lib/file.js";
 import {
   abortPrevious,
   createTask,
@@ -13,55 +14,20 @@ import {
   type FailedTask,
   debounce,
 } from "@/lib/task.svelte.js";
-import { weakMemoize } from "@/lib/memoize.js";
-import { retrieveSchema, type Schema, type Validator } from "@/core/index.js";
+import type { DeepPartial } from "@/lib/types.js";
 
-import {
-  isFieldValueValidator,
-  isAsyncFieldValueValidator,
-  type AsyncFormValueValidator,
-  type AsyncFieldValueValidator,
-  type ValidationError,
-  type ValidationResult,
-  type FailureValidationResult,
-  type FormValidator,
-} from "./validator.js";
-import { createTranslate, type Translation } from "./translation.js";
-import {
-  resolveUiRef,
-  type ExtraUiOptions,
-  type UiOptionsRegistry,
-  type UiSchemaRoot,
-} from "./ui-schema.js";
-import type { Icons } from "./icons.js";
-import type { FieldsValidationMode } from "./validation.js";
+import type { Theme } from "./components.js";
+import type { Config } from "./config.js";
 import type { FormSubmission, FieldsValidation } from "./errors.js";
-import type { FormMerger } from "./merger.js";
+import { FIELD_SUBMITTED } from "./field-state.js";
+import type { ResolveFieldType } from "./fields.js";
+import type { Icons } from "./icons.js";
 import {
   DEFAULT_ID_PREFIX,
   type FieldPath,
   type FormIdBuilder,
   type Id,
 } from "./id.js";
-import type { Config } from "./config.js";
-import type { Theme } from "./components.js";
-import {
-  create,
-  type Creatable,
-  type FormValue,
-  type FormValueRef,
-  type KeyedArraysMap,
-  type PathTrieRef,
-  type Update,
-} from "./model.js";
-import type { ResolveFieldType } from "./fields.js";
-import { createFormValueReconciler } from "./reconcile.js";
-import {
-  setFieldState,
-  updateErrors,
-  updateFieldErrors,
-  type FormState,
-} from "./state/index.js";
 import {
   FORM_DATA_URL_TO_BLOB,
   FORM_UI_EXTRA_OPTIONS,
@@ -93,7 +59,41 @@ import {
   FORM_RETRIEVED_SCHEMA,
   FORM_CONFIGS_CACHE,
 } from "./internals.js";
-import { FIELD_SUBMITTED } from "./field-state.js";
+import type { FormMerger } from "./merger.js";
+import {
+  create,
+  type Creatable,
+  type FormValue,
+  type FormValueRef,
+  type KeyedArraysMap,
+  type PathTrieRef,
+  type Update,
+} from "./model.js";
+import { createFormValueReconciler } from "./reconcile.js";
+import {
+  setFieldState,
+  updateErrors,
+  updateFieldErrors,
+  type FormState,
+} from "./state/index.js";
+import { createTranslate, type Translation } from "./translation.js";
+import {
+  resolveUiRef,
+  type ExtraUiOptions,
+  type UiOptionsRegistry,
+  type UiSchemaRoot,
+} from "./ui-schema.js";
+import type { FieldsValidationMode } from "./validation.js";
+import {
+  isFieldValueValidator,
+  isAsyncFieldValueValidator,
+  type AsyncFormValueValidator,
+  type AsyncFieldValueValidator,
+  type ValidationError,
+  type ValidationResult,
+  type FailureValidationResult,
+  type FormValidator,
+} from "./validator.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
 
@@ -359,7 +359,6 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
           new Promise((resolve, reject) => {
             setTimeout(() => {
               if (signal.aborted) {
-                // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors
                 reject(signal.reason);
               } else {
                 resolve();
@@ -399,6 +398,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       setFieldState(formState, rootPath, FIELD_SUBMITTED);
       return await validateForm(
         signal,
+        // eslint-disable-next-line @typescript-eslint/no-deprecated
         options.validateByRetrievedSchema ? retrievedSchema : options.schema,
         $state.snapshot(valueRef.current)
       );
@@ -429,18 +429,19 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     },
   });
 
-  const validateFields: AsyncFieldValueValidator["validateFieldValueAsync"] =
-    $derived.by(() => {
-      if (isAsyncFieldValueValidator(validator)) {
-        return (signal, config, value) =>
-          validator.validateFieldValueAsync(signal, config, value);
-      }
-      if (isFieldValueValidator(validator)) {
-        return (_, config, value) =>
-          Promise.resolve(validator.validateFieldValue(config, value));
-      }
-      return () => Promise.resolve([]);
-    });
+  const validateFields = $derived.by<
+    AsyncFieldValueValidator["validateFieldValueAsync"]
+  >(() => {
+    if (isAsyncFieldValueValidator(validator)) {
+      return (signal, config, value) =>
+        validator.validateFieldValueAsync(signal, config, value);
+    }
+    if (isFieldValueValidator(validator)) {
+      return (_, config, value) =>
+        Promise.resolve(validator.validateFieldValue(config, value));
+    }
+    return () => Promise.resolve([]);
+  });
 
   const fieldsValidation: FieldsValidation = createTask({
     execute: debounce(

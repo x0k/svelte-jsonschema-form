@@ -4,30 +4,12 @@
     "moduleResolution": "bundler",
     "module": "preserve",
     "rootDir": "src",
-    "types": [
-      "vite/client",
-    ],
-    "lib": [
-      "es2024",
-      "DOM.Iterable",
-      "DOM"
-    ],
-    "baseUrl": ".",
+    "types": ["vite/client"],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "$lib": [
-        "./src/lib"
-      ],
-      "$lib/*": [
-        "./src/lib/*"
-      ]
+      "@/*": ["./src/*"],
+      "$lib": ["./src/lib"],
+      "$lib/*": ["./src/lib/*"]
     }
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.js",
-    "src/**/*.svelte"
-  ],
+  "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.svelte"]
 }

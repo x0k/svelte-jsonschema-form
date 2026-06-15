@@ -1,5 +1,4 @@
 <script lang="ts">
-  import type { Ref } from "@sjsf/form/lib/svelte.svelte";
   import {
     Content,
     createForm,
@@ -8,6 +7,7 @@
     type FieldErrors,
     type FormState,
   } from "@sjsf/form";
+  import type { Ref } from "@sjsf/form/lib/svelte.svelte";
 
   import { getDemoContext } from "@/lib/demo";
 

@@ -1,112 +1,113 @@
 {
-	"name": "@sjsf/shadcn4-theme",
-	"version": "3.6.0",
-	"description": "The shadcn-svelte based theme for svelte-jsonschema-form",
-	"license": "MIT",
-	"keywords": [
-		"theme",
-		"shadcn-svelte",
-		"form"
-	],
-	"type": "module",
-	"files": [
-		"dist",
-		"!dist/**/*.test.*",
-		"!dist/**/*.spec.*"
-	],
-	"publishConfig": {
-		"provenance": true
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/x0k/svelte-jsonschema-form.git",
-		"directory": "packages/shadcn4-theme"
-	},
-	"bugs": "https://github.com/x0k/svelte-jsonschema-form/issues",
-	"homepage": "https://x0k.github.io/svelte-jsonschema-form/",
-	"scripts": {
-		"dev": "vite dev",
-		"build": "svelte-package && npm run extract-css && publint",
-		"preview": "vite preview",
-		"prepare": "svelte-kit sync || echo ''",
-		"extract-css": "vite build && mv $(find .svelte-kit/output/server/_app/immutable/assets/ -name \"_page*.css\" | head -n 1) dist/styles.css && ../../scripts/validate-theme-css.sh",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"format": "prettier --write .",
-		"lint": "prettier --check . && eslint .",
-		"test:unit": "vitest",
-		"test": "npm run test:unit -- --run",
-		"test:e2e": "playwright test"
-	},
-	"svelte": "./dist/theme/index.js",
-	"types": "./dist/theme/index.d.ts",
-	"exports": {
-		"./package.json": "./package.json",
-		"./internal": {
-			"types": "./dist/theme/internal.d.ts",
-			"default": "./dist/theme/internal.js"
-		},
-		"./components/*": {
-			"types": "./dist/theme/components/*.d.ts",
-			"svelte": "./dist/theme/components/*"
-		},
-		"./widgets/*": {
-			"types": "./dist/theme/widgets/*.d.ts",
-			"svelte": "./dist/theme/widgets/*"
-		},
-		"./extra-widgets/*": {
-			"types": "./dist/theme/extra-widgets/*.d.ts",
-			"svelte": "./dist/theme/extra-widgets/*"
-		},
-		".": {
-			"types": "./dist/theme/index.d.ts",
-			"svelte": "./dist/theme/index.js"
-		},
-		"./new-york": {
-			"types": "./dist/components/ui/index.d.ts",
-			"svelte": "./dist/components/ui/index.js"
-		},
-		"./styles.css": "./dist/styles.css",
-		"./specs": {
-			"types": "./dist/specs.d.ts",
-			"svelte": "./dist/specs.js"
-		}
-	},
-	"dependencies": {
-		"@sjsf/basic-theme": "workspace:^3.6.0"
-	},
-	"peerDependencies": {
-		"@internationalized/date": "^3.10.0",
-		"@lucide/svelte": ">=0.479.0 <1.0.0 || ^1.0.0",
-		"@sjsf/form": "workspace:^3.5.0",
-		"bits-ui": "^2.14.0",
-		"clsx": "^2.1.0",
-		"shadcn-svelte": "^1.2.0",
-		"svelte": "^5.34.8",
-		"tailwind-merge": "^3.3.0",
-		"tailwind-variants": "^1.0.0 || ^2.0.0 || ^3.0.0"
-	},
-	"peerDependenciesMeta": {
-		"@internationalized/date": {
-			"optional": true
-		}
-	},
-	"devDependencies": {
-		"@fontsource-variable/inter": "catalog:",
-		"@internationalized/date": "catalog:",
-		"@lucide/svelte": "catalog:",
-		"@sjsf/ajv8-validator": "workspace:*",
-		"@sjsf/form": "workspace:*",
-		"@tailwindcss/vite": "catalog:",
-		"bits-ui": "catalog:",
-		"clsx": "catalog:shadcn",
-		"globals": "catalog:",
-		"shadcn-svelte": "catalog:",
-		"svelte": "catalog:",
-		"tailwind-merge": "catalog:shadcn",
-		"tailwind-variants": "catalog:shadcn",
-		"tailwindcss": "catalog:",
-		"theme-testing": "workspace:*",
-		"tw-animate-css": "catalog:shadcn"
-	}
+  "name": "@sjsf/shadcn4-theme",
+  "version": "3.6.0",
+  "description": "The shadcn-svelte based theme for svelte-jsonschema-form",
+  "keywords": [
+    "form",
+    "shadcn-svelte",
+    "theme"
+  ],
+  "homepage": "https://x0k.github.io/svelte-jsonschema-form/",
+  "bugs": "https://github.com/x0k/svelte-jsonschema-form/issues",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/x0k/svelte-jsonschema-form.git",
+    "directory": "packages/shadcn4-theme"
+  },
+  "files": [
+    "dist",
+    "!dist/**/*.test.*",
+    "!dist/**/*.spec.*"
+  ],
+  "type": "module",
+  "types": "./dist/theme/index.d.ts",
+  "svelte": "./dist/theme/index.js",
+  "exports": {
+    "./package.json": "./package.json",
+    "./internal": {
+      "types": "./dist/theme/internal.d.ts",
+      "default": "./dist/theme/internal.js"
+    },
+    "./components/*": {
+      "types": "./dist/theme/components/*.d.ts",
+      "svelte": "./dist/theme/components/*"
+    },
+    "./widgets/*": {
+      "types": "./dist/theme/widgets/*.d.ts",
+      "svelte": "./dist/theme/widgets/*"
+    },
+    "./extra-widgets/*": {
+      "types": "./dist/theme/extra-widgets/*.d.ts",
+      "svelte": "./dist/theme/extra-widgets/*"
+    },
+    ".": {
+      "types": "./dist/theme/index.d.ts",
+      "svelte": "./dist/theme/index.js"
+    },
+    "./new-york": {
+      "types": "./dist/components/ui/index.d.ts",
+      "svelte": "./dist/components/ui/index.js"
+    },
+    "./styles.css": "./dist/styles.css",
+    "./specs": {
+      "types": "./dist/specs.d.ts",
+      "svelte": "./dist/specs.js"
+    }
+  },
+  "publishConfig": {
+    "provenance": true
+  },
+  "scripts": {
+    "dev": "vite dev",
+    "build": "svelte-package && npm run extract-css && publint",
+    "preview": "vite preview",
+    "prepare": "svelte-kit sync || echo ''",
+    "extract-css": "vite build && mv $(find .svelte-kit/output/server/_app/immutable/assets/ -name \"_page*.css\" | head -n 1) dist/styles.css && ../../scripts/validate-theme-css.sh",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "lint": "eslint .",
+    "test:unit": "vitest",
+    "test": "npm run test:unit -- --run",
+    "test:e2e": "playwright test",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check ."
+  },
+  "dependencies": {
+    "@sjsf/basic-theme": "workspace:^3.6.0"
+  },
+  "devDependencies": {
+    "@fontsource-variable/inter": "catalog:",
+    "@internationalized/date": "catalog:",
+    "@lucide/svelte": "catalog:",
+    "@sjsf/ajv8-validator": "workspace:*",
+    "@sjsf/form": "workspace:*",
+    "@tailwindcss/vite": "catalog:",
+    "bits-ui": "catalog:",
+    "clsx": "catalog:shadcn",
+    "globals": "catalog:",
+    "shadcn-svelte": "catalog:",
+    "svelte": "catalog:",
+    "tailwind-merge": "catalog:shadcn",
+    "tailwind-variants": "catalog:shadcn",
+    "tailwindcss": "catalog:",
+    "theme-testing": "workspace:*",
+    "tw-animate-css": "catalog:shadcn"
+  },
+  "peerDependencies": {
+    "@internationalized/date": "^3.10.0",
+    "@lucide/svelte": ">=0.479.0 <1.0.0 || ^1.0.0",
+    "@sjsf/form": "workspace:^3.5.0",
+    "bits-ui": "^2.14.0",
+    "clsx": "^2.1.0",
+    "shadcn-svelte": "^1.2.0",
+    "svelte": "^5.34.8",
+    "tailwind-merge": "^3.3.0",
+    "tailwind-variants": "^1.0.0 || ^2.0.0 || ^3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@internationalized/date": {
+      "optional": true
+    }
+  }
 }

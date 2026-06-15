@@ -1,20 +1,26 @@
 <script lang="ts" module>
-	import '../types/description.js';
+  import "../types/description.js";
 </script>
 
 <script lang="ts">
-	import { descriptionAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
-	import '@sjsf/basic-theme/components/description.svelte';
+  import {
+    descriptionAttributes,
+    getFormContext,
+    type ComponentProps,
+  } from "@sjsf/form";
+  import "@sjsf/basic-theme/components/description.svelte";
 
-	import { getThemeContext } from '../context.js';
+  import { getThemeContext } from "../context.js";
 
-	const { description, config }: ComponentProps['description'] = $props();
+  const { description, config }: ComponentProps["description"] = $props();
 
-	const ctx = getFormContext();
-	const themeCtx = getThemeContext();
-	const { FieldDescription } = $derived(themeCtx.components);
+  const ctx = getFormContext();
+  const themeCtx = getThemeContext();
+  const { FieldDescription } = $derived(themeCtx.components);
 </script>
 
-<FieldDescription {...descriptionAttributes(ctx, config, 'descriptionAttributes', {})}>
-	{description}
+<FieldDescription
+  {...descriptionAttributes(ctx, config, "descriptionAttributes", {})}
+>
+  {description}
 </FieldDescription>

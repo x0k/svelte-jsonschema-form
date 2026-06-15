@@ -1,90 +1,95 @@
 <script lang="ts" module>
-	import type { Component } from 'svelte';
-	import type {
-		RadioGroup,
-		RadioGroupItemProps,
-		RadioGroupRootProps,
-		WithoutChildrenOrChild
-	} from 'bits-ui';
-	import '@sjsf/form/fields/extra-widgets/radio';
+  import type {
+    RadioGroup as _RadioGroup,
+    RadioGroupItemProps,
+    RadioGroupRootProps,
+    WithoutChildrenOrChild,
+  } from "bits-ui";
+  import type { Component } from "svelte";
+  import "@sjsf/form/fields/extra-widgets/radio";
 
-	import '../types/label.js';
+  import "../types/label.js";
 
-	declare module '@sjsf/form' {
-		interface UiOptions {
-			shadcn4RadioGroup?: WithoutChildrenOrChild<RadioGroupRootProps>;
-			shadcn4RadioItem?: Omit<WithoutChildrenOrChild<RadioGroupItemProps>, 'value'>;
-		}
-	}
+  declare module "@sjsf/form" {
+    interface UiOptions {
+      shadcn4RadioGroup?: WithoutChildrenOrChild<RadioGroupRootProps>;
+      shadcn4RadioItem?: Omit<
+        WithoutChildrenOrChild<RadioGroupItemProps>,
+        "value"
+      >;
+    }
+  }
 
-	declare module '../context.js' {
-		interface ThemeComponents {
-			RadioGroup: Component<RadioGroup.RootProps, {}, 'value' | 'ref'>;
-			RadioGroupItem: Component<WithoutChildrenOrChild<RadioGroup.ItemProps>>;
-		}
-	}
+  declare module "../context.js" {
+    interface ThemeComponents {
+      RadioGroup: Component<_RadioGroup.RootProps, {}, "value" | "ref">;
+      RadioGroupItem: Component<WithoutChildrenOrChild<_RadioGroup.ItemProps>>;
+    }
+  }
 </script>
 
 <script lang="ts">
-	import {
-		ariaInvalidProp,
-		type ComponentProps,
-		composeProps,
-		customInputAttributes,
-		getFormContext,
-		uiOptionProps
-	} from '@sjsf/form';
-	import { idMapper, singleOption } from '@sjsf/form/options.svelte';
+  import {
+    ariaInvalidProp,
+    type ComponentProps,
+    composeProps,
+    customInputAttributes,
+    getFormContext,
+    uiOptionProps,
+  } from "@sjsf/form";
+  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
 
-	import { getThemeContext } from '../context.js';
+  import { getThemeContext } from "../context.js";
 
-	const ctx = getFormContext();
-	const themeCtx = getThemeContext();
+  const ctx = getFormContext();
+  const themeCtx = getThemeContext();
 
-	const { RadioGroup, RadioGroupItem, FieldLabel } = $derived(themeCtx.components);
+  const { RadioGroup, RadioGroupItem, FieldLabel } = $derived(
+    themeCtx.components
+  );
 
-	let {
-		config,
-		handlers,
-		value = $bindable(),
-		options,
-		mapped = singleOption({
-			mapper: () => idMapper(options),
-			value: () => value,
-			update: (v) => (value = v)
-		})
-	}: ComponentProps['radioWidget'] = $props();
+  let {
+    config,
+    handlers,
+    value = $bindable(),
+    options,
+    mapped = singleOption({
+      mapper: () => idMapper(options),
+      value: () => value,
+      update: (v) => (value = v),
+    }),
+  }: ComponentProps["radioWidget"] = $props();
 
-	const attributes = $derived(
-		customInputAttributes(ctx, config, 'shadcn4RadioGroup', {
-			onValueChange: handlers.onchange
-		})
-	);
+  const attributes = $derived(
+    customInputAttributes(ctx, config, "shadcn4RadioGroup", {
+      onValueChange: handlers.onchange,
+    })
+  );
 
-	const itemAttributes = $derived(
-		composeProps(
-			ctx,
-			config,
-			{
-				onclick: handlers.oninput,
-				onblur: handlers.onblur
-			},
-			uiOptionProps('shadcn4RadioItem'),
-			ariaInvalidProp
-		)
-	);
+  const itemAttributes = $derived(
+    composeProps(
+      ctx,
+      config,
+      {
+        onclick: handlers.oninput,
+        onblur: handlers.onblur,
+      },
+      uiOptionProps("shadcn4RadioItem"),
+      ariaInvalidProp
+    )
+  );
 </script>
 
 <RadioGroup bind:value={mapped.current} {...attributes}>
-	{#each options as option (option.id)}
-		<div class="flex items-center space-x-3">
-			<RadioGroupItem
-				{...itemAttributes}
-				value={option.mappedValue ?? option.id}
-				id={option.id}
-				disabled={option.disabled}
-			/>
-			<FieldLabel for={option.id}>{option.label}</FieldLabel>
-		</div>
-	{/each}
+  {#each options as option (option.id)}
+    <div class="flex items-center space-x-3">
+      <RadioGroupItem
+        {...itemAttributes}
+        value={option.mappedValue ?? option.id}
+        id={option.id}
+        disabled={option.disabled}
+      />
+      <FieldLabel for={option.id}>{option.label}</FieldLabel>
+    </div>
+  {/each}
 </RadioGroup>

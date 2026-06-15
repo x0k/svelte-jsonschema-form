@@ -641,7 +641,7 @@ exports[`array fields > empty errors array 1`] = `
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -750,7 +750,7 @@ exports[`array fields > empty errors array 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="text-error list-inside list-disc"
         id="root__errors"
         tabindex="-1"
       >
@@ -924,7 +924,7 @@ exports[`array fields > fixed array 1`] = `
               <input
                 aria-describedby="root_1__description root_1__help root_1__errors"
                 aria-invalid="false"
-                class="w-full input input-bordered"
+                class="input input-bordered w-full"
                 id="root_1"
                 name="root_1"
                 required=""
@@ -2005,7 +2005,7 @@ exports[`with title and description > fixed array 1`] = `
               <input
                 aria-describedby="root_1__description root_1__help root_1__errors"
                 aria-invalid="false"
-                class="w-full input input-bordered"
+                class="input input-bordered w-full"
                 id="root_1"
                 name="root_1"
                 required=""
@@ -3086,7 +3086,7 @@ exports[`with title and description from both > fixed array 1`] = `
               <input
                 aria-describedby="root_1__description root_1__help root_1__errors"
                 aria-invalid="false"
-                class="w-full input input-bordered"
+                class="input input-bordered w-full"
                 id="root_1"
                 name="root_1"
                 required=""
@@ -4167,7 +4167,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
               <input
                 aria-describedby="root_1__description root_1__help root_1__errors"
                 aria-invalid="false"
-                class="w-full input input-bordered"
+                class="input input-bordered w-full"
                 id="root_1"
                 name="root_1"
                 required=""
@@ -4919,7 +4919,7 @@ exports[`with title and description with global label off > fixed array 1`] = `
               <input
                 aria-describedby="root_1__description root_1__help root_1__errors"
                 aria-invalid="false"
-                class="w-full input input-bordered"
+                class="input input-bordered w-full"
                 id="root_1"
                 name="root_1"
                 required=""

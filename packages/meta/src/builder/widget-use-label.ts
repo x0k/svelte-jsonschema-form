@@ -39,7 +39,7 @@ const WIDGET_USE_LABEL: Record<WidgetType, boolean | Set<PlaygroundTheme>> = {
 
 export function getUseLabel(
   theme: PlaygroundTheme,
-  widgetType: WidgetType,
+  widgetType: WidgetType
 ): boolean {
   const useLabel = WIDGET_USE_LABEL[widgetType];
   if (typeof useLabel === "boolean") {

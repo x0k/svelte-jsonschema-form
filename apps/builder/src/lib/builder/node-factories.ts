@@ -20,7 +20,7 @@ import {
   TAGS_NODE_OPTIONS_SCHEMA,
   NUMBER_NODE_OPTIONS_SCHEMA,
   STRING_NODE_OPTIONS_SCHEMA,
-  RANGE_NODE_OPTIONS_SCHEMA
+  RANGE_NODE_OPTIONS_SCHEMA,
 } from "meta/builder";
 
 import { createRangeNode } from "./range-node.js";
@@ -41,8 +41,8 @@ const NODE_FACTORIES: {
     properties: [],
     options: {
       title: "Group title",
-      required: true
-    }
+      required: true,
+    },
   }),
   [NodeType.Array]: (id) => ({
     id,
@@ -50,8 +50,8 @@ const NODE_FACTORIES: {
     item: undefined,
     options: {
       title: "List title",
-      required: true
-    }
+      required: true,
+    },
   }),
   [NodeType.Grid]: (id) => ({
     id,
@@ -64,8 +64,8 @@ const NODE_FACTORIES: {
       required: true,
       cellSize: "auto",
       gap: "1rem",
-      additionalStyles: "align-items: center;"
-    }
+      additionalStyles: "align-items: center;",
+    },
   }),
   [NodeType.Enum]: (id) => ({
     id,
@@ -75,8 +75,8 @@ const NODE_FACTORIES: {
     options: {
       title: "Choice field",
       required: true,
-      widget: "radioWidget"
-    }
+      widget: "radioWidget",
+    },
   }),
   [NodeType.MultiEnum]: (id) => ({
     id,
@@ -86,8 +86,8 @@ const NODE_FACTORIES: {
     options: {
       title: "Multi choice field",
       required: true,
-      widget: MULTI_ENUM_OPTIONS_SCHEMA.properties.widget.default
-    }
+      widget: MULTI_ENUM_OPTIONS_SCHEMA.properties.widget.default,
+    },
   }),
   [NodeType.String]: (id) => ({
     id,
@@ -95,8 +95,8 @@ const NODE_FACTORIES: {
     options: {
       title: "String field",
       required: true,
-      widget: STRING_NODE_OPTIONS_SCHEMA.properties.widget.default
-    }
+      widget: STRING_NODE_OPTIONS_SCHEMA.properties.widget.default,
+    },
   }),
   [NodeType.Number]: (id) => ({
     id,
@@ -104,8 +104,8 @@ const NODE_FACTORIES: {
     options: {
       title: "Number field",
       required: true,
-      widget: NUMBER_NODE_OPTIONS_SCHEMA.properties.widget.default
-    }
+      widget: NUMBER_NODE_OPTIONS_SCHEMA.properties.widget.default,
+    },
   }),
   [NodeType.Boolean]: (id) => ({
     id,
@@ -113,8 +113,8 @@ const NODE_FACTORIES: {
     options: {
       title: "Boolean field",
       required: true,
-      widget: BOOLEAN_NODE_OPTIONS_SCHEMA.properties.widget.default
-    }
+      widget: BOOLEAN_NODE_OPTIONS_SCHEMA.properties.widget.default,
+    },
   }),
   [NodeType.File]: (id) => ({
     id,
@@ -122,8 +122,8 @@ const NODE_FACTORIES: {
     options: {
       title: "File field",
       required: true,
-      widget: FILE_NODE_OPTIONS_SCHEMA.properties.widget.default
-    }
+      widget: FILE_NODE_OPTIONS_SCHEMA.properties.widget.default,
+    },
   }),
   [NodeType.Tags]: (id) => ({
     id,
@@ -131,8 +131,8 @@ const NODE_FACTORIES: {
     options: {
       title: "Tags field",
       required: true,
-      widget: TAGS_NODE_OPTIONS_SCHEMA.properties.widget.default
-    }
+      widget: TAGS_NODE_OPTIONS_SCHEMA.properties.widget.default,
+    },
   }),
   [NodeType.Range]: (id, overrides) =>
     createRangeNode(
@@ -141,10 +141,10 @@ const NODE_FACTORIES: {
       {
         title: "Range field",
         required: true,
-        widget: RANGE_NODE_OPTIONS_SCHEMA.properties.widget.default
+        widget: RANGE_NODE_OPTIONS_SCHEMA.properties.widget.default,
       },
       overrides
-    )
+    ),
 };
 
 export function createNode<T extends CustomizableNodeType>(
@@ -170,7 +170,7 @@ export function createOperatorNode(op: OperatorType): OperatorNode {
         id,
         type,
         op,
-        operands: []
+        operands: [],
       };
     case OperatorType.Contains:
     case OperatorType.Not:
@@ -178,41 +178,41 @@ export function createOperatorNode(op: OperatorType): OperatorNode {
         id,
         type,
         op,
-        operand: undefined
+        operand: undefined,
       };
     case OperatorType.Eq:
       return {
         id,
         type,
         op,
-        value: ""
+        value: "",
       };
     case OperatorType.In:
       return {
         id,
         type,
         op,
-        values: []
+        values: [],
       };
     case OperatorType.Format:
       return {
         id,
         type,
         op,
-        value: ""
+        value: "",
       };
     case OperatorType.Pattern:
       return {
         id,
         type,
         op,
-        value: ""
+        value: "",
       };
     case OperatorType.UniqueItems: {
       return {
         id,
         type,
-        op
+        op,
       };
     }
     case OperatorType.HasProperty: {
@@ -220,7 +220,7 @@ export function createOperatorNode(op: OperatorType): OperatorNode {
         id,
         type,
         op,
-        propertyId: undefined
+        propertyId: undefined,
       };
     }
     case OperatorType.Property: {
@@ -229,7 +229,7 @@ export function createOperatorNode(op: OperatorType): OperatorNode {
         type,
         op,
         propertyId: undefined,
-        operator: undefined
+        operator: undefined,
       };
     }
     default:
@@ -237,7 +237,7 @@ export function createOperatorNode(op: OperatorType): OperatorNode {
         id,
         type,
         op,
-        value: undefined
+        value: undefined,
       };
   }
 }
@@ -247,17 +247,19 @@ export function createEnumItemNode(label: string, value: string): EnumItemNode {
     id: nodeId(),
     type: NodeType.EnumItem,
     label,
-    value
+    value,
   };
 }
 
-export function createObjectProperty(property: CustomizableNode): ObjectPropertyNode {
+export function createObjectProperty(
+  property: CustomizableNode
+): ObjectPropertyNode {
   return {
     id: nodeId(),
     type: NodeType.ObjectProperty,
     property,
     complementary: undefined,
-    dependencies: []
+    dependencies: [],
   };
 }
 
@@ -265,7 +267,7 @@ export function createPredicate(): PredicateNode {
   return {
     id: nodeId(),
     type: NodeType.Predicate,
-    operator: undefined
+    operator: undefined,
   };
 }
 
@@ -274,6 +276,6 @@ export function createObjectPropertyDependency(): ObjectPropertyDependencyNode {
     id: nodeId(),
     type: NodeType.ObjectPropertyDependency,
     predicate: createPredicate(),
-    properties: []
+    properties: [],
   };
 }

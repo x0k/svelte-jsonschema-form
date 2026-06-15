@@ -4,10 +4,10 @@ sidebar:
   order: 55
 ---
 
-import { Code, LinkCard } from '@astrojs/starlight/components'
+import { Code, LinkCard } from "@astrojs/starlight/components";
 
-import { withBase } from '@/lib/base-path'
-import Demo from '@/components/demo.svelte'
+import { withBase } from "@/lib/base-path";
+import Demo from "@/components/demo.svelte";
 
 ## Widgets customization
 
@@ -28,7 +28,10 @@ Check your theme page for an extended list of UI options:
 <LinkCard title="daisyUI" href={withBase("/themes/daisyui5/#ui-options")} />
 <LinkCard title="Flowbite" href={withBase("/themes/flowbite3/#ui-options")} />
 <LinkCard title="Skeleton" href={withBase("/themes/skeleton4/#ui-options")} />
-<LinkCard title="shadcn-svelte" href={withBase("/themes/shadcn4/#ui-options")} />
+<LinkCard
+  title="shadcn-svelte"
+  href={withBase("/themes/shadcn4/#ui-options")}
+/>
 
 ## Actions
 
@@ -38,6 +41,7 @@ your snippet will be rendered on the right side of the field header.
 <Demo name="action-example" client:visible />
 
 You can also use the prebuilt actions available in the `@sjsf/form/fields/actions/*` module:
+
 - `clear-edit.svelte` toggles between `undefined` and default value
 - `clear.svelte` sets value to `undefined`
 - `display-primitive-value.svelte` displays current value

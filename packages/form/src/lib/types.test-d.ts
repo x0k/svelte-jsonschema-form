@@ -1,4 +1,5 @@
 import { expectTypeOf, test } from "vitest";
+
 import type { DeepPartial, JsonPaths } from "./types.js";
 
 test("JsonPaths", () => {

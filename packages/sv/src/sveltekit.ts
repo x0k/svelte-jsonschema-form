@@ -1,10 +1,9 @@
 import { KIT_PATH_FACTORY, createSvelteKitIntegration } from "meta/codegen";
 
 import { POST_MODEL_NAME, type Context } from "./model.js";
-import { svelteConfig, transforms } from "./sv-utils.js";
+import { svelteConfig } from "./sv-utils.js";
 
 export function sveltekitTs({
-  file,
   isKit,
   options: { sveltekit, demo },
   directory,
@@ -29,7 +28,7 @@ export function sveltekitTs({
   });
   sv.file(
     `${directory.kitRoutes}/demo/sjsf/${filename}.${language}`,
-    transform,
+    transform
   );
 
   if (sveltekit === "remoteFunctions") {

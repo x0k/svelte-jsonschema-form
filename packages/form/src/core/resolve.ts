@@ -5,9 +5,14 @@
 // TODO: Remove all usage of `expandAllBranches` in v4
 
 import { array } from "@/lib/array.js";
-import { isRecordEmpty } from "@/lib/object.js";
 import { isJsonSchemaType, isSchemaObject } from "@/lib/json-schema/index.js";
+import { isRecordEmpty } from "@/lib/object.js";
 
+import { isSchemaDeepEqual } from "./deep-equal.js";
+import { findSchemaDefinition } from "./definitions.js";
+import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
+import { getFirstMatchingOption } from "./matching.js";
+import type { Merger } from "./merger.js";
 import {
   ADDITIONAL_PROPERTY_FLAG,
   ALL_OF_KEY,
@@ -24,14 +29,9 @@ import {
   type SchemaValue,
   type SchemaWithProperties,
 } from "./schema.js";
-import { findSchemaDefinition } from "./definitions.js";
-import type { Validator } from "./validator.js";
-import type { Merger } from "./merger.js";
 import { typeOfValue } from "./type.js";
-import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
-import { getFirstMatchingOption } from "./matching.js";
+import type { Validator } from "./validator.js";
 import { isSchemaObjectValue } from "./value.js";
-import { isSchemaDeepEqual } from "./deep-equal.js";
 
 export function retrieveSchema(
   validator: Validator,
@@ -109,7 +109,7 @@ export function resolveAllReferences(
       if (copy.size === stackSize) {
         continue;
       }
-      // eslint-disable-next-line @typescript-eslint/unbound-method
+
       copy.forEach(stack.add, stack);
     }
     resolvedSchema = {

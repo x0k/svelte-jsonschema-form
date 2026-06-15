@@ -1,5 +1,6 @@
 <script lang="ts">
   import { Slider as SliderPrimitive } from "bits-ui";
+
   import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
 
   let {
@@ -31,19 +32,21 @@ get along, so we shut typescript up by casting `value` to `never`.
       data-slot="slider-track"
       data-orientation={orientation}
       class={cn(
-        "relative grow overflow-hidden rounded-full bg-muted bg-muted data-horizontal:h-1.5 data-horizontal:w-full data-horizontal:w-full data-vertical:h-full data-vertical:h-full data-vertical:w-1.5"
+        "bg-muted bg-muted relative grow overflow-hidden rounded-full data-horizontal:h-1.5 data-horizontal:w-full data-horizontal:w-full data-vertical:h-full data-vertical:h-full data-vertical:w-1.5"
       )}
     >
       <SliderPrimitive.Range
         data-slot="slider-range"
-        class={cn("absolute bg-primary select-none data-horizontal:h-full data-vertical:w-full")}
+        class={cn(
+          "bg-primary absolute select-none data-horizontal:h-full data-vertical:w-full"
+        )}
       />
     </span>
     {#each thumbItems as thumb (thumb)}
       <SliderPrimitive.Thumb
         data-slot="slider-thumb"
         index={thumb.index}
-        class="block size-4 shrink-0 rounded-full border border-primary bg-white shadow-sm ring-ring/50 transition-[color,box-shadow] select-none hover:ring-4 focus-visible:ring-4 focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50"
+        class="border-primary ring-ring/50 block size-4 shrink-0 rounded-full border bg-white shadow-sm transition-[color,box-shadow] select-none hover:ring-4 focus-visible:ring-4 focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50"
       />
     {/each}
   {/snippet}

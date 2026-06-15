@@ -1,20 +1,20 @@
 import { defineAddon } from "sv";
 
+import { defaultsTs } from "./defaults.js";
+import { dependencies } from "./dependencies.js";
 import {
   createContext,
   createOptions,
   type AddonSetupOptions,
 } from "./model.js";
-import { defaultsTs } from "./defaults.js";
-import { dependencies } from "./dependencies.js";
-import { appCss } from "./styles.js";
-import { viteConfig } from "./vite.js";
-import { shadcnTs } from "./shadcn.js";
-import { postTs } from "./post.js";
-import { sveltekitTs } from "./sveltekit.js";
-import { scriptsFolder } from "./scripts.js";
 import { pageSvelte } from "./page.js";
+import { postTs } from "./post.js";
+import { scriptsFolder } from "./scripts.js";
+import { shadcnTs } from "./shadcn.js";
+import { appCss } from "./styles.js";
 import { color } from "./sv-utils.js";
+import { sveltekitTs } from "./sveltekit.js";
+import { viteConfig } from "./vite.js";
 
 const addonOptions: AddonSetupOptions = {
   isKit: false,
@@ -52,7 +52,7 @@ export default defineAddon({
         isKit
           ? `Visit ${color.route("/demo/sjsf")} route`
           : `See ${color.route(`${directory.kitRoutes}/sjsf.svelte`)} file`
-      } to view the demo`,
+      } to view the demo`
     );
     return steps;
   },

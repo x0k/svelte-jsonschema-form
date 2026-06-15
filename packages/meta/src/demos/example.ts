@@ -2,7 +2,6 @@ import type { CatalogEntry } from "../catalog.ts";
 import type { CodegenThemeOrSubTheme } from "../codegen/index.ts";
 import { type CodeTransformer, createComposer } from "../composer/index.ts";
 import { sandboxOpen, type SandboxPlatform } from "../sandbox/index.ts";
-
 import {
   type ExampleMetadata,
   type ExampleContent,
@@ -33,7 +32,7 @@ export const EXAMPLE_ENTRIES: ExampleEntry[] = Object.keys(EXAMPLE_LOADERS)
 
 export const GROUPED_EXAMPLES = Object.groupBy(
   EXAMPLE_ENTRIES,
-  (e) => e.meta.category,
+  (e) => e.meta.category
 ) as Partial<Record<ExampleCategory, ExampleEntry[]>>;
 
 export const VALIDATOR_TRANSFORMERS: Partial<

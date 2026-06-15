@@ -1,12 +1,11 @@
 <script lang="ts" module>
-  import { isSchemaObject } from "@sjsf/form/lib/json-schema";
   import type {
     Config,
     FieldCommonProps,
     SchemaValue,
     Schema,
   } from "@sjsf/form";
-
+  import { isSchemaObject } from "@sjsf/form/lib/json-schema";
   import "@sjsf/form/extra-labels/clear";
   import "@sjsf/form/extra-labels/edit";
 
@@ -35,12 +34,6 @@
 </script>
 
 <script lang="ts">
-  import { isNil } from "@sjsf/form/lib/types";
-  import {
-    getSimpleSchemaType,
-    isPrimitiveSchemaType,
-    type SchemaDefinition,
-  } from "@sjsf/form/core";
   import {
     type ComponentProps,
     getComponent,
@@ -54,9 +47,15 @@
     Text,
     getDefaultFieldState,
   } from "@sjsf/form";
-  import OptionalObjectTemplate from "@sjsf/form/templates/extra/optional-object.svelte";
+  import {
+    getSimpleSchemaType,
+    isPrimitiveSchemaType,
+    type SchemaDefinition,
+  } from "@sjsf/form/core";
+  import { isNil } from "@sjsf/form/lib/types";
   import OptionalArrayTemplate from "@sjsf/form/templates/extra/optional-array.svelte";
   import OptionalMultiFieldTemplate from "@sjsf/form/templates/extra/optional-multi-field.svelte";
+  import OptionalObjectTemplate from "@sjsf/form/templates/extra/optional-object.svelte";
 
   let {
     value = $bindable(),

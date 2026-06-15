@@ -1,21 +1,21 @@
 import { untrack } from "svelte";
 
 import type { Config } from "../config.js";
-import {
-  isAdditionalPropertyKeyValidator,
-  isAsyncFileListValidator,
-  isAsyncFormValueValidator,
-  isFormValueValidator,
-} from "../validator.js";
-import type { FormValue } from "../model.js";
 import { InvalidValidatorError } from "../errors.js";
 import {
   FORM_FIELDS_VALIDATION_MODE,
   FORM_SCHEMA,
   FORM_VALIDATOR,
 } from "../internals.js";
-import type { FormState } from "./state.js";
+import type { FormValue } from "../model.js";
+import {
+  isAdditionalPropertyKeyValidator,
+  isAsyncFileListValidator,
+  isAsyncFormValueValidator,
+  isFormValueValidator,
+} from "../validator.js";
 import { updateFieldErrors } from "./errors.js";
+import type { FormState } from "./state.js";
 import { getValueSnapshot } from "./value.svelte.js";
 
 /**

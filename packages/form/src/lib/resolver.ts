@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
 export type Resolved<
   T extends PropertyKey,
   R extends Record<PropertyKey, any>,

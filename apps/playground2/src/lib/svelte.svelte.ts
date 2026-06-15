@@ -1,6 +1,6 @@
 export function debouncedEffect(
   actionFactory: () => () => void,
-  ms: number = 300,
+  ms: number = 300
 ) {
   let callbackId: number | undefined;
   $effect(() => {

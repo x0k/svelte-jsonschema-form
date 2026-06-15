@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { insertValue } from "@sjsf/form/lib/trie";
   import {
     getFieldTitle,
     getFormContext,
     type ComponentProps,
   } from "@sjsf/form";
+  import { insertValue } from "@sjsf/form/lib/trie";
 
   import { createTabsNode, getTabsContext } from "./context.svelte";
 

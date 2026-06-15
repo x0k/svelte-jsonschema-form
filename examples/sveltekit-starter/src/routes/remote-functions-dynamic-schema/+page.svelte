@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { getResults } from './data.remote';
+  import { getResults } from "./data.remote";
 
-  const results = $derived(await getResults())
+  const results = $derived(await getResults());
 </script>
 
 <div class="center">

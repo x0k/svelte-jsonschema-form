@@ -1,5 +1,4 @@
 import { definitions } from "../../theme/definitions.js";
-
 import OptionalArray from "./optional-array.svelte";
 import "./optional-array.svelte";
 

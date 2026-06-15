@@ -4,13 +4,18 @@ sidebar:
   order: 5
 ---
 
-import { LinkCard, LinkButton, Code, Card } from '@astrojs/starlight/components';
+import {
+  LinkCard,
+  LinkButton,
+  Code,
+  Card,
+} from "@astrojs/starlight/components";
 
-import { withBase } from '@/lib/base-path';
-import Npm from '@/components/npm.astro';
-import Demo from '@/components/demo.svelte';
+import { withBase } from "@/lib/base-path";
+import Npm from "@/components/npm.astro";
+import Demo from "@/components/demo.svelte";
 
-import IconsShowCase from './_icons.astro';
+import IconsShowCase from "./_icons.astro";
 
 ## Translation
 
@@ -21,7 +26,10 @@ Translations are imported from `@sjsf/form/translations/{locale}`, currently sup
 - `en`
 - `ru`
 
-<LinkCard title="Translation API reference" href={withBase("/form/translation/")} />
+<LinkCard
+  title="Translation API reference"
+  href={withBase("/form/translation/")}
+/>
 
 ## Icons
 

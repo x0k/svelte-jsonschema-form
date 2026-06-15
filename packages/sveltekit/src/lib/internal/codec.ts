@@ -1,4 +1,4 @@
-import { getNodeByShortestPrefix, insertValue } from '@sjsf/form/lib/trie';
+import { getNodeByShortestPrefix, insertValue } from "@sjsf/form/lib/trie";
 
 const RADIX = 36; // Maximum radix supported by toString/parseInt (0-9, a-z)
 const UTF16_MAX_SINGLE_UNIT = 0xffff;
@@ -8,13 +8,16 @@ export interface CodecOptions {
   sequencesToEncode: string[];
 }
 
-export const DEFAULT_ESCAPE_CHAR = '~';
+export const DEFAULT_ESCAPE_CHAR = "~";
 
-export function createCodec({ escapeChar = DEFAULT_ESCAPE_CHAR, sequencesToEncode }: CodecOptions) {
+export function createCodec({
+  escapeChar = DEFAULT_ESCAPE_CHAR,
+  sequencesToEncode,
+}: CodecOptions) {
   const encodeBuffer: string[] = [];
   function encodeSequence(seq: string) {
     encodeBuffer.length = 0;
-    encodeBuffer.push(escapeChar, '');
+    encodeBuffer.push(escapeChar, "");
     let encodedLen = 0;
     let i = 0;
     while (i < seq.length) {
@@ -28,8 +31,8 @@ export function createCodec({ escapeChar = DEFAULT_ESCAPE_CHAR, sequencesToEncod
     }
     encodeBuffer[1] = encodedLen.toString(RADIX);
     return {
-      value: encodeBuffer.join(''),
-      originalLen: seq.length
+      value: encodeBuffer.join(""),
+      originalLen: seq.length,
     };
   }
 
@@ -53,7 +56,7 @@ export function createCodec({ escapeChar = DEFAULT_ESCAPE_CHAR, sequencesToEncod
     if (node !== undefined) {
       throw new Error(
         `invalid encodable sequence: sequences should not include each other, but "${seq}" ${
-          node.value === undefined ? 'is a prefix' : 'has prefix'
+          node.value === undefined ? "is a prefix" : "has prefix"
         }`
       );
     }
@@ -89,7 +92,7 @@ export function createCodec({ escapeChar = DEFAULT_ESCAPE_CHAR, sequencesToEncod
       if (chunkStart < str.length) {
         parts.push(str.slice(chunkStart));
       }
-      return parts.join('');
+      return parts.join("");
     },
     decode(encoded: string): string {
       parts.length = 0;
@@ -129,7 +132,7 @@ export function createCodec({ escapeChar = DEFAULT_ESCAPE_CHAR, sequencesToEncod
       if (chunkStart < encoded.length) {
         parts.push(encoded.slice(chunkStart));
       }
-      return parts.join('');
-    }
+      return parts.join("");
+    },
   };
 }

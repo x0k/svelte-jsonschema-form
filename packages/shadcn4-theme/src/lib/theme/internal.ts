@@ -1,1 +1,1 @@
-export const THEME_CONTEXT = Symbol('theme-context');
+export const THEME_CONTEXT = Symbol("theme-context");

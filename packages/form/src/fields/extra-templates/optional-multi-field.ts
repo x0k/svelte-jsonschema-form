@@ -19,4 +19,3 @@ declare module "../../form/index.js" {
     optionalMultiFieldTemplate: "";
   }
 }
-

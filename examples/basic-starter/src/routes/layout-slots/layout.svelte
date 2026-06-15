@@ -1,7 +1,7 @@
 <script lang="ts" module>
-  import type { Snippet } from "svelte";
   import { getFormContext, uiOptionNestedProps, type Config } from "@sjsf/form";
   import type { LayoutType } from "@sjsf/form/fields/components";
+  import type { Snippet } from "svelte";
 
   declare module "@sjsf/form" {
     interface UiOptions {

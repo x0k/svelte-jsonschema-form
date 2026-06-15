@@ -1,7 +1,6 @@
 <script lang="ts">
-  import type { Snippet } from "svelte";
-
   import { BitsConfig } from "bits-ui";
+  import type { Snippet } from "svelte";
 
   const { children }: { children: Snippet } = $props();
 

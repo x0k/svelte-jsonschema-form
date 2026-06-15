@@ -1,17 +1,15 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import Ajv from "ajv";
-import standaloneCode from "ajv/dist/standalone/index.js";
-import addFormats from "ajv-formats";
-
+import { addFormComponents, DEFAULT_AJV_CONFIG } from "@sjsf/ajv8-validator";
 import { ON_ARRAY_CHANGE, ON_CHANGE, ON_INPUT } from "@sjsf/form";
 import {
   insertSubSchemaIds,
   fragmentSchema,
 } from "@sjsf/form/validators/precompile";
-import { addFormComponents, DEFAULT_AJV_CONFIG } from "@sjsf/ajv8-validator";
-
+import Ajv from "ajv";
+import addFormats from "ajv-formats";
+import standaloneCode from "ajv/dist/standalone/index.js";
 import { build } from "esbuild";
 
 import inputSchema from "../input-schema.json" with { type: "json" };

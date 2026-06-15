@@ -1,9 +1,9 @@
-import { isSchemaObject } from "@/lib/json-schema/index.js";
 import {
   ADDITIONAL_PROPERTY_FLAG,
   type Schema,
   type SchemaObjectValue,
 } from "@/core/index.js";
+import { isSchemaObject } from "@/lib/json-schema/index.js";
 
 export type AdditionalPropertyKey = (key: string, attempt: number) => string;
 

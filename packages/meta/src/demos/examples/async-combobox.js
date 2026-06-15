@@ -1,7 +1,7 @@
-import countriesTs from "examples/basic-starter/src/routes/async-combobox/countries.ts?raw";
 import pageSvelte from "examples/basic-starter/src/routes/async-combobox/+page.svelte?raw";
-import asyncComboboxSvelte from "examples/basic-starter/src/routes/async-combobox/async-combobox.svelte?raw";
 import asyncComboboxWidgetSvelte from "examples/basic-starter/src/routes/async-combobox/async-combobox-widget.svelte?raw";
+import asyncComboboxSvelte from "examples/basic-starter/src/routes/async-combobox/async-combobox.svelte?raw";
+import countriesTs from "examples/basic-starter/src/routes/async-combobox/countries.ts?raw";
 
 import { defineExample, defineMeta, Tag, ExampleCategory } from "../model.js";
 

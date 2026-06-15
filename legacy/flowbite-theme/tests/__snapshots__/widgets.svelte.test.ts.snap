@@ -160,7 +160,7 @@ exports[`widgets > checkbox > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        class="list-inside list-disc text-red-700 dark:text-red-500"
         id="root__errors"
         tabindex="-1"
       >
@@ -690,7 +690,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        class="list-inside list-disc text-red-700 dark:text-red-500"
         id="root__errors"
         tabindex="-1"
       >
@@ -1259,7 +1259,7 @@ exports[`widgets > datePicker > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        class="list-inside list-disc text-red-700 dark:text-red-500"
         id="root__errors"
         tabindex="-1"
       >
@@ -1697,7 +1697,7 @@ exports[`widgets > file > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        class="list-inside list-disc text-red-700 dark:text-red-500"
         id="root__errors"
         tabindex="-1"
       >
@@ -2106,7 +2106,7 @@ exports[`widgets > multiFile > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        class="list-inside list-disc text-red-700 dark:text-red-500"
         id="root__errors"
         tabindex="-1"
       >
@@ -2622,7 +2622,7 @@ exports[`widgets > multiSelect > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        class="list-inside list-disc text-red-700 dark:text-red-500"
         id="root__errors"
         tabindex="-1"
       >
@@ -3142,7 +3142,7 @@ exports[`widgets > number > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        class="list-inside list-disc text-red-700 dark:text-red-500"
         id="root__errors"
         tabindex="-1"
       >
@@ -3672,7 +3672,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        class="list-inside list-disc text-red-700 dark:text-red-500"
         id="root__errors"
         tabindex="-1"
       >
@@ -4166,7 +4166,7 @@ exports[`widgets > range > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        class="list-inside list-disc text-red-700 dark:text-red-500"
         id="root__errors"
         tabindex="-1"
       >
@@ -4581,7 +4581,7 @@ exports[`widgets > select > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        class="list-inside list-disc text-red-700 dark:text-red-500"
         id="root__errors"
         tabindex="-1"
       >
@@ -5035,7 +5035,7 @@ exports[`widgets > switch > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        class="list-inside list-disc text-red-700 dark:text-red-500"
         id="root__errors"
         tabindex="-1"
       >
@@ -5456,7 +5456,7 @@ exports[`widgets > text > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        class="list-inside list-disc text-red-700 dark:text-red-500"
         id="root__errors"
         tabindex="-1"
       >
@@ -5861,7 +5861,7 @@ exports[`widgets > textarea > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        class="list-inside list-disc text-red-700 dark:text-red-500"
         id="root__errors"
         tabindex="-1"
       >

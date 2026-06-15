@@ -1,6 +1,5 @@
-import type { Ajv, Options } from "ajv";
-
 import { ADDITIONAL_PROPERTY_FLAG, DATA_URL_FORMAT } from "@sjsf/form/core";
+import type { Ajv, Options } from "ajv";
 
 export const DEFAULT_AJV_CONFIG = {
   allErrors: true,

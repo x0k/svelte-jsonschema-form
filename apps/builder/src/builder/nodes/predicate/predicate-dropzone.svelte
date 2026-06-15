@@ -3,13 +3,13 @@
     createPredicate,
     isPredicateNode,
     type ObjectPropertyDependencyNode,
-    type PredicateNode
+    type PredicateNode,
   } from "$lib/builder/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
 
   import { getBuilderContext, type NodeRef } from "../../context.svelte.js";
-  import { getNodeContext } from "../../node-context.js";
   import DropZone from "../../drop-zone.svelte";
+  import { getNodeContext } from "../../node-context.js";
   import RootNode from "../../root-node.svelte";
 
   interface Props {
@@ -26,7 +26,7 @@
     },
     update(n) {
       node.predicate = n as PredicateNode;
-    }
+    },
   };
 </script>
 
@@ -44,7 +44,7 @@
     onDrop(n) {
       node.predicate = n;
       ctx.selectNode(nodeRef, false);
-    }
+    },
   })}
   <DropZone {droppable}>
     {#snippet placeholder()}

@@ -9,11 +9,11 @@ import { describe, expect, it } from "vitest";
 import { createDeduplicator, createIntersector } from "@/lib/array.js";
 import { createComparator } from "@/lib/json-schema/compare/index.js";
 
-import { createMerger } from "./merge.js";
 import {
   createDeepAllOfMerge,
   createShallowAllOfMerge,
 } from "./all-of-merge.js";
+import { createMerger } from "./merge.js";
 import { legacyPatternsMerger } from "./patterns.js";
 
 const { compareSchemaValues, compareSchemaDefinitions } = createComparator();

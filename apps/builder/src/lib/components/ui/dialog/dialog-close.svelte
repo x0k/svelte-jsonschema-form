@@ -8,4 +8,9 @@
   }: DialogPrimitive.CloseProps = $props();
 </script>
 
-<DialogPrimitive.Close bind:ref data-slot="dialog-close" {type} {...restProps} />
+<DialogPrimitive.Close
+  bind:ref
+  data-slot="dialog-close"
+  {type}
+  {...restProps}
+/>

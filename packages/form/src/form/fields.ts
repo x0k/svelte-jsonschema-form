@@ -4,14 +4,14 @@ import type {
   SchemaObjectValue,
 } from "@/core/index.js";
 
-import type { Config } from "./config.js";
 import type {
   ComponentProps,
   ComponentType,
   FoundationalComponentType,
 } from "./components.js";
-import type { UiOption } from "./ui-schema.js";
+import type { Config } from "./config.js";
 import type { Translate } from "./translation.js";
+import type { UiOption } from "./ui-schema.js";
 
 export interface FieldCommonProps<V> {
   type: "field";

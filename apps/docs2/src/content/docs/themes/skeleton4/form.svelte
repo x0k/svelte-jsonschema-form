@@ -1,15 +1,15 @@
 <script lang="ts">
-  import { fromRecord } from "@sjsf/form/lib/resolver";
   import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
+  import { fromRecord } from "@sjsf/form/lib/resolver";
   import { theme } from "@sjsf/skeleton4-theme";
   import { specs } from "@sjsf/skeleton4-theme/specs";
 
-  import { themeManager } from "@/theme.svelte";
   import * as defaults from "@/lib/sjsf/defaults";
+  import { themeManager } from "@/theme.svelte";
 
   import { createSchemas } from "../_demo-schema";
 
-    let rootNode = $state<Node>();
+  let rootNode = $state<Node>();
   const options = {
     getRootNode() {
       return rootNode!;
@@ -17,9 +17,9 @@
   };
   const portalProps = {
     get target() {
-      return divEl
-    }
-  }
+      return divEl;
+    },
+  };
 
   const form = createForm({
     ...defaults,
@@ -38,7 +38,7 @@
       skeleton4DatePicker: options,
       skeleton4DatePickerPortal: portalProps,
       skeleton4DateRangePicker: options,
-      skeleton4DateRangePickerPortal: portalProps
+      skeleton4DateRangePickerPortal: portalProps,
     }),
   });
 

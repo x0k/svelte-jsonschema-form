@@ -9,21 +9,26 @@ sidebar:
     variant: caution
 ---
 
-import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
-import { specs, extraWidgets } from '@sjsf-lab/svar-theme/specs';
+import { Code, Card, TabItem, Tabs } from "@astrojs/starlight/components";
+import { specs, extraWidgets } from "@sjsf-lab/svar-theme/specs";
 import { themePackage } from "meta";
 
-import { getPackageDependencies } from '@/shared';
-import Npm from '@/components/npm.astro';
-import FormCard from '@/components/form-card.astro';
-import Deps from '@/components/peer-dependencies.astro';
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import FormCard from "@/components/form-card.astro";
+import Deps from "@/components/peer-dependencies.astro";
 
-import Form from './svar/form.svelte';
-import uiOptionsCode from './svar/ui-options?raw';
-import { createExtraImports, createSchemas, replacer, validationEvents } from "./_demo-schema";
+import Form from "./svar/form.svelte";
+import uiOptionsCode from "./svar/ui-options?raw";
+import {
+  createExtraImports,
+  createSchemas,
+  replacer,
+  validationEvents,
+} from "./_demo-schema";
 
-export const schemas = createSchemas(specs)
-export const pkg = themePackage('svar')
+export const schemas = createSchemas(specs);
+export const pkg = themePackage("svar");
 
 ## Installation
 
@@ -43,17 +48,17 @@ or used in the field as the default widget.
 
 :::
 
-<Code lang='ts' code={createExtraImports("svar", extraWidgets)} />
+<Code lang="ts" code={createExtraImports("svar", extraWidgets)} />
 
 ## Widgets demo
 
 <Tabs>
-  <TabItem label='Form'>
+  <TabItem label="Form">
     <FormCard>
       <Form client:only="svelte" />
     </FormCard>
   </TabItem>
-  <TabItem label="JSON Schema" >
+  <TabItem label="JSON Schema">
     <Code lang="json" code={JSON.stringify(schemas.schema, replacer, 2)} />
   </TabItem>
   <TabItem label="UI Schema">
@@ -64,7 +69,3 @@ or used in the field as the default widget.
 ## Supported validation events
 
 <div set:html={validationEvents(specs)}></div>
-
-{/* ## UI options
-
-<Code code={uiOptionsCode} lang="typescript" /> */}

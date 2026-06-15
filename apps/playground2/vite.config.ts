@@ -1,7 +1,8 @@
 import { resolve, dirname } from "node:path";
-import { defineConfig } from "vitest/config";
-import tailwindcss from "@tailwindcss/vite";
+
 import { svelte } from "@sveltejs/vite-plugin-svelte";
+import tailwindcss from "@tailwindcss/vite";
+import { defineConfig } from "vitest/config";
 // import { visualizer } from "rollup-plugin-visualizer";
 
 const VIRTUAL_MODULE_PREFIX = "virtual-module:";

@@ -20,23 +20,23 @@ There is two ways to setup styles:
 1. Use tailwindcss config
 
 ```typescript
-import { THEME_CONTENT } from '@sjsf/shadcn-theme/preset'
+import { THEME_CONTENT } from "@sjsf/shadcn-theme/preset";
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./src/**/*.{html,js,svelte,ts}', THEME_CONTENT],
-}
+  content: ["./src/**/*.{html,js,svelte,ts}", THEME_CONTENT],
+};
 ```
 
 Or with a preset
 
 ```typescript
-import themePreset from '@sjsf/shadcn-theme/preset'
+import themePreset from "@sjsf/shadcn-theme/preset";
 
 /** @type {import('tailwindcss').Config} */
 export default {
   presets: [themePreset],
-}
+};
 ```
 
 2. Inject prepared styles (not recommended)

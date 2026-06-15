@@ -1,19 +1,19 @@
 <script lang="ts">
-  import { identity } from "@sjsf/form/lib/function";
   import {
     createForm,
     BasicForm,
     type Schema,
     type UiSchemaRoot,
   } from "@sjsf/form";
+  import { identity } from "@sjsf/form/lib/function";
 
   import { browser } from "$app/environment";
   import * as defaults from "$lib/sjsf/defaults";
 
-  import { COUNTRIES } from "./countries";
   import AsyncComboboxWidget, {
     type MyAsyncComboboxOptions,
   } from "./async-combobox-widget.svelte";
+  import { COUNTRIES } from "./countries";
 
   async function searchFn(_: AbortSignal, query: string) {
     await new Promise((r) => setTimeout(r, 1000));

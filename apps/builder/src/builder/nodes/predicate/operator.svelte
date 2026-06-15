@@ -13,27 +13,32 @@
     isOperatorNode,
     type NOperator,
     isHasPropertyOperator,
-    isContainsOperator
+    isContainsOperator,
   } from "$lib/builder/index.js";
 
   import type { NodeProps } from "../../model.js";
+  import MultiDropzone from "../../multi-dropzone.svelte";
   import NodeContainer from "../../node-container.svelte";
   import NodeHeader from "../../node-header.svelte";
-  import MultiDropzone from "../../multi-dropzone.svelte";
   import NodeIssues from "../../node-issues.svelte";
-
-  import OperatorDropzone from "./operator-dropzone.svelte";
-  import PatternOperator from "./pattern-operator.svelte";
   import ComparisonOperator from "./comparison-operator.svelte";
+  import ContainsOperator from "./contains-operator.svelte";
   import EqOperator from "./eq-operator.svelte";
-  import PropertyOperator from "./property-operator.svelte";
   import HasPropertyOperator from "./has-property-operator.svelte";
   import InOperator from "./in-operator.svelte";
-  import ContainsOperator from "./contains-operator.svelte";
+  import OperatorDropzone from "./operator-dropzone.svelte";
+  import PatternOperator from "./pattern-operator.svelte";
+  import PropertyOperator from "./property-operator.svelte";
 
-  let { node = $bindable(), draggable, unmount }: NodeProps<NodeType.Operator> = $props();
+  let {
+    node = $bindable(),
+    draggable,
+    unmount,
+  }: NodeProps<NodeType.Operator> = $props();
 
-  const isMultiOrEmpty = $derived(isNOperator(node) || isUniqueItemsOperator(node));
+  const isMultiOrEmpty = $derived(
+    isNOperator(node) || isUniqueItemsOperator(node)
+  );
 </script>
 
 <NodeContainer bind:node {draggable} showRequired={false} disableSelection>

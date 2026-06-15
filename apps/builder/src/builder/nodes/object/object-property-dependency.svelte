@@ -1,41 +1,45 @@
 <script lang="ts">
-  import type { NodeType } from "meta/builder";
   import Info from "@lucide/svelte/icons/info";
+  import type { NodeType } from "meta/builder";
 
   import {
     type CustomizableNode,
     type ObjectPropertyNode,
     createObjectProperty,
     isCustomizableOrPropertyNode,
-    isObjectPropertyNode
+    isObjectPropertyNode,
   } from "$lib/builder/index.js";
   import { Checkbox } from "$lib/components/ui/checkbox/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
   import * as Tooltip from "$lib/components/ui/tooltip/index.js";
 
-  import type { NodeProps } from "../../model.js";
   import { getBuilderContext } from "../../context.svelte.js";
   import { getIndexContext } from "../../index.svelte";
-  import NodeHeader from "../../node-header.svelte";
-  import NodeContainer from "../../node-container.svelte";
+  import type { NodeProps } from "../../model.js";
   import MultiDropZone from "../../multi-dropzone.svelte";
+  import NodeContainer from "../../node-container.svelte";
+  import NodeHeader from "../../node-header.svelte";
   import NodeIssues from "../../node-issues.svelte";
-
   import { PredicateDropzone } from "../predicate/index.js";
   import { getObjectContext } from "./context.js";
 
   let {
     node = $bindable(),
     draggable,
-    unmount
+    unmount,
   }: NodeProps<NodeType.ObjectPropertyDependency> = $props();
 
   const ctx = getBuilderContext();
   const objCtx = getObjectContext();
   const indexCtx = getIndexContext();
 
-  const onDrop = (newNode: CustomizableNode | ObjectPropertyNode, index: number) => {
-    const prop = isObjectPropertyNode(newNode) ? newNode : createObjectProperty(newNode);
+  const onDrop = (
+    newNode: CustomizableNode | ObjectPropertyNode,
+    index: number
+  ) => {
+    const prop = isObjectPropertyNode(newNode)
+      ? newNode
+      : createObjectProperty(newNode);
     node.properties.splice(index, 0, prop);
     ctx.selectNode(
       {
@@ -45,7 +49,7 @@
         update(newNode) {
           const idx = node.properties.findIndex((n) => n.id === prop.id);
           node.properties[idx].property = newNode;
-        }
+        },
       },
       false
     );
@@ -56,7 +60,12 @@
   const checkboxId = $props.id();
 </script>
 
-<NodeContainer bind:node {draggable} showRequired={false} class="flex flex-col gap-0.5">
+<NodeContainer
+  bind:node
+  {draggable}
+  showRequired={false}
+  class="flex flex-col gap-0.5"
+>
   <NodeHeader
     {draggable}
     unmount={() => {
@@ -80,14 +89,14 @@
         />
         <Label
           for={checkboxId}
-          class="text-base text-muted-foreground"
+          class="text-muted-foreground text-base"
           onclick={(e) => e.stopPropagation()}
         >
           Complement
         </Label>
         <Tooltip.Root>
           <Tooltip.Trigger>
-            <Info class="size-5 text-muted-foreground" />
+            <Info class="text-muted-foreground size-5" />
           </Tooltip.Trigger>
           <Tooltip.Content>
             <p>Field values must be split between branches without gaps.</p>

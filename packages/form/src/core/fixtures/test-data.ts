@@ -4,8 +4,8 @@
 
 import deepFreeze from "deep-freeze-es6";
 
-import { ONE_OF_KEY, ID_KEY, type Schema } from "../schema.js";
 import type { EnumOption } from "../enum-option.js";
+import { ONE_OF_KEY, ID_KEY, type Schema } from "../schema.js";
 
 export const oneOfData = {
   name: "second_option",

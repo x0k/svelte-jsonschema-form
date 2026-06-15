@@ -26,7 +26,7 @@
 
 <label
   {...labelAttributes(ctx, config, "labelAttributes", {
-    class: "sjsf-label"
+    class: "sjsf-label",
   })}
 >
   {title}

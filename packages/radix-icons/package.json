@@ -1,64 +1,65 @@
 {
-	"name": "@sjsf/radix-icons",
-	"version": "3.6.0",
-	"description": "The svelte-radix based icons set for svelte-jsonschema-form",
-	"license": "MIT",
-	"keywords": [
-		"icons",
-		"radix",
-		"form"
-	],
-	"type": "module",
-	"files": [
-		"dist",
-		"!dist/**/*.test.*",
-		"!dist/**/*.spec.*"
-	],
-	"publishConfig": {
-		"provenance": true
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/x0k/svelte-jsonschema-form.git",
-		"directory": "packages/radix-icons"
-	},
-	"bugs": "https://github.com/x0k/svelte-jsonschema-form/issues",
-	"homepage": "https://x0k.github.io/svelte-jsonschema-form/",
-	"scripts": {
-		"dev": "vite dev",
-		"build": "svelte-package && publint",
-		"preview": "vite preview",
-		"test": "npm run test:unit -- --run",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"lint": "prettier --check . && eslint .",
-		"format": "prettier --write .",
-		"test:integration": "playwright test",
-		"test:unit": "vitest"
-	},
-	"exports": {
-		"./package.json": "./package.json",
-		".": {
-			"types": "./dist/index.d.ts",
-			"svelte": "./dist/index.js"
-		},
-		"./extra/*": {
-			"types": "./dist/extra/*.d.ts",
-			"svelte": "./dist/extra/*"
-		}
-	},
-	"peerDependencies": {
-		"@sjsf/form": "workspace:^3.5.0",
-		"svelte": "^5.34.8",
-		"svelte-radix": "^2.0.0 || ^3.0.0"
-	},
-	"devDependencies": {
-		"@sjsf/form": "workspace:*",
-		"globals": "catalog:",
-		"svelte": "catalog:",
-		"svelte-radix": "^3.0.2",
-		"theme-testing": "workspace:*"
-	},
-	"svelte": "./dist/index.js",
-	"types": "./dist/index.d.ts"
+  "name": "@sjsf/radix-icons",
+  "version": "3.6.0",
+  "description": "The svelte-radix based icons set for svelte-jsonschema-form",
+  "keywords": [
+    "form",
+    "icons",
+    "radix"
+  ],
+  "homepage": "https://x0k.github.io/svelte-jsonschema-form/",
+  "bugs": "https://github.com/x0k/svelte-jsonschema-form/issues",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/x0k/svelte-jsonschema-form.git",
+    "directory": "packages/radix-icons"
+  },
+  "files": [
+    "dist",
+    "!dist/**/*.test.*",
+    "!dist/**/*.spec.*"
+  ],
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "svelte": "./dist/index.js",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "svelte": "./dist/index.js"
+    },
+    "./extra/*": {
+      "types": "./dist/extra/*.d.ts",
+      "svelte": "./dist/extra/*"
+    }
+  },
+  "publishConfig": {
+    "provenance": true
+  },
+  "scripts": {
+    "dev": "vite dev",
+    "build": "svelte-package && publint",
+    "preview": "vite preview",
+    "test": "npm run test:unit -- --run",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "lint": "eslint .",
+    "test:integration": "playwright test",
+    "test:unit": "vitest",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check ."
+  },
+  "devDependencies": {
+    "@sjsf/form": "workspace:*",
+    "globals": "catalog:",
+    "svelte": "catalog:",
+    "svelte-radix": "^3.0.2",
+    "theme-testing": "workspace:*"
+  },
+  "peerDependencies": {
+    "@sjsf/form": "workspace:^3.5.0",
+    "svelte": "^5.34.8",
+    "svelte-radix": "^2.0.0 || ^3.0.0"
+  }
 }
