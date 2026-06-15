@@ -1,6 +1,7 @@
 import {
   createAugmentSchema,
   isPrimitiveSchemaType,
+  isSchemaDeepEqual,
   isSchemaWithProperties,
   pathFromRef,
   pickSchemaType,
@@ -209,14 +210,14 @@ export function fragmentSchema({
               );
             }
             if (typeof allOf[0] !== "boolean") {
-              // avoid usage of same $id
-              delete allOf[0].$id;
               if (copy.additionalProperties === false) {
                 allOf[0] = allowAdditionalProperties(allOf[0]);
-              } else if (!copy.required?.length) {
+              } else if (isSchemaDeepEqual(allOf[0], copy)) {
                 // first slot of `allOf` is identical to copy and can be replaced with ref
                 allOf[0] = refSchema;
               }
+              // avoid usage of same $id
+              delete allOf[0].$id;
             }
             schemas.push(augmentedSchema);
           }
@@ -236,7 +237,7 @@ export interface ValidatorsRegistry<F> {
   get(id: string): F | undefined;
 }
 
-export interface ValidatorRetrieverOption<F> {
+export interface ValidatorRetrieverOptions<F> {
   registry: ValidatorsRegistry<F>;
   idAugmentations?: Partial<IdAugmentations>;
 }
@@ -244,7 +245,7 @@ export interface ValidatorRetrieverOption<F> {
 export function createValidatorRetriever<F>({
   registry,
   idAugmentations,
-}: ValidatorRetrieverOption<F>) {
+}: ValidatorRetrieverOptions<F>) {
   const augmentations: IdAugmentations = {
     ...DEFAULT_ID_AUGMENTATIONS,
     ...idAugmentations,
@@ -273,7 +274,7 @@ export function createValidatorRetriever<F>({
 // validatorRetrieverFromRecord ?
 export function fromValidators<F>(
   validators: Record<string, F>,
-  options?: Partial<Omit<ValidatorRetrieverOption<F>, "registry">>
+  options?: Partial<Omit<ValidatorRetrieverOptions<F>, "registry">>
 ) {
   return createValidatorRetriever({
     registry: {

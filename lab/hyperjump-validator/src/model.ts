@@ -15,7 +15,7 @@ import {
 import type { FormValue, Schema, SchemaValue } from "@sjsf/form";
 import {
   createValidatorRetriever,
-  type ValidatorRetrieverOption,
+  type ValidatorRetrieverOptions,
 } from "@sjsf/form/validators/precompile";
 
 import { JsonSchemaErrorsOutputPlugin } from "./output-plugin.js";
@@ -73,7 +73,7 @@ export type ValidatorOptions = CoreValidatorOptions & ValueToJSON;
 
 export function fromAst(
   ast: AST,
-  options?: Partial<Omit<ValidatorRetrieverOption<any>, "registry">>
+  options?: Partial<Omit<ValidatorRetrieverOptions<any>, "registry">>
 ) {
   return createValidatorRetriever({
     registry: {
