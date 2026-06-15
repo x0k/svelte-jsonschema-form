@@ -81,14 +81,14 @@ const INTERNAL_VALIDATORS_SET = new Set<Validator>(INTERNAL_VALIDATORS);
 
 export type InternalValidator = (typeof INTERNAL_VALIDATORS)[number];
 
-const INTERNAL_VALIDATOR_MODULES = [
+const _INTERNAL_VALIDATOR_MODULES = [
   "precompile",
   "file-size",
   "omit-extra-data",
 ] as const;
 
 export type InternalValidatorModule =
-  (typeof INTERNAL_VALIDATOR_MODULES)[number];
+  (typeof _INTERNAL_VALIDATOR_MODULES)[number];
 
 export type ExternalValidator = Exclude<Validator, InternalValidator>;
 
@@ -178,17 +178,17 @@ export function precompiledValidatorSubPath(validator: PrecompiledValidator) {
   return `${externalValidatorPackage(validator).name}/precompile`;
 }
 
-const HYPERJUMP_LOCALES = ["en-us"] as const;
+const _HYPERJUMP_LOCALES = ["en-us"] as const;
 
-type HyperjumpLocale = (typeof HYPERJUMP_LOCALES)[number];
+type HyperjumpLocale = (typeof _HYPERJUMP_LOCALES)[number];
 
 export function hyperjumpValidatorLocalizationSubPath(locale: HyperjumpLocale) {
   return `${externalValidatorPackage("hyperjump").name}/localizations/${locale}`;
 }
 
-const ZOD4_VERSIONS = ["classic", "mini"] as const;
+const _ZOD4_VERSIONS = ["classic", "mini"] as const;
 
-type Zod4Version = (typeof ZOD4_VERSIONS)[number];
+type Zod4Version = (typeof _ZOD4_VERSIONS)[number];
 
 export function zod4ValidatorVersionSubPath(v: Zod4Version) {
   return `${externalValidatorPackage("zod4").name}/${v}`;

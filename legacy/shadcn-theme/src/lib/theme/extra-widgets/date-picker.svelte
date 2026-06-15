@@ -1,6 +1,6 @@
 <script lang="ts" module>
   import type {
-    Calendar,
+    Calendar as _Calendar,
     CalendarSingleRootProps,
     WithoutChildrenOrChild,
   } from "bits-ui";
@@ -25,7 +25,7 @@
     interface ThemeComponents {
       // @ts-expect-error too complex
       Calendar: Component<
-        WithoutChildrenOrChild<Calendar.RootProps>,
+        WithoutChildrenOrChild<_Calendar.RootProps>,
         {},
         "value" | "placeholder" | "ref"
       >;

@@ -2,7 +2,6 @@ import { validator } from "@exodus/schemasafe";
 import {
   fragmentSchema,
   fromValidators,
-  insertSubSchemaIds,
 } from "@sjsf/form/validators/precompile";
 import {
   createPrecompiledValidatorFactory,

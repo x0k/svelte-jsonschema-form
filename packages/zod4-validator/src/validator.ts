@@ -6,7 +6,7 @@ import type {
   Schema,
   Validator,
 } from "@sjsf/form";
-import type { $ZodIssue, $ZodTypes, util } from "zod/v4/core";
+import type { $ZodTypes, util } from "zod/v4/core";
 
 import { transformFormErrors, transformFieldErrors } from "./errors.js";
 import { createAugmentedId, type SchemaRegistry } from "./model.js";

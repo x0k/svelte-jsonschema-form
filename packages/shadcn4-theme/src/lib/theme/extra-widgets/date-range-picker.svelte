@@ -3,7 +3,7 @@
   import type { Range } from "@sjsf/form/lib/range";
   import type {
     RangeCalendarRootProps,
-    RangeCalendar,
+    RangeCalendar as _RangeCalendar,
     WithoutChildrenOrChild,
   } from "bits-ui";
   import type { Component } from "svelte";
@@ -34,7 +34,7 @@
   declare module "../context.js" {
     interface ThemeComponents {
       RangeCalendar: Component<
-        WithoutChildrenOrChild<RangeCalendar.RootProps>,
+        WithoutChildrenOrChild<_RangeCalendar.RootProps>,
         {},
         "ref" | "value" | "placeholder"
       >;

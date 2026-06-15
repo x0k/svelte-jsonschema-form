@@ -15,7 +15,7 @@
   class="list-inside list-disc text-red-700 dark:text-red-500"
   {...errorsListAttributes(ctx, config, "errorsList", {})}
 >
-  {#each errors as err}
+  {#each errors as err, i (i)}
     <li>{err}</li>
   {/each}
 </ul>

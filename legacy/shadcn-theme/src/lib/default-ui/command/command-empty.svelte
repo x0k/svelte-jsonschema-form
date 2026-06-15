@@ -4,6 +4,7 @@
   import { cn } from "$lib/utils.js";
 
   let {
+    // eslint-disable-next-line no-useless-assignment
     ref = $bindable(null),
     class: className,
     ...restProps

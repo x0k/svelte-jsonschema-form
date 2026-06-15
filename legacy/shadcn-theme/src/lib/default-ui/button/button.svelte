@@ -59,6 +59,7 @@
 </script>
 
 {#if href}
+  <!-- eslint-disable svelte/no-navigation-without-resolve -->
   <a
     bind:this={ref}
     class={cn(buttonVariants({ variant, size }), className)}
@@ -67,6 +68,7 @@
   >
     {@render children?.()}
   </a>
+  <!-- eslint-enable svelte/no-navigation-without-resolve -->
 {:else}
   <button
     bind:this={ref}

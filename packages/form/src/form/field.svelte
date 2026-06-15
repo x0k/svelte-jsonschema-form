@@ -88,7 +88,7 @@
     let i = -1;
     const lastIndex = path.length - 1;
     while (isObject(node) && ++i < lastIndex) {
-      // @ts-expect-error
+      // @ts-expect-error not checked by generic parameter
       node = node[path[i]];
     }
     if (i !== lastIndex) {
@@ -100,11 +100,11 @@
     const lastKey = path[lastIndex]!;
     return {
       get current() {
-        //@ts-expect-error
+        //@ts-expect-error not checked by generic parameter
         return node[lastKey];
       },
       set current(v) {
-        //@ts-expect-error
+        //@ts-expect-error not checked by generic parameter
         node[lastKey] = v;
       },
     };

@@ -54,7 +54,7 @@ export function createModel({
           from: formPackage.name,
         });
       }
-      let schemaExpression: AstTypes.Expression = js.common.parseFromString(
+      const schemaExpression: AstTypes.Expression = js.common.parseFromString(
         `(${JSON.stringify(schema)}${ts(" as const satisfies Schema")})`
       );
       const schemaDeclaration = js.variables.declaration(ast, {

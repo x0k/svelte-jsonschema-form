@@ -26,7 +26,7 @@ export function createStyles({
   sandbox,
 }: StylesOptions) {
   return transforms.css(({ ast, css }) => {
-    let uiLibIsNotConfigured = isStyleSheetEmpty(ast);
+    const uiLibIsNotConfigured = isStyleSheetEmpty(ast);
 
     const theme = toTheme(themeOrSubTheme);
     if (isTailwindcss4Theme(theme)) {

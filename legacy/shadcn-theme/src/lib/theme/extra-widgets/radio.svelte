@@ -1,6 +1,6 @@
 <script lang="ts" module>
   import type {
-    RadioGroup,
+    RadioGroup as _RadioGroup,
     RadioGroupItemProps,
     RadioGroupRootProps,
     WithoutChildrenOrChild,
@@ -22,8 +22,8 @@
 
   declare module "../context.js" {
     interface ThemeComponents {
-      RadioGroup: Component<RadioGroup.RootProps, {}, "value" | "ref">;
-      RadioGroupItem: Component<WithoutChildrenOrChild<RadioGroup.ItemProps>>;
+      RadioGroup: Component<_RadioGroup.RootProps, {}, "value" | "ref">;
+      RadioGroupItem: Component<WithoutChildrenOrChild<_RadioGroup.ItemProps>>;
     }
   }
 </script>

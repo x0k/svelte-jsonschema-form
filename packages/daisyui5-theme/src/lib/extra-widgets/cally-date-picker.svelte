@@ -22,6 +22,7 @@
       "calendar-month": MapEvents<CalendarMonthProps>;
       "calendar-date": CalendarProps;
     }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     interface SVGAttributes<T extends EventTarget> {
       slot?: string | null;
     }

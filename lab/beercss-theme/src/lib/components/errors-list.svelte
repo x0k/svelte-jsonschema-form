@@ -16,7 +16,7 @@
     class: "errors-list",
   })}
 >
-  {#each errors as err}
+  {#each errors as err, i (i)}
     <li class="error-text">{err}</li>
   {/each}
 </ul>

@@ -68,7 +68,9 @@ export function createDataURLtoBlob(
           if (error instanceof DOMException && error.name === "AbortError") {
             throw error;
           }
-          throw new Error("File is invalid: " + (error as Error).message);
+          throw new Error("File is invalid: " + (error as Error).message, {
+            cause: error,
+          });
         }
       }
     : async (signal, dataUrl) => {

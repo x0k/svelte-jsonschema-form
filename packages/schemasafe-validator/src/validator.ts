@@ -74,7 +74,7 @@ export function createSchemaValidatorFactory(
         : schema,
       lastRootSchemaRef.deref()!
     );
-  let makeValidator = memoize(cache, factoryCall);
+  const makeValidator = memoize(cache, factoryCall);
   return (schema: Schema, rootSchema: Schema) => {
     usePrefixSchemaRefs = schema !== rootSchema;
     if (lastRootSchemaRef.deref() !== rootSchema) {

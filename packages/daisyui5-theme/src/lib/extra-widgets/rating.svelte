@@ -32,7 +32,7 @@
 </script>
 
 <div class="rating">
-  {#each { length: config.schema.maximum ?? 5 } as _, index}
+  {#each { length: config.schema.maximum ?? 5 } as _, index (index)}
     <input
       class="mask mask-star"
       bind:group={value}

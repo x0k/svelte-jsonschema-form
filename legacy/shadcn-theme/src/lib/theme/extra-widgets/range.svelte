@@ -1,6 +1,6 @@
 <script lang="ts" module>
   import type {
-    Slider,
+    Slider as _Slider,
     SliderSingleRootProps,
     WithoutChildrenOrChild,
   } from "bits-ui";
@@ -16,7 +16,7 @@
   declare module "../context.js" {
     interface ThemeComponents {
       Slider: Component<
-        WithoutChildrenOrChild<Slider.RootProps>,
+        WithoutChildrenOrChild<_Slider.RootProps>,
         {},
         "value" | "ref"
       >;

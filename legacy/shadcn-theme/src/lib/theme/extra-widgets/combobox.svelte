@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  import type { Command } from "bits-ui";
+  import type { Command as _Command } from "bits-ui";
   import type { Component } from "svelte";
 
   import type { ButtonProps } from "../types/button";
@@ -8,19 +8,19 @@
   declare module "@sjsf/form" {
     interface UiOptions {
       shadcnComboboxTrigger?: ButtonProps;
-      shadcnComboboxInput?: Command.InputProps;
+      shadcnComboboxInput?: _Command.InputProps;
       shadcnComboboxEmptyText?: string;
     }
   }
 
   declare module "../context.js" {
     interface ThemeComponents {
-      Command: Component<Command.RootProps, {}, "ref" | "value">;
-      CommandInput: Component<Command.InputProps, {}, "ref" | "value">;
-      CommandList: Component<Command.ListProps, {}, "ref">;
-      CommandEmpty: Component<Command.EmptyProps, {}, "ref">;
-      CommandGroup: Component<Command.GroupProps, {}, "ref">;
-      CommandItem: Component<Command.ItemProps, {}, "ref">;
+      Command: Component<_Command.RootProps, {}, "ref" | "value">;
+      CommandInput: Component<_Command.InputProps, {}, "ref" | "value">;
+      CommandList: Component<_Command.ListProps, {}, "ref">;
+      CommandEmpty: Component<_Command.EmptyProps, {}, "ref">;
+      CommandGroup: Component<_Command.GroupProps, {}, "ref">;
+      CommandItem: Component<_Command.ItemProps, {}, "ref">;
     }
   }
 </script>

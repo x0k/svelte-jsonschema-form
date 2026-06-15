@@ -31,7 +31,7 @@
     class="ml-4 flex list-disc flex-col gap-1"
     {...errorsListAttributes(ctx, config, "errorsList", {})}
   >
-    {#each errors as error}
+    {#each errors as error, i (i)}
       <li>{error}</li>
     {/each}
   </ul>

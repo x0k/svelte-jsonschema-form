@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  import type { Command } from "bits-ui";
+  import type { Command as _Command } from "bits-ui";
   import type { Component } from "svelte";
   import "@sjsf/form/fields/extra-widgets/combobox";
 
@@ -9,7 +9,7 @@
   declare module "@sjsf/form" {
     interface UiOptions {
       shadcn4ComboboxTrigger?: ButtonProps;
-      shadcn4ComboboxInput?: Command.InputProps;
+      shadcn4ComboboxInput?: _Command.InputProps;
       shadcn4ComboboxEmptyText?: string;
     }
   }
@@ -17,19 +17,19 @@
   declare module "../context.js" {
     interface ThemeComponents {
       Command:
-        | Component<Command.RootProps, {}, "ref" | "value">
+        | Component<_Command.RootProps, {}, "ref" | "value">
         | Component<
-            Command.RootProps & {
-              api?: Command.Root;
+            _Command.RootProps & {
+              api?: _Command.Root;
             },
             {},
             "ref" | "value" | "api"
           >;
-      CommandInput: Component<Command.InputProps, {}, "ref" | "value">;
-      CommandList: Component<Command.ListProps, {}, "ref">;
-      CommandEmpty: Component<Command.EmptyProps, {}, "ref">;
-      CommandGroup: Component<Command.GroupProps, {}, "ref">;
-      CommandItem: Component<Command.ItemProps, {}, "ref">;
+      CommandInput: Component<_Command.InputProps, {}, "ref" | "value">;
+      CommandList: Component<_Command.ListProps, {}, "ref">;
+      CommandEmpty: Component<_Command.EmptyProps, {}, "ref">;
+      CommandGroup: Component<_Command.GroupProps, {}, "ref">;
+      CommandItem: Component<_Command.ItemProps, {}, "ref">;
     }
   }
 </script>
