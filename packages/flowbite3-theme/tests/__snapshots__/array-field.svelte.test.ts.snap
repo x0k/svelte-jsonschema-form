@@ -791,7 +791,7 @@ exports[`array fields > empty errors array 1`] = `
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -920,7 +920,7 @@ exports[`array fields > empty errors array 1`] = `
        
       <!---->
       <ul
-        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        class="list-inside list-disc text-red-700 dark:text-red-500"
         id="root__errors"
         tabindex="-1"
       >

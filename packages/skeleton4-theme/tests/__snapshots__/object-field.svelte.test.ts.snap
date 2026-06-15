@@ -34,7 +34,7 @@ exports[`object fields > additionalProperties 1`] = `
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -303,7 +303,7 @@ exports[`object fields > additionalProperties with error 1`] = `
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -383,7 +383,7 @@ exports[`object fields > additionalProperties with error 1`] = `
                
               <!---->
               <ul
-                class="text-error-500 list-disc list-inside"
+                class="text-error-500 list-inside list-disc"
                 id="root_foo__key-input__errors"
                 tabindex="-1"
               >
@@ -584,7 +584,7 @@ exports[`object fields > has errors 1`] = `
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -688,7 +688,7 @@ exports[`object fields > has errors 1`] = `
        
       <!---->
       <ul
-        class="text-error-500 list-disc list-inside"
+        class="text-error-500 list-inside list-disc"
         id="root__errors"
         tabindex="-1"
       >
@@ -759,7 +759,7 @@ exports[`object fields > object 1`] = `
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -857,7 +857,7 @@ exports[`object fields > object 1`] = `
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -1021,7 +1021,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
         >
           <!---->
           <div
-            class="font-bold text-xl"
+            class="text-xl font-bold"
             id="root__title"
           >
             Options 
@@ -1051,7 +1051,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -1161,7 +1161,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -1208,7 +1208,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 <!---->
                 <!---->
                 <label
-                  class="flex items-center space-x-2 cursor-pointer"
+                  class="flex cursor-pointer items-center space-x-2"
                 >
                   <input
                     aria-describedby="root_transform__description root_transform__help root_transform__errors"
@@ -1252,7 +1252,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -1367,7 +1367,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -1414,7 +1414,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 <!---->
                 <!---->
                 <label
-                  class="flex items-center space-x-2 cursor-pointer"
+                  class="flex cursor-pointer items-center space-x-2"
                 >
                   <input
                     aria-describedby="root_paginate__description root_paginate__help root_paginate__errors"
@@ -1458,7 +1458,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -1505,7 +1505,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 <!---->
                 <!---->
                 <label
-                  class="flex items-center space-x-2 cursor-pointer"
+                  class="flex cursor-pointer items-center space-x-2"
                 >
                   <input
                     aria-describedby="root_createOnOpen__description root_createOnOpen__help root_createOnOpen__errors"
@@ -1614,7 +1614,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         >
           <!---->
           <div
-            class="font-bold text-xl"
+            class="text-xl font-bold"
             id="root__title"
           >
             Options 
@@ -1644,7 +1644,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -1754,7 +1754,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -1801,7 +1801,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <!---->
                 <label
-                  class="flex items-center space-x-2 cursor-pointer"
+                  class="flex cursor-pointer items-center space-x-2"
                 >
                   <input
                     aria-describedby="root_collapseIndexes__description root_collapseIndexes__help root_collapseIndexes__errors"
@@ -1845,7 +1845,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -1892,7 +1892,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <!---->
                 <label
-                  class="flex items-center space-x-2 cursor-pointer"
+                  class="flex cursor-pointer items-center space-x-2"
                 >
                   <input
                     aria-describedby="root_joinPrimitiveArrayValues__description root_joinPrimitiveArrayValues__help root_joinPrimitiveArrayValues__errors"
@@ -1936,7 +1936,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -1983,7 +1983,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <!---->
                 <label
-                  class="flex items-center space-x-2 cursor-pointer"
+                  class="flex cursor-pointer items-center space-x-2"
                 >
                   <input
                     aria-describedby="root_combineArraysOfObjects__description root_combineArraysOfObjects__help root_combineArraysOfObjects__errors"
@@ -2027,7 +2027,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -2074,7 +2074,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <!---->
                 <label
-                  class="flex items-center space-x-2 cursor-pointer"
+                  class="flex cursor-pointer items-center space-x-2"
                 >
                   <input
                     aria-describedby="root_stabilizeOrderOfPropertiesInArraysOfObjects__description root_stabilizeOrderOfPropertiesInArraysOfObjects__help root_stabilizeOrderOfPropertiesInArraysOfObjects__errors"
@@ -2118,7 +2118,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -2230,7 +2230,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -2336,7 +2336,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -2383,7 +2383,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <!---->
                 <label
-                  class="flex items-center space-x-2 cursor-pointer"
+                  class="flex cursor-pointer items-center space-x-2"
                 >
                   <input
                     aria-describedby="root_transform__description root_transform__help root_transform__errors"
@@ -2427,7 +2427,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -2542,7 +2542,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -2589,7 +2589,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <!---->
                 <label
-                  class="flex items-center space-x-2 cursor-pointer"
+                  class="flex cursor-pointer items-center space-x-2"
                 >
                   <input
                     aria-describedby="root_paginate__description root_paginate__help root_paginate__errors"
@@ -2633,7 +2633,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -2680,7 +2680,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                 <!---->
                 <label
-                  class="flex items-center space-x-2 cursor-pointer"
+                  class="flex cursor-pointer items-center space-x-2"
                 >
                   <input
                     aria-describedby="root_createOnOpen__description root_createOnOpen__help root_createOnOpen__errors"
@@ -2789,7 +2789,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -3058,7 +3058,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
         >
           <!---->
           <div
-            class="font-bold text-xl"
+            class="text-xl font-bold"
             id="root__title"
           >
             Test field 
@@ -3096,7 +3096,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -3365,7 +3365,7 @@ exports[`object fields > with title and description > object 1`] = `
         >
           <!---->
           <div
-            class="font-bold text-xl"
+            class="text-xl font-bold"
             id="root__title"
           >
             Test field 
@@ -3403,7 +3403,7 @@ exports[`object fields > with title and description > object 1`] = `
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -3509,7 +3509,7 @@ exports[`object fields > with title and description > object 1`] = `
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -3681,7 +3681,7 @@ exports[`object fields > with title and description > show add button and fields
         >
           <!---->
           <div
-            class="font-bold text-xl"
+            class="text-xl font-bold"
             id="root__title"
           >
             Test field 
@@ -3719,7 +3719,7 @@ exports[`object fields > with title and description > show add button and fields
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -3988,7 +3988,7 @@ exports[`object fields > with title and description from both > additionalProper
         >
           <!---->
           <div
-            class="font-bold text-xl"
+            class="text-xl font-bold"
             id="root__title"
           >
             My Field 
@@ -4026,7 +4026,7 @@ exports[`object fields > with title and description from both > additionalProper
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -4295,7 +4295,7 @@ exports[`object fields > with title and description from both > object 1`] = `
         >
           <!---->
           <div
-            class="font-bold text-xl"
+            class="text-xl font-bold"
             id="root__title"
           >
             My Field 
@@ -4333,7 +4333,7 @@ exports[`object fields > with title and description from both > object 1`] = `
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -4439,7 +4439,7 @@ exports[`object fields > with title and description from both > object 1`] = `
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -4611,7 +4611,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
         >
           <!---->
           <div
-            class="font-bold text-xl"
+            class="text-xl font-bold"
             id="root__title"
           >
             My Field 
@@ -4649,7 +4649,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -4918,7 +4918,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
         >
           <!---->
           <div
-            class="font-bold text-xl"
+            class="text-xl font-bold"
             id="root__title"
           >
             My Field 
@@ -4956,7 +4956,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -5062,7 +5062,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -5234,7 +5234,7 @@ exports[`object fields > with title and description from uiSchema > show add but
         >
           <!---->
           <div
-            class="font-bold text-xl"
+            class="text-xl font-bold"
             id="root__title"
           >
             My Field 
@@ -5272,7 +5272,7 @@ exports[`object fields > with title and description from uiSchema > show add but
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -5541,7 +5541,7 @@ exports[`object fields > with title and description with global label off > addi
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -5747,7 +5747,7 @@ exports[`object fields > with title and description with global label off > obje
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -5815,7 +5815,7 @@ exports[`object fields > with title and description with global label off > obje
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->
@@ -5949,7 +5949,7 @@ exports[`object fields > with title and description with global label off > show
         <!---->
         <!---->
         <div
-          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
+          class="grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]"
           data-layout="object-property"
         >
           <!---->

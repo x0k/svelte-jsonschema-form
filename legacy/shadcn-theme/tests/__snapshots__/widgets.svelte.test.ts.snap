@@ -41,7 +41,7 @@ exports[`default-ui > widgets > checkbox > snapshots > disabled 1`] = `
             aria-invalid="false"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-disabled=""
             data-state="unchecked"
@@ -198,7 +198,7 @@ exports[`default-ui > widgets > checkbox > snapshots > error 1`] = `
             aria-invalid="true"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-state="unchecked"
             id="root"
@@ -277,7 +277,7 @@ exports[`default-ui > widgets > checkbox > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-destructive list-disc list-inside"
+        class="list-inside list-disc text-destructive"
         id="root__errors"
         tabindex="-1"
       >
@@ -363,7 +363,7 @@ exports[`default-ui > widgets > checkbox > snapshots > normal 1`] = `
             aria-invalid="false"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-state="unchecked"
             id="root"
@@ -516,7 +516,7 @@ exports[`default-ui > widgets > checkbox > snapshots > readonly 1`] = `
             aria-invalid="false"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-state="unchecked"
             id="root"
@@ -670,7 +670,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             aria-invalid="false"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-disabled=""
             data-state="unchecked"
@@ -755,7 +755,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             aria-invalid="false"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-disabled=""
             data-state="unchecked"
@@ -840,7 +840,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             aria-invalid="false"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-disabled=""
             data-state="unchecked"
@@ -925,7 +925,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             aria-invalid="false"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-disabled=""
             data-state="unchecked"
@@ -1084,7 +1084,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
             aria-invalid="true"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-state="unchecked"
             id="root__0"
@@ -1166,7 +1166,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
             aria-invalid="true"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-state="unchecked"
             id="root__1"
@@ -1248,7 +1248,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
             aria-invalid="true"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-state="unchecked"
             id="root__2"
@@ -1330,7 +1330,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
             aria-invalid="true"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-state="unchecked"
             id="root__3"
@@ -1410,7 +1410,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-destructive list-disc list-inside"
+        class="list-inside list-disc text-destructive"
         id="root__errors"
         tabindex="-1"
       >
@@ -1497,7 +1497,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
             aria-invalid="false"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-state="unchecked"
             id="root__0"
@@ -1579,7 +1579,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
             aria-invalid="false"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-state="unchecked"
             id="root__1"
@@ -1661,7 +1661,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
             aria-invalid="false"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-state="unchecked"
             id="root__2"
@@ -1743,7 +1743,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
             aria-invalid="false"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-state="unchecked"
             id="root__3"
@@ -1898,7 +1898,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             aria-invalid="false"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-state="unchecked"
             id="root__0"
@@ -1980,7 +1980,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             aria-invalid="false"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-state="unchecked"
             id="root__1"
@@ -2062,7 +2062,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             aria-invalid="false"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-state="unchecked"
             id="root__2"
@@ -2144,7 +2144,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             aria-invalid="false"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-state="unchecked"
             id="root__3"
@@ -2504,7 +2504,7 @@ exports[`default-ui > widgets > combobox > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-destructive list-disc list-inside"
+        class="list-inside list-disc text-destructive"
         id="root__errors"
         tabindex="-1"
       >
@@ -3009,7 +3009,7 @@ exports[`default-ui > widgets > datePicker > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-destructive list-disc list-inside"
+        class="list-inside list-disc text-destructive"
         id="root__errors"
         tabindex="-1"
       >
@@ -3303,7 +3303,7 @@ exports[`default-ui > widgets > file > snapshots > disabled 1`] = `
         <input
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
-          class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           data-loading="false"
           data-processing="false"
           disabled=""
@@ -3391,7 +3391,7 @@ exports[`default-ui > widgets > file > snapshots > error 1`] = `
         <input
           aria-describedby="root__description root__help root__errors"
           aria-invalid="true"
-          class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           data-loading="false"
           data-processing="false"
           id="root"
@@ -3409,7 +3409,7 @@ exports[`default-ui > widgets > file > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-destructive list-disc list-inside"
+        class="list-inside list-disc text-destructive"
         id="root__errors"
         tabindex="-1"
       >
@@ -3489,7 +3489,7 @@ exports[`default-ui > widgets > file > snapshots > normal 1`] = `
         <input
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
-          class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           data-loading="false"
           data-processing="false"
           id="root"
@@ -3575,7 +3575,7 @@ exports[`default-ui > widgets > file > snapshots > readonly 1`] = `
         <input
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
-          class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           data-loading="false"
           data-processing="false"
           id="root"
@@ -3662,7 +3662,7 @@ exports[`default-ui > widgets > multiFile > snapshots > disabled 1`] = `
         <input
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
-          class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           data-loading="true"
           data-processing="false"
           disabled=""
@@ -3751,7 +3751,7 @@ exports[`default-ui > widgets > multiFile > snapshots > error 1`] = `
         <input
           aria-describedby="root__description root__help root__errors"
           aria-invalid="true"
-          class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           data-loading="true"
           data-processing="false"
           id="root"
@@ -3770,7 +3770,7 @@ exports[`default-ui > widgets > multiFile > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-destructive list-disc list-inside"
+        class="list-inside list-disc text-destructive"
         id="root__errors"
         tabindex="-1"
       >
@@ -3850,7 +3850,7 @@ exports[`default-ui > widgets > multiFile > snapshots > normal 1`] = `
         <input
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
-          class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           data-loading="true"
           data-processing="false"
           id="root"
@@ -3937,7 +3937,7 @@ exports[`default-ui > widgets > multiFile > snapshots > readonly 1`] = `
         <input
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
-          class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           data-loading="true"
           data-processing="false"
           id="root"
@@ -4035,7 +4035,7 @@ exports[`default-ui > widgets > multiSelect > snapshots > disabled 1`] = `
           aria-haspopup="listbox"
           aria-invalid="false"
           aria-required="true"
-          class="border-input bg-background ring-offset-background data-[placeholder]:text-muted-foreground focus:ring-ring flex h-10 w-full items-center justify-between rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1"
+          class="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[placeholder]:text-muted-foreground [&>span]:line-clamp-1"
           data-disabled=""
           data-placeholder=""
           data-select-trigger=""
@@ -4185,7 +4185,7 @@ exports[`default-ui > widgets > multiSelect > snapshots > error 1`] = `
           aria-haspopup="listbox"
           aria-invalid="true"
           aria-required="true"
-          class="border-input bg-background ring-offset-background data-[placeholder]:text-muted-foreground focus:ring-ring flex h-10 w-full items-center justify-between rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1"
+          class="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[placeholder]:text-muted-foreground [&>span]:line-clamp-1"
           data-placeholder=""
           data-select-trigger=""
           data-state="closed"
@@ -4254,7 +4254,7 @@ exports[`default-ui > widgets > multiSelect > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-destructive list-disc list-inside"
+        class="list-inside list-disc text-destructive"
         id="root__errors"
         tabindex="-1"
       >
@@ -4344,7 +4344,7 @@ exports[`default-ui > widgets > multiSelect > snapshots > normal 1`] = `
           aria-haspopup="listbox"
           aria-invalid="false"
           aria-required="true"
-          class="border-input bg-background ring-offset-background data-[placeholder]:text-muted-foreground focus:ring-ring flex h-10 w-full items-center justify-between rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1"
+          class="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[placeholder]:text-muted-foreground [&>span]:line-clamp-1"
           data-placeholder=""
           data-select-trigger=""
           data-state="closed"
@@ -4492,7 +4492,7 @@ exports[`default-ui > widgets > multiSelect > snapshots > readonly 1`] = `
           aria-invalid="false"
           aria-readonly="true"
           aria-required="true"
-          class="border-input bg-background ring-offset-background data-[placeholder]:text-muted-foreground focus:ring-ring flex h-10 w-full items-center justify-between rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1"
+          class="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[placeholder]:text-muted-foreground [&>span]:line-clamp-1"
           data-placeholder=""
           data-select-trigger=""
           data-state="closed"
@@ -4629,7 +4629,7 @@ exports[`default-ui > widgets > number > snapshots > disabled 1`] = `
         <input
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
-          class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           disabled=""
           id="root"
           name="root"
@@ -4720,7 +4720,7 @@ exports[`default-ui > widgets > number > snapshots > error 1`] = `
         <input
           aria-describedby="root__description root__help root__errors"
           aria-invalid="true"
-          class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           id="root"
           name="root"
           required=""
@@ -4741,7 +4741,7 @@ exports[`default-ui > widgets > number > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-destructive list-disc list-inside"
+        class="list-inside list-disc text-destructive"
         id="root__errors"
         tabindex="-1"
       >
@@ -4821,7 +4821,7 @@ exports[`default-ui > widgets > number > snapshots > normal 1`] = `
         <input
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
-          class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           id="root"
           name="root"
           required=""
@@ -4910,7 +4910,7 @@ exports[`default-ui > widgets > number > snapshots > readonly 1`] = `
         <input
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
-          class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           id="root"
           name="root"
           readonly=""
@@ -5018,7 +5018,7 @@ exports[`default-ui > widgets > radio > snapshots > disabled 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="border-primary text-primary ring-offset-background focus-visible:ring-ring aspect-square size-4 rounded-full border focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              class="aspect-square size-4 rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               data-disabled=""
               data-orientation="vertical"
               data-radio-group-item=""
@@ -5063,7 +5063,7 @@ exports[`default-ui > widgets > radio > snapshots > disabled 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="border-primary text-primary ring-offset-background focus-visible:ring-ring aspect-square size-4 rounded-full border focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              class="aspect-square size-4 rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               data-disabled=""
               data-orientation="vertical"
               data-radio-group-item=""
@@ -5108,7 +5108,7 @@ exports[`default-ui > widgets > radio > snapshots > disabled 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="border-primary text-primary ring-offset-background focus-visible:ring-ring aspect-square size-4 rounded-full border focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              class="aspect-square size-4 rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               data-disabled=""
               data-orientation="vertical"
               data-radio-group-item=""
@@ -5153,7 +5153,7 @@ exports[`default-ui > widgets > radio > snapshots > disabled 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="border-primary text-primary ring-offset-background focus-visible:ring-ring aspect-square size-4 rounded-full border focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              class="aspect-square size-4 rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               data-disabled=""
               data-orientation="vertical"
               data-radio-group-item=""
@@ -5295,7 +5295,7 @@ exports[`default-ui > widgets > radio > snapshots > error 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="border-primary text-primary ring-offset-background focus-visible:ring-ring aspect-square size-4 rounded-full border focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              class="aspect-square size-4 rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
@@ -5338,7 +5338,7 @@ exports[`default-ui > widgets > radio > snapshots > error 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="border-primary text-primary ring-offset-background focus-visible:ring-ring aspect-square size-4 rounded-full border focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              class="aspect-square size-4 rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
@@ -5381,7 +5381,7 @@ exports[`default-ui > widgets > radio > snapshots > error 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="border-primary text-primary ring-offset-background focus-visible:ring-ring aspect-square size-4 rounded-full border focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              class="aspect-square size-4 rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
@@ -5424,7 +5424,7 @@ exports[`default-ui > widgets > radio > snapshots > error 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="border-primary text-primary ring-offset-background focus-visible:ring-ring aspect-square size-4 rounded-full border focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              class="aspect-square size-4 rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
@@ -5478,7 +5478,7 @@ exports[`default-ui > widgets > radio > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-destructive list-disc list-inside"
+        class="list-inside list-disc text-destructive"
         id="root__errors"
         tabindex="-1"
       >
@@ -5575,7 +5575,7 @@ exports[`default-ui > widgets > radio > snapshots > normal 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="border-primary text-primary ring-offset-background focus-visible:ring-ring aspect-square size-4 rounded-full border focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              class="aspect-square size-4 rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
@@ -5618,7 +5618,7 @@ exports[`default-ui > widgets > radio > snapshots > normal 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="border-primary text-primary ring-offset-background focus-visible:ring-ring aspect-square size-4 rounded-full border focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              class="aspect-square size-4 rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
@@ -5661,7 +5661,7 @@ exports[`default-ui > widgets > radio > snapshots > normal 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="border-primary text-primary ring-offset-background focus-visible:ring-ring aspect-square size-4 rounded-full border focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              class="aspect-square size-4 rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
@@ -5704,7 +5704,7 @@ exports[`default-ui > widgets > radio > snapshots > normal 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="border-primary text-primary ring-offset-background focus-visible:ring-ring aspect-square size-4 rounded-full border focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              class="aspect-square size-4 rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
@@ -5844,7 +5844,7 @@ exports[`default-ui > widgets > radio > snapshots > readonly 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="border-primary text-primary ring-offset-background focus-visible:ring-ring aspect-square size-4 rounded-full border focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              class="aspect-square size-4 rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
@@ -5887,7 +5887,7 @@ exports[`default-ui > widgets > radio > snapshots > readonly 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="border-primary text-primary ring-offset-background focus-visible:ring-ring aspect-square size-4 rounded-full border focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              class="aspect-square size-4 rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
@@ -5930,7 +5930,7 @@ exports[`default-ui > widgets > radio > snapshots > readonly 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="border-primary text-primary ring-offset-background focus-visible:ring-ring aspect-square size-4 rounded-full border focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              class="aspect-square size-4 rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
@@ -5973,7 +5973,7 @@ exports[`default-ui > widgets > radio > snapshots > readonly 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="border-primary text-primary ring-offset-background focus-visible:ring-ring aspect-square size-4 rounded-full border focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              class="aspect-square size-4 rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
@@ -6387,7 +6387,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-destructive list-disc list-inside"
+        class="list-inside list-disc text-destructive"
         id="root__errors"
         tabindex="-1"
       >
@@ -6828,12 +6828,12 @@ exports[`default-ui > widgets > range > snapshots > disabled 1`] = `
           style=""
         >
           <span
-            class="bg-secondary relative grow overflow-hidden rounded-full data-[orientation='horizontal']:h-2 data-[orientation='vertical']:h-full data-[orientation='horizontal']:w-full data-[orientation='vertical']:w-2"
+            class="relative grow overflow-hidden rounded-full bg-secondary data-[orientation='horizontal']:h-2 data-[orientation='vertical']:h-full data-[orientation='horizontal']:w-full data-[orientation='vertical']:w-2"
             data-orientation="horizontal"
           >
             <!---->
             <span
-              class="bg-primary absolute data-[orientation='horizontal']:h-full data-[orientation='vertical']:w-full"
+              class="absolute bg-primary data-[orientation='horizontal']:h-full data-[orientation='vertical']:w-full"
               data-disabled=""
               data-orientation="horizontal"
               data-slider-range=""
@@ -6854,7 +6854,7 @@ exports[`default-ui > widgets > range > snapshots > disabled 1`] = `
             aria-valuemax="100"
             aria-valuemin="0"
             aria-valuenow="0"
-            class="border-primary bg-background ring-offset-background focus-visible:ring-ring block size-5 rounded-full border-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+            class="block size-5 rounded-full border-2 border-primary bg-background ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
             data-disabled=""
             data-orientation="horizontal"
             data-slider-thumb=""
@@ -6960,12 +6960,12 @@ exports[`default-ui > widgets > range > snapshots > error 1`] = `
           style="touch-action: pan-y;"
         >
           <span
-            class="bg-secondary relative grow overflow-hidden rounded-full data-[orientation='horizontal']:h-2 data-[orientation='vertical']:h-full data-[orientation='horizontal']:w-full data-[orientation='vertical']:w-2"
+            class="relative grow overflow-hidden rounded-full bg-secondary data-[orientation='horizontal']:h-2 data-[orientation='vertical']:h-full data-[orientation='horizontal']:w-full data-[orientation='vertical']:w-2"
             data-orientation="horizontal"
           >
             <!---->
             <span
-              class="bg-primary absolute data-[orientation='horizontal']:h-full data-[orientation='vertical']:w-full"
+              class="absolute bg-primary data-[orientation='horizontal']:h-full data-[orientation='vertical']:w-full"
               data-orientation="horizontal"
               data-slider-range=""
               id="bits-c163"
@@ -6985,7 +6985,7 @@ exports[`default-ui > widgets > range > snapshots > error 1`] = `
             aria-valuemax="100"
             aria-valuemin="0"
             aria-valuenow="0"
-            class="border-primary bg-background ring-offset-background focus-visible:ring-ring block size-5 rounded-full border-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+            class="block size-5 rounded-full border-2 border-primary bg-background ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
             data-orientation="horizontal"
             data-slider-thumb=""
             data-value="0"
@@ -7012,7 +7012,7 @@ exports[`default-ui > widgets > range > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-destructive list-disc list-inside"
+        class="list-inside list-disc text-destructive"
         id="root__errors"
         tabindex="-1"
       >
@@ -7101,12 +7101,12 @@ exports[`default-ui > widgets > range > snapshots > normal 1`] = `
           style="touch-action: pan-y;"
         >
           <span
-            class="bg-secondary relative grow overflow-hidden rounded-full data-[orientation='horizontal']:h-2 data-[orientation='vertical']:h-full data-[orientation='horizontal']:w-full data-[orientation='vertical']:w-2"
+            class="relative grow overflow-hidden rounded-full bg-secondary data-[orientation='horizontal']:h-2 data-[orientation='vertical']:h-full data-[orientation='horizontal']:w-full data-[orientation='vertical']:w-2"
             data-orientation="horizontal"
           >
             <!---->
             <span
-              class="bg-primary absolute data-[orientation='horizontal']:h-full data-[orientation='vertical']:w-full"
+              class="absolute bg-primary data-[orientation='horizontal']:h-full data-[orientation='vertical']:w-full"
               data-orientation="horizontal"
               data-slider-range=""
               id="bits-c160"
@@ -7126,7 +7126,7 @@ exports[`default-ui > widgets > range > snapshots > normal 1`] = `
             aria-valuemax="100"
             aria-valuemin="0"
             aria-valuenow="0"
-            class="border-primary bg-background ring-offset-background focus-visible:ring-ring block size-5 rounded-full border-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+            class="block size-5 rounded-full border-2 border-primary bg-background ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
             data-orientation="horizontal"
             data-slider-thumb=""
             data-value="0"
@@ -7231,12 +7231,12 @@ exports[`default-ui > widgets > range > snapshots > readonly 1`] = `
           style="touch-action: pan-y;"
         >
           <span
-            class="bg-secondary relative grow overflow-hidden rounded-full data-[orientation='horizontal']:h-2 data-[orientation='vertical']:h-full data-[orientation='horizontal']:w-full data-[orientation='vertical']:w-2"
+            class="relative grow overflow-hidden rounded-full bg-secondary data-[orientation='horizontal']:h-2 data-[orientation='vertical']:h-full data-[orientation='horizontal']:w-full data-[orientation='vertical']:w-2"
             data-orientation="horizontal"
           >
             <!---->
             <span
-              class="bg-primary absolute data-[orientation='horizontal']:h-full data-[orientation='vertical']:w-full"
+              class="absolute bg-primary data-[orientation='horizontal']:h-full data-[orientation='vertical']:w-full"
               data-orientation="horizontal"
               data-slider-range=""
               id="bits-c169"
@@ -7256,7 +7256,7 @@ exports[`default-ui > widgets > range > snapshots > readonly 1`] = `
             aria-valuemax="100"
             aria-valuemin="0"
             aria-valuenow="0"
-            class="border-primary bg-background ring-offset-background focus-visible:ring-ring block size-5 rounded-full border-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+            class="block size-5 rounded-full border-2 border-primary bg-background ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
             data-orientation="horizontal"
             data-slider-thumb=""
             data-value="0"
@@ -7361,7 +7361,7 @@ exports[`default-ui > widgets > select > snapshots > disabled 1`] = `
           aria-haspopup="listbox"
           aria-invalid="false"
           aria-required="true"
-          class="border-input bg-background ring-offset-background data-[placeholder]:text-muted-foreground focus:ring-ring flex h-10 items-center justify-between rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-full"
+          class="flex h-10 items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[placeholder]:text-muted-foreground [&>span]:line-clamp-1 w-full"
           data-disabled=""
           data-placeholder=""
           data-select-trigger=""
@@ -7509,7 +7509,7 @@ exports[`default-ui > widgets > select > snapshots > error 1`] = `
           aria-haspopup="listbox"
           aria-invalid="true"
           aria-required="true"
-          class="border-input bg-background ring-offset-background data-[placeholder]:text-muted-foreground focus:ring-ring flex h-10 items-center justify-between rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-full"
+          class="flex h-10 items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[placeholder]:text-muted-foreground [&>span]:line-clamp-1 w-full"
           data-placeholder=""
           data-select-trigger=""
           data-state="closed"
@@ -7576,7 +7576,7 @@ exports[`default-ui > widgets > select > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-destructive list-disc list-inside"
+        class="list-inside list-disc text-destructive"
         id="root__errors"
         tabindex="-1"
       >
@@ -7666,7 +7666,7 @@ exports[`default-ui > widgets > select > snapshots > normal 1`] = `
           aria-haspopup="listbox"
           aria-invalid="false"
           aria-required="true"
-          class="border-input bg-background ring-offset-background data-[placeholder]:text-muted-foreground focus:ring-ring flex h-10 items-center justify-between rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-full"
+          class="flex h-10 items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[placeholder]:text-muted-foreground [&>span]:line-clamp-1 w-full"
           data-placeholder=""
           data-select-trigger=""
           data-state="closed"
@@ -7812,7 +7812,7 @@ exports[`default-ui > widgets > select > snapshots > readonly 1`] = `
           aria-invalid="false"
           aria-readonly="true"
           aria-required="true"
-          class="border-input bg-background ring-offset-background data-[placeholder]:text-muted-foreground focus:ring-ring flex h-10 items-center justify-between rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-full"
+          class="flex h-10 items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[placeholder]:text-muted-foreground [&>span]:line-clamp-1 w-full"
           data-placeholder=""
           data-select-trigger=""
           data-state="closed"
@@ -7950,7 +7950,7 @@ exports[`default-ui > widgets > switch > snapshots > disabled 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           aria-required="true"
-          class="focus-visible:ring-ring focus-visible:ring-offset-background data-[state=checked]:bg-primary data-[state=unchecked]:bg-input peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          class="peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
           data-disabled=""
           data-required=""
           data-state="unchecked"
@@ -7963,7 +7963,7 @@ exports[`default-ui > widgets > switch > snapshots > disabled 1`] = `
           <!---->
           <!---->
           <span
-            class="bg-background pointer-events-none block size-5 rounded-full shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
+            class="pointer-events-none block size-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
             data-disabled=""
             data-required=""
             data-state="unchecked"
@@ -8075,7 +8075,7 @@ exports[`default-ui > widgets > switch > snapshots > error 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="true"
           aria-required="true"
-          class="focus-visible:ring-ring focus-visible:ring-offset-background data-[state=checked]:bg-primary data-[state=unchecked]:bg-input peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          class="peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
           data-required=""
           data-state="unchecked"
           data-switch-root=""
@@ -8086,7 +8086,7 @@ exports[`default-ui > widgets > switch > snapshots > error 1`] = `
           <!---->
           <!---->
           <span
-            class="bg-background pointer-events-none block size-5 rounded-full shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
+            class="pointer-events-none block size-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
             data-required=""
             data-state="unchecked"
             data-switch-thumb=""
@@ -8124,7 +8124,7 @@ exports[`default-ui > widgets > switch > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-destructive list-disc list-inside"
+        class="list-inside list-disc text-destructive"
         id="root__errors"
         tabindex="-1"
       >
@@ -8207,7 +8207,7 @@ exports[`default-ui > widgets > switch > snapshots > normal 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           aria-required="true"
-          class="focus-visible:ring-ring focus-visible:ring-offset-background data-[state=checked]:bg-primary data-[state=unchecked]:bg-input peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          class="peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
           data-required=""
           data-state="unchecked"
           data-switch-root=""
@@ -8218,7 +8218,7 @@ exports[`default-ui > widgets > switch > snapshots > normal 1`] = `
           <!---->
           <!---->
           <span
-            class="bg-background pointer-events-none block size-5 rounded-full shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
+            class="pointer-events-none block size-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
             data-required=""
             data-state="unchecked"
             data-switch-thumb=""
@@ -8328,7 +8328,7 @@ exports[`default-ui > widgets > switch > snapshots > readonly 1`] = `
           aria-invalid="false"
           aria-readonly="true"
           aria-required="true"
-          class="focus-visible:ring-ring focus-visible:ring-offset-background data-[state=checked]:bg-primary data-[state=unchecked]:bg-input peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          class="peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
           data-required=""
           data-state="unchecked"
           data-switch-root=""
@@ -8339,7 +8339,7 @@ exports[`default-ui > widgets > switch > snapshots > readonly 1`] = `
           <!---->
           <!---->
           <span
-            class="bg-background pointer-events-none block size-5 rounded-full shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
+            class="pointer-events-none block size-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
             data-required=""
             data-state="unchecked"
             data-switch-thumb=""
@@ -8445,7 +8445,7 @@ exports[`default-ui > widgets > text > snapshots > disabled 1`] = `
         <input
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
-          class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           disabled=""
           id="root"
           name="root"
@@ -8534,7 +8534,7 @@ exports[`default-ui > widgets > text > snapshots > error 1`] = `
         <input
           aria-describedby="root__description root__help root__errors"
           aria-invalid="true"
-          class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           id="root"
           name="root"
           required=""
@@ -8553,7 +8553,7 @@ exports[`default-ui > widgets > text > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-destructive list-disc list-inside"
+        class="list-inside list-disc text-destructive"
         id="root__errors"
         tabindex="-1"
       >
@@ -8633,7 +8633,7 @@ exports[`default-ui > widgets > text > snapshots > normal 1`] = `
         <input
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
-          class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           id="root"
           name="root"
           required=""
@@ -8720,7 +8720,7 @@ exports[`default-ui > widgets > text > snapshots > readonly 1`] = `
         <input
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
-          class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           id="root"
           name="root"
           readonly=""
@@ -8807,7 +8807,7 @@ exports[`default-ui > widgets > textarea > snapshots > disabled 1`] = `
         <textarea
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
-          class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex min-h-[80px] w-full rounded-md border px-3 py-2 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           disabled=""
           id="root"
           name="root"
@@ -8890,7 +8890,7 @@ exports[`default-ui > widgets > textarea > snapshots > error 1`] = `
         <textarea
           aria-describedby="root__description root__help root__errors"
           aria-invalid="true"
-          class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex min-h-[80px] w-full rounded-md border px-3 py-2 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           id="root"
           name="root"
           required=""
@@ -8904,7 +8904,7 @@ exports[`default-ui > widgets > textarea > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-destructive list-disc list-inside"
+        class="list-inside list-disc text-destructive"
         id="root__errors"
         tabindex="-1"
       >
@@ -8983,7 +8983,7 @@ exports[`default-ui > widgets > textarea > snapshots > normal 1`] = `
         <textarea
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
-          class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex min-h-[80px] w-full rounded-md border px-3 py-2 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           id="root"
           name="root"
           required=""
@@ -9064,7 +9064,7 @@ exports[`default-ui > widgets > textarea > snapshots > readonly 1`] = `
         <textarea
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
-          class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex min-h-[80px] w-full rounded-md border px-3 py-2 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           id="root"
           name="root"
           readonly=""
@@ -9153,7 +9153,7 @@ exports[`new-york-ui > widgets > checkbox > snapshots > disabled 1`] = `
             aria-invalid="false"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-disabled=""
             data-state="unchecked"
@@ -9310,7 +9310,7 @@ exports[`new-york-ui > widgets > checkbox > snapshots > error 1`] = `
             aria-invalid="true"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-state="unchecked"
             id="root"
@@ -9389,7 +9389,7 @@ exports[`new-york-ui > widgets > checkbox > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-destructive list-disc list-inside"
+        class="list-inside list-disc text-destructive"
         id="root__errors"
         tabindex="-1"
       >
@@ -9475,7 +9475,7 @@ exports[`new-york-ui > widgets > checkbox > snapshots > normal 1`] = `
             aria-invalid="false"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-state="unchecked"
             id="root"
@@ -9628,7 +9628,7 @@ exports[`new-york-ui > widgets > checkbox > snapshots > readonly 1`] = `
             aria-invalid="false"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-state="unchecked"
             id="root"
@@ -9782,7 +9782,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             aria-invalid="false"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-disabled=""
             data-state="unchecked"
@@ -9867,7 +9867,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             aria-invalid="false"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-disabled=""
             data-state="unchecked"
@@ -9952,7 +9952,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             aria-invalid="false"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-disabled=""
             data-state="unchecked"
@@ -10037,7 +10037,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             aria-invalid="false"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-disabled=""
             data-state="unchecked"
@@ -10196,7 +10196,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
             aria-invalid="true"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-state="unchecked"
             id="root__0"
@@ -10278,7 +10278,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
             aria-invalid="true"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-state="unchecked"
             id="root__1"
@@ -10360,7 +10360,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
             aria-invalid="true"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-state="unchecked"
             id="root__2"
@@ -10442,7 +10442,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
             aria-invalid="true"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-state="unchecked"
             id="root__3"
@@ -10522,7 +10522,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-destructive list-disc list-inside"
+        class="list-inside list-disc text-destructive"
         id="root__errors"
         tabindex="-1"
       >
@@ -10609,7 +10609,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
             aria-invalid="false"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-state="unchecked"
             id="root__0"
@@ -10691,7 +10691,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
             aria-invalid="false"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-state="unchecked"
             id="root__1"
@@ -10773,7 +10773,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
             aria-invalid="false"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-state="unchecked"
             id="root__2"
@@ -10855,7 +10855,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
             aria-invalid="false"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-state="unchecked"
             id="root__3"
@@ -11010,7 +11010,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             aria-invalid="false"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-state="unchecked"
             id="root__0"
@@ -11092,7 +11092,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             aria-invalid="false"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-state="unchecked"
             id="root__1"
@@ -11174,7 +11174,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             aria-invalid="false"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-state="unchecked"
             id="root__2"
@@ -11256,7 +11256,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             aria-invalid="false"
             aria-readonly="false"
             aria-required="true"
-            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            class="peer box-content size-4 shrink-0 rounded-sm border border-primary shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50"
             data-checkbox-root=""
             data-state="unchecked"
             id="root__3"
@@ -11616,7 +11616,7 @@ exports[`new-york-ui > widgets > combobox > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-destructive list-disc list-inside"
+        class="list-inside list-disc text-destructive"
         id="root__errors"
         tabindex="-1"
       >
@@ -12121,7 +12121,7 @@ exports[`new-york-ui > widgets > datePicker > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-destructive list-disc list-inside"
+        class="list-inside list-disc text-destructive"
         id="root__errors"
         tabindex="-1"
       >
@@ -12415,7 +12415,7 @@ exports[`new-york-ui > widgets > file > snapshots > disabled 1`] = `
         <input
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
-          class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           data-loading="false"
           data-processing="false"
           disabled=""
@@ -12503,7 +12503,7 @@ exports[`new-york-ui > widgets > file > snapshots > error 1`] = `
         <input
           aria-describedby="root__description root__help root__errors"
           aria-invalid="true"
-          class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           data-loading="false"
           data-processing="false"
           id="root"
@@ -12521,7 +12521,7 @@ exports[`new-york-ui > widgets > file > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-destructive list-disc list-inside"
+        class="list-inside list-disc text-destructive"
         id="root__errors"
         tabindex="-1"
       >
@@ -12601,7 +12601,7 @@ exports[`new-york-ui > widgets > file > snapshots > normal 1`] = `
         <input
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
-          class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           data-loading="false"
           data-processing="false"
           id="root"
@@ -12687,7 +12687,7 @@ exports[`new-york-ui > widgets > file > snapshots > readonly 1`] = `
         <input
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
-          class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           data-loading="false"
           data-processing="false"
           id="root"
@@ -12774,7 +12774,7 @@ exports[`new-york-ui > widgets > multiFile > snapshots > disabled 1`] = `
         <input
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
-          class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           data-loading="true"
           data-processing="false"
           disabled=""
@@ -12863,7 +12863,7 @@ exports[`new-york-ui > widgets > multiFile > snapshots > error 1`] = `
         <input
           aria-describedby="root__description root__help root__errors"
           aria-invalid="true"
-          class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           data-loading="true"
           data-processing="false"
           id="root"
@@ -12882,7 +12882,7 @@ exports[`new-york-ui > widgets > multiFile > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-destructive list-disc list-inside"
+        class="list-inside list-disc text-destructive"
         id="root__errors"
         tabindex="-1"
       >
@@ -12962,7 +12962,7 @@ exports[`new-york-ui > widgets > multiFile > snapshots > normal 1`] = `
         <input
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
-          class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           data-loading="true"
           data-processing="false"
           id="root"
@@ -13049,7 +13049,7 @@ exports[`new-york-ui > widgets > multiFile > snapshots > readonly 1`] = `
         <input
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
-          class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           data-loading="true"
           data-processing="false"
           id="root"
@@ -13147,7 +13147,7 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > disabled 1`] = `
           aria-haspopup="listbox"
           aria-invalid="false"
           aria-required="true"
-          class="border-input ring-offset-background data-[placeholder]:text-muted-foreground focus:ring-ring flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1"
+          class="flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[placeholder]:text-muted-foreground [&>span]:line-clamp-1"
           data-disabled=""
           data-placeholder=""
           data-select-trigger=""
@@ -13297,7 +13297,7 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > error 1`] = `
           aria-haspopup="listbox"
           aria-invalid="true"
           aria-required="true"
-          class="border-input ring-offset-background data-[placeholder]:text-muted-foreground focus:ring-ring flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1"
+          class="flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[placeholder]:text-muted-foreground [&>span]:line-clamp-1"
           data-placeholder=""
           data-select-trigger=""
           data-state="closed"
@@ -13366,7 +13366,7 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-destructive list-disc list-inside"
+        class="list-inside list-disc text-destructive"
         id="root__errors"
         tabindex="-1"
       >
@@ -13456,7 +13456,7 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > normal 1`] = `
           aria-haspopup="listbox"
           aria-invalid="false"
           aria-required="true"
-          class="border-input ring-offset-background data-[placeholder]:text-muted-foreground focus:ring-ring flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1"
+          class="flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[placeholder]:text-muted-foreground [&>span]:line-clamp-1"
           data-placeholder=""
           data-select-trigger=""
           data-state="closed"
@@ -13604,7 +13604,7 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > readonly 1`] = `
           aria-invalid="false"
           aria-readonly="true"
           aria-required="true"
-          class="border-input ring-offset-background data-[placeholder]:text-muted-foreground focus:ring-ring flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1"
+          class="flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[placeholder]:text-muted-foreground [&>span]:line-clamp-1"
           data-placeholder=""
           data-select-trigger=""
           data-state="closed"
@@ -13741,7 +13741,7 @@ exports[`new-york-ui > widgets > number > snapshots > disabled 1`] = `
         <input
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
-          class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           disabled=""
           id="root"
           name="root"
@@ -13832,7 +13832,7 @@ exports[`new-york-ui > widgets > number > snapshots > error 1`] = `
         <input
           aria-describedby="root__description root__help root__errors"
           aria-invalid="true"
-          class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           id="root"
           name="root"
           required=""
@@ -13853,7 +13853,7 @@ exports[`new-york-ui > widgets > number > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-destructive list-disc list-inside"
+        class="list-inside list-disc text-destructive"
         id="root__errors"
         tabindex="-1"
       >
@@ -13933,7 +13933,7 @@ exports[`new-york-ui > widgets > number > snapshots > normal 1`] = `
         <input
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
-          class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           id="root"
           name="root"
           required=""
@@ -14022,7 +14022,7 @@ exports[`new-york-ui > widgets > number > snapshots > readonly 1`] = `
         <input
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
-          class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           id="root"
           name="root"
           readonly=""
@@ -14130,7 +14130,7 @@ exports[`new-york-ui > widgets > radio > snapshots > disabled 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="border-primary text-primary focus-visible:ring-ring aspect-square size-4 rounded-full border shadow focus:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50"
+              class="aspect-square size-4 rounded-full border border-primary text-primary shadow focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
               data-disabled=""
               data-orientation="vertical"
               data-radio-group-item=""
@@ -14175,7 +14175,7 @@ exports[`new-york-ui > widgets > radio > snapshots > disabled 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="border-primary text-primary focus-visible:ring-ring aspect-square size-4 rounded-full border shadow focus:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50"
+              class="aspect-square size-4 rounded-full border border-primary text-primary shadow focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
               data-disabled=""
               data-orientation="vertical"
               data-radio-group-item=""
@@ -14220,7 +14220,7 @@ exports[`new-york-ui > widgets > radio > snapshots > disabled 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="border-primary text-primary focus-visible:ring-ring aspect-square size-4 rounded-full border shadow focus:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50"
+              class="aspect-square size-4 rounded-full border border-primary text-primary shadow focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
               data-disabled=""
               data-orientation="vertical"
               data-radio-group-item=""
@@ -14265,7 +14265,7 @@ exports[`new-york-ui > widgets > radio > snapshots > disabled 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="border-primary text-primary focus-visible:ring-ring aspect-square size-4 rounded-full border shadow focus:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50"
+              class="aspect-square size-4 rounded-full border border-primary text-primary shadow focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
               data-disabled=""
               data-orientation="vertical"
               data-radio-group-item=""
@@ -14407,7 +14407,7 @@ exports[`new-york-ui > widgets > radio > snapshots > error 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="border-primary text-primary focus-visible:ring-ring aspect-square size-4 rounded-full border shadow focus:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50"
+              class="aspect-square size-4 rounded-full border border-primary text-primary shadow focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
@@ -14450,7 +14450,7 @@ exports[`new-york-ui > widgets > radio > snapshots > error 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="border-primary text-primary focus-visible:ring-ring aspect-square size-4 rounded-full border shadow focus:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50"
+              class="aspect-square size-4 rounded-full border border-primary text-primary shadow focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
@@ -14493,7 +14493,7 @@ exports[`new-york-ui > widgets > radio > snapshots > error 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="border-primary text-primary focus-visible:ring-ring aspect-square size-4 rounded-full border shadow focus:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50"
+              class="aspect-square size-4 rounded-full border border-primary text-primary shadow focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
@@ -14536,7 +14536,7 @@ exports[`new-york-ui > widgets > radio > snapshots > error 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="border-primary text-primary focus-visible:ring-ring aspect-square size-4 rounded-full border shadow focus:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50"
+              class="aspect-square size-4 rounded-full border border-primary text-primary shadow focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
@@ -14590,7 +14590,7 @@ exports[`new-york-ui > widgets > radio > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-destructive list-disc list-inside"
+        class="list-inside list-disc text-destructive"
         id="root__errors"
         tabindex="-1"
       >
@@ -14687,7 +14687,7 @@ exports[`new-york-ui > widgets > radio > snapshots > normal 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="border-primary text-primary focus-visible:ring-ring aspect-square size-4 rounded-full border shadow focus:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50"
+              class="aspect-square size-4 rounded-full border border-primary text-primary shadow focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
@@ -14730,7 +14730,7 @@ exports[`new-york-ui > widgets > radio > snapshots > normal 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="border-primary text-primary focus-visible:ring-ring aspect-square size-4 rounded-full border shadow focus:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50"
+              class="aspect-square size-4 rounded-full border border-primary text-primary shadow focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
@@ -14773,7 +14773,7 @@ exports[`new-york-ui > widgets > radio > snapshots > normal 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="border-primary text-primary focus-visible:ring-ring aspect-square size-4 rounded-full border shadow focus:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50"
+              class="aspect-square size-4 rounded-full border border-primary text-primary shadow focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
@@ -14816,7 +14816,7 @@ exports[`new-york-ui > widgets > radio > snapshots > normal 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="border-primary text-primary focus-visible:ring-ring aspect-square size-4 rounded-full border shadow focus:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50"
+              class="aspect-square size-4 rounded-full border border-primary text-primary shadow focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
@@ -14956,7 +14956,7 @@ exports[`new-york-ui > widgets > radio > snapshots > readonly 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="border-primary text-primary focus-visible:ring-ring aspect-square size-4 rounded-full border shadow focus:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50"
+              class="aspect-square size-4 rounded-full border border-primary text-primary shadow focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
@@ -14999,7 +14999,7 @@ exports[`new-york-ui > widgets > radio > snapshots > readonly 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="border-primary text-primary focus-visible:ring-ring aspect-square size-4 rounded-full border shadow focus:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50"
+              class="aspect-square size-4 rounded-full border border-primary text-primary shadow focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
@@ -15042,7 +15042,7 @@ exports[`new-york-ui > widgets > radio > snapshots > readonly 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="border-primary text-primary focus-visible:ring-ring aspect-square size-4 rounded-full border shadow focus:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50"
+              class="aspect-square size-4 rounded-full border border-primary text-primary shadow focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
@@ -15085,7 +15085,7 @@ exports[`new-york-ui > widgets > radio > snapshots > readonly 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="border-primary text-primary focus-visible:ring-ring aspect-square size-4 rounded-full border shadow focus:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50"
+              class="aspect-square size-4 rounded-full border border-primary text-primary shadow focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
@@ -15499,7 +15499,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-destructive list-disc list-inside"
+        class="list-inside list-disc text-destructive"
         id="root__errors"
         tabindex="-1"
       >
@@ -15940,12 +15940,12 @@ exports[`new-york-ui > widgets > range > snapshots > disabled 1`] = `
           style=""
         >
           <span
-            class="bg-primary/20 relative grow overflow-hidden rounded-full data-[orientation='horizontal']:h-1.5 data-[orientation='vertical']:h-full data-[orientation='horizontal']:w-full data-[orientation='vertical']:w-1.5"
+            class="relative grow overflow-hidden rounded-full bg-primary/20 data-[orientation='horizontal']:h-1.5 data-[orientation='vertical']:h-full data-[orientation='horizontal']:w-full data-[orientation='vertical']:w-1.5"
             data-orientation="horizontal"
           >
             <!---->
             <span
-              class="bg-primary absolute data-[orientation='horizontal']:h-full data-[orientation='vertical']:w-full"
+              class="absolute bg-primary data-[orientation='horizontal']:h-full data-[orientation='vertical']:w-full"
               data-disabled=""
               data-orientation="horizontal"
               data-slider-range=""
@@ -15966,7 +15966,7 @@ exports[`new-york-ui > widgets > range > snapshots > disabled 1`] = `
             aria-valuemax="100"
             aria-valuemin="0"
             aria-valuenow="0"
-            class="border-primary/50 bg-background focus-visible:ring-ring block size-4 rounded-full border shadow transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50"
+            class="block size-4 rounded-full border border-primary/50 bg-background shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
             data-disabled=""
             data-orientation="horizontal"
             data-slider-thumb=""
@@ -16072,12 +16072,12 @@ exports[`new-york-ui > widgets > range > snapshots > error 1`] = `
           style="touch-action: pan-y;"
         >
           <span
-            class="bg-primary/20 relative grow overflow-hidden rounded-full data-[orientation='horizontal']:h-1.5 data-[orientation='vertical']:h-full data-[orientation='horizontal']:w-full data-[orientation='vertical']:w-1.5"
+            class="relative grow overflow-hidden rounded-full bg-primary/20 data-[orientation='horizontal']:h-1.5 data-[orientation='vertical']:h-full data-[orientation='horizontal']:w-full data-[orientation='vertical']:w-1.5"
             data-orientation="horizontal"
           >
             <!---->
             <span
-              class="bg-primary absolute data-[orientation='horizontal']:h-full data-[orientation='vertical']:w-full"
+              class="absolute bg-primary data-[orientation='horizontal']:h-full data-[orientation='vertical']:w-full"
               data-orientation="horizontal"
               data-slider-range=""
               id="bits-c341"
@@ -16097,7 +16097,7 @@ exports[`new-york-ui > widgets > range > snapshots > error 1`] = `
             aria-valuemax="100"
             aria-valuemin="0"
             aria-valuenow="0"
-            class="border-primary/50 bg-background focus-visible:ring-ring block size-4 rounded-full border shadow transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50"
+            class="block size-4 rounded-full border border-primary/50 bg-background shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
             data-orientation="horizontal"
             data-slider-thumb=""
             data-value="0"
@@ -16124,7 +16124,7 @@ exports[`new-york-ui > widgets > range > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-destructive list-disc list-inside"
+        class="list-inside list-disc text-destructive"
         id="root__errors"
         tabindex="-1"
       >
@@ -16213,12 +16213,12 @@ exports[`new-york-ui > widgets > range > snapshots > normal 1`] = `
           style="touch-action: pan-y;"
         >
           <span
-            class="bg-primary/20 relative grow overflow-hidden rounded-full data-[orientation='horizontal']:h-1.5 data-[orientation='vertical']:h-full data-[orientation='horizontal']:w-full data-[orientation='vertical']:w-1.5"
+            class="relative grow overflow-hidden rounded-full bg-primary/20 data-[orientation='horizontal']:h-1.5 data-[orientation='vertical']:h-full data-[orientation='horizontal']:w-full data-[orientation='vertical']:w-1.5"
             data-orientation="horizontal"
           >
             <!---->
             <span
-              class="bg-primary absolute data-[orientation='horizontal']:h-full data-[orientation='vertical']:w-full"
+              class="absolute bg-primary data-[orientation='horizontal']:h-full data-[orientation='vertical']:w-full"
               data-orientation="horizontal"
               data-slider-range=""
               id="bits-c338"
@@ -16238,7 +16238,7 @@ exports[`new-york-ui > widgets > range > snapshots > normal 1`] = `
             aria-valuemax="100"
             aria-valuemin="0"
             aria-valuenow="0"
-            class="border-primary/50 bg-background focus-visible:ring-ring block size-4 rounded-full border shadow transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50"
+            class="block size-4 rounded-full border border-primary/50 bg-background shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
             data-orientation="horizontal"
             data-slider-thumb=""
             data-value="0"
@@ -16343,12 +16343,12 @@ exports[`new-york-ui > widgets > range > snapshots > readonly 1`] = `
           style="touch-action: pan-y;"
         >
           <span
-            class="bg-primary/20 relative grow overflow-hidden rounded-full data-[orientation='horizontal']:h-1.5 data-[orientation='vertical']:h-full data-[orientation='horizontal']:w-full data-[orientation='vertical']:w-1.5"
+            class="relative grow overflow-hidden rounded-full bg-primary/20 data-[orientation='horizontal']:h-1.5 data-[orientation='vertical']:h-full data-[orientation='horizontal']:w-full data-[orientation='vertical']:w-1.5"
             data-orientation="horizontal"
           >
             <!---->
             <span
-              class="bg-primary absolute data-[orientation='horizontal']:h-full data-[orientation='vertical']:w-full"
+              class="absolute bg-primary data-[orientation='horizontal']:h-full data-[orientation='vertical']:w-full"
               data-orientation="horizontal"
               data-slider-range=""
               id="bits-c347"
@@ -16368,7 +16368,7 @@ exports[`new-york-ui > widgets > range > snapshots > readonly 1`] = `
             aria-valuemax="100"
             aria-valuemin="0"
             aria-valuenow="0"
-            class="border-primary/50 bg-background focus-visible:ring-ring block size-4 rounded-full border shadow transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50"
+            class="block size-4 rounded-full border border-primary/50 bg-background shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
             data-orientation="horizontal"
             data-slider-thumb=""
             data-value="0"
@@ -16473,7 +16473,7 @@ exports[`new-york-ui > widgets > select > snapshots > disabled 1`] = `
           aria-haspopup="listbox"
           aria-invalid="false"
           aria-required="true"
-          class="border-input ring-offset-background data-[placeholder]:text-muted-foreground focus:ring-ring flex h-9 items-center justify-between whitespace-nowrap rounded-md border bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-full"
+          class="flex h-9 items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[placeholder]:text-muted-foreground [&>span]:line-clamp-1 w-full"
           data-disabled=""
           data-placeholder=""
           data-select-trigger=""
@@ -16621,7 +16621,7 @@ exports[`new-york-ui > widgets > select > snapshots > error 1`] = `
           aria-haspopup="listbox"
           aria-invalid="true"
           aria-required="true"
-          class="border-input ring-offset-background data-[placeholder]:text-muted-foreground focus:ring-ring flex h-9 items-center justify-between whitespace-nowrap rounded-md border bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-full"
+          class="flex h-9 items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[placeholder]:text-muted-foreground [&>span]:line-clamp-1 w-full"
           data-placeholder=""
           data-select-trigger=""
           data-state="closed"
@@ -16688,7 +16688,7 @@ exports[`new-york-ui > widgets > select > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-destructive list-disc list-inside"
+        class="list-inside list-disc text-destructive"
         id="root__errors"
         tabindex="-1"
       >
@@ -16778,7 +16778,7 @@ exports[`new-york-ui > widgets > select > snapshots > normal 1`] = `
           aria-haspopup="listbox"
           aria-invalid="false"
           aria-required="true"
-          class="border-input ring-offset-background data-[placeholder]:text-muted-foreground focus:ring-ring flex h-9 items-center justify-between whitespace-nowrap rounded-md border bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-full"
+          class="flex h-9 items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[placeholder]:text-muted-foreground [&>span]:line-clamp-1 w-full"
           data-placeholder=""
           data-select-trigger=""
           data-state="closed"
@@ -16924,7 +16924,7 @@ exports[`new-york-ui > widgets > select > snapshots > readonly 1`] = `
           aria-invalid="false"
           aria-readonly="true"
           aria-required="true"
-          class="border-input ring-offset-background data-[placeholder]:text-muted-foreground focus:ring-ring flex h-9 items-center justify-between whitespace-nowrap rounded-md border bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-full"
+          class="flex h-9 items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[placeholder]:text-muted-foreground [&>span]:line-clamp-1 w-full"
           data-placeholder=""
           data-select-trigger=""
           data-state="closed"
@@ -17062,7 +17062,7 @@ exports[`new-york-ui > widgets > switch > snapshots > disabled 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           aria-required="true"
-          class="focus-visible:ring-ring focus-visible:ring-offset-background data-[state=checked]:bg-primary data-[state=unchecked]:bg-input peer inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          class="peer inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
           data-disabled=""
           data-required=""
           data-state="unchecked"
@@ -17075,7 +17075,7 @@ exports[`new-york-ui > widgets > switch > snapshots > disabled 1`] = `
           <!---->
           <!---->
           <span
-            class="bg-background pointer-events-none block size-4 rounded-full shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0"
+            class="pointer-events-none block size-4 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0"
             data-disabled=""
             data-required=""
             data-state="unchecked"
@@ -17187,7 +17187,7 @@ exports[`new-york-ui > widgets > switch > snapshots > error 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="true"
           aria-required="true"
-          class="focus-visible:ring-ring focus-visible:ring-offset-background data-[state=checked]:bg-primary data-[state=unchecked]:bg-input peer inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          class="peer inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
           data-required=""
           data-state="unchecked"
           data-switch-root=""
@@ -17198,7 +17198,7 @@ exports[`new-york-ui > widgets > switch > snapshots > error 1`] = `
           <!---->
           <!---->
           <span
-            class="bg-background pointer-events-none block size-4 rounded-full shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0"
+            class="pointer-events-none block size-4 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0"
             data-required=""
             data-state="unchecked"
             data-switch-thumb=""
@@ -17236,7 +17236,7 @@ exports[`new-york-ui > widgets > switch > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-destructive list-disc list-inside"
+        class="list-inside list-disc text-destructive"
         id="root__errors"
         tabindex="-1"
       >
@@ -17319,7 +17319,7 @@ exports[`new-york-ui > widgets > switch > snapshots > normal 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           aria-required="true"
-          class="focus-visible:ring-ring focus-visible:ring-offset-background data-[state=checked]:bg-primary data-[state=unchecked]:bg-input peer inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          class="peer inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
           data-required=""
           data-state="unchecked"
           data-switch-root=""
@@ -17330,7 +17330,7 @@ exports[`new-york-ui > widgets > switch > snapshots > normal 1`] = `
           <!---->
           <!---->
           <span
-            class="bg-background pointer-events-none block size-4 rounded-full shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0"
+            class="pointer-events-none block size-4 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0"
             data-required=""
             data-state="unchecked"
             data-switch-thumb=""
@@ -17440,7 +17440,7 @@ exports[`new-york-ui > widgets > switch > snapshots > readonly 1`] = `
           aria-invalid="false"
           aria-readonly="true"
           aria-required="true"
-          class="focus-visible:ring-ring focus-visible:ring-offset-background data-[state=checked]:bg-primary data-[state=unchecked]:bg-input peer inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          class="peer inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
           data-required=""
           data-state="unchecked"
           data-switch-root=""
@@ -17451,7 +17451,7 @@ exports[`new-york-ui > widgets > switch > snapshots > readonly 1`] = `
           <!---->
           <!---->
           <span
-            class="bg-background pointer-events-none block size-4 rounded-full shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0"
+            class="pointer-events-none block size-4 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0"
             data-required=""
             data-state="unchecked"
             data-switch-thumb=""
@@ -17557,7 +17557,7 @@ exports[`new-york-ui > widgets > text > snapshots > disabled 1`] = `
         <input
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
-          class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           disabled=""
           id="root"
           name="root"
@@ -17646,7 +17646,7 @@ exports[`new-york-ui > widgets > text > snapshots > error 1`] = `
         <input
           aria-describedby="root__description root__help root__errors"
           aria-invalid="true"
-          class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           id="root"
           name="root"
           required=""
@@ -17665,7 +17665,7 @@ exports[`new-york-ui > widgets > text > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-destructive list-disc list-inside"
+        class="list-inside list-disc text-destructive"
         id="root__errors"
         tabindex="-1"
       >
@@ -17745,7 +17745,7 @@ exports[`new-york-ui > widgets > text > snapshots > normal 1`] = `
         <input
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
-          class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           id="root"
           name="root"
           required=""
@@ -17832,7 +17832,7 @@ exports[`new-york-ui > widgets > text > snapshots > readonly 1`] = `
         <input
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
-          class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           id="root"
           name="root"
           readonly=""
@@ -17919,7 +17919,7 @@ exports[`new-york-ui > widgets > textarea > snapshots > disabled 1`] = `
         <textarea
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
-          class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex min-h-[60px] w-full rounded-md border bg-transparent px-3 py-2 text-base shadow-sm focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex min-h-[60px] w-full rounded-md border border-input bg-transparent px-3 py-2 text-base shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           disabled=""
           id="root"
           name="root"
@@ -18002,7 +18002,7 @@ exports[`new-york-ui > widgets > textarea > snapshots > error 1`] = `
         <textarea
           aria-describedby="root__description root__help root__errors"
           aria-invalid="true"
-          class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex min-h-[60px] w-full rounded-md border bg-transparent px-3 py-2 text-base shadow-sm focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex min-h-[60px] w-full rounded-md border border-input bg-transparent px-3 py-2 text-base shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           id="root"
           name="root"
           required=""
@@ -18016,7 +18016,7 @@ exports[`new-york-ui > widgets > textarea > snapshots > error 1`] = `
        
       <!---->
       <ul
-        class="text-destructive list-disc list-inside"
+        class="list-inside list-disc text-destructive"
         id="root__errors"
         tabindex="-1"
       >
@@ -18095,7 +18095,7 @@ exports[`new-york-ui > widgets > textarea > snapshots > normal 1`] = `
         <textarea
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
-          class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex min-h-[60px] w-full rounded-md border bg-transparent px-3 py-2 text-base shadow-sm focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex min-h-[60px] w-full rounded-md border border-input bg-transparent px-3 py-2 text-base shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           id="root"
           name="root"
           required=""
@@ -18176,7 +18176,7 @@ exports[`new-york-ui > widgets > textarea > snapshots > readonly 1`] = `
         <textarea
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
-          class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex min-h-[60px] w-full rounded-md border bg-transparent px-3 py-2 text-base shadow-sm focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          class="flex min-h-[60px] w-full rounded-md border border-input bg-transparent px-3 py-2 text-base shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           id="root"
           name="root"
           readonly=""

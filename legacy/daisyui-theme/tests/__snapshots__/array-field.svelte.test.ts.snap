@@ -504,7 +504,7 @@ exports[`array fields > checkboxes 1`] = `
         <!---->
         <!---->
         <label
-          class="label cursor-pointer gap-2 justify-start"
+          class="label cursor-pointer justify-start gap-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -524,7 +524,7 @@ exports[`array fields > checkboxes 1`] = `
           </span>
         </label>
         <label
-          class="label cursor-pointer gap-2 justify-start"
+          class="label cursor-pointer justify-start gap-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -544,7 +544,7 @@ exports[`array fields > checkboxes 1`] = `
           </span>
         </label>
         <label
-          class="label cursor-pointer gap-2 justify-start"
+          class="label cursor-pointer justify-start gap-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -736,7 +736,7 @@ exports[`array fields > empty errors array 1`] = `
        
       <!---->
       <ul
-        class="text-error list-disc list-inside"
+        class="list-inside list-disc text-error"
         id="root__errors"
         tabindex="-1"
       >
@@ -1601,7 +1601,7 @@ exports[`with title and description > checkboxes 1`] = `
         <!---->
         <!---->
         <label
-          class="label cursor-pointer gap-2 justify-start"
+          class="label cursor-pointer justify-start gap-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -1621,7 +1621,7 @@ exports[`with title and description > checkboxes 1`] = `
           </span>
         </label>
         <label
-          class="label cursor-pointer gap-2 justify-start"
+          class="label cursor-pointer justify-start gap-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -1641,7 +1641,7 @@ exports[`with title and description > checkboxes 1`] = `
           </span>
         </label>
         <label
-          class="label cursor-pointer gap-2 justify-start"
+          class="label cursor-pointer justify-start gap-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -2640,7 +2640,7 @@ exports[`with title and description from both > checkboxes 1`] = `
         <!---->
         <!---->
         <label
-          class="label cursor-pointer gap-2 justify-start"
+          class="label cursor-pointer justify-start gap-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -2660,7 +2660,7 @@ exports[`with title and description from both > checkboxes 1`] = `
           </span>
         </label>
         <label
-          class="label cursor-pointer gap-2 justify-start"
+          class="label cursor-pointer justify-start gap-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -2680,7 +2680,7 @@ exports[`with title and description from both > checkboxes 1`] = `
           </span>
         </label>
         <label
-          class="label cursor-pointer gap-2 justify-start"
+          class="label cursor-pointer justify-start gap-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -3679,7 +3679,7 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
         <!---->
         <!---->
         <label
-          class="label cursor-pointer gap-2 justify-start"
+          class="label cursor-pointer justify-start gap-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -3699,7 +3699,7 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
           </span>
         </label>
         <label
-          class="label cursor-pointer gap-2 justify-start"
+          class="label cursor-pointer justify-start gap-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -3719,7 +3719,7 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
           </span>
         </label>
         <label
-          class="label cursor-pointer gap-2 justify-start"
+          class="label cursor-pointer justify-start gap-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -4530,7 +4530,7 @@ exports[`with title and description with global label off > checkboxes 1`] = `
         <!---->
         <!---->
         <label
-          class="label cursor-pointer gap-2 justify-start"
+          class="label cursor-pointer justify-start gap-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -4550,7 +4550,7 @@ exports[`with title and description with global label off > checkboxes 1`] = `
           </span>
         </label>
         <label
-          class="label cursor-pointer gap-2 justify-start"
+          class="label cursor-pointer justify-start gap-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"
@@ -4570,7 +4570,7 @@ exports[`with title and description with global label off > checkboxes 1`] = `
           </span>
         </label>
         <label
-          class="label cursor-pointer gap-2 justify-start"
+          class="label cursor-pointer justify-start gap-2"
         >
           <input
             aria-describedby="root__description root__help root__errors"

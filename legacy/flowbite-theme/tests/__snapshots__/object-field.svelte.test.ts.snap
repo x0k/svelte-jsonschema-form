@@ -478,7 +478,7 @@ exports[`object fields > additionalProperties with error 1`] = `
                
               <!---->
               <ul
-                class="text-red-700 dark:text-red-500 list-disc list-inside"
+                class="list-inside list-disc text-red-700 dark:text-red-500"
                 id="root_foo__key-input__errors"
                 tabindex="-1"
               >
@@ -855,7 +855,7 @@ exports[`object fields > has errors 1`] = `
        
       <!---->
       <ul
-        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        class="list-inside list-disc text-red-700 dark:text-red-500"
         id="root__errors"
         tabindex="-1"
       >
