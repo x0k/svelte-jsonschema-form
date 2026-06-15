@@ -398,6 +398,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       setFieldState(formState, rootPath, FIELD_SUBMITTED);
       return await validateForm(
         signal,
+        // eslint-disable-next-line @typescript-eslint/no-deprecated
         options.validateByRetrievedSchema ? retrievedSchema : options.schema,
         $state.snapshot(valueRef.current)
       );

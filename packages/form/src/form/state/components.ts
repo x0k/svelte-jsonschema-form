@@ -21,13 +21,11 @@ export function getComponent<FT, T extends FoundationalComponentType>(
   switch (typeof component) {
     case "undefined":
       return (ctx[FORM_THEME](type, config) ??
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         createMessage(
           ctx[FORM_TRANSLATE]("component-not-found", { type })
         )) as Resolved<T, CompatibleComponentDefinitions>;
     case "string":
       return (ctx[FORM_THEME](component as T, config) ??
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         createMessage(
           ctx[FORM_TRANSLATE]("component-not-found", {
             // @ts-expect-error ts cannot infer type properly by some reason

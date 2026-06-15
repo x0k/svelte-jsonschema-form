@@ -9,8 +9,7 @@ update:
 # Force commit
 # git commit -n
 
-# Force push
-fp:
+fpush:
   git push --no-verify
 
 d:
@@ -22,8 +21,11 @@ t:
 fmt:
   pnpm run format
 
-l:
+lint:
   pnpm run lint
+
+flint:
+  pnpm run lint:fix
 
 tu:
   pnpm run test $@ -- -u

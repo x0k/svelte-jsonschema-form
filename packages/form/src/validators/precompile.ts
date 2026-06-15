@@ -169,12 +169,14 @@ export interface FragmentSchemaOptions {
 }
 
 const DEFAULT_ID_AUGMENTATIONS: IdAugmentations = {
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   combination: (id) => id + DEFAULT_AUGMENT_SUFFIX,
 };
 
 export function fragmentSchema({
   schema,
   subSchemas,
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   augmentSuffix = DEFAULT_AUGMENT_SUFFIX,
   idAugmentations,
 }: FragmentSchemaOptions): Schema[] {

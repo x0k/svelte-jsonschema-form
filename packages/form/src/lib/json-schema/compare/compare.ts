@@ -149,7 +149,7 @@ export function createComparator({
       }
       for (let i = 0; i < l; i++) {
         const key = aKeys[i]!;
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+
         const cmp = compare(a[key], b[key]);
         if (cmp !== 0) {
           return cmp;

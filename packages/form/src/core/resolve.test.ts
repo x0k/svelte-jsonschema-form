@@ -306,7 +306,7 @@ describe("retrieveSchema()", () => {
 
     expect(() =>
       retrieveSchema(testValidator, defaultMerger, schema, schema)
-    ).toThrowError("Invalid reference: ");
+    ).toThrow("Invalid reference: ");
   });
   it("should give an error when JSON pointer does not point to anything", () => {
     const schema: Schema = {
@@ -316,7 +316,7 @@ describe("retrieveSchema()", () => {
 
     expect(() =>
       retrieveSchema(testValidator, defaultMerger, schema, schema)
-    ).toThrowError("Could not find a definition");
+    ).toThrow("Could not find a definition");
   });
   it("should `resolve` escaped JSON Pointers", () => {
     const schema: Schema = { $ref: "#/definitions/a~0complex~1name" };
@@ -1834,7 +1834,7 @@ describe("retrieveSchema()", () => {
           formData
         )
       ).toEqual({});
-      expect(consoleWarnSpy).toBeCalledWith(
+      expect(consoleWarnSpy).toHaveBeenCalledWith(
         expect.stringMatching(/could not merge subschemas in allOf/),
         expect.any(Error)
       );

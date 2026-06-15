@@ -195,7 +195,6 @@ function convertSchema(ctx: Context, schema: JSONSchema.Interface): Schema {
   const result: Schema = {};
   const keys = Object.keys(schema) as Array<keyof JSONSchema.Interface>;
   for (const key of keys) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const v = schema[key];
     if (v === undefined) continue;
     ASSIGNERS[key](result, v as never, ctx, schema, key as never);

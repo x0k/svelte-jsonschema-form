@@ -53,12 +53,12 @@ describe("findSchemaDefinition()", () => {
   it("throws error when ref is malformed", () => {
     expect(() =>
       findSchemaDefinition(testMerger, "definitions/missing", {})
-    ).toThrowError("Invalid reference: definitions/missing");
+    ).toThrow("Invalid reference: definitions/missing");
   });
   it("throws error when ref does not exist", () => {
     expect(() =>
       findSchemaDefinition(testMerger, "#/definitions/missing", schema)
-    ).toThrowError("Could not find a definition for #/definitions/missing");
+    ).toThrow("Could not find a definition for #/definitions/missing");
   });
   it("returns the string ref from its definition", () => {
     expect(
@@ -91,7 +91,7 @@ describe("findSchemaDefinition()", () => {
         "#/definitions/badCircularNestedRef",
         schema
       )
-    ).toThrowError(
+    ).toThrow(
       "Definition for #/definitions/badCircularNestedRef is a circular reference"
     );
   });
@@ -102,7 +102,7 @@ describe("findSchemaDefinition()", () => {
         "#/definitions/badCircularDeepNestedRef",
         schema
       )
-    ).toThrowError(
+    ).toThrow(
       "Definition for #/definitions/badCircularDeepNestedRef contains a circular reference through #/definitions/badCircularDeepNestedRef -> #/definitions/badCircularDeeperNestedRef -> #/definitions/badCircularDeepestNestedRef -> #/definitions/badCircularDeepNestedRef"
     );
   });
@@ -110,15 +110,15 @@ describe("findSchemaDefinition()", () => {
 
 // describe('findSchemaDefinitionRecursive()', () => {
 //   it('throws error when ref is missing', () => {
-//     expect(() => findSchemaDefinitionRecursive()).toThrowError('Could not find a definition for undefined');
+//     expect(() => findSchemaDefinitionRecursive()).toThrow('Could not find a definition for undefined');
 //   });
 //   it('throws error when ref is malformed', () => {
-//     expect(() => findSchemaDefinitionRecursive('definitions/missing')).toThrowError(
+//     expect(() => findSchemaDefinitionRecursive('definitions/missing')).toThrow(
 //       'Could not find a definition for definitions/missing'
 //     );
 //   });
 //   it('throws error when ref does not exist', () => {
-//     expect(() => findSchemaDefinitionRecursive('#/definitions/missing', schema)).toThrowError(
+//     expect(() => findSchemaDefinitionRecursive('#/definitions/missing', schema)).toThrow(
 //       'Could not find a definition for #/definitions/missing'
 //     );
 //   });
@@ -132,12 +132,12 @@ describe("findSchemaDefinition()", () => {
 //     expect(findSchemaDefinitionRecursive('#/definitions/extraNestedRef', schema)).toEqual(EXTRA_EXPECTED);
 //   });
 //   it('throws error when ref is a circular reference', () => {
-//     expect(() => findSchemaDefinitionRecursive('#/definitions/badCircularNestedRef', schema)).toThrowError(
+//     expect(() => findSchemaDefinitionRecursive('#/definitions/badCircularNestedRef', schema)).toThrow(
 //       'Definition for #/definitions/badCircularNestedRef is a circular reference'
 //     );
 //   });
 //   it('throws error when ref is a deep circular reference', () => {
-//     expect(() => findSchemaDefinitionRecursive('#/definitions/badCircularDeepNestedRef', schema)).toThrowError(
+//     expect(() => findSchemaDefinitionRecursive('#/definitions/badCircularDeepNestedRef', schema)).toThrow(
 //       'Definition for #/definitions/badCircularDeepNestedRef contains a circular reference through #/definitions/badCircularDeeperNestedRef -> #/definitions/badCircularDeepestNestedRef -> #/definitions/badCircularDeepNestedRef'
 //     );
 //   });

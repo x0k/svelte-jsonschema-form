@@ -32,7 +32,7 @@ export function isSchemaValueEmpty<V extends SchemaValue>(
   if (ArrayBuffer.isView(value) || value instanceof ArrayBuffer) {
     return value.byteLength === 0;
   }
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+
   const proto = Object.getPrototypeOf(value);
   if (proto === Object.prototype || proto === null) {
     return isRecordEmpty(value);

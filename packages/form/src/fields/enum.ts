@@ -87,6 +87,7 @@ export function createFormOptions<T>(
 ) {
   const builder =
     uiOption("enumValueMapperBuilder")?.() ?? new IdEnumValueMapperBuilder();
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   const options = createOptions(ctx, config, uiOption, schema, builder) ?? [];
   return { options, mapper: builder.build() };
 }

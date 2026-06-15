@@ -59,11 +59,11 @@ export function pathFromLocation(location: string, data: unknown): Path {
     if (Array.isArray(current) && /^\d+$/.test(p)) {
       const idx = Number(p);
       path.push(idx);
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+
       current = current[idx];
     } else {
       path.push(p);
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+
       current = current?.[p];
     }
   }

@@ -37,7 +37,6 @@ describe("createTask", () => {
 
     it("Should correctly update status during error flow", async () => {
       const task = createTask({
-        // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors
         execute: () => Promise.reject(),
         delayedMs: 50,
         timeoutMs: 100,
@@ -118,7 +117,7 @@ describe("createTask", () => {
       vi.advanceTimersByTime(100);
       await tick();
       task.run();
-      expect(impl).toBeCalledTimes(2);
+      expect(impl).toHaveBeenCalledTimes(2);
     });
 
     it("Should forget previous task with 'forgetPrevious' combinator", async () => {
@@ -132,8 +131,8 @@ describe("createTask", () => {
       const taskPromise1 = task.runAsync();
       await expect(task.runAsync()).resolves.toBe(1);
       await expect(taskPromise1).resolves.toBe(0);
-      expect(onSuccess).toBeCalledTimes(1);
-      expect(onSuccess).toBeCalledWith(1);
+      expect(onSuccess).toHaveBeenCalledTimes(1);
+      expect(onSuccess).toHaveBeenCalledWith(1);
     });
 
     it("Should abort previous task with 'abortPrevious' combinator", async () => {
@@ -152,10 +151,10 @@ describe("createTask", () => {
       task.run();
       task.run();
       await task.runAsync();
-      expect(onAbort).toBeCalledTimes(2);
-      expect(impl).toBeCalledTimes(3);
-      expect(onSuccess).toBeCalledTimes(1);
-      expect(onSuccess).toBeCalledWith(2);
+      expect(onAbort).toHaveBeenCalledTimes(2);
+      expect(impl).toHaveBeenCalledTimes(3);
+      expect(onSuccess).toHaveBeenCalledTimes(1);
+      expect(onSuccess).toHaveBeenCalledWith(2);
     });
 
     it("Should not track task with 'untrack' combinator", async () => {
