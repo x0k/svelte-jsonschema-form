@@ -7,8 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "check": "svelte-check --tsconfig tsconfig.json",
-    "format": "oxfmt"
+    "check": "svelte-check --tsconfig tsconfig.json"
   },
   "dependencies": {
     "@dnd-kit/collision": "^0.4.0",

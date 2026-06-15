@@ -14,6 +14,7 @@
     "preview": "turbo run preview",
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint -- --fix",
+    "prepare": "husky",
     "format": "oxfmt",
     "format:check": "oxfmt --check",
     "ci:build": "turbo run build test",
@@ -38,6 +39,8 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-svelte": "^3.19.0",
     "globals": "catalog:",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.7",
     "only-allow": "^1.2.2",
     "oxfmt": "^0.54.0",
     "playwright": "catalog:",
@@ -50,6 +53,9 @@
     "vite-plugin-devtools-json": "^1.0.0",
     "vitest": "catalog:",
     "vitest-browser-svelte": "^2.1.1"
+  },
+  "lint-staged": {
+    "*.{js,ts,svelte,json,css,md}": "oxfmt"
   },
   "packageManager": "pnpm@11.6.0"
 }

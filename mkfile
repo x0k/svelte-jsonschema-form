@@ -6,6 +6,13 @@ update:
   pnpm -w update --no-save
   pnpm dedupe
 
+# Force commit
+# git commit -n
+
+# Force push
+fp:
+  git push --no-verify
+
 d:
   pnpm run dev
 

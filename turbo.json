@@ -7,7 +7,7 @@
       "dependsOn": ["^build"]
     },
     "build": {
-      "dependsOn": ["check"],
+      "dependsOn": ["check", "lint"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": ["dist/**"]
     },
@@ -19,7 +19,18 @@
     "test": {
       "dependsOn": ["^build"]
     },
+    "//#format": {
+      "cache": false,
+      "outputs": []
+    },
+    "//#format:check": {
+      "outputs": []
+    },
+    "//#quality": {
+      "dependsOn": ["//#format:check", "lint"]
+    },
     "lint": {
+      "dependsOn": ["//#format:check"],
       "outputs": []
     },
     "preview": {
