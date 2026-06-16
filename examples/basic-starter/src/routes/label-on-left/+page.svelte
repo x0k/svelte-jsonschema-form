@@ -61,11 +61,17 @@
               "object-property-content": displayContents,
               field: displayContents,
             },
+      errorsList: (config: Config) =>
+        config.path.length > 0
+          ? {
+              style: "grid-column: 2 / -1",
+            }
+          : undefined,
     }),
   });
 </script>
 
-<BasicForm {form} />
+<BasicForm {form} novalidate />
 
 <style>
   :global(.label-on-left) {
