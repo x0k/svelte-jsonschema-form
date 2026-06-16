@@ -61,12 +61,12 @@ export async function createExampleFiles({
   const content = await load();
   const isValidatorSpecific = meta.isValidatorSpecific ?? false;
 
-  const codeTransformers = content.codeTransformers.slice();
+  let codeTransformers = content.codeTransformers;
 
-  if (isValidatorSpecific) {
+  if (!isValidatorSpecific) {
     const transformers = VALIDATOR_TRANSFORMERS[validator]?.();
     if (transformers) {
-      codeTransformers.push((await transformers).default);
+      codeTransformers = codeTransformers.concat((await transformers).default);
     }
   }
 

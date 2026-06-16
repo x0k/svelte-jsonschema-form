@@ -13,6 +13,7 @@ interface ExtraPackageMeta {
 
 const EXTRA_PACKAGES_META: Record<string, ExtraPackageMeta> = {
   ajvFormat: { name: "ajv-formats", dev: false },
+  ajvI18n: { name: "ajv-i18n", dev: false },
   jsonSchemaToTs: { name: "json-schema-to-ts", dev: true },
   esbuild: { name: "esbuild", dev: true },
   devalue: { name: "devalue", dev: true },
