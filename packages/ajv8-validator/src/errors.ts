@@ -141,3 +141,18 @@ export async function validateAndTransformErrorsAsync<T, R>(
   }
   return transformInput(data);
 }
+
+export type Localize = TransformErrors<ErrorObject[]>;
+
+export interface LocalizeOptions {
+  localize?: Localize;
+}
+
+export function withLocalize<R>(
+  transform: TransformErrors<R>,
+  localize?: Localize
+): TransformErrors<R> {
+  return localize
+    ? (errors, data) => transform(localize(errors, data), data)
+    : transform;
+}

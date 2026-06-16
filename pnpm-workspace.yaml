@@ -38,6 +38,7 @@ catalog:
   acorn: ^8.16.0
   ajv: ^8.20.0
   ajv-formats: ^3.0.1
+  ajv-i18n: ^4.2.0
   arktype: ^2.2.0
   ata-validator: ^0.21.0
   autoprefixer: ^10.5.0

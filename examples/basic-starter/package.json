@@ -19,6 +19,8 @@
     "@sjsf/valibot-validator": "workspace:*",
     "@sjsf/zod4-validator": "workspace:*",
     "ajv": "catalog:",
+    "ajv-formats": "catalog:",
+    "ajv-i18n": "catalog:",
     "arktype": "catalog:",
     "json-schema-typed": "catalog:",
     "svelte": "catalog:",

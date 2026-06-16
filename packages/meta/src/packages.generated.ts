@@ -6,6 +6,11 @@ export const EXTRA_PACKAGES = {
     "version": "3.0.1",
     "dev": false
   },
+  "ajvI18n": {
+    "name": "ajv-i18n",
+    "version": "4.2.0",
+    "dev": false
+  },
   "jsonSchemaToTs": {
     "name": "json-schema-to-ts",
     "version": "3.1.1",
