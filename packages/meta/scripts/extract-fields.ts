@@ -89,7 +89,10 @@ async function analyzeDir(
   meta: Record<string, FieldMeta>,
   skip = new Set<string>()
 ) {
-  for (const e of await fs.readdir(dir, { withFileTypes: true })) {
+  const entries = (await fs.readdir(dir, { withFileTypes: true })).sort(
+    (a, b) => a.name.localeCompare(b.name)
+  );
+  for (const e of entries) {
     if (!e.isFile() || !e.name.endsWith(".svelte") || skip.has(e.name)) {
       continue;
     }
@@ -104,10 +107,15 @@ async function analyzeDir(
   }
 }
 
-const FIELDS_TO_SKIP = new Set([
+const BASE_FIELDS_TO_SKIP = new Set([
   "field-base.svelte",
   "combination.svelte",
   "array-base.svelte",
+]);
+const ROOT_FIELDS_TO_SKIP = new Set([
+  ...BASE_FIELDS_TO_SKIP,
+  "any-of.svelte",
+  "one-of.svelte",
 ]);
 
 async function main() {
@@ -115,8 +123,11 @@ async function main() {
     path.join(import.meta.dirname, "../../form/src/fields", p);
   const fieldsMeta: Record<string, FieldMeta> = {};
   const fieldsDir = fieldsPath("");
-  await analyzeDir(fieldsDir, fieldsMeta, FIELDS_TO_SKIP);
-  for (const e of await fs.readdir(fieldsDir, { withFileTypes: true })) {
+  await analyzeDir(fieldsDir, fieldsMeta, ROOT_FIELDS_TO_SKIP);
+  const entries = (await fs.readdir(fieldsDir, { withFileTypes: true })).sort(
+    (a, b) => a.name.localeCompare(b.name)
+  );
+  for (const e of entries) {
     if (
       !e.isDirectory() ||
       e.name.startsWith("extra") ||
@@ -124,7 +135,7 @@ async function main() {
     ) {
       continue;
     }
-    await analyzeDir(fieldsPath(e.name), fieldsMeta, FIELDS_TO_SKIP);
+    await analyzeDir(fieldsPath(e.name), fieldsMeta, BASE_FIELDS_TO_SKIP);
   }
   const extraFieldsMeta: Record<string, FieldMeta> = {};
   await analyzeDir(fieldsPath("extra"), extraFieldsMeta);
