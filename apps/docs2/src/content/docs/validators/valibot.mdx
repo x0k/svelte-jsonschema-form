@@ -20,10 +20,9 @@ You may want to use Valibot validator because:
 - You can use Valibot schema as a source of truth for the form value type (`v.InferInput`).
 - This is an easy way to add custom error messages
 
-:::caution
+:::note
 
-Your schema must be convertible to a JSON schema.
-See the [supported features](https://github.com/fabian-hiller/valibot/blob/main/packages/to-json-schema/README.md#supported-features) for details.
+Schemas with unsupported types (`v.date()`, `v.bigint()`, etc.) are silently converted to `{}` (unknown). See the [supported features](https://github.com/fabian-hiller/valibot/blob/main/packages/to-json-schema/README.md#supported-features) for details.
 
 :::
 
@@ -36,6 +35,12 @@ See the [supported features](https://github.com/fabian-hiller/valibot/blob/main/
 ## Example
 
 <Demo name="valibot" iconsPicker client:visible />
+
+## Unrepresentable types
+
+Types like `v.date()`, `v.bigint()`, and `v.file()` have no JSON Schema equivalent. The adapter converts them to `{}` (unknown), rendering the default unknown field. You can wire custom field components via [UI schema](/form/ui-schema/#ui-components) to handle these types.
+
+See the **Valibot Unserializable** example on the [advanced examples](/examples/advanced/) page.
 
 ## Async validation
 
