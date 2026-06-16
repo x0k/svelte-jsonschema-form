@@ -20,6 +20,8 @@ import {
   type ErrorsTransformerOptions,
   validateAndTransformErrors,
   validateAndTransformErrorsAsync,
+  type LocalizeOptions,
+  withLocalize,
 } from "./errors.js";
 import { CAST_FORM_DATA, NO_FILED_ERRORS } from "./internals.js";
 import { addFormComponents, DEFAULT_AJV_CONFIG } from "./model.js";
@@ -53,12 +55,15 @@ export function createValidator({
 }
 
 export interface FormValueValidatorOptions
-  extends ValidatorOptions, ErrorsTransformerOptions {}
+  extends ValidatorOptions, ErrorsTransformerOptions, LocalizeOptions {}
 
 export function createFormValueValidator<T>(
   options: FormValueValidatorOptions
 ): FormValueValidator<T> {
-  const transformErrors = createFormErrorsTransformer(options);
+  const transformErrors = withLocalize(
+    createFormErrorsTransformer(options),
+    options.localize
+  );
   return {
     validateFormValue(rootSchema, formValue) {
       return validateAndTransformErrors(
@@ -71,12 +76,13 @@ export function createFormValueValidator<T>(
   };
 }
 
-export interface FieldValueValidatorOptions {
+export interface FieldValueValidatorOptions extends LocalizeOptions {
   compileFieldSchema: (config: Config) => ValidateFunction;
 }
 
 export function createFieldValueValidator({
   compileFieldSchema,
+  localize,
 }: FieldValueValidatorOptions): FieldValueValidator {
   return {
     validateFieldValue(config, fieldValue) {
@@ -84,13 +90,14 @@ export function createFieldValueValidator({
         compileFieldSchema(config),
         fieldValue,
         NO_FILED_ERRORS,
-        createFieldErrorsTransformer(config)
+        withLocalize(createFieldErrorsTransformer(config), localize)
       );
     },
   };
 }
 
-export interface AsyncFormValueValidatorOptions extends ErrorsTransformerOptions {
+export interface AsyncFormValueValidatorOptions
+  extends ErrorsTransformerOptions, LocalizeOptions {
   compileAsyncSchema: (
     schema: Schema,
     rootSchema: Schema
@@ -100,7 +107,10 @@ export interface AsyncFormValueValidatorOptions extends ErrorsTransformerOptions
 export function createAsyncFormValueValidator<T>(
   options: AsyncFormValueValidatorOptions
 ): AsyncFormValueValidator<T> {
-  const transformErrors = createFormErrorsTransformer(options);
+  const transformErrors = withLocalize(
+    createFormErrorsTransformer(options),
+    options.localize
+  );
   return {
     async validateFormValueAsync(_, rootSchema, formValue) {
       return validateAndTransformErrorsAsync(
@@ -113,12 +123,13 @@ export function createAsyncFormValueValidator<T>(
   };
 }
 
-export interface AsyncFieldValueValidatorOptions {
+export interface AsyncFieldValueValidatorOptions extends LocalizeOptions {
   compileAsyncFieldSchema: (config: Config) => AsyncValidateFunction;
 }
 
 export function createAsyncFieldValueValidator({
   compileAsyncFieldSchema,
+  localize,
 }: AsyncFieldValueValidatorOptions): AsyncFieldValueValidator {
   return {
     async validateFieldValueAsync(_, config, fieldValue) {
@@ -126,7 +137,7 @@ export function createAsyncFieldValueValidator({
         compileAsyncFieldSchema(config),
         fieldValue,
         NO_FILED_ERRORS,
-        createFieldErrorsTransformer(config)
+        withLocalize(createFieldErrorsTransformer(config), localize)
       );
     },
   };
