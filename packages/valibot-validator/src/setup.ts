@@ -29,6 +29,7 @@ function createFormValidatorFactory<
     const schema = toJsonSchema(valibotSchema, {
       overrideSchema: schemaRegistry.register,
       typeMode: "input",
+      errorMode: "ignore",
     }) as Schema;
     return {
       schemaRegistry,

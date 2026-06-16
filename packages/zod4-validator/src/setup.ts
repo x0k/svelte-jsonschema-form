@@ -37,6 +37,7 @@ export function createFormValidatorFactory<
       target: "draft-7",
       override: schemaRegistry.register,
       io: "input",
+      unrepresentable: "any",
     }) as Schema;
     return {
       schemaRegistry,
