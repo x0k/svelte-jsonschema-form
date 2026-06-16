@@ -9,6 +9,9 @@ update:
 # Force commit
 # git commit -n
 
+push:
+  git push -u origin
+
 fpush:
   git push --no-verify
 
