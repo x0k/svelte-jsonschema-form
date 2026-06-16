@@ -64,6 +64,9 @@ export function createCombinationContext<T>({
   combinationKey,
   translate,
 }: CombinationContextOptions<T>): CombinationContext {
+  // Strips the combination key (oneOf/anyOf) from the schema, leaving only
+  // the "rest" properties. Returns null for non-object schemas since they
+  // cannot have sibling properties alongside oneOf/anyOf.
   const restConfig = $derived.by(() => {
     const cfg = config();
     const { [combinationKey]: _, ...restSchema } = cfg.schema;
@@ -84,9 +87,20 @@ export function createCombinationContext<T>({
     )
   );
 
+  // Write-counting mechanism to distinguish internal normalization writes
+  // from external value changes. When this module normalizes a value (e.g.
+  // switching options and sanitizing data), it increments the counter before
+  // calling setValue. The pendingSelectedOption derivation then consumes that
+  // write and preserves the current selection instead of recomputing it via
+  // getClosestMatchingOption.
   let internalValueWriteVersion = 0;
   let consumedInternalValueWriteVersion = 0;
 
+  // Wraps setValue with write-counting. Increments the counter for both true
+  // value changes and object writes with the same reference. Same-reference
+  // objects are counted because normalization may return the same object after
+  // in-place sanitization — it still represents an intentional internal write
+  // that should prevent pendingSelectedOption from recomputing.
   function setNormalizedValue(nextValue: FormValue) {
     const currentValue = untrack(value);
     if (
@@ -98,6 +112,11 @@ export function createCombinationContext<T>({
     setValue(nextValue);
   }
 
+  // Returns true once per internal write. The pendingSelectedOption derivation
+  // calls this to detect whether its current computation was triggered by an
+  // internal normalization write (in which case it returns the existing
+  // normalized selection) or by an external change (in which case it runs
+  // getClosestMatchingOption to find the best matching option).
   function consumePendingInternalValueWrite() {
     if (consumedInternalValueWriteVersion === internalValueWriteVersion) {
       return false;
@@ -106,7 +125,16 @@ export function createCombinationContext<T>({
     return true;
   }
 
+  // The "normalized" selection is the authoritative option index. It is set
+  // after the $effect below applies the value change, so it stays in sync
+  // with the actual form value.
   let normalizedSelectedOption = $state.raw<number>();
+
+  // The "pending" selection is a derived value that reacts to changes. On
+  // external value edits it runs getClosestMatchingOption to find which
+  // option best matches the new data. On internal writes (from this module)
+  // it short-circuits and returns the existing normalized selection to avoid
+  // unnecessary recomputation.
   let pendingSelectedOption = $derived.by(() => {
     const options = retrievedOptions;
     const selectedFallback = untrack(() => normalizedSelectedOption ?? 0);
@@ -121,6 +149,9 @@ export function createCombinationContext<T>({
       getDiscriminatorFieldFromSchema(config().schema)
     );
   });
+
+  // The public selection falls back to pending when no explicit selection
+  // has been normalized yet (first render).
   const selectedOption = $derived(
     normalizedSelectedOption ?? pendingSelectedOption
   );
@@ -131,6 +162,13 @@ export function createCombinationContext<T>({
     }
   }
 
+  // Syncs pending → normalized. When the pending selection differs from the
+  // normalized one, this effect computes a new form value for the target
+  // option (sanitizing existing data to fit the new schema), then commits it
+  // via setNormalizedValue. The order matters: normalizedSelectedOption is
+  // set before setNormalizedValue so the write-counting in setNormalizedValue
+  // correctly attributes the subsequent value change to this internal
+  // normalization, not to an external edit.
   $effect(() => {
     const pendingSelected = pendingSelectedOption;
     const normalizedSelected = normalizedSelectedOption;
@@ -239,6 +277,9 @@ export function createCombinationContext<T>({
     };
   });
 
+  // Builds the field config for the currently selected option. Merges the
+  // parent schema's required array into the option schema so that sibling
+  // required properties from the combination schema are enforced.
   const fieldConfig: Config | null = $derived.by(() => {
     const selected = selectedOption;
     if (selected < 0) {
