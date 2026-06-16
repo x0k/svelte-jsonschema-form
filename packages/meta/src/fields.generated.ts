@@ -1,9 +1,4 @@
 export const FIELDS = {
-  "any-of": {
-    "name": "anyOfField",
-    "filename": "any-of",
-    "wrapperOf": "combination"
-  },
   "boolean": {
     "name": "booleanField",
     "filename": "boolean",
@@ -23,11 +18,6 @@ export const FIELDS = {
     "name": "numberField",
     "filename": "number-field",
     "wrapperOf": "field-base"
-  },
-  "one-of": {
-    "name": "oneOfField",
-    "filename": "one-of",
-    "wrapperOf": "combination"
   },
   "string": {
     "name": "stringField",
@@ -53,6 +43,16 @@ export const FIELDS = {
     "name": "tupleField",
     "filename": "tuple-field",
     "wrapperOf": "array-base"
+  },
+  "any-of": {
+    "name": "anyOfField",
+    "filename": "any-of",
+    "wrapperOf": "combination"
+  },
+  "one-of": {
+    "name": "oneOfField",
+    "filename": "one-of",
+    "wrapperOf": "combination"
   },
   "object-field": {
     "name": "objectField",

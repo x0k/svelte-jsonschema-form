@@ -82,6 +82,10 @@
       "types": "./dist/fields/array/*.d.ts",
       "svelte": "./dist/fields/array/*"
     },
+    "./fields/combination/*": {
+      "types": "./dist/fields/combination/*.d.ts",
+      "svelte": "./dist/fields/combination/*"
+    },
     "./fields/object/*": {
       "types": "./dist/fields/object/*.d.ts",
       "svelte": "./dist/fields/object/*"
