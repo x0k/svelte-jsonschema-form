@@ -1,7 +1,7 @@
 import pageSvelte from "examples/basic-starter/src/routes/markdown-description/+page.svelte?raw";
 import descriptionSvelte from "examples/basic-starter/src/routes/markdown-description/description.svelte?raw";
-import { extraPackage } from "meta";
 
+import { extraPackage } from "../../package.js";
 import { defineExample, defineMeta, Tag, ExampleCategory } from "../model.js";
 
 export const meta = defineMeta({
