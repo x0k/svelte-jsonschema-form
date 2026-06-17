@@ -6,7 +6,7 @@
     type FormState,
   } from "@sjsf/form";
 
-  import { createPost } from "./data.remote.js";
+  import { createPost } from "../data.remote.js";
 
   const { form }: { form: FormState<any> } = $props();
 

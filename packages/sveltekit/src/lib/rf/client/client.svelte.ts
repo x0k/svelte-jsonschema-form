@@ -15,7 +15,7 @@ import { isRecordEmpty } from "@sjsf/form/lib/object";
 import type { DeepPartial } from "@sjsf/form/lib/types";
 import type { StandardSchemaV1 } from "@standard-schema/spec";
 import type { RemoteForm, RemoteFormInput } from "@sveltejs/kit";
-import { getAbortSignal, onMount, tick, untrack, hydratable } from "svelte";
+import { getAbortSignal, onMount, untrack, hydratable } from "svelte";
 
 import { chunks } from "$lib/internal.js";
 import { FORM_DATA_FILE_PREFIX, JSON_CHUNKS_KEY } from "$lib/model.js";
@@ -81,34 +81,17 @@ export interface ConnectOptions extends SvelteKitDataParserOptions {
   jsonChunkSize?: number;
 }
 
-type RemoteFieldsContainer = Pick<RemoteForm<any, any>, "fields">;
-
 const HYDRATABLE_KEY_PREFIX = "__sjsf_sveltekit_h__";
 
-export async function connect<
-  T,
-  F extends RemoteForm<any, any> | ReturnType<RemoteForm<any, any>["enhance"]>,
->(
-  remoteForm: F,
-  options: FormOptions<T> &
-    ConnectOptions &
-    (F extends RemoteFieldsContainer ? {} : RemoteFieldsContainer)
+export async function connect<T>(
+  remoteForm: RemoteForm<any, any>,
+  options: FormOptions<T> & ConnectOptions
 ): Promise<FormOptions<T>> {
   let formElement: HTMLFormElement;
   let originalFormElement: HTMLFormElement;
-  const enhancedRemoteForm =
-    "enhance" in remoteForm
-      ? remoteForm.enhance(async ({ submit }) => {
-          await submit();
-          if (fields.allIssues()) {
-            return;
-          }
-          await tick();
-          originalFormElement.reset();
-        })
-      : remoteForm;
+
   onMount(() => {
-    const symbols = Object.getOwnPropertySymbols(enhancedRemoteForm);
+    const symbols = Object.getOwnPropertySymbols(remoteForm);
     if (symbols.length !== 1) {
       throw new Error(
         `The remote form specification was changed; only one custom symbol was expected, but got "${symbols.length}"`
@@ -116,7 +99,10 @@ export async function connect<
     }
     formElement = document.createElement("form");
     formElement.style.display = "none";
-    const attach = enhancedRemoteForm[symbols[0]];
+    formElement.onreset = () => {
+      originalFormElement.reset();
+    };
+    const attach = remoteForm[symbols[0]];
     return attach(formElement);
   });
 
@@ -124,17 +110,7 @@ export async function connect<
 
   const idPrefix = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX);
 
-  const fields = $derived.by(() => {
-    if ("fields" in remoteForm) {
-      return remoteForm.fields;
-    } else if ("fields" in options) {
-      return options.fields;
-    } else {
-      throw new Error(
-        "`remoteForm.fields` is undefined, if you use `enhance`, pass `fields` through the form options"
-      );
-    }
-  });
+  const fields = $derived(remoteForm.fields);
 
   async function getInitialValue() {
     const formValue = fields.value();

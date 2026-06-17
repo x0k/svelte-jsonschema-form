@@ -5,9 +5,9 @@
   import { createFormIdBuilder } from "$lib/rf/index.js";
 
   import * as defaults from "../../form-defaults.js";
-  import { createPost, getInitialData } from "./data.remote.js";
+  import { createPost, loadInitialData } from "../data.remote.js";
 
-  const initialData = await getInitialData();
+  const initialData = await loadInitialData();
 
   const form = createForm(
     await connect(createPost, {

@@ -5,22 +5,22 @@
   import { createFormIdBuilder } from "$lib/rf/index.js";
 
   import * as defaults from "../../form-defaults.js";
-  import { createPost, getInitialData } from "./data.remote.js";
+  import { createPost, loadInitialData } from "../data.remote.js";
 
-  const initialData = await getInitialData();
+  const initialData = await loadInitialData();
 
-  const enhanced = createPost.enhance(async ({ submit }) => {
+  // https://github.com/sveltejs/kit/pull/15657#issue-4208847537
+  createPost.enhance(async ({ submit }) => {
     if (await submit()) {
       form.reset();
     }
   });
 
   const form = createForm(
-    await connect(enhanced, {
+    await connect(createPost, {
       ...defaults,
       ...initialData,
       idBuilder: createFormIdBuilder,
-      fields: createPost.fields,
     })
   );
 </script>

@@ -36,7 +36,10 @@ export function defineFormTests({
     });
 
     test("preserves field values after validation error", async ({ page }) => {
-      await form.getByLabel("First name").fill("John");
+      await expect(form.getByLabel("First name")).toHaveValue("Jane");
+      await expect(form.getByLabel("Last name")).toHaveValue("Doe");
+
+      await form.getByLabel("First name").fill("J");
 
       await form.locator('button[type="submit"]').click();
 
@@ -46,27 +49,36 @@ export function defineFormTests({
 
       const currentForm = native ? page.locator("form").first() : form;
       await expect(
-        currentForm.getByText("must have required property").first()
+        currentForm.getByText("must NOT have fewer than 2 characters")
       ).toBeVisible();
-      await expect(currentForm.getByLabel("First name")).toHaveValue("John");
+      await expect(currentForm.getByLabel("First name")).toHaveValue("J");
+      await expect(currentForm.getByLabel("Last name")).toHaveValue("Doe");
     });
 
-    test("sends correct values to the server", async ({ page }) => {
-      await form.getByLabel("First name").fill("Alice");
-      await form.getByLabel("Last name").fill("Smith");
+    test("sends correct values to the server and resets to initial data", async ({
+      page,
+    }) => {
+      const currentForm = native ? page.locator("form").first() : form;
 
-      await form.locator('button[type="submit"]').click();
+      await expect(currentForm.getByLabel("First name")).toHaveValue("Jane");
+      await expect(currentForm.getByLabel("Last name")).toHaveValue("Doe");
+
+      await currentForm.getByLabel("First name").fill("Alice");
+      await currentForm.getByLabel("Last name").fill("Smith");
+
+      await currentForm.locator('button[type="submit"]').click();
 
       if (native) {
         await page.waitForURL(`**${route}**`);
-      } else {
-        await expect(form.getByLabel("First name")).toHaveValue("");
-        await expect(form.getByLabel("Last name")).toHaveValue("");
       }
 
       const response = await page.request.get("/tests");
       const data = await response.json();
       expect(data).toEqual({ firstName: "Alice", lastName: "Smith" });
+
+      const afterForm = native ? page.locator("form").first() : form;
+      await expect(afterForm.getByLabel("First name")).toHaveValue("Jane");
+      await expect(afterForm.getByLabel("Last name")).toHaveValue("Doe");
     });
   });
 }

@@ -5,10 +5,10 @@
   import { createFormIdBuilder } from "$lib/rf/index.js";
 
   import * as defaults from "../../form-defaults.js";
-  import { createPost, getInitialData } from "./data.remote.js";
+  import { createPost, loadInitialData } from "../data.remote.js";
   import Form from "./form.svelte";
 
-  const initialData = await getInitialData();
+  const initialData = await loadInitialData();
 
   const connected = await connect(createPost, {
     ...defaults,
