@@ -1,5 +1,11 @@
 <script lang="ts">
-  import { BasicForm, createForm, type UiSchemaRoot } from "@sjsf/form";
+  import {
+    BasicForm,
+    createForm,
+    getValueSnapshot,
+    type UiSchemaRoot,
+  } from "@sjsf/form";
+  import { resolver } from "@sjsf/form/resolvers/compat";
 
   import * as defaults from "$lib/sjsf/defaults";
   import {
@@ -26,6 +32,7 @@
 
   const form = createForm({
     ...defaults,
+    resolver,
     schema,
     uiSchema,
     onSubmit: console.log,
@@ -34,3 +41,5 @@
 </script>
 
 <BasicForm {form} novalidate />
+
+<pre>{JSON.stringify(getValueSnapshot(form), null, 2)}</pre>
