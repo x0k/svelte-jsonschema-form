@@ -1,11 +1,12 @@
 ---
 title: UI Schema
 sidebar:
-  order: 4
+  order: 40
 ---
 
 import { Code, LinkCard } from "@astrojs/starlight/components";
 
+import { withBase } from "@/lib/base-path";
 import uiSchemaExampleCode from "./_ui-schema-example.ts?raw";
 import extraUiOptionsCode from "./_extra-ui-options.ts?raw";
 
@@ -289,3 +290,16 @@ export type ResolvableUiOptions = {
   if their properties are compatible.
 - Using UI options of one component in another (even if they are compatible)
   is forbidden, e.g. `text` and `textarea` widgets must use separate options.
+
+## Related guides
+
+<LinkCard
+  title="UI customization"
+  description="Customize widgets, actions, and UI options"
+  href={withBase("/guides/ui-customization/")}
+/>
+<LinkCard
+  title="Labels and icons"
+  description="Add translation and icon support to your forms"
+  href={withBase("/guides/labels-and-icons/")}
+/>

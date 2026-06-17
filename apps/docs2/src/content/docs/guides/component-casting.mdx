@@ -1,8 +1,12 @@
 ---
 title: Component casting
 sidebar:
-  order: 140
+  order: 150
 ---
+
+import { LinkCard } from "@astrojs/starlight/components";
+
+import { withBase } from "@/lib/base-path";
 
 SJSF provides a rich set of interchangeable components,
 but some of them cannot be used directly out of the box
@@ -118,3 +122,9 @@ const arrayTagsField = cast(TagsField, {
 Instead of proving component compatibility at the type level,
 you can extend the resolver so that components are applied automatically
 to suitable JSON Schemas.
+
+<LinkCard
+  title="Fields resolution"
+  description="Learn how to copy and modify the basic resolver to handle custom components"
+  href={withBase("/guides/fields-resolution/")}
+/>

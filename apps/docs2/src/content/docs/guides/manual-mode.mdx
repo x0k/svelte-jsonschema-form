@@ -1,11 +1,12 @@
 ---
 title: Manual mode
 sidebar:
-  order: 100
+  order: 120
 ---
 
-import { Code } from "@astrojs/starlight/components";
+import { Code, LinkCard } from "@astrojs/starlight/components";
 
+import { withBase } from "@/lib/base-path";
 import Demo from "@/components/demo.svelte";
 
 Manual mode gives you complete control over form layout and field placement.
@@ -62,3 +63,9 @@ if it is calculated incorrectly - specify it manually.
 
 Unlike other form components (`Form`, `SubmitButton`, etc.),
 `Field` does not require setting the form context.
+
+<LinkCard
+  title="UI Schema"
+  description="For most cases, UI Schema customization is a simpler alternative to manual mode"
+  href={withBase("/form/ui-schema/")}
+/>

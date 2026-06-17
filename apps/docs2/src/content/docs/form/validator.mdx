@@ -1,6 +1,12 @@
 ---
 title: Validator
+sidebar:
+  order: 60
 ---
+
+import { LinkCard } from "@astrojs/starlight/components";
+
+import { withBase } from "@/lib/base-path";
 
 Validator - a collection of functions used by the form to validate data:
 
@@ -117,3 +123,16 @@ export interface AsyncFileListValidator {
   ) => Promise<Update<string[]>>;
 }
 ```
+
+## Related guides
+
+<LinkCard
+  title="Validation"
+  description="Learn about form validation strategies"
+  href={withBase("/guides/validation/")}
+/>
+<LinkCard
+  title="File handling"
+  description="Learn about file validation and handling"
+  href={withBase("/guides/file-handling/")}
+/>

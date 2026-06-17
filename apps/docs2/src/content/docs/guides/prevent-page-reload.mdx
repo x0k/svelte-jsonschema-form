@@ -1,11 +1,12 @@
 ---
 title: Prevent page reload
 sidebar:
-  order: 110
+  order: 130
 ---
 
-import { Code } from "@astrojs/starlight/components";
+import { Code, LinkCard } from "@astrojs/starlight/components";
 
+import { withBase } from "@/lib/base-path";
 import Demo from "@/components/demo.svelte";
 
 You can prevent data loss due to accidentally closing or reloading a tab by using

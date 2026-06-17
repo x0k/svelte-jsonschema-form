@@ -1,7 +1,7 @@
 ---
 title: File handling
 sidebar:
-  order: 80
+  order: 100
 ---
 
 import {
@@ -12,7 +12,9 @@ import {
   TabItem,
 } from "@astrojs/starlight/components";
 
+import { withBase } from "@/lib/base-path";
 import Demo from "@/components/demo.svelte";
+import OpenInSandbox from "@/components/open-in-sandbox.svelte";
 
 SJSF provides several ways of working with files.
 
@@ -80,7 +82,7 @@ This avoids the drawbacks of Data URLs and native `File` objects:
 - Files can be validated or processed on the server before submission
 - Files can be provided from the server
 
-See the [advanced example](/examples/advanced/) `preupload-file` for more information.
+See the <OpenInSandbox client:visible example="Pre-upload File" /> example for a working implementation.
 
 ## Validation
 
@@ -115,3 +117,9 @@ from the `@sjsf/form/validators/file-size` module, which checks maximum file siz
 Once this module is included, you can set the `maxFileSizeBytes` UI option on file fields.
 
 <Demo name="file-size-validator" client:visible />
+
+<LinkCard
+  title="Validator API Reference"
+  description="Learn more about implementing custom validators"
+  href={withBase("/form/validator/")}
+/>

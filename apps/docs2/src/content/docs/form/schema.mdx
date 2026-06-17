@@ -1,8 +1,10 @@
 ---
 title: Schema
 sidebar:
-  order: 3
+  order: 30
 ---
+
+import OpenInSandbox from "@/components/open-in-sandbox.svelte";
 
 The form supports only [JSON Schema Draft-07](https://json-schema.org/draft-07#draft-07) and
 [discriminator.propertyName](https://swagger.io/docs/specification/v3_0/data-models/inheritance-and-polymorphism/#discriminator) keyword.
@@ -10,8 +12,7 @@ The form supports only [JSON Schema Draft-07](https://json-schema.org/draft-07#d
 Using converters (`@sjsf/form/converters/draft-2020-12`) and
 adapters (`@sjsf/zod4-validator/classic`, `@sjsf/zod4-validator/mini`, `@sjsf/valibot-validator`),
 it is possible to generate forms from other formats and sources.
-
-See the [advanced example](/examples/advanced/) `draft-2020-12` for more information.
+See the <OpenInSandbox client:visible example="Draft 2020-12" /> example for details.
 
 ## String formats
 

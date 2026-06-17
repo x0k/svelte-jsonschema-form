@@ -1,11 +1,12 @@
 ---
 title: Custom components
 sidebar:
-  order: 130
+  order: 140
 ---
 
-import { Tabs, TabItem, Code } from "@astrojs/starlight/components";
+import { Tabs, TabItem, Code, LinkCard } from "@astrojs/starlight/components";
 
+import { withBase } from "@/lib/base-path";
 import attributesTypesCode from "pkgs/form/dist/form/state/attributes.d.ts?raw";
 
 You can create your own form components. Any built-in component can be replaced
@@ -412,3 +413,9 @@ type IsFoundationalField<T extends FoundationalComponentType> =
       : false
     : false;
 ```
+
+<LinkCard
+  title="Theme"
+  description="Learn about the component types and theme structure"
+  href={withBase("/form/theme/")}
+/>

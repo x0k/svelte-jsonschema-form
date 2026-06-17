@@ -1,9 +1,31 @@
 ---
 title: Translation
+sidebar:
+  order: 80
 ---
 
-import { Code } from "@astrojs/starlight/components";
+import { Code, LinkCard } from "@astrojs/starlight/components";
 
+import { withBase } from "@/lib/base-path";
 import code from "pkgs/form/src/form/translation?raw";
 
+The `Labels` interface defines the text strings used throughout the form.
+
 <Code code={code} lang="typescript" />
+
+To use a translation, import a locale file and pass it to the form:
+
+```ts
+import translation from "@sjsf/form/translations/en";
+
+const form = createForm({
+  translation,
+  // ... other options
+});
+```
+
+<LinkCard
+  title="Labels and icons"
+  description="Learn how to use translations and add icons to your forms"
+  href={withBase("/guides/labels-and-icons/")}
+/>

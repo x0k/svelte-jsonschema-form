@@ -3,11 +3,11 @@
 
   import { createPersistentRef } from "@/lib/svelte.svelte";
 
-  const persistentThemeRef = createPersistentRef<PlaygroundTheme>(
+  export const persistentThemeRef = createPersistentRef<PlaygroundTheme>(
     "demo-theme",
     "basic"
   );
-  const persistentIconsRef = createPersistentRef<PlaygroundIconSet>(
+  export const persistentIconsRef = createPersistentRef<PlaygroundIconSet>(
     "demo-icons",
     "none"
   );
