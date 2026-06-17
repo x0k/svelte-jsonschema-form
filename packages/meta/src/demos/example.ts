@@ -81,6 +81,7 @@ export async function createExampleFiles({
       precompiled: false,
     },
     sveltekit: content.sveltekit,
+    fields: content.fields,
     widgets: content.widgets,
     extraFiles: content.files,
     extraDependencies: content.dependencies,

@@ -1,90 +1,131 @@
 import type { Schema } from "@sjsf/form";
 
 export const schema = {
-  title: "Multi page form",
+  title: "Employee Onboarding",
   type: "array",
   items: [
     {
-      title: "Page 1",
+      title: "Personal Information",
       type: "array",
       items: [
         {
-          title: "Page 1.1",
+          title: "Basic Details",
           type: "object",
           properties: {
-            label: {
+            firstName: {
               type: "string",
-              title: "Label",
+              title: "First Name",
+            },
+            lastName: {
+              type: "string",
+              title: "Last Name",
+            },
+            dateOfBirth: {
+              type: "string",
+              title: "Date of Birth",
+              format: "date",
             },
           },
-          required: ["label"],
+          required: ["firstName", "lastName"],
         },
         {
-          title: "Page 1.2",
+          title: "Contact",
           type: "object",
           properties: {
-            otherField: {
+            email: {
               type: "string",
-              title: "Other Label",
-              minLength: 3,
+              title: "Email",
+              format: "email",
+            },
+            phone: {
+              type: "string",
+              title: "Phone Number",
             },
           },
-          required: ["otherField"],
+          required: ["email"],
         },
         {
-          title: "Page 1.3",
+          title: "Address",
           type: "object",
           properties: {
-            number: {
-              type: "number",
-              title: "Some number",
-              minimum: 5,
-              maximum: 150,
+            street: {
+              type: "string",
+              title: "Street",
+            },
+            city: {
+              type: "string",
+              title: "City",
+            },
+            state: {
+              type: "string",
+              title: "State",
+            },
+            zipCode: {
+              type: "string",
+              title: "ZIP Code",
+              pattern: "^[0-9]{5}(-[0-9]{4})?$",
             },
           },
-          required: ["number"],
         },
       ],
     },
     {
-      title: "Page 2",
+      title: "Employment",
       type: "array",
       items: [
         {
-          title: "Page 2.1",
+          title: "Position",
           type: "object",
           properties: {
-            label: {
+            department: {
               type: "string",
-              title: "Label",
+              title: "Department",
+              enum: ["Engineering", "Marketing", "Sales", "HR", "Finance"],
+            },
+            jobTitle: {
+              type: "string",
+              title: "Job Title",
+            },
+            employmentType: {
+              type: "string",
+              title: "Employment Type",
+              enum: ["Full-time", "Part-time", "Contract"],
             },
           },
-          required: ["label"],
+          required: ["jobTitle"],
         },
         {
-          title: "Page 2.2",
+          title: "Compensation",
           type: "object",
           properties: {
-            otherField: {
-              type: "string",
-              title: "Other Label",
-              minLength: 3,
-            },
-          },
-          required: ["otherField"],
-        },
-        {
-          title: "Page 2.3",
-          type: "object",
-          properties: {
-            number: {
+            salary: {
               type: "number",
-              title: "Some number",
-              minimum: 5,
-              maximum: 150,
+              title: "Annual Salary",
+              minimum: 30000,
+              maximum: 200000,
+            },
+            startDate: {
+              type: "string",
+              title: "Start Date",
+              format: "date",
             },
           },
-          required: ["number"],
+          required: ["salary"],
+        },
+        {
+          title: "Benefits",
+          type: "object",
+          properties: {
+            healthInsurance: {
+              type: "boolean",
+              title: "Health Insurance",
+            },
+            retirementPlan: {
+              type: "string",
+              title: "Retirement Plan",
+              enum: ["401k", "IRA", "None"],
+            },
+          },
         },
       ],
     },

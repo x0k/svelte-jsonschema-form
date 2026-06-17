@@ -31,4 +31,5 @@ export default defineExample({
     "src/routes/+page.svelte": pageSvelte,
     "src/routes/top-tabs.svelte": topTabsSvelte,
   },
+  fields: ["enum"],
 });
