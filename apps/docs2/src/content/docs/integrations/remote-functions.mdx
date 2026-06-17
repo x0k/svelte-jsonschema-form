@@ -30,12 +30,12 @@ Remote functions integration is experimental
 ## Installation
 
 <Npm pkg={getPackageDependencies(sveltekitPackage)} />
-{/* // Cause `hydratable` API
-// https://github.com/sveltejs/svelte/pull/17154
-svelte: "^5.44.0"
-sveltekit: 2.61.0
-*/}
-<Deps pkg={sveltekitPackage} />
+{/* Svelte `hydratable` API: https://github.com/sveltejs/svelte/pull/17154 */}
+{/* SvelteKit programmatic submission API: https://github.com/sveltejs/kit/pull/15657 */}
+<Deps
+  pkg={sveltekitPackage}
+  versionOverrides={{ "@sveltejs/kit": "2.61.0", svelte: "5.44.0" }}
+/>
 
 ## Example
 
@@ -77,4 +77,4 @@ For correct operation, you must use ID Builder from the `@sjsf/sveltekit/rf`.
 
 - The `form.value` type on the client side is `unknown` because the `RemoteForm`
   type does not include information about the validator's output type.
-  For now, you need to specify the type manually: `createForm<FormValue>(...)`.
+  Specify the type via `connect` generic: `createForm(await connect<FormValue>(...))`.

@@ -4,17 +4,20 @@ import type { Package } from 'meta'
 interface Props {
   pkg: Package
   hideOptional?: boolean;
+  versionOverrides?: Record<string, string>;
 }
 
 const {
   pkg,
   hideOptional = false,
+  versionOverrides = {},
 } = Astro.props;
 
 const required: string[] = []
 const optional: string[] = []
 for (const d of pkg.dependencies) {
-  (d.optional ? optional : required).push(`${d.name}@${d.version}`)
+  const version = versionOverrides[d.name] ?? d.version;
+  (d.optional ? optional : required).push(`${d.name}@${version}`)
 }
 ---
 
