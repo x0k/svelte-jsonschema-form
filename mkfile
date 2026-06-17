@@ -10,7 +10,7 @@ update:
 # git commit -n
 
 push:
-  git push -u origin
+  git push -u origin HEAD
 
 fpush:
   git push --no-verify

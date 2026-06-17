@@ -1,28 +1,27 @@
 import type { Page } from "@sveltejs/kit";
 import { render } from "svelte/server";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 import type { InitialFormData, ValidatedFormData } from "$lib/model.js";
 
-async function renderForm(page: Partial<Page>) {
-  vi.doMock("$app/state", () => ({
-    page,
-  }));
-  const m = await import("./native-form.svelte");
-  // Prevent async SSR
-  const form = render(m.default);
-  return form;
+// https://github.com/sveltejs/svelte/issues/16832
+const mockGetPage = vi.fn();
+vi.mock("$app/state", () => ({
+  get page() {
+    return mockGetPage();
+  },
+}));
+
+const m = await import("./native-form.svelte");
+
+function renderForm(page: Partial<Page>) {
+  mockGetPage.mockReturnValue(page);
+  return render(m.default);
 }
 
-// TODO: Enable this test as SSR will be fixes
-// https://github.com/sveltejs/svelte/issues/16832
-describe.skip("native form SSR", () => {
-  beforeEach(() => {
-    vi.resetModules();
-    vi.clearAllMocks();
-  });
+describe("native form SSR", () => {
   it("should render initial values", async () => {
-    const { body } = await renderForm({
+    const { body } = renderForm({
       data: {
         form: {
           schema: { title: "Schema title", type: "string" },
@@ -41,7 +40,7 @@ describe.skip("native form SSR", () => {
     expect(body).toContain("error message");
   });
   it("should render action result", async () => {
-    const { body } = await renderForm({
+    const { body } = renderForm({
       data: {
         form: {
           schema: { title: "Schema title", type: "string" },
@@ -74,7 +73,7 @@ describe.skip("native form SSR", () => {
     expect(body).toContain("validation error message");
   });
   it("should display the initial values if the validation was successful", async () => {
-    const { body } = await renderForm({
+    const { body } = renderForm({
       data: {
         form: {
           schema: { title: "Schema title", type: "string" },

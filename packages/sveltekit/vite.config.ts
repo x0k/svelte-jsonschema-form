@@ -1,6 +1,6 @@
 import { resolve } from "node:path";
 
-import adapter from "@sveltejs/adapter-static";
+import adapter from "@sveltejs/adapter-node";
 import { sveltekit } from "@sveltejs/kit/vite";
 import { playwright } from "@vitest/browser-playwright";
 import { defineConfig } from "vitest/config";
@@ -8,7 +8,7 @@ import { defineConfig } from "vitest/config";
 export default defineConfig({
   plugins: [
     sveltekit({
-      adapter: adapter({ strict: false }),
+      adapter: adapter(),
       compilerOptions: {
         experimental: { async: true },
       },
@@ -60,6 +60,9 @@ export default defineConfig({
             "src/**/*.svelte.{test,spec}.{js,ts}",
             "src/**/*.ssr.{test,spec}.{js,ts}",
           ],
+          alias: {
+            "$app/server": resolve("./mocks/app-server.ts"),
+          },
         },
       },
     ],

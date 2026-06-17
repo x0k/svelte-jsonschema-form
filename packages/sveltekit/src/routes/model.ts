@@ -22,10 +22,12 @@ export const schema: Schema = {
     firstName: {
       type: "string",
       title: "First name",
+      minLength: 2,
     },
     lastName: {
       type: "string",
       title: "Last name",
+      minLength: 2,
     },
     file: {
       type: "string",
