@@ -1,7 +1,7 @@
 ---
 title: Fields
 sidebar:
-  order: 11
+  order: 110
 ---
 
 import { Code } from "@astrojs/starlight/components";
@@ -11,8 +11,13 @@ import stateCode from "pkgs/form/src/form/field-state?raw";
 
 ## Validation mode
 
+The `FieldsValidationMode` type controls when field validation is triggered.
+By default, fields are validated on `input` and `change` events.
+
 <Code code={validationCode} lang="typescript" />
 
 ## Field state
+
+Each field maintains its own state, including validation errors and touched status.
 
 <Code code={stateCode} lang="typescript" />

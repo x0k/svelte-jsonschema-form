@@ -1,7 +1,7 @@
 ---
 title: Validation
 sidebar:
-  order: 1
+  order: 10
 ---
 
 import {
@@ -124,7 +124,7 @@ The `omitExtraData` function does not perform data validation!
 :::
 
 ```ts
-import { createForm, type FormValueValidator } from "@sjsf/form";
+import { createForm, type FormValueValidator, validate } from "@sjsf/form";
 import { omitExtraData } from "@sjsf/form/omit-extra-data";
 
 import * as defaults from "@/lib/form/defaults";
@@ -164,3 +164,21 @@ const { value } = validate(form);
 
 You can also use the `withOmitExtraData(defaults.validator)` function from the
 `@sjsf/form/validators/omit-extra-data` module to achieve the same effect.
+
+```ts
+import { createForm } from "@sjsf/form";
+import { withOmitExtraData } from "@sjsf/form/validators/omit-extra-data";
+
+import * as defaults from "@/lib/form/defaults";
+
+import { schema, type FormValue } from "./schema";
+
+const form = createForm<FormValue>({
+  ...defaults,
+  validator: withOmitExtraData(defaults.validator),
+  schema,
+  onSubmit({ value }) {
+    console.log("transformed", value);
+  },
+});
+```

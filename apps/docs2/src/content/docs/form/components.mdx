@@ -1,25 +1,27 @@
 ---
 title: Components
 sidebar:
-  order: 5
+  order: 50
 ---
 
 import { Code } from "@astrojs/starlight/components";
 
 import basicFromCode from "pkgs/form/src/form/basic-form.svelte?raw";
 
-The `@sjsf/form` package exports several basic ui components for creating forms:
+The `@sjsf/form` package exports several UI components for creating forms:
 
-- `Content`
-- `SubmitButton`
-- `Form`
-- `BasicForm`
-- `SimpleForm`
-- `ErrorMessage`
-- `Datalist`
-- `Text`
-- `Field`
-- `HiddenIdPrefixInput`
+| Component             | Description                                             |
+| --------------------- | ------------------------------------------------------- |
+| `Form`                | Renders the theme's form component                      |
+| `BasicForm`           | Form layout with content and submit button              |
+| `SimpleForm`          | Creates form state from options and renders a BasicForm |
+| `Field`               | Renders a single form field by path                     |
+| `Content`             | Renders the full form content from schema               |
+| `SubmitButton`        | Submit button (disables when form is disabled)          |
+| `ErrorMessage`        | Displays an error message                               |
+| `Datalist`            | HTML datalist component                                 |
+| `Text`                | Renders a translated label or its icon                  |
+| `HiddenIdPrefixInput` | Hidden input for ID prefix                              |
 
 Components are linked through the context of the form, example:
 

@@ -1,8 +1,10 @@
 ---
 title: Anti-patterns
 sidebar:
-  order: 150
+  order: 160
 ---
+
+import OpenInSandbox from "@/components/open-in-sandbox.svelte";
 
 A list of approaches that should be avoided unless absolutely necessary.
 
@@ -63,4 +65,4 @@ Instead of splitting a single entity into multiple forms to achieve the desired 
 manually managing state, you should create custom top-level components (e.g., `TupleField`)
 that implement the required UI.
 
-See the `multi-step` and `tabbed-layout` examples on the [Advanced Examples](/examples/advanced/) page.
+See the <OpenInSandbox client:visible example="Multi-step" /> and <OpenInSandbox client:visible example="Tabbed Layout" /> examples.

@@ -1,11 +1,12 @@
 ---
 title: Fields resolution
 sidebar:
-  order: 3
+  order: 20
 ---
 
-import { Code } from "@astrojs/starlight/components";
+import { Code, LinkCard } from "@astrojs/starlight/components";
 
+import { withBase } from "@/lib/base-path";
 import basicResolverCode from "pkgs/form/src/form/resolvers/basic?raw";
 import compatResolverCode from "pkgs/form/src/form/resolvers/compat?raw";
 
@@ -65,3 +66,12 @@ As an example (or temporary solution) you can use the `compat` resolver
 (`@sjsf/form/resolvers/compat`) that reproduces resolution logic from v1:
 
 <Code code={compatResolverCode} lang="typescript" />
+
+Some interchangeable components (`tagsField`, `filesField`, etc.) cannot be assigned directly
+in the UI schema due to type incompatibilities.
+
+<LinkCard
+  title="Component casting"
+  description="Handle interchangeable components that cannot be used directly"
+  href={withBase("/guides/component-casting/")}
+/>

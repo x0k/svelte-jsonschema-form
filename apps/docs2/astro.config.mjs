@@ -88,14 +88,14 @@ export default defineConfig({
       // },
       social: [
         {
-          icon: "github",
-          href: "https://github.com/x0k/svelte-jsonschema-form",
-          label: "GitHub",
-        },
-        {
           icon: "discord",
           href: "https://discord.gg/hVxFWk7dRn",
           label: "Discord",
+        },
+        {
+          icon: "github",
+          href: "https://github.com/x0k/svelte-jsonschema-form",
+          label: "GitHub",
         },
       ],
       head: [
@@ -114,7 +114,7 @@ export default defineConfig({
           items: [{ autogenerate: { directory: "guides" } }],
         },
         {
-          label: "Form",
+          label: "Form API",
           collapsed: true,
           items: [
             {

@@ -1,7 +1,7 @@
 ---
 title: Dynamic forms
 sidebar:
-  order: 57
+  order: 70
 ---
 
 import {
@@ -13,6 +13,7 @@ import {
 } from "@astrojs/starlight/components";
 
 import Demo from "@/components/demo.svelte";
+import OpenInSandbox from "@/components/open-in-sandbox.svelte";
 
 Using the following JSON Schema keywords, you can build forms that change in
 response to user input.
@@ -41,5 +42,7 @@ The `if/then/else` keywords allow you to define conditional schema branches base
 
 ## patternProperties
 
-If your schema uses the `patternProperties` keyword, see the [advanced example](/examples/advanced/)
-`pattern-properties-validator` to improve the user experience.
+The `patternProperties` keyword allows you to define schemas for object properties
+whose names match a regular expression. This is useful for forms with dynamic keys,
+such as key-value pairs or metadata fields.
+See the <OpenInSandbox client:visible example="Pattern Properties Validator" /> example for a working demo.

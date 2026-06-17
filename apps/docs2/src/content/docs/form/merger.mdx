@@ -1,6 +1,15 @@
 ---
 title: Merger
+sidebar:
+  order: 70
 ---
+
+import { LinkCard } from "@astrojs/starlight/components";
+
+import { withBase } from "@/lib/base-path";
+
+The merger is responsible for combining JSON Schema definitions, merging `allOf` compositions,
+and applying schema defaults to form data.
 
 ```typescript
 export interface Merger {
@@ -21,3 +30,12 @@ export interface FormMerger extends Merger {
   ): SchemaValue | undefined;
 }
 ```
+
+Use `createFormMerger` from `@sjsf/form/mergers/modern` for most projects.
+The legacy merger is available for v2 compatibility.
+
+<LinkCard
+  title="Merger Setup"
+  description="Learn how to configure the merger for your project"
+  href={withBase("/guides/merger/")}
+/>

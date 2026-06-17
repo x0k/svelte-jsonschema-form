@@ -8,6 +8,8 @@ sidebar:
 
 import { externalValidatorPackage } from "meta";
 
+import OpenInSandbox from "@/components/open-in-sandbox.svelte";
+
 import { getPackageDependencies } from "@/shared";
 import Npm from "@/components/npm.astro";
 import Deps from "@/components/peer-dependencies.astro";
@@ -45,8 +47,7 @@ Use `@sjsf/zod4-validator/mini` to work with `zod/mini`
 ## Unrepresentable types
 
 Types like `z.date()`, `z.bigint()`, `z.map()`, and `z.set()` have no JSON Schema equivalent. The adapter converts them to `{}` (unknown), rendering the default unknown field. You can wire custom field components via [UI schema](/form/ui-schema/#ui-components) to handle these types.
-
-See the **Zod Unserializable** example on the [advanced examples](/examples/advanced/) page.
+See the <OpenInSandbox client:visible example="Zod Unserializable" /> example for a working demo.
 
 ## Async validation
 
