@@ -92,6 +92,8 @@ export function makeEventHandlers<T>(
   const path = $derived(config().path);
   const eventHandlers = $derived(config().eventHandlers ?? {});
 
+  let unmounted = false;
+
   onMount(() => {
     // WARN: Read of derived during teardown will lead to
     // re-evaluation of all form state.
@@ -100,6 +102,7 @@ export function makeEventHandlers<T>(
     // https://github.com/sveltejs/svelte/pull/16278
     const initialPath = path;
     return () => {
+      unmounted = true;
       ctx[FORM_FIELDS_STATE_MAP].delete(initialPath);
       ctx[FORM_ERRORS].updateFieldErrors(initialPath, NO_ERRORS);
     };
@@ -128,20 +131,24 @@ export function makeEventHandlers<T>(
 
   return {
     onfocus() {
+      if (unmounted) return;
       setFieldState(ctx, path, FIELD_FOCUSED);
       eventHandlers.onfocus?.();
     },
     oninput() {
+      if (unmounted) return;
       setFieldState(ctx, path, FIELD_INPUTTED);
       onInput?.();
       eventHandlers.oninput?.();
     },
     onchange() {
+      if (unmounted) return;
       setFieldState(ctx, path, FIELD_CHANGED);
       onChange?.();
       eventHandlers.onchange?.();
     },
     onblur() {
+      if (unmounted) return;
       setFieldState(ctx, path, FIELD_BLURRED);
       onBlur?.();
       eventHandlers.onblur?.();
