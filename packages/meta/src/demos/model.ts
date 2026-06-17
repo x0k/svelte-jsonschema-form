@@ -5,6 +5,7 @@ import {
   type CodegenSvelteKitIntegration,
 } from "../codegen/index.ts";
 import type { CodeTransformer, ComposerOptions } from "../composer/index.ts";
+import type { ExtraFieldFileName } from "../fields.ts";
 import type { AbstractPackage } from "../package.ts";
 import type { ToTheme } from "../themes.ts";
 import type { Generated } from "../types.ts";
@@ -61,6 +62,7 @@ export interface ExampleContent {
   dependencies: AbstractPackage[];
   codeTransformers: CodeTransformer[];
   sveltekit: CodegenSvelteKitIntegration;
+  fields: ExtraFieldFileName[];
   widgets: ExtraWidgetFileNames[ToTheme<CodegenThemeOrSubTheme>][];
   validator: DemosValidator["name"];
 }
@@ -77,6 +79,7 @@ export function defineExample(c: Partial<ExampleContent>): ExampleContent {
     codeTransformers: [],
     sveltekit: "no",
     widgets: [],
+    fields: [],
     ...c,
   };
 }
