@@ -36,6 +36,20 @@ export const pkg = themePackage("svar");
 
 <Deps pkg={pkg} />
 
+### Configuration
+
+Import and wrap your app with the `Willow` component:
+
+```svelte
+<script lang="ts">
+  import { Willow } from "@svar-ui/svelte-core";
+</script>
+
+<Willow>
+  <!-- your app -->
+</Willow>
+```
+
 ## Extra widgets
 
 You can connect extra widgets using the following `include` imports:
@@ -69,3 +83,7 @@ or used in the field as the default widget.
 ## Supported validation events
 
 <div set:html={validationEvents(specs)}></div>
+
+## UI options
+
+<Code code={uiOptionsCode} lang="typescript" />

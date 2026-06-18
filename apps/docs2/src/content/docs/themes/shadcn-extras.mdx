@@ -1,7 +1,7 @@
 ---
 title: shadcn-svelte-extras
 type: package
-packageCodeName: "shadcn"
+packageCodeName: "shadcn-extras"
 sidebar:
   order: 120
   badge:
@@ -56,7 +56,7 @@ export const pkg = themePackage("shadcn-extras");
 
 ### Configuration
 
-Register the theme source path by adding the following line to the `app.css` file:.
+Register the theme source path by adding the following line to the `app.css` file:
 
 ```css
 @source "../node_modules/@sjsf-lab/shadcn-extras-theme/dist";
@@ -64,7 +64,7 @@ Register the theme source path by adding the following line to the `app.css` fil
 
 ## Components
 
-Since `shadcn-svelte` and `shadcn-svelte-extras` is not a component libraries
+Since `shadcn-svelte` and `shadcn-svelte-extras` are not component libraries
 you should provide your components via `setThemeContext`.
 
 :::note
@@ -110,3 +110,11 @@ or used in the field as the default widget.
     <Code lang="json" code={JSON.stringify(schemas.uiSchema, replacer, 2)} />
   </TabItem>
 </Tabs>
+
+## Supported validation events
+
+<div set:html={validationEvents(specs)}></div>
+
+## UI options
+
+<Code code={uiOptionsCode} lang="typescript" />

@@ -37,6 +37,14 @@ export const pkg = themePackage("beercss");
 
 <Deps pkg={pkg} />
 
+### Configuration
+
+Import the Beer CSS stylesheet:
+
+```ts
+import "beercss/dist/cdn/beer.css";
+```
+
 ## Extra widgets
 
 You can connect extra widgets using the following `include` imports:
@@ -70,3 +78,7 @@ or used in the field as the default widget.
 ## Supported validation events
 
 <div set:html={validationEvents(specs)}></div>
+
+## UI options
+
+<Code code={uiOptionsCode} lang="typescript" />

@@ -9,7 +9,7 @@ These are the options passed to `createForm()`.
 ```typescript
 export type InitialErrors =
   | ValidationError[]
-  // WARN: This should't be an array
+  // WARN: This shouldn't be an array
   | Iterable<readonly [FieldPath, string[]]>;
 
 const UI_OPTIONS_REGISTRY_KEY = "uiOptionsRegistry";
