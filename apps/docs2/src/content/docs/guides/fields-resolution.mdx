@@ -10,7 +10,7 @@ import { withBase } from "@/lib/base-path";
 import basicResolverCode from "pkgs/form/src/form/resolvers/basic?raw";
 import compatResolverCode from "pkgs/form/src/form/resolvers/compat?raw";
 
-To determine which field to use to display your JSON schema,
+To determine which field to use to display your JSON Schema,
 the form uses `resolver` function.
 
 Let's take a look at the `basic` resolver implementation
@@ -22,7 +22,7 @@ As you can see `resolver` just selects the field according to the schema type.
 
 This approach is simple and straightforward, but in some cases it can lead to
 additional work.
-Suppose you have the following scheme:
+Suppose you have the following schema:
 
 ```ts
 const schema: Schema = {
@@ -30,11 +30,11 @@ const schema: Schema = {
 };
 ```
 
-For this scheme, the `basic` resolver will select `stringField`,
+For this schema, the `basic` resolver will select `stringField`,
 and `stringField` will display the `textWidget` widget by default
 although you probably wanted to see select or radio widgets.
 
-To achieve this you need to specify in the UI scheme the field:
+To achieve this you need to specify the field in the UI schema:
 
 ```ts
 const uiSchema: UiSchema = {
@@ -48,7 +48,7 @@ const uiSchema: UiSchema = {
 ```
 
 Or you can modify `resolver` so that `enumField` is always used
-when a scheme with `enum` is detected:
+when a schema with `enum` is detected:
 
 ```ts
 return ({ schema }) => {

@@ -5,6 +5,7 @@ import type {
   ClassValue,
   HTMLAttributes,
   HTMLButtonAttributes,
+  HTMLFieldsetAttributes,
   HTMLFormAttributes,
   HTMLInputAttributes,
   HTMLLabelAttributes,
@@ -62,6 +63,19 @@ export interface UiOptions {
   layouts?: {
     [L in LayoutType]?: HTMLAttributes<HTMLDivElement>;
   };
+
+  /**
+   * Overrides the attributes of any fields layout (fieldset) component.
+   */
+  daisyui5FieldsLayout?: HTMLFieldsetAttributes;
+  /**
+   * Overrides the attributes of a fields layout with a specific type.
+   * This override takes precedence over the `daisyui5FieldsLayout` override, but does not replace it.
+   */
+  daisyui5FieldsLayouts?: {
+    [L in LayoutType]?: HTMLFieldsetAttributes;
+  };
+
   submitButton?: HTMLButtonAttributes;
   /**
    * Overrides the attributes of the field title
@@ -77,8 +91,6 @@ export interface UiOptions {
   text?: HTMLInputAttributes;
 
   checkboxes?: HTMLInputAttributes;
-
-  datePicker?: HTMLInputAttributes;
 
   file?: HTMLInputAttributes;
 
