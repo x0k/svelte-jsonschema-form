@@ -4,6 +4,7 @@ import type {
   HTMLButtonAttributes,
   HTMLFormAttributes,
   HTMLInputAttributes,
+  HTMLOutputAttributes,
   HTMLLabelAttributes,
   HTMLSelectAttributes,
   HTMLTextareaAttributes,
@@ -66,5 +67,32 @@ export interface UiOptions {
 
   range?: HTMLInputAttributes;
 
+  switch?: HTMLInputAttributes;
+
   textarea?: HTMLTextareaAttributes;
+
+  /**
+   * Overrides the attributes of the switch widget container.
+   */
+  beercssSwitch?: HTMLInputAttributes;
+  /**
+   * Overrides the attributes of the description component.
+   */
+  beercssDescription?: HTMLAttributes<HTMLElement>;
+  /**
+   * Overrides the attributes of the help component.
+   */
+  beercssHelp?: HTMLOutputAttributes;
+  /**
+   * Overrides the attributes of the layout nav wrapper.
+   */
+  beercssNav?: HTMLAttributes<HTMLElement>;
+  /**
+   * Overrides the attributes of the checkboxes container.
+   */
+  beercssCheckboxesContainer?: HTMLAttributes<HTMLElement>;
+  /**
+   * Overrides the attributes of the radio container.
+   */
+  beercssRadioContainer?: HTMLAttributes<HTMLElement>;
 }

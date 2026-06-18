@@ -1,4 +1,6 @@
+import type { DateValue } from "@internationalized/date";
 import type { ButtonType, LayoutType } from "@sjsf/form/fields/components";
+import type { Range } from "@sjsf/form/lib/range";
 import type {
   ButtonGroupProps,
   FieldProps,
@@ -10,10 +12,12 @@ import type {
   LabelRootProps,
   RadioGroupItemProps,
   RadioGroupRootProps,
+  RatingGroupRootProps,
   SelectMultipleRootProps,
   SelectSingleRootProps,
   SelectTriggerProps,
   SliderSingleRootProps,
+  SliderMultipleRootProps,
   SwitchRootProps,
   WithElementRef,
   WithoutChildrenOrChild,
@@ -23,6 +27,7 @@ import type {
   Without,
   ToggleGroupRootPropsWithoutHTML,
   ToggleGroupItemProps,
+  RangeCalendarRootProps,
 } from "bits-ui";
 import type { ComponentProps } from "svelte";
 import type {
@@ -116,6 +121,10 @@ export interface UiOptions {
   shadcn4DatePickerTrigger?: ComponentProps<typeof Button>;
   shadcn4DateFormatter?: (date: Date) => string;
 
+  shadcn4DateRangePicker?: RangeCalendarRootProps;
+  shadcn4DateRangePickerPlaceholder?: string;
+  shadcn4DateRangeFormatter?: (range: Range<DateValue | undefined>) => string;
+
   file?: HTMLInputAttributes;
 
   shadcn4MultiSelect?: Omit<SelectMultipleRootProps, "type">;
@@ -129,7 +138,41 @@ export interface UiOptions {
 
   shadcn4Range?: Omit<WithoutChildrenOrChild<SliderSingleRootProps>, "type">;
 
+  shadcn4RangeSlider?: Omit<
+    WithoutChildrenOrChild<SliderMultipleRootProps>,
+    "type"
+  >;
+
   shadcn4Switch?: WithoutChildrenOrChild<SwitchRootProps>;
 
   textarea?: HTMLTextareaAttributes;
+
+  /**
+   * Overrides the props of the file drop zone widget.
+   */
+  shadcnExtrasFileDropZone?: Record<string, unknown>;
+  /**
+   * Overrides the props of the IPv4 address input widget.
+   */
+  shadcnExtrasIPv4AddressInput?: Record<string, unknown>;
+  /**
+   * Overrides the props of the NLP date input widget.
+   */
+  shadcnExtrasNLPDateInput?: Record<string, unknown>;
+  /**
+   * Overrides the props of the password input widget.
+   */
+  shadcnExtrasPassword?: Record<string, unknown>;
+  /**
+   * Overrides the props of the phone input widget.
+   */
+  shadcnExtrasPhoneInput?: Record<string, unknown>;
+  /**
+   * Overrides the props of the star rating widget.
+   */
+  shadcnExtrasStarRating?: RatingGroupRootProps;
+  /**
+   * Overrides the props of the tags input widget.
+   */
+  shadcnExtrasTagsInput?: Record<string, unknown>;
 }
