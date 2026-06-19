@@ -92,14 +92,16 @@ interface ValidatorFactoryOptions {
   merger: () => Merger;
 }
 
-export type CreatableValidator = Creatable<
+type CreatableValidator = Creatable<
   FormValidator<unknown>,
   ValidatorFactoryOptions
 >;
 
-type ValidatorFactory = (schema: object) => Promise<{
+type ValidatorFactory = (options: ValidatorFactoryOptions) => (
+  schema: object
+) => Promise<{
   schema: Schema;
-  validator: CreatableValidator;
+  validator: FormValidator<unknown>;
 }>;
 
 function isDraft2020(schema: Schema) {
@@ -108,11 +110,14 @@ function isDraft2020(schema: Schema) {
   );
 }
 
-function toFactory(validator: CreatableValidator) {
-  return async (schema: object) => ({
-    schema,
-    validator,
-  });
+function toFactory(creatableValidator: CreatableValidator) {
+  return (options: ValidatorFactoryOptions) => {
+    const validator = create(creatableValidator, options);
+    return async (schema: object) => ({
+      schema,
+      validator,
+    });
+  };
 }
 
 const NORMAL: Record<
@@ -128,47 +133,62 @@ const NORMAL: Record<
   cfworker: toFactory(cfworker),
   schemasafe: toFactory(schemasafe),
   ata: toFactory(ata),
-  zod4: async (schema) => zodAdapt(schema as Parameters<typeof zodAdapt>[0]),
-  valibot: async (schema) =>
-    valibotAdapt(schema as Parameters<typeof valibotAdapt>[0]),
+  zod4: (options) => async (zodSchmea) => {
+    const { schema, validator } = zodAdapt(
+      zodSchmea as Parameters<typeof zodAdapt>[0]
+    );
+    return { schema, validator: create(validator, options) };
+  },
+  valibot: (options) => async (valibotSchema) => {
+    const { schema, validator } = valibotAdapt(
+      valibotSchema as Parameters<typeof valibotAdapt>[0]
+    );
+    return { schema, validator: create(validator, options) };
+  },
 };
 
-function to2020Factory(validator: CreatableValidator): ValidatorFactory {
-  return async (originalSchema) => {
-    if (!isDraft2020(originalSchema)) {
-      return {
-        schema: originalSchema,
-        validator,
-      };
-    }
-    const schema = convert(originalSchema as Parameters<typeof convert>[0]);
+function replaceSchema(
+  validator: FormValidator<unknown>,
+  originalSchema: Schema
+): FormValidator<unknown> {
+  if (isAsyncFormValueValidator(validator)) {
     return {
-      schema,
-      validator: (options) => {
-        const v = create(validator, options);
-        if (isAsyncFormValueValidator(v)) {
-          return {
-            ...v,
-            validateFormValueAsync(signal, _rootSchema, formValue) {
-              return v.validateFormValueAsync(
-                signal,
-                originalSchema,
-                formValue
-              );
-            },
-          } satisfies AsyncFormValueValidator<unknown>;
-        }
-        if (isFormValueValidator(v)) {
-          return {
-            ...v,
-            validateFormValue(_rootSchema, formValue) {
-              return v.validateFormValue(originalSchema, formValue);
-            },
-          } satisfies FormValueValidator<unknown>;
-        }
-        return v;
+      ...validator,
+      validateFormValueAsync(signal, _rootSchema, formValue) {
+        return validator.validateFormValueAsync(
+          signal,
+          originalSchema,
+          formValue
+        );
       },
-    };
+    } satisfies AsyncFormValueValidator<unknown>;
+  }
+  if (isFormValueValidator(validator)) {
+    return {
+      ...validator,
+      validateFormValue(_rootSchema, formValue) {
+        return validator.validateFormValue(originalSchema, formValue);
+      },
+    } satisfies FormValueValidator<unknown>;
+  }
+  return validator;
+}
+
+function to2020Factory(
+  creatableValidator: CreatableValidator
+): ValidatorFactory {
+  return (options) => {
+    const validator = create(creatableValidator, options);
+    return async (originalSchema) =>
+      isDraft2020(originalSchema)
+        ? {
+            schema: convert(originalSchema as Parameters<typeof convert>[0]),
+            validator: replaceSchema(validator, originalSchema),
+          }
+        : {
+            schema: originalSchema,
+            validator,
+          };
   };
 }
 
@@ -217,15 +237,16 @@ const ON_EVERYTHING =
 function toPrecompiledFactory(
   compile: (schemas: Schema[]) => Promise<CreatableValidator>,
   createIdFactory = defaultCreateIdFactory
-) {
-  return async (schema: object) => {
+): ValidatorFactory {
+  return (options) => async (schema) => {
     const patch = insertSubSchemaIds(schema, {
       createId: createIdFactory(),
       fieldsValidationMode: ON_EVERYTHING,
     });
+    const factory = await compile(fragmentSchema(patch));
     return {
       schema: patch.schema,
-      validator: await compile(fragmentSchema(patch)),
+      validator: create(factory, options),
     };
   };
 }

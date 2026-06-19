@@ -1,7 +1,6 @@
 <script lang="ts">
   import AlignLeft from "@lucide/svelte/icons/align-left";
   import {
-    create,
     isAsyncFormValueValidator,
     type FormValue,
     type Schema,
@@ -25,7 +24,6 @@
     normalizeJsonValue,
     normalizeValidator,
     playgroundValidator,
-    type CreatableValidator,
     type PlaygroundValidator,
     type ValidatorState,
   } from "meta/playground";
@@ -87,17 +85,19 @@
   });
   const merger = createSchemaMerger({ jsonSchemaMerger });
 
-  const validatorFactory = $derived(playgroundValidator(data.validator));
+  const validatorFactory = $derived(
+    playgroundValidator(data.validator)({
+      merger: () => merger,
+    })
+  );
 
   function createOnFailure(label: string) {
     return (err: FailedTask<unknown>) => {
       if (err.reason === "error") {
         console.error(label, err.error);
-        data.output = [{ path: [], message: `${label}: ${err.error}` }];
+        data.output = `"${label}: ${err.error}"`;
       } else if (err.reason === "timeout") {
-        data.output = [
-          { path: [], message: `${label}: Validation failed due timeout` },
-        ];
+        data.output = `"${label}: Validation failed due timeout"`;
       }
     };
   }
@@ -120,20 +120,14 @@
   >({
     deps: () => [validatorFactory, schemaQuery.value],
     execute: debounce((_, f, s) => f(s)),
-    onFailure: createOnFailure("Validator factory"),
+    onFailure: createOnFailure("Validator creation"),
   });
 
-  const { schema: jsonSchema, validator: creatableValidator } = $derived(
+  const { schema: jsonSchema, validator } = $derived(
     validatorQuery.result ?? {
       schema: {} satisfies Schema as Schema,
-      validator: noop satisfies CreatableValidator as CreatableValidator,
+      validator: noop(),
     }
-  );
-
-  const validator = $derived(
-    create(creatableValidator, {
-      merger: () => merger,
-    })
   );
 
   const validateTask = createTask<
