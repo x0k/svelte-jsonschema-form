@@ -1,12 +1,32 @@
 <script lang="ts">
   import AlignLeft from "@lucide/svelte/icons/align-left";
+  import {
+    create,
+    isAsyncFormValueValidator,
+    type FormValue,
+    type Schema,
+    type SchemaValue,
+    type ValidationResult,
+  } from "@sjsf/form";
   import { createDeduplicator, createIntersector } from "@sjsf/form/lib/array";
   import { createComparator, createMerger } from "@sjsf/form/lib/json-schema";
-  import { createMerger as createSchemaMerger } from "@sjsf/form/mergers/modern";
+  import { isObject, isRecord } from "@sjsf/form/lib/object";
   import {
+    abortPrevious,
+    createQuery,
+    createTask,
+    debounce,
+    type FailedTask,
+  } from "@sjsf/form/lib/task.svelte";
+  import { createMerger as createSchemaMerger } from "@sjsf/form/mergers/modern";
+  import { singleOption } from "@sjsf/form/options.svelte";
+  import { createFormValidator as noop } from "@sjsf/form/validators/noop";
+  import {
+    normalizeJsonValue,
+    normalizeValidator,
     playgroundValidator,
-    playgroundValidators,
-    playgroundValidatorTitle,
+    type CreatableValidator,
+    type PlaygroundValidator,
     type ValidatorState,
   } from "meta/playground";
   import { Panel, setTilerContext, type Tiles } from "svelte-tiler";
@@ -17,7 +37,7 @@
 
   import * as ButtonGroup from "$lib/components/ui/button-group/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
-  import Editor from "$lib/editor.svelte";
+  import Editor from "$lib/editor2.svelte";
   import { gripHeader } from "$lib/grip-header.svelte";
   import Select from "$lib/select.svelte";
   import { debouncedEffect } from "$lib/svelte.svelte.js";
@@ -30,6 +50,11 @@
     gapPx,
   } from "./lib/tiler.js";
   import { router } from "./router.js";
+  import {
+    createFormatTask,
+    createParseQuery,
+    createValidatorMapper,
+  } from "./shared.svelte";
 
   const DEFAULT_PAGE_STATE: ValidatorState = {
     schema: {
@@ -61,36 +86,95 @@
     deduplicateJsonSchemaDef: createDeduplicator(compareSchemaDefinitions),
   });
   const merger = createSchemaMerger({ jsonSchemaMerger });
+
+  const validatorFactory = $derived(playgroundValidator(data.validator));
+
+  function createOnFailure(label: string) {
+    return (err: FailedTask<unknown>) => {
+      if (err.reason === "error") {
+        console.error(label, err.error);
+        data.output = [{ path: [], message: `${label}: ${err.error}` }];
+      } else if (err.reason === "timeout") {
+        data.output = [
+          { path: [], message: `${label}: Validation failed due timeout` },
+        ];
+      }
+    };
+  }
+
+  const normalizedSchema = $derived(normalizeJsonValue(data.schema));
+  const normalizedInput = $derived(normalizeJsonValue(data.input));
+  const normalizedOutput = $derived(normalizeJsonValue(data.output));
+
+  const schemaQuery = createParseQuery({
+    get input() {
+      return normalizedSchema;
+    },
+    defaultValue: {},
+    guard: isRecord,
+  });
+
+  const validatorQuery = createQuery<
+    [typeof validatorFactory, Schema],
+    Awaited<ReturnType<typeof validatorFactory>>
+  >({
+    deps: () => [validatorFactory, schemaQuery.value],
+    execute: debounce((_, f, s) => f(s)),
+    onFailure: createOnFailure("Validator factory"),
+  });
+
+  const { schema: jsonSchema, validator: creatableValidator } = $derived(
+    validatorQuery.result ?? {
+      schema: {} satisfies Schema as Schema,
+      validator: noop satisfies CreatableValidator as CreatableValidator,
+    }
+  );
+
   const validator = $derived(
-    playgroundValidator(data.validator)({
+    create(creatableValidator, {
       merger: () => merger,
     })
   );
 
-  debouncedEffect(() => {
-    data.schema;
-    data.input;
-    validator;
+  const validateTask = createTask<
+    [typeof validator, Schema, FormValue],
+    ValidationResult<unknown>
+  >({
+    combinator: abortPrevious,
+    execute: debounce(async (signal, validator, schema, value) =>
+      isAsyncFormValueValidator(validator)
+        ? validator.validateFormValueAsync(signal, schema, value)
+        : validator.validateFormValue(schema, value)
+    ),
+    onSuccess(result) {
+      data.output = result.errors ?? [];
+    },
+    onFailure: createOnFailure("Validation"),
+  });
+
+  const inputQuery = createParseQuery({
+    get input() {
+      return normalizedInput;
+    },
+    guard: (_v): _v is FormValue => true,
+    defaultValue: undefined,
+  });
+
+  $effect(() => {
+    validateTask.run(validator, jsonSchema, inputQuery.value);
     return () => {
-      try {
-        data.output =
-          validator.validateFormValue(data.schema, data.input).errors ?? [];
-      } catch (err) {
-        console.error(err);
-        data.output = [{ path: [], message: String(err) }];
-      }
+      validateTask.abort();
     };
   });
 
   const ctx = createTilerContext();
   setTilerContext(ctx);
-  const createLeaf = Leaf.setup(
-    fromRecord({
-      schema,
-      input,
-      output,
-    })
-  );
+  const LEAFS = {
+    schema,
+    input,
+    output,
+  };
+  const createLeaf = Leaf.setup(fromRecord(LEAFS));
   const createTabs = Tabs.setup({
     headers: fromRecord({
       gripHeader,
@@ -143,7 +227,28 @@
     };
   });
 
-  const editors: Record<string, Editor<any>> = $state({});
+  const { mapper, items, labels } = createValidatorMapper();
+  const mappedValidator = singleOption({
+    mapper: () => mapper,
+    value: () => normalizeValidator(data.validator) as SchemaValue,
+    update: (v) => {
+      data.validator = v as PlaygroundValidator;
+    },
+  });
+
+  const outputQuery = createParseQuery({
+    get input() {
+      return normalizedOutput;
+    },
+    guard: isObject,
+    defaultValue: [],
+  });
+
+  function isLeafName(k: string): k is keyof typeof LEAFS {
+    return k in LEAFS;
+  }
+
+  const format = createFormatTask();
 </script>
 
 {#snippet editorActions(tile: Tiles["tabs"])}
@@ -152,9 +257,13 @@
     variant="ghost"
     onclick={() => {
       const child = tile.children[tile.selectedTab];
-      if (child && child.type === "leaf") {
-        editors[child.name]?.format();
+      if (!child || child.type !== "leaf" || !isLeafName(child.name)) {
+        return;
       }
+      const n = child.name;
+      format(normalizeJsonValue(data[n]), (f) => {
+        data[n] = f;
+      });
     }}
   >
     <AlignLeft />
@@ -162,15 +271,42 @@
 {/snippet}
 
 {#snippet schema()}
-  <Editor bind:this={editors["schema"]} bind:value={data.schema} />
+  <Editor
+    bind:value={
+      () => normalizedSchema,
+      (v) => {
+        data.schema = v;
+      }
+    }
+    class="h-full"
+    data-error={schemaQuery.error}
+  />
 {/snippet}
 
 {#snippet input()}
-  <Editor bind:this={editors["input"]} bind:value={data.input} />
+  <Editor
+    bind:value={
+      () => normalizedInput,
+      (v) => {
+        data.input = v;
+      }
+    }
+    class="h-full"
+    data-error={inputQuery.error}
+  />
 {/snippet}
 
 {#snippet output()}
-  <Editor bind:this={editors["output"]} bind:value={data.output} />
+  <Editor
+    bind:value={
+      () => normalizedOutput,
+      (v) => {
+        data.output = v;
+      }
+    }
+    class="h-full"
+    data-error={outputQuery.error}
+  />
 {/snippet}
 
 <Header
@@ -191,9 +327,9 @@
   <ButtonGroup.Root>
     <Select
       label="Validator"
-      bind:value={data.validator}
-      items={playgroundValidators()}
-      itemLabel={playgroundValidatorTitle}
+      bind:value={mappedValidator.current}
+      {items}
+      {labels}
     />
   </ButtonGroup.Root>
 </Header>
