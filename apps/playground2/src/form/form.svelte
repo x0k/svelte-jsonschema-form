@@ -21,17 +21,30 @@
     type FormValue,
     getValueSnapshot,
     setValue,
+    type Schema,
+    type FormMerger,
+    type UiSchema,
+    type SchemaValue,
   } from "@sjsf/form";
-  import { convert } from "@sjsf/form/converters/draft-2020-12";
   import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
   import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
   import { createDeduplicator, createIntersector } from "@sjsf/form/lib/array";
   import { createComparator, createMerger } from "@sjsf/form/lib/json-schema";
+  import { isRecord } from "@sjsf/form/lib/object";
   import { extendByRecord, fromRecord } from "@sjsf/form/lib/resolver";
+  import {
+    createQuery,
+    debounce,
+    type FailedTask,
+  } from "@sjsf/form/lib/task.svelte";
   import { createFormMerger } from "@sjsf/form/mergers/modern";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
-  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
+  import {
+    singleOption,
+    StringEnumValueMapperBuilder,
+  } from "@sjsf/form/options.svelte";
   import { translation } from "@sjsf/form/translations/en";
+  import { createFormValidator as noop } from "@sjsf/form/validators/noop";
   import { Willow, WillowDark } from "@svar-ui/svelte-core";
   import { BitsConfig } from "bits-ui";
   import { themeOrSubThemeTitle } from "meta";
@@ -61,6 +74,9 @@
     playgroundValidatorTitle,
     playgroundValidators,
     type FormState,
+    normalizeJsonValue,
+    normalizeValidator,
+    type PlaygroundValidator,
   } from "meta/playground";
   import {
     SANDBOX_PLATFORMS,
@@ -69,9 +85,9 @@
   } from "meta/sandbox";
   import { toast } from "svelte-sonner";
   import { Panel, setTilerContext, type Tiles } from "svelte-tiler";
+  import "meta/playground/augmentations";
   import { fromRecord as registryFromRecord } from "svelte-tiler/shared/registry";
   import * as Leaf from "svelte-tiler/tiles/leaf.svelte";
-  import "meta/playground/augmentations";
   import * as Split from "svelte-tiler/tiles/split.svelte";
   import * as Tabs from "svelte-tiler/tiles/tabs.svelte";
 
@@ -83,7 +99,7 @@
   import { Label } from "$lib/components/ui/label/index.js";
   import * as Separator from "$lib/components/ui/separator/index.js";
   import { copyTextToClipboard } from "$lib/copy-to-clipboard";
-  import Editor from "$lib/editor.svelte";
+  import Editor from "$lib/editor2.svelte";
   import { gripHeader } from "$lib/grip-header.svelte";
   import Noop from "$lib/noop.svelte";
   import Popup from "$lib/popup.svelte";
@@ -99,6 +115,11 @@
   import Header from "@/header.svelte";
   import { router } from "@/router.js";
   import { setShadcnContext } from "@/shadcn-context.js";
+  import {
+    createFormatTask,
+    createParseQuery,
+    createValidatorMapper,
+  } from "@/shared.svelte";
   import { themeManager } from "@/theme.svelte";
 
   import CopyFormData from "./copy-form-data.svelte";
@@ -200,17 +221,84 @@
     },
   };
 
-  const isDraft2020 = $derived(
-    data.schema.$schema?.startsWith(
-      "https://json-schema.org/draft/2020-12/schema"
-    ) === true
+  const validatorFactory = $derived(
+    playgroundValidator(data.validator)({
+      merger: () => merger,
+    })
   );
 
-  const finalSchema = $derived(
-    isDraft2020
-      ? convert(data.schema as Parameters<typeof convert>[0])
-      : data.schema
+  function createOnFailure(label: string) {
+    return (err: FailedTask<unknown>) => {
+      if (err.reason === "error") {
+        console.error(label, err.error);
+        // data.output = `"${label}: ${err.error}"`;
+      } else if (err.reason === "timeout") {
+        // data.output = `"${label}: Validation failed due timeout"`;
+      }
+    };
+  }
+
+  const normalizedSchema = $derived(normalizeJsonValue(data.schema));
+  const normalizedUiSchema = $derived(normalizeJsonValue(data.uiSchema));
+  const normalizedInitialValue = $derived(
+    normalizeJsonValue(data.initialValue)
   );
+
+  const schemaQuery = createParseQuery({
+    get input() {
+      return normalizedSchema;
+    },
+    defaultValue: {},
+    guard: isRecord,
+  });
+
+  const validatorQuery = createQuery<
+    [typeof validatorFactory, Schema],
+    Awaited<ReturnType<typeof validatorFactory>>
+  >({
+    deps: () => [validatorFactory, schemaQuery.value],
+    execute: debounce((_, f, s) => f(s)),
+    onFailure: createOnFailure("Validator creation"),
+  });
+
+  const { schema: jsonSchema, validator } = $derived(
+    validatorQuery.result ?? {
+      schema: {} satisfies Schema as Schema,
+      validator: noop(),
+    }
+  );
+
+  const merger: FormMerger = $derived(
+    createFormMerger({
+      schema: jsonSchema,
+      validator,
+      jsonSchemaMerger,
+      allOf: data.allOf,
+      arrayMinItems: {
+        populate: data.arrayMinItemsPopulate,
+        mergeExtraDefaults: data.arrayMinItemsMergeExtraDefaults,
+      },
+      constAsDefaults: data.constAsDefault,
+      emptyObjectFields: data.emptyObjectFields,
+      mergeDefaultsIntoFormData: data.mergeDefaultsIntoFormData,
+    })
+  );
+
+  const initialValueQuery = createParseQuery({
+    get input() {
+      return normalizedInitialValue;
+    },
+    guard: (_v): _v is FormValue => true,
+    defaultValue: undefined,
+  });
+
+  const uiSchemaQuery = createParseQuery<UiSchema>({
+    get input() {
+      return normalizedUiSchema;
+    },
+    guard: isRecord,
+    defaultValue: {},
+  });
 
   const focusOnFirstError = createFocusOnFirstError();
   const form = createForm({
@@ -229,40 +317,17 @@
       return theme;
     },
     get schema() {
-      return finalSchema;
+      return jsonSchema;
     },
     get uiSchema() {
-      return data.uiSchema;
+      return uiSchemaQuery.value;
     },
-    validator: (options) => {
-      const v = playgroundValidator(data.validator)<FormValue>(options);
-      return {
-        ...v,
-        validateFormValue(rootSchema, formValue) {
-          return v.validateFormValue(
-            isDraft2020 && isEndsWith2020(data.validator)
-              ? data.schema
-              : rootSchema,
-            data.omitExtraData
-              ? omitExtraData(v, options.merger(), options.schema, formValue)
-              : formValue
-          );
-        },
-      };
+    get validator() {
+      return validator;
     },
-    merger: (options) =>
-      createFormMerger({
-        ...options,
-        jsonSchemaMerger,
-        allOf: data.allOf,
-        arrayMinItems: {
-          populate: data.arrayMinItemsPopulate,
-          mergeExtraDefaults: data.arrayMinItemsMergeExtraDefaults,
-        },
-        constAsDefaults: data.constAsDefault,
-        emptyObjectFields: data.emptyObjectFields,
-        mergeDefaultsIntoFormData: data.mergeDefaultsIntoFormData,
-      }),
+    get merger() {
+      return merger;
+    },
     get disabled() {
       return data.disabled;
     },
@@ -400,7 +465,28 @@
     };
   });
 
-  const editors: Record<string, Editor<any>> = $state({});
+  const { mapper, items, labels } = createValidatorMapper();
+  const mappedValidator = singleOption({
+    mapper: () => mapper,
+    value: () => normalizeValidator(data.validator) as SchemaValue,
+    update: (v) => {
+      data.validator = v as PlaygroundValidator;
+    },
+  });
+
+  function toKeyName(
+    k: string
+  ): "schema" | "uiSchema" | "initialValue" | undefined {
+    switch (k) {
+      case "schema":
+      case "uiSchema":
+        return k;
+      case "preview":
+        return "initialValue";
+    }
+  }
+
+  const format = createFormatTask();
 </script>
 
 <svelte:head>
@@ -440,9 +526,9 @@
     />
     <Select
       label="Validator"
-      bind:value={data.validator}
-      items={playgroundValidators()}
-      itemLabel={playgroundValidatorTitle}
+      bind:value={mappedValidator.current}
+      {items}
+      {labels}
     />
     <Select
       label="Icons"
@@ -615,8 +701,14 @@
       variant="ghost"
       onclick={() => {
         const child = tile.children[tile.selectedTab];
-        if (child && child.type === "leaf") {
-          editors[child.name]?.format();
+        if (!child || child.type !== "leaf") {
+          return;
+        }
+        const n = toKeyName(child.name);
+        if (n) {
+          format(normalizeJsonValue(data[n]), (f) => {
+            data[n] = f;
+          });
         }
       }}
     >
@@ -626,22 +718,41 @@
 {/snippet}
 
 {#snippet schema()}
-  <Editor bind:this={editors["schema"]} bind:value={data.schema} />
+  <Editor
+    bind:value={
+      () => normalizedSchema,
+      (v) => {
+        data.schema = v;
+      }
+    }
+    class="h-full"
+    data-error={schemaQuery.error}
+  />
 {/snippet}
 
 {#snippet uiSchema()}
-  <Editor bind:this={editors["uiSchema"]} bind:value={data.uiSchema} />
+  <Editor
+    bind:value={
+      () => normalizedUiSchema,
+      (v) => {
+        data.uiSchema = v;
+      }
+    }
+    class="h-full"
+    data-error={uiSchemaQuery.error}
+  />
 {/snippet}
 
 {#snippet formData()}
   <Editor
-    bind:this={editors["formData"]}
     bind:value={
-      () => getValueSnapshot(form),
+      () => normalizedInitialValue,
       (v) => {
         data.initialValue = v;
       }
     }
+    class="h-full"
+    data-error={initialValueQuery.error}
   />
 {/snippet}
 
