@@ -6,7 +6,6 @@ import {
 } from "@sjsf/form";
 
 import {
-  type CodegenValidator,
   type ThemeExtension,
   codegemIsJsonSchemaValidator,
 } from "../codegen/index.ts";
@@ -25,9 +24,9 @@ import { WIDGETS } from "../widgets.generated.ts";
 import { isThemeBaseWidget, type ExtraWidgetFileNames } from "../widgets.ts";
 import type { FormState } from "./form-state.ts";
 import {
+  parseJsRecord,
+  normalizeValidator,
   type PlaygroundTheme,
-  isEndsWith2020,
-  without2020Suffix,
 } from "./model.ts";
 import { WIDGET_EXTRA_FIELD } from "./widget-extra-fields.ts";
 
@@ -175,27 +174,27 @@ export interface SandboxFilesOptions {
   customComponents: CustomComponents;
 }
 
-export function createSandboxFiles({
+export async function createSandboxFiles({
   name,
   formState,
   customComponents: { markdownDescription, transparentLayout },
 }: SandboxFilesOptions) {
+  const [schema, uiSchema] = await Promise.all([
+    parseJsRecord(formState.schema),
+    parseJsRecord(formState.uiSchema),
+  ]);
   const {
     usesTransparentLayout,
     usesMarkdownDescription,
     usesStringEnumMapper,
     extraWidgets,
     extraFields,
-  } = detectCustomComponentsAndFields(formState.uiSchema, formState.theme);
+  } = detectCustomComponentsAndFields(uiSchema, formState.theme);
 
   const usesCustomComponents = usesTransparentLayout || usesMarkdownDescription;
   const hasCustomMergerOptions = getChangedMergerOptionsCount(formState) !== 0;
 
-  const validator = {
-    name: without2020Suffix(formState.validator),
-    draft2020: isEndsWith2020(formState.validator),
-    precompiled: false,
-  } as const satisfies CodegenValidator;
+  const validator = normalizeValidator(formState.validator);
   const omitExtraData =
     formState.omitExtraData && codegemIsJsonSchemaValidator(validator);
 
@@ -259,6 +258,8 @@ export function createSandboxFiles({
   const codeTransformers: CodeTransformer[] = [];
   return createComposer({
     name,
+    schema,
+    uiSchema,
     language: "ts",
     validator,
     themeOrSubTheme: formState.theme,
@@ -270,8 +271,6 @@ export function createSandboxFiles({
     extraDependencies,
     codeTransformers,
     modelName: "model",
-    schema: formState.schema,
-    uiSchema: formState.uiSchema,
     initialValue: formState.initialValue,
     fieldsValidationMode: formState.fieldsValidationMode,
     merger: hasCustomMergerOptions

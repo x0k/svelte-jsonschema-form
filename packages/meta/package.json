@@ -86,6 +86,7 @@
   "devDependencies": {
     "@cfworker/json-schema": "catalog:",
     "@exodus/schemasafe": "catalog:",
+    "@hyperjump/json-schema": "catalog:",
     "@picocss/pico": "catalog:",
     "@stackblitz/sdk": "catalog:",
     "@sveltejs/acorn-typescript": "catalog:",
@@ -100,6 +101,7 @@
     "ata-validator": "catalog:",
     "beercss": "catalog:",
     "css-tree": "catalog:",
+    "esbuild-wasm": "catalog:",
     "fflate": "catalog:",
     "json-schema-to-valibot": "catalog:",
     "json-schema-to-zod": "catalog:",
@@ -113,6 +115,7 @@
   "peerDependencies": {
     "@cfworker/json-schema": "catalog:",
     "@exodus/schemasafe": "catalog:",
+    "@hyperjump/json-schema": "catalog:",
     "@picocss/pico": "catalog:",
     "@stackblitz/sdk": "catalog:",
     "@sveltejs/acorn-typescript": "catalog:",
@@ -125,6 +128,7 @@
     "ajv-formats": "catalog:",
     "ata-validator": "catalog:",
     "beercss": "catalog:",
+    "esbuild-wasm": "catalog:",
     "fflate": "catalog:",
     "json-schema-to-ts": "catalog:",
     "json-schema-to-valibot": "catalog:",

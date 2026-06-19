@@ -48,7 +48,8 @@ catalog:
   css-tree: ^3.2.1
   daisyui: ^5.5.23
   devalue: ^5.8.1
-  esbuild: 0.28.0
+  esbuild: ^0.28.1
+  esbuild-wasm: ^0.28.1
   esm-env: ^1.2.2
   fflate: ^0.8.3
   flowbite: ^3.1.2

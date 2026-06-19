@@ -18,7 +18,7 @@ export const EXTRA_PACKAGES = {
   },
   "esbuild": {
     "name": "esbuild",
-    "version": "0.28.0",
+    "version": "0.28.1",
     "dev": true
   },
   "devalue": {

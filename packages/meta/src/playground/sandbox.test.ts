@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 
 import { codegenThemeOrSubTheme } from "../codegen/model.ts";
 import type { FormState } from "./form-state.ts";
-import { playgroundValidators } from "./model.ts";
+import { playgroundValidators2, playgroundValidatorTitle } from "./model.ts";
 import { createSandboxFiles, type CustomComponents } from "./sandbox.ts";
 
 const BASE_FORM_STATE: FormState = {
@@ -18,7 +18,11 @@ const BASE_FORM_STATE: FormState = {
   focusOnFirstError: true,
   omitExtraData: false,
   fieldsValidationMode: 0,
-  validator: "ajv8",
+  validator: {
+    name: "ajv8",
+    precompiled: false,
+    draft2020: false,
+  },
   theme: "basic",
   icons: "none",
   resolver: "compat",
@@ -36,9 +40,9 @@ const CUSTOM_COMPONENTS: CustomComponents = {
 };
 
 function testCase(name: string, overrides: Partial<FormState> = {}) {
-  it(name, () => {
+  it(name, async () => {
     expect(
-      createSandboxFiles({
+      await createSandboxFiles({
         name: "Sandbox",
         formState: { ...BASE_FORM_STATE, ...overrides },
         customComponents: CUSTOM_COMPONENTS,
@@ -59,8 +63,8 @@ describe("sandbox-factory", () => {
   });
 
   describe("validators", () => {
-    for (const validator of playgroundValidators()) {
-      testCase(validator, { validator });
+    for (const validator of playgroundValidators2()) {
+      testCase(playgroundValidatorTitle(validator), { validator });
     }
   });
 

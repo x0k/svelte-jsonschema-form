@@ -16,10 +16,13 @@ import type {
   PlaygroundResolver,
 } from "./model.ts";
 
+// NOTE: We use legacy types in combination with `| string`
+// to maintain compatibility with old URLs.
+// TODO: This should be removed in v4.
 export interface FormState {
-  schema: Schema;
-  uiSchema: UiSchemaRoot;
-  initialValue: FormValue;
+  schema: Schema | string;
+  uiSchema: UiSchemaRoot | string;
+  initialValue: FormValue | string;
   //
   disabled: boolean;
   html5Validation: boolean;
