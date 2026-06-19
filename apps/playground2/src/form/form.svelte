@@ -38,13 +38,13 @@
     type FailedTask,
   } from "@sjsf/form/lib/task.svelte";
   import { createFormMerger } from "@sjsf/form/mergers/modern";
-  import { omitExtraData } from "@sjsf/form/omit-extra-data";
   import {
     singleOption,
     StringEnumValueMapperBuilder,
   } from "@sjsf/form/options.svelte";
   import { translation } from "@sjsf/form/translations/en";
   import { createFormValidator as noop } from "@sjsf/form/validators/noop";
+  import { withOmitExtraData } from "@sjsf/form/validators/omit-extra-data";
   import { Willow, WillowDark } from "@svar-ui/svelte-core";
   import { BitsConfig } from "bits-ui";
   import { themeOrSubThemeTitle } from "meta";
@@ -65,18 +65,16 @@
     PLAYGROUND_SJSF_THEMES,
     PLAYGROUND_SJSF_THEME_STYLES,
     PLAYGROUND_SJSF_GLOBAL_THEME_STYLES,
-    isEndsWith2020,
     playgroundIconSetTitle,
     playgroundIconSets,
     playgroundResolvers,
     playgroundThemes,
     playgroundValidator,
-    playgroundValidatorTitle,
-    playgroundValidators,
     type FormState,
     normalizeJsonValue,
     normalizeValidator,
     type PlaygroundValidator,
+    normalizeFormState,
   } from "meta/playground";
   import {
     SANDBOX_PLATFORMS,
@@ -141,7 +139,7 @@
       required: ["hello"],
     },
     uiSchema: {},
-    initialValue: undefined,
+    initialValue: {},
     disabled: false,
     html5Validation: false,
     focusOnFirstError: true,
@@ -160,19 +158,14 @@
     mergeDefaultsIntoFormData: "useFormDataIfPresent",
   };
 
-  let originalInitialValue = $state.raw<FormValue>();
+  let originalInitialValue = $state.raw("");
   const data = $state(
     (() => {
-      const data = router.load(DEFAULT_PLAYGROUND_STATE);
+      const data = normalizeFormState(router.load(DEFAULT_PLAYGROUND_STATE));
       originalInitialValue = data.initialValue;
       return data;
     })()
   );
-
-  debouncedEffect(() => {
-    const snap = $state.snapshot(data);
-    return () => router.store(snap);
-  });
 
   const theme = $derived(
     extendByRecord(PLAYGROUND_SJSF_THEMES[data.theme], customComponents)
@@ -231,22 +224,16 @@
     return (err: FailedTask<unknown>) => {
       if (err.reason === "error") {
         console.error(label, err.error);
-        // data.output = `"${label}: ${err.error}"`;
+        toast.error(`${label}: ${err.error}`);
       } else if (err.reason === "timeout") {
-        // data.output = `"${label}: Validation failed due timeout"`;
+        toast.error(`${label}: canceled due timeout`);
       }
     };
   }
 
-  const normalizedSchema = $derived(normalizeJsonValue(data.schema));
-  const normalizedUiSchema = $derived(normalizeJsonValue(data.uiSchema));
-  const normalizedInitialValue = $derived(
-    normalizeJsonValue(data.initialValue)
-  );
-
   const schemaQuery = createParseQuery({
     get input() {
-      return normalizedSchema;
+      return data.schema;
     },
     defaultValue: {},
     guard: isRecord,
@@ -286,7 +273,7 @@
 
   const initialValueQuery = createParseQuery({
     get input() {
-      return normalizedInitialValue;
+      return data.initialValue;
     },
     guard: (_v): _v is FormValue => true,
     defaultValue: undefined,
@@ -294,25 +281,25 @@
 
   const uiSchemaQuery = createParseQuery<UiSchema>({
     get input() {
-      return normalizedUiSchema;
+      return data.uiSchema;
     },
     guard: isRecord,
     defaultValue: {},
   });
 
   const focusOnFirstError = createFocusOnFirstError();
+  const formValidator = $derived(
+    data.omitExtraData ? withOmitExtraData(validator) : validator
+  );
   const form = createForm({
+    translation,
     idBuilder: createFormIdBuilder,
     get resolver() {
       return PLAYGROUND_RESOLVERS[data.resolver];
     },
-    value: [
-      () => data.initialValue,
-      (v) => {
-        data.initialValue = v;
-      },
-    ],
-    translation,
+    get initialValue() {
+      return initialValueQuery.value;
+    },
     get theme() {
       return theme;
     },
@@ -323,7 +310,7 @@
       return uiSchemaQuery.value;
     },
     get validator() {
-      return validator;
+      return formValidator;
     },
     get merger() {
       return merger;
@@ -366,6 +353,17 @@
     },
   });
   setFormContext(form);
+
+  // TODO: Transform Files into constructors
+  const valueSnapshotStr = $derived(
+    JSON.stringify(getValueSnapshot(form), null, 2)
+  );
+
+  debouncedEffect(() => {
+    const snap = $state.snapshot(data);
+    valueSnapshotStr;
+    return () => router.store({ ...snap, initialValue: valueSnapshotStr });
+  });
 
   setShadcnContext();
 
@@ -720,7 +718,7 @@
 {#snippet schema()}
   <Editor
     bind:value={
-      () => normalizedSchema,
+      () => data.schema,
       (v) => {
         data.schema = v;
       }
@@ -733,7 +731,7 @@
 {#snippet uiSchema()}
   <Editor
     bind:value={
-      () => normalizedUiSchema,
+      () => data.uiSchema,
       (v) => {
         data.uiSchema = v;
       }
@@ -746,7 +744,7 @@
 {#snippet formData()}
   <Editor
     bind:value={
-      () => normalizedInitialValue,
+      () => valueSnapshotStr,
       (v) => {
         data.initialValue = v;
       }
@@ -769,31 +767,33 @@
         flex-grow: 1;
       }
     </style>
-    <BitsConfig defaultPortalTo={portalEl}>
-      <SvarProvider>
-        <svelte:boundary>
-          <Form
-            attributes={{
-              id: "form",
-              class: themeManager.darkOrLight,
-              style:
-                "flex-grow: 1; display: flex; flex-direction: column; gap: 1rem; padding: 1.5rem;",
-              novalidate: !data.html5Validation || undefined,
-              ["data-theme"]: data.theme.startsWith("skeleton")
-                ? "cerberus"
-                : themeManager.darkOrLight,
-            }}
-          >
-            <Content />
-            <SubmitButton />
-          </Form>
-          {#snippet failed(error, reset)}
-            {@const _ = setTimeout(reset, 1000)}
-            <p style="color: red; padding: 1rem;">{error}</p>
-          {/snippet}
-        </svelte:boundary>
-      </SvarProvider>
-    </BitsConfig>
+    {#if portalEl}
+      <BitsConfig defaultPortalTo={portalEl}>
+        <SvarProvider>
+          <svelte:boundary>
+            <Form
+              attributes={{
+                id: "form",
+                class: themeManager.darkOrLight,
+                style:
+                  "flex-grow: 1; display: flex; flex-direction: column; gap: 1rem; padding: 1.5rem;",
+                novalidate: !data.html5Validation || undefined,
+                ["data-theme"]: data.theme.startsWith("skeleton")
+                  ? "cerberus"
+                  : themeManager.darkOrLight,
+              }}
+            >
+              <Content />
+              <SubmitButton />
+            </Form>
+            {#snippet failed(error, reset)}
+              {@const _ = setTimeout(reset, 1000)}
+              <p style="color: red; padding: 1rem;">{error}</p>
+            {/snippet}
+          </svelte:boundary>
+        </SvarProvider>
+      </BitsConfig>
+    {/if}
     <div bind:this={portalEl}></div>
   </ShadowHost>
 {/snippet}

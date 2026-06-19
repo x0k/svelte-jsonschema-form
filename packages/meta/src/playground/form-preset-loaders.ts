@@ -1,5 +1,5 @@
 import type { CatalogEntry } from "../catalog.ts";
-import type { FormPreset, PresetMeta } from "./form-preset.ts";
+import type { NormalizedFormPreset, PresetMeta } from "./form-preset.ts";
 
 const PRESET_METADATA = import.meta.glob("./form-presets/*.js", {
   import: "meta",
@@ -10,13 +10,13 @@ const PRESET_LOADERS = import.meta.glob("./form-presets/*.js", {
   eager: false,
 });
 
-export type PresetEntry = CatalogEntry<PresetMeta, FormPreset>;
+export type PresetEntry = CatalogEntry<PresetMeta, NormalizedFormPreset>;
 
 export const SORTED_PRESETS: PresetEntry[] = Object.keys(PRESET_LOADERS)
   .map((path) => ({
     meta: PRESET_METADATA[path]! as PresetMeta,
     path,
-    load: PRESET_LOADERS[path]! as () => Promise<FormPreset>,
+    load: PRESET_LOADERS[path]! as () => Promise<NormalizedFormPreset>,
   }))
   .sort((a, b) => a.meta.title.localeCompare(b.meta.title));
 

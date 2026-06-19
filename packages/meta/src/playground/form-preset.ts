@@ -1,10 +1,18 @@
 import type { CatalogMeta } from "../catalog.ts";
-import type { FormState } from "./form-state.ts";
+import type { FormState, NormalizedFormState } from "./form-state.ts";
+import { normalizeJsonValue } from "./model.ts";
 
 type RequiredFormPresetProperties = "schema" | "uiSchema" | "initialValue";
 
-export type FormPreset = Pick<FormState, RequiredFormPresetProperties> &
-  Partial<Omit<FormState, RequiredFormPresetProperties>>;
+type Preset<T extends Record<string, any>> = Pick<
+  T,
+  RequiredFormPresetProperties
+> &
+  Partial<Omit<T, RequiredFormPresetProperties>>;
+
+export type FormPreset = Preset<FormState>;
+
+export type NormalizedFormPreset = Preset<NormalizedFormState>;
 
 // NOTE: Order is important
 export enum FormPresetCategory {
@@ -34,8 +42,15 @@ export function defineMetadata(meta: PresetMeta): PresetMeta {
   return meta;
 }
 
-export function definePreset(preset: FormPreset): FormPreset {
-  return preset;
+export function definePreset(
+  preset: FormPreset | NormalizedFormPreset
+): NormalizedFormPreset {
+  return {
+    ...preset,
+    schema: normalizeJsonValue(preset.schema),
+    uiSchema: normalizeJsonValue(preset.uiSchema),
+    initialValue: normalizeJsonValue(preset.initialValue),
+  };
 }
 
 export function formPresetCategories(): Iterable<FormPresetCategory> {

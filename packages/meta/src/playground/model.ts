@@ -140,3 +140,8 @@ export async function parseJsRecord<S extends object>(str: string | S) {
 export function normalizeJsonValue<S>(str: string | S) {
   return typeof str === "string" ? str : JSON.stringify(str, null, 2);
 }
+
+// TODO: Remove in v4
+export type Normalize<T> = {
+  [K in keyof T]: string extends T[K] ? string : T[K];
+};

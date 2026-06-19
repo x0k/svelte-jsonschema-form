@@ -3,14 +3,14 @@
   import {
     formPresetCategories,
     GROUPED_FORM_PRESETS,
-    type FormPreset,
+    type NormalizedFormPreset,
   } from "meta/playground";
 
   import { Button, buttonVariants } from "$lib/components/ui/button/index.js";
   import * as Dialog from "$lib/components/ui/dialog/index.js";
 
   interface Props {
-    onSelect: (sample: FormPreset) => void;
+    onSelect: (sample: NormalizedFormPreset) => void;
   }
 
   const { onSelect }: Props = $props();
