@@ -113,7 +113,7 @@ export type PlaygroundResolver = Resolver;
 
 export const playgroundResolvers = resolvers;
 
-const EXPORT_DEFAULT = "export default";
+export const EXPORT_DEFAULT = "export default";
 
 export async function parseJsValue(str: string) {
   const code = str.includes(EXPORT_DEFAULT) ? str : `${EXPORT_DEFAULT} ${str}`;

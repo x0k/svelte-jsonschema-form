@@ -7,7 +7,8 @@
     createMerger,
     createShallowAllOfMerge,
   } from "@sjsf/form/lib/json-schema";
-  import type { MergerState } from "meta/playground";
+  import { isObject, isRecord } from "@sjsf/form/lib/object";
+  import { normalizeJsonValue, type MergerState } from "meta/playground";
   import { Panel, setTilerContext, type Tiles } from "svelte-tiler";
   import { fromRecord } from "svelte-tiler/shared/registry";
   import * as Leaf from "svelte-tiler/tiles/leaf.svelte";
@@ -18,7 +19,7 @@
   import { Button } from "$lib/components/ui/button/index.js";
   import { Checkbox } from "$lib/components/ui/checkbox/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
-  import Editor from "$lib/editor.svelte";
+  import Editor from "$lib/editor2.svelte";
   import { gripHeader } from "$lib/grip-header.svelte";
   import Popup from "$lib/popup.svelte";
   import { debouncedEffect } from "$lib/svelte.svelte.js";
@@ -31,6 +32,7 @@
 
   import Header from "./header.svelte";
   import { router } from "./router.js";
+  import { createFormatTask, createParseQuery } from "./shared.svelte";
 
   const DEFAULT_PAGE_STATE: MergerState = {
     schema: {
@@ -57,9 +59,18 @@
     return () => router.store(snap);
   });
 
-  debouncedEffect(() => {
-    data.schema;
-    data.deep;
+  const normalizedSchema = $derived(normalizeJsonValue(data.schema));
+  const normalizedOutput = $derived(normalizeJsonValue(data.output));
+
+  const schemaQuery = createParseQuery({
+    get input() {
+      return normalizedSchema;
+    },
+    defaultValue: {},
+    guard: isRecord,
+  });
+
+  const merge = $derived.by(() => {
     const { compareSchemaDefinitions, compareSchemaValues } =
       createComparator();
     const { mergeArrayOfSchemaDefinitions } = createMerger({
@@ -72,9 +83,15 @@
     });
     const shallowMerge = createShallowAllOfMerge(mergeArrayOfSchemaDefinitions);
     const deepMerge = createDeepAllOfMerge(shallowMerge);
+    return data.deep ? deepMerge : shallowMerge;
+  });
+
+  debouncedEffect(() => {
+    merge;
+    const schema = schemaQuery.value;
     return () => {
       try {
-        data.output = (data.deep ? deepMerge : shallowMerge)(data.schema);
+        data.output = merge(schema);
       } catch (err) {
         data.output = String(err);
         console.error(err);
@@ -84,12 +101,11 @@
 
   const ctx = createTilerContext();
   setTilerContext(ctx);
-  const createLeaf = Leaf.setup(
-    fromRecord({
-      schema,
-      output,
-    })
-  );
+  const LEAFS = {
+    schema,
+    output,
+  };
+  const createLeaf = Leaf.setup(fromRecord(LEAFS));
   const createTabs = Tabs.setup({
     headers: fromRecord({
       gripHeader,
@@ -135,7 +151,19 @@
     };
   });
 
-  const editors: Record<string, Editor<any>> = $state({});
+  const outputQuery = createParseQuery({
+    get input() {
+      return normalizedOutput;
+    },
+    guard: isObject,
+    defaultValue: [],
+  });
+
+  function isLeafName(k: string): k is keyof typeof LEAFS {
+    return k in LEAFS;
+  }
+
+  const format = createFormatTask();
 </script>
 
 {#snippet editorActions(tile: Tiles["tabs"])}
@@ -144,9 +172,13 @@
     variant="ghost"
     onclick={() => {
       const child = tile.children[tile.selectedTab];
-      if (child && child.type === "leaf") {
-        editors[child.name]?.format();
+      if (!child || child.type !== "leaf" || !isLeafName(child.name)) {
+        return;
       }
+      const n = child.name;
+      format(normalizeJsonValue(data[n]), (f) => {
+        data[n] = f;
+      });
     }}
   >
     <AlignLeft />
@@ -154,11 +186,29 @@
 {/snippet}
 
 {#snippet schema()}
-  <Editor bind:this={editors["schema"]} bind:value={data.schema} />
+  <Editor
+    bind:value={
+      () => normalizedSchema,
+      (v) => {
+        data.schema = v;
+      }
+    }
+    class="h-full"
+    data-error={schemaQuery.error}
+  />
 {/snippet}
 
 {#snippet output()}
-  <Editor bind:this={editors["output"]} bind:value={data.output} />
+  <Editor
+    bind:value={
+      () => normalizedOutput,
+      (v) => {
+        data.output = v;
+      }
+    }
+    class="h-full"
+    data-error={outputQuery.error}
+  />
 {/snippet}
 
 <Header

@@ -8,6 +8,7 @@ import {
 } from "@sjsf/form/lib/task.svelte";
 import { IdEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 import {
+  EXPORT_DEFAULT,
   parseJsValue,
   playgroundValidators2,
   playgroundValidatorTitle,
@@ -71,20 +72,16 @@ export function createParseQuery<T>(options: ParseQueryOptions<T>) {
   };
 }
 
-function isJsonValueObject(jsonStr: string) {
-  return jsonStr.startsWith("{");
-}
-
 export function createFormatTask() {
   const task = createTask<[string], string>({
     combinator: abortPrevious,
     execute: debounce(async (_, str) => {
       let trimmed = str.trim();
-      if (isJsonValueObject(trimmed)) {
+      if (!trimmed.includes(EXPORT_DEFAULT)) {
         try {
           return JSON.stringify(JSON.parse(str), null, 2);
         } catch {
-          trimmed = `export default ${str}`;
+          trimmed = `${EXPORT_DEFAULT} ${str}`;
         }
       }
       return await p.format(trimmed, {
