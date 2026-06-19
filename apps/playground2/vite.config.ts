@@ -2,10 +2,14 @@ import { resolve, dirname } from "node:path";
 
 import { svelte } from "@sveltejs/vite-plugin-svelte";
 import tailwindcss from "@tailwindcss/vite";
-import { defineConfig } from "vitest/config";
 // import { visualizer } from "rollup-plugin-visualizer";
+import { extraPackage } from "meta";
+import { defineConfig } from "vitest/config";
 
 const VIRTUAL_MODULE_PREFIX = "virtual-module:";
+
+const zodVersion = extraPackage("zod").version;
+const valibotVersion = extraPackage("valibot").version;
 
 export default defineConfig({
   base: "/svelte-jsonschema-form/playground3/",
@@ -14,6 +18,14 @@ export default defineConfig({
     tailwindcss(),
     svelte(),
   ],
+  define: {
+    "import.meta.env.IMPORT_MAP_ZOD": JSON.stringify(
+      `https://esm.sh/zod@${zodVersion}`
+    ),
+    "import.meta.env.IMPORT_MAP_VALIBOT": JSON.stringify(
+      `https://esm.sh/valibot@${valibotVersion}`
+    ),
+  },
   resolve: {
     alias: {
       "@": resolve(__dirname, "./src"),

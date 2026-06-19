@@ -54,8 +54,11 @@
     }
     [data-tabs] {
       @apply bg-background flex h-full flex-col rounded-md border;
-      &:has([data-error="true"]) {
+      &:has([data-state="error"]) {
         @apply border-destructive;
+      }
+      &:has([data-state="loading"]) {
+        @apply border-muted-foreground/50;
       }
     }
     [data-tabs-bar] {

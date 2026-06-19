@@ -12,6 +12,7 @@ import {
   parseJsValue,
   playgroundValidators2,
   playgroundValidatorTitle,
+  ensureExportDefault,
 } from "meta/playground";
 import * as prettierPluginBabel from "prettier/plugins/babel";
 import * as prettierPluginEstree from "prettier/plugins/estree";
@@ -49,25 +50,31 @@ export function createParseQuery<T>(options: ParseQueryOptions<T>) {
   const query = createQuery<[string], T>({
     deps: () => [options.input],
     execute: debounce(async (_, str) => {
-      const value = await parseJsValue(str);
-      if (options.guard(value)) {
-        return value;
+      const value = await parseJsValue(ensureExportDefault(str));
+      if (!options.guard(value)) {
+        throw new Error("Query guard failed");
       }
-      return Promise.reject();
+      return value;
     }),
     onSuccess() {
       error = false;
     },
-    onFailure() {
+    onFailure(err) {
+      if (err.reason === "aborted") {
+        return;
+      }
       error = true;
+      console.error(err);
     },
   });
   return {
     get value() {
       return query.result ?? options.defaultValue;
     },
-    get error() {
-      return error;
+    get state() {
+      if (query.status === "processing") return "loading";
+      if (error) return "error";
+      return "idle";
     },
   };
 }

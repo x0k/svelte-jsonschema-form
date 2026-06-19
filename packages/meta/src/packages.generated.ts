@@ -115,5 +115,15 @@ export const EXTRA_PACKAGES = {
     "name": "@lucide/svelte",
     "version": "1.17.0",
     "dev": false
+  },
+  "zod": {
+    "name": "zod",
+    "version": "4.4.3",
+    "dev": false
+  },
+  "valibot": {
+    "name": "valibot",
+    "version": "1.4.1",
+    "dev": false
   }
 } as const satisfies Record<string, AbstractPackage>;

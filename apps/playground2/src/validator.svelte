@@ -9,7 +9,7 @@
   } from "@sjsf/form";
   import { createDeduplicator, createIntersector } from "@sjsf/form/lib/array";
   import { createComparator, createMerger } from "@sjsf/form/lib/json-schema";
-  import { isObject, isRecord } from "@sjsf/form/lib/object";
+  import { isObject } from "@sjsf/form/lib/object";
   import {
     abortPrevious,
     createQuery,
@@ -21,10 +21,9 @@
   import { singleOption } from "@sjsf/form/options.svelte";
   import { createFormValidator as noop } from "@sjsf/form/validators/noop";
   import {
-    normalizeJsonValue,
-    normalizeValidator,
+    normalizeValidatorState,
     playgroundValidator,
-    type PlaygroundValidator,
+    type PlaygroundValidator2,
     type ValidatorState,
   } from "meta/playground";
   import { Panel, setTilerContext, type Tiles } from "svelte-tiler";
@@ -39,14 +38,14 @@
   import { gripHeader } from "$lib/grip-header.svelte";
   import Select from "$lib/select.svelte";
   import { debouncedEffect } from "$lib/svelte.svelte.js";
-
-  import Header from "./header.svelte";
   import {
     constraints,
     createApplySplit,
     createTilerContext,
     gapPx,
-  } from "./lib/tiler.js";
+  } from "$lib/tiler.js";
+
+  import Header from "./header.svelte";
   import { router } from "./router.js";
   import {
     createFormatTask,
@@ -66,12 +65,12 @@
       },
       required: ["hello"],
     },
-    input: undefined,
+    input: null,
     output: undefined,
     validator: "ajv8",
   };
 
-  const data = $state(router.load(DEFAULT_PAGE_STATE));
+  const data = $state(normalizeValidatorState(router.load(DEFAULT_PAGE_STATE)));
 
   debouncedEffect(() => {
     const snap = $state.snapshot(data);
@@ -102,16 +101,12 @@
     };
   }
 
-  const normalizedSchema = $derived(normalizeJsonValue(data.schema));
-  const normalizedInput = $derived(normalizeJsonValue(data.input));
-  const normalizedOutput = $derived(normalizeJsonValue(data.output));
-
-  const schemaQuery = createParseQuery({
+  const schemaQuery = createParseQuery<object>({
     get input() {
-      return normalizedSchema;
+      return data.schema;
     },
     defaultValue: {},
-    guard: isRecord,
+    guard: isObject,
   });
 
   const validatorQuery = createQuery<
@@ -141,14 +136,14 @@
         : validator.validateFormValue(schema, value)
     ),
     onSuccess(result) {
-      data.output = result.errors ?? [];
+      data.output = JSON.stringify(result.errors ?? [], null, 2);
     },
     onFailure: createOnFailure("Validation"),
   });
 
   const inputQuery = createParseQuery({
     get input() {
-      return normalizedInput;
+      return data.input;
     },
     guard: (_v): _v is FormValue => true,
     defaultValue: undefined,
@@ -224,15 +219,18 @@
   const { mapper, items, labels } = createValidatorMapper();
   const mappedValidator = singleOption({
     mapper: () => mapper,
-    value: () => normalizeValidator(data.validator) as SchemaValue,
+    value: () => data.validator as unknown as SchemaValue,
     update: (v) => {
-      data.validator = v as PlaygroundValidator;
+      if (v === undefined) {
+        return;
+      }
+      data.validator = v as unknown as PlaygroundValidator2;
     },
   });
 
   const outputQuery = createParseQuery({
     get input() {
-      return normalizedOutput;
+      return data.output;
     },
     guard: isObject,
     defaultValue: [],
@@ -255,7 +253,7 @@
         return;
       }
       const n = child.name;
-      format(normalizeJsonValue(data[n]), (f) => {
+      format(data[n], (f) => {
         data[n] = f;
       });
     }}
@@ -266,40 +264,25 @@
 
 {#snippet schema()}
   <Editor
-    bind:value={
-      () => normalizedSchema,
-      (v) => {
-        data.schema = v;
-      }
-    }
+    bind:value={data.schema}
     class="h-full"
-    data-error={schemaQuery.error}
+    data-state={schemaQuery.state}
   />
 {/snippet}
 
 {#snippet input()}
   <Editor
-    bind:value={
-      () => normalizedInput,
-      (v) => {
-        data.input = v;
-      }
-    }
+    bind:value={data.input}
     class="h-full"
-    data-error={inputQuery.error}
+    data-state={inputQuery.state}
   />
 {/snippet}
 
 {#snippet output()}
   <Editor
-    bind:value={
-      () => normalizedOutput,
-      (v) => {
-        data.output = v;
-      }
-    }
+    bind:value={data.output}
     class="h-full"
-    data-error={outputQuery.error}
+    data-state={outputQuery.state}
   />
 {/snippet}
 

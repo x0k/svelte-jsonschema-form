@@ -914,6 +914,12 @@ importers:
       svelte-tiler:
         specifier: ^0.7.0
         version: 0.7.0(svelte@5.56.3(@typescript-eslint/types@8.61.0))
+      valibot:
+        specifier: 'catalog:'
+        version: 1.4.1(typescript@6.0.3)
+      zod:
+        specifier: 'catalog:'
+        version: 4.4.3
     devDependencies:
       '@fontsource-variable/inter':
         specifier: 'catalog:'

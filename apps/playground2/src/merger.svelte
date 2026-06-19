@@ -8,7 +8,7 @@
     createShallowAllOfMerge,
   } from "@sjsf/form/lib/json-schema";
   import { isObject, isRecord } from "@sjsf/form/lib/object";
-  import { normalizeJsonValue, type MergerState } from "meta/playground";
+  import { normalizeMergerState, type MergerState } from "meta/playground";
   import { Panel, setTilerContext, type Tiles } from "svelte-tiler";
   import { fromRecord } from "svelte-tiler/shared/registry";
   import * as Leaf from "svelte-tiler/tiles/leaf.svelte";
@@ -52,19 +52,16 @@
     deduplicateJsonSchemas: false,
   };
 
-  const data = $state(router.load(DEFAULT_PAGE_STATE));
+  const data = $state(normalizeMergerState(router.load(DEFAULT_PAGE_STATE)));
 
   debouncedEffect(() => {
     const snap = $state.snapshot(data);
     return () => router.store(snap);
   });
 
-  const normalizedSchema = $derived(normalizeJsonValue(data.schema));
-  const normalizedOutput = $derived(normalizeJsonValue(data.output));
-
   const schemaQuery = createParseQuery({
     get input() {
-      return normalizedSchema;
+      return data.schema;
     },
     defaultValue: {},
     guard: isRecord,
@@ -91,7 +88,7 @@
     const schema = schemaQuery.value;
     return () => {
       try {
-        data.output = merge(schema);
+        data.output = JSON.stringify(merge(schema), null, 2);
       } catch (err) {
         data.output = String(err);
         console.error(err);
@@ -153,7 +150,7 @@
 
   const outputQuery = createParseQuery({
     get input() {
-      return normalizedOutput;
+      return data.output;
     },
     guard: isObject,
     defaultValue: [],
@@ -176,7 +173,7 @@
         return;
       }
       const n = child.name;
-      format(normalizeJsonValue(data[n]), (f) => {
+      format(data[n], (f) => {
         data[n] = f;
       });
     }}
@@ -187,27 +184,17 @@
 
 {#snippet schema()}
   <Editor
-    bind:value={
-      () => normalizedSchema,
-      (v) => {
-        data.schema = v;
-      }
-    }
+    bind:value={data.schema}
     class="h-full"
-    data-error={schemaQuery.error}
+    data-state={schemaQuery.state}
   />
 {/snippet}
 
 {#snippet output()}
   <Editor
-    bind:value={
-      () => normalizedOutput,
-      (v) => {
-        data.output = v;
-      }
-    }
+    bind:value={data.output}
     class="h-full"
-    data-error={outputQuery.error}
+    data-state={outputQuery.state}
   />
 {/snippet}
 

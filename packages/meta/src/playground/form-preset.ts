@@ -1,6 +1,6 @@
 import type { CatalogMeta } from "../catalog.ts";
 import type { FormState, NormalizedFormState } from "./form-state.ts";
-import { normalizeJsonValue } from "./model.ts";
+import { normalizeJsonValue, normalizeValidator } from "./model.ts";
 
 type RequiredFormPresetProperties = "schema" | "uiSchema" | "initialValue";
 
@@ -47,6 +47,7 @@ export function definePreset(
 ): NormalizedFormPreset {
   return {
     ...preset,
+    validator: preset.validator && normalizeValidator(preset.validator),
     schema: normalizeJsonValue(preset.schema),
     uiSchema: normalizeJsonValue(preset.uiSchema),
     initialValue: normalizeJsonValue(preset.initialValue),

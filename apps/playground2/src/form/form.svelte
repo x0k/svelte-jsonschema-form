@@ -30,7 +30,7 @@
   import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
   import { createDeduplicator, createIntersector } from "@sjsf/form/lib/array";
   import { createComparator, createMerger } from "@sjsf/form/lib/json-schema";
-  import { isRecord } from "@sjsf/form/lib/object";
+  import { isObject, isRecord } from "@sjsf/form/lib/object";
   import { extendByRecord, fromRecord } from "@sjsf/form/lib/resolver";
   import {
     createQuery,
@@ -71,10 +71,8 @@
     playgroundThemes,
     playgroundValidator,
     type FormState,
-    normalizeJsonValue,
-    normalizeValidator,
-    type PlaygroundValidator,
     normalizeFormState,
+    type PlaygroundValidator2,
   } from "meta/playground";
   import {
     SANDBOX_PLATFORMS,
@@ -139,7 +137,7 @@
       required: ["hello"],
     },
     uiSchema: {},
-    initialValue: {},
+    initialValue: null,
     disabled: false,
     html5Validation: false,
     focusOnFirstError: true,
@@ -236,7 +234,7 @@
       return data.schema;
     },
     defaultValue: {},
-    guard: isRecord,
+    guard: isObject,
   });
 
   const validatorQuery = createQuery<
@@ -466,9 +464,12 @@
   const { mapper, items, labels } = createValidatorMapper();
   const mappedValidator = singleOption({
     mapper: () => mapper,
-    value: () => normalizeValidator(data.validator) as SchemaValue,
+    value: () => data.validator as unknown as SchemaValue,
     update: (v) => {
-      data.validator = v as PlaygroundValidator;
+      if (v === undefined) {
+        return;
+      }
+      data.validator = v as unknown as PlaygroundValidator2;
     },
   });
 
@@ -509,7 +510,11 @@
   <ButtonGroup.Root>
     <SamplePicker
       onSelect={(sample) => {
-        Object.assign(data, sample);
+        for (const [key, value] of Object.entries(sample)) {
+          if (value !== undefined) {
+            data[key as keyof FormState] = value as never;
+          }
+        }
         originalInitialValue = sample.initialValue;
       }}
     />
@@ -704,7 +709,7 @@
         }
         const n = toKeyName(child.name);
         if (n) {
-          format(normalizeJsonValue(data[n]), (f) => {
+          format(data[n], (f) => {
             data[n] = f;
           });
         }
@@ -717,27 +722,17 @@
 
 {#snippet schema()}
   <Editor
-    bind:value={
-      () => data.schema,
-      (v) => {
-        data.schema = v;
-      }
-    }
+    bind:value={data.schema}
     class="h-full"
-    data-error={schemaQuery.error}
+    data-state={schemaQuery.state}
   />
 {/snippet}
 
 {#snippet uiSchema()}
   <Editor
-    bind:value={
-      () => data.uiSchema,
-      (v) => {
-        data.uiSchema = v;
-      }
-    }
+    bind:value={data.uiSchema}
     class="h-full"
-    data-error={uiSchemaQuery.error}
+    data-state={uiSchemaQuery.state}
   />
 {/snippet}
 
@@ -750,7 +745,7 @@
       }
     }
     class="h-full"
-    data-error={initialValueQuery.error}
+    data-state={initialValueQuery.state}
   />
 {/snippet}
 

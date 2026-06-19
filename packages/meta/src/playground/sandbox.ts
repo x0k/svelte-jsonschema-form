@@ -23,11 +23,8 @@ import { toTheme, type Theme } from "../themes.ts";
 import { WIDGETS } from "../widgets.generated.ts";
 import { isThemeBaseWidget, type ExtraWidgetFileNames } from "../widgets.ts";
 import type { FormState } from "./form-state.ts";
-import {
-  parseJsRecord,
-  normalizeValidator,
-  type PlaygroundTheme,
-} from "./model.ts";
+import { normalizeValidator, type PlaygroundTheme } from "./model.ts";
+import { parseJsRecord } from "./parse.ts";
 import { WIDGET_EXTRA_FIELD } from "./widget-extra-fields.ts";
 
 export interface CustomComponents {

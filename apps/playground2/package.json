@@ -47,7 +47,9 @@
     "meta": "workspace:*",
     "prettier": "^3.8.4",
     "svelte-exmarkdown": "catalog:",
-    "svelte-tiler": "^0.7.0"
+    "svelte-tiler": "^0.7.0",
+    "valibot": "catalog:",
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@fontsource-variable/inter": "catalog:",

@@ -16,6 +16,7 @@ import {
   type PlaygroundResolver,
   normalizeJsonValue,
   type Normalize,
+  normalizeValidator,
 } from "./model.ts";
 
 // NOTE: We use legacy types in combination with `| string`
@@ -143,6 +144,7 @@ export type NormalizedFormState = Normalize<FormState>;
 export function normalizeFormState(state: FormState): NormalizedFormState {
   return {
     ...state,
+    validator: normalizeValidator(state.validator),
     schema: normalizeJsonValue(state.schema),
     uiSchema: normalizeJsonValue(state.uiSchema),
     initialValue: normalizeJsonValue(state.initialValue),

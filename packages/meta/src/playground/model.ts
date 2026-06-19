@@ -1,5 +1,3 @@
-import { isRecord } from "@sjsf/form/lib/object";
-
 import {
   codegemIsJsonSchemaValidator,
   codegenIsExternalValidator,
@@ -7,7 +5,7 @@ import {
 } from "../codegen/index.ts";
 import { resolvers, type Resolver } from "../form.ts";
 import { iconSets, iconSetTitle } from "../icons.ts";
-import { importModule } from "../modules.ts";
+import { isValidJson } from "../json.ts";
 import {
   isLegacyTheme,
   isThemeWithSubThemes,
@@ -113,35 +111,18 @@ export type PlaygroundResolver = Resolver;
 
 export const playgroundResolvers = resolvers;
 
-export const EXPORT_DEFAULT = "export default";
-
-export async function parseJsValue(str: string) {
-  const code = str.includes(EXPORT_DEFAULT) ? str : `${EXPORT_DEFAULT} ${str}`;
-  const m = await importModule<unknown>(code);
-  if (!m || typeof m !== "object" || !("default" in m)) {
-    return Promise.reject(new Error("Failed to parse"));
-  }
-  return m.default;
-}
-
-// TODO: Remove in v4
-export async function parseJsRecord<S extends object>(str: string | S) {
-  if (typeof str !== "string") {
-    return str;
-  }
-  const value = await parseJsValue(str);
-  if (!isRecord(value)) {
-    throw new Error("Not a record");
-  }
-  return value as S;
-}
-
 // TODO: Remove in v4
 export function normalizeJsonValue<S>(str: string | S) {
-  return typeof str === "string" ? str : JSON.stringify(str, null, 2);
+  return typeof str === "string" && isValidJson(str)
+    ? str
+    : JSON.stringify(str, null, 2);
 }
 
 // TODO: Remove in v4
 export type Normalize<T> = {
-  [K in keyof T]: string extends T[K] ? string : T[K];
+  [K in keyof T]: PlaygroundValidator2 extends T[K]
+    ? PlaygroundValidator2
+    : string extends T[K]
+      ? string
+      : T[K];
 };

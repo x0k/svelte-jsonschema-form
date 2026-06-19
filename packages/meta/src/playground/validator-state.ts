@@ -2,6 +2,7 @@ import type { FormValue, Schema, ValidationResult } from "@sjsf/form";
 
 import {
   normalizeJsonValue,
+  normalizeValidator,
   type Normalize,
   type PlaygroundValidator,
 } from "./model.ts";
@@ -25,6 +26,7 @@ export function normalizeValidatorState(
 ): NormalizedValidatorState {
   return {
     ...state,
+    validator: normalizeValidator(state.validator),
     schema: normalizeJsonValue(state.schema),
     input: normalizeJsonValue(state.input),
     output: normalizeJsonValue(state.output),

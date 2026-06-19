@@ -8,6 +8,7 @@ export {
 } from "./validation.generated.ts";
 export { filterByTags } from "./catalog.ts";
 export * from "./modules.ts";
+export * from "./json.ts";
 
 export * from "./form.ts";
 export * from "./validators.ts";
