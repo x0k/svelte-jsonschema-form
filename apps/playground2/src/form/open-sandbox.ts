@@ -17,7 +17,7 @@ const customComponents: CustomComponents = {
 
 export async function openSandbox({ formState, platform }: SandboxOptions) {
   const name = `Playground (${formState.theme}, ${formState.validator})`;
-  const files = createSandboxFiles({ name, customComponents, formState });
+  const files = await createSandboxFiles({ name, customComponents, formState });
   await sandboxOpen({
     name,
     platform,

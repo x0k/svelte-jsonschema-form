@@ -52,7 +52,8 @@
     deduplicateJsonSchemas: false,
   };
 
-  const data = $state(normalizeMergerState(router.load(DEFAULT_PAGE_STATE)));
+  const loadedState = router.load<MergerState>(DEFAULT_PAGE_STATE);
+  const data = $state(normalizeMergerState(loadedState));
 
   debouncedEffect(() => {
     const snap = $state.snapshot(data);

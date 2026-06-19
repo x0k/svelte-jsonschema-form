@@ -38,10 +38,7 @@
     type FailedTask,
   } from "@sjsf/form/lib/task.svelte";
   import { createFormMerger } from "@sjsf/form/mergers/modern";
-  import {
-    singleOption,
-    StringEnumValueMapperBuilder,
-  } from "@sjsf/form/options.svelte";
+  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
   import { translation } from "@sjsf/form/translations/en";
   import { createFormValidator as noop } from "@sjsf/form/validators/noop";
   import { withOmitExtraData } from "@sjsf/form/validators/omit-extra-data";
@@ -70,9 +67,10 @@
     playgroundResolvers,
     playgroundThemes,
     playgroundValidator,
+    detectSchemaFormat,
+    getValidatorFormat,
     type FormState,
     normalizeFormState,
-    type PlaygroundValidator2,
   } from "meta/playground";
   import {
     SANDBOX_PLATFORMS,
@@ -112,7 +110,9 @@
   import { router } from "@/router.js";
   import { setShadcnContext } from "@/shadcn-context.js";
   import {
+    convertSchema,
     createFormatTask,
+    createMergerTransition,
     createParseQuery,
     createValidatorMapper,
   } from "@/shared.svelte";
@@ -461,17 +461,7 @@
     };
   });
 
-  const { mapper, items, labels } = createValidatorMapper();
-  const mappedValidator = singleOption({
-    mapper: () => mapper,
-    value: () => data.validator as unknown as SchemaValue,
-    update: (v) => {
-      if (v === undefined) {
-        return;
-      }
-      data.validator = v as unknown as PlaygroundValidator2;
-    },
-  });
+  const { mapped, items, labels } = createValidatorMapper(data);
 
   function toKeyName(
     k: string
@@ -500,22 +490,23 @@
       input: data.initialValue,
       validator: data.validator,
     }),
-    m: () => ({
-      schema: data.schema,
-      intersectJson: true,
-      deduplicateJsonSchemas: true,
-    }),
+    m: createMergerTransition(data),
   }}
 >
   <ButtonGroup.Root>
     <SamplePicker
-      onSelect={(sample) => {
+      onSelect={async (sample) => {
         for (const [key, value] of Object.entries(sample)) {
           if (value !== undefined) {
             data[key as keyof FormState] = value as never;
           }
         }
         originalInitialValue = sample.initialValue;
+        const sourceFormat = detectSchemaFormat(data.schema);
+        const targetFormat = getValidatorFormat(data.validator);
+        if (sourceFormat !== targetFormat) {
+          data.schema = await convertSchema(data.schema, sourceFormat, targetFormat);
+        }
       }}
     />
   </ButtonGroup.Root>
@@ -527,12 +518,7 @@
       items={playgroundThemes()}
       itemLabel={themeOrSubThemeTitle}
     />
-    <Select
-      label="Validator"
-      bind:value={mappedValidator.current}
-      {items}
-      {labels}
-    />
+    <Select label="Validator" bind:value={mapped.current} {items} {labels} />
     <Select
       label="Icons"
       bind:value={data.icons}

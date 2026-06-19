@@ -4,7 +4,6 @@
     isAsyncFormValueValidator,
     type FormValue,
     type Schema,
-    type SchemaValue,
     type ValidationResult,
   } from "@sjsf/form";
   import { createDeduplicator, createIntersector } from "@sjsf/form/lib/array";
@@ -18,12 +17,10 @@
     type FailedTask,
   } from "@sjsf/form/lib/task.svelte";
   import { createMerger as createSchemaMerger } from "@sjsf/form/mergers/modern";
-  import { singleOption } from "@sjsf/form/options.svelte";
   import { createFormValidator as noop } from "@sjsf/form/validators/noop";
   import {
     normalizeValidatorState,
     playgroundValidator,
-    type PlaygroundValidator2,
     type ValidatorState,
   } from "meta/playground";
   import { Panel, setTilerContext, type Tiles } from "svelte-tiler";
@@ -49,6 +46,7 @@
   import { router } from "./router.js";
   import {
     createFormatTask,
+    createMergerTransition,
     createParseQuery,
     createValidatorMapper,
   } from "./shared.svelte";
@@ -216,17 +214,7 @@
     };
   });
 
-  const { mapper, items, labels } = createValidatorMapper();
-  const mappedValidator = singleOption({
-    mapper: () => mapper,
-    value: () => data.validator as unknown as SchemaValue,
-    update: (v) => {
-      if (v === undefined) {
-        return;
-      }
-      data.validator = v as unknown as PlaygroundValidator2;
-    },
-  });
+  const { mapped, items, labels } = createValidatorMapper(data);
 
   const outputQuery = createParseQuery({
     get input() {
@@ -294,20 +282,11 @@
       validator: data.validator,
     }),
     v: () => data,
-    m: () => ({
-      schema: data.schema,
-      deduplicateJsonSchemas: true,
-      intersectJson: true,
-    }),
+    m: createMergerTransition(data),
   }}
 >
   <ButtonGroup.Root>
-    <Select
-      label="Validator"
-      bind:value={mappedValidator.current}
-      {items}
-      {labels}
-    />
+    <Select label="Validator" bind:value={mapped.current} {items} {labels} />
   </ButtonGroup.Root>
 </Header>
 <Panel bind:layout />

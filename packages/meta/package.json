@@ -94,6 +94,7 @@
     "@types/css-tree": "catalog:",
     "@types/estree": "catalog:",
     "@typescript-eslint/types": "catalog:",
+    "@valibot/to-json-schema": "catalog:",
     "@webcontainer/api": "catalog:",
     "acorn": "catalog:",
     "ajv": "catalog:",
@@ -108,9 +109,11 @@
     "lz-string": "catalog:",
     "svelte": "catalog:",
     "typescript": "catalog:",
+    "valibot": "catalog:",
     "vitest": "catalog:",
     "yaml": "^2.8.3",
-    "zimmerframe": "catalog:"
+    "zimmerframe": "catalog:",
+    "zod": "catalog:"
   },
   "peerDependencies": {
     "@cfworker/json-schema": "catalog:",
@@ -122,6 +125,7 @@
     "@sveltejs/kit": "catalog:",
     "@sveltejs/sv-utils": "catalog:",
     "@types/estree": "catalog:",
+    "@valibot/to-json-schema": "catalog:",
     "@webcontainer/api": "catalog:",
     "acorn": "catalog:",
     "ajv": "catalog:",
@@ -135,10 +139,21 @@
     "json-schema-to-zod": "catalog:",
     "lz-string": "catalog:",
     "svelte": "^5.34.8",
-    "zimmerframe": "catalog:"
+    "valibot": "catalog:",
+    "zimmerframe": "catalog:",
+    "zod": "catalog:"
   },
   "peerDependenciesMeta": {
     "@sveltejs/kit": {
+      "optional": true
+    },
+    "@valibot/to-json-schema": {
+      "optional": true
+    },
+    "valibot": {
+      "optional": true
+    },
+    "zod": {
       "optional": true
     }
   }

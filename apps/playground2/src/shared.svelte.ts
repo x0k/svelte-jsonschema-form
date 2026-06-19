@@ -6,20 +6,74 @@ import {
   createTask,
   debounce,
 } from "@sjsf/form/lib/task.svelte";
-import { IdEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
+import {
+  IdEnumValueMapperBuilder,
+  singleOption,
+} from "@sjsf/form/options.svelte";
 import {
   EXPORT_DEFAULT,
   parseJsValue,
   playgroundValidators2,
   playgroundValidatorTitle,
   ensureExportDefault,
+  fromJsonSchema,
+  toJsonSchema,
+  getValidatorFormat,
+  isDraft2020Validator,
+  type PlaygroundValidator2,
+  type SchemaFormat,
 } from "meta/playground";
 import * as prettierPluginBabel from "prettier/plugins/babel";
 import * as prettierPluginEstree from "prettier/plugins/estree";
 import * as p from "prettier/standalone";
 import { toast } from "svelte-sonner";
 
-export function createValidatorMapper() {
+async function formatCode(str: string): Promise<string> {
+  let trimmed = str.trim();
+  if (!trimmed.includes(EXPORT_DEFAULT)) {
+    try {
+      return JSON.stringify(JSON.parse(str), null, 2);
+    } catch {
+      trimmed = `${EXPORT_DEFAULT} ${str}`;
+    }
+  }
+  return await p.format(trimmed, {
+    parser: "babel",
+    plugins: [prettierPluginBabel, prettierPluginEstree],
+  });
+}
+
+export async function convertSchema(
+  schema: string,
+  sourceFormat: SchemaFormat | "json-schema",
+  targetFormat: SchemaFormat | "json-schema",
+  sourceDraft2020 = false,
+): Promise<string> {
+  if (sourceFormat === targetFormat) return schema;
+  if (sourceFormat === "json-schema" && targetFormat !== "json-schema") {
+    return formatCode(
+      fromJsonSchema(schema, targetFormat as SchemaFormat, sourceDraft2020),
+    );
+  }
+  if (targetFormat === "json-schema" && sourceFormat !== "json-schema") {
+    const schemaObj = (await parseJsValue(
+      ensureExportDefault(schema),
+    )) as object;
+    return toJsonSchema(schemaObj, sourceFormat as SchemaFormat);
+  }
+  const schemaObj = (await parseJsValue(ensureExportDefault(schema))) as object;
+  return formatCode(
+    fromJsonSchema(
+      toJsonSchema(schemaObj, sourceFormat as SchemaFormat),
+      targetFormat as SchemaFormat,
+    ),
+  );
+}
+
+export function createValidatorMapper(data: {
+  schema: string;
+  validator: PlaygroundValidator2;
+}) {
   const builder = new IdEnumValueMapperBuilder();
   const items: string[] = [];
   const labels: Record<string, string> = {};
@@ -36,7 +90,40 @@ export function createValidatorMapper() {
     items.push(id);
   }
   const mapper = builder.build();
-  return { mapper, items, labels };
+  const updateTask = createTask<
+    [PlaygroundValidator2],
+    { schema: string; validator: PlaygroundValidator2 }
+  >({
+    execute: debounce(async (_, validator) => {
+      const sourceFormat = getValidatorFormat(data.validator);
+      const targetFormat = getValidatorFormat(validator);
+      const sourceDraft2020 = isDraft2020Validator(data.validator);
+      const schema = await convertSchema(
+        data.schema,
+        sourceFormat,
+        targetFormat,
+        sourceDraft2020,
+      );
+      return { validator, schema };
+    }),
+    onSuccess(result) {
+      Object.assign(data, result);
+    },
+    onFailure(err, v) {
+      if (err.reason === "aborted") {
+        return;
+      }
+      console.error(err);
+      data.validator = v;
+      // assign fallback schema
+    },
+  });
+  const mapped = singleOption({
+    mapper: () => mapper,
+    value: () => data.validator as unknown as SchemaValue,
+    update: (v) => updateTask.run(v as unknown as PlaygroundValidator2),
+  });
+  return { mapped, items, labels };
 }
 
 export interface ParseQueryOptions<T> {
@@ -79,23 +166,29 @@ export function createParseQuery<T>(options: ParseQueryOptions<T>) {
   };
 }
 
+export function createMergerTransition(data: {
+  schema: string;
+  validator: PlaygroundValidator2;
+}) {
+  return async () => {
+    const sourceFormat = getValidatorFormat(data.validator);
+    const schema = await convertSchema(
+      data.schema,
+      sourceFormat,
+      "json-schema",
+    );
+    return {
+      schema,
+      deduplicateJsonSchemas: true,
+      intersectJson: true,
+    };
+  };
+}
+
 export function createFormatTask() {
   const task = createTask<[string], string>({
     combinator: abortPrevious,
-    execute: debounce(async (_, str) => {
-      let trimmed = str.trim();
-      if (!trimmed.includes(EXPORT_DEFAULT)) {
-        try {
-          return JSON.stringify(JSON.parse(str), null, 2);
-        } catch {
-          trimmed = `${EXPORT_DEFAULT} ${str}`;
-        }
-      }
-      return await p.format(trimmed, {
-        parser: "babel",
-        plugins: [prettierPluginBabel, prettierPluginEstree],
-      });
-    }),
+    execute: debounce((_, str) => formatCode(str)),
     onFailure(err) {
       if (err.reason === "aborted") {
         return;

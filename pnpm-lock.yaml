@@ -2158,6 +2158,9 @@ importers:
       '@typescript-eslint/types':
         specifier: 'catalog:'
         version: 8.61.0
+      '@valibot/to-json-schema':
+        specifier: 'catalog:'
+        version: 1.7.1(valibot@1.4.1(typescript@6.0.3))
       '@webcontainer/api':
         specifier: 'catalog:'
         version: 1.6.4
@@ -2200,6 +2203,9 @@ importers:
       typescript:
         specifier: 'catalog:'
         version: 6.0.3
+      valibot:
+        specifier: 'catalog:'
+        version: 1.4.1(typescript@6.0.3)
       vitest:
         specifier: 'catalog:'
         version: 4.1.8(@types/node@25.9.3)(@vitest/browser-playwright@4.1.8)(vite@8.0.16(@types/node@25.9.3)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0))
@@ -2209,6 +2215,9 @@ importers:
       zimmerframe:
         specifier: 'catalog:'
         version: 1.1.4
+      zod:
+        specifier: 'catalog:'
+        version: 4.4.3
 
   packages/moving-icons:
     devDependencies:

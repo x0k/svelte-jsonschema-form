@@ -6,8 +6,8 @@ update:
   pnpm -w update --no-save
   pnpm dedupe
 
-# Force commit
-# git commit -n
+fcommit:
+  git commit -n
 
 push:
   git push -u origin HEAD
