@@ -113,6 +113,7 @@
     createMergerTransition,
     createParseQuery,
     createValidatorMapper,
+    formatCode,
   } from "@/shared.svelte";
   import { themeManager } from "@/theme.svelte";
 
@@ -500,14 +501,14 @@
           }
         }
         originalInitialValue = sample.initialValue;
-        const target = schemaTypeFromValidator(data.validator);
-        data.schema = await convertTypedSchema({
+        const schema = await convertTypedSchema({
           source: {
             ...meta.schema,
             schema: data.schema,
           },
-          target,
+          target: schemaTypeFromValidator(data.validator),
         });
+        data.schema = await formatCode(schema);
       }}
     />
   </ButtonGroup.Root>
@@ -678,7 +679,7 @@
     {#if tile.titles[tile.selectedTab] === FORM_DATA_TITLE}
       <Button
         onclick={() => {
-          setValue(form, originalInitialValue);
+          data.initialValue = originalInitialValue;
         }}
         size="sm"
         variant="ghost"

@@ -23,7 +23,7 @@ import * as prettierPluginEstree from "prettier/plugins/estree";
 import * as p from "prettier/standalone";
 import { toast } from "svelte-sonner";
 
-async function formatCode(str: string): Promise<string> {
+export async function formatCode(str: string): Promise<string> {
   let trimmed = str.trim();
   if (!trimmed.includes(EXPORT_DEFAULT)) {
     try {
@@ -70,7 +70,7 @@ export function createValidatorMapper(data: {
         },
         target: schemaTypeFromValidator(validator),
       });
-      return { validator, schema };
+      return { validator, schema: await formatCode(schema) };
     }),
     onSuccess(result) {
       Object.assign(data, result);
