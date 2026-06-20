@@ -142,7 +142,7 @@ export function createMergerTransition(data: {
       },
     });
     return {
-      schema,
+      schema: await formatCode(schema),
       deduplicateJsonSchemas: true,
       intersectJson: true,
     };
