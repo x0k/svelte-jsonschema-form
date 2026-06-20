@@ -75,16 +75,16 @@ import { adaptAsync as valibotAdapt } from "@sjsf/valibot-validator";
 import { adaptAsync as zodAdapt } from "@sjsf/zod4-validator/classic";
 import { Ajv } from "ajv";
 import _addFormats, { type FormatsPlugin } from "ajv-formats";
+import { fullFormats } from "ajv-formats/dist/formats.js";
 import { Ajv2020 } from "ajv/dist/2020.js";
 import equal from "ajv/dist/runtime/equal.js";
 import ucs2length from "ajv/dist/runtime/ucs2length.js";
 import standaloneCode from "ajv/dist/standalone/index.js";
 import { Validator as AtaValidator } from "ata-validator";
-import { build, initialize, type Plugin } from "esbuild-wasm";
-import wasmURL from "esbuild-wasm/esbuild.wasm?url";
 
 import type { Draft2020, Precompiled } from "../codegen/index.ts";
 import { importModule } from "../modules.ts";
+import { transformStandaloneCode } from "./ajv-standalone-transform.ts";
 import { normalizeValidator, type PlaygroundValidator } from "./model.ts";
 
 const addFormats = _addFormats as unknown as FormatsPlugin;
@@ -255,45 +255,11 @@ function toPrecompiledFactory(
 
 const DRAFT_07: Schema = { $schema: "http://json-schema.org/draft-07/schema" };
 
-let esbuildInitPromise: Promise<void> | undefined;
-
-const ajvRuntimePlugin: Plugin = {
-  name: "ajv-runtime",
-  setup(build) {
-    const runtimeModules: Record<string, unknown> = {
-      "ajv/dist/runtime/ucs2length": ucs2length,
-      "ajv/dist/runtime/equal": equal,
-    };
-    build.onResolve({ filter: /^ajv\/dist\/runtime\// }, (args) => ({
-      path: args.path,
-      namespace: "ajv-runtime",
-    }));
-    build.onLoad({ filter: /.*/, namespace: "ajv-runtime" }, (args) => {
-      const mod = runtimeModules[args.path];
-      if (!mod) {
-        return {
-          errors: [{ text: `Unknown ajv runtime module: ${args.path}` }],
-        };
-      }
-      if (typeof mod === "function") {
-        return { contents: `export default ${mod.toString()};`, loader: "js" };
-      }
-      return {
-        contents: `export default ${JSON.stringify(mod)};`,
-        loader: "js",
-      };
-    });
-  },
-};
-
 const PRECOMPILED: Record<
   Extract<PlaygroundValidator, Precompiled<true>>["name"],
   ValidatorFactory
 > = {
   ajv8: toPrecompiledFactory(async (schemas) => {
-    await (esbuildInitPromise ??= initialize({
-      wasmURL,
-    }));
     const ajv = new Ajv({
       ...DEFAULT_AJV_CONFIG,
       schemas,
@@ -305,22 +271,11 @@ const PRECOMPILED: Record<
     const modules =
       // @ts-expect-error incompatible module resolution strategy
       standaloneCode(addFormComponents(addFormats(ajv)));
-    const { outputFiles } = await build({
-      minify: true,
-      bundle: true,
-      write: false,
-      format: "esm",
-      platform: "browser",
-      target: ["es2020"],
-      sourcemap: false,
-      plugins: [ajvRuntimePlugin],
-      stdin: {
-        contents: modules,
-        sourcefile: "input.js",
-        loader: "js",
-      },
+    const code = transformStandaloneCode(modules, {
+      "ajv/dist/runtime/equal": equal,
+      "ajv/dist/runtime/ucs2length": ucs2length,
+      "ajv-formats/dist/formats": { fullFormats },
     });
-    const code = outputFiles[0]!.text;
 
     const validateFunctions = await importModule<AjvValidateFunctions>(code);
     return ajvFactory({

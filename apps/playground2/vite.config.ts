@@ -3,13 +3,11 @@ import { resolve, dirname } from "node:path";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
 import tailwindcss from "@tailwindcss/vite";
 // import { visualizer } from "rollup-plugin-visualizer";
-import { extraPackage } from "meta";
 import { defineConfig } from "vitest/config";
 
-const VIRTUAL_MODULE_PREFIX = "virtual-module:";
+import { importMapPlugin } from "./vite-importmap-plugin";
 
-const zodVersion = extraPackage("zod").version;
-const valibotVersion = extraPackage("valibot").version;
+const VIRTUAL_MODULE_PREFIX = "virtual-module:";
 
 export default defineConfig({
   base: "/svelte-jsonschema-form/playground3/",
@@ -17,15 +15,13 @@ export default defineConfig({
     // visualizer(),
     tailwindcss(),
     svelte(),
+    importMapPlugin({
+      imports: {
+        zod: "zod",
+        valibot: "valibot",
+      },
+    }),
   ],
-  define: {
-    "import.meta.env.IMPORT_MAP_ZOD": JSON.stringify(
-      `https://esm.sh/zod@${zodVersion}`
-    ),
-    "import.meta.env.IMPORT_MAP_VALIBOT": JSON.stringify(
-      `https://esm.sh/valibot@${valibotVersion}`
-    ),
-  },
   resolve: {
     alias: {
       "@": resolve(__dirname, "./src"),
