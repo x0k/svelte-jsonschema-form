@@ -1,6 +1,6 @@
 import type { CatalogMeta } from "../catalog.ts";
 import type { FormState, NormalizedFormState } from "./form-state.ts";
-import type { SchemaType } from "./model.ts";
+import type { SchemaType } from "./typed-schema.ts";
 
 type RequiredFormPresetProperties = "schema" | "uiSchema" | "initialValue";
 

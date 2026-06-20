@@ -6,8 +6,14 @@ import { $ZodType, toJSONSchema } from "zod/v4/core";
 
 import type { CodegenValidator } from "../codegen/index.ts";
 import { neverError } from "../errors.ts";
-import type { SchemaType, TypedSchema } from "./model.ts";
 import { parseSchemaObject } from "./parse.ts";
+
+export type SchemaType =
+  | { type: "json"; draft2020: boolean }
+  | { type: "zod" }
+  | { type: "valibot" };
+
+export type TypedSchema = SchemaType & { schema: string };
 
 export function schemaTypeFromValidator(
   validator: CodegenValidator
