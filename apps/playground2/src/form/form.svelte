@@ -29,7 +29,9 @@
   import { createComparator, createMerger } from "@sjsf/form/lib/json-schema";
   import { extendByRecord, fromRecord } from "@sjsf/form/lib/resolver";
   import {
+    abortPrevious,
     createQuery,
+    createTask,
     debounce,
     type FailedTask,
   } from "@sjsf/form/lib/task.svelte";
@@ -70,6 +72,8 @@
     parseSchemaObject,
     parseFormData,
     parseUiSchema,
+    type PresetEntry,
+    type NormalizedFormPreset,
   } from "meta/playground";
   import {
     SANDBOX_PLATFORMS,
@@ -99,6 +103,7 @@
   import Select from "$lib/select.svelte";
   import { ShadowHost } from "$lib/shadow/index.js";
   import { debouncedEffect } from "$lib/svelte.svelte.js";
+  import { checkSignal } from "$lib/task";
   import {
     constraints,
     createApplySplit,
@@ -475,6 +480,28 @@
   }
 
   const format = createFormatTask();
+
+  const loadPresetTask = createTask<[PresetEntry], NormalizedFormPreset>({
+    combinator: abortPrevious,
+    execute: debounce(async (s, { load, meta }) => {
+      const preset = await load();
+      checkSignal(s);
+      const schema = await convertTypedSchema({
+        source: {
+          ...meta.schema,
+          schema: preset.schema,
+        },
+        target: schemaTypeFromValidator(preset.validator ?? data.validator),
+      });
+      checkSignal(s);
+      return { ...preset, schema: await formatCode(schema) };
+    }),
+    onSuccess(preset) {
+      originalInitialValue = preset.initialValue;
+      Object.assign(data, preset);
+    },
+    onFailure: createOnFailure("Example loading"),
+  });
 </script>
 
 <svelte:head>
@@ -493,24 +520,7 @@
   }}
 >
   <ButtonGroup.Root>
-    <SamplePicker
-      onSelect={async (sample, meta) => {
-        for (const [key, value] of Object.entries(sample)) {
-          if (value !== undefined) {
-            data[key as keyof FormState] = value as never;
-          }
-        }
-        originalInitialValue = sample.initialValue;
-        const schema = await convertTypedSchema({
-          source: {
-            ...meta.schema,
-            schema: data.schema,
-          },
-          target: schemaTypeFromValidator(data.validator),
-        });
-        data.schema = await formatCode(schema);
-      }}
-    />
+    <SamplePicker onSelect={loadPresetTask.run} />
   </ButtonGroup.Root>
 
   <ButtonGroup.Root>

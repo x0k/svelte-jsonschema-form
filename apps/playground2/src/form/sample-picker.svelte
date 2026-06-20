@@ -3,15 +3,14 @@
   import {
     formPresetCategories,
     GROUPED_FORM_PRESETS,
-    type NormalizedFormPreset,
-    type PresetMeta,
+    type PresetEntry,
   } from "meta/playground";
 
   import { Button, buttonVariants } from "$lib/components/ui/button/index.js";
   import * as Dialog from "$lib/components/ui/dialog/index.js";
 
   interface Props {
-    onSelect: (sample: NormalizedFormPreset, meta: PresetMeta) => void;
+    onSelect: (preset: PresetEntry) => void;
   }
 
   const { onSelect }: Props = $props();
@@ -31,16 +30,15 @@
       {#each formPresetCategories() as category}
         <p class="pt-4 font-semibold">{category}</p>
         <div class="flex flex-wrap justify-center gap-2">
-          {#each GROUPED_FORM_PRESETS[category] as { meta, load } (meta.title)}
+          {#each GROUPED_FORM_PRESETS[category] as p (p.meta.title)}
             <Button
               variant="secondary"
-              onclick={async () => {
+              onclick={() => {
                 open = false;
-                const preset = await load();
-                onSelect(preset, meta);
+                onSelect(p);
               }}
             >
-              {meta.title}
+              {p.meta.title}
             </Button>
           {/each}
         </div>
