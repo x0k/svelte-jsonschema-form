@@ -37,11 +37,11 @@ export async function openSandbox({
   fileFieldMode,
 }: OpenSandboxOptions) {
   const name = `Builder (${theme}, ${validator})`;
-  const files = createSandboxFiles({
+  const files = await createSandboxFiles({
     name,
     theme,
     validator,
-    schema,
+    schema: JSON.stringify(schema),
     uiSchema,
     icons,
     widgets: Array.from(widgets),
