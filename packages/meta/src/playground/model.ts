@@ -123,3 +123,10 @@ export type Normalize<T> = {
       ? string
       : T[K];
 };
+
+export type SchemaType =
+  | { type: "json"; draft2020: boolean }
+  | { type: "zod" }
+  | { type: "valibot" };
+
+export type TypedSchema = SchemaType & { schema: string };

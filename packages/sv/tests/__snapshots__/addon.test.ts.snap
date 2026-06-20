@@ -3166,7 +3166,7 @@ export {};
 import type { UiSchemaRoot } from "@sjsf/form";
 import * as z from "zod";
 
-export const schema = z.object({ "title": z.string(), "content": z.string().min(10) });
+export const schema = z.object({ title: z.string(), content: z.string().min(10) });
 export type Model = z.infer<typeof schema>;
 
 export const uiSchema = {
@@ -4349,7 +4349,7 @@ export {};
 import type { UiSchemaRoot } from "@sjsf/form";
 import * as z from "zod";
 
-export const schema = z.object({ "title": z.string(), "content": z.string().min(10) });
+export const schema = z.object({ title: z.string(), content: z.string().min(10) });
 export type Model = z.infer<typeof schema>;
 
 export const uiSchema = {
@@ -15663,11 +15663,11 @@ export {};
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import type { UiSchemaRoot } from "@sjsf/form";
-import * as v from 'valibot';
+import * as v from "valibot";
 
 export const schema = v.object({
-	"title": v.string(),
-	"content": v.pipe(v.string(), v.minLength(10))
+	title: v.string(),
+	content: v.pipe(v.string(), v.minLength(10))
 });
 
 export type Model = v.InferInput<typeof schema>;
@@ -16000,11 +16000,11 @@ button:focus-visible {
 ",
   "src/lib/post.ts": "import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import type { UiSchemaRoot } from "@sjsf/form";
-import * as v from 'valibot';
+import * as v from "valibot";
 
 export const schema = v.object({
-	"title": v.string(),
-	"content": v.pipe(v.string(), v.minLength(10))
+	title: v.string(),
+	content: v.pipe(v.string(), v.minLength(10))
 });
 
 export type Model = v.InferInput<typeof schema>;
@@ -16178,7 +16178,7 @@ export {};
 import type { UiSchemaRoot } from "@sjsf/form";
 import * as z from "zod";
 
-export const schema = z.object({ "title": z.string(), "content": z.string().min(10) });
+export const schema = z.object({ title: z.string(), content: z.string().min(10) });
 export type Model = z.infer<typeof schema>;
 
 export const uiSchema = {
@@ -16510,7 +16510,7 @@ button:focus-visible {
 import type { UiSchemaRoot } from "@sjsf/form";
 import * as z from "zod";
 
-export const schema = z.object({ "title": z.string(), "content": z.string().min(10) });
+export const schema = z.object({ title: z.string(), content: z.string().min(10) });
 export type Model = z.infer<typeof schema>;
 
 export const uiSchema = {

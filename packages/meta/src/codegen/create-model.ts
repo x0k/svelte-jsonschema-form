@@ -11,19 +11,14 @@ import {
   type CodegenNonPrecompiledValidator,
   type ConditionalPrinter,
   type FieldsValidationMode,
-  type TypedSchema,
 } from "./model.ts";
-import {
-  schemaTypeFromValidator,
-  convertTypedSchema,
-  extractSchemaCode,
-} from "./schema.ts";
+import { extractSchemaCode } from "./schema.ts";
 
 export interface ModelOptions {
   validator: CodegenNonPrecompiledValidator;
   isTs: boolean;
   ts: ConditionalPrinter;
-  schema: TypedSchema;
+  schema: string;
   uiSchema: UiSchemaRoot;
   initialValue: FormValue;
   fieldsValidationMode: FieldsValidationMode;
@@ -38,11 +33,6 @@ export async function createModel({
   initialValue,
   fieldsValidationMode,
 }: ModelOptions) {
-  const converted = await convertTypedSchema({
-    source: schema,
-    target: schemaTypeFromValidator(validator),
-  });
-
   return transforms.script(({ ast, js, comments }) => {
     if (isJsonSchemaValidator(validator.name) || validator.name === "noop") {
       if (isTs) {
@@ -58,7 +48,7 @@ export async function createModel({
         });
       }
       const schemaExpression: AstTypes.Expression = js.common.parseFromString(
-        `(${converted}${ts(" as const satisfies Schema")})`
+        `(${schema}${ts(" as const satisfies Schema")})`
       );
       const schemaDeclaration = js.variables.declaration(ast, {
         kind: "const",
@@ -81,7 +71,7 @@ export async function createModel({
         });
       }
     } else if (validator.name === "zod4") {
-      const { code: userCode, expression } = extractSchemaCode(converted);
+      const { code: userCode, expression } = extractSchemaCode(schema);
       if (userCode) {
         js.common.appendFromString(ast, { code: userCode });
       }
@@ -101,7 +91,7 @@ export async function createModel({
         });
       }
     } else if (validator.name === "valibot") {
-      const { code: userCode, expression } = extractSchemaCode(converted);
+      const { code: userCode, expression } = extractSchemaCode(schema);
       if (userCode) {
         js.common.appendFromString(ast, { code: userCode });
       }
@@ -141,8 +131,8 @@ export async function createModel({
 
       js.common.appendFromString(ast, {
         code: isTs
-          ? `const internalSchema = (${converted}) as const satisfies Schema;`
-          : `/** @type {import("${formPackage.name}").Schema} */\nconst internalSchema = (${converted});`,
+          ? `const internalSchema = (${schema}) as const satisfies Schema;`
+          : `/** @type {import("${formPackage.name}").Schema} */\nconst internalSchema = (${schema});`,
         comments,
       });
 

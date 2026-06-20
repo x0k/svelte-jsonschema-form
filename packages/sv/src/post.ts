@@ -6,6 +6,8 @@ import {
   POST_MODEL_DIR,
   POST_SCHEMA,
   POST_UI_SCHEMA,
+  POST_VALIBOT_SCHEMA,
+  POST_ZOD_SCHEMA,
   type Context,
 } from "./model.js";
 
@@ -33,11 +35,12 @@ export async function postTs({
     const modelTransform = await createModel({
       validator,
       ts,
-      schema: {
-        type: "json",
-        schema: JSON.stringify(POST_SCHEMA),
-        draft2020: false,
-      },
+      schema:
+        validator.name === "zod4"
+          ? POST_ZOD_SCHEMA
+          : validator.name === "valibot"
+            ? POST_VALIBOT_SCHEMA
+            : JSON.stringify(POST_SCHEMA),
       isTs,
       initialValue: POST_INITIAL_VALUE,
       uiSchema: POST_UI_SCHEMA,

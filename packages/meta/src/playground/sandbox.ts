@@ -1,17 +1,13 @@
 import {
   isUiSchemaRef,
-  type FormValue,
   type UiSchema,
   type UiSchemaDefinition,
   type UiSchemaRoot,
 } from "@sjsf/form";
-import { isRecord } from "@sjsf/form/lib/object";
 
 import {
   type ThemeExtension,
   codegemIsJsonSchemaValidator,
-  parseDefaultJsValue,
-  schemaTypeFromValidator,
 } from "../codegen/index.ts";
 import {
   createComposer,
@@ -28,6 +24,7 @@ import { WIDGETS } from "../widgets.generated.ts";
 import { isThemeBaseWidget, type ExtraWidgetFileNames } from "../widgets.ts";
 import type { NormalizedFormState } from "./form-state.ts";
 import { normalizeValidator, type PlaygroundTheme } from "./model.ts";
+import { parseInitialValue, parseUiSchema } from "./parse.ts";
 import { WIDGET_EXTRA_FIELD } from "./widget-extra-fields.ts";
 
 export interface CustomComponents {
@@ -174,19 +171,6 @@ export interface SandboxFilesOptions {
   customComponents: CustomComponents;
 }
 
-async function parseUiSchema(uiSchemaStr: string) {
-  const uiSchema = await parseDefaultJsValue(uiSchemaStr);
-  if (!isRecord(uiSchema)) {
-    throw new Error("Invalid UI schema value");
-  }
-  return uiSchema as UiSchema;
-}
-
-function parseInitialValue(initialValueStr: string): FormValue {
-  const initialValue = JSON.parse(initialValueStr);
-  return initialValue === null ? undefined : initialValue;
-}
-
 export async function createSandboxFiles({
   name,
   formState,
@@ -194,7 +178,10 @@ export async function createSandboxFiles({
 }: SandboxFilesOptions) {
   const validator = normalizeValidator(formState.validator);
 
-  const uiSchema = await parseUiSchema(formState.uiSchema);
+  const [uiSchema, initialValue] = await Promise.all([
+    parseUiSchema(formState.uiSchema),
+    parseInitialValue(formState.initialValue),
+  ]);
 
   const {
     usesTransparentLayout,
@@ -270,10 +257,7 @@ export async function createSandboxFiles({
   const codeTransformers: CodeTransformer[] = [];
   return createComposer({
     name,
-    schema: {
-      ...schemaTypeFromValidator(formState.validator),
-      schema: formState.schema,
-    },
+    schema: formState.schema,
     uiSchema,
     language: "ts",
     validator,
@@ -286,7 +270,7 @@ export async function createSandboxFiles({
     extraDependencies,
     codeTransformers,
     modelName: "model",
-    initialValue: parseInitialValue(formState.initialValue),
+    initialValue,
     fieldsValidationMode: formState.fieldsValidationMode,
     merger: hasCustomMergerOptions
       ? {

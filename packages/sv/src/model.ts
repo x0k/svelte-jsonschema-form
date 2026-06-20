@@ -234,6 +234,20 @@ export const POST_SCHEMA = {
   required: ["title", "content"],
 } satisfies Schema;
 
+export const POST_ZOD_SCHEMA = `import * as z from "zod";
+
+export default z.object({
+  title: z.string(),
+  content: z.string().min(10),
+})`;
+
+export const POST_VALIBOT_SCHEMA = `import * as v from "valibot";
+
+export default v.object({
+  title: v.string(),
+  content: v.pipe(v.string(), v.minLength(10)),
+})`;
+
 export const POST_UI_SCHEMA = {
   content: {
     "ui:components": {

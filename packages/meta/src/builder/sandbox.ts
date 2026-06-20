@@ -1,4 +1,4 @@
-import type { Schema, UiSchema } from "@sjsf/form";
+import type { UiSchema } from "@sjsf/form";
 
 import { createComposer } from "../composer/index.ts";
 import type { ExtraFieldFileName } from "../fields.ts";
@@ -20,7 +20,7 @@ export interface BuilderSandboxOptions {
   name: string;
   theme: PlaygroundTheme;
   validator: BuilderValidator;
-  schema: Schema;
+  schema: string;
   uiSchema: UiSchema;
   icons: PlaygroundIconSet;
   widgets: WidgetType[];
@@ -68,7 +68,7 @@ export async function createSandboxFiles({
     extraDependencies: [],
     codeTransformers: [],
     modelName: "model",
-    schema: { type: "json", schema: JSON.stringify(schema), draft2020: false },
+    schema: schema,
     uiSchema,
     initialValue: undefined,
     fieldsValidationMode: 0,

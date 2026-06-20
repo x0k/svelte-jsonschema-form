@@ -26,7 +26,6 @@ import {
   createValidator,
   createForm,
   type CodegenValidator,
-  type TypedSchema,
 } from "../codegen/index.ts";
 import type { ExtraFieldFileName } from "../fields.ts";
 import {
@@ -56,7 +55,7 @@ export interface ComposerOptions<T extends CodegenThemeOrSubTheme> {
   modelName: string;
   uiSchema: UiSchemaRoot;
   /** If `undefined` is specified, the model file will not be generated */
-  schema: TypedSchema | undefined;
+  schema: string | undefined;
   initialValue: FormValue;
   fieldsValidationMode: FieldsValidationMode;
   disabled: boolean;

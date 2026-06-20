@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 
 import { codegenThemeOrSubTheme } from "../codegen/index.ts";
+import { jsonSchema } from "../playground/form-preset.ts";
 import { builderValidators } from "./model.ts";
 import { createSandboxFiles, type BuilderSandboxOptions } from "./sandbox.ts";
 
@@ -8,11 +9,11 @@ const BASE_OPTIONS: BuilderSandboxOptions = {
   name: "Sandbox",
   theme: "basic",
   validator: "ajv8",
-  schema: {
+  schema: jsonSchema({
     type: "object",
     title: "Test",
     properties: { name: { type: "string" } },
-  },
+  }),
   uiSchema: {},
   icons: "none",
   widgets: [],
@@ -43,7 +44,13 @@ describe("builder sandbox-factory", () => {
 
   describe("validators", () => {
     for (const validator of builderValidators()) {
-      testCase(validator, { validator });
+      const overrides: Partial<BuilderSandboxOptions> = { validator };
+      if (validator === "zod4") {
+        overrides.schema = `import * as z from "zod";\n\nexport default z.object({ name: z.string() })`;
+      } else if (validator === "valibot") {
+        overrides.schema = `import * as v from "valibot";\n\nexport default v.object({ name: v.string() })`;
+      }
+      testCase(validator, overrides);
     }
   });
 
