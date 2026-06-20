@@ -10,8 +10,7 @@ import {
 
 export const meta = defineMetadata({
   category: FormPresetCategory.SchemaLogic,
-  schemaFormat: "json-schema",
-  draft2020: false,
+  schema: { type: "json", draft2020: false },
   title: "Schema Dependencies",
   description:
     "Conditional schema dependencies that apply sub-schemas based on property presence.",

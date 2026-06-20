@@ -10,8 +10,7 @@ import {
 
 export const meta = defineMetadata({
   category: FormPresetCategory.SchemaBasics,
-  schemaFormat: "json-schema",
-  draft2020: false,
+  schema: { type: "json", draft2020: false },
   title: "References",
   description:
     "JSON Schema $ref references for reusable and modular schema definitions.",

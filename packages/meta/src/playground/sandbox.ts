@@ -1,13 +1,17 @@
 import {
   isUiSchemaRef,
+  type FormValue,
   type UiSchema,
   type UiSchemaDefinition,
   type UiSchemaRoot,
 } from "@sjsf/form";
+import { isRecord } from "@sjsf/form/lib/object";
 
 import {
   type ThemeExtension,
   codegemIsJsonSchemaValidator,
+  parseDefaultJsValue,
+  schemaTypeFromValidator,
 } from "../codegen/index.ts";
 import {
   createComposer,
@@ -22,9 +26,8 @@ import { extraPackage, type AbstractPackage } from "../package.ts";
 import { toTheme, type Theme } from "../themes.ts";
 import { WIDGETS } from "../widgets.generated.ts";
 import { isThemeBaseWidget, type ExtraWidgetFileNames } from "../widgets.ts";
-import type { FormState } from "./form-state.ts";
+import type { NormalizedFormState } from "./form-state.ts";
 import { normalizeValidator, type PlaygroundTheme } from "./model.ts";
-import { parseJsRecord } from "./parse.ts";
 import { WIDGET_EXTRA_FIELD } from "./widget-extra-fields.ts";
 
 export interface CustomComponents {
@@ -39,7 +42,7 @@ export interface SandboxFiles {
 
 function getChangedMergerOptionsCount(
   options: Pick<
-    FormState,
+    NormalizedFormState,
     | "arrayMinItemsPopulate"
     | "arrayMinItemsMergeExtraDefaults"
     | "allOf"
@@ -167,8 +170,21 @@ function detectCustomComponentsAndFields(
 
 export interface SandboxFilesOptions {
   name: string;
-  formState: FormState;
+  formState: NormalizedFormState;
   customComponents: CustomComponents;
+}
+
+async function parseUiSchema(uiSchemaStr: string) {
+  const uiSchema = await parseDefaultJsValue(uiSchemaStr);
+  if (!isRecord(uiSchema)) {
+    throw new Error("Invalid UI schema value");
+  }
+  return uiSchema as UiSchema;
+}
+
+function parseInitialValue(initialValueStr: string): FormValue {
+  const initialValue = JSON.parse(initialValueStr);
+  return initialValue === null ? undefined : initialValue;
 }
 
 export async function createSandboxFiles({
@@ -176,10 +192,10 @@ export async function createSandboxFiles({
   formState,
   customComponents: { markdownDescription, transparentLayout },
 }: SandboxFilesOptions) {
-  const [schema, uiSchema] = await Promise.all([
-    parseJsRecord(formState.schema),
-    parseJsRecord(formState.uiSchema),
-  ]);
+  const validator = normalizeValidator(formState.validator);
+
+  const uiSchema = await parseUiSchema(formState.uiSchema);
+
   const {
     usesTransparentLayout,
     usesMarkdownDescription,
@@ -191,7 +207,6 @@ export async function createSandboxFiles({
   const usesCustomComponents = usesTransparentLayout || usesMarkdownDescription;
   const hasCustomMergerOptions = getChangedMergerOptionsCount(formState) !== 0;
 
-  const validator = normalizeValidator(formState.validator);
   const omitExtraData =
     formState.omitExtraData && codegemIsJsonSchemaValidator(validator);
 
@@ -255,7 +270,10 @@ export async function createSandboxFiles({
   const codeTransformers: CodeTransformer[] = [];
   return createComposer({
     name,
-    schema,
+    schema: {
+      ...schemaTypeFromValidator(formState.validator),
+      schema: formState.schema,
+    },
     uiSchema,
     language: "ts",
     validator,
@@ -268,7 +286,7 @@ export async function createSandboxFiles({
     extraDependencies,
     codeTransformers,
     modelName: "model",
-    initialValue: formState.initialValue,
+    initialValue: parseInitialValue(formState.initialValue),
     fieldsValidationMode: formState.fieldsValidationMode,
     merger: hasCustomMergerOptions
       ? {

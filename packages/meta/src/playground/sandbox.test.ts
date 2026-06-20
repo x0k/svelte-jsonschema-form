@@ -1,18 +1,19 @@
 import { describe, it, expect } from "vitest";
 
-import { codegenThemeOrSubTheme } from "../codegen/model.ts";
-import type { FormState } from "./form-state.ts";
+import { codegenThemeOrSubTheme } from "../codegen/index.ts";
+import { jsonSchema, jsonUiSchema, jsonValue } from "./form-preset.ts";
+import type { NormalizedFormState } from "./form-state.ts";
 import { playgroundValidators2, playgroundValidatorTitle } from "./model.ts";
 import { createSandboxFiles, type CustomComponents } from "./sandbox.ts";
 
-const BASE_FORM_STATE: FormState = {
-  schema: {
+const BASE_FORM_STATE: NormalizedFormState = {
+  schema: jsonSchema({
     type: "object",
     title: "Test",
     properties: { name: { type: "string" } },
-  },
-  uiSchema: {},
-  initialValue: undefined,
+  }),
+  uiSchema: jsonUiSchema({}),
+  initialValue: jsonValue(null),
   disabled: false,
   html5Validation: false,
   focusOnFirstError: true,
@@ -39,7 +40,7 @@ const CUSTOM_COMPONENTS: CustomComponents = {
   transparentLayout: "<stub>transparent</stub>",
 };
 
-function testCase(name: string, overrides: Partial<FormState> = {}) {
+function testCase(name: string, overrides: Partial<NormalizedFormState> = {}) {
   it(name, async () => {
     expect(
       await createSandboxFiles({
@@ -64,13 +65,19 @@ describe("sandbox-factory", () => {
 
   describe("validators", () => {
     for (const validator of playgroundValidators2()) {
-      testCase(playgroundValidatorTitle(validator), { validator });
+      const overrides: Partial<NormalizedFormState> = { validator };
+      if (validator.name === "zod4") {
+        overrides.schema = `import * as z from "zod";\n\nexport default z.object({ name: z.string() })`;
+      } else if (validator.name === "valibot") {
+        overrides.schema = `import * as v from "valibot";\n\nexport default v.object({ name: v.string() })`;
+      }
+      testCase(playgroundValidatorTitle(validator), overrides);
     }
   });
 
   describe("ui-schema", () => {
     testCase("customizations", {
-      uiSchema: {
+      uiSchema: jsonUiSchema({
         "ui:components": {
           stringField: "enumField",
           arrayField: "multiEnumField",
@@ -86,11 +93,11 @@ describe("sandbox-factory", () => {
             "ui:components": { textWidget: "textareaWidget" },
           },
         },
-      },
+      }),
     });
 
     testCase("refs", {
-      uiSchema: {
+      uiSchema: jsonUiSchema({
         "ui:definitions": {
           customField: {
             "ui:components": { stringField: "enumField" },
@@ -105,7 +112,7 @@ describe("sandbox-factory", () => {
         name: { $ref: "customField" },
         email: { $ref: "customField" },
         address: { $ref: "customLayout" },
-      },
+      }),
     });
   });
 

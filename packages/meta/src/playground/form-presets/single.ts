@@ -10,8 +10,7 @@ import {
 
 export const meta = defineMetadata({
   category: FormPresetCategory.SchemaBasics,
-  schemaFormat: "json-schema",
-  draft2020: false,
+  schema: { type: "json", draft2020: false },
   title: "Single",
   description: "Minimal form example with a single text input field.",
   tags: [PresetTag.Object],

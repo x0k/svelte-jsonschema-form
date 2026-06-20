@@ -1,4 +1,4 @@
-import type { Schema, UiSchemaRoot, FormValue } from "@sjsf/form";
+import type { UiSchemaRoot, FormValue } from "@sjsf/form";
 import type { DeepPartial } from "@sjsf/form/lib/types";
 
 import {
@@ -26,6 +26,7 @@ import {
   createValidator,
   createForm,
   type CodegenValidator,
+  type TypedSchema,
 } from "../codegen/index.ts";
 import type { ExtraFieldFileName } from "../fields.ts";
 import {
@@ -55,7 +56,7 @@ export interface ComposerOptions<T extends CodegenThemeOrSubTheme> {
   modelName: string;
   uiSchema: UiSchemaRoot;
   /** If `undefined` is specified, the model file will not be generated */
-  schema: Schema | undefined;
+  schema: TypedSchema | undefined;
   initialValue: FormValue;
   fieldsValidationMode: FieldsValidationMode;
   disabled: boolean;
@@ -147,9 +148,9 @@ export function normalizeProjectName(name: string): string {
     .replace(/^-|-$/g, "");
 }
 
-export function createComposer<T extends CodegenThemeOrSubTheme>(
+export async function createComposer<T extends CodegenThemeOrSubTheme>(
   options: ComposerOptions<T>
-): Record<string, string> {
+): Promise<Record<string, string>> {
   const {
     name,
     language,
@@ -262,16 +263,17 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
   };
 
   if (schema && !validator.precompiled) {
-    files[`src/lib/${modelName}.${language}`] = createModel({
-      validator,
-      isTs,
-      ts,
-      schema,
-      modelName,
-      uiSchema,
-      initialValue,
-      fieldsValidationMode,
-    })("");
+    files[`src/lib/${modelName}.${language}`] = (
+      await createModel({
+        validator,
+        isTs,
+        ts,
+        schema,
+        uiSchema,
+        initialValue,
+        fieldsValidationMode,
+      })
+    )("");
   }
 
   function addFile(filePath: string, content: string) {

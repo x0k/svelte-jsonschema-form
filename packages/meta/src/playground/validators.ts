@@ -83,7 +83,7 @@ import { Validator as AtaValidator } from "ata-validator";
 import { build, initialize, type Plugin } from "esbuild-wasm";
 import wasmURL from "esbuild-wasm/esbuild.wasm?url";
 
-import type { Draft2020, Precompiled } from "../codegen/model.ts";
+import type { Draft2020, Precompiled } from "../codegen/index.ts";
 import { importModule } from "../modules.ts";
 import { normalizeValidator, type PlaygroundValidator } from "./model.ts";
 

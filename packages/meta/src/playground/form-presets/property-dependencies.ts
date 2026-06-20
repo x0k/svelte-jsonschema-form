@@ -10,8 +10,7 @@ import {
 
 export const meta = defineMetadata({
   category: FormPresetCategory.SchemaLogic,
-  schemaFormat: "json-schema",
-  draft2020: false,
+  schema: { type: "json", draft2020: false },
   title: "Property Dependencies",
   description:
     "Conditional field visibility and requirements tied to property values.",

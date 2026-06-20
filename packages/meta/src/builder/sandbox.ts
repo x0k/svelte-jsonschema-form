@@ -27,7 +27,7 @@ export interface BuilderSandboxOptions {
   fields: ExtraFieldFileName[];
 }
 
-export function createSandboxFiles({
+export async function createSandboxFiles({
   name,
   theme,
   validator,
@@ -36,7 +36,7 @@ export function createSandboxFiles({
   icons,
   widgets,
   fields,
-}: BuilderSandboxOptions): Record<string, string> {
+}: BuilderSandboxOptions): Promise<Record<string, string>> {
   const actualTheme = toTheme(theme as Theme);
   const themeWidgets = WIDGETS[actualTheme];
 
@@ -68,7 +68,7 @@ export function createSandboxFiles({
     extraDependencies: [],
     codeTransformers: [],
     modelName: "model",
-    schema,
+    schema: { type: "json", schema: JSON.stringify(schema), draft2020: false },
     uiSchema,
     initialValue: undefined,
     fieldsValidationMode: 0,

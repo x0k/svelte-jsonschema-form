@@ -10,8 +10,7 @@ import {
 
 export const meta = defineMetadata({
   category: FormPresetCategory.Other,
-  schemaFormat: "json-schema",
-  draft2020: false,
+  schema: { type: "json", draft2020: false },
   title: "Simple",
   description:
     "A basic registration form showcasing common field types (string, integer, boolean) with various UI options.",

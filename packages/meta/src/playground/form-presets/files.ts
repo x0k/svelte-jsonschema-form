@@ -10,8 +10,7 @@ import {
 
 export const meta = defineMetadata({
   category: FormPresetCategory.SchemaBasics,
-  schemaFormat: "json-schema",
-  draft2020: false,
+  schema: { type: "json", draft2020: false },
   title: "Files",
   description: "File upload handling with native file picker array widgets.",
   tags: [PresetTag.Array, PresetTag.Widget],

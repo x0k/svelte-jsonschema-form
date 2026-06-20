@@ -10,8 +10,7 @@ import {
 
 export const meta = defineMetadata({
   category: FormPresetCategory.SchemaLogic,
-  schemaFormat: "json-schema",
-  draft2020: false,
+  schema: { type: "json", draft2020: false },
   title: "One Of",
   description: "Schema oneOf composition with mutually exclusive sub-schemas.",
   tags: [PresetTag.Composition, PresetTag.Conditional],

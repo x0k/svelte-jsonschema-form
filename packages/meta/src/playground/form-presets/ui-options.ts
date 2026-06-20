@@ -10,8 +10,7 @@ import {
 
 export const meta = defineMetadata({
   category: FormPresetCategory.UiCustomization,
-  schemaFormat: "json-schema",
-  draft2020: false,
+  schema: { type: "json", draft2020: false },
   title: "UI Options",
   description:
     "Various UI option customizations including placeholders, autofocus, and text formatting.",

@@ -135,6 +135,13 @@ export type CodegenNonPrecompiledValidator = Extract<
   Precompiled<false>
 >;
 
+export type SchemaType =
+  | { type: "json"; draft2020: boolean }
+  | { type: "zod" }
+  | { type: "valibot" };
+
+export type TypedSchema = SchemaType & { schema: string };
+
 export type CodegenPrecompiledValidator = Extract<
   CodegenValidator,
   Precompiled<true>

@@ -1,6 +1,6 @@
 import type { CatalogMeta } from "../catalog.ts";
+import type { SchemaType } from "../codegen/index.ts";
 import type { FormState, NormalizedFormState } from "./form-state.ts";
-import type { SchemaFormat } from "./schema-converter.ts";
 
 type RequiredFormPresetProperties = "schema" | "uiSchema" | "initialValue";
 
@@ -37,8 +37,7 @@ export enum PresetTag {
 }
 
 export type PresetMeta = CatalogMeta<FormPresetCategory, PresetTag> & {
-  schemaFormat: SchemaFormat | "json-schema";
-  draft2020: boolean;
+  schema: SchemaType;
 };
 
 export function defineMetadata(meta: PresetMeta): PresetMeta {

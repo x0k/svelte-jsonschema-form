@@ -23,9 +23,9 @@ function testCase(
   name: string,
   overrides: Partial<BuilderSandboxOptions> = {}
 ) {
-  it(name, () => {
+  it(name, async () => {
     expect(
-      createSandboxFiles({ ...BASE_OPTIONS, ...overrides })
+      await createSandboxFiles({ ...BASE_OPTIONS, ...overrides })
     ).toMatchSnapshot();
   });
 }

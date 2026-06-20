@@ -70,7 +70,7 @@ export async function createExampleFiles({
     }
   }
 
-  return createComposer({
+  return await createComposer({
     ...COMPOSER_DEFAULTS,
     name,
     icons: "none",

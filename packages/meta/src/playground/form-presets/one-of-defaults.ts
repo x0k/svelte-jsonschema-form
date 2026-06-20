@@ -12,8 +12,7 @@ import {
 
 export const meta = defineMetadata({
   category: FormPresetCategory.SchemaLogic,
-  schemaFormat: "json-schema",
-  draft2020: false,
+  schema: { type: "json", draft2020: false },
   title: "One Of Defaults",
   description:
     "Pre-filled default values across oneOf alternatives for improved UX.",

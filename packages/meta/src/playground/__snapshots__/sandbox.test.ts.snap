@@ -4187,16 +4187,9 @@ exports[`sandbox-factory > validators > Valibot 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/model.ts": "import * as v from 'valibot';
+  "src/lib/model.ts": "import * as v from "valibot";
 
-export const schema = v.pipe(
-	v.object({
-		title: v.pipe(v.string(), v.metadata({ title: 'Title' })),
-		content: v.pipe(v.string(), v.minLength(10), v.metadata({ title: 'Content' }))
-	}),
-	v.metadata({ title: 'Model' })
-);
-
+export const schema = v.object({ name: v.string() });
 export type Model = v.InferInput<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 
@@ -4332,13 +4325,9 @@ exports[`sandbox-factory > validators > Zod v4 1`] = `
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>",
-  "src/lib/model.ts": "import * as z from 'zod';
+  "src/lib/model.ts": "import * as z from "zod";
 
-export const schema = z.object({
-	title: z.string().meta({ title: 'Title' }),
-	content: z.string().min(10).meta({ title: 'Content' })
-}).meta({ title: 'Model' });
-
+export const schema = z.object({ name: z.string() });
 export type Model = z.infer<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 

@@ -11,8 +11,7 @@ import type { FormState } from "../form-state.ts";
 
 export const meta = defineMetadata({
   category: FormPresetCategory.SchemaBasics,
-  schemaFormat: "json-schema",
-  draft2020: true,
+  schema: { type: "json", draft2020: true },
   title: "Draft 2020-12",
   description:
     "JSON Schema Draft 2020-12 features: prefixItems, unevaluatedProperties, $dynamicRef, and $dynamicAnchor.",

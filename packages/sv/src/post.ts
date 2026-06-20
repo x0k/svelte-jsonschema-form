@@ -9,7 +9,7 @@ import {
   type Context,
 } from "./model.js";
 
-export function postTs({
+export async function postTs({
   isTs,
   sv,
   directory,
@@ -30,18 +30,19 @@ export function postTs({
       createJsonFile(POST_INITIAL_VALUE)
     );
   } else {
-    sv.file(
-      `${directory.lib}/post.${language}`,
-      createModel({
-        validator,
-        ts,
-        schema: POST_SCHEMA,
-        isTs,
-        modelName: "post",
-        initialValue: POST_INITIAL_VALUE,
-        uiSchema: POST_UI_SCHEMA,
-        fieldsValidationMode: POST_FIELDS_VALIDATION_MODE,
-      })
-    );
+    const modelTransform = await createModel({
+      validator,
+      ts,
+      schema: {
+        type: "json",
+        schema: JSON.stringify(POST_SCHEMA),
+        draft2020: false,
+      },
+      isTs,
+      initialValue: POST_INITIAL_VALUE,
+      uiSchema: POST_UI_SCHEMA,
+      fieldsValidationMode: POST_FIELDS_VALIDATION_MODE,
+    });
+    sv.file(`${directory.lib}/post.${language}`, modelTransform);
   }
 }
