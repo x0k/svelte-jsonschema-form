@@ -3,10 +3,15 @@ import {
   definePreset,
   FormPresetCategory,
   PresetTag,
+  jsonSchema,
+  jsonUiSchema,
+  jsonValue,
 } from "../form-preset.ts";
 
 export const meta = defineMetadata({
   category: FormPresetCategory.SchemaLogic,
+  schemaFormat: "json-schema",
+  draft2020: false,
   title: "Schema Dependencies",
   description:
     "Conditional schema dependencies that apply sub-schemas based on property presence.",
@@ -15,7 +20,7 @@ export const meta = defineMetadata({
 
 export default definePreset({
   resolver: "compat",
-  schema: {
+  schema: jsonSchema({
     title: "Schema dependencies",
     description: "These samples are best viewed without live validation.",
     type: "object",
@@ -118,8 +123,8 @@ export default definePreset({
         },
       },
     },
-  },
-  uiSchema: {
+  }),
+  uiSchema: jsonUiSchema({
     "ui:definitions": {
       getRid: {
         "ui:components": {
@@ -159,8 +164,8 @@ export default definePreset({
         },
       },
     },
-  },
-  initialValue: {
+  }),
+  initialValue: jsonValue({
     simple: {
       name: "Randy",
     },
@@ -190,5 +195,5 @@ export default definePreset({
         "Do you want to get rid of any?": true,
       },
     ],
-  },
+  }),
 });

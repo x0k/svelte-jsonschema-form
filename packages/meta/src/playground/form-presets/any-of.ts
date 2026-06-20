@@ -3,10 +3,15 @@ import {
   definePreset,
   FormPresetCategory,
   PresetTag,
+  jsonSchema,
+  jsonUiSchema,
+  jsonValue,
 } from "../form-preset.ts";
 
 export const meta = defineMetadata({
   category: FormPresetCategory.SchemaLogic,
+  schemaFormat: "json-schema",
+  draft2020: false,
   title: "Any Of",
   description:
     "Schema anyOf composition with multiple valid schemas and conditional rendering.",
@@ -14,7 +19,7 @@ export const meta = defineMetadata({
 });
 
 export default definePreset({
-  schema: {
+  schema: jsonSchema({
     type: "object",
     properties: {
       age: {
@@ -69,7 +74,7 @@ export default definePreset({
         },
       },
     ],
-  },
-  uiSchema: {},
-  initialValue: {},
+  }),
+  uiSchema: jsonUiSchema({}),
+  initialValue: jsonValue({}),
 });

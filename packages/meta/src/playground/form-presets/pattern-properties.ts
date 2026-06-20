@@ -3,10 +3,15 @@ import {
   definePreset,
   FormPresetCategory,
   PresetTag,
+  jsonSchema,
+  jsonUiSchema,
+  jsonValue,
 } from "../form-preset.ts";
 
 export const meta = defineMetadata({
   category: FormPresetCategory.SchemaLogic,
+  schemaFormat: "json-schema",
+  draft2020: false,
   title: "Pattern Properties",
   description:
     "Pattern-based property validation matching regex-defined property names.",
@@ -14,7 +19,7 @@ export const meta = defineMetadata({
 });
 
 export default definePreset({
-  schema: {
+  schema: jsonSchema({
     title: "A customizable registration form",
     description: "A simple form with pattern properties example.",
     type: "object",
@@ -38,8 +43,8 @@ export default definePreset({
         type: "number",
       },
     },
-  },
-  uiSchema: {
+  }),
+  uiSchema: jsonUiSchema({
     "ui:options": {
       translations: {
         "add-object-property": "Add property",
@@ -57,11 +62,11 @@ export default definePreset({
         stringEmptyValue: "",
       },
     },
-  },
-  initialValue: {
+  }),
+  initialValue: jsonValue({
     firstName: "Chuck",
     lastName: "Norris",
     fooPropertyExample: "foo",
     barPropertyExample: 123,
-  },
+  }),
 });

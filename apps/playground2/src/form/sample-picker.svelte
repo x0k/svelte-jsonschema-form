@@ -4,13 +4,14 @@
     formPresetCategories,
     GROUPED_FORM_PRESETS,
     type NormalizedFormPreset,
+    type PresetMeta,
   } from "meta/playground";
 
   import { Button, buttonVariants } from "$lib/components/ui/button/index.js";
   import * as Dialog from "$lib/components/ui/dialog/index.js";
 
   interface Props {
-    onSelect: (sample: NormalizedFormPreset) => void;
+    onSelect: (sample: NormalizedFormPreset, meta: PresetMeta) => void;
   }
 
   const { onSelect }: Props = $props();
@@ -35,7 +36,8 @@
               variant="secondary"
               onclick={async () => {
                 open = false;
-                onSelect(await load());
+                const preset = await load();
+                onSelect(preset, meta);
               }}
             >
               {meta.title}

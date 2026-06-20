@@ -3,10 +3,15 @@ import {
   definePreset,
   FormPresetCategory,
   PresetTag,
+  jsonSchema,
+  jsonUiSchema,
+  jsonValue,
 } from "../form-preset.ts";
 
 export const meta = defineMetadata({
   category: FormPresetCategory.SchemaBasics,
+  schemaFormat: "json-schema",
+  draft2020: false,
   title: "Arrays",
   description:
     "Various array configurations including fixed and variable item lists, nested arrays, and toolbar customization.",
@@ -15,7 +20,7 @@ export const meta = defineMetadata({
 
 export default definePreset({
   resolver: "compat",
-  schema: {
+  schema: jsonSchema({
     definitions: {
       Thing: {
         type: "object",
@@ -149,8 +154,8 @@ export default definePreset({
         },
       },
     },
-  },
-  uiSchema: {
+  }),
+  uiSchema: jsonUiSchema({
     listOfStrings: {
       "ui:options": {
         translations: {
@@ -211,8 +216,8 @@ export default definePreset({
         removable: false,
       },
     },
-  },
-  initialValue: {
+  }),
+  initialValue: jsonValue({
     listOfStrings: ["foo", "bar"],
     multipleChoicesList: ["foo", "bar"],
     fixedItemsList: ["Some text", true, 123],
@@ -222,5 +227,5 @@ export default definePreset({
     unremovable: ["one", "two"],
     noToolbar: ["one", "two"],
     fixedNoToolbar: [42, true, "additional item one", "additional item two"],
-  },
+  }),
 });

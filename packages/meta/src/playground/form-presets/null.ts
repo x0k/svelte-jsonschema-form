@@ -3,17 +3,22 @@ import {
   definePreset,
   FormPresetCategory,
   PresetTag,
+  jsonSchema,
+  jsonUiSchema,
+  jsonValue,
 } from "../form-preset.ts";
 
 export const meta = defineMetadata({
   category: FormPresetCategory.SchemaBasics,
+  schemaFormat: "json-schema",
+  draft2020: false,
   title: "Null",
   description: "Null type field handling and its UI representation.",
   tags: [PresetTag.Null],
 });
 
 export default definePreset({
-  schema: {
+  schema: jsonSchema({
     title: "Null field example",
     description: "A short form with a null field",
     type: "object",
@@ -31,8 +36,8 @@ export default definePreset({
         default: "Chuck",
       },
     },
-  },
-  uiSchema: {
+  }),
+  uiSchema: jsonUiSchema({
     firstName: {
       "ui:options": {
         text: {
@@ -47,6 +52,6 @@ export default definePreset({
         stringEmptyValue: "",
       },
     },
-  },
-  initialValue: {},
+  }),
+  initialValue: jsonValue({}),
 });

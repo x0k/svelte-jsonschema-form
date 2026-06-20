@@ -19,7 +19,6 @@ import {
   fromJsonSchema,
   toJsonSchema,
   getValidatorFormat,
-  isDraft2020Validator,
   type PlaygroundValidator2,
   type SchemaFormat,
 } from "meta/playground";
@@ -43,30 +42,48 @@ async function formatCode(str: string): Promise<string> {
   });
 }
 
-export async function convertSchema(
-  schema: string,
-  sourceFormat: SchemaFormat | "json-schema",
-  targetFormat: SchemaFormat | "json-schema",
-  sourceDraft2020 = false,
-): Promise<string> {
+export interface ConvertSchemaOptions {
+  schema: string;
+  sourceFormat: SchemaFormat | "json-schema";
+  targetFormat: SchemaFormat | "json-schema";
+  sourceDraft2020: boolean;
+  targetDraft2020: boolean;
+}
+
+export async function convertSchema({
+  schema,
+  sourceFormat,
+  targetFormat,
+  sourceDraft2020,
+  targetDraft2020,
+}: ConvertSchemaOptions): Promise<string> {
   if (sourceFormat === targetFormat) return schema;
   if (sourceFormat === "json-schema" && targetFormat !== "json-schema") {
     return formatCode(
-      fromJsonSchema(schema, targetFormat as SchemaFormat, sourceDraft2020),
+      fromJsonSchema({ schema, format: targetFormat, sourceDraft2020 })
     );
   }
   if (targetFormat === "json-schema" && sourceFormat !== "json-schema") {
     const schemaObj = (await parseJsValue(
-      ensureExportDefault(schema),
+      ensureExportDefault(schema)
     )) as object;
-    return toJsonSchema(schemaObj, sourceFormat as SchemaFormat);
+    return toJsonSchema({
+      schema: schemaObj,
+      format: sourceFormat,
+      targetDraft2020,
+    });
   }
   const schemaObj = (await parseJsValue(ensureExportDefault(schema))) as object;
   return formatCode(
-    fromJsonSchema(
-      toJsonSchema(schemaObj, sourceFormat as SchemaFormat),
-      targetFormat as SchemaFormat,
-    ),
+    fromJsonSchema({
+      schema: toJsonSchema({
+        schema: schemaObj,
+        format: sourceFormat as SchemaFormat,
+        targetDraft2020,
+      }),
+      format: targetFormat as SchemaFormat,
+      sourceDraft2020,
+    })
   );
 }
 
@@ -97,13 +114,13 @@ export function createValidatorMapper(data: {
     execute: debounce(async (_, validator) => {
       const sourceFormat = getValidatorFormat(data.validator);
       const targetFormat = getValidatorFormat(validator);
-      const sourceDraft2020 = isDraft2020Validator(data.validator);
-      const schema = await convertSchema(
-        data.schema,
+      const schema = await convertSchema({
+        schema: data.schema,
         sourceFormat,
         targetFormat,
-        sourceDraft2020,
-      );
+        sourceDraft2020: data.validator.draft2020,
+        targetDraft2020: validator.draft2020,
+      });
       return { validator, schema };
     }),
     onSuccess(result) {
@@ -172,11 +189,13 @@ export function createMergerTransition(data: {
 }) {
   return async () => {
     const sourceFormat = getValidatorFormat(data.validator);
-    const schema = await convertSchema(
-      data.schema,
+    const schema = await convertSchema({
+      schema: data.schema,
       sourceFormat,
-      "json-schema",
-    );
+      targetFormat: "json-schema",
+      sourceDraft2020: data.validator.draft2020,
+      targetDraft2020: false,
+    });
     return {
       schema,
       deduplicateJsonSchemas: true,

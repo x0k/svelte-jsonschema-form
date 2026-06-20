@@ -5,7 +5,6 @@ import {
 } from "../codegen/index.ts";
 import { resolvers, type Resolver } from "../form.ts";
 import { iconSets, iconSetTitle } from "../icons.ts";
-import { isValidJson } from "../json.ts";
 import {
   isLegacyTheme,
   isThemeWithSubThemes,
@@ -113,9 +112,7 @@ export const playgroundResolvers = resolvers;
 
 // TODO: Remove in v4
 export function normalizeJsonValue<S>(str: string | S) {
-  return typeof str === "string" && isValidJson(str)
-    ? str
-    : JSON.stringify(str, null, 2);
+  return typeof str === "string" ? str : JSON.stringify(str, null, 2);
 }
 
 // TODO: Remove in v4

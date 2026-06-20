@@ -3,10 +3,15 @@ import {
   definePreset,
   FormPresetCategory,
   PresetTag,
+  jsonSchema,
+  jsonUiSchema,
+  jsonValue,
 } from "../form-preset.ts";
 
 export const meta = defineMetadata({
   category: FormPresetCategory.Other,
+  schemaFormat: "json-schema",
+  draft2020: false,
   title: "Simple",
   description:
     "A basic registration form showcasing common field types (string, integer, boolean) with various UI options.",
@@ -14,7 +19,7 @@ export const meta = defineMetadata({
 });
 
 export default definePreset({
-  schema: {
+  schema: jsonSchema({
     title: "A registration form",
     description: "A simple form example.",
     type: "object",
@@ -48,8 +53,8 @@ export default definePreset({
         minLength: 10,
       },
     },
-  },
-  uiSchema: {
+  }),
+  uiSchema: jsonUiSchema({
     firstName: {
       "ui:options": {
         description:
@@ -134,12 +139,12 @@ export default definePreset({
         },
       },
     },
-  },
-  initialValue: {
+  }),
+  initialValue: jsonValue({
     lastName: "Norris",
     age: 75,
     bio: "Roundhouse kicking asses since 1940",
     password: "noneed",
     telephone: "1-800-KICKASS",
-  },
+  }),
 });

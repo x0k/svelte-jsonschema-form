@@ -24,7 +24,6 @@
     type Schema,
     type FormMerger,
     type UiSchema,
-    type SchemaValue,
   } from "@sjsf/form";
   import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
   import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
@@ -67,7 +66,6 @@
     playgroundResolvers,
     playgroundThemes,
     playgroundValidator,
-    detectSchemaFormat,
     getValidatorFormat,
     type FormState,
     normalizeFormState,
@@ -495,17 +493,22 @@
 >
   <ButtonGroup.Root>
     <SamplePicker
-      onSelect={async (sample) => {
+      onSelect={async (sample, meta) => {
         for (const [key, value] of Object.entries(sample)) {
           if (value !== undefined) {
             data[key as keyof FormState] = value as never;
           }
         }
         originalInitialValue = sample.initialValue;
-        const sourceFormat = detectSchemaFormat(data.schema);
         const targetFormat = getValidatorFormat(data.validator);
-        if (sourceFormat !== targetFormat) {
-          data.schema = await convertSchema(data.schema, sourceFormat, targetFormat);
+        if (meta.schemaFormat !== targetFormat) {
+          data.schema = await convertSchema({
+            schema: data.schema,
+            sourceFormat: meta.schemaFormat,
+            targetFormat,
+            sourceDraft2020: meta.draft2020,
+            targetDraft2020: data.validator.draft2020,
+          });
         }
       }}
     />

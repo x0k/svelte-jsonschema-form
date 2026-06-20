@@ -5,10 +5,15 @@ import {
   definePreset,
   FormPresetCategory,
   PresetTag,
+  jsonSchema,
+  jsonUiSchema,
+  jsonValue,
 } from "../form-preset.ts";
 
 export const meta = defineMetadata({
   category: FormPresetCategory.UiCustomization,
+  schemaFormat: "json-schema",
+  draft2020: false,
   title: "Layout Grid",
   description:
     "Advanced grid layout patterns with field spanning and custom widths.",
@@ -48,7 +53,7 @@ const transparent: UiSchema = {
 
 export default definePreset({
   resolver: "compat",
-  schema: {
+  schema: jsonSchema({
     type: "object",
     properties: {
       person: {
@@ -327,8 +332,8 @@ export default definePreset({
         required: ["job_type", "description"],
       },
     },
-  },
-  uiSchema: {
+  }),
+  uiSchema: jsonUiSchema({
     "ui:definitions": {
       oneSecond: propertyStyles("grid-column: span 6;"),
       oneThird: propertyStyles("grid-column: span 4;"),
@@ -454,6 +459,6 @@ export default definePreset({
         },
       ],
     },
-  },
-  initialValue: {},
+  }),
+  initialValue: jsonValue({}),
 });

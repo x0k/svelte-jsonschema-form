@@ -9,7 +9,7 @@ import { normalizeValidator, type PlaygroundValidator2 } from "./model.ts";
 export type SchemaFormat = "zod" | "valibot";
 
 export function getValidatorFormat(
-  validator: PlaygroundValidator2,
+  validator: PlaygroundValidator2
 ): SchemaFormat | "json-schema" {
   const v = normalizeValidator(validator);
   if (v.name === "zod4") return "zod";
@@ -21,40 +21,45 @@ export function isDraft2020Validator(validator: PlaygroundValidator2): boolean {
   return normalizeValidator(validator).draft2020;
 }
 
-export function detectSchemaFormat(
-  schema: string,
-): SchemaFormat | "json-schema" {
-  if (schema.includes('"zod"') || schema.includes("'zod'")) {
-    return "zod";
-  }
-  if (schema.includes('"valibot"') || schema.includes("'valibot'")) {
-    return "valibot";
-  }
-  return "json-schema";
+export interface ToJsonSchemaOptions {
+  schema: object;
+  format: SchemaFormat;
+  targetDraft2020: boolean;
 }
 
-export function toJsonSchema(schemaObj: object, format: SchemaFormat): string {
+export function toJsonSchema({
+  schema,
+  format,
+  targetDraft2020,
+}: ToJsonSchemaOptions): string {
   let jsonSchema: object;
   if (format === "zod") {
-    jsonSchema = toJSONSchema(schemaObj as any, {
-      target: "draft-7",
+    jsonSchema = toJSONSchema(schema as any, {
+      target: targetDraft2020 ? "draft-2020-12" : "draft-7",
       unrepresentable: "any",
     });
   } else {
-    jsonSchema = valibotToJsonSchema(schemaObj as any, {
+    jsonSchema = valibotToJsonSchema(schema as any, {
       typeMode: "input",
       errorMode: "ignore",
+      target: targetDraft2020 ? "draft-2020-12" : "draft-07",
     }) as object;
   }
   return JSON.stringify(jsonSchema, null, 2);
 }
 
-export function fromJsonSchema(
-  jsonSchemaStr: string,
-  format: SchemaFormat,
-  sourceDraft2020 = false,
-): string {
-  let jsonSchema = JSON.parse(jsonSchemaStr);
+export interface FromJsonSchemaOptions {
+  schema: string;
+  format: SchemaFormat;
+  sourceDraft2020: boolean;
+}
+
+export function fromJsonSchema({
+  schema,
+  format,
+  sourceDraft2020,
+}: FromJsonSchemaOptions): string {
+  let jsonSchema = JSON.parse(schema);
   if (sourceDraft2020) {
     jsonSchema = convert(jsonSchema as any);
   }

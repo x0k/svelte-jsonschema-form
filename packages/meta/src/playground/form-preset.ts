@@ -1,6 +1,6 @@
 import type { CatalogMeta } from "../catalog.ts";
 import type { FormState, NormalizedFormState } from "./form-state.ts";
-import { normalizeJsonValue, normalizeValidator } from "./model.ts";
+import type { SchemaFormat } from "./schema-converter.ts";
 
 type RequiredFormPresetProperties = "schema" | "uiSchema" | "initialValue";
 
@@ -36,22 +36,31 @@ export enum PresetTag {
   Widget = "widget",
 }
 
-export type PresetMeta = CatalogMeta<FormPresetCategory, PresetTag>;
+export type PresetMeta = CatalogMeta<FormPresetCategory, PresetTag> & {
+  schemaFormat: SchemaFormat | "json-schema";
+  draft2020: boolean;
+};
 
 export function defineMetadata(meta: PresetMeta): PresetMeta {
   return meta;
 }
 
 export function definePreset(
-  preset: FormPreset | NormalizedFormPreset
+  preset: NormalizedFormPreset
 ): NormalizedFormPreset {
-  return {
-    ...preset,
-    validator: preset.validator && normalizeValidator(preset.validator),
-    schema: normalizeJsonValue(preset.schema),
-    uiSchema: normalizeJsonValue(preset.uiSchema),
-    initialValue: normalizeJsonValue(preset.initialValue),
-  };
+  return preset;
+}
+
+export function jsonSchema(schema: FormState["schema"]): string {
+  return JSON.stringify(schema, null, 2);
+}
+
+export function jsonUiSchema(uiSchema: FormState["uiSchema"]): string {
+  return JSON.stringify(uiSchema, null, 2);
+}
+
+export function jsonValue(value: FormState["initialValue"]): string {
+  return JSON.stringify(value, null, 2);
 }
 
 export function formPresetCategories(): Iterable<FormPresetCategory> {

@@ -59,7 +59,11 @@ describe("isDraft2020Validator", () => {
 describe("fromJsonSchema", () => {
   it("wraps Zod output with import and export default", () => {
     const schema = JSON.stringify({ type: "string" });
-    const result = fromJsonSchema(schema, "zod");
+    const result = fromJsonSchema({
+      schema,
+      format: "zod",
+      sourceDraft2020: false,
+    });
     expect(result).toMatchInlineSnapshot(`
       "import * as z from "zod";
 
@@ -69,7 +73,11 @@ describe("fromJsonSchema", () => {
 
   it("wraps Valibot output with import and replaces export const with export default", () => {
     const schema = JSON.stringify({ type: "string" });
-    const result = fromJsonSchema(schema, "valibot");
+    const result = fromJsonSchema({
+      schema,
+      format: "valibot",
+      sourceDraft2020: false,
+    });
     expect(result).toMatchInlineSnapshot(`
       "import * as v from 'valibot'
 
@@ -84,7 +92,11 @@ describe("fromJsonSchema", () => {
       type: "array",
       prefixItems: [{ type: "string" }, { type: "number" }],
     });
-    const result = fromJsonSchema(schema, "zod", true);
+    const result = fromJsonSchema({
+      schema,
+      format: "zod",
+      sourceDraft2020: true,
+    });
     expect(result).toContain("z.tuple");
   });
 
@@ -93,17 +105,11 @@ describe("fromJsonSchema", () => {
       type: "object",
       properties: { foo: { type: "string" } },
     });
-    const result = fromJsonSchema(schema, "zod", false);
-    expect(result).toContain("z.object");
-    expect(result).toContain("z.string()");
-  });
-
-  it("skips draft2020 conversion when sourceDraft2020 is omitted", () => {
-    const schema = JSON.stringify({
-      type: "object",
-      properties: { foo: { type: "string" } },
+    const result = fromJsonSchema({
+      schema,
+      format: "zod",
+      sourceDraft2020: false,
     });
-    const result = fromJsonSchema(schema, "zod");
     expect(result).toContain("z.object");
     expect(result).toContain("z.string()");
   });
@@ -112,7 +118,11 @@ describe("fromJsonSchema", () => {
 describe("toJsonSchema", () => {
   it("converts Zod schema to JSON string", () => {
     const schema = z.object({ name: z.string() });
-    const result = toJsonSchema(schema, "zod");
+    const result = toJsonSchema({
+      schema,
+      format: "zod",
+      targetDraft2020: false,
+    });
     const parsed = JSON.parse(result);
     expect(parsed.type).toBe("object");
     expect(parsed.properties.name.type).toBe("string");
@@ -120,7 +130,11 @@ describe("toJsonSchema", () => {
 
   it("converts Valibot schema to JSON string", () => {
     const schema = v.object({ name: v.string() });
-    const result = toJsonSchema(schema, "valibot");
+    const result = toJsonSchema({
+      schema,
+      format: "valibot",
+      targetDraft2020: false,
+    });
     const parsed = JSON.parse(result);
     expect(parsed.type).toBe("object");
     expect(parsed.properties.name.type).toBe("string");
@@ -128,7 +142,11 @@ describe("toJsonSchema", () => {
 
   it("produces pretty-printed output", () => {
     const schema = z.object({ name: z.string() });
-    const result = toJsonSchema(schema, "zod");
+    const result = toJsonSchema({
+      schema,
+      format: "zod",
+      targetDraft2020: false,
+    });
     expect(result).toContain("\n");
     expect(result).toContain("  ");
   });

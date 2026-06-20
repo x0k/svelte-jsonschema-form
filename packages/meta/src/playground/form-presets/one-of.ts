@@ -3,17 +3,22 @@ import {
   definePreset,
   FormPresetCategory,
   PresetTag,
+  jsonSchema,
+  jsonUiSchema,
+  jsonValue,
 } from "../form-preset.ts";
 
 export const meta = defineMetadata({
   category: FormPresetCategory.SchemaLogic,
+  schemaFormat: "json-schema",
+  draft2020: false,
   title: "One Of",
   description: "Schema oneOf composition with mutually exclusive sub-schemas.",
   tags: [PresetTag.Composition, PresetTag.Conditional],
 });
 
 export default definePreset({
-  schema: {
+  schema: jsonSchema({
     type: "object",
     oneOf: [
       {
@@ -33,7 +38,7 @@ export default definePreset({
         required: ["ipsum"],
       },
     ],
-  },
-  uiSchema: {},
-  initialValue: {},
+  }),
+  uiSchema: jsonUiSchema({}),
+  initialValue: jsonValue({}),
 });

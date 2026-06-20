@@ -3,17 +3,22 @@ import {
   definePreset,
   FormPresetCategory,
   PresetTag,
+  jsonSchema,
+  jsonUiSchema,
+  jsonValue,
 } from "../form-preset.ts";
 
 export const meta = defineMetadata({
   category: FormPresetCategory.SchemaBasics,
+  schemaFormat: "json-schema",
+  draft2020: false,
   title: "Date",
   description: "Date picker widget integration for date-type form fields.",
   tags: [PresetTag.Widget],
 });
 
 export default definePreset({
-  schema: {
+  schema: jsonSchema({
     title: "Date and time widgets",
     type: "object",
     properties: {
@@ -58,13 +63,13 @@ export default definePreset({
       //   },
       // },
     },
-  },
-  uiSchema: {
+  }),
+  uiSchema: jsonUiSchema({
     datePicker: {
       "ui:components": {
         textWidget: "datePickerWidget",
       },
     },
-  },
-  initialValue: {},
+  }),
+  initialValue: jsonValue({}),
 });

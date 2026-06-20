@@ -3,10 +3,15 @@ import {
   definePreset,
   FormPresetCategory,
   PresetTag,
+  jsonSchema,
+  jsonUiSchema,
+  jsonValue,
 } from "../form-preset.ts";
 
 export const meta = defineMetadata({
   category: FormPresetCategory.SchemaBasics,
+  schemaFormat: "json-schema",
+  draft2020: false,
   title: "References",
   description:
     "JSON Schema $ref references for reusable and modular schema definitions.",
@@ -14,7 +19,7 @@ export const meta = defineMetadata({
 });
 
 export default definePreset({
-  schema: {
+  schema: jsonSchema({
     definitions: {
       address: {
         type: "object",
@@ -53,8 +58,8 @@ export default definePreset({
         $ref: "#/definitions/node",
       },
     },
-  },
-  uiSchema: {
+  }),
+  uiSchema: jsonUiSchema({
     "ui:definitions": {
       node: {
         name: {
@@ -75,8 +80,8 @@ export default definePreset({
     tree: {
       $ref: "node",
     },
-  },
-  initialValue: {
+  }),
+  initialValue: jsonValue({
     billing_address: {
       street_address: "21, Jump Street",
       city: "Babel",
@@ -91,5 +96,5 @@ export default definePreset({
       name: "root",
       children: [{ name: "leaf" }],
     },
-  },
+  }),
 });

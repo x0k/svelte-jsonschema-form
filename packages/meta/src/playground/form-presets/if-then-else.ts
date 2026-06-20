@@ -3,10 +3,15 @@ import {
   definePreset,
   FormPresetCategory,
   PresetTag,
+  jsonSchema,
+  jsonUiSchema,
+  jsonValue,
 } from "../form-preset.ts";
 
 export const meta = defineMetadata({
   category: FormPresetCategory.SchemaLogic,
+  schemaFormat: "json-schema",
+  draft2020: false,
   title: "If Then Else",
   description:
     "Conditional schema validation with if/then/else logical branching.",
@@ -17,7 +22,7 @@ export default definePreset({
   // NOTE: This sample produces warnings in the console as original project does.
   // Looks like `json-schema-merge-allof` package can't properly handle `if` and `then` in `allOf`.
   resolver: "compat",
-  schema: {
+  schema: jsonSchema({
     type: "object",
     properties: {
       animal: {
@@ -58,7 +63,7 @@ export default definePreset({
         required: ["animal"],
       },
     ],
-  },
-  uiSchema: {},
-  initialValue: {},
+  }),
+  uiSchema: jsonUiSchema({}),
+  initialValue: jsonValue({}),
 });

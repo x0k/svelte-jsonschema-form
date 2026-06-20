@@ -3,10 +3,15 @@ import {
   definePreset,
   FormPresetCategory,
   PresetTag,
+  jsonSchema,
+  jsonUiSchema,
+  jsonValue,
 } from "../form-preset.ts";
 
 export const meta = defineMetadata({
   category: FormPresetCategory.SchemaBasics,
+  schemaFormat: "json-schema",
+  draft2020: false,
   title: "Files",
   description: "File upload handling with native file picker array widgets.",
   tags: [PresetTag.Array, PresetTag.Widget],
@@ -14,7 +19,7 @@ export const meta = defineMetadata({
 
 export default definePreset({
   resolver: "compat",
-  schema: {
+  schema: jsonSchema({
     title: "Files",
     type: "object",
     properties: {
@@ -58,8 +63,8 @@ export default definePreset({
         items: {},
       },
     },
-  },
-  uiSchema: {
+  }),
+  uiSchema: jsonUiSchema({
     filesAccept: {
       "ui:options": {
         file: {
@@ -92,6 +97,6 @@ export default definePreset({
         },
       },
     },
-  },
-  initialValue: {},
+  }),
+  initialValue: jsonValue({}),
 });

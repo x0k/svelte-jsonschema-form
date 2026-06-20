@@ -3,10 +3,15 @@ import {
   definePreset,
   FormPresetCategory,
   PresetTag,
+  jsonSchema,
+  jsonUiSchema,
+  jsonValue,
 } from "../form-preset.ts";
 
 export const meta = defineMetadata({
   category: FormPresetCategory.UiCustomization,
+  schemaFormat: "json-schema",
+  draft2020: false,
   title: "Grid",
   description:
     "Multi-column grid layouts using responsive field grid configuration.",
@@ -15,7 +20,7 @@ export const meta = defineMetadata({
 
 export default definePreset({
   // Based on https://habr.com/ru/articles/884862/ (RU)
-  schema: {
+  schema: jsonSchema({
     title: "Fill in user information",
     type: "object",
     required: ["name", "username"],
@@ -29,8 +34,8 @@ export default definePreset({
       bio: { type: "string", title: "About Me" },
       city: { type: "string", title: "City" },
     },
-  },
-  uiSchema: {
+  }),
+  uiSchema: jsonUiSchema({
     "ui:options": {
       layouts: {
         "object-properties": {
@@ -64,6 +69,6 @@ export default definePreset({
         },
       },
     },
-  },
-  initialValue: {},
+  }),
+  initialValue: jsonValue({}),
 });
