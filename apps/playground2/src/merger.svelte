@@ -8,7 +8,12 @@
     createShallowAllOfMerge,
   } from "@sjsf/form/lib/json-schema";
   import { isObject, isRecord } from "@sjsf/form/lib/object";
-  import { normalizeMergerState, type MergerState } from "meta/playground";
+  import {
+    normalizeMergerState,
+    parseFormData,
+    parseJsonSchema,
+    type MergerState,
+  } from "meta/playground";
   import { Panel, setTilerContext, type Tiles } from "svelte-tiler";
   import { fromRecord } from "svelte-tiler/shared/registry";
   import * as Leaf from "svelte-tiler/tiles/leaf.svelte";
@@ -61,11 +66,11 @@
   });
 
   const schemaQuery = createParseQuery({
+    parse: parseJsonSchema,
     get input() {
       return data.schema;
     },
     defaultValue: {},
-    guard: isRecord,
   });
 
   const merge = $derived.by(() => {
@@ -150,10 +155,10 @@
   });
 
   const outputQuery = createParseQuery({
+    parse: parseFormData,
     get input() {
       return data.output;
     },
-    guard: isObject,
     defaultValue: [],
   });
 

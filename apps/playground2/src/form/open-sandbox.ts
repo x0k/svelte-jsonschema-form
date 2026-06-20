@@ -1,12 +1,15 @@
-import { createSandboxFiles } from "meta/playground";
-import type { CustomComponents, FormState } from "meta/playground";
+import {
+  createSandboxFiles,
+  type CustomComponents,
+  type NormalizedFormState,
+} from "meta/playground";
 import { sandboxOpen, type SandboxPlatform } from "meta/sandbox";
 
 import markdownDescriptionSource from "./custom-form-components/markdown-description.svelte?raw";
 import transparentLayoutSource from "./custom-form-components/transparent-layout.svelte?raw";
 
 export interface SandboxOptions {
-  formState: FormState;
+  formState: NormalizedFormState;
   platform: SandboxPlatform;
 }
 

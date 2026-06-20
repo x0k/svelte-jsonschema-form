@@ -20,6 +20,8 @@
   import { createFormValidator as noop } from "@sjsf/form/validators/noop";
   import {
     normalizeValidatorState,
+    parseFormData,
+    parseSchemaObject,
     playgroundValidator,
     type ValidatorState,
   } from "meta/playground";
@@ -99,12 +101,12 @@
     };
   }
 
-  const schemaQuery = createParseQuery<object>({
+  const schemaQuery = createParseQuery({
+    parse: parseSchemaObject,
     get input() {
       return data.schema;
     },
     defaultValue: {},
-    guard: isObject,
   });
 
   const validatorQuery = createQuery<
@@ -140,10 +142,10 @@
   });
 
   const inputQuery = createParseQuery({
+    parse: parseFormData,
     get input() {
       return data.input;
     },
-    guard: (_v): _v is FormValue => true,
     defaultValue: undefined,
   });
 
@@ -217,10 +219,10 @@
   const { mapped, items, labels } = createValidatorMapper(data);
 
   const outputQuery = createParseQuery({
+    parse: parseFormData,
     get input() {
       return data.output;
     },
-    guard: isObject,
     defaultValue: [],
   });
 

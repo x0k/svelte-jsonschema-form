@@ -11,16 +11,12 @@ import {
   singleOption,
 } from "@sjsf/form/options.svelte";
 import {
+  convertTypedSchema,
   EXPORT_DEFAULT,
-  parseJsValue,
   playgroundValidators2,
   playgroundValidatorTitle,
-  ensureExportDefault,
-  fromJsonSchema,
-  toJsonSchema,
-  getValidatorFormat,
+  schemaTypeFromValidator,
   type PlaygroundValidator2,
-  type SchemaFormat,
 } from "meta/playground";
 import * as prettierPluginBabel from "prettier/plugins/babel";
 import * as prettierPluginEstree from "prettier/plugins/estree";
@@ -40,51 +36,6 @@ async function formatCode(str: string): Promise<string> {
     parser: "babel",
     plugins: [prettierPluginBabel, prettierPluginEstree],
   });
-}
-
-export interface ConvertSchemaOptions {
-  schema: string;
-  sourceFormat: SchemaFormat | "json-schema";
-  targetFormat: SchemaFormat | "json-schema";
-  sourceDraft2020: boolean;
-  targetDraft2020: boolean;
-}
-
-export async function convertSchema({
-  schema,
-  sourceFormat,
-  targetFormat,
-  sourceDraft2020,
-  targetDraft2020,
-}: ConvertSchemaOptions): Promise<string> {
-  if (sourceFormat === targetFormat) return schema;
-  if (sourceFormat === "json-schema" && targetFormat !== "json-schema") {
-    return formatCode(
-      fromJsonSchema({ schema, format: targetFormat, sourceDraft2020 })
-    );
-  }
-  if (targetFormat === "json-schema" && sourceFormat !== "json-schema") {
-    const schemaObj = (await parseJsValue(
-      ensureExportDefault(schema)
-    )) as object;
-    return toJsonSchema({
-      schema: schemaObj,
-      format: sourceFormat,
-      targetDraft2020,
-    });
-  }
-  const schemaObj = (await parseJsValue(ensureExportDefault(schema))) as object;
-  return formatCode(
-    fromJsonSchema({
-      schema: toJsonSchema({
-        schema: schemaObj,
-        format: sourceFormat as SchemaFormat,
-        targetDraft2020,
-      }),
-      format: targetFormat as SchemaFormat,
-      sourceDraft2020,
-    })
-  );
 }
 
 export function createValidatorMapper(data: {
@@ -112,14 +63,12 @@ export function createValidatorMapper(data: {
     { schema: string; validator: PlaygroundValidator2 }
   >({
     execute: debounce(async (_, validator) => {
-      const sourceFormat = getValidatorFormat(data.validator);
-      const targetFormat = getValidatorFormat(validator);
-      const schema = await convertSchema({
-        schema: data.schema,
-        sourceFormat,
-        targetFormat,
-        sourceDraft2020: data.validator.draft2020,
-        targetDraft2020: validator.draft2020,
+      const schema = await convertTypedSchema({
+        source: {
+          ...schemaTypeFromValidator(data.validator),
+          schema: data.schema,
+        },
+        target: schemaTypeFromValidator(validator),
       });
       return { validator, schema };
     }),
@@ -145,7 +94,7 @@ export function createValidatorMapper(data: {
 
 export interface ParseQueryOptions<T> {
   input: string;
-  guard: (value: unknown) => value is T;
+  parse: (value: string) => Promise<T>;
   defaultValue: T;
 }
 
@@ -153,13 +102,7 @@ export function createParseQuery<T>(options: ParseQueryOptions<T>) {
   let error = $state.raw(false);
   const query = createQuery<[string], T>({
     deps: () => [options.input],
-    execute: debounce(async (_, str) => {
-      const value = await parseJsValue(ensureExportDefault(str));
-      if (!options.guard(value)) {
-        throw new Error("Query guard failed");
-      }
-      return value;
-    }),
+    execute: debounce((_, str) => options.parse(str)),
     onSuccess() {
       error = false;
     },
@@ -188,13 +131,15 @@ export function createMergerTransition(data: {
   validator: PlaygroundValidator2;
 }) {
   return async () => {
-    const sourceFormat = getValidatorFormat(data.validator);
-    const schema = await convertSchema({
-      schema: data.schema,
-      sourceFormat,
-      targetFormat: "json-schema",
-      sourceDraft2020: data.validator.draft2020,
-      targetDraft2020: false,
+    const schema = await convertTypedSchema({
+      source: {
+        ...schemaTypeFromValidator(data.validator),
+        schema: data.schema,
+      },
+      target: {
+        type: "json",
+        draft2020: false,
+      },
     });
     return {
       schema,

@@ -24,7 +24,7 @@ import { WIDGETS } from "../widgets.generated.ts";
 import { isThemeBaseWidget, type ExtraWidgetFileNames } from "../widgets.ts";
 import type { NormalizedFormState } from "./form-state.ts";
 import { normalizeValidator, type PlaygroundTheme } from "./model.ts";
-import { parseInitialValue, parseUiSchema } from "./parse.ts";
+import { parseFormData, parseUiSchema } from "./parse.ts";
 import { WIDGET_EXTRA_FIELD } from "./widget-extra-fields.ts";
 
 export interface CustomComponents {
@@ -180,7 +180,7 @@ export async function createSandboxFiles({
 
   const [uiSchema, initialValue] = await Promise.all([
     parseUiSchema(formState.uiSchema),
-    parseInitialValue(formState.initialValue),
+    parseFormData(formState.initialValue),
   ]);
 
   const {

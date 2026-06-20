@@ -18,18 +18,15 @@
     Form,
     Content,
     SubmitButton,
-    type FormValue,
     getValueSnapshot,
     setValue,
     type Schema,
     type FormMerger,
-    type UiSchema,
   } from "@sjsf/form";
   import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
   import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
   import { createDeduplicator, createIntersector } from "@sjsf/form/lib/array";
   import { createComparator, createMerger } from "@sjsf/form/lib/json-schema";
-  import { isObject, isRecord } from "@sjsf/form/lib/object";
   import { extendByRecord, fromRecord } from "@sjsf/form/lib/resolver";
   import {
     createQuery,
@@ -66,9 +63,13 @@
     playgroundResolvers,
     playgroundThemes,
     playgroundValidator,
-    getValidatorFormat,
+    convertTypedSchema,
     type FormState,
     normalizeFormState,
+    schemaTypeFromValidator,
+    parseSchemaObject,
+    parseFormData,
+    parseUiSchema,
   } from "meta/playground";
   import {
     SANDBOX_PLATFORMS,
@@ -108,7 +109,6 @@
   import { router } from "@/router.js";
   import { setShadcnContext } from "@/shadcn-context.js";
   import {
-    convertSchema,
     createFormatTask,
     createMergerTransition,
     createParseQuery,
@@ -228,11 +228,11 @@
   }
 
   const schemaQuery = createParseQuery({
+    parse: parseSchemaObject,
     get input() {
       return data.schema;
     },
     defaultValue: {},
-    guard: isObject,
   });
 
   const validatorQuery = createQuery<
@@ -268,18 +268,18 @@
   );
 
   const initialValueQuery = createParseQuery({
+    parse: parseFormData,
     get input() {
       return data.initialValue;
     },
-    guard: (_v): _v is FormValue => true,
     defaultValue: undefined,
   });
 
-  const uiSchemaQuery = createParseQuery<UiSchema>({
+  const uiSchemaQuery = createParseQuery({
+    parse: parseUiSchema,
     get input() {
       return data.uiSchema;
     },
-    guard: isRecord,
     defaultValue: {},
   });
 
@@ -500,16 +500,14 @@
           }
         }
         originalInitialValue = sample.initialValue;
-        const targetFormat = getValidatorFormat(data.validator);
-        if (meta.schemaFormat !== targetFormat) {
-          data.schema = await convertSchema({
+        const target = schemaTypeFromValidator(data.validator);
+        data.schema = await convertTypedSchema({
+          source: {
+            ...meta.schema,
             schema: data.schema,
-            sourceFormat: meta.schemaFormat,
-            targetFormat,
-            sourceDraft2020: meta.draft2020,
-            targetDraft2020: data.validator.draft2020,
-          });
-        }
+          },
+          target,
+        });
       }}
     />
   </ButtonGroup.Root>

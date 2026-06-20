@@ -1,9 +1,9 @@
-import type { FormValue, UiSchema } from "@sjsf/form";
+import type { FormValue, Schema, UiSchema } from "@sjsf/form";
 import { isObject, isRecord } from "@sjsf/form/lib/object";
 
 import { importModule } from "../modules.ts";
 
-const EXPORT_DEFAULT = "export default";
+export const EXPORT_DEFAULT = "export default";
 
 function ensureExportDefault(raw: string) {
   const str = raw.trim();
@@ -30,6 +30,14 @@ export async function parseSchemaObject(schemaStr: string) {
   return schemaObject;
 }
 
+export async function parseJsonSchema(code: string) {
+  const schema = await parseDefaultJsValue(code);
+  if (!isRecord(schema)) {
+    throw new Error("Invalid schema value, expected record");
+  }
+  return schema as Schema;
+}
+
 export async function parseUiSchema(uiSchemaStr: string) {
   const uiSchema = await parseDefaultJsValue(uiSchemaStr);
   if (!isRecord(uiSchema)) {
@@ -38,7 +46,7 @@ export async function parseUiSchema(uiSchemaStr: string) {
   return uiSchema as UiSchema;
 }
 
-export async function parseInitialValue(
+export async function parseFormData(
   initialValueStr: string
 ): Promise<FormValue> {
   const initialValue = await parseDefaultJsValue(initialValueStr);
