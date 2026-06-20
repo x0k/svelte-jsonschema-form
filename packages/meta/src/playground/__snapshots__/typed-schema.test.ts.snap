@@ -1,0 +1,68 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`convertTypedSchema > from json (draft7) > to json (draft7) 1`] = `"{"type":"object","properties":{"name":{"type":"string"}}}"`;
+
+exports[`convertTypedSchema > from json (draft7) > to json (draft2020) 1`] = `"export default { type: "object", properties: { name: { type: "string" } } }"`;
+
+exports[`convertTypedSchema > from json (draft7) > to valibot 1`] = `
+"import * as v from 'valibot'
+
+export default v.object({ "name": v.optional(v.string()) })
+"
+`;
+
+exports[`convertTypedSchema > from json (draft7) > to zod 1`] = `
+"import * as z from "zod";
+
+export default z.object({ "name": z.string().optional() })"
+`;
+
+exports[`convertTypedSchema > from json (draft2020) > to json (draft7) 1`] = `"{"$schema":"http://json-schema.org/draft-07/schema","type":"object","properties":{"items":{"type":"array","items":[{"type":"string"}],"additionalItems":{"type":"number"}}},"additionalProperties":false}"`;
+
+exports[`convertTypedSchema > from json (draft2020) > to json (draft2020) 1`] = `"export default { "$schema": "https://json-schema.org/draft/2020-12/schema", type: "object", properties: { items: { type: "array", prefixItems: [{ type: "string" }], items: { type: "number" } } }, unevaluatedProperties: false }"`;
+
+exports[`convertTypedSchema > from json (draft2020) > to valibot 1`] = `
+"import * as v from 'valibot'
+
+export default v.strictObject({ "items": v.optional(v.array(v.string())) })
+"
+`;
+
+exports[`convertTypedSchema > from json (draft2020) > to zod 1`] = `
+"import * as z from "zod";
+
+export default z.object({ "items": z.tuple([z.string()]).optional() }).strict()"
+`;
+
+exports[`convertTypedSchema > from valibot > to json (draft7) 1`] = `"{"type":"object","properties":{"name":{"type":"string"}},"required":["name"],"$schema":"http://json-schema.org/draft-07/schema#"}"`;
+
+exports[`convertTypedSchema > from valibot > to json (draft2020) 1`] = `"{"type":"object","properties":{"name":{"type":"string"}},"required":["name"],"$schema":"https://json-schema.org/draft/2020-12/schema"}"`;
+
+exports[`convertTypedSchema > from valibot > to valibot 1`] = `
+"import * as v from "valibot";
+
+export default v.object({ name: v.string() })"
+`;
+
+exports[`convertTypedSchema > from valibot > to zod 1`] = `
+"import * as z from "zod";
+
+export default z.object({ "name": z.string() })"
+`;
+
+exports[`convertTypedSchema > from zod > to json (draft7) 1`] = `"{"$schema":"http://json-schema.org/draft-07/schema#","type":"object","properties":{"name":{"type":"string"}},"required":["name"],"additionalProperties":false}"`;
+
+exports[`convertTypedSchema > from zod > to json (draft2020) 1`] = `"{"$schema":"https://json-schema.org/draft/2020-12/schema","type":"object","properties":{"name":{"type":"string"}},"required":["name"],"additionalProperties":false}"`;
+
+exports[`convertTypedSchema > from zod > to valibot 1`] = `
+"import * as v from 'valibot'
+
+export default v.strictObject({ "name": v.string() })
+"
+`;
+
+exports[`convertTypedSchema > from zod > to zod 1`] = `
+"import * as z from "zod";
+
+export default z.object({ name: z.string() })"
+`;

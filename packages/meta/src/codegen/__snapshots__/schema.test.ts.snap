@@ -1,0 +1,101 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`extractSchemaCode > default export with TypeScript generic 1`] = `
+{
+  "code": "import * as z from "zod";
+",
+  "expression": "z.object<z.ZodRawShape>({ name: z.string() })",
+}
+`;
+
+exports[`extractSchemaCode > default export with arrow function expression 1`] = `
+{
+  "code": "",
+  "expression": "() => ({ type: "string" })",
+}
+`;
+
+exports[`extractSchemaCode > default export with complex nested object 1`] = `
+{
+  "code": "",
+  "expression": "{
+  type: "object",
+  properties: {
+    name: { type: "string" },
+    age: { type: "number" }
+  }
+}",
+}
+`;
+
+exports[`extractSchemaCode > default export with conditional expression 1`] = `
+{
+  "code": "const isDev = true;
+",
+  "expression": "isDev ? { type: "string" } : { type: "number" }",
+}
+`;
+
+exports[`extractSchemaCode > default export with import and type annotation 1`] = `
+{
+  "code": "import * as v from "valibot";
+",
+  "expression": "v.object({ name: v.string() })",
+}
+`;
+
+exports[`extractSchemaCode > default export with multiple imports 1`] = `
+{
+  "code": "import * as z from "zod";
+import { refine } from "./utils";
+",
+  "expression": "z.object({ name: z.string() })",
+}
+`;
+
+exports[`extractSchemaCode > default export with single import 1`] = `
+{
+  "code": "import * as z from "zod";
+",
+  "expression": "z.string()",
+}
+`;
+
+exports[`extractSchemaCode > empty string input 1`] = `
+{
+  "code": "",
+  "expression": "",
+}
+`;
+
+exports[`extractSchemaCode > multiple statements before default export 1`] = `
+{
+  "code": "const helper = (x: string) => x;
+const schema = { type: "string" };
+",
+  "expression": "schema",
+}
+`;
+
+exports[`extractSchemaCode > named export only returns entire input as both code and expression 1`] = `
+{
+  "code": "export const schema = { type: "string" }",
+  "expression": "export const schema = { type: "string" }",
+}
+`;
+
+exports[`extractSchemaCode > no default export returns entire input as both code and expression 1`] = `
+{
+  "code": "const x = 1;
+const y = 2;",
+  "expression": "const x = 1;
+const y = 2;",
+}
+`;
+
+exports[`extractSchemaCode > simple default export 1`] = `
+{
+  "code": "",
+  "expression": "{ type: "string" }",
+}
+`;
