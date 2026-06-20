@@ -85,7 +85,11 @@ import { Validator as AtaValidator } from "ata-validator";
 import type { Draft2020, Precompiled } from "../codegen/index.ts";
 import { importModule } from "../modules.ts";
 import { transformStandaloneCode } from "./ajv-standalone-transform.ts";
-import { normalizeValidator, type PlaygroundValidator } from "./model.ts";
+import {
+  isDraft2020,
+  normalizeValidator,
+  type PlaygroundValidator,
+} from "./model.ts";
 
 const addFormats = _addFormats as unknown as FormatsPlugin;
 
@@ -105,12 +109,6 @@ type ValidatorFactory = (options: ValidatorFactoryOptions) => (
   schema: Schema;
   validator: FormValidator<unknown>;
 }>;
-
-function isDraft2020(schema: Schema) {
-  return schema.$schema?.startsWith(
-    "https://json-schema.org/draft/2020-12/schema"
-  );
-}
 
 function toFactory(creatableValidator: CreatableValidator) {
   return (options: ValidatorFactoryOptions) => {

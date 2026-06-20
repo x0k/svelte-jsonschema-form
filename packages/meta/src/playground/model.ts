@@ -1,3 +1,5 @@
+import type { Schema } from "@sjsf/form";
+
 import {
   codegemIsJsonSchemaValidator,
   codegenIsExternalValidator,
@@ -123,3 +125,11 @@ export type Normalize<T> = {
       ? string
       : T[K];
 };
+
+export function isDraft2020(schema: Schema) {
+  return (
+    schema.$schema?.startsWith(
+      "https://json-schema.org/draft/2020-12/schema"
+    ) ?? false
+  );
+}

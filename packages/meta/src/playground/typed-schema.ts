@@ -6,6 +6,7 @@ import { $ZodType, toJSONSchema } from "zod/v4/core";
 
 import type { CodegenValidator } from "../codegen/index.ts";
 import { neverError } from "../errors.ts";
+import { isDraft2020 } from "./model.ts";
 import { parseSchemaObject } from "./parse.ts";
 
 export type SchemaType =
@@ -77,7 +78,9 @@ function toJsonSchema({
         target: targetDraft2020 ? "draft-2020-12" : "draft-07",
       });
     case "json": {
-      return targetDraft2020 ? sourceObject : convert(sourceObject);
+      return targetDraft2020 || !isDraft2020(sourceObject)
+        ? sourceObject
+        : convert(sourceObject);
     }
     default:
       throw neverError(sourceType, "unexpected source type");
