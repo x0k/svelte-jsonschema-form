@@ -55,7 +55,7 @@ export type PlaygroundValidator1 = Generated<typeof playgroundValidators>;
 
 export function* playgroundValidators2() {
   for (const v of codegenValidators()) {
-    if ((v.draft2020 && v.precompiled) || !codegenIsExternalValidator(v)) {
+    if (!codegenIsExternalValidator(v)) {
       continue;
     }
     yield v;
@@ -79,8 +79,14 @@ export function normalizeValidator(validator: PlaygroundValidator) {
 export function playgroundValidatorTitle(validator: PlaygroundValidator) {
   const v = normalizeValidator(validator);
   const title = validatorTitle(v.name);
-  const suffix = v.draft2020 ? "2020-12" : v.precompiled ? "precompiled" : "";
-  return `${title}${suffix && ` (${suffix})`}`;
+  const suffixes: string[] = [];
+  if (v.precompiled) {
+    suffixes.push("precompiled");
+  }
+  if (v.draft2020) {
+    suffixes.push("2020-12");
+  }
+  return `${title}${suffixes.length > 0 ? ` (${suffixes.join(", ")})` : ""}`;
 }
 
 export function* playgroundThemes() {
