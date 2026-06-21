@@ -103,7 +103,6 @@
   import Select from "$lib/select.svelte";
   import { ShadowHost } from "$lib/shadow/index.js";
   import { debouncedEffect } from "$lib/svelte.svelte.js";
-  import { checkSignal } from "$lib/task";
   import {
     constraints,
     createApplySplit,
@@ -114,8 +113,10 @@
   import { router } from "@/router.js";
   import { setShadcnContext } from "@/shadcn-context.js";
   import {
+    checkSignal,
     createFormatTask,
     createMergerTransition,
+    createOnFailure,
     createParseQuery,
     createValidatorMapper,
     formatCode,
@@ -216,23 +217,6 @@
     },
   };
 
-  const validatorFactory = $derived(
-    playgroundValidator(data.validator)({
-      merger: () => merger,
-    })
-  );
-
-  function createOnFailure(label: string) {
-    return (err: FailedTask<unknown>) => {
-      if (err.reason === "error") {
-        console.error(label, err.error);
-        toast.error(`${label}: ${err.error}`);
-      } else if (err.reason === "timeout") {
-        toast.error(`${label}: canceled due timeout`);
-      }
-    };
-  }
-
   const schemaQuery = createParseQuery({
     parse: parseSchemaObject,
     get input() {
@@ -241,26 +225,38 @@
     defaultValue: {},
   });
 
+  const validatorFactory = $derived(
+    playgroundValidator(data.validator)({
+      merger: () => merger,
+    })
+  );
+
+  const deps = (): [typeof validatorFactory, Schema] => [
+    validatorFactory,
+    schemaQuery.value,
+  ];
   const validatorQuery = createQuery<
     [typeof validatorFactory, Schema],
     Awaited<ReturnType<typeof validatorFactory>>
   >({
-    deps: () => [validatorFactory, schemaQuery.value],
+    get deps() {
+      return schemaQuery.state === "loading" ? undefined : deps;
+    },
     execute: debounce((_, f, s) => f(s)),
     onFailure: createOnFailure("Validator creation"),
   });
 
-  const { schema: jsonSchema, validator } = $derived(
-    validatorQuery.result ?? {
-      schema: {} satisfies Schema as Schema,
-      validator: noop(),
-    }
-  );
+  const DEFAULT_VALIDATOR = noop();
+  const DEFAULT_SCHEMA_AND_VALIDATOR = {
+    schema: {} satisfies Schema as Schema,
+    validator: DEFAULT_VALIDATOR,
+  };
+  const core = $derived(validatorQuery.result ?? DEFAULT_SCHEMA_AND_VALIDATOR);
 
   const merger: FormMerger = $derived(
     createFormMerger({
-      schema: jsonSchema,
-      validator,
+      schema: core.schema,
+      validator: core.validator,
       jsonSchemaMerger,
       allOf: data.allOf,
       arrayMinItems: {
@@ -291,7 +287,7 @@
 
   const focusOnFirstError = createFocusOnFirstError();
   const formValidator = $derived(
-    data.omitExtraData ? withOmitExtraData(validator) : validator
+    data.omitExtraData ? withOmitExtraData(core.validator) : core.validator
   );
   const form = createForm({
     translation,
@@ -306,7 +302,7 @@
       return theme;
     },
     get schema() {
-      return jsonSchema;
+      return core.schema;
     },
     get uiSchema() {
       return uiSchemaQuery.value;

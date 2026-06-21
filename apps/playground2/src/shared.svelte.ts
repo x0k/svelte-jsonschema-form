@@ -5,6 +5,7 @@ import {
   createQuery,
   createTask,
   debounce,
+  type FailedTask,
 } from "@sjsf/form/lib/task.svelte";
 import {
   IdEnumValueMapperBuilder,
@@ -22,6 +23,23 @@ import * as prettierPluginBabel from "prettier/plugins/babel";
 import * as prettierPluginEstree from "prettier/plugins/estree";
 import * as p from "prettier/standalone";
 import { toast } from "svelte-sonner";
+
+export function checkSignal(s: AbortSignal) {
+  if (s.aborted) {
+    throw new Error(s.reason);
+  }
+}
+
+export function createOnFailure(label: string) {
+  return (err: FailedTask<unknown>) => {
+    if (err.reason === "error") {
+      console.error(label, err.error);
+      toast.error(`${label}: ${err.error}`);
+    } else if (err.reason === "timeout") {
+      toast.error(`${label}: canceled due timeout`);
+    }
+  };
+}
 
 export async function formatCode(str: string): Promise<string> {
   let trimmed = str.trim();
@@ -58,11 +76,11 @@ export function createValidatorMapper(data: {
     items.push(id);
   }
   const mapper = builder.build();
-  const updateTask = createTask<
+  const updateValidatorTask = createTask<
     [PlaygroundValidator2],
     { schema: string; validator: PlaygroundValidator2 }
   >({
-    execute: debounce(async (_, validator) => {
+    execute: debounce(async (s, validator) => {
       const schema = await convertTypedSchema({
         source: {
           ...schemaTypeFromValidator(data.validator),
@@ -70,6 +88,7 @@ export function createValidatorMapper(data: {
         },
         target: schemaTypeFromValidator(validator),
       });
+      checkSignal(s);
       return { validator, schema: await formatCode(schema) };
     }),
     onSuccess(result) {
@@ -81,13 +100,14 @@ export function createValidatorMapper(data: {
       }
       console.error(err);
       data.validator = v;
-      // assign fallback schema
+      toast.error("Validator update: automatic schema conversion were failed");
     },
   });
   const mapped = singleOption({
     mapper: () => mapper,
     value: () => data.validator as unknown as SchemaValue,
-    update: (v) => updateTask.run(v as unknown as PlaygroundValidator2),
+    update: (v) =>
+      updateValidatorTask.run(v as unknown as PlaygroundValidator2),
   });
   return { mapped, items, labels };
 }
@@ -130,7 +150,7 @@ export function createMergerTransition(data: {
   schema: string;
   validator: PlaygroundValidator2;
 }) {
-  return async () => {
+  return async (s: AbortSignal) => {
     const schema = await convertTypedSchema({
       source: {
         ...schemaTypeFromValidator(data.validator),
@@ -141,6 +161,7 @@ export function createMergerTransition(data: {
         draft2020: false,
       },
     });
+    checkSignal(s);
     return {
       schema: await formatCode(schema),
       deduplicateJsonSchemas: true,

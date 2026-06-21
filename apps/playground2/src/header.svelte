@@ -44,13 +44,13 @@
   }: {
     children?: Snippet;
     transitions: {
-      [P in Page]: () => MaybePromise<Partial<PageStates[P]>>;
+      [P in Page]: (s: AbortSignal) => MaybePromise<Partial<PageStates[P]>>;
     };
   } = $props();
 
   const navigationTask = createTask<[Page], Partial<PageStates[Page]>>({
     combinator: abortPrevious,
-    execute: async (_, page) => transitions[page](),
+    execute: async (s, page) => transitions[page](s),
     onSuccess(data, page) {
       router.navigate(page, data);
     },
