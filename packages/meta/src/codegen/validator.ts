@@ -35,14 +35,6 @@ export function createValidator({
   lib,
   modelName,
 }: ValidatorOptions): ValidatorDefinition {
-  if (validator.draft2020) {
-    return {
-      canInferFormType: false,
-      schemaImports: [],
-      imports: [],
-      validatorProp: "",
-    };
-  }
   if (validator.precompiled) {
     if (validator.name === "hyperjump") {
       const { imports, body } = hyperjumpImportsAndBody(lib, modelName);

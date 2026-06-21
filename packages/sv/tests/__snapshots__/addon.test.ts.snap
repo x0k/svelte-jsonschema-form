@@ -2449,7 +2449,7 @@ import { build } from "esbuild";
 const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
-const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
+const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b, 0);
 const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
@@ -2795,7 +2795,7 @@ import { uneval } from "devalue";
 const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
-const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
+const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b, 0);
 const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
@@ -3617,7 +3617,7 @@ import { build } from "esbuild";
 const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
-const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
+const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b, 0);
 const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
@@ -3971,7 +3971,7 @@ import { uneval } from "devalue";
 const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
-const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
+const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b, 0);
 const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
@@ -10135,7 +10135,7 @@ import { build } from "esbuild";
 const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
-const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
+const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b, 0);
 const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
@@ -10457,7 +10457,7 @@ import { build } from "esbuild";
 const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
-const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
+const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b, 0);
 const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
@@ -11391,7 +11391,7 @@ import { DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS } from "@sjsf-lab/ata-validator/p
 const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
-const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
+const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b, 0);
 const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
@@ -11684,7 +11684,7 @@ import { DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS } from "@sjsf-lab/ata-validator/p
 const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
-const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
+const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b, 0);
 const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
@@ -12597,7 +12597,7 @@ import { uneval } from "devalue";
 const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
-const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
+const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b, 0);
 const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
@@ -12922,7 +12922,7 @@ import { uneval } from "devalue";
 const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
-const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
+const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b, 0);
 const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
@@ -14369,7 +14369,7 @@ import { DEFAULT_VALIDATOR_OPTIONS, FORM_FORMATS } from "@sjsf/schemasafe-valida
 const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
-const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
+const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b, 0);
 const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
@@ -14669,7 +14669,7 @@ import { DEFAULT_VALIDATOR_OPTIONS, FORM_FORMATS } from "@sjsf/schemasafe-valida
 const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
-const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
+const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b, 0);
 const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 

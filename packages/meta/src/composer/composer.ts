@@ -17,6 +17,8 @@ import {
   createViteConfig,
   createShadcnLib,
   createModel,
+  createJsonFile,
+  createCompileValidatorsScript,
   KIT_PATH_FACTORY,
   type MergerOptions,
   type ModuleAugmentation,
@@ -224,6 +226,8 @@ export async function createComposer<T extends CodegenThemeOrSubTheme>(
     "package.json": buildPackageJson({
       name: normalizeProjectName(name),
       dependencies: new Map(dependencies.map((d) => [d.name, d])).values(),
+      precompiled: validator.precompiled,
+      language,
     }),
     "vite.config.js": createViteConfig({
       themeOrSubTheme,
@@ -273,6 +277,19 @@ export async function createComposer<T extends CodegenThemeOrSubTheme>(
         fieldsValidationMode,
       })
     )("");
+  } else if (schema && validator.precompiled) {
+    const modelDir = `src/lib/${modelName}/`;
+    files[`${modelDir}schema.json`] = createJsonFile(JSON.parse(schema))("");
+    files[`${modelDir}ui-schema.json`] = createJsonFile(uiSchema)("");
+    files[`${modelDir}initial-value.json`] = createJsonFile(initialValue)("");
+    files[`scripts/compile-validators.${language}`] =
+      createCompileValidatorsScript({
+        modelPaths: [modelDir],
+        validator,
+        language,
+        ts,
+        fieldsValidationMode,
+      })("");
   }
 
   function addFile(filePath: string, content: string) {

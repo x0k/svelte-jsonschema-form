@@ -1,3 +1,4 @@
+import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import { describe, it, expect } from "vitest";
 
 import { codegenThemeOrSubTheme } from "../codegen/index.ts";
@@ -130,6 +131,15 @@ describe("sandbox-factory", () => {
 
     testCase("omitExtraData", {
       omitExtraData: true,
+    });
+
+    testCase("fieldsValidationMode", {
+      fieldsValidationMode: ON_INPUT | ON_CHANGE,
+      validator: {
+        name: "schemasafe",
+        precompiled: true,
+        draft2020: false,
+      },
     });
   });
 });
