@@ -19,9 +19,9 @@
     Content,
     SubmitButton,
     getValueSnapshot,
-    setValue,
     type Schema,
     type FormMerger,
+    type FormValidator,
   } from "@sjsf/form";
   import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
   import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
@@ -33,7 +33,6 @@
     createQuery,
     createTask,
     debounce,
-    type FailedTask,
   } from "@sjsf/form/lib/task.svelte";
   import { createFormMerger } from "@sjsf/form/mergers/modern";
   import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
@@ -65,15 +64,15 @@
     playgroundResolvers,
     playgroundThemes,
     playgroundValidator,
-    convertTypedSchema,
     type FormState,
     normalizeFormState,
-    schemaTypeFromValidator,
     parseSchemaObject,
     parseFormData,
     parseUiSchema,
+    isDraft2020,
     type PresetEntry,
     type NormalizedFormPreset,
+    type PlaygroundValidator2,
   } from "meta/playground";
   import {
     SANDBOX_PLATFORMS,
@@ -81,8 +80,8 @@
     sandboxPlatformIcon,
   } from "meta/sandbox";
   import { toast } from "svelte-sonner";
-  import { Panel, setTilerContext, type Tiles } from "svelte-tiler";
   import "meta/playground/augmentations";
+  import { Panel, setTilerContext, type Tiles } from "svelte-tiler";
   import { fromRecord as registryFromRecord } from "svelte-tiler/shared/registry";
   import * as Leaf from "svelte-tiler/tiles/leaf.svelte";
   import * as Split from "svelte-tiler/tiles/split.svelte";
@@ -113,13 +112,13 @@
   import { router } from "@/router.js";
   import { setShadcnContext } from "@/shadcn-context.js";
   import {
-    checkSignal,
     createFormatTask,
     createMergerTransition,
     createOnFailure,
     createParseQuery,
     createValidatorMapper,
-    formatCode,
+    loadConvertedFormPreset,
+    validatorForSchemaDraft,
   } from "@/shared.svelte";
   import { themeManager } from "@/theme.svelte";
 
@@ -217,32 +216,32 @@
     },
   };
 
-  const schemaQuery = createParseQuery({
+  const schemaQuery = createParseQuery<object>({
     parse: parseSchemaObject,
     get input() {
       return data.schema;
     },
     defaultValue: {},
   });
+  const schemaDraft2020 = $derived(isDraft2020(schemaQuery.value));
 
-  const validatorFactory = $derived(
-    playgroundValidator(data.validator)({
-      merger: () => merger,
-    })
-  );
-
-  const deps = (): [typeof validatorFactory, Schema] => [
-    validatorFactory,
+  const deps = (): [PlaygroundValidator2, object] => [
+    data.validator,
     schemaQuery.value,
   ];
+  const validatorOptions = {
+    merger: () => merger,
+  };
   const validatorQuery = createQuery<
-    [typeof validatorFactory, Schema],
-    Awaited<ReturnType<typeof validatorFactory>>
+    [PlaygroundValidator2, object],
+    { schema: Schema; validator: FormValidator<unknown> }
   >({
     get deps() {
       return schemaQuery.state === "loading" ? undefined : deps;
     },
-    execute: debounce((_, f, s) => f(s)),
+    execute: debounce((_, v, s) =>
+      playgroundValidator(validatorForSchemaDraft(v, s))(validatorOptions)(s)
+    ),
     onFailure: createOnFailure("Validator creation"),
   });
 
@@ -461,7 +460,9 @@
     };
   });
 
-  const { mapped, items, labels } = createValidatorMapper(data);
+  const { mapped, items, labels } = $derived(
+    createValidatorMapper(data, schemaDraft2020)
+  );
 
   function toKeyName(
     k: string
@@ -479,19 +480,9 @@
 
   const loadPresetTask = createTask<[PresetEntry], NormalizedFormPreset>({
     combinator: abortPrevious,
-    execute: debounce(async (s, { load, meta }) => {
-      const preset = await load();
-      checkSignal(s);
-      const schema = await convertTypedSchema({
-        source: {
-          ...meta.schema,
-          schema: preset.schema,
-        },
-        target: schemaTypeFromValidator(preset.validator ?? data.validator),
-      });
-      checkSignal(s);
-      return { ...preset, schema: await formatCode(schema) };
-    }),
+    execute: debounce((s, entry) =>
+      loadConvertedFormPreset(s, entry, data.validator)
+    ),
     onSuccess(preset) {
       originalInitialValue = preset.initialValue;
       Object.assign(data, preset);

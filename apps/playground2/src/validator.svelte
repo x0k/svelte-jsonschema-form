@@ -2,6 +2,7 @@
   import AlignLeft from "@lucide/svelte/icons/align-left";
   import {
     isAsyncFormValueValidator,
+    type FormValidator,
     type FormValue,
     type Schema,
     type ValidationResult,
@@ -19,10 +20,12 @@
   import { createMerger as createSchemaMerger } from "@sjsf/form/mergers/modern";
   import { createFormValidator as noop } from "@sjsf/form/validators/noop";
   import {
+    isDraft2020,
     normalizeValidatorState,
     parseFormData,
     parseSchemaObject,
     playgroundValidator,
+    type PlaygroundValidator2,
     type ValidatorState,
   } from "meta/playground";
   import { Panel, setTilerContext, type Tiles } from "svelte-tiler";
@@ -51,6 +54,7 @@
     createMergerTransition,
     createParseQuery,
     createValidatorMapper,
+    validatorForSchemaDraft,
   } from "./shared.svelte";
 
   const DEFAULT_PAGE_STATE: ValidatorState = {
@@ -84,12 +88,6 @@
   });
   const merger = createSchemaMerger({ jsonSchemaMerger });
 
-  const validatorFactory = $derived(
-    playgroundValidator(data.validator)({
-      merger: () => merger,
-    })
-  );
-
   function createOnFailure(label: string) {
     return (err: FailedTask<unknown>) => {
       if (err.reason === "error") {
@@ -108,13 +106,25 @@
     },
     defaultValue: {},
   });
+  const schemaDraft2020 = $derived(isDraft2020(schemaQuery.value));
 
+  const deps = (): [PlaygroundValidator2, object] => [
+    data.validator,
+    schemaQuery.value,
+  ];
+  const validatorOptions = {
+    merger: () => merger,
+  };
   const validatorQuery = createQuery<
-    [typeof validatorFactory, Schema],
-    Awaited<ReturnType<typeof validatorFactory>>
+    [PlaygroundValidator2, Schema],
+    { schema: Schema; validator: FormValidator<unknown> }
   >({
-    deps: () => [validatorFactory, schemaQuery.value],
-    execute: debounce((_, f, s) => f(s)),
+    get deps() {
+      return schemaQuery.state === "loading" ? undefined : deps;
+    },
+    execute: debounce((_, v, s) =>
+      playgroundValidator(validatorForSchemaDraft(v, s))(validatorOptions)(s)
+    ),
     onFailure: createOnFailure("Validator creation"),
   });
 
@@ -216,7 +226,9 @@
     };
   });
 
-  const { mapped, items, labels } = createValidatorMapper(data);
+  const { mapped, items, labels } = $derived(
+    createValidatorMapper(data, schemaDraft2020)
+  );
 
   const outputQuery = createParseQuery({
     parse: parseFormData,

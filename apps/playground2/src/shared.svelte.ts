@@ -1,4 +1,4 @@
-import type { SchemaValue } from "@sjsf/form";
+import type { Schema, SchemaValue } from "@sjsf/form";
 import { noop } from "@sjsf/form/lib/function";
 import {
   abortPrevious,
@@ -11,13 +11,18 @@ import {
   IdEnumValueMapperBuilder,
   singleOption,
 } from "@sjsf/form/options.svelte";
+import { codegemIsJsonSchemaValidator } from "meta/codegen";
 import {
   convertTypedSchema,
   EXPORT_DEFAULT,
+  isDraft2020,
+  type NormalizedFormPreset,
   playgroundValidators2,
   playgroundValidatorTitle,
+  type PresetEntry,
   schemaTypeFromValidator,
   type PlaygroundValidator2,
+  type ConvertTypedSchemaOptions,
 } from "meta/playground";
 import * as prettierPluginBabel from "prettier/plugins/babel";
 import * as prettierPluginEstree from "prettier/plugins/estree";
@@ -56,15 +61,73 @@ export async function formatCode(str: string): Promise<string> {
   });
 }
 
-export function createValidatorMapper(data: {
-  schema: string;
-  validator: PlaygroundValidator2;
-}) {
+async function convertAndFormatTypedSchema(
+  signal: AbortSignal,
+  options: ConvertTypedSchemaOptions
+): Promise<string> {
+  const schema = await convertTypedSchema(options);
+  checkSignal(signal);
+  return await formatCode(schema);
+}
+
+export function validatorForSchemaDraft(
+  validator: PlaygroundValidator2,
+  schema: object
+): PlaygroundValidator2 {
+  return codegemIsJsonSchemaValidator(validator)
+    ? { ...validator, draft2020: isDraft2020(schema) }
+    : validator;
+}
+
+export async function loadConvertedFormPreset(
+  signal: AbortSignal,
+  { load, meta }: PresetEntry,
+  currentValidator: PlaygroundValidator2
+): Promise<NormalizedFormPreset> {
+  const preset = await load();
+  checkSignal(signal);
+
+  const validator = preset.validator ?? currentValidator;
+  const validatorSchemaType = schemaTypeFromValidator(validator);
+  const target =
+    meta.schema.type === validatorSchemaType.type
+      ? meta.schema
+      : validatorSchemaType;
+  const schema = await convertAndFormatTypedSchema(signal, {
+    source: {
+      ...meta.schema,
+      schema: preset.schema,
+    },
+    target,
+  });
+  return {
+    ...preset,
+    schema,
+    validator:
+      meta.schema.type === "json" && target.type === "json"
+        ? ({
+            ...validator,
+            draft2020: meta.schema.draft2020,
+          } as PlaygroundValidator2)
+        : validator,
+  };
+}
+
+export function createValidatorMapper(
+  data: {
+    schema: string;
+    validator: PlaygroundValidator2;
+  },
+  draft2020: boolean
+) {
   const builder = new IdEnumValueMapperBuilder();
   const items: string[] = [];
   const labels: Record<string, string> = {};
   let i = 0;
   for (const v of playgroundValidators2()) {
+    if (codegemIsJsonSchemaValidator(v) && v.draft2020 !== draft2020) {
+      continue;
+    }
     const label = playgroundValidatorTitle(v);
     const id = builder.push({
       label,
@@ -80,16 +143,15 @@ export function createValidatorMapper(data: {
     [PlaygroundValidator2],
     { schema: string; validator: PlaygroundValidator2 }
   >({
-    execute: debounce(async (s, validator) => {
-      const schema = await convertTypedSchema({
+    execute: debounce(async (signal, validator) => {
+      const schema = await convertAndFormatTypedSchema(signal, {
         source: {
           ...schemaTypeFromValidator(data.validator),
           schema: data.schema,
         },
         target: schemaTypeFromValidator(validator),
       });
-      checkSignal(s);
-      return { validator, schema: await formatCode(schema) };
+      return { validator, schema };
     }),
     onSuccess(result) {
       Object.assign(data, result);
@@ -150,8 +212,8 @@ export function createMergerTransition(data: {
   schema: string;
   validator: PlaygroundValidator2;
 }) {
-  return async (s: AbortSignal) => {
-    const schema = await convertTypedSchema({
+  return async (signal: AbortSignal) => {
+    const schema = await convertAndFormatTypedSchema(signal, {
       source: {
         ...schemaTypeFromValidator(data.validator),
         schema: data.schema,
@@ -161,9 +223,8 @@ export function createMergerTransition(data: {
         draft2020: false,
       },
     });
-    checkSignal(s);
     return {
-      schema: await formatCode(schema),
+      schema,
       deduplicateJsonSchemas: true,
       intersectJson: true,
     };
