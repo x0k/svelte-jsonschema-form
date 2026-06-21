@@ -5,6 +5,8 @@ import { join } from "node:path";
 
 import { describe, it, expect, vi, afterAll } from "vitest";
 
+import type { SchemaType, TypedSchema } from "./typed-schema.ts";
+
 const tmpDir = await mkdtemp(join(tmpdir(), "typed-schema-test-"));
 
 vi.mock("../modules.ts", () => ({
@@ -26,8 +28,6 @@ vi.mock("../modules.ts", () => ({
 }));
 
 const { convertTypedSchema } = await import("./typed-schema.ts");
-type SchemaType = import("./typed-schema.ts").SchemaType;
-type TypedSchema = import("./typed-schema.ts").TypedSchema;
 
 afterAll(async () => {
   await rm(tmpDir, { recursive: true, force: true });
@@ -51,11 +51,11 @@ const TARGETS: { label: string; target: SchemaType }[] = [
 const SOURCES: { label: string; source: TypedSchema }[] = [
   {
     label: "json (draft7)",
-    source: { type: "json", draft2020: false, schema: JSON_DRAFT7_SCHEMA },
+    source: { type: "json", schema: JSON_DRAFT7_SCHEMA },
   },
   {
     label: "json (draft2020)",
-    source: { type: "json", draft2020: true, schema: JSON_DRAFT2020_SCHEMA },
+    source: { type: "json", schema: JSON_DRAFT2020_SCHEMA },
   },
   { label: "zod", source: { type: "zod", schema: ZOD_SCHEMA } },
   { label: "valibot", source: { type: "valibot", schema: VALIBOT_SCHEMA } },

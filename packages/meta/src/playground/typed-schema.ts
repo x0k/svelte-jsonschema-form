@@ -6,6 +6,8 @@ import { $ZodType, toJSONSchema } from "zod/v4/core";
 
 import type { CodegenValidator } from "../codegen/index.ts";
 import { neverError } from "../errors.ts";
+import type { DistributiveOmit } from "../types.ts";
+import { convertDraft07To2020 } from "./convert-draft07.ts";
 import { isDraft2020 } from "./model.ts";
 import { parseSchemaObject } from "./parse.ts";
 
@@ -14,7 +16,9 @@ export type SchemaType =
   | { type: "zod" }
   | { type: "valibot" };
 
-export type TypedSchema = SchemaType & { schema: string };
+export type TypedSchema = DistributiveOmit<SchemaType, "draft2020"> & {
+  schema: string;
+};
 
 export function schemaTypeFromValidator(
   validator: CodegenValidator
@@ -33,10 +37,7 @@ export async function convertTypedSchema({
   source,
   target,
 }: ConvertTypedSchemaOptions): Promise<string> {
-  if (
-    source.type === target.type &&
-    (target.type !== "json" || target.draft2020 === true)
-  ) {
+  if (target.type !== "json" && source.type === target.type) {
     return source.schema;
   }
 
@@ -78,9 +79,14 @@ function toJsonSchema({
         target: targetDraft2020 ? "draft-2020-12" : "draft-07",
       });
     case "json": {
-      return targetDraft2020 || !isDraft2020(sourceObject)
-        ? sourceObject
-        : convert(sourceObject);
+      const sourceDraft2020 = isDraft2020(sourceObject);
+      if (sourceDraft2020 && !targetDraft2020) {
+        return convert(sourceObject);
+      }
+      if (!sourceDraft2020 && targetDraft2020) {
+        return convertDraft07To2020(sourceObject);
+      }
+      return sourceObject;
     }
     default:
       throw neverError(sourceType, "unexpected source type");
