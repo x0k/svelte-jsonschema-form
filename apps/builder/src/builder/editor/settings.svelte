@@ -2,6 +2,7 @@
   import CircleAlert from "@lucide/svelte/icons/circle-alert";
   import CircleX from "@lucide/svelte/icons/circle-x";
   import { themeOrSubThemeTitle } from "meta";
+  import { builderValidatorFromId, builderValidatorId } from "meta/builder";
   import {
     playgroundIconSets,
     playgroundIconSetTitle,
@@ -18,7 +19,12 @@
 
   import Container from "../container.svelte";
   import { getBuilderContext } from "../context.svelte.js";
-  import { PreviewSubRouteName, RouteName } from "../model.js";
+  import {
+    PreviewSubRouteName,
+    RouteName,
+    VALIDATOR_ITEMS,
+    VALIDATOR_LABELS,
+  } from "../model.js";
   import NodeSettings from "./node-settings.svelte";
 
   const ctx = getBuilderContext();
@@ -43,6 +49,21 @@
       bind:value={ctx.theme}
       items={playgroundThemes()}
       itemLabel={themeOrSubThemeTitle}
+    />
+  </div>
+  <div class="flex flex-col gap-1.5">
+    <Label for={`${uniqueId}-validator`}>Validator</Label>
+    <Select
+      class="w-full"
+      labelId="{uniqueId}-validator"
+      bind:value={
+        () => builderValidatorId(ctx.validator),
+        (v) => {
+          ctx.validator = builderValidatorFromId(v);
+        }
+      }
+      items={VALIDATOR_ITEMS}
+      labels={VALIDATOR_LABELS}
     />
   </div>
   <div class="flex flex-col gap-1.5">

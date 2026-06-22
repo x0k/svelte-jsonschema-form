@@ -18,6 +18,8 @@ const BASE_OPTIONS: BuilderSandboxOptions = {
   icons: "none",
   widgets: [],
   fields: [],
+  html5Validation: false,
+  resolver: "basic",
 };
 
 function testCase(

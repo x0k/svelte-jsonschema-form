@@ -3,6 +3,7 @@
     Icon: Component<SVGAttributes<SVGSVGElement>>;
     title: string;
     content: string;
+    filepath: string;
   }
 </script>
 
@@ -19,11 +20,11 @@
 
   const { files }: Props = $props();
 
-  let selectedIndex = $derived(0);
+  let selectedIndex = $state(0);
   $effect(() => {
     files.length;
     untrack(() => {
-      if (selectedIndex >= files.length) {
+      if (files.length > 0 && selectedIndex >= files.length) {
         selectedIndex = files.length - 1;
       }
     });
@@ -34,12 +35,13 @@
 <div>
   {#if selected}
     <div class="bg-background sticky top-(--header-height)">
-      <div class="flex gap-2 rounded-t-md border p-2">
-        {#each files as file, i (file.title)}
+      <div class="flex gap-2 overflow-x-auto rounded-t-md border p-2">
+        {#each files as file, i (file.filepath || file.title)}
           <Button
             size="sm"
             variant="ghost"
             class={[
+              "shrink-0",
               selectedIndex === i &&
                 "bg-accent text-accent-foreground dark:bg-accent/50",
             ]}
@@ -51,14 +53,16 @@
             {file.title}</Button
           >
         {/each}
-        <CopyButton
-          class="ml-auto"
-          size="sm"
-          variant="ghost"
-          text={() => selected.content}
-        />
+        <div class="bg-background sticky right-0 ml-auto shrink-0">
+          <CopyButton size="sm" variant="ghost" text={() => selected.content} />
+        </div>
       </div>
     </div>
+    {#if selected.filepath}
+      <div class="bg-background text-muted-foreground border border-t-0 p-2">
+        {selected.filepath}
+      </div>
+    {/if}
     <div class="rounded-b-md border-x border-b">
       {@html selected.content}
     </div>

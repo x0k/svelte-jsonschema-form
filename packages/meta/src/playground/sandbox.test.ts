@@ -27,7 +27,7 @@ const BASE_FORM_STATE: NormalizedFormState = {
   },
   theme: "basic",
   icons: "none",
-  resolver: "compat",
+  resolver: "basic",
   arrayMinItemsPopulate: "all",
   arrayMinItemsMergeExtraDefaults: false,
   allOf: "skipDefaults",

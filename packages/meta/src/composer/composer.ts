@@ -30,6 +30,7 @@ import {
   type CodegenValidator,
 } from "../codegen/index.ts";
 import type { ExtraFieldFileName } from "../fields.ts";
+import type { Resolver } from "../form.ts";
 import {
   extraPackage,
   filterPackageDependencies,
@@ -67,6 +68,8 @@ export interface ComposerOptions<T extends CodegenThemeOrSubTheme> {
   moduleAugmentation: Partial<ModuleAugmentation>;
   omitExtraData: boolean;
   focusOnFirstError: boolean;
+  html5Validation: boolean;
+  resolver: Resolver | "inline";
 }
 
 const TSCONFIG = JSON.stringify(
@@ -176,6 +179,8 @@ export async function createComposer<T extends CodegenThemeOrSubTheme>(
     moduleAugmentation,
     omitExtraData,
     focusOnFirstError,
+    html5Validation,
+    resolver,
   } = options;
   const isKit = true;
   const nodeModulesPath = "../../node_modules";
@@ -241,7 +246,7 @@ export async function createComposer<T extends CodegenThemeOrSubTheme>(
       themeOrSubTheme,
       validator,
       icons,
-      resolver: "basic",
+      resolver,
       sveltekit,
       widgets,
       fields,
@@ -262,6 +267,7 @@ export async function createComposer<T extends CodegenThemeOrSubTheme>(
       validator,
       lib,
       form,
+      html5Validation,
     })(""),
   };
 

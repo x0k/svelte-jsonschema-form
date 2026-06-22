@@ -2,10 +2,9 @@ import { resolve, dirname } from "node:path";
 
 import { svelte } from "@sveltejs/vite-plugin-svelte";
 import tailwindcss from "@tailwindcss/vite";
+import { importMapPlugin } from "meta/vite-importmap";
 // import { visualizer } from "rollup-plugin-visualizer";
 import { defineConfig } from "vitest/config";
-
-import { importMapPlugin } from "./vite-importmap-plugin";
 
 const VIRTUAL_MODULE_PREFIX = "virtual-module:";
 

@@ -3,6 +3,7 @@
     BasicForm,
     createForm,
     getValueSnapshot,
+    type FormMerger,
     type FormValidator,
     type Schema,
   } from "@sjsf/form";
@@ -12,23 +13,24 @@
   import { createFormValidator as noop } from "@sjsf/form/validators/noop";
   import { Willow, WillowDark } from "@svar-ui/svelte-core";
   import { BitsConfig } from "bits-ui";
-  import { isSchemaValidator } from "meta";
+  import type { BuilderValidator2 } from "meta/builder";
   import {
-    isDraft2020,
     playgroundValidator,
     PLAYGROUND_ICON_SET_STYLES,
     PLAYGROUND_ICON_SETS,
     PLAYGROUND_RESOLVERS,
     PLAYGROUND_SJSF_THEME_STYLES,
     PLAYGROUND_SJSF_THEMES,
-    type PlaygroundValidator2,
+    parseSchemaObject,
   } from "meta/playground";
+  import { toast } from "svelte-sonner";
 
   import { ShadowHost } from "$lib/components/shadow/index.js";
   import * as defaults from "$lib/sjsf/defaults.js";
 
   import { themeManager } from "../../theme.svelte.js";
   import { getBuilderContext } from "../context.svelte.js";
+  import { buildPlaygroundSchema } from "../model";
   import Noop from "./noop.svelte";
 
   const ctx = getBuilderContext();
@@ -48,35 +50,45 @@
     },
   };
 
-  const previewValidator = $derived.by(() => {
-    if (isSchemaValidator(ctx.validator.name)) {
-      return { name: "ajv8" as const, draft2020: false, precompiled: false };
-    }
-    return ctx.validator as PlaygroundValidator2;
-  });
+  const validatorOptions = {
+    merger: () => merger,
+  };
 
   const validatorQuery = createQuery<
-    [PlaygroundValidator2, object],
+    [BuilderValidator2, Schema],
     { schema: Schema; validator: FormValidator<unknown> }
   >({
-    get deps() {
-      return (): [PlaygroundValidator2, object] => [
-        previewValidator,
-        ctx.schema as object,
-      ];
+    deps: () => [ctx.validator, ctx.schema],
+    execute: debounce(async (_, validator, schema) => {
+      const schemaObject = await parseSchemaObject(
+        buildPlaygroundSchema({ schema, validator })
+      );
+      return playgroundValidator(validator)(validatorOptions)(schemaObject);
+    }),
+    onFailure(err) {
+      if (err.reason === "aborted") {
+        return;
+      }
+      toast.error(
+        `Validator creation: ${err.reason === "timeout" ? "timeout" : String(err.error)}`
+      );
     },
-    execute: debounce((_, validator, schema) =>
-      playgroundValidator(validator)({
-        merger: () => defaults.merger({} as any),
-      })(schema)
-    ),
   });
 
   const DEFAULT_SCHEMA_AND_VALIDATOR = {
-    schema: {} satisfies Schema as Schema,
+    schema: {
+      type: "object",
+    } satisfies Schema as Schema,
     validator: noop(),
   };
   const core = $derived(validatorQuery.result ?? DEFAULT_SCHEMA_AND_VALIDATOR);
+
+  const merger: FormMerger = $derived(
+    defaults.merger({
+      schema: core.schema,
+      validator: core.validator,
+    })
+  );
 
   const form = createForm({
     ...defaults,
@@ -85,6 +97,9 @@
     },
     get schema() {
       return core.schema;
+    },
+    get merger() {
+      return merger;
     },
     get uiSchema() {
       return ctx.uiSchema;

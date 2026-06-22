@@ -7,8 +7,8 @@ const bundledLanguages = {
   json: () => import("@shikijs/langs/json"),
   svelte: () => import("@shikijs/langs/svelte"),
   typescript: () => import("@shikijs/langs/typescript"),
-  bash: () => import("@shikijs/langs/bash"),
   css: () => import("@shikijs/langs/css"),
+  html: () => import("@shikijs/langs/html"),
 };
 
 /** The languages configured for the highlighter */
@@ -46,4 +46,23 @@ export function highlight(
       ],
     })
   );
+}
+
+function escapeHtml(unsafe: string) {
+  return unsafe.replace(/[&<"']/g, function (m) {
+    switch (m) {
+      case "&":
+        return "&amp;";
+      case "<":
+        return "&lt;";
+      case '"':
+        return "&quot;";
+      default:
+        return "&#039;";
+    }
+  });
+}
+
+export function embedCode(code: string) {
+  return DOMPurify.sanitize(`<pre><code>${escapeHtml(code)}</code></pre>`);
 }

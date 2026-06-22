@@ -35,32 +35,11 @@
 
   import Container from "../container.svelte";
   import { getBuilderContext } from "../context.svelte.js";
-  import { RouteName } from "../model.js";
-  import { openSandbox } from "../sandbox.js";
+  import { RouteName, VALIDATOR_ITEMS, VALIDATOR_LABELS } from "../model.js";
 
   const ctx = getBuilderContext();
 
   const uniqueId = $props.id();
-
-  const validatorItems = Array.from(builderValidators2(), builderValidatorId);
-  const validatorLabels = Object.fromEntries(
-    Array.from(builderValidators2(), (v) => [
-      builderValidatorId(v),
-      builderValidatorTitle(v),
-    ])
-  ) as Record<BuilderValidatorId, string>;
-
-  let selectedValidatorId = $state<BuilderValidatorId>(
-    builderValidatorId(ctx.validator)
-  );
-
-  $effect(() => {
-    selectedValidatorId = builderValidatorId(ctx.validator);
-  });
-
-  $effect(() => {
-    ctx.validator = builderValidatorFromId(selectedValidatorId);
-  });
 </script>
 
 <Container class="mb-4 flex flex-col gap-4 p-3">
@@ -89,9 +68,14 @@
     <Select
       class="w-full"
       labelId="{uniqueId}-validator"
-      bind:value={selectedValidatorId}
-      items={validatorItems}
-      labels={validatorLabels}
+      bind:value={
+        () => builderValidatorId(ctx.validator),
+        (v) => {
+          ctx.validator = builderValidatorFromId(v);
+        }
+      }
+      items={VALIDATOR_ITEMS}
+      labels={VALIDATOR_LABELS}
     />
   </div>
   <div class="flex flex-col gap-1.5">
@@ -148,29 +132,15 @@
               window.open(url);
             }}
             >Open in Playground
-            <ExternalLink />
+            <ExternalLink class="ml-auto" />
           </DropdownMenu.Item>
           {#each SANDBOX_PLATFORMS as platform (platform)}
-            <DropdownMenu.Item
-              onclick={() =>
-                openSandbox({
-                  platform,
-                  theme: ctx.theme,
-                  validator: ctx.validator,
-                  schema: ctx.schema,
-                  uiSchema: ctx.uiSchema ?? {},
-                  html5Validation: ctx.html5Validation,
-                  resolver: ctx.resolver,
-                  icons: ctx.icons,
-                  widgets: ctx.uiSchemaWidgets,
-                  fileFieldMode: ctx.uiSchemaFileFieldMode,
-                })}
-            >
+            <DropdownMenu.Item onclick={() => ctx.openSandbox(platform)}>
               {sandboxPlatformLabel(platform)}
               {#if sandboxPlatformIcon(platform) === "external-link"}
-                <ExternalLink />
+                <ExternalLink class="ml-auto" />
               {:else}
-                <Download />
+                <Download class="ml-auto" />
               {/if}
             </DropdownMenu.Item>
           {/each}

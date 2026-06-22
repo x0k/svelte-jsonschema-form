@@ -2,30 +2,29 @@ import { DragDropManager, Draggable, Droppable, Feedback } from "@dnd-kit/dom";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import type { FormValue, Schema, SchemaValue, UiSchema } from "@sjsf/form";
 import { isSchemaValueDeepEqual } from "@sjsf/form/core";
-import {
-  iconSetAtRules,
-  isSchemaValidator,
-  renderAtRule,
-  themeOrSubThemeAtRules,
-} from "meta";
+import { createQuery, type Query } from "@sjsf/form/lib/task.svelte";
 import {
   themeCustomizableNodeTypes,
   themeRangeValueTypes,
   NodeType,
   normalizeBuilderValidator,
+  createSandboxFiles,
   type BuilderValidator2,
   type WidgetType,
   getUseLabel,
   type NodeId,
+  builderValidatorTitle,
 } from "meta/builder";
 import type {
-  FormPreset,
+  NormalizedFormPreset,
   PlaygroundIconSet,
   PlaygroundResolver,
   PlaygroundTheme,
 } from "meta/playground";
+import { sandboxOpen, SandboxPlatform } from "meta/sandbox";
 import type { HighlighterCore } from "shiki/core";
 import { createContext, flushSync, onDestroy, untrack } from "svelte";
+import { toast } from "svelte-sonner";
 
 import { addBuilderFormats } from "$lib/ajv.js";
 import {
@@ -51,17 +50,12 @@ import {
   createObjectProperty,
 } from "$lib/builder/index.js";
 import { mergeSchemas } from "$lib/json-schema.js";
-import { highlight, type SupportedLanguage } from "$lib/shiki.js";
+import { embedCode, highlight, type SupportedLanguage } from "$lib/shiki.js";
 import { mergeUiSchemas } from "$lib/sjsf/ui-schema.js";
 
 import {
-  buildFormDefaults,
-  buildFormDotSvelte,
-  buildInstallSh,
   buildPlaygroundSchema,
-  join,
-} from "./code-builders.js";
-import {
+  computeFields,
   type Route,
   CHECKBOXES_WIDGET_OPTIONS,
   DEFAULT_COMPONENTS,
@@ -73,6 +67,9 @@ import {
   RADIO_WIDGET_OPTIONS,
   RouteName,
   TEXT_WIDGET_OPTIONS,
+  sortPreviewFilePaths,
+  parseFileNameAndExtension,
+  getHighlighterLang,
 } from "./model.js";
 import type { NodeContext } from "./node-context.js";
 import {
@@ -323,64 +320,37 @@ export class BuilderContext {
   readonly uiSchemaWidgets = $derived(this.#uiSchemaOutput.widgets);
   readonly uiSchemaFileFieldMode = $derived(this.#uiSchemaOutput.fileFieldMode);
 
-  readonly formDotSvelte = $derived(
-    this.highlight(
-      "svelte",
-      buildFormDotSvelte({
-        theme: this.theme,
-        schema: this.schema,
-        uiSchema: this.uiSchema,
-        validator: this.validator,
-        html5Validation: this.html5Validation,
-      })
-    )
-  );
-  readonly formDefaults = $derived(
-    this.highlight(
-      "typescript",
-      buildFormDefaults({
-        widgets: this.#uiSchemaOutput.widgets,
-        fileFieldMode: this.#uiSchemaOutput.fileFieldMode,
-        resolver: this.resolver,
-        theme: this.theme,
-        icons: this.icons,
-        validator: this.validator,
-      })
-    )
-  );
-  readonly appCss = $derived.by(() => {
-    const rules = themeOrSubThemeAtRules(this.theme, {
-      nodeModulesPath: "../node_modules",
-      sandbox: false,
-    }).map(renderAtRule);
-    if (this.icons !== "none") {
-      rules.push(
-        ...iconSetAtRules(this.icons, {
-          nodeModulesPath: "../node_modules",
-          sandbox: false,
-        }).map(renderAtRule)
-      );
-    }
-    const content = join(...rules);
-    return (
-      content &&
-      this.highlight(
-        "css",
-        `/* Add these lines to the app.css file */\n${content}`
-      )
-    );
+  #filesQuery: Query<
+    [
+      PlaygroundTheme,
+      PlaygroundResolver,
+      PlaygroundIconSet,
+      BuilderValidator2,
+      html5Validation: boolean,
+      Schema,
+      UiSchema,
+      uiSchemaWidgets: Set<WidgetType>,
+      uiSchemaFileFieldMode: number,
+    ],
+    Record<string, string>
+  >;
+  readonly files = $derived.by(() => {
+    const files = this.#filesQuery.result ?? {};
+    const paths = Object.keys(files);
+    return sortPreviewFilePaths(paths).map((filepath) => {
+      const { title, extension } = parseFileNameAndExtension(filepath);
+      const lang = getHighlighterLang(extension);
+      const content = files[filepath];
+      return {
+        filepath,
+        title,
+        extension,
+        htmlContent: lang
+          ? highlight(this.highlighter, lang, content)
+          : embedCode(content),
+      };
+    });
   });
-  readonly installSh = $derived(
-    this.highlight(
-      "bash",
-      buildInstallSh({
-        widgets: this.#uiSchemaOutput.widgets,
-        theme: this.theme,
-        icons: this.icons,
-        validator: this.validator,
-      })
-    )
-  );
 
   constructor(private readonly highlighter: HighlighterCore) {
     onDestroy(() => {
@@ -456,6 +426,55 @@ export class BuilderContext {
         }
       });
     });
+
+    this.#filesQuery = createQuery({
+      deps: () => [
+        this.theme,
+        this.resolver,
+        this.icons,
+        this.validator,
+        this.html5Validation,
+        this.schema,
+        this.uiSchema ?? {},
+        this.uiSchemaWidgets,
+        this.uiSchemaFileFieldMode,
+      ],
+      execute: (
+        _,
+        theme,
+        resolver,
+        icons,
+        validator,
+        html5Validation,
+        schema,
+        uiSchema,
+        uiSchemaWidgets,
+        uiSchemaFileFieldMode
+      ) =>
+        createSandboxFiles({
+          name: "preview",
+          theme,
+          resolver,
+          validator,
+          icons,
+          html5Validation,
+          schema: buildPlaygroundSchema({
+            schema,
+            validator,
+          }),
+          uiSchema,
+          fields: computeFields(uiSchemaWidgets, uiSchemaFileFieldMode),
+          widgets: Array.from(uiSchemaWidgets),
+        }),
+      onFailure(err) {
+        if (err.reason === "aborted") {
+          return;
+        }
+        toast.error(
+          `Files build failed: ${err.reason === "timeout" ? "timeout" : String(err.error)}`
+        );
+      },
+    });
   }
 
   importState(data: State) {
@@ -482,15 +501,15 @@ export class BuilderContext {
     });
   }
 
-  createPlaygroundSample(): Readonly<FormPreset> {
+  createPlaygroundSample(): Readonly<NormalizedFormPreset> {
     const validator = this.validator;
     return {
       schema: buildPlaygroundSchema({
         schema: this.schema,
         validator,
       }),
-      uiSchema: this.uiSchema ?? {},
-      initialValue: null,
+      uiSchema: JSON.stringify(this.uiSchema ?? {}),
+      initialValue: "null",
       validator,
       theme: this.theme,
       resolver: this.resolver,
@@ -655,8 +674,7 @@ export class BuilderContext {
           return self.availableRangeValueTypes;
         },
         addError(node, message) {
-          //@ts-expect-error
-          errors.push({ nodeId: node.id, message, node });
+          errors.push({ nodeId: node.id, message });
         },
         addWarning(node, message) {
           warnings.push({ nodeId: node.id, message });
@@ -729,6 +747,12 @@ export class BuilderContext {
 
   highlight(lang: SupportedLanguage, str: string) {
     return highlight(this.highlighter, lang, str);
+  }
+
+  openSandbox(platform: SandboxPlatform) {
+    const name = `Builder (${this.theme}, ${builderValidatorTitle(this.validator)})`;
+    const files = this.#filesQuery.result ?? {};
+    return sandboxOpen({ name, platform, files });
   }
 }
 

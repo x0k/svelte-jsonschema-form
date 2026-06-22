@@ -2191,6 +2191,9 @@ importers:
       lz-string:
         specifier: 'catalog:'
         version: 1.5.0
+      rolldown:
+        specifier: 1.1.1
+        version: 1.1.1
       svelte:
         specifier: 'catalog:'
         version: 5.56.3(@typescript-eslint/types@8.61.0)
@@ -2200,6 +2203,9 @@ importers:
       valibot:
         specifier: 'catalog:'
         version: 1.4.1(typescript@6.0.3)
+      vite:
+        specifier: ^8.0.16
+        version: 8.0.16(@types/node@25.9.3)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0)
       vitest:
         specifier: 'catalog:'
         version: 4.1.8(@types/node@25.9.3)(@vitest/browser-playwright@4.1.8)(vite@8.0.16(@types/node@25.9.3)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0))

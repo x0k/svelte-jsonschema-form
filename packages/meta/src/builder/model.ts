@@ -2,6 +2,7 @@ import {
   codegenIsExternalValidator,
   codegenValidators,
   type Draft2020,
+  type Precompiled,
 } from "../codegen/index.ts";
 import { playgroundValidatorTitle } from "../playground/model.ts";
 import type { Generated } from "../types.ts";
@@ -52,9 +53,19 @@ export function builderValidatorTitle(v: BuilderValidator2) {
 
 export type BuilderValidatorName = BuilderValidator2["name"];
 
+type NonPrecompiledBuilderValidatorName = Extract<
+  BuilderValidator2,
+  Precompiled<false>
+>["name"];
+
+type PrecompiledBuilderValidatorName = Extract<
+  BuilderValidator2,
+  Precompiled<true>
+>["name"];
+
 export type BuilderValidatorId =
-  | BuilderValidatorName
-  | `${BuilderValidatorName}:precompiled`;
+  | NonPrecompiledBuilderValidatorName
+  | `${PrecompiledBuilderValidatorName}:precompiled`;
 
 export function builderValidatorId(v: BuilderValidator2): BuilderValidatorId {
   return v.precompiled ? `${v.name}:precompiled` : v.name;

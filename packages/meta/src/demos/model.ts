@@ -102,6 +102,8 @@ export const COMPOSER_DEFAULTS = {
   fieldsValidationMode: 0,
   omitExtraData: false,
   disabled: false,
+  html5Validation: false,
+  resolver: "basic",
   merger: {},
   uiOptionsRegistry: {},
   uiSchema: {},

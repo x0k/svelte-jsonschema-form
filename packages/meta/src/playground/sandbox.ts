@@ -296,5 +296,7 @@ export async function createSandboxFiles({
     omitExtraData,
     focusOnFirstError: formState.focusOnFirstError,
     disabled: formState.disabled,
+    html5Validation: formState.html5Validation,
+    resolver: formState.resolver,
   });
 }

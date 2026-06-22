@@ -5,6 +5,7 @@ import type { ExtraFieldFileName } from "../fields.ts";
 import type {
   PlaygroundTheme,
   PlaygroundIconSet,
+  PlaygroundResolver,
 } from "../playground/index.ts";
 import { type Theme, toTheme } from "../themes.ts";
 import { WIDGETS } from "../widgets.generated.ts";
@@ -25,6 +26,8 @@ export interface BuilderSandboxOptions {
   icons: PlaygroundIconSet;
   widgets: WidgetType[];
   fields: ExtraFieldFileName[];
+  html5Validation: boolean;
+  resolver: PlaygroundResolver;
 }
 
 export async function createSandboxFiles({
@@ -36,6 +39,8 @@ export async function createSandboxFiles({
   icons,
   widgets,
   fields,
+  html5Validation,
+  resolver,
 }: BuilderSandboxOptions): Promise<Record<string, string>> {
   const actualTheme = toTheme(theme as Theme);
   const themeWidgets = WIDGETS[actualTheme];
@@ -75,5 +80,7 @@ export async function createSandboxFiles({
     omitExtraData: false,
     focusOnFirstError: true,
     disabled: false,
+    html5Validation,
+    resolver,
   });
 }
