@@ -27,19 +27,3 @@ export const draft07: CompileValidator = async (schemas: Schema[]) => {
     validatorRetriever: fromValidators(validateFunctions),
   });
 };
-
-export const draft2020: CompileValidator = async (schemas: Schema[]) => {
-  const bundle = AtaValidator.bundleStandalone(schemas, {
-    ...DEFAULT_ATA_OPTIONS,
-    format: "esm",
-  })
-    .replace(
-      "const validators",
-      `export const [${schemas.map((s) => s.$id).join(", ")}]`
-    )
-    .slice(0, -50);
-  const validateFunctions = await importModule<AtaValidateFunctions>(bundle);
-  return ataFactory({
-    validatorRetriever: fromValidators(validateFunctions),
-  });
-};

@@ -5,7 +5,6 @@ import {
   toDraft2020,
   toFactory,
   toPrecompiledDraft07,
-  toPrecompiledDraft2020,
   type ValidatorFactory,
 } from "./validator-factory.ts";
 
@@ -49,29 +48,8 @@ const PRECOMPILED_DRAFT_07: Record<
   ),
 };
 
-const PRECOMPILED_DRAFT_2020: Record<
-  Extract<PlaygroundValidator, Precompiled<true> & Draft2020<true>>["name"],
-  ValidatorFactory
-> = {
-  ajv8: toPrecompiledDraft2020(
-    () => import("./validator-factories/ajv-precompiled.ts")
-  ),
-  schemasafe: toPrecompiledDraft2020(
-    () => import("./validator-factories/schemasafe-precompiled.ts")
-  ),
-  hyperjump: toPrecompiledDraft2020(
-    () => import("./validator-factories/hyperjump-precompiled.ts")
-  ),
-  ata: toPrecompiledDraft2020(
-    () => import("./validator-factories/ata-precompiled.ts")
-  ),
-};
-
 export function playgroundValidator(validator: PlaygroundValidator) {
   const v = normalizeValidator(validator);
-  if (v.precompiled && v.draft2020) {
-    return PRECOMPILED_DRAFT_2020[v.name];
-  }
   if (v.precompiled) {
     return PRECOMPILED_DRAFT_07[v.name];
   }

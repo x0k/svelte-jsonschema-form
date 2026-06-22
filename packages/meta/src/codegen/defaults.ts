@@ -47,7 +47,6 @@ import type {
   CodegenValidator,
   ConditionalPrinter,
   CodegenSvelteKitIntegration,
-  PathFactory,
 } from "./model.ts";
 import { createDraft2020ValidatorExport } from "./validator.ts";
 
@@ -91,8 +90,6 @@ export interface DefaultsOptions<T extends CodegenThemeOrSubTheme> {
   isTs: boolean;
   ts: ConditionalPrinter;
   js: ConditionalPrinter;
-  lib: PathFactory;
-  modelName: string;
   merger: DeepPartial<MergerOptions>;
   focusOnFirstError: boolean;
   themeExtension: ThemeExtension;
@@ -123,8 +120,6 @@ export function createDefaults<T extends CodegenThemeOrSubTheme>({
   isTs,
   ts,
   js,
-  lib,
-  modelName,
   merger,
   focusOnFirstError,
   themeExtension,
@@ -405,8 +400,6 @@ export function resolver(_ctx) {`
       const { imports, code } = createDraft2020ValidatorExport({
         validator,
         ts,
-        lib,
-        modelName,
       });
       for (const i of imports) {
         if (i.isDefault) {

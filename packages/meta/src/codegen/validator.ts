@@ -177,40 +177,14 @@ export const validator = (options) => createFormValidator({
   );
 }
 
-function buildPrecompiledValidatorFactoryCode(
-  ts: ConditionalPrinter,
-  body: string
-): string {
-  return ts(
-    `export function validator<T>(options: ValidatorFactoryOptions) {
-  return createFormValidatorFactory({
-    ${body}
-    ...options,
-  });
-}`,
-    `/**
- * @template T
- * @param {import("@sjsf/form").ValidatorFactoryOptions} options
- */
-export const validator = (options) => createFormValidatorFactory({
-  ${body}
-  ...options,
-});`
-  );
-}
-
 export interface Draft2020ValidatorExportOptions {
   validator: Codegen2020Validator;
   ts: ConditionalPrinter;
-  lib: PathFactory;
-  modelName: string;
 }
 
 export function createDraft2020ValidatorExport({
   validator,
   ts,
-  lib,
-  modelName,
 }: Draft2020ValidatorExportOptions): Draft2020ValidatorExport {
   switch (validator.name) {
     case "ajv8": {
@@ -298,15 +272,8 @@ export function createDraft2020ValidatorExport({
         ),
       };
     }
-    case "hyperjump": {
-      const { imports, body } = hyperjumpImportsAndBody(lib, modelName);
-      return {
-        imports,
-        code: buildPrecompiledValidatorFactoryCode(ts, body),
-      };
-    }
     default:
-      throw neverError(validator, "unsupported 2020 validator");
+      throw neverError(validator.name, "unsupported 2020 validator");
   }
 }
 

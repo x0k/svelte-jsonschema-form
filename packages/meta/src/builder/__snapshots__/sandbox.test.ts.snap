@@ -2490,6 +2490,7 @@ exports[`builder sandbox-factory > validators > ajv8 2`] = `
 }",
   "scripts/compile-validators.ts": "import fs from "node:fs/promises";
 import path from "node:path";
+import { convert } from "@sjsf/form/converters/draft-2020-12";
 import { insertSubSchemaIds, fragmentSchema } from "@sjsf/form/validators/precompile";
 import { addFormComponents, DEFAULT_AJV_CONFIG } from "@sjsf/ajv8-validator";
 import Ajv from "ajv";
@@ -2523,7 +2524,7 @@ async function compileSchema(modelDirRelPath: string) {
 
 	const uiSchema = await readJson(modelDir, "ui-schema.json");
 	const initialValue = await readJson(modelDir, "initial-value.json");
-	const patch = insertSubSchemaIds(schema, { fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE });
+	const patch = insertSubSchemaIds(schema.$schema?.startsWith("https://json-schema.org/draft/2020-12/schema") ? convert(schema) : schema, { fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE });
 	const schemas = fragmentSchema(patch);
 
 	// It is easier to save as a TS file
@@ -2872,6 +2873,7 @@ exports[`builder sandbox-factory > validators > ata 2`] = `
 }",
   "scripts/compile-validators.ts": "import fs from "node:fs/promises";
 import path from "node:path";
+import { convert } from "@sjsf/form/converters/draft-2020-12";
 import { insertSubSchemaIds, fragmentSchema } from "@sjsf/form/validators/precompile";
 import { bundleCompact } from "ata-validator/build";
 import { DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS } from "@sjsf-lab/ata-validator/precompile";
@@ -2902,7 +2904,7 @@ async function compileSchema(modelDirRelPath: string) {
 
 	const uiSchema = await readJson(modelDir, "ui-schema.json");
 	const initialValue = await readJson(modelDir, "initial-value.json");
-	const patch = insertSubSchemaIds(schema, { fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE });
+	const patch = insertSubSchemaIds(schema.$schema?.startsWith("https://json-schema.org/draft/2020-12/schema") ? convert(schema) : schema, { fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE });
 	const schemas = fragmentSchema(patch);
 
 	// It is easier to save as a TS file
@@ -3229,6 +3231,7 @@ exports[`builder sandbox-factory > validators > hyperjump 1`] = `
 }",
   "scripts/compile-validators.ts": "import fs from "node:fs/promises";
 import path from "node:path";
+import { convert } from "@sjsf/form/converters/draft-2020-12";
 import { insertSubSchemaIds, fragmentSchema } from "@sjsf/form/validators/precompile";
 import { registerSchema, unregisterSchema, type SchemaObject } from "@hyperjump/json-schema/draft-07";
 import { type AST, getSchema, Validation } from "@hyperjump/json-schema/experimental";
@@ -3263,7 +3266,7 @@ async function compileSchema(modelDirRelPath: string) {
 	let id = 0;
 	const toId = (n: number) => \`https://example.com/v\${n}\`;
 
-	const patch = insertSubSchemaIds(schema, {
+	const patch = insertSubSchemaIds(schema.$schema?.startsWith("https://json-schema.org/draft/2020-12/schema") ? convert(schema) : schema, {
 		fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE,
 		createId: () => toId(id++)
 	});
@@ -3614,6 +3617,7 @@ exports[`builder sandbox-factory > validators > schemasafe 2`] = `
 }",
   "scripts/compile-validators.ts": "import fs from "node:fs/promises";
 import path from "node:path";
+import { convert } from "@sjsf/form/converters/draft-2020-12";
 import { insertSubSchemaIds, fragmentSchema } from "@sjsf/form/validators/precompile";
 import { validator } from "@exodus/schemasafe";
 import { DEFAULT_VALIDATOR_OPTIONS, FORM_FORMATS } from "@sjsf/schemasafe-validator";
@@ -3644,7 +3648,7 @@ async function compileSchema(modelDirRelPath: string) {
 
 	const uiSchema = await readJson(modelDir, "ui-schema.json");
 	const initialValue = await readJson(modelDir, "initial-value.json");
-	const patch = insertSubSchemaIds(schema, { fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE });
+	const patch = insertSubSchemaIds(schema.$schema?.startsWith("https://json-schema.org/draft/2020-12/schema") ? convert(schema) : schema, { fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE });
 	const schemas = fragmentSchema(patch);
 
 	// It is easier to save as a TS file

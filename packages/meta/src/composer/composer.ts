@@ -253,8 +253,6 @@ export async function createComposer<T extends CodegenThemeOrSubTheme>(
       isTs,
       ts,
       js,
-      lib,
-      modelName,
       merger,
       focusOnFirstError,
       themeExtension,

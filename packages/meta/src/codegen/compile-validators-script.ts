@@ -131,9 +131,7 @@ function createScriptRenderer({
       flags.length > 0
         ? `import { ${flagsExpr} } from "${formPackage.name}";\n\n`
         : "";
-    const draft2020ConvertImport = ctx.validator.draft2020
-      ? `import { convert } from "${formPackage.name}/converters/draft-2020-12";\n\n`
-      : "";
+    const draft2020ConvertImport = `import { convert } from "${formPackage.name}/converters/draft-2020-12";\n\n`;
     const modelFlagsImport =
       flags.length > 0
         ? `import { \${FIELDS_VALIDATION_KEYS} } from "${formPackage.name}";\n`
@@ -188,7 +186,7 @@ async function compileSchema(modelDirRelPath${ts(": string")}) {
     ctx,
     definePatchAndSchemas: (
       extraProperties = ""
-    ) => `const patch = insertSubSchemaIds(${ctx.validator.draft2020 ? "convert(schema)" : "schema"}, {
+    ) => `const patch = insertSubSchemaIds(schema.$schema?.startsWith("https://json-schema.org/draft/2020-12/schema") ? convert(schema) : schema, {
   fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE,
   ${extraProperties}
 });

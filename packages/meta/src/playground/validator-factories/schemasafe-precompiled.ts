@@ -27,22 +27,3 @@ export const draft07: CompileValidator = async (schemas: Schema[]) => {
     validatorRetriever: fromValidators(validateFunctions),
   });
 };
-
-export const draft2020: CompileValidator = async (schemas: Schema[]) => {
-  const validate = safeValidator(
-    // @ts-expect-error Typings for `multi` version are missing
-    schemas,
-    {
-      ...DEFAULT_SCHEMASAFE_OPTIONS,
-      $schemaDefault: "https://json-schema.org/draft/2020-12/schema",
-      schemas: new Map(schemas.map((s) => [s.$id!, s])),
-      multi: true,
-    }
-  );
-  const code = `export const [${schemas.map((s) => s.$id).join(", ")}] = ${validate.toModule()}`;
-  const validateFunctions =
-    await importModule<SchemasafeValidateFunctions>(code);
-  return schemasafeFactory({
-    validatorRetriever: fromValidators(validateFunctions),
-  });
-};

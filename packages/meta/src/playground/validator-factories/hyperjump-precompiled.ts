@@ -15,7 +15,7 @@ import {
 } from "@sjsf-lab/hyperjump-validator/precompile";
 import { type Schema } from "@sjsf/form";
 
-import { DRAFT_07, DRAFT_2020 } from "../validator-factory.ts";
+import { DRAFT_07 } from "../validator-factory.ts";
 import type { CompileValidator } from "../validator-factory.ts";
 
 export const createIdFactory = () => {
@@ -27,30 +27,6 @@ export const draft07: CompileValidator = async (schemas: Schema[]) => {
   for (const schema of schemas) {
     registerSchema({
       ...DRAFT_07,
-      ...schema,
-    } as SchemaObject);
-  }
-  try {
-    const ast = { metaData: {}, plugins: new Set() } as unknown as AST;
-    for (const schema of schemas) {
-      const s = await getSchema(schema.$id!);
-      await Validation.compile(s, ast, s);
-    }
-    return hyperjumpFactory({
-      localization,
-      validatorRetriever: fromAst(ast),
-    });
-  } finally {
-    for (const s of schemas) {
-      unregisterSchema(s.$id!);
-    }
-  }
-};
-
-export const draft2020: CompileValidator = async (schemas: Schema[]) => {
-  for (const schema of schemas) {
-    registerSchema({
-      ...DRAFT_2020,
       ...schema,
     } as SchemaObject);
   }

@@ -40,12 +40,10 @@ export type ValidatorFactory = <T>(options: ValidatorFactoryOptions) => (
   validator: FormValidator<T>;
 }>;
 
-interface AbstractValidatorModule<T> {
-  draft07: T;
-  draft2020: T;
+interface ValidatorModule {
+  draft07: CreatableValidator;
+  draft2020: CreatableValidator;
 }
-
-type ValidatorModule = AbstractValidatorModule<CreatableValidator>;
 
 export type CompilableValidator<T> = (
   options: ValidatorFactoryOptions
@@ -55,9 +53,10 @@ export type CompileValidator = <T>(
   schemas: Schema[]
 ) => Promise<CompilableValidator<T>>;
 
-type CompilableValidatorModule = AbstractValidatorModule<CompileValidator> & {
+interface CompilableValidatorModule {
+  draft07: CompileValidator;
   createIdFactory?: () => IdFactory;
-};
+}
 
 export function toDraft07(loader: () => Promise<ValidatorModule>) {
   return <T>(options: ValidatorFactoryOptions) => {
@@ -142,30 +141,23 @@ export function toFactory(
 const ON_EVERYTHING =
   ON_INPUT | ON_CHANGE | ON_BLUR | ON_ARRAY_CHANGE | ON_OBJECT_CHANGE;
 
-function createToPrecompiledFactory(
-  draft: keyof AbstractValidatorModule<unknown>
+export function toPrecompiledDraft07(
+  loader: () => Promise<CompilableValidatorModule>
 ) {
-  return (loader: () => Promise<CompilableValidatorModule>) => {
-    return <T>(options: ValidatorFactoryOptions) => {
-      let m: CompilableValidatorModule;
-      return async (schema: object) => {
-        m ??= await loader();
-        const { [draft]: compile, createIdFactory = defaultCreateIdFactory } =
-          m;
-        const patch = insertSubSchemaIds(schema, {
-          createId: createIdFactory(),
-          fieldsValidationMode: ON_EVERYTHING,
-        });
-        const factory = await compile<T>(fragmentSchema(patch));
-        return {
-          schema: patch.schema,
-          validator: create(factory, options),
-        };
+  return <T>(options: ValidatorFactoryOptions) => {
+    let m: CompilableValidatorModule;
+    return async (schema: object) => {
+      m ??= await loader();
+      const { draft07, createIdFactory = defaultCreateIdFactory } = m;
+      const patch = insertSubSchemaIds(schema, {
+        createId: createIdFactory(),
+        fieldsValidationMode: ON_EVERYTHING,
+      });
+      const factory = await draft07<T>(fragmentSchema(patch));
+      return {
+        schema: patch.schema,
+        validator: create(factory, options),
       };
     };
   };
 }
-
-export const toPrecompiledDraft07 = createToPrecompiledFactory("draft07");
-
-export const toPrecompiledDraft2020 = createToPrecompiledFactory("draft2020");
