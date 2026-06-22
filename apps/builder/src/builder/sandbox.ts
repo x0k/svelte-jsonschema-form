@@ -1,7 +1,8 @@
 import type { Schema, UiSchema } from "@sjsf/form";
 import {
   createSandboxFiles,
-  type BuilderValidator,
+  builderValidatorTitle,
+  type BuilderValidator2,
   type WidgetType,
 } from "meta/builder";
 import type {
@@ -16,7 +17,7 @@ import { fileFieldModeToFields, type FileFieldMode } from "./model.js";
 export interface OpenSandboxOptions {
   platform: SandboxPlatform;
   theme: PlaygroundTheme;
-  validator: BuilderValidator;
+  validator: BuilderValidator2;
   schema: Schema;
   uiSchema: UiSchema;
   html5Validation: boolean;
@@ -36,7 +37,7 @@ export async function openSandbox({
   widgets,
   fileFieldMode,
 }: OpenSandboxOptions) {
-  const name = `Builder (${theme}, ${validator})`;
+  const name = `Builder (${theme}, ${builderValidatorTitle(validator)})`;
   const files = await createSandboxFiles({
     name,
     theme,

@@ -1,17 +1,27 @@
 <script lang="ts">
-  import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
+  import {
+    BasicForm,
+    createForm,
+    getValueSnapshot,
+    type FormValidator,
+    type Schema,
+  } from "@sjsf/form";
   import { fromRecord } from "@sjsf/form/lib/resolver";
+  import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
   import { formatFileSize } from "@sjsf/form/validators/file-size";
+  import { createFormValidator as noop } from "@sjsf/form/validators/noop";
   import { Willow, WillowDark } from "@svar-ui/svelte-core";
   import { BitsConfig } from "bits-ui";
-  import { BUILDER_VALIDATORS } from "meta/builder";
+  import { isSchemaValidator } from "meta";
   import {
+    isDraft2020,
+    playgroundValidator,
     PLAYGROUND_ICON_SET_STYLES,
     PLAYGROUND_ICON_SETS,
     PLAYGROUND_RESOLVERS,
     PLAYGROUND_SJSF_THEME_STYLES,
     PLAYGROUND_SJSF_THEMES,
-    type PlaygroundTheme,
+    type PlaygroundValidator2,
   } from "meta/playground";
 
   import { ShadowHost } from "$lib/components/shadow/index.js";
@@ -38,13 +48,43 @@
     },
   };
 
+  const previewValidator = $derived.by(() => {
+    if (isSchemaValidator(ctx.validator.name)) {
+      return { name: "ajv8" as const, draft2020: false, precompiled: false };
+    }
+    return ctx.validator as PlaygroundValidator2;
+  });
+
+  const validatorQuery = createQuery<
+    [PlaygroundValidator2, object],
+    { schema: Schema; validator: FormValidator<unknown> }
+  >({
+    get deps() {
+      return (): [PlaygroundValidator2, object] => [
+        previewValidator,
+        ctx.schema as object,
+      ];
+    },
+    execute: debounce((_, validator, schema) =>
+      playgroundValidator(validator)({
+        merger: () => defaults.merger({} as any),
+      })(schema)
+    ),
+  });
+
+  const DEFAULT_SCHEMA_AND_VALIDATOR = {
+    schema: {} satisfies Schema as Schema,
+    validator: noop(),
+  };
+  const core = $derived(validatorQuery.result ?? DEFAULT_SCHEMA_AND_VALIDATOR);
+
   const form = createForm({
     ...defaults,
-    get createValidator() {
-      return BUILDER_VALIDATORS[ctx.validator];
+    get validator() {
+      return core.validator;
     },
     get schema() {
-      return ctx.schema;
+      return core.schema;
     },
     get uiSchema() {
       return ctx.uiSchema;
@@ -113,9 +153,7 @@
             novalidate={!ctx.html5Validation}
             class={themeManager.darkOrLight}
             style="padding: 1rem; display: flex; flex-direction: column; gap: 1rem;"
-            data-theme={ctx.theme.startsWith(
-              "skeleton4" satisfies PlaygroundTheme
-            )
+            data-theme={ctx.theme.startsWith("skeleton4")
               ? "cerberus"
               : themeManager.darkOrLight}
           />

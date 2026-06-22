@@ -4,7 +4,13 @@
   import Download from "@lucide/svelte/icons/download";
   import ExternalLink from "@lucide/svelte/icons/external-link";
   import { themeOrSubThemeTitle } from "meta";
-  import { builderValidators, builderValidatorTitle } from "meta/builder";
+  import {
+    builderValidators2,
+    builderValidatorId,
+    builderValidatorFromId,
+    builderValidatorTitle,
+    type BuilderValidatorId,
+  } from "meta/builder";
   import {
     playgroundIconSets,
     playgroundIconSetTitle,
@@ -35,6 +41,26 @@
   const ctx = getBuilderContext();
 
   const uniqueId = $props.id();
+
+  const validatorItems = Array.from(builderValidators2(), builderValidatorId);
+  const validatorLabels = Object.fromEntries(
+    Array.from(builderValidators2(), (v) => [
+      builderValidatorId(v),
+      builderValidatorTitle(v),
+    ])
+  ) as Record<BuilderValidatorId, string>;
+
+  let selectedValidatorId = $state<BuilderValidatorId>(
+    builderValidatorId(ctx.validator)
+  );
+
+  $effect(() => {
+    selectedValidatorId = builderValidatorId(ctx.validator);
+  });
+
+  $effect(() => {
+    ctx.validator = builderValidatorFromId(selectedValidatorId);
+  });
 </script>
 
 <Container class="mb-4 flex flex-col gap-4 p-3">
@@ -63,9 +89,9 @@
     <Select
       class="w-full"
       labelId="{uniqueId}-validator"
-      bind:value={ctx.validator}
-      items={builderValidators()}
-      itemLabel={builderValidatorTitle}
+      bind:value={selectedValidatorId}
+      items={validatorItems}
+      labels={validatorLabels}
     />
   </div>
   <div class="flex flex-col gap-1.5">

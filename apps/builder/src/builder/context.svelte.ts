@@ -12,7 +12,8 @@ import {
   themeCustomizableNodeTypes,
   themeRangeValueTypes,
   NodeType,
-  type BuilderValidator,
+  normalizeBuilderValidator,
+  type BuilderValidator2,
   type WidgetType,
   getUseLabel,
   type NodeId,
@@ -57,6 +58,7 @@ import {
   buildFormDefaults,
   buildFormDotSvelte,
   buildInstallSh,
+  buildPlaygroundSchema,
   join,
 } from "./code-builders.js";
 import {
@@ -117,7 +119,7 @@ export interface BuilderState1 {
   theme: PlaygroundTheme;
   resolver: PlaygroundResolver;
   icons: PlaygroundIconSet;
-  validator: BuilderValidator;
+  validator: BuilderValidator2;
   ignoreWarnings: boolean;
   html5Validation: boolean;
   route: Route;
@@ -181,8 +183,7 @@ export class BuilderContext {
   theme = $state.raw<PlaygroundTheme>("shadcn4");
   resolver = $state.raw<PlaygroundResolver>("basic");
   icons = $state.raw<PlaygroundIconSet>("none");
-  validator = $state.raw<BuilderValidator>("ajv8");
-
+  validator = $state.raw<BuilderValidator2>(normalizeBuilderValidator("ajv8"));
   readonly availableCustomizableNodeTypes = $derived(
     themeCustomizableNodeTypes(this.theme)
   );
@@ -458,7 +459,10 @@ export class BuilderContext {
   }
 
   importState(data: State) {
-    Object.assign(this, data);
+    Object.assign(this, {
+      ...data,
+      validator: normalizeBuilderValidator(data.validator),
+    });
     if (this.route.name === RouteName.Preview) {
       this.build();
     }
@@ -479,11 +483,15 @@ export class BuilderContext {
   }
 
   createPlaygroundSample(): Readonly<FormPreset> {
+    const validator = this.validator;
     return {
-      schema: this.schema,
+      schema: buildPlaygroundSchema({
+        schema: this.schema,
+        validator,
+      }),
       uiSchema: this.uiSchema ?? {},
       initialValue: null,
-      validator: isSchemaValidator(this.validator) ? "ajv8" : this.validator,
+      validator,
       theme: this.theme,
       resolver: this.resolver,
       icons: this.icons,

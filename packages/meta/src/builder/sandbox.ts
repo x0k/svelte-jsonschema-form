@@ -14,12 +14,12 @@ import {
   type ExtraWidgetFileNames,
 } from "../widgets.ts";
 import type { WidgetType } from "../widgets.ts";
-import type { BuilderValidator } from "./model.ts";
+import type { BuilderValidator2 } from "./model.ts";
 
 export interface BuilderSandboxOptions {
   name: string;
   theme: PlaygroundTheme;
-  validator: BuilderValidator;
+  validator: BuilderValidator2;
   schema: string;
   uiSchema: UiSchema;
   icons: PlaygroundIconSet;
@@ -56,11 +56,7 @@ export async function createSandboxFiles({
     language: "ts",
     themeOrSubTheme: theme,
     icons,
-    validator: {
-      name: validator,
-      draft2020: false,
-      precompiled: false,
-    },
+    validator,
     sveltekit: "no",
     widgets: extraWidgets,
     fields,
