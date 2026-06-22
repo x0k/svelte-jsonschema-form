@@ -474,6 +474,12 @@ importers:
       shiki:
         specifier: 'catalog:'
         version: 4.2.0
+      valibot:
+        specifier: 'catalog:'
+        version: 1.4.1(typescript@6.0.3)
+      zod:
+        specifier: 'catalog:'
+        version: 4.4.3
     devDependencies:
       '@fontsource-variable/inter':
         specifier: 'catalog:'

@@ -41,6 +41,7 @@ export function pageSvelte({
     filepath,
     createPage({
       ...options,
+      html5Validation: false,
       language,
       form,
       lib,
