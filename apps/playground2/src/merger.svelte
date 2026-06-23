@@ -179,7 +179,7 @@
         return;
       }
       const n = child.name;
-      format(data[n], (f) => {
+      format("javascript", data[n], (f) => {
         data[n] = f;
       });
     }}

@@ -75,7 +75,7 @@
   } from "meta/sandbox";
   import "meta/playground/augmentations";
   import { toast } from "svelte-sonner";
-  import { Panel, setTilerContext, type Tiles } from "svelte-tiler";
+  import { Panel, setTilerContext, type Tile, type Tiles } from "svelte-tiler";
   import { fromRecord as registryFromRecord } from "svelte-tiler/shared/registry";
   import * as Leaf from "svelte-tiler/tiles/leaf.svelte";
   import * as Split from "svelte-tiler/tiles/split.svelte";
@@ -99,8 +99,10 @@
   import {
     constraints,
     createApplySplit,
+    createLayoutStore,
     createTilerContext,
     gapPx,
+    transformLayout,
   } from "$lib/tiler.js";
   import Header from "@/header.svelte";
   import { router } from "@/router.js";
@@ -113,6 +115,7 @@
     createValidatorState,
     checkSignal,
     convertAndFormatTypedSchema,
+    type Lang,
   } from "@/shared.svelte";
   import { themeManager } from "@/theme.svelte";
 
@@ -136,6 +139,7 @@
     },
     uiSchema: {},
     initialValue: null,
+    css: "",
     disabled: false,
     html5Validation: false,
     focusOnFirstError: true,
@@ -339,6 +343,7 @@
       schema,
       uiSchema,
       formData,
+      css,
       preview,
     })
   );
@@ -352,88 +357,112 @@
     applySplit: createApplySplit(ctx),
   });
 
-  const LAYOUT_KEY = "layout";
   const PREVIEW_TITLE = "Preview";
   const FORM_DATA_TITLE = "Form Data";
-  const saved = localStorage.getItem(LAYOUT_KEY);
-  let layout = $state(
-    saved
-      ? JSON.parse(saved)
-      : Split.create({
-          gapPx,
-          children: [
-            {
-              weight: 4,
-              constraints,
-              tile: Split.create({
-                gapPx,
-                direction: "column",
-                children: [
-                  {
-                    constraints,
-                    tile: createTabs({
-                      actions: "smartActions",
-                      tabHeader: "gripHeader",
-                      tabs: [["Schema", createLeaf("schema")]],
-                    }),
-                  },
-                  {
-                    constraints,
-                    tile: Split.create({
-                      gapPx,
-                      children: [
-                        {
-                          constraints,
-                          tile: createTabs({
-                            actions: "smartActions",
-                            tabHeader: "gripHeader",
-                            tabs: [["UI Schema", createLeaf("uiSchema")]],
-                          }),
-                        },
-                        {
-                          constraints,
-                          tile: createTabs({
-                            actions: "smartActions",
-                            tabHeader: "gripHeader",
-                            tabs: [[FORM_DATA_TITLE, createLeaf("formData")]],
-                          }),
-                        },
-                      ],
-                    }),
-                  },
-                ],
-              }),
-            },
-            {
-              weight: 3,
-              constraints,
-              tile: createTabs({
-                actions: "smartActions",
-                tabHeader: "gripHeader",
-                tabs: [[PREVIEW_TITLE, createLeaf("preview")]],
-              }),
-            },
-          ],
-        })
-  );
+  const UI_SCHEMA_TITLE = "UI Schema";
+  const CSS_TITLE = "CSS";
+
+  const store = createLayoutStore({
+    key: "layout",
+    defaultLayout: () =>
+      Split.create({
+        gapPx,
+        children: [
+          {
+            weight: 4,
+            constraints,
+            tile: Split.create({
+              gapPx,
+              direction: "column",
+              children: [
+                {
+                  constraints,
+                  tile: createTabs({
+                    actions: "smartActions",
+                    tabHeader: "gripHeader",
+                    tabs: [["Schema", createLeaf("schema")]],
+                  }),
+                },
+                {
+                  constraints,
+                  tile: Split.create({
+                    gapPx,
+                    children: [
+                      {
+                        constraints,
+                        tile: createTabs({
+                          actions: "smartActions",
+                          tabHeader: "gripHeader",
+                          tabs: [[UI_SCHEMA_TITLE, createLeaf("uiSchema")]],
+                        }),
+                      },
+                      {
+                        constraints,
+                        tile: createTabs({
+                          actions: "smartActions",
+                          tabHeader: "gripHeader",
+                          tabs: [[FORM_DATA_TITLE, createLeaf("formData")]],
+                        }),
+                      },
+                    ],
+                  }),
+                },
+              ],
+            }),
+          },
+          {
+            weight: 3,
+            constraints,
+            tile: createTabs({
+              actions: "smartActions",
+              tabHeader: "gripHeader",
+              tabs: [[PREVIEW_TITLE, createLeaf("preview")]],
+            }),
+          },
+        ],
+      }),
+    migrations: [
+      transformLayout((t) => {
+        if (t.type === "tabs") {
+          const idx = t.titles.indexOf(UI_SCHEMA_TITLE) + 1;
+          if (idx > 0) {
+            const selected = t.selectedTab;
+            ctx.insertInto(t, idx, {
+              titles: [CSS_TITLE],
+              children: [createLeaf("css")],
+            });
+            t.selectedTab = selected >= idx ? selected + 1 : selected;
+          }
+        }
+        return t;
+      }),
+    ],
+  });
+
+  let layout = $state(store.load());
 
   debouncedEffect(() => {
     const snap = $state.snapshot(layout);
     return () => {
-      localStorage.setItem(LAYOUT_KEY, JSON.stringify(snap));
+      store.save(snap);
     };
   });
 
-  function toKeyName(
-    k: string
-  ): "schema" | "uiSchema" | "initialValue" | undefined {
+  type KeyName = "schema" | "uiSchema" | "initialValue" | "css";
+
+  function toKeyName(k: string): KeyName | undefined {
     switch (k) {
       case "schema":
       case "uiSchema":
+      case "css":
         return k;
       case "preview":
         return "initialValue";
     }
+  }
+
+  function langFromKeyName(keyName: KeyName): Lang {
+    return keyName === "css" ? "css" : "javascript";
   }
 
   const format = createFormatTask();
@@ -457,6 +486,7 @@
       });
       return {
         ...preset,
+        css: "/* NOTE: this content will not be saved when switching between examples */\n",
         schema,
         validator:
           codegemIsJsonSchemaValidator(validator) &&
@@ -684,7 +714,7 @@
         }
         const n = toKeyName(child.name);
         if (n) {
-          format(data[n], (f) => {
+          format(langFromKeyName(n), data[n], (f) => {
             data[n] = f;
           });
         }
@@ -724,11 +754,15 @@
   />
 {/snippet}
 
+{#snippet css()}
+  <Editor bind:value={data.css} lang="css" class="h-full" />
+{/snippet}
+
 {#snippet preview()}
   <ShadowHost
     id="shadow-host"
     class="flex min-h-full flex-col"
-    style={`${themeStyle}\n${iconSetStyle}`}
+    style={`${themeStyle}\n${iconSetStyle}\n${data.css}`}
     data-theme={themeManager.darkOrLight}
   >
     <style>

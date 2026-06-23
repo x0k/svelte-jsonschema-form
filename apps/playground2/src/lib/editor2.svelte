@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { css } from "@codemirror/lang-css";
   import { javascript } from "@codemirror/lang-javascript";
   import { Annotation } from "@codemirror/state";
   import { EditorView } from "@codemirror/view";
@@ -8,13 +9,16 @@
   import { untrack } from "svelte";
   import type { HTMLAttributes } from "svelte/elements";
 
+  import type { Lang } from "@/shared.svelte";
   import { themeManager } from "@/theme.svelte";
 
   let {
     value = $bindable(),
+    lang = "javascript",
     ...rest
   }: HTMLAttributes<HTMLDivElement> & {
     value: string;
+    lang?: Lang;
   } = $props();
 
   let view = $state.raw<EditorView>();
@@ -62,7 +66,7 @@
       doc: untrack(() => value),
       extensions: [
         basicSetup,
-        javascript(),
+        lang === "css" ? css() : javascript(),
         onChange,
         themeManager.isDark ? githubDark : githubLight,
         EditorView.theme(

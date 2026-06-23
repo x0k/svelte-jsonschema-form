@@ -125,7 +125,7 @@ export function normalizeJsonValue<S>(str: string | S) {
 
 // TODO: Remove in v4
 export type Normalize<T> = {
-  [K in keyof T]: PlaygroundValidator2 extends T[K]
+  [K in keyof T]-?: PlaygroundValidator2 extends T[K]
     ? PlaygroundValidator2
     : string extends T[K]
       ? string

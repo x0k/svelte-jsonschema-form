@@ -37,6 +37,7 @@ export interface FormState {
   theme: PlaygroundTheme;
   icons: PlaygroundIconSet;
   resolver: PlaygroundResolver;
+  css?: string;
   // Merger config
   arrayMinItemsPopulate: ArrayMinItemsPopulate;
   arrayMinItemsMergeExtraDefaults: boolean;
@@ -144,6 +145,7 @@ export type NormalizedFormState = Normalize<FormState>;
 export function normalizeFormState(state: FormState): NormalizedFormState {
   return {
     ...state,
+    css: state.css ?? "",
     validator: normalizeValidator(state.validator),
     schema: normalizeJsonValue(state.schema),
     uiSchema: normalizeJsonValue(state.uiSchema),

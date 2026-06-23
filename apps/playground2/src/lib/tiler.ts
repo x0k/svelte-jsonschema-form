@@ -52,3 +52,52 @@ export function createApplySplit(ctx: TilerContext) {
     );
   };
 }
+
+export type LayoutState = { layout: Tile; version: number };
+
+export interface LayoutStorOptions {
+  key: string;
+  defaultLayout: () => Tile;
+  migrations: Array<(layout: Tile) => Tile>;
+}
+
+export function createLayoutStore({
+  key,
+  defaultLayout,
+  migrations,
+}: LayoutStorOptions) {
+  const VERSION = migrations.length;
+
+  function migrate({ layout, version }: LayoutState) {
+    while (VERSION > version) {
+      layout = migrations[version++]!(layout);
+    }
+    return layout;
+  }
+
+  return {
+    load() {
+      const saved = localStorage.getItem(key);
+      const data: LayoutState | Tile = saved
+        ? JSON.parse(saved)
+        : defaultLayout;
+      return migrate("version" in data ? data : { layout: data, version: 0 });
+    },
+    save(layout: Tile) {
+      localStorage.setItem(
+        key,
+        JSON.stringify({
+          layout,
+          version: VERSION,
+        })
+      );
+    },
+  };
+}
+
+export function transformLayout(transform: (shallowCopy: Tile) => Tile) {
+  return function apply(tile: Tile): Tile {
+    const children = tile.children.map(apply);
+    return transform({ ...tile, children });
+  };
+}
