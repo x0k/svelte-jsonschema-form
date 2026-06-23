@@ -335,10 +335,12 @@ export class BuilderContext {
       uiSchemaWidgets: Set<WidgetType>,
       uiSchemaFileFieldMode: number,
     ],
+    Record<string, string>,
+    unknown,
     Record<string, string>
   >;
   readonly files = $derived.by(() => {
-    const files = this.#filesQuery.result ?? {};
+    const files = this.#filesQuery.current;
     const paths = Object.keys(files);
     return sortPreviewFilePaths(paths).map((filepath) => {
       const { title, extension } = parseFileNameAndExtension(filepath);
@@ -431,6 +433,7 @@ export class BuilderContext {
     });
 
     this.#filesQuery = createQuery({
+      initialValue: {},
       deps: () => [
         this.theme,
         this.resolver,
@@ -754,7 +757,7 @@ export class BuilderContext {
 
   openSandbox(platform: SandboxPlatform) {
     const name = `Builder (${this.theme}, ${builderValidatorTitle(this.validator)})`;
-    const files = this.#filesQuery.result ?? {};
+    const files = this.#filesQuery.current;
     return sandboxOpen({ name, platform, files });
   }
 }

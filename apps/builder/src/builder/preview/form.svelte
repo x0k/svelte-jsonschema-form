@@ -54,10 +54,18 @@
     merger: () => merger,
   };
 
+  const DEFAULT_SCHEMA_AND_VALIDATOR = {
+    schema: {
+      type: "object",
+    } satisfies Schema as Schema,
+    validator: noop(),
+  };
+
   const validatorQuery = createQuery<
     [BuilderValidator2, Schema],
     { schema: Schema; validator: FormValidator<unknown> }
   >({
+    initialValue: DEFAULT_SCHEMA_AND_VALIDATOR,
     deps: () => [ctx.validator, ctx.schema],
     execute: debounce(async (_, validator, schema) => {
       const schemaObject = await parseSchemaObject(
@@ -75,28 +83,22 @@
     },
   });
 
-  const DEFAULT_SCHEMA_AND_VALIDATOR = {
-    schema: {
-      type: "object",
-    } satisfies Schema as Schema,
-    validator: noop(),
-  };
-  const core = $derived(validatorQuery.result ?? DEFAULT_SCHEMA_AND_VALIDATOR);
+  const { schema, validator } = $derived(validatorQuery.current);
 
   const merger: FormMerger = $derived(
     defaults.merger({
-      schema: core.schema,
-      validator: core.validator,
+      schema,
+      validator,
     })
   );
 
   const form = createForm({
     ...defaults,
     get validator() {
-      return core.validator;
+      return validator;
     },
     get schema() {
-      return core.schema;
+      return schema;
     },
     get merger() {
       return merger;
