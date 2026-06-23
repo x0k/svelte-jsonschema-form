@@ -30,6 +30,8 @@
       },
     }),
   ]);
+
+  const hash = location.hash.substring(1);
 </script>
 
 <Toaster richColors theme={themeManager.theme} />
@@ -45,7 +47,7 @@
       {@const projects = new ProjectsContext(
         builder,
         new IDBProjectsRepository(db)
-      )}
+      ).init(hash)}
       <div class="bg-background sticky top-0 z-50">
         <Header ctx={projects} />
       </div>

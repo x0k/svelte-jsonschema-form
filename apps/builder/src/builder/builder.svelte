@@ -6,6 +6,7 @@
 
   const { ctx }: { ctx: BuilderContext } = $props();
 
+  // svelte-ignore state_referenced_locally
   setBuilderContext(ctx);
 </script>
 

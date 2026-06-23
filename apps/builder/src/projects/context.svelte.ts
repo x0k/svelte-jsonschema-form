@@ -124,6 +124,7 @@ export class ProjectsContext {
         }
       );
     }
+    return this;
   }
 
   loadRecentProjects() {
