@@ -12,6 +12,7 @@
   const ctx = getBuilderContext();
   const nodeCtx = getNodeContext();
 
+  // svelte-ignore state_referenced_locally
   const droppable = ctx.createDroppable(nodeCtx, options);
 </script>
 
