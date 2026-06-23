@@ -296,9 +296,8 @@ export type QueryOptions<
   T extends ReadonlyArray<any>,
   R = unknown,
   E = unknown,
-  I = R,
 > = TaskOptions<T, R, E> & {
-  initialValue?: I;
+  initialValue?: NoInfer<R>;
   /**
    * Used to pass and track reactive values
    * If not specified, automatic data loading is disabled
@@ -322,16 +321,13 @@ export interface Query<
   current: Result;
 }
 
-type QueryResult<R, I> = [I] extends [R] ? R : R | I;
-
 export function createQuery<
   T extends ReadonlyArray<any> = [],
   R = unknown,
   E = unknown,
-  I = R,
 >(
-  options: QueryOptions<T, R, E, I> & { initialValue: I }
-): Query<T, R, E, QueryResult<R, I>>;
+  options: QueryOptions<T, R, E> & { initialValue: NoInfer<R> }
+): Query<T, R, E, R>;
 export function createQuery<
   T extends ReadonlyArray<any> = [],
   R = unknown,
@@ -341,9 +337,8 @@ export function createQuery<
   T extends ReadonlyArray<any> = [],
   R = unknown,
   E = unknown,
-  I = never,
->(options: QueryOptions<T, R, E, I>) {
-  let value = $derived<R | I | undefined>(options.initialValue);
+>(options: QueryOptions<T, R, E>) {
+  let value = $derived<R | undefined>(options.initialValue);
 
   const task = createTask(
     Object.setPrototypeOf(

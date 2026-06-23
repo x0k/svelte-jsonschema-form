@@ -29,8 +29,10 @@ test("createQuery", () => {
 
   const queryWithNull = createQuery({
     initialValue: null,
-    execute: () => Promise.resolve("foo"),
+    execute: () => Promise.resolve<string | null>("foo"),
   });
   expectTypeOf(queryWithNull.current).toEqualTypeOf<string | null>();
-  expectTypeOf(queryWithNull.runAsync).returns.resolves.toEqualTypeOf<string>();
+  expectTypeOf(queryWithNull.runAsync).returns.resolves.toEqualTypeOf<
+    string | null
+  >();
 });
