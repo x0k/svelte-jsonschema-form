@@ -15,6 +15,7 @@ const BASE_FORM_STATE: NormalizedFormState = {
   }),
   uiSchema: jsonUiSchema({}),
   initialValue: jsonValue(null),
+  css: "",
   disabled: false,
   html5Validation: false,
   focusOnFirstError: true,

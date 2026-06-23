@@ -16,7 +16,7 @@
       const formData = new FormData(form);
       const entries = [...formData.entries()];
       await copyTextToClipboard(JSON.stringify(entries));
-      toast.success("Link copied");
+      toast.success("Copied");
     } catch (err) {
       console.error(err);
       toast.error("An error has occurred");

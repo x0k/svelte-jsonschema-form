@@ -28,6 +28,7 @@ import {
 } from "meta/playground";
 import * as prettierPluginBabel from "prettier/plugins/babel";
 import * as prettierPluginEstree from "prettier/plugins/estree";
+import * as prettierPluginPostcss from "prettier/plugins/postcss";
 import * as p from "prettier/standalone";
 import { toast } from "svelte-sonner";
 
@@ -48,28 +49,13 @@ export function createOnFailure(label: string) {
   };
 }
 
-export async function formatCode(str: string): Promise<string> {
-  let trimmed = str.trim();
-  if (!trimmed.includes(EXPORT_DEFAULT)) {
-    try {
-      return JSON.stringify(JSON.parse(str), null, 2);
-    } catch {
-      trimmed = `${EXPORT_DEFAULT} ${str}`;
-    }
-  }
-  return await p.format(trimmed, {
-    parser: "babel",
-    plugins: [prettierPluginBabel, prettierPluginEstree],
-  });
-}
-
 export async function convertAndFormatTypedSchema(
   signal: AbortSignal,
   options: ConvertTypedSchemaOptions
 ): Promise<string> {
   const schema = await convertTypedSchema(options);
   checkSignal(signal);
-  return await formatCode(schema);
+  return await formatJsOrJson(schema);
 }
 
 export interface ParseQueryOptions<T> {
@@ -268,10 +254,17 @@ export function createMergerTransition(data: {
   };
 }
 
+const FORMATTERS = {
+  javascript: formatJsOrJson,
+  css: formatCss,
+};
+
+export type Lang = keyof typeof FORMATTERS;
+
 export function createFormatTask() {
-  const task = createTask<[string], string>({
+  const task = createTask<[Lang, string], string>({
     combinator: abortPrevious,
-    execute: debounce((_, str) => formatCode(str)),
+    execute: debounce((_, lang, str) => FORMATTERS[lang](str)),
     onFailure(err) {
       if (err.reason === "aborted") {
         return;
@@ -280,7 +273,29 @@ export function createFormatTask() {
       toast.warning("Failed to format");
     },
   });
-  return (str: string, onFormat: (formatted: string) => void) => {
-    task.runAsync(str).then(onFormat, noop);
+  return (lang: Lang, str: string, onFormat: (formatted: string) => void) => {
+    task.runAsync(lang, str).then(onFormat, noop);
   };
+}
+
+async function formatJsOrJson(str: string): Promise<string> {
+  let trimmed = str.trim();
+  if (!trimmed.includes(EXPORT_DEFAULT)) {
+    try {
+      return JSON.stringify(JSON.parse(str), null, 2);
+    } catch {
+      trimmed = `${EXPORT_DEFAULT} ${str}`;
+    }
+  }
+  return await p.format(trimmed, {
+    parser: "babel",
+    plugins: [prettierPluginBabel, prettierPluginEstree],
+  });
+}
+
+function formatCss(str: string) {
+  return p.format(str.trim(), {
+    parser: "css",
+    plugins: [prettierPluginPostcss],
+  });
 }
