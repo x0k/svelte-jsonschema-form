@@ -1,4 +1,4 @@
-import type { Schema, UiSchemaRoot, FormValue } from "@sjsf/form";
+import type { UiSchemaRoot, FormValue } from "@sjsf/form";
 import type { DeepPartial } from "@sjsf/form/lib/types";
 
 import {
@@ -17,6 +17,8 @@ import {
   createViteConfig,
   createShadcnLib,
   createModel,
+  createJsonFile,
+  createCompileValidatorsScript,
   KIT_PATH_FACTORY,
   type MergerOptions,
   type ModuleAugmentation,
@@ -28,6 +30,7 @@ import {
   type CodegenValidator,
 } from "../codegen/index.ts";
 import type { ExtraFieldFileName } from "../fields.ts";
+import type { Resolver } from "../form.ts";
 import {
   extraPackage,
   filterPackageDependencies,
@@ -55,7 +58,7 @@ export interface ComposerOptions<T extends CodegenThemeOrSubTheme> {
   modelName: string;
   uiSchema: UiSchemaRoot;
   /** If `undefined` is specified, the model file will not be generated */
-  schema: Schema | undefined;
+  schema: string | undefined;
   initialValue: FormValue;
   fieldsValidationMode: FieldsValidationMode;
   disabled: boolean;
@@ -65,6 +68,8 @@ export interface ComposerOptions<T extends CodegenThemeOrSubTheme> {
   moduleAugmentation: Partial<ModuleAugmentation>;
   omitExtraData: boolean;
   focusOnFirstError: boolean;
+  html5Validation: boolean;
+  resolver: Resolver | "inline";
 }
 
 const TSCONFIG = JSON.stringify(
@@ -147,9 +152,9 @@ export function normalizeProjectName(name: string): string {
     .replace(/^-|-$/g, "");
 }
 
-export function createComposer<T extends CodegenThemeOrSubTheme>(
+export async function createComposer<T extends CodegenThemeOrSubTheme>(
   options: ComposerOptions<T>
-): Record<string, string> {
+): Promise<Record<string, string>> {
   const {
     name,
     language,
@@ -174,6 +179,8 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
     moduleAugmentation,
     omitExtraData,
     focusOnFirstError,
+    html5Validation,
+    resolver,
   } = options;
   const isKit = true;
   const nodeModulesPath = "../../node_modules";
@@ -224,6 +231,8 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
     "package.json": buildPackageJson({
       name: normalizeProjectName(name),
       dependencies: new Map(dependencies.map((d) => [d.name, d])).values(),
+      precompiled: validator.precompiled,
+      language,
     }),
     "vite.config.js": createViteConfig({
       themeOrSubTheme,
@@ -237,15 +246,13 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
       themeOrSubTheme,
       validator,
       icons,
-      resolver: "basic",
+      resolver,
       sveltekit,
       widgets,
       fields,
       isTs,
       ts,
       js,
-      lib,
-      modelName,
       merger,
       focusOnFirstError,
       themeExtension,
@@ -258,20 +265,35 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
       validator,
       lib,
       form,
+      html5Validation,
     })(""),
   };
 
   if (schema && !validator.precompiled) {
-    files[`src/lib/${modelName}.${language}`] = createModel({
-      validator,
-      isTs,
-      ts,
-      schema,
-      modelName,
-      uiSchema,
-      initialValue,
-      fieldsValidationMode,
-    })("");
+    files[`src/lib/${modelName}.${language}`] = (
+      await createModel({
+        validator,
+        isTs,
+        ts,
+        schema,
+        uiSchema,
+        initialValue,
+        fieldsValidationMode,
+      })
+    )("");
+  } else if (schema && validator.precompiled) {
+    const modelDir = `src/lib/${modelName}/`;
+    files[`${modelDir}schema.json`] = createJsonFile(JSON.parse(schema))("");
+    files[`${modelDir}ui-schema.json`] = createJsonFile(uiSchema)("");
+    files[`${modelDir}initial-value.json`] = createJsonFile(initialValue)("");
+    files[`scripts/compile-validators.${language}`] =
+      createCompileValidatorsScript({
+        modelPaths: [modelDir],
+        validator,
+        language,
+        ts,
+        fieldsValidationMode,
+      })("");
   }
 
   function addFile(filePath: string, content: string) {

@@ -32,13 +32,13 @@ export default defineAddon({
     } satisfies AddonSetupOptions);
   },
 
-  run: (ws) => {
+  run: async (ws) => {
     const ctx = createContext(ws);
     dependencies(ctx);
     defaultsTs(ctx);
     shadcnTs(ctx);
     appCss(ctx);
-    postTs(ctx);
+    await postTs(ctx);
     scriptsFolder(ctx);
     viteConfig(ctx);
     sveltekitTs(ctx);

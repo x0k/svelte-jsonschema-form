@@ -1,74 +1,60 @@
+import type { Draft2020, Precompiled } from "../codegen/index.ts";
+import { normalizeValidator, type PlaygroundValidator } from "./model.ts";
 import {
-  Validator as CfValidator,
-  type Schema as CfSchema,
-} from "@cfworker/json-schema";
-import {
-  validator as safeValidator,
-  type Schema as SafeSchema,
-} from "@exodus/schemasafe";
-import {
-  createFormValidator as ata,
-  DEFAULT_VALIDATOR_OPTIONS as DEFAULT_ATA_OPTIONS,
-} from "@sjsf-lab/ata-validator";
-import {
-  addFormComponents,
-  createFormValidator as ajv8,
-} from "@sjsf/ajv8-validator";
-import { createFormValidator as cfworker } from "@sjsf/cfworker-validator";
-import type { FormValidator } from "@sjsf/form";
-import { ROOT_SCHEMA_PREFIX } from "@sjsf/form/core";
-import {
-  DEFAULT_VALIDATOR_OPTIONS as DEFAULT_SCHEMASAFE_OPTIONS,
-  createFormValidator as schemasafe,
-} from "@sjsf/schemasafe-validator";
-import _addFormats, { type FormatsPlugin } from "ajv-formats";
-import { Ajv2020 } from "ajv/dist/2020.js";
-import { Validator as AtaValidator } from "ata-validator";
+  toDraft07,
+  toDraft2020,
+  toFactory,
+  toPrecompiledDraft07,
+  type ValidatorFactory,
+} from "./validator-factory.ts";
 
-import type { PlaygroundValidator } from "./model.ts";
+const DRAFT_07: Record<
+  Extract<PlaygroundValidator, Precompiled<false> & Draft2020<false>>["name"],
+  ValidatorFactory
+> = {
+  ajv8: toDraft07(() => import("./validator-factories/ajv.ts")),
+  cfworker: toDraft07(() => import("./validator-factories/cfworker.ts")),
+  schemasafe: toDraft07(() => import("./validator-factories/schemasafe.ts")),
+  ata: toDraft07(() => import("./validator-factories/ata.ts")),
+  zod4: toFactory(() => import("./validator-factories/zod4.ts")),
+  valibot: toFactory(() => import("./validator-factories/valibot.ts")),
+};
 
-const addFormats = _addFormats as unknown as FormatsPlugin;
+const DRAFT_2020: Record<
+  Extract<PlaygroundValidator, Draft2020<true> & Precompiled<false>>["name"],
+  ValidatorFactory
+> = {
+  ajv8: toDraft2020(() => import("./validator-factories/ajv.ts")),
+  cfworker: toDraft2020(() => import("./validator-factories/cfworker.ts")),
+  schemasafe: toDraft2020(() => import("./validator-factories/schemasafe.ts")),
+  ata: toDraft2020(() => import("./validator-factories/ata.ts")),
+};
 
-const PLAYGROUND_VALIDATORS = {
-  ajv8: <T>(options: Parameters<typeof ajv8>[0]) =>
-    ajv8<T>({
-      ...options,
-      ajvPlugins: (ajv) => addFormComponents(addFormats(ajv)),
-    }),
-  ajv8_2020: <T>(options: Parameters<typeof ajv8>[0]) =>
-    ajv8<T>({
-      ...options,
-      Ajv: Ajv2020,
-      ajvPlugins: (ajv) => addFormComponents(addFormats(ajv)),
-    }),
-  cfworker,
-  cfworker_2020: <T>(options: Parameters<typeof cfworker>[0]) =>
-    cfworker<T>({
-      ...options,
-      factory: (schema) =>
-        new CfValidator(schema as CfSchema, "2020-12", false),
-    }),
-  schemasafe,
-  schemasafe_2020: <T>(options: Parameters<typeof schemasafe>[0]) =>
-    schemasafe<T>({
-      ...options,
-      factory: (schema, rootSchema) =>
-        safeValidator(schema as SafeSchema, {
-          ...DEFAULT_SCHEMASAFE_OPTIONS,
-          $schemaDefault: "https://json-schema.org/draft/2020-12/schema",
-          schemas: {
-            [ROOT_SCHEMA_PREFIX]: rootSchema as SafeSchema,
-          },
-        }),
-    }),
-  ata,
-  ata_2020: <T>(options: Parameters<typeof ata>[0]) =>
-    ata<T>({
-      ...options,
-      factory: (schema) => new AtaValidator(schema, DEFAULT_ATA_OPTIONS),
-    }),
-} satisfies Record<PlaygroundValidator, <T>(...args: any) => FormValidator<T>>;
+const PRECOMPILED_DRAFT_07: Record<
+  Extract<PlaygroundValidator, Precompiled<true> & Draft2020<false>>["name"],
+  ValidatorFactory
+> = {
+  ajv8: toPrecompiledDraft07(
+    () => import("./validator-factories/ajv-precompiled.ts")
+  ),
+  schemasafe: toPrecompiledDraft07(
+    () => import("./validator-factories/schemasafe-precompiled.ts")
+  ),
+  hyperjump: toPrecompiledDraft07(
+    () => import("./validator-factories/hyperjump-precompiled.ts")
+  ),
+  ata: toPrecompiledDraft07(
+    () => import("./validator-factories/ata-precompiled.ts")
+  ),
+};
 
-export function playgroundValidator(v: PlaygroundValidator) {
-  return PLAYGROUND_VALIDATORS[v];
+export function playgroundValidator(validator: PlaygroundValidator) {
+  const v = normalizeValidator(validator);
+  if (v.precompiled) {
+    return PRECOMPILED_DRAFT_07[v.name];
+  }
+  if (v.draft2020) {
+    return DRAFT_2020[v.name];
+  }
+  return DRAFT_07[v.name];
 }

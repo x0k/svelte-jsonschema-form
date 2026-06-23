@@ -9,17 +9,24 @@ import type {
   Experimental_DefaultFormStateBehavior,
 } from "@sjsf/form/core";
 
-import type {
-  PlaygroundValidator,
-  PlaygroundTheme,
-  PlaygroundIconSet,
-  PlaygroundResolver,
+import {
+  type PlaygroundValidator,
+  type PlaygroundTheme,
+  type PlaygroundIconSet,
+  type PlaygroundResolver,
+  normalizeJsonValue,
+  type Normalize,
+  normalizeValidator,
 } from "./model.ts";
 
+// NOTE: We use legacy types in combination with `| string`
+// to maintain compatibility with old URLs.
+// TODO: This should be removed in v4.
 export interface FormState {
-  schema: Schema;
-  uiSchema: UiSchemaRoot;
-  initialValue: FormValue;
+  schema: Schema | string;
+  uiSchema: UiSchemaRoot | string;
+  // TODO: Replace with `formData: string` in v4
+  initialValue: FormValue | string;
   //
   disabled: boolean;
   html5Validation: boolean;
@@ -129,3 +136,17 @@ export const MERGE_DEFAULTS_INTO_FORM_TITLES: Record<
 export const MERGE_DEFAULTS_INTO_FORM = Object.keys(
   MERGE_DEFAULTS_INTO_FORM_TITLES
 ) as MergeDefaultsIntoFormDataStateBehavior[];
+
+// TODO: Remove in v4
+export type NormalizedFormState = Normalize<FormState>;
+
+// TODO: Remove in v4
+export function normalizeFormState(state: FormState): NormalizedFormState {
+  return {
+    ...state,
+    validator: normalizeValidator(state.validator),
+    schema: normalizeJsonValue(state.schema),
+    uiSchema: normalizeJsonValue(state.uiSchema),
+    initialValue: normalizeJsonValue(state.initialValue),
+  };
+}

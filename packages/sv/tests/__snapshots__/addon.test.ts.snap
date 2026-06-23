@@ -2416,7 +2416,7 @@ exports[`@sjsf/sv 'sveltekit__formActions__ajv8_precompi…' 'kit-ts' 1`] = `
 		"@sveltejs/adapter-auto": "^7.0.1",
 		"@sveltejs/kit": "^2.63.0",
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",
-		"esbuild": "^0.28.0",
+		"esbuild": "^0.28.1",
 		"esm-env": "^1.2.0",
 		"json-schema-to-ts": "^3.1.1",
 		"svelte": "^5.56.1",
@@ -2439,6 +2439,7 @@ exports[`@sjsf/sv 'sveltekit__formActions__ajv8_precompi…' 'kit-ts' 1`] = `
   "scripts/compile-validators.ts": "import fs from "node:fs/promises";
 import path from "node:path";
 import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
+import { convert } from "@sjsf/form/converters/draft-2020-12";
 import { insertSubSchemaIds, fragmentSchema } from "@sjsf/form/validators/precompile";
 import { addFormComponents, DEFAULT_AJV_CONFIG } from "@sjsf/ajv8-validator";
 import Ajv from "ajv";
@@ -2449,7 +2450,7 @@ import { build } from "esbuild";
 const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
-const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
+const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b, 0);
 const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
@@ -2475,7 +2476,7 @@ async function compileSchema(modelDirRelPath: string) {
 
 	const uiSchema = await readJson(modelDir, "ui-schema.json");
 	const initialValue = await readJson(modelDir, "initial-value.json");
-	const patch = insertSubSchemaIds(schema, { fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE });
+	const patch = insertSubSchemaIds(schema.$schema?.startsWith("https://json-schema.org/draft/2020-12/schema") ? convert(schema) : schema, { fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE });
 	const schemas = fragmentSchema(patch);
 
 	// It is easier to save as a TS file
@@ -2787,6 +2788,7 @@ exports[`@sjsf/sv 'sveltekit__formActions__hyperjump_pre…' 'kit-ts' 1`] = `
   "scripts/compile-validators.ts": "import fs from "node:fs/promises";
 import path from "node:path";
 import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
+import { convert } from "@sjsf/form/converters/draft-2020-12";
 import { insertSubSchemaIds, fragmentSchema } from "@sjsf/form/validators/precompile";
 import { registerSchema, unregisterSchema, type SchemaObject } from "@hyperjump/json-schema/draft-07";
 import { type AST, getSchema, Validation } from "@hyperjump/json-schema/experimental";
@@ -2795,7 +2797,7 @@ import { uneval } from "devalue";
 const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
-const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
+const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b, 0);
 const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
@@ -2824,7 +2826,7 @@ async function compileSchema(modelDirRelPath: string) {
 	let id = 0;
 	const toId = (n: number) => \`https://example.com/v\${n}\`;
 
-	const patch = insertSubSchemaIds(schema, {
+	const patch = insertSubSchemaIds(schema.$schema?.startsWith("https://json-schema.org/draft/2020-12/schema") ? convert(schema) : schema, {
 		fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE,
 		createId: () => toId(id++)
 	});
@@ -3166,11 +3168,7 @@ export {};
 import type { UiSchemaRoot } from "@sjsf/form";
 import * as z from "zod";
 
-export const schema = z.object({
-	title: z.string().meta({ title: "Title" }),
-	content: z.string().min(10).meta({ title: "Content" })
-}).meta({ title: "Post" });
-
+export const schema = z.object({ title: z.string(), content: z.string().min(10) });
 export type Model = z.infer<typeof schema>;
 
 export const uiSchema = {
@@ -3588,7 +3586,7 @@ exports[`@sjsf/sv 'sveltekit__remoteFunctions__ajv8_prec…' 'kit-ts' 1`] = `
 		"@sveltejs/adapter-auto": "^7.0.1",
 		"@sveltejs/kit": "^2.63.0",
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",
-		"esbuild": "^0.28.0",
+		"esbuild": "^0.28.1",
 		"esm-env": "^1.2.0",
 		"json-schema-to-ts": "^3.1.1",
 		"svelte": "^5.56.1",
@@ -3611,6 +3609,7 @@ exports[`@sjsf/sv 'sveltekit__remoteFunctions__ajv8_prec…' 'kit-ts' 1`] = `
   "scripts/compile-validators.ts": "import fs from "node:fs/promises";
 import path from "node:path";
 import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
+import { convert } from "@sjsf/form/converters/draft-2020-12";
 import { insertSubSchemaIds, fragmentSchema } from "@sjsf/form/validators/precompile";
 import { addFormComponents, DEFAULT_AJV_CONFIG } from "@sjsf/ajv8-validator";
 import Ajv from "ajv";
@@ -3621,7 +3620,7 @@ import { build } from "esbuild";
 const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
-const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
+const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b, 0);
 const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
@@ -3647,7 +3646,7 @@ async function compileSchema(modelDirRelPath: string) {
 
 	const uiSchema = await readJson(modelDir, "ui-schema.json");
 	const initialValue = await readJson(modelDir, "initial-value.json");
-	const patch = insertSubSchemaIds(schema, { fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE });
+	const patch = insertSubSchemaIds(schema.$schema?.startsWith("https://json-schema.org/draft/2020-12/schema") ? convert(schema) : schema, { fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE });
 	const schemas = fragmentSchema(patch);
 
 	// It is easier to save as a TS file
@@ -3967,6 +3966,7 @@ exports[`@sjsf/sv 'sveltekit__remoteFunctions__hyperjump…' 'kit-ts' 1`] = `
   "scripts/compile-validators.ts": "import fs from "node:fs/promises";
 import path from "node:path";
 import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
+import { convert } from "@sjsf/form/converters/draft-2020-12";
 import { insertSubSchemaIds, fragmentSchema } from "@sjsf/form/validators/precompile";
 import { registerSchema, unregisterSchema, type SchemaObject } from "@hyperjump/json-schema/draft-07";
 import { type AST, getSchema, Validation } from "@hyperjump/json-schema/experimental";
@@ -3975,7 +3975,7 @@ import { uneval } from "devalue";
 const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
-const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
+const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b, 0);
 const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
@@ -4004,7 +4004,7 @@ async function compileSchema(modelDirRelPath: string) {
 	let id = 0;
 	const toId = (n: number) => \`https://example.com/v\${n}\`;
 
-	const patch = insertSubSchemaIds(schema, {
+	const patch = insertSubSchemaIds(schema.$schema?.startsWith("https://json-schema.org/draft/2020-12/schema") ? convert(schema) : schema, {
 		fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE,
 		createId: () => toId(id++)
 	});
@@ -4353,11 +4353,7 @@ export {};
 import type { UiSchemaRoot } from "@sjsf/form";
 import * as z from "zod";
 
-export const schema = z.object({
-	title: z.string().meta({ title: "Title" }),
-	content: z.string().min(10).meta({ title: "Content" })
-}).meta({ title: "Post" });
-
+export const schema = z.object({ title: z.string(), content: z.string().min(10) });
 export type Model = z.infer<typeof schema>;
 
 export const uiSchema = {
@@ -10113,7 +10109,7 @@ exports[`@sjsf/sv 'validator__ajv8_precompiled' 'kit-ts' 1`] = `
 		"@sveltejs/adapter-auto": "^7.0.1",
 		"@sveltejs/kit": "^2.63.0",
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",
-		"esbuild": "^0.28.0",
+		"esbuild": "^0.28.1",
 		"json-schema-to-ts": "^3.1.1",
 		"svelte": "^5.56.1",
 		"svelte-check": "^4.6.0",
@@ -10133,6 +10129,7 @@ exports[`@sjsf/sv 'validator__ajv8_precompiled' 'kit-ts' 1`] = `
   "scripts/compile-validators.ts": "import fs from "node:fs/promises";
 import path from "node:path";
 import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
+import { convert } from "@sjsf/form/converters/draft-2020-12";
 import { insertSubSchemaIds, fragmentSchema } from "@sjsf/form/validators/precompile";
 import { addFormComponents, DEFAULT_AJV_CONFIG } from "@sjsf/ajv8-validator";
 import Ajv from "ajv";
@@ -10143,7 +10140,7 @@ import { build } from "esbuild";
 const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
-const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
+const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b, 0);
 const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
@@ -10169,7 +10166,7 @@ async function compileSchema(modelDirRelPath: string) {
 
 	const uiSchema = await readJson(modelDir, "ui-schema.json");
 	const initialValue = await readJson(modelDir, "initial-value.json");
-	const patch = insertSubSchemaIds(schema, { fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE });
+	const patch = insertSubSchemaIds(schema.$schema?.startsWith("https://json-schema.org/draft/2020-12/schema") ? convert(schema) : schema, { fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE });
 	const schemas = fragmentSchema(patch);
 
 	// It is easier to save as a TS file
@@ -10435,7 +10432,7 @@ exports[`@sjsf/sv 'validator__ajv8_precompiled' 'vite-ts' 1`] = `
     "@sveltejs/vite-plugin-svelte": "^6.2.1",
     "@tsconfig/svelte": "^5.0.6",
     "@types/node": "^24.10.1",
-    "esbuild": "^0.28.0",
+    "esbuild": "^0.28.1",
     "json-schema-to-ts": "^3.1.1",
     "svelte": "^5.45.2",
     "svelte-check": "^4.3.4",
@@ -10455,6 +10452,7 @@ exports[`@sjsf/sv 'validator__ajv8_precompiled' 'vite-ts' 1`] = `
   "scripts/compile-validators.ts": "import fs from "node:fs/promises";
 import path from "node:path";
 import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
+import { convert } from "@sjsf/form/converters/draft-2020-12";
 import { insertSubSchemaIds, fragmentSchema } from "@sjsf/form/validators/precompile";
 import { addFormComponents, DEFAULT_AJV_CONFIG } from "@sjsf/ajv8-validator";
 import Ajv from "ajv";
@@ -10465,7 +10463,7 @@ import { build } from "esbuild";
 const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
-const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
+const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b, 0);
 const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
@@ -10491,7 +10489,7 @@ async function compileSchema(modelDirRelPath: string) {
 
 	const uiSchema = await readJson(modelDir, "ui-schema.json");
 	const initialValue = await readJson(modelDir, "initial-value.json");
-	const patch = insertSubSchemaIds(schema, { fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE });
+	const patch = insertSubSchemaIds(schema.$schema?.startsWith("https://json-schema.org/draft/2020-12/schema") ? convert(schema) : schema, { fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE });
 	const schemas = fragmentSchema(patch);
 
 	// It is easier to save as a TS file
@@ -11392,6 +11390,7 @@ exports[`@sjsf/sv 'validator__ata_precompiled' 'kit-ts' 1`] = `
   "scripts/compile-validators.ts": "import fs from "node:fs/promises";
 import path from "node:path";
 import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
+import { convert } from "@sjsf/form/converters/draft-2020-12";
 import { insertSubSchemaIds, fragmentSchema } from "@sjsf/form/validators/precompile";
 import { bundleCompact } from "ata-validator/build";
 import { DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS } from "@sjsf-lab/ata-validator/precompile";
@@ -11399,7 +11398,7 @@ import { DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS } from "@sjsf-lab/ata-validator/p
 const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
-const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
+const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b, 0);
 const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
@@ -11425,7 +11424,7 @@ async function compileSchema(modelDirRelPath: string) {
 
 	const uiSchema = await readJson(modelDir, "ui-schema.json");
 	const initialValue = await readJson(modelDir, "initial-value.json");
-	const patch = insertSubSchemaIds(schema, { fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE });
+	const patch = insertSubSchemaIds(schema.$schema?.startsWith("https://json-schema.org/draft/2020-12/schema") ? convert(schema) : schema, { fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE });
 	const schemas = fragmentSchema(patch);
 
 	// It is easier to save as a TS file
@@ -11685,6 +11684,7 @@ exports[`@sjsf/sv 'validator__ata_precompiled' 'vite-ts' 1`] = `
   "scripts/compile-validators.ts": "import fs from "node:fs/promises";
 import path from "node:path";
 import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
+import { convert } from "@sjsf/form/converters/draft-2020-12";
 import { insertSubSchemaIds, fragmentSchema } from "@sjsf/form/validators/precompile";
 import { bundleCompact } from "ata-validator/build";
 import { DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS } from "@sjsf-lab/ata-validator/precompile";
@@ -11692,7 +11692,7 @@ import { DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS } from "@sjsf-lab/ata-validator/p
 const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
-const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
+const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b, 0);
 const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
@@ -11718,7 +11718,7 @@ async function compileSchema(modelDirRelPath: string) {
 
 	const uiSchema = await readJson(modelDir, "ui-schema.json");
 	const initialValue = await readJson(modelDir, "initial-value.json");
-	const patch = insertSubSchemaIds(schema, { fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE });
+	const patch = insertSubSchemaIds(schema.$schema?.startsWith("https://json-schema.org/draft/2020-12/schema") ? convert(schema) : schema, { fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE });
 	const schemas = fragmentSchema(patch);
 
 	// It is easier to save as a TS file
@@ -12597,6 +12597,7 @@ exports[`@sjsf/sv 'validator__hyperjump_precompiled' 'kit-ts' 1`] = `
   "scripts/compile-validators.ts": "import fs from "node:fs/promises";
 import path from "node:path";
 import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
+import { convert } from "@sjsf/form/converters/draft-2020-12";
 import { insertSubSchemaIds, fragmentSchema } from "@sjsf/form/validators/precompile";
 import { registerSchema, unregisterSchema, type SchemaObject } from "@hyperjump/json-schema/draft-07";
 import { type AST, getSchema, Validation } from "@hyperjump/json-schema/experimental";
@@ -12605,7 +12606,7 @@ import { uneval } from "devalue";
 const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
-const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
+const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b, 0);
 const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
@@ -12634,7 +12635,7 @@ async function compileSchema(modelDirRelPath: string) {
 	let id = 0;
 	const toId = (n: number) => \`https://example.com/v\${n}\`;
 
-	const patch = insertSubSchemaIds(schema, {
+	const patch = insertSubSchemaIds(schema.$schema?.startsWith("https://json-schema.org/draft/2020-12/schema") ? convert(schema) : schema, {
 		fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE,
 		createId: () => toId(id++)
 	});
@@ -12922,6 +12923,7 @@ exports[`@sjsf/sv 'validator__hyperjump_precompiled' 'vite-ts' 1`] = `
   "scripts/compile-validators.ts": "import fs from "node:fs/promises";
 import path from "node:path";
 import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
+import { convert } from "@sjsf/form/converters/draft-2020-12";
 import { insertSubSchemaIds, fragmentSchema } from "@sjsf/form/validators/precompile";
 import { registerSchema, unregisterSchema, type SchemaObject } from "@hyperjump/json-schema/draft-07";
 import { type AST, getSchema, Validation } from "@hyperjump/json-schema/experimental";
@@ -12930,7 +12932,7 @@ import { uneval } from "devalue";
 const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
-const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
+const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b, 0);
 const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
@@ -12959,7 +12961,7 @@ async function compileSchema(modelDirRelPath: string) {
 	let id = 0;
 	const toId = (n: number) => \`https://example.com/v\${n}\`;
 
-	const patch = insertSubSchemaIds(schema, {
+	const patch = insertSubSchemaIds(schema.$schema?.startsWith("https://json-schema.org/draft/2020-12/schema") ? convert(schema) : schema, {
 		fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE,
 		createId: () => toId(id++)
 	});
@@ -14370,6 +14372,7 @@ exports[`@sjsf/sv 'validator__schemasafe_precompiled' 'kit-ts' 1`] = `
   "scripts/compile-validators.ts": "import fs from "node:fs/promises";
 import path from "node:path";
 import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
+import { convert } from "@sjsf/form/converters/draft-2020-12";
 import { insertSubSchemaIds, fragmentSchema } from "@sjsf/form/validators/precompile";
 import { validator } from "@exodus/schemasafe";
 import { DEFAULT_VALIDATOR_OPTIONS, FORM_FORMATS } from "@sjsf/schemasafe-validator";
@@ -14377,7 +14380,7 @@ import { DEFAULT_VALIDATOR_OPTIONS, FORM_FORMATS } from "@sjsf/schemasafe-valida
 const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
-const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
+const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b, 0);
 const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
@@ -14403,7 +14406,7 @@ async function compileSchema(modelDirRelPath: string) {
 
 	const uiSchema = await readJson(modelDir, "ui-schema.json");
 	const initialValue = await readJson(modelDir, "initial-value.json");
-	const patch = insertSubSchemaIds(schema, { fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE });
+	const patch = insertSubSchemaIds(schema.$schema?.startsWith("https://json-schema.org/draft/2020-12/schema") ? convert(schema) : schema, { fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE });
 	const schemas = fragmentSchema(patch);
 
 	// It is easier to save as a TS file
@@ -14670,6 +14673,7 @@ exports[`@sjsf/sv 'validator__schemasafe_precompiled' 'vite-ts' 1`] = `
   "scripts/compile-validators.ts": "import fs from "node:fs/promises";
 import path from "node:path";
 import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
+import { convert } from "@sjsf/form/converters/draft-2020-12";
 import { insertSubSchemaIds, fragmentSchema } from "@sjsf/form/validators/precompile";
 import { validator } from "@exodus/schemasafe";
 import { DEFAULT_VALIDATOR_OPTIONS, FORM_FORMATS } from "@sjsf/schemasafe-validator";
@@ -14677,7 +14681,7 @@ import { DEFAULT_VALIDATOR_OPTIONS, FORM_FORMATS } from "@sjsf/schemasafe-valida
 const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
-const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b);
+const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce((a, b) => a | b, 0);
 const MODEL_PATHS = ["src/lib/post/"];
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
@@ -14703,7 +14707,7 @@ async function compileSchema(modelDirRelPath: string) {
 
 	const uiSchema = await readJson(modelDir, "ui-schema.json");
 	const initialValue = await readJson(modelDir, "initial-value.json");
-	const patch = insertSubSchemaIds(schema, { fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE });
+	const patch = insertSubSchemaIds(schema.$schema?.startsWith("https://json-schema.org/draft/2020-12/schema") ? convert(schema) : schema, { fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE });
 	const schemas = fragmentSchema(patch);
 
 	// It is easier to save as a TS file
@@ -15673,13 +15677,10 @@ export {};
 import type { UiSchemaRoot } from "@sjsf/form";
 import * as v from "valibot";
 
-export const schema = v.pipe(
-	v.object({
-		title: v.pipe(v.string(), v.metadata({ title: "Title" })),
-		content: v.pipe(v.string(), v.minLength(10), v.metadata({ title: "Content" }))
-	}),
-	v.metadata({ title: "Post" })
-);
+export const schema = v.object({
+	title: v.string(),
+	content: v.pipe(v.string(), v.minLength(10))
+});
 
 export type Model = v.InferInput<typeof schema>;
 
@@ -16013,13 +16014,10 @@ button:focus-visible {
 import type { UiSchemaRoot } from "@sjsf/form";
 import * as v from "valibot";
 
-export const schema = v.pipe(
-	v.object({
-		title: v.pipe(v.string(), v.metadata({ title: "Title" })),
-		content: v.pipe(v.string(), v.minLength(10), v.metadata({ title: "Content" }))
-	}),
-	v.metadata({ title: "Post" })
-);
+export const schema = v.object({
+	title: v.string(),
+	content: v.pipe(v.string(), v.minLength(10))
+});
 
 export type Model = v.InferInput<typeof schema>;
 
@@ -16192,11 +16190,7 @@ export {};
 import type { UiSchemaRoot } from "@sjsf/form";
 import * as z from "zod";
 
-export const schema = z.object({
-	title: z.string().meta({ title: "Title" }),
-	content: z.string().min(10).meta({ title: "Content" })
-}).meta({ title: "Post" });
-
+export const schema = z.object({ title: z.string(), content: z.string().min(10) });
 export type Model = z.infer<typeof schema>;
 
 export const uiSchema = {
@@ -16528,11 +16522,7 @@ button:focus-visible {
 import type { UiSchemaRoot } from "@sjsf/form";
 import * as z from "zod";
 
-export const schema = z.object({
-	title: z.string().meta({ title: "Title" }),
-	content: z.string().min(10).meta({ title: "Content" })
-}).meta({ title: "Post" });
-
+export const schema = z.object({ title: z.string(), content: z.string().min(10) });
 export type Model = z.infer<typeof schema>;
 
 export const uiSchema = {

@@ -3,10 +3,14 @@ import {
   definePreset,
   FormPresetCategory,
   PresetTag,
+  jsonSchema,
+  jsonUiSchema,
+  jsonValue,
 } from "../form-preset.ts";
 
 export const meta = defineMetadata({
   category: FormPresetCategory.SchemaLogic,
+  schema: { type: "json", draft2020: false },
   title: "Property Dependencies",
   description:
     "Conditional field visibility and requirements tied to property values.",
@@ -14,7 +18,7 @@ export const meta = defineMetadata({
 });
 
 export default definePreset({
-  schema: {
+  schema: jsonSchema({
     title: "Property dependencies",
     description: "These samples are best viewed without live validation.",
     type: "object",
@@ -61,8 +65,8 @@ export default definePreset({
         },
       },
     },
-  },
-  uiSchema: {
+  }),
+  uiSchema: jsonUiSchema({
     unidirectional: {
       credit_card: {
         "ui:options": {
@@ -87,13 +91,13 @@ export default definePreset({
         },
       },
     },
-  },
-  initialValue: {
+  }),
+  initialValue: jsonValue({
     unidirectional: {
       name: "Tim",
     },
     bidirectional: {
       name: "Jill",
     },
-  },
+  }),
 });

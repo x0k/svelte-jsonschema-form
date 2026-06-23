@@ -3,10 +3,14 @@ import {
   definePreset,
   FormPresetCategory,
   PresetTag,
+  jsonSchema,
+  jsonUiSchema,
+  jsonValue,
 } from "../form-preset.ts";
 
 export const meta = defineMetadata({
   category: FormPresetCategory.UiCustomization,
+  schema: { type: "json", draft2020: false },
   title: "Ordering",
   description:
     "Field ordering and rearrangement using ui-schema order configuration.",
@@ -14,7 +18,7 @@ export const meta = defineMetadata({
 });
 
 export default definePreset({
-  schema: {
+  schema: jsonSchema({
     title: "A registration form",
     type: "object",
     required: ["firstName", "lastName"],
@@ -40,8 +44,8 @@ export default definePreset({
         title: "Age",
       },
     },
-  },
-  uiSchema: {
+  }),
+  uiSchema: jsonUiSchema({
     "ui:options": {
       order: ["firstName", "lastName", "*", "password"],
     },
@@ -66,12 +70,12 @@ export default definePreset({
         },
       },
     },
-  },
-  initialValue: {
+  }),
+  initialValue: jsonValue({
     firstName: "Chuck",
     lastName: "Norris",
     age: 75,
     bio: "Roundhouse kicking asses since 1940",
     password: "noneed",
-  },
+  }),
 });

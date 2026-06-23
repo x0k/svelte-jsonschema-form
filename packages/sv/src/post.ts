@@ -6,10 +6,12 @@ import {
   POST_MODEL_DIR,
   POST_SCHEMA,
   POST_UI_SCHEMA,
+  POST_VALIBOT_SCHEMA,
+  POST_ZOD_SCHEMA,
   type Context,
 } from "./model.js";
 
-export function postTs({
+export async function postTs({
   isTs,
   sv,
   directory,
@@ -30,18 +32,20 @@ export function postTs({
       createJsonFile(POST_INITIAL_VALUE)
     );
   } else {
-    sv.file(
-      `${directory.lib}/post.${language}`,
-      createModel({
-        validator,
-        ts,
-        schema: POST_SCHEMA,
-        isTs,
-        modelName: "post",
-        initialValue: POST_INITIAL_VALUE,
-        uiSchema: POST_UI_SCHEMA,
-        fieldsValidationMode: POST_FIELDS_VALIDATION_MODE,
-      })
-    );
+    const modelTransform = await createModel({
+      validator,
+      ts,
+      schema:
+        validator.name === "zod4"
+          ? POST_ZOD_SCHEMA
+          : validator.name === "valibot"
+            ? POST_VALIBOT_SCHEMA
+            : JSON.stringify(POST_SCHEMA),
+      isTs,
+      initialValue: POST_INITIAL_VALUE,
+      uiSchema: POST_UI_SCHEMA,
+      fieldsValidationMode: POST_FIELDS_VALIDATION_MODE,
+    });
+    sv.file(`${directory.lib}/post.${language}`, modelTransform);
   }
 }

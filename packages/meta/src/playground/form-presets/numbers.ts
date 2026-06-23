@@ -3,10 +3,14 @@ import {
   definePreset,
   FormPresetCategory,
   PresetTag,
+  jsonSchema,
+  jsonUiSchema,
+  jsonValue,
 } from "../form-preset.ts";
 
 export const meta = defineMetadata({
   category: FormPresetCategory.SchemaBasics,
+  schema: { type: "json", draft2020: false },
   title: "Numbers",
   description:
     "Numeric field types (integer, number), ranges, steps, and enum constraints.",
@@ -15,7 +19,7 @@ export const meta = defineMetadata({
 
 export default definePreset({
   resolver: "compat",
-  schema: {
+  schema: jsonSchema({
     type: "object",
     title: "Number fields & widgets",
     properties: {
@@ -51,8 +55,8 @@ export default definePreset({
         multipleOf: 10,
       },
     },
-  },
-  uiSchema: {
+  }),
+  uiSchema: jsonUiSchema({
     numberEnumRadio: {
       "ui:components": {
         selectWidget: "radioWidget",
@@ -68,12 +72,12 @@ export default definePreset({
         numberWidget: "rangeWidget",
       },
     },
-  },
-  initialValue: {
+  }),
+  initialValue: jsonValue({
     number: 3.14,
     integer: 42,
     numberEnum: 2,
     integerRange: 42,
     integerRangeSteps: 80,
-  },
+  }),
 });

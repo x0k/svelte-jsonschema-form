@@ -15,6 +15,7 @@ export interface PageOptions {
   form: FormDefinition;
   language: Language;
   themeOrSubTheme: CodegenThemeOrSubTheme;
+  html5Validation: boolean;
 }
 
 export const PADDED_THEMES: CodegenThemeOrSubTheme[] = [
@@ -33,6 +34,7 @@ export function createPage({
   lib,
   themeOrSubTheme,
   form,
+  html5Validation,
 }: PageOptions) {
   return transforms.svelteScript({ language }, ({ ast, js, svelte }) => {
     js.imports.addNamed(ast.instance.content, {
@@ -55,7 +57,7 @@ export function createPage({
 
     js.common.appendFromString(ast.instance.content, { code: form.init });
 
-    if (validator.name !== "noop") {
+    if (!html5Validation && validator.name !== "noop") {
       form.attributes += " novalidate";
     }
 

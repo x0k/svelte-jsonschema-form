@@ -1,4 +1,4 @@
-import type { Schema, UiSchemaRoot, FormValue } from "@sjsf/form";
+import type { UiSchemaRoot, FormValue } from "@sjsf/form";
 import { isRecordEmpty } from "@sjsf/form/lib/object";
 import { transforms, type AstTypes } from "@sveltejs/sv-utils";
 
@@ -12,34 +12,27 @@ import {
   type ConditionalPrinter,
   type FieldsValidationMode,
 } from "./model.ts";
+import { extractSchemaCode } from "./schema.ts";
 
 export interface ModelOptions {
   validator: CodegenNonPrecompiledValidator;
   isTs: boolean;
   ts: ConditionalPrinter;
-  schema: Schema;
-  modelName: string;
+  schema: string;
   uiSchema: UiSchemaRoot;
   initialValue: FormValue;
   fieldsValidationMode: FieldsValidationMode;
 }
 
-function toTypeName(name: string): string {
-  return name.charAt(0).toUpperCase() + name.slice(1);
-}
-
-// TODO: Convert schema to Zod, Valibot
-export function createModel({
+export async function createModel({
   validator,
   isTs,
   schema,
   ts,
-  modelName,
   uiSchema,
   initialValue,
   fieldsValidationMode,
 }: ModelOptions) {
-  const typeName = toTypeName(modelName);
   return transforms.script(({ ast, js, comments }) => {
     if (isJsonSchemaValidator(validator.name) || validator.name === "noop") {
       if (isTs) {
@@ -55,7 +48,7 @@ export function createModel({
         });
       }
       const schemaExpression: AstTypes.Expression = js.common.parseFromString(
-        `(${JSON.stringify(schema)}${ts(" as const satisfies Schema")})`
+        `(${schema}${ts(" as const satisfies Schema")})`
       );
       const schemaDeclaration = js.variables.declaration(ast, {
         kind: "const",
@@ -78,62 +71,40 @@ export function createModel({
         });
       }
     } else if (validator.name === "zod4") {
-      js.imports.addNamespace(ast, { from: "zod", as: "z" });
-
-      const postExpression = js.common.parseExpression(`z
-  .object({
-    title: z.string().meta({ title: "Title" }),
-    content: z.string().min(10).meta({ title: "Content" }),
-  })
-  .meta({ title: "${typeName}" })`);
+      const { code: userCode, expression } = extractSchemaCode(schema);
+      if (userCode) {
+        js.common.appendFromString(ast, { code: userCode });
+      }
+      const schemaExpression = js.common.parseExpression(expression);
       const modelDeclaration = js.variables.declaration(ast, {
         kind: "const",
         name: "schema",
-        value: postExpression,
+        value: schemaExpression,
       });
       js.exports.createNamed(ast, {
         name: "schema",
         fallback: modelDeclaration,
       });
-
       if (isTs) {
         js.common.appendFromString(ast, {
           code: `export type Model = z.infer<typeof schema>;`,
         });
       }
     } else if (validator.name === "valibot") {
-      js.imports.addNamespace(ast, { from: "valibot", as: "v" });
-
-      const postExpression = js.common.parseExpression(`v.pipe(
-    v.object({
-      title: v.pipe(
-        v.string(),
-        v.metadata({
-          title: "Title",
-        }),
-      ),
-      content: v.pipe(
-        v.string(),
-        v.minLength(10),
-        v.metadata({
-          title: "Content",
-        }),
-      ),
-    }),
-    v.metadata({
-      title: "${typeName}",
-    }),
-  )`);
+      const { code: userCode, expression } = extractSchemaCode(schema);
+      if (userCode) {
+        js.common.appendFromString(ast, { code: userCode });
+      }
+      const schemaExpression = js.common.parseExpression(expression);
       const modelDeclaration = js.variables.declaration(ast, {
         kind: "const",
         name: "schema",
-        value: postExpression,
+        value: schemaExpression,
       });
       js.exports.createNamed(ast, {
         name: "schema",
         fallback: modelDeclaration,
       });
-
       if (isTs) {
         js.common.appendFromString(ast, {
           code: `export type Model = v.InferInput<typeof schema>;`,
@@ -158,11 +129,10 @@ export function createModel({
         });
       }
 
-      const schemaJson = JSON.stringify(schema);
       js.common.appendFromString(ast, {
         code: isTs
-          ? `const internalSchema = (${schemaJson}) as const satisfies Schema;`
-          : `/** @type {import("${formPackage.name}").Schema} */\nconst internalSchema = (${schemaJson});`,
+          ? `const internalSchema = (${schema}) as const satisfies Schema;`
+          : `/** @type {import("${formPackage.name}").Schema} */\nconst internalSchema = (${schema});`,
         comments,
       });
 

@@ -34,7 +34,7 @@ export async function openDemo({
   widgets,
   platform,
 }: OpenDemoOptions) {
-  const files = createComposer({
+  const files = await createComposer({
     ...COMPOSER_DEFAULTS,
     name,
     icons: icons,

@@ -3,10 +3,14 @@ import {
   definePreset,
   FormPresetCategory,
   PresetTag,
+  jsonSchema,
+  jsonUiSchema,
+  jsonValue,
 } from "../form-preset.ts";
 
 export const meta = defineMetadata({
   category: FormPresetCategory.SchemaBasics,
+  schema: { type: "json", draft2020: false },
   title: "Examples",
   description:
     "Schema-level examples keyword usage for input hints and placeholders.",
@@ -14,7 +18,7 @@ export const meta = defineMetadata({
 });
 
 export default definePreset({
-  schema: {
+  schema: jsonSchema({
     title: "Examples",
     description: "A text field with example values.",
     type: "object",
@@ -25,7 +29,7 @@ export default definePreset({
         examples: ["Firefox", "Chrome", "Opera", "Vivaldi", "Safari"],
       },
     },
-  },
-  uiSchema: {},
-  initialValue: {},
+  }),
+  uiSchema: jsonUiSchema({}),
+  initialValue: jsonValue({}),
 });

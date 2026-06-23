@@ -3,10 +3,14 @@ import {
   definePreset,
   FormPresetCategory,
   PresetTag,
+  jsonSchema,
+  jsonUiSchema,
+  jsonValue,
 } from "../form-preset.ts";
 
 export const meta = defineMetadata({
   category: FormPresetCategory.SchemaBasics,
+  schema: { type: "json", draft2020: false },
   title: "Alternatives",
   description:
     "Multiple field definitions combined with anyOf for polymorphic object type.",
@@ -15,7 +19,7 @@ export const meta = defineMetadata({
 
 export default definePreset({
   resolver: "compat",
-  schema: {
+  schema: jsonSchema({
     definitions: {
       Color: {
         title: "Color",
@@ -90,8 +94,8 @@ export default definePreset({
         ],
       },
     },
-  },
-  uiSchema: {
+  }),
+  uiSchema: jsonUiSchema({
     blendMode: {
       "ui:options": {
         disabledEnumValues: ["multiply"],
@@ -102,11 +106,11 @@ export default definePreset({
         selectWidget: "radioWidget",
       },
     },
-  },
-  initialValue: {
+  }),
+  initialValue: jsonValue({
     currentColor: "#00ff00",
     colorMask: ["#0000ff"],
     colorPalette: ["#ff0000"],
     blendMode: "screen",
-  },
+  }),
 });

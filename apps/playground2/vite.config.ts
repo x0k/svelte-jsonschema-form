@@ -2,8 +2,9 @@ import { resolve, dirname } from "node:path";
 
 import { svelte } from "@sveltejs/vite-plugin-svelte";
 import tailwindcss from "@tailwindcss/vite";
-import { defineConfig } from "vitest/config";
+import { importMapPlugin } from "meta/vite-importmap";
 // import { visualizer } from "rollup-plugin-visualizer";
+import { defineConfig } from "vitest/config";
 
 const VIRTUAL_MODULE_PREFIX = "virtual-module:";
 
@@ -13,6 +14,12 @@ export default defineConfig({
     // visualizer(),
     tailwindcss(),
     svelte(),
+    importMapPlugin({
+      imports: {
+        zod: "zod",
+        valibot: "valibot",
+      },
+    }),
   ],
   resolve: {
     alias: {

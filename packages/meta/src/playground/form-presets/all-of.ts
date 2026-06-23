@@ -3,17 +3,21 @@ import {
   definePreset,
   FormPresetCategory,
   PresetTag,
+  jsonSchema,
+  jsonUiSchema,
+  jsonValue,
 } from "../form-preset.ts";
 
 export const meta = defineMetadata({
   category: FormPresetCategory.SchemaLogic,
+  schema: { type: "json", draft2020: false },
   title: "All Of",
   description: "Schema composition with allOf merging multiple sub-schemas.",
   tags: [PresetTag.Composition],
 });
 
 export default definePreset({
-  schema: {
+  schema: jsonSchema({
     type: "object",
     allOf: [
       {
@@ -35,7 +39,7 @@ export default definePreset({
         },
       },
     ],
-  },
-  uiSchema: {},
-  initialValue: {},
+  }),
+  uiSchema: jsonUiSchema({}),
+  initialValue: jsonValue({}),
 });

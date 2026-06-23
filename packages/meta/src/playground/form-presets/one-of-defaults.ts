@@ -5,10 +5,14 @@ import {
   definePreset,
   FormPresetCategory,
   PresetTag,
+  jsonSchema,
+  jsonUiSchema,
+  jsonValue,
 } from "../form-preset.ts";
 
 export const meta = defineMetadata({
   category: FormPresetCategory.SchemaLogic,
+  schema: { type: "json", draft2020: false },
   title: "One Of Defaults",
   description:
     "Pre-filled default values across oneOf alternatives for improved UX.",
@@ -31,7 +35,7 @@ enum ASCIITableFormat {
   MarkdownLike = "Markdown Like",
 }
 
-const schema: Schema = {
+const _schema: Schema = {
   type: "object",
   title: "Options",
   properties: {
@@ -196,7 +200,7 @@ const schema: Schema = {
   },
 };
 
-const uiSchema: UiSchemaRoot = {
+const _uiSchema: UiSchemaRoot = {
   "ui:options": {
     order: [
       "preset",
@@ -220,13 +224,13 @@ const uiSchema: UiSchemaRoot = {
 
 export default definePreset({
   resolver: "compat",
-  schema,
-  uiSchema,
-  initialValue: {
+  schema: jsonSchema(_schema),
+  uiSchema: jsonUiSchema(_uiSchema),
+  initialValue: jsonValue({
     preset: TransformPreset.Default,
     transform: false,
     format: OutputFormat.HTML,
     paginate: false,
     createOnOpen: true,
-  },
+  }),
 });

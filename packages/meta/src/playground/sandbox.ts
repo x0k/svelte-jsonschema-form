@@ -6,7 +6,6 @@ import {
 } from "@sjsf/form";
 
 import {
-  type CodegenValidator,
   type ThemeExtension,
   codegemIsJsonSchemaValidator,
 } from "../codegen/index.ts";
@@ -23,12 +22,9 @@ import { extraPackage, type AbstractPackage } from "../package.ts";
 import { toTheme, type Theme } from "../themes.ts";
 import { WIDGETS } from "../widgets.generated.ts";
 import { isThemeBaseWidget, type ExtraWidgetFileNames } from "../widgets.ts";
-import type { FormState } from "./form-state.ts";
-import {
-  type PlaygroundTheme,
-  isEndsWith2020,
-  without2020Suffix,
-} from "./model.ts";
+import type { NormalizedFormState } from "./form-state.ts";
+import { normalizeValidator, type PlaygroundTheme } from "./model.ts";
+import { parseFormData, parseUiSchema } from "./parse.ts";
 import { WIDGET_EXTRA_FIELD } from "./widget-extra-fields.ts";
 
 export interface CustomComponents {
@@ -43,7 +39,7 @@ export interface SandboxFiles {
 
 function getChangedMergerOptionsCount(
   options: Pick<
-    FormState,
+    NormalizedFormState,
     | "arrayMinItemsPopulate"
     | "arrayMinItemsMergeExtraDefaults"
     | "allOf"
@@ -171,31 +167,33 @@ function detectCustomComponentsAndFields(
 
 export interface SandboxFilesOptions {
   name: string;
-  formState: FormState;
+  formState: NormalizedFormState;
   customComponents: CustomComponents;
 }
 
-export function createSandboxFiles({
+export async function createSandboxFiles({
   name,
   formState,
   customComponents: { markdownDescription, transparentLayout },
 }: SandboxFilesOptions) {
+  const validator = normalizeValidator(formState.validator);
+
+  const [uiSchema, initialValue] = await Promise.all([
+    parseUiSchema(formState.uiSchema),
+    parseFormData(formState.initialValue),
+  ]);
+
   const {
     usesTransparentLayout,
     usesMarkdownDescription,
     usesStringEnumMapper,
     extraWidgets,
     extraFields,
-  } = detectCustomComponentsAndFields(formState.uiSchema, formState.theme);
+  } = detectCustomComponentsAndFields(uiSchema, formState.theme);
 
   const usesCustomComponents = usesTransparentLayout || usesMarkdownDescription;
   const hasCustomMergerOptions = getChangedMergerOptionsCount(formState) !== 0;
 
-  const validator = {
-    name: without2020Suffix(formState.validator),
-    draft2020: isEndsWith2020(formState.validator),
-    precompiled: false,
-  } as const satisfies CodegenValidator;
   const omitExtraData =
     formState.omitExtraData && codegemIsJsonSchemaValidator(validator);
 
@@ -259,6 +257,8 @@ export function createSandboxFiles({
   const codeTransformers: CodeTransformer[] = [];
   return createComposer({
     name,
+    schema: formState.schema,
+    uiSchema,
     language: "ts",
     validator,
     themeOrSubTheme: formState.theme,
@@ -270,9 +270,7 @@ export function createSandboxFiles({
     extraDependencies,
     codeTransformers,
     modelName: "model",
-    schema: formState.schema,
-    uiSchema: formState.uiSchema,
-    initialValue: formState.initialValue,
+    initialValue,
     fieldsValidationMode: formState.fieldsValidationMode,
     merger: hasCustomMergerOptions
       ? {
@@ -298,5 +296,7 @@ export function createSandboxFiles({
     omitExtraData,
     focusOnFirstError: formState.focusOnFirstError,
     disabled: formState.disabled,
+    html5Validation: formState.html5Validation,
+    resolver: formState.resolver,
   });
 }

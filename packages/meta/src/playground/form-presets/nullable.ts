@@ -3,17 +3,21 @@ import {
   definePreset,
   FormPresetCategory,
   PresetTag,
+  jsonSchema,
+  jsonUiSchema,
+  jsonValue,
 } from "../form-preset.ts";
 
 export const meta = defineMetadata({
   category: FormPresetCategory.SchemaBasics,
+  schema: { type: "json", draft2020: false },
   title: "Nullable",
   description: "Nullable field support across different data types.",
   tags: [PresetTag.Null],
 });
 
 export default definePreset({
-  schema: {
+  schema: jsonSchema({
     title: "A registration form (nullable)",
     description: "A simple form example using nullable types",
     type: "object",
@@ -47,8 +51,8 @@ export default definePreset({
         minLength: 10,
       },
     },
-  },
-  uiSchema: {
+  }),
+  uiSchema: jsonUiSchema({
     firstName: {
       "ui:options": {
         text: {
@@ -113,11 +117,11 @@ export default definePreset({
         },
       },
     },
-  },
-  initialValue: {
+  }),
+  initialValue: jsonValue({
     lastName: "Norris",
     age: 75,
     bio: null,
     password: "noneed",
-  },
+  }),
 });

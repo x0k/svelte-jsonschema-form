@@ -1,24 +1,36 @@
 <script lang="ts">
-  import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
+  import {
+    BasicForm,
+    createForm,
+    getValueSnapshot,
+    type FormMerger,
+    type FormValidator,
+    type Schema,
+  } from "@sjsf/form";
   import { fromRecord } from "@sjsf/form/lib/resolver";
+  import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
   import { formatFileSize } from "@sjsf/form/validators/file-size";
+  import { createFormValidator as noop } from "@sjsf/form/validators/noop";
   import { Willow, WillowDark } from "@svar-ui/svelte-core";
   import { BitsConfig } from "bits-ui";
-  import { BUILDER_VALIDATORS } from "meta/builder";
+  import type { BuilderValidator2 } from "meta/builder";
   import {
+    playgroundValidator,
     PLAYGROUND_ICON_SET_STYLES,
     PLAYGROUND_ICON_SETS,
     PLAYGROUND_RESOLVERS,
     PLAYGROUND_SJSF_THEME_STYLES,
     PLAYGROUND_SJSF_THEMES,
-    type PlaygroundTheme,
+    parseSchemaObject,
   } from "meta/playground";
+  import { toast } from "svelte-sonner";
 
   import { ShadowHost } from "$lib/components/shadow/index.js";
   import * as defaults from "$lib/sjsf/defaults.js";
 
   import { themeManager } from "../../theme.svelte.js";
   import { getBuilderContext } from "../context.svelte.js";
+  import { buildPlaygroundSchema } from "../model";
   import Noop from "./noop.svelte";
 
   const ctx = getBuilderContext();
@@ -38,13 +50,56 @@
     },
   };
 
+  const validatorOptions = {
+    merger: () => merger,
+  };
+
+  const validatorQuery = createQuery<
+    [BuilderValidator2, Schema],
+    { schema: Schema; validator: FormValidator<unknown> }
+  >({
+    deps: () => [ctx.validator, ctx.schema],
+    execute: debounce(async (_, validator, schema) => {
+      const schemaObject = await parseSchemaObject(
+        buildPlaygroundSchema({ schema, validator })
+      );
+      return playgroundValidator(validator)(validatorOptions)(schemaObject);
+    }),
+    onFailure(err) {
+      if (err.reason === "aborted") {
+        return;
+      }
+      toast.error(
+        `Validator creation: ${err.reason === "timeout" ? "timeout" : String(err.error)}`
+      );
+    },
+  });
+
+  const DEFAULT_SCHEMA_AND_VALIDATOR = {
+    schema: {
+      type: "object",
+    } satisfies Schema as Schema,
+    validator: noop(),
+  };
+  const core = $derived(validatorQuery.result ?? DEFAULT_SCHEMA_AND_VALIDATOR);
+
+  const merger: FormMerger = $derived(
+    defaults.merger({
+      schema: core.schema,
+      validator: core.validator,
+    })
+  );
+
   const form = createForm({
     ...defaults,
-    get createValidator() {
-      return BUILDER_VALIDATORS[ctx.validator];
+    get validator() {
+      return core.validator;
     },
     get schema() {
-      return ctx.schema;
+      return core.schema;
+    },
+    get merger() {
+      return merger;
     },
     get uiSchema() {
       return ctx.uiSchema;
@@ -113,9 +168,7 @@
             novalidate={!ctx.html5Validation}
             class={themeManager.darkOrLight}
             style="padding: 1rem; display: flex; flex-direction: column; gap: 1rem;"
-            data-theme={ctx.theme.startsWith(
-              "skeleton4" satisfies PlaygroundTheme
-            )
+            data-theme={ctx.theme.startsWith("skeleton4")
               ? "cerberus"
               : themeManager.darkOrLight}
           />

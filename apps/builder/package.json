@@ -42,7 +42,9 @@
     "json-schema-to-zod": "catalog:",
     "lz-string": "catalog:",
     "meta": "workspace:*",
-    "shiki": "catalog:"
+    "shiki": "catalog:",
+    "valibot": "catalog:",
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@fontsource-variable/inter": "catalog:",

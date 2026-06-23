@@ -1,12 +1,23 @@
 <script lang="ts">
   import AlignLeft from "@lucide/svelte/icons/align-left";
+  import {
+    isAsyncFormValueValidator,
+    type FormValidator,
+    type FormValue,
+    type Schema,
+    type ValidationResult,
+  } from "@sjsf/form";
   import { createDeduplicator, createIntersector } from "@sjsf/form/lib/array";
   import { createComparator, createMerger } from "@sjsf/form/lib/json-schema";
+  import {
+    abortPrevious,
+    createTask,
+    debounce,
+  } from "@sjsf/form/lib/task.svelte";
   import { createMerger as createSchemaMerger } from "@sjsf/form/mergers/modern";
   import {
-    playgroundValidator,
-    playgroundValidators,
-    playgroundValidatorTitle,
+    normalizeValidatorState,
+    parseFormData,
     type ValidatorState,
   } from "meta/playground";
   import { Panel, setTilerContext, type Tiles } from "svelte-tiler";
@@ -17,19 +28,26 @@
 
   import * as ButtonGroup from "$lib/components/ui/button-group/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
-  import Editor from "$lib/editor.svelte";
+  import Editor from "$lib/editor2.svelte";
   import { gripHeader } from "$lib/grip-header.svelte";
   import Select from "$lib/select.svelte";
   import { debouncedEffect } from "$lib/svelte.svelte.js";
-
-  import Header from "./header.svelte";
   import {
     constraints,
     createApplySplit,
     createTilerContext,
     gapPx,
-  } from "./lib/tiler.js";
+  } from "$lib/tiler.js";
+
+  import Header from "./header.svelte";
   import { router } from "./router.js";
+  import {
+    createFormatTask,
+    createMergerTransition,
+    createOnFailure,
+    createParseQuery,
+    createValidatorState,
+  } from "./shared.svelte";
 
   const DEFAULT_PAGE_STATE: ValidatorState = {
     schema: {
@@ -43,12 +61,12 @@
       },
       required: ["hello"],
     },
-    input: undefined,
+    input: null,
     output: undefined,
     validator: "ajv8",
   };
 
-  const data = $state(router.load(DEFAULT_PAGE_STATE));
+  const data = $state(normalizeValidatorState(router.load(DEFAULT_PAGE_STATE)));
 
   debouncedEffect(() => {
     const snap = $state.snapshot(data);
@@ -61,36 +79,54 @@
     deduplicateJsonSchemaDef: createDeduplicator(compareSchemaDefinitions),
   });
   const merger = createSchemaMerger({ jsonSchemaMerger });
-  const validator = $derived(
-    playgroundValidator(data.validator)({
-      merger: () => merger,
-    })
-  );
 
-  debouncedEffect(() => {
-    data.schema;
-    data.input;
-    validator;
+  const validatorState = createValidatorState(data, {
+    merger: () => merger,
+  });
+
+  const validateTask = createTask<
+    [FormValidator<unknown>, Schema, FormValue],
+    ValidationResult<unknown>
+  >({
+    combinator: abortPrevious,
+    execute: debounce(async (signal, validator, schema, value) =>
+      isAsyncFormValueValidator(validator)
+        ? validator.validateFormValueAsync(signal, schema, value)
+        : validator.validateFormValue(schema, value)
+    ),
+    onSuccess(result) {
+      data.output = JSON.stringify(result.errors ?? [], null, 2);
+    },
+    onFailure: createOnFailure("Validation"),
+  });
+
+  const inputQuery = createParseQuery({
+    parse: parseFormData,
+    get input() {
+      return data.input;
+    },
+    defaultValue: undefined,
+  });
+
+  $effect(() => {
+    validateTask.run(
+      validatorState.validator,
+      validatorState.schema,
+      inputQuery.value
+    );
     return () => {
-      try {
-        data.output =
-          validator.validateFormValue(data.schema, data.input).errors ?? [];
-      } catch (err) {
-        console.error(err);
-        data.output = [{ path: [], message: String(err) }];
-      }
+      validateTask.abort();
     };
   });
 
   const ctx = createTilerContext();
   setTilerContext(ctx);
-  const createLeaf = Leaf.setup(
-    fromRecord({
-      schema,
-      input,
-      output,
-    })
-  );
+  const LEAFS = {
+    schema,
+    input,
+    output,
+  };
+  const createLeaf = Leaf.setup(fromRecord(LEAFS));
   const createTabs = Tabs.setup({
     headers: fromRecord({
       gripHeader,
@@ -143,7 +179,19 @@
     };
   });
 
-  const editors: Record<string, Editor<any>> = $state({});
+  const outputQuery = createParseQuery({
+    parse: parseFormData,
+    get input() {
+      return data.output;
+    },
+    defaultValue: [],
+  });
+
+  function isLeafName(k: string): k is keyof typeof LEAFS {
+    return k in LEAFS;
+  }
+
+  const format = createFormatTask();
 </script>
 
 {#snippet editorActions(tile: Tiles["tabs"])}
@@ -152,9 +200,13 @@
     variant="ghost"
     onclick={() => {
       const child = tile.children[tile.selectedTab];
-      if (child && child.type === "leaf") {
-        editors[child.name]?.format();
+      if (!child || child.type !== "leaf" || !isLeafName(child.name)) {
+        return;
       }
+      const n = child.name;
+      format(data[n], (f) => {
+        data[n] = f;
+      });
     }}
   >
     <AlignLeft />
@@ -162,15 +214,27 @@
 {/snippet}
 
 {#snippet schema()}
-  <Editor bind:this={editors["schema"]} bind:value={data.schema} />
+  <Editor
+    bind:value={data.schema}
+    class="h-full"
+    data-state={validatorState.state}
+  />
 {/snippet}
 
 {#snippet input()}
-  <Editor bind:this={editors["input"]} bind:value={data.input} />
+  <Editor
+    bind:value={data.input}
+    class="h-full"
+    data-state={inputQuery.state}
+  />
 {/snippet}
 
 {#snippet output()}
-  <Editor bind:this={editors["output"]} bind:value={data.output} />
+  <Editor
+    bind:value={data.output}
+    class="h-full"
+    data-state={outputQuery.state}
+  />
 {/snippet}
 
 <Header
@@ -181,19 +245,15 @@
       validator: data.validator,
     }),
     v: () => data,
-    m: () => ({
-      schema: data.schema,
-      deduplicateJsonSchemas: true,
-      intersectJson: true,
-    }),
+    m: createMergerTransition(data),
   }}
 >
   <ButtonGroup.Root>
     <Select
       label="Validator"
-      bind:value={data.validator}
-      items={playgroundValidators()}
-      itemLabel={playgroundValidatorTitle}
+      bind:value={validatorState.selected}
+      items={validatorState.items}
+      labels={validatorState.labels}
     />
   </ButtonGroup.Root>
 </Header>

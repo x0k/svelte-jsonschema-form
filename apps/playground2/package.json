@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@cfworker/json-schema": "catalog:",
-    "@codemirror/lang-json": "^6.0.2",
+    "@codemirror/lang-javascript": "^6.2.5",
     "@codemirror/state": "^6.6.0",
     "@codemirror/view": "^6.42.1",
     "@ddietr/codemirror-themes": "^1.5.2",
@@ -44,8 +44,11 @@
     "codemirror": "^6.0.2",
     "lz-string": "catalog:",
     "meta": "workspace:*",
+    "prettier": "^3.8.4",
     "svelte-exmarkdown": "catalog:",
-    "svelte-tiler": "^0.7.0"
+    "svelte-tiler": "^0.7.0",
+    "valibot": "catalog:",
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@fontsource-variable/inter": "catalog:",
@@ -55,6 +58,7 @@
     "beercss": "catalog:",
     "bits-ui": "catalog:",
     "clsx": "catalog:shadcn",
+    "rolldown": "1.1.1",
     "rollup-plugin-visualizer": "^7.0.1",
     "shadcn-svelte": "catalog:",
     "svelte": "catalog:",

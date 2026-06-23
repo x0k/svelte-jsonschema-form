@@ -1,10 +1,11 @@
-import type { Schema, UiSchema } from "@sjsf/form";
+import type { UiSchema } from "@sjsf/form";
 
 import { createComposer } from "../composer/index.ts";
 import type { ExtraFieldFileName } from "../fields.ts";
 import type {
   PlaygroundTheme,
   PlaygroundIconSet,
+  PlaygroundResolver,
 } from "../playground/index.ts";
 import { type Theme, toTheme } from "../themes.ts";
 import { WIDGETS } from "../widgets.generated.ts";
@@ -14,20 +15,22 @@ import {
   type ExtraWidgetFileNames,
 } from "../widgets.ts";
 import type { WidgetType } from "../widgets.ts";
-import type { BuilderValidator } from "./model.ts";
+import type { BuilderValidator2 } from "./model.ts";
 
 export interface BuilderSandboxOptions {
   name: string;
   theme: PlaygroundTheme;
-  validator: BuilderValidator;
-  schema: Schema;
+  validator: BuilderValidator2;
+  schema: string;
   uiSchema: UiSchema;
   icons: PlaygroundIconSet;
   widgets: WidgetType[];
   fields: ExtraFieldFileName[];
+  html5Validation: boolean;
+  resolver: PlaygroundResolver;
 }
 
-export function createSandboxFiles({
+export async function createSandboxFiles({
   name,
   theme,
   validator,
@@ -36,7 +39,9 @@ export function createSandboxFiles({
   icons,
   widgets,
   fields,
-}: BuilderSandboxOptions): Record<string, string> {
+  html5Validation,
+  resolver,
+}: BuilderSandboxOptions): Promise<Record<string, string>> {
   const actualTheme = toTheme(theme as Theme);
   const themeWidgets = WIDGETS[actualTheme];
 
@@ -56,11 +61,7 @@ export function createSandboxFiles({
     language: "ts",
     themeOrSubTheme: theme,
     icons,
-    validator: {
-      name: validator,
-      draft2020: false,
-      precompiled: false,
-    },
+    validator,
     sveltekit: "no",
     widgets: extraWidgets,
     fields,
@@ -68,7 +69,7 @@ export function createSandboxFiles({
     extraDependencies: [],
     codeTransformers: [],
     modelName: "model",
-    schema,
+    schema: schema,
     uiSchema,
     initialValue: undefined,
     fieldsValidationMode: 0,
@@ -79,5 +80,7 @@ export function createSandboxFiles({
     omitExtraData: false,
     focusOnFirstError: true,
     disabled: false,
+    html5Validation,
+    resolver,
   });
 }

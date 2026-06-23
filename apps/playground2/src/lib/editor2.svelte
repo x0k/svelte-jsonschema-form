@@ -1,22 +1,27 @@
-<script lang="ts" generics="T">
-  import { json } from "@codemirror/lang-json";
+<script lang="ts">
+  import { javascript } from "@codemirror/lang-javascript";
   import { Annotation } from "@codemirror/state";
   import { EditorView } from "@codemirror/view";
   import { githubDark } from "@ddietr/codemirror-themes/github-dark";
   import { githubLight } from "@ddietr/codemirror-themes/github-light";
   import { basicSetup } from "codemirror";
+  import { untrack } from "svelte";
+  import type { HTMLAttributes } from "svelte/elements";
 
-  import { themeManager } from "../theme.svelte.js";
+  import { themeManager } from "@/theme.svelte";
 
   let {
     value = $bindable(),
-  }: {
-    value: T;
+    ...rest
+  }: HTMLAttributes<HTMLDivElement> & {
+    value: string;
   } = $props();
 
   let view = $state.raw<EditorView>();
-  let ignore = false;
+
   const ExternalChange = Annotation.define();
+  let ignore = false;
+
   $effect(() => {
     if (view === undefined) {
       return;
@@ -31,33 +36,16 @@
         changes: {
           from: 0,
           to: view.state.doc.length,
-          insert: JSON.stringify(value, null, 2),
+          insert: value,
         },
         annotations: ExternalChange.of(true),
       })
     );
   });
-  let error = $state.raw(false);
-
-  export function format() {
-    if (view === undefined || error) {
-      return;
-    }
-    view.dispatch(
-      view.state.update({
-        changes: {
-          from: 0,
-          to: view.state.doc.length,
-          insert: JSON.stringify(value, null, 2),
-        },
-      })
-    );
-  }
 </script>
 
 <div
-  class="h-full"
-  data-error={error}
+  {...rest}
   {@attach (node) => {
     const onChange = EditorView.updateListener.of((update) => {
       if (
@@ -66,21 +54,15 @@
       ) {
         return;
       }
-      const str = update.state.doc.toString();
-      try {
-        value = JSON.parse(str);
-        ignore = true;
-        error = false;
-      } catch (e) {
-        error = true;
-      }
+      ignore = true;
+      value = update.state.doc.toString();
     });
-    ignore = false;
     view = new EditorView({
       parent: node,
+      doc: untrack(() => value),
       extensions: [
         basicSetup,
-        json(),
+        javascript(),
         onChange,
         themeManager.isDark ? githubDark : githubLight,
         EditorView.theme(

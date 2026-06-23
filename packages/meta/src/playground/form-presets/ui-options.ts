@@ -3,10 +3,14 @@ import {
   definePreset,
   FormPresetCategory,
   PresetTag,
+  jsonSchema,
+  jsonUiSchema,
+  jsonValue,
 } from "../form-preset.ts";
 
 export const meta = defineMetadata({
   category: FormPresetCategory.UiCustomization,
+  schema: { type: "json", draft2020: false },
   title: "UI Options",
   description:
     "Various UI option customizations including placeholders, autofocus, and text formatting.",
@@ -14,7 +18,7 @@ export const meta = defineMetadata({
 });
 
 export default definePreset({
-  schema: {
+  schema: jsonSchema({
     title: "A registration form",
     description: "A simple form example. Demonstrating ui options",
     type: "object",
@@ -35,8 +39,8 @@ export default definePreset({
         minLength: 10,
       },
     },
-  },
-  uiSchema: {
+  }),
+  uiSchema: jsonUiSchema({
     "ui:options": {
       translations: {
         submit: "Register",
@@ -91,11 +95,11 @@ export default definePreset({
         },
       },
     },
-  },
-  initialValue: {
+  }),
+  initialValue: jsonValue({
     lastName: "Norris",
     age: 75,
     bio: "Roundhouse kicking asses since 1940",
     password: "noneed",
-  },
+  }),
 });

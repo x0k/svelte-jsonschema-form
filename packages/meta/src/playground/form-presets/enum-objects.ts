@@ -3,10 +3,14 @@ import {
   definePreset,
   FormPresetCategory,
   PresetTag,
+  jsonSchema,
+  jsonUiSchema,
+  jsonValue,
 } from "../form-preset.ts";
 
 export const meta = defineMetadata({
   category: FormPresetCategory.SchemaBasics,
+  schema: { type: "json", draft2020: false },
   title: "Enum Objects",
   description: "Enum-based object property selection and handling.",
   tags: [PresetTag.Object],
@@ -14,7 +18,7 @@ export const meta = defineMetadata({
 
 export default definePreset({
   resolver: "compat",
-  schema: {
+  schema: jsonSchema({
     definitions: {
       locations: {
         // `enumNames` is not supported
@@ -65,8 +69,8 @@ export default definePreset({
         },
       },
     },
-  },
-  uiSchema: {
+  }),
+  uiSchema: jsonUiSchema({
     "ui:globalOptions": {
       enumNames: ["New York", "Amsterdam", "Hong Kong"],
     },
@@ -80,8 +84,8 @@ export default definePreset({
         checkboxesWidget: "multiSelectWidget",
       },
     },
-  },
-  initialValue: {
+  }),
+  initialValue: jsonValue({
     location: {
       name: "Amsterdam",
       lat: 52,
@@ -99,5 +103,5 @@ export default definePreset({
         lon: 114,
       },
     ],
-  },
+  }),
 });

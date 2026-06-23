@@ -18,23 +18,27 @@
     Form,
     Content,
     SubmitButton,
-    type FormValue,
     getValueSnapshot,
-    setValue,
+    type FormMerger,
   } from "@sjsf/form";
-  import { convert } from "@sjsf/form/converters/draft-2020-12";
   import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
   import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
   import { createDeduplicator, createIntersector } from "@sjsf/form/lib/array";
   import { createComparator, createMerger } from "@sjsf/form/lib/json-schema";
   import { extendByRecord, fromRecord } from "@sjsf/form/lib/resolver";
+  import {
+    abortPrevious,
+    createTask,
+    debounce,
+  } from "@sjsf/form/lib/task.svelte";
   import { createFormMerger } from "@sjsf/form/mergers/modern";
-  import { omitExtraData } from "@sjsf/form/omit-extra-data";
   import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
   import { translation } from "@sjsf/form/translations/en";
+  import { withOmitExtraData } from "@sjsf/form/validators/omit-extra-data";
   import { Willow, WillowDark } from "@svar-ui/svelte-core";
   import { BitsConfig } from "bits-ui";
   import { themeOrSubThemeTitle } from "meta";
+  import { codegemIsJsonSchemaValidator } from "meta/codegen";
   import {
     ALL_OF_STATE_BEHAVIOR,
     ALL_OF_STATE_BEHAVIOR_TITLES,
@@ -52,26 +56,28 @@
     PLAYGROUND_SJSF_THEMES,
     PLAYGROUND_SJSF_THEME_STYLES,
     PLAYGROUND_SJSF_GLOBAL_THEME_STYLES,
-    isEndsWith2020,
     playgroundIconSetTitle,
     playgroundIconSets,
     playgroundResolvers,
     playgroundThemes,
-    playgroundValidator,
-    playgroundValidatorTitle,
-    playgroundValidators,
     type FormState,
+    normalizeFormState,
+    parseFormData,
+    parseUiSchema,
+    type PresetEntry,
+    type NormalizedFormPreset,
+    schemaTypeFromValidator,
   } from "meta/playground";
   import {
     SANDBOX_PLATFORMS,
     sandboxPlatformLabel,
     sandboxPlatformIcon,
   } from "meta/sandbox";
+  import "meta/playground/augmentations";
   import { toast } from "svelte-sonner";
   import { Panel, setTilerContext, type Tiles } from "svelte-tiler";
   import { fromRecord as registryFromRecord } from "svelte-tiler/shared/registry";
   import * as Leaf from "svelte-tiler/tiles/leaf.svelte";
-  import "meta/playground/augmentations";
   import * as Split from "svelte-tiler/tiles/split.svelte";
   import * as Tabs from "svelte-tiler/tiles/tabs.svelte";
 
@@ -83,7 +89,7 @@
   import { Label } from "$lib/components/ui/label/index.js";
   import * as Separator from "$lib/components/ui/separator/index.js";
   import { copyTextToClipboard } from "$lib/copy-to-clipboard";
-  import Editor from "$lib/editor.svelte";
+  import Editor from "$lib/editor2.svelte";
   import { gripHeader } from "$lib/grip-header.svelte";
   import Noop from "$lib/noop.svelte";
   import Popup from "$lib/popup.svelte";
@@ -99,6 +105,15 @@
   import Header from "@/header.svelte";
   import { router } from "@/router.js";
   import { setShadcnContext } from "@/shadcn-context.js";
+  import {
+    createFormatTask,
+    createMergerTransition,
+    createOnFailure,
+    createParseQuery,
+    createValidatorState,
+    checkSignal,
+    convertAndFormatTypedSchema,
+  } from "@/shared.svelte";
   import { themeManager } from "@/theme.svelte";
 
   import CopyFormData from "./copy-form-data.svelte";
@@ -120,7 +135,7 @@
       required: ["hello"],
     },
     uiSchema: {},
-    initialValue: undefined,
+    initialValue: null,
     disabled: false,
     html5Validation: false,
     focusOnFirstError: true,
@@ -139,19 +154,14 @@
     mergeDefaultsIntoFormData: "useFormDataIfPresent",
   };
 
-  let originalInitialValue = $state.raw<FormValue>();
+  let originalInitialValue = $state.raw("");
   const data = $state(
     (() => {
-      const data = router.load(DEFAULT_PLAYGROUND_STATE);
+      const data = normalizeFormState(router.load(DEFAULT_PLAYGROUND_STATE));
       originalInitialValue = data.initialValue;
       return data;
     })()
   );
-
-  debouncedEffect(() => {
-    const snap = $state.snapshot(data);
-    return () => router.store(snap);
-  });
 
   const theme = $derived(
     extendByRecord(PLAYGROUND_SJSF_THEMES[data.theme], customComponents)
@@ -200,69 +210,72 @@
     },
   };
 
-  const isDraft2020 = $derived(
-    data.schema.$schema?.startsWith(
-      "https://json-schema.org/draft/2020-12/schema"
-    ) === true
+  const validatorState = createValidatorState(data, {
+    merger: () => merger,
+  });
+
+  const merger: FormMerger = $derived(
+    createFormMerger({
+      schema: validatorState.schema,
+      validator: validatorState.validator,
+      jsonSchemaMerger,
+      allOf: data.allOf,
+      arrayMinItems: {
+        populate: data.arrayMinItemsPopulate,
+        mergeExtraDefaults: data.arrayMinItemsMergeExtraDefaults,
+      },
+      constAsDefaults: data.constAsDefault,
+      emptyObjectFields: data.emptyObjectFields,
+      mergeDefaultsIntoFormData: data.mergeDefaultsIntoFormData,
+    })
   );
 
-  const finalSchema = $derived(
-    isDraft2020
-      ? convert(data.schema as Parameters<typeof convert>[0])
-      : data.schema
-  );
+  const initialValueQuery = createParseQuery({
+    parse: parseFormData,
+    get input() {
+      return data.initialValue;
+    },
+    defaultValue: undefined,
+  });
+
+  const uiSchemaQuery = createParseQuery({
+    parse: parseUiSchema,
+    get input() {
+      return data.uiSchema;
+    },
+    defaultValue: {},
+  });
 
   const focusOnFirstError = createFocusOnFirstError();
+  const formValidator = $derived(
+    data.omitExtraData
+      ? withOmitExtraData(validatorState.validator)
+      : validatorState.validator
+  );
   const form = createForm({
+    translation,
     idBuilder: createFormIdBuilder,
     get resolver() {
       return PLAYGROUND_RESOLVERS[data.resolver];
     },
-    value: [
-      () => data.initialValue,
-      (v) => {
-        data.initialValue = v;
-      },
-    ],
-    translation,
+    get initialValue() {
+      return initialValueQuery.value;
+    },
     get theme() {
       return theme;
     },
     get schema() {
-      return finalSchema;
+      return validatorState.schema;
     },
     get uiSchema() {
-      return data.uiSchema;
+      return uiSchemaQuery.value;
     },
-    validator: (options) => {
-      const v = playgroundValidator(data.validator)<FormValue>(options);
-      return {
-        ...v,
-        validateFormValue(rootSchema, formValue) {
-          return v.validateFormValue(
-            isDraft2020 && isEndsWith2020(data.validator)
-              ? data.schema
-              : rootSchema,
-            data.omitExtraData
-              ? omitExtraData(v, options.merger(), options.schema, formValue)
-              : formValue
-          );
-        },
-      };
+    get validator() {
+      return formValidator;
     },
-    merger: (options) =>
-      createFormMerger({
-        ...options,
-        jsonSchemaMerger,
-        allOf: data.allOf,
-        arrayMinItems: {
-          populate: data.arrayMinItemsPopulate,
-          mergeExtraDefaults: data.arrayMinItemsMergeExtraDefaults,
-        },
-        constAsDefaults: data.constAsDefault,
-        emptyObjectFields: data.emptyObjectFields,
-        mergeDefaultsIntoFormData: data.mergeDefaultsIntoFormData,
-      }),
+    get merger() {
+      return merger;
+    },
     get disabled() {
       return data.disabled;
     },
@@ -301,6 +314,17 @@
     },
   });
   setFormContext(form);
+
+  // TODO: Transform Files into constructors
+  const valueSnapshotStr = $derived(
+    JSON.stringify(getValueSnapshot(form), null, 2)
+  );
+
+  debouncedEffect(() => {
+    const snap = $state.snapshot(data);
+    valueSnapshotStr;
+    return () => router.store({ ...snap, initialValue: valueSnapshotStr });
+  });
 
   setShadcnContext();
 
@@ -400,7 +424,56 @@
     };
   });
 
-  const editors: Record<string, Editor<any>> = $state({});
+  function toKeyName(
+    k: string
+  ): "schema" | "uiSchema" | "initialValue" | undefined {
+    switch (k) {
+      case "schema":
+      case "uiSchema":
+        return k;
+      case "preview":
+        return "initialValue";
+    }
+  }
+
+  const format = createFormatTask();
+
+  const loadPresetTask = createTask<[PresetEntry], NormalizedFormPreset>({
+    combinator: abortPrevious,
+    execute: debounce(async (s, { load, meta }) => {
+      const preset = await load();
+      checkSignal(s);
+      const validator = preset.validator ?? data.validator;
+      const validatorSchemaType = schemaTypeFromValidator(validator);
+      const schema = await convertAndFormatTypedSchema(s, {
+        source: {
+          ...meta.schema,
+          schema: preset.schema,
+        },
+        target:
+          meta.schema.type === validatorSchemaType.type
+            ? meta.schema
+            : validatorSchemaType,
+      });
+      return {
+        ...preset,
+        schema,
+        validator:
+          codegemIsJsonSchemaValidator(validator) &&
+          validator.precompiled === false
+            ? {
+                ...validator,
+                draft2020: false,
+              }
+            : validator,
+      };
+    }),
+    onSuccess(preset) {
+      originalInitialValue = preset.initialValue;
+      Object.assign(data, preset);
+    },
+    onFailure: createOnFailure("Example loading"),
+  });
 </script>
 
 <svelte:head>
@@ -415,20 +488,11 @@
       input: data.initialValue,
       validator: data.validator,
     }),
-    m: () => ({
-      schema: data.schema,
-      intersectJson: true,
-      deduplicateJsonSchemas: true,
-    }),
+    m: createMergerTransition(data),
   }}
 >
   <ButtonGroup.Root>
-    <SamplePicker
-      onSelect={(sample) => {
-        Object.assign(data, sample);
-        originalInitialValue = sample.initialValue;
-      }}
-    />
+    <SamplePicker onSelect={loadPresetTask.run} />
   </ButtonGroup.Root>
 
   <ButtonGroup.Root>
@@ -440,9 +504,9 @@
     />
     <Select
       label="Validator"
-      bind:value={data.validator}
-      items={playgroundValidators()}
-      itemLabel={playgroundValidatorTitle}
+      bind:value={validatorState.selected}
+      items={validatorState.items}
+      labels={validatorState.labels}
     />
     <Select
       label="Icons"
@@ -602,7 +666,7 @@
     {#if tile.titles[tile.selectedTab] === FORM_DATA_TITLE}
       <Button
         onclick={() => {
-          setValue(form, originalInitialValue);
+          data.initialValue = originalInitialValue;
         }}
         size="sm"
         variant="ghost"
@@ -615,8 +679,14 @@
       variant="ghost"
       onclick={() => {
         const child = tile.children[tile.selectedTab];
-        if (child && child.type === "leaf") {
-          editors[child.name]?.format();
+        if (!child || child.type !== "leaf") {
+          return;
+        }
+        const n = toKeyName(child.name);
+        if (n) {
+          format(data[n], (f) => {
+            data[n] = f;
+          });
         }
       }}
     >
@@ -626,22 +696,31 @@
 {/snippet}
 
 {#snippet schema()}
-  <Editor bind:this={editors["schema"]} bind:value={data.schema} />
+  <Editor
+    bind:value={data.schema}
+    class="h-full"
+    data-state={validatorState.state}
+  />
 {/snippet}
 
 {#snippet uiSchema()}
-  <Editor bind:this={editors["uiSchema"]} bind:value={data.uiSchema} />
+  <Editor
+    bind:value={data.uiSchema}
+    class="h-full"
+    data-state={uiSchemaQuery.state}
+  />
 {/snippet}
 
 {#snippet formData()}
   <Editor
-    bind:this={editors["formData"]}
     bind:value={
-      () => getValueSnapshot(form),
+      () => valueSnapshotStr,
       (v) => {
         data.initialValue = v;
       }
     }
+    class="h-full"
+    data-state={initialValueQuery.state}
   />
 {/snippet}
 
@@ -658,31 +737,33 @@
         flex-grow: 1;
       }
     </style>
-    <BitsConfig defaultPortalTo={portalEl}>
-      <SvarProvider>
-        <svelte:boundary>
-          <Form
-            attributes={{
-              id: "form",
-              class: themeManager.darkOrLight,
-              style:
-                "flex-grow: 1; display: flex; flex-direction: column; gap: 1rem; padding: 1.5rem;",
-              novalidate: !data.html5Validation || undefined,
-              ["data-theme"]: data.theme.startsWith("skeleton")
-                ? "cerberus"
-                : themeManager.darkOrLight,
-            }}
-          >
-            <Content />
-            <SubmitButton />
-          </Form>
-          {#snippet failed(error, reset)}
-            {@const _ = setTimeout(reset, 1000)}
-            <p style="color: red; padding: 1rem;">{error}</p>
-          {/snippet}
-        </svelte:boundary>
-      </SvarProvider>
-    </BitsConfig>
+    {#if portalEl}
+      <BitsConfig defaultPortalTo={portalEl}>
+        <SvarProvider>
+          <svelte:boundary>
+            <Form
+              attributes={{
+                id: "form",
+                class: themeManager.darkOrLight,
+                style:
+                  "flex-grow: 1; display: flex; flex-direction: column; gap: 1rem; padding: 1.5rem;",
+                novalidate: !data.html5Validation || undefined,
+                ["data-theme"]: data.theme.startsWith("skeleton")
+                  ? "cerberus"
+                  : themeManager.darkOrLight,
+              }}
+            >
+              <Content />
+              <SubmitButton />
+            </Form>
+            {#snippet failed(error, reset)}
+              {@const _ = setTimeout(reset, 1000)}
+              <p style="color: red; padding: 1rem;">{error}</p>
+            {/snippet}
+          </svelte:boundary>
+        </SvarProvider>
+      </BitsConfig>
+    {/if}
     <div bind:this={portalEl}></div>
   </ShadowHost>
 {/snippet}

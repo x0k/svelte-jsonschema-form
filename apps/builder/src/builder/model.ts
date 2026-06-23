@@ -1,14 +1,26 @@
-import type { UiOptions, UiSchema } from "@sjsf/form";
+import type { Schema, UiOptions, UiSchema } from "@sjsf/form";
 import { pickSchemaType, typeOfValue } from "@sjsf/form/core";
+import {
+  jsonSchemaToValibot,
+  type JsonSchema as ValibotJsonSchema,
+} from "json-schema-to-valibot";
+import { jsonSchemaToZod } from "json-schema-to-zod";
 import type { ExtraFieldFileName } from "meta";
 import {
+  type BuilderValidator2,
+  type BuilderValidatorName,
   type WidgetType,
   NodeType,
   type AbstractNode,
   NUMBER_NODE_OPTIONS_SCHEMA,
   STRING_NODE_OPTIONS_SCHEMA,
+  builderValidators2,
+  builderValidatorId,
+  builderValidatorTitle,
+  type BuilderValidatorId,
 } from "meta/builder";
 import type { PlaygroundResolver, PlaygroundTheme } from "meta/playground";
+import { WIDGET_EXTRA_FIELD } from "meta/playground";
 
 import {
   BOOLEAN_NODE_OPTIONS_SCHEMA,
@@ -23,8 +35,20 @@ import {
   type WidgetNodeType,
 } from "$lib/builder/index.js";
 import { constant } from "$lib/function.js";
+import type { SupportedLanguage } from "$lib/shiki";
 
 import type { BuilderDraggable } from "./context.svelte.js";
+
+export const VALIDATOR_ITEMS = Array.from(
+  builderValidators2(),
+  builderValidatorId
+);
+export const VALIDATOR_LABELS = Object.fromEntries(
+  Array.from(builderValidators2(), (v) => [
+    builderValidatorId(v),
+    builderValidatorTitle(v),
+  ])
+) as Record<BuilderValidatorId, string>;
 
 export interface NodeProps<T extends NodeType> {
   node: Extract<Node, AbstractNode<T>>;
@@ -290,21 +314,6 @@ export const DEFAULT_WIDGETS: Record<WidgetNodeType, WidgetType> = {
   [NodeType.Range]: "aggregatedWidget",
 };
 
-const BASE_WIDGETS = [
-  "textWidget",
-  "numberWidget",
-  "checkboxWidget",
-  "selectWidget",
-] as const satisfies WidgetType[];
-
-export type BaseWidgetType = (typeof BASE_WIDGETS)[number];
-
-const BASE_WIDGETS_SET = new Set<WidgetType>(BASE_WIDGETS);
-
-export function isBaseWidget(w: WidgetType): w is BaseWidgetType {
-  return BASE_WIDGETS_SET.has(w);
-}
-
 export type FileFieldMode = number;
 export const FILE_FIELD_SINGLE_MODE = 1;
 export const FILE_FIELD_MULTIPLE_MODE = FILE_FIELD_SINGLE_MODE << 1;
@@ -329,4 +338,100 @@ export function fileFieldModeToFields(
     fields.push("array-native-files");
   }
   return fields;
+}
+
+export function computeFields(
+  widgets: Iterable<WidgetType>,
+  fileFieldMode: FileFieldMode
+): ExtraFieldFileName[] {
+  const fields = new Set<ExtraFieldFileName>(
+    fileFieldModeToFields(fileFieldMode)
+  );
+  for (const w of widgets) {
+    const extra = WIDGET_EXTRA_FIELD[w as keyof typeof WIDGET_EXTRA_FIELD];
+    if (extra !== undefined) {
+      fields.add(extra);
+    }
+  }
+  return [...fields];
+}
+
+function defaultSchemaFactory(schema: Schema) {
+  return JSON.stringify(schema, null, 2);
+}
+
+const SCHEMA_FACTORIES: Record<
+  BuilderValidatorName,
+  (schema: Schema) => string
+> = {
+  ajv8: defaultSchemaFactory,
+  schemasafe: defaultSchemaFactory,
+  cfworker: defaultSchemaFactory,
+  ata: defaultSchemaFactory,
+  hyperjump: defaultSchemaFactory,
+  zod4: (schema) =>
+    `import * as z from "zod";\n\nexport default ${jsonSchemaToZod(schema, { noImport: true })}`,
+  valibot: (schema) =>
+    jsonSchemaToValibot(schema as ValibotJsonSchema).replace(
+      "export const schema = ",
+      "export default "
+    ),
+};
+
+export interface PlaygroundSchemaOptions {
+  schema: Schema;
+  validator: BuilderValidator2;
+}
+
+export function buildPlaygroundSchema({
+  schema,
+  validator,
+}: PlaygroundSchemaOptions): string {
+  return SCHEMA_FACTORIES[validator.name](schema);
+}
+
+export interface PreviewFile {
+  filepath: string;
+  title: string;
+  extension: string;
+  htmlContent: string;
+}
+
+const FILE_ORDER = [
+  "src/routes/+page.svelte",
+  "scripts/compile-validators",
+  "src/lib/model",
+  "src/lib/sjsf/defaults",
+  "package.json",
+];
+
+export function sortPreviewFilePaths(paths: string[]): string[] {
+  return paths.toSorted((a, b) => {
+    const ai = FILE_ORDER.findIndex((p) => a.startsWith(p));
+    const bi = FILE_ORDER.findIndex((p) => b.startsWith(p));
+    const aOrder = ai === -1 ? FILE_ORDER.length : ai;
+    const bOrder = bi === -1 ? FILE_ORDER.length : bi;
+    return aOrder !== bOrder ? aOrder - bOrder : a.localeCompare(b);
+  });
+}
+
+export function parseFileNameAndExtension(filepath: string) {
+  const extension = filepath.slice(filepath.lastIndexOf(".") + 1);
+  const title = filepath.split("/").pop()!;
+  return { title, extension };
+}
+
+const HIGHLIGHT_LANG: Record<string, SupportedLanguage> = {
+  html: "html",
+  svelte: "svelte",
+  ts: "typescript",
+  js: "typescript",
+  css: "css",
+  json: "json",
+};
+
+export function getHighlighterLang(
+  extension: string
+): SupportedLanguage | undefined {
+  return HIGHLIGHT_LANG[extension];
 }

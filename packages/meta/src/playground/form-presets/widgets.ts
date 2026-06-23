@@ -3,10 +3,14 @@ import {
   definePreset,
   FormPresetCategory,
   PresetTag,
+  jsonSchema,
+  jsonUiSchema,
+  jsonValue,
 } from "../form-preset.ts";
 
 export const meta = defineMetadata({
   category: FormPresetCategory.UiCustomization,
+  schema: { type: "json", draft2020: false },
   title: "Widgets",
   description:
     "Custom widget implementations for specialized input control rendering.",
@@ -15,7 +19,7 @@ export const meta = defineMetadata({
 
 export default definePreset({
   resolver: "compat",
-  schema: {
+  schema: jsonSchema({
     title: "Widgets",
     type: "object",
     properties: {
@@ -122,8 +126,8 @@ export default definePreset({
         ],
       },
     },
-  },
-  uiSchema: {
+  }),
+  uiSchema: jsonUiSchema({
     boolean: {
       radio: {
         "ui:components": {
@@ -235,8 +239,8 @@ export default definePreset({
         enumValueMapperBuilder: "registry:stringEnumValueMapper",
       },
     },
-  },
-  initialValue: {
+  }),
+  initialValue: jsonValue({
     stringFormats: {
       email: "chuck@norris.net",
       uri: "http://chucknorris.com/",
@@ -251,5 +255,5 @@ export default definePreset({
       textarea: "... World",
     },
     secret: "I'm a hidden string.",
-  },
+  }),
 });

@@ -3,10 +3,14 @@ import {
   definePreset,
   FormPresetCategory,
   PresetTag,
+  jsonSchema,
+  jsonUiSchema,
+  jsonValue,
 } from "../form-preset.ts";
 
 export const meta = defineMetadata({
   category: FormPresetCategory.SchemaBasics,
+  schema: { type: "json", draft2020: false },
   title: "Defaults",
   description:
     "Default value propagation from schema definitions and property defaults.",
@@ -14,7 +18,7 @@ export const meta = defineMetadata({
 });
 
 export default definePreset({
-  schema: {
+  schema: jsonSchema({
     title: "Schema default properties",
     type: "object",
     properties: {
@@ -64,9 +68,9 @@ export default definePreset({
         },
       },
     },
-  },
-  uiSchema: {},
-  initialValue: {
+  }),
+  uiSchema: jsonUiSchema({}),
+  initialValue: jsonValue({
     valuesInFormData: {
       scalar: "value",
       array: [
@@ -81,5 +85,5 @@ export default definePreset({
     noValuesInFormData: {
       array: [{}, {}],
     },
-  },
+  }),
 });

@@ -4,7 +4,13 @@
   import Download from "@lucide/svelte/icons/download";
   import ExternalLink from "@lucide/svelte/icons/external-link";
   import { themeOrSubThemeTitle } from "meta";
-  import { builderValidators, builderValidatorTitle } from "meta/builder";
+  import {
+    builderValidators2,
+    builderValidatorId,
+    builderValidatorFromId,
+    builderValidatorTitle,
+    type BuilderValidatorId,
+  } from "meta/builder";
   import {
     playgroundIconSets,
     playgroundIconSetTitle,
@@ -29,8 +35,7 @@
 
   import Container from "../container.svelte";
   import { getBuilderContext } from "../context.svelte.js";
-  import { RouteName } from "../model.js";
-  import { openSandbox } from "../sandbox.js";
+  import { RouteName, VALIDATOR_ITEMS, VALIDATOR_LABELS } from "../model.js";
 
   const ctx = getBuilderContext();
 
@@ -63,9 +68,14 @@
     <Select
       class="w-full"
       labelId="{uniqueId}-validator"
-      bind:value={ctx.validator}
-      items={builderValidators()}
-      itemLabel={builderValidatorTitle}
+      bind:value={
+        () => builderValidatorId(ctx.validator),
+        (v) => {
+          ctx.validator = builderValidatorFromId(v);
+        }
+      }
+      items={VALIDATOR_ITEMS}
+      labels={VALIDATOR_LABELS}
     />
   </div>
   <div class="flex flex-col gap-1.5">
@@ -122,29 +132,15 @@
               window.open(url);
             }}
             >Open in Playground
-            <ExternalLink />
+            <ExternalLink class="ml-auto" />
           </DropdownMenu.Item>
           {#each SANDBOX_PLATFORMS as platform (platform)}
-            <DropdownMenu.Item
-              onclick={() =>
-                openSandbox({
-                  platform,
-                  theme: ctx.theme,
-                  validator: ctx.validator,
-                  schema: ctx.schema,
-                  uiSchema: ctx.uiSchema ?? {},
-                  html5Validation: ctx.html5Validation,
-                  resolver: ctx.resolver,
-                  icons: ctx.icons,
-                  widgets: ctx.uiSchemaWidgets,
-                  fileFieldMode: ctx.uiSchemaFileFieldMode,
-                })}
-            >
+            <DropdownMenu.Item onclick={() => ctx.openSandbox(platform)}>
               {sandboxPlatformLabel(platform)}
               {#if sandboxPlatformIcon(platform) === "external-link"}
-                <ExternalLink />
+                <ExternalLink class="ml-auto" />
               {:else}
-                <Download />
+                <Download class="ml-auto" />
               {/if}
             </DropdownMenu.Item>
           {/each}

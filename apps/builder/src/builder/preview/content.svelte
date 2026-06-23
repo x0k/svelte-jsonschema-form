@@ -1,7 +1,9 @@
 <script lang="ts">
+  import FileIcon from "@lucide/svelte/icons/file";
   import { isRecordEmpty } from "@sjsf/form/lib/object";
-  import DeviconPlainBash from "~icons/devicon-plain/bash";
   import DeviconPlainCss from "~icons/devicon-plain/css";
+  import DeviconPlainHtml from "~icons/devicon-plain/html5";
+  import DeviconPlainJavascript from "~icons/devicon-plain/javascript";
   import DeviconPlainSvelte from "~icons/devicon-plain/svelte";
   import DeviconPlainTypescript from "~icons/devicon-plain/typescript";
   import MdiCodeJson from "~icons/mdi/code-json";
@@ -16,47 +18,33 @@
 
   const ctx = getBuilderContext();
 
+  const EXTENSION_ICONS: Record<string, typeof DeviconPlainSvelte> = {
+    svelte: DeviconPlainSvelte,
+    ts: DeviconPlainTypescript,
+    js: DeviconPlainJavascript,
+    css: DeviconPlainCss,
+    json: MdiCodeJson,
+    html: DeviconPlainHtml,
+  };
+
   const ROUTE_FILES: Record<PreviewSubRouteName, () => CodeFile[]> = {
     [PreviewSubRouteName.Code]: () => {
-      const files: CodeFile[] = [
-        {
-          Icon: DeviconPlainSvelte,
-          title: "form.svelte",
-          get content() {
-            return ctx.formDotSvelte;
-          },
-        },
-        {
-          Icon: DeviconPlainTypescript,
-          title: "defaults.ts",
-          get content() {
-            return ctx.formDefaults;
-          },
-        },
-        {
-          Icon: DeviconPlainBash,
-          title: "install.sh",
-          get content() {
-            return ctx.installSh;
-          },
-        },
-      ];
-      if (ctx.appCss.length > 0) {
-        files.splice(2, 0, {
-          Icon: DeviconPlainCss,
-          title: "app.css",
-          get content() {
-            return ctx.appCss;
-          },
-        });
-      }
-      return files;
+      return ctx.files.map(({ title, extension, htmlContent, filepath }) => {
+        const Icon = EXTENSION_ICONS[extension] ?? FileIcon;
+        return {
+          Icon,
+          title,
+          content: htmlContent,
+          filepath,
+        };
+      });
     },
     [PreviewSubRouteName.Schema]: () => {
       const files = [
         {
           Icon: MdiCodeJson,
           title: "schema.json",
+          filepath: "",
           get content() {
             return ctx.highlight("json", JSON.stringify(ctx.schema, null, 2));
           },
@@ -66,6 +54,7 @@
         files.push({
           Icon: MdiCodeJson,
           title: "ui-schema.json",
+          filepath: "",
           get content() {
             return ctx.highlight(
               "json",

@@ -18,7 +18,7 @@ export const EXTRA_PACKAGES = {
   },
   "esbuild": {
     "name": "esbuild",
-    "version": "0.28.0",
+    "version": "0.28.1",
     "dev": true
   },
   "devalue": {
@@ -114,6 +114,16 @@ export const EXTRA_PACKAGES = {
   "lucideSvelte": {
     "name": "@lucide/svelte",
     "version": "1.17.0",
+    "dev": false
+  },
+  "zod": {
+    "name": "zod",
+    "version": "4.4.3",
+    "dev": false
+  },
+  "valibot": {
+    "name": "valibot",
+    "version": "1.4.1",
     "dev": false
   }
 } as const satisfies Record<string, AbstractPackage>;

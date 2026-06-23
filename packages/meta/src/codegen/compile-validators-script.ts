@@ -131,6 +131,7 @@ function createScriptRenderer({
       flags.length > 0
         ? `import { ${flagsExpr} } from "${formPackage.name}";\n\n`
         : "";
+    const draft2020ConvertImport = `import { convert } from "${formPackage.name}/converters/draft-2020-12";\n\n`;
     const modelFlagsImport =
       flags.length > 0
         ? `import { \${FIELDS_VALIDATION_KEYS} } from "${formPackage.name}";\n`
@@ -142,19 +143,23 @@ function createScriptRenderer({
     return `import fs from "node:fs/promises";
 import path from "node:path";
 
-${runtimeFlagsImport}import {
+${runtimeFlagsImport}${draft2020ConvertImport}import {
   insertSubSchemaIds,
   fragmentSchema,
 } from "${internalValidatorSubPath("precompile")}";
 
 ${vendorImports(ctx)};
 
-const FIELDS_VALIDATION = { ${flagsExpr} };
+${
+  flags.length > 0
+    ? `const FIELDS_VALIDATION = { ${flagsExpr} };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
 const FIELDS_VALIDATION_MODE = Object.keys(FIELDS_VALIDATION).join(" | ");
 const FIELDS_VALIDATION_MODE_VALUE = Object.values(FIELDS_VALIDATION).reduce(
-  (a, b) => a | b,
-);
+  (a, b) => a | b, 0
+);`
+    : `const FIELDS_VALIDATION_MODE_VALUE = 0;`
+}
 const MODEL_PATHS = ${JSON.stringify(modelPaths)};
 const SCRIPT_PATH = path.relative(process.cwd(), import.meta.filename);
 
@@ -181,7 +186,7 @@ async function compileSchema(modelDirRelPath${ts(": string")}) {
     ctx,
     definePatchAndSchemas: (
       extraProperties = ""
-    ) => `const patch = insertSubSchemaIds(schema, {
+    ) => `const patch = insertSubSchemaIds(schema.$schema?.startsWith("https://json-schema.org/draft/2020-12/schema") ? convert(schema) : schema, {
   fieldsValidationMode: FIELDS_VALIDATION_MODE_VALUE,
   ${extraProperties}
 });

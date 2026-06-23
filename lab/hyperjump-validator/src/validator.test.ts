@@ -9,7 +9,6 @@ import {
   type AST,
 } from "@hyperjump/json-schema/experimental";
 import {
-  createValidatorRetriever,
   fragmentSchema,
   type IdFactory,
 } from "@sjsf/form/validators/precompile";
@@ -20,6 +19,7 @@ import {
 } from "validator-testing";
 
 import { localization } from "./localizations/en-us.js";
+import { fromAst } from "./model.js";
 import { createFormValidatorFactory } from "./validator.js";
 
 const toId = (n: number) => `https://example.com/v${n}`;
@@ -48,19 +48,7 @@ const createFormValidator = createPrecompiledValidatorFactory(
       }
       const factory = createFormValidatorFactory({
         localization,
-        validatorRetriever: createValidatorRetriever({
-          registry: {
-            get: (id) => {
-              const schemaUri = `${id}#`;
-              return schemaUri in ast
-                ? {
-                    schemaUri,
-                    ast,
-                  }
-                : undefined;
-            },
-          },
-        }),
+        validatorRetriever: fromAst(ast),
       });
       return factory(options);
     } finally {

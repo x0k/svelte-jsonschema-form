@@ -25,6 +25,8 @@
   import Monitor from "@lucide/svelte/icons/monitor";
   import Moon from "@lucide/svelte/icons/moon";
   import Sun from "@lucide/svelte/icons/sun";
+  import { abortPrevious, createTask } from "@sjsf/form/lib/task.svelte";
+  import type { MaybePromise } from "@sjsf/form/lib/types";
   import type { Snippet } from "svelte";
 
   import * as ButtonGroup from "$lib/components/ui/button-group/index.js";
@@ -41,8 +43,24 @@
     transitions,
   }: {
     children?: Snippet;
-    transitions: { [P in Page]: () => Partial<PageStates[P]> };
+    transitions: {
+      [P in Page]: (s: AbortSignal) => MaybePromise<Partial<PageStates[P]>>;
+    };
   } = $props();
+
+  const navigationTask = createTask<[Page], Partial<PageStates[Page]>>({
+    combinator: abortPrevious,
+    execute: async (s, page) => transitions[page](s),
+    onSuccess(data, page) {
+      router.navigate(page, data);
+    },
+    onFailure(err) {
+      if (err.reason === "aborted") {
+        return;
+      }
+      console.error(err);
+    },
+  });
 </script>
 
 {#snippet link(page: Page)}
@@ -51,7 +69,7 @@
     class={[router.page === page && "bg-primary/10", "hover:bg-primary/10"]}
     onclick={(e) => {
       e.preventDefault();
-      router.navigate(page, transitions[page]());
+      navigationTask.run(page);
     }}
     href={page ? `${clearHref}?page=${page}` : clearHref}>{TITLES[page]}</Button
   >

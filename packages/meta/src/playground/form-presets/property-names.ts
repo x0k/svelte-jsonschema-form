@@ -3,10 +3,14 @@ import {
   definePreset,
   FormPresetCategory,
   PresetTag,
+  jsonSchema,
+  jsonUiSchema,
+  jsonValue,
 } from "../form-preset.ts";
 
 export const meta = defineMetadata({
   category: FormPresetCategory.SchemaBasics,
+  schema: { type: "json", draft2020: false },
   title: "Property Names",
   description:
     "Property name pattern validation using the propertyNames keyword.",
@@ -14,7 +18,7 @@ export const meta = defineMetadata({
 });
 
 export default definePreset({
-  schema: {
+  schema: jsonSchema({
     title: "Property names example",
     type: "object",
     additionalProperties: {
@@ -23,8 +27,8 @@ export default definePreset({
     propertyNames: {
       enum: ["foo", "bar", "baz"],
     },
-  },
-  uiSchema: {
+  }),
+  uiSchema: jsonUiSchema({
     additionalProperties: {
       additionalPropertyKeyInput: {
         "ui:components": {
@@ -32,8 +36,8 @@ export default definePreset({
         },
       },
     },
-  },
-  initialValue: {
+  }),
+  initialValue: jsonValue({
     foo: 123,
-  },
+  }),
 });

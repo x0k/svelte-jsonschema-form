@@ -118,11 +118,6 @@ export function* codegenValidators() {
           draft2020: false,
           precompiled: true,
         });
-        yield codegenValidator({
-          name,
-          draft2020: true,
-          precompiled: true,
-        });
       }
     }
   }

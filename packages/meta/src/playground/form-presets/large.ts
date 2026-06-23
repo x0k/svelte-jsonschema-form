@@ -3,10 +3,14 @@ import {
   definePreset,
   FormPresetCategory,
   PresetTag,
+  jsonSchema,
+  jsonUiSchema,
+  jsonValue,
 } from "../form-preset.ts";
 
 export const meta = defineMetadata({
   category: FormPresetCategory.Other,
+  schema: { type: "json", draft2020: false },
   title: "Large",
   description:
     "Complex large-scale form with many fields across multiple sections.",
@@ -23,7 +27,7 @@ function largeEnum(n: number) {
 
 export default definePreset({
   resolver: "compat",
-  schema: {
+  schema: jsonSchema({
     definitions: {
       largeEnum: { type: "string", enum: largeEnum(100) },
     },
@@ -45,8 +49,8 @@ export default definePreset({
       choice9: { $ref: "#/definitions/largeEnum" },
       choice10: { $ref: "#/definitions/largeEnum" },
     },
-  },
-  uiSchema: {
+  }),
+  uiSchema: jsonUiSchema({
     choice1: {
       "ui:options": {
         select: {
@@ -60,6 +64,6 @@ export default definePreset({
         },
       },
     },
-  },
-  initialValue: {},
+  }),
+  initialValue: jsonValue({}),
 });

@@ -14,7 +14,7 @@
     <PreviewControls />
   </div>
 
-  <div class="pb-4">
+  <div class="min-w-0 pb-4">
     <PreviewContent {route} />
   </div>
 
