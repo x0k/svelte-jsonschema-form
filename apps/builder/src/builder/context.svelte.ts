@@ -3,6 +3,7 @@ import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import type { FormValue, Schema, SchemaValue, UiSchema } from "@sjsf/form";
 import { isSchemaValueDeepEqual } from "@sjsf/form/core";
 import { createQuery, type Query } from "@sjsf/form/lib/task.svelte";
+import { isSchemaValidator } from "meta";
 import {
   themeCustomizableNodeTypes,
   themeRangeValueTypes,
@@ -254,6 +255,7 @@ export class BuilderContext {
     this.#buildOutput; // includes rootNode
     this.theme;
     this.resolver;
+    this.validator;
     return untrack(() => {
       let fileFieldMode = 0;
       const widgets = new Set<WidgetType>();
@@ -264,6 +266,7 @@ export class BuilderContext {
           {
             propertyNames: this.#buildOutput.propertyNames,
             propertiesOrder: [],
+            includeSchemaMeta: isSchemaValidator(this.validator.name),
             uiComponents: (node) => {
               if (isFileNode(node)) {
                 fileFieldMode |= node.options.native

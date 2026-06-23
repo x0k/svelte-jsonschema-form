@@ -20,6 +20,7 @@ export interface TextWidgetParams {
 export interface UiSchemaBuilderContext {
   readonly propertyNames: Map<NodeId, string>;
   propertiesOrder: string[];
+  includeSchemaMeta: boolean;
   uiComponents: (node: WidgetNode) => UiSchema["ui:components"];
   textWidgetOptions: (params: TextWidgetParams) => UiOptions;
   radioWidgetOptions: (inline: boolean) => UiOptions;
@@ -28,14 +29,20 @@ export interface UiSchemaBuilderContext {
 }
 
 const UI_OPTIONS_KEYS = ["help"] as const satisfies (keyof UiOptions)[];
+const SCHEMA_META_KEYS = [
+  ...UI_OPTIONS_KEYS,
+  "title",
+  "description",
+] as const satisfies (keyof UiOptions)[];
+type SchemaMetaKey = (typeof SCHEMA_META_KEYS)[number];
+type UiOptionsSource = Partial<Pick<UiOptions, SchemaMetaKey>>;
 
-function assignUiOptions<
-  T extends Pick<UiOptions, (typeof UI_OPTIONS_KEYS)[number]> | {},
->(target: UiOptions, source: T) {
-  for (const key of UI_OPTIONS_KEYS) {
-    if (!(key in source)) {
-      continue;
-    }
+function assignUiOptions(
+  target: UiOptions,
+  source: UiOptionsSource,
+  includeSchemaMeta: boolean
+) {
+  for (const key of includeSchemaMeta ? SCHEMA_META_KEYS : UI_OPTIONS_KEYS) {
     const v = source[key];
     if (v === undefined) {
       continue;
@@ -58,7 +65,8 @@ function leafNode(
     "ui:components": ctx.uiComponents(node),
     "ui:options": assignUiOptions(
       Object.assign(ctx.useLabelOptions(node), options),
-      node.options
+      node.options,
+      ctx.includeSchemaMeta
     ),
   };
 }
@@ -94,7 +102,8 @@ const NODE_UI_SCHEMA_BUILDERS: {
             order: ctx.propertiesOrder,
           }
         : {},
-      options
+      options,
+      ctx.includeSchemaMeta
     );
     ctx.propertiesOrder = prevOrder;
     return schema;
@@ -121,7 +130,7 @@ const NODE_UI_SCHEMA_BUILDERS: {
   [NodeType.Array]: (ctx, { options, item }) => {
     assertThing(item, "array item");
     return {
-      "ui:options": assignUiOptions({}, options),
+      "ui:options": assignUiOptions({}, options, ctx.includeSchemaMeta),
       items: buildUiSchema(ctx, item),
     };
   },
@@ -136,7 +145,8 @@ const NODE_UI_SCHEMA_BUILDERS: {
               },
             },
           },
-          options
+          options,
+          ctx.includeSchemaMeta
         ),
       },
       ...cells.map(({ node, x, y, w, h }) => {
