@@ -81,6 +81,9 @@ export interface ParseQueryOptions<T> {
 export function createParseQuery<T>(options: ParseQueryOptions<T>) {
   let error = $state.raw(false);
   const query = createQuery<[string], T>({
+    get initialValue() {
+      return options.defaultValue;
+    },
     deps: () => [options.input],
     execute: debounce((_, str) => options.parse(str)),
     onSuccess() {
@@ -96,7 +99,7 @@ export function createParseQuery<T>(options: ParseQueryOptions<T>) {
   });
   return {
     get value() {
-      return query.result ?? options.defaultValue;
+      return query.current;
     },
     get state() {
       if (query.status === "processing") return "loading";
@@ -142,6 +145,7 @@ export function createValidatorState(
     [PlaygroundValidator2, object],
     { schema: Schema; validator: FormValidator<unknown> }
   >({
+    initialValue: DEFAULT_SCHEMA_AND_VALIDATOR,
     get deps() {
       return schemaQuery.state === "loading" ? undefined : deps;
     },
@@ -155,9 +159,7 @@ export function createValidatorState(
     }),
     onFailure: createOnFailure("Validator creation"),
   });
-  const { schema, validator } = $derived(
-    validatorQuery.result ?? DEFAULT_SCHEMA_AND_VALIDATOR
-  );
+  const { schema, validator } = $derived(validatorQuery.current);
 
   const builder = new IdEnumValueMapperBuilder();
   const items: string[] = [];
