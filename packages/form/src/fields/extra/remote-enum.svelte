@@ -100,7 +100,7 @@
   const queryKey = $derived(getEnumOptionsQueryKey(ctx, config));
   const queries = getEnumOptionsQueriesContext();
   const query = $derived(getEnumOptionsQuery(queries, queryKey));
-  let remoteOptions = $derived(query.result ?? []);
+  let remoteOptions = $derived(query.current ?? []);
 
   const { options, mapper } = $derived.by(() => {
     const builder =

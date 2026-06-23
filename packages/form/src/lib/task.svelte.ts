@@ -296,7 +296,9 @@ export type QueryOptions<
   T extends ReadonlyArray<any>,
   R = unknown,
   E = unknown,
+  I = R,
 > = TaskOptions<T, R, E> & {
+  initialValue?: I;
   /**
    * Used to pass and track reactive values
    * If not specified, automatic data loading is disabled
@@ -312,23 +314,42 @@ export interface Query<
   T extends ReadonlyArray<any>,
   R = unknown,
   E = unknown,
+  Result = R | undefined,
 > extends Task<T, R, E> {
-  readonly result: R | undefined;
+  /** @deprecated use `current` property instead */
+  readonly result: Result;
   readonly error: FailedTask<E> | undefined;
+  current: Result;
 }
+
+type QueryResult<R, I> = [I] extends [R] ? R : R | I;
 
 export function createQuery<
   T extends ReadonlyArray<any> = [],
   R = unknown,
   E = unknown,
->(options: QueryOptions<T, R, E>) {
-  let result = $state.raw<R>();
+  I = R,
+>(
+  options: QueryOptions<T, R, E, I> & { initialValue: I }
+): Query<T, R, E, QueryResult<R, I>>;
+export function createQuery<
+  T extends ReadonlyArray<any> = [],
+  R = unknown,
+  E = unknown,
+>(options: QueryOptions<T, R, E>): Query<T, R, E>;
+export function createQuery<
+  T extends ReadonlyArray<any> = [],
+  R = unknown,
+  E = unknown,
+  I = never,
+>(options: QueryOptions<T, R, E, I>) {
+  let value = $derived<R | I | undefined>(options.initialValue);
 
   const task = createTask(
     Object.setPrototypeOf(
       {
         onSuccess(r: R, ...args: T) {
-          result = r;
+          value = r;
           options.onSuccess?.(r, ...args);
         },
         get combinator() {
@@ -352,11 +373,17 @@ export function createQuery<
   return Object.setPrototypeOf(
     {
       get result() {
-        return result;
+        return value;
       },
       get error() {
         const s = task.state;
         return s.status === "failed" ? s : undefined;
+      },
+      get current() {
+        return value;
+      },
+      set current(v) {
+        value = v;
       },
     },
     task
