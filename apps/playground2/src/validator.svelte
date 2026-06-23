@@ -9,23 +9,15 @@
   } from "@sjsf/form";
   import { createDeduplicator, createIntersector } from "@sjsf/form/lib/array";
   import { createComparator, createMerger } from "@sjsf/form/lib/json-schema";
-  import { isObject } from "@sjsf/form/lib/object";
   import {
     abortPrevious,
-    createQuery,
     createTask,
     debounce,
-    type FailedTask,
   } from "@sjsf/form/lib/task.svelte";
   import { createMerger as createSchemaMerger } from "@sjsf/form/mergers/modern";
-  import { createFormValidator as noop } from "@sjsf/form/validators/noop";
   import {
-    isDraft2020,
     normalizeValidatorState,
     parseFormData,
-    parseSchemaObject,
-    playgroundValidator,
-    type PlaygroundValidator2,
     type ValidatorState,
   } from "meta/playground";
   import { Panel, setTilerContext, type Tiles } from "svelte-tiler";
@@ -52,9 +44,9 @@
   import {
     createFormatTask,
     createMergerTransition,
+    createOnFailure,
     createParseQuery,
-    createValidatorMapper,
-    validatorForSchemaDraft,
+    createValidatorState,
   } from "./shared.svelte";
 
   const DEFAULT_PAGE_STATE: ValidatorState = {
@@ -88,55 +80,12 @@
   });
   const merger = createSchemaMerger({ jsonSchemaMerger });
 
-  function createOnFailure(label: string) {
-    return (err: FailedTask<unknown>) => {
-      if (err.reason === "error") {
-        console.error(label, err.error);
-        data.output = `"${label}: ${err.error}"`;
-      } else if (err.reason === "timeout") {
-        data.output = `"${label}: Validation failed due timeout"`;
-      }
-    };
-  }
-
-  const schemaQuery = createParseQuery({
-    parse: parseSchemaObject,
-    get input() {
-      return data.schema;
-    },
-    defaultValue: {},
-  });
-  const schemaDraft2020 = $derived(isDraft2020(schemaQuery.value));
-
-  const deps = (): [PlaygroundValidator2, object] => [
-    data.validator,
-    schemaQuery.value,
-  ];
-  const validatorOptions = {
+  const validatorState = createValidatorState(data, {
     merger: () => merger,
-  };
-  const validatorQuery = createQuery<
-    [PlaygroundValidator2, Schema],
-    { schema: Schema; validator: FormValidator<unknown> }
-  >({
-    get deps() {
-      return schemaQuery.state === "loading" ? undefined : deps;
-    },
-    execute: debounce((_, v, s) =>
-      playgroundValidator(validatorForSchemaDraft(v, s))(validatorOptions)(s)
-    ),
-    onFailure: createOnFailure("Validator creation"),
   });
-
-  const { schema: jsonSchema, validator } = $derived(
-    validatorQuery.result ?? {
-      schema: {} satisfies Schema as Schema,
-      validator: noop(),
-    }
-  );
 
   const validateTask = createTask<
-    [typeof validator, Schema, FormValue],
+    [FormValidator<unknown>, Schema, FormValue],
     ValidationResult<unknown>
   >({
     combinator: abortPrevious,
@@ -160,7 +109,11 @@
   });
 
   $effect(() => {
-    validateTask.run(validator, jsonSchema, inputQuery.value);
+    validateTask.run(
+      validatorState.validator,
+      validatorState.schema,
+      inputQuery.value
+    );
     return () => {
       validateTask.abort();
     };
@@ -226,10 +179,6 @@
     };
   });
 
-  const { mapped, items, labels } = $derived(
-    createValidatorMapper(data, schemaDraft2020)
-  );
-
   const outputQuery = createParseQuery({
     parse: parseFormData,
     get input() {
@@ -268,7 +217,7 @@
   <Editor
     bind:value={data.schema}
     class="h-full"
-    data-state={schemaQuery.state}
+    data-state={validatorState.state}
   />
 {/snippet}
 
@@ -300,7 +249,12 @@
   }}
 >
   <ButtonGroup.Root>
-    <Select label="Validator" bind:value={mapped.current} {items} {labels} />
+    <Select
+      label="Validator"
+      bind:value={validatorState.selected}
+      items={validatorState.items}
+      labels={validatorState.labels}
+    />
   </ButtonGroup.Root>
 </Header>
 <Panel bind:layout />

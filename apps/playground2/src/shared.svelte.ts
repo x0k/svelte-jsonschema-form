@@ -1,4 +1,5 @@
-import type { Schema, SchemaValue } from "@sjsf/form";
+import type { FormValidator, Schema, SchemaValue, UiSchema } from "@sjsf/form";
+import type { Merger } from "@sjsf/form/core";
 import { noop } from "@sjsf/form/lib/function";
 import {
   abortPrevious,
@@ -11,15 +12,16 @@ import {
   IdEnumValueMapperBuilder,
   singleOption,
 } from "@sjsf/form/options.svelte";
+import { createFormValidator as createNoopValidator } from "@sjsf/form/validators/noop";
 import { codegemIsJsonSchemaValidator } from "meta/codegen";
 import {
   convertTypedSchema,
   EXPORT_DEFAULT,
   isDraft2020,
-  type NormalizedFormPreset,
   playgroundValidators2,
+  playgroundValidator,
   playgroundValidatorTitle,
-  type PresetEntry,
+  parseSchemaObject,
   schemaTypeFromValidator,
   type PlaygroundValidator2,
   type ConvertTypedSchemaOptions,
@@ -61,7 +63,7 @@ export async function formatCode(str: string): Promise<string> {
   });
 }
 
-async function convertAndFormatTypedSchema(
+export async function convertAndFormatTypedSchema(
   signal: AbortSignal,
   options: ConvertTypedSchemaOptions
 ): Promise<string> {
@@ -70,62 +72,100 @@ async function convertAndFormatTypedSchema(
   return await formatCode(schema);
 }
 
-export function validatorForSchemaDraft(
-  validator: PlaygroundValidator2,
-  schema: object
-): PlaygroundValidator2 {
-  return codegemIsJsonSchemaValidator(validator)
-    ? { ...validator, draft2020: isDraft2020(schema) }
-    : validator;
+export interface ParseQueryOptions<T> {
+  input: string;
+  parse: (value: string) => Promise<T>;
+  defaultValue: T;
 }
 
-export async function loadConvertedFormPreset(
-  signal: AbortSignal,
-  { load, meta }: PresetEntry,
-  currentValidator: PlaygroundValidator2
-): Promise<NormalizedFormPreset> {
-  const preset = await load();
-  checkSignal(signal);
-
-  const validator = preset.validator ?? currentValidator;
-  const validatorSchemaType = schemaTypeFromValidator(validator);
-  const target =
-    meta.schema.type === validatorSchemaType.type
-      ? meta.schema
-      : validatorSchemaType;
-  const schema = await convertAndFormatTypedSchema(signal, {
-    source: {
-      ...meta.schema,
-      schema: preset.schema,
+export function createParseQuery<T>(options: ParseQueryOptions<T>) {
+  let error = $state.raw(false);
+  const query = createQuery<[string], T>({
+    deps: () => [options.input],
+    execute: debounce((_, str) => options.parse(str)),
+    onSuccess() {
+      error = false;
     },
-    target,
+    onFailure(err) {
+      if (err.reason === "aborted") {
+        return;
+      }
+      error = true;
+      console.error(err);
+    },
   });
   return {
-    ...preset,
-    schema,
-    validator:
-      meta.schema.type === "json" && target.type === "json"
-        ? ({
-            ...validator,
-            draft2020: meta.schema.draft2020,
-          } as PlaygroundValidator2)
-        : validator,
+    get value() {
+      return query.result ?? options.defaultValue;
+    },
+    get state() {
+      if (query.status === "processing") return "loading";
+      if (error) return "error";
+      return "idle";
+    },
   };
 }
 
-export function createValidatorMapper(
-  data: {
-    schema: string;
-    validator: PlaygroundValidator2;
-  },
-  draft2020: boolean
+export interface ValidatorStateOptions {
+  schema: string;
+  validator: PlaygroundValidator2;
+}
+
+const DEFAULT_VALIDATOR = createNoopValidator();
+const DEFAULT_SCHEMA_AND_VALIDATOR = {
+  schema: {} satisfies Schema as Schema,
+  validator: DEFAULT_VALIDATOR,
+};
+
+interface ValidatorFactoryOptions {
+  uiSchema?: UiSchema;
+  merger: () => Merger;
+}
+
+export function createValidatorState(
+  data: ValidatorStateOptions,
+  validatorOptions: ValidatorFactoryOptions
 ) {
+  const schemaQuery = createParseQuery<object>({
+    parse: parseSchemaObject,
+    get input() {
+      return data.schema;
+    },
+    defaultValue: {},
+  });
+
+  const deps = (): [PlaygroundValidator2, object] => [
+    data.validator,
+    schemaQuery.value,
+  ];
+  const validatorQuery = createQuery<
+    [PlaygroundValidator2, object],
+    { schema: Schema; validator: FormValidator<unknown> }
+  >({
+    get deps() {
+      return schemaQuery.state === "loading" ? undefined : deps;
+    },
+    execute: debounce((_, validator, schema) => {
+      const v =
+        codegemIsJsonSchemaValidator(validator) &&
+        validator.precompiled === false
+          ? { ...validator, draft2020: isDraft2020(schema) }
+          : validator;
+      return playgroundValidator(v)(validatorOptions)(schema);
+    }),
+    onFailure: createOnFailure("Validator creation"),
+  });
+  const { schema, validator } = $derived(
+    validatorQuery.result ?? DEFAULT_SCHEMA_AND_VALIDATOR
+  );
+
   const builder = new IdEnumValueMapperBuilder();
   const items: string[] = [];
   const labels: Record<string, string> = {};
+  const labels2020: Record<string, string> = {};
   let i = 0;
   for (const v of playgroundValidators2()) {
-    if (codegemIsJsonSchemaValidator(v) && v.draft2020 !== draft2020) {
+    if (v.draft2020) {
       continue;
     }
     const label = playgroundValidatorTitle(v);
@@ -136,6 +176,10 @@ export function createValidatorMapper(
       value: v as unknown as SchemaValue,
     });
     labels[id] = label;
+    labels2020[id] =
+      codegemIsJsonSchemaValidator(v) && v.precompiled === false
+        ? playgroundValidatorTitle({ ...v, draft2020: true })
+        : label;
     items.push(id);
   }
   const mapper = builder.build();
@@ -171,40 +215,31 @@ export function createValidatorMapper(
     update: (v) =>
       updateValidatorTask.run(v as unknown as PlaygroundValidator2),
   });
-  return { mapped, items, labels };
-}
 
-export interface ParseQueryOptions<T> {
-  input: string;
-  parse: (value: string) => Promise<T>;
-  defaultValue: T;
-}
+  const effectiveLabels = $derived(
+    isDraft2020(schemaQuery.value) ? labels2020 : labels
+  );
 
-export function createParseQuery<T>(options: ParseQueryOptions<T>) {
-  let error = $state.raw(false);
-  const query = createQuery<[string], T>({
-    deps: () => [options.input],
-    execute: debounce((_, str) => options.parse(str)),
-    onSuccess() {
-      error = false;
-    },
-    onFailure(err) {
-      if (err.reason === "aborted") {
-        return;
-      }
-      error = true;
-      console.error(err);
-    },
-  });
   return {
-    get value() {
-      return query.result ?? options.defaultValue;
-    },
     get state() {
-      if (query.status === "processing") return "loading";
-      if (error) return "error";
-      return "idle";
+      return schemaQuery.state;
     },
+    get schema() {
+      return schema;
+    },
+    get validator() {
+      return validator;
+    },
+    get selected() {
+      return mapped.current;
+    },
+    set selected(v) {
+      mapped.current = v;
+    },
+    get labels() {
+      return effectiveLabels;
+    },
+    items,
   };
 }
 

@@ -19,9 +19,7 @@
     Content,
     SubmitButton,
     getValueSnapshot,
-    type Schema,
     type FormMerger,
-    type FormValidator,
   } from "@sjsf/form";
   import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
   import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
@@ -30,18 +28,17 @@
   import { extendByRecord, fromRecord } from "@sjsf/form/lib/resolver";
   import {
     abortPrevious,
-    createQuery,
     createTask,
     debounce,
   } from "@sjsf/form/lib/task.svelte";
   import { createFormMerger } from "@sjsf/form/mergers/modern";
   import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
   import { translation } from "@sjsf/form/translations/en";
-  import { createFormValidator as noop } from "@sjsf/form/validators/noop";
   import { withOmitExtraData } from "@sjsf/form/validators/omit-extra-data";
   import { Willow, WillowDark } from "@svar-ui/svelte-core";
   import { BitsConfig } from "bits-ui";
   import { themeOrSubThemeTitle } from "meta";
+  import { codegemIsJsonSchemaValidator } from "meta/codegen";
   import {
     ALL_OF_STATE_BEHAVIOR,
     ALL_OF_STATE_BEHAVIOR_TITLES,
@@ -63,24 +60,21 @@
     playgroundIconSets,
     playgroundResolvers,
     playgroundThemes,
-    playgroundValidator,
     type FormState,
     normalizeFormState,
-    parseSchemaObject,
     parseFormData,
     parseUiSchema,
-    isDraft2020,
     type PresetEntry,
     type NormalizedFormPreset,
-    type PlaygroundValidator2,
+    schemaTypeFromValidator,
   } from "meta/playground";
   import {
     SANDBOX_PLATFORMS,
     sandboxPlatformLabel,
     sandboxPlatformIcon,
   } from "meta/sandbox";
-  import { toast } from "svelte-sonner";
   import "meta/playground/augmentations";
+  import { toast } from "svelte-sonner";
   import { Panel, setTilerContext, type Tiles } from "svelte-tiler";
   import { fromRecord as registryFromRecord } from "svelte-tiler/shared/registry";
   import * as Leaf from "svelte-tiler/tiles/leaf.svelte";
@@ -116,9 +110,9 @@
     createMergerTransition,
     createOnFailure,
     createParseQuery,
-    createValidatorMapper,
-    loadConvertedFormPreset,
-    validatorForSchemaDraft,
+    createValidatorState,
+    checkSignal,
+    convertAndFormatTypedSchema,
   } from "@/shared.svelte";
   import { themeManager } from "@/theme.svelte";
 
@@ -216,46 +210,14 @@
     },
   };
 
-  const schemaQuery = createParseQuery<object>({
-    parse: parseSchemaObject,
-    get input() {
-      return data.schema;
-    },
-    defaultValue: {},
-  });
-  const schemaDraft2020 = $derived(isDraft2020(schemaQuery.value));
-
-  const deps = (): [PlaygroundValidator2, object] => [
-    data.validator,
-    schemaQuery.value,
-  ];
-  const validatorOptions = {
+  const validatorState = createValidatorState(data, {
     merger: () => merger,
-  };
-  const validatorQuery = createQuery<
-    [PlaygroundValidator2, object],
-    { schema: Schema; validator: FormValidator<unknown> }
-  >({
-    get deps() {
-      return schemaQuery.state === "loading" ? undefined : deps;
-    },
-    execute: debounce((_, v, s) =>
-      playgroundValidator(validatorForSchemaDraft(v, s))(validatorOptions)(s)
-    ),
-    onFailure: createOnFailure("Validator creation"),
   });
-
-  const DEFAULT_VALIDATOR = noop();
-  const DEFAULT_SCHEMA_AND_VALIDATOR = {
-    schema: {} satisfies Schema as Schema,
-    validator: DEFAULT_VALIDATOR,
-  };
-  const core = $derived(validatorQuery.result ?? DEFAULT_SCHEMA_AND_VALIDATOR);
 
   const merger: FormMerger = $derived(
     createFormMerger({
-      schema: core.schema,
-      validator: core.validator,
+      schema: validatorState.schema,
+      validator: validatorState.validator,
       jsonSchemaMerger,
       allOf: data.allOf,
       arrayMinItems: {
@@ -286,7 +248,9 @@
 
   const focusOnFirstError = createFocusOnFirstError();
   const formValidator = $derived(
-    data.omitExtraData ? withOmitExtraData(core.validator) : core.validator
+    data.omitExtraData
+      ? withOmitExtraData(validatorState.validator)
+      : validatorState.validator
   );
   const form = createForm({
     translation,
@@ -301,7 +265,7 @@
       return theme;
     },
     get schema() {
-      return core.schema;
+      return validatorState.schema;
     },
     get uiSchema() {
       return uiSchemaQuery.value;
@@ -460,10 +424,6 @@
     };
   });
 
-  const { mapped, items, labels } = $derived(
-    createValidatorMapper(data, schemaDraft2020)
-  );
-
   function toKeyName(
     k: string
   ): "schema" | "uiSchema" | "initialValue" | undefined {
@@ -480,9 +440,34 @@
 
   const loadPresetTask = createTask<[PresetEntry], NormalizedFormPreset>({
     combinator: abortPrevious,
-    execute: debounce((s, entry) =>
-      loadConvertedFormPreset(s, entry, data.validator)
-    ),
+    execute: debounce(async (s, { load, meta }) => {
+      const preset = await load();
+      checkSignal(s);
+      const validator = preset.validator ?? data.validator;
+      const validatorSchemaType = schemaTypeFromValidator(validator);
+      const schema = await convertAndFormatTypedSchema(s, {
+        source: {
+          ...meta.schema,
+          schema: preset.schema,
+        },
+        target:
+          meta.schema.type === validatorSchemaType.type
+            ? meta.schema
+            : validatorSchemaType,
+      });
+      return {
+        ...preset,
+        schema,
+        validator:
+          codegemIsJsonSchemaValidator(validator) &&
+          validator.precompiled === false
+            ? {
+                ...validator,
+                draft2020: false,
+              }
+            : validator,
+      };
+    }),
     onSuccess(preset) {
       originalInitialValue = preset.initialValue;
       Object.assign(data, preset);
@@ -517,7 +502,12 @@
       items={playgroundThemes()}
       itemLabel={themeOrSubThemeTitle}
     />
-    <Select label="Validator" bind:value={mapped.current} {items} {labels} />
+    <Select
+      label="Validator"
+      bind:value={validatorState.selected}
+      items={validatorState.items}
+      labels={validatorState.labels}
+    />
     <Select
       label="Icons"
       bind:value={data.icons}
@@ -709,7 +699,7 @@
   <Editor
     bind:value={data.schema}
     class="h-full"
-    data-state={schemaQuery.state}
+    data-state={validatorState.state}
   />
 {/snippet}
 
