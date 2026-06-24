@@ -4,7 +4,7 @@ import { describe, expect, test } from "vitest";
 
 import * as defaults from "../lib/form-defaults.js";
 import {
-  type CombinationFieldTestOptions,
+  type CombinationFieldTestContext,
   type CombinationTestFormOptions,
 } from "./combination-field-core.js";
 import {
@@ -16,14 +16,14 @@ import {
 import TestForm from "./test-form.svelte";
 
 function ssrForm(
-  options: CombinationTestFormOptions,
-  testOptions?: CombinationFieldTestOptions
+  ctx: CombinationFieldTestContext,
+  options: CombinationTestFormOptions
 ) {
   return renderServer(TestForm, {
-    context: testOptions?.context,
+    context: ctx.context,
     props: {
       ...defaults,
-      ...testOptions?.defaultFormOptions,
+      ...ctx.defaultFormOptions,
       ...options,
     } as const,
   });
@@ -31,19 +31,16 @@ function ssrForm(
 
 export function combinationFieldSsrTests(
   theme: Theme,
-  testOptions?: CombinationFieldTestOptions
+  ctx: CombinationFieldTestContext = {}
 ) {
   describe("combination fields SSR", () => {
     test("renders selected option and defaults", () => {
-      const { body } = ssrForm(
-        {
-          theme,
-          schema: discriminatedSchema,
-          uiSchema: discriminatedUiSchema,
-          initialValue: { kind: "company", shared: "kept" },
-        },
-        testOptions
-      );
+      const { body } = ssrForm(ctx, {
+        theme,
+        schema: discriminatedSchema,
+        uiSchema: discriminatedUiSchema,
+        initialValue: { kind: "company", shared: "kept" },
+      });
 
       expect(body).toContain("Company kind");
       expect(body).toContain("Acme");
@@ -51,40 +48,31 @@ export function combinationFieldSsrTests(
     });
 
     test("renders first option when no initial value", () => {
-      const { body } = ssrForm(
-        {
-          theme,
-          schema: discriminatedSchema,
-          uiSchema: discriminatedUiSchema,
-        },
-        testOptions
-      );
+      const { body } = ssrForm(ctx, {
+        theme,
+        schema: discriminatedSchema,
+        uiSchema: discriminatedUiSchema,
+      });
 
       expect(body).toContain("Person from UI");
       expect(body).toContain("Ada");
     });
 
     test("renders ambiguous schema default option", () => {
-      const { body } = ssrForm(
-        {
-          theme,
-          schema: ambiguousSchema,
-        },
-        testOptions
-      );
+      const { body } = ssrForm(ctx, {
+        theme,
+        schema: ambiguousSchema,
+      });
 
       expect(body).toContain("String branch");
       expect(body).toContain("string-default");
     });
 
     test("renders plain oneOf without discriminator", () => {
-      const { body } = ssrForm(
-        {
-          theme,
-          schema: plainOneOfSchema,
-        },
-        testOptions
-      );
+      const { body } = ssrForm(ctx, {
+        theme,
+        schema: plainOneOfSchema,
+      });
 
       expect(body).toContain("First");
       expect(body).toContain("default-first");

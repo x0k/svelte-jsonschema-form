@@ -1,11 +1,16 @@
-import { type Theme } from "@sjsf/form";
+import {
+  BasicForm,
+  createForm,
+  getValueSnapshot,
+  type Theme,
+} from "@sjsf/form";
 import { describe, expect, test } from "vitest";
 import { render } from "vitest-browser-svelte";
 import { type Locator } from "vitest/browser";
 
 import * as defaults from "../lib/form-defaults.js";
 import {
-  type CombinationFieldTestOptions,
+  type CombinationFieldTestContext,
   type CombinationTestFormOptions,
 } from "./combination-field-core.js";
 import {
@@ -13,28 +18,23 @@ import {
   discriminatedSchema,
   discriminatedUiSchema,
 } from "./test-data/combination-defaults.js";
-import TestForm from "./test-form.svelte";
 
 function renderForm(
-  options: CombinationTestFormOptions,
-  testOptions?: CombinationFieldTestOptions
+  ctx: CombinationFieldTestContext,
+  options: CombinationTestFormOptions
 ) {
   const target = document.body.appendChild(document.createElement("div"));
-  return render(TestForm, {
-    target,
-    context: testOptions?.context,
-    props: {
-      ...defaults,
-      ...testOptions?.defaultFormOptions,
-      ...options,
-    } as const,
+  const form = createForm({
+    ...defaults,
+    ...ctx.defaultFormOptions,
+    ...options,
   });
-}
-
-function readValue(screen: ReturnType<typeof render>): unknown {
-  const text = screen.getByTestId("form-value").element().textContent;
-  expect(text).toBeTruthy();
-  return JSON.parse(text!);
+  const screen = render(BasicForm, {
+    target,
+    context: ctx.context,
+    props: { form },
+  });
+  return { screen, form };
 }
 
 function getCombinationSelector(locator: Locator) {
@@ -62,7 +62,7 @@ async function defaultAssertSelectedOption(locator: Locator, label: string) {
 
 async function assertSelectedOption(
   screen: ReturnType<typeof render>,
-  testOptions: CombinationFieldTestOptions | undefined,
+  testOptions: CombinationFieldTestContext | undefined,
   label: string
 ) {
   await (testOptions?.assertSelectedOption ?? defaultAssertSelectedOption)(
@@ -81,7 +81,7 @@ async function defaultAssertOptionLabels(locator: Locator, labels: string[]) {
 
 async function assertOptionLabels(
   screen: ReturnType<typeof render>,
-  testOptions: CombinationFieldTestOptions | undefined,
+  testOptions: CombinationFieldTestContext | undefined,
   labels: string[]
 ) {
   await (testOptions?.assertOptionLabels ?? defaultAssertOptionLabels)(
@@ -92,7 +92,7 @@ async function assertOptionLabels(
 
 async function selectOption(
   screen: ReturnType<typeof render>,
-  testOptions: CombinationFieldTestOptions | undefined,
+  testOptions: CombinationFieldTestContext | undefined,
   label: string
 ) {
   await (testOptions?.selectOption ?? defaultSelectOption)(
@@ -103,22 +103,19 @@ async function selectOption(
 
 export function combinationFieldTests(
   theme: Theme,
-  testOptions?: CombinationFieldTestOptions
+  ctx: CombinationFieldTestContext = {}
 ) {
   describe("combination fields", () => {
     test("selects initial option from discriminator value", async () => {
-      const screen = renderForm(
-        {
-          theme,
-          schema: discriminatedSchema,
-          uiSchema: discriminatedUiSchema,
-          initialValue: { kind: "company", shared: "kept" },
-        },
-        testOptions
-      );
+      const { screen, form } = renderForm(ctx, {
+        theme,
+        schema: discriminatedSchema,
+        uiSchema: discriminatedUiSchema,
+        initialValue: { kind: "company", shared: "kept" },
+      });
 
-      await assertSelectedOption(screen, testOptions, "Company kind");
-      expect(readValue(screen)).toEqual({
+      await assertSelectedOption(screen, ctx, "Company kind");
+      expect(getValueSnapshot(form)).toEqual({
         kind: "company",
         shared: "kept",
         companyName: "Acme",
@@ -126,20 +123,17 @@ export function combinationFieldTests(
     });
 
     test("renders current option fields after normalization", async () => {
-      const screen = renderForm(
-        {
-          theme,
-          schema: discriminatedSchema,
-          uiSchema: discriminatedUiSchema,
-          initialValue: { kind: "company", shared: "kept" },
-        },
-        testOptions
-      );
+      const { screen, form } = renderForm(ctx, {
+        theme,
+        schema: discriminatedSchema,
+        uiSchema: discriminatedUiSchema,
+        initialValue: { kind: "company", shared: "kept" },
+      });
 
       await expect
         .element(screen.getByLabelText("Company Name"))
         .toHaveValue("Acme");
-      expect(readValue(screen)).toEqual({
+      expect(getValueSnapshot(form)).toEqual({
         kind: "company",
         shared: "kept",
         companyName: "Acme",
@@ -147,36 +141,30 @@ export function combinationFieldTests(
     });
 
     test("keeps internally normalized object on an ambiguous option", async () => {
-      const screen = renderForm(
-        {
-          theme,
-          schema: ambiguousSchema,
-        },
-        testOptions
-      );
+      const { screen, form } = renderForm(ctx, {
+        theme,
+        schema: ambiguousSchema,
+      });
 
-      await assertSelectedOption(screen, testOptions, "String branch");
-      expect(readValue(screen)).toEqual({ shared: "string-default" });
+      await assertSelectedOption(screen, ctx, "String branch");
+      expect(getValueSnapshot(form)).toEqual({ shared: "string-default" });
     });
 
     test("sanitizes previous option data when switching options", async () => {
-      const screen = renderForm(
-        {
-          theme,
-          schema: discriminatedSchema,
-          uiSchema: discriminatedUiSchema,
-          initialValue: {
-            kind: "person",
-            name: "Grace",
-            shared: "kept",
-          },
+      const { screen, form } = renderForm(ctx, {
+        theme,
+        schema: discriminatedSchema,
+        uiSchema: discriminatedUiSchema,
+        initialValue: {
+          kind: "person",
+          name: "Grace",
+          shared: "kept",
         },
-        testOptions
-      );
+      });
 
-      await selectOption(screen, testOptions, "Company kind");
-      await assertSelectedOption(screen, testOptions, "Company kind");
-      expect(readValue(screen)).toEqual({
+      await selectOption(screen, ctx, "Company kind");
+      await assertSelectedOption(screen, ctx, "Company kind");
+      expect(getValueSnapshot(form)).toEqual({
         kind: "company",
         companyName: "Acme",
         shared: "kept",
@@ -184,19 +172,13 @@ export function combinationFieldTests(
     });
 
     test("uses discriminator ui-schema titles before schema titles", async () => {
-      const screen = renderForm(
-        {
-          theme,
-          schema: discriminatedSchema,
-          uiSchema: discriminatedUiSchema,
-        },
-        testOptions
-      );
+      const { screen } = renderForm(ctx, {
+        theme,
+        schema: discriminatedSchema,
+        uiSchema: discriminatedUiSchema,
+      });
 
-      await assertOptionLabels(screen, testOptions, [
-        "Person from UI",
-        "Company kind",
-      ]);
+      await assertOptionLabels(screen, ctx, ["Person from UI", "Company kind"]);
     });
   });
 }

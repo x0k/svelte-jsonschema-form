@@ -6,7 +6,7 @@ export type CombinationTestFormOptions = Partial<FormOptions<any>> & {
   theme: Theme;
 };
 
-export interface CombinationFieldTestOptions {
+export interface CombinationFieldTestContext {
   context?: Map<any, any>;
   defaultFormOptions?: Partial<FormOptions<any>>;
   selectOption?: (locator: Locator, label: string) => Promise<void>;
