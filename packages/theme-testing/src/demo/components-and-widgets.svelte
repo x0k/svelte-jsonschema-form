@@ -11,7 +11,7 @@
   import type { Snippet } from "svelte";
 
   import * as defaults from "../lib/form-defaults.js";
-  import { s } from "../snapshots/export.js";
+  import { s } from "../specs/index.js";
   import Form from "./form.svelte";
 
   const {
