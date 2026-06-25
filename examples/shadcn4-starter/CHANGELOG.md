@@ -1,5 +1,15 @@
 # shadcn4-starter
 
+## 0.0.17
+
+### Patch Changes
+
+- Updated dependencies [[`05c548f`](https://github.com/x0k/svelte-jsonschema-form/commit/05c548f2bc2d89867e87479150af1c7289cd7474), [`d4e6e8d`](https://github.com/x0k/svelte-jsonschema-form/commit/d4e6e8d592307d367489005d79fb97aa2af764c0), [`2018c3a`](https://github.com/x0k/svelte-jsonschema-form/commit/2018c3a03ed757c57d713bbbb0278324c24878d2), [`3ba0ae7`](https://github.com/x0k/svelte-jsonschema-form/commit/3ba0ae7aab68632ed91fe4b5806af8efeddf2603), [`c3d44c0`](https://github.com/x0k/svelte-jsonschema-form/commit/c3d44c0822b997ca579aaa01e2f1682100e2b400), [`0e3415e`](https://github.com/x0k/svelte-jsonschema-form/commit/0e3415ed8da63eb11f768aeb0fa6811b8a3d7708), [`2018c3a`](https://github.com/x0k/svelte-jsonschema-form/commit/2018c3a03ed757c57d713bbbb0278324c24878d2), [`d4e6e8d`](https://github.com/x0k/svelte-jsonschema-form/commit/d4e6e8d592307d367489005d79fb97aa2af764c0), [`2a9490c`](https://github.com/x0k/svelte-jsonschema-form/commit/2a9490cc0e9f73f1023c1a88129b909b7ffed35f), [`2018c3a`](https://github.com/x0k/svelte-jsonschema-form/commit/2018c3a03ed757c57d713bbbb0278324c24878d2), [`2018c3a`](https://github.com/x0k/svelte-jsonschema-form/commit/2018c3a03ed757c57d713bbbb0278324c24878d2)]:
+  - @sjsf/form@3.7.0
+  - @sjsf/ajv8-validator@3.7.0
+  - @sjsf/shadcn4-theme@3.7.0
+  - @sjsf/basic-theme@3.7.0
+
 ## 0.0.16
 
 ### Patch Changes

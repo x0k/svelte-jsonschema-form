@@ -1,5 +1,30 @@
 # @sjsf/form
 
+## 3.7.0
+
+### Minor Changes
+
+- - Add query `current` writable property to `Query`, replacing the read-only `result`. ([#405](https://github.com/x0k/svelte-jsonschema-form/pull/405))
+  - Add `initialValue` option to `createQuery`. When provided, the query `current` type excludes `undefined` automatically.
+
+- Add explicit non-svelte entrypoint ([#386](https://github.com/x0k/svelte-jsonschema-form/pull/386))
+
+- Add support for asynchronous validators for `withOmitExtraData` ([#403](https://github.com/x0k/svelte-jsonschema-form/pull/403))
+
+- Allow passing schema definitions to `getClosestMatchingOption` ([#386](https://github.com/x0k/svelte-jsonschema-form/pull/386))
+
+- Export `createValidatorRetriever` and `fromValidators` functions from `@sjsf/form/validators/precompile` ([#386](https://github.com/x0k/svelte-jsonschema-form/pull/386))
+
+### Patch Changes
+
+- Fix `DeepPartial` type ([#390](https://github.com/x0k/svelte-jsonschema-form/pull/390))
+
+- Fix precompiled validators support for `omitExtraData` ([#389](https://github.com/x0k/svelte-jsonschema-form/pull/389))
+
+- Guard event handlers against firing after field unmount ([#399](https://github.com/x0k/svelte-jsonschema-form/pull/399))
+
+- Fix the multiple use of a single $id ([#386](https://github.com/x0k/svelte-jsonschema-form/pull/386))
+
 ## 3.6.0
 
 ### Minor Changes

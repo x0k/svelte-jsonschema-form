@@ -10,8 +10,8 @@ exports[`builder sandbox-factory > basic > basic 1`] = `
     "@sjsf/form": "^3.5.0",
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
-    "@sjsf/basic-theme": "^3.6.0",
-    "@sjsf/ajv8-validator": "^3.6.0",
+    "@sjsf/basic-theme": "^3.7.0",
+    "@sjsf/ajv8-validator": "^3.7.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
   },
@@ -160,8 +160,8 @@ exports[`builder sandbox-factory > fields > extra fields 1`] = `
     "@sjsf/form": "^3.5.0",
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
-    "@sjsf/basic-theme": "^3.6.0",
-    "@sjsf/ajv8-validator": "^3.6.0",
+    "@sjsf/basic-theme": "^3.7.0",
+    "@sjsf/ajv8-validator": "^3.7.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
   },
@@ -310,8 +310,8 @@ exports[`builder sandbox-factory > themes > basic 1`] = `
     "@sjsf/form": "^3.5.0",
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
-    "@sjsf/basic-theme": "^3.6.0",
-    "@sjsf/ajv8-validator": "^3.6.0",
+    "@sjsf/basic-theme": "^3.7.0",
+    "@sjsf/ajv8-validator": "^3.7.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
   },
@@ -462,7 +462,7 @@ exports[`builder sandbox-factory > themes > beercss 1`] = `
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
     "beercss": "^4.0.0",
-    "@sjsf/ajv8-validator": "^3.6.0",
+    "@sjsf/ajv8-validator": "^3.7.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
   },
@@ -610,10 +610,10 @@ exports[`builder sandbox-factory > themes > daisyui5 1`] = `
     "@sjsf/form": "^3.5.0",
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
-    "@sjsf/daisyui5-theme": "^3.6.0",
+    "@sjsf/daisyui5-theme": "^3.7.0",
     "daisyui": "^5.4.0",
     "pikaday": "^1.8.2",
-    "@sjsf/ajv8-validator": "^3.6.0",
+    "@sjsf/ajv8-validator": "^3.7.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
   },
@@ -772,9 +772,9 @@ exports[`builder sandbox-factory > themes > flowbite3 1`] = `
     "@sjsf/form": "^3.5.0",
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
-    "@sjsf/flowbite3-theme": "^3.6.0",
+    "@sjsf/flowbite3-theme": "^3.7.0",
     "flowbite-svelte": "^1.22.0",
-    "@sjsf/ajv8-validator": "^3.6.0",
+    "@sjsf/ajv8-validator": "^3.7.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
   },
@@ -958,8 +958,8 @@ exports[`builder sandbox-factory > themes > pico 1`] = `
     "@sjsf/form": "^3.5.0",
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
-    "@sjsf/basic-theme": "^3.6.0",
-    "@sjsf/ajv8-validator": "^3.6.0",
+    "@sjsf/basic-theme": "^3.7.0",
+    "@sjsf/ajv8-validator": "^3.7.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
   },
@@ -1115,7 +1115,7 @@ exports[`builder sandbox-factory > themes > shadcn-extras 1`] = `
     "bits-ui": "^2.14.0",
     "clsx": "^2.1.0",
     "tailwind-merge": "^3.3.0",
-    "@sjsf/ajv8-validator": "^3.6.0",
+    "@sjsf/ajv8-validator": "^3.7.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
   },
@@ -1479,7 +1479,7 @@ exports[`builder sandbox-factory > themes > shadcn4 1`] = `
     "@sjsf/form": "^3.5.0",
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
-    "@sjsf/shadcn4-theme": "^3.6.0",
+    "@sjsf/shadcn4-theme": "^3.7.0",
     "@internationalized/date": "^3.10.0",
     "@lucide/svelte": "^1.0.0",
     "bits-ui": "^2.14.0",
@@ -1487,7 +1487,7 @@ exports[`builder sandbox-factory > themes > shadcn4 1`] = `
     "shadcn-svelte": "^1.2.0",
     "tailwind-merge": "^3.3.0",
     "tailwind-variants": "^3.0.0",
-    "@sjsf/ajv8-validator": "^3.6.0",
+    "@sjsf/ajv8-validator": "^3.7.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
   },
@@ -1831,10 +1831,10 @@ exports[`builder sandbox-factory > themes > skeleton4 1`] = `
     "@sjsf/form": "^3.5.0",
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
-    "@sjsf/skeleton4-theme": "^3.6.0",
+    "@sjsf/skeleton4-theme": "^3.7.0",
     "@skeletonlabs/skeleton": "^4.2.0",
     "@skeletonlabs/skeleton-svelte": "^4.2.0",
-    "@sjsf/ajv8-validator": "^3.6.0",
+    "@sjsf/ajv8-validator": "^3.7.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
   },
@@ -2008,7 +2008,7 @@ exports[`builder sandbox-factory > themes > svar 1`] = `
     "svelte": "^5.34.8",
     "@sjsf-lab/svar-theme": "^3.3.0",
     "@svar-ui/svelte-core": "^2.3.0",
-    "@sjsf/ajv8-validator": "^3.6.0",
+    "@sjsf/ajv8-validator": "^3.7.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
   },
@@ -2161,8 +2161,8 @@ exports[`builder sandbox-factory > ui-schema > with uiSchema 1`] = `
     "@sjsf/form": "^3.5.0",
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
-    "@sjsf/basic-theme": "^3.6.0",
-    "@sjsf/ajv8-validator": "^3.6.0",
+    "@sjsf/basic-theme": "^3.7.0",
+    "@sjsf/ajv8-validator": "^3.7.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
   },
@@ -2318,8 +2318,8 @@ exports[`builder sandbox-factory > validators > ajv8 1`] = `
     "@sjsf/form": "^3.5.0",
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
-    "@sjsf/basic-theme": "^3.6.0",
-    "@sjsf/ajv8-validator": "^3.6.0",
+    "@sjsf/basic-theme": "^3.7.0",
+    "@sjsf/ajv8-validator": "^3.7.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
   },
@@ -2468,8 +2468,8 @@ exports[`builder sandbox-factory > validators > ajv8 2`] = `
     "@sjsf/form": "^3.5.0",
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
-    "@sjsf/basic-theme": "^3.6.0",
-    "@sjsf/ajv8-validator": "^3.6.0",
+    "@sjsf/basic-theme": "^3.7.0",
+    "@sjsf/ajv8-validator": "^3.7.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
   },
@@ -2713,8 +2713,8 @@ exports[`builder sandbox-factory > validators > ata 1`] = `
     "@sjsf/form": "^3.5.0",
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
-    "@sjsf/basic-theme": "^3.6.0",
-    "@sjsf-lab/ata-validator": "^3.1.1",
+    "@sjsf/basic-theme": "^3.7.0",
+    "@sjsf-lab/ata-validator": "^3.2.0",
     "ata-validator": "^0.21.0"
   },
   "devDependencies": {
@@ -2853,8 +2853,8 @@ exports[`builder sandbox-factory > validators > ata 2`] = `
     "@sjsf/form": "^3.5.0",
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
-    "@sjsf/basic-theme": "^3.6.0",
-    "@sjsf-lab/ata-validator": "^3.1.1",
+    "@sjsf/basic-theme": "^3.7.0",
+    "@sjsf-lab/ata-validator": "^3.2.0",
     "ata-validator": "^0.21.0"
   },
   "devDependencies": {
@@ -3069,8 +3069,8 @@ exports[`builder sandbox-factory > validators > cfworker 1`] = `
     "@sjsf/form": "^3.5.0",
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
-    "@sjsf/basic-theme": "^3.6.0",
-    "@sjsf/cfworker-validator": "^3.6.0",
+    "@sjsf/basic-theme": "^3.7.0",
+    "@sjsf/cfworker-validator": "^3.7.0",
     "@cfworker/json-schema": "^4.1.0"
   },
   "devDependencies": {
@@ -3209,8 +3209,8 @@ exports[`builder sandbox-factory > validators > hyperjump 1`] = `
     "@sjsf/form": "^3.5.0",
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
-    "@sjsf/basic-theme": "^3.6.0",
-    "@sjsf-lab/hyperjump-validator": "^3.0.0",
+    "@sjsf/basic-theme": "^3.7.0",
+    "@sjsf-lab/hyperjump-validator": "^3.1.0",
     "@fluent/bundle": "^0.19.0",
     "@hyperjump/json-schema": "^1.17.0"
   },
@@ -3457,8 +3457,8 @@ exports[`builder sandbox-factory > validators > schemasafe 1`] = `
     "@sjsf/form": "^3.5.0",
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
-    "@sjsf/basic-theme": "^3.6.0",
-    "@sjsf/schemasafe-validator": "^3.6.0",
+    "@sjsf/basic-theme": "^3.7.0",
+    "@sjsf/schemasafe-validator": "^3.7.0",
     "@exodus/schemasafe": "^1.3.0"
   },
   "devDependencies": {
@@ -3597,8 +3597,8 @@ exports[`builder sandbox-factory > validators > schemasafe 2`] = `
     "@sjsf/form": "^3.5.0",
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
-    "@sjsf/basic-theme": "^3.6.0",
-    "@sjsf/schemasafe-validator": "^3.6.0",
+    "@sjsf/basic-theme": "^3.7.0",
+    "@sjsf/schemasafe-validator": "^3.7.0",
     "@exodus/schemasafe": "^1.3.0"
   },
   "devDependencies": {
@@ -3820,8 +3820,8 @@ exports[`builder sandbox-factory > validators > valibot 1`] = `
     "@sjsf/form": "^3.5.0",
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
-    "@sjsf/basic-theme": "^3.6.0",
-    "@sjsf/valibot-validator": "^3.6.0",
+    "@sjsf/basic-theme": "^3.7.0",
+    "@sjsf/valibot-validator": "^3.7.0",
     "@valibot/to-json-schema": "^1.3.0",
     "valibot": "^1.2.0"
   },
@@ -3959,8 +3959,8 @@ exports[`builder sandbox-factory > validators > zod4 1`] = `
     "@sjsf/form": "^3.5.0",
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
-    "@sjsf/basic-theme": "^3.6.0",
-    "@sjsf/zod4-validator": "^3.6.0",
+    "@sjsf/basic-theme": "^3.7.0",
+    "@sjsf/zod4-validator": "^3.7.0",
     "zod": "^4.1.0"
   },
   "devDependencies": {
@@ -4097,8 +4097,8 @@ exports[`builder sandbox-factory > widgets > extra widgets 1`] = `
     "@sjsf/form": "^3.5.0",
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
-    "@sjsf/basic-theme": "^3.6.0",
-    "@sjsf/ajv8-validator": "^3.6.0",
+    "@sjsf/basic-theme": "^3.7.0",
+    "@sjsf/ajv8-validator": "^3.7.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
   },
