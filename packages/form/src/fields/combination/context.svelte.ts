@@ -5,7 +5,6 @@ import {
   getDiscriminatorFieldFromSchema,
   getSimpleSchemaType,
   ONE_OF_KEY,
-  type EnumOption,
   type Schema,
 } from "@/core/index.js";
 import {
@@ -15,25 +14,35 @@ import {
   getPseudoPath,
   retrieveSchema,
   retrieveUiSchema,
+  retrieveUiOption,
   sanitizeDataForNewSchema,
   uiTitleOption,
   type Config,
+  type FormEnumOption,
   type FormState,
   type FormValue,
   type Translate,
-  type UiSchema,
 } from "@/form/index.js";
+import type { Ref } from "@/lib/svelte.svelte.js";
+import {
+  IdEnumValueMapperBuilder,
+  singleOption,
+  type EnumValueMapper,
+} from "@/options.svelte.js";
 
 export type CombinationKey = typeof ONE_OF_KEY | typeof ANY_OF_KEY;
 
 export interface CombinationContext {
   restConfig: () => Config | null;
-  options: () => Schema[];
-  optionsUiSchemas: () => UiSchema[];
   selectedOption: () => number;
   selectOption: (selected: number | undefined) => void;
-  optionSelectorConfig: () => Config;
-  optionSelectorOptions: () => EnumOption<number>[];
+  optionSelectorProps: () => {
+    config: Config;
+    options: FormEnumOption[];
+    mapper: EnumValueMapper;
+    mapped: Ref<string>;
+    clearable: boolean;
+  };
   fieldConfig: () => Config | null;
 }
 
@@ -252,15 +261,6 @@ export function createCombinationContext<T>({
     });
   });
 
-  const enumOptions = $derived<EnumOption<number>[]>(
-    optionTitles.map((label, i) => ({
-      id: getPseudoId(ctx, config().path, i),
-      label,
-      value: i,
-      disabled: false,
-    }))
-  );
-
   const optionSelectorConfig: Config = $derived.by(() => {
     const cfg = config();
     const suffix = combinationKey.toLowerCase() as Lowercase<CombinationKey>;
@@ -275,6 +275,32 @@ export function createCombinationContext<T>({
       uiSchema,
       required: true,
     };
+  });
+
+  const { options: enumOptions, mapper } = $derived.by(() => {
+    const builder =
+      retrieveUiOption(
+        ctx,
+        optionSelectorConfig,
+        "enumValueMapperBuilder"
+      )?.() ?? new IdEnumValueMapperBuilder();
+    const options = optionTitles.map((label, i) => {
+      const option: FormEnumOption = {
+        id: getPseudoId(ctx, config().path, i),
+        label,
+        value: i,
+        disabled: false,
+      };
+      option.mappedValue = builder.push(option);
+      return option;
+    });
+    return { options, mapper: builder.build() };
+  });
+
+  const mapped = singleOption({
+    mapper: () => mapper,
+    value: () => selectedOption,
+    update: (v) => selectOption(v as number),
   });
 
   // Builds the field config for the currently selected option. Merges the
@@ -313,21 +339,18 @@ export function createCombinationContext<T>({
     restConfig() {
       return restConfig;
     },
-    options() {
-      return retrievedOptions;
-    },
-    optionsUiSchemas() {
-      return optionsUiSchemas;
-    },
     selectedOption() {
       return selectedOption;
     },
     selectOption,
-    optionSelectorConfig() {
-      return optionSelectorConfig;
-    },
-    optionSelectorOptions() {
-      return enumOptions;
+    optionSelectorProps() {
+      return {
+        clearable: false,
+        config: optionSelectorConfig,
+        options: enumOptions,
+        mapper,
+        mapped,
+      };
     },
     fieldConfig() {
       return fieldConfig;
