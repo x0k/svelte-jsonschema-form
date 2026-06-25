@@ -15,7 +15,7 @@ import {
   testMatchSnapshot,
   type MatchSnapshotOptions,
   type SnapshotFormOptions,
-} from "./snapshot-core.js";
+} from "./snapshot-helpers.js";
 
 const ERROR_TEXT = "field_error";
 

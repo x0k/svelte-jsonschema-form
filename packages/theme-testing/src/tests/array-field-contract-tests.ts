@@ -7,8 +7,8 @@ import {
   renderFieldForm,
   setInputValueAt,
   skippableTest,
-} from "./field-contract-core.js";
-import { type ArrayFieldTestContext } from "./field-core.js";
+} from "./field-contract-helpers.js";
+import { type ArrayFieldTestContext } from "./field-test-context.js";
 
 async function addItem(
   ctx: ArrayFieldTestContext | undefined,

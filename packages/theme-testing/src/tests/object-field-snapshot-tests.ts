@@ -16,7 +16,7 @@ import {
   matchSnapshot,
   type MatchSnapshotOptions,
   type SnapshotFormOptions,
-} from "./snapshot-core.js";
+} from "./snapshot-helpers.js";
 import * as oneOfDefaults from "./test-data/one-of-defaults.js";
 
 const titleAndDesc = {

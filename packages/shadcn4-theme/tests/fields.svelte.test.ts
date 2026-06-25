@@ -8,7 +8,8 @@ import { THEME_CONTEXT } from "../src/lib/theme/internal.js";
 import Form from "./form.svelte";
 
 async function selectOption(locator: Locator, label: string) {
-  await userEvent.click(locator.getByRole("button").first());
+  const button = locator.getByRole("button").first();
+  await userEvent.click(button);
   await userEvent.click(page.getByRole("option", { name: label }).first());
 }
 
@@ -19,13 +20,19 @@ async function assertSelectedOption(locator: Locator, label: string) {
 }
 
 async function assertOptionLabels(locator: Locator, labels: string[]) {
-  await userEvent.click(locator.getByRole("button").first());
+  const button = locator.getByRole("button").first();
+  await userEvent.click(button);
   for (const label of labels) {
-    await expect
-      .element(page.getByRole("option", { name: label }).first())
-      .toBeInTheDocument();
+    const option = page.getByRole("option", { name: label }).first();
+    await expect.element(option).toBeInTheDocument();
   }
   await userEvent.keyboard("{Escape}");
+  await expect.element(button).toHaveAttribute("data-state", "closed");
+}
+
+async function assertDisabled(locator: Locator) {
+  const button = locator.getByRole("button").first();
+  await expect.element(button).toBeDisabled();
 }
 
 fieldTests(theme, {
@@ -34,5 +41,6 @@ fieldTests(theme, {
   selectOption,
   assertSelectedOption,
   assertOptionLabels,
+  assertDisabled,
   skipTests: ["readonly field renders readonly input"],
 });

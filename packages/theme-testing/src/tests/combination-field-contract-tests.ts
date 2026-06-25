@@ -1,68 +1,21 @@
 import type { Theme } from "@sjsf/form";
 import { getValueSnapshot } from "@sjsf/form";
 import { describe, expect } from "vitest";
-import { type Locator } from "vitest/browser";
 
-import { renderFieldForm, skippableTest } from "./field-contract-core.js";
-import { type CombinationFieldTestContext } from "./field-core.js";
+import {
+  doAssertLabels,
+  doAssertSelected,
+  doSelect,
+  renderFieldForm,
+  skippableTest,
+} from "./field-contract-helpers.js";
+import { type CombinationFieldTestContext } from "./field-test-context.js";
 import {
   ambiguousSchema,
   discriminatedSchema,
   discriminatedUiSchema,
   plainOneOfSchema,
 } from "./test-data/combination-defaults.js";
-
-async function doSelect(
-  ctx: CombinationFieldTestContext | undefined,
-  locator: Locator,
-  label: string
-) {
-  if (ctx?.selectOption) {
-    await ctx.selectOption(locator, label);
-  } else {
-    const selector = locator.getByRole("combobox").first();
-    const select = selector.element() as HTMLSelectElement;
-    const option = Array.from(select.options).find(
-      (o) => o.textContent?.trim() === label
-    );
-    expect(option).toBeDefined();
-    await selector.selectOptions(option!.value);
-  }
-}
-
-async function doAssertSelected(
-  ctx: CombinationFieldTestContext | undefined,
-  locator: Locator,
-  label: string
-) {
-  if (ctx?.assertSelectedOption) {
-    await ctx.assertSelectedOption(locator, label);
-  } else {
-    const selector = locator.getByRole("combobox").first();
-    const select = selector.element() as HTMLSelectElement;
-    const selected = Array.from(select.selectedOptions).some(
-      (o) => o.textContent?.trim() === label
-    );
-    expect(selected).toBe(true);
-  }
-}
-
-async function doAssertLabels(
-  ctx: CombinationFieldTestContext | undefined,
-  locator: Locator,
-  labels: string[]
-) {
-  if (ctx?.assertOptionLabels) {
-    await ctx.assertOptionLabels(locator, labels);
-  } else {
-    const selector = locator.getByRole("combobox").first();
-    for (const label of labels) {
-      await expect
-        .element(selector.getByRole("option", { name: label }))
-        .toBeInTheDocument();
-    }
-  }
-}
 
 export function combinationFieldContractTests(
   theme: Theme,

@@ -6,7 +6,7 @@ import * as defaults from "../lib/form-defaults.js";
 import {
   type CombinationFieldTestContext,
   type CombinationTestFormOptions,
-} from "./field-core.js";
+} from "./field-test-context.js";
 import TestForm from "./form.svelte";
 import {
   ambiguousSchema,

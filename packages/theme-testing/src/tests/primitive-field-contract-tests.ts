@@ -4,13 +4,16 @@ import { describe, expect } from "vitest";
 
 import {
   clickCheckbox,
+  doAssertDisabled,
+  doAssertSelected,
+  doSelect,
   expectValue,
   getInputValue,
   renderFieldForm,
   setInputValue,
   skippableTest,
-} from "./field-contract-core.js";
-import { type PrimitiveFieldTestContext } from "./field-core.js";
+} from "./field-contract-helpers.js";
+import { type PrimitiveFieldTestContext } from "./field-test-context.js";
 
 const enumUiSchema = {
   "ui:components": {
@@ -210,17 +213,7 @@ export function primitiveFieldContractTests(
           initialValue: "option-b",
         });
 
-        if (ctx.assertSelectedOption) {
-          await ctx.assertSelectedOption(screen.locator, "option-b");
-        } else {
-          const select = screen.locator
-            .element()
-            .querySelector("select") as HTMLSelectElement;
-          const selected = Array.from(select.selectedOptions).some(
-            (o) => o.value === "option-b"
-          );
-          expect(selected).toBe(true);
-        }
+        await doAssertSelected(ctx, screen.locator, "option-b");
         expectValue(form, "option-b");
       });
 
@@ -232,21 +225,7 @@ export function primitiveFieldContractTests(
           initialValue: "option-a",
         });
 
-        if (ctx.selectOption) {
-          await ctx.selectOption(screen.locator, "option-c");
-        } else {
-          const select = screen.locator
-            .element()
-            .querySelector("select") as HTMLSelectElement;
-          const option = Array.from(select.options).find(
-            (o) => o.textContent?.trim() === "option-c"
-          );
-          expect(option).toBeDefined();
-          await screen.locator
-            .getByRole("combobox")
-            .first()
-            .selectOptions(option!.value);
-        }
+        await doSelect(ctx, screen.locator, "option-c");
         expectValue(form, "option-c");
       });
 
@@ -259,12 +238,7 @@ export function primitiveFieldContractTests(
           disabled: true,
         });
 
-        const select = screen.locator
-          .element()
-          .querySelector("select") as HTMLSelectElement;
-        if (select) {
-          expect(select.disabled).toBe(true);
-        }
+        doAssertDisabled(ctx, screen.locator);
       });
     });
   });

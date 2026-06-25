@@ -7,8 +7,8 @@ import {
   setInputValue,
   setInputValueAt,
   skippableTest,
-} from "./field-contract-core.js";
-import { type ObjectFieldTestContext } from "./field-core.js";
+} from "./field-contract-helpers.js";
+import { type ObjectFieldTestContext } from "./field-test-context.js";
 
 export function objectFieldContractTests(
   theme: Theme,

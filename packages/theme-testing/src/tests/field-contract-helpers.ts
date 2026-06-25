@@ -10,6 +10,7 @@ import { render } from "vitest-browser-svelte";
 import { type Locator } from "vitest/browser";
 
 import * as defaults from "../lib/form-defaults.js";
+import { type SelectCallbacks } from "./field-test-context.js";
 
 export function skippableTest(skipTests?: string[]): TestAPI {
   if (!skipTests?.length) return vitestTest;
@@ -101,4 +102,69 @@ export function clickCheckbox(locator: Locator) {
     'button[role="checkbox"], input[type="checkbox"]'
   ) as HTMLElement;
   checkbox?.click();
+}
+
+export async function doAssertSelected(
+  ctx: SelectCallbacks | undefined,
+  locator: Locator,
+  label: string
+) {
+  if (ctx?.assertSelectedOption) {
+    await ctx.assertSelectedOption(locator, label);
+  } else {
+    const selector = locator.getByRole("combobox").first();
+    const select = selector.element() as HTMLSelectElement;
+    const selected = Array.from(select.selectedOptions).some(
+      (o) => o.textContent?.trim() === label
+    );
+    expect(selected).toBe(true);
+  }
+}
+
+export async function doSelect(
+  ctx: SelectCallbacks | undefined,
+  locator: Locator,
+  label: string
+) {
+  if (ctx?.selectOption) {
+    await ctx.selectOption(locator, label);
+  } else {
+    const selector = locator.getByRole("combobox").first();
+    const select = selector.element() as HTMLSelectElement;
+    const option = Array.from(select.options).find(
+      (o) => o.textContent?.trim() === label
+    );
+    expect(option).toBeDefined();
+    await selector.selectOptions(option!.value);
+  }
+}
+
+export async function doAssertLabels(
+  ctx: SelectCallbacks | undefined,
+  locator: Locator,
+  labels: string[]
+) {
+  if (ctx?.assertOptionLabels) {
+    await ctx.assertOptionLabels(locator, labels);
+  } else {
+    const selector = locator.getByRole("combobox").first();
+    for (const label of labels) {
+      await expect
+        .element(selector.getByRole("option", { name: label }))
+        .toBeInTheDocument();
+    }
+  }
+}
+
+export async function doAssertDisabled(
+  ctx: SelectCallbacks | undefined,
+  locator: Locator
+) {
+  if (ctx?.assertDisabled) {
+    await ctx.assertDisabled(locator);
+  } else {
+    const selector = locator.getByRole("combobox").first();
+    const select = selector.element() as HTMLSelectElement;
+    expect(select.disabled).toBe(true);
+  }
 }

@@ -1,6 +1,13 @@
 import type { FormOptions, Schema, Theme } from "@sjsf/form";
 import type { Locator } from "vitest/browser";
 
+export interface SelectCallbacks {
+  selectOption?: (locator: Locator, label: string) => Promise<void>;
+  assertSelectedOption?: (locator: Locator, label: string) => Promise<void>;
+  assertOptionLabels?: (locator: Locator, labels: string[]) => Promise<void>;
+  assertDisabled?: (locator: Locator) => Promise<void>;
+}
+
 // --- Primitive fields ---
 
 export type PrimitiveTestFormOptions = Partial<FormOptions<any>> & {
@@ -8,15 +15,12 @@ export type PrimitiveTestFormOptions = Partial<FormOptions<any>> & {
   theme: Theme;
 };
 
-export interface PrimitiveFieldTestContext {
+export interface PrimitiveFieldTestContext extends SelectCallbacks {
   context?: Map<any, any>;
   defaultFormOptions?: Partial<FormOptions<any>>;
   typeText?: (locator: Locator, text: string) => Promise<void>;
   assertValue?: (locator: Locator, value: string) => Promise<void>;
   toggleCheckbox?: (locator: Locator) => Promise<void>;
-  selectOption?: (locator: Locator, label: string) => Promise<void>;
-  assertSelectedOption?: (locator: Locator, label: string) => Promise<void>;
-  assertOptionLabels?: (locator: Locator, labels: string[]) => Promise<void>;
   skipTests?: string[];
 }
 
@@ -55,11 +59,8 @@ export type CombinationTestFormOptions = Partial<FormOptions<any>> & {
   theme: Theme;
 };
 
-export interface CombinationFieldTestContext {
+export interface CombinationFieldTestContext extends SelectCallbacks {
   context?: Map<any, any>;
   defaultFormOptions?: Partial<FormOptions<any>>;
-  selectOption?: (locator: Locator, label: string) => Promise<void>;
-  assertSelectedOption?: (locator: Locator, label: string) => Promise<void>;
-  assertOptionLabels?: (locator: Locator, labels: string[]) => Promise<void>;
   skipTests?: string[];
 }

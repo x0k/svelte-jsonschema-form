@@ -10,7 +10,7 @@ import {
   matchSnapshot,
   type MatchSnapshotOptions,
   type SnapshotFormOptions,
-} from "./snapshot-core.js";
+} from "./snapshot-helpers.js";
 
 const titleAndDesc = {
   title: "Test field",
