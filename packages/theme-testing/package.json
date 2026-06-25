@@ -9,13 +9,13 @@
       "types": "./dist/demo/index.d.ts",
       "svelte": "./dist/demo/index.js"
     },
-    "./snapshots/*": {
-      "types": "./dist/snapshots/*.d.ts",
-      "default": "./dist/snapshots/*.js"
+    "./tests": {
+      "types": "./dist/tests/export.d.ts",
+      "default": "./dist/tests/export.js"
     },
-    "./fields/*": {
-      "types": "./dist/fields/*.d.ts",
-      "default": "./dist/fields/*.js"
+    "./tests/ssr": {
+      "types": "./dist/tests/export-ssr.d.ts",
+      "default": "./dist/tests/export-ssr.js"
     },
     "./specs": {
       "types": "./dist/specs/index.d.ts",

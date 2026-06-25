@@ -61,7 +61,6 @@
   const RestSchemaField = $derived(
     restFieldConfig && getFieldComponent(ctx, restFieldConfig)
   );
-  const selectorConfig = $derived(combinationCtx.optionSelectorConfig());
 
   const combinationFieldConfig = $derived(combinationCtx.fieldConfig());
   const CombinationField = $derived(
@@ -107,13 +106,13 @@
   action={action && renderAction}
 >
   {#snippet optionSelector()}
+    {@const props = combinationCtx.optionSelectorProps()}
     <Widget
+      {...props}
       type="widget"
       {errors}
       handlers={{}}
-      config={selectorConfig}
-      uiOption={(opt) => retrieveUiOption(ctx, selectorConfig, opt)}
-      options={combinationCtx.optionSelectorOptions()}
+      uiOption={(opt) => retrieveUiOption(ctx, props.config, opt)}
       bind:value={
         () => combinationCtx.selectedOption(), combinationCtx.selectOption
       }
