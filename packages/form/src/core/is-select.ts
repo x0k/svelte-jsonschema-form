@@ -89,6 +89,7 @@ export function getSelectOptionValuesSafe({
   return values;
 }
 
+/** @deprecated use `getSelectOptionValuesSafe` */
 export function getSelectOptionValues(
   schema: Schema
 ): SchemaValue[] | undefined {

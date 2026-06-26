@@ -9,7 +9,11 @@ import { isSchemaValueDeepEqual } from "./deep-equal.js";
 import { findSchemaDefinition } from "./definitions.js";
 import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
 import { isFixedItems } from "./is-fixed-items.js";
-import { getSelectOptionValues, isMultiSelect, isSelect } from "./is-select.js";
+import {
+  getSelectOptionValuesSafe,
+  isMultiSelect,
+  isSelect,
+} from "./is-select.js";
 import { getClosestMatchingOption } from "./matching.js";
 import { mergeDefaultsWithFormData, mergeSchemaObjects } from "./merge.js";
 import type { Merger } from "./merger.js";
@@ -497,7 +501,7 @@ export function ensureFormDataMatchingSchema(
     !isSchemaOfConstantValue(schema) &&
     isSelect(validator, merger, schema, rootSchema);
   if (isSelectField) {
-    const selectOptionValues = getSelectOptionValues(schema);
+    const selectOptionValues = getSelectOptionValuesSafe(schema);
     const isValid = selectOptionValues?.some((v) =>
       isSchemaValueDeepEqual(v, formData)
     );
