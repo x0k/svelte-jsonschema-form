@@ -1,7 +1,11 @@
-import type { Theme } from "@sjsf/form";
+import type { Schema, Theme, UiSchema } from "@sjsf/form";
+import { getValueSnapshot } from "@sjsf/form";
+import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 import { describe, expect } from "vitest";
 
 import {
+  doAssertSelected,
+  doSelect,
   expectValue,
   renderFieldForm,
   setInputValue,
@@ -95,6 +99,81 @@ export function objectFieldContractTests(
 
         setInputValueAt(screen.locator, 2, "newValue");
         expectValue(form, { name: "Alice", customField: "newValue" });
+      });
+    });
+
+    describe("dependent enum schema sanitization", () => {
+      const dependentEnumSchema: Schema = {
+        type: "object",
+        properties: {
+          animal: {
+            type: "string",
+            enum: ["Cat", "Fish"],
+          },
+        },
+        dependencies: {
+          animal: {
+            oneOf: [
+              {
+                properties: {
+                  animal: {
+                    enum: ["Cat"],
+                  },
+                  food: {
+                    type: "string",
+                    enum: ["meat"],
+                  },
+                },
+              },
+              {
+                properties: {
+                  animal: {
+                    enum: ["Fish"],
+                  },
+                  food: {
+                    type: "string",
+                    enum: ["worms"],
+                  },
+                  water: {
+                    type: "string",
+                    enum: ["lake"],
+                  },
+                },
+              },
+            ],
+          },
+        },
+      };
+
+      const enumUiSchema: UiSchema = {
+        "ui:components": {
+          stringField: "enumField",
+        },
+        "ui:options": {
+          enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
+        },
+      };
+
+      test("sanitizes stale enum data when switching dependent schema", async () => {
+        const { screen, form } = renderFieldForm(ctx, {
+          theme,
+          schema: dependentEnumSchema,
+          uiSchema: {
+            animal: enumUiSchema,
+            food: enumUiSchema,
+            water: enumUiSchema,
+          },
+          initialValue: { animal: "Fish", food: "worms", water: "lake" },
+        });
+
+        await doAssertSelected(ctx, screen.locator, "Fish");
+
+        await doSelect(ctx, screen.locator, "Cat");
+
+        const val = getValueSnapshot(form) as any;
+        expect(val.animal).toBe("Cat");
+        expect(val.food).toBe("meat");
+        expect(val.water).toBeUndefined();
       });
     });
   });

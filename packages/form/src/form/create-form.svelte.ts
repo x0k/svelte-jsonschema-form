@@ -2,7 +2,14 @@ import type { Attachment } from "svelte/attachments";
 import { on } from "svelte/events";
 import { SvelteMap } from "svelte/reactivity";
 
-import { retrieveSchema, type Schema, type Validator } from "@/core/index.js";
+import {
+  isSchemaDeepEqual,
+  isSchemaValueDeepEqual,
+  retrieveSchema,
+  sanitizeDataForNewSchema,
+  type Schema,
+  type Validator,
+} from "@/core/index.js";
 import { createDataURLtoBlob } from "@/lib/file.js";
 import { weakMemoize } from "@/lib/memoize.js";
 import type { SchedulerYield } from "@/lib/scheduler.js";
@@ -321,16 +328,18 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       valueRef,
     })
   );
-  // TODO: Move to `Content` component in v4
-  const retrievedSchema = $derived(
-    retrieveSchema(
+  let previousRetrievedSchema: Schema | undefined = undefined;
+  let __lastRetrievedSchema: Schema | undefined = undefined;
+  const retrievedSchema = $derived.by(() => {
+    previousRetrievedSchema = __lastRetrievedSchema;
+    return (__lastRetrievedSchema = retrieveSchema(
       validator,
       merger,
       options.schema,
       options.schema,
       valueRef.current
-    )
-  );
+    ));
+  });
   const idCache = new WeakMap<FieldPath, Id>();
   const idFromPath = $derived(
     weakMemoize(idCache, (path) => idBuilder.fromPath(path) as Id)
@@ -584,14 +593,58 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   let isDefaultsInjectionQueued = false;
   function injectSchemaDefaults() {
     isDefaultsInjectionQueued = false;
-    const nextValue = merger.mergeFormDataAndSchemaDefaults({
-      formData: valueRef.current,
-      schema: options.schema,
-      initialDefaultsGenerated,
-    });
-    initialDefaultsGenerated = true;
-    reconcileFormValue(valueRef, nextValue);
+    let currentRetrievedSchema = previousRetrievedSchema;
+
+    if (currentRetrievedSchema === undefined) {
+      throw new Error(
+        "Invalid invariant, previous retrieved schema is `undefined`, please report this error"
+      );
+    }
+
+    let formData = valueRef.current;
+    const values: FormValue[] = [];
+
+    sanitization: while (true) {
+      formData = merger.mergeFormDataAndSchemaDefaults({
+        formData: formData,
+        schema: options.schema,
+        initialDefaultsGenerated,
+      });
+      initialDefaultsGenerated = true;
+
+      for (let i = values.length - 1; i >= 0; i--) {
+        if (isSchemaValueDeepEqual(values[i], formData)) {
+          break sanitization;
+        }
+      }
+
+      const nextRetrievedSchema = retrieveSchema(
+        validator,
+        merger,
+        options.schema,
+        options.schema,
+        formData
+      );
+
+      if (isSchemaDeepEqual(currentRetrievedSchema, nextRetrievedSchema)) {
+        break sanitization;
+      }
+
+      values.push(formData);
+      formData = sanitizeDataForNewSchema(
+        validator,
+        merger,
+        options.schema,
+        nextRetrievedSchema,
+        currentRetrievedSchema,
+        formData
+      );
+      currentRetrievedSchema = nextRetrievedSchema;
+    }
+
+    reconcileFormValue(valueRef, formData);
   }
+
   return formState;
 }
 

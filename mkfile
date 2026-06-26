@@ -13,7 +13,7 @@ push:
   git push -u $@ origin HEAD
 
 fpush:
-  git push --no-verify
+  git push --no-verify $@
 
 d:
   pnpm run dev

@@ -46,7 +46,7 @@ export type ObjectTestFormOptions = Partial<FormOptions<any>> & {
   theme: Theme;
 };
 
-export interface ObjectFieldTestContext {
+export interface ObjectFieldTestContext extends SelectCallbacks {
   context?: Map<any, any>;
   defaultFormOptions?: Partial<FormOptions<any>>;
   skipTests?: string[];
