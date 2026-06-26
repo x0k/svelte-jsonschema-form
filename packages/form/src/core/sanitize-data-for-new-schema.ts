@@ -2,6 +2,8 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
+import { isSchemaValueDeepEqual } from "./deep-equal.js";
+import { getSelectOptionValuesSafe } from "./is-select.js";
 import type { Merger } from "./merger.js";
 import { retrieveSchema } from "./resolve.js";
 import {
@@ -15,6 +17,30 @@ import type { Validator } from "./validator.js";
 import { isSchemaObjectValue } from "./value.js";
 
 const NO_VALUE = Symbol("no Value");
+const NO_OPTIONS: SchemaValue[] = [];
+
+function replacementForInvalidEnumValue(
+  schema: Schema,
+  formValue: SchemaValue | undefined
+) {
+  const enumValues = getSelectOptionValuesSafe(schema) ?? NO_OPTIONS;
+  if (
+    enumValues.length === 0 ||
+    enumValues.some((value) => isSchemaValueDeepEqual(value, formValue))
+  ) {
+    return NO_VALUE;
+  }
+
+  const defaultValue = schema.default;
+  if (
+    defaultValue !== undefined &&
+    enumValues.some((value) => isSchemaValueDeepEqual(value, defaultValue))
+  ) {
+    return defaultValue;
+  }
+
+  return enumValues.length === 1 ? enumValues[0] : undefined;
+}
 
 function retrieveIfNeeded(
   validator: Validator,
@@ -153,6 +179,16 @@ export function sanitizeDataForNewSchema(
           if (newOptionConst !== NO_VALUE && newOptionConst !== formValue) {
             removeOldSchemaData[key] =
               oldOptionConst === formValue ? newOptionConst : undefined;
+          }
+
+          if (isDataObject && key in data) {
+            const enumReplacement = replacementForInvalidEnumValue(
+              newKeyedSchema,
+              formValue
+            );
+            if (enumReplacement !== NO_VALUE) {
+              removeOldSchemaData[key] = enumReplacement;
+            }
           }
         }
       }

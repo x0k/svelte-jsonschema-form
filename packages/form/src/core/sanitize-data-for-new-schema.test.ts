@@ -513,6 +513,239 @@ describe("sanitizeDataForNewSchema", () => {
       )
     ).toEqual({});
   });
+  it("replaces invalid enum data with the only allowed enum value", () => {
+    const oldSchema: Schema = {
+      type: "object",
+      properties: {
+        enumField: {
+          type: "string",
+          enum: ["oldData"],
+        },
+      },
+    };
+    const newSchema: Schema = {
+      type: "object",
+      properties: {
+        enumField: {
+          type: "string",
+          enum: ["newData"],
+        },
+      },
+    };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        {},
+        newSchema,
+        oldSchema,
+        { enumField: "oldData" }
+      )
+    ).toEqual({
+      enumField: "newData",
+    });
+  });
+  it("keeps enum data that is still allowed by the new schema", () => {
+    const oldSchema: Schema = {
+      type: "object",
+      properties: {
+        enumField: {
+          type: "string",
+          enum: ["keptData"],
+        },
+      },
+    };
+    const newSchema: Schema = {
+      type: "object",
+      properties: {
+        enumField: {
+          type: "string",
+          enum: ["keptData", "newData"],
+        },
+      },
+    };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        {},
+        newSchema,
+        oldSchema,
+        { enumField: "keptData" }
+      )
+    ).toEqual({
+      enumField: "keptData",
+    });
+  });
+  it("replaces invalid enum data with a valid new default when multiple enum values are allowed", () => {
+    const oldSchema: Schema = {
+      type: "object",
+      properties: {
+        enumField: {
+          type: "string",
+          enum: ["oldData"],
+        },
+      },
+    };
+    const newSchema: Schema = {
+      type: "object",
+      properties: {
+        enumField: {
+          type: "string",
+          enum: ["newData", "defaultData"],
+          default: "defaultData",
+        },
+      },
+    };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        {},
+        newSchema,
+        oldSchema,
+        { enumField: "oldData" }
+      )
+    ).toEqual({
+      enumField: "defaultData",
+    });
+  });
+  it("clears invalid enum data when multiple values are allowed and no valid default exists", () => {
+    const oldSchema: Schema = {
+      type: "object",
+      properties: {
+        enumField: {
+          type: "string",
+          enum: ["oldData"],
+        },
+      },
+    };
+    const newSchema: Schema = {
+      type: "object",
+      properties: {
+        enumField: {
+          type: "string",
+          enum: ["newData", "otherData"],
+        },
+      },
+    };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        {},
+        newSchema,
+        oldSchema,
+        { enumField: "oldData" }
+      )
+    ).toEqual({
+      enumField: undefined,
+    });
+  });
+  it("replaces invalid oneOf const and enum data", () => {
+    const oldSchema: Schema = {
+      type: "object",
+      properties: {
+        enumField: {
+          type: "string",
+          enum: ["oldData"],
+        },
+      },
+    };
+    const newSchema: Schema = {
+      type: "object",
+      properties: {
+        enumField: {
+          type: "string",
+          oneOf: [
+            { const: "newData" },
+            { enum: ["otherData"] },
+            // CHANGED: Otherwise this will be an invalid select schema
+            // And form will not display it as enum field anyway
+            // { enum: ["ignoredData", "extraIgnoredData"] },
+            { enum: ["ignoredData"] },
+          ],
+          default: "otherData",
+        },
+      },
+    };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        {},
+        newSchema,
+        oldSchema,
+        { enumField: "oldData" }
+      )
+    ).toEqual({
+      enumField: "otherData",
+    });
+  });
+  it("replaces invalid anyOf const data with the only allowed value", () => {
+    const oldSchema: Schema = {
+      type: "object",
+      properties: {
+        enumField: {
+          type: "string",
+          enum: ["oldData"],
+        },
+      },
+    };
+    const newSchema: Schema = {
+      type: "object",
+      properties: {
+        enumField: {
+          type: "string",
+          anyOf: [{ const: "newData" }],
+        },
+      },
+    };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        {},
+        newSchema,
+        oldSchema,
+        { enumField: "oldData" }
+      )
+    ).toEqual({
+      enumField: "newData",
+    });
+  });
+  it("keeps invalid data when oneOf does not provide enum-like values", () => {
+    const oldSchema: Schema = {
+      type: "object",
+      properties: {
+        enumField: {
+          type: "string",
+          enum: ["oldData"],
+        },
+      },
+    };
+    const newSchema: Schema = {
+      type: "object",
+      properties: {
+        enumField: {
+          type: "string",
+          oneOf: [{ enum: ["ignoredData", "extraIgnoredData"] }],
+        },
+      },
+    };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        {},
+        newSchema,
+        oldSchema,
+        { enumField: "oldData" }
+      )
+    ).toEqual({
+      enumField: "oldData",
+    });
+  });
   it("returns empty formData after resolving schema refs", () => {
     const rootSchema: Schema = {
       definitions: {
