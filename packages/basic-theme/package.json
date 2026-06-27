@@ -61,6 +61,7 @@
   },
   "devDependencies": {
     "@picocss/pico": "catalog:",
+    "@sjsf/ajv8-validator": "workspace:*",
     "@sjsf/form": "workspace:*",
     "svelte": "catalog:",
     "theme-testing": "workspace:*",

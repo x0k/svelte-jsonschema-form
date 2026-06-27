@@ -1,3 +1,4 @@
+import { createFormValidator } from "@sjsf/ajv8-validator";
 import {
   BasicForm,
   createForm,
@@ -5,24 +6,55 @@ import {
   type FormOptions,
   type Theme,
 } from "@sjsf/form";
+import { DEFAULT_ID_PREFIX } from "@sjsf/form";
+import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
+import { createFormMerger } from "@sjsf/form/mergers/modern";
+import { resolver } from "@sjsf/form/resolvers/basic";
+import "@sjsf/form/fields/extra/enum-include";
+import "@sjsf/form/fields/extra/multi-enum-include";
+import "@sjsf/form/templates/extra/optional-object-include";
+import "@sjsf/form/templates/extra/optional-field-include";
+import "@sjsf/form/templates/extra/optional-array-include";
+import "@sjsf/form/templates/extra/optional-multi-field-include";
+import { translation } from "@sjsf/form/translations/en";
 import { expect, test as vitestTest, type TestAPI } from "vitest";
 import { render } from "vitest-browser-svelte";
 import { type Locator } from "vitest/browser";
 
-import * as defaults from "../lib/form-defaults.js";
+const defaults = {
+  translation,
+  resolver,
+  validator: createFormValidator,
+  merger: createFormMerger,
+  idBuilder: createFormIdBuilder({ idPrefix: DEFAULT_ID_PREFIX }),
+};
 import { type SelectCallbacks } from "./field-test-context.js";
 
 export function skippableTest(skipTests?: string[]): TestAPI {
   const skip = skipTests ? new Set(skipTests) : undefined;
-  const run = skip
-    ? (name: string, ...args: any[]) =>
-        skip.has(name)
-          ? vitestTest.skip(name, ...args)
-          : vitestTest(name, ...args)
-    : vitestTest;
-  return Object.assign(run, {
-    skip: vitestTest.skip.bind(vitestTest),
-  }) as TestAPI;
+  if (!skip) return vitestTest;
+  function skippedTest(name: string, ...args: any[]) {
+    if (skip!.has(name)) {
+      return vitestTest.skip(name, ...args);
+    }
+    return vitestTest(name, ...args);
+  }
+  Object.defineProperty(skippedTest, "skip", {
+    value: vitestTest.skip.bind(vitestTest),
+    writable: true,
+    configurable: true,
+  });
+  Object.defineProperty(skippedTest, "todo", {
+    value: vitestTest.todo.bind(vitestTest),
+    writable: true,
+    configurable: true,
+  });
+  Object.defineProperty(skippedTest, "only", {
+    value: vitestTest.only.bind(vitestTest),
+    writable: true,
+    configurable: true,
+  });
+  return skippedTest as unknown as TestAPI;
 }
 
 export interface RenderFieldFormOptions {
