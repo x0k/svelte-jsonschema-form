@@ -1,10 +1,12 @@
 import type { FormOptions, Theme } from "@sjsf/form";
+import { expect } from "vitest";
 import type { Locator } from "vitest/browser";
 
 import type { Specs } from "../specs/schemas.js";
 import { arrayFieldContractTests } from "./array-field-contract-tests.js";
 import { arrayFieldTests } from "./array-field-snapshot-tests.js";
 import { combinationFieldContractTests } from "./combination-field-contract-tests.js";
+import { dependencyEnumArrayContractTests } from "./dependency-enum-array-contract-tests.js";
 import { type SelectCallbacks } from "./field-test-context.js";
 import { objectFieldContractTests } from "./object-field-contract-tests.js";
 import { objectTests } from "./object-field-snapshot-tests.js";
@@ -52,6 +54,16 @@ export function fieldTests(theme: Theme, options: FieldTestOptions = {}) {
     assertSelectedOption,
     assertOptionLabels,
     assertDisabled,
+    toggleCheckbox:
+      toggleCheckbox ??
+      (async (locator: Locator) => {
+        const el = locator.element();
+        const cb = el.querySelector(
+          'input[type="checkbox"], button[role="checkbox"], button[role="switch"]'
+        ) as HTMLElement;
+        expect(cb).toBeDefined();
+        cb.click();
+      }),
     skipTests,
   };
 
@@ -61,6 +73,7 @@ export function fieldTests(theme: Theme, options: FieldTestOptions = {}) {
     assertSelectedOption,
     assertOptionLabels,
     assertDisabled,
+    toggleCheckbox: fieldCtx.toggleCheckbox,
     skipTests,
   };
 
@@ -74,6 +87,7 @@ export function fieldTests(theme: Theme, options: FieldTestOptions = {}) {
   arrayFieldContractTests(theme, fieldCtx);
   objectFieldContractTests(theme, fieldCtx);
   combinationFieldContractTests(theme, combinationCtx);
+  dependencyEnumArrayContractTests(theme, combinationCtx);
 
   if (specs) {
     widgetTests(theme, specs, snapshotCtx);

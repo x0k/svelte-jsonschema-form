@@ -925,6 +925,66 @@ describe("sanitizeDataForNewSchema", () => {
       )
     ).toEqual(["1"]);
   });
+  it("filters out items not in the new items enum", () => {
+    const oldSchema: Schema = {
+      type: "array",
+      items: { type: "string", enum: ["c", "d"] },
+    };
+    const newSchema: Schema = {
+      type: "array",
+      items: { type: "string", enum: ["a", "b"] },
+    };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        {},
+        newSchema,
+        oldSchema,
+        ["c", "d"]
+      )
+    ).toEqual([]);
+  });
+  it("keeps items that remain valid in the new items enum", () => {
+    const oldSchema: Schema = {
+      type: "array",
+      items: { type: "string", enum: ["a", "b", "c"] },
+    };
+    const newSchema: Schema = {
+      type: "array",
+      items: { type: "string", enum: ["a", "b"] },
+    };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        {},
+        newSchema,
+        oldSchema,
+        ["a", "c"]
+      )
+    ).toEqual(["a"]);
+  });
+  it("returns all items when the new items schema has no enum constraint", () => {
+    const oldSchema: Schema = {
+      type: "array",
+      items: { type: "string", enum: ["a", "b"] },
+    };
+    const newSchema: Schema = {
+      type: "array",
+      items: { type: "string" },
+    };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        {},
+        newSchema,
+        oldSchema,
+        ["a", "b"]
+      )
+    ).toEqual(["a", "b"]);
+  });
   it("returns whole array when the new schema does not have maxItems for simple type", () => {
     const rootSchema: Schema = {
       definitions: {

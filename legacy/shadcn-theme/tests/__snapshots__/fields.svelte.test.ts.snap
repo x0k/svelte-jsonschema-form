@@ -156,7 +156,7 @@ exports[`default-ui > array fields > array icons 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_0"
-                    id="bits-c271"
+                    id="bits-c288"
                   >
                     -1 
                     <span>
@@ -352,7 +352,7 @@ exports[`default-ui > array fields > array icons 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_1"
-                    id="bits-c272"
+                    id="bits-c289"
                   >
                     -2 
                     <span>
@@ -672,7 +672,7 @@ exports[`default-ui > array fields > checkboxes 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__0"
-            id="bits-c266"
+            id="bits-c283"
           >
             a
             <!---->
@@ -754,7 +754,7 @@ exports[`default-ui > array fields > checkboxes 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__1"
-            id="bits-c268"
+            id="bits-c285"
           >
             b
             <!---->
@@ -836,7 +836,7 @@ exports[`default-ui > array fields > checkboxes 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__2"
-            id="bits-c270"
+            id="bits-c287"
           >
             c
             <!---->
@@ -957,7 +957,7 @@ exports[`default-ui > array fields > empty errors array 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_name"
-                    id="bits-c273"
+                    id="bits-c290"
                   >
                     name 
                     <!---->
@@ -1361,7 +1361,7 @@ exports[`default-ui > object fields > additionalProperties 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_foo__key-input"
-                    id="bits-c313"
+                    id="bits-c330"
                   >
                     foo Key 
                     <span>
@@ -1459,7 +1459,7 @@ exports[`default-ui > object fields > additionalProperties 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_foo"
-                    id="bits-c314"
+                    id="bits-c331"
                   >
                     foo 
                     <!---->
@@ -1664,7 +1664,7 @@ exports[`default-ui > object fields > additionalProperties with error 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_foo__key-input"
-                    id="bits-c315"
+                    id="bits-c332"
                   >
                     foo Key 
                     <span>
@@ -1774,7 +1774,7 @@ exports[`default-ui > object fields > additionalProperties with error 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_foo"
-                    id="bits-c316"
+                    id="bits-c333"
                   >
                     foo 
                     <!---->
@@ -1980,7 +1980,7 @@ exports[`default-ui > object fields > has errors 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_name"
-                    id="bits-c312"
+                    id="bits-c329"
                   >
                     name 
                     <!---->
@@ -2172,7 +2172,7 @@ exports[`default-ui > object fields > object 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_a"
-                    id="bits-c310"
+                    id="bits-c327"
                   >
                     A 
                     <!---->
@@ -2281,7 +2281,7 @@ exports[`default-ui > object fields > object 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_b"
-                    id="bits-c311"
+                    id="bits-c328"
                   >
                     B 
                     <!---->
@@ -2491,7 +2491,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_preset"
-                    id="bits-c335"
+                    id="bits-c352"
                   >
                     Preset 
                     <span>
@@ -2743,7 +2743,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_transform"
-                    id="bits-c338"
+                    id="bits-c355"
                   >
                     Transform
                     <!---->
@@ -2817,7 +2817,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_format"
-                    id="bits-c339"
+                    id="bits-c356"
                   >
                     Output format 
                     <span>
@@ -3069,7 +3069,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_paginate"
-                    id="bits-c342"
+                    id="bits-c359"
                   >
                     Paginate
                     <!---->
@@ -3225,7 +3225,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_createOnOpen"
-                    id="bits-c344"
+                    id="bits-c361"
                   >
                     Create on open
                     <!---->
@@ -3398,7 +3398,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_preset"
-                    id="bits-c347"
+                    id="bits-c364"
                   >
                     Preset 
                     <span>
@@ -3650,7 +3650,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_collapseIndexes"
-                    id="bits-c350"
+                    id="bits-c367"
                   >
                     Combine nested indexes
                     <!---->
@@ -3806,7 +3806,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_joinPrimitiveArrayValues"
-                    id="bits-c352"
+                    id="bits-c369"
                   >
                     Combine simple values
                     <!---->
@@ -3962,7 +3962,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_combineArraysOfObjects"
-                    id="bits-c354"
+                    id="bits-c371"
                   >
                     Combine objects
                     <!---->
@@ -4118,7 +4118,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_stabilizeOrderOfPropertiesInArraysOfObjects"
-                    id="bits-c356"
+                    id="bits-c373"
                   >
                     Stabilize order of properties
                     <!---->
@@ -4192,7 +4192,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_proportionalSizeAdjustmentThreshold"
-                    id="bits-c357"
+                    id="bits-c374"
                   >
                     Proportional size adjustment threshold 
                     <span>
@@ -4316,7 +4316,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_cornerCellValue"
-                    id="bits-c358"
+                    id="bits-c375"
                   >
                     Corner cell value 
                     <!---->
@@ -4515,7 +4515,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_transform"
-                    id="bits-c360"
+                    id="bits-c377"
                   >
                     Transform
                     <!---->
@@ -4589,7 +4589,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_format"
-                    id="bits-c361"
+                    id="bits-c378"
                   >
                     Output format 
                     <span>
@@ -4841,7 +4841,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_paginate"
-                    id="bits-c364"
+                    id="bits-c381"
                   >
                     Paginate
                     <!---->
@@ -4997,7 +4997,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_createOnOpen"
-                    id="bits-c366"
+                    id="bits-c383"
                   >
                     Create on open
                     <!---->
@@ -5141,7 +5141,7 @@ exports[`default-ui > object fields > show add button and fields if additionalPr
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_additionalProperty__key-input"
-                    id="bits-c317"
+                    id="bits-c334"
                   >
                     additionalProperty Key 
                     <span>
@@ -5239,7 +5239,7 @@ exports[`default-ui > object fields > show add button and fields if additionalPr
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_additionalProperty"
-                    id="bits-c318"
+                    id="bits-c335"
                   >
                     additionalProperty 
                     <!---->
@@ -5480,7 +5480,7 @@ exports[`default-ui > object fields > with title and description > additionalPro
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_foo__key-input"
-                    id="bits-c321"
+                    id="bits-c338"
                   >
                     foo Key 
                     <span>
@@ -5578,7 +5578,7 @@ exports[`default-ui > object fields > with title and description > additionalPro
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_foo"
-                    id="bits-c322"
+                    id="bits-c339"
                   >
                     foo 
                     <!---->
@@ -5820,7 +5820,7 @@ exports[`default-ui > object fields > with title and description > object 1`] = 
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_a"
-                    id="bits-c319"
+                    id="bits-c336"
                   >
                     A 
                     <!---->
@@ -5937,7 +5937,7 @@ exports[`default-ui > object fields > with title and description > object 1`] = 
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_b"
-                    id="bits-c320"
+                    id="bits-c337"
                   >
                     B 
                     <!---->
@@ -6162,7 +6162,7 @@ exports[`default-ui > object fields > with title and description > show add butt
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_additionalProperty__key-input"
-                    id="bits-c323"
+                    id="bits-c340"
                   >
                     additionalProperty Key 
                     <span>
@@ -6260,7 +6260,7 @@ exports[`default-ui > object fields > with title and description > show add butt
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_additionalProperty"
-                    id="bits-c324"
+                    id="bits-c341"
                   >
                     additionalProperty 
                     <!---->
@@ -6501,7 +6501,7 @@ exports[`default-ui > object fields > with title and description from both > add
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_foo__key-input"
-                    id="bits-c333"
+                    id="bits-c350"
                   >
                     foo Key 
                     <span>
@@ -6599,7 +6599,7 @@ exports[`default-ui > object fields > with title and description from both > add
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_foo"
-                    id="bits-c334"
+                    id="bits-c351"
                   >
                     foo 
                     <!---->
@@ -6841,7 +6841,7 @@ exports[`default-ui > object fields > with title and description from both > obj
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_a"
-                    id="bits-c331"
+                    id="bits-c348"
                   >
                     My Item A 
                     <!---->
@@ -6958,7 +6958,7 @@ exports[`default-ui > object fields > with title and description from both > obj
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_b"
-                    id="bits-c332"
+                    id="bits-c349"
                   >
                     My Item B 
                     <!---->
@@ -7183,7 +7183,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_foo__key-input"
-                    id="bits-c327"
+                    id="bits-c344"
                   >
                     foo Key 
                     <span>
@@ -7281,7 +7281,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_foo"
-                    id="bits-c328"
+                    id="bits-c345"
                   >
                     foo 
                     <!---->
@@ -7523,7 +7523,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_a"
-                    id="bits-c325"
+                    id="bits-c342"
                   >
                     My Item A 
                     <!---->
@@ -7640,7 +7640,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_b"
-                    id="bits-c326"
+                    id="bits-c343"
                   >
                     My Item B 
                     <!---->
@@ -7865,7 +7865,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_additionalProperty__key-input"
-                    id="bits-c329"
+                    id="bits-c346"
                   >
                     additionalProperty Key 
                     <span>
@@ -7963,7 +7963,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_additionalProperty"
-                    id="bits-c330"
+                    id="bits-c347"
                   >
                     additionalProperty 
                     <!---->
@@ -8868,7 +8868,7 @@ exports[`default-ui > widgets > checkbox > snapshots > disabled 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root"
-            id="bits-c92"
+            id="bits-c109"
           >
             
             <!---->
@@ -9022,7 +9022,7 @@ exports[`default-ui > widgets > checkbox > snapshots > error 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root"
-            id="bits-c90"
+            id="bits-c107"
           >
             
             <!---->
@@ -9187,7 +9187,7 @@ exports[`default-ui > widgets > checkbox > snapshots > normal 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root"
-            id="bits-c88"
+            id="bits-c105"
           >
             
             <!---->
@@ -9340,7 +9340,7 @@ exports[`default-ui > widgets > checkbox > snapshots > readonly 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root"
-            id="bits-c94"
+            id="bits-c111"
           >
             
             <!---->
@@ -9497,7 +9497,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__0"
-            id="bits-c118"
+            id="bits-c135"
           >
             foo
             <!---->
@@ -9582,7 +9582,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__1"
-            id="bits-c120"
+            id="bits-c137"
           >
             bar
             <!---->
@@ -9667,7 +9667,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__2"
-            id="bits-c122"
+            id="bits-c139"
           >
             fuzz
             <!---->
@@ -9752,7 +9752,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__3"
-            id="bits-c124"
+            id="bits-c141"
           >
             qux
             <!---->
@@ -9908,7 +9908,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__0"
-            id="bits-c110"
+            id="bits-c127"
           >
             foo
             <!---->
@@ -9990,7 +9990,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__1"
-            id="bits-c112"
+            id="bits-c129"
           >
             bar
             <!---->
@@ -10072,7 +10072,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__2"
-            id="bits-c114"
+            id="bits-c131"
           >
             fuzz
             <!---->
@@ -10154,7 +10154,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__3"
-            id="bits-c116"
+            id="bits-c133"
           >
             qux
             <!---->
@@ -10321,7 +10321,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__0"
-            id="bits-c102"
+            id="bits-c119"
           >
             foo
             <!---->
@@ -10403,7 +10403,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__1"
-            id="bits-c104"
+            id="bits-c121"
           >
             bar
             <!---->
@@ -10485,7 +10485,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__2"
-            id="bits-c106"
+            id="bits-c123"
           >
             fuzz
             <!---->
@@ -10567,7 +10567,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__3"
-            id="bits-c108"
+            id="bits-c125"
           >
             qux
             <!---->
@@ -10722,7 +10722,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__0"
-            id="bits-c126"
+            id="bits-c143"
           >
             foo
             <!---->
@@ -10804,7 +10804,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__1"
-            id="bits-c128"
+            id="bits-c145"
           >
             bar
             <!---->
@@ -10886,7 +10886,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__2"
-            id="bits-c130"
+            id="bits-c147"
           >
             fuzz
             <!---->
@@ -10968,7 +10968,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__3"
-            id="bits-c132"
+            id="bits-c149"
           >
             qux
             <!---->
@@ -11065,7 +11065,7 @@ exports[`default-ui > widgets > combobox > snapshots > disabled 1`] = `
           data-popover-trigger=""
           data-state="closed"
           disabled=""
-          id="bits-c169"
+          id="bits-c186"
           role="combobox"
           type="button"
         >
@@ -11205,7 +11205,7 @@ exports[`default-ui > widgets > combobox > snapshots > error 1`] = `
           class="ring-offset-background focus-visible:ring-ring inline-flex items-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border-input bg-background hover:bg-accent hover:text-accent-foreground border h-10 px-4 py-2 w-full justify-between"
           data-popover-trigger=""
           data-state="closed"
-          id="bits-c167"
+          id="bits-c184"
           role="combobox"
           type="button"
         >
@@ -11356,7 +11356,7 @@ exports[`default-ui > widgets > combobox > snapshots > normal 1`] = `
           class="ring-offset-background focus-visible:ring-ring inline-flex items-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border-input bg-background hover:bg-accent hover:text-accent-foreground border h-10 px-4 py-2 w-full justify-between"
           data-popover-trigger=""
           data-state="closed"
-          id="bits-c165"
+          id="bits-c182"
           role="combobox"
           type="button"
         >
@@ -11495,7 +11495,7 @@ exports[`default-ui > widgets > combobox > snapshots > readonly 1`] = `
           class="ring-offset-background focus-visible:ring-ring inline-flex items-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border-input bg-background hover:bg-accent hover:text-accent-foreground border h-10 px-4 py-2 w-full justify-between"
           data-popover-trigger=""
           data-state="closed"
-          id="bits-c171"
+          id="bits-c188"
           role="combobox"
           type="button"
         >
@@ -11634,7 +11634,7 @@ exports[`default-ui > widgets > datePicker > snapshots > disabled 1`] = `
           class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary hover:bg-primary/90 h-10 px-4 py-2 w-full text-muted-foreground"
           data-popover-trigger=""
           data-state="closed"
-          id="bits-c177"
+          id="bits-c194"
           type="button"
         >
           
@@ -11742,7 +11742,7 @@ exports[`default-ui > widgets > datePicker > snapshots > error 1`] = `
           class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary hover:bg-primary/90 h-10 px-4 py-2 w-full text-muted-foreground"
           data-popover-trigger=""
           data-state="closed"
-          id="bits-c175"
+          id="bits-c192"
           type="button"
         >
           
@@ -11861,7 +11861,7 @@ exports[`default-ui > widgets > datePicker > snapshots > normal 1`] = `
           class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary hover:bg-primary/90 h-10 px-4 py-2 w-full text-muted-foreground"
           data-popover-trigger=""
           data-state="closed"
-          id="bits-c173"
+          id="bits-c190"
           type="button"
         >
           
@@ -11968,7 +11968,7 @@ exports[`default-ui > widgets > datePicker > snapshots > readonly 1`] = `
           class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary hover:bg-primary/90 h-10 px-4 py-2 w-full text-muted-foreground"
           data-popover-trigger=""
           data-state="closed"
-          id="bits-c179"
+          id="bits-c196"
           type="button"
         >
           
@@ -13769,7 +13769,7 @@ exports[`default-ui > widgets > radio > snapshots > disabled 1`] = `
           data-disabled=""
           data-orientation="vertical"
           data-radio-group-root=""
-          id="bits-c227"
+          id="bits-c244"
           role="radiogroup"
         >
           <!---->
@@ -13809,7 +13809,7 @@ exports[`default-ui > widgets > radio > snapshots > disabled 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root__0"
-              id="bits-c229"
+              id="bits-c246"
             >
               foo
               <!---->
@@ -13854,7 +13854,7 @@ exports[`default-ui > widgets > radio > snapshots > disabled 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root__1"
-              id="bits-c231"
+              id="bits-c248"
             >
               bar
               <!---->
@@ -13899,7 +13899,7 @@ exports[`default-ui > widgets > radio > snapshots > disabled 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root__2"
-              id="bits-c233"
+              id="bits-c250"
             >
               fuzz
               <!---->
@@ -13944,7 +13944,7 @@ exports[`default-ui > widgets > radio > snapshots > disabled 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root__3"
-              id="bits-c235"
+              id="bits-c252"
             >
               qux
               <!---->
@@ -14046,7 +14046,7 @@ exports[`default-ui > widgets > radio > snapshots > error 1`] = `
           class="grid gap-2"
           data-orientation="vertical"
           data-radio-group-root=""
-          id="bits-c218"
+          id="bits-c235"
           role="radiogroup"
         >
           <!---->
@@ -14084,7 +14084,7 @@ exports[`default-ui > widgets > radio > snapshots > error 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root__0"
-              id="bits-c220"
+              id="bits-c237"
             >
               foo
               <!---->
@@ -14127,7 +14127,7 @@ exports[`default-ui > widgets > radio > snapshots > error 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root__1"
-              id="bits-c222"
+              id="bits-c239"
             >
               bar
               <!---->
@@ -14170,7 +14170,7 @@ exports[`default-ui > widgets > radio > snapshots > error 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root__2"
-              id="bits-c224"
+              id="bits-c241"
             >
               fuzz
               <!---->
@@ -14213,7 +14213,7 @@ exports[`default-ui > widgets > radio > snapshots > error 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root__3"
-              id="bits-c226"
+              id="bits-c243"
             >
               qux
               <!---->
@@ -14326,7 +14326,7 @@ exports[`default-ui > widgets > radio > snapshots > normal 1`] = `
           class="grid gap-2"
           data-orientation="vertical"
           data-radio-group-root=""
-          id="bits-c209"
+          id="bits-c226"
           role="radiogroup"
         >
           <!---->
@@ -14364,7 +14364,7 @@ exports[`default-ui > widgets > radio > snapshots > normal 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root__0"
-              id="bits-c211"
+              id="bits-c228"
             >
               foo
               <!---->
@@ -14407,7 +14407,7 @@ exports[`default-ui > widgets > radio > snapshots > normal 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root__1"
-              id="bits-c213"
+              id="bits-c230"
             >
               bar
               <!---->
@@ -14450,7 +14450,7 @@ exports[`default-ui > widgets > radio > snapshots > normal 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root__2"
-              id="bits-c215"
+              id="bits-c232"
             >
               fuzz
               <!---->
@@ -14493,7 +14493,7 @@ exports[`default-ui > widgets > radio > snapshots > normal 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root__3"
-              id="bits-c217"
+              id="bits-c234"
             >
               qux
               <!---->
@@ -14595,7 +14595,7 @@ exports[`default-ui > widgets > radio > snapshots > readonly 1`] = `
           class="grid gap-2"
           data-orientation="vertical"
           data-radio-group-root=""
-          id="bits-c236"
+          id="bits-c253"
           role="radiogroup"
         >
           <!---->
@@ -14633,7 +14633,7 @@ exports[`default-ui > widgets > radio > snapshots > readonly 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root__0"
-              id="bits-c238"
+              id="bits-c255"
             >
               foo
               <!---->
@@ -14676,7 +14676,7 @@ exports[`default-ui > widgets > radio > snapshots > readonly 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root__1"
-              id="bits-c240"
+              id="bits-c257"
             >
               bar
               <!---->
@@ -14719,7 +14719,7 @@ exports[`default-ui > widgets > radio > snapshots > readonly 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root__2"
-              id="bits-c242"
+              id="bits-c259"
             >
               fuzz
               <!---->
@@ -14762,7 +14762,7 @@ exports[`default-ui > widgets > radio > snapshots > readonly 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root__3"
-              id="bits-c244"
+              id="bits-c261"
             >
               qux
               <!---->
@@ -14879,7 +14879,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > disabled 1`] = `
             data-toggle-group-item=""
             data-value="root__0"
             disabled=""
-            id="bits-c200"
+            id="bits-c217"
             role="radio"
             tabindex="-1"
             type="button"
@@ -14902,7 +14902,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > disabled 1`] = `
             data-toggle-group-item=""
             data-value="root__1"
             disabled=""
-            id="bits-c201"
+            id="bits-c218"
             role="radio"
             tabindex="-1"
             type="button"
@@ -14925,7 +14925,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > disabled 1`] = `
             data-toggle-group-item=""
             data-value="root__2"
             disabled=""
-            id="bits-c202"
+            id="bits-c219"
             role="radio"
             tabindex="-1"
             type="button"
@@ -14948,7 +14948,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > disabled 1`] = `
             data-toggle-group-item=""
             data-value="root__3"
             disabled=""
-            id="bits-c203"
+            id="bits-c220"
             role="radio"
             tabindex="-1"
             type="button"
@@ -15061,7 +15061,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > error 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="root__0"
-            id="bits-c195"
+            id="bits-c212"
             role="radio"
             tabindex="0"
             type="button"
@@ -15082,7 +15082,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > error 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="root__1"
-            id="bits-c196"
+            id="bits-c213"
             role="radio"
             tabindex="-1"
             type="button"
@@ -15103,7 +15103,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > error 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="root__2"
-            id="bits-c197"
+            id="bits-c214"
             role="radio"
             tabindex="-1"
             type="button"
@@ -15124,7 +15124,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > error 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="root__3"
-            id="bits-c198"
+            id="bits-c215"
             role="radio"
             tabindex="-1"
             type="button"
@@ -15248,7 +15248,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > normal 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="root__0"
-            id="bits-c190"
+            id="bits-c207"
             role="radio"
             tabindex="0"
             type="button"
@@ -15269,7 +15269,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > normal 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="root__1"
-            id="bits-c191"
+            id="bits-c208"
             role="radio"
             tabindex="-1"
             type="button"
@@ -15290,7 +15290,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > normal 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="root__2"
-            id="bits-c192"
+            id="bits-c209"
             role="radio"
             tabindex="-1"
             type="button"
@@ -15311,7 +15311,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > normal 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="root__3"
-            id="bits-c193"
+            id="bits-c210"
             role="radio"
             tabindex="-1"
             type="button"
@@ -15424,7 +15424,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > readonly 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="root__0"
-            id="bits-c205"
+            id="bits-c222"
             role="radio"
             tabindex="0"
             type="button"
@@ -15445,7 +15445,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > readonly 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="root__1"
-            id="bits-c206"
+            id="bits-c223"
             role="radio"
             tabindex="-1"
             type="button"
@@ -15466,7 +15466,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > readonly 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="root__2"
-            id="bits-c207"
+            id="bits-c224"
             role="radio"
             tabindex="-1"
             type="button"
@@ -15487,7 +15487,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > readonly 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="root__3"
-            id="bits-c208"
+            id="bits-c225"
             role="radio"
             tabindex="-1"
             type="button"
@@ -15599,7 +15599,7 @@ exports[`default-ui > widgets > range > snapshots > disabled 1`] = `
               data-disabled=""
               data-orientation="horizontal"
               data-slider-range=""
-              id="bits-c252"
+              id="bits-c269"
               style="position: absolute; left: 0%; right: 97.5845%;"
             >
               <!---->
@@ -15621,7 +15621,7 @@ exports[`default-ui > widgets > range > snapshots > disabled 1`] = `
             data-orientation="horizontal"
             data-slider-thumb=""
             data-value="0"
-            id="bits-c253"
+            id="bits-c270"
             role="slider"
             style="position: absolute; left: 2.41546%; translate: -50%;"
             tabindex="-1"
@@ -15730,7 +15730,7 @@ exports[`default-ui > widgets > range > snapshots > error 1`] = `
               class="absolute bg-primary data-[orientation='horizontal']:h-full data-[orientation='vertical']:w-full"
               data-orientation="horizontal"
               data-slider-range=""
-              id="bits-c249"
+              id="bits-c266"
               style="position: absolute; left: 0%; right: 97.5845%;"
             >
               <!---->
@@ -15751,7 +15751,7 @@ exports[`default-ui > widgets > range > snapshots > error 1`] = `
             data-orientation="horizontal"
             data-slider-thumb=""
             data-value="0"
-            id="bits-c250"
+            id="bits-c267"
             role="slider"
             style="position: absolute; left: 2.41546%; translate: -50%;"
             tabindex="0"
@@ -15871,7 +15871,7 @@ exports[`default-ui > widgets > range > snapshots > normal 1`] = `
               class="absolute bg-primary data-[orientation='horizontal']:h-full data-[orientation='vertical']:w-full"
               data-orientation="horizontal"
               data-slider-range=""
-              id="bits-c246"
+              id="bits-c263"
               style="position: absolute; left: 0%; right: 97.5845%;"
             >
               <!---->
@@ -15892,7 +15892,7 @@ exports[`default-ui > widgets > range > snapshots > normal 1`] = `
             data-orientation="horizontal"
             data-slider-thumb=""
             data-value="0"
-            id="bits-c247"
+            id="bits-c264"
             role="slider"
             style="position: absolute; left: 2.41546%; translate: -50%;"
             tabindex="0"
@@ -16001,7 +16001,7 @@ exports[`default-ui > widgets > range > snapshots > readonly 1`] = `
               class="absolute bg-primary data-[orientation='horizontal']:h-full data-[orientation='vertical']:w-full"
               data-orientation="horizontal"
               data-slider-range=""
-              id="bits-c255"
+              id="bits-c272"
               style="position: absolute; left: 0%; right: 97.5845%;"
             >
               <!---->
@@ -16022,7 +16022,7 @@ exports[`default-ui > widgets > range > snapshots > readonly 1`] = `
             data-orientation="horizontal"
             data-slider-thumb=""
             data-value="0"
-            id="bits-c256"
+            id="bits-c273"
             role="slider"
             style="position: absolute; left: 2.41546%; translate: -50%;"
             tabindex="0"
@@ -16730,7 +16730,7 @@ exports[`default-ui > widgets > switch > snapshots > disabled 1`] = `
             data-required=""
             data-state="unchecked"
             data-switch-thumb=""
-            id="bits-c262"
+            id="bits-c279"
           >
             <!---->
           </span>
@@ -16852,7 +16852,7 @@ exports[`default-ui > widgets > switch > snapshots > error 1`] = `
             data-required=""
             data-state="unchecked"
             data-switch-thumb=""
-            id="bits-c260"
+            id="bits-c277"
           >
             <!---->
           </span>
@@ -16984,7 +16984,7 @@ exports[`default-ui > widgets > switch > snapshots > normal 1`] = `
             data-required=""
             data-state="unchecked"
             data-switch-thumb=""
-            id="bits-c258"
+            id="bits-c275"
           >
             <!---->
           </span>
@@ -17105,7 +17105,7 @@ exports[`default-ui > widgets > switch > snapshots > readonly 1`] = `
             data-required=""
             data-state="unchecked"
             data-switch-thumb=""
-            id="bits-c264"
+            id="bits-c281"
           >
             <!---->
           </span>
@@ -18102,7 +18102,7 @@ exports[`default-ui > with title and description > array icons 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_0"
-                    id="bits-c282"
+                    id="bits-c299"
                   >
                     Test item-1 
                     <span>
@@ -18306,7 +18306,7 @@ exports[`default-ui > with title and description > array icons 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_1"
-                    id="bits-c283"
+                    id="bits-c300"
                   >
                     Test item-2 
                     <span>
@@ -18670,7 +18670,7 @@ exports[`default-ui > with title and description > checkboxes 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__0"
-            id="bits-c277"
+            id="bits-c294"
           >
             a
             <!---->
@@ -18752,7 +18752,7 @@ exports[`default-ui > with title and description > checkboxes 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__1"
-            id="bits-c279"
+            id="bits-c296"
           >
             b
             <!---->
@@ -18834,7 +18834,7 @@ exports[`default-ui > with title and description > checkboxes 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__2"
-            id="bits-c281"
+            id="bits-c298"
           >
             c
             <!---->
@@ -18989,7 +18989,7 @@ exports[`default-ui > with title and description > fixed array 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_0"
-                    id="bits-c274"
+                    id="bits-c291"
                   >
                     Test item 
                     <span>
@@ -19108,7 +19108,7 @@ exports[`default-ui > with title and description > fixed array 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_1"
-                    id="bits-c275"
+                    id="bits-c292"
                   >
                     Test item 
                     <span>
@@ -19460,7 +19460,7 @@ exports[`default-ui > with title and description from both > array icons 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_0"
-                    id="bits-c302"
+                    id="bits-c319"
                   >
                     My Item-1 
                     <span>
@@ -19664,7 +19664,7 @@ exports[`default-ui > with title and description from both > array icons 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_1"
-                    id="bits-c303"
+                    id="bits-c320"
                   >
                     My Item-2 
                     <span>
@@ -20028,7 +20028,7 @@ exports[`default-ui > with title and description from both > checkboxes 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__0"
-            id="bits-c297"
+            id="bits-c314"
           >
             a
             <!---->
@@ -20110,7 +20110,7 @@ exports[`default-ui > with title and description from both > checkboxes 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__1"
-            id="bits-c299"
+            id="bits-c316"
           >
             b
             <!---->
@@ -20192,7 +20192,7 @@ exports[`default-ui > with title and description from both > checkboxes 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__2"
-            id="bits-c301"
+            id="bits-c318"
           >
             c
             <!---->
@@ -20347,7 +20347,7 @@ exports[`default-ui > with title and description from both > fixed array 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_0"
-                    id="bits-c294"
+                    id="bits-c311"
                   >
                     My Item 
                     <span>
@@ -20466,7 +20466,7 @@ exports[`default-ui > with title and description from both > fixed array 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_1"
-                    id="bits-c295"
+                    id="bits-c312"
                   >
                     My Item 
                     <span>
@@ -20818,7 +20818,7 @@ exports[`default-ui > with title and description from uiSchema > array icons 1`]
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_0"
-                    id="bits-c292"
+                    id="bits-c309"
                   >
                     My Item-1 
                     <span>
@@ -21022,7 +21022,7 @@ exports[`default-ui > with title and description from uiSchema > array icons 1`]
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_1"
-                    id="bits-c293"
+                    id="bits-c310"
                   >
                     My Item-2 
                     <span>
@@ -21386,7 +21386,7 @@ exports[`default-ui > with title and description from uiSchema > checkboxes 1`] 
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__0"
-            id="bits-c287"
+            id="bits-c304"
           >
             a
             <!---->
@@ -21468,7 +21468,7 @@ exports[`default-ui > with title and description from uiSchema > checkboxes 1`] 
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__1"
-            id="bits-c289"
+            id="bits-c306"
           >
             b
             <!---->
@@ -21550,7 +21550,7 @@ exports[`default-ui > with title and description from uiSchema > checkboxes 1`] 
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__2"
-            id="bits-c291"
+            id="bits-c308"
           >
             c
             <!---->
@@ -21705,7 +21705,7 @@ exports[`default-ui > with title and description from uiSchema > fixed array 1`]
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_0"
-                    id="bits-c284"
+                    id="bits-c301"
                   >
                     My Item 
                     <span>
@@ -21824,7 +21824,7 @@ exports[`default-ui > with title and description from uiSchema > fixed array 1`]
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_1"
-                    id="bits-c285"
+                    id="bits-c302"
                   >
                     My Item 
                     <span>
@@ -22538,7 +22538,7 @@ exports[`default-ui > with title and description with global label off > checkbo
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__0"
-            id="bits-c305"
+            id="bits-c322"
           >
             a
             <!---->
@@ -22620,7 +22620,7 @@ exports[`default-ui > with title and description with global label off > checkbo
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__1"
-            id="bits-c307"
+            id="bits-c324"
           >
             b
             <!---->
@@ -22702,7 +22702,7 @@ exports[`default-ui > with title and description with global label off > checkbo
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__2"
-            id="bits-c309"
+            id="bits-c326"
           >
             c
             <!---->
@@ -23122,7 +23122,7 @@ exports[`new-york-ui > array fields > array icons 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_0"
-                    id="bits-c639"
+                    id="bits-c673"
                   >
                     -1 
                     <span>
@@ -23318,7 +23318,7 @@ exports[`new-york-ui > array fields > array icons 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_1"
-                    id="bits-c640"
+                    id="bits-c674"
                   >
                     -2 
                     <span>
@@ -23638,7 +23638,7 @@ exports[`new-york-ui > array fields > checkboxes 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__0"
-            id="bits-c634"
+            id="bits-c668"
           >
             a
             <!---->
@@ -23720,7 +23720,7 @@ exports[`new-york-ui > array fields > checkboxes 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__1"
-            id="bits-c636"
+            id="bits-c670"
           >
             b
             <!---->
@@ -23802,7 +23802,7 @@ exports[`new-york-ui > array fields > checkboxes 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__2"
-            id="bits-c638"
+            id="bits-c672"
           >
             c
             <!---->
@@ -23923,7 +23923,7 @@ exports[`new-york-ui > array fields > empty errors array 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_name"
-                    id="bits-c641"
+                    id="bits-c675"
                   >
                     name 
                     <!---->
@@ -24327,7 +24327,7 @@ exports[`new-york-ui > object fields > additionalProperties 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_foo__key-input"
-                    id="bits-c681"
+                    id="bits-c715"
                   >
                     foo Key 
                     <span>
@@ -24425,7 +24425,7 @@ exports[`new-york-ui > object fields > additionalProperties 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_foo"
-                    id="bits-c682"
+                    id="bits-c716"
                   >
                     foo 
                     <!---->
@@ -24630,7 +24630,7 @@ exports[`new-york-ui > object fields > additionalProperties with error 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_foo__key-input"
-                    id="bits-c683"
+                    id="bits-c717"
                   >
                     foo Key 
                     <span>
@@ -24740,7 +24740,7 @@ exports[`new-york-ui > object fields > additionalProperties with error 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_foo"
-                    id="bits-c684"
+                    id="bits-c718"
                   >
                     foo 
                     <!---->
@@ -24946,7 +24946,7 @@ exports[`new-york-ui > object fields > has errors 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_name"
-                    id="bits-c680"
+                    id="bits-c714"
                   >
                     name 
                     <!---->
@@ -25138,7 +25138,7 @@ exports[`new-york-ui > object fields > object 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_a"
-                    id="bits-c678"
+                    id="bits-c712"
                   >
                     A 
                     <!---->
@@ -25247,7 +25247,7 @@ exports[`new-york-ui > object fields > object 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_b"
-                    id="bits-c679"
+                    id="bits-c713"
                   >
                     B 
                     <!---->
@@ -25457,7 +25457,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_preset"
-                    id="bits-c703"
+                    id="bits-c737"
                   >
                     Preset 
                     <span>
@@ -25709,7 +25709,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_transform"
-                    id="bits-c706"
+                    id="bits-c740"
                   >
                     Transform
                     <!---->
@@ -25783,7 +25783,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_format"
-                    id="bits-c707"
+                    id="bits-c741"
                   >
                     Output format 
                     <span>
@@ -26035,7 +26035,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_paginate"
-                    id="bits-c710"
+                    id="bits-c744"
                   >
                     Paginate
                     <!---->
@@ -26191,7 +26191,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_createOnOpen"
-                    id="bits-c712"
+                    id="bits-c746"
                   >
                     Create on open
                     <!---->
@@ -26364,7 +26364,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_preset"
-                    id="bits-c715"
+                    id="bits-c749"
                   >
                     Preset 
                     <span>
@@ -26616,7 +26616,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_collapseIndexes"
-                    id="bits-c718"
+                    id="bits-c752"
                   >
                     Combine nested indexes
                     <!---->
@@ -26772,7 +26772,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_joinPrimitiveArrayValues"
-                    id="bits-c720"
+                    id="bits-c754"
                   >
                     Combine simple values
                     <!---->
@@ -26928,7 +26928,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_combineArraysOfObjects"
-                    id="bits-c722"
+                    id="bits-c756"
                   >
                     Combine objects
                     <!---->
@@ -27084,7 +27084,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_stabilizeOrderOfPropertiesInArraysOfObjects"
-                    id="bits-c724"
+                    id="bits-c758"
                   >
                     Stabilize order of properties
                     <!---->
@@ -27158,7 +27158,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_proportionalSizeAdjustmentThreshold"
-                    id="bits-c725"
+                    id="bits-c759"
                   >
                     Proportional size adjustment threshold 
                     <span>
@@ -27282,7 +27282,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_cornerCellValue"
-                    id="bits-c726"
+                    id="bits-c760"
                   >
                     Corner cell value 
                     <!---->
@@ -27481,7 +27481,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_transform"
-                    id="bits-c728"
+                    id="bits-c762"
                   >
                     Transform
                     <!---->
@@ -27555,7 +27555,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_format"
-                    id="bits-c729"
+                    id="bits-c763"
                   >
                     Output format 
                     <span>
@@ -27807,7 +27807,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_paginate"
-                    id="bits-c732"
+                    id="bits-c766"
                   >
                     Paginate
                     <!---->
@@ -27963,7 +27963,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_createOnOpen"
-                    id="bits-c734"
+                    id="bits-c768"
                   >
                     Create on open
                     <!---->
@@ -28107,7 +28107,7 @@ exports[`new-york-ui > object fields > show add button and fields if additionalP
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_additionalProperty__key-input"
-                    id="bits-c685"
+                    id="bits-c719"
                   >
                     additionalProperty Key 
                     <span>
@@ -28205,7 +28205,7 @@ exports[`new-york-ui > object fields > show add button and fields if additionalP
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_additionalProperty"
-                    id="bits-c686"
+                    id="bits-c720"
                   >
                     additionalProperty 
                     <!---->
@@ -28446,7 +28446,7 @@ exports[`new-york-ui > object fields > with title and description > additionalPr
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_foo__key-input"
-                    id="bits-c689"
+                    id="bits-c723"
                   >
                     foo Key 
                     <span>
@@ -28544,7 +28544,7 @@ exports[`new-york-ui > object fields > with title and description > additionalPr
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_foo"
-                    id="bits-c690"
+                    id="bits-c724"
                   >
                     foo 
                     <!---->
@@ -28786,7 +28786,7 @@ exports[`new-york-ui > object fields > with title and description > object 1`] =
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_a"
-                    id="bits-c687"
+                    id="bits-c721"
                   >
                     A 
                     <!---->
@@ -28903,7 +28903,7 @@ exports[`new-york-ui > object fields > with title and description > object 1`] =
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_b"
-                    id="bits-c688"
+                    id="bits-c722"
                   >
                     B 
                     <!---->
@@ -29128,7 +29128,7 @@ exports[`new-york-ui > object fields > with title and description > show add but
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_additionalProperty__key-input"
-                    id="bits-c691"
+                    id="bits-c725"
                   >
                     additionalProperty Key 
                     <span>
@@ -29226,7 +29226,7 @@ exports[`new-york-ui > object fields > with title and description > show add but
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_additionalProperty"
-                    id="bits-c692"
+                    id="bits-c726"
                   >
                     additionalProperty 
                     <!---->
@@ -29467,7 +29467,7 @@ exports[`new-york-ui > object fields > with title and description from both > ad
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_foo__key-input"
-                    id="bits-c701"
+                    id="bits-c735"
                   >
                     foo Key 
                     <span>
@@ -29565,7 +29565,7 @@ exports[`new-york-ui > object fields > with title and description from both > ad
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_foo"
-                    id="bits-c702"
+                    id="bits-c736"
                   >
                     foo 
                     <!---->
@@ -29807,7 +29807,7 @@ exports[`new-york-ui > object fields > with title and description from both > ob
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_a"
-                    id="bits-c699"
+                    id="bits-c733"
                   >
                     My Item A 
                     <!---->
@@ -29924,7 +29924,7 @@ exports[`new-york-ui > object fields > with title and description from both > ob
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_b"
-                    id="bits-c700"
+                    id="bits-c734"
                   >
                     My Item B 
                     <!---->
@@ -30149,7 +30149,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_foo__key-input"
-                    id="bits-c695"
+                    id="bits-c729"
                   >
                     foo Key 
                     <span>
@@ -30247,7 +30247,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_foo"
-                    id="bits-c696"
+                    id="bits-c730"
                   >
                     foo 
                     <!---->
@@ -30489,7 +30489,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_a"
-                    id="bits-c693"
+                    id="bits-c727"
                   >
                     My Item A 
                     <!---->
@@ -30606,7 +30606,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_b"
-                    id="bits-c694"
+                    id="bits-c728"
                   >
                     My Item B 
                     <!---->
@@ -30831,7 +30831,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_additionalProperty__key-input"
-                    id="bits-c697"
+                    id="bits-c731"
                   >
                     additionalProperty Key 
                     <span>
@@ -30929,7 +30929,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_additionalProperty"
-                    id="bits-c698"
+                    id="bits-c732"
                   >
                     additionalProperty 
                     <!---->
@@ -31834,7 +31834,7 @@ exports[`new-york-ui > widgets > checkbox > snapshots > disabled 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root"
-            id="bits-c460"
+            id="bits-c494"
           >
             
             <!---->
@@ -31988,7 +31988,7 @@ exports[`new-york-ui > widgets > checkbox > snapshots > error 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root"
-            id="bits-c458"
+            id="bits-c492"
           >
             
             <!---->
@@ -32153,7 +32153,7 @@ exports[`new-york-ui > widgets > checkbox > snapshots > normal 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root"
-            id="bits-c456"
+            id="bits-c490"
           >
             
             <!---->
@@ -32306,7 +32306,7 @@ exports[`new-york-ui > widgets > checkbox > snapshots > readonly 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root"
-            id="bits-c462"
+            id="bits-c496"
           >
             
             <!---->
@@ -32463,7 +32463,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__0"
-            id="bits-c486"
+            id="bits-c520"
           >
             foo
             <!---->
@@ -32548,7 +32548,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__1"
-            id="bits-c488"
+            id="bits-c522"
           >
             bar
             <!---->
@@ -32633,7 +32633,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__2"
-            id="bits-c490"
+            id="bits-c524"
           >
             fuzz
             <!---->
@@ -32718,7 +32718,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__3"
-            id="bits-c492"
+            id="bits-c526"
           >
             qux
             <!---->
@@ -32874,7 +32874,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__0"
-            id="bits-c478"
+            id="bits-c512"
           >
             foo
             <!---->
@@ -32956,7 +32956,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__1"
-            id="bits-c480"
+            id="bits-c514"
           >
             bar
             <!---->
@@ -33038,7 +33038,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__2"
-            id="bits-c482"
+            id="bits-c516"
           >
             fuzz
             <!---->
@@ -33120,7 +33120,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__3"
-            id="bits-c484"
+            id="bits-c518"
           >
             qux
             <!---->
@@ -33287,7 +33287,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__0"
-            id="bits-c470"
+            id="bits-c504"
           >
             foo
             <!---->
@@ -33369,7 +33369,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__1"
-            id="bits-c472"
+            id="bits-c506"
           >
             bar
             <!---->
@@ -33451,7 +33451,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__2"
-            id="bits-c474"
+            id="bits-c508"
           >
             fuzz
             <!---->
@@ -33533,7 +33533,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__3"
-            id="bits-c476"
+            id="bits-c510"
           >
             qux
             <!---->
@@ -33688,7 +33688,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__0"
-            id="bits-c494"
+            id="bits-c528"
           >
             foo
             <!---->
@@ -33770,7 +33770,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__1"
-            id="bits-c496"
+            id="bits-c530"
           >
             bar
             <!---->
@@ -33852,7 +33852,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__2"
-            id="bits-c498"
+            id="bits-c532"
           >
             fuzz
             <!---->
@@ -33934,7 +33934,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__3"
-            id="bits-c500"
+            id="bits-c534"
           >
             qux
             <!---->
@@ -34031,7 +34031,7 @@ exports[`new-york-ui > widgets > combobox > snapshots > disabled 1`] = `
           data-popover-trigger=""
           data-state="closed"
           disabled=""
-          id="bits-c537"
+          id="bits-c571"
           role="combobox"
           type="button"
         >
@@ -34171,7 +34171,7 @@ exports[`new-york-ui > widgets > combobox > snapshots > error 1`] = `
           class="focus-visible:ring-ring inline-flex items-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border-input bg-background hover:bg-accent hover:text-accent-foreground border shadow-sm h-9 px-4 py-2 w-full justify-between"
           data-popover-trigger=""
           data-state="closed"
-          id="bits-c535"
+          id="bits-c569"
           role="combobox"
           type="button"
         >
@@ -34322,7 +34322,7 @@ exports[`new-york-ui > widgets > combobox > snapshots > normal 1`] = `
           class="focus-visible:ring-ring inline-flex items-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border-input bg-background hover:bg-accent hover:text-accent-foreground border shadow-sm h-9 px-4 py-2 w-full justify-between"
           data-popover-trigger=""
           data-state="closed"
-          id="bits-c533"
+          id="bits-c567"
           role="combobox"
           type="button"
         >
@@ -34461,7 +34461,7 @@ exports[`new-york-ui > widgets > combobox > snapshots > readonly 1`] = `
           class="focus-visible:ring-ring inline-flex items-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border-input bg-background hover:bg-accent hover:text-accent-foreground border shadow-sm h-9 px-4 py-2 w-full justify-between"
           data-popover-trigger=""
           data-state="closed"
-          id="bits-c539"
+          id="bits-c573"
           role="combobox"
           type="button"
         >
@@ -34600,7 +34600,7 @@ exports[`new-york-ui > widgets > datePicker > snapshots > disabled 1`] = `
           class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary hover:bg-primary/90 shadow h-9 px-4 py-2 w-full text-muted-foreground"
           data-popover-trigger=""
           data-state="closed"
-          id="bits-c545"
+          id="bits-c579"
           type="button"
         >
           
@@ -34708,7 +34708,7 @@ exports[`new-york-ui > widgets > datePicker > snapshots > error 1`] = `
           class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary hover:bg-primary/90 shadow h-9 px-4 py-2 w-full text-muted-foreground"
           data-popover-trigger=""
           data-state="closed"
-          id="bits-c543"
+          id="bits-c577"
           type="button"
         >
           
@@ -34827,7 +34827,7 @@ exports[`new-york-ui > widgets > datePicker > snapshots > normal 1`] = `
           class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary hover:bg-primary/90 shadow h-9 px-4 py-2 w-full text-muted-foreground"
           data-popover-trigger=""
           data-state="closed"
-          id="bits-c541"
+          id="bits-c575"
           type="button"
         >
           
@@ -34934,7 +34934,7 @@ exports[`new-york-ui > widgets > datePicker > snapshots > readonly 1`] = `
           class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary hover:bg-primary/90 shadow h-9 px-4 py-2 w-full text-muted-foreground"
           data-popover-trigger=""
           data-state="closed"
-          id="bits-c547"
+          id="bits-c581"
           type="button"
         >
           
@@ -36735,7 +36735,7 @@ exports[`new-york-ui > widgets > radio > snapshots > disabled 1`] = `
           data-disabled=""
           data-orientation="vertical"
           data-radio-group-root=""
-          id="bits-c595"
+          id="bits-c629"
           role="radiogroup"
         >
           <!---->
@@ -36775,7 +36775,7 @@ exports[`new-york-ui > widgets > radio > snapshots > disabled 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root__0"
-              id="bits-c597"
+              id="bits-c631"
             >
               foo
               <!---->
@@ -36820,7 +36820,7 @@ exports[`new-york-ui > widgets > radio > snapshots > disabled 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root__1"
-              id="bits-c599"
+              id="bits-c633"
             >
               bar
               <!---->
@@ -36865,7 +36865,7 @@ exports[`new-york-ui > widgets > radio > snapshots > disabled 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root__2"
-              id="bits-c601"
+              id="bits-c635"
             >
               fuzz
               <!---->
@@ -36910,7 +36910,7 @@ exports[`new-york-ui > widgets > radio > snapshots > disabled 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root__3"
-              id="bits-c603"
+              id="bits-c637"
             >
               qux
               <!---->
@@ -37012,7 +37012,7 @@ exports[`new-york-ui > widgets > radio > snapshots > error 1`] = `
           class="grid gap-2"
           data-orientation="vertical"
           data-radio-group-root=""
-          id="bits-c586"
+          id="bits-c620"
           role="radiogroup"
         >
           <!---->
@@ -37050,7 +37050,7 @@ exports[`new-york-ui > widgets > radio > snapshots > error 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root__0"
-              id="bits-c588"
+              id="bits-c622"
             >
               foo
               <!---->
@@ -37093,7 +37093,7 @@ exports[`new-york-ui > widgets > radio > snapshots > error 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root__1"
-              id="bits-c590"
+              id="bits-c624"
             >
               bar
               <!---->
@@ -37136,7 +37136,7 @@ exports[`new-york-ui > widgets > radio > snapshots > error 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root__2"
-              id="bits-c592"
+              id="bits-c626"
             >
               fuzz
               <!---->
@@ -37179,7 +37179,7 @@ exports[`new-york-ui > widgets > radio > snapshots > error 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root__3"
-              id="bits-c594"
+              id="bits-c628"
             >
               qux
               <!---->
@@ -37292,7 +37292,7 @@ exports[`new-york-ui > widgets > radio > snapshots > normal 1`] = `
           class="grid gap-2"
           data-orientation="vertical"
           data-radio-group-root=""
-          id="bits-c577"
+          id="bits-c611"
           role="radiogroup"
         >
           <!---->
@@ -37330,7 +37330,7 @@ exports[`new-york-ui > widgets > radio > snapshots > normal 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root__0"
-              id="bits-c579"
+              id="bits-c613"
             >
               foo
               <!---->
@@ -37373,7 +37373,7 @@ exports[`new-york-ui > widgets > radio > snapshots > normal 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root__1"
-              id="bits-c581"
+              id="bits-c615"
             >
               bar
               <!---->
@@ -37416,7 +37416,7 @@ exports[`new-york-ui > widgets > radio > snapshots > normal 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root__2"
-              id="bits-c583"
+              id="bits-c617"
             >
               fuzz
               <!---->
@@ -37459,7 +37459,7 @@ exports[`new-york-ui > widgets > radio > snapshots > normal 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root__3"
-              id="bits-c585"
+              id="bits-c619"
             >
               qux
               <!---->
@@ -37561,7 +37561,7 @@ exports[`new-york-ui > widgets > radio > snapshots > readonly 1`] = `
           class="grid gap-2"
           data-orientation="vertical"
           data-radio-group-root=""
-          id="bits-c604"
+          id="bits-c638"
           role="radiogroup"
         >
           <!---->
@@ -37599,7 +37599,7 @@ exports[`new-york-ui > widgets > radio > snapshots > readonly 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root__0"
-              id="bits-c606"
+              id="bits-c640"
             >
               foo
               <!---->
@@ -37642,7 +37642,7 @@ exports[`new-york-ui > widgets > radio > snapshots > readonly 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root__1"
-              id="bits-c608"
+              id="bits-c642"
             >
               bar
               <!---->
@@ -37685,7 +37685,7 @@ exports[`new-york-ui > widgets > radio > snapshots > readonly 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root__2"
-              id="bits-c610"
+              id="bits-c644"
             >
               fuzz
               <!---->
@@ -37728,7 +37728,7 @@ exports[`new-york-ui > widgets > radio > snapshots > readonly 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root__3"
-              id="bits-c612"
+              id="bits-c646"
             >
               qux
               <!---->
@@ -37845,7 +37845,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > disabled 1`] = `
             data-toggle-group-item=""
             data-value="root__0"
             disabled=""
-            id="bits-c568"
+            id="bits-c602"
             role="radio"
             tabindex="-1"
             type="button"
@@ -37868,7 +37868,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > disabled 1`] = `
             data-toggle-group-item=""
             data-value="root__1"
             disabled=""
-            id="bits-c569"
+            id="bits-c603"
             role="radio"
             tabindex="-1"
             type="button"
@@ -37891,7 +37891,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > disabled 1`] = `
             data-toggle-group-item=""
             data-value="root__2"
             disabled=""
-            id="bits-c570"
+            id="bits-c604"
             role="radio"
             tabindex="-1"
             type="button"
@@ -37914,7 +37914,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > disabled 1`] = `
             data-toggle-group-item=""
             data-value="root__3"
             disabled=""
-            id="bits-c571"
+            id="bits-c605"
             role="radio"
             tabindex="-1"
             type="button"
@@ -38027,7 +38027,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > error 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="root__0"
-            id="bits-c563"
+            id="bits-c597"
             role="radio"
             tabindex="0"
             type="button"
@@ -38048,7 +38048,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > error 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="root__1"
-            id="bits-c564"
+            id="bits-c598"
             role="radio"
             tabindex="-1"
             type="button"
@@ -38069,7 +38069,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > error 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="root__2"
-            id="bits-c565"
+            id="bits-c599"
             role="radio"
             tabindex="-1"
             type="button"
@@ -38090,7 +38090,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > error 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="root__3"
-            id="bits-c566"
+            id="bits-c600"
             role="radio"
             tabindex="-1"
             type="button"
@@ -38214,7 +38214,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > normal 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="root__0"
-            id="bits-c558"
+            id="bits-c592"
             role="radio"
             tabindex="0"
             type="button"
@@ -38235,7 +38235,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > normal 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="root__1"
-            id="bits-c559"
+            id="bits-c593"
             role="radio"
             tabindex="-1"
             type="button"
@@ -38256,7 +38256,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > normal 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="root__2"
-            id="bits-c560"
+            id="bits-c594"
             role="radio"
             tabindex="-1"
             type="button"
@@ -38277,7 +38277,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > normal 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="root__3"
-            id="bits-c561"
+            id="bits-c595"
             role="radio"
             tabindex="-1"
             type="button"
@@ -38390,7 +38390,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > readonly 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="root__0"
-            id="bits-c573"
+            id="bits-c607"
             role="radio"
             tabindex="0"
             type="button"
@@ -38411,7 +38411,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > readonly 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="root__1"
-            id="bits-c574"
+            id="bits-c608"
             role="radio"
             tabindex="-1"
             type="button"
@@ -38432,7 +38432,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > readonly 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="root__2"
-            id="bits-c575"
+            id="bits-c609"
             role="radio"
             tabindex="-1"
             type="button"
@@ -38453,7 +38453,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > readonly 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="root__3"
-            id="bits-c576"
+            id="bits-c610"
             role="radio"
             tabindex="-1"
             type="button"
@@ -38565,7 +38565,7 @@ exports[`new-york-ui > widgets > range > snapshots > disabled 1`] = `
               data-disabled=""
               data-orientation="horizontal"
               data-slider-range=""
-              id="bits-c620"
+              id="bits-c654"
               style="position: absolute; left: 0%; right: 98.0676%;"
             >
               <!---->
@@ -38587,7 +38587,7 @@ exports[`new-york-ui > widgets > range > snapshots > disabled 1`] = `
             data-orientation="horizontal"
             data-slider-thumb=""
             data-value="0"
-            id="bits-c621"
+            id="bits-c655"
             role="slider"
             style="position: absolute; left: 1.93237%; translate: -50%;"
             tabindex="-1"
@@ -38696,7 +38696,7 @@ exports[`new-york-ui > widgets > range > snapshots > error 1`] = `
               class="absolute bg-primary data-[orientation='horizontal']:h-full data-[orientation='vertical']:w-full"
               data-orientation="horizontal"
               data-slider-range=""
-              id="bits-c617"
+              id="bits-c651"
               style="position: absolute; left: 0%; right: 98.0676%;"
             >
               <!---->
@@ -38717,7 +38717,7 @@ exports[`new-york-ui > widgets > range > snapshots > error 1`] = `
             data-orientation="horizontal"
             data-slider-thumb=""
             data-value="0"
-            id="bits-c618"
+            id="bits-c652"
             role="slider"
             style="position: absolute; left: 1.93237%; translate: -50%;"
             tabindex="0"
@@ -38837,7 +38837,7 @@ exports[`new-york-ui > widgets > range > snapshots > normal 1`] = `
               class="absolute bg-primary data-[orientation='horizontal']:h-full data-[orientation='vertical']:w-full"
               data-orientation="horizontal"
               data-slider-range=""
-              id="bits-c614"
+              id="bits-c648"
               style="position: absolute; left: 0%; right: 98.0676%;"
             >
               <!---->
@@ -38858,7 +38858,7 @@ exports[`new-york-ui > widgets > range > snapshots > normal 1`] = `
             data-orientation="horizontal"
             data-slider-thumb=""
             data-value="0"
-            id="bits-c615"
+            id="bits-c649"
             role="slider"
             style="position: absolute; left: 1.93237%; translate: -50%;"
             tabindex="0"
@@ -38967,7 +38967,7 @@ exports[`new-york-ui > widgets > range > snapshots > readonly 1`] = `
               class="absolute bg-primary data-[orientation='horizontal']:h-full data-[orientation='vertical']:w-full"
               data-orientation="horizontal"
               data-slider-range=""
-              id="bits-c623"
+              id="bits-c657"
               style="position: absolute; left: 0%; right: 98.0676%;"
             >
               <!---->
@@ -38988,7 +38988,7 @@ exports[`new-york-ui > widgets > range > snapshots > readonly 1`] = `
             data-orientation="horizontal"
             data-slider-thumb=""
             data-value="0"
-            id="bits-c624"
+            id="bits-c658"
             role="slider"
             style="position: absolute; left: 1.93237%; translate: -50%;"
             tabindex="0"
@@ -39696,7 +39696,7 @@ exports[`new-york-ui > widgets > switch > snapshots > disabled 1`] = `
             data-required=""
             data-state="unchecked"
             data-switch-thumb=""
-            id="bits-c630"
+            id="bits-c664"
           >
             <!---->
           </span>
@@ -39818,7 +39818,7 @@ exports[`new-york-ui > widgets > switch > snapshots > error 1`] = `
             data-required=""
             data-state="unchecked"
             data-switch-thumb=""
-            id="bits-c628"
+            id="bits-c662"
           >
             <!---->
           </span>
@@ -39950,7 +39950,7 @@ exports[`new-york-ui > widgets > switch > snapshots > normal 1`] = `
             data-required=""
             data-state="unchecked"
             data-switch-thumb=""
-            id="bits-c626"
+            id="bits-c660"
           >
             <!---->
           </span>
@@ -40071,7 +40071,7 @@ exports[`new-york-ui > widgets > switch > snapshots > readonly 1`] = `
             data-required=""
             data-state="unchecked"
             data-switch-thumb=""
-            id="bits-c632"
+            id="bits-c666"
           >
             <!---->
           </span>
@@ -41068,7 +41068,7 @@ exports[`new-york-ui > with title and description > array icons 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_0"
-                    id="bits-c650"
+                    id="bits-c684"
                   >
                     Test item-1 
                     <span>
@@ -41272,7 +41272,7 @@ exports[`new-york-ui > with title and description > array icons 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_1"
-                    id="bits-c651"
+                    id="bits-c685"
                   >
                     Test item-2 
                     <span>
@@ -41636,7 +41636,7 @@ exports[`new-york-ui > with title and description > checkboxes 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__0"
-            id="bits-c645"
+            id="bits-c679"
           >
             a
             <!---->
@@ -41718,7 +41718,7 @@ exports[`new-york-ui > with title and description > checkboxes 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__1"
-            id="bits-c647"
+            id="bits-c681"
           >
             b
             <!---->
@@ -41800,7 +41800,7 @@ exports[`new-york-ui > with title and description > checkboxes 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__2"
-            id="bits-c649"
+            id="bits-c683"
           >
             c
             <!---->
@@ -41955,7 +41955,7 @@ exports[`new-york-ui > with title and description > fixed array 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_0"
-                    id="bits-c642"
+                    id="bits-c676"
                   >
                     Test item 
                     <span>
@@ -42074,7 +42074,7 @@ exports[`new-york-ui > with title and description > fixed array 1`] = `
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_1"
-                    id="bits-c643"
+                    id="bits-c677"
                   >
                     Test item 
                     <span>
@@ -42426,7 +42426,7 @@ exports[`new-york-ui > with title and description from both > array icons 1`] = 
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_0"
-                    id="bits-c670"
+                    id="bits-c704"
                   >
                     My Item-1 
                     <span>
@@ -42630,7 +42630,7 @@ exports[`new-york-ui > with title and description from both > array icons 1`] = 
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_1"
-                    id="bits-c671"
+                    id="bits-c705"
                   >
                     My Item-2 
                     <span>
@@ -42994,7 +42994,7 @@ exports[`new-york-ui > with title and description from both > checkboxes 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__0"
-            id="bits-c665"
+            id="bits-c699"
           >
             a
             <!---->
@@ -43076,7 +43076,7 @@ exports[`new-york-ui > with title and description from both > checkboxes 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__1"
-            id="bits-c667"
+            id="bits-c701"
           >
             b
             <!---->
@@ -43158,7 +43158,7 @@ exports[`new-york-ui > with title and description from both > checkboxes 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__2"
-            id="bits-c669"
+            id="bits-c703"
           >
             c
             <!---->
@@ -43313,7 +43313,7 @@ exports[`new-york-ui > with title and description from both > fixed array 1`] = 
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_0"
-                    id="bits-c662"
+                    id="bits-c696"
                   >
                     My Item 
                     <span>
@@ -43432,7 +43432,7 @@ exports[`new-york-ui > with title and description from both > fixed array 1`] = 
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_1"
-                    id="bits-c663"
+                    id="bits-c697"
                   >
                     My Item 
                     <span>
@@ -43784,7 +43784,7 @@ exports[`new-york-ui > with title and description from uiSchema > array icons 1`
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_0"
-                    id="bits-c660"
+                    id="bits-c694"
                   >
                     My Item-1 
                     <span>
@@ -43988,7 +43988,7 @@ exports[`new-york-ui > with title and description from uiSchema > array icons 1`
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_1"
-                    id="bits-c661"
+                    id="bits-c695"
                   >
                     My Item-2 
                     <span>
@@ -44352,7 +44352,7 @@ exports[`new-york-ui > with title and description from uiSchema > checkboxes 1`]
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__0"
-            id="bits-c655"
+            id="bits-c689"
           >
             a
             <!---->
@@ -44434,7 +44434,7 @@ exports[`new-york-ui > with title and description from uiSchema > checkboxes 1`]
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__1"
-            id="bits-c657"
+            id="bits-c691"
           >
             b
             <!---->
@@ -44516,7 +44516,7 @@ exports[`new-york-ui > with title and description from uiSchema > checkboxes 1`]
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__2"
-            id="bits-c659"
+            id="bits-c693"
           >
             c
             <!---->
@@ -44671,7 +44671,7 @@ exports[`new-york-ui > with title and description from uiSchema > fixed array 1`
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_0"
-                    id="bits-c652"
+                    id="bits-c686"
                   >
                     My Item 
                     <span>
@@ -44790,7 +44790,7 @@ exports[`new-york-ui > with title and description from uiSchema > fixed array 1`
                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     data-label-root=""
                     for="root_1"
-                    id="bits-c653"
+                    id="bits-c687"
                   >
                     My Item 
                     <span>
@@ -45504,7 +45504,7 @@ exports[`new-york-ui > with title and description with global label off > checkb
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__0"
-            id="bits-c673"
+            id="bits-c707"
           >
             a
             <!---->
@@ -45586,7 +45586,7 @@ exports[`new-york-ui > with title and description with global label off > checkb
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__1"
-            id="bits-c675"
+            id="bits-c709"
           >
             b
             <!---->
@@ -45668,7 +45668,7 @@ exports[`new-york-ui > with title and description with global label off > checkb
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root__2"
-            id="bits-c677"
+            id="bits-c711"
           >
             c
             <!---->

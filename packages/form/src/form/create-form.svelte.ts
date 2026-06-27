@@ -487,6 +487,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
 
   function reset(e?: Event) {
     e?.preventDefault();
+    initialDefaultsGenerated = false;
     fieldsStateMap.clear();
     errors.clear();
     valueRef.current = merger.mergeFormDataAndSchemaDefaults({

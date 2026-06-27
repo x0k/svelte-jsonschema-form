@@ -86,9 +86,18 @@ function sanitizeArrays(
         return newValue;
       }, []);
     } else {
-      return maxItems > 0 && data.length > maxItems
-        ? data.slice(0, maxItems)
-        : data;
+      // Filter out items that are no longer valid in the new items schema (e.g., enum values that changed)
+      const newItemEnumValues =
+        getSelectOptionValuesSafe(newSchemaItems) ?? NO_OPTIONS;
+      const filteredData =
+        newItemEnumValues.length > 0
+          ? data.filter((item) =>
+              newItemEnumValues.some((v) => isSchemaValueDeepEqual(v, item))
+            )
+          : data;
+      return maxItems > 0 && filteredData.length > maxItems
+        ? filteredData.slice(0, maxItems)
+        : filteredData;
     }
   }
   return NO_VALUE;

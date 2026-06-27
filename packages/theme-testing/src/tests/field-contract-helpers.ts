@@ -13,15 +13,16 @@ import * as defaults from "../lib/form-defaults.js";
 import { type SelectCallbacks } from "./field-test-context.js";
 
 export function skippableTest(skipTests?: string[]): TestAPI {
-  if (!skipTests?.length) return vitestTest;
-  const skip = new Set(skipTests);
-  return Object.assign(
-    (name: string, ...args: any[]) =>
-      skip.has(name)
-        ? vitestTest.skip(name, ...args)
-        : vitestTest(name, ...args),
-    vitestTest
-  );
+  const skip = skipTests ? new Set(skipTests) : undefined;
+  const run = skip
+    ? (name: string, ...args: any[]) =>
+        skip.has(name)
+          ? vitestTest.skip(name, ...args)
+          : vitestTest(name, ...args)
+    : vitestTest;
+  return Object.assign(run, {
+    skip: vitestTest.skip.bind(vitestTest),
+  }) as TestAPI;
 }
 
 export interface RenderFieldFormOptions {

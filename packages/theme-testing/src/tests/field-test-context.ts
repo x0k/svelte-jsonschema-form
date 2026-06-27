@@ -62,5 +62,6 @@ export type CombinationTestFormOptions = Partial<FormOptions<any>> & {
 export interface CombinationFieldTestContext extends SelectCallbacks {
   context?: Map<any, any>;
   defaultFormOptions?: Partial<FormOptions<any>>;
+  toggleCheckbox?: (locator: Locator) => Promise<void>;
   skipTests?: string[];
 }
