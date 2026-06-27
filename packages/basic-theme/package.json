@@ -56,6 +56,7 @@
     "test": "vitest run --exclude '.svelte-kit/**'",
     "build": "svelte-package && publint",
     "check": "svelte-check --tsconfig ./tsconfig.json",
+    "lint": "eslint .",
     "format": "oxfmt .",
     "format:check": "oxfmt --check ."
   },

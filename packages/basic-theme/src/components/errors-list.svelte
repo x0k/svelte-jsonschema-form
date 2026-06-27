@@ -29,7 +29,7 @@
     class: "sjsf-errors-list",
   })}
 >
-  {#each errors as err}
+  {#each errors as err, i (i)}
     <li>{err}</li>
   {/each}
 </ul>
