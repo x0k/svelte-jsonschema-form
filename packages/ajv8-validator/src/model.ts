@@ -1,4 +1,4 @@
-import { ADDITIONAL_PROPERTY_FLAG, DATA_URL_FORMAT } from "@sjsf/form/core";
+import { DATA_URL_FORMAT } from "@sjsf/form/core";
 import type { Ajv, Options } from "ajv";
 
 export const DEFAULT_AJV_CONFIG = {
@@ -22,7 +22,6 @@ export function addFormFormats(ajv: Ajv) {
 }
 
 export function addFormKeywords(ajv: Ajv) {
-  ajv.addKeyword(ADDITIONAL_PROPERTY_FLAG);
   return ajv;
 }
 

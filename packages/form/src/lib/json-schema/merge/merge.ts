@@ -697,7 +697,7 @@ export function createMerger({
     let target = { ...left };
     const assigners = new Set<Assigner<JSONSchema7>>();
     const checks = new Set<(target: JSONSchema7) => void>();
-    const rKeys = Object.keys(right) as SchemaKey[];
+    const rKeys = Reflect.ownKeys(right) as SchemaKey[];
     const l = rKeys.length;
     for (let i = 0; i < l; i++) {
       const rKey = rKeys[i]!;

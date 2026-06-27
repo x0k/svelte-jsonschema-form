@@ -12,7 +12,8 @@ export interface Schema extends TransformedSchema<
   JSONSchema7
 > {
   discriminator?: OpenAPIDiscriminator;
-  [ADDITIONAL_PROPERTY_FLAG]?: boolean;
+  [ADDITIONAL_PROPERTY_FLAG]?: true;
+  [CYCLE_REF_FLAG]?: true;
 }
 export type SchemaDefinition = boolean | Schema;
 
@@ -65,11 +66,12 @@ export const ONE_OF_KEY = "oneOf";
 export const NOT_KEY = "not";
 
 export const ROOT_SCHEMA_PREFIX = "__sjsf_rootSchema";
-// TODO: Turn into a Symbol
-export const ADDITIONAL_PROPERTY_FLAG = "__additional_property";
+export const ADDITIONAL_PROPERTY_FLAG = Symbol("additional-property-flag");
 export const ADDITIONAL_PROPERTIES_KEY = "additionalProperties";
 export const ADDITIONAL_ITEMS_KEY = "additionalItems";
 export const PROPERTY_NAMES_KEY = "propertyNames";
+
+export const CYCLE_REF_FLAG = Symbol("cycle-ref-flag");
 
 export const DISCRIMINATOR_KEY = "discriminator";
 export const PROPERTY_NAME_KEY = "propertyName";

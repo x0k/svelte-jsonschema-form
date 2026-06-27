@@ -17,6 +17,7 @@ import {
   ADDITIONAL_PROPERTY_FLAG,
   ALL_OF_KEY,
   ANY_OF_KEY,
+  CYCLE_REF_FLAG,
   DEPENDENCIES_KEY,
   IF_KEY,
   ITEMS_KEY,
@@ -58,13 +59,16 @@ export function resolveAllReferences(
   schema: Schema,
   rootSchema: Schema,
   stack = new Set<string>(),
-  resolveAnyOfOrOneOfRefs?: boolean
+  resolveAnyOfOrOneOfRefs?: boolean,
+  markCycleOnDetection = false
 ): Schema {
   let resolvedSchema: Schema = schema;
   const ref = resolvedSchema[REF_KEY];
   if (ref) {
     if (stack.has(ref)) {
-      return resolvedSchema;
+      return markCycleOnDetection
+        ? { ...resolvedSchema, [CYCLE_REF_FLAG]: true }
+        : resolvedSchema;
     }
     stack.add(ref);
     const { [REF_KEY]: _, ...resolvedSchemaWithoutRef } = resolvedSchema;
@@ -89,6 +93,10 @@ export function resolveAllReferences(
         resolvedProps.set(key, value);
       } else {
         const stackCopy = new Set(stack);
+        // Mark cycles only when NOT in resolveAnyOfOrOneOfRefs mode. When resolveAnyOfOrOneOfRefs=true
+        // (e.g. from ObjectField), options are resolved against a shared recurseList that accumulates
+        // refs across branches, causing false positives. In simple (non-anyOf) resolution, a $ref cycle
+        // in an object property always causes an infinite render loop and must be caught.
         resolvedProps.set(
           key,
           resolveAllReferences(
@@ -96,7 +104,8 @@ export function resolveAllReferences(
             value,
             rootSchema,
             stackCopy,
-            resolveAnyOfOrOneOfRefs
+            resolveAnyOfOrOneOfRefs,
+            !resolveAnyOfOrOneOfRefs
           )
         );
         // TODO: Replace stack with an object with a Set of references
@@ -248,17 +257,32 @@ export function retrieveSchemaInternal(
       try {
         const withContainsSchemas: SchemaDefinition[] = [];
         const withoutContainsSchemas: SchemaDefinition[] = [];
+        // Collect Symbol-keyed properties from allOf subschemas before merging; shallowAllOfMerge
+        // (external library) only operates on string keys and will drop them.
+        // CHANGED: Local merge supports symbols
+        // const allOfSymbols: Record<symbol, unknown> = {};
         resolvedSchema.allOf?.forEach((s) => {
           if (isSchemaObject(s) && s.contains) {
             withContainsSchemas.push(s);
           } else {
             withoutContainsSchemas.push(s);
+            // CHANGED: Local merge supports symbols
+            // for (const sym of Object.getOwnPropertySymbols(s)) {
+            //   if (!(sym in allOfSymbols)) {
+            //     allOfSymbols[sym] = (s as any)[sym];
+            //   }
+            // }
           }
         });
         if (withContainsSchemas.length) {
           resolvedSchema = { ...resolvedSchema, allOf: withoutContainsSchemas };
         }
         resolvedSchema = merger.mergeAllOf(resolvedSchema);
+        // CHANGED: Local merge supports symbols
+        // Re-apply collected Symbol properties that the merge dropped.
+        // for (const sym of Object.getOwnPropertySymbols(allOfSymbols)) {
+        //   (resolvedSchema as any)[sym] = allOfSymbols[sym];
+        // }
         if (withContainsSchemas.length) {
           resolvedSchema.allOf = withContainsSchemas;
         }
