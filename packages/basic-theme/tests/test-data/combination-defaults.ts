@@ -118,3 +118,67 @@ export const plainOneOfSchema = {
     },
   ],
 } as const satisfies Schema;
+
+export const refObjectOneOfSchema = {
+  title: "oneOf Example",
+  type: "object",
+  properties: {
+    status: {
+      $ref: "#/definitions/status",
+    },
+  },
+  definitions: {
+    status: {
+      title: "Field Status",
+      type: "object",
+      oneOf: [
+        {
+          title: "Approved",
+          type: "object",
+        },
+        {
+          title: "Rejected",
+          type: "object",
+          properties: {
+            reason: {
+              title: "Rejection Reason",
+              type: "string",
+            },
+          },
+        },
+      ],
+    },
+  },
+} as const satisfies Schema;
+
+export const refObjectAnyOfSchema = {
+  title: "anyOf Example",
+  type: "object",
+  properties: {
+    status: {
+      $ref: "#/definitions/status",
+    },
+  },
+  definitions: {
+    status: {
+      title: "Field Status",
+      type: "object",
+      anyOf: [
+        {
+          title: "Approved",
+          type: "object",
+        },
+        {
+          title: "Rejected",
+          type: "object",
+          properties: {
+            reason: {
+              title: "Rejection Reason",
+              type: "string",
+            },
+          },
+        },
+      ],
+    },
+  },
+} as const satisfies Schema;
