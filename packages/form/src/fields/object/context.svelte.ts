@@ -348,9 +348,9 @@ export function createObjectContext<T>({
         onChange(obj);
       }
     },
-    renameProperty(oldProp, newProp, fieldConfig) {
+    renameProperty(oldProp, newProp = "", fieldConfig) {
       const val = value();
-      if (newProp === undefined || oldProp === newProp || !val) {
+      if (oldProp === newProp || !val) {
         return;
       }
       const newKey = generateNewKey(val, newProp, additionalPropertyKey);
