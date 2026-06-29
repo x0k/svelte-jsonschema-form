@@ -230,6 +230,14 @@ export function omitExtraData(
     }
     if (allOf) {
       schema = merger.mergeAllOf(schema);
+      // NOTE: When merging schemas with the keywords `if/then/else`,
+      // `allOf` may remain
+      const remainingAllOf = schema.allOf;
+      if (remainingAllOf) {
+        for (let i = 0; i < remainingAllOf.length; i++) {
+          target = omit(remainingAllOf[i]!, source, target);
+        }
+      }
     }
     target = handleAnyOf(
       schema,

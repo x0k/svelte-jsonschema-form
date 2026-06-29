@@ -26,7 +26,7 @@ describe("omitExtraData", () => {
       },
     };
     const formData = { foo: "bar", baz: "baz" };
-    expect(omitExtraData(validator, defaultMerger, schema, formData)).eql({
+    expect(omitExtraData(validator, defaultMerger, schema, formData)).toEqual({
       foo: "bar",
     });
   });
@@ -2240,5 +2240,236 @@ describe("omitExtraData (RJSF tests)", () => {
       // CHANGED: {}
       undefined
     );
+  });
+  // https://github.com/rjsf-team/react-jsonschema-form/issues/5142
+  it("should handle if/then/else in allOf keywords", () => {
+    const schema: Schema = {
+      title: "A form",
+      type: "object",
+      properties: {
+        prop1: {
+          type: "string",
+          title: "prop1",
+          enum: ["without required", "with required"],
+        },
+      },
+      allOf: [
+        {
+          if: {
+            properties: {
+              prop1: {
+                const: "without required",
+              },
+            },
+            required: ["prop1"],
+          },
+          then: {
+            properties: {
+              prop3: {
+                type: "object",
+                title: "prop3",
+                properties: {
+                  subprop1: {
+                    type: "string",
+                    title: "subprop3",
+                  },
+                },
+              },
+            },
+          },
+        },
+        {
+          if: {
+            properties: {
+              prop1: {
+                const: "with required",
+              },
+            },
+            required: ["prop1"],
+          },
+          then: {
+            required: ["prop2"],
+            properties: {
+              prop2: {
+                type: "object",
+                title: "prop2",
+                required: ["subprop1", "subprop2"],
+                properties: {
+                  subprop1: {
+                    type: "string",
+                    title: "subprop1",
+                  },
+                  subprop2: {
+                    type: "string",
+                    title: "subprop2",
+                  },
+                },
+              },
+            },
+          },
+        },
+      ],
+    };
+    const formData = {
+      prop1: "with required",
+      prop2: {
+        subprop1: "123",
+        subprop2: "456",
+      },
+    };
+    const validator = createValidator({
+      cases: [
+        {
+          schema: {
+            properties: { prop1: { const: "without required" } },
+            required: ["prop1"],
+          },
+          value: {
+            prop1: "with required",
+            prop2: { subprop1: "123", subprop2: "456" },
+          },
+          result: false,
+        },
+        {
+          schema: {
+            properties: { prop1: { const: "with required" } },
+            required: ["prop1"],
+          },
+          value: {
+            prop1: "with required",
+            prop2: { subprop1: "123", subprop2: "456" },
+          },
+          result: true,
+        },
+      ],
+    });
+    const defaultMerger = createMerger({
+      allOfMerges: [
+        {
+          input: {
+            title: "A form",
+            type: "object",
+            properties: {
+              prop1: {
+                type: "string",
+                title: "prop1",
+                enum: ["without required", "with required"],
+              },
+            },
+            allOf: [
+              {
+                if: {
+                  properties: { prop1: { const: "without required" } },
+                  required: ["prop1"],
+                },
+                then: {
+                  properties: {
+                    prop3: {
+                      type: "object",
+                      title: "prop3",
+                      properties: {
+                        subprop1: { type: "string", title: "subprop3" },
+                      },
+                    },
+                  },
+                },
+              },
+              {
+                if: {
+                  properties: { prop1: { const: "with required" } },
+                  required: ["prop1"],
+                },
+                then: {
+                  required: ["prop2"],
+                  properties: {
+                    prop2: {
+                      type: "object",
+                      title: "prop2",
+                      required: ["subprop1", "subprop2"],
+                      properties: {
+                        subprop1: { type: "string", title: "subprop1" },
+                        subprop2: { type: "string", title: "subprop2" },
+                      },
+                    },
+                  },
+                },
+              },
+            ],
+          },
+          result: {
+            title: "A form",
+            type: "object",
+            properties: {
+              prop1: {
+                type: "string",
+                title: "prop1",
+                enum: ["without required", "with required"],
+              },
+            },
+            if: {
+              properties: {
+                prop1: {
+                  const: "without required",
+                },
+              },
+              required: ["prop1"],
+            },
+            then: {
+              properties: {
+                prop3: {
+                  type: "object",
+                  title: "prop3",
+                  properties: {
+                    subprop1: {
+                      type: "string",
+                      title: "subprop3",
+                    },
+                  },
+                },
+              },
+            },
+            allOf: [
+              {
+                if: {
+                  properties: {
+                    prop1: {
+                      const: "with required",
+                    },
+                  },
+                  required: ["prop1"],
+                },
+                then: {
+                  required: ["prop2"],
+                  properties: {
+                    prop2: {
+                      type: "object",
+                      title: "prop2",
+                      required: ["subprop1", "subprop2"],
+                      properties: {
+                        subprop1: {
+                          type: "string",
+                          title: "subprop1",
+                        },
+                        subprop2: {
+                          type: "string",
+                          title: "subprop2",
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            ],
+          },
+        },
+      ],
+    });
+    expect(omitExtraData(validator, defaultMerger, schema, formData)).toEqual({
+      prop1: "with required",
+      prop2: {
+        subprop1: "123",
+        subprop2: "456",
+      },
+    });
   });
 });
