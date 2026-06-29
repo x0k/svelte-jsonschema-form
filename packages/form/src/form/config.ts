@@ -5,6 +5,7 @@ import {
 } from "@/core/index.js";
 
 import type { FieldPath } from "./id.js";
+import type { FieldValue } from "./model.js";
 import type { UiSchema } from "./ui-schema.js";
 
 export interface EventHandlers {
@@ -20,6 +21,8 @@ export interface Config {
   readonly schema: Schema;
   readonly uiSchema: UiSchema;
   readonly required: boolean;
+  // TODO: Make required in v4
+  readonly value?: () => Readonly<FieldValue>;
   readonly eventHandlers?: EventHandlers;
 }
 
@@ -29,6 +32,9 @@ export function isConfigEqual(a: Config, b: Config) {
     a.title === b.title &&
     a.required === b.required &&
     a.eventHandlers === b.eventHandlers &&
+    // NOTE: Maintaining consistent function references is tedious and
+    // error prone
+    // a.value === b.value &&
     isOrderedSchemaDeepEqual(a.schema, b.schema) &&
     isSchemaDeepEqual(a.uiSchema, b.uiSchema)
   );

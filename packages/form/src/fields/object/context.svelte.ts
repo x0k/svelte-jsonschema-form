@@ -311,6 +311,7 @@ export function createObjectContext<T>({
         schema,
         uiSchema,
         required: requiredProperties.has(property),
+        value: () => value()?.[property],
       });
     },
     addProperty() {

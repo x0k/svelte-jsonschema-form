@@ -53,20 +53,20 @@ h:
 
 f/:
   pushd packages/form
-  d:
-    pnpm run dev
-  b:
-    pnpm run build
-  ben:
-    pnpm run bench $@
-  c:
-    pnpm run check
-  t:
-    pnpm run test $@
   l:
     pnpm run lint
   f:
     pnpm run format
+  c:
+    pnpm run check
+  t:
+    pnpm run test $@
+  ben:
+    pnpm run bench $@
+  d:
+    pnpm run dev
+  b:
+    pnpm run build
   tui:
     pnpm run test:ui
   popd

@@ -36,7 +36,7 @@
   type="template"
   showTitle
   useLabel={false}
-  widgetType="nullField"
+  widgetType="expandField"
   {uiOption}
   {errors}
   {value}

@@ -274,6 +274,7 @@ export function createCombinationContext<T>({
       schema: { type: "integer", default: 0 },
       uiSchema,
       required: true,
+      value: () => selectedOption,
     };
   });
 
@@ -332,6 +333,7 @@ export function createCombinationContext<T>({
       schema: optionSchema,
       uiSchema: optionUiSchema,
       required: cfg.required,
+      value,
     };
   });
 

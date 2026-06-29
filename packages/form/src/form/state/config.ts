@@ -42,6 +42,7 @@ export function isCycleRef<T>(ctx: FormState<T>, config: Config): boolean {
   );
   return (
     !isExpanded &&
+    config.value?.() === undefined &&
     internalIsCycleRef(
       ctx[FORM_PATHS_TRIE_REF],
       ctx[FORM_CONFIGS_CACHE],

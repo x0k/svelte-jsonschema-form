@@ -34,8 +34,6 @@ export type FoundationalFieldType = keyof {
     : never]: K;
 };
 
-// TODO: We need to pass field value ref to this function
-// for proper isCycleRef check in v4
 export type ResolveFieldType = (config: Config) => FoundationalFieldType;
 
 declare module "./components.js" {
