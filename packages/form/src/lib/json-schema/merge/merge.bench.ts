@@ -1,7 +1,7 @@
 import { merge as allOfMerge } from "allof-merge";
 import type { JSONSchema7, JSONSchema7Definition } from "json-schema";
 import jsonSchemaMergeAllOf, { type Options } from "json-schema-merge-allof";
-import { bench, describe } from "vitest";
+import { describe, test } from "vitest";
 
 import { createDeduplicator, createIntersector } from "@/lib/array.js";
 import { createComparator } from "@/lib/json-schema/compare/index.js";
@@ -37,43 +37,59 @@ const shallowAllOfMergeWithoutChecks = createShallowAllOfMerge(
 );
 const deepAllOfMerge = createDeepAllOfMerge(shallowAllOfMergeWithoutChecks);
 
+const toSkip = new Set(["a13", "a17", "a19", "a20", "a21", "a22"]);
+
 describe("shallow merge", () => {
   for (const [name, data] of Object.entries(testData.properties)) {
-    describe(name, () => {
-      bench("shallowAllOfMerge", () => {
-        shallowAllOfMerge(data as JSONSchema7Definition);
-      });
-      bench("json-schema-merge-allof", () => {
-        jsonSchemaMergeAllOf(data as JSONSchema7, { deep: false } as Options);
-      });
-      // NOTE: Performs deep merge by default; comparison may be incorrect.
-      bench("allof-merge", () => {
-        allOfMerge(data);
-      });
+    test(name, async ({ bench }) => {
+      const benches: any[] = [
+        bench("shallowAllOfMerge", () => {
+          shallowAllOfMerge(data as JSONSchema7Definition);
+        }),
+        // NOTE: Performs deep merge by default; comparison may be incorrect.
+        bench("allof-merge", () => {
+          allOfMerge(data);
+        }),
+      ];
+      if (!toSkip.has(name)) {
+        benches.push(
+          bench("json-schema-merge-allof", () => {
+            jsonSchemaMergeAllOf(
+              data as JSONSchema7,
+              { deep: false } as Options
+            );
+          })
+        );
+      }
+      await bench.compare(...benches);
     });
   }
 });
 
-describe("huge shallow merge", () => {
-  bench("shallowAllOfMerge", () => {
-    shallowAllOfMerge(userSchema as unknown as JSONSchema7);
-  });
-  bench("json-schema-merge-allof", () => {
-    jsonSchemaMergeAllOf(userSchema as unknown as JSONSchema7);
-  });
-  bench("allof-merge", () => {
-    allOfMerge(userSchema);
-  });
+test("huge shallow merge", async ({ bench }) => {
+  await bench.compare(
+    bench("shallowAllOfMerge", () => {
+      shallowAllOfMerge(userSchema as unknown as JSONSchema7);
+    }),
+    bench("json-schema-merge-allof", () => {
+      jsonSchemaMergeAllOf(userSchema as unknown as JSONSchema7);
+    }),
+    bench("allof-merge", () => {
+      allOfMerge(userSchema);
+    })
+  );
 });
 
-describe("deep merge", () => {
-  bench("deepAllOfMerge", () => {
-    deepAllOfMerge(testData as unknown as JSONSchema7);
-  });
-  bench("json-schema-merge-allof", () => {
-    jsonSchemaMergeAllOf(testData as unknown as JSONSchema7);
-  });
-  bench("allof-merge", () => {
-    allOfMerge(testData);
-  });
+test("deep merge", async ({ bench }) => {
+  await bench.compare(
+    bench("deepAllOfMerge", () => {
+      deepAllOfMerge(testData as unknown as JSONSchema7);
+    }),
+    bench("json-schema-merge-allof", () => {
+      jsonSchemaMergeAllOf(testData as unknown as JSONSchema7);
+    }),
+    bench("allof-merge", () => {
+      allOfMerge(testData);
+    })
+  );
 });

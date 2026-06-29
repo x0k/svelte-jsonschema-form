@@ -4,6 +4,11 @@ export const FIELDS = {
     "filename": "boolean",
     "wrapperOf": "field-base"
   },
+  "expand": {
+    "name": "expandField",
+    "filename": "expand",
+    "wrapperOf": null
+  },
   "integer": {
     "name": "integerField",
     "filename": "integer",

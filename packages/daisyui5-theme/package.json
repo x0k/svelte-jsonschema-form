@@ -55,6 +55,7 @@
     "build": "svelte-package && vite build && mv $(find .svelte-kit/output/server/_app/immutable/assets/ -name \"_page*.css\" | head -n 1) dist/styles.css && ../../scripts/validate-theme-css.sh && publint",
     "preview": "vite preview",
     "test": "npm run test:unit -- --run",
+    "test:visual": "vitest --project vrt",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "lint": "eslint .",
@@ -69,6 +70,7 @@
   "devDependencies": {
     "@sjsf/ajv8-validator": "workspace:*",
     "@sjsf/form": "workspace:*",
+    "@sveltejs/svelte-json-tree": "catalog:",
     "@tailwindcss/vite": "catalog:",
     "@types/pikaday": "catalog:",
     "ajv": "catalog:",

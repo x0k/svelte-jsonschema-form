@@ -19,7 +19,7 @@
 
   const { type, children, config }: ComponentProps["layout"] = $props();
 
-  const isItem = $derived(type === "array-item" || type === "field-content");
+  const isItem = $derived(type === "array-item");
   const isControls = $derived(type === "array-item-controls");
   const isGrowable = $derived(
     type === "array-item-content" ||
@@ -44,7 +44,9 @@
   const ctx = getFormContext();
 </script>
 
-{#if isControls}
+{#if type === "field-content"}
+  {@render children()}
+{:else if isControls}
   <ButtonGroup
     {...uiOptionProps("flowbite3ButtonGroup")({ children }, config, ctx)}
   />

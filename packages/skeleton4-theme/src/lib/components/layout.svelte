@@ -9,9 +9,7 @@
   const { type, children, config }: ComponentProps["layout"] = $props();
 
   const isItemOrControls = $derived(
-    type === "array-item" ||
-      type === "field-content" ||
-      type === "array-item-controls"
+    type === "array-item" || type === "array-item-controls"
   );
   const isGrowable = $derived(
     type === "array-item-content" ||
@@ -37,25 +35,29 @@
   const ctx = getFormContext();
 </script>
 
-<div
-  class={{
-    flex:
-      isItemOrControls ||
-      isField ||
-      isColumn ||
-      isTitleRow ||
-      isMultiFieldControls,
-    "items-center": isTitleRow || isMultiFieldControls,
-    "justify-between": isTitleRow,
-    "gap-2": isItemOrControls || isField || isMultiFieldControls,
-    "gap-4": isColumn,
-    "items-start": isItemOrControls,
-    grow: isGrowable,
-    "flex-col": isColumn || isField,
-    "grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]":
-      isObjectProperty,
-  }}
-  {...layoutAttributes(ctx, config, "layout", "layouts", type, {})}
->
+{#if type === "field-content"}
   {@render children()}
-</div>
+{:else}
+  <div
+    class={{
+      flex:
+        isItemOrControls ||
+        isField ||
+        isColumn ||
+        isTitleRow ||
+        isMultiFieldControls,
+      "items-center": isTitleRow || isMultiFieldControls,
+      "justify-between": isTitleRow,
+      "gap-2": isItemOrControls || isField || isMultiFieldControls,
+      "gap-4": isColumn,
+      "items-start": isItemOrControls,
+      grow: isGrowable,
+      "flex-col": isColumn || isField,
+      "grid grid-cols-1 grid-rows-[1fr] items-start gap-x-2 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]":
+        isObjectProperty,
+    }}
+    {...layoutAttributes(ctx, config, "layout", "layouts", type, {})}
+  >
+    {@render children()}
+  </div>
+{/if}

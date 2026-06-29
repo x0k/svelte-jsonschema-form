@@ -183,6 +183,8 @@ flow/:
     pnpm run dev
   t:
     pnpm run test $@
+  tv:
+    pnpm run test:visual $@
   popd
 
 flowi/:

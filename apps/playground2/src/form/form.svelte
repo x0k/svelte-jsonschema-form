@@ -774,7 +774,11 @@
     {#if portalEl}
       <BitsConfig defaultPortalTo={portalEl}>
         <SvarProvider>
-          <svelte:boundary>
+          <svelte:boundary
+            onerror={(err) => {
+              console.error("Form render error", err);
+            }}
+          >
             <Form
               attributes={{
                 id: "form",

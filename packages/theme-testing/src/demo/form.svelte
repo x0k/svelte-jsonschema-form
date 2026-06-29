@@ -7,17 +7,20 @@
 
   interface Props extends HTMLAttributes<HTMLDivElement> {
     form: FormState<any>;
+    showCode?: boolean;
   }
 
-  const { form, ...rest }: Props = $props();
+  const { form, showCode = true, ...rest }: Props = $props();
 </script>
 
 <div {...rest}>
-  <div class="code">
-    <ShadowHost>
-      <Tree value={getValueSnapshot(form)} />
-    </ShadowHost>
-  </div>
+  {#if showCode}
+    <div class="code">
+      <ShadowHost>
+        <Tree value={getValueSnapshot(form)} />
+      </ShadowHost>
+    </div>
+  {/if}
   <BasicForm {form} />
 </div>
 

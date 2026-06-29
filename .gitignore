@@ -11,7 +11,10 @@ build/
 
 # vitest
 .vitest-attachments
-__screenshots__
+.vitest
+# Ignore all test screenshots except visual regression baselines
+**/tests/__screenshots__/*
+!**/tests/__screenshots__/visual.svelte.vrt.test.ts
 
 # dependencies
 node_modules/

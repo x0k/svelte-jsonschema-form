@@ -9,6 +9,9 @@
   import { theme } from "../lib/theme/index.js";
 
   setThemeContext({ components: { ...components, ...extraComponents } });
+
+  // eslint-disable-next-line svelte/valid-prop-names-in-kit-pages
+  const { showCode = true } = $props();
 </script>
 
-<ComponentsAndWidgets {theme} {specs} />
+<ComponentsAndWidgets {theme} {specs} {showCode} />

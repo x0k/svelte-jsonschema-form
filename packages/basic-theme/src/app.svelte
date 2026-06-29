@@ -7,6 +7,8 @@
 
   import { theme } from "./index.js";
   import { specs } from "./specs.js";
+
+  const { showCode = true } = $props();
 </script>
 
-<ComponentsAndWidgets {theme} {specs} />
+<ComponentsAndWidgets {theme} {specs} {showCode} />

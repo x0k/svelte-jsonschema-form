@@ -22,6 +22,11 @@ export default defineConfig({
     },
     benchmark: {
       exclude,
+      // Suppress warnings about excessive module export getter access.
+      // The benchmarked functions (shallowAllOfMerge, deepAllOfMerge) internally call
+      // isAllowAnySchema and isRecordEmpty millions of times through Vite's module runner.
+      // These are deep in the library call chain and cannot be cached locally in benchmark files.
+      suppressExportGetterWarnings: true,
     },
   },
 });

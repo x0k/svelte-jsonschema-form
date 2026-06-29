@@ -54,6 +54,7 @@
   "scripts": {
     "dev": "vite",
     "test": "vitest run --exclude '.svelte-kit/**'",
+    "test:visual": "vitest --project vrt",
     "build": "svelte-package && publint",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "lint": "eslint .",
@@ -64,6 +65,8 @@
     "@picocss/pico": "catalog:",
     "@sjsf/ajv8-validator": "workspace:*",
     "@sjsf/form": "workspace:*",
+    "@sveltejs/svelte-json-tree": "catalog:",
+    "ajv": "catalog:",
     "svelte": "catalog:",
     "theme-testing": "workspace:*",
     "vite": "catalog:"

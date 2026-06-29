@@ -644,14 +644,14 @@ exports[`array fields > checkboxes 1`] = `
               >
                 <input
                   class="svelte-1xatx26"
-                  id="1782340044497"
+                  id="1782730131728"
                   type="checkbox"
                   value="root__0"
                 />
                  
                 <label
                   class="svelte-1xatx26"
-                  for="1782340044497"
+                  for="1782730131728"
                 >
                   <span
                     class="svelte-1xatx26"
@@ -675,14 +675,14 @@ exports[`array fields > checkboxes 1`] = `
               >
                 <input
                   class="svelte-1xatx26"
-                  id="1782340044498"
+                  id="1782730131729"
                   type="checkbox"
                   value="root__1"
                 />
                  
                 <label
                   class="svelte-1xatx26"
-                  for="1782340044498"
+                  for="1782730131729"
                 >
                   <span
                     class="svelte-1xatx26"
@@ -706,14 +706,14 @@ exports[`array fields > checkboxes 1`] = `
               >
                 <input
                   class="svelte-1xatx26"
-                  id="1782340044499"
+                  id="1782730131730"
                   type="checkbox"
                   value="root__2"
                 />
                  
                 <label
                   class="svelte-1xatx26"
-                  for="1782340044499"
+                  for="1782730131730"
                 >
                   <span
                     class="svelte-1xatx26"
@@ -9288,14 +9288,14 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
               >
                 <input
                   class="svelte-1xatx26"
-                  id="1782340044451"
+                  id="1782730131682"
                   type="checkbox"
                   value="root__0"
                 />
                  
                 <label
                   class="svelte-1xatx26"
-                  for="1782340044451"
+                  for="1782730131682"
                 >
                   <span
                     class="svelte-1xatx26"
@@ -9319,14 +9319,14 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
               >
                 <input
                   class="svelte-1xatx26"
-                  id="1782340044452"
+                  id="1782730131683"
                   type="checkbox"
                   value="root__1"
                 />
                  
                 <label
                   class="svelte-1xatx26"
-                  for="1782340044452"
+                  for="1782730131683"
                 >
                   <span
                     class="svelte-1xatx26"
@@ -9350,14 +9350,14 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
               >
                 <input
                   class="svelte-1xatx26"
-                  id="1782340044453"
+                  id="1782730131684"
                   type="checkbox"
                   value="root__2"
                 />
                  
                 <label
                   class="svelte-1xatx26"
-                  for="1782340044453"
+                  for="1782730131684"
                 >
                   <span
                     class="svelte-1xatx26"
@@ -9381,14 +9381,14 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
               >
                 <input
                   class="svelte-1xatx26"
-                  id="1782340044454"
+                  id="1782730131685"
                   type="checkbox"
                   value="root__3"
                 />
                  
                 <label
                   class="svelte-1xatx26"
-                  for="1782340044454"
+                  for="1782730131685"
                 >
                   <span
                     class="svelte-1xatx26"
@@ -9503,14 +9503,14 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
               >
                 <input
                   class="svelte-1xatx26"
-                  id="1782340044447"
+                  id="1782730131678"
                   type="checkbox"
                   value="root__0"
                 />
                  
                 <label
                   class="svelte-1xatx26"
-                  for="1782340044447"
+                  for="1782730131678"
                 >
                   <span
                     class="svelte-1xatx26"
@@ -9534,14 +9534,14 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
               >
                 <input
                   class="svelte-1xatx26"
-                  id="1782340044448"
+                  id="1782730131679"
                   type="checkbox"
                   value="root__1"
                 />
                  
                 <label
                   class="svelte-1xatx26"
-                  for="1782340044448"
+                  for="1782730131679"
                 >
                   <span
                     class="svelte-1xatx26"
@@ -9565,14 +9565,14 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
               >
                 <input
                   class="svelte-1xatx26"
-                  id="1782340044449"
+                  id="1782730131680"
                   type="checkbox"
                   value="root__2"
                 />
                  
                 <label
                   class="svelte-1xatx26"
-                  for="1782340044449"
+                  for="1782730131680"
                 >
                   <span
                     class="svelte-1xatx26"
@@ -9596,14 +9596,14 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
               >
                 <input
                   class="svelte-1xatx26"
-                  id="1782340044450"
+                  id="1782730131681"
                   type="checkbox"
                   value="root__3"
                 />
                  
                 <label
                   class="svelte-1xatx26"
-                  for="1782340044450"
+                  for="1782730131681"
                 >
                   <span
                     class="svelte-1xatx26"
@@ -9729,14 +9729,14 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
               >
                 <input
                   class="svelte-1xatx26"
-                  id="1782340044443"
+                  id="1782730131674"
                   type="checkbox"
                   value="root__0"
                 />
                  
                 <label
                   class="svelte-1xatx26"
-                  for="1782340044443"
+                  for="1782730131674"
                 >
                   <span
                     class="svelte-1xatx26"
@@ -9760,14 +9760,14 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
               >
                 <input
                   class="svelte-1xatx26"
-                  id="1782340044444"
+                  id="1782730131675"
                   type="checkbox"
                   value="root__1"
                 />
                  
                 <label
                   class="svelte-1xatx26"
-                  for="1782340044444"
+                  for="1782730131675"
                 >
                   <span
                     class="svelte-1xatx26"
@@ -9791,14 +9791,14 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
               >
                 <input
                   class="svelte-1xatx26"
-                  id="1782340044445"
+                  id="1782730131676"
                   type="checkbox"
                   value="root__2"
                 />
                  
                 <label
                   class="svelte-1xatx26"
-                  for="1782340044445"
+                  for="1782730131676"
                 >
                   <span
                     class="svelte-1xatx26"
@@ -9822,14 +9822,14 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
               >
                 <input
                   class="svelte-1xatx26"
-                  id="1782340044446"
+                  id="1782730131677"
                   type="checkbox"
                   value="root__3"
                 />
                  
                 <label
                   class="svelte-1xatx26"
-                  for="1782340044446"
+                  for="1782730131677"
                 >
                   <span
                     class="svelte-1xatx26"
@@ -9943,14 +9943,14 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
               >
                 <input
                   class="svelte-1xatx26"
-                  id="1782340044455"
+                  id="1782730131686"
                   type="checkbox"
                   value="root__0"
                 />
                  
                 <label
                   class="svelte-1xatx26"
-                  for="1782340044455"
+                  for="1782730131686"
                 >
                   <span
                     class="svelte-1xatx26"
@@ -9974,14 +9974,14 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
               >
                 <input
                   class="svelte-1xatx26"
-                  id="1782340044456"
+                  id="1782730131687"
                   type="checkbox"
                   value="root__1"
                 />
                  
                 <label
                   class="svelte-1xatx26"
-                  for="1782340044456"
+                  for="1782730131687"
                 >
                   <span
                     class="svelte-1xatx26"
@@ -10005,14 +10005,14 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
               >
                 <input
                   class="svelte-1xatx26"
-                  id="1782340044457"
+                  id="1782730131688"
                   type="checkbox"
                   value="root__2"
                 />
                  
                 <label
                   class="svelte-1xatx26"
-                  for="1782340044457"
+                  for="1782730131688"
                 >
                   <span
                     class="svelte-1xatx26"
@@ -10036,14 +10036,14 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
               >
                 <input
                   class="svelte-1xatx26"
-                  id="1782340044458"
+                  id="1782730131689"
                   type="checkbox"
                   value="root__3"
                 />
                  
                 <label
                   class="svelte-1xatx26"
-                  for="1782340044458"
+                  for="1782730131689"
                 >
                   <span
                     class="svelte-1xatx26"
@@ -13240,15 +13240,15 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
               >
                 <input
                   class="svelte-1hbuyfy"
-                  id="1782340044478"
-                  name="1782340044477"
+                  id="1782730131709"
+                  name="1782730131708"
                   type="radio"
                   value="root__0"
                 />
                  
                 <label
                   class="svelte-1hbuyfy"
-                  for="1782340044478"
+                  for="1782730131709"
                 >
                   <span
                     class="svelte-1hbuyfy"
@@ -13272,15 +13272,15 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
               >
                 <input
                   class="svelte-1hbuyfy"
-                  id="1782340044479"
-                  name="1782340044477"
+                  id="1782730131710"
+                  name="1782730131708"
                   type="radio"
                   value="root__1"
                 />
                  
                 <label
                   class="svelte-1hbuyfy"
-                  for="1782340044479"
+                  for="1782730131710"
                 >
                   <span
                     class="svelte-1hbuyfy"
@@ -13304,15 +13304,15 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
               >
                 <input
                   class="svelte-1hbuyfy"
-                  id="1782340044480"
-                  name="1782340044477"
+                  id="1782730131711"
+                  name="1782730131708"
                   type="radio"
                   value="root__2"
                 />
                  
                 <label
                   class="svelte-1hbuyfy"
-                  for="1782340044480"
+                  for="1782730131711"
                 >
                   <span
                     class="svelte-1hbuyfy"
@@ -13336,15 +13336,15 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
               >
                 <input
                   class="svelte-1hbuyfy"
-                  id="1782340044481"
-                  name="1782340044477"
+                  id="1782730131712"
+                  name="1782730131708"
                   type="radio"
                   value="root__3"
                 />
                  
                 <label
                   class="svelte-1hbuyfy"
-                  for="1782340044481"
+                  for="1782730131712"
                 >
                   <span
                     class="svelte-1hbuyfy"
@@ -13459,15 +13459,15 @@ exports[`widgets > radio > snapshots > error 1`] = `
               >
                 <input
                   class="svelte-1hbuyfy"
-                  id="1782340044473"
-                  name="1782340044472"
+                  id="1782730131704"
+                  name="1782730131703"
                   type="radio"
                   value="root__0"
                 />
                  
                 <label
                   class="svelte-1hbuyfy"
-                  for="1782340044473"
+                  for="1782730131704"
                 >
                   <span
                     class="svelte-1hbuyfy"
@@ -13491,15 +13491,15 @@ exports[`widgets > radio > snapshots > error 1`] = `
               >
                 <input
                   class="svelte-1hbuyfy"
-                  id="1782340044474"
-                  name="1782340044472"
+                  id="1782730131705"
+                  name="1782730131703"
                   type="radio"
                   value="root__1"
                 />
                  
                 <label
                   class="svelte-1hbuyfy"
-                  for="1782340044474"
+                  for="1782730131705"
                 >
                   <span
                     class="svelte-1hbuyfy"
@@ -13523,15 +13523,15 @@ exports[`widgets > radio > snapshots > error 1`] = `
               >
                 <input
                   class="svelte-1hbuyfy"
-                  id="1782340044475"
-                  name="1782340044472"
+                  id="1782730131706"
+                  name="1782730131703"
                   type="radio"
                   value="root__2"
                 />
                  
                 <label
                   class="svelte-1hbuyfy"
-                  for="1782340044475"
+                  for="1782730131706"
                 >
                   <span
                     class="svelte-1hbuyfy"
@@ -13555,15 +13555,15 @@ exports[`widgets > radio > snapshots > error 1`] = `
               >
                 <input
                   class="svelte-1hbuyfy"
-                  id="1782340044476"
-                  name="1782340044472"
+                  id="1782730131707"
+                  name="1782730131703"
                   type="radio"
                   value="root__3"
                 />
                  
                 <label
                   class="svelte-1hbuyfy"
-                  for="1782340044476"
+                  for="1782730131707"
                 >
                   <span
                     class="svelte-1hbuyfy"
@@ -13689,15 +13689,15 @@ exports[`widgets > radio > snapshots > normal 1`] = `
               >
                 <input
                   class="svelte-1hbuyfy"
-                  id="1782340044468"
-                  name="1782340044467"
+                  id="1782730131699"
+                  name="1782730131698"
                   type="radio"
                   value="root__0"
                 />
                  
                 <label
                   class="svelte-1hbuyfy"
-                  for="1782340044468"
+                  for="1782730131699"
                 >
                   <span
                     class="svelte-1hbuyfy"
@@ -13721,15 +13721,15 @@ exports[`widgets > radio > snapshots > normal 1`] = `
               >
                 <input
                   class="svelte-1hbuyfy"
-                  id="1782340044469"
-                  name="1782340044467"
+                  id="1782730131700"
+                  name="1782730131698"
                   type="radio"
                   value="root__1"
                 />
                  
                 <label
                   class="svelte-1hbuyfy"
-                  for="1782340044469"
+                  for="1782730131700"
                 >
                   <span
                     class="svelte-1hbuyfy"
@@ -13753,15 +13753,15 @@ exports[`widgets > radio > snapshots > normal 1`] = `
               >
                 <input
                   class="svelte-1hbuyfy"
-                  id="1782340044470"
-                  name="1782340044467"
+                  id="1782730131701"
+                  name="1782730131698"
                   type="radio"
                   value="root__2"
                 />
                  
                 <label
                   class="svelte-1hbuyfy"
-                  for="1782340044470"
+                  for="1782730131701"
                 >
                   <span
                     class="svelte-1hbuyfy"
@@ -13785,15 +13785,15 @@ exports[`widgets > radio > snapshots > normal 1`] = `
               >
                 <input
                   class="svelte-1hbuyfy"
-                  id="1782340044471"
-                  name="1782340044467"
+                  id="1782730131702"
+                  name="1782730131698"
                   type="radio"
                   value="root__3"
                 />
                  
                 <label
                   class="svelte-1hbuyfy"
-                  for="1782340044471"
+                  for="1782730131702"
                 >
                   <span
                     class="svelte-1hbuyfy"
@@ -13907,15 +13907,15 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
               >
                 <input
                   class="svelte-1hbuyfy"
-                  id="1782340044483"
-                  name="1782340044482"
+                  id="1782730131714"
+                  name="1782730131713"
                   type="radio"
                   value="root__0"
                 />
                  
                 <label
                   class="svelte-1hbuyfy"
-                  for="1782340044483"
+                  for="1782730131714"
                 >
                   <span
                     class="svelte-1hbuyfy"
@@ -13939,15 +13939,15 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
               >
                 <input
                   class="svelte-1hbuyfy"
-                  id="1782340044484"
-                  name="1782340044482"
+                  id="1782730131715"
+                  name="1782730131713"
                   type="radio"
                   value="root__1"
                 />
                  
                 <label
                   class="svelte-1hbuyfy"
-                  for="1782340044484"
+                  for="1782730131715"
                 >
                   <span
                     class="svelte-1hbuyfy"
@@ -13971,15 +13971,15 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
               >
                 <input
                   class="svelte-1hbuyfy"
-                  id="1782340044485"
-                  name="1782340044482"
+                  id="1782730131716"
+                  name="1782730131713"
                   type="radio"
                   value="root__2"
                 />
                  
                 <label
                   class="svelte-1hbuyfy"
-                  for="1782340044485"
+                  for="1782730131716"
                 >
                   <span
                     class="svelte-1hbuyfy"
@@ -14003,15 +14003,15 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
               >
                 <input
                   class="svelte-1hbuyfy"
-                  id="1782340044486"
-                  name="1782340044482"
+                  id="1782730131717"
+                  name="1782730131713"
                   type="radio"
                   value="root__3"
                 />
                  
                 <label
                   class="svelte-1hbuyfy"
-                  for="1782340044486"
+                  for="1782730131717"
                 >
                   <span
                     class="svelte-1hbuyfy"
@@ -17681,14 +17681,14 @@ exports[`with title and description > checkboxes 1`] = `
               >
                 <input
                   class="svelte-1xatx26"
-                  id="1782340044500"
+                  id="1782730131731"
                   type="checkbox"
                   value="root__0"
                 />
                  
                 <label
                   class="svelte-1xatx26"
-                  for="1782340044500"
+                  for="1782730131731"
                 >
                   <span
                     class="svelte-1xatx26"
@@ -17712,14 +17712,14 @@ exports[`with title and description > checkboxes 1`] = `
               >
                 <input
                   class="svelte-1xatx26"
-                  id="1782340044501"
+                  id="1782730131732"
                   type="checkbox"
                   value="root__1"
                 />
                  
                 <label
                   class="svelte-1xatx26"
-                  for="1782340044501"
+                  for="1782730131732"
                 >
                   <span
                     class="svelte-1xatx26"
@@ -17743,14 +17743,14 @@ exports[`with title and description > checkboxes 1`] = `
               >
                 <input
                   class="svelte-1xatx26"
-                  id="1782340044502"
+                  id="1782730131733"
                   type="checkbox"
                   value="root__2"
                 />
                  
                 <label
                   class="svelte-1xatx26"
-                  for="1782340044502"
+                  for="1782730131733"
                 >
                   <span
                     class="svelte-1xatx26"
@@ -18998,14 +18998,14 @@ exports[`with title and description from both > checkboxes 1`] = `
               >
                 <input
                   class="svelte-1xatx26"
-                  id="1782340044506"
+                  id="1782730131737"
                   type="checkbox"
                   value="root__0"
                 />
                  
                 <label
                   class="svelte-1xatx26"
-                  for="1782340044506"
+                  for="1782730131737"
                 >
                   <span
                     class="svelte-1xatx26"
@@ -19029,14 +19029,14 @@ exports[`with title and description from both > checkboxes 1`] = `
               >
                 <input
                   class="svelte-1xatx26"
-                  id="1782340044507"
+                  id="1782730131738"
                   type="checkbox"
                   value="root__1"
                 />
                  
                 <label
                   class="svelte-1xatx26"
-                  for="1782340044507"
+                  for="1782730131738"
                 >
                   <span
                     class="svelte-1xatx26"
@@ -19060,14 +19060,14 @@ exports[`with title and description from both > checkboxes 1`] = `
               >
                 <input
                   class="svelte-1xatx26"
-                  id="1782340044508"
+                  id="1782730131739"
                   type="checkbox"
                   value="root__2"
                 />
                  
                 <label
                   class="svelte-1xatx26"
-                  for="1782340044508"
+                  for="1782730131739"
                 >
                   <span
                     class="svelte-1xatx26"
@@ -20315,14 +20315,14 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
               >
                 <input
                   class="svelte-1xatx26"
-                  id="1782340044503"
+                  id="1782730131734"
                   type="checkbox"
                   value="root__0"
                 />
                  
                 <label
                   class="svelte-1xatx26"
-                  for="1782340044503"
+                  for="1782730131734"
                 >
                   <span
                     class="svelte-1xatx26"
@@ -20346,14 +20346,14 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
               >
                 <input
                   class="svelte-1xatx26"
-                  id="1782340044504"
+                  id="1782730131735"
                   type="checkbox"
                   value="root__1"
                 />
                  
                 <label
                   class="svelte-1xatx26"
-                  for="1782340044504"
+                  for="1782730131735"
                 >
                   <span
                     class="svelte-1xatx26"
@@ -20377,14 +20377,14 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
               >
                 <input
                   class="svelte-1xatx26"
-                  id="1782340044505"
+                  id="1782730131736"
                   type="checkbox"
                   value="root__2"
                 />
                  
                 <label
                   class="svelte-1xatx26"
-                  for="1782340044505"
+                  for="1782730131736"
                 >
                   <span
                     class="svelte-1xatx26"
@@ -21399,14 +21399,14 @@ exports[`with title and description with global label off > checkboxes 1`] = `
               >
                 <input
                   class="svelte-1xatx26"
-                  id="1782340044509"
+                  id="1782730131740"
                   type="checkbox"
                   value="root__0"
                 />
                  
                 <label
                   class="svelte-1xatx26"
-                  for="1782340044509"
+                  for="1782730131740"
                 >
                   <span
                     class="svelte-1xatx26"
@@ -21430,14 +21430,14 @@ exports[`with title and description with global label off > checkboxes 1`] = `
               >
                 <input
                   class="svelte-1xatx26"
-                  id="1782340044510"
+                  id="1782730131741"
                   type="checkbox"
                   value="root__1"
                 />
                  
                 <label
                   class="svelte-1xatx26"
-                  for="1782340044510"
+                  for="1782730131741"
                 >
                   <span
                     class="svelte-1xatx26"
@@ -21461,14 +21461,14 @@ exports[`with title and description with global label off > checkboxes 1`] = `
               >
                 <input
                   class="svelte-1xatx26"
-                  id="1782340044511"
+                  id="1782730131742"
                   type="checkbox"
                   value="root__2"
                 />
                  
                 <label
                   class="svelte-1xatx26"
-                  for="1782340044511"
+                  for="1782730131742"
                 >
                   <span
                     class="svelte-1xatx26"
