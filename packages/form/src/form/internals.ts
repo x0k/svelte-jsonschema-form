@@ -1,8 +1,9 @@
 import { SvelteMap } from "svelte/reactivity";
 
-import type { RPath } from "@/core/index.js";
+import { REF_FLAG, type RPath } from "@/core/index.js";
 import { getNodeByKeys, insertValue } from "@/lib/trie.js";
 
+import type { Config } from "./config.js";
 import type { FieldState } from "./field-state.js";
 import type { FieldPath } from "./id.js";
 import type { PathTrieRef, Update } from "./model.js";
@@ -58,6 +59,41 @@ export function internalRegisterFieldPath(
     node.value = p;
   }
   return p;
+}
+
+// TODO: Should we consider `expanded` state or not?
+export function internalIsCycleRef(
+  pathsRef: PathTrieRef<FieldPath>,
+  map: WeakMap<FieldPath, Config>,
+  path: RPath,
+  ref: string
+) {
+  let node = pathsRef.current;
+  let nextKey = path[0];
+  for (let i = 0; node && i < path.length; i++) {
+    const key = nextKey;
+    // NOTE: `path[i + 1]` may be out of bounds on the last iteration
+    nextKey = path[i + 1];
+    const p = node.value;
+    if (
+      p &&
+      typeof nextKey !== "number" &&
+      map.get(p)?.schema?.[REF_FLAG] === ref
+    ) {
+      return true;
+    }
+    node = node.values.get(key!);
+  }
+  return false;
+}
+
+export function internalSetFieldState(
+  map: SvelteMap<FieldPath, FieldState>,
+  path: FieldPath,
+  state: FieldState
+) {
+  const currentFlags = map.get(path) ?? 0;
+  map.set(path, currentFlags | state);
 }
 
 export function internalHasFieldState(

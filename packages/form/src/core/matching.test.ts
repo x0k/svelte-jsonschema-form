@@ -15,7 +15,7 @@ import {
 } from "./fixtures/test-data.js";
 import { calculateIndexScore, getClosestMatchingOption } from "./matching.js";
 import type { Merger } from "./merger.js";
-import type { Schema } from "./schema.js";
+import { REF_FLAG, type Schema } from "./schema.js";
 import { createMerger } from "./test-merger.js";
 import { createValidator } from "./test-validator.js";
 import type { Validator } from "./validator.js";
@@ -227,6 +227,7 @@ describe("oneOfMatchingOption", () => {
                       },
                     },
                     required: ["name", "inner_one_of"],
+                    [REF_FLAG]: "#/definitions/inner_spec_2_def",
                   },
                   unlabeled_options: {
                     oneOf: [
@@ -237,6 +238,7 @@ describe("oneOfMatchingOption", () => {
                 },
                 additionalProperties: false,
                 title: "first option",
+                [REF_FLAG]: "#/definitions/first_option_def",
               },
               {
                 anyOf: [
@@ -294,9 +296,11 @@ describe("oneOfMatchingOption", () => {
                           cpg_params: { type: "string" },
                         },
                         required: ["name"],
+                        [REF_FLAG]: "#/definitions/special_spec_def",
                       },
                     },
                     required: ["name"],
+                    [REF_FLAG]: "#/definitions/inner_spec_def",
                   },
                   unique_to_second: { type: "integer" },
                   labeled_options: {
@@ -308,6 +312,7 @@ describe("oneOfMatchingOption", () => {
                 },
                 additionalProperties: false,
                 title: "second option",
+                [REF_FLAG]: "#/definitions/second_option_def",
               },
               {
                 anyOf: [
@@ -462,6 +467,7 @@ describe("oneOfMatchingOption", () => {
                       },
                     },
                     required: ["name", "inner_one_of"],
+                    [REF_FLAG]: "#/definitions/inner_spec_2_def",
                   },
                   unlabeled_options: {
                     oneOf: [
@@ -472,6 +478,7 @@ describe("oneOfMatchingOption", () => {
                 },
                 additionalProperties: false,
                 title: "first option",
+                [REF_FLAG]: "#/definitions/first_option_def",
               },
               {
                 anyOf: [
@@ -537,9 +544,11 @@ describe("oneOfMatchingOption", () => {
                           cpg_params: { type: "string" },
                         },
                         required: ["name"],
+                        [REF_FLAG]: "#/definitions/special_spec_def",
                       },
                     },
                     required: ["name"],
+                    [REF_FLAG]: "#/definitions/inner_spec_def",
                   },
                   unique_to_second: { type: "integer" },
                   labeled_options: {
@@ -551,6 +560,7 @@ describe("oneOfMatchingOption", () => {
                 },
                 additionalProperties: false,
                 title: "second option",
+                [REF_FLAG]: "#/definitions/second_option_def",
               },
               {
                 anyOf: [

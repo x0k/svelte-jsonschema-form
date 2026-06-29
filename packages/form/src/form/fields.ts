@@ -34,6 +34,8 @@ export type FoundationalFieldType = keyof {
     : never]: K;
 };
 
+// TODO: We need to pass field value ref to this function
+// for proper isCycleRef check in v4
 export type ResolveFieldType = (config: Config) => FoundationalFieldType;
 
 declare module "./components.js" {
@@ -49,6 +51,7 @@ declare module "./components.js" {
     oneOfField: {};
     anyOfField: {};
     unknownField: {};
+    expandField: {};
   }
   interface ComponentProps {
     stringField: FieldCommonProps<string>;
@@ -62,6 +65,7 @@ declare module "./components.js" {
     oneOfField: FieldCommonProps<SchemaValue>;
     anyOfField: FieldCommonProps<SchemaValue>;
     unknownField: FieldCommonProps<unknown>;
+    expandField: FieldCommonProps<SchemaValue>;
   }
   interface ComponentBindings {
     stringField: "value";
@@ -75,5 +79,6 @@ declare module "./components.js" {
     oneOfField: "value";
     anyOfField: "value";
     unknownField: "value";
+    expandField: "value";
   }
 }

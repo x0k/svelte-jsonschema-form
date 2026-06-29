@@ -39,6 +39,7 @@ import {
   isSelect,
   type UiSchema,
 } from "@/form/index.js";
+import { snapshotWithSymbols } from "@/lib/svelte.svelte.js";
 
 import { createFormOptions } from "../enum.js";
 import {
@@ -104,7 +105,7 @@ export function createObjectContext<T>({
 
   let lastSchemaProperties: Schema["properties"] = undefined;
   const schemaProperties = $derived.by(() => {
-    const snap = $state.snapshot(retrievedSchema.properties);
+    const snap = snapshotWithSymbols(retrievedSchema.properties);
     // NOTE: Cache hits are verified on `any-of` and `property-dependencies` examples.
     if (!isOrderedSchemaDeepEqual(lastSchemaProperties, snap)) {
       // NOTE: `defaults` population

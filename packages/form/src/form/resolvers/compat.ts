@@ -6,6 +6,7 @@ import {
 
 import type { ResolveFieldType } from "../fields.js";
 import {
+  isCycleRef,
   isFilesArray,
   isMultiSelect,
   isSelect,
@@ -20,6 +21,9 @@ import "../extra-fields/files.js";
 export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
   return (config) => {
     const { schema } = config;
+    if (isCycleRef(ctx, config)) {
+      return "expandField";
+    }
     if (isSelect(ctx, schema)) {
       return "enumField";
     }

@@ -333,7 +333,7 @@ export const RECURSIVE_REF_ALLOF: Schema = deepFreeze({
   },
 });
 
-export const RECURSIVE_REF: Schema = deepFreeze({
+export const RECURSIVE_REF = deepFreeze({
   definitions: {
     "@enum": {
       type: "object",
@@ -350,7 +350,7 @@ export const RECURSIVE_REF: Schema = deepFreeze({
     },
   },
   $ref: "#/definitions/@enum",
-});
+} as const satisfies Schema);
 
 export const ERROR_MAPPER = {
   "": "root error",

@@ -7,7 +7,7 @@ function compareRecords(
   b: Record<PropertyKey, SchemaValue | undefined>,
   compare: (a: SchemaValue | undefined, b: SchemaValue | undefined) => boolean
 ): boolean {
-  const aKeys = Object.keys(a);
+  const aKeys = Reflect.ownKeys(a);
   let key;
   for (let i = aKeys.length; i-- !== 0; ) {
     key = aKeys[i]!;
@@ -15,7 +15,7 @@ function compareRecords(
       return false;
     }
   }
-  return Object.keys(b).length === aKeys.length;
+  return Reflect.ownKeys(b).length === aKeys.length;
 }
 
 function compareOrderedRecords(
@@ -23,8 +23,8 @@ function compareOrderedRecords(
   b: Record<PropertyKey, SchemaValue | undefined>,
   compare: (a: SchemaValue | undefined, b: SchemaValue | undefined) => boolean
 ): boolean {
-  const aKeys = Object.keys(a);
-  const bKeys = Object.keys(b);
+  const aKeys = Reflect.ownKeys(a);
+  const bKeys = Reflect.ownKeys(b);
   if (aKeys.length !== bKeys.length) {
     return false;
   }

@@ -1,5 +1,14 @@
+import { REF_FLAG } from "@/core/schema.js";
+
 import { isConfigEqual, type Config } from "../config.js";
-import { FORM_CONFIGS_CACHE } from "../internals.js";
+import { FIELD_EXPANDED } from "../field-state.js";
+import {
+  FORM_CONFIGS_CACHE,
+  FORM_FIELDS_STATE_MAP,
+  FORM_PATHS_TRIE_REF,
+  internalHasFieldState,
+  internalIsCycleRef,
+} from "../internals.js";
 import type { FormState } from "./state.js";
 
 /**
@@ -16,4 +25,28 @@ export function getStableConfig<T>(ctx: FormState<T>, config: Config): Config {
   // 2. A stable reference to FieldPath will be lost
   cache.set(config.path, config);
   return config;
+}
+
+/**
+ * @query
+ */
+export function isCycleRef<T>(ctx: FormState<T>, config: Config): boolean {
+  const ref = config.schema[REF_FLAG];
+  if (ref === undefined) {
+    return false;
+  }
+  const isExpanded = internalHasFieldState(
+    ctx[FORM_FIELDS_STATE_MAP],
+    config.path,
+    FIELD_EXPANDED
+  );
+  return (
+    !isExpanded &&
+    internalIsCycleRef(
+      ctx[FORM_PATHS_TRIE_REF],
+      ctx[FORM_CONFIGS_CACHE],
+      config.path,
+      ref
+    )
+  );
 }

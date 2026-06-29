@@ -13,3 +13,4 @@ export { default as nullField } from "./null.svelte";
 export { default as numberField } from "./number-field.svelte";
 export { default as stringField } from "./string.svelte";
 export { default as unknownField } from "./unknown.svelte";
+export { default as expandField } from "./expand.svelte";

@@ -28,7 +28,7 @@ import {
 } from "./default-state.js";
 import { RECURSIVE_REF, RECURSIVE_REF_ALLOF } from "./fixtures/test-data.js";
 import type { Merger } from "./merger.js";
-import type { Schema } from "./schema.js";
+import { REF_FLAG, type Schema } from "./schema.js";
 import { createMerger } from "./test-merger.js";
 import { createValidator } from "./test-validator.js";
 import type { Validator } from "./validator.js";
@@ -259,8 +259,10 @@ describe("getDefaultFormState()", () => {
                           str: "default_str",
                           extra: { key: "value" },
                         },
+                        [REF_FLAG]: "#/$defs/Inner",
                       },
                     },
+                    [REF_FLAG]: "#/$defs/Wrapper",
                   },
                   { anyOf: [{ required: ["inner"] }] },
                 ],
@@ -284,8 +286,10 @@ describe("getDefaultFormState()", () => {
                           str: "default_str",
                           extra: { key: "value" },
                         },
+                        [REF_FLAG]: "#/$defs/Inner",
                       },
                     },
+                    [REF_FLAG]: "#/$defs/Wrapper",
                   },
                   { anyOf: [{ required: ["inner"] }] },
                 ],
@@ -5547,6 +5551,7 @@ describe("getDefaultFormState()", () => {
                     fooProp: { type: "string" },
                     fooProp2: { type: "string", default: "fooProp2" },
                   },
+                  [REF_FLAG]: "#/definitions/foo",
                 },
                 {
                   anyOf: [
@@ -5568,6 +5573,7 @@ describe("getDefaultFormState()", () => {
                     barProp: { type: "string" },
                     barProp2: { type: "string", default: "barProp2" },
                   },
+                  [REF_FLAG]: "#/definitions/bar",
                 },
                 {
                   anyOf: [
@@ -5589,6 +5595,7 @@ describe("getDefaultFormState()", () => {
                     fooProp: { type: "string" },
                     fooProp2: { type: "string", default: "fooProp2" },
                   },
+                  [REF_FLAG]: "#/definitions/foo",
                 },
                 {
                   anyOf: [
@@ -5610,6 +5617,7 @@ describe("getDefaultFormState()", () => {
                     barProp: { type: "string" },
                     barProp2: { type: "string", default: "barProp2" },
                   },
+                  [REF_FLAG]: "#/definitions/bar",
                 },
                 {
                   anyOf: [
