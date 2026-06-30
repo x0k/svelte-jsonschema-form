@@ -579,5 +579,125 @@ export function formValueValidatorTests<T>(
       const { errors = [] } = await validate(signal, schema, value);
       expect(errors.length).toBeGreaterThan(1);
     });
+
+    it("Should resolve property title when required is inside allOf", async ({
+      signal,
+    }) => {
+      const schema: Schema = {
+        type: "object",
+        properties: {
+          animal: {
+            title: "My animal",
+            enum: ["Cat", "Fish"],
+          },
+        },
+        allOf: [
+          {
+            required: ["animal"],
+          },
+        ],
+      };
+      const validate = await createValidator({ schema });
+      const { errors = [] } = await validate(signal, schema, {});
+      expect(errors).toHaveLength(1);
+      expect(errors[0]?.message).toContain("My animal");
+    });
+
+    it("Should resolve property title when required is inside if-then-else", async ({
+      signal,
+    }) => {
+      const schema: Schema = {
+        type: "object",
+        properties: {
+          hasPet: { type: "boolean" },
+          animal: {
+            title: "My animal",
+            enum: ["Cat", "Fish"],
+          },
+        },
+        if: {
+          properties: { hasPet: { const: true } },
+          required: ["hasPet"],
+        },
+        then: {
+          required: ["animal"],
+        },
+      };
+      const validate = await createValidator({ schema });
+      const { errors = [] } = await validate(signal, schema, {
+        hasPet: true,
+      });
+      const requiredError = errors.find((e) => e.message.includes("required"));
+      expect(requiredError?.message).toContain("My animal");
+    });
+
+    it("Should prefer uiSchema title when required is inside allOf", async ({
+      signal,
+    }) => {
+      const schema: Schema = {
+        type: "object",
+        properties: {
+          animal: {
+            title: "My animal",
+            enum: ["Cat", "Fish"],
+          },
+        },
+        allOf: [
+          {
+            required: ["animal"],
+          },
+        ],
+      };
+      const validate = await createValidator({
+        schema,
+        uiSchema: {
+          animal: {
+            "ui:options": {
+              title: "My animal uiSchema",
+            },
+          },
+        },
+      });
+      const { errors = [] } = await validate(signal, schema, {});
+      expect(errors).toHaveLength(1);
+      expect(errors[0]?.message).toContain("My animal uiSchema");
+    });
+
+    it("Should prefer uiSchema title when required is inside if-then-else", async ({
+      signal,
+    }) => {
+      const schema: Schema = {
+        type: "object",
+        properties: {
+          hasPet: { type: "boolean" },
+          animal: {
+            title: "My animal",
+            enum: ["Cat", "Fish"],
+          },
+        },
+        if: {
+          properties: { hasPet: { const: true } },
+          required: ["hasPet"],
+        },
+        then: {
+          required: ["animal"],
+        },
+      };
+      const validate = await createValidator({
+        schema,
+        uiSchema: {
+          animal: {
+            "ui:options": {
+              title: "My animal uiSchema",
+            },
+          },
+        },
+      });
+      const { errors = [] } = await validate(signal, schema, {
+        hasPet: true,
+      });
+      const requiredError = errors.find((e) => e.message.includes("required"));
+      expect(requiredError?.message).toContain("My animal uiSchema");
+    });
   });
 }
