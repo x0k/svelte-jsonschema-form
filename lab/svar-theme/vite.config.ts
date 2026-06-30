@@ -53,7 +53,7 @@ export default defineConfig({
           include: [vrtPattern],
           browser: {
             provider: playwright(),
-            enabled: true,
+            enabled: !process.env.CI,
             headless: true,
             instances: [
               {
