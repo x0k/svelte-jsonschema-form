@@ -2,7 +2,6 @@ import { neverError } from "../errors.ts";
 import { extraPackage } from "../package.ts";
 import {
   externalValidatorPackage,
-  hyperjumpValidatorLocalizationSubPath,
   internalValidatorSubPath,
   isSchemaValidator,
   precompiledValidatorSubPath,
@@ -291,14 +290,10 @@ function hyperjumpImportsAndBody(lib: PathFactory, modelName: string) {
       imports: ["createFormValidatorFactory", "fromAst"],
       from: precompiledValidatorSubPath("hyperjump"),
     },
-    {
-      imports: ["localization"],
-      from: hyperjumpValidatorLocalizationSubPath("en-us"),
-    },
   ];
   return {
     imports,
-    body: `validatorRetriever: fromAst(ast),\n  localization`,
+    body: `validatorRetriever: fromAst(ast)`,
   };
 }
 

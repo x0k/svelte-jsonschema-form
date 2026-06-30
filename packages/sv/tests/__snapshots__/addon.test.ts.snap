@@ -2774,7 +2774,6 @@ exports[`@sjsf/sv sveltekit__formActions__hyperjump_preco… kit-ts 1`] = `
 		"vite": "^8.0.16"
 	},
 	"dependencies": {
-		"@fluent/bundle": "^0.19.0",
 		"@hyperjump/json-schema": "^1.17.0",
 		"@sjsf-lab/hyperjump-validator": "^3.0.0",
 		"@sjsf/basic-theme": "^3.6.0",
@@ -3024,7 +3023,6 @@ import { createAction } from "@sjsf/sveltekit/server";
 import * as post from "$lib/post/model.generated";
 import { ast } from "$lib/post/ast.generated";
 import { createFormValidatorFactory, fromAst } from "@sjsf-lab/hyperjump-validator/precompile";
-import { localization } from "@sjsf-lab/hyperjump-validator/localizations/en-us";
 import * as defaults from "$lib/sjsf/defaults";
 
 export const load = async () => {
@@ -3036,7 +3034,7 @@ export const actions = {
 		{
 			...defaults,
 			...post,
-			validator: createFormValidatorFactory({ validatorRetriever: fromAst(ast), localization }),
+			validator: createFormValidatorFactory({ validatorRetriever: fromAst(ast) }),
 			name: "postForm",
 			sendData: true
 		},
@@ -3052,7 +3050,6 @@ export const actions = {
 	import * as defaults from '$lib/sjsf/defaults';
 	import type { ActionData, PageData } from './$types';
 	import { createMeta, setupSvelteKitForm } from '@sjsf/sveltekit/client';
-	import { localization } from '@sjsf-lab/hyperjump-validator/localizations/en-us';
 	import { createFormValidatorFactory, fromAst } from '@sjsf-lab/hyperjump-validator/precompile';
 	import { ast } from '$lib/post/ast.generated';
 	import * as post from '$lib/post/model.generated';
@@ -3062,7 +3059,7 @@ export const actions = {
 
 	const { form } = setupSvelteKitForm(meta, {
 		...defaults,
-		validator: createFormValidatorFactory({ validatorRetriever: fromAst(ast), localization }),
+		validator: createFormValidatorFactory({ validatorRetriever: fromAst(ast) }),
 		onSuccess: (result) => {
 			if (result.type === "success") {
 				console.log(result.data?.post);
@@ -3952,7 +3949,6 @@ exports[`@sjsf/sv sveltekit__remoteFunctions__hyperjump_p… kit-ts 1`] = `
 		"vite": "^8.0.16"
 	},
 	"dependencies": {
-		"@fluent/bundle": "^0.19.0",
 		"@hyperjump/json-schema": "^1.17.0",
 		"@sjsf-lab/hyperjump-validator": "^3.0.0",
 		"@sjsf/basic-theme": "^3.6.0",
@@ -4200,7 +4196,6 @@ export const onSubmitError = createFocusOnFirstError();
 	import * as defaults from '$lib/sjsf/defaults';
 	import { createPost, getInitialData } from './data.remote';
 	import { connect } from '@sjsf/sveltekit/rf/client';
-	import { localization } from '@sjsf-lab/hyperjump-validator/localizations/en-us';
 	import { createFormValidatorFactory, fromAst } from '@sjsf-lab/hyperjump-validator/precompile';
 	import { ast } from '$lib/post/ast.generated';
 	import * as post from '$lib/post/model.generated';
@@ -4218,7 +4213,7 @@ export const onSubmitError = createFocusOnFirstError();
 		{
 			...defaults,
 			...initialData,
-			validator: createFormValidatorFactory({ validatorRetriever: fromAst(ast), localization }),
+			validator: createFormValidatorFactory({ validatorRetriever: fromAst(ast) }),
 			fields: createPost.fields
 		}
 	));
@@ -4232,7 +4227,6 @@ import { form, query } from "$app/server";
 import * as post from "$lib/post/model.generated";
 import { ast } from "$lib/post/ast.generated";
 import { createFormValidatorFactory, fromAst } from "@sjsf-lab/hyperjump-validator/precompile";
-import { localization } from "@sjsf-lab/hyperjump-validator/localizations/en-us";
 import * as defaults from "$lib/sjsf/defaults";
 
 export const getInitialData = query(async () => {
@@ -4243,7 +4237,7 @@ export const createPost = form(
 	createServerValidator<post.Model>({
 		...defaults,
 		...post,
-		validator: createFormValidatorFactory({ validatorRetriever: fromAst(ast), localization })
+		validator: createFormValidatorFactory({ validatorRetriever: fromAst(ast) })
 	}),
 	({ data }) => {
 		console.log(data);
@@ -12585,7 +12579,6 @@ exports[`@sjsf/sv validator__hyperjump_precompiled kit-ts 1`] = `
 		"vite": "^8.0.16"
 	},
 	"dependencies": {
-		"@fluent/bundle": "^0.19.0",
 		"@hyperjump/json-schema": "^1.17.0",
 		"@sjsf-lab/hyperjump-validator": "^3.0.0",
 		"@sjsf/basic-theme": "^3.6.0",
@@ -12829,7 +12822,6 @@ export const onSubmitError = createFocusOnFirstError();
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '$lib/sjsf/defaults';
-	import { localization } from '@sjsf-lab/hyperjump-validator/localizations/en-us';
 	import { createFormValidatorFactory, fromAst } from '@sjsf-lab/hyperjump-validator/precompile';
 	import { ast } from '$lib/post/ast.generated';
 	import * as post from '$lib/post/model.generated';
@@ -12838,7 +12830,7 @@ export const onSubmitError = createFocusOnFirstError();
 	const form = createForm<post.Model>({
 		...defaults,
 		...post,
-		validator: createFormValidatorFactory({ validatorRetriever: fromAst(ast), localization }),
+		validator: createFormValidatorFactory({ validatorRetriever: fromAst(ast) }),
 		onSubmit: console.log
 	});
 </script>
@@ -12911,7 +12903,6 @@ exports[`@sjsf/sv validator__hyperjump_precompiled vite-ts 1`] = `
     "vite": "^7.3.1"
   },
   "dependencies": {
-    "@fluent/bundle": "^0.19.0",
     "@hyperjump/json-schema": "^1.17.0",
     "@sjsf-lab/hyperjump-validator": "^3.0.0",
     "@sjsf/basic-theme": "^3.6.0",
@@ -13278,7 +13269,6 @@ export default app
 ",
   "src/routes/sjsf.svelte": "<script lang="ts">
 	import * as defaults from '../lib/sjsf/defaults';
-	import { localization } from '@sjsf-lab/hyperjump-validator/localizations/en-us';
 	import { createFormValidatorFactory, fromAst } from '@sjsf-lab/hyperjump-validator/precompile';
 	import { ast } from '../lib/post/ast.generated';
 	import * as post from '../lib/post/model.generated';
@@ -13287,7 +13277,7 @@ export default app
 	const form = createForm<post.Model>({
 		...defaults,
 		...post,
-		validator: createFormValidatorFactory({ validatorRetriever: fromAst(ast), localization }),
+		validator: createFormValidatorFactory({ validatorRetriever: fromAst(ast) }),
 		onSubmit: console.log
 	});
 </script>

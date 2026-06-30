@@ -8,7 +8,6 @@ import {
   Validation,
   type AST,
 } from "@hyperjump/json-schema/experimental";
-import { localization } from "@sjsf-lab/hyperjump-validator/localizations/en-us";
 import {
   fromAst,
   createFormValidatorFactory as hyperjumpFactory,
@@ -37,7 +36,6 @@ export const draft07: CompileValidator = async (schemas: Schema[]) => {
       await Validation.compile(s, ast, s);
     }
     return hyperjumpFactory({
-      localization,
       validatorRetriever: fromAst(ast),
     });
   } finally {
