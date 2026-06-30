@@ -64,4 +64,6 @@ export interface CombinationFieldTestContext extends SelectCallbacks {
   defaultFormOptions?: Partial<FormOptions<any>>;
   toggleCheckbox?: (locator: Locator) => Promise<void>;
   skipTests?: string[];
+  /** Custom assertion for option text in SSR body. Default: `expect(body).toContain(title)` */
+  assertOptionTextInBody?: (body: string, optionTitle: string) => void;
 }

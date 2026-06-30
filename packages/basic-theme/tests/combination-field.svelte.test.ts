@@ -3,14 +3,20 @@ import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 import { describe, expect, test } from "vitest";
 import { page, userEvent } from "vitest/browser";
 
-import { renderFieldForm } from "./helpers.js";
+import { expectValue, renderFieldForm } from "./helpers.js";
 import {
   ambiguousSchema,
   discriminatedSchema,
   discriminatedUiSchema,
+  numberAnyOfSchema,
+  numberOneOfSchema,
+  objectSharedAnyOfSchema,
+  objectSharedOneOfSchema,
   plainOneOfSchema,
   refObjectAnyOfSchema,
   refObjectOneOfSchema,
+  stringAnyOfSchema,
+  stringOneOfSchema,
 } from "./test-data/combination-defaults.js";
 
 const enumUiSchema = {
@@ -140,6 +146,112 @@ describe("combination field contracts", () => {
       await expect.element(select).toHaveValue("1");
       const val = getValueSnapshot(form) as any;
       expect(val.status).toEqual({ reason: undefined });
+    });
+  });
+
+  describe("primitive type with non-select oneOf", () => {
+    test("string oneOf renders text input", async () => {
+      await renderFieldForm({
+        schema: stringOneOfSchema,
+      });
+
+      await expect
+        .element(page.getByRole("textbox").first())
+        .toBeInTheDocument();
+    });
+
+    test("string oneOf produces string formData", async () => {
+      const { form } = await renderFieldForm({
+        schema: stringOneOfSchema,
+      });
+
+      await userEvent.fill(page.getByRole("textbox").first(), "192.168.1.1");
+      expectValue(form, "192.168.1.1");
+    });
+
+    test("number oneOf renders spinbutton", async () => {
+      await renderFieldForm({
+        schema: numberOneOfSchema,
+      });
+
+      await expect
+        .element(page.getByRole("spinbutton").first())
+        .toBeInTheDocument();
+    });
+
+    test("number oneOf produces number formData", async () => {
+      const { form } = await renderFieldForm({
+        schema: numberOneOfSchema,
+      });
+
+      await userEvent.fill(page.getByRole("spinbutton").first(), "42");
+      expectValue(form, 42);
+    });
+
+    test("object with shared properties renders shared field and select", async () => {
+      await renderFieldForm({
+        schema: objectSharedOneOfSchema,
+      });
+
+      await expect
+        .element(page.getByRole("textbox").first())
+        .toBeInTheDocument();
+      await expect
+        .element(page.getByRole("combobox").first())
+        .toBeInTheDocument();
+    });
+  });
+
+  describe("primitive type with non-select anyOf", () => {
+    test("string anyOf renders text input", async () => {
+      await renderFieldForm({
+        schema: stringAnyOfSchema,
+      });
+
+      await expect
+        .element(page.getByRole("textbox").first())
+        .toBeInTheDocument();
+    });
+
+    test("string anyOf produces string formData", async () => {
+      const { form } = await renderFieldForm({
+        schema: stringAnyOfSchema,
+      });
+
+      await userEvent.fill(page.getByRole("textbox").first(), "hello");
+      expectValue(form, "hello");
+    });
+
+    test("number anyOf renders spinbutton", async () => {
+      await renderFieldForm({
+        schema: numberAnyOfSchema,
+      });
+
+      await expect
+        .element(page.getByRole("spinbutton").first())
+        .toBeInTheDocument();
+    });
+
+    test("number anyOf produces number formData", async () => {
+      const { form } = await renderFieldForm({
+        schema: numberAnyOfSchema,
+      });
+
+      await userEvent.fill(page.getByRole("spinbutton").first(), "42");
+      expectValue(form, 42);
+    });
+
+    test("object with shared properties renders shared field and select", async () => {
+      await renderFieldForm({
+        schema: objectSharedAnyOfSchema,
+      });
+
+      await expect
+        .element(page.getByRole("textbox").first())
+        .toBeInTheDocument();
+      await expect
+        .element(page.getByRole("combobox").first())
+        .toBeInTheDocument();
     });
   });
 });
