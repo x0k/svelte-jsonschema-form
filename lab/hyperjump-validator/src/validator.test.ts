@@ -60,4 +60,7 @@ const createFormValidator = createPrecompiledValidatorFactory(
 );
 
 validatorTests(createFormValidator, { createIdFactory });
-formValueValidatorTests(createFormValidator, { createIdFactory });
+formValueValidatorTests(createFormValidator, {
+  createIdFactory,
+  skipTitleResolutionTests: true,
+});

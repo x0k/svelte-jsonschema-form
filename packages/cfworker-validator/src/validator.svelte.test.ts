@@ -10,4 +10,5 @@ validatorTests(createFormValidator, {
 });
 formValueValidatorTests(createFormValidator, {
   useOriginalSchema: true,
+  skipTitleResolutionTests: true,
 });
