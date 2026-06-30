@@ -24,7 +24,8 @@ import {
 
 import { isDraft2020 } from "./model.ts";
 
-interface ValidatorFactoryOptions {
+export interface ValidatorFactoryOptions {
+  schema?: Schema;
   uiSchema?: UiSchema;
   merger: () => Merger;
 }

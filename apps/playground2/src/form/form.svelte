@@ -216,8 +216,19 @@
     },
   };
 
+  const uiSchemaQuery = createParseQuery({
+    parse: parseUiSchema,
+    get input() {
+      return data.uiSchema;
+    },
+    defaultValue: {},
+  });
+
   const validatorState = createValidatorState(data, {
     merger: () => merger,
+    get uiSchema() {
+      return uiSchemaQuery.value;
+    },
   });
 
   const merger: FormMerger = $derived(
@@ -243,14 +254,6 @@
       return data.initialValue;
     },
     defaultValue: undefined,
-  });
-
-  const uiSchemaQuery = createParseQuery({
-    parse: parseUiSchema,
-    get input() {
-      return data.uiSchema;
-    },
-    defaultValue: {},
   });
 
   const focusOnFirstError = createFocusOnFirstError();

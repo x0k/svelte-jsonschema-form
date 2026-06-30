@@ -1,5 +1,4 @@
 import type { FormValidator, Schema, SchemaValue, UiSchema } from "@sjsf/form";
-import type { Merger } from "@sjsf/form/core";
 import { noop } from "@sjsf/form/lib/function";
 import {
   abortPrevious,
@@ -25,6 +24,7 @@ import {
   schemaTypeFromValidator,
   type PlaygroundValidator2,
   type ConvertTypedSchemaOptions,
+  type ValidatorFactoryOptions,
 } from "meta/playground";
 import * as prettierPluginBabel from "prettier/plugins/babel";
 import * as prettierPluginEstree from "prettier/plugins/estree";
@@ -106,11 +106,6 @@ const DEFAULT_SCHEMA_AND_VALIDATOR = {
   validator: DEFAULT_VALIDATOR,
 };
 
-interface ValidatorFactoryOptions {
-  uiSchema?: UiSchema;
-  merger: () => Merger;
-}
-
 export function createValidatorState(
   data: ValidatorStateOptions,
   validatorOptions: ValidatorFactoryOptions
@@ -123,25 +118,30 @@ export function createValidatorState(
     defaultValue: {},
   });
 
-  const deps = (): [PlaygroundValidator2, object] => [
+  const deps = (): [PlaygroundValidator2, object, UiSchema | undefined] => [
     data.validator,
     schemaQuery.value,
+    validatorOptions.uiSchema,
   ];
   const validatorQuery = createQuery<
-    [PlaygroundValidator2, object],
+    ReturnType<typeof deps>,
     { schema: Schema; validator: FormValidator<unknown> }
   >({
     initialValue: DEFAULT_SCHEMA_AND_VALIDATOR,
     get deps() {
       return schemaQuery.state === "loading" ? undefined : deps;
     },
-    execute: debounce((_, validator, schema) => {
+    execute: debounce((_, validator, schema, uiSchema) => {
       const v =
         codegemIsJsonSchemaValidator(validator) &&
         validator.precompiled === false
           ? { ...validator, draft2020: isDraft2020(schema) }
           : validator;
-      return playgroundValidator(v)(validatorOptions)(schema);
+      return playgroundValidator(v)({
+        merger: validatorOptions.merger,
+        schema,
+        uiSchema,
+      })(schema);
     }),
     onFailure: createOnFailure("Validator creation"),
   });
