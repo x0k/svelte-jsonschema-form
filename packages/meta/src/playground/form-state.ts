@@ -45,6 +45,7 @@ export interface FormState {
   constAsDefault: ConstAsDefaultStateBehavior;
   emptyObjectFields: EmptyObjectFieldsStateBehavior;
   mergeDefaultsIntoFormData: MergeDefaultsIntoFormDataStateBehavior;
+  nestedDefaultsPrecedence?: NestedDefaultsPrecedence;
 }
 
 type ArrayMinItemsPopulate = Exclude<
@@ -138,6 +139,23 @@ export const MERGE_DEFAULTS_INTO_FORM = Object.keys(
   MERGE_DEFAULTS_INTO_FORM_TITLES
 ) as MergeDefaultsIntoFormDataStateBehavior[];
 
+type NestedDefaultsPrecedence = Exclude<
+  Experimental_DefaultFormStateBehavior["nestedDefaultsPrecedence"],
+  undefined
+>;
+
+export const NESTED_DEFAULTS_PRECEDENCE_TITLES: Record<
+  NestedDefaultsPrecedence,
+  string
+> = {
+  ancestorWins: "Ancestor default value wins",
+  descendantWins: "Descendant default value wins",
+};
+
+export const NESTED_DEFAULTS_PRECEDENCE = Object.keys(
+  NESTED_DEFAULTS_PRECEDENCE_TITLES
+) as NestedDefaultsPrecedence[];
+
 // TODO: Remove in v4
 export type NormalizedFormState = Normalize<FormState>;
 
@@ -145,6 +163,7 @@ export type NormalizedFormState = Normalize<FormState>;
 export function normalizeFormState(state: FormState): NormalizedFormState {
   return {
     ...state,
+    nestedDefaultsPrecedence: "descendantWins",
     css: state.css ?? "",
     validator: normalizeValidator(state.validator),
     schema: normalizeJsonValue(state.schema),

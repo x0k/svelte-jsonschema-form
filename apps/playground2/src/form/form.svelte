@@ -67,6 +67,8 @@
     type PresetEntry,
     type NormalizedFormPreset,
     schemaTypeFromValidator,
+    NESTED_DEFAULTS_PRECEDENCE_TITLES,
+    NESTED_DEFAULTS_PRECEDENCE,
   } from "meta/playground";
   import {
     SANDBOX_PLATFORMS,
@@ -231,6 +233,7 @@
       constAsDefaults: data.constAsDefault,
       emptyObjectFields: data.emptyObjectFields,
       mergeDefaultsIntoFormData: data.mergeDefaultsIntoFormData,
+      nestedDefaultsPrecedence: data.nestedDefaultsPrecedence,
     })
   );
 
@@ -632,6 +635,12 @@
         bind:value={data.mergeDefaultsIntoFormData}
         items={MERGE_DEFAULTS_INTO_FORM}
         labels={MERGE_DEFAULTS_INTO_FORM_TITLES}
+      />
+      <Select
+        label="Nested defaults precedence"
+        bind:value={data.nestedDefaultsPrecedence}
+        items={NESTED_DEFAULTS_PRECEDENCE}
+        labels={NESTED_DEFAULTS_PRECEDENCE_TITLES}
       />
     </Popup>
   </ButtonGroup.Root>
