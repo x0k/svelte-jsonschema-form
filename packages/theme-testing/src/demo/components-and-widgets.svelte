@@ -18,11 +18,13 @@
     theme,
     append,
     specs,
+    showCode = true,
     uiOptionsRegistry,
   }: {
     theme: Theme;
     specs: s.Specs;
     append?: Snippet;
+    showCode?: boolean;
   } & UiOptionsRegistryOption = $props();
 
   const widgetsSchemas = s.createSchemas(specs);
@@ -131,6 +133,14 @@
           },
         ],
       },
+      selfref: {
+        type: "object",
+        properties: {
+          ref: {
+            $ref: "#/properties/selfref",
+          },
+        },
+      },
     },
     additionalProperties: {
       type: "string",
@@ -221,13 +231,13 @@
 
 <div style="display: flex; gap: 2rem; padding: 2rem;">
   <div style="display: flex; flex-direction: column; flex: 1; gap: 1rem">
-    <Form form={widgetsForm} />
+    <Form form={widgetsForm} {showCode} />
   </div>
   <div style="display: flex; flex-direction: column; flex: 1; gap: 1rem">
-    <Form form={disabledWidgetsForm} />
+    <Form form={disabledWidgetsForm} {showCode} />
   </div>
   <div style="display: flex; flex-direction: column; flex: 1; gap: 1rem">
-    <Form form={componentsForm} />
+    <Form form={componentsForm} {showCode} />
     {@render append?.()}
   </div>
 </div>

@@ -35,6 +35,7 @@ const BASE_FORM_STATE: NormalizedFormState = {
   constAsDefault: "always",
   emptyObjectFields: "populateAllDefaults",
   mergeDefaultsIntoFormData: "useFormDataIfPresent",
+  nestedDefaultsPrecedence: "descendantWins",
 };
 
 const CUSTOM_COMPONENTS: CustomComponents = {

@@ -4,11 +4,16 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "lib": ["ES2023", "ESNext.Disposable", "ESNext.Collection", "DOM"],
-    "rootDir": "./src",
     "types": ["vite/client"],
     "paths": {
       "@/*": ["./src/*"]
     }
   },
-  "include": ["./src/**/*.ts", "./src/**/*.js", "./src/**/*.svelte"]
+  "include": [
+    "./src/**/*.ts",
+    "./src/**/*.js",
+    "./src/**/*.svelte",
+    "./tests/**/*.ts",
+    "./tests/**/*.svelte"
+  ]
 }

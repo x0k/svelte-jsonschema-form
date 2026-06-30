@@ -7,11 +7,13 @@ import {
   type Schema,
   type UiSchemaRoot,
 } from "@sjsf/form";
-import { pathFromLocation, type Path } from "@sjsf/form/core";
+import { PROPERTIES_KEY, pathFromLocation, type Path } from "@sjsf/form/core";
+import { getValueByPath } from "@sjsf/form/lib/object";
 import type { ValidationError } from "ata-validator";
 
 export interface ErrorsTransformerOptions {
   uiSchema?: UiSchemaRoot;
+  schema?: Schema;
 }
 
 function createInstancePath(
@@ -49,6 +51,7 @@ function errorObjectToMessage(
 
 export function createFormErrorsTransformer({
   uiSchema = {},
+  schema = {},
 }: ErrorsTransformerOptions) {
   return (
     errors: ValidationError[],
@@ -74,7 +77,12 @@ export function createFormErrorsTransformer({
               if (typeof prop === "object") {
                 return prop.title;
               }
-              return undefined;
+              const schemaPath: Path = [];
+              for (const part of path) {
+                schemaPath.push(PROPERTIES_KEY, part);
+              }
+              schemaPath.push(PROPERTIES_KEY, missingProperty, "title");
+              return getValueByPath(schema, schemaPath);
             }
           ),
         };

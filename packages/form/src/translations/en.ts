@@ -35,6 +35,7 @@ to determine its type. You can:
 
 JSON Schema:
 ${JSON.stringify(schema, null, 2)}`,
+  expand: "Expand",
 };
 
 const FAILURE_REASONS: Record<TaskFailureReason, string> = {

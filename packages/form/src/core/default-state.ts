@@ -9,7 +9,11 @@ import { isSchemaValueDeepEqual } from "./deep-equal.js";
 import { findSchemaDefinition } from "./definitions.js";
 import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
 import { isFixedItems } from "./is-fixed-items.js";
-import { getSelectOptionValues, isMultiSelect, isSelect } from "./is-select.js";
+import {
+  getSelectOptionValuesSafe,
+  isMultiSelect,
+  isSelect,
+} from "./is-select.js";
 import { getClosestMatchingOption } from "./matching.js";
 import { mergeDefaultsWithFormData, mergeSchemaObjects } from "./merge.js";
 import type { Merger } from "./merger.js";
@@ -18,6 +22,7 @@ import {
   ALL_OF_KEY,
   DEPENDENCIES_KEY,
   IF_KEY,
+  isSchemaWithProperties,
   type Schema,
   type SchemaArrayValue,
   type SchemaObjectValue,
@@ -108,9 +113,17 @@ export function getDefaultFormState(
       experimental_defaultFormStateBehavior || {};
     const defaultSupersedesUndefined =
       mergeDefaultsIntoFormData === "useDefaultIfFormDataUndefined";
+    const matchingFormData = ensureFormDataMatchingSchema(
+      validator,
+      merger,
+      schema,
+      rootSchema ?? schema,
+      formData,
+      experimental_defaultFormStateBehavior
+    );
     const result = mergeDefaultsWithFormData(
       defaults,
-      formData,
+      matchingFormData,
       true, // set to true to add any additional default array entries.
       defaultSupersedesUndefined,
       true // set to true to override formData with defaults if they exist.
@@ -197,6 +210,12 @@ export type Experimental_DefaultFormStateBehavior = {
    *
    */
   constAsDefaults?: "always" | "skipOneOf" | "never";
+  /** Optional enumerated flag controlling how defaults defined on multiple levels are merged together for overlapping
+   * properties, defaulting to `descendantWins`.
+   * - `descendantWins`: The innermost (descendant) default value definition takes precedence over its ancestor's defaults.
+   * - `ancestorWins`: The outermost (ancestor) default value definition takes precedence over any descendant's defaults.
+   */
+  nestedDefaultsPrecedence?: "descendantWins" | "ancestorWins";
 };
 
 interface ComputeDefaultsProps<FormData = SchemaValue | undefined> {
@@ -250,8 +269,12 @@ export function computeDefaults(
   const rawDataIsObject = isSchemaObjectValue(rawFormData);
   const formData: SchemaObjectValue = rawDataIsObject ? rawFormData : {};
   const schema: Schema = isSchemaObjectValue(rawSchema) ? rawSchema : {};
-  // Compute the defaults recursively: give highest priority to deepest nodes.
+  // Compute the defaults recursively: give highest priority to deepest nodes unless nestedDefaultsPrecedence is ancestorWins.
   let defaults = parentDefaults;
+  const preferParentDefaults =
+    defaults &&
+    experimental_defaultFormStateBehavior?.nestedDefaultsPrecedence ===
+      "ancestorWins";
   // If we get a new schema, then we need to recompute defaults again for the new schema found.
   let schemaToCompute: Schema | null = null;
   // CHANGED: introduced to typesafely adapt https://github.com/rjsf-team/react-jsonschema-form/pull/4626
@@ -278,15 +301,23 @@ export function computeDefaults(
     !schemaOneOf &&
     !schemaRef
   ) {
-    // For object defaults, only override parent defaults that are defined in
-    // schema.default. Skip this for anyOf/oneOf/$ref schemas - they need special handling.
-    defaults = mergeSchemaObjects(defaults, schemaDefault);
+    // For object defaults, merge defaults by precedence setting.
+    // Skip this for anyOf/oneOf/$ref schemas - they need special handling.
+    defaults = preferParentDefaults
+      ? // Use schema.default as the base and only override values that are defined in parent defaults.
+        mergeSchemaObjects(schemaDefault, defaults)
+      : // Only override parent defaults that are defined in schema.default.
+        mergeSchemaObjects(defaults, schemaDefault);
   } else if (
+    !preferParentDefaults &&
     schemaDefault !== undefined &&
     schemaOneOf === undefined &&
     schemaAnyOf === undefined &&
     schemaRef === undefined
   ) {
+    // If the schema has a default value and parentDefaults does not have precedence
+    // And if the schema does not have anyOf or oneOf (since we need to merge the defaults with the formData)
+    // Then we should use it as the default.
     defaults = schemaDefault;
   } else if (schemaRef !== undefined) {
     // Use referenced schema defaults for this node.
@@ -340,7 +371,9 @@ export function computeDefaults(
       defaultFormData
     );
     schemaToCompute = resolvedSchema[0]!; // pick the first element from resolve dependencies
-  } else if (isFixedItems(schema)) {
+  } else if (!preferParentDefaults && isFixedItems(schema)) {
+    // If the schema contains fixed items and parentDefaults does not have precedence
+    // Then construct defaults from defaults of array items.
     defaults = schema.items.map((itemSchema, idx) =>
       computeDefaults(validator, merger, itemSchema, {
         rootSchema,
@@ -491,13 +524,18 @@ export function ensureFormDataMatchingSchema(
   formData: SchemaValue | undefined,
   experimental_defaultFormStateBehavior?: Experimental_DefaultFormStateBehavior
 ): SchemaValue | undefined {
-  let validFormData = formData;
+  const shouldRetrieveAllOf =
+    experimental_defaultFormStateBehavior?.allOf === "populateDefaults" &&
+    ALL_OF_KEY in schema;
+  const schemaToMatch = shouldRetrieveAllOf
+    ? retrieveSchema(validator, merger, schema, rootSchema, formData)
+    : schema;
   const isSelectField =
-    formData !== undefined &&
-    !isSchemaOfConstantValue(schema) &&
-    isSelect(validator, merger, schema, rootSchema);
+    !isSchemaOfConstantValue(schemaToMatch) &&
+    isSelect(validator, merger, schemaToMatch, rootSchema);
+  let validFormData = formData;
   if (isSelectField) {
-    const selectOptionValues = getSelectOptionValues(schema);
+    const selectOptionValues = getSelectOptionValuesSafe(schemaToMatch);
     const isValid = selectOptionValues?.some((v) =>
       isSchemaValueDeepEqual(v, formData)
     );
@@ -506,10 +544,37 @@ export function ensureFormDataMatchingSchema(
 
   // Override the formData with the const if the constAsDefaults is set to always
   const constTakesPrecedence =
-    schema.const !== undefined &&
+    schemaToMatch.const !== undefined &&
     experimental_defaultFormStateBehavior?.constAsDefaults === "always";
   if (constTakesPrecedence) {
-    validFormData = schema.const;
+    validFormData = schemaToMatch.const;
+  } else if (
+    isSchemaObjectValue(validFormData) &&
+    isSchemaWithProperties(schemaToMatch)
+  ) {
+    const properties = schemaToMatch.properties;
+    const result = { ...validFormData };
+    for (const key of Object.keys(properties)) {
+      const propertySchema = properties[key]!;
+      // CHANGED: This case is not properly handled in original code
+      if (typeof propertySchema === "boolean") {
+        continue;
+      }
+      if (
+        key in result &&
+        (shouldRetrieveAllOf || ALL_OF_KEY in propertySchema)
+      ) {
+        result[key] = ensureFormDataMatchingSchema(
+          validator,
+          merger,
+          propertySchema,
+          rootSchema,
+          result[key],
+          experimental_defaultFormStateBehavior
+        );
+      }
+    }
+    validFormData = result;
   }
 
   return validFormData;

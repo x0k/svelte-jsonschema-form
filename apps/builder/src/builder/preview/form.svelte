@@ -6,6 +6,7 @@
     type FormMerger,
     type FormValidator,
     type Schema,
+    type UiSchema,
   } from "@sjsf/form";
   import { fromRecord } from "@sjsf/form/lib/resolver";
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
@@ -50,10 +51,6 @@
     },
   };
 
-  const validatorOptions = {
-    merger: () => merger,
-  };
-
   const DEFAULT_SCHEMA_AND_VALIDATOR = {
     schema: {
       type: "object",
@@ -62,16 +59,21 @@
   };
 
   const validatorQuery = createQuery<
-    [BuilderValidator2, Schema],
+    [BuilderValidator2, Schema, UiSchema | undefined],
     { schema: Schema; validator: FormValidator<unknown> }
   >({
     initialValue: DEFAULT_SCHEMA_AND_VALIDATOR,
-    deps: () => [ctx.validator, ctx.schema],
-    execute: debounce(async (_, validator, schema) => {
+    deps: () => [ctx.validator, ctx.schema, ctx.uiSchema],
+    execute: debounce(async (_, validator, schema, uiSchema) => {
       const schemaObject = await parseSchemaObject(
         buildPlaygroundSchema({ schema, validator })
       );
-      return playgroundValidator(validator)(validatorOptions)(schemaObject);
+      const options = {
+        merger: () => merger,
+        schema: schemaObject,
+        uiSchema,
+      };
+      return playgroundValidator(validator)(options)(schemaObject);
     }),
     onFailure(err) {
       if (err.reason === "aborted") {

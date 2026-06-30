@@ -13,7 +13,7 @@ push:
   git push -u $@ origin HEAD
 
 fpush:
-  git push --no-verify
+  git push --no-verify $@
 
 d:
   pnpm run dev
@@ -53,20 +53,20 @@ h:
 
 f/:
   pushd packages/form
-  d:
-    pnpm run dev
-  b:
-    pnpm run build
-  ben:
-    pnpm run bench $@
-  c:
-    pnpm run check
-  t:
-    pnpm run test $@
   l:
     pnpm run lint
   f:
     pnpm run format
+  c:
+    pnpm run check
+  t:
+    pnpm run test $@
+  ben:
+    pnpm run bench $@
+  d:
+    pnpm run dev
+  b:
+    pnpm run build
   tui:
     pnpm run test:ui
   popd
@@ -183,6 +183,8 @@ flow/:
     pnpm run dev
   t:
     pnpm run test $@
+  tv:
+    pnpm run test:visual $@
   popd
 
 flowi/:

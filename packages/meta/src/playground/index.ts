@@ -5,6 +5,7 @@ export * from "./form-preset-loaders.ts";
 export * from "./validator-state.ts";
 export * from "./merger-state.ts";
 export * from "./validators.ts";
+export * from "./validator-factory.ts";
 export * from "./themes.ts";
 export * from "./resolvers.ts";
 export * from "./icons.ts";

@@ -7,5 +7,4 @@ import Form from "./form.svelte";
 fieldTests(theme, {
   specs,
   Form,
-  skipTests: ["readonly field renders readonly input"],
 });

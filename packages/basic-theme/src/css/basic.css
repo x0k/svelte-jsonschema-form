@@ -6,7 +6,8 @@
 
 .sjsf-button {
   &[data-type="object-property-add"],
-  &[data-type="array-item-add"] {
+  &[data-type="array-item-add"],
+  &[data-type="expand"] {
     width: 100%;
     padding: 0.25rem;
   }

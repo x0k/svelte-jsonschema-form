@@ -25,6 +25,7 @@ catalog:
   "@sveltejs/acorn-typescript": ^1.0.10
   "@sveltejs/adapter-auto": ^7.0.1
   "@sveltejs/kit": ^2.64.0
+  "@sveltejs/svelte-json-tree": ^2.2.1
   "@sveltejs/sv-utils": npm:@x0k/sv-utils@0.3.0
   "@sveltejs/vite-plugin-svelte": ^7.1.2
   "@tailwindcss/forms": ^0.5.11
@@ -73,7 +74,7 @@ catalog:
   typescript: ^6.0.3
   valibot: ^1.4.1
   vite: ^8.0.16
-  vitest: ^4.1.8
+  vitest: ^5.0.0-beta.5
   zimmerframe: ^1.1.4
   zod: ^4.4.3
 

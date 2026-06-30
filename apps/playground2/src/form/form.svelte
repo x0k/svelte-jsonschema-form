@@ -67,6 +67,8 @@
     type PresetEntry,
     type NormalizedFormPreset,
     schemaTypeFromValidator,
+    NESTED_DEFAULTS_PRECEDENCE_TITLES,
+    NESTED_DEFAULTS_PRECEDENCE,
   } from "meta/playground";
   import {
     SANDBOX_PLATFORMS,
@@ -214,8 +216,19 @@
     },
   };
 
+  const uiSchemaQuery = createParseQuery({
+    parse: parseUiSchema,
+    get input() {
+      return data.uiSchema;
+    },
+    defaultValue: {},
+  });
+
   const validatorState = createValidatorState(data, {
     merger: () => merger,
+    get uiSchema() {
+      return uiSchemaQuery.value;
+    },
   });
 
   const merger: FormMerger = $derived(
@@ -231,6 +244,7 @@
       constAsDefaults: data.constAsDefault,
       emptyObjectFields: data.emptyObjectFields,
       mergeDefaultsIntoFormData: data.mergeDefaultsIntoFormData,
+      nestedDefaultsPrecedence: data.nestedDefaultsPrecedence,
     })
   );
 
@@ -240,14 +254,6 @@
       return data.initialValue;
     },
     defaultValue: undefined,
-  });
-
-  const uiSchemaQuery = createParseQuery({
-    parse: parseUiSchema,
-    get input() {
-      return data.uiSchema;
-    },
-    defaultValue: {},
   });
 
   const focusOnFirstError = createFocusOnFirstError();
@@ -633,6 +639,12 @@
         items={MERGE_DEFAULTS_INTO_FORM}
         labels={MERGE_DEFAULTS_INTO_FORM_TITLES}
       />
+      <Select
+        label="Nested defaults precedence"
+        bind:value={data.nestedDefaultsPrecedence}
+        items={NESTED_DEFAULTS_PRECEDENCE}
+        labels={NESTED_DEFAULTS_PRECEDENCE_TITLES}
+      />
     </Popup>
   </ButtonGroup.Root>
 
@@ -774,7 +786,11 @@
     {#if portalEl}
       <BitsConfig defaultPortalTo={portalEl}>
         <SvarProvider>
-          <svelte:boundary>
+          <svelte:boundary
+            onerror={(err) => {
+              console.error("Form render error", err);
+            }}
+          >
             <Form
               attributes={{
                 id: "form",

@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`@sjsf/sv 'icons__flowbite' 'kit-ts' 1`] = `
+exports[`@sjsf/sv icons__flowbite kit-ts 1`] = `
 {
   "package.json": "{
 	"name": "kit-ts",
@@ -208,7 +208,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'icons__flowbite' 'vite-ts' 1`] = `
+exports[`@sjsf/sv icons__flowbite vite-ts 1`] = `
 {
   "index.html": "<!doctype html>
 <html lang="en">
@@ -546,7 +546,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'icons__lucide' 'kit-ts' 1`] = `
+exports[`@sjsf/sv icons__lucide kit-ts 1`] = `
 {
   "package.json": "{
 	"name": "kit-ts",
@@ -752,7 +752,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'icons__lucide' 'vite-ts' 1`] = `
+exports[`@sjsf/sv icons__lucide vite-ts 1`] = `
 {
   "index.html": "<!doctype html>
 <html lang="en">
@@ -1085,7 +1085,7 @@ export default defineConfig({ plugins: [svelte()], ssr: { noExternal: ['@lucide/
 }
 `;
 
-exports[`@sjsf/sv 'icons__moving' 'kit-ts' 1`] = `
+exports[`@sjsf/sv icons__moving kit-ts 1`] = `
 {
   "package.json": "{
 	"name": "kit-ts",
@@ -1291,7 +1291,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'icons__moving' 'vite-ts' 1`] = `
+exports[`@sjsf/sv icons__moving vite-ts 1`] = `
 {
   "index.html": "<!doctype html>
 <html lang="en">
@@ -1624,7 +1624,7 @@ export default defineConfig({ plugins: [svelte()], ssr: { noExternal: ['@jis3r/i
 }
 `;
 
-exports[`@sjsf/sv 'icons__radix' 'kit-ts' 1`] = `
+exports[`@sjsf/sv icons__radix kit-ts 1`] = `
 {
   "package.json": "{
 	"name": "kit-ts",
@@ -1830,7 +1830,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'icons__radix' 'vite-ts' 1`] = `
+exports[`@sjsf/sv icons__radix vite-ts 1`] = `
 {
   "index.html": "<!doctype html>
 <html lang="en">
@@ -2163,7 +2163,7 @@ export default defineConfig({ plugins: [svelte()], ssr: { noExternal: ['svelte-r
 }
 `;
 
-exports[`@sjsf/sv 'sveltekit__formActions__ajv8' 'kit-ts' 1`] = `
+exports[`@sjsf/sv sveltekit__formActions__ajv8 kit-ts 1`] = `
 {
   "package.json": "{
 	"name": "kit-ts",
@@ -2396,7 +2396,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'sveltekit__formActions__ajv8_precompi…' 'kit-ts' 1`] = `
+exports[`@sjsf/sv sveltekit__formActions__ajv8_precompiled kit-ts 1`] = `
 {
   "package.json": "{
 	"name": "kit-ts",
@@ -2745,7 +2745,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'sveltekit__formActions__hyperjump_pre…' 'kit-ts' 1`] = `
+exports[`@sjsf/sv sveltekit__formActions__hyperjump_preco… kit-ts 1`] = `
 {
   "package.json": "{
 	"name": "kit-ts",
@@ -3098,7 +3098,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'sveltekit__formActions__zod4' 'kit-ts' 1`] = `
+exports[`@sjsf/sv sveltekit__formActions__zod4 kit-ts 1`] = `
 {
   "package.json": "{
 	"name": "kit-ts",
@@ -3327,7 +3327,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'sveltekit__remoteFunctions__ajv8' 'kit-ts' 1`] = `
+exports[`@sjsf/sv sveltekit__remoteFunctions__ajv8 kit-ts 1`] = `
 {
   "package.json": "{
 	"name": "kit-ts",
@@ -3566,7 +3566,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'sveltekit__remoteFunctions__ajv8_prec…' 'kit-ts' 1`] = `
+exports[`@sjsf/sv sveltekit__remoteFunctions__ajv8_precom… kit-ts 1`] = `
 {
   "package.json": "{
 	"name": "kit-ts",
@@ -3923,7 +3923,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'sveltekit__remoteFunctions__hyperjump…' 'kit-ts' 1`] = `
+exports[`@sjsf/sv sveltekit__remoteFunctions__hyperjump_p… kit-ts 1`] = `
 {
   "package.json": "{
 	"name": "kit-ts",
@@ -4283,7 +4283,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'sveltekit__remoteFunctions__zod4' 'kit-ts' 1`] = `
+exports[`@sjsf/sv sveltekit__remoteFunctions__zod4 kit-ts 1`] = `
 {
   "package.json": "{
 	"name": "kit-ts",
@@ -4511,7 +4511,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'theme__basic' 'kit-ts' 1`] = `
+exports[`@sjsf/sv theme__basic kit-ts 1`] = `
 {
   "package.json": "{
 	"name": "kit-ts",
@@ -4713,7 +4713,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'theme__basic' 'vite-ts' 1`] = `
+exports[`@sjsf/sv theme__basic vite-ts 1`] = `
 {
   "index.html": "<!doctype html>
 <html lang="en">
@@ -5043,7 +5043,7 @@ export default defineConfig({ plugins: [svelte()] });
 }
 `;
 
-exports[`@sjsf/sv 'theme__beercss' 'kit-ts' 1`] = `
+exports[`@sjsf/sv theme__beercss kit-ts 1`] = `
 {
   "package.json": "{
 	"name": "kit-ts",
@@ -5244,7 +5244,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'theme__beercss' 'vite-ts' 1`] = `
+exports[`@sjsf/sv theme__beercss vite-ts 1`] = `
 {
   "index.html": "<!doctype html>
 <html lang="en">
@@ -5574,7 +5574,7 @@ export default defineConfig({ plugins: [svelte()] });
 }
 `;
 
-exports[`@sjsf/sv 'theme__daisyui5' 'kit-ts' 1`] = `
+exports[`@sjsf/sv theme__daisyui5 kit-ts 1`] = `
 {
   "package.json": "{
 	"name": "kit-ts",
@@ -5792,7 +5792,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'theme__daisyui5' 'vite-ts' 1`] = `
+exports[`@sjsf/sv theme__daisyui5 vite-ts 1`] = `
 {
   "index.html": "<!doctype html>
 <html lang="en">
@@ -6136,7 +6136,7 @@ export default defineConfig({ plugins: [svelte(), tailwindcss()] });
 }
 `;
 
-exports[`@sjsf/sv 'theme__flowbite3' 'kit-ts' 1`] = `
+exports[`@sjsf/sv theme__flowbite3 kit-ts 1`] = `
 {
   "package.json": "{
 	"name": "kit-ts",
@@ -6379,7 +6379,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'theme__flowbite3' 'vite-ts' 1`] = `
+exports[`@sjsf/sv theme__flowbite3 vite-ts 1`] = `
 {
   "index.html": "<!doctype html>
 <html lang="en">
@@ -6723,7 +6723,7 @@ export default defineConfig({ plugins: [svelte(), tailwindcss()] });
 }
 `;
 
-exports[`@sjsf/sv 'theme__pico' 'kit-ts' 1`] = `
+exports[`@sjsf/sv theme__pico kit-ts 1`] = `
 {
   "package.json": "{
 	"name": "kit-ts",
@@ -6927,7 +6927,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'theme__pico' 'vite-ts' 1`] = `
+exports[`@sjsf/sv theme__pico vite-ts 1`] = `
 {
   "index.html": "<!doctype html>
 <html lang="en">
@@ -7259,7 +7259,7 @@ export default defineConfig({ plugins: [svelte()] });
 }
 `;
 
-exports[`@sjsf/sv 'theme__shadcn-extras' 'kit-ts' 1`] = `
+exports[`@sjsf/sv theme__shadcn-extras kit-ts 1`] = `
 {
   "components.json": "{
 	
@@ -7688,7 +7688,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'theme__shadcn-extras' 'vite-ts' 1`] = `
+exports[`@sjsf/sv theme__shadcn-extras vite-ts 1`] = `
 {
   "components.json": "{
 	
@@ -8129,7 +8129,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'theme__shadcn4' 'kit-ts' 1`] = `
+exports[`@sjsf/sv theme__shadcn4 kit-ts 1`] = `
 {
   "components.json": "{
 	
@@ -8541,7 +8541,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'theme__shadcn4' 'vite-ts' 1`] = `
+exports[`@sjsf/sv theme__shadcn4 vite-ts 1`] = `
 {
   "components.json": "{
 	
@@ -8965,7 +8965,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'theme__skeleton4' 'kit-ts' 1`] = `
+exports[`@sjsf/sv theme__skeleton4 kit-ts 1`] = `
 {
   "package.json": "{
 	"name": "kit-ts",
@@ -9196,7 +9196,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'theme__skeleton4' 'vite-ts' 1`] = `
+exports[`@sjsf/sv theme__skeleton4 vite-ts 1`] = `
 {
   "index.html": "<!doctype html>
 <html lang="en">
@@ -9546,7 +9546,7 @@ export default defineConfig({ plugins: [svelte(), tailwindcss()] });
 }
 `;
 
-exports[`@sjsf/sv 'theme__svar' 'kit-ts' 1`] = `
+exports[`@sjsf/sv theme__svar kit-ts 1`] = `
 {
   "package.json": "{
 	"name": "kit-ts",
@@ -9752,7 +9752,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'theme__svar' 'vite-ts' 1`] = `
+exports[`@sjsf/sv theme__svar vite-ts 1`] = `
 {
   "index.html": "<!doctype html>
 <html lang="en">
@@ -10089,7 +10089,7 @@ export default defineConfig({ plugins: [svelte()] });
 }
 `;
 
-exports[`@sjsf/sv 'validator__ajv8_precompiled' 'kit-ts' 1`] = `
+exports[`@sjsf/sv validator__ajv8_precompiled kit-ts 1`] = `
 {
   "package.json": "{
 	"name": "kit-ts",
@@ -10399,7 +10399,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'validator__ajv8_precompiled' 'vite-ts' 1`] = `
+exports[`@sjsf/sv validator__ajv8_precompiled vite-ts 1`] = `
 {
   "index.html": "<!doctype html>
 <html lang="en">
@@ -10838,7 +10838,7 @@ export default defineConfig({ plugins: [svelte()] });
 }
 `;
 
-exports[`@sjsf/sv 'validator__ata' 'kit-ts' 1`] = `
+exports[`@sjsf/sv validator__ata kit-ts 1`] = `
 {
   "package.json": "{
 	"name": "kit-ts",
@@ -11031,7 +11031,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'validator__ata' 'vite-ts' 1`] = `
+exports[`@sjsf/sv validator__ata vite-ts 1`] = `
 {
   "index.html": "<!doctype html>
 <html lang="en">
@@ -11352,7 +11352,7 @@ export default defineConfig({ plugins: [svelte()] });
 }
 `;
 
-exports[`@sjsf/sv 'validator__ata_precompiled' 'kit-ts' 1`] = `
+exports[`@sjsf/sv validator__ata_precompiled kit-ts 1`] = `
 {
   "package.json": "{
 	"name": "kit-ts",
@@ -11633,7 +11633,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'validator__ata_precompiled' 'vite-ts' 1`] = `
+exports[`@sjsf/sv validator__ata_precompiled vite-ts 1`] = `
 {
   "index.html": "<!doctype html>
 <html lang="en">
@@ -12043,7 +12043,7 @@ export default defineConfig({ plugins: [svelte()] });
 }
 `;
 
-exports[`@sjsf/sv 'validator__cfworker' 'kit-ts' 1`] = `
+exports[`@sjsf/sv validator__cfworker kit-ts 1`] = `
 {
   "package.json": "{
 	"name": "kit-ts",
@@ -12236,7 +12236,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'validator__cfworker' 'vite-ts' 1`] = `
+exports[`@sjsf/sv validator__cfworker vite-ts 1`] = `
 {
   "index.html": "<!doctype html>
 <html lang="en">
@@ -12557,7 +12557,7 @@ export default defineConfig({ plugins: [svelte()] });
 }
 `;
 
-exports[`@sjsf/sv 'validator__hyperjump_precompiled' 'kit-ts' 1`] = `
+exports[`@sjsf/sv validator__hyperjump_precompiled kit-ts 1`] = `
 {
   "package.json": "{
 	"name": "kit-ts",
@@ -12870,7 +12870,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'validator__hyperjump_precompiled' 'vite-ts' 1`] = `
+exports[`@sjsf/sv validator__hyperjump_precompiled vite-ts 1`] = `
 {
   "index.html": "<!doctype html>
 <html lang="en">
@@ -13312,7 +13312,7 @@ export default defineConfig({ plugins: [svelte()] });
 }
 `;
 
-exports[`@sjsf/sv 'validator__noop' 'kit-ts' 1`] = `
+exports[`@sjsf/sv validator__noop kit-ts 1`] = `
 {
   "package.json": "{
 	"name": "kit-ts",
@@ -13502,7 +13502,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'validator__noop' 'vite-ts' 1`] = `
+exports[`@sjsf/sv validator__noop vite-ts 1`] = `
 {
   "index.html": "<!doctype html>
 <html lang="en">
@@ -13820,7 +13820,7 @@ export default defineConfig({ plugins: [svelte()] });
 }
 `;
 
-exports[`@sjsf/sv 'validator__schemasafe' 'kit-ts' 1`] = `
+exports[`@sjsf/sv validator__schemasafe kit-ts 1`] = `
 {
   "package.json": "{
 	"name": "kit-ts",
@@ -14013,7 +14013,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'validator__schemasafe' 'vite-ts' 1`] = `
+exports[`@sjsf/sv validator__schemasafe vite-ts 1`] = `
 {
   "index.html": "<!doctype html>
 <html lang="en">
@@ -14334,7 +14334,7 @@ export default defineConfig({ plugins: [svelte()] });
 }
 `;
 
-exports[`@sjsf/sv 'validator__schemasafe_precompiled' 'kit-ts' 1`] = `
+exports[`@sjsf/sv validator__schemasafe_precompiled kit-ts 1`] = `
 {
   "package.json": "{
 	"name": "kit-ts",
@@ -14622,7 +14622,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'validator__schemasafe_precompiled' 'vite-ts' 1`] = `
+exports[`@sjsf/sv validator__schemasafe_precompiled vite-ts 1`] = `
 {
   "index.html": "<!doctype html>
 <html lang="en">
@@ -15039,7 +15039,7 @@ export default defineConfig({ plugins: [svelte()] });
 }
 `;
 
-exports[`@sjsf/sv 'validator__standard-schema' 'kit-ts' 1`] = `
+exports[`@sjsf/sv validator__standard-schema kit-ts 1`] = `
 {
   "package.json": "{
 	"name": "kit-ts",
@@ -15260,7 +15260,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'validator__standard-schema' 'vite-ts' 1`] = `
+exports[`@sjsf/sv validator__standard-schema vite-ts 1`] = `
 {
   "index.html": "<!doctype html>
 <html lang="en">
@@ -15609,7 +15609,7 @@ export default defineConfig({ plugins: [svelte()] });
 }
 `;
 
-exports[`@sjsf/sv 'validator__valibot' 'kit-ts' 1`] = `
+exports[`@sjsf/sv validator__valibot kit-ts 1`] = `
 {
   "package.json": "{
 	"name": "kit-ts",
@@ -15802,7 +15802,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'validator__valibot' 'vite-ts' 1`] = `
+exports[`@sjsf/sv validator__valibot vite-ts 1`] = `
 {
   "index.html": "<!doctype html>
 <html lang="en">
@@ -16123,7 +16123,7 @@ export default defineConfig({ plugins: [svelte()] });
 }
 `;
 
-exports[`@sjsf/sv 'validator__zod4' 'kit-ts' 1`] = `
+exports[`@sjsf/sv validator__zod4 kit-ts 1`] = `
 {
   "package.json": "{
 	"name": "kit-ts",
@@ -16311,7 +16311,7 @@ export default defineConfig({
 }
 `;
 
-exports[`@sjsf/sv 'validator__zod4' 'vite-ts' 1`] = `
+exports[`@sjsf/sv validator__zod4 vite-ts 1`] = `
 {
   "index.html": "<!doctype html>
 <html lang="en">

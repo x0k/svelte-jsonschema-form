@@ -35,6 +35,7 @@ export const definitions: TranslatorDefinitions = {
 
 JSON Schema:
 ${JSON.stringify(schema, null, 2)}`,
+  expand: "Раскрыть",
 };
 
 const FAILURE_REASONS: Record<TaskFailureReason, string> = {

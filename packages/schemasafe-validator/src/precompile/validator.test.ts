@@ -38,4 +38,6 @@ const createFormValidator = createPrecompiledValidatorFactory(
 );
 
 validatorTests(createFormValidator);
-formValueValidatorTests(createFormValidator);
+formValueValidatorTests(createFormValidator, {
+  skipTitleResolutionTests: true,
+});

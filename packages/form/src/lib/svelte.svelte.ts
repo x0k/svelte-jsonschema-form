@@ -1,3 +1,4 @@
+import { isRecordProto } from "./object.js";
 import { abortPrevious, createTask } from "./task.svelte.js";
 
 export interface Ref<T> {
@@ -78,4 +79,45 @@ export function createAsyncBinding<I, O>({
       return toOutputTask.isProcessed;
     },
   };
+}
+
+/**
+ * Like `$state.snapshot`, but preserves Symbol properties.
+ * Svelte's internal `clone.js` uses `Object.keys()` which strips symbols.
+ */
+export function snapshotWithSymbols<T>(value: T): T {
+  return cloneWithSymbols(value, new Map());
+}
+
+function cloneWithSymbols<T>(value: T, seen: Map<unknown, unknown>): T {
+  if (value === null || typeof value !== "object") {
+    return value;
+  }
+
+  const cached = seen.get(value);
+  if (cached !== undefined) {
+    return cached as T;
+  }
+
+  if (Array.isArray(value)) {
+    const arr = new Array(value.length);
+    seen.set(value, arr);
+    for (let i = 0; i < value.length; i++) {
+      if (i in value) {
+        arr[i] = cloneWithSymbols(value[i], seen);
+      }
+    }
+    return arr as T;
+  }
+
+  if (isRecordProto(value)) {
+    const obj: Record<PropertyKey, unknown> = {};
+    seen.set(value, obj);
+    for (const key of Reflect.ownKeys(value)) {
+      obj[key] = cloneWithSymbols(value[key], seen);
+    }
+    return obj as T;
+  }
+
+  return value;
 }

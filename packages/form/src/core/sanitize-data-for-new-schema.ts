@@ -2,6 +2,8 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
+import { isSchemaValueDeepEqual } from "./deep-equal.js";
+import { getSelectOptionValuesSafe } from "./is-select.js";
 import type { Merger } from "./merger.js";
 import { retrieveSchema } from "./resolve.js";
 import {
@@ -15,6 +17,30 @@ import type { Validator } from "./validator.js";
 import { isSchemaObjectValue } from "./value.js";
 
 const NO_VALUE = Symbol("no Value");
+const NO_OPTIONS: SchemaValue[] = [];
+
+function replacementForInvalidEnumValue(
+  schema: Schema,
+  formValue: SchemaValue | undefined
+) {
+  const enumValues = getSelectOptionValuesSafe(schema) ?? NO_OPTIONS;
+  if (
+    enumValues.length === 0 ||
+    enumValues.some((value) => isSchemaValueDeepEqual(value, formValue))
+  ) {
+    return NO_VALUE;
+  }
+
+  const defaultValue = schema.default;
+  if (
+    defaultValue !== undefined &&
+    enumValues.some((value) => isSchemaValueDeepEqual(value, defaultValue))
+  ) {
+    return defaultValue;
+  }
+
+  return enumValues.length === 1 ? enumValues[0] : undefined;
+}
 
 function retrieveIfNeeded(
   validator: Validator,
@@ -60,9 +86,18 @@ function sanitizeArrays(
         return newValue;
       }, []);
     } else {
-      return maxItems > 0 && data.length > maxItems
-        ? data.slice(0, maxItems)
-        : data;
+      // Filter out items that are no longer valid in the new items schema (e.g., enum values that changed)
+      const newItemEnumValues =
+        getSelectOptionValuesSafe(newSchemaItems) ?? NO_OPTIONS;
+      const filteredData =
+        newItemEnumValues.length > 0
+          ? data.filter((item) =>
+              newItemEnumValues.some((v) => isSchemaValueDeepEqual(v, item))
+            )
+          : data;
+      return maxItems > 0 && filteredData.length > maxItems
+        ? filteredData.slice(0, maxItems)
+        : filteredData;
     }
   }
   return NO_VALUE;
@@ -153,6 +188,16 @@ export function sanitizeDataForNewSchema(
           if (newOptionConst !== NO_VALUE && newOptionConst !== formValue) {
             removeOldSchemaData[key] =
               oldOptionConst === formValue ? newOptionConst : undefined;
+          }
+
+          if (isDataObject && key in data) {
+            const enumReplacement = replacementForInvalidEnumValue(
+              newKeyedSchema,
+              formValue
+            );
+            if (enumReplacement !== NO_VALUE) {
+              removeOldSchemaData[key] = enumReplacement;
+            }
           }
         }
       }

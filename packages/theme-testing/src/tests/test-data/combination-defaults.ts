@@ -118,3 +118,80 @@ export const plainOneOfSchema = {
     },
   ],
 } as const satisfies Schema;
+
+export const stringOneOfSchema = {
+  type: "string",
+  oneOf: [
+    {
+      title: "IPv4",
+      pattern:
+        "^(25[0-5]|2[0-4][0-9]|1?[0-9]{1,2})(\\.(25[0-5]|2[0-4][0-9]|1?[0-9]{1,2})){3}$",
+    },
+    {
+      title: "IPv6",
+      pattern: "^(([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}|::1|::)$",
+    },
+  ],
+} as const satisfies Schema;
+
+export const numberOneOfSchema = {
+  type: "number",
+  oneOf: [
+    { title: "Positive", minimum: 0 },
+    { title: "Negative", maximum: 0 },
+  ],
+} as const satisfies Schema;
+
+export const arrayOneOfSchema = {
+  type: "array",
+  oneOf: [
+    { title: "Strings", items: { type: "string" } },
+    { title: "Numbers", items: { type: "number" } },
+  ],
+} as const satisfies Schema;
+
+export const objectSharedOneOfSchema = {
+  type: "object",
+  properties: {
+    shared: { type: "string", title: "Shared" },
+  },
+  oneOf: [
+    { properties: { foo: { type: "string" } } },
+    { properties: { bar: { type: "string" } } },
+  ],
+} as const satisfies Schema;
+
+export const stringAnyOfSchema = {
+  type: "string",
+  anyOf: [
+    { title: "Short", maxLength: 10 },
+    { title: "Long", minLength: 11 },
+  ],
+} as const satisfies Schema;
+
+export const numberAnyOfSchema = {
+  type: "number",
+  anyOf: [
+    { title: "Positive", minimum: 0 },
+    { title: "Negative", maximum: 0 },
+  ],
+} as const satisfies Schema;
+
+export const arrayAnyOfSchema = {
+  type: "array",
+  anyOf: [
+    { title: "Strings", items: { type: "string" } },
+    { title: "Numbers", items: { type: "number" } },
+  ],
+} as const satisfies Schema;
+
+export const objectSharedAnyOfSchema = {
+  type: "object",
+  properties: {
+    shared: { type: "string", title: "Shared" },
+  },
+  anyOf: [
+    { properties: { foo: { type: "string" } } },
+    { properties: { bar: { type: "string" } } },
+  ],
+} as const satisfies Schema;

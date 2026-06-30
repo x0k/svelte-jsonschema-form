@@ -18,6 +18,7 @@ import {
   FORM_PATHS_TRIE_REF,
   internalHasFieldState,
   internalRegisterFieldPath,
+  internalSetFieldState,
 } from "../internals.js";
 import {
   AFTER_SUBMITTED,
@@ -35,8 +36,7 @@ export function setFieldState<T>(
   path: FieldPath,
   state: FieldState
 ) {
-  const currentFlags = ctx[FORM_FIELDS_STATE_MAP].get(path) ?? 0;
-  ctx[FORM_FIELDS_STATE_MAP].set(path, currentFlags | state);
+  internalSetFieldState(ctx[FORM_FIELDS_STATE_MAP], path, state);
 }
 
 /**

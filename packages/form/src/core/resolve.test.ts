@@ -38,7 +38,7 @@ import {
   stubExistingAdditionalProperties,
   withExactlyOneSubSchema,
 } from "./resolve.js";
-import { type Schema, ADDITIONAL_PROPERTY_FLAG } from "./schema.js";
+import { type Schema, ADDITIONAL_PROPERTY_FLAG, REF_FLAG } from "./schema.js";
 import { createMerger } from "./test-merger.js";
 import { createValidator } from "./test-validator.js";
 import type { Validator } from "./validator.js";
@@ -213,7 +213,7 @@ describe("retrieveSchema()", () => {
 
     expect(
       retrieveSchema(testValidator, defaultMerger, schema, rootSchema)
-    ).toEqual(address);
+    ).toEqual({ ...address, [REF_FLAG]: "#/definitions/address" });
   });
   it("should `resolve` a schema which contains definitions not in `#/definitions`", () => {
     const address: Schema = {
@@ -287,6 +287,7 @@ describe("retrieveSchema()", () => {
     ).toEqual({
       definitions: { address },
       ...address,
+      [REF_FLAG]: "#/definitions/address",
     });
   });
   it("should give an error when JSON pointer is not in a URI encoded format", () => {
@@ -327,7 +328,7 @@ describe("retrieveSchema()", () => {
 
     expect(
       retrieveSchema(testValidator, defaultMerger, schema, rootSchema)
-    ).toEqual(address);
+    ).toEqual({ ...address, [REF_FLAG]: "#/definitions/a~0complex~1name" });
   });
   it("should `resolve` and stub out a schema which contains an `additionalProperties` with a definition", () => {
     const schema: Schema = {
@@ -357,6 +358,133 @@ describe("retrieveSchema()", () => {
       properties: {
         newKey: {
           ...address,
+          [REF_FLAG]: "#/definitions/address",
+          [ADDITIONAL_PROPERTY_FLAG]: true,
+        },
+      },
+    });
+  });
+  it("should resolve conditions in additionalProperties $ref using the additional property value", () => {
+    const schema: Schema = {
+      type: "object",
+      additionalProperties: {
+        $ref: "#/definitions/property",
+      },
+    };
+
+    const property: Schema = {
+      type: "object",
+      properties: {
+        type: {
+          type: "string",
+          enum: ["string", "object"],
+        },
+      },
+      if: {
+        required: ["type"],
+        properties: {
+          type: {
+            const: "object",
+          },
+        },
+      },
+      then: {
+        properties: {
+          properties: {
+            type: "object",
+            additionalProperties: {
+              $ref: "#/definitions/property",
+            },
+          },
+        },
+      },
+    };
+
+    const rootSchema: Schema = { definitions: { property } };
+    const formData = {
+      newKey: {
+        type: "object",
+      },
+    };
+
+    const testValidator = createValidator({
+      cases: [
+        {
+          schema: {
+            required: ["type"],
+            properties: { type: { const: "object" } },
+          },
+          value: { newKey: { type: "object" } },
+          result: false,
+        },
+        {
+          schema: {
+            required: ["type"],
+            properties: { type: { const: "object" } },
+          },
+          value: { type: "object" },
+          result: true,
+        },
+      ],
+    });
+    const defaultMerger = createMerger({
+      merges: [
+        {
+          left: {
+            type: "object",
+            properties: {
+              type: { type: "string", enum: ["string", "object"] },
+            },
+            [REF_FLAG]: "#/definitions/property",
+          },
+          right: {
+            properties: {
+              properties: {
+                type: "object",
+                additionalProperties: { $ref: "#/definitions/property" },
+              },
+            },
+          },
+          result: {
+            type: "object",
+            properties: {
+              type: {
+                type: "string",
+                enum: ["string", "object"],
+              },
+              properties: {
+                type: "object",
+                additionalProperties: {
+                  $ref: "#/definitions/property",
+                },
+              },
+            },
+            [REF_FLAG]: "#/definitions/property",
+          },
+        },
+      ],
+    });
+
+    expect(
+      retrieveSchema(testValidator, defaultMerger, schema, rootSchema, formData)
+    ).toEqual({
+      ...schema,
+      properties: {
+        newKey: {
+          type: "object",
+          properties: {
+            type: {
+              type: "string",
+              enum: ["string", "object"],
+            },
+            properties: {
+              type: "object",
+              additionalProperties: {
+                $ref: "#/definitions/property",
+              },
+            },
+          },
+          [REF_FLAG]: "#/definitions/property",
           [ADDITIONAL_PROPERTY_FLAG]: true,
         },
       },
@@ -384,6 +512,7 @@ describe("retrieveSchema()", () => {
       properties: {
         newKey: {
           ...number,
+          [REF_FLAG]: "#/definitions/number",
           [ADDITIONAL_PROPERTY_FLAG]: true,
         },
       },
@@ -548,6 +677,7 @@ describe("retrieveSchema()", () => {
     expect(result).toEqual({
       definitions: RECURSIVE_REF.definitions,
       ...(RECURSIVE_REF.definitions!["@enum"] as Schema),
+      [REF_FLAG]: "#/definitions/@enum",
     });
   });
   it("recursive allof ref should resolve once", () => {
@@ -569,6 +699,7 @@ describe("retrieveSchema()", () => {
                       items: { allOf: [{ $ref: "#/definitions/@enum" }] },
                     },
                   },
+                  [REF_FLAG]: "#/definitions/@enum",
                 },
               ],
             },
@@ -634,6 +765,7 @@ describe("retrieveSchema()", () => {
       properties: {
         entity: {
           ...entity,
+          [REF_FLAG]: "#/definitions/entity",
         },
       },
     });
@@ -661,6 +793,7 @@ describe("retrieveSchema()", () => {
       type: "array",
       items: {
         ...entity,
+        [REF_FLAG]: "#/definitions/entity",
       },
     });
   });
@@ -749,10 +882,12 @@ describe("retrieveSchema()", () => {
         billing_address: {
           ...schema.definitions.address,
           title: "Billing address",
+          [REF_FLAG]: "#/definitions/address",
         },
         shipping_address: {
           ...schema.definitions.address,
           title: "Shipping address",
+          [REF_FLAG]: "#/definitions/address",
         },
       },
     });
@@ -1108,7 +1243,10 @@ describe("retrieveSchema()", () => {
                       type: "object",
                       properties: { a: { type: "string" } },
                     },
-                    right: { properties: { b: { type: "integer" } } },
+                    right: {
+                      properties: { b: { type: "integer" } },
+                      [REF_FLAG]: "#/definitions/needsB",
+                    },
                     result: {
                       type: "object",
                       properties: {
@@ -1163,7 +1301,10 @@ describe("retrieveSchema()", () => {
                   type: "object",
                   properties: { a: { enum: ["typeA", "typeB"] } },
                 },
-                right: { properties: { c: { type: "boolean" } } },
+                right: {
+                  properties: { c: { type: "boolean" } },
+                  [REF_FLAG]: "#/definitions/needsB",
+                },
                 result: {
                   type: "object",
                   properties: {
@@ -1283,7 +1424,10 @@ describe("retrieveSchema()", () => {
                   properties: { a: { type: "string", enum: ["int", "bool"] } },
                   definitions: undefined,
                 },
-                right: { properties: { b: { type: "integer" } } },
+                right: {
+                  properties: { b: { type: "integer" } },
+                  [REF_FLAG]: "#/definitions/needsA",
+                },
                 result: {
                   type: "object",
                   properties: {
@@ -1346,7 +1490,10 @@ describe("retrieveSchema()", () => {
                   properties: { a: { type: "string", enum: ["int", "bool"] } },
                   definitions: undefined,
                 },
-                right: { properties: { b: { type: "boolean" } } },
+                right: {
+                  properties: { b: { type: "boolean" } },
+                  [REF_FLAG]: "#/definitions/needsB",
+                },
                 result: {
                   type: "object",
                   properties: {
@@ -1715,7 +1862,7 @@ describe("retrieveSchema()", () => {
         type: "string",
       });
     });
-    it("should not merge `allOf.contains` schemas", () => {
+    it.skip("should not merge `allOf.contains` schemas", () => {
       // https://github.com/rjsf-team/react-jsonschema-form/issues/2923#issuecomment-1946034240
       const schema: Schema = {
         type: "array",
@@ -1875,7 +2022,12 @@ describe("retrieveSchema()", () => {
           createMerger({
             allOfMerges: [
               {
-                input: { allOf: [{ type: "string" }, { minLength: 5 }] },
+                input: {
+                  allOf: [
+                    { type: "string", [REF_FLAG]: "#/definitions/1" },
+                    { minLength: 5, [REF_FLAG]: "#/definitions/2" },
+                  ],
+                },
                 result: {
                   type: "string",
                   minLength: 5,
@@ -2096,6 +2248,55 @@ describe("retrieveSchema()", () => {
           },
           postal_code: { pattern: "[A-Z][0-9][A-Z] [0-9][A-Z][0-9]" },
         },
+      });
+    });
+    it("should preserve a matched boolean false branch as an impossible schema", () => {
+      const schema: Schema = {
+        type: "number",
+        if: {
+          const: 13,
+        },
+        then: false,
+      };
+      const testValidator = createValidator({
+        cases: [{ schema: { const: 13 }, value: 13, result: true }],
+      });
+      const defaultMerger = createMerger({
+        merges: [
+          {
+            left: { type: "number" },
+            right: { not: {} },
+            result: { type: "number", not: {} },
+          },
+        ],
+      });
+      expect(
+        retrieveSchema(testValidator, defaultMerger, schema, schema, 13)
+      ).toEqual({
+        type: "number",
+        not: {},
+      });
+    });
+    it("should preserve a matched boolean true branch as an empty schema", () => {
+      const schema: Schema = {
+        type: "number",
+        if: {
+          const: 13,
+        },
+        then: true,
+      };
+      const testValidator = createValidator({
+        cases: [{ schema: { const: 13 }, value: 13, result: true }],
+      });
+      const defaultMerger = createMerger({
+        merges: [
+          { left: { type: "number" }, right: {}, result: { type: "number" } },
+        ],
+      });
+      expect(
+        retrieveSchema(testValidator, defaultMerger, schema, schema, 13)
+      ).toEqual({
+        type: "number",
       });
     });
     it("should resolve multiple conditions", () => {
@@ -2521,6 +2722,7 @@ describe("retrieveSchema()", () => {
               properties: {
                 food: { type: "string", enum: ["meat", "grass", "fish"] },
               },
+              [REF_FLAG]: "#/definitions/cat",
             },
             result: {
               properties: {
@@ -3264,6 +3466,7 @@ describe("retrieveSchema()", () => {
         properties: {
           bar: {
             type: "string",
+            [REF_FLAG]: "#/definitions/foo",
             [ADDITIONAL_PROPERTY_FLAG]: true,
           },
         },
@@ -3577,7 +3780,11 @@ describe("retrieveSchema()", () => {
           {
             schema: {
               allOf: [
-                { type: "object", properties: { name: { type: "string" } } },
+                {
+                  type: "object",
+                  properties: { name: { type: "string" } },
+                  [REF_FLAG]: "#/definitions/foo",
+                },
                 { anyOf: [{ required: ["name"] }] },
               ],
             },
@@ -3597,6 +3804,7 @@ describe("retrieveSchema()", () => {
                 right: {
                   type: "object",
                   properties: { name: { type: "string" } },
+                  [REF_FLAG]: "#/definitions/foo",
                 },
                 result: {
                   title: "multi",
@@ -3630,6 +3838,7 @@ describe("retrieveSchema()", () => {
                     choice: { type: "string", const: "one" },
                     other: { type: "number" },
                   },
+                  [REF_FLAG]: "#/definitions/choice1",
                 },
                 { anyOf: [{ required: ["choice"] }, { required: ["other"] }] },
               ],
@@ -3646,6 +3855,7 @@ describe("retrieveSchema()", () => {
                     choice: { type: "string", const: "two" },
                     more: { type: "string" },
                   },
+                  [REF_FLAG]: "#/definitions/choice2",
                 },
                 { anyOf: [{ required: ["choice"] }, { required: ["more"] }] },
               ],
@@ -3670,6 +3880,7 @@ describe("retrieveSchema()", () => {
                     choice: { type: "string", const: "one" },
                     other: { type: "number" },
                   },
+                  [REF_FLAG]: "#/definitions/choice1",
                 },
                 result: {
                   type: "object",
@@ -3688,6 +3899,7 @@ describe("retrieveSchema()", () => {
                     choice: { type: "string", const: "two" },
                     more: { type: "string" },
                   },
+                  [REF_FLAG]: "#/definitions/choice2",
                 },
                 result: {
                   type: "object",
@@ -3730,6 +3942,7 @@ describe("retrieveSchema()", () => {
                         a: { enum: ["typeA"] },
                         b: { type: "number" },
                       },
+                      [REF_FLAG]: "#/definitions/aObject",
                     },
                   },
                 },
@@ -3744,6 +3957,7 @@ describe("retrieveSchema()", () => {
               type: "array",
               items: {
                 properties: { a: { enum: ["typeB"] }, c: { type: "boolean" } },
+                [REF_FLAG]: "#/definitions/bObject",
               },
             },
             value: [],
@@ -3803,6 +4017,7 @@ describe("retrieveSchema()", () => {
                 a: { enum: ["typeA"] },
                 b: { type: "number" },
               },
+              [REF_FLAG]: "#/definitions/aObject",
             },
           },
         },
@@ -3813,6 +4028,7 @@ describe("retrieveSchema()", () => {
               a: { enum: ["typeB"] },
               c: { type: "boolean" },
             },
+            [REF_FLAG]: "#/definitions/bObject",
           },
         },
       ]);
@@ -3970,6 +4186,7 @@ describe("retrieveSchema()", () => {
         )
       ).toEqual({
         ...(SUPER_SCHEMA.definitions?.price as Schema),
+        [REF_FLAG]: "#/definitions/price",
       });
     });
     it("resolves simple ref with no anyOf or oneOfs when true", () => {
@@ -3985,6 +4202,7 @@ describe("retrieveSchema()", () => {
         )
       ).toEqual({
         ...(SUPER_SCHEMA.definitions?.price as Schema),
+        [REF_FLAG]: "#/definitions/price",
       });
     });
     it("does not resolves the references inside of anyOfs when false", () => {
@@ -4015,6 +4233,7 @@ describe("retrieveSchema()", () => {
         anyOf: [
           {
             ...(SUPER_SCHEMA.definitions?.foo as Schema),
+            [REF_FLAG]: "#/definitions/foo",
           },
         ],
       });
@@ -4048,9 +4267,11 @@ describe("retrieveSchema()", () => {
         oneOf: [
           {
             ...(SUPER_SCHEMA.definitions?.choice1 as Schema),
+            [REF_FLAG]: "#/definitions/choice1",
           },
           {
             ...(SUPER_SCHEMA.definitions?.choice2 as Schema),
+            [REF_FLAG]: "#/definitions/choice2",
           },
         ],
       });

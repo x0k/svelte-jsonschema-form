@@ -5,7 +5,7 @@
 import { isSchemaObject } from "@/lib/json-schema/index.js";
 
 import {
-  getSchemaConstantValue,
+  getSchemaConstantValueSafe,
   isSchemaOfConstantValue,
 } from "./constant-schema.js";
 import type { Merger } from "./merger.js";
@@ -60,7 +60,10 @@ export function isSelect(
   return false;
 }
 
-export function getSelectOptionValues({
+/**
+ * @returns `undefined` for non select schemas
+ */
+export function getSelectOptionValuesSafe({
   enum: enumValues,
   oneOf,
   anyOf,
@@ -70,14 +73,31 @@ export function getSelectOptionValues({
   }
   const altSchema = oneOf ?? anyOf;
   if (altSchema === undefined) {
-    return undefined;
+    return [];
   }
-  return altSchema.map((schemaDef, i) => {
+  const values: SchemaValue[] = [];
+  for (const schemaDef of altSchema) {
     if (!isSchemaObject(schemaDef)) {
-      throw new Error(`Invalid enum definition in altSchema.${i}`);
+      return undefined;
     }
-    return getSchemaConstantValue(schemaDef);
-  });
+    const v = getSchemaConstantValueSafe(schemaDef);
+    if (v === undefined) {
+      return undefined;
+    }
+    values.push(v);
+  }
+  return values;
+}
+
+/** @deprecated use `getSelectOptionValuesSafe` */
+export function getSelectOptionValues(
+  schema: Schema
+): SchemaValue[] | undefined {
+  const values = getSelectOptionValuesSafe(schema);
+  if (values === undefined) {
+    throw new Error(`Invalid enum definition in altSchema.`);
+  }
+  return values.length > 0 ? values : undefined;
 }
 
 /**

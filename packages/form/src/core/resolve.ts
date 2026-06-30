@@ -5,7 +5,7 @@
 // TODO: Remove all usage of `expandAllBranches` in v4
 
 import { array } from "@/lib/array.js";
-import { isJsonSchemaType, isSchemaObject } from "@/lib/json-schema/index.js";
+import { isJsonSchemaType } from "@/lib/json-schema/index.js";
 import { isRecordEmpty } from "@/lib/object.js";
 
 import { isSchemaDeepEqual } from "./deep-equal.js";
@@ -22,6 +22,7 @@ import {
   ITEMS_KEY,
   ONE_OF_KEY,
   PROPERTIES_KEY,
+  REF_FLAG,
   REF_KEY,
   type Schema,
   type SchemaDefinition,
@@ -69,15 +70,18 @@ export function resolveAllReferences(
     stack.add(ref);
     const { [REF_KEY]: _, ...resolvedSchemaWithoutRef } = resolvedSchema;
     const schemaDef = findSchemaDefinition(merger, ref, rootSchema);
-    return resolveAllReferences(
-      merger,
-      isRecordEmpty(resolvedSchemaWithoutRef)
-        ? schemaDef
-        : merger.mergeSchemas(schemaDef, resolvedSchemaWithoutRef),
-      rootSchema,
-      stack,
-      resolveAnyOfOrOneOfRefs
-    );
+    return {
+      ...resolveAllReferences(
+        merger,
+        isRecordEmpty(resolvedSchemaWithoutRef)
+          ? schemaDef
+          : merger.mergeSchemas(schemaDef, resolvedSchemaWithoutRef),
+        rootSchema,
+        stack,
+        resolveAnyOfOrOneOfRefs
+      ),
+      [REF_FLAG]: ref,
+    };
   }
 
   const properties = resolvedSchema[PROPERTIES_KEY];
@@ -246,22 +250,8 @@ export function retrieveSchemaInternal(
         return schemas;
       }
       try {
-        const withContainsSchemas: SchemaDefinition[] = [];
-        const withoutContainsSchemas: SchemaDefinition[] = [];
-        resolvedSchema.allOf?.forEach((s) => {
-          if (isSchemaObject(s) && s.contains) {
-            withContainsSchemas.push(s);
-          } else {
-            withoutContainsSchemas.push(s);
-          }
-        });
-        if (withContainsSchemas.length) {
-          resolvedSchema = { ...resolvedSchema, allOf: withoutContainsSchemas };
-        }
+        // CHANGED: No need for `contains` workaround this with modern merger
         resolvedSchema = merger.mergeAllOf(resolvedSchema);
-        if (withContainsSchemas.length) {
-          resolvedSchema.allOf = withContainsSchemas;
-        }
       } catch (e) {
         console.warn("could not merge subschemas in allOf:\n", e);
         const { allOf, ...resolvedSchemaWithoutAllOf } = resolvedSchema;
@@ -358,12 +348,12 @@ export function resolveCondition(
     }
   } else {
     const conditionalSchema = conditionValue ? then : otherwise;
-    if (conditionalSchema && typeof conditionalSchema !== "boolean") {
+    if (conditionalSchema !== undefined) {
       schemas = schemas.concat(
         retrieveSchemaInternal(
           validator,
           merger,
-          conditionalSchema,
+          normalizeBooleanSchema(conditionalSchema),
           rootSchema,
           formData,
           expandAllBranches,
@@ -436,7 +426,7 @@ export function stubExistingAdditionalProperties(
             merger,
             { $ref: additionalProperties[REF_KEY] },
             rootSchema,
-            formData
+            formData?.[key]
           ),
         };
       }
@@ -841,4 +831,11 @@ export function getMatchingPatternProperties(
     }
   }
   return schemas;
+}
+
+function normalizeBooleanSchema(schema: SchemaDefinition): Schema {
+  if (typeof schema !== "boolean") {
+    return schema;
+  }
+  return schema ? {} : { not: {} };
 }

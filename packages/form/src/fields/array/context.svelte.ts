@@ -249,6 +249,7 @@ export function createArrayContext<T>({
         schema,
         uiSchema: itemUiSchema,
         required: !isSchemaNullable(schema),
+        value: () => item,
       });
     },
   };
@@ -369,6 +370,7 @@ export function createTupleContext<T>({
         schema,
         uiSchema,
         required: !isSchemaNullable(schema),
+        value: () => item,
       });
     },
   };

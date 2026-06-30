@@ -69,6 +69,7 @@
     "lint": "eslint .",
     "test:unit": "vitest",
     "test": "npm run test:unit -- --run",
+    "test:visual": "vitest --project vrt",
     "test:e2e": "playwright test",
     "format": "oxfmt .",
     "format:check": "oxfmt --check ."
@@ -82,7 +83,9 @@
     "@lucide/svelte": "catalog:",
     "@sjsf/ajv8-validator": "workspace:*",
     "@sjsf/form": "workspace:*",
+    "@sveltejs/svelte-json-tree": "catalog:",
     "@tailwindcss/vite": "catalog:",
+    "ajv": "catalog:",
     "bits-ui": "catalog:",
     "clsx": "catalog:shadcn",
     "globals": "catalog:",

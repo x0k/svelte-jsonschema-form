@@ -23,6 +23,7 @@ import {
   type FormValue,
   type Translate,
 } from "@/form/index.js";
+import { isRecordEmpty } from "@/lib/object.js";
 import type { Ref } from "@/lib/svelte.svelte.js";
 import {
   IdEnumValueMapperBuilder,
@@ -274,6 +275,7 @@ export function createCombinationContext<T>({
       schema: { type: "integer", default: 0 },
       uiSchema,
       required: true,
+      value: () => selectedOption,
     };
   });
 
@@ -313,15 +315,19 @@ export function createCombinationContext<T>({
     }
     const cfg = config();
     const schema = retrievedOptions[selected]!;
-    const { required } = cfg.schema;
-    const optionSchema = required
-      ? {
-          ...schema,
-          required: schema.required
-            ? required.concat(schema.required)
-            : required,
-        }
-      : schema;
+    const { required, type } = cfg.schema;
+    const override: Schema = {};
+    if (type !== undefined && schema.type === undefined) {
+      override.type = type;
+    }
+    if (required?.length) {
+      override.required = schema.required?.length
+        ? required.concat(schema.required)
+        : required;
+    }
+    const optionSchema = isRecordEmpty(override)
+      ? schema
+      : { ...schema, ...override };
     const optionUiSchema =
       selected < optionsUiSchemas.length
         ? optionsUiSchemas[selected]!
@@ -332,6 +338,7 @@ export function createCombinationContext<T>({
       schema: optionSchema,
       uiSchema: optionUiSchema,
       required: cfg.required,
+      value,
     };
   });
 

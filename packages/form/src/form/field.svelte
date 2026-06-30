@@ -195,6 +195,7 @@
     schema: retrievedSchema,
     uiSchema,
     required,
+    value: () => valueRef.current,
   });
   const translate = $derived(retrieveTranslate(form, config));
   const uiOption: UiOption = (opt) => retrieveUiOption(form, config, opt);

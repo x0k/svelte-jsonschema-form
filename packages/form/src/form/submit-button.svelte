@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { constUndefined } from "@/lib/function.js";
+
   import type { Config } from "./config.js";
   import { FORM_ROOT_PATH, FORM_SCHEMA, FORM_UI_SCHEMA } from "./internals.js";
   import {
@@ -17,6 +19,7 @@
     schema: ctx[FORM_SCHEMA],
     uiSchema: ctx[FORM_UI_SCHEMA],
     required: false,
+    value: constUndefined,
   });
 
   const Button = $derived(getComponent(ctx, "submitButton", config));

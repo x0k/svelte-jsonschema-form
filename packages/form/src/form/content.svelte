@@ -28,6 +28,7 @@
       schema: ctx[FORM_RETRIEVED_SCHEMA],
       uiSchema: ctx[FORM_UI_SCHEMA],
       required: true,
+      value: () => ctx[FORM_VALUE],
     })
   );
 

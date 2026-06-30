@@ -62,6 +62,7 @@
         objCtx.renameProperty(property, propertyNext, keyInputConfig);
       },
     },
+    value: () => propertyNext,
   } satisfies Config}
   {@const KeyInputField = getFieldComponent(ctx, keyInputConfig)}
   <KeyInputField

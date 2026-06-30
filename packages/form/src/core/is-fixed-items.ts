@@ -12,7 +12,5 @@ export function isFixedItems(schema: Schema): schema is Omit<
   items: Schema[];
 } {
   const { items } = schema;
-  return (
-    Array.isArray(items) && items.length > 0 && items.every(isSchemaObjectValue)
-  );
+  return Array.isArray(items) && items.every(isSchemaObjectValue);
 }

@@ -199,7 +199,7 @@ exports[`array fields > array icons 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_0"
-                  id="bits-c90"
+                  id="bits-c7"
                 >
                   <!---->
                   -1 
@@ -426,7 +426,7 @@ exports[`array fields > array icons 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_1"
-                  id="bits-c91"
+                  id="bits-c8"
                 >
                   <!---->
                   -2 
@@ -765,7 +765,7 @@ exports[`array fields > checkboxes 1`] = `
           data-label-root=""
           data-slot="field-label"
           for="root__0"
-          id="bits-c85"
+          id="bits-c2"
         >
           <!---->
           a
@@ -829,7 +829,7 @@ exports[`array fields > checkboxes 1`] = `
           data-label-root=""
           data-slot="field-label"
           for="root__1"
-          id="bits-c87"
+          id="bits-c4"
         >
           <!---->
           b
@@ -893,7 +893,7 @@ exports[`array fields > checkboxes 1`] = `
           data-label-root=""
           data-slot="field-label"
           for="root__2"
-          id="bits-c89"
+          id="bits-c6"
         >
           <!---->
           c
@@ -1045,7 +1045,7 @@ exports[`array fields > empty errors array 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_name"
-                  id="bits-c92"
+                  id="bits-c9"
                 >
                   <!---->
                   name 
@@ -1548,7 +1548,7 @@ exports[`object fields > additionalProperties 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_foo__key-input"
-                  id="bits-c132"
+                  id="bits-c49"
                 >
                   <!---->
                   foo Key 
@@ -1662,7 +1662,7 @@ exports[`object fields > additionalProperties 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_foo"
-                  id="bits-c133"
+                  id="bits-c50"
                 >
                   <!---->
                   foo 
@@ -1909,7 +1909,7 @@ exports[`object fields > additionalProperties with error 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_foo__key-input"
-                  id="bits-c134"
+                  id="bits-c51"
                 >
                   <!---->
                   foo Key 
@@ -2048,7 +2048,7 @@ exports[`object fields > additionalProperties with error 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_foo"
-                  id="bits-c135"
+                  id="bits-c52"
                 >
                   <!---->
                   foo 
@@ -2296,7 +2296,7 @@ exports[`object fields > has errors 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_name"
-                  id="bits-c131"
+                  id="bits-c48"
                 >
                   <!---->
                   name 
@@ -2540,7 +2540,7 @@ exports[`object fields > object 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_a"
-                  id="bits-c129"
+                  id="bits-c46"
                 >
                   <!---->
                   A 
@@ -2667,7 +2667,7 @@ exports[`object fields > object 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_b"
-                  id="bits-c130"
+                  id="bits-c47"
                 >
                   <!---->
                   B 
@@ -2925,7 +2925,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_preset"
-                  id="bits-c154"
+                  id="bits-c71"
                 >
                   <!---->
                   Preset 
@@ -3177,7 +3177,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_transform"
-                  id="bits-c157"
+                  id="bits-c74"
                 >
                   <!---->
                   Transform
@@ -3269,7 +3269,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_format"
-                  id="bits-c158"
+                  id="bits-c75"
                 >
                   <!---->
                   Output format 
@@ -3521,7 +3521,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_paginate"
-                  id="bits-c161"
+                  id="bits-c78"
                 >
                   <!---->
                   Paginate
@@ -3697,7 +3697,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_createOnOpen"
-                  id="bits-c163"
+                  id="bits-c80"
                 >
                   <!---->
                   Create on open
@@ -3941,7 +3941,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_preset"
-                  id="bits-c168"
+                  id="bits-c85"
                 >
                   <!---->
                   Preset 
@@ -4216,7 +4216,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_collapseIndexes"
-                  id="bits-c171"
+                  id="bits-c88"
                 >
                   <!---->
                   Combine nested indexes
@@ -4392,7 +4392,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_joinPrimitiveArrayValues"
-                  id="bits-c173"
+                  id="bits-c90"
                 >
                   <!---->
                   Combine simple values
@@ -4545,7 +4545,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_combineArraysOfObjects"
-                  id="bits-c175"
+                  id="bits-c92"
                 >
                   <!---->
                   Combine objects
@@ -4721,7 +4721,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_stabilizeOrderOfPropertiesInArraysOfObjects"
-                  id="bits-c177"
+                  id="bits-c94"
                 >
                   <!---->
                   Stabilize order of properties
@@ -4813,7 +4813,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_proportionalSizeAdjustmentThreshold"
-                  id="bits-c178"
+                  id="bits-c95"
                 >
                   <!---->
                   Proportional size adjustment threshold 
@@ -4959,7 +4959,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_cornerCellValue"
-                  id="bits-c179"
+                  id="bits-c96"
                 >
                   <!---->
                   Corner cell value 
@@ -5159,7 +5159,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_transform"
-                  id="bits-c181"
+                  id="bits-c98"
                 >
                   <!---->
                   Transform
@@ -5251,7 +5251,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_format"
-                  id="bits-c182"
+                  id="bits-c99"
                 >
                   <!---->
                   Output format 
@@ -5503,7 +5503,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_paginate"
-                  id="bits-c185"
+                  id="bits-c102"
                 >
                   <!---->
                   Paginate
@@ -5679,7 +5679,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_createOnOpen"
-                  id="bits-c187"
+                  id="bits-c104"
                 >
                   <!---->
                   Create on open
@@ -5885,7 +5885,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
                   data-label-root=""
                   data-slot="field-label"
                   for="root_additionalProperty__key-input"
-                  id="bits-c136"
+                  id="bits-c53"
                 >
                   <!---->
                   additionalProperty Key 
@@ -5999,7 +5999,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
                   data-label-root=""
                   data-slot="field-label"
                   for="root_additionalProperty"
-                  id="bits-c137"
+                  id="bits-c54"
                 >
                   <!---->
                   additionalProperty 
@@ -6295,7 +6295,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
                   data-label-root=""
                   data-slot="field-label"
                   for="root_foo__key-input"
-                  id="bits-c140"
+                  id="bits-c57"
                 >
                   <!---->
                   foo Key 
@@ -6409,7 +6409,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
                   data-label-root=""
                   data-slot="field-label"
                   for="root_foo"
-                  id="bits-c141"
+                  id="bits-c58"
                 >
                   <!---->
                   foo 
@@ -6706,7 +6706,7 @@ exports[`object fields > with title and description > object 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_a"
-                  id="bits-c138"
+                  id="bits-c55"
                 >
                   <!---->
                   A 
@@ -6845,7 +6845,7 @@ exports[`object fields > with title and description > object 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_b"
-                  id="bits-c139"
+                  id="bits-c56"
                 >
                   <!---->
                   B 
@@ -7126,7 +7126,7 @@ exports[`object fields > with title and description > show add button and fields
                   data-label-root=""
                   data-slot="field-label"
                   for="root_additionalProperty__key-input"
-                  id="bits-c142"
+                  id="bits-c59"
                 >
                   <!---->
                   additionalProperty Key 
@@ -7240,7 +7240,7 @@ exports[`object fields > with title and description > show add button and fields
                   data-label-root=""
                   data-slot="field-label"
                   for="root_additionalProperty"
-                  id="bits-c143"
+                  id="bits-c60"
                 >
                   <!---->
                   additionalProperty 
@@ -7536,7 +7536,7 @@ exports[`object fields > with title and description from both > additionalProper
                   data-label-root=""
                   data-slot="field-label"
                   for="root_foo__key-input"
-                  id="bits-c152"
+                  id="bits-c69"
                 >
                   <!---->
                   foo Key 
@@ -7650,7 +7650,7 @@ exports[`object fields > with title and description from both > additionalProper
                   data-label-root=""
                   data-slot="field-label"
                   for="root_foo"
-                  id="bits-c153"
+                  id="bits-c70"
                 >
                   <!---->
                   foo 
@@ -7947,7 +7947,7 @@ exports[`object fields > with title and description from both > object 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_a"
-                  id="bits-c150"
+                  id="bits-c67"
                 >
                   <!---->
                   My Item A 
@@ -8086,7 +8086,7 @@ exports[`object fields > with title and description from both > object 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_b"
-                  id="bits-c151"
+                  id="bits-c68"
                 >
                   <!---->
                   My Item B 
@@ -8367,7 +8367,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
                   data-label-root=""
                   data-slot="field-label"
                   for="root_foo__key-input"
-                  id="bits-c146"
+                  id="bits-c63"
                 >
                   <!---->
                   foo Key 
@@ -8481,7 +8481,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
                   data-label-root=""
                   data-slot="field-label"
                   for="root_foo"
-                  id="bits-c147"
+                  id="bits-c64"
                 >
                   <!---->
                   foo 
@@ -8778,7 +8778,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
                   data-label-root=""
                   data-slot="field-label"
                   for="root_a"
-                  id="bits-c144"
+                  id="bits-c61"
                 >
                   <!---->
                   My Item A 
@@ -8917,7 +8917,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
                   data-label-root=""
                   data-slot="field-label"
                   for="root_b"
-                  id="bits-c145"
+                  id="bits-c62"
                 >
                   <!---->
                   My Item B 
@@ -9198,7 +9198,7 @@ exports[`object fields > with title and description from uiSchema > show add but
                   data-label-root=""
                   data-slot="field-label"
                   for="root_additionalProperty__key-input"
-                  id="bits-c148"
+                  id="bits-c65"
                 >
                   <!---->
                   additionalProperty Key 
@@ -9312,7 +9312,7 @@ exports[`object fields > with title and description from uiSchema > show add but
                   data-label-root=""
                   data-slot="field-label"
                   for="root_additionalProperty"
-                  id="bits-c149"
+                  id="bits-c66"
                 >
                   <!---->
                   additionalProperty 
@@ -10572,7 +10572,7 @@ exports[`with title and description > array icons 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_0"
-                  id="bits-c101"
+                  id="bits-c18"
                 >
                   <!---->
                   Test item-1 
@@ -10811,7 +10811,7 @@ exports[`with title and description > array icons 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_1"
-                  id="bits-c102"
+                  id="bits-c19"
                 >
                   <!---->
                   Test item-2 
@@ -11212,7 +11212,7 @@ exports[`with title and description > checkboxes 1`] = `
           data-label-root=""
           data-slot="field-label"
           for="root__0"
-          id="bits-c96"
+          id="bits-c13"
         >
           <!---->
           a
@@ -11276,7 +11276,7 @@ exports[`with title and description > checkboxes 1`] = `
           data-label-root=""
           data-slot="field-label"
           for="root__1"
-          id="bits-c98"
+          id="bits-c15"
         >
           <!---->
           b
@@ -11340,7 +11340,7 @@ exports[`with title and description > checkboxes 1`] = `
           data-label-root=""
           data-slot="field-label"
           for="root__2"
-          id="bits-c100"
+          id="bits-c17"
         >
           <!---->
           c
@@ -11539,7 +11539,7 @@ exports[`with title and description > fixed array 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_0"
-                  id="bits-c93"
+                  id="bits-c10"
                 >
                   <!---->
                   Test item 
@@ -11680,7 +11680,7 @@ exports[`with title and description > fixed array 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_1"
-                  id="bits-c94"
+                  id="bits-c11"
                 >
                   <!---->
                   Test item 
@@ -12123,7 +12123,7 @@ exports[`with title and description from both > array icons 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_0"
-                  id="bits-c121"
+                  id="bits-c38"
                 >
                   <!---->
                   My Item-1 
@@ -12362,7 +12362,7 @@ exports[`with title and description from both > array icons 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_1"
-                  id="bits-c122"
+                  id="bits-c39"
                 >
                   <!---->
                   My Item-2 
@@ -12763,7 +12763,7 @@ exports[`with title and description from both > checkboxes 1`] = `
           data-label-root=""
           data-slot="field-label"
           for="root__0"
-          id="bits-c116"
+          id="bits-c33"
         >
           <!---->
           a
@@ -12827,7 +12827,7 @@ exports[`with title and description from both > checkboxes 1`] = `
           data-label-root=""
           data-slot="field-label"
           for="root__1"
-          id="bits-c118"
+          id="bits-c35"
         >
           <!---->
           b
@@ -12891,7 +12891,7 @@ exports[`with title and description from both > checkboxes 1`] = `
           data-label-root=""
           data-slot="field-label"
           for="root__2"
-          id="bits-c120"
+          id="bits-c37"
         >
           <!---->
           c
@@ -13090,7 +13090,7 @@ exports[`with title and description from both > fixed array 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_0"
-                  id="bits-c113"
+                  id="bits-c30"
                 >
                   <!---->
                   My Item 
@@ -13231,7 +13231,7 @@ exports[`with title and description from both > fixed array 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_1"
-                  id="bits-c114"
+                  id="bits-c31"
                 >
                   <!---->
                   My Item 
@@ -13674,7 +13674,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_0"
-                  id="bits-c111"
+                  id="bits-c28"
                 >
                   <!---->
                   My Item-1 
@@ -13913,7 +13913,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_1"
-                  id="bits-c112"
+                  id="bits-c29"
                 >
                   <!---->
                   My Item-2 
@@ -14314,7 +14314,7 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
           data-label-root=""
           data-slot="field-label"
           for="root__0"
-          id="bits-c106"
+          id="bits-c23"
         >
           <!---->
           a
@@ -14378,7 +14378,7 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
           data-label-root=""
           data-slot="field-label"
           for="root__1"
-          id="bits-c108"
+          id="bits-c25"
         >
           <!---->
           b
@@ -14442,7 +14442,7 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
           data-label-root=""
           data-slot="field-label"
           for="root__2"
-          id="bits-c110"
+          id="bits-c27"
         >
           <!---->
           c
@@ -14641,7 +14641,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_0"
-                  id="bits-c103"
+                  id="bits-c20"
                 >
                   <!---->
                   My Item 
@@ -14782,7 +14782,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                   data-label-root=""
                   data-slot="field-label"
                   for="root_1"
-                  id="bits-c104"
+                  id="bits-c21"
                 >
                   <!---->
                   My Item 
@@ -15601,7 +15601,7 @@ exports[`with title and description with global label off > checkboxes 1`] = `
           data-label-root=""
           data-slot="field-label"
           for="root__0"
-          id="bits-c124"
+          id="bits-c41"
         >
           <!---->
           a
@@ -15665,7 +15665,7 @@ exports[`with title and description with global label off > checkboxes 1`] = `
           data-label-root=""
           data-slot="field-label"
           for="root__1"
-          id="bits-c126"
+          id="bits-c43"
         >
           <!---->
           b
@@ -15729,7 +15729,7 @@ exports[`with title and description with global label off > checkboxes 1`] = `
           data-label-root=""
           data-slot="field-label"
           for="root__2"
-          id="bits-c128"
+          id="bits-c45"
         >
           <!---->
           c

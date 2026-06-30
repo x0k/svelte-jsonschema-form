@@ -31,7 +31,7 @@ function assign<I, O>(convert: (ctx: Context, input: I) => O) {
   };
 }
 
-const assignAsIs = assign((_, v) => v) as <K extends string, V>(
+const assignAsIs = assign((_, v) => v) as <K extends PropertyKey, V>(
   t: { [k in K]?: V },
   v: V | Readonly<V>
 ) => void;

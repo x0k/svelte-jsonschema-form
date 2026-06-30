@@ -1,0 +1,2 @@
+packages/*/tests/__screenshots__/visual.svelte.test.ts/*.png filter=lfs diff=lfs merge=lfs -text
+lab/*/tests/__screenshots__/visual.svelte.test.ts/*.png filter=lfs diff=lfs merge=lfs -text

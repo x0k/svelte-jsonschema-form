@@ -1,6 +1,6 @@
 import type { JSONSchema7, JSONSchema7Definition } from "json-schema";
 import jsonSchemaCompare from "json-schema-compare";
-import { bench, describe } from "vitest";
+import { test } from "vitest";
 
 import { createComparator } from "./compare.js";
 
@@ -279,15 +279,15 @@ function isEqual(a: JSONSchema7Definition, b: JSONSchema7Definition) {
   return compareSchemaDefinitions(a, b) === 0;
 }
 
-describe("isEqual vs json-schema-compare", () => {
-  for (const { name, a, b } of cases) {
-    describe(name, () => {
+for (const { name, a, b } of cases) {
+  test(name, async ({ bench }) => {
+    await bench.compare(
       bench("isEqual", () => {
         isEqual(a, b);
-      });
+      }),
       bench("json-schema-compare", () => {
         jsonSchemaCompare(a, b);
-      });
-    });
-  }
-});
+      })
+    );
+  });
+}

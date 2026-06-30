@@ -46,7 +46,7 @@ export type ObjectTestFormOptions = Partial<FormOptions<any>> & {
   theme: Theme;
 };
 
-export interface ObjectFieldTestContext {
+export interface ObjectFieldTestContext extends SelectCallbacks {
   context?: Map<any, any>;
   defaultFormOptions?: Partial<FormOptions<any>>;
   skipTests?: string[];
@@ -62,5 +62,8 @@ export type CombinationTestFormOptions = Partial<FormOptions<any>> & {
 export interface CombinationFieldTestContext extends SelectCallbacks {
   context?: Map<any, any>;
   defaultFormOptions?: Partial<FormOptions<any>>;
+  toggleCheckbox?: (locator: Locator) => Promise<void>;
   skipTests?: string[];
+  /** Custom assertion for option text in SSR body. Default: `expect(body).toContain(title)` */
+  assertOptionTextInBody?: (body: string, optionTitle: string) => void;
 }
