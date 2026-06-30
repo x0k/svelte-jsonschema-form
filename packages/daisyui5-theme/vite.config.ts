@@ -55,10 +55,10 @@ export default defineConfig({
         },
         test: {
           name: "vrt",
-          include: [vrtPattern],
+          include: process.env.CI ? [] : [vrtPattern],
           browser: {
             provider: playwright(),
-            enabled: !process.env.CI,
+            enabled: true,
             headless: true,
             instances: [
               {
