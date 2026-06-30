@@ -1,3 +1,4 @@
+import { evaluateCompiledSchema } from "@hyperjump/json-schema-errors";
 import type {
   FieldValueValidator,
   FormValueValidator,
@@ -8,7 +9,6 @@ import { transformFormErrors, transformFieldErrors } from "./errors.js";
 import {
   createContext,
   createRetriever,
-  evaluateCompiledSchema,
   validate,
   type CoreValidatorOptions,
   type ValidatorOptions,
@@ -34,8 +34,12 @@ export function createFormValueValidator<T>(
 ): FormValueValidator<T> {
   return {
     validateFormValue(rootSchema, formValue) {
-      const ctx = createContext(options, rootSchema, formValue);
-      const out = evaluateCompiledSchema(ctx, options.localization);
+      const { compiledSchema, value } = createContext(
+        options,
+        rootSchema,
+        formValue
+      );
+      const out = evaluateCompiledSchema(compiledSchema, value, options);
       return transformFormErrors(out, formValue);
     },
   };
@@ -48,8 +52,12 @@ export function createFieldValueValidator(
 ): FieldValueValidator {
   return {
     validateFieldValue(field, fieldValue) {
-      const ctx = createContext(options, field.schema, fieldValue);
-      const out = evaluateCompiledSchema(ctx, options.localization);
+      const { compiledSchema, value } = createContext(
+        options,
+        field.schema,
+        fieldValue
+      );
+      const out = evaluateCompiledSchema(compiledSchema, value, options);
       return transformFieldErrors(out);
     },
   };

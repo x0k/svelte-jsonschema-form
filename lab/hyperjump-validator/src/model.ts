@@ -1,24 +1,18 @@
-import {
-  getErrors,
-  type Localization,
-  type Json as HyperjumpJson,
+import type {
+  Json as HyperjumpJson,
+  ValidationOptions,
 } from "@hyperjump/json-schema-errors";
 import {
   Validation,
   type AST,
   type CompiledSchema,
 } from "@hyperjump/json-schema/experimental";
-import {
-  fromJs,
-  type JsonNode,
-} from "@hyperjump/json-schema/instance/experimental";
+import { fromJs } from "@hyperjump/json-schema/instance/experimental";
 import type { FormValue, Schema, SchemaValue } from "@sjsf/form";
 import {
   createValidatorRetriever,
   type ValidatorRetrieverOptions,
 } from "@sjsf/form/validators/precompile";
-
-import { JsonSchemaErrorsOutputPlugin } from "./output-plugin.js";
 
 // TODO: Remove in v4
 interface LegacyValidatorOptions {
@@ -36,9 +30,8 @@ interface ModernValidatorOptions {
 export type CoreValidatorOptions = (
   | LegacyValidatorOptions
   | ModernValidatorOptions
-) & {
-  localization: Localization;
-};
+) &
+  Partial<ValidationOptions>;
 
 // TODO: Remove in v4
 export function createRetriever(options: CoreValidatorOptions) {
@@ -91,8 +84,9 @@ export function fromAst(
   });
 }
 
-export interface Context extends CompiledSchema {
-  value: JsonNode;
+export interface Context {
+  compiledSchema: CompiledSchema;
+  value: HyperjumpJson;
 }
 
 export function createContext(
@@ -102,37 +96,14 @@ export function createContext(
 ): Context {
   const getCompiledSchema = createRetriever(options);
   return {
-    ...getCompiledSchema(schema),
-    value: fromJs(options.valueToJSON(value) as HyperjumpJson),
+    compiledSchema: getCompiledSchema(schema),
+    value: options.valueToJSON(value) as HyperjumpJson,
   };
 }
 
-export function validate(ctx: Context) {
-  return Validation.interpret(ctx.schemaUri, ctx.value, {
-    ast: ctx.ast,
-    plugins: [...ctx.ast.plugins],
+export function validate({ compiledSchema, value }: Context) {
+  return Validation.interpret(compiledSchema.schemaUri, fromJs(value), {
+    ast: compiledSchema.ast,
+    plugins: [...compiledSchema.ast.plugins],
   });
-}
-
-export function evaluateCompiledSchema(
-  ctx: Context,
-  localization: Localization
-) {
-  const outputPlugin = new JsonSchemaErrorsOutputPlugin();
-  const context = {
-    ast: ctx.ast,
-    plugins: [...ctx.ast.plugins, outputPlugin],
-  };
-  const valid = Validation.interpret(ctx.schemaUri, ctx.value, context);
-  return valid
-    ? { valid }
-    : {
-        valid,
-        errors: getErrors(
-          outputPlugin.output,
-          ctx.value,
-          localization,
-          ctx.ast
-        ),
-      };
 }

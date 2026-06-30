@@ -18,7 +18,6 @@ import {
   validatorTests,
 } from "validator-testing";
 
-import { localization } from "./localizations/en-us.js";
 import { fromAst } from "./model.js";
 import { createFormValidatorFactory } from "./validator.js";
 
@@ -47,7 +46,6 @@ const createFormValidator = createPrecompiledValidatorFactory(
         await Validation.compile(s, ast, s);
       }
       const factory = createFormValidatorFactory({
-        localization,
         validatorRetriever: fromAst(ast),
       });
       return factory(options);
