@@ -16,6 +16,7 @@ import "@sjsf/form/templates/extra/optional-field-include";
 import "@sjsf/form/templates/extra/optional-array-include";
 import "@sjsf/form/templates/extra/optional-multi-field-include";
 import { translation } from "@sjsf/form/translations/en";
+import type { HTMLFormAttributes } from "svelte/elements";
 import { expect } from "vitest";
 import { render } from "vitest-browser-svelte";
 
@@ -33,7 +34,8 @@ const defaults = {
 
 export async function renderFieldForm(
   options: Partial<Omit<FormOptions<any>, "theme">> &
-    Pick<FormOptions<any>, "schema">
+    Pick<FormOptions<any>, "schema">,
+  formAttributes?: HTMLFormAttributes
 ) {
   const target = document.body.appendChild(document.createElement("div"));
   const form = createForm({
@@ -42,7 +44,7 @@ export async function renderFieldForm(
   });
   await render(BasicForm, {
     target,
-    props: { form },
+    props: { form, ...formAttributes },
   });
   return { form };
 }

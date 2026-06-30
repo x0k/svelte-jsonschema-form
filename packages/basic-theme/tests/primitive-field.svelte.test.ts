@@ -1,6 +1,7 @@
 import type { Schema, UiSchema } from "@sjsf/form";
 import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
-import { describe, expect, test } from "vitest";
+import { tick } from "svelte";
+import { describe, expect, test, vi } from "vitest";
 import { page, userEvent } from "vitest/browser";
 
 import { expectValue, renderFieldForm } from "./helpers.js";
@@ -45,6 +46,83 @@ describe("primitive field contracts", () => {
 
       await userEvent.fill(page.getByRole("textbox").first(), "");
       expectValue(form, undefined);
+    });
+
+    // https://github.com/rjsf-team/react-jsonschema-form/pull/5136
+    test("clearing a field with a schema default does not re-apply the default", async () => {
+      const onSubmit = vi.fn();
+      const { form } = await renderFieldForm(
+        {
+          schema: {
+            type: "object",
+            properties: {
+              name: { type: "string", default: "Chuck" },
+            },
+          },
+          onSubmit,
+        },
+        { novalidate: true }
+      );
+
+      const input = page.getByRole("textbox").first();
+      await expect.element(input).toHaveValue("Chuck");
+
+      await userEvent.fill(input, "");
+
+      await expect.element(input).toHaveValue("");
+      expectValue(form, { name: undefined });
+
+      await userEvent.click(page.getByRole("button", { name: "Submit" }));
+      await tick();
+
+      expect(onSubmit).toHaveBeenCalled();
+      const [submittedValue] = onSubmit.mock.calls.at(-1)!;
+      expect(submittedValue).toEqual({});
+    });
+
+    // https://github.com/rjsf-team/react-jsonschema-form/pull/5138
+    test("clearing a second field does not re-apply the default to a previously-cleared field", async () => {
+      const onSubmit = vi.fn();
+      const { form } = await renderFieldForm(
+        {
+          schema: {
+            type: "object",
+            properties: {
+              someStrings: { type: "string", default: "Chuck" },
+              someNumbers: { type: "number", default: 1 },
+            },
+          },
+          onSubmit,
+        },
+        { novalidate: true }
+      );
+
+      const textbox = page.getByRole("textbox").first();
+      const spinbutton = page.getByRole("spinbutton").first();
+
+      await expect.element(textbox).toHaveValue("Chuck");
+      await expect.element(spinbutton).toHaveValue(1);
+
+      // Clear the string field
+      await userEvent.fill(textbox, "");
+      await expect.element(textbox).toHaveValue("");
+      expectValue(form, { someStrings: undefined, someNumbers: 1 });
+
+      // Clear the number field — the string must NOT get its default re-applied
+      await userEvent.clear(spinbutton);
+      expectValue(form, { someStrings: undefined, someNumbers: undefined });
+
+      // Clear the string field again — the number must NOT get its default re-applied
+      await userEvent.fill(textbox, "");
+      expectValue(form, { someStrings: undefined, someNumbers: undefined });
+
+      // Submit and verify cleared fields don't carry defaults
+      await userEvent.click(page.getByRole("button", { name: "Submit" }));
+      await tick();
+
+      expect(onSubmit).toHaveBeenCalled();
+      const [submittedValue] = onSubmit.mock.calls.at(-1)!;
+      expect(submittedValue).toEqual({});
     });
 
     test("clearing value returns empty string when stringEmptyValue is set", async () => {
