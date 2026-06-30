@@ -7336,6 +7336,135 @@ describe("getDefaultFormState()", () => {
           })
         ).toEqual({ animalInfo: { animal: "Cat", food: "meat" } });
       });
+
+      it("should apply conditional const defaults consistently for root and nested allOf schemas", () => {
+        const experimental_defaultFormStateBehavior: Experimental_DefaultFormStateBehavior =
+          {
+            allOf: "populateDefaults",
+            constAsDefaults: "always",
+          };
+        const conditionalSchema = {
+          type: "object",
+          properties: {
+            animal: {
+              enum: ["Cat", "Fish"],
+            },
+            food: {
+              type: "string",
+              enum: ["meat", "grass", "fish"],
+            },
+          },
+          allOf: [
+            {
+              if: {
+                properties: {
+                  animal: {
+                    const: "Cat",
+                  },
+                },
+              },
+              then: {
+                properties: {
+                  food: {
+                    const: "fish",
+                  },
+                },
+                required: ["food"],
+              },
+            },
+            {
+              required: ["animal"],
+            },
+          ],
+        } satisfies Schema;
+        const formData = {
+          animal: "Cat",
+          food: "meat",
+        };
+        const testValidator = createValidator({
+          cases: [
+            {
+              schema: { properties: { animal: { const: "Cat" } } },
+              value: { animal: "Cat", food: "meat" },
+              result: true,
+            },
+          ],
+        });
+        const defaultMerger = createMerger({
+          allOfMerges: [
+            {
+              input: {
+                type: "object",
+                properties: {
+                  animal: { enum: ["Cat", "Fish"] },
+                  food: { type: "string", enum: ["meat", "grass", "fish"] },
+                },
+                allOf: [
+                  {
+                    properties: { food: { const: "fish" } },
+                    required: ["food"],
+                  },
+                  { required: ["animal"] },
+                ],
+              },
+              result: {
+                type: "object",
+                properties: {
+                  animal: {
+                    enum: ["Cat", "Fish"],
+                  },
+                  food: {
+                    type: "string",
+                    enum: ["meat", "grass", "fish"],
+                    const: "fish",
+                  },
+                },
+                required: ["food", "animal"],
+              },
+            },
+          ],
+        });
+
+        // expect(
+        //   getDefaultFormState(
+        //     testValidator,
+        //     defaultMerger,
+        //     conditionalSchema,
+        //     formData,
+        //     conditionalSchema,
+        //     undefined,
+        //     experimental_defaultFormStateBehavior,
+        //   ),
+        // ).toEqual({
+        //   animal: "Cat",
+        //   food: "fish",
+        // });
+
+        const nestedSchema: Schema = {
+          type: "object",
+          properties: {
+            nested: conditionalSchema,
+          },
+          required: ["nested"],
+        };
+
+        expect(
+          getDefaultFormState(
+            testValidator,
+            defaultMerger,
+            nestedSchema,
+            { nested: formData },
+            nestedSchema,
+            undefined,
+            experimental_defaultFormStateBehavior
+          )
+        ).toEqual({
+          nested: {
+            animal: "Cat",
+            food: "fish",
+          },
+        });
+      });
     });
 
     describe('default form state behaviour: allOf = "skipDefaults"', () => {

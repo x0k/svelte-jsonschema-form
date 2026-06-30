@@ -22,6 +22,7 @@ import {
   ALL_OF_KEY,
   DEPENDENCIES_KEY,
   IF_KEY,
+  isSchemaWithProperties,
   type Schema,
   type SchemaArrayValue,
   type SchemaObjectValue,
@@ -112,9 +113,17 @@ export function getDefaultFormState(
       experimental_defaultFormStateBehavior || {};
     const defaultSupersedesUndefined =
       mergeDefaultsIntoFormData === "useDefaultIfFormDataUndefined";
+    const matchingFormData = ensureFormDataMatchingSchema(
+      validator,
+      merger,
+      schema,
+      rootSchema ?? schema,
+      formData,
+      experimental_defaultFormStateBehavior
+    );
     const result = mergeDefaultsWithFormData(
       defaults,
-      formData,
+      matchingFormData,
       true, // set to true to add any additional default array entries.
       defaultSupersedesUndefined,
       true // set to true to override formData with defaults if they exist.
@@ -515,13 +524,18 @@ export function ensureFormDataMatchingSchema(
   formData: SchemaValue | undefined,
   experimental_defaultFormStateBehavior?: Experimental_DefaultFormStateBehavior
 ): SchemaValue | undefined {
-  let validFormData = formData;
+  const shouldRetrieveAllOf =
+    experimental_defaultFormStateBehavior?.allOf === "populateDefaults" &&
+    ALL_OF_KEY in schema;
+  const schemaToMatch = shouldRetrieveAllOf
+    ? retrieveSchema(validator, merger, schema, rootSchema, formData)
+    : schema;
   const isSelectField =
-    formData !== undefined &&
-    !isSchemaOfConstantValue(schema) &&
-    isSelect(validator, merger, schema, rootSchema);
+    !isSchemaOfConstantValue(schemaToMatch) &&
+    isSelect(validator, merger, schemaToMatch, rootSchema);
+  let validFormData = formData;
   if (isSelectField) {
-    const selectOptionValues = getSelectOptionValuesSafe(schema);
+    const selectOptionValues = getSelectOptionValuesSafe(schemaToMatch);
     const isValid = selectOptionValues?.some((v) =>
       isSchemaValueDeepEqual(v, formData)
     );
@@ -530,10 +544,37 @@ export function ensureFormDataMatchingSchema(
 
   // Override the formData with the const if the constAsDefaults is set to always
   const constTakesPrecedence =
-    schema.const !== undefined &&
+    schemaToMatch.const !== undefined &&
     experimental_defaultFormStateBehavior?.constAsDefaults === "always";
   if (constTakesPrecedence) {
-    validFormData = schema.const;
+    validFormData = schemaToMatch.const;
+  } else if (
+    isSchemaObjectValue(validFormData) &&
+    isSchemaWithProperties(schemaToMatch)
+  ) {
+    const properties = schemaToMatch.properties;
+    const result = { ...validFormData };
+    for (const key of Object.keys(properties)) {
+      const propertySchema = properties[key]!;
+      // CHANGED: This case is not properly handled in original code
+      if (typeof propertySchema === "boolean") {
+        continue;
+      }
+      if (
+        key in result &&
+        (shouldRetrieveAllOf || ALL_OF_KEY in propertySchema)
+      ) {
+        result[key] = ensureFormDataMatchingSchema(
+          validator,
+          merger,
+          propertySchema,
+          rootSchema,
+          result[key],
+          experimental_defaultFormStateBehavior
+        );
+      }
+    }
+    validFormData = result;
   }
 
   return validFormData;
