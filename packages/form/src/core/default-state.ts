@@ -201,6 +201,12 @@ export type Experimental_DefaultFormStateBehavior = {
    *
    */
   constAsDefaults?: "always" | "skipOneOf" | "never";
+  /** Optional enumerated flag controlling how defaults defined on multiple levels are merged together for overlapping
+   * properties, defaulting to `descendantWins`.
+   * - `descendantWins`: The innermost (descendant) default value definition takes precedence over its ancestor's defaults.
+   * - `ancestorWins`: The outermost (ancestor) default value definition takes precedence over any descendant's defaults.
+   */
+  nestedDefaultsPrecedence?: "descendantWins" | "ancestorWins";
 };
 
 interface ComputeDefaultsProps<FormData = SchemaValue | undefined> {
@@ -254,8 +260,12 @@ export function computeDefaults(
   const rawDataIsObject = isSchemaObjectValue(rawFormData);
   const formData: SchemaObjectValue = rawDataIsObject ? rawFormData : {};
   const schema: Schema = isSchemaObjectValue(rawSchema) ? rawSchema : {};
-  // Compute the defaults recursively: give highest priority to deepest nodes.
+  // Compute the defaults recursively: give highest priority to deepest nodes unless nestedDefaultsPrecedence is ancestorWins.
   let defaults = parentDefaults;
+  const preferParentDefaults =
+    defaults &&
+    experimental_defaultFormStateBehavior?.nestedDefaultsPrecedence ===
+      "ancestorWins";
   // If we get a new schema, then we need to recompute defaults again for the new schema found.
   let schemaToCompute: Schema | null = null;
   // CHANGED: introduced to typesafely adapt https://github.com/rjsf-team/react-jsonschema-form/pull/4626
@@ -282,15 +292,23 @@ export function computeDefaults(
     !schemaOneOf &&
     !schemaRef
   ) {
-    // For object defaults, only override parent defaults that are defined in
-    // schema.default. Skip this for anyOf/oneOf/$ref schemas - they need special handling.
-    defaults = mergeSchemaObjects(defaults, schemaDefault);
+    // For object defaults, merge defaults by precedence setting.
+    // Skip this for anyOf/oneOf/$ref schemas - they need special handling.
+    defaults = preferParentDefaults
+      ? // Use schema.default as the base and only override values that are defined in parent defaults.
+        mergeSchemaObjects(schemaDefault, defaults)
+      : // Only override parent defaults that are defined in schema.default.
+        mergeSchemaObjects(defaults, schemaDefault);
   } else if (
+    !preferParentDefaults &&
     schemaDefault !== undefined &&
     schemaOneOf === undefined &&
     schemaAnyOf === undefined &&
     schemaRef === undefined
   ) {
+    // If the schema has a default value and parentDefaults does not have precedence
+    // And if the schema does not have anyOf or oneOf (since we need to merge the defaults with the formData)
+    // Then we should use it as the default.
     defaults = schemaDefault;
   } else if (schemaRef !== undefined) {
     // Use referenced schema defaults for this node.
@@ -344,7 +362,9 @@ export function computeDefaults(
       defaultFormData
     );
     schemaToCompute = resolvedSchema[0]!; // pick the first element from resolve dependencies
-  } else if (isFixedItems(schema)) {
+  } else if (!preferParentDefaults && isFixedItems(schema)) {
+    // If the schema contains fixed items and parentDefaults does not have precedence
+    // Then construct defaults from defaults of array items.
     defaults = schema.items.map((itemSchema, idx) =>
       computeDefaults(validator, merger, itemSchema, {
         rootSchema,
