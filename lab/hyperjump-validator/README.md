@@ -14,12 +14,16 @@ npm install @sjsf-lab/hyperjump-validator @hyperjump/json-schema
 ## Usage
 
 ```typescript
-import { createFormValidatorFactory } from "@sjsf-lab/hyperjump-validator";
-import { localization } from "@sjsf-lab/hyperjump-validator/localizations/en-us";
+import {
+  createFormValidatorFactory,
+  fromAst,
+} from "@sjsf-lab/hyperjump-validator/precompile";
 
 import { ast } from "./ast";
 
-const factory = createFormValidatorFactory({ ast, localization });
+const factory = createFormValidatorFactory({
+  validatorRetriever: fromAst(ast),
+});
 ```
 
 ## License

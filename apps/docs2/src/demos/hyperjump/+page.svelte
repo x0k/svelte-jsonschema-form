@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { localization } from "@sjsf-lab/hyperjump-validator/localizations/en-us";
   import {
     createFormValidatorFactory,
     fromAst,
@@ -21,7 +20,6 @@
     schema,
     validator: createFormValidatorFactory({
       validatorRetriever: fromAst(ast),
-      localization,
     }),
     fieldsValidationMode,
     resolver,

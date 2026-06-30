@@ -178,14 +178,6 @@ export function precompiledValidatorSubPath(validator: PrecompiledValidator) {
   return `${externalValidatorPackage(validator).name}/precompile`;
 }
 
-const _HYPERJUMP_LOCALES = ["en-us"] as const;
-
-type HyperjumpLocale = (typeof _HYPERJUMP_LOCALES)[number];
-
-export function hyperjumpValidatorLocalizationSubPath(locale: HyperjumpLocale) {
-  return `${externalValidatorPackage("hyperjump").name}/localizations/${locale}`;
-}
-
 const _ZOD4_VERSIONS = ["classic", "mini"] as const;
 
 type Zod4Version = (typeof _ZOD4_VERSIONS)[number];

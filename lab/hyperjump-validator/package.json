@@ -34,10 +34,6 @@
       "types": "./dist/precompile.d.ts",
       "svelte": "./dist/precompile.js",
       "default": "./dist/precompile.js"
-    },
-    "./localizations/*": {
-      "types": "./dist/localizations/*.d.ts",
-      "default": "./dist/localizations/*.js"
     }
   },
   "publishConfig": {
@@ -51,17 +47,15 @@
     "format:check": "oxfmt --check ."
   },
   "dependencies": {
-    "@hyperjump/json-schema-errors": "github:hyperjump-io/json-schema-errors#8bda546feeca780ae02c1ebd7247291424ea4a98"
+    "@hyperjump/json-schema-errors": "github:hyperjump-io/json-schema-errors#21ec0ab303b986e052e5ff255bf41d01c54e886b"
   },
   "devDependencies": {
-    "@fluent/bundle": "^0.19.1",
     "@hyperjump/json-schema": "catalog:",
     "@sjsf/form": "workspace:*",
     "svelte": "catalog:",
     "validator-testing": "workspace:*"
   },
   "peerDependencies": {
-    "@fluent/bundle": "^0.19.0",
     "@hyperjump/json-schema": "^1.17.0",
     "@sjsf/form": "workspace:^3.5.0"
   }
