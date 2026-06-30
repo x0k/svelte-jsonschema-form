@@ -25,6 +25,19 @@ describe("array field contracts", () => {
       expectValue(form, [""]);
     });
 
+    test("adds item to empty tuple array with additionalItems", async () => {
+      const { form } = await renderFieldForm({
+        schema: {
+          type: "array",
+          items: [],
+          additionalItems: { type: "string" },
+        },
+      });
+
+      await userEvent.click(page.getByRole("button", { name: /add/i }).first());
+      expectValue(form, [""]);
+    });
+
     test("adds multiple items preserves order", async () => {
       const { form } = await renderFieldForm({
         schema: { type: "array", items: { type: "string" } },
