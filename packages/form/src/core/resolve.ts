@@ -348,12 +348,12 @@ export function resolveCondition(
     }
   } else {
     const conditionalSchema = conditionValue ? then : otherwise;
-    if (conditionalSchema && typeof conditionalSchema !== "boolean") {
+    if (conditionalSchema !== undefined) {
       schemas = schemas.concat(
         retrieveSchemaInternal(
           validator,
           merger,
-          conditionalSchema,
+          normalizeBooleanSchema(conditionalSchema),
           rootSchema,
           formData,
           expandAllBranches,
@@ -426,7 +426,7 @@ export function stubExistingAdditionalProperties(
             merger,
             { $ref: additionalProperties[REF_KEY] },
             rootSchema,
-            formData
+            formData?.[key]
           ),
         };
       }
@@ -831,4 +831,11 @@ export function getMatchingPatternProperties(
     }
   }
   return schemas;
+}
+
+function normalizeBooleanSchema(schema: SchemaDefinition): Schema {
+  if (typeof schema !== "boolean") {
+    return schema;
+  }
+  return schema ? {} : { not: {} };
 }

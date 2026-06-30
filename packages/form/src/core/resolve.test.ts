@@ -364,6 +364,132 @@ describe("retrieveSchema()", () => {
       },
     });
   });
+  it("should resolve conditions in additionalProperties $ref using the additional property value", () => {
+    const schema: Schema = {
+      type: "object",
+      additionalProperties: {
+        $ref: "#/definitions/property",
+      },
+    };
+
+    const property: Schema = {
+      type: "object",
+      properties: {
+        type: {
+          type: "string",
+          enum: ["string", "object"],
+        },
+      },
+      if: {
+        required: ["type"],
+        properties: {
+          type: {
+            const: "object",
+          },
+        },
+      },
+      then: {
+        properties: {
+          properties: {
+            type: "object",
+            additionalProperties: {
+              $ref: "#/definitions/property",
+            },
+          },
+        },
+      },
+    };
+
+    const rootSchema: Schema = { definitions: { property } };
+    const formData = {
+      newKey: {
+        type: "object",
+      },
+    };
+
+    const testValidator = createValidator({
+      cases: [
+        {
+          schema: {
+            required: ["type"],
+            properties: { type: { const: "object" } },
+          },
+          value: { newKey: { type: "object" } },
+          result: false,
+        },
+        {
+          schema: {
+            required: ["type"],
+            properties: { type: { const: "object" } },
+          },
+          value: { type: "object" },
+          result: true,
+        },
+      ],
+    });
+    const defaultMerger = createMerger({
+      merges: [
+        {
+          left: {
+            type: "object",
+            properties: {
+              type: { type: "string", enum: ["string", "object"] },
+            },
+            [REF_FLAG]: "#/definitions/property",
+          },
+          right: {
+            properties: {
+              properties: {
+                type: "object",
+                additionalProperties: { $ref: "#/definitions/property" },
+              },
+            },
+          },
+          result: {
+            type: "object",
+            properties: {
+              type: {
+                type: "string",
+                enum: ["string", "object"],
+              },
+              properties: {
+                type: "object",
+                additionalProperties: {
+                  $ref: "#/definitions/property",
+                },
+              },
+            },
+            [REF_FLAG]: "#/definitions/property",
+          },
+        },
+      ],
+    });
+
+    expect(
+      retrieveSchema(testValidator, defaultMerger, schema, rootSchema, formData)
+    ).toEqual({
+      ...schema,
+      properties: {
+        newKey: {
+          type: "object",
+          properties: {
+            type: {
+              type: "string",
+              enum: ["string", "object"],
+            },
+            properties: {
+              type: "object",
+              additionalProperties: {
+                $ref: "#/definitions/property",
+              },
+            },
+          },
+          [REF_FLAG]: "#/definitions/property",
+          [ADDITIONAL_PROPERTY_FLAG]: true,
+        },
+      },
+    });
+  });
   it("should `resolve` and stub out a schema which contains an `additionalProperties` with a type and definition", () => {
     const schema: Schema = {
       type: "string",
@@ -2122,6 +2248,55 @@ describe("retrieveSchema()", () => {
           },
           postal_code: { pattern: "[A-Z][0-9][A-Z] [0-9][A-Z][0-9]" },
         },
+      });
+    });
+    it("should preserve a matched boolean false branch as an impossible schema", () => {
+      const schema: Schema = {
+        type: "number",
+        if: {
+          const: 13,
+        },
+        then: false,
+      };
+      const testValidator = createValidator({
+        cases: [{ schema: { const: 13 }, value: 13, result: true }],
+      });
+      const defaultMerger = createMerger({
+        merges: [
+          {
+            left: { type: "number" },
+            right: { not: {} },
+            result: { type: "number", not: {} },
+          },
+        ],
+      });
+      expect(
+        retrieveSchema(testValidator, defaultMerger, schema, schema, 13)
+      ).toEqual({
+        type: "number",
+        not: {},
+      });
+    });
+    it("should preserve a matched boolean true branch as an empty schema", () => {
+      const schema: Schema = {
+        type: "number",
+        if: {
+          const: 13,
+        },
+        then: true,
+      };
+      const testValidator = createValidator({
+        cases: [{ schema: { const: 13 }, value: 13, result: true }],
+      });
+      const defaultMerger = createMerger({
+        merges: [
+          { left: { type: "number" }, right: {}, result: { type: "number" } },
+        ],
+      });
+      expect(
+        retrieveSchema(testValidator, defaultMerger, schema, schema, 13)
+      ).toEqual({
+        type: "number",
       });
     });
     it("should resolve multiple conditions", () => {
