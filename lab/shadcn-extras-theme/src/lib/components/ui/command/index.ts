@@ -1,6 +1,5 @@
-import { Command as CommandPrimitive } from 'bits-ui';
-
 import Root from '$lib/components/ui/command/command.svelte';
+import Loading from '$lib/components/ui/command/command-loading.svelte';
 import Dialog from '$lib/components/ui/command/command-dialog.svelte';
 import Empty from '$lib/components/ui/command/command-empty.svelte';
 import Group from '$lib/components/ui/command/command-group.svelte';
@@ -10,8 +9,6 @@ import List from '$lib/components/ui/command/command-list.svelte';
 import Separator from '$lib/components/ui/command/command-separator.svelte';
 import Shortcut from '$lib/components/ui/command/command-shortcut.svelte';
 import LinkItem from '$lib/components/ui/command/command-link-item.svelte';
-
-const Loading = CommandPrimitive.Loading;
 
 export {
 	Root,

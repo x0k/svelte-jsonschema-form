@@ -1,5 +1,5 @@
-import NLPDateInput from '$lib/components/ui/nlp-date-input/nlp-date-input.svelte';
+import NLPDateInput from "$lib/components/ui/nlp-date-input/nlp-date-input.svelte";
 
 export { NLPDateInput };
 
-export type * from '$lib/components/ui/nlp-date-input/types.js';
+export type { NLPDateInputProps } from "./nlp-date-input.svelte";

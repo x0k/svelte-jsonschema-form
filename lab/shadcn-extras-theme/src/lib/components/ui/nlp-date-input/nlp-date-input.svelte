@@ -2,6 +2,15 @@
 	Installed from @ieedan/shadcn-svelte-extras
 -->
 
+<script lang="ts" module>
+	export type NLPDateInputProps = {
+		min?: Date;
+		max?: Date;
+		placeholder?: string;
+		onChoice?: (opts: { label: string; date: Date }) => void;
+	};
+</script>
+
 <script lang="ts">
 	import {
 		Command,
@@ -11,7 +20,6 @@
 		CommandGroup
 	} from '@sjsf/shadcn4-theme/new-york';
 	import { parseDate } from 'yeezy-dates';
-	import type { NLPDateInputProps } from './types.js';
 
 	let {
 		placeholder = 'E.g. "tomorrow at 5pm" or "in 2 hours"',
@@ -30,7 +38,7 @@
 	);
 </script>
 
-<Command shouldFilter={false} class="h-fit border border-border">
+<Command shouldFilter={false} class="border-border h-fit border">
 	<CommandInput {placeholder} bind:value />
 	<CommandList>
 		<CommandGroup>

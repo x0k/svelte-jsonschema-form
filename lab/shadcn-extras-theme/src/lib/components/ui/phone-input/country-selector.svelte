@@ -1,7 +1,3 @@
-<!--
-	Installed from @ieedan/shadcn-svelte-extras
--->
-
 <script lang="ts">
 	import {
 		Popover,
@@ -47,12 +43,12 @@
 	let open = $state(false);
 	let selectedValue = $state(false);
 
-	const selectCountry = (country: Country) => {
+	function selectCountry(country: Country) {
 		selected = country.iso2;
 		selectedValue = true;
 		open = false;
 		onselect?.(selected);
-	};
+	}
 </script>
 
 <Popover bind:open>
@@ -74,6 +70,7 @@
 	</PopoverTrigger>
 	<PopoverContent
 		class="w-[300px] p-0"
+		align="start"
 		onCloseAutoFocus={(e) => {
 			if (selectedValue) {
 				selectedValue = false;
@@ -82,25 +79,25 @@
 		}}
 	>
 		<Command>
-			<CommandInput placeholder="Search country..." />
+			<CommandInput placeholder="Search..." />
 			<CommandList>
 				<ScrollArea class="h-72">
 					<CommandEmpty>No country found.</CommandEmpty>
-					<CommandGroup>
+					<CommandGroup class="overflow-clip">
 						{#each countries.sort(order) as country (country.id)}
 							<CommandItem
-								class="gap-2"
+								class="gap-2 [&_.cn-command-item-indicator]:hidden"
 								value={country.name}
 								onSelect={() => selectCountry(country)}
 							>
 								<Flag {country} />
 								<span class="flex-1 text-sm">{country.name}</span>
-								<span class="text-sm text-foreground/50">
+								<span class="text-foreground/50 text-sm">
 									+{country.dialCode}
 								</span>
 								<div class="w-4">
 									{#if country.iso2 == selected}
-										<CheckIcon class="size-4" />
+										<CheckIcon class="phone-input-check-icon size-4" />
 									{/if}
 								</div>
 							</CommandItem>
