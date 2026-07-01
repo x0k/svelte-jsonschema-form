@@ -77,7 +77,7 @@
     "clsx": "catalog:shadcn",
     "country-flag-icons": "catalog:shadcn",
     "globals": "catalog:",
-    "jsrepo": "^3.7.0",
+    "jsrepo": "^3.8.0",
     "runed": "catalog:shadcn",
     "svelte": "catalog:",
     "svelte-tel-input": "catalog:shadcn",

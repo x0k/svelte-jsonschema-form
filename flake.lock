@@ -65,11 +65,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1764935544,
-        "narHash": "sha256-/2513zL5+yQq2HgotGJSGjmg5Rj0Yg8oDkjBbCTFVUc=",
+        "lastModified": 1777193571,
+        "narHash": "sha256-Ad9SMifEREly/DP+3jp9NXIQ5GpIMN09SRxWKa/pS8M=",
         "owner": "x0k",
         "repo": "mk",
-        "rev": "0807aa66232d3cf4fc3ff0e8dc2789b49e5c825d",
+        "rev": "6d86b5d150c9c6012f81d0f70007b0011c75cc4c",
         "type": "github"
       },
       "original": {
@@ -96,11 +96,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1775036866,
-        "narHash": "sha256-ZojAnPuCdy657PbTq5V0Y+AHKhZAIwSIT2cb8UgAz/U=",
+        "lastModified": 1782723713,
+        "narHash": "sha256-oPXCU/SSUokcGaJREHibG1CBX3+s/W7orDWQOZDsEeQ=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "6201e203d09599479a3b3450ed24fa81537ebc4e",
+        "rev": "b5aa0fbd538984f6e3d201be0005b4463d8b09f8",
         "type": "github"
       },
       "original": {
@@ -112,11 +112,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1781216227,
-        "narHash": "sha256-9mUW6gNwoN2SWc/l0fW4svPNOulXLl8ijqKyeSOGgJE=",
+        "lastModified": 1782691344,
+        "narHash": "sha256-i5nw9BYYsMDAaOC4J+JmTof6b2GhlyH076awYRNrTV8=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "a0374025a863d007d98e3297f6aa46cc3141c2f0",
+        "rev": "1f01958ffb5b3545c96d9ef2f4e24c5e5e1eb846",
         "type": "github"
       },
       "original": {
@@ -148,16 +148,16 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1781126327,
-        "narHash": "sha256-x3J/8wAPS4JdVlJoOJG0Oe12GIdp2wpFK+qmp44o5ik=",
+        "lastModified": 1782263125,
+        "narHash": "sha256-cm5KI8sSZ1qLeT66NLQMqWM54PO4s1QBqEYNppsrWj0=",
         "owner": "pietdevries94",
         "repo": "playwright-web-flake",
-        "rev": "162636526913a1eb3faa703aa8f6ed40981eff06",
+        "rev": "7b91bfd2a5bbacd7bde0b577f4d116663d2d2878",
         "type": "github"
       },
       "original": {
         "owner": "pietdevries94",
-        "ref": "1.60.0",
+        "ref": "1.61.1",
         "repo": "playwright-web-flake",
         "type": "github"
       }
