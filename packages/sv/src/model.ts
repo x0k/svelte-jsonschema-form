@@ -113,42 +113,40 @@ export function* iconOptions() {
 }
 
 // WARN: DO NOT DESTRUCTURE
-export const createOptions = (options: AddonSetupOptions) =>
-  defineAddonOptions()
-    .add("themeOrSubTheme", {
-      question: "Select a theme (or sub-theme)",
-      type: "select",
-      default: "basic" satisfies CodegenThemeOrSubTheme,
-      options: Array.from(themeOrSubThemeOptions()),
-    })
-    .add("icons", {
-      question: "Choose an icon set",
-      type: "select",
-      default: "none",
-      options: Array.from(iconOptions()),
-    })
-    .add("validator", {
-      question: "Select a validation engine",
-      type: "select",
-      default: "ajv8",
-      options: Array.from(validatorOptions()),
-    })
-    .add("sveltekit", {
-      question: "Enable SvelteKit integration?",
-      type: "select",
-      default: "no" satisfies CodegenSvelteKitIntegration,
-      options: Array.from(svelteKitIntegrationOptions()),
-      condition: () => options.isKit,
-    })
-    .add("demo", {
-      type: "boolean",
-      default: true,
-      question: "Do you want to include a demo?",
-    })
-    .build();
+export const addonOptions = defineAddonOptions()
+  .add("themeOrSubTheme", {
+    question: "Select a theme (or sub-theme)",
+    type: "select",
+    default: "basic" satisfies CodegenThemeOrSubTheme,
+    options: Array.from(themeOrSubThemeOptions()),
+  })
+  .add("icons", {
+    question: "Choose an icon set",
+    type: "select",
+    default: "none",
+    options: Array.from(iconOptions()),
+  })
+  .add("validator", {
+    question: "Select a validation engine",
+    type: "select",
+    default: "ajv8",
+    options: Array.from(validatorOptions()),
+  })
+  .add("sveltekit", {
+    question: "Enable SvelteKit integration?",
+    type: "select",
+    default: "no" satisfies CodegenSvelteKitIntegration,
+    options: Array.from(svelteKitIntegrationOptions()),
+  })
+  .add("demo", {
+    type: "boolean",
+    default: true,
+    question: "Do you want to include a demo?",
+  })
+  .build();
 
 type Addon = ReturnType<
-  typeof defineAddon<typeof _ADDON_ID, ReturnType<typeof createOptions>>
+  typeof defineAddon<typeof _ADDON_ID, typeof addonOptions>
 >;
 
 type Workspace = Parameters<Addon["run"]>[0];
