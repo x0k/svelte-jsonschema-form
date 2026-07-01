@@ -1,5 +1,15 @@
 # @sjsf/sveltekit
 
+## 3.7.0
+
+### Minor Changes
+
+- [BREAKING] Remote functions only: ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+
+  - Bump minimal required SvelteKit version to `2.61.0`
+  - Remove special handling for enhanced form, no need for `fields: remoteForm.fields`
+  - Remove `F` generic parameter from `connect` function; the model type is now specified via `connect` generic instead of `createForm`: `createForm(await connect<Model>(createPost, {...}))`
+
 ## 3.6.0
 
 ## 3.5.0

@@ -1,5 +1,15 @@
 # @sjsf/ajv8-validator
 
+## 3.7.0
+
+### Minor Changes
+
+- Add `localize` validator option ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+
+### Patch Changes
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/5137 ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+
 ## 3.6.0
 
 ### Patch Changes

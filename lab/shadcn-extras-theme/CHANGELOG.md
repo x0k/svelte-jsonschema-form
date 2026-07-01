@@ -1,5 +1,11 @@
 # @sjsf-lab/shadcn-extras-theme
 
+## 3.4.2
+
+### Patch Changes
+
+- Update `shadcn-svelte-extras` components (2026-07-01) ([#414](https://github.com/x0k/svelte-jsonschema-form/pull/414))
+
 ## 3.4.1
 
 ### Patch Changes

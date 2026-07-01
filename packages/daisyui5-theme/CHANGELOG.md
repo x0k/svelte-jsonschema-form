@@ -1,5 +1,16 @@
 # @sjsf/daisyui5-theme
 
+## 3.7.0
+
+### Minor Changes
+
+- Add `vc-date-picker` extra widget using vanilla-calendar-pro library ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/basic-theme@3.7.0
+
 ## 3.6.0
 
 ### Patch Changes
