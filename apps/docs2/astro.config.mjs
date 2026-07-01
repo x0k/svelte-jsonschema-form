@@ -6,9 +6,9 @@ import { satteri } from "@astrojs/markdown-satteri";
 import starlight from "@astrojs/starlight";
 import svelte from "@astrojs/svelte";
 import { defineConfig } from "astro/config";
-// Disabled until satteri support is available
-// import starlightLinksValidator from "starlight-links-validator";
 import { defineMdastPlugin } from "satteri";
+// Disabled until satteri support is available
+import starlightLinksValidator from "starlight-links-validator";
 import starlightLlmsTxt from "starlight-llms-txt";
 
 import { discoverChangelogSlugs } from "./src/loaders/changelog-discovery";
@@ -75,13 +75,7 @@ export default defineConfig({
           rawContent: true,
           exclude: ["404", "changelogs/**", "examples/**"],
         }),
-      ].concat(
-        process.env.CHECK_LINKS
-          ? [
-              // starlightLinksValidator()
-            ]
-          : []
-      ),
+      ].concat(process.env.CHECK_LINKS ? [starlightLinksValidator()] : []),
       title: "svelte-jsonschema-form v3",
       // logo: {
       //   src: "./src/assets/logo.svg",
@@ -150,9 +144,7 @@ export default defineConfig({
         { label: "Documentation v2", link: "/v2/" },
       ],
       components: {
-        // Head: "./src/components/custom-head.astro",
         Header: "./src/components/header-with-links.astro",
-        // MarkdownContent: "./src/components/markdown-content.astro",
         PageTitle: "./src/components/page-title.astro",
       },
       customCss: ["./src/styles.css"],

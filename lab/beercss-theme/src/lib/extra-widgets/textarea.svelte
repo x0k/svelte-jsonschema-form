@@ -17,5 +17,4 @@
 
 <textarea
   {...textareaAttributes(ctx, config, "textarea", handlers, {})}
-  bind:value
-></textarea>
+  bind:value></textarea>

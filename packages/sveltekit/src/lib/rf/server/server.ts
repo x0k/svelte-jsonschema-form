@@ -14,7 +14,6 @@ import {
 import { isRecord } from "@sjsf/form/lib/object";
 import type { MaybePromise } from "@sjsf/form/lib/types";
 import type { StandardSchemaV1 } from "@standard-schema/spec";
-import type { RemoteFormInput } from "@sveltejs/kit";
 
 import { getRequestEvent } from "$app/server";
 import {
@@ -93,7 +92,7 @@ export function createServerValidator<T>({
   pseudoPrefix = DEFAULT_PSEUDO_PREFIX,
   createReviver = createDefaultReviver,
 }: SvelteKitFormValidatorOptions<T>): StandardSchemaV1<
-  RemoteFormInput & T,
+  any,
   ValidationResult<T>
 > & {
   validate: (

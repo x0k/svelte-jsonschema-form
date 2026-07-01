@@ -12,8 +12,8 @@
     "format:check": "oxfmt --check ."
   },
   "dependencies": {
-    "@dnd-kit/collision": "^0.4.0",
-    "@dnd-kit/dom": "^0.4.0",
+    "@dnd-kit/collision": "^0.5.0",
+    "@dnd-kit/dom": "^0.5.0",
     "@picocss/pico": "catalog:",
     "@shikijs/langs": "catalog:",
     "@shikijs/themes": "catalog:",
@@ -36,7 +36,7 @@
     "@svar-ui/svelte-core": "catalog:",
     "ajv": "catalog:",
     "browser-fs-access": "^0.38.0",
-    "dompurify": "^3.4.2",
+    "dompurify": "^3.4.11",
     "idb": "^8.0.3",
     "json-schema-to-valibot": "catalog:",
     "json-schema-to-zod": "catalog:",

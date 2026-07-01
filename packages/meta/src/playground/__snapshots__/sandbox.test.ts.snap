@@ -16,7 +16,7 @@ exports[`sandbox-factory > basic > basic 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.0.16",
+    "vite": "^8.1.2",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^6.0.3",
@@ -166,7 +166,7 @@ exports[`sandbox-factory > form > disabled 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.0.16",
+    "vite": "^8.1.2",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^6.0.3",
@@ -315,7 +315,7 @@ exports[`sandbox-factory > form > fieldsValidationMode 1`] = `
     "@exodus/schemasafe": "^1.3.0"
   },
   "devDependencies": {
-    "vite": "^8.0.16",
+    "vite": "^8.1.2",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^6.0.3",
@@ -546,7 +546,7 @@ exports[`sandbox-factory > form > omitExtraData 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.0.16",
+    "vite": "^8.1.2",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^6.0.3",
@@ -702,7 +702,7 @@ exports[`sandbox-factory > merger > non-default 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.0.16",
+    "vite": "^8.1.2",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^6.0.3",
@@ -865,7 +865,7 @@ exports[`sandbox-factory > themes > basic 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.0.16",
+    "vite": "^8.1.2",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^6.0.3",
@@ -1016,7 +1016,7 @@ exports[`sandbox-factory > themes > beercss 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.0.16",
+    "vite": "^8.1.2",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^6.0.3",
@@ -1167,13 +1167,13 @@ exports[`sandbox-factory > themes > daisyui5 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.0.16",
+    "vite": "^8.1.2",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
-    "tailwindcss": "^4.3.0",
-    "@tailwindcss/vite": "^4.3.0",
+    "tailwindcss": "^4.3.2",
+    "@tailwindcss/vite": "^4.3.2",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -1328,14 +1328,14 @@ exports[`sandbox-factory > themes > flowbite3 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.0.16",
+    "vite": "^8.1.2",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "flowbite": "^3.1.0",
-    "tailwindcss": "^4.3.0",
-    "@tailwindcss/vite": "^4.3.0",
+    "tailwindcss": "^4.3.2",
+    "@tailwindcss/vite": "^4.3.2",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -1513,7 +1513,7 @@ exports[`sandbox-factory > themes > pico 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.0.16",
+    "vite": "^8.1.2",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^6.0.3",
@@ -1669,13 +1669,13 @@ exports[`sandbox-factory > themes > shadcn-extras 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.0.16",
+    "vite": "^8.1.2",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
-    "tailwindcss": "^4.3.0",
-    "@tailwindcss/vite": "^4.3.0",
+    "tailwindcss": "^4.3.2",
+    "@tailwindcss/vite": "^4.3.2",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -2041,13 +2041,13 @@ exports[`sandbox-factory > themes > shadcn4 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.0.16",
+    "vite": "^8.1.2",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
-    "tailwindcss": "^4.3.0",
-    "@tailwindcss/vite": "^4.3.0",
+    "tailwindcss": "^4.3.2",
+    "@tailwindcss/vite": "^4.3.2",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -2388,14 +2388,14 @@ exports[`sandbox-factory > themes > skeleton4 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.0.16",
+    "vite": "^8.1.2",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.0",
-    "@tailwindcss/vite": "^4.3.0",
+    "tailwindcss": "^4.3.2",
+    "@tailwindcss/vite": "^4.3.2",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -2562,7 +2562,7 @@ exports[`sandbox-factory > themes > svar 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.0.16",
+    "vite": "^8.1.2",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^6.0.3",
@@ -2717,7 +2717,7 @@ exports[`sandbox-factory > ui-schema > customizations 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.0.16",
+    "vite": "^8.1.2",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^6.0.3",
@@ -2907,7 +2907,7 @@ exports[`sandbox-factory > ui-schema > refs 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.0.16",
+    "vite": "^8.1.2",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^6.0.3",
@@ -3093,7 +3093,7 @@ exports[`sandbox-factory > validators > @cfworker/json-schema (2020-12) 1`] = `
     "@cfworker/json-schema": "^4.1.0"
   },
   "devDependencies": {
-    "vite": "^8.0.16",
+    "vite": "^8.1.2",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^6.0.3",
@@ -3241,7 +3241,7 @@ exports[`sandbox-factory > validators > @cfworker/json-schema 1`] = `
     "@cfworker/json-schema": "^4.1.0"
   },
   "devDependencies": {
-    "vite": "^8.0.16",
+    "vite": "^8.1.2",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^6.0.3",
@@ -3381,7 +3381,7 @@ exports[`sandbox-factory > validators > @exodus/schemasafe (2020-12) 1`] = `
     "@exodus/schemasafe": "^1.3.0"
   },
   "devDependencies": {
-    "vite": "^8.0.16",
+    "vite": "^8.1.2",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^6.0.3",
@@ -3539,7 +3539,7 @@ exports[`sandbox-factory > validators > @exodus/schemasafe (precompiled) 1`] = `
     "@exodus/schemasafe": "^1.3.0"
   },
   "devDependencies": {
-    "vite": "^8.0.16",
+    "vite": "^8.1.2",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^6.0.3",
@@ -3762,7 +3762,7 @@ exports[`sandbox-factory > validators > @exodus/schemasafe 1`] = `
     "@exodus/schemasafe": "^1.3.0"
   },
   "devDependencies": {
-    "vite": "^8.0.16",
+    "vite": "^8.1.2",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^6.0.3",
@@ -3902,7 +3902,7 @@ exports[`sandbox-factory > validators > @hyperjump/json-schema (precompiled) 1`]
     "@hyperjump/json-schema": "^1.17.0"
   },
   "devDependencies": {
-    "vite": "^8.0.16",
+    "vite": "^8.1.2",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^6.0.3",
@@ -4149,7 +4149,7 @@ exports[`sandbox-factory > validators > Ajv v8 (2020-12) 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.0.16",
+    "vite": "^8.1.2",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^6.0.3",
@@ -4300,7 +4300,7 @@ exports[`sandbox-factory > validators > Ajv v8 (precompiled) 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.0.16",
+    "vite": "^8.1.2",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^6.0.3",
@@ -4545,7 +4545,7 @@ exports[`sandbox-factory > validators > Ajv v8 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.0.16",
+    "vite": "^8.1.2",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^6.0.3",
@@ -4695,7 +4695,7 @@ exports[`sandbox-factory > validators > Valibot 1`] = `
     "valibot": "^1.2.0"
   },
   "devDependencies": {
-    "vite": "^8.0.16",
+    "vite": "^8.1.2",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^6.0.3",
@@ -4833,7 +4833,7 @@ exports[`sandbox-factory > validators > Zod v4 1`] = `
     "zod": "^4.1.0"
   },
   "devDependencies": {
-    "vite": "^8.0.16",
+    "vite": "^8.1.2",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^6.0.3",
@@ -4971,7 +4971,7 @@ exports[`sandbox-factory > validators > ata-validator (2020-12) 1`] = `
     "ata-validator": "^0.21.0"
   },
   "devDependencies": {
-    "vite": "^8.0.16",
+    "vite": "^8.1.2",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^6.0.3",
@@ -5124,7 +5124,7 @@ exports[`sandbox-factory > validators > ata-validator (precompiled) 1`] = `
     "ata-validator": "^0.21.0"
   },
   "devDependencies": {
-    "vite": "^8.0.16",
+    "vite": "^8.1.2",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^6.0.3",
@@ -5340,7 +5340,7 @@ exports[`sandbox-factory > validators > ata-validator 1`] = `
     "ata-validator": "^0.21.0"
   },
   "devDependencies": {
-    "vite": "^8.0.16",
+    "vite": "^8.1.2",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "typescript": "^6.0.3",
