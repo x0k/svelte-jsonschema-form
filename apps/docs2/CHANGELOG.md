@@ -1,5 +1,50 @@
 # docs
 
+## 1.17.0
+
+### Minor Changes
+
+- Add the ability to switch themes and create sandboxes based on demos ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+
+### Patch Changes
+
+- Add tags and a description for basic and advanced examples ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+
+- Replace links to advanced examples with open in sandbox buttons ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+
+- Fix hyperjump compile schema script ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+
+- Update theme UI option references ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+
+- Updated dependencies [[`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812), [`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812), [`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812), [`39dc446`](https://github.com/x0k/svelte-jsonschema-form/commit/39dc4468f7790ea45cdeb749bc6e1006b7d6f397), [`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812), [`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812), [`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812), [`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812), [`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812), [`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812), [`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812), [`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812), [`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812), [`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812), [`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812), [`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812), [`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812), [`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812), [`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812), [`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812), [`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812), [`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812), [`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812), [`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812), [`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812), [`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812), [`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812), [`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812), [`39dc446`](https://github.com/x0k/svelte-jsonschema-form/commit/39dc4468f7790ea45cdeb749bc6e1006b7d6f397), [`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812), [`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812), [`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812), [`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812)]:
+  - @sjsf/form@3.7.0
+  - @sjsf/daisyui5-theme@3.7.0
+  - @sjsf/shadcn4-theme@3.7.0
+  - @sjsf-lab/ata-validator@3.2.0
+  - @sjsf-lab/hyperjump-validator@3.1.0
+  - @sjsf/ajv8-validator@3.7.0
+  - @sjsf/valibot-validator@3.7.0
+  - @sjsf/shadcn-theme@3.1.2
+  - @sjsf-lab/shadcn-extras-theme@3.4.2
+  - @sjsf/zod4-validator@3.7.0
+  - @sjsf/sveltekit@3.7.0
+  - @sjsf-lab/beercss-theme@3.3.0
+  - @sjsf-lab/svar-theme@3.3.0
+  - @sjsf/daisyui-theme@3.1.1
+  - @sjsf/flowbite-theme@3.1.1
+  - @sjsf/skeleton3-theme@3.1.1
+  - @sjsf/basic-theme@3.7.0
+  - @sjsf/cfworker-validator@3.7.0
+  - @sjsf/flowbite-icons@3.7.0
+  - @sjsf/flowbite3-theme@3.7.0
+  - @sjsf/lucide-icons@3.7.0
+  - meta@1.0.4
+  - @sjsf/moving-icons@3.7.0
+  - @sjsf/radix-icons@3.7.0
+  - @sjsf/schemasafe-validator@3.7.0
+  - @sjsf/skeleton4-theme@3.7.0
+  - theme-testing@1.0.28
+
 ## 1.16.2
 
 ### Patch Changes

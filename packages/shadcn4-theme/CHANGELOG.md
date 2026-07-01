@@ -1,5 +1,16 @@
 # @sjsf/shadcn4-theme
 
+## 3.7.0
+
+### Patch Changes
+
+- Update `shadcn-svelte` components (2026-07-01) ([#414](https://github.com/x0k/svelte-jsonschema-form/pull/414))
+
+- Fix `switch` extra widget typings ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+
+- Updated dependencies []:
+  - @sjsf/basic-theme@3.7.0
+
 ## 3.6.0
 
 ### Patch Changes

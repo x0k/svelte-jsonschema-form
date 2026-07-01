@@ -1,5 +1,52 @@
 # @sjsf/form
 
+## 3.7.0
+
+### Minor Changes
+
+- - Add query `current` writable property to `Query`, replacing the read-only `result`. ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+  - Add `initialValue` option to `createQuery`. When provided, the query `current` type excludes `undefined` automatically.
+
+- Add explicit non-svelte entrypoint ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+
+- Add support for self-referential schemas ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+
+  Replaces <https://github.com/rjsf-team/react-jsonschema-form/pull/5118>
+
+- Add support for asynchronous validators for `withOmitExtraData` ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+
+- Allow passing schema definitions to `getClosestMatchingOption` ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+
+- Export `createValidatorRetriever` and `fromValidators` functions from `@sjsf/form/validators/precompile` ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+
+### Patch Changes
+
+- Fix `DeepPartial` type ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+
+- Fix precompiled validators support for `omitExtraData` ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/5088 ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/5109 ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+
+- Guard event handlers against firing after field unmount ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+
+- Fix `omitExtraData` to handle `if/then/else` keywords remaining in `allOf` after merging ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/5101 ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/5110 ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+
+- Fix the multiple use of a single $id ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/5098 ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/5067 ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/5132 ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/5121 ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+
 ## 3.6.0
 
 ### Minor Changes
