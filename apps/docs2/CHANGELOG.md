@@ -1,5 +1,38 @@
 # docs
 
+## 1.17.1
+
+### Patch Changes
+
+- Updated dependencies [[`1e90ecc`](https://github.com/x0k/svelte-jsonschema-form/commit/1e90ecc284ab5894ab861148e0f1d351eaddb655)]:
+  - @sjsf/sveltekit@3.7.1
+  - meta@1.0.5
+  - @sjsf/ajv8-validator@3.7.1
+  - @sjsf/basic-theme@3.7.1
+  - @sjsf/daisyui5-theme@3.7.1
+  - @sjsf/flowbite-icons@3.7.1
+  - @sjsf/flowbite3-theme@3.7.1
+  - @sjsf/form@3.7.1
+  - @sjsf/moving-icons@3.7.1
+  - @sjsf/schemasafe-validator@3.7.1
+  - @sjsf/shadcn4-theme@3.7.1
+  - @sjsf/valibot-validator@3.7.1
+  - @sjsf/zod4-validator@3.7.1
+  - @sjsf/skeleton4-theme@3.7.1
+  - @sjsf/cfworker-validator@3.7.1
+  - @sjsf/lucide-icons@3.7.1
+  - @sjsf/radix-icons@3.7.1
+  - @sjsf-lab/beercss-theme@3.3.0
+  - @sjsf-lab/shadcn-extras-theme@3.4.2
+  - @sjsf-lab/svar-theme@3.3.0
+  - @sjsf/skeleton3-theme@3.1.1
+  - theme-testing@1.0.29
+  - @sjsf-lab/ata-validator@3.2.0
+  - @sjsf-lab/hyperjump-validator@3.1.0
+  - @sjsf/daisyui-theme@3.1.1
+  - @sjsf/flowbite-theme@3.1.1
+  - @sjsf/shadcn-theme@3.1.2
+
 ## 1.17.0
 
 ### Minor Changes

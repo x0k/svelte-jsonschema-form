@@ -1,5 +1,28 @@
 # builder
 
+## 0.7.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - meta@1.0.5
+  - @sjsf/ajv8-validator@3.7.1
+  - @sjsf/basic-theme@3.7.1
+  - @sjsf/daisyui5-theme@3.7.1
+  - @sjsf/flowbite-icons@3.7.1
+  - @sjsf/flowbite3-theme@3.7.1
+  - @sjsf/form@3.7.1
+  - @sjsf/moving-icons@3.7.1
+  - @sjsf/schemasafe-validator@3.7.1
+  - @sjsf/shadcn4-theme@3.7.1
+  - @sjsf/skeleton4-theme@3.7.1
+  - @sjsf/cfworker-validator@3.7.1
+  - @sjsf/lucide-icons@3.7.1
+  - @sjsf/radix-icons@3.7.1
+  - @sjsf-lab/beercss-theme@3.3.0
+  - @sjsf-lab/shadcn-extras-theme@3.4.2
+  - @sjsf-lab/svar-theme@3.3.0
+
 ## 0.7.0
 
 ### Minor Changes

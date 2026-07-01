@@ -1,5 +1,14 @@
 # svar-starter
 
+## 0.0.18
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/ajv8-validator@3.7.1
+  - @sjsf/form@3.7.1
+  - @sjsf-lab/svar-theme@3.3.0
+
 ## 0.0.17
 
 ### Patch Changes
