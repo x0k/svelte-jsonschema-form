@@ -3,20 +3,20 @@ import { createServerValidator } from "@sjsf/sveltekit/rf/server";
 import { invalid } from "@sveltejs/kit";
 
 import { form, query } from "$app/server";
-import { schema, type CreatePost } from "$lib/post";
+import * as post from "$lib/post";
 import * as defaults from "$lib/sjsf/remote-defaults";
 
 export const getInitialData = query(async () => {
   return {
-    schema,
+    ...post,
     initialValue: { title: "New post", content: "" },
-  } satisfies InitialFormData<CreatePost>;
+  } satisfies InitialFormData<post.Model>;
 });
 
 export const createPost = form(
-  createServerValidator<CreatePost>({
+  createServerValidator<post.Model>({
     ...defaults,
-    schema,
+    ...post,
   }),
   ({ data }) => {
     if (data.title.length > 100) {
