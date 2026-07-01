@@ -82,5 +82,6 @@ export async function createSandboxFiles({
     disabled: false,
     html5Validation,
     resolver,
+    css: "",
   });
 }

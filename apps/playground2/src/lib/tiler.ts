@@ -80,7 +80,7 @@ export function createLayoutStore({
       const saved = localStorage.getItem(key);
       const data: LayoutState | Tile = saved
         ? JSON.parse(saved)
-        : defaultLayout;
+        : defaultLayout();
       return migrate("version" in data ? data : { layout: data, version: 0 });
     },
     save(layout: Tile) {

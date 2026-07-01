@@ -1,8 +1,9 @@
 <script lang="ts">
+  import { indentWithTab } from "@codemirror/commands";
   import { css } from "@codemirror/lang-css";
   import { javascript } from "@codemirror/lang-javascript";
   import { Annotation } from "@codemirror/state";
-  import { EditorView } from "@codemirror/view";
+  import { EditorView, keymap } from "@codemirror/view";
   import { githubDark } from "@ddietr/codemirror-themes/github-dark";
   import { githubLight } from "@ddietr/codemirror-themes/github-light";
   import { basicSetup } from "codemirror";
@@ -66,6 +67,7 @@
       doc: untrack(() => value),
       extensions: [
         basicSetup,
+        keymap.of([indentWithTab]),
         lang === "css" ? css() : javascript(),
         onChange,
         themeManager.isDark ? githubDark : githubLight,
@@ -78,7 +80,7 @@
               backgroundColor: "transparent !important",
             },
             ".cm-gutters": {
-              backgroundColor: "var(--background) !important",
+              backgroundColor: "transparent !important",
             },
           },
           { dark: themeManager.isDark }
