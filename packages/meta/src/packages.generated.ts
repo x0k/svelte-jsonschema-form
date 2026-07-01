@@ -33,7 +33,7 @@ export const EXTRA_PACKAGES = {
   },
   "vite": {
     "name": "vite",
-    "version": "8.0.16",
+    "version": "8.1.2",
     "dev": true
   },
   "typescript": {
@@ -58,32 +58,32 @@ export const EXTRA_PACKAGES = {
   },
   "postcss": {
     "name": "postcss",
-    "version": "8.5.15",
+    "version": "8.5.16",
     "dev": true
   },
   "autoprefixer": {
     "name": "autoprefixer",
-    "version": "10.5.0",
+    "version": "10.5.2",
     "dev": true
   },
   "tailwindcss4": {
     "name": "tailwindcss",
-    "version": "4.3.0",
+    "version": "4.3.2",
     "dev": true
   },
   "tailwindcss4Vite": {
     "name": "@tailwindcss/vite",
-    "version": "4.3.0",
+    "version": "4.3.2",
     "dev": true
   },
   "typebox": {
     "name": "typebox",
-    "version": "1.2.8",
+    "version": "1.3.2",
     "dev": false
   },
   "arktype": {
     "name": "arktype",
-    "version": "2.2.0",
+    "version": "2.2.1",
     "dev": false
   },
   "jsonSchemaTyped": {
@@ -113,7 +113,7 @@ export const EXTRA_PACKAGES = {
   },
   "lucideSvelte": {
     "name": "@lucide/svelte",
-    "version": "1.17.0",
+    "version": "1.22.0",
     "dev": false
   },
   "zod": {
@@ -123,7 +123,7 @@ export const EXTRA_PACKAGES = {
   },
   "valibot": {
     "name": "valibot",
-    "version": "1.4.1",
+    "version": "1.4.2",
     "dev": false
   }
 } as const satisfies Record<string, AbstractPackage>;

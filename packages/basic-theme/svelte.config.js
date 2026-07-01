@@ -14,7 +14,9 @@ export default {
   },
   vitePlugin: {
     dynamicCompileOptions: ({ filename }) => ({
-      runes: !filename.includes("@sveltejs/svelte-json-tree"),
+      runes:
+        !filename.includes("@sveltejs/svelte-json-tree") &&
+        !filename.includes("wrapper-scaffold-legacy.svelte"),
     }),
   },
 };

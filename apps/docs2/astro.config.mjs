@@ -6,9 +6,9 @@ import { satteri } from "@astrojs/markdown-satteri";
 import starlight from "@astrojs/starlight";
 import svelte from "@astrojs/svelte";
 import { defineConfig } from "astro/config";
-// Disabled until satteri support is available
-// import starlightLinksValidator from "starlight-links-validator";
 import { defineMdastPlugin } from "satteri";
+// Disabled until satteri support is available
+import starlightLinksValidator from "starlight-links-validator";
 import starlightLlmsTxt from "starlight-llms-txt";
 
 import { discoverChangelogSlugs } from "./src/loaders/changelog-discovery";
