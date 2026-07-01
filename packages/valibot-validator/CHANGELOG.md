@@ -1,11 +1,5 @@
 # @sjsf/valibot-validator
 
-## 3.7.0
-
-### Minor Changes
-
-- Allow usage of [unsupported](https://github.com/open-circle/valibot/blob/main/packages/to-json-schema/README.md#supported-features) schemas ([#395](https://github.com/x0k/svelte-jsonschema-form/pull/395))
-
 ## 3.6.0
 
 ## 3.5.0

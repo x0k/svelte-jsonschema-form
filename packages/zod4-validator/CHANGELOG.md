@@ -1,11 +1,5 @@
 # @sjsf/zod4-validator
 
-## 3.7.0
-
-### Minor Changes
-
-- Allow usage of [unrepresentable](https://zod.dev/json-schema?id=unrepresentable#unrepresentable) schemas ([#395](https://github.com/x0k/svelte-jsonschema-form/pull/395))
-
 ## 3.6.0
 
 ## 3.5.0

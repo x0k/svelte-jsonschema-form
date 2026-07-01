@@ -1,6 +1,6 @@
 {
   "name": "shadcn4-starter",
-  "version": "0.0.17",
+  "version": "0.0.16",
   "private": true,
   "type": "module",
   "scripts": {

@@ -1,6 +1,6 @@
 {
   "name": "@sjsf/shadcn-theme",
-  "version": "3.1.2",
+  "version": "3.1.1",
   "description": "The shadcn-svelte based theme for svelte-jsonschema-form",
   "keywords": [
     "form",
@@ -76,7 +76,7 @@
     "format:check": "oxfmt --check ."
   },
   "dependencies": {
-    "@sjsf/basic-theme": "workspace:^3.7.0"
+    "@sjsf/basic-theme": "workspace:^3.6.0"
   },
   "devDependencies": {
     "@internationalized/date": "catalog:legacy",
