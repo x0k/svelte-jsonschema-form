@@ -22,5 +22,4 @@
     "textarea textarea-bordered grow",
     errors.length > 0 && "textarea-error",
   ]}
-  {...textareaAttributes(ctx, config, "textarea", handlers, {})}
-></textarea>
+  {...textareaAttributes(ctx, config, "textarea", handlers, {})}></textarea>
