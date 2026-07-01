@@ -67,7 +67,7 @@
     "format:check": "oxfmt --check ."
   },
   "dependencies": {
-    "@sjsf/basic-theme": "workspace:^3.6.0"
+    "@sjsf/basic-theme": "workspace:^3.7.0"
   },
   "devDependencies": {
     "@sjsf/form": "workspace:*",
