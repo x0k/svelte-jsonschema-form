@@ -98,21 +98,20 @@ ${bodyBlock}
         },
       ],
       init: `const initialData = await getInitialData();
+
+createPost.enhance(async ({ submit }) => {
+  if (await submit()) {
+    console.log(createPost.result);
+    form.reset();
+  }
+});
+
 const form = createForm${inputType}(
-  await connect(
-    createPost.enhance(async ({ submit }) => {
-      if (await submit()) {
-        console.log(createPost.result);
-        form.reset();
-      }
-    }),
-    {
-      ...defaults,
-      ...initialData,
+  await connect(createPost, {
+    ...defaults,
+    ...initialData,
 ${bodyBlock}
-      fields: createPost.fields,
-    },
-  ),
+  }),
 )`,
       attributes: "",
     };
