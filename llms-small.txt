@@ -4,10 +4,18 @@
 
 > Svelte 5 library for creating forms based on JSON schema.
 
-import { Code, Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+import {
+  Code,
+  Card,
+  CardGrid,
+  LinkCard,
+  Tabs,
+  TabItem,
+  Badge,
+} from "@astrojs/starlight/components";
 
 import Npm from "@/components/npm.astro";
-import Usage from '@/components/usage/usage.astro';
+import Demo from "@/components/demo.svelte";
 
 ## Installation
 
@@ -15,9 +23,64 @@ Install as a community add-on using the Svelte CLI.
 
 <Npm type="dlx" pkg="sv add @sjsf" />
 
-## Usage
+## Demo
 
-<Usage />
+<Demo
+  name="usage-form"
+  initialPicker="themes"
+  shadowStyles={`
+    .demo-container {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      align-items: stretch;
+      gap: 1rem;
+    }
+    @media (max-width: 1080px) {
+      .demo-container {
+        grid-template-columns: 1fr;
+      }
+    }
+    .demo-container > pre {
+      overflow: auto;
+      display: flex;
+      align-items: center;
+      scrollbar-width: none;
+    }
+  `}
+  client:load
+/>
+
+## Supported Themes
+
+- [Basic](/themes/basic/)
+  - [Pico CSS](/themes/basic/#pico-css)
+- [daisyUI v5](/themes/daisyui5/)
+- [Flowbite Svelte](/themes/flowbite3/)
+- [Skeleton v4](/themes/skeleton4/)
+- [shadcn-svelte](/themes/shadcn4/)
+  - [shadcn-svelte-extras](/themes/shadcn-extras/) (experimental)
+- [SVAR](/themes/svar/) (experimental)
+- [Beer CSS](/themes/beercss/) (experimental)
+
+## Supported Validators
+
+- [Ajv v8](/validators/ajv/)
+  - [Precompiled](/validators/ajv/#precompiled-validation)
+- [Zod v4](/validators/zod4/)
+- [Valibot](/validators/valibot/)
+- [@cfworker/json-schema](/validators/cfworker/)
+- [@exodus/schemasafe](/validators/schemasafe/)
+  - [Precompiled](/validators/schemasafe/#precompiled-validation)
+- [Standard Schema](/validators/standard-schema/)
+- [ata-validator](/validators/ata/) (experimental)
+  - [Precompiled](/validators/ata/#precompiled-validation) (experimental)
+- [@hyperjump/json-schema](/validators/hyperjump/) (experimental)
+
+## Integrations
+
+- [Generic backend](/integrations/generic-backend/)
+- [Form actions](/integrations/form-actions/)
+- [Remote functions](/integrations/remote-functions/) (experimental)
 
 ## License
 
@@ -26,22 +89,24 @@ The rest of the project is under the MIT license.
 
 # Components
 
-import { Code } from '@astrojs/starlight/components'
+import { Code } from "@astrojs/starlight/components";
 
-import basicFromCode from 'pkgs/form/src/form/basic-form.svelte?raw'
+import basicFromCode from "pkgs/form/src/form/basic-form.svelte?raw";
 
-The `@sjsf/form` package exports several basic ui components for creating forms:
+The `@sjsf/form` package exports several UI components for creating forms:
 
-- `Content`
-- `SubmitButton`
-- `Form`
-- `BasicForm`
-- `SimpleForm`
-- `ErrorMessage`
-- `Datalist`
-- `Text`
-- `Field`
-- `HiddenIdPrefixInput`
+| Component             | Description                                             |
+| --------------------- | ------------------------------------------------------- |
+| `Form`                | Renders the theme's form component                      |
+| `BasicForm`           | Form layout with content and submit button              |
+| `SimpleForm`          | Creates form state from options and renders a BasicForm |
+| `Field`               | Renders a single form field by path                     |
+| `Content`             | Renders the full form content from schema               |
+| `SubmitButton`        | Submit button (disables when form is disabled)          |
+| `ErrorMessage`        | Displays an error message                               |
+| `Datalist`            | HTML datalist component                                 |
+| `Text`                | Renders a translated label or its icon                  |
+| `HiddenIdPrefixInput` | Hidden input for ID prefix                              |
 
 Components are linked through the context of the form, example:
 
@@ -49,20 +114,31 @@ Components are linked through the context of the form, example:
 
 # Fields
 
-import { Code } from '@astrojs/starlight/components'
+import { Code } from "@astrojs/starlight/components";
 
-import validationCode from 'pkgs/form/src/form/validation?raw'
-import stateCode from 'pkgs/form/src/form/field-state?raw'
+import validationCode from "pkgs/form/src/form/validation?raw";
+import stateCode from "pkgs/form/src/form/field-state?raw";
 
 ## Validation mode
+
+The `FieldsValidationMode` type controls when field validation is triggered.
+By default, fields are validated on `input` and `change` events.
 
 <Code code={validationCode} lang="typescript" />
 
 ## Field state
 
+Each field maintains its own state, including validation errors and touched status.
+
 <Code code={stateCode} lang="typescript" />
 
 # ID Builder
+
+import { Code } from "@astrojs/starlight/components";
+
+import modernMergerCode from "pkgs/form/src/id-builders/modern.ts?raw";
+
+The ID Builder is used to convert a field path into an input ID (and name).
 
 ```ts
 type Path = Array<string | number>;
@@ -89,7 +165,18 @@ interface FormIdBuilder {
 }
 ```
 
+Modern ID Builder implementation:
+
+<Code code={modernMergerCode} lang="typescript" />
+
 # Merger
+
+import { LinkCard } from "@astrojs/starlight/components";
+
+import { withBase } from "@/lib/base-path";
+
+The merger is responsible for combining JSON Schema definitions, merging `allOf` compositions,
+and applying schema defaults to form data.
 
 ```typescript
 export interface Merger {
@@ -111,12 +198,23 @@ export interface FormMerger extends Merger {
 }
 ```
 
+Use `createFormMerger` from `@sjsf/form/mergers/modern` for most projects.
+The legacy merger is available for v2 compatibility.
+
+<LinkCard
+  title="Merger Setup"
+  description="Learn how to configure the merger for your project"
+  href={withBase("/guides/merger/")}
+/>
+
 # Options
+
+These are the options passed to `createForm()`.
 
 ```typescript
 export type InitialErrors =
   | ValidationError[]
-  // WARN: This should't be an array
+  // WARN: This shouldn't be an array
   | Iterable<readonly [FieldPath, string[]]>;
 
 const UI_OPTIONS_REGISTRY_KEY = "uiOptionsRegistry";
@@ -264,7 +362,7 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
    * Reset handler
    *
    * Will be called when the form is reset.
-   * 
+   *
    * The event will be `undefined` if `reset` is called manually without passing an event.
    */
   onReset?: (e?: Event) => void;
@@ -275,15 +373,36 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
 
 # Reactive flow
 
-import Mermaid from '@/components/mermaid.astro'
+import Mermaid from "@/components/mermaid.astro";
 
-import code from './reactive-flow.mmd?raw'
+import reactiveFlowCode from "./reactive-flow.mmd?raw";
+import oninputCode from "./event-flow-oninput.mmd?raw";
+import submitCode from "./event-flow-submit.mmd?raw";
+import resetCode from "./event-flow-reset.mmd?raw";
 
-A simplified diagram of the form’s reactive flow:
+A diagram of the form's reactive flow — how options, internal state, and public API connect:
 
-<Mermaid code={code} />
+<Mermaid code={reactiveFlowCode} />
+
+## Event Flows
+
+What happens when the user interacts with the form:
+
+### Field Input
+
+<Mermaid code={oninputCode} />
+
+### Form Submit
+
+<Mermaid code={submitCode} />
+
+### Form Reset
+
+<Mermaid code={resetCode} />
 
 # Schema
+
+import OpenInSandbox from "@/components/open-in-sandbox.svelte";
 
 The form supports only [JSON Schema Draft-07](https://json-schema.org/draft-07#draft-07) and
 [discriminator.propertyName](https://swagger.io/docs/specification/v3_0/data-models/inheritance-and-polymorphism/#discriminator) keyword.
@@ -291,8 +410,7 @@ The form supports only [JSON Schema Draft-07](https://json-schema.org/draft-07#d
 Using converters (`@sjsf/form/converters/draft-2020-12`) and
 adapters (`@sjsf/zod4-validator/classic`, `@sjsf/zod4-validator/mini`, `@sjsf/valibot-validator`),
 it is possible to generate forms from other formats and sources.
-
-See the [advanced example](/examples/advanced/) `draft-2020-12` for more information.
+See the <OpenInSandbox client:visible example="Draft 2020-12" /> example for details.
 
 ## String formats
 
@@ -319,6 +437,10 @@ Some string formats has special meaning:
 - Properties declared inside the `anyOf`/`oneOf` should not overlap with properties "outside" of the `anyOf`/`oneOf`.
 
 # State
+
+import { LinkCard } from "@astrojs/starlight/components";
+
+import { withBase } from "@/lib/base-path";
 
 ```typescript
 export type FormSubmission<Output> = Task<
@@ -376,11 +498,11 @@ export interface FormState<T> {
 SJSF provides a set of functions to work with the form state that can either **read** (queries) or **modify** (commands) it.
 
 :::note
-  Most of these methods are intended for **internal use** within form components.
+Most of these methods are intended for **internal use** within form components.
 :::
 
 :::note
-  All the methods listed below are marked with `@query` or `@command` in their JSDoc.
+All the methods listed below are marked with `@query` or `@command` in their JSDoc.
 :::
 
 **Queries:**
@@ -406,6 +528,12 @@ In addition to the semantic difference, there is also a behavioral one when used
 When a `query` is called, the reactive variables it accesses will be **tracked**.
 When a `command` is called, the accessed variables **will not be tracked**.
 
+<LinkCard
+  title="Reactive flow"
+  href={withBase("/form/reactive-flow/")}
+  description="See the diagrams for how queries, commands, and event flows connect to FormState."
+/>
+
 ### `FieldPath` vs `RPath`
 
 You may have noticed that some methods have alternate versions with the `ByPath` suffix.
@@ -427,9 +555,7 @@ you should consider the following aspects:
 It is recommended to initialize the state as follows:
 
 ```ts
-let value = $state(
-  merger.mergeFormDataAndSchemaDefaults(initialValue, schema)
-);
+let value = $state(merger.mergeFormDataAndSchemaDefaults(initialValue, schema));
 ```
 
 ### Arrays
@@ -439,7 +565,7 @@ To modify arrays, use one of the following methods:
 1. Reassign
 
 ```ts
-value.array = value.array.concat(123)
+value.array = value.array.concat(123);
 ```
 
 2. Use `KeyedArray` API
@@ -447,17 +573,17 @@ value.array = value.array.concat(123)
 ```ts
 import { createForm, type KeyedArraysMap } from "@sjsf/form";
 
-const keyedArraysMap: KeyedArraysMap = new WeakMap()
-let value = $state({ array: [] })
+const keyedArraysMap: KeyedArraysMap = new WeakMap();
+let value = $state({ array: [] });
 const form = createForm({
   keyedArraysMap,
   value: [() => value, (v) => (value = v)],
   // ...otherOptions
-})
+});
 
-const api = keyedArraysMap.get(value.array)
+const api = keyedArraysMap.get(value.array);
 if (api) {
-  api.push(123)
+  api.push(123);
 }
 ```
 
@@ -487,13 +613,16 @@ This way we can continue improving the API for everyone.
 
 # Theme
 
-import { TabItem, Tabs } from '@astrojs/starlight/components';
+import { LinkCard, TabItem, Tabs } from "@astrojs/starlight/components";
+import { extraFields } from "meta";
+
+import { withBase } from "@/lib/base-path";
 
 Essentially theme is a simple function:
 
 ```js
-const fromRecord = (record) => (type) => record[type]
-const theme = fromRecord({ ...components })
+const fromRecord = (record) => (type) => record[type];
+const theme = fromRecord({ ...components });
 ```
 
 ## Component types
@@ -579,6 +708,7 @@ Below are examples of the components required to render the following JSON schem
       />
     </Template>
     ```
+
   </TabItem>
   <TabItem label="Field template">
     ```svelte
@@ -627,6 +757,7 @@ Below are examples of the components required to render the following JSON schem
       {/if}
     </Layout>
     ```
+
   </TabItem>
   <TabItem label="Text widget">
     ```svelte
@@ -643,6 +774,7 @@ Below are examples of the components required to render the following JSON schem
     <input bind:value {...attributes} />
     <Datalist id={attributes.list} {config} />
     ```
+
   </TabItem>
   <TabItem label="Label component">
     ```svelte
@@ -695,20 +827,13 @@ fields, as well as a set of definitions for extra widgets.
 
 Here is a list of extra fields that can be imported from `@sjsf/form/fields/extra/*`.
 
-- `aggregated`
-- `array-files`
-- `array-native-files`
-- `array-tags`
-- `boolean-select`
-- `enum`
-- `file`
-- `files`
-- `multi-enum`
-- `native-file`
-- `native-files`
-- `remote-enum`
-- `tags`
-- `unknown-native-file`
+<ul>
+  {Array.from(extraFields()).map((f) => (
+    <li>
+      <code>{f}</code>
+    </li>
+  ))}
+</ul>
 
 To use them you can import them directly
 
@@ -729,9 +854,9 @@ const uiSchema: UISchema = {
   "ui:components": {
     stringField: EnumField,
     // Or if you used the `include` import
-    stringField: "enumField"
-  }
-}
+    stringField: "enumField",
+  },
+};
 ```
 
 ### Templates
@@ -747,11 +872,11 @@ These templates are intended for rendering optional fields and
 differ from the original templates by the presence of the following condition:
 
 ```svelte
-  {#if config.required || !isNil(value)}
-    <Layout type="field-content" {config} {errors}>
-      {@render children()}
-    </Layout>
-  {/if}
+{#if config.required || !isNil(value)}
+  <Layout type="field-content" {config} {errors}>
+    {@render children()}
+  </Layout>
+{/if}
 ```
 
 ### Widgets
@@ -778,20 +903,54 @@ There are several types of extra widgets already defined in the library
 However, the ability to use them depends on the availability of a corresponding
 implementation in your chosen theme.
 
+## Related guides
+
+<LinkCard
+  title="Custom components"
+  description="Create your own form components"
+  href={withBase("/guides/custom-components/")}
+/>
+<LinkCard
+  title="Component casting"
+  description="Adapt interchangeable components for use in your forms"
+  href={withBase("/guides/component-casting/")}
+/>
+
 # Translation
 
-import { Code } from '@astrojs/starlight/components'
+import { Code, LinkCard } from "@astrojs/starlight/components";
 
-import code from 'pkgs/form/src/form/translation?raw'
+import { withBase } from "@/lib/base-path";
+import code from "pkgs/form/src/form/translation?raw";
 
-<Code code={code} lang='typescript' />
+The `Labels` interface defines the text strings used throughout the form.
+
+<Code code={code} lang="typescript" />
+
+To use a translation, import a locale file and pass it to the form:
+
+```ts
+import { translation } from "@sjsf/form/translations/en";
+
+const form = createForm({
+  translation,
+  // ... other options
+});
+```
+
+<LinkCard
+  title="Labels and icons"
+  description="Learn how to use translations and add icons to your forms"
+  href={withBase("/guides/labels-and-icons/")}
+/>
 
 # UI Schema
 
-import { Code, LinkCard } from '@astrojs/starlight/components'
+import { Code, LinkCard } from "@astrojs/starlight/components";
 
-import uiSchemaExampleCode from './_ui-schema-example.ts?raw'
-import extraUiOptionsCode from './_extra-ui-options.ts?raw'
+import { withBase } from "@/lib/base-path";
+import uiSchemaExampleCode from "./_ui-schema-example.ts?raw";
+import extraUiOptionsCode from "./_extra-ui-options.ts?raw";
 
 UI schema allows you to customize the appearance of the form and influence its
 behavior.
@@ -839,9 +998,10 @@ export type UiSchemaRoot = UiSchemaDefinition & {
   "ui:definitions"?: Record<string, UiSchema>;
 };
 ```
+
 ## Evaluation rules
 
-Usually UI schema corresponds to the data structure described by json schema.
+Usually UI schema corresponds to the data structure described by JSON Schema.
 
 For example, with this JSON schema, the following UI schema would be correct:
 
@@ -1073,7 +1233,24 @@ export type ResolvableUiOptions = {
 - Using UI options of one component in another (even if they are compatible)
   is forbidden, e.g. `text` and `textarea` widgets must use separate options.
 
+## Related guides
+
+<LinkCard
+  title="UI customization"
+  description="Customize widgets, actions, and UI options"
+  href={withBase("/guides/ui-customization/")}
+/>
+<LinkCard
+  title="Labels and icons"
+  description="Add translation and icon support to your forms"
+  href={withBase("/guides/labels-and-icons/")}
+/>
+
 # Validator
+
+import { LinkCard } from "@astrojs/starlight/components";
+
+import { withBase } from "@/lib/base-path";
 
 Validator - a collection of functions used by the form to validate data:
 
@@ -1097,7 +1274,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     validateFormValue(rootSchema, formValue) {
       const errors = validator.validateFormValue(rootSchema, formValue);
       // Your logic
-      return errors
+      return errors;
     },
   } satisfies FormValueValidator<T>;
 }
@@ -1189,8 +1366,24 @@ export interface AsyncFileListValidator {
     config: Config
   ) => Promise<Update<string[]>>;
 }
+```
+
+## Related guides
+
+<LinkCard
+  title="Validation"
+  description="Learn about form validation strategies"
+  href={withBase("/guides/validation/")}
+/>
+<LinkCard
+  title="File handling"
+  description="Learn about file validation and handling"
+  href={withBase("/guides/file-handling/")}
+/>
 
 # Anti-patterns
+
+import OpenInSandbox from "@/components/open-in-sandbox.svelte";
 
 A list of approaches that should be avoided unless absolutely necessary.
 
@@ -1200,18 +1393,18 @@ The following code is an anti-pattern:
 
 ```svelte
 <script lang="ts">
-  let formId = $state.raw(crypto.randomUUID())
+  let formId = $state.raw(crypto.randomUUID());
   let form = createForm({
     ...defaults,
-    schema
-  })
+    schema,
+  });
 
   function update(schema: Schema) {
     form = createForm({
       ...defaults,
-      schema
-    })
-    formId = crypto.randomUUID()
+      schema,
+    });
+    formId = crypto.randomUUID();
   }
 </script>
 
@@ -1239,7 +1432,7 @@ All properties support reactivity
   })
 </script>
 
-<BasicForm {form}/>
+<BasicForm {form} />
 ```
 
 To understand the relationships between options, see the [Reactive flow](/form/reactive-flow/) diagram or
@@ -1251,9 +1444,13 @@ Instead of splitting a single entity into multiple forms to achieve the desired 
 manually managing state, you should create custom top-level components (e.g., `TupleField`)
 that implement the required UI.
 
-See the `multi-step` and `tabbed-layout` examples on the [Advanced Examples](/examples/advanced/) page.
+See the <OpenInSandbox client:visible example="Multi-step" /> and <OpenInSandbox client:visible example="Tabbed Layout" /> examples.
 
 # Component casting
+
+import { LinkCard } from "@astrojs/starlight/components";
+
+import { withBase } from "@/lib/base-path";
 
 SJSF provides a rich set of interchangeable components,
 but some of them cannot be used directly out of the box
@@ -1269,9 +1466,9 @@ or see how a component looks in place.
 const uiSchema: UiSchema = {
   "ui:components": {
     // @ts-expect-error
-    arrayField: "tagsField"
-  }
-}
+    arrayField: "tagsField",
+  },
+};
 ```
 
 ## Create an adapter component
@@ -1281,37 +1478,38 @@ You can create a new component that adapts the interface of the original compone
 
 ```svelte
 <script lang="ts" module>
-	import type { SchemaArrayValue } from '@sjsf/form/core';
-	import type { FieldCommonProps } from '@sjsf/form';
+  import type { SchemaArrayValue } from "@sjsf/form/core";
+  import type { FieldCommonProps } from "@sjsf/form";
 
-	declare module '@sjsf/form' {
-		interface ComponentProps {
-			arrayTagsField: FieldCommonProps<SchemaArrayValue>;
-		}
-		interface ComponentBindings {
-			arrayTagsField: 'value';
-		}
-	}
+  declare module "@sjsf/form" {
+    interface ComponentProps {
+      arrayTagsField: FieldCommonProps<SchemaArrayValue>;
+    }
+    interface ComponentBindings {
+      arrayTagsField: "value";
+    }
+  }
 </script>
 
 <script lang="ts">
-	import type { ComponentProps } from '@sjsf/form';
-	import TagsField from '@sjsf/form/fields/extra/tags.svelte';
+  import type { ComponentProps } from "@sjsf/form";
+  import TagsField from "@sjsf/form/fields/extra/tags.svelte";
 
-	import { assertStrings } from '$lib/form/cast';
+  import { assertStrings } from "$lib/form/cast";
 
-	let { value = $bindable(), ...rest }: ComponentProps['arrayTagsField'] = $props();
+  let { value = $bindable(), ...rest }: ComponentProps["arrayTagsField"] =
+    $props();
 </script>
 
 <TagsField
-	{...rest}
-	bind:value={
-		() => {
-			assertStrings(value);
-			return value;
-		},
-		(v) => (value = v)
-	}
+  {...rest}
+  bind:value={
+    () => {
+      assertStrings(value);
+      return value;
+    },
+    (v) => (value = v)
+  }
 />
 ```
 
@@ -1321,6 +1519,7 @@ and implement it according to your needs.
 
 However, if you're fine with the `assert`-based approach,
 you can use the following prebuilt field components:
+
 - `array-files`
 - `array-native-files`
 - `array-tags`
@@ -1340,8 +1539,8 @@ Use it with care.
 import { cast } from "@sjsf/form/lib/component";
 import type { ComponentDefinition } from "@sjsf/form";
 import TagsField from "@sjsf/form/fields/extra/tags.svelte";
- 
-import { assertStrings } from '$lib/form/cast';
+
+import { assertStrings } from "$lib/form/cast";
 
 declare module "@sjsf/form" {
   interface ComponentProps {
@@ -1368,11 +1567,18 @@ Instead of proving component compatibility at the type level,
 you can extend the resolver so that components are applied automatically
 to suitable JSON Schemas.
 
+<LinkCard
+  title="Fields resolution"
+  description="Learn how to copy and modify the basic resolver to handle custom components"
+  href={withBase("/guides/fields-resolution/")}
+/>
+
 # Custom components
 
-import { Tabs, TabItem, Code } from '@astrojs/starlight/components';
+import { Tabs, TabItem, Code, LinkCard } from "@astrojs/starlight/components";
 
-import attributesTypesCode from 'pkgs/form/dist/form/state/attributes.d.ts?raw'
+import { withBase } from "@/lib/base-path";
+import attributesTypesCode from "pkgs/form/dist/form/state/attributes.d.ts?raw";
 
 You can create your own form components. Any built-in component can be replaced
 with a custom one, giving you full control over rendering and behavior.
@@ -1401,14 +1607,14 @@ import type { Schema, UiSchema } from "@sjsf/form";
 import MyNumberWidget from "./my-number-widget";
 
 const schema: Schema = {
-  type: "number"
-}
+  type: "number",
+};
 
 const uiSchema: UiSchema = {
   "ui:components": {
-    "numberWidget": MyNumberWidget
-  }
-}
+    numberWidget: MyNumberWidget,
+  },
+};
 ```
 
 You can also register a new or overwrite an old component in the selected theme as follows:
@@ -1432,11 +1638,15 @@ declare module "@sjsf/form" {
   }
 }
 
-export const myTheme = extendByRecord(theme, { myNumberWidget: MyNumberWidget });
+export const myTheme = extendByRecord(theme, {
+  myNumberWidget: MyNumberWidget,
+});
 
 /** Override the default component **/
 
-export const myTheme = overrideByRecord(theme, { numberWidget: MyNumberWidget })
+export const myTheme = overrideByRecord(theme, {
+  numberWidget: MyNumberWidget,
+});
 ```
 
 ## Retrieving attributes
@@ -1450,7 +1660,9 @@ to generate attributes:
 ```ts
 const { config, uiOption }: ComponentProps["arrayTemplate"] = $props();
 
-const description = $derived(uiOption("description") ?? config.schema.description);
+const description = $derived(
+  uiOption("description") ?? config.schema.description
+);
 ```
 
 ### UI options
@@ -1487,24 +1699,27 @@ You can use the `uiOptionProps` function to merge object values from
 the UI schema and `extraUiOptions`:
 
 ```ts
-import type { RadioGroupItemProps, WithoutChildrenOrChild } from 'bits-ui';
+import type { RadioGroupItemProps, WithoutChildrenOrChild } from "bits-ui";
 
-import { getFormContext, uiOptionProps, type ComponentProps } from '@sjsf/form';
+import { getFormContext, uiOptionProps, type ComponentProps } from "@sjsf/form";
 
-declare module '@sjsf/form' {
+declare module "@sjsf/form" {
   interface UiOptions {
-    shadcnRadioItem?: Omit<WithoutChildrenOrChild<RadioGroupItemProps>, 'value'>;
+    shadcnRadioItem?: Omit<
+      WithoutChildrenOrChild<RadioGroupItemProps>,
+      "value"
+    >;
   }
 }
 
 const ctx = getFormContext();
-const { config, handlers }: ComponentProps['radioWidget'] = $props();
+const { config, handlers }: ComponentProps["radioWidget"] = $props();
 
 const itemAttributes = $derived(
-  uiOptionProps('shadcnRadioItem')(
+  uiOptionProps("shadcnRadioItem")(
     {
       onclick: handlers.oninput,
-      onblur: handlers.onblur
+      onblur: handlers.onblur,
     },
     config,
     ctx
@@ -1579,6 +1794,7 @@ previous category, have the suffix `Attributes`.
       disabledProp
     ))
     ```
+
   </TabItem>
   <TabItem label="inputAttributes">
     ```ts
@@ -1607,6 +1823,7 @@ previous category, have the suffix `Attributes`.
       })
     );
     ```
+
   </TabItem>
   <TabItem label="customInputAttributes">
     ```ts
@@ -1640,6 +1857,7 @@ previous category, have the suffix `Attributes`.
       checked: value
     }))
     ```
+
   </TabItem>
 </Tabs>
 
@@ -1730,8 +1948,8 @@ const Widget = $derived(getComponent(ctx, "myNumberWidget", config));
 
 const uiSchema: UiSchema = {
   "ui:components": {
-    myNumberWidget: "numberWidget"
-  }
+    myNumberWidget: "numberWidget",
+  },
 };
 ```
 
@@ -1767,20 +1985,24 @@ type IsFoundationalField<T extends FoundationalComponentType> =
     : false;
 ```
 
+<LinkCard
+  title="Theme"
+  description="Learn about the component types and theme structure"
+  href={withBase("/form/theme/")}
+/>
+
 # Dynamic forms
 
-import { Code, Card, LinkCard, Tabs, TabItem } from '@astrojs/starlight/components';
+import {
+  Code,
+  Card,
+  LinkCard,
+  Tabs,
+  TabItem,
+} from "@astrojs/starlight/components";
 
-import FormCard from '@/components/form-card.astro'
-
-import OneOfForm from './one-of.svelte'
-import oneOfFromCode from './one-of.svelte?raw'
-
-import DependenciesForm from './dependencies.svelte'
-import dependenciesFormCode from './dependencies.svelte?raw'
-
-import IfElseThenFrom from './if-then-else.svelte'
-import ifElseThenFromCode from './if-then-else.svelte?raw'
+import Demo from "@/components/demo.svelte";
+import OpenInSandbox from "@/components/open-in-sandbox.svelte";
 
 Using the following JSON Schema keywords, you can build forms that change in
 response to user input.
@@ -1792,87 +2014,61 @@ This selector **does not modify form data directly** but determines which schema
 
 When the form is initialized with `initialValue`, SJSF **automatically selects the most suitable schema** based on the data.
 
-<Tabs>
-  <TabItem label="Form">
-    <FormCard>
-      <OneOfForm client:only="svelte" />
-    </FormCard>
-  </TabItem>
-  <TabItem label="form.svelte">
-    <Code code={oneOfFromCode} lang="svelte" />
-  </TabItem>
-</Tabs>
-
+<Demo name="one-of" client:visible />
 
 ## dependencies
 
 The `dependencies` keyword allows you to declare relationships between fields,
 where the presence or value of one field affects the schema of others.
 
-<Tabs>
-  <TabItem label="Form">
-    <FormCard>
-      <DependenciesForm client:only="svelte" />
-    </FormCard>
-  </TabItem>
-  <TabItem label="form.svelte">
-    <Code code={dependenciesFormCode} lang="svelte" />
-  </TabItem>
-</Tabs>
+<Demo name="dependencies" client:visible />
 
 ## if/then/else
 
 The `if/then/else` keywords allow you to define conditional schema branches based on form data.
 
-<Tabs>
-  <TabItem label="Form">
-    <FormCard>
-      <IfElseThenFrom client:only="svelte" />
-    </FormCard>
-  </TabItem>
-  <TabItem label="form.svelte">
-    <Code code={ifElseThenFromCode} lang="svelte" />
-  </TabItem>
-</Tabs>
-
+<Demo name="if-then-else" client:visible />
 
 ## patternProperties
 
-If your schema uses the `patternProperties` keyword, see the [advanced example](/examples/advanced/)
-`pattern-properties-validator` to improve the user experience.
+The `patternProperties` keyword allows you to define schemas for object properties
+whose names match a regular expression. This is useful for forms with dynamic keys,
+such as key-value pairs or metadata fields.
+See the <OpenInSandbox client:visible example="Pattern Properties Validator" /> example for a working demo.
 
 # Fields resolution
 
-import { Code } from '@astrojs/starlight/components'
+import { Code, LinkCard } from "@astrojs/starlight/components";
 
-import basicResolverCode from 'pkgs/form/src/form/resolvers/basic?raw'
-import compatResolverCode from 'pkgs/form/src/form/resolvers/compat?raw'
+import { withBase } from "@/lib/base-path";
+import basicResolverCode from "pkgs/form/src/form/resolvers/basic?raw";
+import compatResolverCode from "pkgs/form/src/form/resolvers/compat?raw";
 
-To determine which field to use to display your JSON schema,
+To determine which field to use to display your JSON Schema,
 the form uses `resolver` function.
 
 Let's take a look at the `basic` resolver implementation
 (`@sjsf/form/resolvers/basic`):
 
-<Code code={basicResolverCode} lang='typescript' />
+<Code code={basicResolverCode} lang="typescript" />
 
 As you can see `resolver` just selects the field according to the schema type.
 
 This approach is simple and straightforward, but in some cases it can lead to
 additional work.
-Suppose you have the following scheme:
+Suppose you have the following schema:
 
 ```ts
 const schema: Schema = {
-  enum: ["foo", "bar", "baz"]
-}
+  enum: ["foo", "bar", "baz"],
+};
 ```
 
-For this scheme, the `basic` resolver will select `stringField`,
+For this schema, the `basic` resolver will select `stringField`,
 and `stringField` will display the `textWidget` widget by default
 although you probably wanted to see select or radio widgets.
 
-To achieve this you need to specify in the UI scheme the field:
+To achieve this you need to specify the field in the UI schema:
 
 ```ts
 const uiSchema: UiSchema = {
@@ -1881,12 +2077,12 @@ const uiSchema: UiSchema = {
     stringField: "enumField",
     // You can also replace `selectWidget` with `radioWidget`
     // selectWidget: "radioWidget"
-  }
-}
+  },
+};
 ```
 
 Or you can modify `resolver` so that `enumField` is always used
-when a scheme with `enum` is detected:
+when a schema with `enum` is detected:
 
 ```ts
 return ({ schema }) => {
@@ -1903,19 +2099,30 @@ modify it to suit your needs.
 As an example (or temporary solution) you can use the `compat` resolver
 (`@sjsf/form/resolvers/compat`) that reproduces resolution logic from v1:
 
-<Code code={compatResolverCode} lang='typescript' />
+<Code code={compatResolverCode} lang="typescript" />
+
+Some interchangeable components (`tagsField`, `filesField`, etc.) cannot be assigned directly
+in the UI schema due to type incompatibilities.
+
+<LinkCard
+  title="Component casting"
+  description="Handle interchangeable components that cannot be used directly"
+  href={withBase("/guides/component-casting/")}
+/>
 
 # File handling
 
-import { Code, Card, LinkCard, Tabs, TabItem } from '@astrojs/starlight/components';
+import {
+  Code,
+  Card,
+  LinkCard,
+  Tabs,
+  TabItem,
+} from "@astrojs/starlight/components";
 
-import FormCard from '@/components/form-card.astro'
-
-import CustomKeywordForm from './file-handling/custom-keyword.svelte'
-import customKeywordCode from './file-handling/custom-keyword.svelte?raw'
-
-import FileSizeValidatorForm from './file-handling/file-size-validator.svelte'
-import fileSizeValidatorCode from './file-handling/file-size-validator.svelte?raw'
+import { withBase } from "@/lib/base-path";
+import Demo from "@/components/demo.svelte";
+import OpenInSandbox from "@/components/open-in-sandbox.svelte";
 
 SJSF provides several ways of working with files.
 
@@ -1961,13 +2168,13 @@ With any file handling method, you must set `enctype="multipart/form-data"` on t
 For native file handling, add the following `transport` hook in your `hooks.ts` file:
 
 ```ts
-import type { Transport } from '@sveltejs/kit';
+import type { Transport } from "@sveltejs/kit";
 
 export const transport: Transport = {
   File: {
-    encode: (v) => v instanceof File && 'file',
-    decode: () => undefined
-  }
+    encode: (v) => v instanceof File && "file",
+    decode: () => undefined,
+  },
 };
 ```
 
@@ -1977,12 +2184,13 @@ Another approach is to **preload files** into a storage backend as soon as the u
 Instead of embedding file data in the form, the form value only stores a lightweight file identifier (ID).
 
 This avoids the drawbacks of Data URLs and native `File` objects:
+
 - Smaller payloads
 - No `base64` overhead
 - Files can be validated or processed on the server before submission
 - Files can be provided from the server
 
-See the [advanced example](/examples/advanced/) `preupload-file` for more information.
+See the <OpenInSandbox client:visible example="Pre-upload File" /> example for a working implementation.
 
 ## Validation
 
@@ -1994,16 +2202,7 @@ The most flexible approach is to add a **custom JSON Schema keyword**.
 This method works consistently on both the server and the client,
 and the timing of validation can be controlled with the `fieldsValidationMode` option.
 
-<Tabs>
-  <TabItem label="Form">
-    <FormCard>
-      <CustomKeywordForm client:only="svelte" />
-    </FormCard>
-  </TabItem>
-  <TabItem label="form.svelte">
-    <Code code={customKeywordCode} lang="svelte" />
-  </TabItem>
-</Tabs>
+<Demo name="custom-keyword" client:visible />
 
 However, not all validators support custom keywords,
 and file storage formats other than `File`
@@ -2025,30 +2224,27 @@ A practical example is the `createFileSizeValidator` helper
 from the `@sjsf/form/validators/file-size` module, which checks maximum file size.
 Once this module is included, you can set the `maxFileSizeBytes` UI option on file fields.
 
-<Tabs>
-  <TabItem label="Form">
-    <FormCard>
-      <FileSizeValidatorForm client:only="svelte" />
-    </FormCard>
-  </TabItem>
-  <TabItem label="form.svelte">
-    <Code code={fileSizeValidatorCode} lang="svelte" />
-  </TabItem>
-</Tabs>
+<Demo name="file-size-validator" client:visible />
+
+<LinkCard
+  title="Validator API Reference"
+  description="Learn more about implementing custom validators"
+  href={withBase("/form/validator/")}
+/>
 
 # Form value type inference
 
-import { Code } from '@astrojs/starlight/components'
+import { Code } from "@astrojs/starlight/components";
 
 import Npm from "@/components/npm.astro";
 
-import code from './form-value-type-inference?raw'
-import typebox from './form-value-type-inference-typebox?raw'
+import code from "./form-value-type-inference?raw";
+import typebox from "./form-value-type-inference-typebox?raw";
 
 ## json-schema-to-ts
 
 You can use [json-schema-to-ts](https://github.com/ThomasAribart/json-schema-to-ts/tree/main)
-to infer types from JSON schema.
+to infer types from JSON Schema.
 
 ### Installation
 
@@ -2061,7 +2257,7 @@ to infer types from JSON schema.
 ## TypeBox
 
 [TypeBox](https://github.com/sinclairzx81/typebox) offers a unified type that can be statically checked by TypeScript and
-runtime asserted using standard Json Schema validation.
+runtime asserted using standard JSON Schema validation.
 
 ### Installation
 
@@ -2073,16 +2269,18 @@ runtime asserted using standard Json Schema validation.
 
 # Labels and icons
 
-import { LinkCard, LinkButton, Code, Card, Icon } from '@astrojs/starlight/components';
+import {
+  LinkCard,
+  LinkButton,
+  Code,
+  Card,
+} from "@astrojs/starlight/components";
 
-import { withBase } from '@/lib/base-path';
-import Npm from '@/components/npm.astro';
-import FormCard from '@/components/form-card.astro';
+import { withBase } from "@/lib/base-path";
+import Npm from "@/components/npm.astro";
+import Demo from "@/components/demo.svelte";
 
-import Icons from './icons.svelte';
-import iconsCode from './icons.svelte?raw';
-
-import IconsShowCase from './_icons.astro';
+import IconsShowCase from "./_icons.astro";
 
 ## Translation
 
@@ -2093,17 +2291,16 @@ Translations are imported from `@sjsf/form/translations/{locale}`, currently sup
 - `en`
 - `ru`
 
-<LinkCard title="Translation API reference" href={withBase("/form/translation/")} />
+<LinkCard
+  title="Translation API reference"
+  href={withBase("/form/translation/")}
+/>
 
 ## Icons
 
 Text is good, but you can do better by adding icons!
 
-<Code code={iconsCode} lang='svelte' />
-
-<FormCard>
-  <Icons client:only="svelte">Hello <Icon name="seti:svelte" /> from <Icon name="astro" /></Icons>
-</FormCard>
+<Demo name="icons" client:visible />
 
 There are also ready-made sets of icons for the control buttons.
 
@@ -2111,20 +2308,14 @@ There are also ready-made sets of icons for the control buttons.
 
 # Manual mode
 
-import { Code } from '@astrojs/starlight/components';
+import { Code, LinkCard } from "@astrojs/starlight/components";
 
-import FormCard from '@/components/form-card.astro';
-
-import Form from './manual-mode.svelte';
-import formCode from './manual-mode.svelte?raw';
+import { withBase } from "@/lib/base-path";
+import Demo from "@/components/demo.svelte";
 
 Manual mode gives you complete control over form layout and field placement.
 
-<Code code={formCode} lang="svelte" />
-
-<FormCard>
-  <Form client:only="svelte" />
-</FormCard>
+<Demo name="manual-mode" client:visible />
 
 ## Caveats
 
@@ -2159,8 +2350,8 @@ const schema = {
 } as const satisfies Schema;
 
 const initialValue = {
-  foo: {}
-}
+  foo: {},
+};
 ```
 
 ### Required attribute
@@ -2177,11 +2368,17 @@ if it is calculated incorrectly - specify it manually.
 Unlike other form components (`Form`, `SubmitButton`, etc.),
 `Field` does not require setting the form context.
 
+<LinkCard
+  title="UI Schema"
+  description="For most cases, UI Schema customization is a simpler alternative to manual mode"
+  href={withBase("/form/ui-schema/")}
+/>
+
 # Merger Setup
 
-import { LinkCard } from '@astrojs/starlight/components';
+import { LinkCard } from "@astrojs/starlight/components";
 
-import { withBase } from '@/lib/base-path';
+import { withBase } from "@/lib/base-path";
 import Npm from "@/components/npm.astro";
 
 ## Overview
@@ -2229,8 +2426,8 @@ export const merger = (options: MergerFactoryOptions) => {
   return {
     ...createFormMerger(options),
     mergeSchemas,
-  }
-}
+  };
+};
 ```
 
 **Option 2: Provide a custom merger for specific properties**
@@ -2239,14 +2436,15 @@ export const merger = (options: MergerFactoryOptions) => {
 import { createMerger as createJsonSchemaMerger } from "@sjsf/lib/json-schema";
 import { createFormMerger } from "@sjsf/form/mergers/modern";
 
-export const merger = (options: MergerFactoryOptions) => createFormMerger({
-  ...options,
-  jsonSchemaMerger: createJsonSchemaMerger({
-    mergers: {
-      title: (_, r) => r, // Always use the rightmost non-undefined value
-    }
-  })
-})
+export const merger = (options: MergerFactoryOptions) =>
+  createFormMerger({
+    ...options,
+    jsonSchemaMerger: createJsonSchemaMerger({
+      mergers: {
+        title: (_, r) => r, // Always use the rightmost non-undefined value
+      },
+    }),
+  });
 ```
 
 :::caution[Property Override Behavior]
@@ -2267,21 +2465,26 @@ To resolve this, configure JSON schema deduplication and intersection functions:
 
 ```ts
 import { createDeduplicator, createIntersector } from "@sjsf/form/lib/array";
-import { createComparator, createMerger as createJsonSchemaMerger } from "@sjsf/lib/json-schema";
+import {
+  createComparator,
+  createMerger as createJsonSchemaMerger,
+} from "@sjsf/lib/json-schema";
 import { createFormMerger } from "@sjsf/form/mergers/modern";
 
 const { compareSchemaValues, compareSchemaDefinitions } = createComparator();
 
-export const merger = (options: MergerFactoryOptions) => createFormMerger({
-  ...options,
-  jsonSchemaMerger: createJsonSchemaMerger({
-    intersectJson: createIntersector(compareSchemaValues),
-    deduplicateJsonSchemaDef: createDeduplicator(compareSchemaDefinitions),
-  })
-})
+export const merger = (options: MergerFactoryOptions) =>
+  createFormMerger({
+    ...options,
+    jsonSchemaMerger: createJsonSchemaMerger({
+      intersectJson: createIntersector(compareSchemaValues),
+      deduplicateJsonSchemaDef: createDeduplicator(compareSchemaDefinitions),
+    }),
+  });
 ```
 
 **What this configuration does:**
+
 - `intersectJson`: Handles intersection of JSON values
 - `deduplicateJsonSchemaDef`: Removes duplicate schema definitions
 
@@ -2318,33 +2521,31 @@ const form = createForm({
 
 # Multiple forms
 
-import { Code } from '@astrojs/starlight/components';
-import { DEFAULT_ID_PREFIX } from '@sjsf/form'
+import { Code, LinkCard } from "@astrojs/starlight/components";
+import { DEFAULT_ID_PREFIX } from "@sjsf/form";
 
-import FormCard from '@/components/form-card.astro';
-
-import Form from './multiple-forms.svelte';
-import formCode from './multiple-forms.svelte?raw';
+import { withBase } from "@/lib/base-path";
+import Demo from "@/components/demo.svelte";
 
 To use multiple forms on the same page, you must specify a custom `idPrefix`
 to avoid id collision in the DOM.
 
 The default value of `idPrefix` is <code>{DEFAULT_ID_PREFIX}</code>.
 
-<Code code={formCode} lang='svelte' />
+<Demo name="multiple-forms" client:visible />
 
-<FormCard>
-  <Form client:only="svelte" />
-</FormCard>
+<LinkCard
+  title="Form Options"
+  description="See the idPrefix option and other form configuration"
+  href={withBase("/form/options/")}
+/>
 
 # Prevent page reload
 
-import { Code } from '@astrojs/starlight/components';
+import { Code, LinkCard } from "@astrojs/starlight/components";
 
-import FormCard from '@/components/form-card.astro';
-
-import Form from './prevent-page-reload.svelte'
-import formCode from './prevent-page-reload.svelte?raw'
+import { withBase } from "@/lib/base-path";
+import Demo from "@/components/demo.svelte";
 
 You can prevent data loss due to accidentally closing or reloading a tab by using
 the `preventPageReload` function.
@@ -2353,57 +2554,35 @@ the `preventPageReload` function.
 
 Try to change the value of the form and reload the page.
 
-<Code code={formCode} lang="svelte" />
-
-<FormCard>
-  <Form client:only="svelte" />
-</FormCard>
+<Demo name="prevent-page-reload" client:visible />
 
 # Programmatic control
 
-import { Code, LinkCard } from '@astrojs/starlight/components';
+import { Code, LinkCard } from "@astrojs/starlight/components";
 
-import { withBase } from '@/lib/base-path';
-import FormCard from '@/components/form-card.astro'
+import { withBase } from "@/lib/base-path";
+import Demo from "@/components/demo.svelte";
 
-import Form from './programmatic-control.svelte';
-import formCode from './programmatic-control.svelte?raw';
+You can bind to the form element to control it programmatically:
 
-You can bind to the from element to control it programmatically:
-
-<Code code={formCode} lang="svelte" />
-
-<FormCard>
-  <Form client:only="svelte" />
-</FormCard>
+<Demo name="programmatic-control" client:visible />
 
 Use the form methods to control and access the form state:
 
-<LinkCard title="Form Methods API Reference" href={withBase("/form/state/#methods")} />
+<LinkCard
+  title="Form Methods API Reference"
+  href={withBase("/form/state/#methods")}
+/>
 
 # Quickstart
 
-import { Code, Card, LinkCard } from '@astrojs/starlight/components';
+import { Code, Card, LinkCard } from "@astrojs/starlight/components";
+import { formPackage } from "meta";
 
-import pkg from 'pkgs/form/package.json'
-
-import { withBase } from '@/lib/base-path';
-import { createThemeInstall } from '@/shared'
-import FormCard from '@/components/form-card.astro'
+import { withBase } from "@/lib/base-path";
 import Npm from "@/components/npm.astro";
-import Deps from '@/components/peer-dependencies.astro';
-
-import SimpleSetupForm from "./simple-setup.svelte";
-import simpleSetupCode from './simple-setup.svelte?raw';
-
-import UiSchemaForm from './ui-schema.svelte';
-import uiSchemaCode from './ui-schema.svelte?raw';
-
-import FormStateForm from './form-state.svelte';
-import formStateCode from './form-state.svelte?raw';
-
-import ControlledForm from './controlled-form.svelte';
-import controlledFormCode from './controlled-form.svelte?raw';
+import Deps from "@/components/peer-dependencies.astro";
+import Demo from "@/components/demo.svelte";
 
 ## Installation
 
@@ -2411,26 +2590,22 @@ Install as a community add-on using the Svelte CLI.
 
 <Npm type="dlx" pkg="sv add @sjsf" />
 
-<Deps hideOptional {...pkg} />
+<Deps hideOptional pkg={formPackage} />
 
 ## Usage
 
 Let's start with the simplest setup:
 
-<Code code={simpleSetupCode} lang="svelte" />
+<Demo name="simple-setup" theme="basic" client:visible />
 
-<FormCard>
-  <SimpleSetupForm client:only="svelte" />
-</FormCard>
-
-In the example above, we create a form based on json schema and
+In the example above, we create a form based on JSON Schema and
 use HTML5 validation to validate the form.
 
 Although this is an extremely simple example, it turned out to be quite verbose, and here's why:
 
 - **Explicit Configuration**: The library favors explicit configuration over "magic" defaults.
 - **Tree-Shakeable Architecture**: Each feature is located in its own [submodule](https://nodejs.org/api/packages.html#subpath-exports)
-so you can import only the functionality you need, keeping your bundle lean and optimized.
+  so you can import only the functionality you need, keeping your bundle lean and optimized.
 - **Highly Customizable**: We provide extensive customization options so that you can tailor every aspect of the library to your needs.
 
 <LinkCard title="Schema" href={withBase("/form/schema/")} />
@@ -2447,11 +2622,7 @@ We'll talk about `* as defaults` in the [Reusable defaults](/guides/reusable-def
 
 :::
 
-<Code code={uiSchemaCode} lang="svelte" />
-
-<FormCard>
-  <UiSchemaForm client:only="svelte" />
-</FormCard>
+<Demo name="ui-schema" client:visible />
 
 <LinkCard title="UI Schema" href={withBase("/form/ui-schema/")} />
 
@@ -2465,11 +2636,7 @@ Use getters to pass reactive parameters.
 
 :::
 
-<Code code={formStateCode} lang="svelte" />
-
-<FormCard>
-  <FormStateForm client:only="svelte" />
-</FormCard>
+<Demo name="form-state" client:visible />
 
 <LinkCard title="Form state" href={withBase("/form/state/")} />
 
@@ -2494,23 +2661,19 @@ Before using, please read the section - [Direct modification of form state](/for
 
 :::
 
-<Code code={controlledFormCode} lang="svelte" />
-
-<FormCard>
-  <ControlledForm client:only="svelte" />
-</FormCard>
+<Demo name="controlled-form" client:visible />
 
 # Reusable defaults
 
-import { Code } from '@astrojs/starlight/components';
+import { Code } from "@astrojs/starlight/components";
 
-import defaultsCode from '@/lib/form/defaults.ts?raw';
+import defaultsCode from "@/lib/sjsf/defaults.ts?raw";
 
 Even with a simple setup, resulting code is very verbose.
 Therefore, it is convenient to create a file that re-exports the selected
 resolver, theme, validator, merger and translation.
 
-<Code code={defaultsCode} lang="typescript" title="lib/form/defaults.ts" />
+<Code code={defaultsCode} lang="typescript" title="lib/sjsf/defaults.ts" />
 
 And use it like this:
 
@@ -2526,26 +2689,17 @@ define `export const defaults = { ... }` in a `defaults` file.
 :::
 
 ```typescript
-import * as defaults from '$lib/form/defaults'
+import * as defaults from '$lib/sjsf/defaults'
 
 const form = createForm({ ...defaults, <your-options> })
 ```
 
 # UI customization
 
-import { Code, LinkCard } from '@astrojs/starlight/components'
+import { Code, LinkCard } from "@astrojs/starlight/components";
 
-import { withBase } from '@/lib/base-path'
-import FormCard from '@/components/form-card.astro'
-
-import CustomizableText from './customizable-text.svelte'
-import customizableTextCode from './customizable-text.svelte?raw'
-
-import ActionExample from './action-example.svelte'
-import actionExampleCode from './action-example.svelte?raw'
-
-import ExtraUiOptions from './extra-ui-options.svelte'
-import extraUiOptionsCode from './extra-ui-options.svelte?raw'
+import { withBase } from "@/lib/base-path";
+import Demo from "@/components/demo.svelte";
 
 ## Widgets customization
 
@@ -2558,11 +2712,7 @@ adds the property `text?: HTMLInputAttributes`.
 By specifying it in the UI options,
 you can control the widget's attributes - even reactively.
 
-<Code code={customizableTextCode} lang="svelte" />
-
-<FormCard>
-  <CustomizableText client:only="svelte" />
-</FormCard>
+<Demo name="customizable-text" client:visible />
 
 Check your theme page for an extended list of UI options:
 
@@ -2570,20 +2720,20 @@ Check your theme page for an extended list of UI options:
 <LinkCard title="daisyUI" href={withBase("/themes/daisyui5/#ui-options")} />
 <LinkCard title="Flowbite" href={withBase("/themes/flowbite3/#ui-options")} />
 <LinkCard title="Skeleton" href={withBase("/themes/skeleton4/#ui-options")} />
-<LinkCard title="shadcn-svelte" href={withBase("/themes/shadcn4/#ui-options")} />
+<LinkCard
+  title="shadcn-svelte"
+  href={withBase("/themes/shadcn4/#ui-options")}
+/>
 
 ## Actions
 
 By specifying `action?: FieldAction<SchemaValue | undefined>` in the UI options,
 your snippet will be rendered on the right side of the field header.
 
-<Code code={actionExampleCode} lang="svelte" />
-
-<FormCard>
-  <ActionExample client:only="svelte" />
-</FormCard>
+<Demo name="action-example" client:visible />
 
 You can also use the prebuilt actions available in the `@sjsf/form/fields/actions/*` module:
+
 - `clear-edit.svelte` toggles between `undefined` and default value
 - `clear.svelte` sets value to `undefined`
 - `display-primitive-value.svelte` displays current value
@@ -2636,34 +2786,21 @@ Has no effect on the `title` UI option
 
 :::
 
-<Code code={extraUiOptionsCode} lang="svelte" />
-
-<FormCard>
-  <ExtraUiOptions client:only="svelte" />
-</FormCard>
+<Demo name="extra-ui-options" client:visible />
 
 # Validation
 
-import { Code, Card, LinkCard, Tabs, TabItem } from '@astrojs/starlight/components';
-import { DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS } from '@sjsf/form';
+import {
+  Code,
+  Card,
+  LinkCard,
+  Tabs,
+  TabItem,
+} from "@astrojs/starlight/components";
+import { DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS } from "@sjsf/form";
 
-import { withBase } from '@/lib/base-path'
-import FormCard from '@/components/form-card.astro'
-
-import LiveValidation from './live-validation.svelte'
-import liveValidationCode from './live-validation.svelte?raw'
-
-import FieldsValidation from './fields-validation.svelte'
-import fieldsValidationCode from './fields-validation.svelte?raw'
-
-import AsyncValidation from './async-validation.svelte'
-import asyncValidationCode from './async-validation.svelte?raw'
-
-import FocusOnFirsError from './focus-on-first-error.svelte'
-import focusOnFirstErrorCode from './focus-on-first-error.svelte?raw'
-
-import ErrorsList from './errors-list.svelte'
-import errorsListCode from './errors-list.svelte?raw'
+import { withBase } from "@/lib/base-path";
+import Demo from "@/components/demo.svelte";
 
 By default, form data when submitted will be validated using HTML5 validation and the provided validator.
 
@@ -2677,11 +2814,7 @@ To disable HTML5 validation pass `novalidate` attribute to the form element.
 
 You can easily implement live validation by utilizing Svelte 5 reactivity
 
-<Code code={liveValidationCode} lang="svelte" />
-
-<FormCard>
-  <LiveValidation client:only="svelte" />
-</FormCard>
+<Demo name="live-validation" client:visible />
 
 While it is possible, this approach has low efficiency because
 it is usually not meaningful to validate the entire form when only one field is changed.
@@ -2715,15 +2848,14 @@ onDestroy(() => {
 
 :::
 
-<Code code={fieldsValidationCode} lang="svelte" />
-
-<FormCard>
-  <FieldsValidation client:only="svelte" />
-</FormCard>
+<Demo name="fields-validation" client:visible />
 
 The form in the example above, will validate fields on `input` and `change` events.
 
-<LinkCard title="Fields validation mode" href={withBase("/form/fields/#validation-mode")} />
+<LinkCard
+  title="Fields validation mode"
+  href={withBase("/form/fields/#validation-mode")}
+/>
 
 ## Async validation
 
@@ -2739,16 +2871,7 @@ You can change this behavior by passing the `submissionCombinator` and `fieldsVa
 
 :::
 
-<Tabs>
-  <TabItem label="Form">
-    <FormCard title='Async form' >
-      <AsyncValidation client:only="svelte" />
-    </FormCard>
-  </TabItem>
-  <TabItem label="form.svelte">
-    <Code code={asyncValidationCode} lang="svelte" />
-  </TabItem>
-</Tabs>
+<Demo name="async-validation" client:visible />
 
 Please see your validator page for more information.
 
@@ -2756,11 +2879,7 @@ Please see your validator page for more information.
 
 You can achieve focus on the first error by using the `createFocusOnFirstError` function.
 
-<Code code={focusOnFirstErrorCode} lang="svelte" />
-
-<FormCard>
-  <FocusOnFirsError client:only="svelte" />
-</FormCard>
+<Demo name="focus-on-first-error" client:visible />
 
 1. `focusOnFirstError` will try to find a focusable element and focus it.
 2. If it's not found, it will try to find an errors list and scroll it into view.
@@ -2770,11 +2889,7 @@ You can achieve focus on the first error by using the `createFocusOnFirstError` 
 
 If necessary, you can create a list of errors
 
-<Code code={errorsListCode} lang="svelte" />
-
-<FormCard>
-  <ErrorsList client:only="svelte" />
-</FormCard>
+<Demo name="errors-list" client:visible />
 
 ## State transformation
 
@@ -2795,17 +2910,17 @@ The `omitExtraData` function does not perform data validation!
 :::
 
 ```ts
-import { createForm, type FormValueValidator } from "@sjsf/form";
+import { createForm, type FormValueValidator, validate } from "@sjsf/form";
 import { omitExtraData } from "@sjsf/form/omit-extra-data";
 
-import * as defaults from '@/lib/form/defaults'
+import * as defaults from "@/lib/form/defaults";
 
 import { schema, type FormValue } from "./schema";
 
 const form = createForm<FormValue>({
   ...defaults,
   validator: (options) => {
-    const v = defaults.validator<FormValue>(options)
+    const v = defaults.validator<FormValue>(options);
     return {
       ...v,
       validateFormValue(rootSchema, formValue) {
@@ -2826,48 +2941,52 @@ const form = createForm<FormValue>({
   onSubmitError({ value, errors }) {
     console.log("transformed", value);
     console.log("errors", errors);
-  }
-})
+  },
+});
 
 // Obtaining a value with the applied transformation
-const { value } = validate(form)
+const { value } = validate(form);
 ```
 
 You can also use the `withOmitExtraData(defaults.validator)` function from the
 `@sjsf/form/validators/omit-extra-data` module to achieve the same effect.
 
-# Generic backend
+```ts
+import { createForm } from "@sjsf/form";
+import { withOmitExtraData } from "@sjsf/form/validators/omit-extra-data";
 
-import { Card, Code } from '@astrojs/starlight/components'
+import * as defaults from "@/lib/form/defaults";
 
-import FormCard from '@/components/form-card.astro';
+import { schema, type FormValue } from "./schema";
 
-import Form from './_generic-backend.svelte';
-import formCode from './_generic-backend.svelte?raw';
-
-You can improve the experience of sending data to the server by using the `createTask` function.
-
-<Code code={formCode} lang="svelte" />
-
-<FormCard>
-  <Form client:only="svelte" />
-</FormCard>
+const form = createForm<FormValue>({
+  ...defaults,
+  validator: withOmitExtraData(defaults.validator),
+  schema,
+  onSubmit({ value }) {
+    console.log("transformed", value);
+  },
+});
+```
 
 # Form actions
 
 import { Code, Tabs, TabItem } from "@astrojs/starlight/components";
-import { DEFAULT_ID_SEPARATOR, DEFAULT_ID_PSEUDO_SEPARATOR } from '@sjsf/form/id-builders/legacy';
+import {
+  DEFAULT_ID_SEPARATOR,
+  DEFAULT_ID_PSEUDO_SEPARATOR,
+} from "@sjsf/form/id-builders/legacy";
+import { sveltekitPackage } from "meta";
 
-import pkg from 'pkgs/sveltekit/package.json'
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import Deps from "@/components/peer-dependencies.astro";
 
-import Npm from '@/components/npm.astro';
-import Deps from '@/components/peer-dependencies.astro';
-
-import modelCode from 'examples/sveltekit-starter/src/lib/post.ts?raw'
-import clientCode from 'examples/sveltekit-starter/src/routes/form-actions/+page.svelte?raw';
-import serverCode from 'examples/sveltekit-starter/src/routes/form-actions/+page.server?raw'
-import clientFlexCode from 'examples/sveltekit-starter/src/routes/form-actions-flex/+page.svelte?raw';
-import serverFlexCode from 'examples/sveltekit-starter/src/routes/form-actions-flex/+page.server?raw';
+import modelCode from "examples/sveltekit-starter/src/lib/post.ts?raw";
+import clientCode from "examples/sveltekit-starter/src/routes/form-actions/+page.svelte?raw";
+import serverCode from "examples/sveltekit-starter/src/routes/form-actions/+page.server?raw";
+import clientFlexCode from "examples/sveltekit-starter/src/routes/form-actions-flex/+page.svelte?raw";
+import serverFlexCode from "examples/sveltekit-starter/src/routes/form-actions-flex/+page.server?raw";
 
 Since this is a `Svelte` library, you may want to use it with the `SvelteKit`.
 
@@ -2876,9 +2995,9 @@ even if the user has `JavaScript` disabled.
 
 ## Installation
 
-<Npm pkg="@sjsf/sveltekit" />
+<Npm pkg={getPackageDependencies(sveltekitPackage)} />
 
-<Deps {...pkg} />
+<Deps pkg={sveltekitPackage} />
 
 ## Example
 
@@ -2891,14 +3010,14 @@ For correct operation, you must use ID Builder from the `@sjsf/sveltekit`.
 :::
 
 <Tabs>
-  <TabItem label='+page.svelte' >
-    <Code code={clientCode} lang='svelte' />
+  <TabItem label="+page.svelte">
+    <Code code={clientCode} lang="svelte" />
   </TabItem>
-  <TabItem label='+page.server.ts'>
-    <Code code={serverCode} lang='typescript' />
+  <TabItem label="+page.server.ts">
+    <Code code={serverCode} lang="typescript" />
   </TabItem>
-  <TabItem label='lib/post.ts'>
-    <Code code={modelCode} lang='typescript' />
+  <TabItem label="lib/post.ts">
+    <Code code={modelCode} lang="typescript" />
   </TabItem>
 </Tabs>
 
@@ -2951,6 +3070,7 @@ if (title.length > 100) {
 ### Advanced API
 
 By using the `createFormHandler` API, you can gain more control over the action handler, for example to:
+
 - run checks before processing the form data
 - work with dynamic schemas (call `createFormHandler` inside the action handler)
 
@@ -2963,11 +3083,11 @@ in every branch of the handler's code.
 :::
 
 <Tabs>
-  <TabItem label='+page.server.ts'>
-    <Code code={serverFlexCode} lang='typescript' />
+  <TabItem label="+page.server.ts">
+    <Code code={serverFlexCode} lang="typescript" />
   </TabItem>
-  <TabItem label='lib/post.ts'>
-    <Code code={modelCode} lang='typescript' />
+  <TabItem label="lib/post.ts">
+    <Code code={modelCode} lang="typescript" />
   </TabItem>
 </Tabs>
 
@@ -2976,7 +3096,7 @@ in every branch of the handler's code.
 On the client side you can use `SvelteKitForm` component ([see example](#example)).
 Or use more flexible solution:
 
-<Code code={clientFlexCode} lang='svelte' />
+<Code code={clientFlexCode} lang="svelte" />
 
 The form data type will be inferred from the `ActionData` and `PageData` type.
 
@@ -2984,7 +3104,6 @@ If the value of the form cannot be inferred from `action` and
 you did not use `load` function, then the third generic parameter of
 the `createMeta` function will be used as the form data type
 (default type is `SchemaValue`).
-
 
 According to Svelte documentation your form should always use `POST` requests.
 
@@ -2994,7 +3113,7 @@ By default, the form will work even with JavaScript disabled, but you should con
 
 - `action` should be created with `sendData: true` to persist form data between page updates
 - Form fields for `oneOf`, `anyOf`, `dependencies`, `additionalProperties` and `additionalItems`
-will not expand/switch their state.
+  will not expand/switch their state.
 - Some widgets (like multiselect, depends on the theme) may will not work, because they require `JavaScript`.
 
 ## Comparison with Superforms
@@ -3019,23 +3138,26 @@ until the form is either successfully submitted or reset.
 You can use the following code to check whether any changes have been made.
 
 ```ts
-import { isSchemaValueDeepEqual } from '@sjsf/form/core';
-import { getValueSnapshot } from '@sjsf/form';
-import { preventPageReload } from '@sjsf/form/prevent-page-reload.svelte';
+import { isSchemaValueDeepEqual } from "@sjsf/form/core";
+import { getValueSnapshot } from "@sjsf/form";
+import { preventPageReload } from "@sjsf/form/prevent-page-reload.svelte";
 
 preventPageReload({
   get isChanged() {
-    return form.isChanged && !isSchemaValueDeepEqual(initialValue, getValueSnapshot(form))
-  }
-})
+    return (
+      form.isChanged &&
+      !isSchemaValueDeepEqual(initialValue, getValueSnapshot(form))
+    );
+  },
+});
 ```
 
 ### Available events
 
 - `onSuccess` — triggered when a request completes successfully,
-receiving an `ActionResult<NonNullable<ActionData>>` as the result
+  receiving an `ActionResult<NonNullable<ActionData>>` as the result
 - `onFailure` — triggered when a request fails,
-receiving a `FailedTask<unknown>` as the argument
+  receiving a `FailedTask<unknown>` as the argument
 - `onSubmitError` — triggered when client-side validation errors are present
 - `onSubmissionFailure` — triggered when an error occurs during validation
 
@@ -3075,8 +3197,8 @@ export const actions = {
     (data: Model, _event, { idPrefix }) => {
       console.log(idPrefix, data);
     }
-  )
-} satisfies Actions
+  ),
+} satisfies Actions;
 ```
 
 ### Submit behavior
@@ -3097,20 +3219,31 @@ const { form, request } = setupSvelteKitForm(meta, {
 })
 ```
 
+# Generic backend
+
+import { Card } from "@astrojs/starlight/components";
+
+import { withBase } from "@/lib/base-path";
+import Demo from "@/components/demo.svelte";
+
+The `createTask` factory provides a way to manage async operations
+when sending form data to a server.
+
+<Demo name="generic-backend" client:visible />
+
 # Remote functions
 
 import { Code, Tabs, TabItem } from "@astrojs/starlight/components";
+import { sveltekitPackage } from "meta";
 
-import pkg from 'pkgs/sveltekit/package.json'
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import Deps from "@/components/peer-dependencies.astro";
 
-import Npm from '@/components/npm.astro';
-import Deps from '@/components/peer-dependencies.astro';
-import { mergePackageConfigs } from '@/web-ide/layer';
-
-import modelCode from 'examples/sveltekit-starter/src/lib/post.ts?raw'
-import clientCode from 'examples/sveltekit-starter/src/routes/remote-functions/+page.svelte?raw';
-import clientEnhanceCode from 'examples/sveltekit-starter/src/routes/remote-functions-enhance/+page.svelte?raw';
-import serverCode from 'examples/sveltekit-starter/src/routes/remote-functions/data.remote?raw'
+import modelCode from "examples/sveltekit-starter/src/lib/post.ts?raw";
+import clientCode from "examples/sveltekit-starter/src/routes/remote-functions/+page.svelte?raw";
+import clientEnhanceCode from "examples/sveltekit-starter/src/routes/remote-functions-enhance/+page.svelte?raw";
+import serverCode from "examples/sveltekit-starter/src/routes/remote-functions/data.remote?raw";
 
 :::caution
 
@@ -3120,15 +3253,13 @@ Remote functions integration is experimental
 
 ## Installation
 
-<Npm pkg="@sjsf/sveltekit" />
-
-<Deps {...mergePackageConfigs(pkg, {
-  peerDependencies: {
-    // Cause `hydratable` API
-    // https://github.com/sveltejs/svelte/pull/17154
-    svelte: "^5.44.0"
-  }
-})} />
+<Npm pkg={getPackageDependencies(sveltekitPackage)} />
+{/* Svelte `hydratable` API: https://github.com/sveltejs/svelte/pull/17154 */}
+{/* SvelteKit programmatic submission API: https://github.com/sveltejs/kit/pull/15657 */}
+<Deps
+  pkg={sveltekitPackage}
+  versionOverrides={{ "@sveltejs/kit": "2.61.0", svelte: "5.44.0" }}
+/>
 
 ## Example
 
@@ -3138,18 +3269,20 @@ For correct operation, you must use ID Builder from the `@sjsf/sveltekit/rf`.
 
 :::
 
+{/* TODO: Fix `$lib/remote-form-defaults` */}
+
 <Tabs>
-  <TabItem label='+page.svelte' >
-    <Code code={clientCode} lang='svelte' />
+  <TabItem label="+page.svelte">
+    <Code code={clientCode} lang="svelte" />
   </TabItem>
-  <TabItem label='+page.svelte (enhance)' >
-    <Code code={clientEnhanceCode} lang='svelte' />
+  <TabItem label="+page.svelte (enhance)">
+    <Code code={clientEnhanceCode} lang="svelte" />
   </TabItem>
-  <TabItem label='data.remote.ts'>
-    <Code code={serverCode} lang='typescript' />
+  <TabItem label="data.remote.ts">
+    <Code code={serverCode} lang="typescript" />
   </TabItem>
-  <TabItem label='lib/post.ts'>
-    <Code code={modelCode} lang='typescript' />
+  <TabItem label="lib/post.ts">
+    <Code code={modelCode} lang="typescript" />
   </TabItem>
 </Tabs>
 
@@ -3159,14 +3292,16 @@ For correct operation, you must use ID Builder from the `@sjsf/sveltekit/rf`.
   [issue](https://github.com/sveltejs/kit/issues/14788).
 
   Add this to your `vite.config.js`
+
   ```js
   optimizeDeps: {
     exclude: ['@sjsf/form', '@sjsf/sveltekit/rf/client'],
   }
   ```
+
 - The `form.value` type on the client side is `unknown` because the `RemoteForm`
   type does not include information about the validator's output type.
-  For now, you need to specify the type manually: `createForm<FormValue>(...)`.
+  Specify the type via `connect` generic: `createForm(await connect<FormValue>(...))`.
 
 # Contribute
 
@@ -3179,7 +3314,7 @@ in [GitHub discussions](https://github.com/x0k/svelte-jsonschema-form/discussion
 
 Personally, I use [nix](https://nixos.wiki/wiki/Nix_package_manager)
 [dev](https://nix.dev/manual/nix/2.26/command-ref/new-cli/nix3-develop)
-environment and [mk](https://github.com/x0k/mk), although `pnpm@10` will suffice
+environment and [mk](https://github.com/x0k/mk), although `pnpm@11` will suffice
 to perform any action.
 
 ### Dev server
@@ -3233,7 +3368,7 @@ You can also use the following third-party services for working with LLMs:
 
 # Migration from v2
 
-import Npm from '@/components/npm.astro';
+import Npm from "@/components/npm.astro";
 
 Before migrating, make sure you are using the latest version of SJSF and
 that you are not using any deprecated APIs.
@@ -3274,7 +3409,7 @@ This change addresses several issues:
 - A single validator instance was shared across all forms
 - Form parameters had to be passed manually to validator and merger (`uiSchema`, `idPrefix`, etc.)
 - The default merger relied on a [heavy library](https://github.com/x0k/svelte-jsonschema-form/issues/147)
-as a dependency
+  as a dependency
 - Uncontrolled ID generation system
 
 Now:
@@ -3282,7 +3417,7 @@ Now:
 - Each form creates its own validator and merger instances, passing the necessary parameters automatically
 - The merger is specified explicitly, making it easy to replace if needed
 - A new merger is available with significant improvements in both performance and bundle size
-(`@sjsf/form/mergers/modern`)
+  (`@sjsf/form/mergers/modern`)
 - A controlled and configurable ID generation system
 
 ### All form options now can be reactive
@@ -3290,11 +3425,11 @@ Now:
 All form options now support reactivity. For example:
 
 ```ts
-import { createForm } from '@sjsf/form';
+import { createForm } from "@sjsf/form";
 
-import { getInitialData } from './data.remote';
+import { getInitialData } from "./data.remote";
 
-const initialData = $derived(await getInitialData())
+const initialData = $derived(await getInitialData());
 
 const form = createForm({
   get initialValue() {
@@ -3303,9 +3438,9 @@ const form = createForm({
   get initialErrors() {
     initialData;
     return undefined;
-  }
+  },
   /// ...
-})
+});
 ```
 
 When `initialData` changes, the form state will be updated!
@@ -3414,6 +3549,7 @@ setObjectContext(myObjCtx)
 #### Forced support for nullable fields
 
 The `FieldCommonProps` interface has been updated:
+
 ```diff
 export interface FieldCommonProps<V> {
   ...
@@ -3497,11 +3633,11 @@ have been replaced with `createFormValidatorFactory`.
 For convenient use with `createForm`:
 
 ```ts
-  const form = createForm({
-    ...defaults,
-    schema,
-    validator: createFormValidatorFactory({ validateFunctions }),
-  });
+const form = createForm({
+  ...defaults,
+  schema,
+  validator: createFormValidatorFactory({ validateFunctions }),
+});
 ```
 
 ### Standard schema
@@ -3524,10 +3660,12 @@ import "@sjsf/basic-theme/css/basic.css";
 ### daisyUI v5
 
 File renames:
+
 - `@sjsf/daisyui5-theme/extra-widgets/pikaday-date-picker.svelte` → `@sjsf/daisyui5-theme/extra-widgets/date-picker.svelte`
 - `@sjsf/daisyui5-theme/extra-widgets/pikaday-date-picker-include` → `@sjsf/daisyui5-theme/extra-widgets/date-picker-include`
 
 Widget changes:
+
 - `@sjsf/daisyui5-theme/extra-widgets/cally-date-picker-include`
   now includes `daisyui5CallyDatePickerWidget` instead of `datePickerWidget`
 - `@sjsf/daisyui5-theme/extra-widgets/filter-radio-buttons-include`
@@ -3547,6 +3685,7 @@ import "@sjsf/flowbite3-theme/extra-widgets/toggle-radio-buttons-include";
 ### Skeleton v3
 
 Widget changes:
+
 - `@sjsf/skeleton3-theme/extra-widgets/file-upload-include`
   now includes `skeleton3FileUploadWidget` instead of `fileWidget`
 - `@sjsf/skeleton3-theme/extra-widgets/slider-include`
@@ -3562,12 +3701,12 @@ Now, for the integration to work correctly,
 you must use ID Builder from the `@sjsf/sveltekit` module.
 
 ```ts
-export { createFormIdBuilder as idBuilder } from '@sjsf/sveltekit'
+export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit";
 ```
 
 The `makeFormDataParser` and `validateForm` functions
 have been replaced with `createFormHandler`.
-See the [Form actions](/integrations/sveltekit/form-actions/#advanced-api) page for more information.
+See the [Form actions](/integrations/form-actions/#advanced-api) page for more information.
 
 The `initForm` function has been removed — specify initial values directly instead.
 
@@ -3605,25 +3744,33 @@ Feel free to get in touch about migrating to v3 on [GitHub Discussions](https://
 
 # Basic
 
-import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
-import { specs, extraWidgets } from '@sjsf/basic-theme/specs';
-import styles from '@sjsf/basic-theme/css/basic.css?raw';
-import picoCssStyles from "@picocss/pico/css/pico.css?raw";
-import basicThemePicoCssStyles from "@sjsf/basic-theme/css/pico.css?raw";
+import { Code, Card, TabItem, Tabs } from "@astrojs/starlight/components";
+import { specs, extraWidgets } from "@sjsf/basic-theme/specs";
+import { themePackage } from "meta";
+import { PLAYGROUND_SJSF_THEME_STYLES } from "meta/playground";
 
-import { themePkg } from '@/shared';
-import Npm from '@/components/npm.astro';
-import FormCard from '@/components/form-card.astro';
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import Deps from "@/components/peer-dependencies.astro";
+import FormCard from "@/components/form-card.astro";
 
-import Form from './basic/form.svelte';
-import uiOptionsCode from './basic/ui-options?raw';
-import { createExtraImports, createSchemas, replacer, validationEvents } from "./_demo-schema";
+import Form from "./basic/form.svelte";
+import uiOptionsCode from "./basic/ui-options?raw";
+import {
+  createExtraImports,
+  createSchemas,
+  replacer,
+  validationEvents,
+} from "./_demo-schema";
 
-export const schemas = createSchemas(specs)
+export const schemas = createSchemas(specs);
+export const pkg = themePackage("basic");
 
 ## Installation
 
-<Npm pkg={themePkg('basic')} />
+<Npm pkg={getPackageDependencies(pkg)} />
+
+<Deps pkg={pkg} />
 
 ### Configuration
 
@@ -3654,22 +3801,98 @@ or used in the field as the default widget.
 
 :::
 
-<Code lang='ts' code={createExtraImports("basic", extraWidgets)} />
+<Code lang="ts" code={createExtraImports("basic", extraWidgets)} />
 
 ## Widgets demo
 
 <Tabs>
-  <TabItem label='Form'>
-    <FormCard style={styles}>
+  <TabItem label="Form">
+    <FormCard style={PLAYGROUND_SJSF_THEME_STYLES["basic"]}>
       <Form client:only="svelte" />
     </FormCard>
   </TabItem>
-  <TabItem label='Form (Pico CSS)'>
-    <FormCard style={`${picoCssStyles}\n${basicThemePicoCssStyles}`}>
+  <TabItem label="Form (Pico CSS)">
+    <FormCard style={PLAYGROUND_SJSF_THEME_STYLES["pico"]}>
       <Form client:only="svelte" />
     </FormCard>
   </TabItem>
-  <TabItem label="JSON Schema" >
+  <TabItem label="JSON Schema">
+    <Code lang="json" code={JSON.stringify(schemas.schema, replacer, 2)} />
+  </TabItem>
+  <TabItem label="UI Schema">
+    <Code lang="json" code={JSON.stringify(schemas.uiSchema, replacer, 2)} />
+  </TabItem>
+</Tabs>
+
+## Supported validation events
+
+<div set:html={validationEvents(specs)}></div>
+
+## UI options
+
+<Code code={uiOptionsCode} lang="typescript" />
+
+# Beer CSS
+
+import { Code, Card, TabItem, Tabs } from "@astrojs/starlight/components";
+import { specs, extraWidgets } from "@sjsf-lab/beercss-theme/specs";
+import { themePackage } from "meta";
+
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import FormCard from "@/components/form-card.astro";
+import Deps from "@/components/peer-dependencies.astro";
+
+import {
+  createExtraImports,
+  createSchemas,
+  replacer,
+  validationEvents,
+} from "./_demo-schema";
+import Form from "./beercss/form.svelte";
+import uiOptionsCode from "./beercss/ui-options?raw";
+import { PLAYGROUND_SJSF_THEME_STYLES } from "pkgs/meta/dist/playground";
+
+export const schemas = createSchemas(specs);
+export const pkg = themePackage("beercss");
+
+## Installation
+
+<Npm pkg={getPackageDependencies(pkg)} />
+
+<Deps pkg={pkg} />
+
+### Configuration
+
+Import the Beer CSS stylesheet:
+
+```ts
+import "beercss/dist/cdn/beer.css";
+```
+
+## Extra widgets
+
+You can connect extra widgets using the following `include` imports:
+
+:::note
+
+For a widget to be applied, it must be explicitly specified in the
+[UI schema](/form/ui-schema/#ui-components)
+or used in the field as the default widget.
+
+:::
+
+<Code lang="ts" code={createExtraImports("beercss", extraWidgets)} />
+
+## Widgets demo
+
+<Tabs>
+  <TabItem label="Form">
+    <FormCard style={PLAYGROUND_SJSF_THEME_STYLES["beercss"]}>
+      <Form client:only="svelte" />
+    </FormCard>
+  </TabItem>
+  <TabItem label="JSON Schema">
     <Code lang="json" code={JSON.stringify(schemas.schema, replacer, 2)} />
   </TabItem>
   <TabItem label="UI Schema">
@@ -3687,32 +3910,48 @@ or used in the field as the default widget.
 
 # daisyUI v5
 
-import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/components';
-import { specs, extraWidgets } from '@sjsf/daisyui5-theme/specs';
-import styles from '@sjsf/daisyui5-theme/styles.css?inline';
+import {
+  Code,
+  Card,
+  TabItem,
+  Tabs,
+  LinkButton,
+} from "@astrojs/starlight/components";
+import { specs, extraWidgets } from "@sjsf/daisyui5-theme/specs";
+import styles from "@sjsf/daisyui5-theme/styles.css?inline";
+import { themePackage } from "meta";
 
-import pkg from 'pkgs/daisyui5-theme/package.json'
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import Deps from "@/components/peer-dependencies.astro";
+import FormCard from "@/components/form-card.astro";
 
-import { themePkg } from '@/shared';
-import Npm from '@/components/npm.astro';
-import FormCard from '@/components/form-card.astro';
-import Deps from '@/components/peer-dependencies.astro'
+import Form from "./daisyui5/form.svelte";
+import uiOptionsCode from "./daisyui5/ui-options?raw";
+import {
+  createSchemas,
+  replacer,
+  createExtraImports,
+  validationEvents,
+} from "./_demo-schema";
 
-import Form from './daisyui5/form.svelte'
-import uiOptionsCode from './daisyui5/ui-options?raw';
-import { createSchemas, replacer, createExtraImports, validationEvents } from "./_demo-schema";
-
-export const schemas = createSchemas(specs)
+export const schemas = createSchemas(specs);
+export const pkg = themePackage("daisyui5");
 
 ## Installation
 
-<Npm pkg={themePkg("daisyui5")} />
+<Npm pkg={getPackageDependencies(pkg)} />
 
-<Deps {...pkg} />
+<Deps pkg={pkg} />
 
 ### Install daisyUI v5
 
-<LinkButton href="https://daisyui.com/docs/install/" variant='secondary' target="_blank" icon="external">
+<LinkButton
+  href="https://daisyui.com/docs/install/"
+  variant="secondary"
+  target="_blank"
+  icon="external"
+>
   Install daisyUI as a Tailwind plugin
 </LinkButton>
 
@@ -3736,17 +3975,17 @@ or used in the field as the default widget.
 
 :::
 
-<Code lang='ts' code={createExtraImports("daisyui5", extraWidgets)} />
+<Code lang="ts" code={createExtraImports("daisyui5", extraWidgets)} />
 
 ## Widgets demo
 
 <Tabs>
-  <TabItem label='Form'>
+  <TabItem label="Form">
     <FormCard style={styles}>
       <Form client:only="svelte" />
     </FormCard>
   </TabItem>
-  <TabItem label="JSON Schema" >
+  <TabItem label="JSON Schema">
     <Code lang="json" code={JSON.stringify(schemas.schema, replacer, 2)} />
   </TabItem>
   <TabItem label="UI Schema">
@@ -3764,36 +4003,52 @@ or used in the field as the default widget.
 
 # Flowbite
 
-import { Code, Card, LinkButton, Tabs, TabItem } from '@astrojs/starlight/components';
-import { specs, extraWidgets } from '@sjsf/flowbite3-theme/specs';
-import styles from '@sjsf/flowbite3-theme/styles.css?inline';
+import {
+  Code,
+  Card,
+  LinkButton,
+  Tabs,
+  TabItem,
+} from "@astrojs/starlight/components";
+import { specs, extraWidgets } from "@sjsf/flowbite3-theme/specs";
+import { themePackage } from "meta";
+import { PLAYGROUND_SJSF_THEME_STYLES } from "meta/playground";
 
-import pkg from 'pkgs/flowbite3-theme/package.json'
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import FormCard from "@/components/form-card.astro";
+import Deps from "@/components/peer-dependencies.astro";
 
-import { themePkg } from '@/shared';
-import Npm from '@/components/npm.astro';
-import FormCard from '@/components/form-card.astro';
-import Deps from '@/components/peer-dependencies.astro'
+import Form from "./flowbite3/form.svelte";
+import uiOptionsCode from "./flowbite3/ui-options?raw";
+import {
+  createSchemas,
+  replacer,
+  createExtraImports,
+  validationEvents,
+} from "./_demo-schema";
 
-import Form from './flowbite3/form.svelte';
-import uiOptionsCode from './flowbite3/ui-options?raw';
-import { createSchemas, replacer, createExtraImports, validationEvents } from "./_demo-schema";
-
-export const schemas = createSchemas(specs)
+export const schemas = createSchemas(specs);
+export const pkg = themePackage("flowbite3");
 
 > Flowbite™ is a registered trademark of Bergside Inc.
-This website is not affiliated with, endorsed by, or sponsored by Bergside Inc.
-All rights to the trademark are owned by Bergside Inc.
+> This website is not affiliated with, endorsed by, or sponsored by Bergside Inc.
+> All rights to the trademark are owned by Bergside Inc.
 
 ## Installation
 
-<Npm pkg={themePkg("flowbite3")} />
+<Npm pkg={getPackageDependencies(pkg)} />
 
-<Deps {...pkg} />
+<Deps pkg={pkg} />
 
 ### Install Flowbite Svelte v3
 
-<LinkButton href="https://next.flowbite-svelte.com/docs/pages/quickstart" variant='secondary' target="_blank" icon="external" >
+<LinkButton
+  href="https://next.flowbite-svelte.com/docs/pages/quickstart"
+  variant="secondary"
+  target="_blank"
+  icon="external"
+>
   Quickstart - Flowbite Svelte
 </LinkButton>
 
@@ -3817,17 +4072,17 @@ or used in the field as the default widget.
 
 :::
 
-<Code lang='ts' code={createExtraImports("flowbite3", extraWidgets)} />
+<Code lang="ts" code={createExtraImports("flowbite3", extraWidgets)} />
 
 ## Widgets demo
 
 <Tabs>
-  <TabItem label='Form'>
-    <FormCard style={styles}>
+  <TabItem label="Form">
+    <FormCard style={PLAYGROUND_SJSF_THEME_STYLES["flowbite3"]}>
       <Form client:only="svelte" />
     </FormCard>
   </TabItem>
-  <TabItem label="JSON Schema" >
+  <TabItem label="JSON Schema">
     <Code lang="json" code={JSON.stringify(schemas.schema, replacer, 2)} />
   </TabItem>
   <TabItem label="UI Schema">
@@ -3843,351 +4098,46 @@ or used in the field as the default widget.
 
 <Code code={uiOptionsCode} lang="typescript" />
 
-# Beer CSS
-
-import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
-import { specs, extraWidgets } from '@sjsf-lab/beercss-theme/specs';
-import styles from "beercss/dist/cdn/beer.min.css?raw";
-export const beerCssSettings = `
-:host {
-  --size: 1rem;
-  --font: Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans", Noto Sans, Arial, sans-serif;
-  --font-icon: "Material Symbols Outlined";
-  --speed1: 0.1s;
-  --speed2: 0.2s;
-  --speed3: 0.3s;
-  --speed4: 0.4s;
-  --active: rgb(128 128 128 / 0.192);
-  --overlay: rgb(0 0 0 / 0.5);
-  --elevate1: 0 0.125rem 0.125rem 0 rgb(0 0 0 / 0.32);
-  --elevate2: 0 0.25rem 0.5rem 0 rgb(0 0 0 / 0.4);
-  --elevate3: 0 0.375rem 0.75rem 0 rgb(0 0 0 / 0.48);
-  --top: env(safe-area-inset-top);
-  --bottom: env(safe-area-inset-bottom);
-  --left: env(safe-area-inset-left);
-  --right: env(safe-area-inset-right);
-}
-:host, .light {
-  --primary: #6750a4;
-  --on-primary: #ffffff;
-  --primary-container: #e9ddff;
-  --on-primary-container: #22005d;
-  --secondary: #625b71;
-  --on-secondary: #ffffff;
-  --secondary-container: #e8def8;
-  --on-secondary-container: #1e192b;
-  --tertiary: #7e5260;
-  --on-tertiary: #ffffff;
-  --tertiary-container: #ffd9e3;
-  --on-tertiary-container: #31101d;
-  --error: #ba1a1a;
-  --on-error: #ffffff;
-  --error-container: #ffdad6;
-  --on-error-container: #410002;
-  --background: #fffbff;
-  --on-background: #1c1b1e;
-  --surface: #fdf8fd;
-  --on-surface: #1c1b1e;
-  --surface-variant: #e7e0eb;
-  --on-surface-variant: #49454e;
-  --outline: #7a757f;
-  --outline-variant: #cac4cf;
-  --shadow: #000000;
-  --scrim: #000000;
-  --inverse-surface: #313033;
-  --inverse-on-surface: #f4eff4;
-  --inverse-primary: #cfbcff;
-  --surface-dim: #ddd8dd;
-  --surface-bright: #fdf8fd;
-  --surface-container-lowest: #ffffff;
-  --surface-container-low: #f7f2f7;
-  --surface-container: #f2ecf1;
-  --surface-container-high: #ece7eb;
-  --surface-container-highest: #e6e1e6;
-}
-.dark {
-  --primary: #cfbcff;
-  --on-primary: #381e72;
-  --primary-container: #4f378a;
-  --on-primary-container: #e9ddff;
-  --secondary: #cbc2db;
-  --on-secondary: #332d41;
-  --secondary-container: #4a4458;
-  --on-secondary-container: #e8def8;
-  --tertiary: #efb8c8;
-  --on-tertiary: #4a2532;
-  --tertiary-container: #633b48;
-  --on-tertiary-container: #ffd9e3;
-  --error: #ffb4ab;
-  --on-error: #690005;
-  --error-container: #93000a;
-  --on-error-container: #ffb4ab;
-  --background: #1c1b1e;
-  --on-background: #e6e1e6;
-  --surface: #141316;
-  --on-surface: #e6e1e6;
-  --surface-variant: #49454e;
-  --on-surface-variant: #cac4cf;
-  --outline: #948f99;
-  --outline-variant: #49454e;
-  --shadow: #000000;
-  --scrim: #000000;
-  --inverse-surface: #e6e1e6;
-  --inverse-on-surface: #313033;
-  --inverse-primary: #6750a4;
-  --surface-dim: #141316;
-  --surface-bright: #3a383c;
-  --surface-container-lowest: #0f0e11;
-  --surface-container-low: #1c1b1e;
-  --surface-container: #201f22;
-  --surface-container-high: #2b292d;
-  --surface-container-highest: #363438;
-}`;
-
-import pkg from 'lab/beercss-theme/package.json'
-
-import { themePkg } from '@/shared';
-import Npm from '@/components/npm.astro';
-import FormCard from '@/components/form-card.astro';
-import Deps from '@/components/peer-dependencies.astro';
-
-import { createExtraImports, createSchemas, replacer, validationEvents } from "../_demo-schema";
-import Form from './beercss/form.svelte';
-import uiOptionsCode from './beercss/ui-options?raw';
-
-export const schemas = createSchemas(specs)
-
-## Installation
-
-<Npm pkg={themePkg('beercss')} />
-
-<Deps {...pkg} />
-
-## Extra widgets
-
-You can connect extra widgets using the following `include` imports:
-
-:::note
-
-For a widget to be applied, it must be explicitly specified in the
-[UI schema](/form/ui-schema/#ui-components)
-or used in the field as the default widget.
-
-:::
-
-<Code lang='ts' code={createExtraImports("beercss", extraWidgets)} />
-
-## Widgets demo
-
-<Tabs>
-  <TabItem label='Form'>
-    <FormCard style={`${styles}\n${beerCssSettings}`}>
-      <Form client:only="svelte" />
-    </FormCard>
-  </TabItem>
-  <TabItem label="JSON Schema" >
-    <Code lang="json" code={JSON.stringify(schemas.schema, replacer, 2)} />
-  </TabItem>
-  <TabItem label="UI Schema">
-    <Code lang="json" code={JSON.stringify(schemas.uiSchema, replacer, 2)} />
-  </TabItem>
-</Tabs>
-
-## Supported validation events
-
-<div set:html={validationEvents(specs)}></div>
-
-{/* ## UI options
-
-<Code code={uiOptionsCode} lang="typescript" /> */}
-
-# shadcn-svelte-extras
-
-import { Code, Card, LinkButton, Tabs, TabItem } from '@astrojs/starlight/components';
-import { specs, extraWidgets } from '@sjsf-lab/shadcn-extras-theme/specs';
-import styles from '@sjsf-lab/shadcn-extras-theme/styles.css?inline';
-
-import pkg from 'lab/shadcn-extras-theme/package.json'
-
-import { themePkg } from '@/shared';
-import Npm from '@/components/npm.astro';
-import FormCard from '@/components/form-card.astro';
-import Deps from '@/components/peer-dependencies.astro';
-
-import Form from './shadcn-extras/wrapper.svelte';
-import uiOptionsCode from './shadcn-extras/ui-options?raw';
-import { createSchemas, replacer, createExtraImports, validationEvents } from "../_demo-schema";
-
-export const schemas = createSchemas(specs)
-
-## Installation
-
-<Npm pkg={`${themePkg('shadcn4')} ${themePkg("shadcn-extras")}`} />
-
-<Deps {...pkg} />
-
-### Install shadcn-svelte
-
-<LinkButton href="https://shadcn-svelte.com/docs/installation" variant='secondary' target="_blank" icon="external">
-  Installation - shadcn-svelte
-</LinkButton>
-
-### Configuration
-
-Register the theme source path by adding the following line to the `app.css` file:.
-
-```css
-@source "../node_modules/@sjsf-lab/shadcn-extras-theme/dist";
-```
-
-## Components
-
-Since `shadcn-svelte` and `shadcn-svelte-extras` is not a component libraries
-you should provide your components via `setThemeContext`.
-
-:::note
-
-You should prefer to use components from your code base to avoid code duplication
-
-:::
-
-```typescript
-import { setThemeContext } from '@sjsf/shadcn4-theme';
-import * as components from '@sjsf/shadcn4-theme/new-york';
-import * as extraComponents from '@sjsf-lab/shadcn-extras-theme/ui';
-
-setThemeContext({ components: { ...components, ...extraComponents } })
-```
-
-## Extra widgets
-
-You can connect extra widgets using the following `include` imports:
-
-:::note
-
-For a widget to be applied, it must be explicitly specified in the
-[UI schema](/form/ui-schema/#ui-components)
-or used in the field as the default widget.
-
-:::
-
-<Code lang='ts' code={createExtraImports("shadcn-extras", extraWidgets)} />
-
-## Widgets demo
-
-<Tabs>
-  <TabItem label='Form'>
-    <FormCard style={styles}>
-      <Form client:only="svelte" />
-    </FormCard>
-  </TabItem>
-  <TabItem label="JSON Schema" >
-    <Code lang="json" code={JSON.stringify(schemas.schema, replacer, 2)} />
-  </TabItem>
-  <TabItem label="UI Schema">
-    <Code lang="json" code={JSON.stringify(schemas.uiSchema, replacer, 2)} />
-  </TabItem>
-</Tabs>
-
-{/* ## Supported validation events
-
-<div set:html={validationEvents(specs)}></div>
-
-## UI options
-
-<Code code={uiOptionsCode} lang="typescript" /> */}
-
-# SVAR
-
-import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
-import { specs, extraWidgets } from '@sjsf-lab/svar-theme/specs';
-
-import pkg from 'lab/svar-theme/package.json'
-
-import { themePkg } from '@/shared';
-import Npm from '@/components/npm.astro';
-import FormCard from '@/components/form-card.astro';
-import Deps from '@/components/peer-dependencies.astro';
-
-import Form from './svar/form.svelte';
-import uiOptionsCode from './svar/ui-options?raw';
-import { createExtraImports, createSchemas, replacer, validationEvents } from "../_demo-schema";
-
-export const schemas = createSchemas(specs)
-
-## Installation
-
-<Npm pkg={themePkg('svar')} />
-
-<Deps {...pkg} />
-
-## Extra widgets
-
-You can connect extra widgets using the following `include` imports:
-
-:::note
-
-For a widget to be applied, it must be explicitly specified in the
-[UI schema](/form/ui-schema/#ui-components)
-or used in the field as the default widget.
-
-:::
-
-<Code lang='ts' code={createExtraImports("svar", extraWidgets)} />
-
-## Widgets demo
-
-<Tabs>
-  <TabItem label='Form'>
-    <FormCard>
-      <Form client:only="svelte" />
-    </FormCard>
-  </TabItem>
-  <TabItem label="JSON Schema" >
-    <Code lang="json" code={JSON.stringify(schemas.schema, replacer, 2)} />
-  </TabItem>
-  <TabItem label="UI Schema">
-    <Code lang="json" code={JSON.stringify(schemas.uiSchema, replacer, 2)} />
-  </TabItem>
-</Tabs>
-
-## Supported validation events
-
-<div set:html={validationEvents(specs)}></div>
-
-{/* ## UI options
-
-<Code code={uiOptionsCode} lang="typescript" /> */}
-
 # daisyUI v4
 
-import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/components';
-import { specs, extraWidgets } from '@sjsf/daisyui-theme/specs';
-import styles from '@sjsf/daisyui-theme/styles.css?inline';
+import {
+  Code,
+  Card,
+  TabItem,
+  Tabs,
+  LinkButton,
+} from "@astrojs/starlight/components";
+import { specs, extraWidgets } from "@sjsf/daisyui-theme/specs";
+import styles from "@sjsf/daisyui-theme/styles.css?inline";
+import { themePackage } from "meta";
 
-import pkg from 'legacy/daisyui-theme/package.json'
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import Picker from "@/components/picker.astro";
+import FormCard from "@/components/form-card.astro";
+import Deps from "@/components/peer-dependencies.astro";
 
-import { themePkg } from '@/shared';
-import Npm from '@/components/npm.astro';
-import Picker from '@/components/picker.astro';
-import FormCard from '@/components/form-card.astro';
-import Deps from '@/components/peer-dependencies.astro'
-
-import Form from './daisyui/form.svelte';
-import uiOptionsCode from './daisyui/ui-options?raw';
+import Form from "./daisyui/form.svelte";
+import uiOptionsCode from "./daisyui/ui-options?raw";
 import { createSchemas, replacer, createExtraImports } from "../_demo-schema";
 
-export const schemas = createSchemas(specs)
+export const schemas = createSchemas(specs);
+export const pkg = themePackage("daisyui");
 
 ## Installation
 
-<Npm pkg={themePkg('daisyui')} />
+<Npm pkg={getPackageDependencies(pkg)} />
 
-<Deps {...pkg} />
+<Deps pkg={pkg} />
 
 ### Install daisyUI
 
-<LinkButton href="https://v4.daisyui.com/docs/install/" variant='secondary' target="_blank" icon="external">
+<LinkButton
+  href="https://v4.daisyui.com/docs/install/"
+  variant="secondary"
+  target="_blank"
+  icon="external"
+>
   Install daisyUI as a Tailwind CSS plugin
 </LinkButton>
 
@@ -4198,14 +4148,14 @@ There is two ways to setup styles:
 1. Use tailwindcss config
 
 ```typescript
-import daisyui from 'daisyui';
-import { THEME_CONTENT } from '@sjsf/daisyui-theme/preset'
+import daisyui from "daisyui";
+import { THEME_CONTENT } from "@sjsf/daisyui-theme/preset";
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./src/**/*.{html,js,svelte,ts}', THEME_CONTENT],
+  content: ["./src/**/*.{html,js,svelte,ts}", THEME_CONTENT],
   plugins: [daisyui],
-}
+};
 ```
 
 2. Inject prepared styles (not recommended)
@@ -4227,17 +4177,17 @@ or used in the field as the default widget.
 
 :::
 
-<Code lang='ts' code={createExtraImports("daisyui", extraWidgets)} />
+<Code lang="ts" code={createExtraImports("daisyui", extraWidgets)} />
 
 ## Widgets demo
 
 <Tabs>
-  <TabItem label='Form'>
+  <TabItem label="Form">
     <FormCard style={styles}>
       <Form client:only="svelte" />
     </FormCard>
   </TabItem>
-  <TabItem label="JSON Schema" >
+  <TabItem label="JSON Schema">
     <Code lang="json" code={JSON.stringify(schemas.schema, replacer, 2)} />
   </TabItem>
   <TabItem label="UI Schema">
@@ -4251,37 +4201,48 @@ or used in the field as the default widget.
 
 # Flowbite tw3
 
-import { Code, Card, LinkButton, Tabs, TabItem } from '@astrojs/starlight/components';
-import { specs, extraWidgets } from '@sjsf/flowbite-theme/specs';
-import styles from '@sjsf/flowbite-theme/styles.css?inline';
+import {
+  Code,
+  Card,
+  LinkButton,
+  Tabs,
+  TabItem,
+} from "@astrojs/starlight/components";
+import { specs, extraWidgets } from "@sjsf/flowbite-theme/specs";
+import styles from "@sjsf/flowbite-theme/styles.css?inline";
+import { themePackage } from "meta";
 
-import pkg from 'legacy/flowbite-theme/package.json';
-
-import { themePkg } from '@/shared';
-import Npm from '@/components/npm.astro';
-import Picker from '@/components/picker.astro';
-import FormCard from '@/components/form-card.astro';
-import Deps from '@/components/peer-dependencies.astro'
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import Picker from "@/components/picker.astro";
+import FormCard from "@/components/form-card.astro";
+import Deps from "@/components/peer-dependencies.astro";
 
 import { createSchemas, replacer, createExtraImports } from "../_demo-schema";
-import Form from './flowbite/form.svelte';
-import uiOptionsCode from './flowbite/ui-options?raw';
+import Form from "./flowbite/form.svelte";
+import uiOptionsCode from "./flowbite/ui-options?raw";
 
-export const schemas = createSchemas(specs)
+export const schemas = createSchemas(specs);
+export const pkg = themePackage("flowbite");
 
 > Flowbite™ is a registered trademark of Bergside Inc.
-This website is not affiliated with, endorsed by, or sponsored by Bergside Inc.
-All rights to the trademark are owned by Bergside Inc.
+> This website is not affiliated with, endorsed by, or sponsored by Bergside Inc.
+> All rights to the trademark are owned by Bergside Inc.
 
 ## Installation
 
-<Npm pkg={themePkg("flowbite")} />
+<Npm pkg={getPackageDependencies(pkg)} />
 
-<Deps {...pkg} />
+<Deps pkg={pkg} />
 
 ### Install Flowbite Svelte
 
-<LinkButton href="https://flowbite-svelte.com/docs/pages/quickstart" variant='secondary' target="_blank" icon="external" >
+<LinkButton
+  href="https://flowbite-svelte.com/docs/pages/quickstart"
+  variant="secondary"
+  target="_blank"
+  icon="external"
+>
   Quickstart - Flowbite Svelte
 </LinkButton>
 
@@ -4292,14 +4253,14 @@ There is two ways to setup styles:
 1. Tailwind configuration
 
 ```typescript
-import flowbite from 'flowbite/plugin';
-import { THEME_CONTENT, FLOWBITE_CONTENT } from '@sjsf/flowbite-theme/preset'
+import flowbite from "flowbite/plugin";
+import { THEME_CONTENT, FLOWBITE_CONTENT } from "@sjsf/flowbite-theme/preset";
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./src/**/*.{html,js,svelte,ts}', THEME_CONTENT, FLOWBITE_CONTENT],
+  content: ["./src/**/*.{html,js,svelte,ts}", THEME_CONTENT, FLOWBITE_CONTENT],
   plugins: [flowbite],
-}
+};
 ```
 
 2. Inject prepared styles (not recommended)
@@ -4321,17 +4282,17 @@ or used in the field as the default widget.
 
 :::
 
-<Code lang='ts' code={createExtraImports("flowbite", extraWidgets)} />
+<Code lang="ts" code={createExtraImports("flowbite", extraWidgets)} />
 
 ## Widgets demo
 
 <Tabs>
-  <TabItem label='Form'>
+  <TabItem label="Form">
     <FormCard style={styles}>
       <Form client:only="svelte" />
     </FormCard>
   </TabItem>
-  <TabItem label="JSON Schema" >
+  <TabItem label="JSON Schema">
     <Code lang="json" code={JSON.stringify(schemas.schema, replacer, 2)} />
   </TabItem>
   <TabItem label="UI Schema">
@@ -4345,26 +4306,32 @@ or used in the field as the default widget.
 
 # shadcn-svelte tw3
 
-import { Code, Card, LinkButton, Tabs, TabItem } from '@astrojs/starlight/components';
-import { specs, extraWidgets } from '@sjsf/shadcn-theme/specs';
-import styles from '@sjsf/shadcn-theme/styles.css?inline';
+import {
+  Code,
+  Card,
+  LinkButton,
+  Tabs,
+  TabItem,
+} from "@astrojs/starlight/components";
+import { specs, extraWidgets } from "@sjsf/shadcn-theme/specs";
+import styles from "@sjsf/shadcn-theme/styles.css?inline";
+import { themePackage } from "meta";
 
-import pkg from 'legacy/shadcn-theme/package.json';
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import FormCard from "@/components/form-card.astro";
+import Deps from "@/components/peer-dependencies.astro";
 
-import { themePkg } from '@/shared';
-import Npm from '@/components/npm.astro';
-import FormCard from '@/components/form-card.astro';
-import Deps from '@/components/peer-dependencies.astro'
-
-import Form from './shadcn/form.svelte';
-import uiOptionsCode from './shadcn/ui-options?raw';
+import Form from "./shadcn/form.svelte";
+import uiOptionsCode from "./shadcn/ui-options?raw";
 import { createSchemas, replacer, createExtraImports } from "../_demo-schema";
 
-export const schemas = createSchemas(specs)
+export const schemas = createSchemas(specs);
+export const pkg = themePackage("shadcn");
 
 ## Installation
 
-<Npm pkg={themePkg("shadcn")} />
+<Npm pkg={getPackageDependencies(pkg)} />
 
 :::note
 
@@ -4372,11 +4339,16 @@ This is `shadcn-svelte` based theme (Tailwind v3).
 
 :::
 
-<Deps {...pkg} />
+<Deps pkg={pkg} />
 
 ### Install shadcn-svelte
 
-<LinkButton href="https://tw3.shadcn-svelte.com/docs/installation" variant='secondary' target="_blank" icon="external">
+<LinkButton
+  href="https://tw3.shadcn-svelte.com/docs/installation"
+  variant="secondary"
+  target="_blank"
+  icon="external"
+>
   Installation - shadcn-svelte
 </LinkButton>
 
@@ -4401,7 +4373,7 @@ export default {
 
 ```typescript
 // Inject them as you like
-import shadcnStyles from '@sjsf/shadcn-theme/styles.css?inline';
+import shadcnStyles from "@sjsf/shadcn-theme/styles.css?inline";
 ```
 
 ## Components
@@ -4415,11 +4387,11 @@ You should prefer to use components from your code base to avoid code duplicatio
 :::
 
 ```typescript
-import { setThemeContext } from '@sjsf/shadcn-theme';
-import * as components from '@sjsf/shadcn-theme/default';
+import { setThemeContext } from "@sjsf/shadcn-theme";
+import * as components from "@sjsf/shadcn-theme/default";
 // or import * as components from '@sjsf/shadcn-theme/new-york';
 
-setThemeContext({ components })
+setThemeContext({ components });
 ```
 
 ## Extra widgets
@@ -4441,17 +4413,17 @@ use one or import the replacement widget directly.
 
 :::
 
-<Code lang='ts' code={createExtraImports("shadcn", extraWidgets)} />
+<Code lang="ts" code={createExtraImports("shadcn", extraWidgets)} />
 
 ## Widgets demo
 
 <Tabs>
-  <TabItem label='Form'>
+  <TabItem label="Form">
     <FormCard style={styles}>
       <Form client:only="svelte" />
     </FormCard>
   </TabItem>
-  <TabItem label="JSON Schema" >
+  <TabItem label="JSON Schema">
     <Code lang="json" code={JSON.stringify(schemas.schema, replacer, 2)} />
   </TabItem>
   <TabItem label="UI Schema">
@@ -4465,32 +4437,48 @@ use one or import the replacement widget directly.
 
 # Skeleton v3
 
-import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/components';
-import { specs, extraWidgets } from '@sjsf/skeleton3-theme/specs';
+import {
+  Code,
+  Card,
+  TabItem,
+  Tabs,
+  LinkButton,
+} from "@astrojs/starlight/components";
+import { specs, extraWidgets } from "@sjsf/skeleton3-theme/specs";
 import styles from "@sjsf/skeleton3-theme/styles.css?inline";
+import { themePackage } from "meta";
 
-import pkg from 'legacy/skeleton3-theme/package.json'
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import FormCard from "@/components/form-card.astro";
+import Deps from "@/components/peer-dependencies.astro";
 
-import { themePkg } from '@/shared';
-import Npm from '@/components/npm.astro';
-import FormCard from '@/components/form-card.astro';
-import Deps from '@/components/peer-dependencies.astro'
+import Form from "./skeleton3/form.svelte";
+import uiOptionsCode from "./skeleton3/ui-options?raw";
+import {
+  createSchemas,
+  replacer,
+  createExtraImports,
+  validationEvents,
+} from "../_demo-schema";
 
-import Form from './skeleton3/form.svelte';
-import uiOptionsCode from './skeleton3/ui-options?raw';
-import { createSchemas, replacer, createExtraImports, validationEvents } from "../_demo-schema";
-
-export const schemas = createSchemas(specs)
+export const schemas = createSchemas(specs);
+export const pkg = themePackage("skeleton3");
 
 ## Installation
 
-<Npm pkg={themePkg("skeleton3")} />
+<Npm pkg={getPackageDependencies(pkg)} />
 
-<Deps {...pkg} />
+<Deps pkg={pkg} />
 
 ### Install Skeleton v3
 
-<LinkButton href="https://v3.skeleton.dev/docs/get-started/installation/sveltekit" variant='secondary' target="_blank" icon="external">
+<LinkButton
+  href="https://v3.skeleton.dev/docs/get-started/installation/sveltekit"
+  variant="secondary"
+  target="_blank"
+  icon="external"
+>
   Install and configure Skeleton for SvelteKit
 </LinkButton>
 
@@ -4514,17 +4502,129 @@ or used in the field as the default widget.
 
 :::
 
-<Code lang='ts' code={createExtraImports("skeleton3", extraWidgets)} />
+<Code lang="ts" code={createExtraImports("skeleton3", extraWidgets)} />
 
 ## Widgets demo
 
 <Tabs>
-  <TabItem label='Form'>
+  <TabItem label="Form">
     <FormCard style={styles}>
       <Form client:only="svelte" />
     </FormCard>
   </TabItem>
-  <TabItem label="JSON Schema" >
+  <TabItem label="JSON Schema">
+    <Code lang="json" code={JSON.stringify(schemas.schema, replacer, 2)} />
+  </TabItem>
+  <TabItem label="UI Schema">
+    <Code lang="json" code={JSON.stringify(schemas.uiSchema, replacer, 2)} />
+  </TabItem>
+</Tabs>
+
+## Supported validation events
+
+<div set:html={validationEvents(specs)}></div>
+
+## UI options
+
+<Code code={uiOptionsCode} lang="typescript" />
+
+# shadcn-svelte-extras
+
+import {
+  Code,
+  Card,
+  LinkButton,
+  Tabs,
+  TabItem,
+} from "@astrojs/starlight/components";
+import { specs, extraWidgets } from "@sjsf-lab/shadcn-extras-theme/specs";
+import styles from "@sjsf-lab/shadcn-extras-theme/styles.css?inline";
+import { themePackage } from "meta";
+
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import FormCard from "@/components/form-card.astro";
+import Deps from "@/components/peer-dependencies.astro";
+
+import Form from "./shadcn-extras/wrapper.svelte";
+import uiOptionsCode from "./shadcn-extras/ui-options?raw";
+import {
+  createSchemas,
+  replacer,
+  createExtraImports,
+  validationEvents,
+} from "./_demo-schema";
+
+export const schemas = createSchemas(specs);
+export const pkg = themePackage("shadcn-extras");
+
+## Installation
+
+<Npm pkg={getPackageDependencies(pkg)} />
+
+<Deps pkg={pkg} />
+
+### Install shadcn-svelte
+
+<LinkButton
+  href="https://shadcn-svelte.com/docs/installation"
+  variant="secondary"
+  target="_blank"
+  icon="external"
+>
+  Installation - shadcn-svelte
+</LinkButton>
+
+### Configuration
+
+Register the theme source path by adding the following line to the `app.css` file:
+
+```css
+@source "../node_modules/@sjsf-lab/shadcn-extras-theme/dist";
+```
+
+## Components
+
+Since `shadcn-svelte` and `shadcn-svelte-extras` are not component libraries
+you should provide your components via `setThemeContext`.
+
+:::note
+
+You should prefer to use components from your code base to avoid code duplication
+
+:::
+
+```typescript
+import { setThemeContext } from "@sjsf/shadcn4-theme";
+import * as components from "@sjsf/shadcn4-theme/new-york";
+import * as extraComponents from "@sjsf-lab/shadcn-extras-theme/ui";
+
+setThemeContext({ components: { ...components, ...extraComponents } });
+```
+
+## Extra widgets
+
+You can connect extra widgets using the following `include` imports:
+
+:::note
+
+For a widget to be applied, it must be explicitly specified in the
+[UI schema](/form/ui-schema/#ui-components)
+or used in the field as the default widget.
+
+:::
+
+<Code lang="ts" code={createExtraImports("shadcn-extras", extraWidgets)} />
+
+## Widgets demo
+
+<Tabs>
+  <TabItem label="Form">
+    <FormCard style={styles}>
+      <Form client:only="svelte" />
+    </FormCard>
+  </TabItem>
+  <TabItem label="JSON Schema">
     <Code lang="json" code={JSON.stringify(schemas.schema, replacer, 2)} />
   </TabItem>
   <TabItem label="UI Schema">
@@ -4542,33 +4642,50 @@ or used in the field as the default widget.
 
 # shadcn-svelte
 
-import { Code, Card, LinkButton, Tabs, TabItem } from '@astrojs/starlight/components';
-import { specs, extraWidgets } from '@sjsf/shadcn4-theme/specs';
-import styles from '@sjsf/shadcn4-theme/styles.css?inline';
+import {
+  Code,
+  Card,
+  LinkButton,
+  Tabs,
+  TabItem,
+} from "@astrojs/starlight/components";
+import { specs, extraWidgets } from "@sjsf/shadcn4-theme/specs";
+import styles from "@sjsf/shadcn4-theme/styles.css?inline";
+import { themePackage } from "meta";
 
-import shadcnContextCode from 'apps/playground2/src/shadcn-context.ts?raw'
-import pkg from 'pkgs/shadcn4-theme/package.json'
+import shadcnContextCode from "apps/playground2/src/shadcn-context.ts?raw";
 
-import { themePkg } from '@/shared';
-import Npm from '@/components/npm.astro';
-import FormCard from '@/components/form-card.astro';
-import Deps from '@/components/peer-dependencies.astro'
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import FormCard from "@/components/form-card.astro";
+import Deps from "@/components/peer-dependencies.astro";
 
-import Form from './shadcn4/wrapper.svelte';
-import uiOptionsCode from './shadcn4/ui-options?raw';
-import { createSchemas, replacer, createExtraImports, validationEvents } from "./_demo-schema";
+import Form from "./shadcn4/wrapper.svelte";
+import uiOptionsCode from "./shadcn4/ui-options?raw";
+import {
+  createSchemas,
+  replacer,
+  createExtraImports,
+  validationEvents,
+} from "./_demo-schema";
 
-export const schemas = createSchemas(specs)
+export const schemas = createSchemas(specs);
+export const pkg = themePackage("shadcn4");
 
 ## Installation
 
-<Npm pkg={themePkg("shadcn4")} />
+<Npm pkg={getPackageDependencies(pkg)} />
 
-<Deps {...pkg} />
+<Deps pkg={pkg} />
 
 ### Install shadcn-svelte
 
-<LinkButton href="https://shadcn-svelte.com/docs/installation" variant='secondary' target="_blank" icon="external">
+<LinkButton
+  href="https://shadcn-svelte.com/docs/installation"
+  variant="secondary"
+  target="_blank"
+  icon="external"
+>
   Installation - shadcn-svelte
 </LinkButton>
 
@@ -4596,7 +4713,11 @@ Since `shadcn-svelte` is not a component library you should provide your compone
 
     :::
 
-    <Code lang="typescript" code={shadcnContextCode} />
+    <Code lang="typescript" code={shadcnContextCode
+        .replace('import * as components from "@sjsf-lab/shadcn-extras-theme/ui";\n', '')
+        .replace('      ...components,\n', '')}
+    />
+
   </TabItem>
   <TabItem label="Library components">
     :::caution
@@ -4611,9 +4732,9 @@ Since `shadcn-svelte` is not a component library you should provide your compone
 
     setThemeContext({ components })
     ```
+
   </TabItem>
 </Tabs>
-
 
 ## Extra widgets
 
@@ -4627,17 +4748,17 @@ or used in the field as the default widget.
 
 :::
 
-<Code lang='ts' code={createExtraImports("shadcn4", extraWidgets)} />
+<Code lang="ts" code={createExtraImports("shadcn4", extraWidgets)} />
 
 ## Widgets demo
 
 <Tabs>
-  <TabItem label='Form'>
+  <TabItem label="Form">
     <FormCard style={styles}>
       <Form client:only="svelte" />
     </FormCard>
   </TabItem>
-  <TabItem label="JSON Schema" >
+  <TabItem label="JSON Schema">
     <Code lang="json" code={JSON.stringify(schemas.schema, replacer, 2)} />
   </TabItem>
   <TabItem label="UI Schema">
@@ -4655,32 +4776,48 @@ or used in the field as the default widget.
 
 # Skeleton v4
 
-import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/components';
-import { specs, extraWidgets } from '@sjsf/skeleton4-theme/specs';
+import {
+  Code,
+  Card,
+  TabItem,
+  Tabs,
+  LinkButton,
+} from "@astrojs/starlight/components";
+import { specs, extraWidgets } from "@sjsf/skeleton4-theme/specs";
 import styles from "@sjsf/skeleton4-theme/styles.css?inline";
+import { themePackage } from "meta";
 
-import pkg from 'pkgs/skeleton4-theme/package.json'
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import FormCard from "@/components/form-card.astro";
+import Deps from "@/components/peer-dependencies.astro";
 
-import { themePkg } from '@/shared';
-import Npm from '@/components/npm.astro';
-import FormCard from '@/components/form-card.astro';
-import Deps from '@/components/peer-dependencies.astro'
+import Form from "./skeleton4/form.svelte";
+import uiOptionsCode from "./skeleton4/ui-options?raw";
+import {
+  createSchemas,
+  replacer,
+  createExtraImports,
+  validationEvents,
+} from "./_demo-schema";
 
-import Form from './skeleton4/form.svelte';
-import uiOptionsCode from './skeleton4/ui-options?raw';
-import { createSchemas, replacer, createExtraImports, validationEvents } from "./_demo-schema";
-
-export const schemas = createSchemas(specs)
+export const schemas = createSchemas(specs);
+export const pkg = themePackage("skeleton4");
 
 ## Installation
 
-<Npm pkg={themePkg("skeleton4")} />
+<Npm pkg={getPackageDependencies(pkg)} />
 
-<Deps {...pkg} />
+<Deps pkg={pkg} />
 
 ### Install Skeleton v4
 
-<LinkButton href="https://www.skeleton.dev/docs/get-started/installation/sveltekit" variant='secondary' target="_blank" icon="external">
+<LinkButton
+  href="https://www.skeleton.dev/docs/get-started/installation/sveltekit"
+  variant="secondary"
+  target="_blank"
+  icon="external"
+>
   Install and configure Skeleton for SvelteKit
 </LinkButton>
 
@@ -4704,17 +4841,98 @@ or used in the field as the default widget.
 
 :::
 
-<Code lang='ts' code={createExtraImports("skeleton4", extraWidgets)} />
+<Code lang="ts" code={createExtraImports("skeleton4", extraWidgets)} />
 
 ## Widgets demo
 
 <Tabs>
-  <TabItem label='Form'>
+  <TabItem label="Form">
     <FormCard style={styles}>
       <Form client:only="svelte" />
     </FormCard>
   </TabItem>
-  <TabItem label="JSON Schema" >
+  <TabItem label="JSON Schema">
+    <Code lang="json" code={JSON.stringify(schemas.schema, replacer, 2)} />
+  </TabItem>
+  <TabItem label="UI Schema">
+    <Code lang="json" code={JSON.stringify(schemas.uiSchema, replacer, 2)} />
+  </TabItem>
+</Tabs>
+
+## Supported validation events
+
+<div set:html={validationEvents(specs)}></div>
+
+## UI options
+
+<Code code={uiOptionsCode} lang="typescript" />
+
+# SVAR
+
+import { Code, Card, TabItem, Tabs } from "@astrojs/starlight/components";
+import { specs, extraWidgets } from "@sjsf-lab/svar-theme/specs";
+import { themePackage } from "meta";
+
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import FormCard from "@/components/form-card.astro";
+import Deps from "@/components/peer-dependencies.astro";
+
+import Form from "./svar/form.svelte";
+import uiOptionsCode from "./svar/ui-options?raw";
+import {
+  createExtraImports,
+  createSchemas,
+  replacer,
+  validationEvents,
+} from "./_demo-schema";
+
+export const schemas = createSchemas(specs);
+export const pkg = themePackage("svar");
+
+## Installation
+
+<Npm pkg={getPackageDependencies(pkg)} />
+
+<Deps pkg={pkg} />
+
+### Configuration
+
+Import and wrap your app with the `Willow` component:
+
+```svelte
+<script lang="ts">
+  import { Willow } from "@svar-ui/svelte-core";
+</script>
+
+<Willow>
+  <!-- your app -->
+</Willow>
+```
+
+## Extra widgets
+
+You can connect extra widgets using the following `include` imports:
+
+:::note
+
+For a widget to be applied, it must be explicitly specified in the
+[UI schema](/form/ui-schema/#ui-components)
+or used in the field as the default widget.
+
+:::
+
+<Code lang="ts" code={createExtraImports("svar", extraWidgets)} />
+
+## Widgets demo
+
+<Tabs>
+  <TabItem label="Form">
+    <FormCard>
+      <Form client:only="svelte" />
+    </FormCard>
+  </TabItem>
+  <TabItem label="JSON Schema">
     <Code lang="json" code={JSON.stringify(schemas.schema, replacer, 2)} />
   </TabItem>
   <TabItem label="UI Schema">
@@ -4732,42 +4950,34 @@ or used in the field as the default widget.
 
 # Ajv
 
-import { LinkButton, Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
+import {
+  LinkButton,
+  Code,
+  Card,
+  TabItem,
+  Tabs,
+} from "@astrojs/starlight/components";
+import { externalValidatorPackage } from "meta";
 
-import Npm from '@/components/npm.astro';
-import FormCard from '@/components/form-card.astro';
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import Deps from "@/components/peer-dependencies.astro";
+import Demo from "@/components/demo.svelte";
 
-import Form from './ajv/form.svelte';
-import formCode from './ajv/form.svelte?raw';
-import sharedCode from './shared/index.ts?raw';
-
-import inputSchemaCode from './shared/input-schema.json?raw'
-import PrecompiledForm from './ajv/precompile/form.svelte'
-import precompiledFormCode from './ajv/precompile/form.svelte?raw'
-import compileSchemaCode from './ajv/precompile/compile-schema-script?raw'
-import precompiledSchemaCode from './ajv/precompile/patched-schema?raw'
+export const pkg = externalValidatorPackage("ajv8");
 
 Form validator implementation based on [Ajv@8](https://github.com/ajv-validator/ajv)
 JSON schema validator.
 
 ## Installation
 
-<Npm pkg="@sjsf/ajv8-validator ajv@8" />
+<Npm pkg={getPackageDependencies(pkg)} />
+
+<Deps pkg={pkg} />
 
 ## Example
 
-<Tabs>
-  <TabItem label="form.svelte">
-    <Code code={formCode} lang='svelte' />
-  </TabItem>
-  <TabItem label="shared.ts">
-    <Code code={sharedCode} lang='typescript' />
-  </TabItem>
-</Tabs>
-
-<FormCard>
-  <Form client:only="svelte" />
-</FormCard>
+<Demo name="ajv" iconsPicker client:visible />
 
 ## Plugins
 
@@ -4776,13 +4986,13 @@ You can connect AJV plugins as follows:
 ```ts
 import type { ValidatorFactoryOptions } from "@sjsf/form";
 import { createFormValidator, addFormComponents } from "@sjsf/ajv8-validator";
-import addFormats from "ajv-formats"
+import addFormats from "ajv-formats";
 
 export const validator = <T>(options: ValidatorFactoryOptions) =>
   createFormValidator<T>({
     ...options,
-    ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
-  })
+    ajvPlugins: (ajv) => addFormComponents(addFormats(ajv)),
+  });
 ```
 
 ## Async validation
@@ -4808,7 +5018,7 @@ export const validator = <T>(options: ValidatorFactoryOptions) =>
   createAsyncFormValidator<T>({
     ...options,
     ajv: addFormComponents(yourAjvInstance),
-  })
+  });
 ```
 
 ## Precompiled validation
@@ -4816,145 +5026,74 @@ export const validator = <T>(options: ValidatorFactoryOptions) =>
 It is possible to use precompiled validator to avoid issues with `unsafe-eval`
 warnings from the browser caused by strict Content Security Policy settings.
 
-### Schema precompilation
+<Demo name="ajv-precompile" client:visible />
 
-The first step in the process is to compile a schema into a set of validate functions.
-
-<Tabs>
-  <TabItem label="compile-schema-script.ts">
-    <Code code={compileSchemaCode} lang='typescript' />
-  </TabItem>
-  <TabItem label="input-schema.json">
-    <Code code={inputSchemaCode} lang='json' />
-  </TabItem>
-</Tabs>
+Run the following command for schema compilation:
 
 ```shell
 node compile-schema-script.ts
 ```
 
-### Usage
-
-<Tabs>
-  <TabItem label="form.svelte">
-    <Code code={precompiledFormCode} lang='svelte' />
-  </TabItem>
-  <TabItem label="patched-schema.ts">
-    <Code code={precompiledSchemaCode} lang='typescript' />
-  </TabItem>
-</Tabs>
-
-<FormCard>
-  <PrecompiledForm client:only="svelte" />
-</FormCard>
-
 # ata-validator
 
-import { LinkButton, Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
+import { externalValidatorPackage } from "meta";
 
-import Npm from '@/components/npm.astro';
-import FormCard from '@/components/form-card.astro';
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import Deps from "@/components/peer-dependencies.astro";
+import Demo from "@/components/demo.svelte";
 
-import Form from './ata/form.svelte';
-import formCode from './ata/form.svelte?raw';
-import sharedCode from './shared/index.ts?raw';
-
-import inputSchemaCode from './shared/input-schema.json?raw'
-import PrecompiledForm from './ata/precompile/form.svelte'
-import precompiledFormCode from './ata/precompile/form.svelte?raw'
-import compileSchemaCode from './ata/precompile/compile-schema-script?raw'
-import precompiledSchemaCode from './ata/precompile/patched-schema?raw'
+export const pkg = externalValidatorPackage("ata");
 
 Form validator implementation based on [ata-validator](https://github.com/ata-core/ata-validator)
 JSON schema validator.
 
 ## Installation
 
-<Npm pkg="@sjsf-lab/ata-validator ata-validator" />
+<Npm pkg={getPackageDependencies(pkg)} />
+
+<Deps pkg={pkg} />
 
 ## Example
 
-<Tabs>
-  <TabItem label="form.svelte">
-    <Code code={formCode} lang='svelte' />
-  </TabItem>
-  <TabItem label="shared.ts">
-    <Code code={sharedCode} lang='typescript' />
-  </TabItem>
-</Tabs>
-
-<FormCard>
-  <Form client:only="svelte" />
-</FormCard>
+<Demo name="ata" iconsPicker client:visible />
 
 ## Precompiled validation
 
 It is possible to use precompiled validator to avoid issues with `unsafe-eval`
 warnings from the browser caused by strict Content Security Policy settings.
 
-### Schema precompilation
+<Demo name="ata-precompile" client:visible />
 
-The first step in the process is to compile a schema into a set of validate functions.
-
-<Tabs>
-  <TabItem label="compile-schema-script.ts">
-    <Code code={compileSchemaCode} lang='typescript' />
-  </TabItem>
-  <TabItem label="input-schema.json">
-    <Code code={inputSchemaCode} lang='json' />
-  </TabItem>
-</Tabs>
+Run the following command for schema compilation:
 
 ```shell
 node compile-schema-script.ts
 ```
 
-### Usage
-
-<Tabs>
-  <TabItem label="form.svelte">
-    <Code code={precompiledFormCode} lang='svelte' />
-  </TabItem>
-  <TabItem label="patched-schema.ts">
-    <Code code={precompiledSchemaCode} lang='typescript' />
-  </TabItem>
-</Tabs>
-
-<FormCard>
-  <PrecompiledForm client:only="svelte" />
-</FormCard>
-
 # cfworker/json-schema
 
-import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
+import { LinkButton } from "@astrojs/starlight/components";
+import { externalValidatorPackage } from "meta";
 
-import Npm from '@/components/npm.astro';
-import FormCard from '@/components/form-card.astro';
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import Deps from "@/components/peer-dependencies.astro";
+import Demo from "@/components/demo.svelte";
 
-import Form from './cfworker/form.svelte';
-import formCode from './cfworker/form.svelte?raw';
-import sharedCode from './shared/index.ts?raw';
+export const pkg = externalValidatorPackage("cfworker");
 
 Form validator implementation based on [@cfworker/json-schema](https://github.com/cfworker/cfworker/tree/main/packages/json-schema).
 
 ## Installation
 
-<Npm pkg="@sjsf/cfworker-validator @cfworker/json-schema" />
+<Npm pkg={getPackageDependencies(pkg)} />
+
+<Deps pkg={pkg} />
 
 ## Example
 
-<Tabs>
-  <TabItem label="form.svelte">
-    <Code code={formCode} lang='svelte' />
-  </TabItem>
-  <TabItem label="shared.ts">
-    <Code code={sharedCode} lang='typescript' />
-  </TabItem>
-</Tabs>
-
-<FormCard>
-  <Form client:only="svelte" />
-</FormCard>
+<Demo name="cfworker" iconsPicker client:visible />
 
 ## Caveats
 
@@ -4969,13 +5108,13 @@ Form validator implementation based on [@cfworker/json-schema](https://github.co
     v === undefined || v === null
       ? null
       : typeof v === "object"
-      ? JSON.parse(JSON.stringify(v))
-      : v
+        ? JSON.parse(JSON.stringify(v))
+        : v;
   ```
 
   It will also lead to incorrect error text (e.g.
-  `Instance type “null” is invalid. Expected “string”`) where you would like to
-  see the text `this field is requred`.
+  `Instance type "null" is invalid. Expected "string"`) where you would like to
+  see the text `this field is required`.
   This can be fixed using [error transformation](/form/validator/).
 
 ## Async validation
@@ -4984,17 +5123,14 @@ This validator does not support async validation.
 
 # hyperjump/json-schema
 
-import { LinkButton, Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
+import { externalValidatorPackage } from "meta";
 
-import Npm from '@/components/npm.astro';
-import FormCard from '@/components/form-card.astro';
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import Deps from "@/components/peer-dependencies.astro";
+import Demo from "@/components/demo.svelte";
 
-
-import inputSchemaCode from './shared/input-schema.json?raw';
-import PrecompiledForm from './hyperjump/form.svelte';
-import precompiledFormCode from './hyperjump/form.svelte?raw';
-import compileSchemaCode from './hyperjump/compile-schema-script?raw';
-import precompiledSchemaCode from './hyperjump/patched-schema?raw';
+export const pkg = externalValidatorPackage("hyperjump");
 
 Form validator implementation based on [@hyperjump/json-schema](https://github.com/hyperjump-io/json-schema).
 
@@ -5008,76 +5144,43 @@ with CSP
 
 ## Installation
 
-<Npm pkg="@sjsf-lab/hyperjump-validator @hyperjump/json-schema" />
+<Npm pkg={getPackageDependencies(pkg)} />
+
+<Deps pkg={pkg} />
 
 ## Schema precompilation
 
-<Tabs>
-  <TabItem label="compile-schema-script.ts">
-    <Code code={compileSchemaCode} lang='typescript' />
-  </TabItem>
-  <TabItem label="input-schema.json">
-    <Code code={inputSchemaCode} lang='json' />
-  </TabItem>
-</Tabs>
+<Demo name="hyperjump" client:visible />
+
+Run the following command for schema compilation:
 
 ```shell
 node compile-schema-script.ts
 ```
 
-## Usage
-
-<Tabs>
-  <TabItem label="form.svelte">
-    <Code code={precompiledFormCode} lang='svelte' />
-  </TabItem>
-  <TabItem label="patched-schema.ts">
-    <Code code={precompiledSchemaCode} lang='typescript' />
-  </TabItem>
-</Tabs>
-
-<FormCard>
-  <PrecompiledForm client:only="svelte" />
-</FormCard>
-
 # exodus/schemasafe
 
-import { LinkButton, Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
+import { externalValidatorPackage } from "meta";
 
-import Npm from '@/components/npm.astro';
-import FormCard from '@/components/form-card.astro';
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import Deps from "@/components/peer-dependencies.astro";
+import Demo from "@/components/demo.svelte";
 
-import Form from './schemasafe/form.svelte';
-import formCode from './schemasafe/form.svelte?raw';
-import sharedCode from './shared/index.ts?raw';
-
-import inputSchemaCode from './shared/input-schema.json?raw'
-import PrecompiledForm from './schemasafe/precompile/form.svelte'
-import precompiledFormCode from './schemasafe/precompile/form.svelte?raw'
-import compileSchemaCode from './schemasafe/precompile/compile-schema-script?raw'
-import precompiledSchemaCode from './schemasafe/precompile/patched-schema?raw'
+export const pkg = externalValidatorPackage("schemasafe");
 
 Form validator implementation based on [@exodus/schemasafe](https://github.com/ExodusMovement/schemasafe)
 a code-generating JSON Schema validator.
 
 ## Installation
 
-<Npm pkg="@sjsf/schemasafe-validator ajv@8" />
+<Npm pkg={getPackageDependencies(pkg)} />
+
+<Deps pkg={pkg} />
 
 ## Example
 
-<Tabs>
-  <TabItem label="form.svelte">
-    <Code code={formCode} lang='svelte' />
-  </TabItem>
-  <TabItem label="shared.ts">
-    <Code code={sharedCode} lang='typescript' />
-  </TabItem>
-</Tabs>
-
-<FormCard>
-  <Form client:only="svelte" />
-</FormCard>
+<Demo name="schemasafe" iconsPicker client:visible />
 
 ## Async validation
 
@@ -5087,47 +5190,17 @@ This validator does not support async validation.
 
 It is possible to use precompiled validator.
 
-### Schema precompilation
+<Demo name="schemasafe-precompile" client:visible />
 
-The first step in the process is to compile a schema into a set of validate functions.
-
-<Tabs>
-  <TabItem label="compile-schema-script.ts">
-    <Code code={compileSchemaCode} lang='typescript' />
-  </TabItem>
-  <TabItem label="input-schema.json">
-    <Code code={inputSchemaCode} lang='json' />
-  </TabItem>
-</Tabs>
+Run the following command for schema compilation:
 
 ```shell
 node compile-schema-script.ts
 ```
 
-### Usage
-
-<Tabs>
-  <TabItem label="form.svelte">
-    <Code code={precompiledFormCode} lang='svelte' />
-  </TabItem>
-  <TabItem label="patched-schema.ts">
-    <Code code={precompiledSchemaCode} lang='typescript' />
-  </TabItem>
-</Tabs>
-
-<FormCard>
-  <PrecompiledForm client:only="svelte" />
-</FormCard>
-
 # Standard Schema
 
-import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
-
-import FormCard from '@/components/form-card.astro';
-
-import Form from './standard-schema/form.svelte';
-import formCode from './standard-schema/form.svelte?raw';
-import sharedCode from './shared/index.ts?raw';
+import Demo from "@/components/demo.svelte";
 
 You can use any entity that implements [Standard Schema](https://standardschema.dev/schema)
 or [Standard JSON Schema](https://standardschema.dev/json-schema) as a source for
@@ -5135,23 +5208,12 @@ the JSON Schema and for performing full form validation.
 
 ## Example
 
-<Tabs>
-  <TabItem label="form.svelte">
-    <Code code={formCode} lang='svelte' />
-  </TabItem>
-  <TabItem label="shared.ts">
-    <Code code={sharedCode} lang='typescript' />
-  </TabItem>
-</Tabs>
-
-<FormCard>
-  <Form client:only="svelte" />
-</FormCard>
+<Demo name="standard-schema" iconsPicker client:visible />
 
 ## Limitations
 
 You can use `adapt` as long as the generated schema does not contain
-the following keywords `oneOf`, `anyOf` and `if,them,else`.
+the following keywords: `oneOf`, `anyOf`, and `if`/`then`/`else`.
 
 In such cases, you will need a real `Validator` interface implementation
 (You can take it from another validator or write it yourself).
@@ -5168,45 +5230,42 @@ const { schema, validator } = adaptAsync(standardSchema);
 
 # Valibot
 
-import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
+import { externalValidatorPackage } from "meta";
 
-import Npm from '@/components/npm.astro';
-import FormCard from '@/components/form-card.astro';
+import OpenInSandbox from "@/components/open-in-sandbox.svelte";
 
-import Form from './valibot/form.svelte';
-import formCode from './valibot/form.svelte?raw';
-import sharedCode from './shared/index.ts?raw';
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import Deps from "@/components/peer-dependencies.astro";
+import Demo from "@/components/demo.svelte";
+
+export const pkg = externalValidatorPackage("valibot");
 
 You may want to use Valibot validator because:
 
 - You can use Valibot schema as a source of truth for the form value type (`v.InferInput`).
 - This is an easy way to add custom error messages
 
-:::caution
+:::note
 
-Your schema must be convertible to a JSON schema.
-See the [supported features](https://github.com/fabian-hiller/valibot/blob/main/packages/to-json-schema/README.md#supported-features) for details.
+Schemas with unsupported types (`v.date()`, `v.bigint()`, etc.) are silently converted to `{}` (unknown). See the [supported features](https://github.com/fabian-hiller/valibot/blob/main/packages/to-json-schema/README.md#supported-features) for details.
 
 :::
 
 ## Installation
 
-<Npm pkg="@sjsf/valibot-validator @valibot/to-json-schema valibot" />
+<Npm pkg={getPackageDependencies(pkg)} />
+
+<Deps pkg={pkg} />
 
 ## Example
 
-<Tabs>
-  <TabItem label="form.svelte">
-    <Code code={formCode} lang='svelte' />
-  </TabItem>
-  <TabItem label="shared.ts">
-    <Code code={sharedCode} lang='typescript' />
-  </TabItem>
-</Tabs>
+<Demo name="valibot" iconsPicker client:visible />
 
-<FormCard>
-  <Form client:only="svelte" />
-</FormCard>
+## Unrepresentable types
+
+Types like `v.date()`, `v.bigint()`, and `v.file()` have no JSON Schema equivalent. The adapter converts them to `{}` (unknown), rendering the default unknown field. You can wire custom field components via [UI schema](/form/ui-schema/#ui-components) to handle these types.
+See the <OpenInSandbox client:visible example="Valibot Unserializable" /> example for a working demo.
 
 ## Async validation
 
@@ -5220,30 +5279,33 @@ const { schema, validator } = adaptAsync(valibotSchema);
 
 # Zod
 
-import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
+import { externalValidatorPackage } from "meta";
 
-import Npm from '@/components/npm.astro';
-import FormCard from '@/components/form-card.astro';
+import OpenInSandbox from "@/components/open-in-sandbox.svelte";
 
-import Form from './zod4/form.svelte';
-import formCode from './zod4/form.svelte?raw';
-import sharedCode from './shared/index.ts?raw';
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import Deps from "@/components/peer-dependencies.astro";
+import Demo from "@/components/demo.svelte";
+
+export const pkg = externalValidatorPackage("zod4");
 
 You may want to use Zod validator because:
 
 - You can use Zod schema as a source of truth for the form value type (`z.infer`).
 - This is an easy way to add custom error messages
 
-:::caution
+:::note
 
-Your schema must be convertible to a JSON schema.
-See the [unrepresentable](https://zod.dev/json-schema#unrepresentable) for details.
+Schemas with [unrepresentable](https://zod.dev/json-schema#unrepresentable) types (`z.date()`, `z.bigint()`, `z.map()`, etc.) are silently converted to `{}` (unknown). Use custom field components via UI schema to render appropriate widgets for these types.
 
 :::
 
 ## Installation
 
-<Npm pkg="@sjsf/zod4-validator zod" />
+<Npm pkg={getPackageDependencies(pkg)} />
+
+<Deps pkg={pkg} />
 
 ## Example
 
@@ -5253,25 +5315,19 @@ Use `@sjsf/zod4-validator/mini` to work with `zod/mini`
 
 :::
 
-<Tabs>
-  <TabItem label="form.svelte">
-    <Code code={formCode} lang='svelte' />
-  </TabItem>
-  <TabItem label="shared.ts">
-    <Code code={sharedCode} lang='typescript' />
-  </TabItem>
-</Tabs>
+<Demo name="zod4" iconsPicker client:visible />
 
-<FormCard>
-  <Form client:only="svelte" />
-</FormCard>
+## Unrepresentable types
+
+Types like `z.date()`, `z.bigint()`, `z.map()`, and `z.set()` have no JSON Schema equivalent. The adapter converts them to `{}` (unknown), rendering the default unknown field. You can wire custom field components via [UI schema](/form/ui-schema/#ui-components) to handle these types.
+See the <OpenInSandbox client:visible example="Zod Unserializable" /> example for a working demo.
 
 ## Async validation
 
 This validator supports async validation.
 
 ```typescript
-import { adaptAsync } from "@sjsf/zod-validator/classic";
+import { adaptAsync } from "@sjsf/zod4-validator/classic";
 
 const { schema, validator } = adaptAsync(zodSchema);
 ```

@@ -1,0 +1,6 @@
+{
+  "imports": {
+    "zod": "./zod.js",
+    "valibot": "./valibot.js"
+  }
+}

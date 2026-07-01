@@ -1,0 +1,1 @@
+import{t as e}from"./dist.BZD8YfXO.js";import{n as t}from"./schema-transform.BNDWTQ3M.js";var n=t({additionalImports:`import * as v from "valibot"; import { adapt } from "@sjsf/valibot-validator";`,createSchemaCode:t=>e(t,{module:`none`}).slice(15)});export{n as default};

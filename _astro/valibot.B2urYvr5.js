@@ -1,0 +1,1 @@
+import{Yt as e}from"./form._czxSeTP.js";import{n as t}from"./dist.DL27dhTd.js";var n=(n=>async r=>{let{schema:i,validator:a}=t(r);return{schema:i,validator:e(a,n)}});export{n as default};
