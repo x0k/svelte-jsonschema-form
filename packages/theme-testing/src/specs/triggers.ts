@@ -123,6 +123,24 @@ export const changeCallyDatePicker: FieldValidationTrigger = async (l) => {
   await userEvent.click(day);
 };
 
+export const changeVcDatePicker: FieldValidationTrigger = async (l) => {
+  const input = getTextbox(l);
+  let btn: HTMLElement | undefined;
+  const deadline = Date.now() + 5000;
+  while (!btn && Date.now() < deadline) {
+    await userEvent.click(input);
+    await new Promise((r) => setTimeout(r, 50));
+    const buttons = document.querySelectorAll<HTMLElement>(".vc-date__btn");
+    for (const b of buttons) {
+      if (b.textContent?.trim() === "19") {
+        btn = b;
+        break;
+      }
+    }
+  }
+  if (btn) await userEvent.click(btn);
+};
+
 export const inputFlowbiteMultiSelect: FieldValidationTrigger = async (l) => {
   const select = getListbox(l);
   await userEvent.click(select);

@@ -1391,6 +1391,7 @@ export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern'
 // import "@sjsf/daisyui5-theme/extra-widgets/rating-include";
 // import "@sjsf/daisyui5-theme/extra-widgets/switch-include";
 // import "@sjsf/daisyui5-theme/extra-widgets/textarea-include";
+// import "@sjsf/daisyui5-theme/extra-widgets/vc-date-picker-include";
 export { theme } from '@sjsf/daisyui5-theme';
 
 export const onSubmitError = createFocusOnFirstError();

@@ -13,6 +13,7 @@ export const WIDGET_NAMES: Record<WidgetType, string> = {
   checkboxesWidget: "Checkboxes",
   comboboxWidget: "Combobox",
   daisyui5CallyDatePickerWidget: "Cally date picker",
+  daisyui5VcDatePickerWidget: "Vanilla Calendar date picker",
   daisyui5FilterRadioButtonsWidget: "Filter radio buttons",
   datePickerWidget: "Date picker",
   dateRangePickerWidget: "Date range picker",

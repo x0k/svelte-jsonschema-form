@@ -18,6 +18,7 @@
     uiOptionProps,
     type ComponentProps,
   } from "@sjsf/form";
+  import type Pikaday from "pikaday";
 
   let {
     value = $bindable(),
@@ -27,9 +28,10 @@
   }: ComponentProps["datePickerWidget"] = $props();
 
   let input: HTMLInputElement;
+  let picker: Pikaday | undefined;
   $effect(() => {
     import("pikaday").then(({ default: Pikaday }) => {
-      const picker = new Pikaday(
+      picker = new Pikaday(
         uiOptionProps("daisyui5PikadayCalendarOptions")(
           {
             field: input,
@@ -42,8 +44,10 @@
           ctx
         )
       );
-      return () => picker.destroy();
     });
+    return () => {
+      picker?.destroy();
+    };
   });
 
   const ctx = getFormContext();

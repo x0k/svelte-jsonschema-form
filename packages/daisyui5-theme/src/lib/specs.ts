@@ -12,6 +12,7 @@ import "./extra-widgets/rating-include.js";
 import "./extra-widgets/switch-include.js";
 import "./extra-widgets/textarea-include.js";
 import "./extra-widgets/date-picker-include.js";
+import "./extra-widgets/vc-date-picker-include.js";
 
 export const specs: s.Specs = {
   ...DEFAULT_SPECS,
@@ -133,6 +134,17 @@ export const specs: s.Specs = {
       oninput: "inputText",
       onchange: "changeText",
       onblur: "visitText",
+    },
+  ],
+  vcDatePicker: [
+    s.text,
+    {
+      "ui:components": { textWidget: "daisyui5VcDatePickerWidget" },
+    },
+    {
+      oninput: "inputDate",
+      onchange: "changeVcDatePicker",
+      onblur: "visitDate",
     },
   ],
 };

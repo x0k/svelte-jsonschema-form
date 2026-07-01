@@ -201,6 +201,9 @@ catalogs:
     valibot:
       specifier: ^1.4.2
       version: 1.4.2
+    vanilla-calendar-pro:
+      specifier: ^3.1.0
+      version: 3.1.0
     vitest:
       specifier: ^5.0.0-beta.5
       version: 5.0.0-beta.5
@@ -1934,6 +1937,9 @@ importers:
       theme-testing:
         specifier: workspace:*
         version: link:../theme-testing
+      vanilla-calendar-pro:
+        specifier: 'catalog:'
+        version: 3.1.0
 
   packages/flowbite-icons:
     dependencies:
@@ -8138,6 +8144,9 @@ packages:
 
   validate.io-number@1.0.3:
     resolution: {integrity: sha512-kRAyotcbNaSYoDnXvb4MHg/0a1egJdLwS6oJ38TJY7aw9n93Fl/3blIXdyYvPOp55CNxywooG/3BcrwNrBpcSg==}
+
+  vanilla-calendar-pro@3.1.0:
+    resolution: {integrity: sha512-yXDtCaedcKz6i5OOdWGwui0C8MAmjXjj7JzKZyjDlkczSRqnhI8BDGFygqT2K+qL1uY7R2fLYlTlxA6oyFs2yg==}
 
   vfile-location@5.0.3:
     resolution: {integrity: sha512-5yXvWDEgqeiYiBe1lbxYF7UMAIm/IcopxMHrMQDq3nvKcjPKIhZklUKL+AE7J7uApI4kwe2snsK+eI6UTj9EHg==}
@@ -15093,6 +15102,8 @@ snapshots:
       validate.io-number: 1.0.3
 
   validate.io-number@1.0.3: {}
+
+  vanilla-calendar-pro@3.1.0: {}
 
   vfile-location@5.0.3:
     dependencies:

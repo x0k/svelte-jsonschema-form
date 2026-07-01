@@ -36,7 +36,8 @@ export const WIDGETS = {
       "range": "rangeWidget",
       "rating": "ratingWidget",
       "switch": "switchWidget",
-      "textarea": "textareaWidget"
+      "textarea": "textareaWidget",
+      "vc-date-picker": "daisyui5VcDatePickerWidget"
     },
     "optionalDeps": {
       "cally": [
@@ -44,6 +45,9 @@ export const WIDGETS = {
       ],
       "pikaday": [
         "date-picker"
+      ],
+      "vanilla-calendar-pro": [
+        "vc-date-picker"
       ]
     }
   },

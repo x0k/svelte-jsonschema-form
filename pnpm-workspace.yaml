@@ -63,6 +63,7 @@ catalog:
   jsonpointer: ^5.0.1
   lz-string: ^1.5.0
   pikaday: ^1.8.2
+  vanilla-calendar-pro: ^3.1.0
   playwright: 1.61.1
   postcss: ^8.5.16
   shadcn-svelte: ^1.3.0

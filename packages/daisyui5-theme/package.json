@@ -80,20 +80,25 @@
     "pikaday": "catalog:",
     "svelte": "catalog:",
     "tailwindcss": "catalog:",
-    "theme-testing": "workspace:*"
+    "theme-testing": "workspace:*",
+    "vanilla-calendar-pro": "catalog:"
   },
   "peerDependencies": {
     "@sjsf/form": "workspace:^3.5.0",
     "cally": "^0.8.0 || ^0.9.0",
     "daisyui": "^5.4.0",
     "pikaday": "^1.8.2",
-    "svelte": "^5.34.8"
+    "svelte": "^5.34.8",
+    "vanilla-calendar-pro": "^3.0.0"
   },
   "peerDependenciesMeta": {
     "cally": {
       "optional": true
     },
     "pikaday": {
+      "optional": true
+    },
+    "vanilla-calendar-pro": {
       "optional": true
     }
   }
