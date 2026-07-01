@@ -478,7 +478,7 @@ e/:
     d:
       pnpm run dev
     popd
-  sv/:
+  kit/:
     pushd sveltekit-starter
     c:
       pnpm run check

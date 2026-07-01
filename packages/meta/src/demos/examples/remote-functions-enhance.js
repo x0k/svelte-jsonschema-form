@@ -25,4 +25,5 @@ export default defineExample({
     "src/routes/+page.svelte": pageSvelte,
   },
   codeTransformers: [remoteFormDefaultsReplacer],
+  widgets: ["textarea"],
 });

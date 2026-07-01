@@ -1,6 +1,7 @@
 export { resolver } from "@sjsf/form/resolvers/basic";
 
 export { theme } from "@sjsf/basic-theme";
+import "@sjsf/basic-theme/extra-widgets/textarea-include";
 
 export { translation } from "@sjsf/form/translations/en";
 

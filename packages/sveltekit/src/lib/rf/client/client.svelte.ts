@@ -1,14 +1,9 @@
 import {
   DEFAULT_ID_PREFIX,
-  isUiSchemaRef,
-  resolveUiOptionValue,
-  resolveUiRef,
   SJSF_ID_PREFIX,
   validate,
   type FormOptions,
   type FormState,
-  type ResolvableUiOptions,
-  type UiSchema,
   type UiSchemaRoot,
 } from "@sjsf/form";
 import { isRecordEmpty } from "@sjsf/form/lib/object";
@@ -25,6 +20,7 @@ import {
   createSvelteKitDataParser,
   type SvelteKitDataParserOptions,
 } from "../internal/sveltekit-data-parser.js";
+import { createUiSchemaWithFormAttributes } from "./ui-schema.ts";
 
 export function createClientValidator<T>(form: FormState<T>) {
   return {
@@ -142,60 +138,10 @@ export async function connect<T>(
   );
 
   const uiSchema: UiSchemaRoot = $derived.by(() => {
-    let schema = options.uiSchema;
-    return untrack(() => {
-      if (isUiSchemaRef(schema)) {
-        schema = resolveUiRef(schema, schema);
-      }
-      if (schema === undefined) {
-        return {
-          "ui:options": {
-            form: {
-              get action() {
-                return remoteForm.action;
-              },
-              get method() {
-                return remoteForm.method;
-              },
-            },
-          },
-        };
-      }
-      return new Proxy(schema, {
-        get(t, p, r) {
-          const value: UiSchema[keyof UiSchema] = Reflect.get(t, p, r);
-          return p === "ui:options"
-            ? new Proxy((value as UiSchema["ui:options"]) ?? {}, {
-                get(t, p, r) {
-                  const resolvableOption: ResolvableUiOptions[keyof ResolvableUiOptions] =
-                    Reflect.get(t, p, r);
-                  if (p !== "form") {
-                    return resolvableOption;
-                  }
-                  const resolvableFormOption =
-                    (resolvableOption as ResolvableUiOptions["form"]) ?? {};
-                  const formOptionValue =
-                    resolveUiOptionValue(
-                      options.uiOptionsRegistry ?? {},
-                      resolvableFormOption
-                    ) ?? {};
-                  return new Proxy(formOptionValue, {
-                    get(t, p, r) {
-                      switch (p) {
-                        case "action":
-                        case "method":
-                          return remoteForm[p];
-                        default:
-                          return Reflect.get(t, p, r);
-                      }
-                    },
-                  });
-                },
-              })
-            : value;
-        },
-      });
-    });
+    const { uiSchema, uiOptionsRegistry } = options;
+    return untrack(() =>
+      createUiSchemaWithFormAttributes(remoteForm, uiSchema, uiOptionsRegistry)
+    );
   });
 
   return Object.setPrototypeOf(

@@ -27,4 +27,5 @@ export default defineExample({
     "src/routes/form-content.svelte": formContentSvelte,
   },
   codeTransformers: [remoteFormDefaultsReplacer],
+  widgets: ["textarea"],
 });

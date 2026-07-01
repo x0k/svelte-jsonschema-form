@@ -1,4 +1,4 @@
-import type { Schema } from "@sjsf/form";
+import type { Schema, UiSchema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 export const schema = {
@@ -18,4 +18,12 @@ export const schema = {
   required: ["title", "content"],
 } as const satisfies Schema;
 
-export type CreatePost = FromSchema<typeof schema>;
+export type Model = FromSchema<typeof schema>;
+
+export const uiSchema: UiSchema = {
+  content: {
+    "ui:components": {
+      textWidget: "textareaWidget",
+    },
+  },
+};

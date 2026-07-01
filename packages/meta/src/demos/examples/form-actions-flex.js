@@ -18,4 +18,5 @@ export default defineExample({
     "src/routes/+page.server.ts": pageServerTs,
     "src/routes/+page.svelte": pageSvelte,
   },
+  widgets: ["textarea"],
 });
