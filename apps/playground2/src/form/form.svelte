@@ -521,10 +521,11 @@
     "": () => data,
     v: () => ({
       schema: data.schema,
-      input: data.initialValue,
+      input: valueSnapshotStr,
       validator: data.validator,
     }),
     m: createMergerTransition(data),
+    o: () => ({ schema: data.schema, input: valueSnapshotStr }),
   }}
 >
   <ButtonGroup.Root>

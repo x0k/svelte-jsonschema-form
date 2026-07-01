@@ -1,5 +1,10 @@
 <script lang="ts" module>
-  import type { FormState, MergerState, ValidatorState } from "meta/playground";
+  import type {
+    FormState,
+    MergerState,
+    OmitState,
+    ValidatorState,
+  } from "meta/playground";
 
   import type { Page } from "./router.js";
 
@@ -11,6 +16,7 @@
   const TITLES: Record<Page, string> = {
     "": "Form",
     m: "Merger",
+    o: "Omit",
     v: "Validator",
   };
 
@@ -18,6 +24,7 @@
     "": FormState;
     v: ValidatorState;
     m: MergerState;
+    o: OmitState;
   }
 </script>
 
@@ -81,6 +88,7 @@
     {@render link("")}
     {@render link("v")}
     {@render link("m")}
+    {@render link("o")}
   </ButtonGroup.Root>
   <div class="grow"></div>
   {@render children?.()}

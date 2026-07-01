@@ -5,6 +5,7 @@
 
   import Form from "./form/form.svelte";
   import Merger from "./merger.svelte";
+  import Omit from "./omit.svelte";
   import { router, type Page } from "./router.js";
   import { themeManager } from "./theme.svelte";
   import Validator from "./validator.svelte";
@@ -13,6 +14,7 @@
     "": Form,
     v: Validator,
     m: Merger,
+    o: Omit,
   };
 
   const PageComponent = $derived(PAGES[router.page]);

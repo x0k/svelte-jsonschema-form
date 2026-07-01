@@ -246,6 +246,7 @@
     }),
     v: () => data,
     m: createMergerTransition(data),
+    o: () => ({ schema: data.schema, input: data.input }),
   }}
 >
   <ButtonGroup.Root>

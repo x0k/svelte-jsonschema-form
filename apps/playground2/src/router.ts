@@ -4,10 +4,10 @@ import {
 } from "lz-string";
 import { createSubscriber } from "svelte/reactivity";
 
-export type Page = "" | "v" | "m";
+export type Page = "" | "v" | "m" | "o";
 
 const DEFAULT_PAGE = "";
-const PAGES = new Set<string>([DEFAULT_PAGE, "v", "m"] satisfies Page[]);
+const PAGES = new Set<string>([DEFAULT_PAGE, "v", "m", "o"] satisfies Page[]);
 
 class Router {
   #update: (() => void) | undefined;

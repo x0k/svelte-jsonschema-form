@@ -1,17 +1,14 @@
 <script lang="ts">
   import AlignLeft from "@lucide/svelte/icons/align-left";
+  import { createFormValidator } from "@sjsf/ajv8-validator";
   import { createDeduplicator, createIntersector } from "@sjsf/form/lib/array";
+  import { createComparator, createMerger } from "@sjsf/form/lib/json-schema";
+  import { createMerger as createSchemaMerger } from "@sjsf/form/mergers/modern";
+  import { omitExtraData } from "@sjsf/form/omit-extra-data";
   import {
-    createComparator,
-    createDeepAllOfMerge,
-    createMerger,
-    createShallowAllOfMerge,
-  } from "@sjsf/form/lib/json-schema";
-  import {
-    normalizeMergerState,
     parseFormData,
-    parseJsonSchema,
-    type MergerState,
+    parseSchemaObject,
+    type OmitState,
   } from "meta/playground";
   import { Panel, setTilerContext, type Tiles } from "svelte-tiler";
   import { fromRecord } from "svelte-tiler/shared/registry";
@@ -19,13 +16,9 @@
   import * as Split from "svelte-tiler/tiles/split.svelte";
   import * as Tabs from "svelte-tiler/tiles/tabs.svelte";
 
-  import * as ButtonGroup from "$lib/components/ui/button-group/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
-  import { Checkbox } from "$lib/components/ui/checkbox/index.js";
-  import { Label } from "$lib/components/ui/label/index.js";
   import Editor from "$lib/editor2.svelte";
   import { gripHeader } from "$lib/grip-header.svelte";
-  import Popup from "$lib/popup.svelte";
   import { debouncedEffect } from "$lib/svelte.svelte.js";
   import {
     constraints,
@@ -38,65 +31,73 @@
   import { router } from "./router.js";
   import { createFormatTask, createParseQuery } from "./shared.svelte";
 
-  const DEFAULT_PAGE_STATE: MergerState = {
-    schema: {
-      allOf: [
-        {
-          type: "object",
-          properties: {
-            foo: { type: "string" },
-          },
+  const DEFAULT_PAGE_STATE: OmitState = {
+    schema: JSON.stringify(
+      {
+        type: "object",
+        title: "Person",
+        properties: {
+          name: { type: "string" },
+          age: { type: "number" },
         },
-        { required: ["foo"] },
-      ],
-    },
-    output: {},
-    deep: false,
-    intersectJson: false,
-    deduplicateJsonSchemas: false,
+        required: ["name"],
+      },
+      null,
+      2
+    ),
+    input: JSON.stringify(
+      {
+        name: "John",
+        age: 30,
+        extraField: "should be omitted",
+        anotherExtra: 42,
+      },
+      null,
+      2
+    ),
+    output: "",
   };
 
-  const loadedState = router.load<MergerState>(DEFAULT_PAGE_STATE);
-  const data = $state(normalizeMergerState(loadedState));
+  const data = $state(router.load(DEFAULT_PAGE_STATE));
 
   debouncedEffect(() => {
     const snap = $state.snapshot(data);
     return () => router.store(snap);
   });
 
+  const { compareSchemaDefinitions, compareSchemaValues } = createComparator();
+  const jsonSchemaMerger = createMerger({
+    intersectJson: createIntersector(compareSchemaValues),
+    deduplicateJsonSchemaDef: createDeduplicator(compareSchemaDefinitions),
+  });
+  const merger = createSchemaMerger({ jsonSchemaMerger });
+  const validator = createFormValidator();
+
   const schemaQuery = createParseQuery({
-    parse: parseJsonSchema,
+    parse: parseSchemaObject,
     get input() {
       return data.schema;
     },
     defaultValue: {},
   });
 
-  const merge = $derived.by(() => {
-    const { compareSchemaDefinitions, compareSchemaValues } =
-      createComparator();
-    const { mergeArrayOfSchemaDefinitions } = createMerger({
-      intersectJson: data.intersectJson
-        ? createIntersector(compareSchemaValues)
-        : undefined,
-      deduplicateJsonSchemaDef: data.deduplicateJsonSchemas
-        ? createDeduplicator(compareSchemaDefinitions)
-        : undefined,
-    });
-    const shallowMerge = createShallowAllOfMerge(mergeArrayOfSchemaDefinitions);
-    const deepMerge = createDeepAllOfMerge(shallowMerge);
-    return data.deep ? deepMerge : shallowMerge;
+  const inputQuery = createParseQuery({
+    parse: parseFormData,
+    get input() {
+      return data.input;
+    },
+    defaultValue: undefined,
   });
 
   debouncedEffect(() => {
-    merge;
     const schema = schemaQuery.value;
+    const value = inputQuery.value;
     return () => {
       try {
-        data.output = JSON.stringify(merge(schema), null, 2);
+        const result = omitExtraData(validator, merger, schema, value);
+        data.output = JSON.stringify(result, null, 2);
       } catch (err) {
         data.output = String(err);
-        console.error(err);
       }
     };
   });
@@ -105,6 +106,7 @@
   setTilerContext(ctx);
   const LEAFS = {
     schema,
+    input,
     output,
   };
   const createLeaf = Leaf.setup(fromRecord(LEAFS));
@@ -118,7 +120,7 @@
     applySplit: createApplySplit(ctx),
   });
 
-  const LAYOUT_KEY = "merger-layout";
+  const LAYOUT_KEY = "omit-layout";
   const saved = localStorage.getItem(LAYOUT_KEY);
   let layout = $state(
     saved
@@ -139,6 +141,14 @@
               tile: createTabs({
                 actions: "editorActions",
                 tabHeader: "gripHeader",
+                tabs: [["Input", createLeaf("input")]],
+              }),
+            },
+            {
+              constraints,
+              tile: createTabs({
+                actions: "editorActions",
+                tabHeader: "gripHeader",
                 tabs: [["Output", createLeaf("output")]],
               }),
             },
@@ -151,14 +161,6 @@
     return () => {
       localStorage.setItem(LAYOUT_KEY, JSON.stringify(snap));
     };
-  });
-
-  const outputQuery = createParseQuery({
-    parse: parseFormData,
-    get input() {
-      return data.output;
-    },
-    defaultValue: [],
   });
 
   function isLeafName(k: string): k is keyof typeof LEAFS {
@@ -195,42 +197,24 @@
   />
 {/snippet}
 
-{#snippet output()}
+{#snippet input()}
   <Editor
-    bind:value={data.output}
+    bind:value={data.input}
     class="h-full"
-    data-state={outputQuery.state}
+    data-state={inputQuery.state}
   />
+{/snippet}
+
+{#snippet output()}
+  <Editor bind:value={data.output} class="h-full" />
 {/snippet}
 
 <Header
   transitions={{
-    "": () => ({ schema: data.schema }),
-    v: () => ({ schema: data.schema }),
-    m: () => data,
-    o: () => ({ schema: data.schema }),
+    "": () => ({ schema: data.schema, initialValue: data.input }),
+    v: () => ({ schema: data.schema, input: data.input }),
+    m: () => ({ schema: data.schema }),
+    o: () => data,
   }}
->
-  <ButtonGroup.Root>
-    <Popup>
-      {#snippet label()}
-        Options ({+data.deep +
-          +data.intersectJson +
-          +data.deduplicateJsonSchemas})
-      {/snippet}
-      <Label>
-        <Checkbox bind:checked={data.intersectJson} />
-        Intersect JSON values (enum keyword)
-      </Label>
-      <Label>
-        <Checkbox bind:checked={data.deduplicateJsonSchemas} />
-        Deduplicate JSON Schemas (combinator keywords)
-      </Label>
-      <Label>
-        <Checkbox bind:checked={data.deep} />
-        Merge nested `allOf`
-      </Label>
-    </Popup>
-  </ButtonGroup.Root>
-</Header>
+></Header>
 <Panel bind:layout />
