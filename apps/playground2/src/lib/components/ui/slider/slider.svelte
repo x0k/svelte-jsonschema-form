@@ -42,7 +42,7 @@ get along, so we shut typescript up by casting `value` to `never`.
         )}
       />
     </span>
-    {#each thumbItems as thumb (thumb)}
+    {#each thumbItems as thumb (thumb.index)}
       <SliderPrimitive.Thumb
         data-slot="slider-thumb"
         index={thumb.index}

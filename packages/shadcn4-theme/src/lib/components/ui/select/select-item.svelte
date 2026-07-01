@@ -30,10 +30,12 @@
         <CheckIcon class="cn-select-item-indicator-icon" />
       {/if}
     </span>
-    {#if childrenProp}
-      {@render childrenProp({ selected, highlighted })}
-    {:else}
-      {label || value}
-    {/if}
+    <span class="flex flex-1 shrink-0 gap-2 whitespace-nowrap">
+      {#if childrenProp}
+        {@render childrenProp({ selected, highlighted })}
+      {:else}
+        {label || value}
+      {/if}
+    </span>
   {/snippet}
 </SelectPrimitive.Item>

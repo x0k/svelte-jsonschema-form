@@ -20,7 +20,7 @@
 </script>
 
 {#snippet Fallback()}
-  <ChevronRightIcon class="size-4" />
+  <ChevronRightIcon class={cn("size-4", className)} />
 {/snippet}
 
 <RangeCalendarPrimitive.NextButton

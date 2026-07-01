@@ -1,7 +1,3 @@
-<!--
-	Installed from @ieedan/shadcn-svelte-extras
--->
-
 <script lang="ts">
 	import { isNumber } from '$lib/utils/is-number.js';
 	import { cn } from '$lib/utils.js';
@@ -122,7 +118,7 @@
 	onkeydown={onKeydown}
 	type="text"
 	class={cn(
-		'hide-ramp h-full w-9 border-0 bg-transparent text-center outline-hidden placeholder:text-muted-foreground focus:outline-hidden',
+		'hide-ramp placeholder:text-muted-foreground h-full w-9 border-0 bg-transparent text-center outline-hidden focus:outline-hidden',
 		className
 	)}
 	{...rest}

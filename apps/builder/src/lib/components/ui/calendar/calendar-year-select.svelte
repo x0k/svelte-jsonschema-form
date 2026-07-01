@@ -14,7 +14,7 @@
 
 <span
   class={cn(
-    "border-input has-focus:border-ring has-focus:ring-ring/50 relative flex rounded-md border shadow-xs has-focus:ring-[3px]",
+    "has-focus:border-ring border-input has-focus:ring-ring/50 relative flex rounded-md border shadow-xs has-focus:ring-[3px]",
     className
   )}
 >
@@ -42,7 +42,7 @@
       >
         {yearItems.find((item) => item.value === value)?.label ||
           selectedYearItem.label}
-        <ChevronDownIcon class="size-4" />
+        <ChevronDownIcon class={cn("size-4", className)} />
       </span>
     {/snippet}
   </CalendarPrimitive.YearSelect>

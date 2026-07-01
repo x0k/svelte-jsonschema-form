@@ -19,7 +19,7 @@
   {value}
   data-slot="select-item"
   class={cn(
-    "focus:bg-accent focus:bg-accent focus:text-accent-foreground focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground data-highlighted:bg-accent data-highlighted:text-accent-foreground relative flex w-full cursor-default items-center gap-2 rounded-sm py-1.5 pr-8 pl-2 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 *:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2",
+    "focus:bg-accent focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground focus:bg-accent data-highlighted:bg-accent data-highlighted:text-accent-foreground focus:text-accent-foreground relative flex w-full cursor-default items-center gap-2 rounded-sm py-1.5 pr-8 pl-2 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 *:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2",
     className
   )}
   {...restProps}
@@ -30,10 +30,12 @@
         <CheckIcon class="cn-select-item-indicator-icon" />
       {/if}
     </span>
-    {#if childrenProp}
-      {@render childrenProp({ selected, highlighted })}
-    {:else}
-      {label || value}
-    {/if}
+    <span class="flex flex-1 shrink-0 gap-2 whitespace-nowrap">
+      {#if childrenProp}
+        {@render childrenProp({ selected, highlighted })}
+      {:else}
+        {label || value}
+      {/if}
+    </span>
   {/snippet}
 </SelectPrimitive.Item>

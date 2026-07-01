@@ -11,7 +11,7 @@
 <RatingGroup.Item
 	{index}
 	class={cn(
-		'group/item size-5 rounded-md text-primary ring-ring ring-offset-2 ring-offset-background outline-hidden group-aria-disabled:opacity-50 focus-visible:ring-2',
+		'ring-ring text-primary ring-offset-background group/item size-5 rounded-md ring-offset-2 outline-hidden group-aria-disabled:opacity-50 focus-visible:ring-2',
 		className
 	)}
 >

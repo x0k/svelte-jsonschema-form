@@ -1,7 +1,3 @@
-/*
-	Installed from @ieedan/shadcn-svelte-extras
-*/
-
 import type {
 	WithChildren,
 	WithoutChildren,
@@ -9,7 +5,7 @@ import type {
 	Toggle as TogglePrimitive
 } from 'bits-ui';
 import type { HTMLAttributes, HTMLInputAttributes } from 'svelte/elements';
-import type { CopyButtonProps } from '$lib/components/ui/copy-button/types.js';
+import type { CopyButtonProps } from '$lib/components/ui/copy-button/copy-button.svelte';
 import type { ZxcvbnResult } from '@zxcvbn-ts/core';
 
 export type PasswordRootPropsWithoutHTML = WithChildren<{

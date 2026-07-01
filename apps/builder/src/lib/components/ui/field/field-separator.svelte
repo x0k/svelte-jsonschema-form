@@ -30,7 +30,7 @@
   <Separator class="absolute inset-0 top-1/2" />
   {#if children}
     <span
-      class="bg-background text-muted-foreground relative mx-auto block w-fit px-2"
+      class="text-muted-foreground bg-background relative mx-auto block w-fit px-2"
       data-slot="field-separator-content"
     >
       {@render children()}

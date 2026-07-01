@@ -15,7 +15,7 @@
 	text={state.root.passwordState.value}
 	tabindex={-1}
 	class={cn(
-		'absolute top-1/2 right-0 size-9 min-w-0 -translate-y-1/2 text-muted-foreground hover:!bg-transparent',
+		'text-muted-foreground absolute top-1/2 right-0 size-9 min-w-0 -translate-y-1/2 hover:!bg-transparent',
 		className
 	)}
 />
