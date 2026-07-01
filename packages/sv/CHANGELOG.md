@@ -1,5 +1,13 @@
 # @sjsf/sv
 
+## 0.2.2
+
+### Patch Changes
+
+- Fix remote function integration page generation ([#416](https://github.com/x0k/svelte-jsonschema-form/pull/416))
+
+- Fix addon options definition ([#416](https://github.com/x0k/svelte-jsonschema-form/pull/416))
+
 ## 0.2.1
 
 ### Patch Changes
