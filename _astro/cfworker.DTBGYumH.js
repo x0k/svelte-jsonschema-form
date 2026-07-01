@@ -1,0 +1,1 @@
+import{n as e,t}from"./dist.DL5hzsj3.js";var n=e=>t(e),r=n=>t({...n,factory:t=>new e(t,`2020-12`,!1)});export{n as draft07,r as draft2020};
