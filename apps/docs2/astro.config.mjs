@@ -75,13 +75,7 @@ export default defineConfig({
           rawContent: true,
           exclude: ["404", "changelogs/**", "examples/**"],
         }),
-      ].concat(
-        process.env.CHECK_LINKS
-          ? [
-              // starlightLinksValidator()
-            ]
-          : []
-      ),
+      ].concat(process.env.CHECK_LINKS ? [starlightLinksValidator()] : []),
       title: "svelte-jsonschema-form v3",
       // logo: {
       //   src: "./src/assets/logo.svg",
@@ -150,9 +144,7 @@ export default defineConfig({
         { label: "Documentation v2", link: "/v2/" },
       ],
       components: {
-        // Head: "./src/components/custom-head.astro",
         Header: "./src/components/header-with-links.astro",
-        // MarkdownContent: "./src/components/markdown-content.astro",
         PageTitle: "./src/components/page-title.astro",
       },
       customCss: ["./src/styles.css"],
