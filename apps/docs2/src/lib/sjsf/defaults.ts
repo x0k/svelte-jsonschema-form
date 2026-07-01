@@ -11,8 +11,17 @@ import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
-export { createFormValidator as validator } from "@sjsf/ajv8-validator";
+import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
+import type { ValidatorFactoryOptions } from "@sjsf/form";
+import addFormats from "ajv-formats";
 
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 
 export { translation } from "@sjsf/form/translations/en";
+
+export function validator<T>(options: ValidatorFactoryOptions) {
+  return createFormValidator<T>({
+    ...options,
+    ajvPlugins: (ajv) => addFormats(addFormComponents(ajv)),
+  });
+}

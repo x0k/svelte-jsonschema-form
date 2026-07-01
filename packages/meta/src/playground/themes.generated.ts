@@ -54,6 +54,8 @@ import daisyui5_switchWidget from "@sjsf/daisyui5-theme/extra-widgets/switch.sve
 import "@sjsf/daisyui5-theme/extra-widgets/switch.svelte";
 import daisyui5_textareaWidget from "@sjsf/daisyui5-theme/extra-widgets/textarea.svelte";
 import "@sjsf/daisyui5-theme/extra-widgets/textarea.svelte";
+import daisyui5_daisyui5VcDatePickerWidget from "@sjsf/daisyui5-theme/extra-widgets/vc-date-picker.svelte";
+import "@sjsf/daisyui5-theme/extra-widgets/vc-date-picker.svelte";
 export const daisyui5Theme = extendByRecord(daisyui5Base, {
   ...fields,
   daisyui5CallyDatePickerWidget: clientOnly(() => import("@sjsf/daisyui5-theme/extra-widgets/cally-date-picker.svelte")),
@@ -67,7 +69,8 @@ export const daisyui5Theme = extendByRecord(daisyui5Base, {
   rangeWidget: daisyui5_rangeWidget,
   ratingWidget: daisyui5_ratingWidget,
   switchWidget: daisyui5_switchWidget,
-  textareaWidget: daisyui5_textareaWidget
+  textareaWidget: daisyui5_textareaWidget,
+  daisyui5VcDatePickerWidget: daisyui5_daisyui5VcDatePickerWidget
 });
 
 import { theme as flowbite3Base } from "@sjsf/flowbite3-theme";
