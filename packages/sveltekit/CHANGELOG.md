@@ -1,5 +1,11 @@
 # @sjsf/sveltekit
 
+## 3.7.1
+
+### Patch Changes
+
+- Fix `ownKeys`/`has` inconsistency in UI schema proxy ([#418](https://github.com/x0k/svelte-jsonschema-form/pull/418))
+
 ## 3.7.0
 
 ### Minor Changes

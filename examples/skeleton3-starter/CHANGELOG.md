@@ -1,5 +1,15 @@
 # skeleton3-starter
 
+## 0.0.19
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/ajv8-validator@3.7.1
+  - @sjsf/basic-theme@3.7.1
+  - @sjsf/form@3.7.1
+  - @sjsf/skeleton3-theme@3.1.1
+
 ## 0.0.18
 
 ### Patch Changes

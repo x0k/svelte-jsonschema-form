@@ -1,5 +1,16 @@
 # shadcn-extras-starter
 
+## 0.0.18
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/ajv8-validator@3.7.1
+  - @sjsf/basic-theme@3.7.1
+  - @sjsf/form@3.7.1
+  - @sjsf/shadcn4-theme@3.7.1
+  - @sjsf-lab/shadcn-extras-theme@3.4.2
+
 ## 0.0.17
 
 ### Patch Changes

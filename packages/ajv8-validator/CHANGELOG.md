@@ -1,5 +1,7 @@
 # @sjsf/ajv8-validator
 
+## 3.7.1
+
 ## 3.7.0
 
 ### Minor Changes

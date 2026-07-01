@@ -1,5 +1,15 @@
 # skeleton4-starter
 
+## 0.0.18
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/ajv8-validator@3.7.1
+  - @sjsf/basic-theme@3.7.1
+  - @sjsf/form@3.7.1
+  - @sjsf/skeleton4-theme@3.7.1
+
 ## 0.0.17
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # beercss-starter
 
+## 0.0.14
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/ajv8-validator@3.7.1
+  - @sjsf/form@3.7.1
+  - @sjsf-lab/beercss-theme@3.3.0
+
 ## 0.0.13
 
 ### Patch Changes

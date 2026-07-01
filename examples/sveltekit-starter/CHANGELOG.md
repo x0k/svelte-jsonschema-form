@@ -1,5 +1,17 @@
 # sveltekit-starter
 
+## 0.0.18
+
+### Patch Changes
+
+- Added `uiSchema` with textarea widget for the content field. ([#418](https://github.com/x0k/svelte-jsonschema-form/pull/418))
+
+- Updated dependencies [[`1e90ecc`](https://github.com/x0k/svelte-jsonschema-form/commit/1e90ecc284ab5894ab861148e0f1d351eaddb655)]:
+  - @sjsf/sveltekit@3.7.1
+  - @sjsf/ajv8-validator@3.7.1
+  - @sjsf/basic-theme@3.7.1
+  - @sjsf/form@3.7.1
+
 ## 0.0.17
 
 ### Patch Changes
