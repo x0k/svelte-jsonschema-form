@@ -112,4 +112,5 @@ export const COMPOSER_DEFAULTS = {
   // inlined on demo page
   schema: undefined,
   initialValue: undefined,
+  css: "",
 } as const satisfies Partial<ComposerOptions<any>>;

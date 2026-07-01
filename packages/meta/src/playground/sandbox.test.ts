@@ -144,4 +144,10 @@ describe("sandbox-factory", () => {
       },
     });
   });
+
+  describe("css", () => {
+    testCase("custom css", {
+      css: "body { background: red; }",
+    });
+  });
 });

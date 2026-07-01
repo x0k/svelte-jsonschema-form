@@ -298,5 +298,6 @@ export async function createSandboxFiles({
     disabled: formState.disabled,
     html5Validation: formState.html5Validation,
     resolver: formState.resolver,
+    css: formState.css,
   });
 }

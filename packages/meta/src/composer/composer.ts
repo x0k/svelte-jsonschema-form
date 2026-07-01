@@ -70,6 +70,7 @@ export interface ComposerOptions<T extends CodegenThemeOrSubTheme> {
   focusOnFirstError: boolean;
   html5Validation: boolean;
   resolver: Resolver | "inline";
+  css: string;
 }
 
 const TSCONFIG = JSON.stringify(
@@ -181,6 +182,7 @@ export async function createComposer<T extends CodegenThemeOrSubTheme>(
     focusOnFirstError,
     html5Validation,
     resolver,
+    css,
   } = options;
   const isKit = true;
   const nodeModulesPath = "../../node_modules";
@@ -310,7 +312,7 @@ export async function createComposer<T extends CodegenThemeOrSubTheme>(
       themeOrSubTheme,
       icons,
       sandbox: true,
-    })("")
+    })(css)
   );
 
   // NOTE: We cannot move the padding functionality to `createLayout` because
