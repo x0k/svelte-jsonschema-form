@@ -3503,15 +3503,14 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 	const initialData = await getInitialData();
 
-	const form = createForm<post.Model>(await connect(
-		createPost.enhance(async ({ submit }) => {
-			if (await submit()) {
-				console.log(createPost.result);
-				form.reset();
-			}
-		}),
-		{ ...defaults, ...initialData, fields: createPost.fields }
-	));
+	createPost.enhance(async ({ submit }) => {
+		if (await submit()) {
+			console.log(createPost.result);
+			form.reset();
+		}
+	});
+
+	const form = createForm<post.Model>(await connect(createPost, { ...defaults, ...initialData }));
 </script>
 
 <BasicForm form={form} novalidate />
@@ -3845,20 +3844,18 @@ export const onSubmitError = createFocusOnFirstError();
 
 	const initialData = await getInitialData();
 
-	const form = createForm<post.Model>(await connect(
-		createPost.enhance(async ({ submit }) => {
-			if (await submit()) {
-				console.log(createPost.result);
-				form.reset();
-			}
-		}),
-		{
-			...defaults,
-			...initialData,
-			validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) }),
-			fields: createPost.fields
+	createPost.enhance(async ({ submit }) => {
+		if (await submit()) {
+			console.log(createPost.result);
+			form.reset();
 		}
-	));
+	});
+
+	const form = createForm<post.Model>(await connect(createPost, {
+		...defaults,
+		...initialData,
+		validator: createFormValidatorFactory({ validatorRetriever: fromValidators(validateFunctions) })
+	}));
 </script>
 
 <BasicForm form={form} novalidate />
@@ -4203,20 +4200,18 @@ export const onSubmitError = createFocusOnFirstError();
 
 	const initialData = await getInitialData();
 
-	const form = createForm<post.Model>(await connect(
-		createPost.enhance(async ({ submit }) => {
-			if (await submit()) {
-				console.log(createPost.result);
-				form.reset();
-			}
-		}),
-		{
-			...defaults,
-			...initialData,
-			validator: createFormValidatorFactory({ validatorRetriever: fromAst(ast) }),
-			fields: createPost.fields
+	createPost.enhance(async ({ submit }) => {
+		if (await submit()) {
+			console.log(createPost.result);
+			form.reset();
 		}
-	));
+	});
+
+	const form = createForm<post.Model>(await connect(createPost, {
+		...defaults,
+		...initialData,
+		validator: createFormValidatorFactory({ validatorRetriever: fromAst(ast) })
+	}));
 </script>
 
 <BasicForm form={form} novalidate />
@@ -4437,20 +4432,14 @@ export const onSubmitError = createFocusOnFirstError();
 
 	const initialData = await getInitialData();
 
-	const form = createForm(await connect(
-		createPost.enhance(async ({ submit }) => {
-			if (await submit()) {
-				console.log(createPost.result);
-				form.reset();
-			}
-		}),
-		{
-			...defaults,
-			...initialData,
-			...adapt(post.schema),
-			fields: createPost.fields
+	createPost.enhance(async ({ submit }) => {
+		if (await submit()) {
+			console.log(createPost.result);
+			form.reset();
 		}
-	));
+	});
+
+	const form = createForm(await connect(createPost, { ...defaults, ...initialData, ...adapt(post.schema) }));
 </script>
 
 <BasicForm form={form} novalidate />
