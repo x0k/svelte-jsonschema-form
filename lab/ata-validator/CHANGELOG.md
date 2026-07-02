@@ -4,15 +4,15 @@
 
 ### Minor Changes
 
-- Export `DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS` from `precompile` module ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+- Export `DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS` from `precompile` module ([#390](https://github.com/x0k/svelte-jsonschema-form/pull/390))
 
-- [BREAKING] Bump minimum required version of `ata-validator` to `0.21.0` ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+- [BREAKING] Bump minimum required version of `ata-validator` to `0.21.0` ([#390](https://github.com/x0k/svelte-jsonschema-form/pull/390))
 
 ### Patch Changes
 
-- Make `CompiledValidator` type more permissive ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+- Make `CompiledValidator` type more permissive ([#390](https://github.com/x0k/svelte-jsonschema-form/pull/390))
 
-- Port https://github.com/rjsf-team/react-jsonschema-form/pull/5137 ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/5137 ([#408](https://github.com/x0k/svelte-jsonschema-form/pull/408))
 
 ## 3.1.1
 

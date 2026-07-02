@@ -12,9 +12,9 @@
 
 ### Patch Changes
 
-- Update precompiled validators usage ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+- Update precompiled validators usage ([#386](https://github.com/x0k/svelte-jsonschema-form/pull/386))
 
-- Remove workaround for `@tailwindcss/vite@4.2.4` ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+- Remove workaround for `@tailwindcss/vite@4.2.4` ([#388](https://github.com/x0k/svelte-jsonschema-form/pull/388))
 
 ## 0.2.0
 

@@ -6,7 +6,7 @@
 
 ### Minor Changes
 
-- Allow usage of [unrepresentable](https://zod.dev/json-schema?id=unrepresentable#unrepresentable) schemas ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+- Allow usage of [unrepresentable](https://zod.dev/json-schema?id=unrepresentable#unrepresentable) schemas ([#395](https://github.com/x0k/svelte-jsonschema-form/pull/395))
 
 ## 3.6.0
 

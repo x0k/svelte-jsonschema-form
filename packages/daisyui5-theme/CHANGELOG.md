@@ -11,7 +11,7 @@
 
 ### Minor Changes
 
-- Add `vc-date-picker` extra widget using vanilla-calendar-pro library ([`21c737c`](https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812))
+- Add `vc-date-picker` extra widget using vanilla-calendar-pro library ([#413](https://github.com/x0k/svelte-jsonschema-form/pull/413))
 
 ### Patch Changes
 
