@@ -1,5 +1,11 @@
 # @sjsf/flowbite-icons
 
+## 3.7.2
+
+### Patch Changes
+
+- Restore provenance signature ([`e30f1ee`](https://github.com/x0k/svelte-jsonschema-form/commit/e30f1ee5d3702cde5ead268485351dc1f5a2f447))
+
 ## 3.7.1
 
 ## 3.7.0
