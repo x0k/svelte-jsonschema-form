@@ -18,7 +18,8 @@
     }
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "scripts": {
     "demo-create": "sv create demo --types ts --template minimal --no-add-ons --no-install",
