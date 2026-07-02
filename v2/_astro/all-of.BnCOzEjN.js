@@ -1,0 +1,1 @@
+const e={schema:{type:"object",allOf:[{properties:{lorem:{type:["string","boolean"],default:!0}}},{properties:{lorem:{type:"boolean"},ipsum:{type:"string"}}}]},uiSchema:{},initialValue:{}};export{e as default};
