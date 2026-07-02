@@ -1,5 +1,11 @@
 # @sjsf/sv
 
+## 0.2.3
+
+### Patch Changes
+
+- Add npm provenance support ([`8b67594`](https://github.com/x0k/svelte-jsonschema-form/commit/8b67594d1285e4439bc440dc289ca9815116f523))
+
 ## 0.2.2
 
 ### Patch Changes
