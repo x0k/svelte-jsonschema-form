@@ -84,67 +84,67 @@
 <ul>
 <li>
 <ul>
-<li>Add query <code>current</code> writable property to <code>Query</code>, replacing the read-only <code>result</code>. (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812"><code>21c737c</code></a>)</li>
+<li>Add query <code>current</code> writable property to <code>Query</code>, replacing the read-only <code>result</code>. (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/405">#405</a>)</li>
 <li>Add <code>initialValue</code> option to <code>createQuery</code>. When provided, the query <code>current</code> type excludes <code>undefined</code> automatically.</li>
 </ul>
 </li>
 <li>
-<p>Add explicit non-svelte entrypoint (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812"><code>21c737c</code></a>)</p>
+<p>Add explicit non-svelte entrypoint (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/386">#386</a>)</p>
 </li>
 <li>
-<p>Add support for self-referential schemas (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812"><code>21c737c</code></a>)</p>
+<p>Add support for self-referential schemas (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/408">#408</a>)</p>
 <p>Replaces <a href="https://github.com/rjsf-team/react-jsonschema-form/pull/5118">https://github.com/rjsf-team/react-jsonschema-form/pull/5118</a></p>
 </li>
 <li>
-<p>Add support for asynchronous validators for <code>withOmitExtraData</code> (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812"><code>21c737c</code></a>)</p>
+<p>Add support for asynchronous validators for <code>withOmitExtraData</code> (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/403">#403</a>)</p>
 </li>
 <li>
-<p>Allow passing schema definitions to <code>getClosestMatchingOption</code> (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812"><code>21c737c</code></a>)</p>
+<p>Allow passing schema definitions to <code>getClosestMatchingOption</code> (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/386">#386</a>)</p>
 </li>
 <li>
-<p>Export <code>createValidatorRetriever</code> and <code>fromValidators</code> functions from <code>@sjsf/form/validators/precompile</code> (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812"><code>21c737c</code></a>)</p>
+<p>Export <code>createValidatorRetriever</code> and <code>fromValidators</code> functions from <code>@sjsf/form/validators/precompile</code> (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/386">#386</a>)</p>
 </li>
 </ul>
 <h3 id="patch-changes">Patch Changes</h3>
 <ul>
 <li>
-<p>Fix <code>DeepPartial</code> type (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812"><code>21c737c</code></a>)</p>
+<p>Fix <code>DeepPartial</code> type (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/390">#390</a>)</p>
 </li>
 <li>
-<p>Fix precompiled validators support for <code>omitExtraData</code> (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812"><code>21c737c</code></a>)</p>
+<p>Fix precompiled validators support for <code>omitExtraData</code> (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/389">#389</a>)</p>
 </li>
 <li>
-<p>Port <a href="https://github.com/rjsf-team/react-jsonschema-form/pull/5088">https://github.com/rjsf-team/react-jsonschema-form/pull/5088</a> (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812"><code>21c737c</code></a>)</p>
+<p>Port <a href="https://github.com/rjsf-team/react-jsonschema-form/pull/5088">https://github.com/rjsf-team/react-jsonschema-form/pull/5088</a> (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/408">#408</a>)</p>
 </li>
 <li>
-<p>Port <a href="https://github.com/rjsf-team/react-jsonschema-form/pull/5109">https://github.com/rjsf-team/react-jsonschema-form/pull/5109</a> (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812"><code>21c737c</code></a>)</p>
+<p>Port <a href="https://github.com/rjsf-team/react-jsonschema-form/pull/5109">https://github.com/rjsf-team/react-jsonschema-form/pull/5109</a> (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/408">#408</a>)</p>
 </li>
 <li>
-<p>Guard event handlers against firing after field unmount (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812"><code>21c737c</code></a>)</p>
+<p>Guard event handlers against firing after field unmount (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/399">#399</a>)</p>
 </li>
 <li>
-<p>Fix <code>omitExtraData</code> to handle <code>if/then/else</code> keywords remaining in <code>allOf</code> after merging (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812"><code>21c737c</code></a>)</p>
+<p>Fix <code>omitExtraData</code> to handle <code>if/then/else</code> keywords remaining in <code>allOf</code> after merging (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/409">#409</a>)</p>
 </li>
 <li>
-<p>Port <a href="https://github.com/rjsf-team/react-jsonschema-form/pull/5101">https://github.com/rjsf-team/react-jsonschema-form/pull/5101</a> (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812"><code>21c737c</code></a>)</p>
+<p>Port <a href="https://github.com/rjsf-team/react-jsonschema-form/pull/5101">https://github.com/rjsf-team/react-jsonschema-form/pull/5101</a> (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/408">#408</a>)</p>
 </li>
 <li>
-<p>Port <a href="https://github.com/rjsf-team/react-jsonschema-form/pull/5110">https://github.com/rjsf-team/react-jsonschema-form/pull/5110</a> (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812"><code>21c737c</code></a>)</p>
+<p>Port <a href="https://github.com/rjsf-team/react-jsonschema-form/pull/5110">https://github.com/rjsf-team/react-jsonschema-form/pull/5110</a> (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/408">#408</a>)</p>
 </li>
 <li>
-<p>Fix the multiple use of a single $id (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812"><code>21c737c</code></a>)</p>
+<p>Fix the multiple use of a single $id (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/386">#386</a>)</p>
 </li>
 <li>
-<p>Port <a href="https://github.com/rjsf-team/react-jsonschema-form/pull/5098">https://github.com/rjsf-team/react-jsonschema-form/pull/5098</a> (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812"><code>21c737c</code></a>)</p>
+<p>Port <a href="https://github.com/rjsf-team/react-jsonschema-form/pull/5098">https://github.com/rjsf-team/react-jsonschema-form/pull/5098</a> (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/408">#408</a>)</p>
 </li>
 <li>
-<p>Port <a href="https://github.com/rjsf-team/react-jsonschema-form/pull/5067">https://github.com/rjsf-team/react-jsonschema-form/pull/5067</a> (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812"><code>21c737c</code></a>)</p>
+<p>Port <a href="https://github.com/rjsf-team/react-jsonschema-form/pull/5067">https://github.com/rjsf-team/react-jsonschema-form/pull/5067</a> (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/408">#408</a>)</p>
 </li>
 <li>
-<p>Port <a href="https://github.com/rjsf-team/react-jsonschema-form/pull/5132">https://github.com/rjsf-team/react-jsonschema-form/pull/5132</a> (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812"><code>21c737c</code></a>)</p>
+<p>Port <a href="https://github.com/rjsf-team/react-jsonschema-form/pull/5132">https://github.com/rjsf-team/react-jsonschema-form/pull/5132</a> (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/408">#408</a>)</p>
 </li>
 <li>
-<p>Port <a href="https://github.com/rjsf-team/react-jsonschema-form/pull/5121">https://github.com/rjsf-team/react-jsonschema-form/pull/5121</a> (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/21c737ccf4de031836ea4ce590da5c325162b812"><code>21c737c</code></a>)</p>
+<p>Port <a href="https://github.com/rjsf-team/react-jsonschema-form/pull/5121">https://github.com/rjsf-team/react-jsonschema-form/pull/5121</a> (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/408">#408</a>)</p>
 </li>
 </ul>
 <h2 id="360">3.6.0</h2>
