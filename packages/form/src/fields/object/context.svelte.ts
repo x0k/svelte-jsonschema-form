@@ -320,10 +320,20 @@ export function createObjectContext<T>({
         ? generateNewKey(val, newKeyPrefix, additionalPropertyKey)
         : additionalPropertyKey(newKeyPrefix, 0);
       const additionalPropertySchema = getAdditionalPropertySchema(val, newKey);
+      // When `additionalProperties` is a `$ref` and carries a sibling `default`,
+      // forward that sibling's value as the seed formData so that
+      // `getDefaultFormState` merges it with the defaults computed from the
+      // resolved referenced schema (matching RJSF's ObjectField behavior).
+      // NOTE: $ref + any other keyword => invalid draft 07 schema
+      const { additionalProperties } = retrievedSchema;
+      const siblingDefault =
+        typeof additionalProperties === "object"
+          ? additionalProperties.default
+          : undefined;
       const propValue =
         getDefaultFieldState(ctx, {
           schema: additionalPropertySchema,
-          formData: undefined,
+          formData: siblingDefault,
         }) ??
         getDefaultValueForType(getSimpleSchemaType(additionalPropertySchema));
       if (val) {
