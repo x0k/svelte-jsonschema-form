@@ -964,12 +964,29 @@ export function getArrayDefaults(
     }
   }
 
+  const defaultsLength = defaults?.length ?? 0;
+
   if (
     schema.const === undefined ||
     experimental_defaultFormStateBehavior.constAsDefaults === "never"
   ) {
     // Check if the schema has a const property defined, then we should always return the computedDefault since it's coming from the const.
     if (neverPopulate) {
+      // When called from getDefaultFormState() (shouldMergeDefaultsIntoFormData),
+      // omit optional arrays entirely and fill minItems arrays with null entries
+      // instead of computing defaults from the item schema.
+      if (shouldMergeDefaultsIntoFormData) {
+        if (schema.minItems && schema.minItems > defaultsLength) {
+          const fillerEntries = Array.from(
+            { length: schema.minItems - defaultsLength },
+            () => null
+          );
+          return defaultsLength > 0
+            ? defaults!.concat(fillerEntries)
+            : fillerEntries;
+        }
+        return defaults;
+      }
       return defaults ?? emptyDefault;
     }
     if (ignoreMinItemsFlagSet && !required) {
@@ -980,7 +997,6 @@ export function getArrayDefaults(
   }
 
   let arrayDefault: SchemaArrayValue | undefined;
-  const defaultsLength = defaults?.length ?? 0;
   if (
     !schema.minItems ||
     isMultiSelect(validator, merger, schema, rootSchema) ||
