@@ -458,7 +458,7 @@ importers:
         version: link:../../packages/shadcn4-theme
       '@sjsf/skeleton4-theme':
         specifier: workspace:*
-        version: link:../../packages/skeleton4-theme
+        version: link:../../legacy/skeleton4-theme
       '@svar-ui/svelte-core':
         specifier: 'catalog:'
         version: 2.6.0
@@ -636,7 +636,7 @@ importers:
         version: link:../../legacy/skeleton3-theme
       '@sjsf/skeleton4-theme':
         specifier: workspace:*
-        version: link:../../packages/skeleton4-theme
+        version: link:../../legacy/skeleton4-theme
       '@sjsf/sveltekit':
         specifier: workspace:*
         version: link:../../packages/sveltekit
@@ -901,7 +901,7 @@ importers:
         version: link:../../packages/shadcn4-theme
       '@sjsf/skeleton4-theme':
         specifier: workspace:*
-        version: link:../../packages/skeleton4-theme
+        version: link:../../legacy/skeleton4-theme
       '@svar-ui/svelte-core':
         specifier: 'catalog:'
         version: 2.6.0
@@ -1430,7 +1430,7 @@ importers:
         version: link:../../packages/form
       '@sjsf/skeleton4-theme':
         specifier: workspace:*
-        version: link:../../packages/skeleton4-theme
+        version: link:../../legacy/skeleton4-theme
       ajv:
         specifier: 'catalog:'
         version: 8.20.0
@@ -1861,6 +1861,49 @@ importers:
         specifier: workspace:*
         version: link:../../packages/theme-testing
 
+  legacy/skeleton4-theme:
+    dependencies:
+      '@sjsf/basic-theme':
+        specifier: workspace:^3.7.2
+        version: link:../../packages/basic-theme
+    devDependencies:
+      '@sjsf/ajv8-validator':
+        specifier: workspace:*
+        version: link:../../packages/ajv8-validator
+      '@sjsf/form':
+        specifier: workspace:*
+        version: link:../../packages/form
+      '@skeletonlabs/skeleton':
+        specifier: catalog:skeleton4
+        version: 4.15.2(tailwindcss@4.3.2)
+      '@skeletonlabs/skeleton-svelte':
+        specifier: catalog:skeleton4
+        version: 4.15.2(svelte@5.56.4(@typescript-eslint/types@8.62.1))
+      '@sveltejs/svelte-json-tree':
+        specifier: 'catalog:'
+        version: 2.2.1(svelte@5.56.4(@typescript-eslint/types@8.62.1))
+      '@tailwindcss/forms':
+        specifier: 'catalog:'
+        version: 0.5.11(tailwindcss@4.3.2)
+      '@tailwindcss/vite':
+        specifier: 'catalog:'
+        version: 4.3.2(vite@8.1.2(@types/node@26.0.1)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0))
+      ajv:
+        specifier: 'catalog:'
+        version: 8.20.0
+      globals:
+        specifier: 'catalog:'
+        version: 17.7.0
+      svelte:
+        specifier: 'catalog:'
+        version: 5.56.4(@typescript-eslint/types@8.62.1)
+      tailwindcss:
+        specifier: 'catalog:'
+        version: 4.3.2
+      theme-testing:
+        specifier: workspace:*
+        version: link:../../packages/theme-testing
+
   packages/ajv8-validator:
     devDependencies:
       '@sjsf/form':
@@ -2190,7 +2233,7 @@ importers:
         version: link:../../legacy/skeleton3-theme
       '@sjsf/skeleton4-theme':
         specifier: workspace:*
-        version: link:../skeleton4-theme
+        version: link:../../legacy/skeleton4-theme
       '@sjsf/sveltekit':
         specifier: workspace:*
         version: link:../sveltekit
@@ -2412,49 +2455,6 @@ importers:
       tw-animate-css:
         specifier: catalog:shadcn
         version: 1.4.0
-
-  packages/skeleton4-theme:
-    dependencies:
-      '@sjsf/basic-theme':
-        specifier: workspace:^3.7.2
-        version: link:../basic-theme
-    devDependencies:
-      '@sjsf/ajv8-validator':
-        specifier: workspace:*
-        version: link:../ajv8-validator
-      '@sjsf/form':
-        specifier: workspace:*
-        version: link:../form
-      '@skeletonlabs/skeleton':
-        specifier: catalog:skeleton4
-        version: 4.15.2(tailwindcss@4.3.2)
-      '@skeletonlabs/skeleton-svelte':
-        specifier: catalog:skeleton4
-        version: 4.15.2(svelte@5.56.4(@typescript-eslint/types@8.62.1))
-      '@sveltejs/svelte-json-tree':
-        specifier: 'catalog:'
-        version: 2.2.1(svelte@5.56.4(@typescript-eslint/types@8.62.1))
-      '@tailwindcss/forms':
-        specifier: 'catalog:'
-        version: 0.5.11(tailwindcss@4.3.2)
-      '@tailwindcss/vite':
-        specifier: 'catalog:'
-        version: 4.3.2(vite@8.1.2(@types/node@26.0.1)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0))
-      ajv:
-        specifier: 'catalog:'
-        version: 8.20.0
-      globals:
-        specifier: 'catalog:'
-        version: 17.7.0
-      svelte:
-        specifier: 'catalog:'
-        version: 5.56.4(@typescript-eslint/types@8.62.1)
-      tailwindcss:
-        specifier: 'catalog:'
-        version: 4.3.2
-      theme-testing:
-        specifier: workspace:*
-        version: link:../theme-testing
 
   packages/skeleton5-theme:
     dependencies:
