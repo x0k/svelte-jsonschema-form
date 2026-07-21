@@ -1,23 +1,11 @@
 <script lang="ts" module>
-  import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
-  import type { Range } from "@sjsf/form/lib/range";
-  import {
-    type DatePickerRootProps,
-    type PortalRootProps,
+  import type {
+    DatePickerRootProps,
+    PortalRootProps,
   } from "@skeletonlabs/skeleton-svelte";
   import "@sjsf/form/fields/extra-widgets/date-range-picker";
 
   declare module "@sjsf/form" {
-    interface ComponentProps {
-      // TODO: Remove in v4
-      /** @deprecated use `dateRangePickerWidget` instead */
-      skeleton5DateRangePickerWidget: WidgetCommonProps<Partial<Range<string>>>;
-    }
-    interface ComponentBindings {
-      // TODO: Remove in v4
-      /** @deprecated use `dateRangePickerWidget` instead */
-      skeleton5DateRangePickerWidget: "value";
-    }
     interface UiOptions {
       skeleton5DateRangePicker?: DatePickerRootProps;
       skeleton5DateRangePickerPortal?: Omit<PortalRootProps, "children">;
