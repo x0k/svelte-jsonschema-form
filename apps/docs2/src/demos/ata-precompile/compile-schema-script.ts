@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import { DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS } from "@sjsf-lab/ata-validator/precompile";
+import { DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS } from "@sjsf/ata-validator/precompile";
 import { ON_ARRAY_CHANGE, ON_CHANGE, ON_INPUT } from "@sjsf/form";
 import {
   insertSubSchemaIds,

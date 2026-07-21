@@ -1,7 +1,7 @@
 import {
   createFormValidator,
   DEFAULT_VALIDATOR_OPTIONS as DEFAULT_ATA_OPTIONS,
-} from "@sjsf-lab/ata-validator";
+} from "@sjsf/ata-validator";
 import { Validator as AtaValidator } from "ata-validator";
 
 import type { CreatableValidator } from "../validator-factory.ts";

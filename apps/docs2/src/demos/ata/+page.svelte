@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createFormValidator } from "@sjsf-lab/ata-validator";
+  import { createFormValidator } from "@sjsf/ata-validator";
   import {
     ON_INPUT,
     BasicForm,

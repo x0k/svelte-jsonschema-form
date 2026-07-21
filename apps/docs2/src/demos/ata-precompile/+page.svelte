@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createFormValidatorFactory } from "@sjsf-lab/ata-validator/precompile";
+  import { createFormValidatorFactory } from "@sjsf/ata-validator/precompile";
   import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
   import { resolver } from "@sjsf/form/resolvers/compat";
   import { fromValidators } from "@sjsf/form/validators/precompile";

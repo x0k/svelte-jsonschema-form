@@ -1,4 +1,4 @@
-# @sjsf-lab/ata-validator
+# @sjsf/ata-validator
 
 The [ata](https://github.com/ata-core/ata-validator) based validator implementation for [svelte-jsonschema-form](https://github.com/x0k/svelte-jsonschema-form).
 
@@ -8,13 +8,13 @@ The [ata](https://github.com/ata-core/ata-validator) based validator implementat
 ## Installation
 
 ```shell
-npm install @sjsf-lab/ata-validator ata-validator
+npm install @sjsf/ata-validator ata-validator
 ```
 
 ## Usage
 
 ```typescript
-import { createFormValidator } from "@sjsf-lab/ata-validator";
+import { createFormValidator } from "@sjsf/ata-validator";
 
 const validator = createFormValidator();
 ```

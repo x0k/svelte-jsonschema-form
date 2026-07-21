@@ -10849,10 +10849,10 @@ exports[`@sjsf/sv validator__ata kit-ts 1`] = `
 		"vite": "^8.0.16"
 	},
 	"dependencies": {
-		"@sjsf-lab/ata-validator": "^3.2.0",
+		"@sjsf/ata-validator": "^3.2.0",
 		"@sjsf/basic-theme": "^3.7.2",
 		"@sjsf/form": "^3.5.0",
-		"ata-validator": "^0.21.0",
+		"ata-validator": "^1.2.0",
 		"svelte": "^5.34.8"
 	}
 }
@@ -10960,7 +10960,7 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from "@sjsf-lab/ata-validator";
+export { createFormValidator as validator } from "@sjsf/ata-validator";
 ",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
@@ -11054,10 +11054,10 @@ exports[`@sjsf/sv validator__ata vite-ts 1`] = `
     "vite": "^7.3.1"
   },
   "dependencies": {
-    "@sjsf-lab/ata-validator": "^3.2.0",
+    "@sjsf/ata-validator": "^3.2.0",
     "@sjsf/basic-theme": "^3.7.2",
     "@sjsf/form": "^3.5.0",
-    "ata-validator": "^0.21.0",
+    "ata-validator": "^1.2.0",
     "svelte": "^5.34.8"
   }
 }
@@ -11297,7 +11297,7 @@ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern"
 export { theme } from "@sjsf/basic-theme";
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from "@sjsf-lab/ata-validator";
+export { createFormValidator as validator } from "@sjsf/ata-validator";
 ",
   "src/main.ts": "import { mount } from 'svelte'
 import './app.css'
@@ -11364,10 +11364,10 @@ exports[`@sjsf/sv validator__ata_precompiled kit-ts 1`] = `
 		"vite": "^8.0.16"
 	},
 	"dependencies": {
-		"@sjsf-lab/ata-validator": "^3.2.0",
+		"@sjsf/ata-validator": "^3.2.0",
 		"@sjsf/basic-theme": "^3.7.2",
 		"@sjsf/form": "^3.5.0",
-		"ata-validator": "^0.21.0",
+		"ata-validator": "^1.2.0",
 		"svelte": "^5.34.8"
 	}
 }
@@ -11378,7 +11378,7 @@ import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import { convert } from "@sjsf/form/converters/draft-2020-12";
 import { insertSubSchemaIds, fragmentSchema } from "@sjsf/form/validators/precompile";
 import { bundleCompact } from "ata-validator/build";
-import { DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS } from "@sjsf-lab/ata-validator/precompile";
+import { DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS } from "@sjsf/ata-validator/precompile";
 
 const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
@@ -11579,7 +11579,7 @@ export const onSubmitError = createFocusOnFirstError();
 	import * as defaults from '$lib/sjsf/defaults';
 	import * as post from '$lib/post/model.generated';
 	import * as validateFunctions from '$lib/post/validators.generated';
-	import { createFormValidatorFactory } from '@sjsf-lab/ata-validator/precompile';
+	import { createFormValidatorFactory } from '@sjsf/ata-validator/precompile';
 	import { fromValidators } from '@sjsf/form/validators/precompile';
 	import { BasicForm, createForm } from '@sjsf/form';
 
@@ -11658,10 +11658,10 @@ exports[`@sjsf/sv validator__ata_precompiled vite-ts 1`] = `
     "vite": "^7.3.1"
   },
   "dependencies": {
-    "@sjsf-lab/ata-validator": "^3.2.0",
+    "@sjsf/ata-validator": "^3.2.0",
     "@sjsf/basic-theme": "^3.7.2",
     "@sjsf/form": "^3.5.0",
-    "ata-validator": "^0.21.0",
+    "ata-validator": "^1.2.0",
     "svelte": "^5.34.8"
   }
 }
@@ -11672,7 +11672,7 @@ import { ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import { convert } from "@sjsf/form/converters/draft-2020-12";
 import { insertSubSchemaIds, fragmentSchema } from "@sjsf/form/validators/precompile";
 import { bundleCompact } from "ata-validator/build";
-import { DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS } from "@sjsf-lab/ata-validator/precompile";
+import { DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS } from "@sjsf/ata-validator/precompile";
 
 const FIELDS_VALIDATION = { ON_INPUT, ON_CHANGE };
 const FIELDS_VALIDATION_KEYS = Object.keys(FIELDS_VALIDATION).join(", ");
@@ -11996,7 +11996,7 @@ export default app
 	import * as defaults from '../lib/sjsf/defaults';
 	import * as post from '../lib/post/model.generated';
 	import * as validateFunctions from '../lib/post/validators.generated';
-	import { createFormValidatorFactory } from '@sjsf-lab/ata-validator/precompile';
+	import { createFormValidatorFactory } from '@sjsf/ata-validator/precompile';
 	import { fromValidators } from '@sjsf/form/validators/precompile';
 	import { BasicForm, createForm } from '@sjsf/form';
 
