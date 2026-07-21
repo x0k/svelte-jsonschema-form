@@ -1,5 +1,5 @@
 {
-  "name": "@sjsf-lab/ata-validator",
+  "name": "@sjsf/ata-validator",
   "version": "3.2.0",
   "description": "The ata based validator for svelte-jsonschema-form",
   "keywords": [
@@ -54,6 +54,6 @@
   },
   "peerDependencies": {
     "@sjsf/form": "workspace:^3.5.0",
-    "ata-validator": "^0.21.0"
+    "ata-validator": "^1.2.0"
   }
 }

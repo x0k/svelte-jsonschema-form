@@ -1,8 +1,8 @@
-import { DEFAULT_VALIDATOR_OPTIONS as DEFAULT_ATA_OPTIONS } from "@sjsf-lab/ata-validator";
+import { DEFAULT_VALIDATOR_OPTIONS as DEFAULT_ATA_OPTIONS } from "@sjsf/ata-validator";
 import {
   createFormValidatorFactory as ataFactory,
   type ValidateFunctions as AtaValidateFunctions,
-} from "@sjsf-lab/ata-validator/precompile";
+} from "@sjsf/ata-validator/precompile";
 import { type Schema } from "@sjsf/form";
 import { fromValidators } from "@sjsf/form/validators/precompile";
 import { Validator as AtaValidator } from "ata-validator";

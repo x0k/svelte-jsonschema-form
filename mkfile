@@ -137,6 +137,15 @@ safe/:
     pnpm run test
   popd
 
+
+ata/:
+  pushd ata-validator
+  b:
+    pnpm run build
+  t:
+    pnpm run test
+  popd
+
 basic/:
   pushd packages/basic-theme
   c:
@@ -256,13 +265,6 @@ kit/:
   popd
 
 pushd lab
-ata/:
-  pushd ata-validator
-  b:
-    pnpm run build
-  t:
-    pnpm run test
-  popd
 hyper/:
   pushd hyperjump-validator
   b:

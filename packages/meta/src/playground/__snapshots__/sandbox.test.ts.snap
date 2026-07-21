@@ -5122,8 +5122,8 @@ exports[`sandbox-factory > validators > ata-validator (2020-12) 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf/basic-theme": "^3.7.2",
-    "@sjsf-lab/ata-validator": "^3.2.0",
-    "ata-validator": "^0.21.0"
+    "@sjsf/ata-validator": "^3.2.0",
+    "ata-validator": "^1.2.0"
   },
   "devDependencies": {
     "vite": "^8.1.2",
@@ -5164,7 +5164,7 @@ export type Model = FromSchema<typeof schema>;",
 import {
 	createFormValidator,
 	DEFAULT_VALIDATOR_OPTIONS as DEFAULT_ATA_OPTIONS
-} from '@sjsf-lab/ata-validator';
+} from '@sjsf/ata-validator';
 
 import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 
@@ -5275,8 +5275,8 @@ exports[`sandbox-factory > validators > ata-validator (precompiled) 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf/basic-theme": "^3.7.2",
-    "@sjsf-lab/ata-validator": "^3.2.0",
-    "ata-validator": "^0.21.0"
+    "@sjsf/ata-validator": "^3.2.0",
+    "ata-validator": "^1.2.0"
   },
   "devDependencies": {
     "vite": "^8.1.2",
@@ -5297,7 +5297,7 @@ import path from "node:path";
 import { convert } from "@sjsf/form/converters/draft-2020-12";
 import { insertSubSchemaIds, fragmentSchema } from "@sjsf/form/validators/precompile";
 import { bundleCompact } from "ata-validator/build";
-import { DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS } from "@sjsf-lab/ata-validator/precompile";
+import { DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS } from "@sjsf/ata-validator/precompile";
 
 const FIELDS_VALIDATION_MODE_VALUE = 0;
 const MODEL_PATHS = ["src/lib/model/"];
@@ -5423,7 +5423,7 @@ export const onSubmitError = createFocusOnFirstError();",
 	import * as defaults from '$lib/sjsf/defaults';
 	import * as model from '$lib/model/model.generated';
 	import * as validateFunctions from '$lib/model/validators.generated';
-	import { createFormValidatorFactory } from '@sjsf-lab/ata-validator/precompile';
+	import { createFormValidatorFactory } from '@sjsf/ata-validator/precompile';
 	import { fromValidators } from '@sjsf/form/validators/precompile';
 	import { BasicForm, createForm } from '@sjsf/form';
 
@@ -5491,8 +5491,8 @@ exports[`sandbox-factory > validators > ata-validator 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf/basic-theme": "^3.7.2",
-    "@sjsf-lab/ata-validator": "^3.2.0",
-    "ata-validator": "^0.21.0"
+    "@sjsf/ata-validator": "^3.2.0",
+    "ata-validator": "^1.2.0"
   },
   "devDependencies": {
     "vite": "^8.1.2",
@@ -5558,7 +5558,7 @@ export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern'
 export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
+export { createFormValidator as validator } from '@sjsf/ata-validator';",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';

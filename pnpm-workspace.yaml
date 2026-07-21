@@ -41,7 +41,7 @@ catalog:
   ajv-formats: ^3.0.1
   ajv-i18n: ^4.2.0
   arktype: ^2.2.1
-  ata-validator: ^0.21.0
+  ata-validator: ^1.2.1
   autoprefixer: ^10.5.2
   beercss: 4.0.21
   bits-ui: 2.18.1

@@ -4814,8 +4814,8 @@ exports[`examples > ./examples/async-combobox.js > basic__ata 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf/basic-theme": "^3.7.2",
-    "@sjsf-lab/ata-validator": "^3.2.0",
-    "ata-validator": "^0.21.0"
+    "@sjsf/ata-validator": "^3.2.0",
+    "ata-validator": "^1.2.0"
   },
   "devDependencies": {
     "vite": "^8.1.2",
@@ -4871,7 +4871,7 @@ export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern'
 export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
+export { createFormValidator as validator } from '@sjsf/ata-validator';",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
@@ -19083,8 +19083,8 @@ exports[`examples > ./examples/decomposed-field.js > basic__ata 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf/basic-theme": "^3.7.2",
-    "@sjsf-lab/ata-validator": "^3.2.0",
-    "ata-validator": "^0.21.0"
+    "@sjsf/ata-validator": "^3.2.0",
+    "ata-validator": "^1.2.0"
   },
   "devDependencies": {
     "vite": "^8.1.2",
@@ -19140,7 +19140,7 @@ export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern'
 export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
+export { createFormValidator as validator } from '@sjsf/ata-validator';",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
@@ -23255,8 +23255,8 @@ exports[`examples > ./examples/deprecated-keyword.js > basic__ata 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf/basic-theme": "^3.7.2",
-    "@sjsf-lab/ata-validator": "^3.2.0",
-    "ata-validator": "^0.21.0"
+    "@sjsf/ata-validator": "^3.2.0",
+    "ata-validator": "^1.2.0"
   },
   "devDependencies": {
     "vite": "^8.1.2",
@@ -23312,7 +23312,7 @@ export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern'
 export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
+export { createFormValidator as validator } from '@sjsf/ata-validator';",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
@@ -26625,8 +26625,8 @@ exports[`examples > ./examples/draft-2020-12.js > basic__ata 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf/basic-theme": "^3.7.2",
-    "@sjsf-lab/ata-validator": "^3.2.0",
-    "ata-validator": "^0.21.0"
+    "@sjsf/ata-validator": "^3.2.0",
+    "ata-validator": "^1.2.0"
   },
   "devDependencies": {
     "vite": "^8.1.2",
@@ -26683,7 +26683,7 @@ export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern'
 export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
+export { createFormValidator as validator } from '@sjsf/ata-validator';",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
@@ -30014,8 +30014,8 @@ exports[`examples > ./examples/enum-widgets.js > basic__ata 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf/basic-theme": "^3.7.2",
-    "@sjsf-lab/ata-validator": "^3.2.0",
-    "ata-validator": "^0.21.0"
+    "@sjsf/ata-validator": "^3.2.0",
+    "ata-validator": "^1.2.0"
   },
   "devDependencies": {
     "vite": "^8.1.2",
@@ -30071,7 +30071,7 @@ export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern'
 export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
+export { createFormValidator as validator } from '@sjsf/ata-validator';",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
@@ -35886,8 +35886,8 @@ exports[`examples > ./examples/form-actions.js > basic__ata 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf/basic-theme": "^3.7.2",
-    "@sjsf-lab/ata-validator": "^3.2.0",
-    "ata-validator": "^0.21.0",
+    "@sjsf/ata-validator": "^3.2.0",
+    "ata-validator": "^1.2.0",
     "@sjsf/sveltekit": "^3.7.2"
   },
   "devDependencies": {
@@ -35974,7 +35974,7 @@ export { createFormIdBuilder as idBuilder } from '@sjsf/sveltekit';
 export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
+export { createFormValidator as validator } from '@sjsf/ata-validator';",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
@@ -39833,8 +39833,8 @@ exports[`examples > ./examples/form-actions-dynamic-schema.js > basic__ata 1`] =
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf/basic-theme": "^3.7.2",
-    "@sjsf-lab/ata-validator": "^3.2.0",
-    "ata-validator": "^0.21.0",
+    "@sjsf/ata-validator": "^3.2.0",
+    "ata-validator": "^1.2.0",
     "@sjsf/sveltekit": "^3.7.2"
   },
   "devDependencies": {
@@ -39930,7 +39930,7 @@ export { createFormIdBuilder as idBuilder } from '@sjsf/sveltekit';
 export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
+export { createFormValidator as validator } from '@sjsf/ata-validator';",
   "src/routes/+layout.server.ts": "import { loadResults } from "$lib/server";
 
 import type { LayoutServerLoad } from "./$types";
@@ -44518,8 +44518,8 @@ exports[`examples > ./examples/form-actions-flex.js > basic__ata 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf/basic-theme": "^3.7.2",
-    "@sjsf-lab/ata-validator": "^3.2.0",
-    "ata-validator": "^0.21.0",
+    "@sjsf/ata-validator": "^3.2.0",
+    "ata-validator": "^1.2.0",
     "@sjsf/sveltekit": "^3.7.2"
   },
   "devDependencies": {
@@ -44606,7 +44606,7 @@ export { createFormIdBuilder as idBuilder } from '@sjsf/sveltekit';
 export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
+export { createFormValidator as validator } from '@sjsf/ata-validator';",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
@@ -48542,8 +48542,8 @@ exports[`examples > ./examples/form-actions-without-js.js > basic__ata 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf/basic-theme": "^3.7.2",
-    "@sjsf-lab/ata-validator": "^3.2.0",
-    "ata-validator": "^0.21.0",
+    "@sjsf/ata-validator": "^3.2.0",
+    "ata-validator": "^1.2.0",
     "@sjsf/sveltekit": "^3.7.2"
   },
   "devDependencies": {
@@ -48600,7 +48600,7 @@ export { createFormIdBuilder as idBuilder } from '@sjsf/sveltekit';
 export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
+export { createFormValidator as validator } from '@sjsf/ata-validator';",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
@@ -52401,8 +52401,8 @@ exports[`examples > ./examples/formulas.js > basic__ata 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf/basic-theme": "^3.7.2",
-    "@sjsf-lab/ata-validator": "^3.2.0",
-    "ata-validator": "^0.21.0"
+    "@sjsf/ata-validator": "^3.2.0",
+    "ata-validator": "^1.2.0"
   },
   "devDependencies": {
     "vite": "^8.1.2",
@@ -52458,7 +52458,7 @@ export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern'
 export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
+export { createFormValidator as validator } from '@sjsf/ata-validator';",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
@@ -57031,8 +57031,8 @@ exports[`examples > ./examples/label-on-left.js > basic__ata 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf/basic-theme": "^3.7.2",
-    "@sjsf-lab/ata-validator": "^3.2.0",
-    "ata-validator": "^0.21.0"
+    "@sjsf/ata-validator": "^3.2.0",
+    "ata-validator": "^1.2.0"
   },
   "devDependencies": {
     "vite": "^8.1.2",
@@ -57088,7 +57088,7 @@ export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern'
 export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
+export { createFormValidator as validator } from '@sjsf/ata-validator';",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
@@ -60825,8 +60825,8 @@ exports[`examples > ./examples/layout-slots.js > basic__ata 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf/basic-theme": "^3.7.2",
-    "@sjsf-lab/ata-validator": "^3.2.0",
-    "ata-validator": "^0.21.0"
+    "@sjsf/ata-validator": "^3.2.0",
+    "ata-validator": "^1.2.0"
   },
   "devDependencies": {
     "vite": "^8.1.2",
@@ -60882,7 +60882,7 @@ export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern'
 export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
+export { createFormValidator as validator } from '@sjsf/ata-validator';",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
@@ -64956,8 +64956,8 @@ exports[`examples > ./examples/markdown-description.js > basic__ata 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf/basic-theme": "^3.7.2",
-    "@sjsf-lab/ata-validator": "^3.2.0",
-    "ata-validator": "^0.21.0"
+    "@sjsf/ata-validator": "^3.2.0",
+    "ata-validator": "^1.2.0"
   },
   "devDependencies": {
     "vite": "^8.1.2",
@@ -65013,7 +65013,7 @@ export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern'
 export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
+export { createFormValidator as validator } from '@sjsf/ata-validator';",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
@@ -68475,8 +68475,8 @@ exports[`examples > ./examples/multi-step.js > basic__ata 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf/basic-theme": "^3.7.2",
-    "@sjsf-lab/ata-validator": "^3.2.0",
-    "ata-validator": "^0.21.0"
+    "@sjsf/ata-validator": "^3.2.0",
+    "ata-validator": "^1.2.0"
   },
   "devDependencies": {
     "vite": "^8.1.2",
@@ -68532,7 +68532,7 @@ export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern'
 export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
+export { createFormValidator as validator } from '@sjsf/ata-validator';",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
@@ -75093,8 +75093,8 @@ exports[`examples > ./examples/multi-step-native-form.js > basic__ata 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf/basic-theme": "^3.7.2",
-    "@sjsf-lab/ata-validator": "^3.2.0",
-    "ata-validator": "^0.21.0",
+    "@sjsf/ata-validator": "^3.2.0",
+    "ata-validator": "^1.2.0",
     "@sjsf/sveltekit": "^3.7.2"
   },
   "devDependencies": {
@@ -75151,7 +75151,7 @@ export { createFormIdBuilder as idBuilder } from '@sjsf/sveltekit';
 export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
+export { createFormValidator as validator } from '@sjsf/ata-validator';",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
@@ -80363,8 +80363,8 @@ exports[`examples > ./examples/nullable-fields.js > basic__ata 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf/basic-theme": "^3.7.2",
-    "@sjsf-lab/ata-validator": "^3.2.0",
-    "ata-validator": "^0.21.0"
+    "@sjsf/ata-validator": "^3.2.0",
+    "ata-validator": "^1.2.0"
   },
   "devDependencies": {
     "vite": "^8.1.2",
@@ -80420,7 +80420,7 @@ export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern'
 export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
+export { createFormValidator as validator } from '@sjsf/ata-validator';",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
@@ -86464,8 +86464,8 @@ exports[`examples > ./examples/optional-data-controls.js > basic__ata 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf/basic-theme": "^3.7.2",
-    "@sjsf-lab/ata-validator": "^3.2.0",
-    "ata-validator": "^0.21.0"
+    "@sjsf/ata-validator": "^3.2.0",
+    "ata-validator": "^1.2.0"
   },
   "devDependencies": {
     "vite": "^8.1.2",
@@ -86521,7 +86521,7 @@ export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern'
 export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
+export { createFormValidator as validator } from '@sjsf/ata-validator';",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
@@ -91937,8 +91937,8 @@ exports[`examples > ./examples/pattern-properties-validator.js > basic__ata 1`] 
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf/basic-theme": "^3.7.2",
-    "@sjsf-lab/ata-validator": "^3.2.0",
-    "ata-validator": "^0.21.0"
+    "@sjsf/ata-validator": "^3.2.0",
+    "ata-validator": "^1.2.0"
   },
   "devDependencies": {
     "vite": "^8.1.2",
@@ -91994,7 +91994,7 @@ export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern'
 export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
+export { createFormValidator as validator } from '@sjsf/ata-validator';",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
@@ -95514,8 +95514,8 @@ exports[`examples > ./examples/preupload-file.js > basic__ata 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf/basic-theme": "^3.7.2",
-    "@sjsf-lab/ata-validator": "^3.2.0",
-    "ata-validator": "^0.21.0"
+    "@sjsf/ata-validator": "^3.2.0",
+    "ata-validator": "^1.2.0"
   },
   "devDependencies": {
     "vite": "^8.1.2",
@@ -95571,7 +95571,7 @@ export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern'
 export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
+export { createFormValidator as validator } from '@sjsf/ata-validator';",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
@@ -102447,8 +102447,8 @@ exports[`examples > ./examples/remote-enum.js > basic__ata 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf/basic-theme": "^3.7.2",
-    "@sjsf-lab/ata-validator": "^3.2.0",
-    "ata-validator": "^0.21.0"
+    "@sjsf/ata-validator": "^3.2.0",
+    "ata-validator": "^1.2.0"
   },
   "devDependencies": {
     "vite": "^8.1.2",
@@ -102504,7 +102504,7 @@ export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern'
 export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
+export { createFormValidator as validator } from '@sjsf/ata-validator';",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
@@ -110638,8 +110638,8 @@ exports[`examples > ./examples/remote-functions.js > basic__ata 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf/basic-theme": "^3.7.2",
-    "@sjsf-lab/ata-validator": "^3.2.0",
-    "ata-validator": "^0.21.0",
+    "@sjsf/ata-validator": "^3.2.0",
+    "ata-validator": "^1.2.0",
     "@sjsf/sveltekit": "^3.7.2"
   },
   "devDependencies": {
@@ -110726,7 +110726,7 @@ export { createFormIdBuilder as idBuilder } from '@sjsf/sveltekit/rf';
 export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
+export { createFormValidator as validator } from '@sjsf/ata-validator';",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
@@ -114587,8 +114587,8 @@ exports[`examples > ./examples/remote-functions-dynamic-schema.js > basic__ata 1
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf/basic-theme": "^3.7.2",
-    "@sjsf-lab/ata-validator": "^3.2.0",
-    "ata-validator": "^0.21.0",
+    "@sjsf/ata-validator": "^3.2.0",
+    "ata-validator": "^1.2.0",
     "@sjsf/sveltekit": "^3.7.2"
   },
   "devDependencies": {
@@ -114684,7 +114684,7 @@ export { createFormIdBuilder as idBuilder } from '@sjsf/sveltekit/rf';
 export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
+export { createFormValidator as validator } from '@sjsf/ata-validator';",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
@@ -119132,8 +119132,8 @@ exports[`examples > ./examples/remote-functions-enhance.js > basic__ata 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf/basic-theme": "^3.7.2",
-    "@sjsf-lab/ata-validator": "^3.2.0",
-    "ata-validator": "^0.21.0",
+    "@sjsf/ata-validator": "^3.2.0",
+    "ata-validator": "^1.2.0",
     "@sjsf/sveltekit": "^3.7.2"
   },
   "devDependencies": {
@@ -119220,7 +119220,7 @@ export { createFormIdBuilder as idBuilder } from '@sjsf/sveltekit/rf';
 export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
+export { createFormValidator as validator } from '@sjsf/ata-validator';",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
@@ -123169,8 +123169,8 @@ exports[`examples > ./examples/remote-functions-without-js.js > basic__ata 1`] =
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf/basic-theme": "^3.7.2",
-    "@sjsf-lab/ata-validator": "^3.2.0",
-    "ata-validator": "^0.21.0",
+    "@sjsf/ata-validator": "^3.2.0",
+    "ata-validator": "^1.2.0",
     "@sjsf/sveltekit": "^3.7.2"
   },
   "devDependencies": {
@@ -123257,7 +123257,7 @@ export { createFormIdBuilder as idBuilder } from '@sjsf/sveltekit/rf';
 export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
+export { createFormValidator as validator } from '@sjsf/ata-validator';",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
@@ -127535,8 +127535,8 @@ exports[`examples > ./examples/schema-transformation.js > basic__ata 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf/basic-theme": "^3.7.2",
-    "@sjsf-lab/ata-validator": "^3.2.0",
-    "ata-validator": "^0.21.0"
+    "@sjsf/ata-validator": "^3.2.0",
+    "ata-validator": "^1.2.0"
   },
   "devDependencies": {
     "vite": "^8.1.2",
@@ -127592,7 +127592,7 @@ export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern'
 export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
+export { createFormValidator as validator } from '@sjsf/ata-validator';",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
@@ -132646,8 +132646,8 @@ exports[`examples > ./examples/starter.js > basic__ata 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf/basic-theme": "^3.7.2",
-    "@sjsf-lab/ata-validator": "^3.2.0",
-    "ata-validator": "^0.21.0"
+    "@sjsf/ata-validator": "^3.2.0",
+    "ata-validator": "^1.2.0"
   },
   "devDependencies": {
     "vite": "^8.1.2",
@@ -132703,7 +132703,7 @@ export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern'
 export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
+export { createFormValidator as validator } from '@sjsf/ata-validator';",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import './layout.css';
 	import type { Snippet } from 'svelte';
@@ -135928,8 +135928,8 @@ exports[`examples > ./examples/tabbed-layout.js > basic__ata 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf/basic-theme": "^3.7.2",
-    "@sjsf-lab/ata-validator": "^3.2.0",
-    "ata-validator": "^0.21.0"
+    "@sjsf/ata-validator": "^3.2.0",
+    "ata-validator": "^1.2.0"
   },
   "devDependencies": {
     "vite": "^8.1.2",
@@ -135985,7 +135985,7 @@ export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern'
 export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();
-export { createFormValidator as validator } from '@sjsf-lab/ata-validator';",
+export { createFormValidator as validator } from '@sjsf/ata-validator';",
   "src/lib/tabs/context.svelte.ts": "import type { PathTrieRef } from "@sjsf/form";
 import { createContext, type Snippet } from "svelte";
 
