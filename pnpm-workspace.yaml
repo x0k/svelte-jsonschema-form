@@ -17,8 +17,8 @@ catalog:
   "@playwright/test": 1.61.1
   "@shikijs/langs": ^4.3.0
   "@shikijs/themes": ^4.3.0
-  "@skeletonlabs/skeleton": ^4.15.2
-  "@skeletonlabs/skeleton-svelte": ^4.15.2
+  "@skeletonlabs/skeleton": ^5.0.0
+  "@skeletonlabs/skeleton-svelte": ^5.0.0
   "@stackblitz/sdk": ^1.11.0
   "@standard-schema/spec": ^1.1.0
   "@svar-ui/svelte-core": ^2.6.0
@@ -81,6 +81,9 @@ catalog:
   rolldown: ^1.1.3
 
 catalogs:
+  skeleton4:
+    "@skeletonlabs/skeleton": ^4.15.2
+    "@skeletonlabs/skeleton-svelte": ^4.15.2
   legacy:
     "@internationalized/date": 3.8.1
     "@skeletonlabs/skeleton": ^3.2.2

@@ -211,6 +211,8 @@ export const getSkeleton4FileInput = (l: Locator) =>
   l.getByTestId("hidden-input");
 export const changeSkeleton4File = uploadFile(getSkeleton4FileInput);
 
+export const changeSkeleton5File = uploadFile(getSkeleton4FileInput);
+
 export const getSvarCheckbox = (l: Locator) => l.getByText(CHECKBOX_LABEL_TEXT);
 export const inputSvarCheckbox = click(getSvarCheckbox);
 export const changeSvarCheckbox = inputSvarCheckbox;
