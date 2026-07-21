@@ -78,6 +78,82 @@ describe("object field contracts", () => {
       await userEvent.fill(page.getByRole("textbox").nth(2), "newValue");
       expectValue(form, { name: "Alice", customField: "newValue" });
     });
+
+    test("should resolve if/then conditions for an existing additionalProperties entry that is a $ref (issue #4266)", async () => {
+      const schema: Schema = {
+        definitions: {
+          property: {
+            type: "object",
+            properties: {
+              type: {
+                type: "string",
+                enum: ["string", "object"],
+                default: "string",
+              },
+            },
+            required: ["type"],
+            if: { properties: { type: { const: "object" } } },
+            then: {
+              properties: {
+                properties: { $ref: "#/definitions/properties" },
+              },
+            },
+          },
+          properties: {
+            type: "object",
+            additionalProperties: {
+              default: { type: "string" },
+              $ref: "#/definitions/property",
+            },
+          },
+        },
+        $ref: "#/definitions/property",
+      };
+
+      await renderFieldForm({
+        schema,
+        initialValue: {
+          type: "object",
+          properties: {
+            inner: { type: "object", properties: {} },
+          },
+        },
+      });
+
+      await expect
+        .element(page.getByRole("textbox").first())
+        .toBeInTheDocument();
+    });
+
+    test("should add a new item with the fully-computed nested defaults when additionalProperties is a $ref (issue #4266)", async () => {
+      const customSchema: Schema = {
+        type: "object",
+        definitions: {
+          namedThing: {
+            type: "object",
+            properties: {
+              name: { type: "string", default: "unnamed" },
+            },
+          },
+        },
+        additionalProperties: {
+          default: { active: true },
+          $ref: "#/definitions/namedThing",
+        },
+      };
+      const { form } = await renderFieldForm({
+        schema: customSchema,
+        initialValue: {},
+      });
+
+      await userEvent.click(
+        page.getByRole("button", { name: /add property/i }).first()
+      );
+
+      expectValue(form, {
+        "Additional property": { name: "unnamed", active: true },
+      });
+    });
   });
 
   describe("dependent enum schema sanitization", () => {
