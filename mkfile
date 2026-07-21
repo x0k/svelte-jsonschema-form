@@ -404,7 +404,7 @@ e/:
       pnpm run dev
     popd
   skel/:
-    pushd skeleton4-starter
+    pushd skeleton5-starter
     c:
       pnpm run check
     b:

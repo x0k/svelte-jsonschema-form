@@ -1454,6 +1454,43 @@ importers:
         specifier: 'catalog:'
         version: 4.3.2
 
+  examples/skeleton5-starter:
+    dependencies:
+      '@sjsf/ajv8-validator':
+        specifier: workspace:*
+        version: link:../../packages/ajv8-validator
+      '@sjsf/basic-theme':
+        specifier: workspace:*
+        version: link:../../packages/basic-theme
+      '@sjsf/form':
+        specifier: workspace:*
+        version: link:../../packages/form
+      '@sjsf/skeleton5-theme':
+        specifier: workspace:*
+        version: link:../../packages/skeleton5-theme
+      ajv:
+        specifier: 'catalog:'
+        version: 8.20.0
+    devDependencies:
+      '@skeletonlabs/skeleton':
+        specifier: 'catalog:'
+        version: 5.0.0(tailwindcss@4.3.2)
+      '@skeletonlabs/skeleton-svelte':
+        specifier: 'catalog:'
+        version: 5.0.0(svelte@5.56.4(@typescript-eslint/types@8.62.1))
+      '@tailwindcss/forms':
+        specifier: 'catalog:'
+        version: 0.5.11(tailwindcss@4.3.2)
+      '@tailwindcss/vite':
+        specifier: 'catalog:'
+        version: 4.3.2(vite@8.1.2(@types/node@26.0.1)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0))
+      svelte:
+        specifier: 'catalog:'
+        version: 5.56.4(@typescript-eslint/types@8.62.1)
+      tailwindcss:
+        specifier: 'catalog:'
+        version: 4.3.2
+
   examples/svar-starter:
     dependencies:
       '@sjsf-lab/svar-theme':
