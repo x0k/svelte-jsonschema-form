@@ -102,7 +102,7 @@ export const WIDGETS = {
       ]
     }
   },
-  "skeleton4": {
+  "skeleton5": {
     "widgets": {
       "checkbox": "checkboxWidget",
       "number": "numberWidget",
@@ -114,7 +114,7 @@ export const WIDGETS = {
       "combobox": "comboboxWidget",
       "date-picker": "datePickerWidget",
       "date-range-picker": "dateRangePickerWidget",
-      "file-upload": "skeleton4FileUploadWidget",
+      "file-upload": "skeleton5FileUploadWidget",
       "file": "fileWidget",
       "multi-select": "multiSelectWidget",
       "radio-buttons": "radioButtonsWidget",
@@ -122,7 +122,7 @@ export const WIDGETS = {
       "range-slider": "rangeSliderWidget",
       "range": "rangeWidget",
       "rating": "ratingWidget",
-      "slider": "skeleton4SliderWidget",
+      "slider": "skeleton5SliderWidget",
       "switch": "switchWidget",
       "tags": "tagsWidget",
       "textarea": "textareaWidget"
@@ -292,6 +292,46 @@ export const WIDGETS = {
         "combobox",
         "file-upload",
         "radio-buttons",
+        "rating",
+        "slider",
+        "switch",
+        "tags"
+      ]
+    }
+  },
+  "skeleton4": {
+    "widgets": {
+      "checkbox": "checkboxWidget",
+      "number": "numberWidget",
+      "select": "selectWidget",
+      "text": "textWidget"
+    },
+    "extraWidgets": {
+      "checkboxes": "checkboxesWidget",
+      "combobox": "comboboxWidget",
+      "date-picker": "datePickerWidget",
+      "date-range-picker": "dateRangePickerWidget",
+      "file-upload": "skeleton4FileUploadWidget",
+      "file": "fileWidget",
+      "multi-select": "multiSelectWidget",
+      "radio-buttons": "radioButtonsWidget",
+      "radio": "radioWidget",
+      "range-slider": "rangeSliderWidget",
+      "range": "rangeWidget",
+      "rating": "ratingWidget",
+      "slider": "skeleton4SliderWidget",
+      "switch": "switchWidget",
+      "tags": "tagsWidget",
+      "textarea": "textareaWidget"
+    },
+    "optionalDeps": {
+      "@skeletonlabs/skeleton-svelte": [
+        "combobox",
+        "date-picker",
+        "date-range-picker",
+        "file-upload",
+        "radio-buttons",
+        "range-slider",
         "rating",
         "slider",
         "switch",

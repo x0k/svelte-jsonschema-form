@@ -1,9 +1,7 @@
 import _beercssPackageJson from "@sjsf-lab/beercss-theme/package.json" with { type: "json" };
-// Lab
 import _shadcnExtrasPackageJson from "@sjsf-lab/shadcn-extras-theme/package.json" with { type: "json" };
 import _svarPackageJson from "@sjsf-lab/svar-theme/package.json" with { type: "json" };
 import _basicPackageJson from "@sjsf/basic-theme/package.json" with { type: "json" };
-// Legacy
 import _daisyuiPackageJson from "@sjsf/daisyui-theme/package.json" with { type: "json" };
 import _daisyui5PackageJson from "@sjsf/daisyui5-theme/package.json" with { type: "json" };
 import _flowbitePackageJson from "@sjsf/flowbite-theme/package.json" with { type: "json" };
@@ -12,6 +10,7 @@ import _shadcnPackageJson from "@sjsf/shadcn-theme/package.json" with { type: "j
 import _shadcn4PackageJson from "@sjsf/shadcn4-theme/package.json" with { type: "json" };
 import _skeleton3PackageJson from "@sjsf/skeleton3-theme/package.json" with { type: "json" };
 import _skeleton4PackageJson from "@sjsf/skeleton4-theme/package.json" with { type: "json" };
+import _skeleton5PackageJson from "@sjsf/skeleton5-theme/package.json" with { type: "json" };
 
 import type { AtRule, AtRuleOptions } from "./css.ts";
 import {
@@ -26,7 +25,7 @@ const THEMES = [
   "basic",
   "daisyui5",
   "flowbite3",
-  "skeleton4",
+  "skeleton5",
   "shadcn4",
   // Lab
   "shadcn-extras",
@@ -36,6 +35,7 @@ const THEMES = [
   "daisyui",
   "flowbite",
   "skeleton3",
+  "skeleton4",
   "shadcn",
 ] as const;
 
@@ -47,6 +47,7 @@ const LEGACY_THEMES = [
   "daisyui",
   "flowbite",
   "skeleton3",
+  "skeleton4",
   "shadcn",
 ] satisfies Theme[];
 
@@ -83,6 +84,7 @@ const TAILWINDCSS4_THEMES = [
   "shadcn4",
   "shadcn-extras",
   "skeleton4",
+  "skeleton5",
 ] satisfies Theme[];
 
 const TAILWINDCSS4_THEMES_SET = new Set<Theme>(TAILWINDCSS4_THEMES);
@@ -91,6 +93,7 @@ export type Tailwindcss4Theme = (typeof TAILWINDCSS4_THEMES)[number];
 
 const TAILWINDCSS4_THEME_PLUGINS = {
   skeleton4: ["forms"],
+  skeleton5: ["forms"],
   "shadcn-extras": [],
   daisyui5: [],
   flowbite3: [],
@@ -139,6 +142,7 @@ const THEME_OR_SUB_THEME_TITLES: Record<ThemeOrSubTheme, string> = {
   flowbite3: "Flowbite Svelte",
   skeleton3: "Skeleton v3",
   skeleton4: "Skeleton v4",
+  skeleton5: "Skeleton v5",
   shadcn: "shadcn-svelte tw3",
   shadcn4: "shadcn-svelte",
   "shadcn-extras": "shadcn-svelte-extras",
@@ -154,6 +158,7 @@ const THEME_BRAND = {
   flowbite3: "Flowbite",
   skeleton3: "Skeleton",
   skeleton4: "Skeleton",
+  skeleton5: "Skeleton",
   shadcn: "shadcn-svelte",
   shadcn4: "shadcn-svelte",
   "shadcn-extras": "shadcn-svelte-extras",
@@ -166,6 +171,7 @@ const THEME_PACKAGES = {
   daisyui5: fromPackageJson(_daisyui5PackageJson),
   flowbite3: fromPackageJson(_flowbite3PackageJson),
   skeleton4: fromPackageJson(_skeleton4PackageJson),
+  skeleton5: fromPackageJson(_skeleton5PackageJson),
   shadcn4: fromPackageJson(_shadcn4PackageJson),
   "shadcn-extras": fromPackageJson(_shadcnExtrasPackageJson),
   beercss: fromPackageJson(_beercssPackageJson),
@@ -238,6 +244,20 @@ const THEME_OR_SUB_THEME_AT_RULES: Partial<
           {
             name: "source",
             params: `${nodeModulesPath}/${themePackage("skeleton4").name}/dist`,
+          },
+        ],
+  skeleton5: ({ nodeModulesPath, sandbox }) =>
+    sandbox
+      ? [
+          {
+            name: "import",
+            params: `${themePackage("skeleton5").name}/styles.css`,
+          },
+        ]
+      : [
+          {
+            name: "source",
+            params: `${nodeModulesPath}/${themePackage("skeleton5").name}/dist`,
           },
         ],
   shadcn4: ({ nodeModulesPath, sandbox }) =>

@@ -22,7 +22,7 @@ export const PADDED_THEMES: CodegenThemeOrSubTheme[] = [
   "pico",
   "daisyui5",
   "flowbite3",
-  "skeleton4",
+  "skeleton5",
   "shadcn4",
   "shadcn-extras",
   "beercss",

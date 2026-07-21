@@ -9,7 +9,7 @@ export interface AppHtmlOptions {
 export function createAppHtml({ themeOrSubTheme }: AppHtmlOptions) {
   // https://github.com/sveltejs/cli/blob/19ed7a0f940816a63c1c7f963a04bb72d7b19a8f/packages/sv/src/addons/paraglide.ts#L148
   return transforms.html(({ ast, html }) => {
-    if (themeOrSubTheme !== "skeleton4") {
+    if (themeOrSubTheme !== "skeleton5") {
       return false;
     }
     const htmlNode = ast.nodes.find(

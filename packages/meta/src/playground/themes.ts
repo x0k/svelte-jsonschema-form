@@ -7,7 +7,7 @@ import {
   daisyui5Theme,
   flowbite3Theme,
   shadcn4Theme,
-  skeleton4Theme,
+  skeleton5Theme,
   svarTheme,
   shadcn_extrasTheme,
 } from "./themes.generated.ts";
@@ -26,7 +26,7 @@ export const PLAYGROUND_SJSF_THEMES = {
   daisyui5: daisyui5Theme,
   flowbite3: flowbite3Theme,
   shadcn4: shadcn4Theme,
-  skeleton4: skeleton4Theme,
+  skeleton5: skeleton5Theme,
   svar: svarTheme,
   "shadcn-extras": shadcn_extrasTheme,
 } satisfies Record<PlaygroundTheme, Theme>;
