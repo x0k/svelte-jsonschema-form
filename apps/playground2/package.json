@@ -38,7 +38,7 @@
     "@sjsf/radix-icons": "workspace:*",
     "@sjsf/schemasafe-validator": "workspace:*",
     "@sjsf/shadcn4-theme": "workspace:*",
-    "@sjsf/skeleton4-theme": "workspace:*",
+    "@sjsf/skeleton5-theme": "workspace:*",
     "@svar-ui/svelte-core": "catalog:",
     "ajv": "catalog:",
     "ajv-formats": "catalog:",

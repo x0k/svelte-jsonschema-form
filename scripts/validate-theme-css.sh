@@ -17,10 +17,11 @@ fi
 
 content=$(cat "$css_file")
 
-if echo "$content" | grep -q ':root' 2>/dev/null; then
-  if ! echo "$content" | grep -q ':host' 2>/dev/null; then
-    echo "WARNING: CSS defines :root but not :host — variables may not apply inside Shadow DOM"
-  fi
+# Check that :root is not used in selectors (replaced with :host for Shadow DOM)
+root_count=$(echo "$content" | grep -oP ':root(?=[{ ,:])' | wc -l || true)
+if [ "$root_count" -gt 0 ]; then
+  echo "ERROR: Found $root_count :root selector(s) — should be :host for Shadow DOM support"
+  exit 1
 fi
 
 if [ -n "$min_vars" ]; then

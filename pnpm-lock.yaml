@@ -899,9 +899,9 @@ importers:
       '@sjsf/shadcn4-theme':
         specifier: workspace:*
         version: link:../../packages/shadcn4-theme
-      '@sjsf/skeleton4-theme':
+      '@sjsf/skeleton5-theme':
         specifier: workspace:*
-        version: link:../../legacy/skeleton4-theme
+        version: link:../../packages/skeleton5-theme
       '@svar-ui/svelte-core':
         specifier: 'catalog:'
         version: 2.6.0
