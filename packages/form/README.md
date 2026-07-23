@@ -69,7 +69,7 @@ npx sv add @sjsf
   - [Pico CSS](https://x0k.dev/svelte-jsonschema-form/themes/basic/#pico-css)
 - [daisyUI v5](https://x0k.dev/svelte-jsonschema-form/themes/daisyui5/)
 - [Flowbite Svelte](https://x0k.dev/svelte-jsonschema-form/themes/flowbite3/)
-- [Skeleton v4](https://x0k.dev/svelte-jsonschema-form/themes/skeleton4/)
+- [Skeleton v5](https://x0k.dev/svelte-jsonschema-form/themes/skeleton5/)
 - [shadcn-svelte](https://x0k.dev/svelte-jsonschema-form/themes/shadcn4/)
   - [shadcn-svelte-extras](https://x0k.dev/svelte-jsonschema-form/themes/shadcn-extras/) (experimental)
 - [SVAR](https://x0k.dev/svelte-jsonschema-form/themes/svar/) (experimental)

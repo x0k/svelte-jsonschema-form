@@ -1,9 +1,12 @@
 ---
-title: Skeleton v3
+title: Skeleton v5
 type: package
-packageCodeName: "skeleton3"
+packageCodeName: "skeleton5"
 sidebar:
-  order: 208
+  order: 3
+  badge:
+    text: new
+    variant: success
 ---
 
 import {
@@ -13,8 +16,8 @@ import {
   Tabs,
   LinkButton,
 } from "@astrojs/starlight/components";
-import { specs, extraWidgets } from "@sjsf/skeleton3-theme/specs";
-import styles from "@sjsf/skeleton3-theme/styles.css?inline";
+import { specs, extraWidgets } from "@sjsf/skeleton5-theme/specs";
+import styles from "@sjsf/skeleton5-theme/styles.css?inline";
 import { themePackage } from "meta";
 
 import { getPackageDependencies } from "@/shared";
@@ -22,17 +25,17 @@ import Npm from "@/components/npm.astro";
 import FormCard from "@/components/form-card.astro";
 import Deps from "@/components/peer-dependencies.astro";
 
-import Form from "./skeleton3/form.svelte";
-import uiOptionsCode from "./skeleton3/ui-options?raw";
+import Form from "./skeleton5/form.svelte";
+import uiOptionsCode from "./skeleton5/ui-options?raw";
 import {
   createSchemas,
   replacer,
   createExtraImports,
   validationEvents,
-} from "../_demo-schema";
+} from "./_demo-schema";
 
 export const schemas = createSchemas(specs);
-export const pkg = themePackage("skeleton3");
+export const pkg = themePackage("skeleton5");
 
 ## Installation
 
@@ -40,10 +43,10 @@ export const pkg = themePackage("skeleton3");
 
 <Deps pkg={pkg} />
 
-### Install Skeleton v3
+### Install Skeleton v5
 
 <LinkButton
-  href="https://v3.skeleton.dev/docs/get-started/installation/sveltekit"
+  href="https://www.skeleton.dev/docs/get-started/installation/sveltekit"
   variant="secondary"
   target="_blank"
   icon="external"
@@ -56,7 +59,7 @@ export const pkg = themePackage("skeleton3");
 Register the theme source path by adding the following line to the `layout.css` file:
 
 ```css
-@source "../node_modules/@sjsf/skeleton3-theme/dist";
+@source "../node_modules/@sjsf/skeleton5-theme/dist";
 ```
 
 ## Extra widgets
@@ -71,7 +74,7 @@ or used in the field as the default widget.
 
 :::
 
-<Code lang="ts" code={createExtraImports("skeleton3", extraWidgets)} />
+<Code lang="ts" code={createExtraImports("skeleton5", extraWidgets)} />
 
 ## Widgets demo
 

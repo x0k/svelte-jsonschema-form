@@ -1,14 +1,16 @@
 import type { ButtonType, LayoutType } from "@sjsf/form/fields/components";
 import type {
-  FileUpload as SkeletonFileUpload,
-  Rating as SkeletonRating,
-  Segment,
-  Slider as SkeletonSlider,
-  Switch as SkeletonSwitch,
-  TagsInput,
-  Combobox as SkeletonCombobox,
-} from "@skeletonlabs/skeleton-svelte3";
-import type { Component } from "svelte";
+  ComboboxRootProps,
+  DatePickerRootProps,
+  FileUploadRootProviderProps,
+  PortalRootProps,
+  RatingGroupRootProps,
+  SegmentedControlItemProps,
+  SegmentedControlRootProps,
+  SliderRootProps,
+  SwitchRootProps,
+  TagsInputRootProps,
+} from "@skeletonlabs/skeleton-svelte";
 import type {
   HTMLAttributes,
   HTMLButtonAttributes,
@@ -18,8 +20,6 @@ import type {
   HTMLSelectAttributes,
   HTMLTextareaAttributes,
 } from "svelte/elements";
-
-type Props<T> = T extends Component<infer P, any, any> ? P : never;
 
 export interface UiOptions {
   /**
@@ -78,8 +78,6 @@ export interface UiOptions {
 
   checkboxes?: HTMLInputAttributes;
 
-  datePicker?: HTMLInputAttributes;
-
   file?: HTMLInputAttributes;
 
   multiSelect?: HTMLSelectAttributes;
@@ -90,18 +88,27 @@ export interface UiOptions {
 
   textarea?: HTMLTextareaAttributes;
 
-  skeleton3Combobox?: Props<typeof SkeletonCombobox>;
+  skeleton5Combobox?: ComboboxRootProps;
+  skeleton5ComboboxPortal?: Omit<PortalRootProps, "children">;
 
-  skeleton3FileUpload?: Props<typeof SkeletonFileUpload>;
+  skeleton5DatePicker?: DatePickerRootProps;
+  skeleton5DatePickerPortal?: Omit<PortalRootProps, "children">;
 
-  skeleton3Segment?: Props<typeof Segment>;
-  skeleton3SegmentItem?: Props<typeof Segment.Item>;
+  skeleton5DateRangePicker?: DatePickerRootProps;
+  skeleton5DateRangePickerPortal?: Omit<PortalRootProps, "children">;
 
-  skeleton3Rating?: Props<typeof SkeletonRating>;
+  skeleton5FileUpload?: Omit<FileUploadRootProviderProps, "value">;
 
-  skeleton3Slider?: Props<typeof SkeletonSlider>;
+  skeleton5Segment?: SegmentedControlRootProps;
+  skeleton5SegmentItem?: Omit<SegmentedControlItemProps, "value">;
 
-  skeleton3Switch?: Props<typeof SkeletonSwitch>;
+  skeleton5RangeSlider?: SliderRootProps;
 
-  skeleton3Tags?: Props<typeof TagsInput>;
+  skeleton5Rating?: RatingGroupRootProps;
+
+  skeleton5Slider?: SliderRootProps;
+
+  skeleton5Switch?: SwitchRootProps;
+
+  skeleton5Tags?: TagsInputRootProps;
 }

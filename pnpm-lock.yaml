@@ -637,6 +637,9 @@ importers:
       '@sjsf/skeleton4-theme':
         specifier: workspace:*
         version: link:../../legacy/skeleton4-theme
+      '@sjsf/skeleton5-theme':
+        specifier: workspace:*
+        version: link:../../packages/skeleton5-theme
       '@sjsf/sveltekit':
         specifier: workspace:*
         version: link:../../packages/sveltekit
@@ -647,8 +650,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/zod4-validator
       '@skeletonlabs/skeleton-svelte':
-        specifier: catalog:legacy
-        version: 1.5.3(svelte@5.56.4(@typescript-eslint/types@8.62.1))
+        specifier: 'catalog:'
+        version: 5.0.0(svelte@5.56.4(@typescript-eslint/types@8.62.1))
       '@stackblitz/sdk':
         specifier: 'catalog:'
         version: 1.11.0
@@ -758,6 +761,9 @@ importers:
       '@picocss/pico':
         specifier: 'catalog:'
         version: 2.1.1
+      '@skeletonlabs/skeleton-svelte3':
+        specifier: npm:@skeletonlabs/skeleton-svelte@^1.5.3
+        version: '@skeletonlabs/skeleton-svelte@1.5.3(svelte@5.56.4(@typescript-eslint/types@8.62.1))'
       '@skeletonlabs/skeleton-svelte4':
         specifier: npm:@skeletonlabs/skeleton-svelte@^4.15.2
         version: '@skeletonlabs/skeleton-svelte@4.15.2(svelte@5.56.4(@typescript-eslint/types@8.62.1))'

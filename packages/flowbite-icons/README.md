@@ -19,7 +19,7 @@ npm install @sjsf/form @sjsf/flowbite-icons
 
 2. Configuration
 
-Register the theme source path by adding the following line to the `app.css` file:.
+Register the theme source path by adding the following line to the `layout.css` file:
 
 ```css
 @source "../node_modules/@sjsf/flowbite-icons/dist";
