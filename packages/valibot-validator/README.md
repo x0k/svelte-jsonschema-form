@@ -18,9 +18,7 @@ import { createForm, type Schema } from "@sjsf/form";
 import { adapt } from "@sjsf/valibot-validator";
 import * as v from "valibot";
 
-const schema = v.object({
-  /* your schema */
-});
+const schema = v.object({/* your schema */});
 
 const form = createForm({
   ...adapt(schema),

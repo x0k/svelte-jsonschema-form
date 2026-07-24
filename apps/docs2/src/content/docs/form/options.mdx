@@ -54,9 +54,7 @@ export interface MergerFactoryOptions {
 export type Bind<T> = [get: () => T, set: (v: T) => void];
 
 export type Creatable<Result, Options> =
-  | ((options: Options) => Result)
-  | (() => Result)
-  | Result;
+  ((options: Options) => Result) | (() => Result) | Result;
 
 export interface FormOptions<T> extends UiOptionsRegistryOption {
   schema: Schema;

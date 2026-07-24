@@ -39,10 +39,10 @@
   },
   "devDependencies": {
     "@sveltejs/sv-utils": "catalog:",
-    "@types/node": "^26.0.1",
+    "@types/node": "catalog:",
     "meta": "workspace:*",
-    "sv": "^0.16.1",
-    "tsdown": "^0.22.3",
+    "sv": "^0.16.5",
+    "tsdown": "^0.22.14",
     "vitest": "catalog:"
   },
   "peerDependencies": {

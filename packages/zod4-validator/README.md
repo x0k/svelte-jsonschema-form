@@ -18,9 +18,7 @@ import { createForm, type Schema } from "@sjsf/form";
 import { adapt } from "@sjsf/zod4-validator/classic";
 import { z } from "zod/v4";
 
-const schema = z.object({
-  /* your schema */
-});
+const schema = z.object({/* your schema */});
 
 const form = createForm({
   ...adapt(schema),

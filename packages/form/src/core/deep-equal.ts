@@ -9,7 +9,7 @@ function compareRecords(
 ): boolean {
   const aKeys = Reflect.ownKeys(a);
   let key;
-  for (let i = aKeys.length; i-- !== 0; ) {
+  for (let i = aKeys.length; i-- !== 0;) {
     key = aKeys[i]!;
     if (!compare(a[key], b[key])) {
       return false;
@@ -29,7 +29,7 @@ function compareOrderedRecords(
     return false;
   }
   let key;
-  for (let i = aKeys.length; i-- !== 0; ) {
+  for (let i = aKeys.length; i-- !== 0;) {
     key = aKeys[i]!;
     if (key !== bKeys[i] || !compare(a[key], b[key])) {
       return false;
@@ -61,7 +61,7 @@ function createSchemaValueComparator(
         if (length !== b.length) {
           return false;
         }
-        for (let i = length; i-- !== 0; ) {
+        for (let i = length; i-- !== 0;) {
           if (!isSchemaValueDeepEqual(a[i], b[i])) {
             return false;
           }
