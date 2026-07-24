@@ -20,8 +20,8 @@
     "ajv": "catalog:"
   },
   "devDependencies": {
-    "@skeletonlabs/skeleton": "catalog:",
-    "@skeletonlabs/skeleton-svelte": "catalog:",
+    "@skeletonlabs/skeleton": "catalog:skeleton4",
+    "@skeletonlabs/skeleton-svelte": "catalog:skeleton4",
     "@tailwindcss/forms": "catalog:",
     "@tailwindcss/vite": "catalog:",
     "svelte": "catalog:",

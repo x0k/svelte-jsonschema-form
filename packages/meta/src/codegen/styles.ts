@@ -123,7 +123,7 @@ export function createStyles({
           append: true,
         });
       }
-    } else if (themeOrSubTheme === "skeleton4") {
+    } else if (themeOrSubTheme === "skeleton5") {
       css.addAtRule(ast, {
         name: "import",
         params: '"@skeletonlabs/skeleton"',

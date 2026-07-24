@@ -171,7 +171,7 @@ daisy/:
   popd
 
 skel/:
-  pushd packages/skeleton4-theme
+  pushd packages/skeleton5-theme
   c:
     pnpm run check
   b:
@@ -320,8 +320,19 @@ leg/:
     t:
       pnpm run test $@
     popd
-  skel/:
+  skel3/:
     pushd skeleton3-theme
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    d:
+      pnpm run dev
+    t:
+      pnpm run test $@
+    popd
+  skel/:
+    pushd skeleton4-theme
     c:
       pnpm run check
     b:
@@ -393,7 +404,7 @@ e/:
       pnpm run dev
     popd
   skel/:
-    pushd skeleton4-starter
+    pushd skeleton5-starter
     c:
       pnpm run check
     b:

@@ -1822,7 +1822,7 @@ export default defineConfig({
 }
 `;
 
-exports[`builder sandbox-factory > themes > skeleton4 1`] = `
+exports[`builder sandbox-factory > themes > skeleton5 1`] = `
 {
   "package.json": "{
   "name": "sandbox",
@@ -1831,10 +1831,10 @@ exports[`builder sandbox-factory > themes > skeleton4 1`] = `
   "dependencies": {
     "@sjsf/form": "^3.5.0",
     "@sveltejs/kit": "^2.48.3",
-    "svelte": "^5.34.8",
-    "@sjsf/skeleton4-theme": "^3.7.2",
-    "@skeletonlabs/skeleton": "^4.2.0",
-    "@skeletonlabs/skeleton-svelte": "^4.2.0",
+    "svelte": "^5.40.0",
+    "@sjsf/skeleton5-theme": "^3.7.2",
+    "@skeletonlabs/skeleton": "^5.0.0",
+    "@skeletonlabs/skeleton-svelte": "^5.0.0",
     "@sjsf/ajv8-validator": "^3.7.2",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
@@ -1904,23 +1904,23 @@ export { translation } from '@sjsf/form/translations/en';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
-// import "@sjsf/skeleton4-theme/extra-widgets/checkboxes-include";
-// import "@sjsf/skeleton4-theme/extra-widgets/combobox-include";
-// import "@sjsf/skeleton4-theme/extra-widgets/date-picker-include";
-// import "@sjsf/skeleton4-theme/extra-widgets/date-range-picker-include";
-// import "@sjsf/skeleton4-theme/extra-widgets/file-upload-include";
-// import "@sjsf/skeleton4-theme/extra-widgets/file-include";
-// import "@sjsf/skeleton4-theme/extra-widgets/multi-select-include";
-// import "@sjsf/skeleton4-theme/extra-widgets/radio-buttons-include";
-// import "@sjsf/skeleton4-theme/extra-widgets/radio-include";
-// import "@sjsf/skeleton4-theme/extra-widgets/range-slider-include";
-// import "@sjsf/skeleton4-theme/extra-widgets/range-include";
-// import "@sjsf/skeleton4-theme/extra-widgets/rating-include";
-// import "@sjsf/skeleton4-theme/extra-widgets/slider-include";
-// import "@sjsf/skeleton4-theme/extra-widgets/switch-include";
-// import "@sjsf/skeleton4-theme/extra-widgets/tags-include";
-// import "@sjsf/skeleton4-theme/extra-widgets/textarea-include";
-export { theme } from '@sjsf/skeleton4-theme';
+// import "@sjsf/skeleton5-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/skeleton5-theme/extra-widgets/combobox-include";
+// import "@sjsf/skeleton5-theme/extra-widgets/date-picker-include";
+// import "@sjsf/skeleton5-theme/extra-widgets/date-range-picker-include";
+// import "@sjsf/skeleton5-theme/extra-widgets/file-upload-include";
+// import "@sjsf/skeleton5-theme/extra-widgets/file-include";
+// import "@sjsf/skeleton5-theme/extra-widgets/multi-select-include";
+// import "@sjsf/skeleton5-theme/extra-widgets/radio-buttons-include";
+// import "@sjsf/skeleton5-theme/extra-widgets/radio-include";
+// import "@sjsf/skeleton5-theme/extra-widgets/range-slider-include";
+// import "@sjsf/skeleton5-theme/extra-widgets/range-include";
+// import "@sjsf/skeleton5-theme/extra-widgets/rating-include";
+// import "@sjsf/skeleton5-theme/extra-widgets/slider-include";
+// import "@sjsf/skeleton5-theme/extra-widgets/switch-include";
+// import "@sjsf/skeleton5-theme/extra-widgets/tags-include";
+// import "@sjsf/skeleton5-theme/extra-widgets/textarea-include";
+export { theme } from '@sjsf/skeleton5-theme';
 
 export const onSubmitError = createFocusOnFirstError();
 
@@ -1948,7 +1948,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />",
   "src/routes/layout.css": "@import 'tailwindcss';
-@import "@sjsf/skeleton4-theme/styles.css";
+@import "@sjsf/skeleton5-theme/styles.css";
 @plugin '@tailwindcss/forms';
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";

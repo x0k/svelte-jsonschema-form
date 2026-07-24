@@ -296,19 +296,19 @@
       return iconsSet;
     },
     extraUiOptions: fromRecord({
-      skeleton4Slider: options,
-      skeleton4FileUpload: options,
-      skeleton4RangeSlider: options,
-      skeleton4Rating: options,
-      skeleton4Segment: options,
-      skeleton4Switch: options,
-      skeleton4Tags: options,
-      skeleton4DatePicker: options,
-      skeleton4DatePickerPortal: portalOptions,
-      skeleton4Combobox: options,
-      skeleton4ComboboxPortal: portalOptions,
-      skeleton4DateRangePicker: options,
-      skeleton4DateRangePickerPortal: portalOptions,
+      skeleton5Slider: options,
+      skeleton5FileUpload: options,
+      skeleton5RangeSlider: options,
+      skeleton5Rating: options,
+      skeleton5Segment: options,
+      skeleton5Switch: options,
+      skeleton5Tags: options,
+      skeleton5DatePicker: options,
+      skeleton5DatePickerPortal: portalOptions,
+      skeleton5Combobox: options,
+      skeleton5ComboboxPortal: portalOptions,
+      skeleton5DateRangePicker: options,
+      skeleton5DateRangePickerPortal: portalOptions,
     }),
     uiOptionsRegistry: {
       stringEnumValueMapper: () => new StringEnumValueMapperBuilder(),
@@ -796,8 +796,7 @@
               attributes={{
                 id: "form",
                 class: themeManager.darkOrLight,
-                style:
-                  "flex-grow: 1; display: flex; flex-direction: column; gap: 1rem; padding: 1.5rem;",
+                style: `flex-grow: 1; display: flex; flex-direction: column; gap: 1rem; padding: 1.5rem; color-scheme: ${themeManager.darkOrLight}`,
                 novalidate: !data.html5Validation || undefined,
                 ["data-theme"]: data.theme.startsWith("skeleton")
                   ? "cerberus"

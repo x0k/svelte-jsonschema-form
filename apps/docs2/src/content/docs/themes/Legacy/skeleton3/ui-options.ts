@@ -7,7 +7,7 @@ import type {
   Switch as SkeletonSwitch,
   TagsInput,
   Combobox as SkeletonCombobox,
-} from "@skeletonlabs/skeleton-svelte";
+} from "@skeletonlabs/skeleton-svelte3";
 import type { Component } from "svelte";
 import type {
   HTMLAttributes,

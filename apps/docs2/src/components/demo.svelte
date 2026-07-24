@@ -103,16 +103,16 @@
   };
 
   const extraUiOptions: ExtraUiOptions = fromRecord({
-    skeleton4Slider: options,
-    skeleton4FileUpload: options,
-    skeleton4Rating: options,
-    skeleton4Segment: options,
-    skeleton4Switch: options,
-    skeleton4Tags: options,
-    skeleton4DatePicker: options,
-    skeleton4DatePickerPortal: portalOptions,
-    skeleton4Combobox: options,
-    skeleton4ComboboxPortal: portalOptions,
+    skeleton5Slider: options,
+    skeleton5FileUpload: options,
+    skeleton5Rating: options,
+    skeleton5Segment: options,
+    skeleton5Switch: options,
+    skeleton5Tags: options,
+    skeleton5DatePicker: options,
+    skeleton5DatePickerPortal: portalOptions,
+    skeleton5Combobox: options,
+    skeleton5ComboboxPortal: portalOptions,
   });
 
   const defaults = $derived({
@@ -321,7 +321,7 @@ ${shadowStyles}`);
             data-theme={selectedTheme.current.startsWith("skeleton")
               ? "cerberus"
               : themeManager.darkOrLight}
-            style="padding: 2rem;"
+            style="padding: 2rem; color-scheme: {themeManager.darkOrLight};"
           >
             {#if portalEl}
               <BitsConfig defaultPortalTo={portalEl}>

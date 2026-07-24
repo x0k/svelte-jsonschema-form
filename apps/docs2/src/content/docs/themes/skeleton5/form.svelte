@@ -1,8 +1,8 @@
 <script lang="ts">
   import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
   import { fromRecord } from "@sjsf/form/lib/resolver";
-  import { theme } from "@sjsf/skeleton4-theme";
-  import { specs } from "@sjsf/skeleton4-theme/specs";
+  import { theme } from "@sjsf/skeleton5-theme";
+  import { specs } from "@sjsf/skeleton5-theme/specs";
 
   import * as defaults from "@/lib/sjsf/defaults";
   import { themeManager } from "@/theme.svelte";
@@ -26,19 +26,19 @@
     ...createSchemas(specs),
     theme,
     extraUiOptions: fromRecord({
-      skeleton4Slider: options,
-      skeleton4FileUpload: options,
-      skeleton4RangeSlider: options,
-      skeleton4Rating: options,
-      skeleton4Segment: options,
-      skeleton4Switch: options,
-      skeleton4Tags: options,
-      skeleton4Combobox: options,
-      skeleton4ComboboxPortal: portalProps,
-      skeleton4DatePicker: options,
-      skeleton4DatePickerPortal: portalProps,
-      skeleton4DateRangePicker: options,
-      skeleton4DateRangePickerPortal: portalProps,
+      skeleton5Slider: options,
+      skeleton5FileUpload: options,
+      skeleton5RangeSlider: options,
+      skeleton5Rating: options,
+      skeleton5Segment: options,
+      skeleton5Switch: options,
+      skeleton5Tags: options,
+      skeleton5Combobox: options,
+      skeleton5ComboboxPortal: portalProps,
+      skeleton5DatePicker: options,
+      skeleton5DatePickerPortal: portalProps,
+      skeleton5DateRangePicker: options,
+      skeleton5DateRangePickerPortal: portalProps,
     }),
   });
 
@@ -54,8 +54,8 @@
   <BasicForm
     {form}
     novalidate
-    class="flex flex-col gap-4 {themeManager.darkOrLight}"
-    style="margin-bottom: 1rem;"
+    class="flex flex-col gap-4"
+    style="margin-bottom: 1rem; color-scheme: {themeManager.darkOrLight};"
     data-theme="cerberus"
   />
 {/if}

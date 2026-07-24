@@ -3,7 +3,7 @@ title: Skeleton v4
 type: package
 packageCodeName: "skeleton4"
 sidebar:
-  order: 3
+  order: 209
 ---
 
 import {
@@ -29,7 +29,7 @@ import {
   replacer,
   createExtraImports,
   validationEvents,
-} from "./_demo-schema";
+} from "../_demo-schema";
 
 export const schemas = createSchemas(specs);
 export const pkg = themePackage("skeleton4");
@@ -43,7 +43,7 @@ export const pkg = themePackage("skeleton4");
 ### Install Skeleton v4
 
 <LinkButton
-  href="https://www.skeleton.dev/docs/get-started/installation/sveltekit"
+  href="https://v4.skeleton.dev/docs/svelte/get-started/installation/sveltekit"
   variant="secondary"
   target="_blank"
   icon="external"
@@ -53,7 +53,7 @@ export const pkg = themePackage("skeleton4");
 
 ### Configuration
 
-Register the theme source path by adding the following line to the `app.css` file:.
+Register the theme source path by adding the following line to the `layout.css` file:
 
 ```css
 @source "../node_modules/@sjsf/skeleton4-theme/dist";

@@ -91,7 +91,7 @@ export const TEXT_WIDGET_OPTIONS: Record<
   pico: basicTextOptions,
   daisyui5: basicTextOptions,
   flowbite3: (params) => ({ flowbite3Text: { ...params } }),
-  skeleton4: basicTextOptions,
+  skeleton5: basicTextOptions,
   shadcn4: (params) => ({ shadcn4Text: { ...params } }),
   svar: (params) => ({
     svarText: { placeholder: params.placeholder, type: params.type as any },
@@ -144,7 +144,7 @@ export const CHECKBOXES_WIDGET_OPTIONS: Record<
             },
           },
         },
-  skeleton4: (inline) =>
+  skeleton5: (inline) =>
     inline
       ? {}
       : {

@@ -17,10 +17,15 @@ fi
 
 content=$(cat "$css_file")
 
-if echo "$content" | grep -q ':root' 2>/dev/null; then
-  if ! echo "$content" | grep -q ':host' 2>/dev/null; then
-    echo "WARNING: CSS defines :root but not :host — variables may not apply inside Shadow DOM"
-  fi
+# Check that :root is not used without :host in selectors (for Shadow DOM support)
+# Allow :root,:host patterns from Tailwind CSS v4 (e.g., @layer theme{:root,:host{...}})
+# Count :root occurrences that are NOT followed by ,:host (standalone :root)
+root_count=$(echo "$content" | grep -oP ':root(?=[{ ,:])' | wc -l || true)
+root_host_count=$(echo "$content" | grep -oP ':root,:host(?=[{ ,:])' | wc -l || true)
+standalone_root=$((root_count - root_host_count))
+if [ "$standalone_root" -gt 0 ]; then
+  echo "ERROR: Found $standalone_root :root selector(s) without :host — should be :host for Shadow DOM support"
+  exit 1
 fi
 
 if [ -n "$min_vars" ]; then

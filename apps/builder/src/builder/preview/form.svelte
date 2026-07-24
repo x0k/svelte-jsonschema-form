@@ -118,19 +118,19 @@
       return PLAYGROUND_ICON_SETS[ctx.icons];
     },
     extraUiOptions: fromRecord({
-      skeleton4Slider: options,
-      skeleton4FileUpload: options,
-      skeleton4RangeSlider: options,
-      skeleton4Rating: options,
-      skeleton4Segment: options,
-      skeleton4Switch: options,
-      skeleton4Tags: options,
-      skeleton4Combobox: options,
-      skeleton4ComboboxPortal: portalOptions,
-      skeleton4DatePicker: options,
-      skeleton4DatePickerPortal: portalOptions,
-      skeleton4DateRangePicker: options,
-      skeleton4DateRangePickerPortal: portalOptions,
+      skeleton5Slider: options,
+      skeleton5FileUpload: options,
+      skeleton5RangeSlider: options,
+      skeleton5Rating: options,
+      skeleton5Segment: options,
+      skeleton5Switch: options,
+      skeleton5Tags: options,
+      skeleton5Combobox: options,
+      skeleton5ComboboxPortal: portalOptions,
+      skeleton5DatePicker: options,
+      skeleton5DatePickerPortal: portalOptions,
+      skeleton5DateRangePicker: options,
+      skeleton5DateRangePickerPortal: portalOptions,
     }),
     onSubmit: console.log,
     onSubmitError: console.warn,
@@ -171,8 +171,8 @@
             {form}
             novalidate={!ctx.html5Validation}
             class={themeManager.darkOrLight}
-            style="padding: 1rem; display: flex; flex-direction: column; gap: 1rem;"
-            data-theme={ctx.theme.startsWith("skeleton4")
+            style="color-scheme: {themeManager.darkOrLight}; padding: 1rem; display: flex; flex-direction: column; gap: 1rem;"
+            data-theme={ctx.theme.startsWith("skeleton5")
               ? "cerberus"
               : themeManager.darkOrLight}
           />

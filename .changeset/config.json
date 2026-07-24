@@ -18,10 +18,10 @@
       "@sjsf/moving-icons",
       "@sjsf/schemasafe-validator",
       "@sjsf/shadcn4-theme",
+      "@sjsf/skeleton5-theme",
       "@sjsf/sveltekit",
       "@sjsf/valibot-validator",
       "@sjsf/zod4-validator",
-      "@sjsf/skeleton4-theme",
       "@sjsf/cfworker-validator",
       "@sjsf/lucide-icons",
       "@sjsf/radix-icons"
