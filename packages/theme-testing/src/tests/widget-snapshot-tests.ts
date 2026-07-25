@@ -73,7 +73,7 @@ export function widgetTests(
               test(`${widget}: ${modeName}`, async () => {
                 const rootDiv = document.createElement("div");
                 rootDiv.dataset["testid"] = "root-element";
-                const screen = render(matchOptions?.Form ?? Form, {
+                const screen = await render(matchOptions?.Form ?? Form, {
                   target: document.body.appendChild(rootDiv),
                   context: matchOptions?.context,
                   props: {

@@ -61,7 +61,7 @@ export function objectTests(theme: Theme, matchOptions?: MatchSnapshotOptions) {
     );
 
   describe("object fields", () => {
-    test("object", () => {
+    test("object", async () => {
       const schema: Schema = {
         type: "object",
         properties: {
@@ -69,9 +69,9 @@ export function objectTests(theme: Theme, matchOptions?: MatchSnapshotOptions) {
           b: { type: "number", title: "B" },
         },
       };
-      snapshot({ schema });
+      await snapshot({ schema });
     });
-    test("has errors", () => {
+    test("has errors", async () => {
       const schema: Schema = {
         type: "object",
         properties: {
@@ -80,7 +80,7 @@ export function objectTests(theme: Theme, matchOptions?: MatchSnapshotOptions) {
           },
         },
       };
-      snapshot({
+      await snapshot({
         schema,
         initialErrors: [
           {
@@ -90,22 +90,22 @@ export function objectTests(theme: Theme, matchOptions?: MatchSnapshotOptions) {
         ],
       });
     });
-    test("additionalProperties", () => {
+    test("additionalProperties", async () => {
       const schema: Schema = {
         type: "object",
         additionalProperties: true,
       };
-      snapshot({
+      await snapshot({
         schema,
         initialValue: { foo: "foo" },
       });
     });
-    test("additionalProperties with error", () => {
+    test("additionalProperties with error", async () => {
       const schema: Schema = {
         type: "object",
         additionalProperties: true,
       };
-      snapshot({
+      await snapshot({
         schema,
         initialValue: { foo: "foo" },
         initialErrors: [
@@ -116,17 +116,17 @@ export function objectTests(theme: Theme, matchOptions?: MatchSnapshotOptions) {
         ],
       });
     });
-    test("show add button and fields if additionalProperties is true and not an object", () => {
+    test("show add button and fields if additionalProperties is true and not an object", async () => {
       const schema: Schema = {
         additionalProperties: true,
       };
       const formData: any = {
         additionalProperty: "should appear",
       };
-      snapshot({ schema, initialValue: formData });
+      await snapshot({ schema, initialValue: formData });
     });
     describe("with title and description", () => {
-      test("object", () => {
+      test("object", async () => {
         const schema: Schema = {
           type: "object",
           ...titleAndDesc,
@@ -135,17 +135,17 @@ export function objectTests(theme: Theme, matchOptions?: MatchSnapshotOptions) {
             b: { type: "number", title: "B", description: "B description" },
           },
         };
-        snapshot({ schema });
+        await snapshot({ schema });
       });
-      test("additionalProperties", () => {
+      test("additionalProperties", async () => {
         const schema: Schema = {
           type: "object",
           ...titleAndDesc,
           additionalProperties: true,
         };
-        snapshot({ schema, initialValue: { foo: "foo" } });
+        await snapshot({ schema, initialValue: { foo: "foo" } });
       });
-      test("show add button and fields if additionalProperties is true and not an object", () => {
+      test("show add button and fields if additionalProperties is true and not an object", async () => {
         const schema: Schema = {
           ...titleAndDesc,
           additionalProperties: true,
@@ -153,11 +153,11 @@ export function objectTests(theme: Theme, matchOptions?: MatchSnapshotOptions) {
         const formData: any = {
           additionalProperty: "should appear",
         };
-        snapshot({ schema, initialValue: formData });
+        await snapshot({ schema, initialValue: formData });
       });
     });
     describe("with title and description from uiSchema", () => {
-      test("object", () => {
+      test("object", async () => {
         const schema: Schema = {
           type: "object",
           properties: {
@@ -165,27 +165,27 @@ export function objectTests(theme: Theme, matchOptions?: MatchSnapshotOptions) {
             b: { type: "number", title: "B" },
           },
         };
-        snapshot({ schema, uiSchema: uiTitleAndDesc });
+        await snapshot({ schema, uiSchema: uiTitleAndDesc });
       });
-      test("additionalProperties", () => {
+      test("additionalProperties", async () => {
         const schema: Schema = {
           type: "object",
           additionalProperties: true,
         };
-        snapshot({
+        await snapshot({
           schema,
           uiSchema: uiTitleAndDesc,
           initialValue: { foo: "foo" },
         });
       });
-      test("show add button and fields if additionalProperties is true and not an object", () => {
+      test("show add button and fields if additionalProperties is true and not an object", async () => {
         const schema: Schema = {
           additionalProperties: true,
         };
         const formData: any = {
           additionalProperty: "should appear",
         };
-        snapshot({
+        await snapshot({
           schema,
           uiSchema: uiTitleAndDesc,
           initialValue: formData,
@@ -193,7 +193,7 @@ export function objectTests(theme: Theme, matchOptions?: MatchSnapshotOptions) {
       });
     });
     describe("with title and description from both", () => {
-      test("object", () => {
+      test("object", async () => {
         const schema: Schema = {
           type: "object",
           ...titleAndDesc,
@@ -202,15 +202,15 @@ export function objectTests(theme: Theme, matchOptions?: MatchSnapshotOptions) {
             b: { type: "number", title: "B", description: "B description" },
           },
         };
-        snapshot({ schema, uiSchema: uiTitleAndDesc });
+        await snapshot({ schema, uiSchema: uiTitleAndDesc });
       });
-      test("additionalProperties", () => {
+      test("additionalProperties", async () => {
         const schema: Schema = {
           type: "object",
           ...titleAndDesc,
           additionalProperties: true,
         };
-        snapshot({
+        await snapshot({
           schema,
           uiSchema: uiTitleAndDesc,
           initialValue: { foo: "foo" },
@@ -218,7 +218,7 @@ export function objectTests(theme: Theme, matchOptions?: MatchSnapshotOptions) {
       });
     });
     describe("with title and description with global label off", () => {
-      test("object", () => {
+      test("object", async () => {
         const schema: Schema = {
           type: "object",
           ...titleAndDesc,
@@ -227,21 +227,21 @@ export function objectTests(theme: Theme, matchOptions?: MatchSnapshotOptions) {
             b: { type: "number", title: "B", description: "B description" },
           },
         };
-        snapshot({ schema, uiSchema: labelsOff });
+        await snapshot({ schema, uiSchema: labelsOff });
       });
-      test("additionalProperties", () => {
+      test("additionalProperties", async () => {
         const schema: Schema = {
           type: "object",
           ...titleAndDesc,
           additionalProperties: true,
         };
-        snapshot({
+        await snapshot({
           schema,
           uiSchema: labelsOff,
           initialValue: { foo: "foo" },
         });
       });
-      test("show add button and fields if additionalProperties is true and not an object", () => {
+      test("show add button and fields if additionalProperties is true and not an object", async () => {
         const schema: Schema = {
           ...titleAndDesc,
           additionalProperties: true,
@@ -249,7 +249,7 @@ export function objectTests(theme: Theme, matchOptions?: MatchSnapshotOptions) {
         const formData: any = {
           additionalProperty: "should appear",
         };
-        snapshot({
+        await snapshot({
           schema,
           uiSchema: labelsOff,
           initialValue: formData,
@@ -257,16 +257,16 @@ export function objectTests(theme: Theme, matchOptions?: MatchSnapshotOptions) {
       });
     });
     describe("one of defaults", () => {
-      test("default preset", () => {
-        snapshot({
+      test("default preset", async () => {
+        await snapshot({
           schema: oneOfDefaults.schema,
           uiSchema: oneOfDefaults.uiSchema,
           initialValue: oneOfDefaults.initialValue,
         });
       });
 
-      test("manual preset", () => {
-        snapshot({
+      test("manual preset", async () => {
+        await snapshot({
           schema: oneOfDefaults.schema,
           uiSchema: oneOfDefaults.uiSchema,
           initialValue: {

@@ -23,11 +23,11 @@ export interface MatchSnapshotOptions {
   Form?: TestForm;
 }
 
-export function matchSnapshot(
+export async function matchSnapshot(
   formOptions: SnapshotFormOptions,
   { context, defaultFormOptions, Form = DefaultForm }: MatchSnapshotOptions = {}
 ) {
-  const { container } = render(Form, {
+  const { container } = await render(Form, {
     target: document.body.appendChild(document.createElement("div")),
     context,
     props: {
@@ -44,7 +44,7 @@ export function testMatchSnapshot(
   formOptions: SnapshotFormOptions,
   matchOptions?: MatchSnapshotOptions
 ) {
-  test(title, () => {
-    matchSnapshot(formOptions, matchOptions);
+  test(title, async () => {
+    await matchSnapshot(formOptions, matchOptions);
   });
 }

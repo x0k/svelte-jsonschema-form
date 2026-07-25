@@ -27,8 +27,7 @@ export interface UiSchemaContent {
    */
   "ui:components"?: Partial<{
     [T in FoundationalComponentType]:
-      | Exclude<CompatibleComponentType<T>, T>
-      | ComponentDefinitions[T];
+      Exclude<CompatibleComponentType<T>, T> | ComponentDefinitions[T];
   }>;
   items?: UiSchemaDefinition | UiSchemaDefinition[];
   anyOf?: UiSchemaDefinition[];
@@ -269,9 +268,11 @@ export interface UiOptionsRegistry {}
 
 export type ResolvableUiOption<T> =
   | {
-      [K in keyof UiOptionsRegistry as UiOptionsRegistry[K] extends T
-        ? K
-        : never]: `registry:${K}`;
+      [
+        K in keyof UiOptionsRegistry as UiOptionsRegistry[K] extends T
+          ? K
+          : never
+      ]: `registry:${K}`;
     }[keyof UiOptionsRegistry]
   | T;
 

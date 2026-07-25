@@ -21,7 +21,7 @@ const meta: DemoMeta = {
     },
     {
       "name": "arktype",
-      "version": "2.2.1",
+      "version": "2.2.3",
       "dev": false
     }
   ]

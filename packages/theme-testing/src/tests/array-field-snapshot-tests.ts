@@ -56,16 +56,16 @@ export function arrayFieldTests(
     );
 
   describe("array fields", () => {
-    test("array", () => {
+    test("array", async () => {
       const schema: Schema = {
         type: "array",
         items: {
           type: "string",
         },
       };
-      snapshot({ schema });
+      await snapshot({ schema });
     });
-    test("fixed array", () => {
+    test("fixed array", async () => {
       const schema: Schema = {
         type: "array",
         items: [
@@ -77,9 +77,9 @@ export function arrayFieldTests(
           },
         ],
       };
-      snapshot({ schema });
+      await snapshot({ schema });
     });
-    test("checkboxes", () => {
+    test("checkboxes", async () => {
       const schema: Schema = {
         type: "array",
         items: {
@@ -88,9 +88,9 @@ export function arrayFieldTests(
         },
         uniqueItems: true,
       };
-      snapshot({ schema });
+      await snapshot({ schema });
     });
-    test("array icons", () => {
+    test("array icons", async () => {
       const schema: Schema = {
         type: "array",
         items: {
@@ -100,9 +100,9 @@ export function arrayFieldTests(
       const uiSchema: UiSchema = {
         "ui:options": { copyable: true },
       };
-      snapshot({ schema, uiSchema, initialValue: ["a", "b"] });
+      await snapshot({ schema, uiSchema, initialValue: ["a", "b"] });
     });
-    test("empty errors array", () => {
+    test("empty errors array", async () => {
       const schema: Schema = {
         type: "object",
         properties: {
@@ -111,7 +111,7 @@ export function arrayFieldTests(
           },
         },
       };
-      snapshot({
+      await snapshot({
         schema,
         initialErrors: [
           {
@@ -123,7 +123,7 @@ export function arrayFieldTests(
     });
   });
   describe("with title and description", () => {
-    test("array", () => {
+    test("array", async () => {
       const schema: Schema = {
         type: "array",
         ...titleAndDesc,
@@ -132,9 +132,9 @@ export function arrayFieldTests(
           type: "string",
         },
       };
-      snapshot({ schema });
+      await snapshot({ schema });
     });
-    test("fixed array", () => {
+    test("fixed array", async () => {
       const schema: Schema = {
         type: "array",
         ...titleAndDesc,
@@ -149,9 +149,9 @@ export function arrayFieldTests(
           },
         ],
       };
-      snapshot({ schema });
+      await snapshot({ schema });
     });
-    test("checkboxes", () => {
+    test("checkboxes", async () => {
       const schema: Schema = {
         type: "array",
         ...titleAndDesc,
@@ -162,9 +162,9 @@ export function arrayFieldTests(
         },
         uniqueItems: true,
       };
-      snapshot({ schema });
+      await snapshot({ schema });
     });
-    test("array icons", () => {
+    test("array icons", async () => {
       const schema: Schema = {
         type: "array",
         ...titleAndDesc,
@@ -176,7 +176,7 @@ export function arrayFieldTests(
       const uiSchema: UiSchema = {
         "ui:options": { copyable: true },
       };
-      snapshot({
+      await snapshot({
         schema,
         uiSchema,
         initialValue: ["a", "b"],
@@ -184,16 +184,16 @@ export function arrayFieldTests(
     });
   });
   describe("with title and description from uiSchema", () => {
-    test("array", () => {
+    test("array", async () => {
       const schema: Schema = {
         type: "array",
         items: {
           type: "string",
         },
       };
-      snapshot({ schema, uiSchema: uiTitleAndDesc });
+      await snapshot({ schema, uiSchema: uiTitleAndDesc });
     });
-    test("fixed array", () => {
+    test("fixed array", async () => {
       const schema: Schema = {
         type: "array",
         items: [
@@ -205,9 +205,9 @@ export function arrayFieldTests(
           },
         ],
       };
-      snapshot({ schema, uiSchema: uiTitleAndDesc });
+      await snapshot({ schema, uiSchema: uiTitleAndDesc });
     });
-    test("checkboxes", () => {
+    test("checkboxes", async () => {
       const schema: Schema = {
         type: "array",
         items: {
@@ -216,12 +216,12 @@ export function arrayFieldTests(
         },
         uniqueItems: true,
       };
-      snapshot({
+      await snapshot({
         schema,
         uiSchema: uiTitleAndDesc,
       });
     });
-    test("array icons", () => {
+    test("array icons", async () => {
       const schema: Schema = {
         type: "array",
         items: {
@@ -236,11 +236,11 @@ export function arrayFieldTests(
           copyable: true,
         },
       } satisfies UiSchema;
-      snapshot({ schema, uiSchema, initialValue: ["a", "b"] });
+      await snapshot({ schema, uiSchema, initialValue: ["a", "b"] });
     });
   });
   describe("with title and description from both", () => {
-    test("array", () => {
+    test("array", async () => {
       const schema: Schema = {
         type: "array",
         ...titleAndDesc,
@@ -248,9 +248,9 @@ export function arrayFieldTests(
           type: "string",
         },
       };
-      snapshot({ schema, uiSchema: uiTitleAndDesc });
+      await snapshot({ schema, uiSchema: uiTitleAndDesc });
     });
-    test("fixed array", () => {
+    test("fixed array", async () => {
       const schema: Schema = {
         type: "array",
         ...titleAndDesc,
@@ -263,9 +263,9 @@ export function arrayFieldTests(
           },
         ],
       };
-      snapshot({ schema, uiSchema: uiTitleAndDesc });
+      await snapshot({ schema, uiSchema: uiTitleAndDesc });
     });
-    test("checkboxes", () => {
+    test("checkboxes", async () => {
       const schema: Schema = {
         type: "array",
         ...titleAndDesc,
@@ -275,9 +275,9 @@ export function arrayFieldTests(
         },
         uniqueItems: true,
       };
-      snapshot({ schema, uiSchema: uiTitleAndDesc });
+      await snapshot({ schema, uiSchema: uiTitleAndDesc });
     });
-    test("array icons", () => {
+    test("array icons", async () => {
       const schema: Schema = {
         type: "array",
         ...titleAndDesc,
@@ -293,11 +293,11 @@ export function arrayFieldTests(
           copyable: true,
         },
       };
-      snapshot({ schema, uiSchema, initialValue: ["a", "b"] });
+      await snapshot({ schema, uiSchema, initialValue: ["a", "b"] });
     });
   });
   describe("with title and description with global label off", () => {
-    test("array", () => {
+    test("array", async () => {
       const schema: Schema = {
         type: "array",
         ...titleAndDesc,
@@ -306,9 +306,9 @@ export function arrayFieldTests(
           type: "string",
         },
       };
-      snapshot({ schema, uiSchema: labelsOff });
+      await snapshot({ schema, uiSchema: labelsOff });
     });
-    test("fixed array", () => {
+    test("fixed array", async () => {
       const schema: Schema = {
         type: "array",
         ...titleAndDesc,
@@ -323,9 +323,9 @@ export function arrayFieldTests(
           },
         ],
       };
-      snapshot({ schema, uiSchema: labelsOff });
+      await snapshot({ schema, uiSchema: labelsOff });
     });
-    test("checkboxes", () => {
+    test("checkboxes", async () => {
       const schema: Schema = {
         type: "array",
         ...titleAndDesc,
@@ -336,9 +336,9 @@ export function arrayFieldTests(
         },
         uniqueItems: true,
       };
-      snapshot({ schema, uiSchema: labelsOff });
+      await snapshot({ schema, uiSchema: labelsOff });
     });
-    test("array icons", () => {
+    test("array icons", async () => {
       const schema: Schema = {
         type: "array",
         ...titleAndDesc,
@@ -351,7 +351,7 @@ export function arrayFieldTests(
         ...labelsOff,
         "ui:options": { copyable: true },
       };
-      snapshot({ schema, uiSchema, initialValue: ["a", "b"] });
+      await snapshot({ schema, uiSchema, initialValue: ["a", "b"] });
     });
   });
 }

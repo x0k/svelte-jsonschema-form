@@ -82,14 +82,9 @@ will only be called if the form data passes validation successfully.
 
 ```ts
 export const actions = {
-  default: createAction(
-    {
-      /* options */
-    },
-    (data, event, meta) => {
-      /* logic */
-    }
-  ),
+  default: createAction({/* options */}, (data, event, meta) => {
+    /* logic */
+  }),
 } satisfies Actions;
 ```
 
@@ -226,9 +221,7 @@ const { form, request } = setupSvelteKitForm(meta, {
 ```ts
 export const actions = {
   default: createAction(
-    {
-      /* options */
-    },
+    {/* options */},
     (data: Model, _event, { idPrefix }) => {
       console.log(idPrefix, data);
     }

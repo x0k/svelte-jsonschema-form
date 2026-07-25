@@ -47,7 +47,7 @@
     "format:check": "oxfmt --check ."
   },
   "dependencies": {
-    "@hyperjump/json-schema-errors": "github:hyperjump-io/json-schema-errors#21ec0ab303b986e052e5ff255bf41d01c54e886b"
+    "@hyperjump/json-schema-errors": "github:hyperjump-io/json-schema-errors#b56d86cc9d89c2bc70838349ad963f963e6f9b20"
   },
   "devDependencies": {
     "@hyperjump/json-schema": "catalog:",

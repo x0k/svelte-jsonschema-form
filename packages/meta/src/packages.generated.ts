@@ -23,7 +23,7 @@ export const EXTRA_PACKAGES = {
   },
   "devalue": {
     "name": "devalue",
-    "version": "5.8.1",
+    "version": "5.8.2",
     "dev": true
   },
   "pico": {
@@ -33,7 +33,7 @@ export const EXTRA_PACKAGES = {
   },
   "vite": {
     "name": "vite",
-    "version": "8.1.2",
+    "version": "8.1.5",
     "dev": true
   },
   "typescript": {
@@ -43,7 +43,7 @@ export const EXTRA_PACKAGES = {
   },
   "svelteVitePlugin": {
     "name": "@sveltejs/vite-plugin-svelte",
-    "version": "7.1.2",
+    "version": "7.2.0",
     "dev": true
   },
   "svelteAdapterAuto": {
@@ -58,32 +58,32 @@ export const EXTRA_PACKAGES = {
   },
   "postcss": {
     "name": "postcss",
-    "version": "8.5.16",
+    "version": "8.5.23",
     "dev": true
   },
   "autoprefixer": {
     "name": "autoprefixer",
-    "version": "10.5.2",
+    "version": "10.5.4",
     "dev": true
   },
   "tailwindcss4": {
     "name": "tailwindcss",
-    "version": "4.3.2",
+    "version": "4.3.3",
     "dev": true
   },
   "tailwindcss4Vite": {
     "name": "@tailwindcss/vite",
-    "version": "4.3.2",
+    "version": "4.3.3",
     "dev": true
   },
   "typebox": {
     "name": "typebox",
-    "version": "1.3.2",
+    "version": "1.3.8",
     "dev": false
   },
   "arktype": {
     "name": "arktype",
-    "version": "2.2.1",
+    "version": "2.2.3",
     "dev": false
   },
   "jsonSchemaTyped": {
@@ -98,7 +98,7 @@ export const EXTRA_PACKAGES = {
   },
   "fontsourceVariableInter": {
     "name": "@fontsource-variable/inter",
-    "version": "5.2.8",
+    "version": "5.3.0",
     "dev": true
   },
   "tailwindcssAnimate": {
@@ -113,7 +113,7 @@ export const EXTRA_PACKAGES = {
   },
   "lucideSvelte": {
     "name": "@lucide/svelte",
-    "version": "1.22.0",
+    "version": "1.26.0",
     "dev": false
   },
   "zod": {
