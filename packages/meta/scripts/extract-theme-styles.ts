@@ -36,6 +36,9 @@ const THEME_CSS_SOURCES: Record<PlaygroundTheme, ThemeCssSource> = {
   flowbite3: {
     files: ["packages/flowbite3-theme/dist/styles.css"],
   },
+  skeleton4: {
+    files: ["legacy/skeleton4-theme/dist/styles.css"],
+  },
   skeleton5: {
     files: ["packages/skeleton5-theme/dist/styles.css"],
   },

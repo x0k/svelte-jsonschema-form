@@ -21,6 +21,8 @@ const WIDGET_USE_LABEL: Record<WidgetType, boolean | Set<PlaygroundTheme>> = {
   daisyui5FilterRadioButtonsWidget: false,
   daisyui5CallyDatePickerWidget: true,
   daisyui5VcDatePickerWidget: true,
+  skeleton4SliderWidget: true,
+  skeleton4FileUploadWidget: true,
   skeleton5SliderWidget: true,
   skeleton5FileUploadWidget: true,
   flowbite3ToggleRadioButtonsWidget: false,

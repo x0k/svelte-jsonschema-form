@@ -36,6 +36,8 @@ export const WIDGET_EXTRA_FIELD: Record<
   shadcnExtrasPhoneInputWidget: undefined,
   shadcnExtrasStarRatingWidget: undefined,
   shadcnExtrasTagsInputWidget: "array-tags",
+  skeleton4FileUploadWidget: undefined,
+  skeleton4SliderWidget: undefined,
   skeleton5FileUploadWidget: undefined,
   skeleton5SliderWidget: undefined,
   svarColorPickerWidget: undefined,

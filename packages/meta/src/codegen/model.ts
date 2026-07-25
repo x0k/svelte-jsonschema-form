@@ -57,11 +57,10 @@ export function* codegenThemeOrSubTheme() {
     }
     yield t;
     if (isThemeWithSubThemes(t)) {
-      for (const s of themeSubThemes(t)) {
-        yield s;
-      }
+      yield* themeSubThemes(t);
     }
   }
+  yield "skeleton4";
 }
 
 export type CodegenThemeOrSubTheme = Generated<typeof codegenThemeOrSubTheme>;

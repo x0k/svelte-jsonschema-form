@@ -66,6 +66,7 @@ export const THEME_NODE_OVERRIDES: Record<PlaygroundTheme, NodeOverridesMap> = {
   pico: {},
   daisyui5: {},
   flowbite3: {},
+  skeleton4: {},
   skeleton5: {},
   shadcn4: {},
   svar: {},
