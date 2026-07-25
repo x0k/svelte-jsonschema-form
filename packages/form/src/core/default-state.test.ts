@@ -4269,6 +4269,127 @@ describe("getDefaultFormState()", () => {
         ],
       });
     });
+
+    describe("optional array with arrayMinItems.populate = never (getDefaultFormState)", () => {
+      it("should omit optional array with no formData", () => {
+        const schema: Schema = {
+          type: "object",
+          properties: {
+            array: {
+              type: "array",
+              items: { type: "string" },
+            },
+            minItemsArray: {
+              type: "array",
+              minItems: 1,
+              items: { type: "string" },
+            },
+          },
+        };
+        const defaultFormStateBehavior: Experimental_DefaultFormStateBehavior =
+          {
+            arrayMinItems: { populate: "never" },
+          };
+
+        expect(
+          getDefaultFormState(
+            testValidator,
+            defaultMerger,
+            schema,
+            undefined,
+            schema,
+            false,
+            defaultFormStateBehavior
+          )
+        ).toEqual({});
+      });
+
+      it("should preserve short formData as-is", () => {
+        const schema: Schema = {
+          type: "object",
+          properties: {
+            minItemsArray: {
+              type: "array",
+              minItems: 2,
+              items: { type: "string" },
+            },
+          },
+        };
+        const defaultFormStateBehavior: Experimental_DefaultFormStateBehavior =
+          {
+            arrayMinItems: { populate: "never" },
+          };
+        expect(
+          getDefaultFormState(
+            testValidator,
+            defaultMerger,
+            schema,
+            { minItemsArray: ["foo"] },
+            schema,
+            false,
+            defaultFormStateBehavior
+          )
+        ).toEqual({ minItemsArray: ["foo"] });
+      });
+
+      it("should preserve formData that already meets minItems", () => {
+        const schema: Schema = {
+          type: "object",
+          properties: {
+            minItemsArray: {
+              type: "array",
+              minItems: 2,
+              items: { type: "string" },
+            },
+          },
+        };
+        const defaultFormStateBehavior: Experimental_DefaultFormStateBehavior =
+          {
+            arrayMinItems: { populate: "never" },
+          };
+        expect(
+          getDefaultFormState(
+            testValidator,
+            defaultMerger,
+            schema,
+            { minItemsArray: ["foo", "bar"] },
+            schema,
+            false,
+            defaultFormStateBehavior
+          )
+        ).toEqual({ minItemsArray: ["foo", "bar"] });
+      });
+
+      it("should not pad required array minItems with null (issue #5163)", () => {
+        const schema: Schema = {
+          type: "object",
+          properties: {
+            tags: {
+              type: "array",
+              minItems: 1,
+              items: { type: "string" },
+            },
+          },
+          required: ["tags"],
+        };
+        const defaultFormStateBehavior: Experimental_DefaultFormStateBehavior =
+          {
+            arrayMinItems: { populate: "never" },
+          };
+
+        expect(
+          getDefaultFormState(
+            testValidator,
+            defaultMerger,
+            schema,
+            undefined,
+            schema,
+            false,
+            defaultFormStateBehavior
+          )
+        ).toEqual({ tags: [] });
+      });
+    });
   });
   /**
    * emptyObjectFields options tests
