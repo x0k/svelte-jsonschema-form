@@ -972,19 +972,10 @@ export function getArrayDefaults(
   ) {
     // Check if the schema has a const property defined, then we should always return the computedDefault since it's coming from the const.
     if (neverPopulate) {
-      // When called from getDefaultFormState() (shouldMergeDefaultsIntoFormData),
-      // omit optional arrays entirely and fill minItems arrays with null entries
-      // instead of computing defaults from the item schema.
-      if (shouldMergeDefaultsIntoFormData) {
-        if (schema.minItems && schema.minItems > defaultsLength) {
-          const fillerEntries = Array.from(
-            { length: schema.minItems - defaultsLength },
-            () => null
-          );
-          return defaultsLength > 0
-            ? defaults!.concat(fillerEntries)
-            : fillerEntries;
-        }
+      if (shouldMergeDefaultsIntoFormData && !required) {
+        // Optional arrays with no existing data should be omitted entirely rather than defaulted to `[]`.
+        // Required arrays still fall through to `defaults ?? emptyDefault` below so that `[]` is surfaced,
+        // letting the validator report `minItems` violations instead of a missing-required-property error.
         return defaults;
       }
       return defaults ?? emptyDefault;

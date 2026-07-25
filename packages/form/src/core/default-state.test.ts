@@ -4301,9 +4301,7 @@ describe("getDefaultFormState()", () => {
             false,
             defaultFormStateBehavior
           )
-        ).toEqual({
-          minItemsArray: [null],
-        });
+        ).toEqual({});
       });
 
       it("should preserve short formData as-is", () => {
@@ -4360,6 +4358,36 @@ describe("getDefaultFormState()", () => {
             defaultFormStateBehavior
           )
         ).toEqual({ minItemsArray: ["foo", "bar"] });
+      });
+
+      it("should not pad required array minItems with null (issue #5163)", () => {
+        const schema: Schema = {
+          type: "object",
+          properties: {
+            tags: {
+              type: "array",
+              minItems: 1,
+              items: { type: "string" },
+            },
+          },
+          required: ["tags"],
+        };
+        const defaultFormStateBehavior: Experimental_DefaultFormStateBehavior =
+          {
+            arrayMinItems: { populate: "never" },
+          };
+
+        expect(
+          getDefaultFormState(
+            testValidator,
+            defaultMerger,
+            schema,
+            undefined,
+            schema,
+            false,
+            defaultFormStateBehavior
+          )
+        ).toEqual({ tags: [] });
       });
     });
   });
