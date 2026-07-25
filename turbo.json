@@ -9,7 +9,7 @@
     "build": {
       "dependsOn": ["^build", "lint", "check"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": ["dist/**"]
+      "outputs": ["dist/**", ".svelte-kit/**"]
     },
     "dev": {
       "dependsOn": ["^build"],
