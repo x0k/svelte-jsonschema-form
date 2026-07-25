@@ -1,6 +1,6 @@
 {
   "name": "@sjsf/zod4-validator",
-  "version": "3.7.2",
+  "version": "3.8.0",
   "description": "The Zod v4 based validator for svelte-jsonschema-form",
   "keywords": [
     "jsonschema",
