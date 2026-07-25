@@ -103,6 +103,16 @@
   };
 
   const extraUiOptions: ExtraUiOptions = fromRecord({
+    skeleton4Slider: options,
+    skeleton4FileUpload: options,
+    skeleton4Rating: options,
+    skeleton4Segment: options,
+    skeleton4Switch: options,
+    skeleton4Tags: options,
+    skeleton4DatePicker: options,
+    skeleton4DatePickerPortal: portalOptions,
+    skeleton4Combobox: options,
+    skeleton4ComboboxPortal: portalOptions,
     skeleton5Slider: options,
     skeleton5FileUpload: options,
     skeleton5Rating: options,

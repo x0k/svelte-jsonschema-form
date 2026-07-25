@@ -309,4 +309,55 @@ export const svarTheme = extendByRecord(svarBase, {
 
 // skip "skeleton3" theme
 
-// skip "skeleton4" theme
+import { theme as skeleton4Base } from "@sjsf/skeleton4-theme";
+import skeleton4_checkboxesWidget from "@sjsf/skeleton4-theme/extra-widgets/checkboxes.svelte";
+import "@sjsf/skeleton4-theme/extra-widgets/checkboxes.svelte";
+import skeleton4_comboboxWidget from "@sjsf/skeleton4-theme/extra-widgets/combobox.svelte";
+import "@sjsf/skeleton4-theme/extra-widgets/combobox.svelte";
+import skeleton4_datePickerWidget from "@sjsf/skeleton4-theme/extra-widgets/date-picker.svelte";
+import "@sjsf/skeleton4-theme/extra-widgets/date-picker.svelte";
+import skeleton4_dateRangePickerWidget from "@sjsf/skeleton4-theme/extra-widgets/date-range-picker.svelte";
+import "@sjsf/skeleton4-theme/extra-widgets/date-range-picker.svelte";
+import skeleton4_skeleton4FileUploadWidget from "@sjsf/skeleton4-theme/extra-widgets/file-upload.svelte";
+import "@sjsf/skeleton4-theme/extra-widgets/file-upload.svelte";
+import skeleton4_fileWidget from "@sjsf/skeleton4-theme/extra-widgets/file.svelte";
+import "@sjsf/skeleton4-theme/extra-widgets/file.svelte";
+import skeleton4_multiSelectWidget from "@sjsf/skeleton4-theme/extra-widgets/multi-select.svelte";
+import "@sjsf/skeleton4-theme/extra-widgets/multi-select.svelte";
+import skeleton4_radioButtonsWidget from "@sjsf/skeleton4-theme/extra-widgets/radio-buttons.svelte";
+import "@sjsf/skeleton4-theme/extra-widgets/radio-buttons.svelte";
+import skeleton4_radioWidget from "@sjsf/skeleton4-theme/extra-widgets/radio.svelte";
+import "@sjsf/skeleton4-theme/extra-widgets/radio.svelte";
+import skeleton4_rangeSliderWidget from "@sjsf/skeleton4-theme/extra-widgets/range-slider.svelte";
+import "@sjsf/skeleton4-theme/extra-widgets/range-slider.svelte";
+import skeleton4_rangeWidget from "@sjsf/skeleton4-theme/extra-widgets/range.svelte";
+import "@sjsf/skeleton4-theme/extra-widgets/range.svelte";
+import skeleton4_ratingWidget from "@sjsf/skeleton4-theme/extra-widgets/rating.svelte";
+import "@sjsf/skeleton4-theme/extra-widgets/rating.svelte";
+import skeleton4_skeleton4SliderWidget from "@sjsf/skeleton4-theme/extra-widgets/slider.svelte";
+import "@sjsf/skeleton4-theme/extra-widgets/slider.svelte";
+import skeleton4_switchWidget from "@sjsf/skeleton4-theme/extra-widgets/switch.svelte";
+import "@sjsf/skeleton4-theme/extra-widgets/switch.svelte";
+import skeleton4_tagsWidget from "@sjsf/skeleton4-theme/extra-widgets/tags.svelte";
+import "@sjsf/skeleton4-theme/extra-widgets/tags.svelte";
+import skeleton4_textareaWidget from "@sjsf/skeleton4-theme/extra-widgets/textarea.svelte";
+import "@sjsf/skeleton4-theme/extra-widgets/textarea.svelte";
+export const skeleton4Theme = extendByRecord(skeleton4Base, {
+  ...fields,
+  checkboxesWidget: skeleton4_checkboxesWidget,
+  comboboxWidget: skeleton4_comboboxWidget,
+  datePickerWidget: skeleton4_datePickerWidget,
+  dateRangePickerWidget: skeleton4_dateRangePickerWidget,
+  skeleton4FileUploadWidget: skeleton4_skeleton4FileUploadWidget,
+  fileWidget: skeleton4_fileWidget,
+  multiSelectWidget: skeleton4_multiSelectWidget,
+  radioButtonsWidget: skeleton4_radioButtonsWidget,
+  radioWidget: skeleton4_radioWidget,
+  rangeSliderWidget: skeleton4_rangeSliderWidget,
+  rangeWidget: skeleton4_rangeWidget,
+  ratingWidget: skeleton4_ratingWidget,
+  skeleton4SliderWidget: skeleton4_skeleton4SliderWidget,
+  switchWidget: skeleton4_switchWidget,
+  tagsWidget: skeleton4_tagsWidget,
+  textareaWidget: skeleton4_textareaWidget
+});

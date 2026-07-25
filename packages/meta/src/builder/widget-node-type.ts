@@ -25,6 +25,8 @@ export const WIDGET_NODE_TYPE: Record<WidgetType, NodeType> = {
   daisyui5VcDatePickerWidget: NodeType.String,
   daisyui5FilterRadioButtonsWidget: NodeType.Enum,
   flowbite3ToggleRadioButtonsWidget: NodeType.Enum,
+  skeleton4SliderWidget: NodeType.Number,
+  skeleton4FileUploadWidget: NodeType.File,
   skeleton5SliderWidget: NodeType.Number,
   skeleton5FileUploadWidget: NodeType.File,
   svarColorPickerWidget: NodeType.String,

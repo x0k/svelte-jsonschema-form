@@ -91,6 +91,7 @@ export const TEXT_WIDGET_OPTIONS: Record<
   pico: basicTextOptions,
   daisyui5: basicTextOptions,
   flowbite3: (params) => ({ flowbite3Text: { ...params } }),
+  skeleton4: basicTextOptions,
   skeleton5: basicTextOptions,
   shadcn4: (params) => ({ shadcn4Text: { ...params } }),
   svar: (params) => ({
@@ -135,6 +136,16 @@ export const CHECKBOXES_WIDGET_OPTIONS: Record<
         }
       : {},
   flowbite3: (inline) =>
+    inline
+      ? {}
+      : {
+          layouts: {
+            "field-content": {
+              style: "flex-direction: column; gap: 0.2rem;",
+            },
+          },
+        },
+  skeleton4: (inline) =>
     inline
       ? {}
       : {

@@ -99,6 +99,7 @@ export function* playgroundThemes() {
       yield* themeSubThemes(t);
     }
   }
+  yield "skeleton4";
 }
 
 export type PlaygroundTheme = Generated<typeof playgroundThemes>;

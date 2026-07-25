@@ -171,7 +171,7 @@ ${Object.entries(libs)
         `Unknown theme "${theme}", expected: "${Array.from(themes()).join('" | "')}"`
       );
     }
-    if (isLegacyTheme(theme)) {
+    if (isLegacyTheme(theme) && theme !== "skeleton4") {
       return `// skip "${theme}" theme`;
     }
     const themeEscaped = escapeTheme(theme);
