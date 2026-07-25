@@ -1,5 +1,34 @@
 # playground2
 
+## 1.8.0
+
+### Minor Changes
+
+- Add `@sjsf/skeleton5-theme` package with Skeleton v5 support ([#426](https://github.com/x0k/svelte-jsonschema-form/pull/426))
+
+### Patch Changes
+
+- Updated dependencies [[`78936f0`](https://github.com/x0k/svelte-jsonschema-form/commit/78936f087157eac69c5e52225614bc273d45ac3c), [`7c27d1e`](https://github.com/x0k/svelte-jsonschema-form/commit/7c27d1ea3a9601ffdefb70096c2d2ad0d121f02d), [`d11f390`](https://github.com/x0k/svelte-jsonschema-form/commit/d11f39039489c6c8632d34cff4b2cf1f02ca6a11), [`78f6a88`](https://github.com/x0k/svelte-jsonschema-form/commit/78f6a880971ec28f0dff3167e4b2e3e57bb9368e)]:
+  - @sjsf/skeleton5-theme@3.8.0
+  - @sjsf/ata-validator@3.8.0
+  - @sjsf/form@3.8.0
+  - meta@1.0.7
+  - @sjsf-lab/beercss-theme@3.3.0
+  - @sjsf-lab/shadcn-extras-theme@3.4.2
+  - @sjsf-lab/svar-theme@3.3.0
+  - @sjsf/skeleton4-theme@3.7.2
+  - @sjsf/ajv8-validator@3.8.0
+  - @sjsf/basic-theme@3.8.0
+  - @sjsf/cfworker-validator@3.8.0
+  - @sjsf/daisyui5-theme@3.8.0
+  - @sjsf/flowbite-icons@3.8.0
+  - @sjsf/flowbite3-theme@3.8.0
+  - @sjsf/lucide-icons@3.8.0
+  - @sjsf/moving-icons@3.8.0
+  - @sjsf/radix-icons@3.8.0
+  - @sjsf/schemasafe-validator@3.8.0
+  - @sjsf/shadcn4-theme@3.8.0
+
 ## 1.7.2
 
 ### Patch Changes

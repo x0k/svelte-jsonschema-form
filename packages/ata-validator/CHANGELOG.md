@@ -1,5 +1,11 @@
 # @sjsf/ata-validator
 
+## 3.8.0
+
+### Minor Changes
+
+- Stabilize `@sjsf-lab/ata-validator` package ([#425](https://github.com/x0k/svelte-jsonschema-form/pull/425))
+
 ## 3.2.0
 
 ### Minor Changes
