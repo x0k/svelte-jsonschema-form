@@ -1695,14 +1695,14 @@ exports[`examples > ./examples/ajv-i18n.js > skeleton4__ajv8 1`] = `
     "ajv": "^8.17.0"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2",
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -3761,7 +3761,7 @@ exports[`examples > ./examples/arktype-starter.js > skeleton4__ajv8 1`] = `
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
-    "arktype": "^2.2.1",
+    "arktype": "^2.2.3",
     "@sjsf/form": "^3.5.0",
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
@@ -3770,14 +3770,14 @@ exports[`examples > ./examples/arktype-starter.js > skeleton4__ajv8 1`] = `
     "@skeletonlabs/skeleton-svelte": "^4.2.0"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2"
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3"
   },
   "scripts": {
     "dev": "vite dev"
@@ -17357,14 +17357,14 @@ exports[`examples > ./examples/async-combobox.js > skeleton4__ajv8 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2",
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -23852,14 +23852,14 @@ exports[`examples > ./examples/decomposed-field.js > skeleton4__ajv8 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2",
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -27593,14 +27593,14 @@ exports[`examples > ./examples/deprecated-keyword.js > skeleton4__ajv8 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2",
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -31031,15 +31031,15 @@ exports[`examples > ./examples/draft-2020-12.js > skeleton4__ajv8 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "json-schema-typed": "^8.0.2",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2",
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -36873,14 +36873,14 @@ exports[`examples > ./examples/enum-widgets.js > skeleton4__ajv8 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2",
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -41408,14 +41408,14 @@ exports[`examples > ./examples/form-actions.js > skeleton4__ajv8 1`] = `
     "@sjsf/sveltekit": "^3.7.2"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2",
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -46265,14 +46265,14 @@ exports[`examples > ./examples/form-actions-dynamic-schema.js > skeleton4__ajv8 
     "@sjsf/sveltekit": "^3.7.2"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2",
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -50676,14 +50676,14 @@ exports[`examples > ./examples/form-actions-flex.js > skeleton4__ajv8 1`] = `
     "@sjsf/sveltekit": "^3.7.2"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2",
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -54748,14 +54748,14 @@ exports[`examples > ./examples/form-actions-without-js.js > skeleton4__ajv8 1`] 
     "@sjsf/sveltekit": "^3.7.2"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2",
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -59542,14 +59542,14 @@ exports[`examples > ./examples/formulas.js > skeleton4__ajv8 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2",
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -63711,14 +63711,14 @@ exports[`examples > ./examples/label-on-left.js > skeleton4__ajv8 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2",
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -68085,14 +68085,14 @@ exports[`examples > ./examples/layout-slots.js > skeleton4__ajv8 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2",
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -71760,14 +71760,14 @@ exports[`examples > ./examples/markdown-description.js > skeleton4__ajv8 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2",
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -78245,14 +78245,14 @@ exports[`examples > ./examples/multi-step.js > skeleton4__ajv8 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2",
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -84052,14 +84052,14 @@ exports[`examples > ./examples/multi-step-native-form.js > skeleton4__ajv8 1`] =
     "@sjsf/sveltekit": "^3.7.2"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2",
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -90356,14 +90356,14 @@ exports[`examples > ./examples/nullable-fields.js > skeleton4__ajv8 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2",
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -96398,14 +96398,14 @@ exports[`examples > ./examples/optional-data-controls.js > skeleton4__ajv8 1`] =
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2",
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -100454,14 +100454,14 @@ exports[`examples > ./examples/pattern-properties-validator.js > skeleton4__ajv8
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2",
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -107042,14 +107042,14 @@ exports[`examples > ./examples/preupload-file.js > skeleton4__ajv8 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2",
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -115735,14 +115735,14 @@ exports[`examples > ./examples/remote-enum.js > skeleton4__ajv8 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2",
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -120739,14 +120739,14 @@ exports[`examples > ./examples/remote-functions.js > skeleton4__ajv8 1`] = `
     "@sjsf/sveltekit": "^3.7.2"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2",
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -125469,14 +125469,14 @@ exports[`examples > ./examples/remote-functions-dynamic-schema.js > skeleton4__a
     "@sjsf/sveltekit": "^3.7.2"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2",
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -129835,14 +129835,14 @@ exports[`examples > ./examples/remote-functions-enhance.js > skeleton4__ajv8 1`]
     "@sjsf/sveltekit": "^3.7.2"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2",
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -134347,14 +134347,14 @@ exports[`examples > ./examples/remote-functions-without-js.js > skeleton4__ajv8 
     "@sjsf/sveltekit": "^3.7.2"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2",
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -139743,14 +139743,14 @@ exports[`examples > ./examples/schema-transformation.js > skeleton4__ajv8 1`] = 
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2",
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -143268,14 +143268,14 @@ exports[`examples > ./examples/starter.js > skeleton4__ajv8 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2",
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -151502,14 +151502,14 @@ exports[`examples > ./examples/tabbed-layout.js > skeleton4__ajv8 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2",
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
@@ -156477,7 +156477,7 @@ exports[`examples > ./examples/typebox-starter.js > skeleton4__ajv8 1`] = `
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
-    "typebox": "^1.3.2",
+    "typebox": "^1.3.8",
     "@sjsf/form": "^3.5.0",
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
@@ -156486,14 +156486,14 @@ exports[`examples > ./examples/typebox-starter.js > skeleton4__ajv8 1`] = `
     "@skeletonlabs/skeleton-svelte": "^4.2.0"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2"
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3"
   },
   "scripts": {
     "dev": "vite dev"
@@ -159264,14 +159264,14 @@ exports[`examples > ./examples/valibot-starter.js > skeleton4__ajv8 1`] = `
     "valibot": "^1.2.0"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2"
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3"
   },
   "scripts": {
     "dev": "vite dev"
@@ -162003,14 +162003,14 @@ exports[`examples > ./examples/valibot-unserializable.js > skeleton4__ajv8 1`] =
     "valibot": "^1.2.0"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2"
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3"
   },
   "scripts": {
     "dev": "vite dev"
@@ -164273,14 +164273,14 @@ exports[`examples > ./examples/zod-starter.js > skeleton4__ajv8 1`] = `
     "zod": "^4.1.0"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2"
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3"
   },
   "scripts": {
     "dev": "vite dev"
@@ -166986,14 +166986,14 @@ exports[`examples > ./examples/zod-unserializable.js > skeleton4__ajv8 1`] = `
     "zod": "^4.1.0"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2"
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3"
   },
   "scripts": {
     "dev": "vite dev"

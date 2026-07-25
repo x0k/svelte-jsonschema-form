@@ -1840,14 +1840,14 @@ exports[`builder sandbox-factory > themes > skeleton4 1`] = `
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
-    "vite": "^8.1.2",
+    "vite": "^8.1.5",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
     "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2",
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "json-schema-to-ts": "^3.1.1"
   },
   "scripts": {
