@@ -10,6 +10,7 @@
   "fixed": [
     [
       "@sjsf/ajv8-validator",
+      "@sjsf/ata-validator",
       "@sjsf/basic-theme",
       "@sjsf/daisyui5-theme",
       "@sjsf/flowbite-icons",
