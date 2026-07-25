@@ -56,7 +56,7 @@ Install as a community add-on using the Svelte CLI.
   - [Pico CSS](/themes/basic/#pico-css)
 - [daisyUI v5](/themes/daisyui5/)
 - [Flowbite Svelte](/themes/flowbite3/)
-- [Skeleton v4](/themes/skeleton4/)
+- [Skeleton v5](/themes/skeleton5/)
 - [shadcn-svelte](/themes/shadcn4/)
   - [shadcn-svelte-extras](/themes/shadcn-extras/) (experimental)
 - [SVAR](/themes/svar/) (experimental)
@@ -72,8 +72,8 @@ Install as a community add-on using the Svelte CLI.
 - [@exodus/schemasafe](/validators/schemasafe/)
   - [Precompiled](/validators/schemasafe/#precompiled-validation)
 - [Standard Schema](/validators/standard-schema/)
-- [ata-validator](/validators/ata/) (experimental)
-  - [Precompiled](/validators/ata/#precompiled-validation) (experimental)
+- [ata-validator](/validators/ata/)
+  - [Precompiled](/validators/ata/#precompiled-validation)
 - [@hyperjump/json-schema](/validators/hyperjump/) (experimental)
 
 ## Integrations
@@ -99,7 +99,7 @@ import Redirect from "./redirect.astro";
 
 
 
-# @sjsf-lab/ata-validator
+# @sjsf/ata-validator
 
 
 
@@ -188,6 +188,10 @@ import Redirect from "./redirect.astro";
 
 
 # @sjsf/skeleton4-theme
+
+
+
+# @sjsf/skeleton5-theme
 
 
 
@@ -402,9 +406,7 @@ export interface MergerFactoryOptions {
 export type Bind<T> = [get: () => T, set: (v: T) => void];
 
 export type Creatable<Result, Options> =
-  | ((options: Options) => Result)
-  | (() => Result)
-  | Result;
+  ((options: Options) => Result) | (() => Result) | Result;
 
 export interface FormOptions<T> extends UiOptionsRegistryOption {
   schema: Schema;
@@ -1112,8 +1114,7 @@ export interface UiSchemaContent {
    */
   "ui:components"?: Partial<{
     [T in FoundationalComponentType]:
-      | Exclude<CompatibleComponentType<T>, T>
-      | ComponentDefinitions[T];
+      Exclude<CompatibleComponentType<T>, T> | ComponentDefinitions[T];
   }>;
   items?: UiSchemaDefinition | UiSchemaDefinition[];
   anyOf?: UiSchemaDefinition[];
@@ -1354,9 +1355,11 @@ export interface UiOptionsRegistry {}
 
 export type ResolvableUiOption<T> =
   | {
-      [K in keyof UiOptionsRegistry as UiOptionsRegistry[K] extends T
-        ? K
-        : never]: `registry:${K}`;
+      [
+        K in keyof UiOptionsRegistry as UiOptionsRegistry[K] extends T
+          ? K
+          : never
+      ]: `registry:${K}`;
     }[keyof UiOptionsRegistry]
   | T;
 
@@ -1450,8 +1453,7 @@ export interface FailureValidationResult {
 }
 
 export type ValidationResult<Output> =
-  | SuccessValidationResult<Output>
-  | FailureValidationResult;
+  SuccessValidationResult<Output> | FailureValidationResult;
 
 export interface FormValueValidator<Output> {
   validateFormValue: (
@@ -1469,8 +1471,7 @@ export interface AsyncFormValueValidator<Output> {
 }
 
 export type AnyFormValueValidator<Output> =
-  | FormValueValidator<Output>
-  | AsyncFormValueValidator<Output>;
+  FormValueValidator<Output> | AsyncFormValueValidator<Output>;
 
 export type FormValidator<Output> = Validator & AnyFormValueValidator<Output>;
 
@@ -1492,8 +1493,7 @@ export interface AsyncFieldValueValidator {
 }
 
 export type AnyFieldValueValidator =
-  | FieldValueValidator
-  | AsyncFieldValueValidator;
+  FieldValueValidator | AsyncFieldValueValidator;
 
 export interface AdditionalPropertyKeyValidator {
   validateAdditionalPropertyKey: (
@@ -1971,7 +1971,7 @@ previous category, have the suffix `Attributes`.
   <TabItem label="customInputAttributes">
     ```ts
     import type { ComponentProps as SvelteComponentProps } from 'svelte';
-    import { Switch as SkeletonSwitch } from '@skeletonlabs/skeleton-svelte';
+    import { Switch as SkeletonSwitch } from '@skeletonlabs/skeleton-svelte3';
     import '@sjsf/form/fields/extra-widgets/switch';
 
     declare module '@sjsf/form' {
@@ -3190,14 +3190,9 @@ will only be called if the form data passes validation successfully.
 
 ```ts
 export const actions = {
-  default: createAction(
-    {
-      /* options */
-    },
-    (data, event, meta) => {
-      /* logic */
-    }
-  ),
+  default: createAction({/* options */}, (data, event, meta) => {
+    /* logic */
+  }),
 } satisfies Actions;
 ```
 
@@ -3334,9 +3329,7 @@ const { form, request } = setupSvelteKitForm(meta, {
 ```ts
 export const actions = {
   default: createAction(
-    {
-      /* options */
-    },
+    {/* options */},
     (data: Model, _event, { idPrefix }) => {
       console.log(idPrefix, data);
     }
@@ -4100,7 +4093,7 @@ export const pkg = themePackage("daisyui5");
 
 ### Configuration
 
-Register the theme source path by adding the following line to the `app.css` file:.
+Register the theme source path by adding the following line to the `layout.css` file:
 
 ```
 @source "../node_modules/@sjsf/daisyui5-theme/dist";
@@ -4197,7 +4190,7 @@ export const pkg = themePackage("flowbite3");
 
 ### Configuration
 
-Register the theme source path by adding the following line to the `app.css` file:.
+Register the theme source path by adding the following line to the `layout.css` file:
 
 ```css
 @source "../node_modules/@sjsf/flowbite3-theme/dist";
@@ -4627,7 +4620,7 @@ export const pkg = themePackage("skeleton3");
 
 ### Configuration
 
-Register the theme source path by adding the following line to the `app.css` file:.
+Register the theme source path by adding the following line to the `layout.css` file:
 
 ```css
 @source "../node_modules/@sjsf/skeleton3-theme/dist";
@@ -4646,6 +4639,99 @@ or used in the field as the default widget.
 :::
 
 <Code lang="ts" code={createExtraImports("skeleton3", extraWidgets)} />
+
+## Widgets demo
+
+<Tabs>
+  <TabItem label="Form">
+    <FormCard style={styles}>
+      <Form client:only="svelte" />
+    </FormCard>
+  </TabItem>
+  <TabItem label="JSON Schema">
+    <Code lang="json" code={JSON.stringify(schemas.schema, replacer, 2)} />
+  </TabItem>
+  <TabItem label="UI Schema">
+    <Code lang="json" code={JSON.stringify(schemas.uiSchema, replacer, 2)} />
+  </TabItem>
+</Tabs>
+
+## Supported validation events
+
+<div set:html={validationEvents(specs)}></div>
+
+## UI options
+
+<Code code={uiOptionsCode} lang="typescript" />
+
+# Skeleton v4
+
+import {
+  Code,
+  Card,
+  TabItem,
+  Tabs,
+  LinkButton,
+} from "@astrojs/starlight/components";
+import { specs, extraWidgets } from "@sjsf/skeleton4-theme/specs";
+import styles from "@sjsf/skeleton4-theme/styles.css?inline";
+import { themePackage } from "meta";
+
+import { getPackageDependencies } from "@/shared";
+import Npm from "@/components/npm.astro";
+import FormCard from "@/components/form-card.astro";
+import Deps from "@/components/peer-dependencies.astro";
+
+import Form from "./skeleton4/form.svelte";
+import uiOptionsCode from "./skeleton4/ui-options?raw";
+import {
+  createSchemas,
+  replacer,
+  createExtraImports,
+  validationEvents,
+} from "../_demo-schema";
+
+export const schemas = createSchemas(specs);
+export const pkg = themePackage("skeleton4");
+
+## Installation
+
+<Npm pkg={getPackageDependencies(pkg)} />
+
+<Deps pkg={pkg} />
+
+### Install Skeleton v4
+
+<LinkButton
+  href="https://v4.skeleton.dev/docs/svelte/get-started/installation/sveltekit"
+  variant="secondary"
+  target="_blank"
+  icon="external"
+>
+  Install and configure Skeleton for SvelteKit
+</LinkButton>
+
+### Configuration
+
+Register the theme source path by adding the following line to the `layout.css` file:
+
+```css
+@source "../node_modules/@sjsf/skeleton4-theme/dist";
+```
+
+## Extra widgets
+
+You can connect extra widgets using the following `include` imports:
+
+:::note
+
+For a widget to be applied, it must be explicitly specified in the
+[UI schema](/form/ui-schema/#ui-components)
+or used in the field as the default widget.
+
+:::
+
+<Code lang="ts" code={createExtraImports("skeleton4", extraWidgets)} />
 
 ## Widgets demo
 
@@ -4834,7 +4920,7 @@ export const pkg = themePackage("shadcn4");
 
 ### Configuration
 
-Register the theme source path by adding the following line to the `app.css` file:.
+Register the theme source path by adding the following line to the `layout.css` file:
 
 ```css
 @source "../node_modules/@sjsf/shadcn4-theme/dist";
@@ -4917,7 +5003,7 @@ or used in the field as the default widget.
 
 <Code code={uiOptionsCode} lang="typescript" />
 
-# Skeleton v4
+# Skeleton v5
 
 import {
   Code,
@@ -4926,8 +5012,8 @@ import {
   Tabs,
   LinkButton,
 } from "@astrojs/starlight/components";
-import { specs, extraWidgets } from "@sjsf/skeleton4-theme/specs";
-import styles from "@sjsf/skeleton4-theme/styles.css?inline";
+import { specs, extraWidgets } from "@sjsf/skeleton5-theme/specs";
+import styles from "@sjsf/skeleton5-theme/styles.css?inline";
 import { themePackage } from "meta";
 
 import { getPackageDependencies } from "@/shared";
@@ -4935,8 +5021,8 @@ import Npm from "@/components/npm.astro";
 import FormCard from "@/components/form-card.astro";
 import Deps from "@/components/peer-dependencies.astro";
 
-import Form from "./skeleton4/form.svelte";
-import uiOptionsCode from "./skeleton4/ui-options?raw";
+import Form from "./skeleton5/form.svelte";
+import uiOptionsCode from "./skeleton5/ui-options?raw";
 import {
   createSchemas,
   replacer,
@@ -4945,7 +5031,7 @@ import {
 } from "./_demo-schema";
 
 export const schemas = createSchemas(specs);
-export const pkg = themePackage("skeleton4");
+export const pkg = themePackage("skeleton5");
 
 ## Installation
 
@@ -4953,7 +5039,7 @@ export const pkg = themePackage("skeleton4");
 
 <Deps pkg={pkg} />
 
-### Install Skeleton v4
+### Install Skeleton v5
 
 <LinkButton
   href="https://www.skeleton.dev/docs/get-started/installation/sveltekit"
@@ -4966,10 +5052,10 @@ export const pkg = themePackage("skeleton4");
 
 ### Configuration
 
-Register the theme source path by adding the following line to the `app.css` file:.
+Register the theme source path by adding the following line to the `layout.css` file:
 
 ```css
-@source "../node_modules/@sjsf/skeleton4-theme/dist";
+@source "../node_modules/@sjsf/skeleton5-theme/dist";
 ```
 
 ## Extra widgets
@@ -4984,7 +5070,7 @@ or used in the field as the default widget.
 
 :::
 
-<Code lang="ts" code={createExtraImports("skeleton4", extraWidgets)} />
+<Code lang="ts" code={createExtraImports("skeleton5", extraWidgets)} />
 
 ## Widgets demo
 

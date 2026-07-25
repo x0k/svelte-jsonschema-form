@@ -1,0 +1,1 @@
+var e;(function(e){e.StackBlitz=`StackBlitz`,e.SvelteLab=`SvelteLab`,e.Local=`Local`})(e||={});var t=Object.values(e),n=`src/routes/+page.svelte`;function r(t){switch(t){case e.Local:return`Download project`;default:return`Open in ${t}`}}function i(t){switch(t){case e.Local:return`download`;default:return`external-link`}}export{r as a,i,t as n,e as r,n as t};

@@ -173,7 +173,6 @@ function cached(getter) {
 			Object.defineProperty(this, "value", { value });
 			return value;
 		}
-		throw new Error("cached value already set");
 	} };
 }
 function nullish$1(input) {
@@ -6788,7 +6787,10 @@ const error$22 = () => {
 			case "unrecognized_keys": return `Neatpažint${issue.keys.length > 1 ? "i" : "as"} rakt${issue.keys.length > 1 ? "ai" : "as"}: ${joinValues(issue.keys, ", ")}`;
 			case "invalid_key": return "Rastas klaidingas raktas";
 			case "invalid_union": return "Klaidinga įvestis";
-			case "invalid_element": return `${capitalizeFirstCharacter(TypeDictionary[issue.origin] ?? issue.origin ?? issue.origin ?? "reikšmė")} turi klaidingą įvestį`;
+			case "invalid_element": {
+				const origin = TypeDictionary[issue.origin] ?? issue.origin;
+				return `${capitalizeFirstCharacter(origin ?? issue.origin ?? "reikšmė")} turi klaidingą įvestį`;
+			}
 			default: return "Klaidinga įvestis";
 		}
 	};
@@ -12426,11 +12428,12 @@ const ZodObject = /*@__PURE__*/ $constructor("ZodObject", (inst, def) => {
 	});
 });
 function object(shape, params) {
-	return new ZodObject({
+	const def = {
 		type: "object",
 		shape: shape ?? {},
 		...normalizeParams(params)
-	});
+	};
+	return new ZodObject(def);
 }
 function strictObject(shape, params) {
 	return new ZodObject({
@@ -12627,9 +12630,10 @@ const ZodEnum = /*@__PURE__*/ $constructor("ZodEnum", (inst, def) => {
 	};
 });
 function _enum(values, params) {
+	const entries = Array.isArray(values) ? Object.fromEntries(values.map((v) => [v, v])) : values;
 	return new ZodEnum({
 		type: "enum",
-		entries: Array.isArray(values) ? Object.fromEntries(values.map((v) => [v, v])) : values,
+		entries,
 		...normalizeParams(params)
 	});
 }
