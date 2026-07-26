@@ -127,7 +127,8 @@ export function resolveDependencies<T extends CodegenThemeOrSubTheme>({
   if (
     isJsonSchemaValidator(validator.name) ||
     // Required for internal fake type
-    validator.name === "standard-schema"
+    validator.name === "standard-schema" ||
+    validator.name === "noop"
   ) {
     addDependency(extraPackage("jsonSchemaToTs"));
   }
