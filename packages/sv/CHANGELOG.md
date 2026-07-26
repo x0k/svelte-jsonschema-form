@@ -1,5 +1,11 @@
 # @sjsf/sv
 
+## 0.2.4
+
+### Patch Changes
+
+- Add missing `json-schema-to-ts` dependency for the `noop` validator type ([#430](https://github.com/x0k/svelte-jsonschema-form/pull/430))
+
 ## 0.2.3
 
 ### Patch Changes
