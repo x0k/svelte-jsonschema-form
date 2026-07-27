@@ -1,5 +1,11 @@
 # @sjsf/sv
 
+## 0.2.5
+
+### Patch Changes
+
+- Remove "experimental" label from `ata-validator` ([#435](https://github.com/x0k/svelte-jsonschema-form/pull/435))
+
 ## 0.2.4
 
 ### Patch Changes
