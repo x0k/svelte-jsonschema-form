@@ -69,7 +69,7 @@ const PRECOMPILED_ONLY_VALIDATORS_SET = new Set<Validator>(
 export type PrecompiledOnlyValidator =
   (typeof PRECOMPILED_ONLY_VALIDATORS)[number];
 
-const LAB_VALIDATORS = ["ata", "hyperjump"] satisfies Validator[];
+const LAB_VALIDATORS = ["hyperjump"] satisfies Validator[];
 
 const LAB_VALIDATORS_SET = new Set<Validator>(LAB_VALIDATORS);
 
