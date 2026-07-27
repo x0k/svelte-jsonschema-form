@@ -1,0 +1,1 @@
+import{T as o,i as n}from"./router.BZ_H05JI.js";let e;document.addEventListener(o,t=>{e=scrollY,n(t)&&t.viewTransition.ready.then(()=>{document.documentElement.style.setProperty("--vtbot-page-offset",window.scrollY-e+"px")}).catch(()=>{})});
