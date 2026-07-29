@@ -1,5 +1,4 @@
 import {
-  getKnownProperties,
   resolveRef,
   getSimpleSchemaType,
   isSchemaObjectValue,
@@ -23,6 +22,30 @@ export function allowAdditionalProperties(s: Schema): Schema {
   return { ...s, additionalProperties: true };
 }
 
+function computeObjectSchema({
+  properties,
+  patternProperties,
+  additionalProperties,
+}: Schema) {
+  const localProperties = new Set(properties && Object.keys(properties));
+  const patterns = patternProperties
+    ? Object.entries(patternProperties).map(
+        ([pattern, schemaDef]): [RegExp, SchemaDefinition] => [
+          new RegExp(pattern),
+          schemaDef,
+        ]
+      )
+    : undefined;
+  return {
+    properties,
+    localProperties,
+    patterns,
+    additionalProperties,
+  };
+}
+
+type ObjectSchema = ReturnType<typeof computeObjectSchema>;
+
 export function omitExtraData(
   validator: Validator,
   merger: Merger,
@@ -30,17 +53,15 @@ export function omitExtraData(
   value: SchemaValue | undefined
 ): SchemaValue | undefined {
   function handleObject(
-    schema: Schema,
+    {
+      properties,
+      additionalProperties,
+      localProperties,
+      patterns,
+    }: ObjectSchema,
     source: SchemaObjectValue,
     target: SchemaObjectValue
   ): SchemaObjectValue {
-    const {
-      properties,
-      additionalProperties,
-      patternProperties,
-      propertyNames,
-    } = schema;
-
     function setProperty(
       key: string,
       schemaDef: SchemaDefinition,
@@ -58,17 +79,10 @@ export function omitExtraData(
       }
     }
     let patternPropertiesRest: string[] | undefined;
-    if (patternProperties !== undefined) {
+    if (patterns !== undefined) {
       patternPropertiesRest = [];
-      const patterns = Object.entries(patternProperties).map(
-        ([pattern, schemaDef]): [RegExp, SchemaDefinition] => [
-          new RegExp(pattern),
-          schemaDef,
-        ]
-      );
-      const knownProperties = new Set(getKnownProperties(schema, rootSchema));
       for (const [key, value] of Object.entries(source)) {
-        if (knownProperties.has(key)) {
+        if (localProperties.has(key)) {
           continue;
         }
         const found = patterns.find((e) => e[0].test(key));
@@ -85,18 +99,15 @@ export function omitExtraData(
           setProperty(key, additionalProperties, source[key]);
         }
       } else {
-        const knownProperties = new Set(getKnownProperties(schema, rootSchema));
         for (const [key, value] of Object.entries(source)) {
-          if (knownProperties.has(key)) {
+          if (
+            localProperties.has(key) ||
+            patterns?.some(([pattern]) => pattern.test(key))
+          ) {
             continue;
           }
           setProperty(key, additionalProperties, value);
         }
-      }
-    }
-    if (propertyNames !== undefined) {
-      for (const [key, value] of Object.entries(source)) {
-        target[key] = value;
       }
     }
     return target;
@@ -108,22 +119,32 @@ export function omitExtraData(
     target: SchemaArrayValue
   ) {
     const { items, additionalItems } = schema;
-    if (items !== undefined) {
-      if (Array.isArray(items)) {
-        for (let i = 0; i < items.length; i++) {
-          target.push(omit(items[i]!, source[i]));
-        }
-      } else {
-        for (let i = 0; i < source.length; i++) {
-          target.push(omit(items, source[i]));
-        }
-      }
+    if (items === undefined) {
+      return target;
     }
-    if (additionalItems) {
-      for (let i = target.length; i < source.length; i++) {
-        target.push(omit(additionalItems, source[i]));
+    if (Array.isArray(items)) {
+      const tupleLength = Math.min(items.length, source.length);
+      let i = 0;
+      for (; i < tupleLength; i++) {
+        target[i] = omit(items[i]!, source[i]);
       }
+      if (additionalItems === false) {
+        target.length = tupleLength;
+        return target;
+      }
+      for (; i < source.length; i++) {
+        target[i] =
+          additionalItems && additionalItems !== true
+            ? omit(additionalItems, source[i])
+            : source[i];
+      }
+      target.length = source.length;
+      return target;
     }
+    for (let i = 0; i < source.length; i++) {
+      target[i] = omit(items, source[i]);
+    }
+    target.length = source.length;
     return target;
   }
 
@@ -140,7 +161,7 @@ export function omitExtraData(
       ? validator.isValid(condition, rootSchema, source)
       : condition;
     const branch = isThenBranch ? then : otherwise;
-    return branch === undefined ? target : omit(branch, source, target);
+    return branch === undefined ? target : omit(branch, source, target, false);
   }
 
   function handleOneOf(
@@ -168,7 +189,7 @@ export function omitExtraData(
       0,
       getDiscriminatorFieldFromSchema(schema)
     );
-    return omit(oneOf[bestIndex]!, source, target);
+    return omit(oneOf[bestIndex]!, source, target, false);
   }
 
   function handleAnyOf(
@@ -188,7 +209,7 @@ export function omitExtraData(
           : Object.keys(source).length === 0))
     ) {
       for (let i = 0; i < anyOf.length; i++) {
-        target = omit(anyOf[i]!, source, target);
+        target = omit(anyOf[i]!, source, target, false);
       }
       return target;
     }
@@ -208,25 +229,38 @@ export function omitExtraData(
       if (!(key in source) || Array.isArray(deps)) {
         continue;
       }
-      target = omit(deps, source, target);
+      target = omit(deps, source, target, false);
     }
     return target;
   }
 
+  /**
+   * `materializeSource` controls the fallback for schemas that do not build a
+   * cleaned target, such as `true`, `{}`, or primitive schemas. The top-level
+   * schema application may return the original source in that case, but
+   * compositional constraint branches pass `false` so a permissive branch does
+   * not turn the source object/array into the accumulator for later pruning.
+   */
   function omit(
     schema: SchemaDefinition,
     source: SchemaValue | undefined,
-    target?: SchemaValue
+    target?: SchemaValue,
+    materializeSource = true
   ): SchemaValue | undefined {
     if (source === undefined || schema === false) {
       return undefined;
     }
     if (schema === true || isRecordEmpty(schema)) {
-      return source;
+      return target ?? (materializeSource ? source : undefined);
     }
     const { $ref: ref, allOf } = schema;
     if (ref !== undefined) {
-      return omit(resolveRef(ref, rootSchema), source, target);
+      return omit(
+        resolveRef(ref, rootSchema),
+        source,
+        target,
+        materializeSource
+      );
     }
     if (allOf) {
       schema = merger.mergeAllOf(schema);
@@ -235,7 +269,7 @@ export function omitExtraData(
       const remainingAllOf = schema.allOf;
       if (remainingAllOf) {
         for (let i = 0; i < remainingAllOf.length; i++) {
-          target = omit(remainingAllOf[i]!, source, target);
+          target = omit(remainingAllOf[i]!, source, target, false);
         }
       }
     }
@@ -245,12 +279,14 @@ export function omitExtraData(
       handleOneOf(schema.oneOf, schema, source, target)
     );
     const type = getSimpleSchemaType(schema);
+    let objectSchema: ObjectSchema | undefined;
     if (type === "object") {
       if (!isSchemaObjectValue(source)) {
         return undefined;
       }
+      objectSchema = computeObjectSchema(schema);
       target = handleObject(
-        schema,
+        objectSchema,
         source,
         isSchemaObjectValue(target) ? target : {}
       );
@@ -258,20 +294,36 @@ export function omitExtraData(
       if (!isSchemaArrayValue(source)) {
         return undefined;
       }
-      target = handleArray(
-        schema,
-        source,
-        isSchemaArrayValue(target) ? target : []
-      );
-    } else if (target === undefined) {
-      target = source;
+      // Preserve arrays without item constraints
+      if (schema.items !== undefined) {
+        target = handleArray(
+          schema,
+          source,
+          isSchemaArrayValue(target) ? target : []
+        );
+      }
     }
 
-    return handleDependencies(
+    target = handleDependencies(
       schema,
       source,
       handleConditions(schema, source, target)
     );
+
+    // Prune additional properties
+    if (schema.additionalProperties === false && isSchemaObjectValue(target)) {
+      objectSchema ??= computeObjectSchema(schema);
+      for (const key of Object.keys(target)) {
+        if (
+          !objectSchema.localProperties.has(key) &&
+          !objectSchema.patterns?.some(([pattern]) => pattern.test(key))
+        ) {
+          delete target[key];
+        }
+      }
+    }
+
+    return target ?? (materializeSource ? source : undefined);
   }
 
   return omit(rootSchema, value);
