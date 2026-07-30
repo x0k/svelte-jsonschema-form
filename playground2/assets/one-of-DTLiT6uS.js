@@ -1,1 +1,0 @@
-const e={schema:{type:"object",oneOf:[{properties:{lorem:{type:"string"}},required:["lorem"]},{properties:{ipsum:{type:"string"}},required:["ipsum"]}]},uiSchema:{},initialValue:{}};export{e as default};
