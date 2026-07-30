@@ -1,9 +1,21 @@
 import { describe, expect, it, beforeEach } from "vitest";
 
-import type { Merger, Schema, Validator } from "./core/index.js";
+import type { Merger, Schema, SchemaValue, Validator } from "./core/index.js";
 import { createMerger } from "./core/test-merger.js";
 import { createValidator } from "./core/test-validator.js";
-import { omitExtraData } from "./omit-extra-data.js";
+import { omitExtraData as originalOmitExtraData } from "./omit-extra-data.js";
+
+function omitExtraData(
+  validator: Validator,
+  merger: Merger,
+  rootSchema: Schema,
+  value: SchemaValue | undefined
+) {
+  const clone = structuredClone(value);
+  const result = originalOmitExtraData(validator, merger, rootSchema, value);
+  expect(value).toEqual(clone);
+  return result;
+}
 
 let validator: Validator;
 let defaultMerger: Merger;
@@ -1243,7 +1255,8 @@ describe("omitExtraData", () => {
       ).toEqual(["a", 1, "b"]);
     });
 
-    it("should not treat oneOf properties as additionalProperties", () => {
+    // Aligned with https://github.com/x0k/react-jsonschema-form/blob/58afd35c3dd2b8cdbab86a4705c0baa4ea599868/packages/utils/test/schema/omitExtraDataTest.ts#L449
+    it("should preserve oneOf branch properties when additionalProperties is a schema", () => {
       validator = createValidator({
         cases: [
           {
@@ -1301,6 +1314,7 @@ describe("omitExtraData", () => {
         })
       ).toEqual({
         kind: "a",
+        foo: "hello",
         extra: "keep me",
       });
     });
@@ -2470,6 +2484,143 @@ describe("omitExtraData (RJSF tests)", () => {
         subprop1: "123",
         subprop2: "456",
       },
+    });
+  });
+  // https://github.com/rjsf-team/react-jsonschema-form/issues/5176
+  describe("allOf with target === source (#5176)", () => {
+    it("should not infinite loop when allOf aliases target to source and type is array", () => {
+      const schema: Schema = {
+        type: "array",
+        items: { type: "string" },
+        allOf: [true],
+      };
+      const merger = createMerger({
+        allOfMerges: [{ input: schema, result: schema }],
+      });
+      expect(omitExtraData(validator, merger, schema, ["a", "b", "c"])).toEqual(
+        ["a", "b", "c"]
+      );
+    });
+
+    it("should strip extra properties when allOf aliases target to source", () => {
+      const schema: Schema = {
+        type: "object",
+        properties: { name: { type: "string" } },
+        allOf: [true],
+      };
+      const merger = createMerger({
+        allOfMerges: [{ input: schema, result: schema }],
+      });
+      expect(
+        omitExtraData(validator, merger, schema, { name: "John", extra: true })
+      ).toEqual({ name: "John" });
+    });
+  });
+
+  describe("regressions in accumulator reuse", () => {
+    it("should remove properties copied by a permissive schema when a branch forbids extras", () => {
+      const schema: Schema = {
+        type: "object",
+        additionalProperties: true,
+        if: true,
+        then: {
+          type: "object",
+          properties: { name: { type: "string" } },
+          additionalProperties: false,
+        },
+      };
+      expect(
+        omitExtraData(validator, defaultMerger, schema, {
+          name: "John",
+          extra: true,
+        })
+      ).toEqual({ name: "John" });
+    });
+
+    it("should treat only sibling properties as known when pruning additionalProperties false", () => {
+      const schema: Schema = {
+        type: "object",
+        additionalProperties: true,
+        if: true,
+        then: {
+          type: "object",
+          properties: { name: { type: "string" } },
+          dependencies: {
+            name: {
+              properties: { extra: { type: "boolean" } },
+            },
+          },
+          additionalProperties: false,
+        },
+      };
+      expect(
+        omitExtraData(validator, defaultMerger, schema, {
+          name: "John",
+          extra: true,
+        })
+      ).toEqual({ name: "John" });
+    });
+
+    it("should preserve arrays without item constraints", () => {
+      const schema: Schema = { type: "array" };
+      const formData = ["a", { extra: true }];
+      expect(omitExtraData(validator, defaultMerger, schema, formData)).toEqual(
+        formData
+      );
+    });
+
+    it("should truncate tuple tail items when additionalItems is omitted", () => {
+      expect(
+        omitExtraData(
+          validator,
+          defaultMerger,
+          {
+            type: "array",
+            items: [{ type: "string" }],
+          },
+          ["a", { extra: true }]
+        )
+      ).toEqual(["a"]);
+    });
+
+    it("should truncate tuple tail items when additionalItems is false", () => {
+      expect(
+        omitExtraData(
+          validator,
+          defaultMerger,
+          {
+            type: "array",
+            items: [{ type: "string" }],
+            additionalItems: false,
+          },
+          ["a", { extra: true }]
+        )
+      ).toEqual(["a"]);
+    });
+
+    it("should not create holes when tuple data is shorter than tuple items", () => {
+      const schema: Schema = {
+        type: "array",
+        items: [{ type: "string" }, { type: "number" }],
+      };
+      expect(omitExtraData(validator, defaultMerger, schema, ["a"])).toEqual([
+        "a",
+      ]);
+    });
+
+    it("should not treat propertyNames as blanket inclusion", () => {
+      const schema: Schema = {
+        type: "object",
+        properties: { name: { type: "string" } },
+        additionalProperties: false,
+        propertyNames: { pattern: "^[a-z]+$" },
+      };
+      expect(
+        omitExtraData(validator, defaultMerger, schema, {
+          name: "John",
+          extra: true,
+        })
+      ).toEqual({ name: "John" });
     });
   });
 });
