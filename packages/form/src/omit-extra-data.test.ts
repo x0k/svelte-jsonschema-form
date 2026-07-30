@@ -2569,15 +2569,33 @@ describe("omitExtraData (RJSF tests)", () => {
       );
     });
 
-    it("should preserve tuple tail items when additionalItems is omitted", () => {
-      const schema: Schema = {
-        type: "array",
-        items: [{ type: "string" }],
-      };
-      const formData = ["a", { extra: true }];
-      expect(omitExtraData(validator, defaultMerger, schema, formData)).toEqual(
-        formData
-      );
+    it("should truncate tuple tail items when additionalItems is omitted", () => {
+      expect(
+        omitExtraData(
+          validator,
+          defaultMerger,
+          {
+            type: "array",
+            items: [{ type: "string" }],
+          },
+          ["a", { extra: true }]
+        )
+      ).toEqual(["a"]);
+    });
+
+    it("should truncate tuple tail items when additionalItems is false", () => {
+      expect(
+        omitExtraData(
+          validator,
+          defaultMerger,
+          {
+            type: "array",
+            items: [{ type: "string" }],
+            additionalItems: false,
+          },
+          ["a", { extra: true }]
+        )
+      ).toEqual(["a"]);
     });
 
     it("should not create holes when tuple data is shorter than tuple items", () => {

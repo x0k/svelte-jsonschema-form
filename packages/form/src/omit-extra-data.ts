@@ -53,15 +53,17 @@ export function omitExtraData(
   value: SchemaValue | undefined
 ): SchemaValue | undefined {
   function handleObject(
-    {
-      properties,
-      additionalProperties,
-      localProperties,
-      patterns,
-    }: ObjectSchema,
+    schema: ObjectSchema,
     source: SchemaObjectValue,
     target: SchemaObjectValue
   ): SchemaObjectValue {
+    const {
+      properties,
+      localProperties,
+      patterns,
+      additionalProperties = false,
+    } = schema;
+
     function setProperty(
       key: string,
       schemaDef: SchemaDefinition,
@@ -93,7 +95,7 @@ export function omitExtraData(
         setProperty(key, found[1], value);
       }
     }
-    if (additionalProperties !== undefined && additionalProperties !== false) {
+    if (additionalProperties !== false) {
       if (patternPropertiesRest !== undefined) {
         for (const key of patternPropertiesRest) {
           setProperty(key, additionalProperties, source[key]);
@@ -118,7 +120,7 @@ export function omitExtraData(
     source: SchemaArrayValue,
     target: SchemaArrayValue
   ) {
-    const { items, additionalItems } = schema;
+    const { items, additionalItems = false } = schema;
     if (items === undefined) {
       return target;
     }
@@ -133,16 +135,12 @@ export function omitExtraData(
         return target;
       }
       for (; i < source.length; i++) {
-        target[i] =
-          additionalItems && additionalItems !== true
-            ? omit(additionalItems, source[i])
-            : source[i];
+        target[i] = omit(additionalItems, source[i]);
       }
-      target.length = source.length;
-      return target;
-    }
-    for (let i = 0; i < source.length; i++) {
-      target[i] = omit(items, source[i]);
+    } else {
+      for (let i = 0; i < source.length; i++) {
+        target[i] = omit(items, source[i]);
+      }
     }
     target.length = source.length;
     return target;
