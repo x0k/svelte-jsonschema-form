@@ -32,6 +32,7 @@
   import Popup from "./popup.svelte";
   import Bits from "./bits.svelte";
   import Debug from "./debug.svelte";
+  import Banner from "./banner.svelte";
 
   import { samples } from "./samples";
   import { validators } from "./validators";
@@ -203,6 +204,7 @@
   setThemeContext({ components });
 </script>
 
+<Banner />
 <div
   class="py-4 px-8 min-h-screen dark:[color-scheme:dark] dark:bg-slate-900 dark:text-white"
 >

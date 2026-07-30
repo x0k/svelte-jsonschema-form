@@ -1,0 +1,26 @@
+---
+const base = import.meta.env.BASE_URL;
+const v2Base = base.replace(/v1\/$/, 'v2/');
+---
+
+<div class="sl-banner" data-pagefind-ignore>
+  You're on the v1 docs. <a href={v2Base}>Go to v2</a>.
+</div>
+
+<style>
+  @layer starlight.core {
+    .sl-banner {
+      --__sl-banner-text: var(--sl-color-banner-text, var(--sl-color-text-invert));
+      padding: var(--sl-nav-pad-y) var(--sl-nav-pad-x);
+      background-color: var(--sl-color-banner-bg, var(--sl-color-bg-accent));
+      color: var(--__sl-banner-text);
+      line-height: var(--sl-line-height-headings);
+      text-align: center;
+      text-wrap: balance;
+      box-shadow: var(--sl-shadow-sm);
+    }
+    .sl-banner :global(a) {
+      color: var(--__sl-banner-text);
+    }
+  }
+</style>

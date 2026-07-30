@@ -70,6 +70,7 @@ export default defineConfig({
       ],
       components: {
         Head: "./src/components/custom-head.astro",
+        Banner: "./src/components/banner.astro",
         Header: "./src/components/header-with-links.astro",
       },
     }),
