@@ -46,7 +46,7 @@ export default defineConfig({
         },
         {
           label: "Examples",
-          autogenerate: { directory: "examples" }
+          autogenerate: { directory: "examples" },
         },
         // {
         //   label: "Examples",
@@ -78,6 +78,7 @@ export default defineConfig({
       ],
       components: {
         // Head: "./src/components/custom-head.astro",
+        Banner: "./src/components/banner.astro",
         Header: "./src/components/header-with-links.astro",
         MarkdownContent: "./src/components/markdown-content.astro",
       },

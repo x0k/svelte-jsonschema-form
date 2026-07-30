@@ -5,6 +5,7 @@
   import { Button } from "$lib/components/ui/button/index.js";
   import { TooltipProvider } from "$lib/components/ui/tooltip/index.js";
   import Select from "$lib/components/select.svelte";
+  import Banner from "./banner.svelte";
   import { highlighterPromise } from "$lib/shiki.js";
 
   import Builder from "./builder/builder.svelte";
@@ -19,6 +20,7 @@
   clearLink.hash = "";
 </script>
 
+<Banner />
 <TooltipProvider delayDuration={0}>
   <div
     class="min-h-screen bg-background dark:[color-scheme:dark]"

@@ -56,6 +56,7 @@
   import Popup from "./popup.svelte";
   import Bits from "./bits.svelte";
   import Select from "./select.svelte";
+  import Banner from "./banner.svelte";
 
   import * as customComponents from "./custom-form-components/index.js";
   import { themeManager } from "./theme.svelte";
@@ -229,11 +230,13 @@
   clearLink.hash = "";
 </script>
 
-<div
-  class="py-4 px-8 gap-4 h-screen grid grid-rows-[auto_1fr_1fr] grid-cols-[repeat(7,1fr)] dark:[color-scheme:dark]"
->
-  <div class="col-span-7 flex flex-wrap items-center gap-2">
-    <a href={clearLink.toString()} class="text-3xl font-bold mr-auto"
+<div class="h-screen flex flex-col dark:[color-scheme:dark]">
+  <Banner />
+  <div
+    class="flex-1 min-h-0 px-8 pb-4 gap-4 grid grid-rows-[auto_1fr_1fr] grid-cols-[repeat(7,1fr)]"
+  >
+    <div class="col-span-7 flex flex-wrap items-center gap-2 pt-4">
+      <a href={clearLink.toString()} class="text-3xl font-bold mr-auto"
       >Playground</a
     >
     <SamplePicker
@@ -397,4 +400,5 @@
     {/if}
     <div bind:this={portalEl}></div>
   </ShadowHost>
+  </div>
 </div>
