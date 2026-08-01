@@ -27,7 +27,12 @@ import {
   type ValidatorDefinition,
 } from "meta/codegen";
 import type * as _uiSchemaAugmentation from "meta/playground";
-import { defineAddon, defineAddonOptions, type SelectQuestion } from "sv";
+import {
+  defineAddon,
+  defineAddonOptions,
+  type OptionValues,
+  type SelectQuestion,
+} from "sv";
 
 import packageJson from "../package.json" with { type: "json" };
 import { createPrinter, resolveLibPrefix } from "./sv-utils.js";
@@ -112,7 +117,6 @@ export function* iconOptions() {
   }
 }
 
-// WARN: DO NOT DESTRUCTURE
 export const addonOptions = defineAddonOptions()
   .add("themeOrSubTheme", {
     question: "Select a theme (or sub-theme)",
@@ -151,9 +155,10 @@ type Addon = ReturnType<
 
 type Workspace = Parameters<Addon["run"]>[0];
 
-export type AddonOptions = Workspace["options"];
-
-export type ContextOptions = Omit<AddonOptions, "validator"> & {
+export type ContextOptions = Omit<
+  OptionValues<typeof addonOptions>,
+  "validator"
+> & {
   validator: SvValidator;
 };
 
