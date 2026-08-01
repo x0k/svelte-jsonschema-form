@@ -107,28 +107,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm form={form} novalidate />",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-",
   "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
@@ -143,10 +121,19 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import adapter from '@sveltejs/adapter-auto';
+import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [sveltekit()] });",
+export default defineConfig({
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: { runes: true, experimental: { async: true } },
+      experimental: { remoteFunctions: true }
+    })
+  ]
+});",
 }
 `;
 
@@ -261,28 +248,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 body {
 	background: red;
 }",
-  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-",
   "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
@@ -297,10 +262,19 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import adapter from '@sveltejs/adapter-auto';
+import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [sveltekit()] });",
+export default defineConfig({
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: { runes: true, experimental: { async: true } },
+      experimental: { remoteFunctions: true }
+    })
+  ]
+});",
 }
 `;
 
@@ -411,28 +385,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm form={form} novalidate />",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-",
   "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
@@ -447,10 +399,19 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import adapter from '@sveltejs/adapter-auto';
+import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [sveltekit()] });",
+export default defineConfig({
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: { runes: true, experimental: { async: true } },
+      experimental: { remoteFunctions: true }
+    })
+  ]
+});",
 }
 `;
 
@@ -641,28 +602,6 @@ export const onSubmitError = createFocusOnFirstError();",
 
 <BasicForm form={form} novalidate />",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-",
   "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
@@ -677,10 +616,19 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import adapter from '@sveltejs/adapter-auto';
+import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [sveltekit()] });",
+export default defineConfig({
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: { runes: true, experimental: { async: true } },
+      experimental: { remoteFunctions: true }
+    })
+  ]
+});",
 }
 `;
 
@@ -797,28 +745,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm form={form} novalidate />",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-",
   "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
@@ -833,10 +759,19 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import adapter from '@sveltejs/adapter-auto';
+import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [sveltekit()] });",
+export default defineConfig({
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: { runes: true, experimental: { async: true } },
+      experimental: { remoteFunctions: true }
+    })
+  ]
+});",
 }
 `;
 
@@ -960,28 +895,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm form={form} novalidate />",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-",
   "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
@@ -996,10 +909,19 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import adapter from '@sveltejs/adapter-auto';
+import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [sveltekit()] });",
+export default defineConfig({
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: { runes: true, experimental: { async: true } },
+      experimental: { remoteFunctions: true }
+    })
+  ]
+});",
 }
 `;
 
@@ -1110,28 +1032,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm form={form} novalidate />",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-",
   "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
@@ -1146,10 +1046,19 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import adapter from '@sveltejs/adapter-auto';
+import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [sveltekit()] });",
+export default defineConfig({
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: { runes: true, experimental: { async: true } },
+      experimental: { remoteFunctions: true }
+    })
+  ]
+});",
 }
 `;
 
@@ -1260,28 +1169,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate style="padding: 2rem;" />",
-  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-",
   "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
@@ -1296,10 +1183,19 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import adapter from '@sveltejs/adapter-auto';
+import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [sveltekit()] });",
+export default defineConfig({
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: { runes: true, experimental: { async: true } },
+      experimental: { remoteFunctions: true }
+    })
+  ]
+});",
 }
 `;
 
@@ -1422,28 +1318,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   "src/routes/layout.css": "@import 'tailwindcss';
 @import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
-  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-",
   "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
@@ -1459,10 +1333,20 @@ export default config;
   }
 }",
   "vite.config.js": "import tailwindcss from '@tailwindcss/vite';
+import adapter from '@sveltejs/adapter-auto';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [sveltekit(), tailwindcss()] });",
+export default defineConfig({
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: { runes: true, experimental: { async: true } },
+      experimental: { remoteFunctions: true }
+    }),
+    tailwindcss()
+  ]
+});",
 }
 `;
 
@@ -1608,28 +1492,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   --color-secondary-800: #075985;
   --color-secondary-900: #0c4a6e;
 };",
-  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-",
   "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
@@ -1645,10 +1507,20 @@ export default config;
   }
 }",
   "vite.config.js": "import tailwindcss from '@tailwindcss/vite';
+import adapter from '@sveltejs/adapter-auto';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [sveltekit(), tailwindcss()] });",
+export default defineConfig({
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: { runes: true, experimental: { async: true } },
+      experimental: { remoteFunctions: true }
+    }),
+    tailwindcss()
+  ]
+});",
 }
 `;
 
@@ -1761,28 +1633,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 <BasicForm form={form} novalidate style="padding: 2rem;" />",
   "src/routes/layout.css": "@import "@picocss/pico/css/pico.css";
 @import "@sjsf/basic-theme/css/pico.css";",
-  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-",
   "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
@@ -1797,10 +1647,19 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import adapter from '@sveltejs/adapter-auto';
+import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [sveltekit()] });",
+export default defineConfig({
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: { runes: true, experimental: { async: true } },
+      experimental: { remoteFunctions: true }
+    })
+  ]
+});",
 }
 `;
 
@@ -2126,28 +1985,6 @@ export function setShadcnThemeContext() {
     @apply bg-background text-foreground;
   }
 };",
-  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-",
   "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
@@ -2163,12 +2000,20 @@ export default config;
   }
 }",
   "vite.config.js": "import tailwindcss from '@tailwindcss/vite';
+import adapter from '@sveltejs/adapter-auto';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-	plugins: [sveltekit(), tailwindcss()],
-	ssr: { noExternal: ['@lucide/svelte'] }
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: { runes: true, experimental: { async: true } },
+      experimental: { remoteFunctions: true }
+    }),
+    tailwindcss()
+  ],
+  ssr: { noExternal: ['@lucide/svelte'] }
 });",
 }
 `;
@@ -2478,28 +2323,6 @@ export function setShadcnThemeContext() {
     @apply bg-background text-foreground;
   }
 };",
-  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-",
   "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
@@ -2515,12 +2338,20 @@ export default config;
   }
 }",
   "vite.config.js": "import tailwindcss from '@tailwindcss/vite';
+import adapter from '@sveltejs/adapter-auto';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-	plugins: [sveltekit(), tailwindcss()],
-	ssr: { noExternal: ['@lucide/svelte'] }
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: { runes: true, experimental: { async: true } },
+      experimental: { remoteFunctions: true }
+    }),
+    tailwindcss()
+  ],
+  ssr: { noExternal: ['@lucide/svelte'] }
 });",
 }
 `;
@@ -2648,28 +2479,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   "src/routes/layout.css": "@import 'tailwindcss';
 @import "@sjsf/skeleton4-theme/styles.css";
 @plugin '@tailwindcss/forms';",
-  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-",
   "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
@@ -2685,10 +2494,20 @@ export default config;
   }
 }",
   "vite.config.js": "import tailwindcss from '@tailwindcss/vite';
+import adapter from '@sveltejs/adapter-auto';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [sveltekit(), tailwindcss()] });",
+export default defineConfig({
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: { runes: true, experimental: { async: true } },
+      experimental: { remoteFunctions: true }
+    }),
+    tailwindcss()
+  ]
+});",
 }
 `;
 
@@ -2823,28 +2642,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
-  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-",
   "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
@@ -2860,10 +2657,20 @@ export default config;
   }
 }",
   "vite.config.js": "import tailwindcss from '@tailwindcss/vite';
+import adapter from '@sveltejs/adapter-auto';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [sveltekit(), tailwindcss()] });",
+export default defineConfig({
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: { runes: true, experimental: { async: true } },
+      experimental: { remoteFunctions: true }
+    }),
+    tailwindcss()
+  ]
+});",
 }
 `;
 
@@ -2979,28 +2786,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </script>
 
 <BasicForm form={form} novalidate />",
-  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-",
   "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
@@ -3015,10 +2800,19 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import adapter from '@sveltejs/adapter-auto';
+import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [sveltekit()] });",
+export default defineConfig({
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: { runes: true, experimental: { async: true } },
+      experimental: { remoteFunctions: true }
+    })
+  ]
+});",
 }
 `;
 
@@ -3170,28 +2964,6 @@ export const uiOptionsRegistry = {
 
 <BasicForm form={form} novalidate />",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-",
   "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
@@ -3206,10 +2978,19 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import adapter from '@sveltejs/adapter-auto';
+import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [sveltekit()] });",
+export default defineConfig({
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: { runes: true, experimental: { async: true } },
+      experimental: { remoteFunctions: true }
+    })
+  ]
+});",
 }
 `;
 
@@ -3357,28 +3138,6 @@ export const uiOptionsRegistry = {
 
 <BasicForm form={form} novalidate />",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-",
   "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
@@ -3393,10 +3152,19 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import adapter from '@sveltejs/adapter-auto';
+import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [sveltekit()] });",
+export default defineConfig({
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: { runes: true, experimental: { async: true } },
+      experimental: { remoteFunctions: true }
+    })
+  ]
+});",
 }
 `;
 
@@ -3505,28 +3273,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm form={form} novalidate />",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-",
   "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
@@ -3541,10 +3287,19 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import adapter from '@sveltejs/adapter-auto';
+import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [sveltekit()] });",
+export default defineConfig({
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: { runes: true, experimental: { async: true } },
+      experimental: { remoteFunctions: true }
+    })
+  ]
+});",
 }
 `;
 
@@ -3645,28 +3400,6 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
 
 <BasicForm form={form} novalidate />",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-",
   "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
@@ -3681,10 +3414,19 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import adapter from '@sveltejs/adapter-auto';
+import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [sveltekit()] });",
+export default defineConfig({
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: { runes: true, experimental: { async: true } },
+      experimental: { remoteFunctions: true }
+    })
+  ]
+});",
 }
 `;
 
@@ -3803,28 +3545,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm form={form} novalidate />",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-",
   "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
@@ -3839,10 +3559,19 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import adapter from '@sveltejs/adapter-auto';
+import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [sveltekit()] });",
+export default defineConfig({
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: { runes: true, experimental: { async: true } },
+      experimental: { remoteFunctions: true }
+    })
+  ]
+});",
 }
 `;
 
@@ -4026,28 +3755,6 @@ export const onSubmitError = createFocusOnFirstError();",
 
 <BasicForm form={form} novalidate />",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-",
   "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
@@ -4062,10 +3769,19 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import adapter from '@sveltejs/adapter-auto';
+import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [sveltekit()] });",
+export default defineConfig({
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: { runes: true, experimental: { async: true } },
+      experimental: { remoteFunctions: true }
+    })
+  ]
+});",
 }
 `;
 
@@ -4166,28 +3882,6 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
 
 <BasicForm form={form} novalidate />",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-",
   "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
@@ -4202,10 +3896,19 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import adapter from '@sveltejs/adapter-auto';
+import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [sveltekit()] });",
+export default defineConfig({
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: { runes: true, experimental: { async: true } },
+      experimental: { remoteFunctions: true }
+    })
+  ]
+});",
 }
 `;
 
@@ -4412,28 +4115,6 @@ export const onSubmitError = createFocusOnFirstError();",
 
 <BasicForm form={form} novalidate />",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-",
   "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
@@ -4448,10 +4129,19 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import adapter from '@sveltejs/adapter-auto';
+import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [sveltekit()] });",
+export default defineConfig({
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: { runes: true, experimental: { async: true } },
+      experimental: { remoteFunctions: true }
+    })
+  ]
+});",
 }
 `;
 
@@ -4563,28 +4253,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm form={form} novalidate />",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-",
   "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
@@ -4599,10 +4267,19 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import adapter from '@sveltejs/adapter-auto';
+import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [sveltekit()] });",
+export default defineConfig({
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: { runes: true, experimental: { async: true } },
+      experimental: { remoteFunctions: true }
+    })
+  ]
+});",
 }
 `;
 
@@ -4808,28 +4485,6 @@ export const onSubmitError = createFocusOnFirstError();",
 
 <BasicForm form={form} novalidate />",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-",
   "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
@@ -4844,10 +4499,19 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import adapter from '@sveltejs/adapter-auto';
+import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [sveltekit()] });",
+export default defineConfig({
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: { runes: true, experimental: { async: true } },
+      experimental: { remoteFunctions: true }
+    })
+  ]
+});",
 }
 `;
 
@@ -4958,28 +4622,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm form={form} novalidate />",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-",
   "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
@@ -4994,10 +4636,19 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import adapter from '@sveltejs/adapter-auto';
+import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [sveltekit()] });",
+export default defineConfig({
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: { runes: true, experimental: { async: true } },
+      experimental: { remoteFunctions: true }
+    })
+  ]
+});",
 }
 `;
 
@@ -5097,28 +4748,6 @@ export const onSubmitError = createFocusOnFirstError();",
 
 <BasicForm form={form} novalidate />",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-",
   "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
@@ -5133,10 +4762,19 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import adapter from '@sveltejs/adapter-auto';
+import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [sveltekit()] });",
+export default defineConfig({
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: { runes: true, experimental: { async: true } },
+      experimental: { remoteFunctions: true }
+    })
+  ]
+});",
 }
 `;
 
@@ -5235,28 +4873,6 @@ export const onSubmitError = createFocusOnFirstError();",
 
 <BasicForm form={form} novalidate />",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-",
   "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
@@ -5271,10 +4887,19 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import adapter from '@sveltejs/adapter-auto';
+import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [sveltekit()] });",
+export default defineConfig({
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: { runes: true, experimental: { async: true } },
+      experimental: { remoteFunctions: true }
+    })
+  ]
+});",
 }
 `;
 
@@ -5388,28 +5013,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm form={form} novalidate />",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-",
   "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
@@ -5424,10 +5027,19 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import adapter from '@sveltejs/adapter-auto';
+import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [sveltekit()] });",
+export default defineConfig({
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: { runes: true, experimental: { async: true } },
+      experimental: { remoteFunctions: true }
+    })
+  ]
+});",
 }
 `;
 
@@ -5604,28 +5216,6 @@ export const onSubmitError = createFocusOnFirstError();",
 
 <BasicForm form={form} novalidate />",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-",
   "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
@@ -5640,10 +5230,19 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import adapter from '@sveltejs/adapter-auto';
+import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [sveltekit()] });",
+export default defineConfig({
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: { runes: true, experimental: { async: true } },
+      experimental: { remoteFunctions: true }
+    })
+  ]
+});",
 }
 `;
 
@@ -5744,28 +5343,6 @@ export { createFormValidator as validator } from '@sjsf/ata-validator';",
 
 <BasicForm form={form} novalidate />",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
-  "svelte.config.js": "import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-",
   "tsconfig.json": "{
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
@@ -5780,9 +5357,18 @@ export default config;
     "moduleResolution": "bundler"
   }
 }",
-  "vite.config.js": "import { sveltekit } from '@sveltejs/kit/vite';
+  "vite.config.js": "import adapter from '@sveltejs/adapter-auto';
+import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [sveltekit()] });",
+export default defineConfig({
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: { runes: true, experimental: { async: true } },
+      experimental: { remoteFunctions: true }
+    })
+  ]
+});",
 }
 `;

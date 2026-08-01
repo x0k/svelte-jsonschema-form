@@ -1,5 +1,4 @@
 import {
-  KIT_PATH_FACTORY,
   createAppHtml,
   createLayout,
   createStyles,
@@ -19,6 +18,7 @@ export function appCss(ctx: Context) {
     directory,
     language,
     cwd,
+    lib,
   } = ctx;
   const { ast } = parse.css(loadFile(cwd, file.stylesheet));
   const uiLibIsNotConfigured = isStyleSheetEmpty(ast);
@@ -52,8 +52,8 @@ export function appCss(ctx: Context) {
       })
     : "";
 
-  const lib: PathFactory = isKit
-    ? KIT_PATH_FACTORY
+  const layoutLib: PathFactory = isKit
+    ? lib
     : (path) =>
         file.getRelative({
           from: layoutSvelte,
@@ -65,7 +65,7 @@ export function appCss(ctx: Context) {
     createLayout({
       language,
       themeOrSubTheme,
-      lib,
+      lib: layoutLib,
       isKit,
       stylesheetPath,
     })

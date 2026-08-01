@@ -41,11 +41,11 @@
     "@sveltejs/sv-utils": "catalog:",
     "@types/node": "catalog:",
     "meta": "workspace:*",
-    "sv": "^0.16.5",
+    "sv": "^0.17.0",
     "tsdown": "^0.22.14",
     "vitest": "catalog:"
   },
   "peerDependencies": {
-    "sv": "^0.16.0"
+    "sv": "^0.17.0"
   }
 }
