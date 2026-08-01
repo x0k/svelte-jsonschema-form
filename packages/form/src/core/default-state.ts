@@ -450,6 +450,20 @@ export function computeDefaults(
     schemaToCompute = isRecordEmpty(remaining)
       ? nextSchema
       : merger.mergeSchemas(remaining, nextSchema);
+  } else if (
+    schemaAllOf !== undefined &&
+    experimental_defaultFormStateBehavior.allOf === "populateDefaults"
+  ) {
+    // If the schema has `allOf` and the `allOf` defaults behavior is set to `populateDefaults`,
+    // then retrieve the schema (merging the `allOf` subschemas) so defaults defined within them
+    // (e.g. inside a `$ref`) are populated, matching the behavior of a bare `$ref`.
+    schemaToCompute = retrieveSchema(
+      validator,
+      merger,
+      schema,
+      rootSchema,
+      rawFormData
+    );
   }
 
   if (schemaToCompute) {
