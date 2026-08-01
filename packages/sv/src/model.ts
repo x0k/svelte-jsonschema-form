@@ -11,12 +11,12 @@ import {
   type Generated,
 } from "meta";
 import {
+  createKitPathFactory,
   codegenSvelteKitIntegrations,
   codegenThemeOrSubTheme,
   codegenValidators,
   createForm,
   createValidator,
-  KIT_PATH_FACTORY,
   type CodegenSvelteKitIntegration,
   type CodegenThemeOrSubTheme,
   type FieldsValidationMode,
@@ -30,7 +30,7 @@ import type * as _uiSchemaAugmentation from "meta/playground";
 import { defineAddon, defineAddonOptions, type SelectQuestion } from "sv";
 
 import packageJson from "../package.json" with { type: "json" };
-import { createPrinter } from "./sv-utils.js";
+import { createPrinter, resolveLibPrefix } from "./sv-utils.js";
 
 const _ADDON_ID = packageJson.name;
 
@@ -162,6 +162,8 @@ export type Context = Omit<Workspace, "options"> & {
   isTs: boolean;
   ts: (content: string, alt?: string) => string;
   js: (content: string, alt?: string) => string;
+  lib: PathFactory;
+  libPrefix: "#lib" | "$lib";
   validator: ValidatorDefinition;
   form: FormDefinition;
 };
@@ -171,15 +173,16 @@ export interface AddonSetupOptions {
 }
 
 export function createContext(ws: Workspace): Context {
-  const { language, file, directory, isKit } = ws;
+  const { language, file, directory, isKit, dependencyVersion } = ws;
   const isTs = language === "ts";
   const [ts, js] = createPrinter(isTs, !isTs);
   const options: ContextOptions = {
     ...ws.options,
     validator: JSON.parse(ws.options.validator),
   };
+  const libPrefix = resolveLibPrefix(dependencyVersion("@sveltejs/kit"));
   const lib: PathFactory = isKit
-    ? KIT_PATH_FACTORY
+    ? createKitPathFactory(libPrefix)
     : (path) =>
         file.getRelative({
           from: `${directory.kitRoutes}/sjsf.svelte`,
@@ -205,7 +208,8 @@ export function createContext(ws: Workspace): Context {
     isTs,
     ts: ts!,
     js: js!,
-    // lib,
+    lib,
+    libPrefix,
     validator,
     form,
   };

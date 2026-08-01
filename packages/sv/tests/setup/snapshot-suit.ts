@@ -7,7 +7,9 @@ import { beforeEach, inject, TestAPI, test as vitestTest } from "vitest";
 
 export function setupSnapshotTest<Addons extends AddonMap>(
   addons: Addons,
-  options?: Omit<SetupTestOptions<Addons>, "browser">
+  options?: Omit<SetupTestOptions<Addons>, "browser"> & {
+    beforeAdd?: (dir: string, variant: string) => void | Promise<void>;
+  }
 ) {
   const test = vitestTest.extend({}) as unknown as TestAPI<
     Pick<Fixtures, "cwd">
@@ -41,6 +43,8 @@ export function setupSnapshotTest<Addons extends AddonMap>(
         recursive: true,
         force: true,
       });
+
+      await options?.beforeAdd?.(targetDir, variant);
 
       await add({
         cwd: targetDir,

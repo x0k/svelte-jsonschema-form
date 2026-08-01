@@ -1,9 +1,4 @@
-import {
-  createPage,
-  addToDemoPage,
-  type PathFactory,
-  KIT_PATH_FACTORY,
-} from "meta/codegen";
+import { createPage, addToDemoPage, type PathFactory } from "meta/codegen";
 
 import type { Context } from "./model.js";
 
@@ -15,6 +10,7 @@ export function pageSvelte({
   options,
   form,
   file,
+  lib,
 }: Context) {
   if (!options.demo) {
     return;
@@ -29,8 +25,8 @@ export function pageSvelte({
 
   const filepath = `${directory.kitRoutes}/${isKit ? "demo/sjsf/+page.svelte" : "sjsf.svelte"}`;
 
-  const lib: PathFactory = isKit
-    ? KIT_PATH_FACTORY
+  const pageLib: PathFactory = isKit
+    ? lib
     : (path) =>
         file.getRelative({
           from: filepath,
@@ -44,7 +40,7 @@ export function pageSvelte({
       html5Validation: false,
       language,
       form,
-      lib,
+      lib: pageLib,
     })
   );
 }

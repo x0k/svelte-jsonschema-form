@@ -26,7 +26,7 @@ catalog:
   "@sveltejs/adapter-auto": ^7.0.1
   "@sveltejs/kit": ^2.70.1
   "@sveltejs/svelte-json-tree": ^2.2.1
-  "@sveltejs/sv-utils": npm:@x0k/sv-utils@0.3.0
+  "@sveltejs/sv-utils": npm:@x0k/sv-utils@0.3.3
   "@sveltejs/vite-plugin-svelte": ^7.2.0
   "@tailwindcss/forms": ^0.5.11
   "@tailwindcss/vite": ^4.3.3
@@ -119,4 +119,4 @@ allowBuilds:
   sharp: true
   ata-validator: false
 minimumReleaseAgeExclude:
-  - "@x0k/sv-utils@0.3.0"
+  - "@x0k/sv-utils@0.3.3"

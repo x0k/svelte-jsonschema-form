@@ -3,7 +3,14 @@ import { createShadcnLib } from "meta/codegen";
 import { POST_EXTRA_WIDGETS, type Context } from "./model.js";
 import { fileExists, transforms } from "./sv-utils.js";
 
-export function shadcnTs({ options, sv, directory, language, cwd }: Context) {
+export function shadcnTs({
+  options,
+  sv,
+  directory,
+  language,
+  cwd,
+  libPrefix,
+}: Context) {
   const isShadcn4 = options.themeOrSubTheme === "shadcn4";
   const isShadcnExtras = options.themeOrSubTheme === "shadcn-extras";
   if (!isShadcn4 && !isShadcnExtras) {
@@ -29,7 +36,7 @@ export function shadcnTs({ options, sv, directory, language, cwd }: Context) {
         return;
       }
       // TODO: Support for custom aliases
-      realUiPath = configUiPath.replace("$lib", directory.lib);
+      realUiPath = configUiPath.replace(libPrefix, directory.lib);
       return false;
     })
   );

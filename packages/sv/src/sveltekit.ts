@@ -1,4 +1,4 @@
-import { KIT_PATH_FACTORY, createSvelteKitIntegration } from "meta/codegen";
+import { createSvelteKitIntegration } from "meta/codegen";
 
 import { POST_MODEL_NAME, type Context } from "./model.js";
 import { svelteConfig } from "./sv-utils.js";
@@ -13,6 +13,7 @@ export function sveltekitTs({
   isTs,
   validator,
   cwd,
+  lib,
 }: Context) {
   if (!isKit || sveltekit === "no" || !demo) {
     return;
@@ -20,7 +21,7 @@ export function sveltekitTs({
 
   const { filename, transform } = createSvelteKitIntegration({
     isTs,
-    lib: KIT_PATH_FACTORY,
+    lib,
     sveltekit,
     ts,
     modelName: POST_MODEL_NAME,
