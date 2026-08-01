@@ -118,33 +118,24 @@ ${
 }
 `;
 
-const SVELTE_CONFIG = `import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter(),
-    experimental: {
-      remoteFunctions: true,
-    },
-  },
-  compilerOptions: {
-    runes: true,
-    experimental: {
-      async: true,
-    },
-  },
-};
-
-export default config;
-`;
-
-const VITE_CONFIG = `import { sveltekit } from '@sveltejs/kit/vite';
+const VITE_CONFIG = `import adapter from '@sveltejs/adapter-auto';
+import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({ plugins: [sveltekit()] });`;
+export default defineConfig({
+  plugins: [
+    sveltekit({
+      adapter: adapter(),
+      compilerOptions: {
+        runes: true,
+        experimental: { async: true },
+      },
+      experimental: {
+        remoteFunctions: true,
+      },
+    }),
+  ],
+});`;
 
 export function normalizeProjectName(name: string): string {
   return name
@@ -241,7 +232,6 @@ export async function createComposer<T extends CodegenThemeOrSubTheme>(
       icons,
       sveltekit,
     })(VITE_CONFIG),
-    "svelte.config.js": SVELTE_CONFIG,
     "tsconfig.json": TSCONFIG,
     "src/app.html": createAppHtml({ themeOrSubTheme })(APP_HTML),
     "src/lib/sjsf/defaults.ts": createDefaults({
