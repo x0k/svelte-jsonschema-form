@@ -13,6 +13,22 @@ export interface ValidatorsCache extends MapLike<Schema, AnyValidateFunction> {
   delete(schema: Schema): boolean;
 }
 
+function compileWithEviction(ajv: Ajv, schema: AnySchema) {
+  try {
+    return ajv.compile(schema);
+  } catch (e) {
+    // AJV 8 registers a schema in its internal cache before running
+    // meta-schema validation. When that check throws (e.g. anyOf:[]
+    // violates draft-07's minItems:1), the broken schema stays cached
+    // so subsequent compile() calls skip revalidation and silently
+    // return a compiled always-false validator with no error.
+    if (typeof schema !== "boolean") {
+      ajv.removeSchema(schema.$id ?? schema);
+    }
+    throw e;
+  }
+}
+
 export function createSchemaCompiler<A extends boolean>(
   ajv: Ajv,
   _async: A,
@@ -28,7 +44,7 @@ export function createSchemaCompiler<A extends boolean>(
         ajvSchema = prefixSchemaRefs(schema, rootSchemaId);
         delete ajvSchema[ID_KEY];
       }
-      return ajv.compile(ajvSchema);
+      return compileWithEviction(ajv, ajvSchema);
     }
   );
   return (schema: Schema, rootSchema: Schema) => {
@@ -40,7 +56,12 @@ export function createSchemaCompiler<A extends boolean>(
       ajvSchema = undefined;
     }
     if (ajvSchema === undefined) {
-      ajv.addSchema(rootSchema, rootSchemaId);
+      try {
+        ajv.addSchema(rootSchema, rootSchemaId);
+      } catch (e) {
+        ajv.removeSchema(rootSchemaId);
+        throw e;
+      }
     }
     usePrefixSchemaRefs = schema !== rootSchema;
     return compile(schema) as A extends true
@@ -56,7 +77,8 @@ export function createFieldSchemaCompiler<A extends boolean>(
   const validatorsCache = new WeakMap<Schema, AnyValidateFunction>();
   const compile = weakMemoize<Schema, AnyValidateFunction>(
     validatorsCache,
-    (schema) => ajv.compile({ ...schema, $async: async })
+    (schema) =>
+      compileWithEviction(ajv, { ...schema, $async: async } as AnySchema)
   );
   return (config: Config) =>
     compile(config.schema) as A extends true
