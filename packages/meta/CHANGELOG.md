@@ -1,5 +1,39 @@
 # meta
 
+## 1.0.8
+
+### Patch Changes
+
+- Configure SvelteKit via the Vite plugin instead of a separate `svelte.config.js` in sandbox output ([#440](https://github.com/x0k/svelte-jsonschema-form/pull/440))
+
+- Updated dependencies [[`2f8baa1`](https://github.com/x0k/svelte-jsonschema-form/commit/2f8baa160a51c7928ec0ec8d16468c2f39796564), [`68c0893`](https://github.com/x0k/svelte-jsonschema-form/commit/68c0893a8e5658f2c00d8f3ee63dc159d27d24c7)]:
+  - @sjsf/ajv8-validator@3.8.1
+  - @sjsf/form@3.8.1
+  - @sjsf-lab/beercss-theme@3.3.0
+  - @sjsf-lab/shadcn-extras-theme@3.4.2
+  - @sjsf-lab/svar-theme@3.3.0
+  - @sjsf/skeleton3-theme@3.1.1
+  - @sjsf/skeleton4-theme@3.7.2
+  - @sjsf/basic-theme@3.8.1
+  - @sjsf/daisyui5-theme@3.8.1
+  - @sjsf/flowbite3-theme@3.8.1
+  - @sjsf/shadcn4-theme@3.8.1
+  - @sjsf/skeleton5-theme@3.8.1
+  - @sjsf/sveltekit@3.8.1
+  - @sjsf-lab/hyperjump-validator@3.1.0
+  - @sjsf/daisyui-theme@3.1.1
+  - @sjsf/flowbite-theme@3.1.1
+  - @sjsf/shadcn-theme@3.1.2
+  - @sjsf/ata-validator@3.8.1
+  - @sjsf/cfworker-validator@3.8.1
+  - @sjsf/flowbite-icons@3.8.1
+  - @sjsf/lucide-icons@3.8.1
+  - @sjsf/moving-icons@3.8.1
+  - @sjsf/radix-icons@3.8.1
+  - @sjsf/schemasafe-validator@3.8.1
+  - @sjsf/valibot-validator@3.8.1
+  - @sjsf/zod4-validator@3.8.1
+
 ## 1.0.7
 
 ### Patch Changes
