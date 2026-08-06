@@ -7586,6 +7586,110 @@ describe("getDefaultFormState()", () => {
           },
         });
       });
+
+      it("should populate defaults from a bare $ref", () => {
+        const schema: Schema = {
+          type: "object",
+          properties: {
+            animal: {
+              title: "Animal",
+              $ref: "#/definitions/Animal",
+            },
+          },
+          required: ["animal"],
+          definitions: {
+            Animal: {
+              type: "string",
+              enum: ["Cat", "Dog", "Bird"],
+              default: "Dog",
+            },
+          },
+        };
+        defaultMerger = createMerger({
+          merges: [
+            {
+              left: {
+                type: "string",
+                enum: ["Cat", "Dog", "Bird"],
+                default: "Dog",
+              },
+              right: { title: "Animal" },
+              result: {
+                title: "Animal",
+                type: "string",
+                enum: ["Cat", "Dog", "Bird"],
+                default: "Dog",
+              },
+            },
+          ],
+        });
+        expect(
+          getDefaultFormState(
+            testValidator,
+            defaultMerger,
+            schema,
+            undefined,
+            schema,
+            undefined,
+            { allOf: "populateDefaults" }
+          )
+        ).toEqual({ animal: "Dog" });
+      });
+
+      it("should populate defaults from a $ref wrapped in a single-element allOf", () => {
+        const schema: Schema = {
+          type: "object",
+          properties: {
+            animal: {
+              title: "Animal",
+              allOf: [{ $ref: "#/definitions/Animal" }],
+            },
+          },
+          required: ["animal"],
+          definitions: {
+            Animal: {
+              type: "string",
+              enum: ["Cat", "Dog", "Bird"],
+              default: "Dog",
+            },
+          },
+        };
+        defaultMerger = createMerger({
+          allOfMerges: [
+            {
+              input: {
+                title: "Animal",
+                allOf: [
+                  {
+                    type: "string",
+                    enum: ["Cat", "Dog", "Bird"],
+                    default: "Dog",
+                    [REF_FLAG]: "#/definitions/Animal",
+                  },
+                ],
+              },
+              result: {
+                title: "Animal",
+                type: "string",
+                enum: ["Cat", "Dog", "Bird"],
+                default: "Dog",
+                [REF_FLAG]: "#/definitions/Animal",
+              },
+            },
+          ],
+        });
+        expect(
+          getDefaultFormState(
+            testValidator,
+            defaultMerger,
+            schema,
+            undefined,
+            schema,
+            undefined,
+            { allOf: "populateDefaults" }
+          )
+        ).toEqual({ animal: "Dog" });
+      });
     });
 
     describe('default form state behaviour: allOf = "skipDefaults"', () => {
