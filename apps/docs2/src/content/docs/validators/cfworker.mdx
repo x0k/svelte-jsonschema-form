@@ -28,9 +28,26 @@ Form validator implementation based on [@cfworker/json-schema](https://github.co
 
 <Demo name="cfworker" iconsPicker client:visible />
 
-## Caveats
+## Format support
 
-- `data-url` and `color` formats are ignored.
+By default, `data-url` and `color` formats are not installed. Call `setupFormFormats()` once at app startup to enable them:
+
+```typescript
+import { format } from "@cfworker/json-schema";
+import { setupFormFormats } from "@sjsf/cfworker-validator";
+
+setupFormFormats(format);
+```
+
+Custom formats can be added directly to `@cfworker/json-schema`'s global format registry:
+
+```typescript
+import { format } from "@cfworker/json-schema";
+
+format.phone = (value) => /^\+\d{10,15}$/.test(value);
+```
+
+## Caveats
 
 - By itself this validator does not support undefined values. But we use the
   `valueToJSON` function with the following default implementation to fix it,
