@@ -44,7 +44,7 @@ catalog:
   arktype: ^2.2.3
   ata-validator: ^1.6.1
   autoprefixer: ^10.5.4
-  beercss: 4.0.23
+  beercss: 5.0.3
   bits-ui: 2.18.1
   cally: ^0.9.2
   css-tree: ^3.2.1
