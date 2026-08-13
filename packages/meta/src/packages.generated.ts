@@ -18,12 +18,12 @@ export const EXTRA_PACKAGES = {
   },
   "esbuild": {
     "name": "esbuild",
-    "version": "0.28.1",
+    "version": "0.28.2",
     "dev": true
   },
   "devalue": {
     "name": "devalue",
-    "version": "5.8.2",
+    "version": "5.9.0",
     "dev": true
   },
   "pico": {
@@ -33,7 +33,7 @@ export const EXTRA_PACKAGES = {
   },
   "vite": {
     "name": "vite",
-    "version": "8.1.5",
+    "version": "8.2.1",
     "dev": true
   },
   "typescript": {
@@ -43,7 +43,7 @@ export const EXTRA_PACKAGES = {
   },
   "svelteVitePlugin": {
     "name": "@sveltejs/vite-plugin-svelte",
-    "version": "7.2.0",
+    "version": "7.3.0",
     "dev": true
   },
   "svelteAdapterAuto": {
@@ -58,7 +58,7 @@ export const EXTRA_PACKAGES = {
   },
   "postcss": {
     "name": "postcss",
-    "version": "8.5.23",
+    "version": "8.5.26",
     "dev": true
   },
   "autoprefixer": {
@@ -78,7 +78,7 @@ export const EXTRA_PACKAGES = {
   },
   "typebox": {
     "name": "typebox",
-    "version": "1.3.8",
+    "version": "1.3.13",
     "dev": false
   },
   "arktype": {
@@ -113,7 +113,7 @@ export const EXTRA_PACKAGES = {
   },
   "lucideSvelte": {
     "name": "@lucide/svelte",
-    "version": "1.26.0",
+    "version": "1.31.0",
     "dev": false
   },
   "zod": {

@@ -27,16 +27,20 @@ export interface WidgetCommonProps<V> {
 }
 
 export type WidgetType = keyof {
-  [T in ComponentType as ComponentProps[T] extends WidgetCommonProps<any>
-    ? T
-    : never]: T;
+  [
+    T in ComponentType as ComponentProps[T] extends WidgetCommonProps<any>
+      ? T
+      : never
+  ]: T;
 };
 
 export type FoundationalWidgetType = keyof {
-  [T in WidgetType &
-    FoundationalComponentType as WidgetCommonProps<any> extends ComponentProps[T]
-    ? T
-    : never]: T;
+  [
+    T in WidgetType &
+      FoundationalComponentType as WidgetCommonProps<any> extends ComponentProps[T]
+      ? T
+      : never
+  ]: T;
 };
 
 export interface Options {

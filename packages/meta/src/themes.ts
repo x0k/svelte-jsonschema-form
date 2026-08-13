@@ -124,9 +124,9 @@ export type ThemeWithSubThemes = keyof ThemeSubThemes;
 export type ThemeOrSubTheme = Theme | SubTheme;
 
 export type ParentTheme<S extends SubTheme> = keyof {
-  [T in ThemeWithSubThemes as S extends ThemeSubThemes[T][number]
-    ? T
-    : never]: true;
+  [
+    T in ThemeWithSubThemes as S extends ThemeSubThemes[T][number] ? T : never
+  ]: true;
 };
 
 export type ToTheme<T extends ThemeOrSubTheme> = T extends SubTheme

@@ -11,11 +11,13 @@
     }
   }
   type ArrayFields = keyof {
-    [C in ActionField as Expand<ComponentProps[C]> extends Expand<
-      ComponentProps["arrayField"]
-    >
-      ? C
-      : never]: C;
+    [
+      C in ActionField as Expand<ComponentProps[C]> extends Expand<
+        ComponentProps["arrayField"]
+      >
+        ? C
+        : never
+    ]: C;
   };
 </script>
 

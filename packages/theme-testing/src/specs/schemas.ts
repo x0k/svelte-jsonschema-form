@@ -94,9 +94,11 @@ export type FieldValidationTrigger = (locator: Locator) => Promise<void>;
 type Triggers = typeof triggers;
 
 export type Trigger = keyof {
-  [K in keyof Triggers as Triggers[K] extends FieldValidationTrigger
-    ? K
-    : never]: true;
+  [
+    K in keyof Triggers as Triggers[K] extends FieldValidationTrigger
+      ? K
+      : never
+  ]: true;
 };
 
 export const SWITCH_LABEL_TEXT = "switch";

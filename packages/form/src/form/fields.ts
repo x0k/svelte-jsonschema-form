@@ -22,16 +22,20 @@ export interface FieldCommonProps<V> {
 }
 
 export type FieldType = keyof {
-  [T in ComponentType as ComponentProps[T] extends FieldCommonProps<any>
-    ? T
-    : never]: T;
+  [
+    T in ComponentType as ComponentProps[T] extends FieldCommonProps<any>
+      ? T
+      : never
+  ]: T;
 };
 
 export type FoundationalFieldType = keyof {
-  [K in FieldType &
-    FoundationalComponentType as FieldCommonProps<any> extends ComponentProps[K]
-    ? K
-    : never]: K;
+  [
+    K in FieldType &
+      FoundationalComponentType as FieldCommonProps<any> extends ComponentProps[K]
+      ? K
+      : never
+  ]: K;
 };
 
 export type ResolveFieldType = (config: Config) => FoundationalFieldType;
