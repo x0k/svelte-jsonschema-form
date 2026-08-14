@@ -1,0 +1,10 @@
+import{Mt as e,ft as t,jt as n}from"./form.D74qHMvd.js";import{O as r,c as i,k as a}from"./core.CR77F8AS.js";import"./main.BTpgBLWI.js";function o({idPrefix:t=n,separator:r=`_`}={}){return{fromPath:n=>{let i=``;for(let t=0;t<n.length;t++){let a=n[t],o=e(a);i+=o===void 0?`${r}${a}`:`${r}${r}${o}`}return`${t}${i}`}}}function s({jsonSchemaMerger:{mergeSchemaDefinitions:e,mergeArrayOfSchemaDefinitions:t}=a(),jsonSchemaAllOfMerge:n=r(t)}={}){return{mergeSchemas(t,n){return e(t,n)},mergeAllOf(e){return n(e)}}}function c(e){let t=s(e);return{...t,mergeFormDataAndSchemaDefaults({formData:n,schema:r,initialDefaultsGenerated:a=!1,includeUndefinedValues:o=!1}){return i(e.validator,t,r,n,e.schema,o,e,a)}}}var l={submit:`Submit`,"array-schema-missing-items":`Missing items definition`,yes:`Yes`,no:`No`,"multi-schema-option-label-with-title":({title:e,index:t})=>`${e} option ${t+1}`,"multi-schema-option-label":({index:e})=>`Option ${e+1}`,"add-array-item":`Add item`,"copy-array-item":`Copy`,"add-object-property":`Add property`,"move-array-item-down":`Down`,"move-array-item-up":`Up`,"remove-array-item":`Del`,"remove-object-property":`Del`,edit:`Edit`,clear:`Clear`,"validation-process-error":({error:e})=>u[e.reason],"component-not-found":({type:e})=>`"${e}" component not found`,"key-input-title":({name:e})=>`${e} Key`,"additional-property":`Additional property`,"unknown-field-error":({schema:e})=>`You're seeing this error because your JSON Schema doesn’t contain enough information
+to determine its type. You can:
+- specify the schema type (for example, using the 'type' keyword)
+- specify which component to use via UiSchema
+  ('{ "ui:components": { "unknownField": "myField" } }')
+- specify which component to use by providing a custom 'resolver'
+  (https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/)
+
+JSON Schema:
+${JSON.stringify(e,null,2)}`,expand:`Expand`},u={aborted:`Validation aborted`,timeout:`Validation terminated by timeout`,error:`Something went wrong during validation`},d=t(l);export{c as n,o as r,d as t};

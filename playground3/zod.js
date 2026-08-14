@@ -1091,8 +1091,10 @@ const $ZodCheckLessThan = /*@__PURE__*/ $constructor("$ZodCheckLessThan", (inst,
 	inst._zod.onattach.push((inst) => {
 		const bag = inst._zod.bag;
 		const curr = (def.inclusive ? bag.maximum : bag.exclusiveMaximum) ?? Number.POSITIVE_INFINITY;
-		if (def.value < curr) if (def.inclusive) bag.maximum = def.value;
-		else bag.exclusiveMaximum = def.value;
+		if (def.value < curr) {
+			if (def.inclusive) bag.maximum = def.value;
+			else bag.exclusiveMaximum = def.value;
+		}
 	});
 	inst._zod.check = (payload) => {
 		if (def.inclusive ? payload.value <= def.value : payload.value < def.value) return;
@@ -1113,8 +1115,10 @@ const $ZodCheckGreaterThan = /*@__PURE__*/ $constructor("$ZodCheckGreaterThan", 
 	inst._zod.onattach.push((inst) => {
 		const bag = inst._zod.bag;
 		const curr = (def.inclusive ? bag.minimum : bag.exclusiveMinimum) ?? Number.NEGATIVE_INFINITY;
-		if (def.value > curr) if (def.inclusive) bag.minimum = def.value;
-		else bag.exclusiveMinimum = def.value;
+		if (def.value > curr) {
+			if (def.inclusive) bag.minimum = def.value;
+			else bag.exclusiveMinimum = def.value;
+		}
 	});
 	inst._zod.check = (payload) => {
 		if (def.inclusive ? payload.value >= def.value : payload.value > def.value) return;
@@ -2288,13 +2292,13 @@ const $ZodObject = /*@__PURE__*/ $constructor("$ZodObject", (inst, def) => {
 		}
 		return propValues;
 	});
-	const isObject$2 = isObject;
+	const isObject$1 = isObject;
 	const catchall = def.catchall;
 	let value;
 	inst._zod.parse = (payload, ctx) => {
 		value ?? (value = _normalized.value);
 		const input = payload.value;
-		if (!isObject$2(input)) {
+		if (!isObject$1(input)) {
 			payload.issues.push({
 				expected: "object",
 				code: "invalid_type",
@@ -2417,7 +2421,7 @@ const $ZodObjectJIT = /*@__PURE__*/ $constructor("$ZodObjectJIT", (inst, def) =>
 		return (payload, ctx) => fn(shape, payload, ctx);
 	};
 	let fastpass;
-	const isObject$1 = isObject;
+	const isObject$2 = isObject;
 	const jit = !globalConfig.jitless;
 	const allowsEval$1 = allowsEval;
 	const fastEnabled = jit && allowsEval$1.value;
@@ -2426,7 +2430,7 @@ const $ZodObjectJIT = /*@__PURE__*/ $constructor("$ZodObjectJIT", (inst, def) =>
 	inst._zod.parse = (payload, ctx) => {
 		value ?? (value = _normalized.value);
 		const input = payload.value;
-		if (!isObject$1(input)) {
+		if (!isObject$2(input)) {
 			payload.issues.push({
 				expected: "object",
 				code: "invalid_type",
@@ -2934,23 +2938,27 @@ const $ZodMap = /*@__PURE__*/ $constructor("$ZodMap", (inst, def) => {
 	};
 });
 function handleMapResult(keyResult, valueResult, final, key, input, inst, ctx) {
-	if (keyResult.issues.length) if (propertyKeyTypes.has(typeof key)) final.issues.push(...prefixIssues(key, keyResult.issues));
-	else final.issues.push({
-		code: "invalid_key",
-		origin: "map",
-		input,
-		inst,
-		issues: keyResult.issues.map((iss) => finalizeIssue(iss, ctx, config()))
-	});
-	if (valueResult.issues.length) if (propertyKeyTypes.has(typeof key)) final.issues.push(...prefixIssues(key, valueResult.issues));
-	else final.issues.push({
-		origin: "map",
-		code: "invalid_element",
-		input,
-		inst,
-		key,
-		issues: valueResult.issues.map((iss) => finalizeIssue(iss, ctx, config()))
-	});
+	if (keyResult.issues.length) {
+		if (propertyKeyTypes.has(typeof key)) final.issues.push(...prefixIssues(key, keyResult.issues));
+		else final.issues.push({
+			code: "invalid_key",
+			origin: "map",
+			input,
+			inst,
+			issues: keyResult.issues.map((iss) => finalizeIssue(iss, ctx, config()))
+		});
+	}
+	if (valueResult.issues.length) {
+		if (propertyKeyTypes.has(typeof key)) final.issues.push(...prefixIssues(key, valueResult.issues));
+		else final.issues.push({
+			origin: "map",
+			code: "invalid_element",
+			input,
+			inst,
+			key,
+			issues: valueResult.issues.map((iss) => finalizeIssue(iss, ctx, config()))
+		});
+	}
 	final.value.set(keyResult.value, valueResult.value);
 }
 const $ZodSet = /*@__PURE__*/ $constructor("$ZodSet", (inst, def) => {
@@ -10511,8 +10519,10 @@ function finalize(ctx, schema) {
 			defs[seen.defId] = seen.def;
 		}
 	}
-	if (ctx.external) {} else if (Object.keys(defs).length > 0) if (ctx.target === "draft-2020-12") result.$defs = defs;
-	else result.definitions = defs;
+	if (ctx.external) {} else if (Object.keys(defs).length > 0) {
+		if (ctx.target === "draft-2020-12") result.$defs = defs;
+		else result.definitions = defs;
+	}
 	try {
 		const finalized = JSON.parse(JSON.stringify(result));
 		Object.defineProperty(finalized, "~standard", {
@@ -10626,16 +10636,18 @@ const numberProcessor = (schema, ctx, _json, _params) => {
 	const exMin = typeof exclusiveMinimum === "number" && exclusiveMinimum >= (minimum ?? Number.NEGATIVE_INFINITY);
 	const exMax = typeof exclusiveMaximum === "number" && exclusiveMaximum <= (maximum ?? Number.POSITIVE_INFINITY);
 	const legacy = ctx.target === "draft-04" || ctx.target === "openapi-3.0";
-	if (exMin) if (legacy) {
-		json.minimum = exclusiveMinimum;
-		json.exclusiveMinimum = true;
-	} else json.exclusiveMinimum = exclusiveMinimum;
-	else if (typeof minimum === "number") json.minimum = minimum;
-	if (exMax) if (legacy) {
-		json.maximum = exclusiveMaximum;
-		json.exclusiveMaximum = true;
-	} else json.exclusiveMaximum = exclusiveMaximum;
-	else if (typeof maximum === "number") json.maximum = maximum;
+	if (exMin) {
+		if (legacy) {
+			json.minimum = exclusiveMinimum;
+			json.exclusiveMinimum = true;
+		} else json.exclusiveMinimum = exclusiveMinimum;
+	} else if (typeof minimum === "number") json.minimum = minimum;
+	if (exMax) {
+		if (legacy) {
+			json.maximum = exclusiveMaximum;
+			json.exclusiveMaximum = true;
+		} else json.exclusiveMaximum = exclusiveMaximum;
+	} else if (typeof maximum === "number") json.maximum = maximum;
 	if (typeof multipleOf === "number") json.multipleOf = multipleOf;
 };
 const booleanProcessor = (_schema, _ctx, json, _params) => {
@@ -10680,9 +10692,10 @@ const literalProcessor = (schema, ctx, json, _params) => {
 	const vals = [];
 	for (const val of def.values) if (val === void 0) {
 		if (ctx.unrepresentable === "throw") throw new Error("Literal `undefined` cannot be represented in JSON Schema");
-	} else if (typeof val === "bigint") if (ctx.unrepresentable === "throw") throw new Error("BigInt literals cannot be represented in JSON Schema");
-	else vals.push(Number(val));
-	else vals.push(val);
+	} else if (typeof val === "bigint") {
+		if (ctx.unrepresentable === "throw") throw new Error("BigInt literals cannot be represented in JSON Schema");
+		else vals.push(Number(val));
+	} else vals.push(val);
 	if (vals.length === 0) {} else if (vals.length === 1) {
 		const val = vals[0];
 		json.type = val === null ? "null" : typeof val;
@@ -10716,14 +10729,15 @@ const fileProcessor = (schema, _ctx, json, _params) => {
 	const { minimum, maximum, mime } = schema._zod.bag;
 	if (minimum !== void 0) file.minLength = minimum;
 	if (maximum !== void 0) file.maxLength = maximum;
-	if (mime) if (mime.length === 1) {
-		file.contentMediaType = mime[0];
-		Object.assign(_json, file);
-	} else {
-		Object.assign(_json, file);
-		_json.anyOf = mime.map((m) => ({ contentMediaType: m }));
-	}
-	else Object.assign(_json, file);
+	if (mime) {
+		if (mime.length === 1) {
+			file.contentMediaType = mime[0];
+			Object.assign(_json, file);
+		} else {
+			Object.assign(_json, file);
+			_json.anyOf = mime.map((m) => ({ contentMediaType: m }));
+		}
+	} else Object.assign(_json, file);
 };
 const successProcessor = (_schema, _ctx, json, _params) => {
 	json.type = "boolean";
@@ -13307,12 +13321,14 @@ function convertSchema(schema, ctx) {
 		const oneOfUnion = z.xor(options);
 		baseSchema = hasExplicitType ? z.intersection(baseSchema, oneOfUnion) : oneOfUnion;
 	}
-	if (schema.allOf && Array.isArray(schema.allOf)) if (schema.allOf.length === 0) baseSchema = hasExplicitType ? baseSchema : z.any();
-	else {
-		let result = hasExplicitType ? baseSchema : convertSchema(schema.allOf[0], ctx);
-		const startIdx = hasExplicitType ? 0 : 1;
-		for (let i = startIdx; i < schema.allOf.length; i++) result = z.intersection(result, convertSchema(schema.allOf[i], ctx));
-		baseSchema = result;
+	if (schema.allOf && Array.isArray(schema.allOf)) {
+		if (schema.allOf.length === 0) baseSchema = hasExplicitType ? baseSchema : z.any();
+		else {
+			let result = hasExplicitType ? baseSchema : convertSchema(schema.allOf[0], ctx);
+			const startIdx = hasExplicitType ? 0 : 1;
+			for (let i = startIdx; i < schema.allOf.length; i++) result = z.intersection(result, convertSchema(schema.allOf[i], ctx));
+			baseSchema = result;
+		}
 	}
 	if (schema.nullable === true && ctx.version === "openapi-3.0") baseSchema = z.nullable(baseSchema);
 	if (schema.readOnly === true) baseSchema = z.readonly(baseSchema);
