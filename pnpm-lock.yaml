@@ -186,6 +186,9 @@ catalogs:
     shiki:
       specifier: ^4.4.3
       version: 4.4.3
+    stdf:
+      specifier: 3.0.0-alpha.3
+      version: 3.0.0-alpha.3
     svelte:
       specifier: ^5.56.9
       version: 5.56.9
@@ -1683,6 +1686,40 @@ importers:
         specifier: catalog:shadcn
         version: 1.1.0
 
+  lab/stdf-theme:
+    dependencies:
+      '@sjsf/basic-theme':
+        specifier: workspace:^3.8.0
+        version: link:../../packages/basic-theme
+    devDependencies:
+      '@sjsf/ajv8-validator':
+        specifier: workspace:*
+        version: link:../../packages/ajv8-validator
+      '@sjsf/form':
+        specifier: workspace:*
+        version: link:../../packages/form
+      '@tailwindcss/vite':
+        specifier: 'catalog:'
+        version: 4.3.3(vite@8.2.1(@types/node@26.2.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))
+      ajv:
+        specifier: 'catalog:'
+        version: 8.20.0
+      globals:
+        specifier: 'catalog:'
+        version: 17.11.0
+      stdf:
+        specifier: 'catalog:'
+        version: 3.0.0-alpha.3(svelte@5.56.9(@typescript-eslint/types@8.67.0))(tailwindcss@4.3.3)
+      svelte:
+        specifier: 'catalog:'
+        version: 5.56.9(@typescript-eslint/types@8.67.0)
+      tailwindcss:
+        specifier: 'catalog:'
+        version: 4.3.3
+      theme-testing:
+        specifier: workspace:*
+        version: link:../../packages/theme-testing
+
   lab/svar-theme:
     dependencies:
       '@sjsf/basic-theme':
@@ -2645,6 +2682,14 @@ packages:
 
   '@antfu/install-pkg@1.1.0':
     resolution: {integrity: sha512-MGQsmw10ZyI+EJo45CdSER4zEb+p31LpDAFp2Z3gkSd1yqVZGi0Ebx++YTEMonJy4oChEMLsxZ64j8FH6sSqtQ==}
+
+  '@any-tdf/common@0.0.0-alpha.4':
+    resolution: {integrity: sha512-7HjX79oe3aZ1hQc5CjqZuVcnn6EuggBTUWaTX8jcJ6iLG+FNON2Akgf8pr2+0dycjH8ZhzCV2KxVbooaQeOFKA==}
+    peerDependencies:
+      tailwindcss: ^4.0.0
+    peerDependenciesMeta:
+      tailwindcss:
+        optional: true
 
   '@ark/schema@0.56.2':
     resolution: {integrity: sha512-Qx4D2JFbBWpntiHZaTv7bGG4H/M2rigiknezKg/WVyDSaLdE4YCcWAOoFB7pjjDqHbbV2OqRfntm1nnXvwMexg==}
@@ -7823,6 +7868,12 @@ packages:
   std-env@4.2.0:
     resolution: {integrity: sha512-oCUKSupKTHX53EyjDtuZQ64pjLJ6yYCtpmEw0goYxtjG9KpbRe8KAsl2tBUGU9DyMcJ0RwJ8GqJAFzMXcXW1Rw==}
 
+  stdf@3.0.0-alpha.3:
+    resolution: {integrity: sha512-YfkQkgdARrYG5m+p6N+Or2HEMXTMOyjkGuOSPH5BxW7hrvnQH7clXe7bCrxiWwz6r9Z6UVVIlk9Aq1fLPj/2CQ==}
+    peerDependencies:
+      svelte: ^5.0.0
+      tailwindcss: ^4.0.0
+
   stream-replace-string@2.0.0:
     resolution: {integrity: sha512-TlnjJ1C0QrmxRNrON00JvaFFlNh5TTG00APw23j74ET7gkQpTASi6/L2fuiav8pzK715HXtUeClpBTw2NPSn6w==}
 
@@ -8704,6 +8755,10 @@ snapshots:
     dependencies:
       package-manager-detector: 1.8.0
       tinyexec: 1.3.0
+
+  '@any-tdf/common@0.0.0-alpha.4(tailwindcss@4.3.3)':
+    optionalDependencies:
+      tailwindcss: 4.3.3
 
   '@ark/schema@0.56.2':
     dependencies:
@@ -14946,6 +15001,12 @@ snapshots:
       '@astrojs/starlight': 0.41.7(@astrojs/markdown-remark@7.2.2(supports-color@10.2.2))(astro@7.2.1(@astrojs/markdown-remark@7.2.2(supports-color@10.2.2))(@emnapi/core@1.11.2)(@emnapi/runtime@1.11.2)(@types/node@26.2.0)(jiti@2.7.0)(yaml@2.9.0))(supports-color@10.2.2)(typescript@6.0.3)
 
   std-env@4.2.0: {}
+
+  stdf@3.0.0-alpha.3(svelte@5.56.9(@typescript-eslint/types@8.67.0))(tailwindcss@4.3.3):
+    dependencies:
+      '@any-tdf/common': 0.0.0-alpha.4(tailwindcss@4.3.3)
+      svelte: 5.56.9(@typescript-eslint/types@8.67.0)
+      tailwindcss: 4.3.3
 
   stream-replace-string@2.0.0: {}
 

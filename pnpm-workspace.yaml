@@ -6,6 +6,7 @@ packages:
   - lab/*
 
 catalog:
+  "@any-tdf/common": 0.0.0-alpha.4
   "@cfworker/json-schema": ^4.1.1
   "@exodus/schemasafe": ^1.3.0
   "@fontsource-variable/geist": ^5.3.0
@@ -69,6 +70,7 @@ catalog:
   postcss: ^8.5.26
   shadcn-svelte: ^1.5.0
   shiki: ^4.4.3
+  stdf: 3.0.0-alpha.3
   svelte: ^5.56.9
   svelte-exmarkdown: ^5.0.2
   tailwindcss: ^4.3.3
