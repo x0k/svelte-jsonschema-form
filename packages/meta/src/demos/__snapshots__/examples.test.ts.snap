@@ -172,7 +172,7 @@ exports[`examples > ./examples/ajv-i18n.js > beercss__ajv8 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/ajv8-validator": "^3.8.0",
     "ajv": "^8.17.0"
   },
@@ -2260,7 +2260,7 @@ exports[`examples > ./examples/arktype-starter.js > beercss__ajv8 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0"
+    "beercss": "^5.0.0"
   },
   "devDependencies": {
     "vite": "^8.2.1",
@@ -11069,7 +11069,7 @@ exports[`examples > ./examples/async-combobox.js > beercss__ajv8 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/ajv8-validator": "^3.8.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
@@ -21384,7 +21384,7 @@ exports[`examples > ./examples/decomposed-field.js > beercss__ajv8 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/ajv8-validator": "^3.8.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
@@ -25219,7 +25219,7 @@ exports[`examples > ./examples/deprecated-keyword.js > beercss__ajv8 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/ajv8-validator": "^3.8.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
@@ -28511,7 +28511,7 @@ exports[`examples > ./examples/draft-2020-12.js > beercss__ajv8 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/ajv8-validator": "^3.8.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
@@ -33067,7 +33067,7 @@ exports[`examples > ./examples/enum-widgets.js > beercss__ajv8 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/ajv8-validator": "^3.8.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
@@ -38194,7 +38194,7 @@ exports[`examples > ./examples/form-actions.js > beercss__ajv8 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/ajv8-validator": "^3.8.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1",
@@ -42520,7 +42520,7 @@ exports[`examples > ./examples/form-actions-dynamic-schema.js > beercss__ajv8 1`
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/ajv8-validator": "^3.8.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1",
@@ -46972,7 +46972,7 @@ exports[`examples > ./examples/form-actions-flex.js > beercss__ajv8 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/ajv8-validator": "^3.8.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1",
@@ -50915,7 +50915,7 @@ exports[`examples > ./examples/form-actions-without-js.js > beercss__ajv8 1`] = 
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/ajv8-validator": "^3.8.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1",
@@ -55138,7 +55138,7 @@ exports[`examples > ./examples/formulas.js > beercss__ajv8 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/ajv8-validator": "^3.8.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
@@ -59419,7 +59419,7 @@ exports[`examples > ./examples/label-on-left.js > beercss__ajv8 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/ajv8-validator": "^3.8.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
@@ -63452,7 +63452,7 @@ exports[`examples > ./examples/layout-slots.js > beercss__ajv8 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/ajv8-validator": "^3.8.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
@@ -67245,7 +67245,7 @@ exports[`examples > ./examples/markdown-description.js > beercss__ajv8 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/ajv8-validator": "^3.8.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
@@ -72240,7 +72240,7 @@ exports[`examples > ./examples/multi-step.js > beercss__ajv8 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/ajv8-validator": "^3.8.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
@@ -78392,7 +78392,7 @@ exports[`examples > ./examples/multi-step-native-form.js > beercss__ajv8 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/ajv8-validator": "^3.8.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1",
@@ -84107,7 +84107,7 @@ exports[`examples > ./examples/nullable-fields.js > beercss__ajv8 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/ajv8-validator": "^3.8.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
@@ -90003,7 +90003,7 @@ exports[`examples > ./examples/optional-data-controls.js > beercss__ajv8 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/ajv8-validator": "^3.8.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
@@ -94843,7 +94843,7 @@ exports[`examples > ./examples/pattern-properties-validator.js > beercss__ajv8 1
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/ajv8-validator": "^3.8.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
@@ -99890,7 +99890,7 @@ exports[`examples > ./examples/preupload-file.js > beercss__ajv8 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/ajv8-validator": "^3.8.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
@@ -107750,7 +107750,7 @@ exports[`examples > ./examples/remote-enum.js > beercss__ajv8 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/ajv8-validator": "^3.8.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
@@ -114246,7 +114246,7 @@ exports[`examples > ./examples/remote-functions.js > beercss__ajv8 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/ajv8-validator": "^3.8.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1",
@@ -118475,7 +118475,7 @@ exports[`examples > ./examples/remote-functions-dynamic-schema.js > beercss__ajv
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/ajv8-validator": "^3.8.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1",
@@ -122804,7 +122804,7 @@ exports[`examples > ./examples/remote-functions-enhance.js > beercss__ajv8 1`] =
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/ajv8-validator": "^3.8.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1",
@@ -126960,7 +126960,7 @@ exports[`examples > ./examples/remote-functions-without-js.js > beercss__ajv8 1`
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/ajv8-validator": "^3.8.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1",
@@ -131766,7 +131766,7 @@ exports[`examples > ./examples/schema-transformation.js > beercss__ajv8 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/ajv8-validator": "^3.8.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
@@ -135943,7 +135943,7 @@ exports[`examples > ./examples/starter.js > beercss__ajv8 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/ajv8-validator": "^3.8.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
@@ -141763,7 +141763,7 @@ exports[`examples > ./examples/tabbed-layout.js > beercss__ajv8 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/ajv8-validator": "^3.8.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
@@ -147277,7 +147277,7 @@ exports[`examples > ./examples/typebox-starter.js > beercss__ajv8 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0"
+    "beercss": "^5.0.0"
   },
   "devDependencies": {
     "vite": "^8.2.1",
@@ -151547,7 +151547,7 @@ exports[`examples > ./examples/valibot-starter.js > beercss__ajv8 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/valibot-validator": "^3.8.0",
     "@valibot/to-json-schema": "^1.3.0",
     "valibot": "^1.2.0"
@@ -153498,7 +153498,7 @@ exports[`examples > ./examples/valibot-unserializable.js > beercss__ajv8 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/valibot-validator": "^3.8.0",
     "@valibot/to-json-schema": "^1.3.0",
     "valibot": "^1.2.0"
@@ -156325,7 +156325,7 @@ exports[`examples > ./examples/zod-starter.js > beercss__ajv8 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/zod4-validator": "^3.8.0",
     "zod": "^4.1.0"
   },
@@ -158238,7 +158238,7 @@ exports[`examples > ./examples/zod-unserializable.js > beercss__ajv8 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/zod4-validator": "^3.8.0",
     "zod": "^4.1.0"
   },

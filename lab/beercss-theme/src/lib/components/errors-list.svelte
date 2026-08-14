@@ -24,6 +24,7 @@
 <style>
   .errors-list {
     margin: 0 !important;
+    all: revert;
   }
   :global(.field > .errors-list) {
     margin-top: 1rem !important;

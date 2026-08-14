@@ -1073,7 +1073,7 @@ exports[`sandbox-factory > themes > beercss 1`] = `
     "@sveltejs/kit": "^2.48.3",
     "svelte": "^5.34.8",
     "@sjsf-lab/beercss-theme": "^3.3.0",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "@sjsf/ajv8-validator": "^3.8.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"

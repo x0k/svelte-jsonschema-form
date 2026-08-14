@@ -5589,7 +5589,7 @@ exports[`@sjsf/sv theme__beercss kit-ts 1`] = `
 		"@sjsf/form": "^3.5.0",
 		"ajv": "^8.17.0",
 		"ajv-formats": "^3.0.1",
-		"beercss": "^4.0.0",
+		"beercss": "^5.0.0",
 		"svelte": "^5.34.8"
 	}
 }
@@ -5802,7 +5802,7 @@ exports[`@sjsf/sv theme__beercss vite-ts 1`] = `
     "@sjsf/form": "^3.5.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1",
-    "beercss": "^4.0.0",
+    "beercss": "^5.0.0",
     "svelte": "^5.34.8"
   }
 }
