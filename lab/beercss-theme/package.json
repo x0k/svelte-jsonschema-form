@@ -1,6 +1,6 @@
 {
   "name": "@sjsf-lab/beercss-theme",
-  "version": "3.3.0",
+  "version": "3.4.0",
   "description": "The Beer CSS v3 based theme for svelte-jsonschema-form",
   "keywords": [
     "beercss",
@@ -64,7 +64,7 @@
     "format:check": "oxfmt --check ."
   },
   "dependencies": {
-    "@sjsf/basic-theme": "workspace:^3.8.0"
+    "@sjsf/basic-theme": "workspace:^3.8.1"
   },
   "devDependencies": {
     "@sjsf/ajv8-validator": "workspace:*",

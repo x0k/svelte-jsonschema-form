@@ -1,5 +1,16 @@
 # @sjsf-lab/beercss-theme
 
+## 3.4.0
+
+### Minor Changes
+
+- Allow `beercss@5` ([#445](https://github.com/x0k/svelte-jsonschema-form/pull/445))
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/basic-theme@3.8.1
+
 ## 3.3.0
 
 ### Minor Changes

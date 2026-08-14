@@ -1,6 +1,6 @@
 {
   "name": "@sjsf/sv",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "sv add-on for svelte-jsonschema-form",
   "keywords": [
     "sv-add",

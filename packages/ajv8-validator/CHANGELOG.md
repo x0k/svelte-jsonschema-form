@@ -1,5 +1,11 @@
 # @sjsf/ajv8-validator
 
+## 3.8.1
+
+### Patch Changes
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/5172 ([#433](https://github.com/x0k/svelte-jsonschema-form/pull/433))
+
 ## 3.8.0
 
 ## 3.7.2
