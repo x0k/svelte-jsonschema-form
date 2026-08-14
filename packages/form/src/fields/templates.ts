@@ -20,9 +20,11 @@ export interface TemplateCommonProps<V extends SchemaValue> {
 }
 
 export type TemplateType = keyof {
-  [T in ComponentType as ComponentProps[T] extends TemplateCommonProps<any>
-    ? T
-    : never]: T;
+  [
+    T in ComponentType as ComponentProps[T] extends TemplateCommonProps<any>
+      ? T
+      : never
+  ]: T;
 };
 
 declare module "../form/index.js" {

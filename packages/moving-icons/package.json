@@ -52,7 +52,7 @@
     "format:check": "oxfmt --check ."
   },
   "devDependencies": {
-    "@jis3r/icons": "^2.7.0",
+    "@jis3r/icons": "^2.9.0",
     "@sjsf/form": "workspace:*",
     "globals": "catalog:",
     "svelte": "catalog:",
