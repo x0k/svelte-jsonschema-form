@@ -1,5 +1,11 @@
 # @sjsf/sv
 
+## 0.2.6
+
+### Patch Changes
+
+- Add SvelteKit 3 support: `createKitPathFactory` generates `#lib` imports when `@sveltejs/kit@^3` is detected ([#440](https://github.com/x0k/svelte-jsonschema-form/pull/440))
+
 ## 0.2.5
 
 ### Patch Changes

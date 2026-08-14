@@ -1,5 +1,19 @@
 # @sjsf/form
 
+## 3.8.1
+
+### Patch Changes
+
+- Rewrite `omitExtraData` internals for correctness and fix several bugs: ([#437](https://github.com/x0k/svelte-jsonschema-form/pull/437))
+
+  - Replace recursive `getKnownProperties` with local-only property tracking (`computeObjectSchema`/`localProperties`) so `additionalProperties` only considers sibling `properties` and `patternProperties`, matching Draft 07 semantics
+  - Add `materializeSource` parameter to prevent source aliasing in compositional branches (`allOf`, `oneOf`, `anyOf`, `if/then/else`, `dependencies`) — fixes infinite loops and data mutation when a permissive branch (e.g. `allOf: [true]`) is used
+  - Rewrite array handling from push-based to index assignment with `target.length` truncation — fixes `undefined` holes when tuple data is shorter than tuple items, and handles shrinking arrays correctly
+  - Treat missing `additionalItems` as `false` by default, consistent with `additionalProperties` behavior — extra tuple items are now truncated unless `additionalItems` is explicitly set
+  - Add post-processing step to prune properties not in `localProperties` or `patterns` when `additionalProperties: false`, ensuring extra properties are removed after all schema composition
+  - Remove incorrect `propertyNames` blanket inclusion — `propertyNames` validates property names but does not declare allowed properties
+  - Preserve arrays without item constraints instead of returning source directly
+
 ## 3.8.0
 
 ### Patch Changes
