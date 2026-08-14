@@ -1,5 +1,12 @@
 # playground2
 
+## 1.8.1
+
+### Patch Changes
+
+- Updated dependencies [[`6ebb8e8`](https://github.com/x0k/svelte-jsonschema-form/commit/6ebb8e881ff259e43f6835a6cce366944113d9c5)]:
+  - meta@1.0.8
+
 ## 1.8.0
 
 ### Minor Changes
