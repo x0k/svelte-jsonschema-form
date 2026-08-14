@@ -1,9 +1,10 @@
 {
-  "$schema": "https://unpkg.com/@changesets/config@3.1.4/schema.json",
+  "$schema": "https://unpkg.com/@changesets/config@4.0.0/schema.json",
   "changelog": [
-    "@svitejs/changesets-changelog-github-compact",
+    "@changesets/changelog-github",
     {
-      "repo": "x0k/svelte-jsonschema-form"
+      "repo": "x0k/svelte-jsonschema-form",
+      "template": "\n- {summary} {ref}"
     }
   ],
   "commit": false,

@@ -21,8 +21,8 @@
     "ci:version": "changeset version && pnpm install --no-frozen-lockfile && pnpm --filter @sjsf/sv --filter meta run test -u"
   },
   "devDependencies": {
-    "@changesets/changelog-git": "^0.2.1",
-    "@changesets/cli": "2.31.1",
+    "@changesets/changelog-github": "^1.0.0",
+    "@changesets/cli": "^3.0.0",
     "@eslint/js": "^10.0.1",
     "@playwright/test": "catalog:",
     "@sveltejs/adapter-auto": "catalog:",
@@ -30,7 +30,6 @@
     "@sveltejs/kit": "catalog:",
     "@sveltejs/package": "2.5.8",
     "@sveltejs/vite-plugin-svelte": "catalog:",
-    "@svitejs/changesets-changelog-github-compact": "^1.2.0",
     "@total-typescript/tsconfig": "^1.0.4",
     "@types/node": "catalog:",
     "@vitest/browser": "5.0.0-rc.1",

@@ -61,7 +61,7 @@ jobs:
         run: pnpm run ci:build --filter="@sjsf/*" --filter="@sjsf-lab/*"
 
       - name: Create and publish versions
-        uses: changesets/action@v1
+        uses: changesets/action@v2
         with:
           version: pnpm ci:version
           publish: pnpm exec changeset publish
