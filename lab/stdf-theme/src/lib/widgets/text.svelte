@@ -35,7 +35,6 @@
     bind:value={() => value ?? "", (v) => (value = v)}
     {...uiOptionProps("stdfText")(
       {
-        title: config.title,
         readonly: config.schema.readOnly,
         disabled: isDisabled(ctx),
         state: errors.length > 0 ? "error" : "theme",

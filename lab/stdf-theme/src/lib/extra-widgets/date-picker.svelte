@@ -41,12 +41,7 @@
   }
 </script>
 
-<StdfCell
-  title={config.title}
-  detail={value}
-  right="arrow"
-  onclick={() => (visible = true)}
-/>
+<StdfCell detail={value} right="arrow" onclick={() => (visible = true)} />
 
 <StdfCalendar
   bind:visible

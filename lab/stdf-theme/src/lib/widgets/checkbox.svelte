@@ -12,6 +12,7 @@
 <script lang="ts">
   import {
     getFormContext,
+    getId,
     uiOptionProps,
     type ComponentProps,
   } from "@sjsf/form";
@@ -23,6 +24,8 @@
   }: ComponentProps["checkboxWidget"] = $props();
 
   const ctx = getFormContext();
+
+  const id = $derived(getId(ctx, config.path));
 
   function onchange() {
     handlers.oninput?.();
@@ -38,7 +41,7 @@
   }}
   {...uiOptionProps("stdfCheckbox")(
     {
-      name: config.path.join("."),
+      name: id,
     },
     config,
     ctx

@@ -39,7 +39,6 @@
     }
     {...uiOptionProps("stdfNumber")(
       {
-        title: config.title,
         readonly: config.schema.readOnly,
         disabled: isDisabled(ctx),
         state: errors.length > 0 ? "error" : "theme",

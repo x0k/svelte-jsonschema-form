@@ -75,7 +75,6 @@
   bind:value={() => mapped.current ?? "", (v) => (mapped.current = v ?? "")}
   {...uiOptionProps("stdfCombobox")(
     {
-      title: config.title,
       disabled: isDisabled(ctx),
       state: errors.length > 0 ? "error" : "theme",
       onchange,

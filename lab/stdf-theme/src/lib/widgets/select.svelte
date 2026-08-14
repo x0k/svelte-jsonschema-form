@@ -75,12 +75,7 @@
   }
 </script>
 
-<Cell
-  title={config.title}
-  detail={valueLabel}
-  right="arrow"
-  onclick={() => (visible = true)}
-/>
+<Cell detail={valueLabel} right="arrow" onclick={() => (visible = true)} />
 
 <ActionSheet
   bind:visible

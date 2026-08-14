@@ -65,7 +65,6 @@
 </script>
 
 <StdfCell
-  title={config.title}
   detail={value?.start && value.end
     ? `${value.start} — ${value.end}`
     : (value?.start ?? "")}
