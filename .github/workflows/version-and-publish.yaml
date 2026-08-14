@@ -63,10 +63,10 @@ jobs:
       - name: Create and publish versions
         uses: changesets/action@v2
         with:
-          version: pnpm ci:version
-          publish: pnpm exec changeset publish
-          commit: "[build] release"
-          title: "[build] release"
+          version-script: pnpm ci:version
+          publish-script: pnpm exec changeset publish
+          commit-mesage: "[build] release"
+          pr-title: "[build] release"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
