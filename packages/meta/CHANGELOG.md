@@ -1,5 +1,11 @@
 # meta
 
+## 1.0.8
+
+### Patch Changes
+
+- Configure SvelteKit via the Vite plugin instead of a separate `svelte.config.js` in sandbox output ([#440](https://github.com/x0k/svelte-jsonschema-form/pull/440))
+
 ## 1.0.7
 
 ### Patch Changes
