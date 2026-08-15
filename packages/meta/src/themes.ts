@@ -1,3 +1,4 @@
+import _astryxPackageJson from "@sjsf-lab/astryx-theme/package.json" with { type: "json" };
 import _beercssPackageJson from "@sjsf-lab/beercss-theme/package.json" with { type: "json" };
 import _shadcnExtrasPackageJson from "@sjsf-lab/shadcn-extras-theme/package.json" with { type: "json" };
 import _svarPackageJson from "@sjsf-lab/svar-theme/package.json" with { type: "json" };
@@ -31,6 +32,7 @@ const THEMES = [
   "shadcn-extras",
   "svar",
   "beercss",
+  "astryx",
   // Legacy
   "daisyui",
   "flowbite",
@@ -55,7 +57,12 @@ const LEGACY_THEMES_SET = new Set<Theme>(LEGACY_THEMES);
 
 export type LegacyTheme = (typeof LEGACY_THEMES)[number];
 
-const LAB_THEMES = ["shadcn-extras", "svar", "beercss"] satisfies Theme[];
+const LAB_THEMES = [
+  "shadcn-extras",
+  "svar",
+  "beercss",
+  "astryx",
+] satisfies Theme[];
 
 const LAB_THEMES_SET = new Set<Theme>(LAB_THEMES);
 
@@ -148,6 +155,7 @@ const THEME_OR_SUB_THEME_TITLES: Record<ThemeOrSubTheme, string> = {
   "shadcn-extras": "shadcn-svelte-extras",
   svar: "SVAR",
   beercss: "Beer CSS",
+  astryx: "Astryx",
 };
 
 const THEME_BRAND = {
@@ -164,6 +172,7 @@ const THEME_BRAND = {
   "shadcn-extras": "shadcn-svelte-extras",
   beercss: "Beer CSS",
   svar: "SVAR",
+  astryx: "Astryx",
 } satisfies Record<Theme, string>;
 
 const THEME_PACKAGES = {
@@ -176,6 +185,7 @@ const THEME_PACKAGES = {
   "shadcn-extras": fromPackageJson(_shadcnExtrasPackageJson),
   beercss: fromPackageJson(_beercssPackageJson),
   svar: fromPackageJson(_svarPackageJson),
+  astryx: fromPackageJson(_astryxPackageJson),
   daisyui: fromPackageJson(_daisyuiPackageJson),
   flowbite: fromPackageJson(_flowbitePackageJson),
   shadcn: fromPackageJson(_shadcnPackageJson),
