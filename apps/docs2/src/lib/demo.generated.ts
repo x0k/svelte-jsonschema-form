@@ -33,6 +33,7 @@ export type DemoName =
   | "schemasafe-precompile"
   | "simple-setup"
   | "standard-schema"
+  | "standard-schema-no-json-schema"
   | "ui-schema"
   | "usage-form"
   | "valibot"
@@ -71,6 +72,7 @@ export const DEMOS: Record<DemoName, () => Promise<{ default: DemoData }>> = {
   "schemasafe-precompile": () => import("./demos/schemasafe-precompile.ts"),
   "simple-setup": () => import("./demos/simple-setup.ts"),
   "standard-schema": () => import("./demos/standard-schema.ts"),
+  "standard-schema-no-json-schema": () => import("./demos/standard-schema-no-json-schema.ts"),
   "ui-schema": () => import("./demos/ui-schema.ts"),
   "usage-form": () => import("./demos/usage-form.ts"),
   "valibot": () => import("./demos/valibot.ts"),
