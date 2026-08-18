@@ -125,5 +125,10 @@ export const EXTRA_PACKAGES = {
     "name": "valibot",
     "version": "1.4.2",
     "dev": false
+  },
+  "effect": {
+    "name": "effect",
+    "version": "3.22.1",
+    "dev": false
   }
 } as const satisfies Record<string, AbstractPackage>;

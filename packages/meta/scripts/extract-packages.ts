@@ -41,6 +41,7 @@ const EXTRA_PACKAGES_META: Record<string, ExtraPackageMeta> = {
   lucideSvelte: { name: "@lucide/svelte", dev: false },
   zod: { name: "zod", dev: false },
   valibot: { name: "valibot", dev: false },
+  effect: { name: "effect", dev: false },
 };
 
 async function main() {
