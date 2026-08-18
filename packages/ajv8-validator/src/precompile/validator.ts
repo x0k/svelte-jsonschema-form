@@ -61,7 +61,7 @@ function createRetriever(options: ValidatorOptions) {
 export function createValidator(options: ValidatorOptions): Validator {
   const getValidateFunction = createRetriever(options);
   return {
-    isValid(schema, _, formValue) {
+    isValid(schema, formValue) {
       if (typeof schema === "boolean") {
         return schema;
       }

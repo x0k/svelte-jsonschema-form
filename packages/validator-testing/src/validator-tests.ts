@@ -108,8 +108,8 @@ export function validatorTests(
         schema: { $id: "foo", type: "string" },
       });
       const schema2 = structuredClone(schema);
-      validator.isValid(schema, schema, undefined);
-      validator.isValid(schema2, schema2, undefined);
+      validator.isValid(schema, undefined);
+      validator.isValid(schema2, undefined);
     });
 
     it("Should compile schemas with subSchemas with identical ids", async () => {
@@ -120,8 +120,8 @@ export function validatorTests(
         },
       });
       const schema2 = structuredClone(schema);
-      validator.isValid(schema, schema, undefined);
-      validator.isValid(schema2, schema2, undefined);
+      validator.isValid(schema, undefined);
+      validator.isValid(schema2, undefined);
     });
   });
 
@@ -164,8 +164,7 @@ export function validatorTests(
         const index = getFirstMatchingOption(
           validator,
           { kind: "cat" },
-          options,
-          schema
+          options
         );
         expect(index).toBe(0);
       });
@@ -190,8 +189,7 @@ export function validatorTests(
         const index = getFirstMatchingOption(
           validator,
           undefined,
-          schema.oneOf as Schema[],
-          schema
+          schema.oneOf as Schema[]
         );
         expect(index).toBe(0);
       });
@@ -221,8 +219,7 @@ export function validatorTests(
         const index = getFirstMatchingOption(
           validator,
           { y: "hello" },
-          schema.oneOf as Schema[],
-          schema
+          schema.oneOf as Schema[]
         );
         expect(index).toBe(1);
       });
