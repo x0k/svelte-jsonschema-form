@@ -12,7 +12,6 @@ import type { AsyncValidateFunction } from "ajv";
 import {
   createFormErrorsTransformer,
   createFieldErrorsTransformer,
-  type ErrorsTransformerOptions,
   validateAndTransformErrors,
   validateAndTransformErrorsAsync,
 } from "../errors.js";
@@ -21,6 +20,7 @@ import {
   NO_FILED_ERRORS,
   type CompiledValidateFunction,
 } from "../internals.js";
+import type { Schemas } from "../model.js";
 
 export type ValidateFunctions = {
   [key: string]: CompiledValidateFunction;
@@ -76,18 +76,20 @@ export function createValidator(options: ValidatorOptions): Validator {
   };
 }
 
-export type FormValueValidatorOptions = ValidatorOptions &
-  ErrorsTransformerOptions;
+export type FormValueValidatorOptions = ValidatorOptions & Schemas;
 
 export function createFormValueValidator<T>(
   options: FormValueValidatorOptions
 ): FormValueValidator<T> {
-  const getValidateFunction = createRetriever(options);
-  const transformErrors = createFormErrorsTransformer(options);
+  const validate = createRetriever(options)(options.schema);
+  const transformErrors = createFormErrorsTransformer(
+    options.schema,
+    options.uiSchema ?? {}
+  );
   return {
-    validateFormValue(rootSchema, formValue) {
+    validateFormValue(formValue) {
       return validateAndTransformErrors(
-        getValidateFunction(rootSchema),
+        validate,
         formValue,
         CAST_FORM_DATA<T>,
         transformErrors
@@ -113,14 +115,19 @@ export function createFieldValueValidator(
 }
 
 export function createAsyncFormValueValidator<T>(
-  options: FormValidatorOptions
+  options: FormValueValidatorOptions
 ): AsyncFormValueValidator<T> {
-  const getValidateFunction = createRetriever(options);
-  const transformErrors = createFormErrorsTransformer(options);
+  const validateAsync = createRetriever(options)(
+    options.schema
+  ) as AsyncValidateFunction;
+  const transformErrors = createFormErrorsTransformer(
+    options.schema,
+    options.uiSchema ?? {}
+  );
   return {
-    validateFormValueAsync(_, rootSchema, formValue) {
+    validateFormValueAsync(_, formValue) {
       return validateAndTransformErrorsAsync(
-        getValidateFunction(rootSchema) as AsyncValidateFunction,
+        validateAsync,
         formValue,
         CAST_FORM_DATA<T>,
         transformErrors

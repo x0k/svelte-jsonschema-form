@@ -1,5 +1,5 @@
 import type { Config, Schema } from "@sjsf/form";
-import { ID_KEY, prefixSchemaRefs, ROOT_SCHEMA_PREFIX } from "@sjsf/form/core";
+import { prefixSchemaRefs, ROOT_SCHEMA_PREFIX } from "@sjsf/form/core";
 import { memoize, weakMemoize, type MapLike } from "@sjsf/form/lib/memoize";
 import type {
   Ajv,
@@ -29,14 +29,15 @@ function compileWithEviction(ajv: Ajv, schema: AnySchema) {
 
 export function createSchemaCompiler<A extends boolean>(
   ajv: Ajv,
-  _async: A,
+  async: A,
   rootSchema: Schema,
   validatorsCache: ValidatorsCache = new WeakMap()
 ) {
-  const rootSchemaId = rootSchema[ID_KEY] ?? ROOT_SCHEMA_PREFIX;
+  const { $id: id = ROOT_SCHEMA_PREFIX, ...rootSchemaRest } = rootSchema;
+  const rootSchemaId = `${id}__${async ? "async" : "sync"}`;
   ajv.removeSchema(rootSchemaId);
   try {
-    ajv.addSchema(rootSchema, rootSchemaId);
+    ajv.addSchema({ ...rootSchemaRest, $async: async }, rootSchemaId);
   } catch (e) {
     ajv.removeSchema(rootSchemaId);
     throw e;
@@ -48,9 +49,8 @@ export function createSchemaCompiler<A extends boolean>(
   const compile = memoize<Schema, AnyValidateFunction>(
     validatorsCache,
     (schema) => {
-      const ajvSchema = prefixSchemaRefs(schema, rootSchemaId);
-      delete ajvSchema[ID_KEY];
-      return compileWithEviction(ajv, ajvSchema);
+      const { $id: _, ...rest } = prefixSchemaRefs(schema, rootSchemaId);
+      return compileWithEviction(ajv, { ...rest, $async: async });
     }
   );
   return (schema: Schema) =>

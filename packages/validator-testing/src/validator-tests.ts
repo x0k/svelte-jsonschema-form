@@ -516,21 +516,12 @@ export function formValueValidatorTests<T>(
 ) {
   const init = createInitializer(createFormValueValidator, options);
   async function createValidator(params: Parameters<typeof init>[0]) {
-    const { validator, schema } = await init(params);
+    const { validator } = await init(params);
     return isAsyncFormValueValidator(validator)
-      ? (signal: AbortSignal, originalSchema: Schema, value: FormValue) =>
-          validator.validateFormValueAsync(
-            signal,
-            options.useOriginalSchema ? originalSchema : schema,
-            value
-          )
-      : (_: AbortSignal, originalSchema: Schema, value: FormValue) =>
-          Promise.resolve(
-            validator.validateFormValue(
-              options.useOriginalSchema ? originalSchema : schema,
-              value
-            )
-          );
+      ? (signal: AbortSignal, value: FormValue) =>
+          validator.validateFormValueAsync(signal, value)
+      : (_: AbortSignal, value: FormValue) =>
+          Promise.resolve(validator.validateFormValue(value));
   }
 
   describe("Form value validator", () => {
@@ -544,7 +535,7 @@ export function formValueValidatorTests<T>(
       };
       const validate = await createValidator({ schema });
 
-      const { errors = [] } = await validate(signal, schema, ["foo"]);
+      const { errors = [] } = await validate(signal, ["foo"]);
       const error = errors.find(
         ({ path }) => path.length === 1 && path[0] === 0
       );
@@ -576,7 +567,7 @@ export function formValueValidatorTests<T>(
         items: [undefined, "value"],
       };
       const validate = await createValidator({ schema });
-      const { errors = [] } = await validate(signal, schema, value);
+      const { errors = [] } = await validate(signal, value);
       expect(errors.length).toBeGreaterThan(1);
     });
 
@@ -601,7 +592,7 @@ export function formValueValidatorTests<T>(
             ],
           };
           const validate = await createValidator({ schema });
-          const { errors = [] } = await validate(signal, schema, {});
+          const { errors = [] } = await validate(signal, {});
           expect(errors).toHaveLength(1);
           expect(errors[0]?.message).toContain("My animal");
         });
@@ -627,7 +618,7 @@ export function formValueValidatorTests<T>(
             },
           };
           const validate = await createValidator({ schema });
-          const { errors = [] } = await validate(signal, schema, {
+          const { errors = [] } = await validate(signal, {
             hasPet: true,
           });
           const requiredError = errors.find((e) =>
@@ -663,7 +654,7 @@ export function formValueValidatorTests<T>(
               },
             },
           });
-          const { errors = [] } = await validate(signal, schema, {});
+          const { errors = [] } = await validate(signal, {});
           expect(errors).toHaveLength(1);
           expect(errors[0]?.message).toContain("My animal uiSchema");
         });
@@ -698,7 +689,7 @@ export function formValueValidatorTests<T>(
               },
             },
           });
-          const { errors = [] } = await validate(signal, schema, {
+          const { errors = [] } = await validate(signal, {
             hasPet: true,
           });
           const requiredError = errors.find((e) =>
