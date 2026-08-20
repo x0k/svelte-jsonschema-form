@@ -1,1 +1,0 @@
-const t={type:"object",title:"My form",properties:{bool:{title:"bool (true)",type:"boolean",const:!0},number:{title:"number (min 100)",type:"number",minimum:100},text:{title:"text (min length 5)",type:"string",minLength:5}},required:["number","text"]},e={enum:{"ui:widget":"text"},"ui:formElement":{"ui:options":{form:{novalidate:!0}}}};export{t as a,e as o};
