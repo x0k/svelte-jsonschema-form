@@ -10,7 +10,8 @@ import { createSchemaRegistry } from "./schemas-registry.js";
 
 export interface CreateFormValidatorFactoryOptions<
   F extends <S extends $ZodType>(
-    registry: SchemaRegistry
+    registry: SchemaRegistry,
+    rootSchema: Schema
   ) => (options: Partial<Record<string, any>>) => FormValidator<InferOutput<S>>,
 > {
   createAugmentedSchema: AugmentedSchemaFactory;
@@ -19,7 +20,8 @@ export interface CreateFormValidatorFactoryOptions<
 
 export function createFormValidatorFactory<
   F extends <S extends $ZodType>(
-    registry: SchemaRegistry
+    registry: SchemaRegistry,
+    rootSchema: Schema
   ) => (options: Partial<Record<string, any>>) => FormValidator<InferOutput<S>>,
 >({
   createFormValidator,
@@ -41,7 +43,7 @@ export function createFormValidatorFactory<
     }) as Schema;
     return {
       schemaRegistry,
-      validator: createFormValidator(schemaRegistry),
+      validator: createFormValidator(schemaRegistry, schema),
       schema,
     };
   };

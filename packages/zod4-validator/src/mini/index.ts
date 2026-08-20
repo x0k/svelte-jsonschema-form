@@ -33,16 +33,21 @@ export const createAugmentedSchema: AugmentedSchemaFactory = (schema) => {
 };
 
 function createSyncValidator<S extends $ZodType>(
-  schemaRegistry: SchemaRegistry
+  schemaRegistry: SchemaRegistry,
+  schema: Schema
 ) {
   return (
-    options: Omit<FormValidatorOptions, "schemaRegistry" | "safeParse"> = {}
+    options: Omit<
+      FormValidatorOptions,
+      "schemaRegistry" | "schema" | "safeParse"
+    > = {}
   ) =>
     createFormValidator<InferOutput<S>>(
       Object.setPrototypeOf(
         {
           safeParse,
           schemaRegistry,
+          schema,
         } satisfies FormValidatorOptions,
         options
       )
@@ -67,12 +72,13 @@ export const adapt = _adapt as unknown as <S extends $ZodType>(
 export const setupFormValidator = adapt;
 
 function createAsyncValidator<S extends $ZodType>(
-  schemaRegistry: SchemaRegistry
+  schemaRegistry: SchemaRegistry,
+  schema: Schema
 ) {
   return (
     options: Omit<
       FormValidatorOptions,
-      "schemaRegistry" | "safeParse" | "safeParseAsync"
+      "schemaRegistry" | "schema" | "safeParse" | "safeParseAsync"
     > = {}
   ) =>
     createAsyncFormValidator<InferOutput<S>>(
@@ -81,6 +87,7 @@ function createAsyncValidator<S extends $ZodType>(
           safeParse,
           safeParseAsync,
           schemaRegistry,
+          schema,
         } satisfies AsyncFormValidatorOptions,
         options
       )
