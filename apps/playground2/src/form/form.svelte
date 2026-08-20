@@ -820,7 +820,7 @@
               <SubmitButton />
             </Form>
             {#snippet failed(error, reset)}
-              {@const _ = setTimeout(reset, 1000)}
+              {const _ = setTimeout(reset, 1000)}
               <p style="color: red; padding: 1rem;">{error}</p>
             {/snippet}
           </svelte:boundary>
