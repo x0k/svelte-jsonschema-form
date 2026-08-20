@@ -1,5 +1,11 @@
 # playground2
 
+## 1.8.2
+
+### Patch Changes
+
+- Fix reset behavior in production environment ([#450](https://github.com/x0k/svelte-jsonschema-form/pull/450))
+
 ## 1.8.1
 
 ### Patch Changes
