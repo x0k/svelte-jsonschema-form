@@ -1,5 +1,11 @@
 # docs
 
+## 1.18.2
+
+### Patch Changes
+
+- Add Standard Schema example for libraries that only implement `StandardSchemaV1` ([#448](https://github.com/x0k/svelte-jsonschema-form/pull/448))
+
 ## 1.18.1
 
 ### Patch Changes
