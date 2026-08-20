@@ -9,7 +9,11 @@ import type {
 import * as v from "valibot";
 
 import { transformFormErrors, transformFieldErrors } from "./errors.js";
-import { createAugmentedId, type SchemaRegistry } from "./model.js";
+import {
+  createAugmentedId,
+  type SchemaProvider,
+  type SchemaRegistry,
+} from "./model.js";
 
 function getValibotSchema(
   registry: SchemaRegistry,
@@ -43,7 +47,7 @@ export function createValidator({
   schemaRegistry,
 }: ValidatorOptions): Validator {
   return {
-    isValid(schema, _, formValue) {
+    isValid(schema, formValue) {
       if (typeof schema === "boolean") {
         return schema;
       }
@@ -53,17 +57,18 @@ export function createValidator({
   };
 }
 
-export interface FormValueValidatorOptions extends ValidatorOptions {}
+export interface FormValueValidatorOptions
+  extends ValidatorOptions, SchemaProvider {}
 
 export function createFormValueValidator<T>(
   options: FormValueValidatorOptions
 ): FormValueValidator<T> {
+  const valibotSchema = getValibotSchema(
+    options.schemaRegistry,
+    options.schema
+  );
   return {
-    validateFormValue(rootSchema, formValue) {
-      const valibotSchema = getValibotSchema(
-        options.schemaRegistry,
-        rootSchema
-      );
+    validateFormValue(formValue) {
       return transformFormErrors(
         v.safeParse(valibotSchema, formValue),
         formValue
@@ -72,17 +77,18 @@ export function createFormValueValidator<T>(
   };
 }
 
-export interface AsyncFormValueValidatorOptions extends SchemaRegistryProvider {}
+export interface AsyncFormValueValidatorOptions
+  extends SchemaRegistryProvider, SchemaProvider {}
 
 export function createAsyncFormValueValidator<T>(
   options: AsyncFormValueValidatorOptions
 ): AsyncFormValueValidator<T> {
+  const valibotSchema = getValibotSchema(
+    options.schemaRegistry,
+    options.schema
+  );
   return {
-    async validateFormValueAsync(_, rootSchema, formValue) {
-      const valibotSchema = getValibotSchema(
-        options.schemaRegistry,
-        rootSchema
-      );
+    async validateFormValueAsync(_, formValue) {
       const result = await v.safeParseAsync(valibotSchema, formValue);
       return transformFormErrors(result, formValue);
     },
