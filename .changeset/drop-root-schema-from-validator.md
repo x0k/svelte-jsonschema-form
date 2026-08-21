@@ -17,3 +17,8 @@ Remove `rootSchema` parameter from `Validator.isValid`, `FormValueValidator.vali
 - `validateFormValueAsync(signal, rootSchema, formValue)` → `validateFormValueAsync(signal, formValue)`
 
 The root schema is now provided at validator creation time instead of per-call. Custom validator implementations must update their signatures accordingly.
+
+Additionally:
+
+- Add `updateSchemaRefs(schema, update)` to `@sjsf/form/core` as a generalization of `prefixSchemaRefs`.
+- `@sjsf/cfworker-validator` now rewrites non-local `$ref`s of subschema fragments that point at the root schema's original `$id`s (top-level or nested), preserving validation of such fragments.
