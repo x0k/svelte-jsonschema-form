@@ -18,11 +18,6 @@ import {
 
 import type { CompiledValidateFunction } from "./internals.js";
 
-export interface ErrorsTransformerOptions {
-  uiSchema?: UiSchemaRoot;
-  schema?: Schema;
-}
-
 function createInstancePath(
   {
     params: { missingProperty, propertyName: propertyNameParam },
@@ -59,10 +54,10 @@ function errorObjectToMessage(
   return message.replace(missingProperty, propertyTitle);
 }
 
-export function createFormErrorsTransformer({
-  uiSchema = {},
-  schema = {},
-}: ErrorsTransformerOptions) {
+export function createFormErrorsTransformer(
+  schema: Schema,
+  uiSchema: UiSchemaRoot
+) {
   return (errors: ErrorObject[], data: FormValue): FailureValidationResult => {
     return {
       value: data,

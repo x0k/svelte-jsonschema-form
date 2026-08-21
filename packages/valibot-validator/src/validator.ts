@@ -9,7 +9,7 @@ import { createValidatorRetriever } from "@sjsf/form/validators/precompile";
 import * as v from "valibot";
 
 import { transformFormErrors, transformFieldErrors } from "./errors.js";
-import type { SchemaRegistry } from "./model.js";
+import type { SchemaProvider, SchemaRegistry } from "./model.js";
 
 export interface SchemaRegistryProvider {
   schemaRegistry: SchemaRegistry;
@@ -24,7 +24,7 @@ export function createValidator({
     registry: schemaRegistry,
   });
   return {
-    isValid(schema, _, formValue) {
+    isValid(schema, formValue) {
       if (typeof schema === "boolean") {
         return schema;
       }
@@ -33,7 +33,8 @@ export function createValidator({
   };
 }
 
-export interface FormValueValidatorOptions extends ValidatorOptions {}
+export interface FormValueValidatorOptions
+  extends ValidatorOptions, SchemaProvider {}
 
 export function createFormValueValidator<T>(
   options: FormValueValidatorOptions
@@ -42,16 +43,17 @@ export function createFormValueValidator<T>(
     registry: options.schemaRegistry,
   });
   return {
-    validateFormValue(rootSchema, formValue) {
+    validateFormValue(formValue) {
       return transformFormErrors(
-        v.safeParse(getValibotSchema(rootSchema), formValue),
+        v.safeParse(getValibotSchema(options.schema), formValue),
         formValue
       );
     },
   };
 }
 
-export interface AsyncFormValueValidatorOptions extends SchemaRegistryProvider {}
+export interface AsyncFormValueValidatorOptions
+  extends SchemaRegistryProvider, SchemaProvider {}
 
 export function createAsyncFormValueValidator<T>(
   options: AsyncFormValueValidatorOptions
@@ -60,9 +62,9 @@ export function createAsyncFormValueValidator<T>(
     registry: options.schemaRegistry,
   });
   return {
-    async validateFormValueAsync(_, rootSchema, formValue) {
+    async validateFormValueAsync(_, formValue) {
       const result = await v.safeParseAsync(
-        getValibotSchema(rootSchema),
+        getValibotSchema(options.schema),
         formValue
       );
       return transformFormErrors(result, formValue);

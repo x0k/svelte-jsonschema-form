@@ -9,7 +9,7 @@ import { createValidatorRetriever } from "@sjsf/form/validators/precompile";
 import type { $ZodTypes, util } from "zod/v4/core";
 
 import { transformFormErrors, transformFieldErrors } from "./errors.js";
-import type { SchemaRegistry } from "./model.js";
+import type { SchemaProvider, SchemaRegistry } from "./model.js";
 
 export interface SchemaRegistryProvider {
   schemaRegistry: SchemaRegistry;
@@ -35,7 +35,7 @@ export function createValidator({
 }: ValidatorOptions): Validator {
   const getZodSchema = createValidatorRetriever({ registry: schemaRegistry });
   return {
-    isValid(schema, _, formValue) {
+    isValid(schema, formValue) {
       if (typeof schema === "boolean") {
         return schema;
       }
@@ -44,7 +44,8 @@ export function createValidator({
   };
 }
 
-export interface FormValueValidatorOptions extends ValidatorOptions {}
+export interface FormValueValidatorOptions
+  extends ValidatorOptions, SchemaProvider {}
 
 export function createFormValueValidator<T>(
   options: FormValueValidatorOptions
@@ -53,9 +54,9 @@ export function createFormValueValidator<T>(
     registry: options.schemaRegistry,
   });
   return {
-    validateFormValue(rootSchema, formValue) {
+    validateFormValue(formValue) {
       return transformFormErrors(
-        options.safeParse(getZodSchema(rootSchema), formValue),
+        options.safeParse(getZodSchema(options.schema), formValue),
         formValue
       );
     },
@@ -63,7 +64,7 @@ export function createFormValueValidator<T>(
 }
 
 export interface AsyncFormValueValidatorOptions
-  extends SchemaRegistryProvider, SafeParseAsyncProvider {}
+  extends SchemaRegistryProvider, SafeParseAsyncProvider, SchemaProvider {}
 
 export function createAsyncFormValueValidator<T>(
   options: AsyncFormValueValidatorOptions
@@ -72,9 +73,9 @@ export function createAsyncFormValueValidator<T>(
     registry: options.schemaRegistry,
   });
   return {
-    async validateFormValueAsync(_, rootSchema, formValue) {
+    async validateFormValueAsync(_, formValue) {
       const result = await options.safeParseAsync(
-        getZodSchema(rootSchema),
+        getZodSchema(options.schema),
         formValue
       );
       return transformFormErrors(result, formValue);
