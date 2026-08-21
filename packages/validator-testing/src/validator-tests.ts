@@ -92,6 +92,13 @@ function createInitializer<V extends Validator>(
 export interface ValidatorTestOptions extends InitializerOptions {
   /** @default false */
   skipIntegrationTests?: boolean;
+  /**
+   * The validator resolves non-local `$ref`s of subschema fragments pointing
+   * at the root schema's original `$id`s (top-level or nested)
+   *
+   * @default false
+   */
+  supportsNonLocalRefs?: boolean;
 }
 
 export function validatorTests(
@@ -102,6 +109,7 @@ export function validatorTests(
   options?: ValidatorTestOptions
 ) {
   const init = createInitializer(createValidator, options);
+
   describe("Validator", () => {
     it("Should compile schemas with identical ids", async () => {
       const { validator, schema } = await init({
@@ -122,6 +130,64 @@ export function validatorTests(
       const schema2 = structuredClone(schema);
       validator.isValid(schema, undefined);
       validator.isValid(schema2, undefined);
+    });
+  });
+
+  // NOTE: The validator under test must be bound to the original schema.
+  // `insertSubSchemaIds` rewrites hand-written sub-schema ids, which would
+  // make non-local refs in fragments point at non-existent ids.
+  describe.skipIf(!options?.supportsNonLocalRefs)("non-local refs", () => {
+    it("Should resolve refs pointing at the root schema id", async () => {
+      const { validator } = await init({
+        schema: {
+          $id: "http://example.com/root",
+          $defs: { str: { type: "string" } },
+        },
+      });
+      const fragment: Schema = {
+        type: "object",
+        properties: { foo: { $ref: "http://example.com/root#/$defs/str" } },
+        required: ["foo"],
+      };
+      expect(validator.isValid(fragment, { foo: "bar" })).toBe(true);
+      expect(validator.isValid(fragment, { foo: 42 })).toBe(false);
+    });
+
+    it("Should resolve refs pointing at the root nested ids", async () => {
+      const { validator } = await init({
+        schema: {
+          $id: "http://example.com/root",
+          properties: {
+            nested: {
+              $id: "nested",
+              $defs: { num: { type: "number" } },
+            },
+          },
+        },
+      });
+      const fragment: Schema = {
+        type: "object",
+        properties: { foo: { $ref: "nested#/$defs/num" } },
+        required: ["foo"],
+      };
+      expect(validator.isValid(fragment, { foo: 42 })).toBe(true);
+      expect(validator.isValid(fragment, { foo: "bar" })).toBe(false);
+    });
+
+    it("Should leave refs to external schemas untouched", async () => {
+      const { validator } = await init({
+        schema: {
+          $id: "http://example.com/root",
+          type: "object",
+        },
+      });
+      // No schema is registered under the external id, so validation fails
+      // while attempting to resolve the ref, but the ref itself must not be
+      // rewritten into the reserved namespace.
+      const fragment: Schema = {
+        $ref: "http://example.com/external#/$defs/x",
+      };
+      expect(() => validator.isValid(fragment, {})).toThrow();
     });
   });
 

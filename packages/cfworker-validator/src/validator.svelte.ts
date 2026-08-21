@@ -12,7 +12,7 @@ import type {
 } from "@sjsf/form";
 import {
   ID_KEY,
-  prefixSchemaRefs,
+  updateSchemaRefs,
   ROOT_SCHEMA_PREFIX,
   type SchemaDefinition,
   type SchemaValue,
@@ -53,9 +53,15 @@ export function createSchemaValidatorFactory(
   // redeclared with unique reserved values. This keeps the root and each
   // subschema in disjoint URI namespaces — no `$id` can ever collide, even
   // when a subschema is a clone of the root or carries the root's nested `$id`s.
+  // Non-local `$ref`s of subschema fragments that point at the root's original
+  // ids are rewritten via `idRewrites`.
   const rootRefId = CFWORKER_ROOT_REF_ID;
   let refIndex = 0;
+  const idRewrites = new Map<string, string>();
   const rootSnapshot = $state.snapshot(rootSchema);
+  if (typeof rootSnapshot !== "boolean" && rootSnapshot.$id !== undefined) {
+    idRewrites.set(rootSnapshot.$id, rootRefId);
+  }
   const rootRefSchema = transformSchemaDefinition(
     rootSnapshot,
     (copy, ctx): SchemaDefinition => {
@@ -63,7 +69,9 @@ export function createSchemaValidatorFactory(
         if (ctx.type === "root") {
           copy.$id = rootRefId;
         } else if (copy[ID_KEY] !== undefined) {
-          copy.$id = `${rootRefId}_${refIndex++}`;
+          const newId = `${rootRefId}_${refIndex++}`;
+          idRewrites.set(copy[ID_KEY], newId);
+          copy.$id = newId;
         }
       }
       return copy;
@@ -73,7 +81,18 @@ export function createSchemaValidatorFactory(
   const makeValidator = memoize<Schema, CfValidator>(
     validatorsCache,
     (schema) => {
-      const withRefs = prefixSchemaRefs($state.snapshot(schema), rootRefId);
+      const withRefs = updateSchemaRefs($state.snapshot(schema), (ref) => {
+        if (ref.startsWith("#")) {
+          return `${rootRefId}${ref}`;
+        }
+        const hashIndex = ref.indexOf("#");
+        const base = hashIndex === -1 ? ref : ref.slice(0, hashIndex);
+        const newBase = idRewrites.get(base);
+        if (newBase === undefined) {
+          return ref;
+        }
+        return newBase + (hashIndex === -1 ? "" : ref.slice(hashIndex));
+      });
       const validator = factory(withRefs);
       validator.addSchema(rootRefSchema as CfSchema);
       return validator;
