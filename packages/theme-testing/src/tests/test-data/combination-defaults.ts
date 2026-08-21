@@ -26,6 +26,7 @@ export const discriminatedSchema = {
           title: "Shared",
         },
       },
+      required: ["kind"],
     },
     {
       title: "Company option",
@@ -46,6 +47,7 @@ export const discriminatedSchema = {
           title: "Shared",
         },
       },
+      required: ["kind"],
     },
   ],
 } as const satisfies Schema;

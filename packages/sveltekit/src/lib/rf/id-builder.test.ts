@@ -19,7 +19,7 @@ function builder({
   idPrefix?: string;
   isPrivate?: (path: FieldPath) => boolean;
 }) {
-  const validator = createFormValidator();
+  const validator = createFormValidator({ schema });
   const merger = createFormMerger({ validator, schema });
   return createFormIdBuilder({
     schema,

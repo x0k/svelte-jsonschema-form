@@ -145,9 +145,6 @@ export class BuilderContext {
   #dnd = new DragDropManager({
     plugins: [Feedback.configure({ dropAnimation: null })],
   });
-  #validator = createFormValidator({
-    ajvPlugins: (ajv) => addFormComponents(addBuilderFormats(ajv)),
-  });
 
   #sourceId = $state.raw<UniqueId>();
   #targetId = $state.raw<UniqueId>();
@@ -667,10 +664,10 @@ export class BuilderContext {
       {
         validateCustomizableNodeOptions(node) {
           const schema = self.nodeSchema(node);
-          const result = self.#validator.validateFormValue(
+          const result = createFormValidator({
             schema,
-            node.options as FormValue
-          );
+            ajvPlugins: (ajv) => addFormComponents(addBuilderFormats(ajv)),
+          }).validateFormValue(node.options as FormValue);
           if (result.errors) {
             errors.push({ nodeId: node.id, message: "Invalid field options" });
             console.error(result.errors);

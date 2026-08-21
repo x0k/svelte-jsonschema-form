@@ -25,7 +25,7 @@ const opts = ({
   input,
   schema = {},
   uiSchema = {},
-  validator = createFormValidator(),
+  validator = createFormValidator({ schema, uiSchema }),
   merger = createMerger(),
   codec = { encode, decode },
   convertEntry = createFormDataEntryConverter({

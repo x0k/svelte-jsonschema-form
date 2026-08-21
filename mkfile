@@ -139,7 +139,7 @@ safe/:
 
 
 ata/:
-  pushd ata-validator
+  pushd  packages/ata-validator
   b:
     pnpm run build
   t:

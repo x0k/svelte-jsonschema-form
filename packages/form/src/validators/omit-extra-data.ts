@@ -19,28 +19,28 @@ export function withOmitExtraData<V extends FormValidator<any>>(
     if (isAsyncFormValueValidator(v)) {
       return {
         ...v,
-        validateFormValueAsync(signal, rootSchema, formValue) {
+        validateFormValueAsync(signal, formValue) {
           const cleanData = omitExtraData(
             v,
             options.merger(),
             options.schema,
             formValue
           );
-          return v.validateFormValueAsync(signal, rootSchema, cleanData);
+          return v.validateFormValueAsync(signal, cleanData);
         },
       } satisfies AsyncFormValueValidator<any>;
     }
     if (isFormValueValidator(v)) {
       return {
         ...v,
-        validateFormValue(rootSchema, formValue) {
+        validateFormValue(formValue) {
           const cleanData = omitExtraData(
             v,
             options.merger(),
             options.schema,
             formValue
           );
-          return v.validateFormValue(rootSchema, cleanData);
+          return v.validateFormValue(cleanData);
         },
       } satisfies FormValueValidator<any>;
     }

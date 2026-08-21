@@ -23,10 +23,7 @@ export type ValidationResult<Output> =
   | FailureValidationResult;
 
 export interface FormValueValidator<Output> {
-  validateFormValue: (
-    rootSchema: Schema,
-    formValue: FormValue
-  ) => ValidationResult<Output>;
+  validateFormValue: (formValue: FormValue) => ValidationResult<Output>;
 }
 
 export function isFormValueValidator<V extends Validator, Output>(
@@ -38,7 +35,6 @@ export function isFormValueValidator<V extends Validator, Output>(
 export interface AsyncFormValueValidator<Output> {
   validateFormValueAsync: (
     signal: AbortSignal,
-    rootSchema: Schema,
     formValue: FormValue
   ) => Promise<ValidationResult<Output>>;
 }

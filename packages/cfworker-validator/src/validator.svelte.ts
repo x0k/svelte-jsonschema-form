@@ -12,19 +12,21 @@ import type {
 } from "@sjsf/form";
 import {
   ID_KEY,
-  prefixSchemaRefs,
+  updateSchemaRefs,
   ROOT_SCHEMA_PREFIX,
+  type SchemaDefinition,
   type SchemaValue,
   type Validator,
   pathFromLocation,
 } from "@sjsf/form/core";
+import { transformSchemaDefinition } from "@sjsf/form/lib/json-schema";
 import { memoize, weakMemoize, type MapLike } from "@sjsf/form/lib/memoize";
 
 export interface ValueToJSON {
   valueToJSON: (value: FormValue) => SchemaValue;
 }
 export interface ValidatorOptions extends ValueToJSON {
-  createSchemaValidator: (schema: Schema, rootSchema: Schema) => CfValidator;
+  createSchemaValidator: (schema: Schema) => CfValidator;
 }
 
 export type CfValidatorFactory = (schema: Schema) => CfValidator;
@@ -32,39 +34,72 @@ export type CfValidatorFactory = (schema: Schema) => CfValidator;
 export const defaultValidatorFactory: CfValidatorFactory = (schema) =>
   new CfValidator(schema as CfSchema, "7", false);
 
+// Reserved id under which the root schema is registered into every subschema
+// validator. It lives in the `__sjsf_` namespace so it can never collide with a
+// user-defined `$id` carried by a subschema fragment.
+const CFWORKER_ROOT_REF_ID = `${ROOT_SCHEMA_PREFIX}_cfworker_ref`;
+
 export type ValidatorsCache = MapLike<Schema, CfValidator>;
 
 export function createSchemaValidatorFactory(
   factory: CfValidatorFactory,
+  rootSchema: Schema,
   validatorsCache: ValidatorsCache = new WeakMap()
 ) {
-  let rootSchemaId = "";
-  let usePrefixSchemaRefs = false;
-  let lastRootSchema: WeakRef<Schema> = new WeakRef({});
+  // Register the root schema under a reserved, unique id (`rootRefId`) and point
+  // every subschema's rewritten refs at it. cfworker keys its `lookup` by
+  // absolute URI (`base#pointer`). Relative `$id`s (e.g. "bar") always resolve
+  // to the same host-root URI no matter the base, so the root's own `$id`s are
+  // redeclared with unique reserved values. This keeps the root and each
+  // subschema in disjoint URI namespaces — no `$id` can ever collide, even
+  // when a subschema is a clone of the root or carries the root's nested `$id`s.
+  // Non-local `$ref`s of subschema fragments that point at the root's original
+  // ids are rewritten via `idRewrites`.
+  const rootRefId = CFWORKER_ROOT_REF_ID;
+  let refIndex = 0;
+  const idRewrites = new Map<string, string>();
+  const rootSnapshot = $state.snapshot(rootSchema);
+  if (typeof rootSnapshot !== "boolean" && rootSnapshot.$id !== undefined) {
+    idRewrites.set(rootSnapshot.$id, rootRefId);
+  }
+  const rootRefSchema = transformSchemaDefinition(
+    rootSnapshot,
+    (copy, ctx): SchemaDefinition => {
+      if (typeof copy !== "boolean") {
+        if (ctx.type === "root") {
+          copy.$id = rootRefId;
+        } else if (copy[ID_KEY] !== undefined) {
+          const newId = `${rootRefId}_${refIndex++}`;
+          idRewrites.set(copy[ID_KEY], newId);
+          copy.$id = newId;
+        }
+      }
+      return copy;
+    }
+  );
+  const rootValidator = factory(rootSnapshot);
   const makeValidator = memoize<Schema, CfValidator>(
     validatorsCache,
     (schema) => {
-      const snapshot = $state.snapshot(schema);
-      return factory(
-        usePrefixSchemaRefs
-          ? prefixSchemaRefs(snapshot, rootSchemaId)
-          : snapshot
-      );
+      const withRefs = updateSchemaRefs($state.snapshot(schema), (ref) => {
+        if (ref.startsWith("#")) {
+          return `${rootRefId}${ref}`;
+        }
+        const hashIndex = ref.indexOf("#");
+        const base = hashIndex === -1 ? ref : ref.slice(0, hashIndex);
+        const newBase = idRewrites.get(base);
+        if (newBase === undefined) {
+          return ref;
+        }
+        return newBase + (hashIndex === -1 ? "" : ref.slice(hashIndex));
+      });
+      const validator = factory(withRefs);
+      validator.addSchema(rootRefSchema as CfSchema);
+      return validator;
     }
   );
-  return (schema: Schema, rootSchema: Schema) => {
-    rootSchemaId = rootSchema[ID_KEY] ?? ROOT_SCHEMA_PREFIX;
-    usePrefixSchemaRefs = schema !== rootSchema;
-    const validator = makeValidator(schema);
-    if (usePrefixSchemaRefs && lastRootSchema.deref() !== rootSchema) {
-      lastRootSchema = new WeakRef(rootSchema);
-      validator.addSchema(
-        $state.snapshot(rootSchema) as CfSchema,
-        rootSchemaId
-      );
-    }
-    return validator;
-  };
+  return (schema: Schema) =>
+    schema === rootSchema ? rootValidator : makeValidator(schema);
 }
 
 export function createFieldSchemaValidatorFactory(factory: CfValidatorFactory) {
@@ -78,27 +113,29 @@ export function createValidator({
   valueToJSON,
 }: ValidatorOptions): Validator {
   return {
-    isValid(schemaDef, rootSchema, formValue) {
+    isValid(schemaDef, formValue) {
       if (typeof schemaDef === "boolean") {
         return schemaDef;
       }
-      const validator = createSchemaValidator(schemaDef, rootSchema);
+      const validator = createSchemaValidator(schemaDef);
       return validator.validate(valueToJSON(formValue)).valid;
     },
   };
 }
 
-export interface FormValueValidatorOptions extends ValidatorOptions {}
+export interface FormValueValidatorOptions extends ValidatorOptions {
+  schema: Schema;
+}
 
-export function createFormValueValidator<T>(
-  options: FormValueValidatorOptions
-): FormValueValidator<T> {
+export function createFormValueValidator<T>({
+  createSchemaValidator,
+  schema,
+  valueToJSON,
+}: FormValueValidatorOptions): FormValueValidator<T> {
+  const validator = createSchemaValidator(schema);
   return {
-    validateFormValue(rootSchema, formValue) {
-      const validator = options.createSchemaValidator(rootSchema, rootSchema);
-      const { valid, errors } = validator.validate(
-        options.valueToJSON(formValue)
-      );
+    validateFormValue(formValue) {
+      const { valid, errors } = validator.validate(valueToJSON(formValue));
       if (valid) {
         return {
           value: formValue as T,
@@ -152,10 +189,12 @@ export interface FormValidatorOptions
     FieldValueValidatorOptions {}
 
 export function createFormValidator<T>({
+  schema,
   factory = defaultValidatorFactory,
   validatorsCache,
   createSchemaValidator = createSchemaValidatorFactory(
     factory,
+    schema,
     validatorsCache
   ),
   createFieldSchemaValidator = createFieldSchemaValidatorFactory(factory),
@@ -167,11 +206,13 @@ export function createFormValidator<T>({
         : v,
   ...rest
 }: Partial<FormValidatorOptions> & {
+  schema: Schema;
   factory?: CfValidatorFactory;
   validatorsCache?: ValidatorsCache;
-} = {}) {
+}) {
   const options: FormValidatorOptions = {
     ...rest,
+    schema,
     valueToJSON,
     createSchemaValidator,
     createFieldSchemaValidator,
