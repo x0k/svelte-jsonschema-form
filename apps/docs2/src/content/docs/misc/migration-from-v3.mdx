@@ -1,0 +1,20 @@
+---
+title: Migration from v3
+sidebar:
+  order: 0
+---
+
+Before migrating, make sure you are using the latest version of SJSF and
+that you are not using any deprecated APIs.
+
+## Validator interface changes
+
+The root schema is now bound at validator creation time instead of being
+passed on every call. The `rootSchema` parameter has been removed from
+`Validator.isValid`, `FormValueValidator.validateFormValue` and
+`AsyncFormValueValidator.validateFormValueAsync`.
+
+## Etc.
+
+Feel free to get in touch about migrating to v4 on
+[GitHub Discussions](https://github.com/x0k/svelte-jsonschema-form/discussions).
