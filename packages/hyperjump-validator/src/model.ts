@@ -12,6 +12,10 @@ export interface ValueToJSON {
 
 export type ValidatorOptions = CoreValidatorOptions & ValueToJSON;
 
+export interface SchemaProvider {
+  schema: Schema;
+}
+
 export interface Context {
   validator: Validator;
   value: HyperjumpJson;

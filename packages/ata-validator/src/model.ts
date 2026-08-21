@@ -1,5 +1,11 @@
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import { DATA_URL_FORMAT } from "@sjsf/form/core";
 import type { ValidatorOptions as AtaValidatorOptions } from "ata-validator";
+
+export interface Schemas {
+  schema: Schema;
+  uiSchema?: UiSchemaRoot;
+}
 
 export const COLOR_FORMAT_REGEX =
   /^(#?([0-9A-Fa-f]{3}){1,2}\b|aqua|black|blue|fuchsia|gray|green|lime|maroon|navy|olive|orange|purple|red|silver|teal|white|yellow|(rgb\(\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*\))|(rgb\(\s*(\d?\d%|100%)+\s*,\s*(\d?\d%|100%)+\s*,\s*(\d?\d%|100%)+\s*\)))$/;

@@ -156,8 +156,8 @@ export function createFormHandler<T, SD extends SendData>({
         });
     const result: ValidationResult<T> =
       "validateFormValueAsync" in validator
-        ? await validator.validateFormValueAsync(signal, schema, data)
-        : validator.validateFormValue(schema, data);
+        ? await validator.validateFormValueAsync(signal, data)
+        : validator.validateFormValue(data);
     function validated(errors: ReadonlyArray<ValidationError>) {
       const isValid = errors.length === 0;
       return {

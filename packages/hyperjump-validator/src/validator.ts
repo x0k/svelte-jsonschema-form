@@ -1,3 +1,4 @@
+import type { Json as HyperjumpJson } from "@hyperjump/json-schema-errors";
 import type {
   FieldValueValidator,
   FormValue,
@@ -11,13 +12,14 @@ import {
   evaluate,
   validate,
   type CoreValidatorOptions,
+  type SchemaProvider,
   type ValidatorOptions,
   type ValueToJSON,
 } from "./model.js";
 
 export function createValidator(options: ValidatorOptions): Validator {
   return {
-    isValid(schema, _, formValue) {
+    isValid(schema, formValue) {
       if (typeof schema === "boolean") {
         return schema;
       }
@@ -27,15 +29,21 @@ export function createValidator(options: ValidatorOptions): Validator {
   };
 }
 
-export type FormValueValidatorOptions = ValidatorOptions;
+export type FormValueValidatorOptions = ValidatorOptions & SchemaProvider;
 
 export function createFormValueValidator<T>(
   options: FormValueValidatorOptions
 ): FormValueValidator<T> {
+  const validator = options.validatorRetriever(options.schema);
   return {
-    validateFormValue(rootSchema, formValue) {
-      const ctx = createContext(options, rootSchema, formValue);
-      const out = evaluate(ctx, options);
+    validateFormValue(formValue) {
+      const out = evaluate(
+        {
+          validator,
+          value: options.valueToJSON(formValue) as HyperjumpJson,
+        },
+        options
+      );
       return transformFormErrors(out, formValue);
     },
   };

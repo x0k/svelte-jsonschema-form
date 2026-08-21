@@ -54,7 +54,6 @@ function isOptionMatching(
   option: SchemaDefinition,
   validator: Validator,
   formData: SchemaValue,
-  rootSchema: Schema,
   discriminatorField: string | undefined,
   discriminatorFormData: SchemaValue | undefined
 ): boolean {
@@ -62,7 +61,7 @@ function isOptionMatching(
     return option;
   }
   if (!isSchemaWithProperties(option)) {
-    return validator.isValid(option, rootSchema, formData);
+    return validator.isValid(option, formData);
   }
   // WARN: Do not transform into `&&` expression!
   const discriminator =
@@ -70,16 +69,15 @@ function isOptionMatching(
       ? option.properties[discriminatorField]
       : undefined;
   if (discriminator !== undefined) {
-    return validator.isValid(discriminator, rootSchema, discriminatorFormData);
+    return validator.isValid(discriminator, discriminatorFormData);
   }
-  return validator.isValid(memoizedAugmentSchema(option), rootSchema, formData);
+  return validator.isValid(memoizedAugmentSchema(option), formData);
 }
 
 export function getFirstMatchingOption(
   validator: Validator,
   formData: SchemaValue | undefined,
   options: SchemaDefinition[],
-  rootSchema: Schema,
   discriminatorField?: string
 ): number {
   // For performance, skip validating subschemas if formData is undefined. We just
@@ -105,7 +103,6 @@ export function getFirstMatchingOption(
         options[i]!,
         validator,
         formData,
-        rootSchema,
         isDiscriminatorActual ? discriminatorField : undefined,
         isDiscriminatorActual ? formData[discriminatorField] : undefined
       )
@@ -256,7 +253,6 @@ export function getClosestMatchingOption(
           resolvedOptions[i]!,
           validator,
           formData,
-          rootSchema,
           canDiscriminatorBeApplied ? discriminatorField : undefined,
           canDiscriminatorBeApplied ? formData[discriminatorField] : undefined
         )

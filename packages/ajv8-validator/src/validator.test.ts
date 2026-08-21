@@ -1,5 +1,5 @@
 import type { Schema } from "@sjsf/form";
-import { Ajv, type AsyncSchema } from "ajv";
+import { Ajv } from "ajv";
 import { validatorTests, formValueValidatorTests } from "validator-testing";
 import { describe, it, expect } from "vitest";
 
@@ -15,12 +15,8 @@ formValueValidatorTests((options) => {
   });
   return {
     ...v,
-    validateFormValueAsync(signal, rootSchema, formValue) {
-      return v.validateFormValueAsync(
-        signal,
-        { ...rootSchema, $async: true } as AsyncSchema,
-        formValue
-      );
+    validateFormValueAsync(signal, formValue) {
+      return v.validateFormValueAsync(signal, formValue);
     },
   };
 });
@@ -28,32 +24,22 @@ formValueValidatorTests((options) => {
 describe("AJV schema cache eviction after compilation error", () => {
   it("repeated isValid calls throw consistently for a schema with $id and invalid anyOf", () => {
     const ajv = new Ajv(DEFAULT_AJV_CONFIG);
-    const validator = createFormValidator({ ajv });
-    const schema = { $id: "test-caching-isvalid", anyOf: [] } as Schema;
-    const rootSchema = {} as Schema;
+    const invalidSchema = { $id: "test-caching-isvalid", anyOf: [] } as Schema;
+    const validator = createFormValidator({ ajv, schema: {} });
 
-    expect(() => validator.isValid(schema, rootSchema, undefined)).toThrow();
-    expect(() => validator.isValid(schema, rootSchema, undefined)).toThrow();
+    expect(() => validator.isValid(invalidSchema, undefined)).toThrow();
+    expect(() => validator.isValid(invalidSchema, undefined)).toThrow();
   });
 
   it("repeated isValid calls throw consistently for a schema without $id and invalid anyOf", () => {
     const ajv = new Ajv(DEFAULT_AJV_CONFIG);
-    const validator = createFormValidator({ ajv });
-    const schema = {
+    const invalidSchema = {
       type: "object" as const,
       properties: { foo: { type: "string" as const, anyOf: [] } },
     };
+    const validator = createFormValidator({ ajv, schema: {} });
 
-    expect(() => validator.isValid(schema, schema, undefined)).toThrow();
-    expect(() => validator.isValid(schema, schema, undefined)).toThrow();
-  });
-
-  it("repeated validateFormValue calls throw consistently for a schema with $id and invalid anyOf", () => {
-    const ajv = new Ajv(DEFAULT_AJV_CONFIG);
-    const validator = createFormValidator({ ajv });
-    const schema = { $id: "test-caching-validate", anyOf: [] } as Schema;
-
-    expect(() => validator.validateFormValue(schema, {})).toThrow();
-    expect(() => validator.validateFormValue(schema, {})).toThrow();
+    expect(() => validator.isValid(invalidSchema, undefined)).toThrow();
+    expect(() => validator.isValid(invalidSchema, undefined)).toThrow();
   });
 });

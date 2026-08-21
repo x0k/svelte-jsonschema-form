@@ -2,11 +2,7 @@ import { untrack } from "svelte";
 
 import type { Config } from "../config.js";
 import { InvalidValidatorError } from "../errors.js";
-import {
-  FORM_FIELDS_VALIDATION_MODE,
-  FORM_SCHEMA,
-  FORM_VALIDATOR,
-} from "../internals.js";
+import { FORM_FIELDS_VALIDATION_MODE, FORM_VALIDATOR } from "../internals.js";
 import type { FormValue } from "../model.js";
 import {
   isAdditionalPropertyKeyValidator,
@@ -82,7 +78,7 @@ export function validate<T>(ctx: FormState<T>) {
   if (!isFormValueValidator<typeof validator, T>(validator)) {
     throw new InvalidValidatorError(`expected sync from validator`);
   }
-  return validator.validateFormValue(ctx[FORM_SCHEMA], getValueSnapshot(ctx));
+  return validator.validateFormValue(getValueSnapshot(ctx));
 }
 
 /**
@@ -93,9 +89,5 @@ export function validateAsync<T>(ctx: FormState<T>, signal: AbortSignal) {
   if (!isAsyncFormValueValidator<typeof validator, T>(validator)) {
     throw new InvalidValidatorError(`expected async form validator`);
   }
-  return validator.validateFormValueAsync(
-    signal,
-    ctx[FORM_SCHEMA],
-    getValueSnapshot(ctx)
-  );
+  return validator.validateFormValueAsync(signal, getValueSnapshot(ctx));
 }

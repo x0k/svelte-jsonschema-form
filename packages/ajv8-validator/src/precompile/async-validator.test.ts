@@ -48,17 +48,17 @@ describe("async precompiled validator", () => {
         test: await compileAsyncValidator(),
       }),
     });
-    const validator = factory({});
+    const validator = factory({ schema });
     const signal = new AbortController().signal;
 
-    const invalid = await validator.validateFormValueAsync(signal, schema, {
+    const invalid = await validator.validateFormValueAsync(signal, {
       foo: 1,
     });
     expect("errors" in invalid && invalid.errors).toEqual([
       { path: ["foo"], message: "must be string" },
     ]);
 
-    const valid = await validator.validateFormValueAsync(signal, schema, {
+    const valid = await validator.validateFormValueAsync(signal, {
       foo: "bar",
     });
     expect(valid).toEqual({ value: { foo: "bar" } });

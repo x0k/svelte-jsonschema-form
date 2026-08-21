@@ -66,16 +66,16 @@ describe("runtime compilation", () => {
 
     // `format` is registered via formats-lite, so an invalid email must fail
     expect(
-      formValidator.isValid(patch.schema, patch.schema, {
+      formValidator.isValid(patch.schema, {
         email: "not-an-email",
       })
     ).toBe(false);
     expect(
-      formValidator.isValid(patch.schema, patch.schema, {
+      formValidator.isValid(patch.schema, {
         email: "user@example.com",
       })
     ).toBe(true);
     // `required` still catches a missing value
-    expect(formValidator.isValid(patch.schema, patch.schema, {})).toBe(false);
+    expect(formValidator.isValid(patch.schema, {})).toBe(false);
   });
 });

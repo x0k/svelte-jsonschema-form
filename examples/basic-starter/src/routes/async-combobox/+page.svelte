@@ -51,11 +51,8 @@
       const defaultValidator = defaults.validator<string>(options);
       return {
         ...defaultValidator,
-        async validateFormValueAsync(signal, rootSchema, formValue) {
-          const result = defaultValidator.validateFormValue(
-            rootSchema,
-            formValue
-          );
+        async validateFormValueAsync(signal, formValue) {
+          const result = defaultValidator.validateFormValue(formValue);
           if (result.errors) {
             return result;
           }

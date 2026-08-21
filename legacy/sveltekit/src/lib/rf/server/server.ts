@@ -152,12 +152,8 @@ export function createServerValidator<T>({
       const value = await parseData(request.signal, idPrefix, input);
       const result =
         "validateFormValueAsync" in validator
-          ? await validator.validateFormValueAsync(
-              request.signal,
-              schema,
-              value
-            )
-          : validator.validateFormValue(schema, value);
+          ? await validator.validateFormValueAsync(request.signal, value)
+          : validator.validateFormValue(value);
       return result.errors
         ? { issues: result.errors }
         : {

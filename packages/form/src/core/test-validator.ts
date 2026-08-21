@@ -12,7 +12,7 @@ export function createValidator({
   cases = [],
 }: { cases?: TestCase[] } = {}): Validator {
   return {
-    isValid(schema, _, value) {
+    isValid(schema, value) {
       if (typeof schema === "boolean") {
         return schema;
       }
