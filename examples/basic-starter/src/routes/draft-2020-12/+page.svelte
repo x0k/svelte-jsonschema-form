@@ -21,19 +21,11 @@
     // Keep this in mind on the client side and use the original schema for server-side validation.
     schema: convert(schema),
     // Example using `Ajv2020`:
-    // validator: <T,>(options: ValidatorFactoryOptions) => {
-    //   const validator = defaults.validator<T>({
+    // validator: <T,>(options: ValidatorFactoryOptions) =>
+    //   defaults.validator<T>({
     //     ...options,
     //     Ajv: Ajv2020,
-    //   });
-    //   // TODO: Pass the original schema parts to the `isValid` method.
-    //   return {
-    //     ...validator,
-    //     validateFormValue(_, formValue) {
-    //       return validator.validateFormValue(schema, formValue);
-    //     },
-    //   };
-    // },
+    //   }),
     onSubmit: console.log,
   });
 </script>

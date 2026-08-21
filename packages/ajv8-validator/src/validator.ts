@@ -17,14 +17,17 @@ import {
 import {
   createFormErrorsTransformer,
   createFieldErrorsTransformer,
-  type ErrorsTransformerOptions,
   validateAndTransformErrors,
   validateAndTransformErrorsAsync,
   type LocalizeOptions,
   withLocalize,
 } from "./errors.js";
 import { CAST_FORM_DATA, NO_FILED_ERRORS } from "./internals.js";
-import { addFormComponents, DEFAULT_AJV_CONFIG } from "./model.js";
+import {
+  addFormComponents,
+  DEFAULT_AJV_CONFIG,
+  type Schemas,
+} from "./model.js";
 import {
   createFieldSchemaCompiler,
   createSchemaCompiler,
@@ -32,18 +35,18 @@ import {
 } from "./schema-compilers.js";
 
 export interface ValidatorOptions {
-  compileSchema: (schema: Schema, rootSchema: Schema) => ValidateFunction;
+  compileSchema: (schema: Schema) => ValidateFunction;
 }
 
 export function createValidator({
   compileSchema,
 }: ValidatorOptions): Validator {
   return {
-    isValid(schemaDef, rootSchema, formValue) {
+    isValid(schemaDef, formValue) {
       if (typeof schemaDef === "boolean") {
         return schemaDef;
       }
-      const validator = compileSchema(schemaDef, rootSchema);
+      const validator = compileSchema(schemaDef);
       try {
         return validator(formValue);
       } catch (e) {
@@ -55,19 +58,23 @@ export function createValidator({
 }
 
 export interface FormValueValidatorOptions
-  extends ValidatorOptions, ErrorsTransformerOptions, LocalizeOptions {}
+  extends ValidatorOptions, Schemas, LocalizeOptions {}
 
-export function createFormValueValidator<T>(
-  options: FormValueValidatorOptions
-): FormValueValidator<T> {
+export function createFormValueValidator<T>({
+  compileSchema,
+  schema,
+  localize,
+  uiSchema = {},
+}: FormValueValidatorOptions): FormValueValidator<T> {
+  const validate = compileSchema(schema);
   const transformErrors = withLocalize(
-    createFormErrorsTransformer(options),
-    options.localize
+    createFormErrorsTransformer(schema, uiSchema),
+    localize
   );
   return {
-    validateFormValue(rootSchema, formValue) {
+    validateFormValue(formValue) {
       return validateAndTransformErrors(
-        options.compileSchema(rootSchema, rootSchema),
+        validate,
         formValue,
         CAST_FORM_DATA<T>,
         transformErrors
@@ -97,24 +104,25 @@ export function createFieldValueValidator({
 }
 
 export interface AsyncFormValueValidatorOptions
-  extends ErrorsTransformerOptions, LocalizeOptions {
-  compileAsyncSchema: (
-    schema: Schema,
-    rootSchema: Schema
-  ) => AsyncValidateFunction;
+  extends Schemas, LocalizeOptions {
+  compileAsyncSchema: (schema: Schema) => AsyncValidateFunction;
 }
 
-export function createAsyncFormValueValidator<T>(
-  options: AsyncFormValueValidatorOptions
-): AsyncFormValueValidator<T> {
+export function createAsyncFormValueValidator<T>({
+  compileAsyncSchema,
+  schema,
+  localize,
+  uiSchema = {},
+}: AsyncFormValueValidatorOptions): AsyncFormValueValidator<T> {
+  const validateAsync = compileAsyncSchema(schema);
   const transformErrors = withLocalize(
-    createFormErrorsTransformer(options),
-    options.localize
+    createFormErrorsTransformer(schema, uiSchema),
+    localize
   );
   return {
-    async validateFormValueAsync(_, rootSchema, formValue) {
+    async validateFormValueAsync(_, formValue) {
       return validateAndTransformErrorsAsync(
-        options.compileAsyncSchema(rootSchema, rootSchema),
+        validateAsync,
         formValue,
         CAST_FORM_DATA<T>,
         transformErrors
@@ -154,15 +162,17 @@ interface AjvConstructor {
 }
 
 export function createFormValidator<T>({
+  schema,
   ajvOptions = DEFAULT_AJV_CONFIG,
   ajvPlugins = addFormComponents,
   Ajv: AjvConstructor = Ajv,
   ajv = ajvPlugins(new AjvConstructor(ajvOptions)),
   validatorsCache,
-  compileSchema = createSchemaCompiler(ajv, false, validatorsCache),
+  compileSchema = createSchemaCompiler(ajv, false, schema, validatorsCache),
   compileFieldSchema = createFieldSchemaCompiler(ajv, false),
   ...rest
 }: Partial<FormValidatorOptions> & {
+  schema: Schema;
   /**
    * @default `DEFAULT_AJV_CONFIG`
    */
@@ -174,9 +184,10 @@ export function createFormValidator<T>({
   Ajv?: AjvConstructor;
   ajv?: Ajv;
   validatorsCache?: ValidatorsCache;
-} = {}) {
+}) {
   const options: FormValidatorOptions = {
     ...rest,
+    schema,
     compileSchema,
     compileFieldSchema,
   };
@@ -195,17 +206,20 @@ export interface AsyncFormValidatorOptions
 
 export function createAsyncFormValidator<T>({
   ajv,
+  schema,
   validatorsCache,
-  compileSchema = createSchemaCompiler(ajv, false, validatorsCache),
-  compileAsyncSchema = createSchemaCompiler(ajv, true, validatorsCache),
+  compileSchema = createSchemaCompiler(ajv, false, schema, validatorsCache),
+  compileAsyncSchema = createSchemaCompiler(ajv, true, schema, validatorsCache),
   compileAsyncFieldSchema = createFieldSchemaCompiler(ajv, true),
   ...rest
 }: Partial<AsyncFormValidatorOptions> & {
   ajv: Ajv;
+  schema: Schema;
   validatorsCache?: ValidatorsCache;
 }) {
   const options: AsyncFormValidatorOptions = {
     ...rest,
+    schema,
     compileSchema,
     compileAsyncSchema,
     compileAsyncFieldSchema,

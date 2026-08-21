@@ -14,13 +14,11 @@ describe("FormValidator", () => {
       ])
     );
     const validator = createValidator();
-    expect(validator.isValid(schema, schema, {})).toBe(false);
-    expect(validator.isValid(schema, schema, { foo: "foo" })).toBe(true);
-    expect(validator.isValid(schema, schema, { bar: "bar" })).toBe(false);
+    expect(validator.isValid(schema, {})).toBe(false);
+    expect(validator.isValid(schema, { foo: "foo" })).toBe(true);
+    expect(validator.isValid(schema, { bar: "bar" })).toBe(false);
     // NOTE: `anyOf` is used for `union` representation
-    expect(validator.isValid(schema, schema, { foo: "foo", baz: 123 })).toBe(
-      true
-    );
+    expect(validator.isValid(schema, { foo: "foo", baz: 123 })).toBe(true);
     const [first, second] = schema?.anyOf ?? [];
     if (
       first === undefined ||
@@ -30,13 +28,11 @@ describe("FormValidator", () => {
     ) {
       throw new Error(`Invalid anyOf value "${JSON.stringify(schema)}"`);
     }
-    expect(validator.isValid(first, schema, {})).toBe(false);
-    expect(validator.isValid(first, schema, { foo: "foo" })).toBe(true);
+    expect(validator.isValid(first, {})).toBe(false);
+    expect(validator.isValid(first, { foo: "foo" })).toBe(true);
 
-    expect(validator.isValid(second, schema, { bar: "bar" })).toBe(false);
-    expect(validator.isValid(second, schema, { foo: "foo", baz: 123 })).toBe(
-      false
-    );
+    expect(validator.isValid(second, { bar: "bar" })).toBe(false);
+    expect(validator.isValid(second, { foo: "foo", baz: 123 })).toBe(false);
   });
   it("should use augmented schema", () => {
     const { validator: createValidator, schema } = adapt(
@@ -58,12 +54,10 @@ describe("FormValidator", () => {
     }
     const firstAg = createAugmentSchema(first);
     const validator = createValidator();
-    expect(validator.isValid(firstAg, schema, {})).toBe(false);
-    expect(validator.isValid(firstAg, schema, { foo: "foo" })).toBe(true);
+    expect(validator.isValid(firstAg, {})).toBe(false);
+    expect(validator.isValid(firstAg, { foo: "foo" })).toBe(true);
     const secondAg = createAugmentSchema(second);
-    expect(validator.isValid(secondAg, schema, { bar: "bar" })).toBe(true);
-    expect(
-      validator.isValid(secondAg, schema, { foo: "foo", bar: "bar" })
-    ).toBe(true);
+    expect(validator.isValid(secondAg, { bar: "bar" })).toBe(true);
+    expect(validator.isValid(secondAg, { foo: "foo", bar: "bar" })).toBe(true);
   });
 });

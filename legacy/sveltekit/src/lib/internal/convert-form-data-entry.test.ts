@@ -14,7 +14,7 @@ import {
 } from "./convert-form-data-entry.js";
 
 const defaultOptions: FormDataConverterOptions = {
-  validator: createFormValidator(),
+  validator: createFormValidator({ schema: {} }),
   merger: createMerger(),
   rootSchema: {},
   rootUiSchema: {},

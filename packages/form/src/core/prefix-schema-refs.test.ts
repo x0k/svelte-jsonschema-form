@@ -4,7 +4,7 @@
 
 import { describe, expect, it } from "vitest";
 
-import { prefixSchemaRefs } from "./prefix-schema-refs.js";
+import { prefixSchemaRefs, updateSchemaRefs } from "./prefix-schema-refs.js";
 import { ROOT_SCHEMA_PREFIX, type Schema } from "./schema.js";
 
 describe("prefixSchemaRefs()", () => {
@@ -45,4 +45,58 @@ describe("prefixSchemaRefs()", () => {
   //   const schemaNode = null;
   //   expect(prefixSchemaRefs(schemaNode, ROOT_SCHEMA_PREFIX)).toEqual(schemaNode);
   // });
+});
+
+describe("updateSchemaRefs()", () => {
+  it("should apply the update to all refs", () => {
+    const schema: Schema = {
+      anyOf: [{ $ref: "#/defs/foo" }],
+      properties: { bar: { $ref: "http://example.com/bar" } },
+    };
+    const expected = {
+      anyOf: [{ $ref: "__sjsf_rootSchema#/defs/foo" }],
+      properties: { bar: { $ref: "remapped" } },
+    };
+
+    expect(
+      updateSchemaRefs(schema, (ref) =>
+        ref.startsWith("#") ? `${ROOT_SCHEMA_PREFIX}${ref}` : "remapped"
+      )
+    ).toEqual(expected);
+  });
+
+  it("shouldn`t mutate the schema", () => {
+    const schema: Schema = {
+      anyOf: [{ $ref: "#/defs/foo" }],
+    };
+
+    updateSchemaRefs(schema, (ref) => `${ref}!`);
+
+    expect(schema).toEqual({
+      anyOf: [{ $ref: "#/defs/foo" }],
+    });
+  });
+
+  it("should not change a property named `$ref`", () => {
+    const schema: Schema = {
+      title: "A registration form",
+      description: "A simple form example.",
+      type: "object",
+      properties: {
+        $ref: { type: "string", title: "First name", default: "Chuck" },
+      },
+    };
+
+    expect(updateSchemaRefs(schema, (ref) => `${ref}!`)).toEqual(schema);
+  });
+
+  it("should leave schemas without refs unchanged", () => {
+    const schema: Schema = {
+      type: "object",
+      properties: { foo: { type: "string" } },
+      oneOf: [true, false],
+    };
+
+    expect(updateSchemaRefs(schema, (ref) => `${ref}!`)).toEqual(schema);
+  });
 });

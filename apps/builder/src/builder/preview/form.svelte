@@ -68,12 +68,12 @@
       const schemaObject = await parseSchemaObject(
         buildPlaygroundSchema({ schema, validator })
       );
-      const options = {
+      return playgroundValidator({
+        validator,
         merger: () => merger,
         schema: schemaObject,
         uiSchema,
-      };
-      return playgroundValidator(validator)(options)(schemaObject);
+      });
     }),
     onFailure(err) {
       if (err.reason === "aborted") {

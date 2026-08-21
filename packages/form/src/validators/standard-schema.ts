@@ -48,7 +48,7 @@ export function createFormValueValidator<T extends StandardSchemaV1>(
   schema: T
 ): FormValueValidator<StandardSchemaV1.InferOutput<T>> {
   return {
-    validateFormValue(_, formValue) {
+    validateFormValue(formValue) {
       const result = schema["~standard"].validate(formValue);
       if (result instanceof Promise) {
         throw new TypeError("Schema validation must be synchronous");
@@ -62,7 +62,7 @@ export function createAsyncFormValueValidator<T extends StandardSchemaV1>(
   schema: T
 ): AsyncFormValueValidator<StandardSchemaV1.InferOutput<T>> {
   return {
-    async validateFormValueAsync(_, _1, formValue) {
+    async validateFormValueAsync(_, formValue) {
       const result = await schema["~standard"].validate(formValue);
       return transformErrors(formValue, result);
     },

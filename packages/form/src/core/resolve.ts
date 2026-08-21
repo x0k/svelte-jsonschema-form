@@ -411,8 +411,7 @@ export function resolveCondition(
   // ignore non-objects, so a `null` would satisfy `if: { required: ["a"] }` and
   // take `then` for an object with no data.
   const conditionValue =
-    expression !== undefined &&
-    validator.isValid(expression, rootSchema, formData ?? {});
+    expression !== undefined && validator.isValid(expression, formData ?? {});
   let resolvedSchemas = [resolvedSchemaLessConditional];
   let schemas: Schema[] = [];
   if (expandAllBranches) {
@@ -721,7 +720,6 @@ export function resolveAnyOrOneOfSchemas(
       validator,
       formData,
       anyOrOneOf,
-      rootSchema,
       discriminator
     );
     const isRemainingEmpty = isRecordEmpty(remaining);
@@ -898,7 +896,6 @@ export function withExactlyOneSubSchema(
         return (
           validator.isValid(
             createConditionSchema(dependencyKey, conditionPropertySchema),
-            rootSchema,
             formData
           ) || expandAllBranches
         );

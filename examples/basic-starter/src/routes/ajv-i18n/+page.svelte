@@ -24,6 +24,7 @@
   const form = createForm({
     ...defaults,
     validator: createFormValidator({
+      schema,
       ajvOptions: { ...DEFAULT_AJV_CONFIG, messages: false },
       ajvPlugins: (ajv) => addFormats(addFormComponents(ajv)),
       localize: (errors) => {

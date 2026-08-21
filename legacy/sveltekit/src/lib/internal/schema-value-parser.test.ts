@@ -24,7 +24,7 @@ const opts = ({
   idSeparator = ".",
   idIndexSeparator = "@",
   idPseudoSeparator = "::",
-  validator = createFormValidator(),
+  validator = createFormValidator({ schema, uiSchema }),
   merger = createMerger(),
   codec = createCodec({
     sequencesToEncode: [idSeparator, idIndexSeparator, idPseudoSeparator],

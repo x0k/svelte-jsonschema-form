@@ -3,8 +3,8 @@
     SimpleForm,
     type Schema,
     type FormValue,
-    type Config,
     type FormValueValidator,
+    type Config,
   } from "@sjsf/form";
   import {
     isSelect,
@@ -17,7 +17,7 @@
     transformSchemaDefinition,
     isSchemaObject,
   } from "@sjsf/form/lib/json-schema";
-  import { weakMemoize } from "@sjsf/form/lib/memoize";
+  import { memoize, weakMemoize } from "@sjsf/form/lib/memoize";
   import { fromFactories } from "@sjsf/form/lib/resolver";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
   import { resolver } from "@sjsf/form/resolvers/compat";
@@ -71,17 +71,23 @@
   };
 
   const validator = defaults.validator<FormValue>({
-    validatorsCache: new HashedKeyCache({
-      getHash: weakMemoize(new WeakMap(), schemaHash),
-      store: new LRUCache({
-        maxSize: 10,
-      }),
-    }),
+    schema: originalSchema,
   });
   const merger = defaults.merger({
     validator,
     schema: originalSchema,
   });
+
+  // Retrieved schemas are freshly allocated objects, so validators for them
+  // are cached by schema hash instead of object identity.
+  const getRetrievedValidator = memoize(
+    new HashedKeyCache<Schema, string, FormValueValidator<FormValue>>({
+      getHash: weakMemoize(new WeakMap(), schemaHash),
+      store: new LRUCache({ maxSize: 10 }),
+    }),
+    (retrievedSchema: Schema) =>
+      defaults.validator<FormValue>({ schema: retrievedSchema })
+  );
 
   const VIRTUAL_PROPERTY = "__sjsf_virtual_property";
   const toOption = (def: SchemaDefinition, index: number) =>
@@ -140,15 +146,17 @@
   {resolver}
   validator={{
     ...validator,
-    validateFormValue(rootSchema, formValue) {
+    validateFormValue(formValue) {
       const retrievedSchema = retrieveSchema(
         validator,
         merger,
-        rootSchema,
-        rootSchema,
+        schema,
+        schema,
         formValue
       );
-      return validator.validateFormValue(retrievedSchema, formValue);
+      return getRetrievedValidator(retrievedSchema).validateFormValue(
+        formValue
+      );
     },
   } satisfies FormValueValidator<FormValue>}
   {merger}

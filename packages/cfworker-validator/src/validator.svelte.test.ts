@@ -9,6 +9,7 @@ import { setupFormFormats, createFormValidator } from "./validator.svelte.js";
 // https://github.com/cfworker/cfworker/issues/335
 validatorTests(createFormValidator, {
   useOriginalSchema: true,
+  supportsNonLocalRefs: true,
 });
 formValueValidatorTests(createFormValidator, {
   useOriginalSchema: true,
