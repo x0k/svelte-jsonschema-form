@@ -22,7 +22,7 @@ import { memoize, type MapLike } from "@sjsf/form/lib/memoize";
 import { transformFormErrors, transformFieldErrors } from "./errors.js";
 import { DEFAULT_VALIDATOR_OPTIONS } from "./model.js";
 
-function getRootSchemaId(schema: Schema): string {
+export function getRootSchemaId(schema: Schema): string {
   return schema.$id ?? ROOT_SCHEMA_PREFIX;
 }
 
