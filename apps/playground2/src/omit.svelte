@@ -71,7 +71,6 @@
     deduplicateJsonSchemaDef: createDeduplicator(compareSchemaDefinitions),
   });
   const merger = createSchemaMerger({ jsonSchemaMerger });
-  const validator = createFormValidator();
 
   const schemaQuery = createParseQuery({
     parse: parseSchemaObject,
@@ -94,6 +93,9 @@
     const value = inputQuery.value;
     return () => {
       try {
+        const validator = createFormValidator({
+          schema,
+        });
         const result = omitExtraData(validator, merger, schema, value);
         data.output = JSON.stringify(result, null, 2);
       } catch (err) {

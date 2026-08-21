@@ -108,7 +108,7 @@ const DEFAULT_SCHEMA_AND_VALIDATOR = {
 
 export function createValidatorState(
   data: ValidatorStateOptions,
-  validatorOptions: ValidatorFactoryOptions
+  validatorOptions: Omit<ValidatorFactoryOptions, "schema" | "validator">
 ) {
   const schemaQuery = createParseQuery<object>({
     parse: parseSchemaObject,
@@ -137,11 +137,12 @@ export function createValidatorState(
         validator.precompiled === false
           ? { ...validator, draft2020: isDraft2020(schema) }
           : validator;
-      return playgroundValidator(v)({
+      return playgroundValidator({
+        validator: v,
         merger: validatorOptions.merger,
         schema,
         uiSchema,
-      })(schema);
+      });
     }),
     onFailure: createOnFailure("Validator creation"),
   });

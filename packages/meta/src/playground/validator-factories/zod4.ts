@@ -3,9 +3,9 @@ import { adaptAsync } from "@sjsf/zod4-validator/classic";
 
 import type { ValidatorFactory } from "../validator-factory.ts";
 
-export default ((options) => async (zodSchema) => {
+export default (async (options) => {
   const { schema, validator } = adaptAsync(
-    zodSchema as Parameters<typeof adaptAsync>[0]
+    options.schema as Parameters<typeof adaptAsync>[0]
   );
   return { schema, validator: create(validator, options) };
 }) as ValidatorFactory;

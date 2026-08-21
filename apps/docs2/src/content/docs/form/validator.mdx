@@ -27,8 +27,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   const validator = createFormValidator<T>(options);
   return {
     ...validator,
-    validateFormValue(rootSchema, formValue) {
-      const errors = validator.validateFormValue(rootSchema, formValue);
+    validateFormValue(formValue) {
+      const errors = validator.validateFormValue(formValue);
       // Your logic
       return errors;
     },
@@ -42,7 +42,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 export interface Validator {
   isValid(
     schema: SchemaDefinition,
-    rootSchema: Schema,
     formValue: SchemaValue | undefined
   ): boolean;
 }
@@ -66,16 +65,12 @@ export type ValidationResult<Output> =
   SuccessValidationResult<Output> | FailureValidationResult;
 
 export interface FormValueValidator<Output> {
-  validateFormValue: (
-    rootSchema: Schema,
-    formValue: FormValue
-  ) => ValidationResult<Output>;
+  validateFormValue: (formValue: FormValue) => ValidationResult<Output>;
 }
 
 export interface AsyncFormValueValidator<Output> {
   validateFormValueAsync: (
     signal: AbortSignal,
-    rootSchema: Schema,
     formValue: FormValue
   ) => Promise<ValidationResult<Output>>;
 }

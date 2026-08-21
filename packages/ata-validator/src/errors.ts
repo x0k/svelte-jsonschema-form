@@ -11,11 +11,6 @@ import { PROPERTIES_KEY, pathFromLocation, type Path } from "@sjsf/form/core";
 import { getValueByPath } from "@sjsf/form/lib/object";
 import type { ValidationError } from "ata-validator";
 
-export interface ErrorsTransformerOptions {
-  uiSchema?: UiSchemaRoot;
-  schema?: Schema;
-}
-
 function createInstancePath(
   { params: { missingProperty, propertyName } }: ValidationError,
   path: Path
@@ -49,10 +44,10 @@ function errorObjectToMessage(
   return message.replace(missingProperty, propertyTitle);
 }
 
-export function createFormErrorsTransformer({
-  uiSchema = {},
-  schema = {},
-}: ErrorsTransformerOptions) {
+export function createFormErrorsTransformer(
+  schema: Schema,
+  uiSchema: UiSchemaRoot
+) {
   return (
     errors: ValidationError[],
     data: FormValue

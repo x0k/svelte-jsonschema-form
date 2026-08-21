@@ -122,6 +122,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   const form = createForm({
     ...defaults,
     validator: createFormValidator({
+      schema,
       ajvOptions: { ...DEFAULT_AJV_CONFIG, messages: false },
       ajvPlugins: (ajv) => addFormats(addFormComponents(ajv)),
       localize: (errors) => {
@@ -290,6 +291,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   const form = createForm({
     ...defaults,
     validator: createFormValidator({
+      schema,
       ajvOptions: { ...DEFAULT_AJV_CONFIG, messages: false },
       ajvPlugins: (ajv) => addFormats(addFormComponents(ajv)),
       localize: (errors) => {
@@ -466,6 +468,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   const form = createForm({
     ...defaults,
     validator: createFormValidator({
+      schema,
       ajvOptions: { ...DEFAULT_AJV_CONFIG, messages: false },
       ajvPlugins: (ajv) => addFormats(addFormComponents(ajv)),
       localize: (errors) => {
@@ -646,6 +649,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   const form = createForm({
     ...defaults,
     validator: createFormValidator({
+      schema,
       ajvOptions: { ...DEFAULT_AJV_CONFIG, messages: false },
       ajvPlugins: (ajv) => addFormats(addFormComponents(ajv)),
       localize: (errors) => {
@@ -842,6 +846,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   const form = createForm({
     ...defaults,
     validator: createFormValidator({
+      schema,
       ajvOptions: { ...DEFAULT_AJV_CONFIG, messages: false },
       ajvPlugins: (ajv) => addFormats(addFormComponents(ajv)),
       localize: (errors) => {
@@ -1106,6 +1111,7 @@ export function setShadcnThemeContext() {
   const form = createForm({
     ...defaults,
     validator: createFormValidator({
+      schema,
       ajvOptions: { ...DEFAULT_AJV_CONFIG, messages: false },
       ajvPlugins: (ajv) => addFormats(addFormComponents(ajv)),
       localize: (errors) => {
@@ -1475,6 +1481,7 @@ export function setShadcnThemeContext() {
   const form = createForm({
     ...defaults,
     validator: createFormValidator({
+      schema,
       ajvOptions: { ...DEFAULT_AJV_CONFIG, messages: false },
       ajvPlugins: (ajv) => addFormats(addFormComponents(ajv)),
       localize: (errors) => {
@@ -1777,6 +1784,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   const form = createForm({
     ...defaults,
     validator: createFormValidator({
+      schema,
       ajvOptions: { ...DEFAULT_AJV_CONFIG, messages: false },
       ajvPlugins: (ajv) => addFormats(addFormComponents(ajv)),
       localize: (errors) => {
@@ -1962,6 +1970,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   const form = createForm({
     ...defaults,
     validator: createFormValidator({
+      schema,
       ajvOptions: { ...DEFAULT_AJV_CONFIG, messages: false },
       ajvPlugins: (ajv) => addFormats(addFormComponents(ajv)),
       localize: (errors) => {
@@ -2142,6 +2151,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   const form = createForm({
     ...defaults,
     validator: createFormValidator({
+      schema,
       ajvOptions: { ...DEFAULT_AJV_CONFIG, messages: false },
       ajvPlugins: (ajv) => addFormats(addFormComponents(ajv)),
       localize: (errors) => {
@@ -4300,11 +4310,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
       const defaultValidator = defaults.validator<string>(options);
       return {
         ...defaultValidator,
-        async validateFormValueAsync(signal, rootSchema, formValue) {
-          const result = defaultValidator.validateFormValue(
-            rootSchema,
-            formValue
-          );
+        async validateFormValueAsync(signal, formValue) {
+          const result = defaultValidator.validateFormValue(formValue);
           if (result.errors) {
             return result;
           }
@@ -5195,11 +5202,8 @@ export { createFormValidator as validator } from '@sjsf/ata-validator';",
       const defaultValidator = defaults.validator<string>(options);
       return {
         ...defaultValidator,
-        async validateFormValueAsync(signal, rootSchema, formValue) {
-          const result = defaultValidator.validateFormValue(
-            rootSchema,
-            formValue
-          );
+        async validateFormValueAsync(signal, formValue) {
+          const result = defaultValidator.validateFormValue(formValue);
           if (result.errors) {
             return result;
           }
@@ -6090,11 +6094,8 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
       const defaultValidator = defaults.validator<string>(options);
       return {
         ...defaultValidator,
-        async validateFormValueAsync(signal, rootSchema, formValue) {
-          const result = defaultValidator.validateFormValue(
-            rootSchema,
-            formValue
-          );
+        async validateFormValueAsync(signal, formValue) {
+          const result = defaultValidator.validateFormValue(formValue);
           if (result.errors) {
             return result;
           }
@@ -6983,11 +6984,8 @@ export { createFormValidator as validator } from '@sjsf/form/validators/noop';",
       const defaultValidator = defaults.validator<string>(options);
       return {
         ...defaultValidator,
-        async validateFormValueAsync(signal, rootSchema, formValue) {
-          const result = defaultValidator.validateFormValue(
-            rootSchema,
-            formValue
-          );
+        async validateFormValueAsync(signal, formValue) {
+          const result = defaultValidator.validateFormValue(formValue);
           if (result.errors) {
             return result;
           }
@@ -7878,11 +7876,8 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
       const defaultValidator = defaults.validator<string>(options);
       return {
         ...defaultValidator,
-        async validateFormValueAsync(signal, rootSchema, formValue) {
-          const result = defaultValidator.validateFormValue(
-            rootSchema,
-            formValue
-          );
+        async validateFormValueAsync(signal, formValue) {
+          const result = defaultValidator.validateFormValue(formValue);
           if (result.errors) {
             return result;
           }
@@ -8777,8 +8772,8 @@ export const onSubmitError = createFocusOnFirstError();",
 
 			return {
 				...defaultValidator,
-				async validateFormValueAsync(signal, rootSchema, formValue) {
-					const result = defaultValidator.validateFormValue(rootSchema, formValue);
+				async validateFormValueAsync(signal, formValue) {
+					const result = defaultValidator.validateFormValue(formValue);
 
 					if (result.errors) {
 						return result;
@@ -9650,8 +9645,8 @@ export const onSubmitError = createFocusOnFirstError();",
 
 			return {
 				...defaultValidator,
-				async validateFormValueAsync(signal, rootSchema, formValue) {
-					const result = defaultValidator.validateFormValue(rootSchema, formValue);
+				async validateFormValueAsync(signal, formValue) {
+					const result = defaultValidator.validateFormValue(formValue);
 
 					if (result.errors) {
 						return result;
@@ -10522,8 +10517,8 @@ export const onSubmitError = createFocusOnFirstError();",
 
 			return {
 				...defaultValidator,
-				async validateFormValueAsync(signal, rootSchema, formValue) {
-					const result = defaultValidator.validateFormValue(rootSchema, formValue);
+				async validateFormValueAsync(signal, formValue) {
+					const result = defaultValidator.validateFormValue(formValue);
 
 					if (result.errors) {
 						return result;
@@ -11422,11 +11417,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
       const defaultValidator = defaults.validator<string>(options);
       return {
         ...defaultValidator,
-        async validateFormValueAsync(signal, rootSchema, formValue) {
-          const result = defaultValidator.validateFormValue(
-            rootSchema,
-            formValue
-          );
+        async validateFormValueAsync(signal, formValue) {
+          const result = defaultValidator.validateFormValue(formValue);
           if (result.errors) {
             return result;
           }
@@ -12336,11 +12328,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
       const defaultValidator = defaults.validator<string>(options);
       return {
         ...defaultValidator,
-        async validateFormValueAsync(signal, rootSchema, formValue) {
-          const result = defaultValidator.validateFormValue(
-            rootSchema,
-            formValue
-          );
+        async validateFormValueAsync(signal, formValue) {
+          const result = defaultValidator.validateFormValue(formValue);
           if (result.errors) {
             return result;
           }
@@ -13254,11 +13243,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
       const defaultValidator = defaults.validator<string>(options);
       return {
         ...defaultValidator,
-        async validateFormValueAsync(signal, rootSchema, formValue) {
-          const result = defaultValidator.validateFormValue(
-            rootSchema,
-            formValue
-          );
+        async validateFormValueAsync(signal, formValue) {
+          const result = defaultValidator.validateFormValue(formValue);
           if (result.errors) {
             return result;
           }
@@ -14188,11 +14174,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
       const defaultValidator = defaults.validator<string>(options);
       return {
         ...defaultValidator,
-        async validateFormValueAsync(signal, rootSchema, formValue) {
-          const result = defaultValidator.validateFormValue(
-            rootSchema,
-            formValue
-          );
+        async validateFormValueAsync(signal, formValue) {
+          const result = defaultValidator.validateFormValue(formValue);
           if (result.errors) {
             return result;
           }
@@ -15190,11 +15173,8 @@ export function setShadcnThemeContext() {
       const defaultValidator = defaults.validator<string>(options);
       return {
         ...defaultValidator,
-        async validateFormValueAsync(signal, rootSchema, formValue) {
-          const result = defaultValidator.validateFormValue(
-            rootSchema,
-            formValue
-          );
+        async validateFormValueAsync(signal, formValue) {
+          const result = defaultValidator.validateFormValue(formValue);
           if (result.errors) {
             return result;
           }
@@ -16297,11 +16277,8 @@ export function setShadcnThemeContext() {
       const defaultValidator = defaults.validator<string>(options);
       return {
         ...defaultValidator,
-        async validateFormValueAsync(signal, rootSchema, formValue) {
-          const result = defaultValidator.validateFormValue(
-            rootSchema,
-            formValue
-          );
+        async validateFormValueAsync(signal, formValue) {
+          const result = defaultValidator.validateFormValue(formValue);
           if (result.errors) {
             return result;
           }
@@ -17337,11 +17314,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
       const defaultValidator = defaults.validator<string>(options);
       return {
         ...defaultValidator,
-        async validateFormValueAsync(signal, rootSchema, formValue) {
-          const result = defaultValidator.validateFormValue(
-            rootSchema,
-            formValue
-          );
+        async validateFormValueAsync(signal, formValue) {
+          const result = defaultValidator.validateFormValue(formValue);
           if (result.errors) {
             return result;
           }
@@ -18260,11 +18234,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
       const defaultValidator = defaults.validator<string>(options);
       return {
         ...defaultValidator,
-        async validateFormValueAsync(signal, rootSchema, formValue) {
-          const result = defaultValidator.validateFormValue(
-            rootSchema,
-            formValue
-          );
+        async validateFormValueAsync(signal, formValue) {
+          const result = defaultValidator.validateFormValue(formValue);
           if (result.errors) {
             return result;
           }
@@ -19178,11 +19149,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
       const defaultValidator = defaults.validator<string>(options);
       return {
         ...defaultValidator,
-        async validateFormValueAsync(signal, rootSchema, formValue) {
-          const result = defaultValidator.validateFormValue(
-            rootSchema,
-            formValue
-          );
+        async validateFormValueAsync(signal, formValue) {
+          const result = defaultValidator.validateFormValue(formValue);
           if (result.errors) {
             return result;
           }
@@ -27951,19 +27919,11 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     // Keep this in mind on the client side and use the original schema for server-side validation.
     schema: convert(schema),
     // Example using \`Ajv2020\`:
-    // validator: <T,>(options: ValidatorFactoryOptions) => {
-    //   const validator = defaults.validator<T>({
+    // validator: <T,>(options: ValidatorFactoryOptions) =>
+    //   defaults.validator<T>({
     //     ...options,
     //     Ajv: Ajv2020,
-    //   });
-    //   // TODO: Pass the original schema parts to the \`isValid\` method.
-    //   return {
-    //     ...validator,
-    //     validateFormValue(_, formValue) {
-    //       return validator.validateFormValue(schema, formValue);
-    //     },
-    //   };
-    // },
+    //   }),
     onSubmit: console.log,
   });
 </script>
@@ -28110,19 +28070,11 @@ export { createFormValidator as validator } from '@sjsf/ata-validator';",
     // Keep this in mind on the client side and use the original schema for server-side validation.
     schema: convert(schema),
     // Example using \`Ajv2020\`:
-    // validator: <T,>(options: ValidatorFactoryOptions) => {
-    //   const validator = defaults.validator<T>({
+    // validator: <T,>(options: ValidatorFactoryOptions) =>
+    //   defaults.validator<T>({
     //     ...options,
     //     Ajv: Ajv2020,
-    //   });
-    //   // TODO: Pass the original schema parts to the \`isValid\` method.
-    //   return {
-    //     ...validator,
-    //     validateFormValue(_, formValue) {
-    //       return validator.validateFormValue(schema, formValue);
-    //     },
-    //   };
-    // },
+    //   }),
     onSubmit: console.log,
   });
 </script>
@@ -28269,19 +28221,11 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
     // Keep this in mind on the client side and use the original schema for server-side validation.
     schema: convert(schema),
     // Example using \`Ajv2020\`:
-    // validator: <T,>(options: ValidatorFactoryOptions) => {
-    //   const validator = defaults.validator<T>({
+    // validator: <T,>(options: ValidatorFactoryOptions) =>
+    //   defaults.validator<T>({
     //     ...options,
     //     Ajv: Ajv2020,
-    //   });
-    //   // TODO: Pass the original schema parts to the \`isValid\` method.
-    //   return {
-    //     ...validator,
-    //     validateFormValue(_, formValue) {
-    //       return validator.validateFormValue(schema, formValue);
-    //     },
-    //   };
-    // },
+    //   }),
     onSubmit: console.log,
   });
 </script>
@@ -28426,19 +28370,11 @@ export { createFormValidator as validator } from '@sjsf/form/validators/noop';",
     // Keep this in mind on the client side and use the original schema for server-side validation.
     schema: convert(schema),
     // Example using \`Ajv2020\`:
-    // validator: <T,>(options: ValidatorFactoryOptions) => {
-    //   const validator = defaults.validator<T>({
+    // validator: <T,>(options: ValidatorFactoryOptions) =>
+    //   defaults.validator<T>({
     //     ...options,
     //     Ajv: Ajv2020,
-    //   });
-    //   // TODO: Pass the original schema parts to the \`isValid\` method.
-    //   return {
-    //     ...validator,
-    //     validateFormValue(_, formValue) {
-    //       return validator.validateFormValue(schema, formValue);
-    //     },
-    //   };
-    // },
+    //   }),
     onSubmit: console.log,
   });
 </script>
@@ -28585,19 +28521,11 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
     // Keep this in mind on the client side and use the original schema for server-side validation.
     schema: convert(schema),
     // Example using \`Ajv2020\`:
-    // validator: <T,>(options: ValidatorFactoryOptions) => {
-    //   const validator = defaults.validator<T>({
+    // validator: <T,>(options: ValidatorFactoryOptions) =>
+    //   defaults.validator<T>({
     //     ...options,
     //     Ajv: Ajv2020,
-    //   });
-    //   // TODO: Pass the original schema parts to the \`isValid\` method.
-    //   return {
-    //     ...validator,
-    //     validateFormValue(_, formValue) {
-    //       return validator.validateFormValue(schema, formValue);
-    //     },
-    //   };
-    // },
+    //   }),
     onSubmit: console.log,
   });
 </script>
@@ -28763,19 +28691,11 @@ export const onSubmitError = createFocusOnFirstError();",
 		// WARN: Some validation functionality is lost during schema conversion.
 		// Keep this in mind on the client side and use the original schema for server-side validation.
 		// Example using \`Ajv2020\`:
-		// validator: <T,>(options: ValidatorFactoryOptions) => {
-		//   const validator = defaults.validator<T>({
+		// validator: <T,>(options: ValidatorFactoryOptions) =>
+		//   defaults.validator<T>({
 		//     ...options,
 		//     Ajv: Ajv2020,
-		//   });
-		//   // TODO: Pass the original schema parts to the \`isValid\` method.
-		//   return {
-		//     ...validator,
-		//     validateFormValue(_, formValue) {
-		//       return validator.validateFormValue(schema, formValue);
-		//     },
-		//   };
-		// },
+		//   }),
 		onSubmit: console.log
 	});
 </script>
@@ -28913,19 +28833,11 @@ export const onSubmitError = createFocusOnFirstError();",
 		// WARN: Some validation functionality is lost during schema conversion.
 		// Keep this in mind on the client side and use the original schema for server-side validation.
 		// Example using \`Ajv2020\`:
-		// validator: <T,>(options: ValidatorFactoryOptions) => {
-		//   const validator = defaults.validator<T>({
+		// validator: <T,>(options: ValidatorFactoryOptions) =>
+		//   defaults.validator<T>({
 		//     ...options,
 		//     Ajv: Ajv2020,
-		//   });
-		//   // TODO: Pass the original schema parts to the \`isValid\` method.
-		//   return {
-		//     ...validator,
-		//     validateFormValue(_, formValue) {
-		//       return validator.validateFormValue(schema, formValue);
-		//     },
-		//   };
-		// },
+		//   }),
 		onSubmit: console.log
 	});
 </script>
@@ -29062,19 +28974,11 @@ export const onSubmitError = createFocusOnFirstError();",
 		// WARN: Some validation functionality is lost during schema conversion.
 		// Keep this in mind on the client side and use the original schema for server-side validation.
 		// Example using \`Ajv2020\`:
-		// validator: <T,>(options: ValidatorFactoryOptions) => {
-		//   const validator = defaults.validator<T>({
+		// validator: <T,>(options: ValidatorFactoryOptions) =>
+		//   defaults.validator<T>({
 		//     ...options,
 		//     Ajv: Ajv2020,
-		//   });
-		//   // TODO: Pass the original schema parts to the \`isValid\` method.
-		//   return {
-		//     ...validator,
-		//     validateFormValue(_, formValue) {
-		//       return validator.validateFormValue(schema, formValue);
-		//     },
-		//   };
-		// },
+		//   }),
 		onSubmit: console.log
 	});
 </script>
@@ -29231,19 +29135,11 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     // Keep this in mind on the client side and use the original schema for server-side validation.
     schema: convert(schema),
     // Example using \`Ajv2020\`:
-    // validator: <T,>(options: ValidatorFactoryOptions) => {
-    //   const validator = defaults.validator<T>({
+    // validator: <T,>(options: ValidatorFactoryOptions) =>
+    //   defaults.validator<T>({
     //     ...options,
     //     Ajv: Ajv2020,
-    //   });
-    //   // TODO: Pass the original schema parts to the \`isValid\` method.
-    //   return {
-    //     ...validator,
-    //     validateFormValue(_, formValue) {
-    //       return validator.validateFormValue(schema, formValue);
-    //     },
-    //   };
-    // },
+    //   }),
     onSubmit: console.log,
   });
 </script>
@@ -29409,19 +29305,11 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     // Keep this in mind on the client side and use the original schema for server-side validation.
     schema: convert(schema),
     // Example using \`Ajv2020\`:
-    // validator: <T,>(options: ValidatorFactoryOptions) => {
-    //   const validator = defaults.validator<T>({
+    // validator: <T,>(options: ValidatorFactoryOptions) =>
+    //   defaults.validator<T>({
     //     ...options,
     //     Ajv: Ajv2020,
-    //   });
-    //   // TODO: Pass the original schema parts to the \`isValid\` method.
-    //   return {
-    //     ...validator,
-    //     validateFormValue(_, formValue) {
-    //       return validator.validateFormValue(schema, formValue);
-    //     },
-    //   };
-    // },
+    //   }),
     onSubmit: console.log,
   });
 </script>
@@ -29591,19 +29479,11 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     // Keep this in mind on the client side and use the original schema for server-side validation.
     schema: convert(schema),
     // Example using \`Ajv2020\`:
-    // validator: <T,>(options: ValidatorFactoryOptions) => {
-    //   const validator = defaults.validator<T>({
+    // validator: <T,>(options: ValidatorFactoryOptions) =>
+    //   defaults.validator<T>({
     //     ...options,
     //     Ajv: Ajv2020,
-    //   });
-    //   // TODO: Pass the original schema parts to the \`isValid\` method.
-    //   return {
-    //     ...validator,
-    //     validateFormValue(_, formValue) {
-    //       return validator.validateFormValue(schema, formValue);
-    //     },
-    //   };
-    // },
+    //   }),
     onSubmit: console.log,
   });
 </script>
@@ -29789,19 +29669,11 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     // Keep this in mind on the client side and use the original schema for server-side validation.
     schema: convert(schema),
     // Example using \`Ajv2020\`:
-    // validator: <T,>(options: ValidatorFactoryOptions) => {
-    //   const validator = defaults.validator<T>({
+    // validator: <T,>(options: ValidatorFactoryOptions) =>
+    //   defaults.validator<T>({
     //     ...options,
     //     Ajv: Ajv2020,
-    //   });
-    //   // TODO: Pass the original schema parts to the \`isValid\` method.
-    //   return {
-    //     ...validator,
-    //     validateFormValue(_, formValue) {
-    //       return validator.validateFormValue(schema, formValue);
-    //     },
-    //   };
-    // },
+    //   }),
     onSubmit: console.log,
   });
 </script>
@@ -30055,19 +29927,11 @@ export function setShadcnThemeContext() {
     // Keep this in mind on the client side and use the original schema for server-side validation.
     schema: convert(schema),
     // Example using \`Ajv2020\`:
-    // validator: <T,>(options: ValidatorFactoryOptions) => {
-    //   const validator = defaults.validator<T>({
+    // validator: <T,>(options: ValidatorFactoryOptions) =>
+    //   defaults.validator<T>({
     //     ...options,
     //     Ajv: Ajv2020,
-    //   });
-    //   // TODO: Pass the original schema parts to the \`isValid\` method.
-    //   return {
-    //     ...validator,
-    //     validateFormValue(_, formValue) {
-    //       return validator.validateFormValue(schema, formValue);
-    //     },
-    //   };
-    // },
+    //   }),
     onSubmit: console.log,
   });
 </script>
@@ -30426,19 +30290,11 @@ export function setShadcnThemeContext() {
     // Keep this in mind on the client side and use the original schema for server-side validation.
     schema: convert(schema),
     // Example using \`Ajv2020\`:
-    // validator: <T,>(options: ValidatorFactoryOptions) => {
-    //   const validator = defaults.validator<T>({
+    // validator: <T,>(options: ValidatorFactoryOptions) =>
+    //   defaults.validator<T>({
     //     ...options,
     //     Ajv: Ajv2020,
-    //   });
-    //   // TODO: Pass the original schema parts to the \`isValid\` method.
-    //   return {
-    //     ...validator,
-    //     validateFormValue(_, formValue) {
-    //       return validator.validateFormValue(schema, formValue);
-    //     },
-    //   };
-    // },
+    //   }),
     onSubmit: console.log,
   });
 </script>
@@ -30730,19 +30586,11 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     // Keep this in mind on the client side and use the original schema for server-side validation.
     schema: convert(schema),
     // Example using \`Ajv2020\`:
-    // validator: <T,>(options: ValidatorFactoryOptions) => {
-    //   const validator = defaults.validator<T>({
+    // validator: <T,>(options: ValidatorFactoryOptions) =>
+    //   defaults.validator<T>({
     //     ...options,
     //     Ajv: Ajv2020,
-    //   });
-    //   // TODO: Pass the original schema parts to the \`isValid\` method.
-    //   return {
-    //     ...validator,
-    //     validateFormValue(_, formValue) {
-    //       return validator.validateFormValue(schema, formValue);
-    //     },
-    //   };
-    // },
+    //   }),
     onSubmit: console.log,
   });
 </script>
@@ -30917,19 +30765,11 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     // Keep this in mind on the client side and use the original schema for server-side validation.
     schema: convert(schema),
     // Example using \`Ajv2020\`:
-    // validator: <T,>(options: ValidatorFactoryOptions) => {
-    //   const validator = defaults.validator<T>({
+    // validator: <T,>(options: ValidatorFactoryOptions) =>
+    //   defaults.validator<T>({
     //     ...options,
     //     Ajv: Ajv2020,
-    //   });
-    //   // TODO: Pass the original schema parts to the \`isValid\` method.
-    //   return {
-    //     ...validator,
-    //     validateFormValue(_, formValue) {
-    //       return validator.validateFormValue(schema, formValue);
-    //     },
-    //   };
-    // },
+    //   }),
     onSubmit: console.log,
   });
 </script>
@@ -31099,19 +30939,11 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     // Keep this in mind on the client side and use the original schema for server-side validation.
     schema: convert(schema),
     // Example using \`Ajv2020\`:
-    // validator: <T,>(options: ValidatorFactoryOptions) => {
-    //   const validator = defaults.validator<T>({
+    // validator: <T,>(options: ValidatorFactoryOptions) =>
+    //   defaults.validator<T>({
     //     ...options,
     //     Ajv: Ajv2020,
-    //   });
-    //   // TODO: Pass the original schema parts to the \`isValid\` method.
-    //   return {
-    //     ...validator,
-    //     validateFormValue(_, formValue) {
-    //       return validator.validateFormValue(schema, formValue);
-    //     },
-    //   };
-    // },
+    //   }),
     onSubmit: console.log,
   });
 </script>
@@ -132470,8 +132302,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     SimpleForm,
     type Schema,
     type FormValue,
-    type Config,
     type FormValueValidator,
+    type Config,
   } from "@sjsf/form";
   import {
     isSelect,
@@ -132484,7 +132316,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     transformSchemaDefinition,
     isSchemaObject,
   } from "@sjsf/form/lib/json-schema";
-  import { weakMemoize } from "@sjsf/form/lib/memoize";
+  import { memoize, weakMemoize } from "@sjsf/form/lib/memoize";
   import { fromFactories } from "@sjsf/form/lib/resolver";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
   import { resolver } from "@sjsf/form/resolvers/compat";
@@ -132538,17 +132370,23 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   };
 
   const validator = defaults.validator<FormValue>({
-    validatorsCache: new HashedKeyCache({
-      getHash: weakMemoize(new WeakMap(), schemaHash),
-      store: new LRUCache({
-        maxSize: 10,
-      }),
-    }),
+    schema: originalSchema,
   });
   const merger = defaults.merger({
     validator,
     schema: originalSchema,
   });
+
+  // Retrieved schemas are freshly allocated objects, so validators for them
+  // are cached by schema hash instead of object identity.
+  const getRetrievedValidator = memoize(
+    new HashedKeyCache<Schema, string, FormValueValidator<FormValue>>({
+      getHash: weakMemoize(new WeakMap(), schemaHash),
+      store: new LRUCache({ maxSize: 10 }),
+    }),
+    (retrievedSchema: Schema) =>
+      defaults.validator<FormValue>({ schema: retrievedSchema })
+  );
 
   const VIRTUAL_PROPERTY = "__sjsf_virtual_property";
   const toOption = (def: SchemaDefinition, index: number) =>
@@ -132607,15 +132445,17 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   {resolver}
   validator={{
     ...validator,
-    validateFormValue(rootSchema, formValue) {
+    validateFormValue(formValue) {
       const retrievedSchema = retrieveSchema(
         validator,
         merger,
-        rootSchema,
-        rootSchema,
+        schema,
+        schema,
         formValue
       );
-      return validator.validateFormValue(retrievedSchema, formValue);
+      return getRetrievedValidator(retrievedSchema).validateFormValue(
+        formValue
+      );
     },
   } satisfies FormValueValidator<FormValue>}
   {merger}
@@ -132757,8 +132597,8 @@ export { createFormValidator as validator } from '@sjsf/ata-validator';",
     SimpleForm,
     type Schema,
     type FormValue,
-    type Config,
     type FormValueValidator,
+    type Config,
   } from "@sjsf/form";
   import {
     isSelect,
@@ -132771,7 +132611,7 @@ export { createFormValidator as validator } from '@sjsf/ata-validator';",
     transformSchemaDefinition,
     isSchemaObject,
   } from "@sjsf/form/lib/json-schema";
-  import { weakMemoize } from "@sjsf/form/lib/memoize";
+  import { memoize, weakMemoize } from "@sjsf/form/lib/memoize";
   import { fromFactories } from "@sjsf/form/lib/resolver";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
   import { resolver } from "@sjsf/form/resolvers/compat";
@@ -132825,17 +132665,23 @@ export { createFormValidator as validator } from '@sjsf/ata-validator';",
   };
 
   const validator = defaults.validator<FormValue>({
-    validatorsCache: new HashedKeyCache({
-      getHash: weakMemoize(new WeakMap(), schemaHash),
-      store: new LRUCache({
-        maxSize: 10,
-      }),
-    }),
+    schema: originalSchema,
   });
   const merger = defaults.merger({
     validator,
     schema: originalSchema,
   });
+
+  // Retrieved schemas are freshly allocated objects, so validators for them
+  // are cached by schema hash instead of object identity.
+  const getRetrievedValidator = memoize(
+    new HashedKeyCache<Schema, string, FormValueValidator<FormValue>>({
+      getHash: weakMemoize(new WeakMap(), schemaHash),
+      store: new LRUCache({ maxSize: 10 }),
+    }),
+    (retrievedSchema: Schema) =>
+      defaults.validator<FormValue>({ schema: retrievedSchema })
+  );
 
   const VIRTUAL_PROPERTY = "__sjsf_virtual_property";
   const toOption = (def: SchemaDefinition, index: number) =>
@@ -132894,15 +132740,17 @@ export { createFormValidator as validator } from '@sjsf/ata-validator';",
   {resolver}
   validator={{
     ...validator,
-    validateFormValue(rootSchema, formValue) {
+    validateFormValue(formValue) {
       const retrievedSchema = retrieveSchema(
         validator,
         merger,
-        rootSchema,
-        rootSchema,
+        schema,
+        schema,
         formValue
       );
-      return validator.validateFormValue(retrievedSchema, formValue);
+      return getRetrievedValidator(retrievedSchema).validateFormValue(
+        formValue
+      );
     },
   } satisfies FormValueValidator<FormValue>}
   {merger}
@@ -133044,8 +132892,8 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
     SimpleForm,
     type Schema,
     type FormValue,
-    type Config,
     type FormValueValidator,
+    type Config,
   } from "@sjsf/form";
   import {
     isSelect,
@@ -133058,7 +132906,7 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
     transformSchemaDefinition,
     isSchemaObject,
   } from "@sjsf/form/lib/json-schema";
-  import { weakMemoize } from "@sjsf/form/lib/memoize";
+  import { memoize, weakMemoize } from "@sjsf/form/lib/memoize";
   import { fromFactories } from "@sjsf/form/lib/resolver";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
   import { resolver } from "@sjsf/form/resolvers/compat";
@@ -133112,17 +132960,23 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
   };
 
   const validator = defaults.validator<FormValue>({
-    validatorsCache: new HashedKeyCache({
-      getHash: weakMemoize(new WeakMap(), schemaHash),
-      store: new LRUCache({
-        maxSize: 10,
-      }),
-    }),
+    schema: originalSchema,
   });
   const merger = defaults.merger({
     validator,
     schema: originalSchema,
   });
+
+  // Retrieved schemas are freshly allocated objects, so validators for them
+  // are cached by schema hash instead of object identity.
+  const getRetrievedValidator = memoize(
+    new HashedKeyCache<Schema, string, FormValueValidator<FormValue>>({
+      getHash: weakMemoize(new WeakMap(), schemaHash),
+      store: new LRUCache({ maxSize: 10 }),
+    }),
+    (retrievedSchema: Schema) =>
+      defaults.validator<FormValue>({ schema: retrievedSchema })
+  );
 
   const VIRTUAL_PROPERTY = "__sjsf_virtual_property";
   const toOption = (def: SchemaDefinition, index: number) =>
@@ -133181,15 +133035,17 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
   {resolver}
   validator={{
     ...validator,
-    validateFormValue(rootSchema, formValue) {
+    validateFormValue(formValue) {
       const retrievedSchema = retrieveSchema(
         validator,
         merger,
-        rootSchema,
-        rootSchema,
+        schema,
+        schema,
         formValue
       );
-      return validator.validateFormValue(retrievedSchema, formValue);
+      return getRetrievedValidator(retrievedSchema).validateFormValue(
+        formValue
+      );
     },
   } satisfies FormValueValidator<FormValue>}
   {merger}
@@ -133329,8 +133185,8 @@ export { createFormValidator as validator } from '@sjsf/form/validators/noop';",
     SimpleForm,
     type Schema,
     type FormValue,
-    type Config,
     type FormValueValidator,
+    type Config,
   } from "@sjsf/form";
   import {
     isSelect,
@@ -133343,7 +133199,7 @@ export { createFormValidator as validator } from '@sjsf/form/validators/noop';",
     transformSchemaDefinition,
     isSchemaObject,
   } from "@sjsf/form/lib/json-schema";
-  import { weakMemoize } from "@sjsf/form/lib/memoize";
+  import { memoize, weakMemoize } from "@sjsf/form/lib/memoize";
   import { fromFactories } from "@sjsf/form/lib/resolver";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
   import { resolver } from "@sjsf/form/resolvers/compat";
@@ -133397,17 +133253,23 @@ export { createFormValidator as validator } from '@sjsf/form/validators/noop';",
   };
 
   const validator = defaults.validator<FormValue>({
-    validatorsCache: new HashedKeyCache({
-      getHash: weakMemoize(new WeakMap(), schemaHash),
-      store: new LRUCache({
-        maxSize: 10,
-      }),
-    }),
+    schema: originalSchema,
   });
   const merger = defaults.merger({
     validator,
     schema: originalSchema,
   });
+
+  // Retrieved schemas are freshly allocated objects, so validators for them
+  // are cached by schema hash instead of object identity.
+  const getRetrievedValidator = memoize(
+    new HashedKeyCache<Schema, string, FormValueValidator<FormValue>>({
+      getHash: weakMemoize(new WeakMap(), schemaHash),
+      store: new LRUCache({ maxSize: 10 }),
+    }),
+    (retrievedSchema: Schema) =>
+      defaults.validator<FormValue>({ schema: retrievedSchema })
+  );
 
   const VIRTUAL_PROPERTY = "__sjsf_virtual_property";
   const toOption = (def: SchemaDefinition, index: number) =>
@@ -133466,15 +133328,17 @@ export { createFormValidator as validator } from '@sjsf/form/validators/noop';",
   {resolver}
   validator={{
     ...validator,
-    validateFormValue(rootSchema, formValue) {
+    validateFormValue(formValue) {
       const retrievedSchema = retrieveSchema(
         validator,
         merger,
-        rootSchema,
-        rootSchema,
+        schema,
+        schema,
         formValue
       );
-      return validator.validateFormValue(retrievedSchema, formValue);
+      return getRetrievedValidator(retrievedSchema).validateFormValue(
+        formValue
+      );
     },
   } satisfies FormValueValidator<FormValue>}
   {merger}
@@ -133616,8 +133480,8 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
     SimpleForm,
     type Schema,
     type FormValue,
-    type Config,
     type FormValueValidator,
+    type Config,
   } from "@sjsf/form";
   import {
     isSelect,
@@ -133630,7 +133494,7 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
     transformSchemaDefinition,
     isSchemaObject,
   } from "@sjsf/form/lib/json-schema";
-  import { weakMemoize } from "@sjsf/form/lib/memoize";
+  import { memoize, weakMemoize } from "@sjsf/form/lib/memoize";
   import { fromFactories } from "@sjsf/form/lib/resolver";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
   import { resolver } from "@sjsf/form/resolvers/compat";
@@ -133684,17 +133548,23 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
   };
 
   const validator = defaults.validator<FormValue>({
-    validatorsCache: new HashedKeyCache({
-      getHash: weakMemoize(new WeakMap(), schemaHash),
-      store: new LRUCache({
-        maxSize: 10,
-      }),
-    }),
+    schema: originalSchema,
   });
   const merger = defaults.merger({
     validator,
     schema: originalSchema,
   });
+
+  // Retrieved schemas are freshly allocated objects, so validators for them
+  // are cached by schema hash instead of object identity.
+  const getRetrievedValidator = memoize(
+    new HashedKeyCache<Schema, string, FormValueValidator<FormValue>>({
+      getHash: weakMemoize(new WeakMap(), schemaHash),
+      store: new LRUCache({ maxSize: 10 }),
+    }),
+    (retrievedSchema: Schema) =>
+      defaults.validator<FormValue>({ schema: retrievedSchema })
+  );
 
   const VIRTUAL_PROPERTY = "__sjsf_virtual_property";
   const toOption = (def: SchemaDefinition, index: number) =>
@@ -133753,15 +133623,17 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
   {resolver}
   validator={{
     ...validator,
-    validateFormValue(rootSchema, formValue) {
+    validateFormValue(formValue) {
       const retrievedSchema = retrieveSchema(
         validator,
         merger,
-        rootSchema,
-        rootSchema,
+        schema,
+        schema,
         formValue
       );
-      return validator.validateFormValue(retrievedSchema, formValue);
+      return getRetrievedValidator(retrievedSchema).validateFormValue(
+        formValue
+      );
     },
   } satisfies FormValueValidator<FormValue>}
   {merger}
@@ -133902,8 +133774,8 @@ export const onSubmitError = createFocusOnFirstError();",
     SimpleForm,
     type Schema,
     type FormValue,
-    type Config,
     type FormValueValidator,
+    type Config,
   } from "@sjsf/form";
   import {
     isSelect,
@@ -133916,7 +133788,7 @@ export const onSubmitError = createFocusOnFirstError();",
     transformSchemaDefinition,
     isSchemaObject,
   } from "@sjsf/form/lib/json-schema";
-  import { weakMemoize } from "@sjsf/form/lib/memoize";
+  import { memoize, weakMemoize } from "@sjsf/form/lib/memoize";
   import { fromFactories } from "@sjsf/form/lib/resolver";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
   import { resolver } from "@sjsf/form/resolvers/compat";
@@ -133970,17 +133842,23 @@ export const onSubmitError = createFocusOnFirstError();",
   };
 
   const validator = defaults.validator<FormValue>({
-    validatorsCache: new HashedKeyCache({
-      getHash: weakMemoize(new WeakMap(), schemaHash),
-      store: new LRUCache({
-        maxSize: 10,
-      }),
-    }),
+    schema: originalSchema,
   });
   const merger = defaults.merger({
     validator,
     schema: originalSchema,
   });
+
+  // Retrieved schemas are freshly allocated objects, so validators for them
+  // are cached by schema hash instead of object identity.
+  const getRetrievedValidator = memoize(
+    new HashedKeyCache<Schema, string, FormValueValidator<FormValue>>({
+      getHash: weakMemoize(new WeakMap(), schemaHash),
+      store: new LRUCache({ maxSize: 10 }),
+    }),
+    (retrievedSchema: Schema) =>
+      defaults.validator<FormValue>({ schema: retrievedSchema })
+  );
 
   const VIRTUAL_PROPERTY = "__sjsf_virtual_property";
   const toOption = (def: SchemaDefinition, index: number) =>
@@ -134039,15 +133917,17 @@ export const onSubmitError = createFocusOnFirstError();",
   {resolver}
   validator={{
     ...validator,
-    validateFormValue(rootSchema, formValue) {
+    validateFormValue(formValue) {
       const retrievedSchema = retrieveSchema(
         validator,
         merger,
-        rootSchema,
-        rootSchema,
+        schema,
+        schema,
         formValue
       );
-      return validator.validateFormValue(retrievedSchema, formValue);
+      return getRetrievedValidator(retrievedSchema).validateFormValue(
+        formValue
+      );
     },
   } satisfies FormValueValidator<FormValue>}
   {merger}
@@ -134188,8 +134068,8 @@ export const onSubmitError = createFocusOnFirstError();",
     SimpleForm,
     type Schema,
     type FormValue,
-    type Config,
     type FormValueValidator,
+    type Config,
   } from "@sjsf/form";
   import {
     isSelect,
@@ -134202,7 +134082,7 @@ export const onSubmitError = createFocusOnFirstError();",
     transformSchemaDefinition,
     isSchemaObject,
   } from "@sjsf/form/lib/json-schema";
-  import { weakMemoize } from "@sjsf/form/lib/memoize";
+  import { memoize, weakMemoize } from "@sjsf/form/lib/memoize";
   import { fromFactories } from "@sjsf/form/lib/resolver";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
   import { resolver } from "@sjsf/form/resolvers/compat";
@@ -134256,17 +134136,23 @@ export const onSubmitError = createFocusOnFirstError();",
   };
 
   const validator = defaults.validator<FormValue>({
-    validatorsCache: new HashedKeyCache({
-      getHash: weakMemoize(new WeakMap(), schemaHash),
-      store: new LRUCache({
-        maxSize: 10,
-      }),
-    }),
+    schema: originalSchema,
   });
   const merger = defaults.merger({
     validator,
     schema: originalSchema,
   });
+
+  // Retrieved schemas are freshly allocated objects, so validators for them
+  // are cached by schema hash instead of object identity.
+  const getRetrievedValidator = memoize(
+    new HashedKeyCache<Schema, string, FormValueValidator<FormValue>>({
+      getHash: weakMemoize(new WeakMap(), schemaHash),
+      store: new LRUCache({ maxSize: 10 }),
+    }),
+    (retrievedSchema: Schema) =>
+      defaults.validator<FormValue>({ schema: retrievedSchema })
+  );
 
   const VIRTUAL_PROPERTY = "__sjsf_virtual_property";
   const toOption = (def: SchemaDefinition, index: number) =>
@@ -134325,15 +134211,17 @@ export const onSubmitError = createFocusOnFirstError();",
   {resolver}
   validator={{
     ...validator,
-    validateFormValue(rootSchema, formValue) {
+    validateFormValue(formValue) {
       const retrievedSchema = retrieveSchema(
         validator,
         merger,
-        rootSchema,
-        rootSchema,
+        schema,
+        schema,
         formValue
       );
-      return validator.validateFormValue(retrievedSchema, formValue);
+      return getRetrievedValidator(retrievedSchema).validateFormValue(
+        formValue
+      );
     },
   } satisfies FormValueValidator<FormValue>}
   {merger}
@@ -134473,8 +134361,8 @@ export const onSubmitError = createFocusOnFirstError();",
     SimpleForm,
     type Schema,
     type FormValue,
-    type Config,
     type FormValueValidator,
+    type Config,
   } from "@sjsf/form";
   import {
     isSelect,
@@ -134487,7 +134375,7 @@ export const onSubmitError = createFocusOnFirstError();",
     transformSchemaDefinition,
     isSchemaObject,
   } from "@sjsf/form/lib/json-schema";
-  import { weakMemoize } from "@sjsf/form/lib/memoize";
+  import { memoize, weakMemoize } from "@sjsf/form/lib/memoize";
   import { fromFactories } from "@sjsf/form/lib/resolver";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
   import { resolver } from "@sjsf/form/resolvers/compat";
@@ -134541,17 +134429,23 @@ export const onSubmitError = createFocusOnFirstError();",
   };
 
   const validator = defaults.validator<FormValue>({
-    validatorsCache: new HashedKeyCache({
-      getHash: weakMemoize(new WeakMap(), schemaHash),
-      store: new LRUCache({
-        maxSize: 10,
-      }),
-    }),
+    schema: originalSchema,
   });
   const merger = defaults.merger({
     validator,
     schema: originalSchema,
   });
+
+  // Retrieved schemas are freshly allocated objects, so validators for them
+  // are cached by schema hash instead of object identity.
+  const getRetrievedValidator = memoize(
+    new HashedKeyCache<Schema, string, FormValueValidator<FormValue>>({
+      getHash: weakMemoize(new WeakMap(), schemaHash),
+      store: new LRUCache({ maxSize: 10 }),
+    }),
+    (retrievedSchema: Schema) =>
+      defaults.validator<FormValue>({ schema: retrievedSchema })
+  );
 
   const VIRTUAL_PROPERTY = "__sjsf_virtual_property";
   const toOption = (def: SchemaDefinition, index: number) =>
@@ -134610,15 +134504,17 @@ export const onSubmitError = createFocusOnFirstError();",
   {resolver}
   validator={{
     ...validator,
-    validateFormValue(rootSchema, formValue) {
+    validateFormValue(formValue) {
       const retrievedSchema = retrieveSchema(
         validator,
         merger,
-        rootSchema,
-        rootSchema,
+        schema,
+        schema,
         formValue
       );
-      return validator.validateFormValue(retrievedSchema, formValue);
+      return getRetrievedValidator(retrievedSchema).validateFormValue(
+        formValue
+      );
     },
   } satisfies FormValueValidator<FormValue>}
   {merger}
@@ -134771,8 +134667,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     SimpleForm,
     type Schema,
     type FormValue,
-    type Config,
     type FormValueValidator,
+    type Config,
   } from "@sjsf/form";
   import {
     isSelect,
@@ -134785,7 +134681,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     transformSchemaDefinition,
     isSchemaObject,
   } from "@sjsf/form/lib/json-schema";
-  import { weakMemoize } from "@sjsf/form/lib/memoize";
+  import { memoize, weakMemoize } from "@sjsf/form/lib/memoize";
   import { fromFactories } from "@sjsf/form/lib/resolver";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
   import { resolver } from "@sjsf/form/resolvers/compat";
@@ -134839,17 +134735,23 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   };
 
   const validator = defaults.validator<FormValue>({
-    validatorsCache: new HashedKeyCache({
-      getHash: weakMemoize(new WeakMap(), schemaHash),
-      store: new LRUCache({
-        maxSize: 10,
-      }),
-    }),
+    schema: originalSchema,
   });
   const merger = defaults.merger({
     validator,
     schema: originalSchema,
   });
+
+  // Retrieved schemas are freshly allocated objects, so validators for them
+  // are cached by schema hash instead of object identity.
+  const getRetrievedValidator = memoize(
+    new HashedKeyCache<Schema, string, FormValueValidator<FormValue>>({
+      getHash: weakMemoize(new WeakMap(), schemaHash),
+      store: new LRUCache({ maxSize: 10 }),
+    }),
+    (retrievedSchema: Schema) =>
+      defaults.validator<FormValue>({ schema: retrievedSchema })
+  );
 
   const VIRTUAL_PROPERTY = "__sjsf_virtual_property";
   const toOption = (def: SchemaDefinition, index: number) =>
@@ -134908,15 +134810,17 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   {resolver}
   validator={{
     ...validator,
-    validateFormValue(rootSchema, formValue) {
+    validateFormValue(formValue) {
       const retrievedSchema = retrieveSchema(
         validator,
         merger,
-        rootSchema,
-        rootSchema,
+        schema,
+        schema,
         formValue
       );
-      return validator.validateFormValue(retrievedSchema, formValue);
+      return getRetrievedValidator(retrievedSchema).validateFormValue(
+        formValue
+      );
     },
   } satisfies FormValueValidator<FormValue>}
   {merger}
@@ -135077,8 +134981,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     SimpleForm,
     type Schema,
     type FormValue,
-    type Config,
     type FormValueValidator,
+    type Config,
   } from "@sjsf/form";
   import {
     isSelect,
@@ -135091,7 +134995,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     transformSchemaDefinition,
     isSchemaObject,
   } from "@sjsf/form/lib/json-schema";
-  import { weakMemoize } from "@sjsf/form/lib/memoize";
+  import { memoize, weakMemoize } from "@sjsf/form/lib/memoize";
   import { fromFactories } from "@sjsf/form/lib/resolver";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
   import { resolver } from "@sjsf/form/resolvers/compat";
@@ -135145,17 +135049,23 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   };
 
   const validator = defaults.validator<FormValue>({
-    validatorsCache: new HashedKeyCache({
-      getHash: weakMemoize(new WeakMap(), schemaHash),
-      store: new LRUCache({
-        maxSize: 10,
-      }),
-    }),
+    schema: originalSchema,
   });
   const merger = defaults.merger({
     validator,
     schema: originalSchema,
   });
+
+  // Retrieved schemas are freshly allocated objects, so validators for them
+  // are cached by schema hash instead of object identity.
+  const getRetrievedValidator = memoize(
+    new HashedKeyCache<Schema, string, FormValueValidator<FormValue>>({
+      getHash: weakMemoize(new WeakMap(), schemaHash),
+      store: new LRUCache({ maxSize: 10 }),
+    }),
+    (retrievedSchema: Schema) =>
+      defaults.validator<FormValue>({ schema: retrievedSchema })
+  );
 
   const VIRTUAL_PROPERTY = "__sjsf_virtual_property";
   const toOption = (def: SchemaDefinition, index: number) =>
@@ -135214,15 +135124,17 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   {resolver}
   validator={{
     ...validator,
-    validateFormValue(rootSchema, formValue) {
+    validateFormValue(formValue) {
       const retrievedSchema = retrieveSchema(
         validator,
         merger,
-        rootSchema,
-        rootSchema,
+        schema,
+        schema,
         formValue
       );
-      return validator.validateFormValue(retrievedSchema, formValue);
+      return getRetrievedValidator(retrievedSchema).validateFormValue(
+        formValue
+      );
     },
   } satisfies FormValueValidator<FormValue>}
   {merger}
@@ -135387,8 +135299,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     SimpleForm,
     type Schema,
     type FormValue,
-    type Config,
     type FormValueValidator,
+    type Config,
   } from "@sjsf/form";
   import {
     isSelect,
@@ -135401,7 +135313,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     transformSchemaDefinition,
     isSchemaObject,
   } from "@sjsf/form/lib/json-schema";
-  import { weakMemoize } from "@sjsf/form/lib/memoize";
+  import { memoize, weakMemoize } from "@sjsf/form/lib/memoize";
   import { fromFactories } from "@sjsf/form/lib/resolver";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
   import { resolver } from "@sjsf/form/resolvers/compat";
@@ -135455,17 +135367,23 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   };
 
   const validator = defaults.validator<FormValue>({
-    validatorsCache: new HashedKeyCache({
-      getHash: weakMemoize(new WeakMap(), schemaHash),
-      store: new LRUCache({
-        maxSize: 10,
-      }),
-    }),
+    schema: originalSchema,
   });
   const merger = defaults.merger({
     validator,
     schema: originalSchema,
   });
+
+  // Retrieved schemas are freshly allocated objects, so validators for them
+  // are cached by schema hash instead of object identity.
+  const getRetrievedValidator = memoize(
+    new HashedKeyCache<Schema, string, FormValueValidator<FormValue>>({
+      getHash: weakMemoize(new WeakMap(), schemaHash),
+      store: new LRUCache({ maxSize: 10 }),
+    }),
+    (retrievedSchema: Schema) =>
+      defaults.validator<FormValue>({ schema: retrievedSchema })
+  );
 
   const VIRTUAL_PROPERTY = "__sjsf_virtual_property";
   const toOption = (def: SchemaDefinition, index: number) =>
@@ -135524,15 +135442,17 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   {resolver}
   validator={{
     ...validator,
-    validateFormValue(rootSchema, formValue) {
+    validateFormValue(formValue) {
       const retrievedSchema = retrieveSchema(
         validator,
         merger,
-        rootSchema,
-        rootSchema,
+        schema,
+        schema,
         formValue
       );
-      return validator.validateFormValue(retrievedSchema, formValue);
+      return getRetrievedValidator(retrievedSchema).validateFormValue(
+        formValue
+      );
     },
   } satisfies FormValueValidator<FormValue>}
   {merger}
@@ -135713,8 +135633,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     SimpleForm,
     type Schema,
     type FormValue,
-    type Config,
     type FormValueValidator,
+    type Config,
   } from "@sjsf/form";
   import {
     isSelect,
@@ -135727,7 +135647,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     transformSchemaDefinition,
     isSchemaObject,
   } from "@sjsf/form/lib/json-schema";
-  import { weakMemoize } from "@sjsf/form/lib/memoize";
+  import { memoize, weakMemoize } from "@sjsf/form/lib/memoize";
   import { fromFactories } from "@sjsf/form/lib/resolver";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
   import { resolver } from "@sjsf/form/resolvers/compat";
@@ -135781,17 +135701,23 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   };
 
   const validator = defaults.validator<FormValue>({
-    validatorsCache: new HashedKeyCache({
-      getHash: weakMemoize(new WeakMap(), schemaHash),
-      store: new LRUCache({
-        maxSize: 10,
-      }),
-    }),
+    schema: originalSchema,
   });
   const merger = defaults.merger({
     validator,
     schema: originalSchema,
   });
+
+  // Retrieved schemas are freshly allocated objects, so validators for them
+  // are cached by schema hash instead of object identity.
+  const getRetrievedValidator = memoize(
+    new HashedKeyCache<Schema, string, FormValueValidator<FormValue>>({
+      getHash: weakMemoize(new WeakMap(), schemaHash),
+      store: new LRUCache({ maxSize: 10 }),
+    }),
+    (retrievedSchema: Schema) =>
+      defaults.validator<FormValue>({ schema: retrievedSchema })
+  );
 
   const VIRTUAL_PROPERTY = "__sjsf_virtual_property";
   const toOption = (def: SchemaDefinition, index: number) =>
@@ -135850,15 +135776,17 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   {resolver}
   validator={{
     ...validator,
-    validateFormValue(rootSchema, formValue) {
+    validateFormValue(formValue) {
       const retrievedSchema = retrieveSchema(
         validator,
         merger,
-        rootSchema,
-        rootSchema,
+        schema,
+        schema,
         formValue
       );
-      return validator.validateFormValue(retrievedSchema, formValue);
+      return getRetrievedValidator(retrievedSchema).validateFormValue(
+        formValue
+      );
     },
   } satisfies FormValueValidator<FormValue>}
   {merger}
@@ -136107,8 +136035,8 @@ export function setShadcnThemeContext() {
     SimpleForm,
     type Schema,
     type FormValue,
-    type Config,
     type FormValueValidator,
+    type Config,
   } from "@sjsf/form";
   import {
     isSelect,
@@ -136121,7 +136049,7 @@ export function setShadcnThemeContext() {
     transformSchemaDefinition,
     isSchemaObject,
   } from "@sjsf/form/lib/json-schema";
-  import { weakMemoize } from "@sjsf/form/lib/memoize";
+  import { memoize, weakMemoize } from "@sjsf/form/lib/memoize";
   import { fromFactories } from "@sjsf/form/lib/resolver";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
   import { resolver } from "@sjsf/form/resolvers/compat";
@@ -136175,17 +136103,23 @@ export function setShadcnThemeContext() {
   };
 
   const validator = defaults.validator<FormValue>({
-    validatorsCache: new HashedKeyCache({
-      getHash: weakMemoize(new WeakMap(), schemaHash),
-      store: new LRUCache({
-        maxSize: 10,
-      }),
-    }),
+    schema: originalSchema,
   });
   const merger = defaults.merger({
     validator,
     schema: originalSchema,
   });
+
+  // Retrieved schemas are freshly allocated objects, so validators for them
+  // are cached by schema hash instead of object identity.
+  const getRetrievedValidator = memoize(
+    new HashedKeyCache<Schema, string, FormValueValidator<FormValue>>({
+      getHash: weakMemoize(new WeakMap(), schemaHash),
+      store: new LRUCache({ maxSize: 10 }),
+    }),
+    (retrievedSchema: Schema) =>
+      defaults.validator<FormValue>({ schema: retrievedSchema })
+  );
 
   const VIRTUAL_PROPERTY = "__sjsf_virtual_property";
   const toOption = (def: SchemaDefinition, index: number) =>
@@ -136244,15 +136178,17 @@ export function setShadcnThemeContext() {
   {resolver}
   validator={{
     ...validator,
-    validateFormValue(rootSchema, formValue) {
+    validateFormValue(formValue) {
       const retrievedSchema = retrieveSchema(
         validator,
         merger,
-        rootSchema,
-        rootSchema,
+        schema,
+        schema,
         formValue
       );
-      return validator.validateFormValue(retrievedSchema, formValue);
+      return getRetrievedValidator(retrievedSchema).validateFormValue(
+        formValue
+      );
     },
   } satisfies FormValueValidator<FormValue>}
   {merger}
@@ -136606,8 +136542,8 @@ export function setShadcnThemeContext() {
     SimpleForm,
     type Schema,
     type FormValue,
-    type Config,
     type FormValueValidator,
+    type Config,
   } from "@sjsf/form";
   import {
     isSelect,
@@ -136620,7 +136556,7 @@ export function setShadcnThemeContext() {
     transformSchemaDefinition,
     isSchemaObject,
   } from "@sjsf/form/lib/json-schema";
-  import { weakMemoize } from "@sjsf/form/lib/memoize";
+  import { memoize, weakMemoize } from "@sjsf/form/lib/memoize";
   import { fromFactories } from "@sjsf/form/lib/resolver";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
   import { resolver } from "@sjsf/form/resolvers/compat";
@@ -136674,17 +136610,23 @@ export function setShadcnThemeContext() {
   };
 
   const validator = defaults.validator<FormValue>({
-    validatorsCache: new HashedKeyCache({
-      getHash: weakMemoize(new WeakMap(), schemaHash),
-      store: new LRUCache({
-        maxSize: 10,
-      }),
-    }),
+    schema: originalSchema,
   });
   const merger = defaults.merger({
     validator,
     schema: originalSchema,
   });
+
+  // Retrieved schemas are freshly allocated objects, so validators for them
+  // are cached by schema hash instead of object identity.
+  const getRetrievedValidator = memoize(
+    new HashedKeyCache<Schema, string, FormValueValidator<FormValue>>({
+      getHash: weakMemoize(new WeakMap(), schemaHash),
+      store: new LRUCache({ maxSize: 10 }),
+    }),
+    (retrievedSchema: Schema) =>
+      defaults.validator<FormValue>({ schema: retrievedSchema })
+  );
 
   const VIRTUAL_PROPERTY = "__sjsf_virtual_property";
   const toOption = (def: SchemaDefinition, index: number) =>
@@ -136743,15 +136685,17 @@ export function setShadcnThemeContext() {
   {resolver}
   validator={{
     ...validator,
-    validateFormValue(rootSchema, formValue) {
+    validateFormValue(formValue) {
       const retrievedSchema = retrieveSchema(
         validator,
         merger,
-        rootSchema,
-        rootSchema,
+        schema,
+        schema,
         formValue
       );
-      return validator.validateFormValue(retrievedSchema, formValue);
+      return getRetrievedValidator(retrievedSchema).validateFormValue(
+        formValue
+      );
     },
   } satisfies FormValueValidator<FormValue>}
   {merger}
@@ -137038,8 +136982,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     SimpleForm,
     type Schema,
     type FormValue,
-    type Config,
     type FormValueValidator,
+    type Config,
   } from "@sjsf/form";
   import {
     isSelect,
@@ -137052,7 +136996,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     transformSchemaDefinition,
     isSchemaObject,
   } from "@sjsf/form/lib/json-schema";
-  import { weakMemoize } from "@sjsf/form/lib/memoize";
+  import { memoize, weakMemoize } from "@sjsf/form/lib/memoize";
   import { fromFactories } from "@sjsf/form/lib/resolver";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
   import { resolver } from "@sjsf/form/resolvers/compat";
@@ -137106,17 +137050,23 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   };
 
   const validator = defaults.validator<FormValue>({
-    validatorsCache: new HashedKeyCache({
-      getHash: weakMemoize(new WeakMap(), schemaHash),
-      store: new LRUCache({
-        maxSize: 10,
-      }),
-    }),
+    schema: originalSchema,
   });
   const merger = defaults.merger({
     validator,
     schema: originalSchema,
   });
+
+  // Retrieved schemas are freshly allocated objects, so validators for them
+  // are cached by schema hash instead of object identity.
+  const getRetrievedValidator = memoize(
+    new HashedKeyCache<Schema, string, FormValueValidator<FormValue>>({
+      getHash: weakMemoize(new WeakMap(), schemaHash),
+      store: new LRUCache({ maxSize: 10 }),
+    }),
+    (retrievedSchema: Schema) =>
+      defaults.validator<FormValue>({ schema: retrievedSchema })
+  );
 
   const VIRTUAL_PROPERTY = "__sjsf_virtual_property";
   const toOption = (def: SchemaDefinition, index: number) =>
@@ -137175,15 +137125,17 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   {resolver}
   validator={{
     ...validator,
-    validateFormValue(rootSchema, formValue) {
+    validateFormValue(formValue) {
       const retrievedSchema = retrieveSchema(
         validator,
         merger,
-        rootSchema,
-        rootSchema,
+        schema,
+        schema,
         formValue
       );
-      return validator.validateFormValue(retrievedSchema, formValue);
+      return getRetrievedValidator(retrievedSchema).validateFormValue(
+        formValue
+      );
     },
   } satisfies FormValueValidator<FormValue>}
   {merger}
@@ -137353,8 +137305,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     SimpleForm,
     type Schema,
     type FormValue,
-    type Config,
     type FormValueValidator,
+    type Config,
   } from "@sjsf/form";
   import {
     isSelect,
@@ -137367,7 +137319,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     transformSchemaDefinition,
     isSchemaObject,
   } from "@sjsf/form/lib/json-schema";
-  import { weakMemoize } from "@sjsf/form/lib/memoize";
+  import { memoize, weakMemoize } from "@sjsf/form/lib/memoize";
   import { fromFactories } from "@sjsf/form/lib/resolver";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
   import { resolver } from "@sjsf/form/resolvers/compat";
@@ -137421,17 +137373,23 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   };
 
   const validator = defaults.validator<FormValue>({
-    validatorsCache: new HashedKeyCache({
-      getHash: weakMemoize(new WeakMap(), schemaHash),
-      store: new LRUCache({
-        maxSize: 10,
-      }),
-    }),
+    schema: originalSchema,
   });
   const merger = defaults.merger({
     validator,
     schema: originalSchema,
   });
+
+  // Retrieved schemas are freshly allocated objects, so validators for them
+  // are cached by schema hash instead of object identity.
+  const getRetrievedValidator = memoize(
+    new HashedKeyCache<Schema, string, FormValueValidator<FormValue>>({
+      getHash: weakMemoize(new WeakMap(), schemaHash),
+      store: new LRUCache({ maxSize: 10 }),
+    }),
+    (retrievedSchema: Schema) =>
+      defaults.validator<FormValue>({ schema: retrievedSchema })
+  );
 
   const VIRTUAL_PROPERTY = "__sjsf_virtual_property";
   const toOption = (def: SchemaDefinition, index: number) =>
@@ -137490,15 +137448,17 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   {resolver}
   validator={{
     ...validator,
-    validateFormValue(rootSchema, formValue) {
+    validateFormValue(formValue) {
       const retrievedSchema = retrieveSchema(
         validator,
         merger,
-        rootSchema,
-        rootSchema,
+        schema,
+        schema,
         formValue
       );
-      return validator.validateFormValue(retrievedSchema, formValue);
+      return getRetrievedValidator(retrievedSchema).validateFormValue(
+        formValue
+      );
     },
   } satisfies FormValueValidator<FormValue>}
   {merger}
@@ -137663,8 +137623,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     SimpleForm,
     type Schema,
     type FormValue,
-    type Config,
     type FormValueValidator,
+    type Config,
   } from "@sjsf/form";
   import {
     isSelect,
@@ -137677,7 +137637,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     transformSchemaDefinition,
     isSchemaObject,
   } from "@sjsf/form/lib/json-schema";
-  import { weakMemoize } from "@sjsf/form/lib/memoize";
+  import { memoize, weakMemoize } from "@sjsf/form/lib/memoize";
   import { fromFactories } from "@sjsf/form/lib/resolver";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
   import { resolver } from "@sjsf/form/resolvers/compat";
@@ -137731,17 +137691,23 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   };
 
   const validator = defaults.validator<FormValue>({
-    validatorsCache: new HashedKeyCache({
-      getHash: weakMemoize(new WeakMap(), schemaHash),
-      store: new LRUCache({
-        maxSize: 10,
-      }),
-    }),
+    schema: originalSchema,
   });
   const merger = defaults.merger({
     validator,
     schema: originalSchema,
   });
+
+  // Retrieved schemas are freshly allocated objects, so validators for them
+  // are cached by schema hash instead of object identity.
+  const getRetrievedValidator = memoize(
+    new HashedKeyCache<Schema, string, FormValueValidator<FormValue>>({
+      getHash: weakMemoize(new WeakMap(), schemaHash),
+      store: new LRUCache({ maxSize: 10 }),
+    }),
+    (retrievedSchema: Schema) =>
+      defaults.validator<FormValue>({ schema: retrievedSchema })
+  );
 
   const VIRTUAL_PROPERTY = "__sjsf_virtual_property";
   const toOption = (def: SchemaDefinition, index: number) =>
@@ -137800,15 +137766,17 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   {resolver}
   validator={{
     ...validator,
-    validateFormValue(rootSchema, formValue) {
+    validateFormValue(formValue) {
       const retrievedSchema = retrieveSchema(
         validator,
         merger,
-        rootSchema,
-        rootSchema,
+        schema,
+        schema,
         formValue
       );
-      return validator.validateFormValue(retrievedSchema, formValue);
+      return getRetrievedValidator(retrievedSchema).validateFormValue(
+        formValue
+      );
     },
   } satisfies FormValueValidator<FormValue>}
   {merger}

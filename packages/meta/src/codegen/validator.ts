@@ -231,6 +231,7 @@ export function createDraft2020ValidatorExport({
             imports: [
               "createFormValidator",
               "DEFAULT_VALIDATOR_OPTIONS as DEFAULT_SCHEMASAFE_OPTIONS",
+              "getRootSchemaId",
             ],
             from: externalValidatorPackage("schemasafe").name,
           },
@@ -238,16 +239,15 @@ export function createDraft2020ValidatorExport({
             imports: ["validator as safeValidator", "type Schema"],
             from: "@exodus/schemasafe",
           },
-          { imports: ["ROOT_SCHEMA_PREFIX"], from: "@sjsf/form/core" },
         ],
         code: buildValidatorFactoryCode(
           ts,
-          `factory: (schema, rootSchema) =>
+          `factory: (schema) =>
       safeValidator(schema, {
         ...DEFAULT_SCHEMASAFE_OPTIONS,
         $schemaDefault: "https://json-schema.org/draft/2020-12/schema",
         schemas: {
-          [ROOT_SCHEMA_PREFIX]: rootSchema,
+          [getRootSchemaId(options.schema)]: options.schema,
         },
       })`
         ),

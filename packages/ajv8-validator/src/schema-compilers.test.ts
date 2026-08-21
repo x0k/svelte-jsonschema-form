@@ -1,5 +1,5 @@
 import type { Schema, Config } from "@sjsf/form";
-import { Ajv, type ValidateFunction } from "ajv";
+import { Ajv } from "ajv";
 import { describe, it, expect } from "vitest";
 
 import { DEFAULT_AJV_CONFIG } from "./model.js";
@@ -21,36 +21,15 @@ function createConfig(schema: Schema): Config {
 describe("createSchemaCompiler", () => {
   it("reuses valid root schema without re-adding", () => {
     const ajv = new Ajv(DEFAULT_AJV_CONFIG);
-    const compile = createSchemaCompiler(ajv, false);
 
     const validSchema: Schema = { type: "string" };
     const rootSchema: Schema = { $id: "root", type: "object" };
+    const compile = createSchemaCompiler(ajv, false, rootSchema);
 
-    const validator1 = compile(validSchema, rootSchema);
-    const validator2 = compile(validSchema, rootSchema);
+    const validator1 = compile(validSchema);
+    const validator2 = compile(validSchema);
 
     expect(validator1).toBe(validator2);
-  });
-
-  it("clears cached validator when root schema changes", () => {
-    const ajv = new Ajv(DEFAULT_AJV_CONFIG);
-    const validatorsCache = new WeakMap<Schema, ValidateFunction>();
-    const compile = createSchemaCompiler(ajv, false, validatorsCache);
-
-    const validSchema: Schema = { type: "string" };
-    const rootSchema1: Schema = { $id: "root1", type: "object" };
-    const rootSchema2: Schema = {
-      $id: "root1",
-      type: "object",
-      properties: {},
-    };
-
-    compile(validSchema, rootSchema1);
-    expect(validatorsCache.has(validSchema)).toBe(true);
-
-    // Root schema changed with same ID - should clear cache and recompile
-    compile(validSchema, rootSchema2);
-    expect(validatorsCache.has(validSchema)).toBe(true);
   });
 });
 

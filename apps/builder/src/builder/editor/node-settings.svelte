@@ -40,14 +40,14 @@
       const v = defaults.validator(options);
       return {
         ...v,
-        validateFormValue(rootSchema, formValue) {
+        validateFormValue(formValue) {
           const cleanData = omitExtraData(
             v,
             options.merger(),
             options.schema,
             formValue
           );
-          return v.validateFormValue(rootSchema, cleanData);
+          return v.validateFormValue(cleanData);
         },
       };
     },
