@@ -459,7 +459,7 @@ export function parseSchemaValue<T>(
     const isThenBranch =
       typeof expression === "boolean"
         ? expression
-        : validator.isValid(expression, rootSchema, value);
+        : validator.isValid(expression, value);
     const branch = isThenBranch ? then : otherwise;
     return branch === undefined
       ? value

@@ -13,7 +13,8 @@ import {
 
 export interface CreateFormValidatorFactoryOptions<
   F extends <S extends ValibotSchema>(
-    registry: SchemaRegistry
+    registry: SchemaRegistry,
+    rootSchema: Schema
   ) => (options: Partial<Record<string, any>>) => FormValidator<InferOutput<S>>,
 > {
   createFormValidator: F;
@@ -21,7 +22,8 @@ export interface CreateFormValidatorFactoryOptions<
 
 function createFormValidatorFactory<
   F extends <S extends ValibotSchema>(
-    registry: SchemaRegistry
+    registry: SchemaRegistry,
+    rootSchema: Schema
   ) => (options: Partial<Record<string, any>>) => FormValidator<InferOutput<S>>,
 >({ createFormValidator }: CreateFormValidatorFactoryOptions<F>) {
   return <S extends ValibotSchema>(valibotSchema: S) => {
@@ -34,18 +36,21 @@ function createFormValidatorFactory<
     return {
       schemaRegistry,
       schema,
-      validator: createFormValidator(schemaRegistry),
+      validator: createFormValidator(schemaRegistry, schema),
     };
   };
 }
 
 function createSyncValidator<S extends ValibotSchema>(
-  schemaRegistry: SchemaRegistry
+  schemaRegistry: SchemaRegistry,
+  schema: Schema
 ) {
-  return (options: Omit<FormValidatorOptions, "schemaRegistry"> = {}) =>
+  return (
+    options: Omit<FormValidatorOptions, "schemaRegistry" | "schema"> = {}
+  ) =>
     createFormValidator<InferOutput<S>>(
       Object.setPrototypeOf(
-        { schemaRegistry } satisfies FormValidatorOptions,
+        { schemaRegistry, schema } satisfies FormValidatorOptions,
         options
       )
     );
@@ -68,12 +73,15 @@ export const adapt = _adapt as unknown as <S extends ValibotSchema>(
 export const setupFormValidator = adapt;
 
 function createAsyncValidator<S extends ValibotSchema>(
-  schemaRegistry: SchemaRegistry
+  schemaRegistry: SchemaRegistry,
+  schema: Schema
 ) {
-  return (options: Omit<AsyncFormValidatorOptions, "schemaRegistry"> = {}) =>
+  return (
+    options: Omit<AsyncFormValidatorOptions, "schemaRegistry" | "schema"> = {}
+  ) =>
     createAsyncFormValidator<InferOutput<S>>(
       Object.setPrototypeOf(
-        { schemaRegistry } satisfies AsyncFormValidatorOptions,
+        { schemaRegistry, schema } satisfies AsyncFormValidatorOptions,
         options
       )
     );

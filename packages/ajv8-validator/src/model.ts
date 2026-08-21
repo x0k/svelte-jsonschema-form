@@ -1,3 +1,4 @@
+import type { UiSchemaRoot, Schema } from "@sjsf/form";
 import { DATA_URL_FORMAT } from "@sjsf/form/core";
 import type { Ajv, Options } from "ajv";
 
@@ -29,4 +30,9 @@ export function addFormKeywords(ajv: Ajv) {
 
 export function addFormComponents(ajv: Ajv) {
   return addFormKeywords(addFormFormats(ajv));
+}
+
+export interface Schemas {
+  schema: Schema;
+  uiSchema?: UiSchemaRoot;
 }

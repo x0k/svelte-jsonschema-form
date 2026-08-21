@@ -18,11 +18,8 @@ import {
   type ValidatorOptions as AtaValidatorOptions,
 } from "ata-validator";
 
-import {
-  createFormErrorsTransformer,
-  transformFieldErrors,
-  type ErrorsTransformerOptions,
-} from "./errors.js";
+import { createFormErrorsTransformer, transformFieldErrors } from "./errors.js";
+import type { Schemas } from "./model.js";
 
 // https://github.com/rjsf-team/react-jsonschema-form/pull/5063#issuecomment-4413555901
 export interface ValueCloner {
@@ -58,31 +55,22 @@ export type ValidatorsCache = MapLike<Schema, AtaValidator>;
 
 export function createSchemaValidatorFactory(
   factory: AtaValidatorFactory,
+  rootSchema: Schema,
   validatorsCache: ValidatorsCache = new WeakMap()
 ) {
-  let rootSchemaId = "";
-  let usePrefixSchemaRefs = false;
-  let lastRootSchema: WeakRef<Schema> = new WeakRef({});
-  const makeValidator = memoize<Schema, AtaValidator>(
+  const rootSchemaId = rootSchema[ID_KEY] ?? ROOT_SCHEMA_PREFIX;
+  const rootSchemaWithId = { ...rootSchema, $id: rootSchemaId };
+  const rootValidator = factory(rootSchemaWithId);
+  const createValidator = memoize<Schema, AtaValidator>(
     validatorsCache,
     (schema) => {
-      return factory(
-        usePrefixSchemaRefs ? prefixSchemaRefs(schema, rootSchemaId) : schema
-      );
+      const validator = factory(prefixSchemaRefs(schema, rootSchemaId));
+      validator.addSchema(rootSchemaWithId);
+      return validator;
     }
   );
-  return (schema: Schema, rootSchema: Schema) => {
-    rootSchemaId = rootSchema[ID_KEY] ?? ROOT_SCHEMA_PREFIX;
-    usePrefixSchemaRefs = schema !== rootSchema;
-    const validator = makeValidator(schema);
-    if (usePrefixSchemaRefs && lastRootSchema.deref() !== rootSchema) {
-      lastRootSchema = new WeakRef(rootSchema);
-      validator.addSchema(
-        Object.assign({ [ID_KEY]: rootSchemaId }, rootSchema)
-      );
-    }
-    return validator;
-  };
+  return (schema: Schema) =>
+    schema === rootSchema ? rootValidator : createValidator(schema);
 }
 
 export function createFieldSchemaValidatorFactory(
@@ -94,7 +82,7 @@ export function createFieldSchemaValidatorFactory(
 }
 
 export interface ValidatorOptions extends ValueCloner {
-  createSchemaValidator: (schema: Schema, rootSchema: Schema) => AtaValidator;
+  createSchemaValidator: (schema: Schema) => AtaValidator;
 }
 
 export function createValidator({
@@ -102,29 +90,30 @@ export function createValidator({
   cloneValue,
 }: ValidatorOptions): Validator {
   return {
-    isValid(schemaDef, rootSchema, formValue) {
+    isValid(schemaDef, formValue) {
       if (typeof schemaDef === "boolean") {
         return schemaDef;
       }
-      const validator = createSchemaValidator(schemaDef, rootSchema);
+      const validator = createSchemaValidator(schemaDef);
       return validator.isValidObject(cloneValue(formValue));
     },
   };
 }
 
 export interface FormValueValidatorOptions
-  extends ValidatorOptions, ErrorsTransformerOptions, ValueCloner {}
+  extends ValidatorOptions, Schemas, ValueCloner {}
 
-export function createFormValueValidator<T>(
-  options: FormValueValidatorOptions
-): FormValueValidator<T> {
-  const transformErrors = createFormErrorsTransformer(options);
+export function createFormValueValidator<T>({
+  createSchemaValidator,
+  cloneValue,
+  schema,
+  uiSchema = {},
+}: FormValueValidatorOptions): FormValueValidator<T> {
+  const validator = createSchemaValidator(schema);
+  const transformErrors = createFormErrorsTransformer(schema, uiSchema);
   return {
-    validateFormValue(rootSchema, formValue) {
-      const validator = options.createSchemaValidator(rootSchema, rootSchema);
-      const { valid, errors } = validator.validate(
-        options.cloneValue(formValue)
-      );
+    validateFormValue(formValue) {
+      const { valid, errors } = validator.validate(cloneValue(formValue));
       if (valid) {
         return {
           value: formValue as T,
@@ -162,11 +151,13 @@ export interface FormValidatorOptions
     FieldValueValidatorOptions {}
 
 export function createFormValidator<T>({
+  schema,
   factory = defaultValidatorFactory,
   schemaValidatorsCache,
   fieldsValidatorsCache,
   createSchemaValidator = createSchemaValidatorFactory(
     factory,
+    schema,
     schemaValidatorsCache
   ),
   compileFieldSchema = createFieldSchemaValidatorFactory(
@@ -176,15 +167,17 @@ export function createFormValidator<T>({
   cloneValue = (value) => $state.snapshot(value),
   ...rest
 }: Partial<FormValidatorOptions> & {
+  schema: Schema;
   factory?: AtaValidatorFactory;
   schemaValidatorsCache?: ValidatorsCache;
   fieldsValidatorsCache?: WeakMap<Schema, AtaValidator>;
-} = {}) {
+}) {
   const options: FormValidatorOptions = {
     ...rest,
     cloneValue,
     createSchemaValidator,
     compileFieldSchema,
+    schema,
   };
   return Object.assign(
     createValidator(options),

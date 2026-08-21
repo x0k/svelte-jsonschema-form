@@ -1,11 +1,16 @@
 import type { Draft2020, Precompiled } from "../codegen/index.ts";
-import { normalizeValidator, type PlaygroundValidator } from "./model.ts";
+import {
+  normalizeValidator,
+  type PlaygroundValidator,
+  type PlaygroundValidator2,
+} from "./model.ts";
 import {
   toDraft07,
   toDraft2020,
   toFactory,
   toPrecompiledDraft07,
   type ValidatorFactory,
+  type ValidatorFactoryOptions,
 } from "./validator-factory.ts";
 
 const DRAFT_07: Record<
@@ -48,13 +53,12 @@ const PRECOMPILED_DRAFT_07: Record<
   ),
 };
 
-export function playgroundValidator(validator: PlaygroundValidator) {
-  const v = normalizeValidator(validator);
-  if (v.precompiled) {
-    return PRECOMPILED_DRAFT_07[v.name];
-  }
-  if (v.draft2020) {
-    return DRAFT_2020[v.name];
-  }
-  return DRAFT_07[v.name];
+export function playgroundValidator<T>(options: ValidatorFactoryOptions) {
+  const v: PlaygroundValidator2 = normalizeValidator(options.validator);
+  const factory = v.precompiled
+    ? PRECOMPILED_DRAFT_07[v.name]
+    : v.draft2020
+      ? DRAFT_2020[v.name]
+      : DRAFT_07[v.name];
+  return factory<T>(options);
 }
