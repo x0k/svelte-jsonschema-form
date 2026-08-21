@@ -8797,6 +8797,95 @@ describe("getDefaultFormState()", () => {
         },
       ]);
     });
+    it("should populate defaults for nested dependencies in arrays that sit below another object", () => {
+      testValidator = createValidator({
+        cases: [
+          {
+            schema: {
+              type: "object",
+              properties: { name: { type: "string" } },
+            },
+            value: { name: "Name" },
+            result: true,
+          },
+        ],
+      });
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: { type: "object", properties: { name: { type: "string" } } },
+            right: { properties: { grade: { type: "string", default: "A" } } },
+            result: {
+              type: "object",
+              properties: {
+                name: { type: "string" },
+                grade: { type: "string", default: "A" },
+              },
+            },
+          },
+        ],
+      });
+      const schema: Schema = {
+        type: "object",
+        properties: {
+          outer: {
+            type: "object",
+            properties: {
+              rows: {
+                type: "array",
+                items: {
+                  properties: {
+                    foo: {
+                      type: "object",
+                      properties: {
+                        name: {
+                          type: "string",
+                        },
+                      },
+                      dependencies: {
+                        name: {
+                          oneOf: [
+                            {
+                              properties: {
+                                name: {
+                                  type: "string",
+                                },
+                                grade: {
+                                  type: "string",
+                                  default: "A",
+                                },
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      };
+      expect(
+        getDefaultFormState(testValidator, defaultMerger, schema, {
+          outer: {
+            rows: [{ foo: { name: "Name" } }],
+          },
+        })
+      ).toEqual({
+        outer: {
+          rows: [
+            {
+              foo: {
+                name: "Name",
+                grade: "A",
+              },
+            },
+          ],
+        },
+      });
+    });
     it("should populate defaults for nested dependencies in arrays when matching enum values in oneOf", () => {
       testValidator = createValidator({
         cases: [
