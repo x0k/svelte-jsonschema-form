@@ -1,5 +1,5 @@
 import type { Config, Schema } from "@sjsf/form";
-import { ID_KEY, prefixSchemaRefs, ROOT_SCHEMA_PREFIX } from "@sjsf/form/core";
+import { prefixSchemaRefs, ROOT_SCHEMA_PREFIX } from "@sjsf/form/core";
 import { memoize, weakMemoize, type MapLike } from "@sjsf/form/lib/memoize";
 import type {
   Ajv,
@@ -9,9 +9,7 @@ import type {
 } from "ajv";
 import type { AnyValidateFunction } from "ajv/dist/core.js";
 
-export interface ValidatorsCache extends MapLike<Schema, AnyValidateFunction> {
-  delete(schema: Schema): boolean;
-}
+export interface ValidatorsCache extends MapLike<Schema, AnyValidateFunction> {}
 
 function compileWithEviction(ajv: Ajv, schema: AnySchema) {
   try {
@@ -31,43 +29,34 @@ function compileWithEviction(ajv: Ajv, schema: AnySchema) {
 
 export function createSchemaCompiler<A extends boolean>(
   ajv: Ajv,
-  _async: A,
+  async: A,
+  rootSchema: Schema,
   validatorsCache: ValidatorsCache = new WeakMap()
 ) {
-  let rootSchemaId = "";
-  let usePrefixSchemaRefs = false;
+  const { $id: id = ROOT_SCHEMA_PREFIX, ...rootSchemaRest } = rootSchema;
+  const rootSchemaId = `${id}__${async ? "async" : "sync"}`;
+  ajv.removeSchema(rootSchemaId);
+  try {
+    ajv.addSchema({ ...rootSchemaRest, $async: async }, rootSchemaId);
+  } catch (e) {
+    ajv.removeSchema(rootSchemaId);
+    throw e;
+  }
+  const ajvRootSchema = ajv.getSchema(rootSchemaId);
+  if (ajvRootSchema === undefined) {
+    throw new Error("Failed to add root schema");
+  }
   const compile = memoize<Schema, AnyValidateFunction>(
     validatorsCache,
     (schema) => {
-      let ajvSchema: AnySchema = schema;
-      if (usePrefixSchemaRefs) {
-        ajvSchema = prefixSchemaRefs(schema, rootSchemaId);
-        delete ajvSchema[ID_KEY];
-      }
-      return compileWithEviction(ajv, ajvSchema);
+      const { $id: _, ...rest } = prefixSchemaRefs(schema, rootSchemaId);
+      return compileWithEviction(ajv, { ...rest, $async: async });
     }
   );
-  return (schema: Schema, rootSchema: Schema) => {
-    rootSchemaId = rootSchema[ID_KEY] ?? ROOT_SCHEMA_PREFIX;
-    let ajvSchema = ajv.getSchema(rootSchemaId)?.schema;
-    if (ajvSchema !== undefined && ajvSchema !== rootSchema) {
-      ajv.removeSchema(rootSchemaId);
-      validatorsCache.delete(schema);
-      ajvSchema = undefined;
-    }
-    if (ajvSchema === undefined) {
-      try {
-        ajv.addSchema(rootSchema, rootSchemaId);
-      } catch (e) {
-        ajv.removeSchema(rootSchemaId);
-        throw e;
-      }
-    }
-    usePrefixSchemaRefs = schema !== rootSchema;
-    return compile(schema) as A extends true
+  return (schema: Schema) =>
+    (schema === rootSchema ? ajvRootSchema : compile(schema)) as A extends true
       ? AsyncValidateFunction
       : ValidateFunction;
-  };
 }
 
 export function createFieldSchemaCompiler<A extends boolean>(
