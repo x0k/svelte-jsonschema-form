@@ -92,6 +92,13 @@ function createInitializer<V extends Validator>(
 export interface ValidatorTestOptions extends InitializerOptions {
   /** @default false */
   skipIntegrationTests?: boolean;
+  /**
+   * The validator resolves non-local `$ref`s of subschema fragments pointing
+   * at the root schema's original `$id`s (top-level or nested)
+   *
+   * @default false
+   */
+  supportsNonLocalRefs?: boolean;
 }
 
 export function validatorTests(
@@ -102,14 +109,15 @@ export function validatorTests(
   options?: ValidatorTestOptions
 ) {
   const init = createInitializer(createValidator, options);
+
   describe("Validator", () => {
     it("Should compile schemas with identical ids", async () => {
       const { validator, schema } = await init({
         schema: { $id: "foo", type: "string" },
       });
       const schema2 = structuredClone(schema);
-      validator.isValid(schema, schema, undefined);
-      validator.isValid(schema2, schema2, undefined);
+      validator.isValid(schema, undefined);
+      validator.isValid(schema2, undefined);
     });
 
     it("Should compile schemas with subSchemas with identical ids", async () => {
@@ -120,8 +128,66 @@ export function validatorTests(
         },
       });
       const schema2 = structuredClone(schema);
-      validator.isValid(schema, schema, undefined);
-      validator.isValid(schema2, schema2, undefined);
+      validator.isValid(schema, undefined);
+      validator.isValid(schema2, undefined);
+    });
+  });
+
+  // NOTE: The validator under test must be bound to the original schema.
+  // `insertSubSchemaIds` rewrites hand-written sub-schema ids, which would
+  // make non-local refs in fragments point at non-existent ids.
+  describe.skipIf(!options?.supportsNonLocalRefs)("non-local refs", () => {
+    it("Should resolve refs pointing at the root schema id", async () => {
+      const { validator } = await init({
+        schema: {
+          $id: "http://example.com/root",
+          $defs: { str: { type: "string" } },
+        },
+      });
+      const fragment: Schema = {
+        type: "object",
+        properties: { foo: { $ref: "http://example.com/root#/$defs/str" } },
+        required: ["foo"],
+      };
+      expect(validator.isValid(fragment, { foo: "bar" })).toBe(true);
+      expect(validator.isValid(fragment, { foo: 42 })).toBe(false);
+    });
+
+    it("Should resolve refs pointing at the root nested ids", async () => {
+      const { validator } = await init({
+        schema: {
+          $id: "http://example.com/root",
+          properties: {
+            nested: {
+              $id: "nested",
+              $defs: { num: { type: "number" } },
+            },
+          },
+        },
+      });
+      const fragment: Schema = {
+        type: "object",
+        properties: { foo: { $ref: "nested#/$defs/num" } },
+        required: ["foo"],
+      };
+      expect(validator.isValid(fragment, { foo: 42 })).toBe(true);
+      expect(validator.isValid(fragment, { foo: "bar" })).toBe(false);
+    });
+
+    it("Should leave refs to external schemas untouched", async () => {
+      const { validator } = await init({
+        schema: {
+          $id: "http://example.com/root",
+          type: "object",
+        },
+      });
+      // No schema is registered under the external id, so validation fails
+      // while attempting to resolve the ref, but the ref itself must not be
+      // rewritten into the reserved namespace.
+      const fragment: Schema = {
+        $ref: "http://example.com/external#/$defs/x",
+      };
+      expect(() => validator.isValid(fragment, {})).toThrow();
     });
   });
 
@@ -164,8 +230,7 @@ export function validatorTests(
         const index = getFirstMatchingOption(
           validator,
           { kind: "cat" },
-          options,
-          schema
+          options
         );
         expect(index).toBe(0);
       });
@@ -190,8 +255,7 @@ export function validatorTests(
         const index = getFirstMatchingOption(
           validator,
           undefined,
-          schema.oneOf as Schema[],
-          schema
+          schema.oneOf as Schema[]
         );
         expect(index).toBe(0);
       });
@@ -221,8 +285,7 @@ export function validatorTests(
         const index = getFirstMatchingOption(
           validator,
           { y: "hello" },
-          schema.oneOf as Schema[],
-          schema
+          schema.oneOf as Schema[]
         );
         expect(index).toBe(1);
       });
@@ -519,21 +582,12 @@ export function formValueValidatorTests<T>(
 ) {
   const init = createInitializer(createFormValueValidator, options);
   async function createValidator(params: Parameters<typeof init>[0]) {
-    const { validator, schema } = await init(params);
+    const { validator } = await init(params);
     return isAsyncFormValueValidator(validator)
-      ? (signal: AbortSignal, originalSchema: Schema, value: FormValue) =>
-          validator.validateFormValueAsync(
-            signal,
-            options.useOriginalSchema ? originalSchema : schema,
-            value
-          )
-      : (_: AbortSignal, originalSchema: Schema, value: FormValue) =>
-          Promise.resolve(
-            validator.validateFormValue(
-              options.useOriginalSchema ? originalSchema : schema,
-              value
-            )
-          );
+      ? (signal: AbortSignal, value: FormValue) =>
+          validator.validateFormValueAsync(signal, value)
+      : (_: AbortSignal, value: FormValue) =>
+          Promise.resolve(validator.validateFormValue(value));
   }
 
   describe("Form value validator", () => {
@@ -547,7 +601,7 @@ export function formValueValidatorTests<T>(
       };
       const validate = await createValidator({ schema });
 
-      const { errors = [] } = await validate(signal, schema, ["foo"]);
+      const { errors = [] } = await validate(signal, ["foo"]);
       const error = errors.find(
         ({ path }) => path.length === 1 && path[0] === 0
       );
@@ -579,7 +633,7 @@ export function formValueValidatorTests<T>(
         items: [undefined, "value"],
       };
       const validate = await createValidator({ schema });
-      const { errors = [] } = await validate(signal, schema, value);
+      const { errors = [] } = await validate(signal, value);
       expect(errors.length).toBeGreaterThan(1);
     });
 
@@ -604,7 +658,7 @@ export function formValueValidatorTests<T>(
             ],
           };
           const validate = await createValidator({ schema });
-          const { errors = [] } = await validate(signal, schema, {});
+          const { errors = [] } = await validate(signal, {});
           expect(errors).toHaveLength(1);
           expect(errors[0]?.message).toContain("My animal");
         });
@@ -630,7 +684,7 @@ export function formValueValidatorTests<T>(
             },
           };
           const validate = await createValidator({ schema });
-          const { errors = [] } = await validate(signal, schema, {
+          const { errors = [] } = await validate(signal, {
             hasPet: true,
           });
           const requiredError = errors.find((e) =>
@@ -666,7 +720,7 @@ export function formValueValidatorTests<T>(
               },
             },
           });
-          const { errors = [] } = await validate(signal, schema, {});
+          const { errors = [] } = await validate(signal, {});
           expect(errors).toHaveLength(1);
           expect(errors[0]?.message).toContain("My animal uiSchema");
         });
@@ -701,7 +755,7 @@ export function formValueValidatorTests<T>(
               },
             },
           });
-          const { errors = [] } = await validate(signal, schema, {
+          const { errors = [] } = await validate(signal, {
             hasPet: true,
           });
           const requiredError = errors.find((e) =>

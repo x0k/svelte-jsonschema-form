@@ -156,7 +156,7 @@ export function omitExtraData(
       return target;
     }
     const isThenBranch = isSchemaObject(condition)
-      ? validator.isValid(condition, rootSchema, source)
+      ? validator.isValid(condition, source)
       : condition;
     const branch = isThenBranch ? then : otherwise;
     return branch === undefined ? target : omit(branch, source, target, false);

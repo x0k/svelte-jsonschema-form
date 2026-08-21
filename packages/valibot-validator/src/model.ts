@@ -1,3 +1,4 @@
+import type { Schema } from "@sjsf/form";
 import type * as v from "valibot";
 
 export type ValibotIssue = v.BaseIssue<unknown>;
@@ -94,6 +95,10 @@ export type ValibotJsonableSchema =
 
 export interface SchemaRegistry {
   get(id: string): ValibotSchema | undefined;
+}
+
+export interface SchemaProvider {
+  schema: Schema;
 }
 
 export function createAugmentedId(id: string): string {
