@@ -58,7 +58,7 @@ export type ValidatorOptions = ValueToJSON & CoreValidatorOptions;
 export function createValidator(options: ValidatorOptions): Validator {
   const getValidate = createRetriever(options);
   return {
-    isValid(schema, _, formValue) {
+    isValid(schema, formValue) {
       if (typeof schema === "boolean") {
         return schema;
       }
@@ -70,20 +70,21 @@ export function createValidator(options: ValidatorOptions): Validator {
 
 export type FormValueValidatorOptions = ValidatorOptions & {
   merger: () => Merger;
+  schema: Schema;
 };
 
 export function createFormValueValidator<T>(
   options: FormValueValidatorOptions
 ): FormValueValidator<T> {
-  const getValidate = createAndCastRetriever(options);
+  const validate = createAndCastRetriever(options)(options.schema);
+  const validator = createValidator(options);
   return {
-    validateFormValue(rootSchema, formValue) {
-      const validate = getValidate(rootSchema);
+    validateFormValue(formValue) {
       validate(options.valueToJSON(formValue));
       return transformFormErrors(
-        createValidator(options),
+        validator,
         options.merger(),
-        rootSchema,
+        options.schema,
         validate.errors,
         formValue
       );

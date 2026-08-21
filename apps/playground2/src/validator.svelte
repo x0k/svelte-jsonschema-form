@@ -4,7 +4,6 @@
     isAsyncFormValueValidator,
     type FormValidator,
     type FormValue,
-    type Schema,
     type ValidationResult,
   } from "@sjsf/form";
   import { createDeduplicator, createIntersector } from "@sjsf/form/lib/array";
@@ -85,14 +84,14 @@
   });
 
   const validateTask = createTask<
-    [FormValidator<unknown>, Schema, FormValue],
+    [FormValidator<unknown>, FormValue],
     ValidationResult<unknown>
   >({
     combinator: abortPrevious,
-    execute: debounce(async (signal, validator, schema, value) =>
+    execute: debounce(async (signal, validator, value) =>
       isAsyncFormValueValidator(validator)
-        ? validator.validateFormValueAsync(signal, schema, value)
-        : validator.validateFormValue(schema, value)
+        ? validator.validateFormValueAsync(signal, value)
+        : validator.validateFormValue(value)
     ),
     onSuccess(result) {
       data.output = JSON.stringify(result.errors ?? [], null, 2);
@@ -109,11 +108,7 @@
   });
 
   $effect(() => {
-    validateTask.run(
-      validatorState.validator,
-      validatorState.schema,
-      inputQuery.value
-    );
+    validateTask.run(validatorState.validator, inputQuery.value);
     return () => {
       validateTask.abort();
     };

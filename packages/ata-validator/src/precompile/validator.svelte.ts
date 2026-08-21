@@ -12,8 +12,8 @@ import type { BundleStandaloneOptions } from "ata-validator/build";
 import {
   createFormErrorsTransformer,
   transformFieldErrors,
-  type ErrorsTransformerOptions,
 } from "../errors.js";
+import type { Schemas } from "../model.js";
 import {
   COLOR_FORMAT_REGEX,
   DATA_URL_FORMAT_REGEX,
@@ -89,7 +89,7 @@ export type ValidatorOptions = ValueCloner & CoreValidatorOptions;
 export function createValidator(options: ValidatorOptions): Validator {
   const getValidator = createRetriever(options);
   return {
-    isValid(schema, _, formValue) {
+    isValid(schema, formValue) {
       if (typeof schema === "boolean") {
         return schema;
       }
@@ -100,17 +100,19 @@ export function createValidator(options: ValidatorOptions): Validator {
 }
 
 export type FormValueValidatorOptions = ValidatorOptions &
-  ErrorsTransformerOptions &
+  Schemas &
   ValueCloner;
 
 export function createFormValueValidator<T>(
   options: FormValueValidatorOptions
 ): FormValueValidator<T> {
-  const getValidator = createRetriever(options);
-  const transformErrors = createFormErrorsTransformer(options);
+  const validator = createRetriever(options)(options.schema);
+  const transformErrors = createFormErrorsTransformer(
+    options.schema,
+    options.uiSchema ?? {}
+  );
   return {
-    validateFormValue(rootSchema, formValue) {
-      const validator = getValidator(rootSchema);
+    validateFormValue(formValue) {
       const { valid, errors } = validator(options.cloneValue(formValue));
       if (valid) {
         return {

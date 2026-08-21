@@ -64,6 +64,10 @@ export interface ValueToJSON {
 
 export type ValidatorOptions = CoreValidatorOptions & ValueToJSON;
 
+export interface SchemaProvider {
+  schema: Schema;
+}
+
 export function fromAst(
   ast: AST,
   options?: Partial<Omit<ValidatorRetrieverOptions<any>, "registry">>

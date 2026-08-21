@@ -3478,12 +3478,12 @@ export const schema = {
 } as const satisfies Schema;;
 
 export type Model = FromSchema<typeof schema>;",
-  "src/lib/sjsf/defaults.ts": "import { ROOT_SCHEMA_PREFIX } from "@sjsf/form/core";
-import { validator as safeValidator, type Schema } from "@exodus/schemasafe";
+  "src/lib/sjsf/defaults.ts": "import { validator as safeValidator, type Schema } from "@exodus/schemasafe";
 
 import {
 	createFormValidator,
-	DEFAULT_VALIDATOR_OPTIONS as DEFAULT_SCHEMASAFE_OPTIONS
+	DEFAULT_VALIDATOR_OPTIONS as DEFAULT_SCHEMASAFE_OPTIONS,
+	getRootSchemaId
 } from "@sjsf/schemasafe-validator";
 
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
@@ -3520,10 +3520,10 @@ export const onSubmitError = createFocusOnFirstError();
 export function validator<T>(options: ValidatorFactoryOptions) {
 	return createFormValidator<T>({
 		...options,
-		factory: (schema, rootSchema) => safeValidator(schema, {
+		factory: (schema) => safeValidator(schema, {
 			...DEFAULT_SCHEMASAFE_OPTIONS,
 			$schemaDefault: "https://json-schema.org/draft/2020-12/schema",
-			schemas: { [ROOT_SCHEMA_PREFIX]: rootSchema }
+			schemas: { [getRootSchemaId(options.schema)]: options.schema }
 		})
 	});
 }",

@@ -395,22 +395,17 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   const validateForm: AsyncFormValueValidator<T>["validateFormValueAsync"] =
     $derived.by(() => {
       if ("validateFormValueAsync" in validator) {
-        return (signal, schema, formValue) =>
-          validator.validateFormValueAsync(signal, schema, formValue);
+        return (signal, formValue) =>
+          validator.validateFormValueAsync(signal, formValue);
       }
-      return (_, schema, formValue) =>
-        Promise.resolve(validator.validateFormValue(schema, formValue));
+      return (_, formValue) =>
+        Promise.resolve(validator.validateFormValue(formValue));
     });
 
   const submission: FormSubmission<T> = createTask({
     async execute(signal) {
       setFieldState(formState, rootPath, FIELD_SUBMITTED);
-      return await validateForm(
-        signal,
-        // eslint-disable-next-line @typescript-eslint/no-deprecated
-        options.validateByRetrievedSchema ? retrievedSchema : options.schema,
-        $state.snapshot(valueRef.current)
-      );
+      return await validateForm(signal, $state.snapshot(valueRef.current));
     },
     onSuccess(result, event) {
       updateErrors(formState, result.errors ?? []);
