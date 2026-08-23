@@ -333,11 +333,15 @@ The theme now requires the `Field*` and `ButtonGroup` components to function pro
 
 ## SvelteKit
 
+The SvelteKit integration is now provided by the `@sjsf/sveltekit3` package,
+which requires [SvelteKit 3](https://svelte.dev/docs/kit/migrating-to-sveltekit-3).
+For SvelteKit 2 keep using the legacy `@sjsf/sveltekit` package.
+
 Now, for the integration to work correctly,
-you must use ID Builder from the `@sjsf/sveltekit` module.
+you must use ID Builder from the `@sjsf/sveltekit3` module.
 
 ```ts
-export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit";
+export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit3";
 ```
 
 The `makeFormDataParser` and `validateForm` functions
@@ -347,7 +351,7 @@ See the [Form actions](/integrations/form-actions/#advanced-api) page for more i
 The `initForm` function has been removed — specify initial values directly instead.
 
 ```ts
-import type { InitialFormData } from "@sjsf/sveltekit";
+import type { InitialFormData } from "@sjsf/sveltekit3";
 
 export const load = async () => {
   return {
@@ -361,7 +365,7 @@ export const load = async () => {
 
 ## Dependency versions have been updated
 
-- `@sveltejs/kit@^2.48.3` (`@sjsf/sveltekit`)
+- `@sveltejs/kit@^3.0.0-next.25` (`@sjsf/sveltekit3`)
 - `daisyui@^5.4.0` (`@sjsf/daisyui5-theme`)
 - `flowbite-svelte-icons@^3.0.0` (`@sjsf/flowbite-icons`)
 - `flowbite-svelte@^1.22.0` (`@sjsf/flowbite3-theme`)

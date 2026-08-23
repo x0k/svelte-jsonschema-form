@@ -30,6 +30,13 @@ even if the user has `JavaScript` disabled.
 
 ## Installation
 
+:::note
+
+This package requires [SvelteKit 3](https://svelte.dev/docs/kit/migrating-to-sveltekit-3).
+For SvelteKit 2 use the legacy `@sjsf/sveltekit` package.
+
+:::
+
 <Npm pkg={getPackageDependencies(sveltekitPackage)} />
 
 <Deps pkg={sveltekitPackage} />
@@ -40,7 +47,7 @@ See details in the sections below
 
 :::note
 
-For correct operation, you must use ID Builder from the `@sjsf/sveltekit`.
+For correct operation, you must use ID Builder from the `@sjsf/sveltekit3`.
 
 :::
 
@@ -62,7 +69,7 @@ If you want to populate the form from the database,
 you can return `InitialFormData` object inside the `load` function.
 
 ```typescript
-import type { InitialFormData } from "@sjsf/sveltekit";
+import type { InitialFormData } from "@sjsf/sveltekit3";
 
 export const load = async () => {
   return {

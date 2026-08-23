@@ -1,4 +1,4 @@
-# @sjsf/sveltekit
+# @sjsf/sveltekit (legacy, for SvelteKit 2)
 
 The [SvelteKit](https://svelte.dev/docs/kit/introduction) integration for [svelte-jsonschema-form](https://github.com/x0k/svelte-jsonschema-form).
 

@@ -29,19 +29,23 @@ Remote functions integration is experimental
 
 ## Installation
 
+:::note
+
+This package requires [SvelteKit 3](https://svelte.dev/docs/kit/migrating-to-sveltekit-3).
+For SvelteKit 2 use the legacy `@sjsf/sveltekit` package.
+
+:::
+
 <Npm pkg={getPackageDependencies(sveltekitPackage)} />
 {/* Svelte `hydratable` API: https://github.com/sveltejs/svelte/pull/17154 */}
 {/* SvelteKit programmatic submission API: https://github.com/sveltejs/kit/pull/15657 */}
-<Deps
-  pkg={sveltekitPackage}
-  versionOverrides={{ "@sveltejs/kit": "2.61.0", svelte: "5.44.0" }}
-/>
+<Deps pkg={sveltekitPackage} versionOverrides={{ svelte: "5.44.0" }} />
 
 ## Example
 
 :::note
 
-For correct operation, you must use ID Builder from the `@sjsf/sveltekit/rf`.
+For correct operation, you must use ID Builder from the `@sjsf/sveltekit3/rf`.
 
 :::
 
@@ -71,7 +75,7 @@ For correct operation, you must use ID Builder from the `@sjsf/sveltekit/rf`.
 
   ```js
   optimizeDeps: {
-    exclude: ['@sjsf/form', '@sjsf/sveltekit/rf/client'],
+    exclude: ['@sjsf/form', '@sjsf/sveltekit3/rf/client'],
   }
   ```
 

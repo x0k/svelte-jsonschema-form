@@ -73,7 +73,7 @@ export function createViteConfig({
         value: " https://github.com/sveltejs/kit/issues/14788",
       });
       js.array.append(exclude, "@sjsf/form");
-      js.array.append(exclude, "@sjsf/sveltekit/rf/client");
+      js.array.append(exclude, "@sjsf/sveltekit3/rf/client");
     }
   });
 }

@@ -3607,7 +3607,7 @@ export default defineConfig({
 	],
 	optimizeDeps: {
 		exclude: // https://github.com/sveltejs/kit/issues/14788
-		['@sjsf/form', '@sjsf/sveltekit/rf/client']
+		['@sjsf/form', '@sjsf/sveltekit3/rf/client']
 	}
 });
 ",
@@ -3969,7 +3969,7 @@ export default defineConfig({
 	],
 	optimizeDeps: {
 		exclude: // https://github.com/sveltejs/kit/issues/14788
-		['@sjsf/form', '@sjsf/sveltekit/rf/client']
+		['@sjsf/form', '@sjsf/sveltekit3/rf/client']
 	}
 });
 ",
@@ -4331,7 +4331,7 @@ export default defineConfig({
 	],
 	optimizeDeps: {
 		exclude: // https://github.com/sveltejs/kit/issues/14788
-		['@sjsf/form', '@sjsf/sveltekit/rf/client']
+		['@sjsf/form', '@sjsf/sveltekit3/rf/client']
 	}
 });
 ",
@@ -4559,7 +4559,7 @@ export default defineConfig({
 	],
 	optimizeDeps: {
 		exclude: // https://github.com/sveltejs/kit/issues/14788
-		['@sjsf/form', '@sjsf/sveltekit/rf/client']
+		['@sjsf/form', '@sjsf/sveltekit3/rf/client']
 	}
 });
 ",
