@@ -9,7 +9,7 @@
   import type { Component } from "svelte";
   import "@sjsf/form/fields/extra-widgets/radio-buttons";
 
-  import type { ToggleVariants } from "$lib/components/ui/toggle/index.js";
+  import type { ToggleVariants } from "../../components/ui/toggle/index.js";
 
   type ToggleGroupProps = SingleToggleGroupRootPropsWithoutHTML &
     Without<BitsPrimitiveDivAttributes, ToggleGroupRootPropsWithoutHTML> &

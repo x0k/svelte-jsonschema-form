@@ -12,7 +12,7 @@
   import { getTemplateProps } from "@sjsf/form/templates/get-template-props";
   import type { FromSchema } from "json-schema-to-ts";
 
-  import * as defaults from "$lib/sjsf/defaults";
+  import * as defaults from "#lib/sjsf/defaults.js";
 
   const schema = {
     type: "object",

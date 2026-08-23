@@ -10,7 +10,7 @@
   import { fromFactories } from "@sjsf/form/lib/resolver";
   import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit/client";
 
-  import * as defaults from "$lib/sjsf/defaults";
+  import * as defaults from "#lib/sjsf/defaults.js";
 
   import type { ActionData, PageData } from "./$types";
   import { STEP_KEY } from "./model";

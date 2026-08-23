@@ -71,7 +71,8 @@ export function fromPackageJson({
 export type Version = [number, number, number];
 
 export function createVersion(versionStr: string) {
-  const t = versionStr.split(".").map(Number);
+  const [core = versionStr] = versionStr.split("-", 2);
+  const t = core.split(".").map(Number);
   if (t.length !== 3 || t.some(isNaN)) {
     throw new Error(`Unexpected version format: "${versionStr}"`);
   }
@@ -85,11 +86,12 @@ export function resolveExactVersion(versionStr: string): string {
   if (m) {
     versionStr = versionStr.slice(m.length);
   }
-  const ver = createVersion(versionStr);
+  const [core = versionStr, prerelease] = versionStr.split("-", 2);
+  const ver = createVersion(core);
   if (m === "<") {
     ver[ver[0] === 0 ? 1 : 0]--;
   }
-  return ver.join(".");
+  return `${ver.join(".")}${prerelease !== undefined ? `-${prerelease}` : ""}`;
 }
 
 function formatPeerDependencyVersion(version: string) {

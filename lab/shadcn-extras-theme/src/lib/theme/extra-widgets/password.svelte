@@ -7,7 +7,7 @@
     PasswordRootProps,
     PasswordStrengthProps,
     PasswordToggleVisibilityProps,
-  } from "$lib/components/ui/password/types.js";
+  } from "../../components/ui/password/types.js";
 
   declare module "@sjsf/form" {
     interface ComponentProps {

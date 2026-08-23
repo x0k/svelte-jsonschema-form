@@ -3,6 +3,10 @@
   "version": "0.0.20",
   "private": true,
   "type": "module",
+  "imports": {
+    "#lib": "./src/lib/index.js",
+    "#lib/*": "./src/lib/*"
+  },
   "scripts": {
     "dev": "vite dev",
     "preview": "vite preview",
@@ -24,6 +28,8 @@
   "devDependencies": {
     "@fontsource-variable/inter": "catalog:",
     "@lucide/svelte": "catalog:",
+    "@sveltejs/adapter-auto": "catalog:",
+    "@sveltejs/kit": "catalog:",
     "@tailwindcss/vite": "catalog:",
     "clsx": "catalog:shadcn",
     "shadcn-svelte": "catalog:",

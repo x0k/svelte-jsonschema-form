@@ -2,9 +2,9 @@ import type { InitialFormData } from "@sjsf/sveltekit";
 import { createServerValidator } from "@sjsf/sveltekit/rf/server";
 import { invalid } from "@sveltejs/kit";
 
+import * as post from "#lib/post.js";
+import * as defaults from "#lib/sjsf/remote-defaults.js";
 import { form, query } from "$app/server";
-import * as post from "$lib/post";
-import * as defaults from "$lib/sjsf/remote-defaults";
 
 export const getInitialData = query(async () => {
   return {

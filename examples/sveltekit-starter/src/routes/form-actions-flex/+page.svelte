@@ -2,7 +2,7 @@
   import { BasicForm } from "@sjsf/form";
   import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit/client";
 
-  import * as defaults from "$lib/sjsf/defaults";
+  import * as defaults from "#lib/sjsf/defaults.js";
 
   import type { ActionData, PageData } from "./$types";
 

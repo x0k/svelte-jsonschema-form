@@ -1,6 +1,3 @@
-import fs from "node:fs";
-import path from "node:path";
-
 import {
   codegenIconSets,
   codegenSvelteKitIntegrations,
@@ -8,10 +5,11 @@ import {
   CodegenValidator,
   codegenValidators,
 } from "meta/codegen";
+import type { OptionValues } from "sv";
 import { expect } from "vitest";
 
 import addon from "../src/index.js";
-import { AddonOptions, SvValidator } from "../src/model";
+import { addonOptions, SvValidator } from "../src/model";
 import { snapshotFs } from "./setup/snapshot-fs.js";
 import { setupSnapshotTest } from "./setup/snapshot-suit";
 
@@ -20,6 +18,8 @@ const BASE_VALIDATOR: CodegenValidator = {
   precompiled: false,
   draft2020: false,
 };
+
+type AddonOptions = OptionValues<typeof addonOptions>;
 
 const BASE = {
   themeOrSubTheme: "basic",
@@ -86,18 +86,6 @@ function* kinds() {
       });
     }
   }
-  yield kind("kit3__basic", {});
-}
-
-function patchKitVersion(dir: string) {
-  const pkgPath = path.join(dir, "package.json");
-  const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf-8"));
-  if (pkg.devDependencies?.["@sveltejs/kit"]) {
-    pkg.devDependencies["@sveltejs/kit"] = "^3.0.0";
-  } else if (pkg.dependencies?.["@sveltejs/kit"]) {
-    pkg.dependencies["@sveltejs/kit"] = "^3.0.0";
-  }
-  fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, "\t") + "\n");
 }
 
 const { test, testCases } = setupSnapshotTest(
@@ -113,11 +101,6 @@ const { test, testCases } = setupSnapshotTest(
         return false;
       }
       return true;
-    },
-    beforeAdd(dir, variant) {
-      if (variant === "kit-ts" && dir.includes("kit3")) {
-        patchKitVersion(dir);
-      }
     },
   }
 );

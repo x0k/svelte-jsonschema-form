@@ -76,6 +76,7 @@
     "@sjsf/basic-theme": "workspace:*",
     "@sjsf/form": "workspace:*",
     "@sveltejs/adapter-node": "^5.5.7",
+    "@sveltejs/kit": "catalog:legacy",
     "@sveltejs/load-config": "^0.2.3",
     "ajv": "catalog:",
     "esm-env": "catalog:",

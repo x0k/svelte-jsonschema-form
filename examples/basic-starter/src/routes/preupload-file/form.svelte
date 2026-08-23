@@ -6,7 +6,7 @@
     type UiSchemaRoot,
   } from "@sjsf/form";
 
-  import * as defaults from "$lib/sjsf/defaults";
+  import * as defaults from "#lib/sjsf/defaults.js";
 
   import { setStoreContext } from "./context";
   import StoredFileField from "./stored-file-field.svelte";

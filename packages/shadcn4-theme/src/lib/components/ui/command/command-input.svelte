@@ -2,8 +2,8 @@
   import SearchIcon from "@lucide/svelte/icons/search";
   import { Command as CommandPrimitive } from "bits-ui";
 
-  import * as InputGroup from "$lib/components/ui/input-group/index.js";
-  import { cn } from "$lib/utils.js";
+  import { cn } from "../../../utils.js";
+  import * as InputGroup from "../input-group/index.js";
 
   let {
     ref = $bindable(null),

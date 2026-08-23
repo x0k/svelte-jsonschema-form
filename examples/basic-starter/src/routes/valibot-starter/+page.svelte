@@ -3,7 +3,7 @@
   import { adapt } from "@sjsf/valibot-validator";
   import * as v from "valibot";
 
-  import * as defaults from "$lib/sjsf/defaults";
+  import * as defaults from "#lib/sjsf/defaults.js";
 
   const schema = v.pipe(
     v.object({

@@ -1,6 +1,8 @@
 import { resolve, dirname } from "node:path";
 
+import adapter from "@sveltejs/adapter-static";
 import { sveltekit } from "@sveltejs/kit/vite";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 import tailwindcss from "@tailwindcss/vite";
 import { playwright } from "@vitest/browser-playwright";
 import { defaultExclude } from "vitest/config";
@@ -10,7 +12,27 @@ const vrtPattern = "**/*.vrt.test.[tj]s?(x)";
 const VIRTUAL_MODULE_PREFIX = "virtual-module:";
 
 export default defineConfig({
-  plugins: [tailwindcss(), sveltekit()],
+  plugins: [
+    tailwindcss(),
+    sveltekit({
+      // Consult https://kit.svelte.dev/docs/integrations#preprocessors
+      // for more information about preprocessors
+      preprocess: vitePreprocess(),
+
+      // adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.
+      // If your environment is not supported, or you settled on a specific environment, switch out the adapter.
+      // See https://kit.svelte.dev/docs/adapters for more information about adapters.
+      adapter: adapter({
+        // default options are shown. On some platforms
+        // these options are set automatically — see below
+        // pages: 'build',
+        // assets: 'build',
+        // fallback: undefined,
+        // precompress: false,
+        strict: false,
+      }),
+    }),
+  ],
   optimizeDeps: {
     include: [
       "@sveltejs/svelte-json-tree",

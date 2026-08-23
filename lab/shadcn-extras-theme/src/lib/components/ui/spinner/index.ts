@@ -1,1 +1,1 @@
-export { default as Spinner } from '$lib/components/ui/spinner/spinner.svelte';
+export { default as Spinner } from './spinner.svelte';

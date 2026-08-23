@@ -2,7 +2,7 @@ import type { Schema } from "@sjsf/form";
 import type { InitialFormData } from "@sjsf/sveltekit";
 import { createAction } from "@sjsf/sveltekit/server";
 
-import * as defaults from "$lib/sjsf/defaults";
+import * as defaults from "#lib/sjsf/defaults.js";
 
 import type { Actions } from "./$types";
 

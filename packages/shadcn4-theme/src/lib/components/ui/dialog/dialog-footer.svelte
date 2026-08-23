@@ -2,8 +2,8 @@
   import { Dialog as DialogPrimitive } from "bits-ui";
   import type { HTMLAttributes } from "svelte/elements";
 
-  import { Button } from "$lib/components/ui/button/index.js";
-  import { cn, type WithElementRef } from "$lib/utils.js";
+  import { cn, type WithElementRef } from "../../../utils.js";
+  import { Button } from "../button/index.js";
 
   let {
     ref = $bindable(null),

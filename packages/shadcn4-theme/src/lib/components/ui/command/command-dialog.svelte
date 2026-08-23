@@ -5,9 +5,8 @@
   } from "bits-ui";
   import type { Snippet } from "svelte";
 
-  import * as Dialog from "$lib/components/ui/dialog/index.js";
-  import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
-
+  import { cn, type WithoutChildrenOrChild } from "../../../utils.js";
+  import * as Dialog from "../dialog/index.js";
   import Command from "./command.svelte";
 
   let {

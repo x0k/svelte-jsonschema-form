@@ -17,7 +17,7 @@ exports[`sandbox-factory > basic > basic 1`] = `
   },
   "devDependencies": {
     "vite": "^8.2.1",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0-next.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
@@ -27,26 +27,14 @@ exports[`sandbox-factory > basic > basic 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.html": "<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = {
+export const schema = ({
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const satisfies Schema;;
+} as const satisfies Schema);;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
@@ -90,10 +78,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	});
 }",
   "src/routes/+layout.svelte": "<script lang="ts">
-	import './layout.css';
-	import type { Snippet } from 'svelte';
+  import '@import "@sjsf/basic-theme/css/basic.css";';
+  import type { Snippet } from 'svelte';
 
-	const { children }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 </script>
 
 {@render children()}",
@@ -154,7 +142,7 @@ exports[`sandbox-factory > css > custom css 1`] = `
   },
   "devDependencies": {
     "vite": "^8.2.1",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0-next.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
@@ -164,26 +152,14 @@ exports[`sandbox-factory > css > custom css 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.html": "<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = {
+export const schema = ({
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const satisfies Schema;;
+} as const satisfies Schema);;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
@@ -227,10 +203,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	});
 }",
   "src/routes/+layout.svelte": "<script lang="ts">
-	import './layout.css';
-	import type { Snippet } from 'svelte';
+  import '@import "@sjsf/basic-theme/css/basic.css";\\n\\nbody {\\n	background: red;\\n}';
+  import type { Snippet } from 'svelte';
 
-	const { children }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 </script>
 
 {@render children()}",
@@ -295,7 +271,7 @@ exports[`sandbox-factory > form > disabled 1`] = `
   },
   "devDependencies": {
     "vite": "^8.2.1",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0-next.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
@@ -305,26 +281,14 @@ exports[`sandbox-factory > form > disabled 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.html": "<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = {
+export const schema = ({
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const satisfies Schema;;
+} as const satisfies Schema);;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
@@ -368,10 +332,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	});
 }",
   "src/routes/+layout.svelte": "<script lang="ts">
-	import './layout.css';
-	import type { Snippet } from 'svelte';
+  import '@import "@sjsf/basic-theme/css/basic.css";';
+  import type { Snippet } from 'svelte';
 
-	const { children }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 </script>
 
 {@render children()}",
@@ -431,7 +395,7 @@ exports[`sandbox-factory > form > fieldsValidationMode 1`] = `
   },
   "devDependencies": {
     "vite": "^8.2.1",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0-next.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
@@ -519,18 +483,6 @@ async function main() {
 if (import.meta.main) {
 	await main();
 }",
-  "src/app.html": "<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
   "src/lib/model/initial-value.json": "{
 	
 }",
@@ -577,10 +529,10 @@ export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();",
   "src/routes/+layout.svelte": "<script lang="ts">
-	import './layout.css';
-	import type { Snippet } from 'svelte';
+  import '@import "@sjsf/basic-theme/css/basic.css";';
+  import type { Snippet } from 'svelte';
 
-	const { children }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 </script>
 
 {@render children()}",
@@ -649,7 +601,7 @@ exports[`sandbox-factory > form > omitExtraData 1`] = `
   },
   "devDependencies": {
     "vite": "^8.2.1",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0-next.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
@@ -659,26 +611,14 @@ exports[`sandbox-factory > form > omitExtraData 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.html": "<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = {
+export const schema = ({
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const satisfies Schema;;
+} as const satisfies Schema);;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
@@ -722,10 +662,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	});
 }",
   "src/routes/+layout.svelte": "<script lang="ts">
-	import './layout.css';
-	import type { Snippet } from 'svelte';
+  import '@import "@sjsf/basic-theme/css/basic.css";';
+  import type { Snippet } from 'svelte';
 
-	const { children }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 </script>
 
 {@render children()}",
@@ -792,7 +732,7 @@ exports[`sandbox-factory > merger > non-default 1`] = `
   },
   "devDependencies": {
     "vite": "^8.2.1",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0-next.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
@@ -802,34 +742,21 @@ exports[`sandbox-factory > merger > non-default 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.html": "<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = {
+export const schema = ({
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const satisfies Schema;;
+} as const satisfies Schema);;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import type { ValidatorFactoryOptions } from "@sjsf/form";
 import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-import type { FormMergerOptions } from "@sjsf/form/mergers/modern";
-import { createFormMerger } from "@sjsf/form/mergers/modern";
+import { createFormMerger, type FormMergerOptions } from "@sjsf/form/mergers/modern";
 
 // import "@sjsf/form/fields/extra/aggregated-include";
 // import "@sjsf/form/fields/extra/array-files-include";
@@ -878,10 +805,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	});
 }",
   "src/routes/+layout.svelte": "<script lang="ts">
-	import './layout.css';
-	import type { Snippet } from 'svelte';
+  import '@import "@sjsf/basic-theme/css/basic.css";';
+  import type { Snippet } from 'svelte';
 
-	const { children }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 </script>
 
 {@render children()}",
@@ -942,7 +869,7 @@ exports[`sandbox-factory > themes > basic 1`] = `
   },
   "devDependencies": {
     "vite": "^8.2.1",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0-next.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
@@ -952,26 +879,14 @@ exports[`sandbox-factory > themes > basic 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.html": "<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = {
+export const schema = ({
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const satisfies Schema;;
+} as const satisfies Schema);;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
@@ -1015,10 +930,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	});
 }",
   "src/routes/+layout.svelte": "<script lang="ts">
-	import './layout.css';
-	import type { Snippet } from 'svelte';
+  import '@import "@sjsf/basic-theme/css/basic.css";';
+  import type { Snippet } from 'svelte';
 
-	const { children }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 </script>
 
 {@render children()}",
@@ -1080,7 +995,7 @@ exports[`sandbox-factory > themes > beercss 1`] = `
   },
   "devDependencies": {
     "vite": "^8.2.1",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0-next.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
@@ -1090,26 +1005,14 @@ exports[`sandbox-factory > themes > beercss 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.html": "<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = {
+export const schema = ({
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const satisfies Schema;;
+} as const satisfies Schema);;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
@@ -1153,10 +1056,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	});
 }",
   "src/routes/+layout.svelte": "<script lang="ts">
-	import 'beercss/dist/cdn/beer.css';
-	import type { Snippet } from 'svelte';
+  import 'beercss/dist/cdn/beer.css';
+  import type { Snippet } from 'svelte';
 
-	const { children }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 </script>
 
 <div style="padding: 2rem">{@render children()}</div>",
@@ -1218,7 +1121,7 @@ exports[`sandbox-factory > themes > daisyui5 1`] = `
   },
   "devDependencies": {
     "vite": "^8.2.1",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0-next.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
@@ -1230,26 +1133,14 @@ exports[`sandbox-factory > themes > daisyui5 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.html": "<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = {
+export const schema = ({
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const satisfies Schema;;
+} as const satisfies Schema);;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
@@ -1299,10 +1190,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	});
 }",
   "src/routes/+layout.svelte": "<script lang="ts">
-	import './layout.css';
-	import type { Snippet } from 'svelte';
+  import '@import \\'tailwindcss\\';\\n@import "@sjsf/daisyui5-theme/styles.css";\\n@plugin "daisyui";';
+  import type { Snippet } from 'svelte';
 
-	const { children }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 </script>
 
 <div style="padding: 2rem">{@render children()}</div>",
@@ -1368,7 +1259,7 @@ exports[`sandbox-factory > themes > flowbite3 1`] = `
   },
   "devDependencies": {
     "vite": "^8.2.1",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0-next.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
@@ -1381,26 +1272,14 @@ exports[`sandbox-factory > themes > flowbite3 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.html": "<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = {
+export const schema = ({
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const satisfies Schema;;
+} as const satisfies Schema);;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
@@ -1449,10 +1328,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	});
 }",
   "src/routes/+layout.svelte": "<script lang="ts">
-	import './layout.css';
-	import type { Snippet } from 'svelte';
+  import '@import \\'tailwindcss\\';\\n@import "@sjsf/flowbite3-theme/styles.css";\\n@plugin "flowbite/plugin";\\n@custom-variant dark (&:where(.dark, .dark *));\\n@theme {\\n  --color-primary-50: #fff5f2;\\n  --color-primary-100: #fff1ee;\\n  --color-primary-200: #ffe4de;\\n  --color-primary-300: #ffd5cc;\\n  --color-primary-400: #ffbcad;\\n  --color-primary-500: #fe795d;\\n  --color-primary-600: #ef562f;\\n  --color-primary-700: #eb4f27;\\n  --color-primary-800: #cc4522;\\n  --color-primary-900: #a5371b;\\n\\n  --color-secondary-50: #f0f9ff;\\n  --color-secondary-100: #e0f2fe;\\n  --color-secondary-200: #bae6fd;\\n  --color-secondary-300: #7dd3fc;\\n  --color-secondary-400: #38bdf8;\\n  --color-secondary-500: #0ea5e9;\\n  --color-secondary-600: #0284c7;\\n  --color-secondary-700: #0369a1;\\n  --color-secondary-800: #075985;\\n  --color-secondary-900: #0c4a6e;\\n};';
+  import type { Snippet } from 'svelte';
 
-	const { children }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 </script>
 
 <div style="padding: 2rem">{@render children()}</div>",
@@ -1541,7 +1420,7 @@ exports[`sandbox-factory > themes > pico 1`] = `
   },
   "devDependencies": {
     "vite": "^8.2.1",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0-next.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
@@ -1552,26 +1431,14 @@ exports[`sandbox-factory > themes > pico 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.html": "<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = {
+export const schema = ({
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const satisfies Schema;;
+} as const satisfies Schema);;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
@@ -1615,10 +1482,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	});
 }",
   "src/routes/+layout.svelte": "<script lang="ts">
-	import './layout.css';
-	import type { Snippet } from 'svelte';
+  import '@import "@picocss/pico/css/pico.css";\\n@import "@sjsf/basic-theme/css/pico.css";';
+  import type { Snippet } from 'svelte';
 
-	const { children }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 </script>
 
 <div style="padding: 2rem">{@render children()}</div>",
@@ -1684,7 +1551,7 @@ exports[`sandbox-factory > themes > shadcn-extras 1`] = `
   },
   "devDependencies": {
     "vite": "^8.2.1",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0-next.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
@@ -1696,26 +1563,14 @@ exports[`sandbox-factory > themes > shadcn-extras 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.html": "<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = {
+export const schema = ({
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const satisfies Schema;;
+} as const satisfies Schema);;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
@@ -1846,13 +1701,13 @@ export function setShadcnThemeContext() {
 	});
 }",
   "src/routes/+layout.svelte": "<script lang="ts">
-	import { setShadcnThemeContext } from '$lib/sjsf/shadcn';
-	import './layout.css';
-	import type { Snippet } from 'svelte';
+  import { setShadcnThemeContext } from '$lib/sjsf/shadcn';
+  import '@import \\'tailwindcss\\';\\n@import "@sjsf/shadcn4-theme/styles.css";\\n@import "@sjsf-lab/shadcn-extras-theme/styles.css";\\n@custom-variant dark (&:where(.dark *));\\n\\n:root {\\n	--radius: 0.625rem;\\n	--background: oklch(1 0 0);\\n	--foreground: oklch(0.145 0 0);\\n	--card: oklch(1 0 0);\\n	--card-foreground: oklch(0.145 0 0);\\n	--popover: oklch(1 0 0);\\n	--popover-foreground: oklch(0.145 0 0);\\n	--primary: oklch(0.205 0 0);\\n	--primary-foreground: oklch(0.985 0 0);\\n	--secondary: oklch(0.97 0 0);\\n	--secondary-foreground: oklch(0.205 0 0);\\n	--muted: oklch(0.97 0 0);\\n	--muted-foreground: oklch(0.556 0 0);\\n	--accent: oklch(0.97 0 0);\\n	--accent-foreground: oklch(0.205 0 0);\\n	--destructive: oklch(0.577 0.245 27.325);\\n	--border: oklch(0.922 0 0);\\n	--input: oklch(0.922 0 0);\\n	--ring: oklch(0.708 0 0);\\n	--chart-1: oklch(0.646 0.222 41.116);\\n	--chart-2: oklch(0.6 0.118 184.704);\\n	--chart-3: oklch(0.398 0.07 227.392);\\n	--chart-4: oklch(0.828 0.189 84.429);\\n	--chart-5: oklch(0.769 0.188 70.08);\\n	--sidebar: oklch(0.985 0 0);\\n	--sidebar-foreground: oklch(0.145 0 0);\\n	--sidebar-primary: oklch(0.205 0 0);\\n	--sidebar-primary-foreground: oklch(0.985 0 0);\\n	--sidebar-accent: oklch(0.97 0 0);\\n	--sidebar-accent-foreground: oklch(0.205 0 0);\\n	--sidebar-border: oklch(0.922 0 0);\\n	--sidebar-ring: oklch(0.708 0 0);\\n}\\n\\n.dark {\\n	--background: oklch(0.145 0 0);\\n	--foreground: oklch(0.985 0 0);\\n	--card: oklch(0.205 0 0);\\n	--card-foreground: oklch(0.985 0 0);\\n	--popover: oklch(0.269 0 0);\\n	--popover-foreground: oklch(0.985 0 0);\\n	--primary: oklch(0.922 0 0);\\n	--primary-foreground: oklch(0.205 0 0);\\n	--secondary: oklch(0.269 0 0);\\n	--secondary-foreground: oklch(0.985 0 0);\\n	--muted: oklch(0.269 0 0);\\n	--muted-foreground: oklch(0.708 0 0);\\n	--accent: oklch(0.371 0 0);\\n	--accent-foreground: oklch(0.985 0 0);\\n	--destructive: oklch(0.704 0.191 22.216);\\n	--border: oklch(1 0 0 / 10%);\\n	--input: oklch(1 0 0 / 15%);\\n	--ring: oklch(0.556 0 0);\\n	--chart-1: oklch(0.488 0.243 264.376);\\n	--chart-2: oklch(0.696 0.17 162.48);\\n	--chart-3: oklch(0.769 0.188 70.08);\\n	--chart-4: oklch(0.627 0.265 303.9);\\n	--chart-5: oklch(0.645 0.246 16.439);\\n	--sidebar: oklch(0.205 0 0);\\n	--sidebar-foreground: oklch(0.985 0 0);\\n	--sidebar-primary: oklch(0.488 0.243 264.376);\\n	--sidebar-primary-foreground: oklch(0.985 0 0);\\n	--sidebar-accent: oklch(0.269 0 0);\\n	--sidebar-accent-foreground: oklch(0.985 0 0);\\n	--sidebar-border: oklch(1 0 0 / 10%);\\n	--sidebar-ring: oklch(0.439 0 0);\\n}\\n\\n@theme inline {\\n  --radius-sm: calc(var(--radius) - 4px);\\n  --radius-md: calc(var(--radius) - 2px);\\n  --radius-lg: var(--radius);\\n  --radius-xl: calc(var(--radius) + 4px);\\n  --color-background: var(--background);\\n  --color-foreground: var(--foreground);\\n  --color-card: var(--card);\\n  --color-card-foreground: var(--card-foreground);\\n  --color-popover: var(--popover);\\n  --color-popover-foreground: var(--popover-foreground);\\n  --color-primary: var(--primary);\\n  --color-primary-foreground: var(--primary-foreground);\\n  --color-secondary: var(--secondary);\\n  --color-secondary-foreground: var(--secondary-foreground);\\n  --color-muted: var(--muted);\\n  --color-muted-foreground: var(--muted-foreground);\\n  --color-accent: var(--accent);\\n  --color-accent-foreground: var(--accent-foreground);\\n  --color-destructive: var(--destructive);\\n  --color-border: var(--border);\\n  --color-input: var(--input);\\n  --color-ring: var(--ring);\\n  --color-chart-1: var(--chart-1);\\n  --color-chart-2: var(--chart-2);\\n  --color-chart-3: var(--chart-3);\\n  --color-chart-4: var(--chart-4);\\n  --color-chart-5: var(--chart-5);\\n  --color-sidebar: var(--sidebar);\\n  --color-sidebar-foreground: var(--sidebar-foreground);\\n  --color-sidebar-primary: var(--sidebar-primary);\\n  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);\\n  --color-sidebar-accent: var(--sidebar-accent);\\n  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);\\n  --color-sidebar-border: var(--sidebar-border);\\n  --color-sidebar-ring: var(--sidebar-ring);\\n};\\n@layer base {\\n  * {\\n    @apply border-border outline-ring/50;\\n  }\\n \\n  body {\\n    @apply bg-background text-foreground;\\n  }\\n};';
+  import type { Snippet } from 'svelte';
 
-	const { children }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 
-	setShadcnThemeContext();
+  setShadcnThemeContext();
 </script>
 
 <div style="padding: 2rem">{@render children()}</div>",
@@ -2042,7 +1897,7 @@ exports[`sandbox-factory > themes > shadcn4 1`] = `
   },
   "devDependencies": {
     "vite": "^8.2.1",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0-next.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
@@ -2054,26 +1909,14 @@ exports[`sandbox-factory > themes > shadcn4 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.html": "<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = {
+export const schema = ({
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const satisfies Schema;;
+} as const satisfies Schema);;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
@@ -2185,13 +2028,13 @@ export function setShadcnThemeContext() {
 	});
 }",
   "src/routes/+layout.svelte": "<script lang="ts">
-	import { setShadcnThemeContext } from '$lib/sjsf/shadcn';
-	import './layout.css';
-	import type { Snippet } from 'svelte';
+  import { setShadcnThemeContext } from '$lib/sjsf/shadcn';
+  import '@import \\'tailwindcss\\';\\n@import "@sjsf/shadcn4-theme/styles.css";\\n@custom-variant dark (&:where(.dark *));\\n\\n:root {\\n	--radius: 0.625rem;\\n	--background: oklch(1 0 0);\\n	--foreground: oklch(0.145 0 0);\\n	--card: oklch(1 0 0);\\n	--card-foreground: oklch(0.145 0 0);\\n	--popover: oklch(1 0 0);\\n	--popover-foreground: oklch(0.145 0 0);\\n	--primary: oklch(0.205 0 0);\\n	--primary-foreground: oklch(0.985 0 0);\\n	--secondary: oklch(0.97 0 0);\\n	--secondary-foreground: oklch(0.205 0 0);\\n	--muted: oklch(0.97 0 0);\\n	--muted-foreground: oklch(0.556 0 0);\\n	--accent: oklch(0.97 0 0);\\n	--accent-foreground: oklch(0.205 0 0);\\n	--destructive: oklch(0.577 0.245 27.325);\\n	--border: oklch(0.922 0 0);\\n	--input: oklch(0.922 0 0);\\n	--ring: oklch(0.708 0 0);\\n	--chart-1: oklch(0.646 0.222 41.116);\\n	--chart-2: oklch(0.6 0.118 184.704);\\n	--chart-3: oklch(0.398 0.07 227.392);\\n	--chart-4: oklch(0.828 0.189 84.429);\\n	--chart-5: oklch(0.769 0.188 70.08);\\n	--sidebar: oklch(0.985 0 0);\\n	--sidebar-foreground: oklch(0.145 0 0);\\n	--sidebar-primary: oklch(0.205 0 0);\\n	--sidebar-primary-foreground: oklch(0.985 0 0);\\n	--sidebar-accent: oklch(0.97 0 0);\\n	--sidebar-accent-foreground: oklch(0.205 0 0);\\n	--sidebar-border: oklch(0.922 0 0);\\n	--sidebar-ring: oklch(0.708 0 0);\\n}\\n\\n.dark {\\n	--background: oklch(0.145 0 0);\\n	--foreground: oklch(0.985 0 0);\\n	--card: oklch(0.205 0 0);\\n	--card-foreground: oklch(0.985 0 0);\\n	--popover: oklch(0.269 0 0);\\n	--popover-foreground: oklch(0.985 0 0);\\n	--primary: oklch(0.922 0 0);\\n	--primary-foreground: oklch(0.205 0 0);\\n	--secondary: oklch(0.269 0 0);\\n	--secondary-foreground: oklch(0.985 0 0);\\n	--muted: oklch(0.269 0 0);\\n	--muted-foreground: oklch(0.708 0 0);\\n	--accent: oklch(0.371 0 0);\\n	--accent-foreground: oklch(0.985 0 0);\\n	--destructive: oklch(0.704 0.191 22.216);\\n	--border: oklch(1 0 0 / 10%);\\n	--input: oklch(1 0 0 / 15%);\\n	--ring: oklch(0.556 0 0);\\n	--chart-1: oklch(0.488 0.243 264.376);\\n	--chart-2: oklch(0.696 0.17 162.48);\\n	--chart-3: oklch(0.769 0.188 70.08);\\n	--chart-4: oklch(0.627 0.265 303.9);\\n	--chart-5: oklch(0.645 0.246 16.439);\\n	--sidebar: oklch(0.205 0 0);\\n	--sidebar-foreground: oklch(0.985 0 0);\\n	--sidebar-primary: oklch(0.488 0.243 264.376);\\n	--sidebar-primary-foreground: oklch(0.985 0 0);\\n	--sidebar-accent: oklch(0.269 0 0);\\n	--sidebar-accent-foreground: oklch(0.985 0 0);\\n	--sidebar-border: oklch(1 0 0 / 10%);\\n	--sidebar-ring: oklch(0.439 0 0);\\n}\\n\\n@theme inline {\\n  --radius-sm: calc(var(--radius) - 4px);\\n  --radius-md: calc(var(--radius) - 2px);\\n  --radius-lg: var(--radius);\\n  --radius-xl: calc(var(--radius) + 4px);\\n  --color-background: var(--background);\\n  --color-foreground: var(--foreground);\\n  --color-card: var(--card);\\n  --color-card-foreground: var(--card-foreground);\\n  --color-popover: var(--popover);\\n  --color-popover-foreground: var(--popover-foreground);\\n  --color-primary: var(--primary);\\n  --color-primary-foreground: var(--primary-foreground);\\n  --color-secondary: var(--secondary);\\n  --color-secondary-foreground: var(--secondary-foreground);\\n  --color-muted: var(--muted);\\n  --color-muted-foreground: var(--muted-foreground);\\n  --color-accent: var(--accent);\\n  --color-accent-foreground: var(--accent-foreground);\\n  --color-destructive: var(--destructive);\\n  --color-border: var(--border);\\n  --color-input: var(--input);\\n  --color-ring: var(--ring);\\n  --color-chart-1: var(--chart-1);\\n  --color-chart-2: var(--chart-2);\\n  --color-chart-3: var(--chart-3);\\n  --color-chart-4: var(--chart-4);\\n  --color-chart-5: var(--chart-5);\\n  --color-sidebar: var(--sidebar);\\n  --color-sidebar-foreground: var(--sidebar-foreground);\\n  --color-sidebar-primary: var(--sidebar-primary);\\n  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);\\n  --color-sidebar-accent: var(--sidebar-accent);\\n  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);\\n  --color-sidebar-border: var(--sidebar-border);\\n  --color-sidebar-ring: var(--sidebar-ring);\\n};\\n@layer base {\\n  * {\\n    @apply border-border outline-ring/50;\\n  }\\n \\n  body {\\n    @apply bg-background text-foreground;\\n  }\\n};';
+  import type { Snippet } from 'svelte';
 
-	const { children }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 
-	setShadcnThemeContext();
+  setShadcnThemeContext();
 </script>
 
 <div style="padding: 2rem">{@render children()}</div>",
@@ -2375,7 +2218,7 @@ exports[`sandbox-factory > themes > skeleton4 1`] = `
   },
   "devDependencies": {
     "vite": "^8.2.1",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0-next.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
@@ -2388,26 +2231,14 @@ exports[`sandbox-factory > themes > skeleton4 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.html": "<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = {
+export const schema = ({
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const satisfies Schema;;
+} as const satisfies Schema);;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
@@ -2460,10 +2291,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	});
 }",
   "src/routes/+layout.svelte": "<script lang="ts">
-	import './layout.css';
-	import type { Snippet } from 'svelte';
+  import '@import \\'tailwindcss\\';\\n@import "@sjsf/skeleton4-theme/styles.css";\\n@plugin \\'@tailwindcss/forms\\';';
+  import type { Snippet } from 'svelte';
 
-	const { children }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 </script>
 
 {@render children()}",
@@ -2530,7 +2361,7 @@ exports[`sandbox-factory > themes > skeleton5 1`] = `
   },
   "devDependencies": {
     "vite": "^8.2.1",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0-next.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
@@ -2546,28 +2377,28 @@ exports[`sandbox-factory > themes > skeleton5 1`] = `
   "src/app.html": "<!DOCTYPE html>
 
 <html lang="en" data-theme="cerberus">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
 
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1"
-		/>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
 
-		%sveltekit.head%
-	</head>
+    %sveltekit.head%
+  </head>
 
-	<body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
+  <body data-sveltekit-preload-data="hover"><div style="display: contents">%sveltekit.body%</div></body>
 </html>",
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = {
+export const schema = ({
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const satisfies Schema;;
+} as const satisfies Schema);;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
@@ -2620,10 +2451,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	});
 }",
   "src/routes/+layout.svelte": "<script lang="ts">
-	import './layout.css';
-	import type { Snippet } from 'svelte';
+  import '@import \\'tailwindcss\\';\\n@import "@sjsf/skeleton5-theme/styles.css";\\n@plugin \\'@tailwindcss/forms\\';\\n@import "@skeletonlabs/skeleton";\\n@import "@skeletonlabs/skeleton-svelte";\\n@import "@skeletonlabs/skeleton/themes/cerberus";';
+  import type { Snippet } from 'svelte';
 
-	const { children }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 </script>
 
 <div style="padding: 2rem">{@render children()}</div>",
@@ -2692,7 +2523,7 @@ exports[`sandbox-factory > themes > svar 1`] = `
   },
   "devDependencies": {
     "vite": "^8.2.1",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0-next.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
@@ -2702,26 +2533,14 @@ exports[`sandbox-factory > themes > svar 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.html": "<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = {
+export const schema = ({
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const satisfies Schema;;
+} as const satisfies Schema);;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
@@ -2770,10 +2589,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	});
 }",
   "src/routes/+layout.svelte": "<script lang="ts">
-	import { Willow } from '@svar-ui/svelte-core';
-	import type { Snippet } from 'svelte';
+  import { Willow } from '@svar-ui/svelte-core';
+  import type { Snippet } from 'svelte';
 
-	const { children }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 </script>
 
 <Willow>{@render children()}</Willow>",
@@ -2834,7 +2653,7 @@ exports[`sandbox-factory > ui-schema > customizations 1`] = `
   },
   "devDependencies": {
     "vite": "^8.2.1",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0-next.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
@@ -2844,18 +2663,6 @@ exports[`sandbox-factory > ui-schema > customizations 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.html": "<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
   "src/lib/custom-components/index.ts": "export { default as markdownDescription } from "./markdown-description.svelte";
 export { default as transparentLayout } from "./transparent-layout.svelte";
 ",
@@ -2864,15 +2671,15 @@ export { default as transparentLayout } from "./transparent-layout.svelte";
   "src/lib/model.ts": "import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = {
+export const schema = ({
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const satisfies Schema;;
+} as const satisfies Schema);;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = {
+export const uiSchema = ({
 	"ui:components": {
 		"stringField": "enumField",
 		"arrayField": "multiEnumField",
@@ -2884,7 +2691,7 @@ export const uiSchema = {
 	"properties": {
 		"name": { "ui:components": { "textWidget": "textareaWidget" } }
 	}
-} as const satisfies UiSchemaRoot;;",
+} as const satisfies UiSchemaRoot);;",
   "src/lib/sjsf/defaults.ts": "import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
@@ -2947,10 +2754,10 @@ export const uiOptionsRegistry = {
 	stringEnumValueMapper: () => new StringEnumValueMapperBuilder()
 };",
   "src/routes/+layout.svelte": "<script lang="ts">
-	import './layout.css';
-	import type { Snippet } from 'svelte';
+  import '@import "@sjsf/basic-theme/css/basic.css";';
+  import type { Snippet } from 'svelte';
 
-	const { children }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 </script>
 
 {@render children()}",
@@ -3011,7 +2818,7 @@ exports[`sandbox-factory > ui-schema > refs 1`] = `
   },
   "devDependencies": {
     "vite": "^8.2.1",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0-next.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
@@ -3021,33 +2828,21 @@ exports[`sandbox-factory > ui-schema > refs 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.html": "<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
   "src/lib/custom-components/index.ts": "export { default as transparentLayout } from "./transparent-layout.svelte";
 ",
   "src/lib/custom-components/transparent-layout.svelte": "<stub>transparent</stub>",
   "src/lib/model.ts": "import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = {
+export const schema = ({
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const satisfies Schema;;
+} as const satisfies Schema);;
 
 export type Model = FromSchema<typeof schema>;
 
-export const uiSchema = {
+export const uiSchema = ({
 	"ui:definitions": {
 		"customField": {
 			"ui:components": { "stringField": "enumField" },
@@ -3058,7 +2853,7 @@ export const uiSchema = {
 	"name": { "$ref": "customField" },
 	"email": { "$ref": "customField" },
 	"address": { "$ref": "customLayout" }
-} as const satisfies UiSchemaRoot;;",
+} as const satisfies UiSchemaRoot);;",
   "src/lib/sjsf/defaults.ts": "import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 import addFormats from "ajv-formats";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
@@ -3121,10 +2916,10 @@ export const uiOptionsRegistry = {
 	stringEnumValueMapper: () => new StringEnumValueMapperBuilder()
 };",
   "src/routes/+layout.svelte": "<script lang="ts">
-	import './layout.css';
-	import type { Snippet } from 'svelte';
+  import '@import "@sjsf/basic-theme/css/basic.css";';
+  import type { Snippet } from 'svelte';
 
-	const { children }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 </script>
 
 {@render children()}",
@@ -3184,7 +2979,7 @@ exports[`sandbox-factory > validators > @cfworker/json-schema (2020-12) 1`] = `
   },
   "devDependencies": {
     "vite": "^8.2.1",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0-next.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
@@ -3194,26 +2989,14 @@ exports[`sandbox-factory > validators > @cfworker/json-schema (2020-12) 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.html": "<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = {
+export const schema = ({
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const satisfies Schema;;
+} as const satisfies Schema);;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import { Validator, type Schema } from "@cfworker/json-schema";
@@ -3256,10 +3039,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	});
 }",
   "src/routes/+layout.svelte": "<script lang="ts">
-	import './layout.css';
-	import type { Snippet } from 'svelte';
+  import '@import "@sjsf/basic-theme/css/basic.css";';
+  import type { Snippet } from 'svelte';
 
-	const { children }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 </script>
 
 {@render children()}",
@@ -3319,7 +3102,7 @@ exports[`sandbox-factory > validators > @cfworker/json-schema 1`] = `
   },
   "devDependencies": {
     "vite": "^8.2.1",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0-next.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
@@ -3329,26 +3112,14 @@ exports[`sandbox-factory > validators > @cfworker/json-schema 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.html": "<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = {
+export const schema = ({
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const satisfies Schema;;
+} as const satisfies Schema);;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
@@ -3383,10 +3154,10 @@ export { theme } from '@sjsf/basic-theme';
 export const onSubmitError = createFocusOnFirstError();
 export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
   "src/routes/+layout.svelte": "<script lang="ts">
-	import './layout.css';
-	import type { Snippet } from 'svelte';
+  import '@import "@sjsf/basic-theme/css/basic.css";';
+  import type { Snippet } from 'svelte';
 
-	const { children }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 </script>
 
 {@render children()}",
@@ -3446,7 +3217,7 @@ exports[`sandbox-factory > validators > @exodus/schemasafe (2020-12) 1`] = `
   },
   "devDependencies": {
     "vite": "^8.2.1",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0-next.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
@@ -3456,26 +3227,14 @@ exports[`sandbox-factory > validators > @exodus/schemasafe (2020-12) 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.html": "<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = {
+export const schema = ({
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const satisfies Schema;;
+} as const satisfies Schema);;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import { ROOT_SCHEMA_PREFIX } from "@sjsf/form/core";
@@ -3528,10 +3287,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	});
 }",
   "src/routes/+layout.svelte": "<script lang="ts">
-	import './layout.css';
-	import type { Snippet } from 'svelte';
+  import '@import "@sjsf/basic-theme/css/basic.css";';
+  import type { Snippet } from 'svelte';
 
-	const { children }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 </script>
 
 {@render children()}",
@@ -3591,7 +3350,7 @@ exports[`sandbox-factory > validators > @exodus/schemasafe (precompiled) 1`] = `
   },
   "devDependencies": {
     "vite": "^8.2.1",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0-next.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
@@ -3672,18 +3431,6 @@ async function main() {
 if (import.meta.main) {
 	await main();
 }",
-  "src/app.html": "<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
   "src/lib/model/initial-value.json": "{
 	
 }",
@@ -3730,10 +3477,10 @@ export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();",
   "src/routes/+layout.svelte": "<script lang="ts">
-	import './layout.css';
-	import type { Snippet } from 'svelte';
+  import '@import "@sjsf/basic-theme/css/basic.css";';
+  import type { Snippet } from 'svelte';
 
-	const { children }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 </script>
 
 {@render children()}",
@@ -3801,7 +3548,7 @@ exports[`sandbox-factory > validators > @exodus/schemasafe 1`] = `
   },
   "devDependencies": {
     "vite": "^8.2.1",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0-next.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
@@ -3811,26 +3558,14 @@ exports[`sandbox-factory > validators > @exodus/schemasafe 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.html": "<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = {
+export const schema = ({
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const satisfies Schema;;
+} as const satisfies Schema);;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
@@ -3865,10 +3600,10 @@ export { theme } from '@sjsf/basic-theme';
 export const onSubmitError = createFocusOnFirstError();
 export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
   "src/routes/+layout.svelte": "<script lang="ts">
-	import './layout.css';
-	import type { Snippet } from 'svelte';
+  import '@import "@sjsf/basic-theme/css/basic.css";';
+  import type { Snippet } from 'svelte';
 
-	const { children }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 </script>
 
 {@render children()}",
@@ -3928,7 +3663,7 @@ exports[`sandbox-factory > validators > @hyperjump/json-schema (precompiled) 1`]
   },
   "devDependencies": {
     "vite": "^8.2.1",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0-next.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
@@ -4031,18 +3766,6 @@ async function main() {
 if (import.meta.main) {
 	await main();
 }",
-  "src/app.html": "<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
   "src/lib/model/initial-value.json": "{
 	
 }",
@@ -4091,10 +3814,10 @@ export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();",
   "src/routes/+layout.svelte": "<script lang="ts">
-	import './layout.css';
-	import type { Snippet } from 'svelte';
+  import '@import "@sjsf/basic-theme/css/basic.css";';
+  import type { Snippet } from 'svelte';
 
-	const { children }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 </script>
 
 {@render children()}",
@@ -4162,7 +3885,7 @@ exports[`sandbox-factory > validators > Ajv v8 (2020-12) 1`] = `
   },
   "devDependencies": {
     "vite": "^8.2.1",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0-next.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
@@ -4172,26 +3895,14 @@ exports[`sandbox-factory > validators > Ajv v8 (2020-12) 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.html": "<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = {
+export const schema = ({
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const satisfies Schema;;
+} as const satisfies Schema);;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
@@ -4236,10 +3947,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	});
 }",
   "src/routes/+layout.svelte": "<script lang="ts">
-	import './layout.css';
-	import type { Snippet } from 'svelte';
+  import '@import "@sjsf/basic-theme/css/basic.css";';
+  import type { Snippet } from 'svelte';
 
-	const { children }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 </script>
 
 {@render children()}",
@@ -4300,7 +4011,7 @@ exports[`sandbox-factory > validators > Ajv v8 (precompiled) 1`] = `
   },
   "devDependencies": {
     "vite": "^8.2.1",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0-next.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
@@ -4402,18 +4113,6 @@ async function main() {
 if (import.meta.main) {
 	await main();
 }",
-  "src/app.html": "<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
   "src/lib/model/initial-value.json": "{
 	
 }",
@@ -4460,10 +4159,10 @@ export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();",
   "src/routes/+layout.svelte": "<script lang="ts">
-	import './layout.css';
-	import type { Snippet } from 'svelte';
+  import '@import "@sjsf/basic-theme/css/basic.css";';
+  import type { Snippet } from 'svelte';
 
-	const { children }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 </script>
 
 {@render children()}",
@@ -4532,7 +4231,7 @@ exports[`sandbox-factory > validators > Ajv v8 1`] = `
   },
   "devDependencies": {
     "vite": "^8.2.1",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0-next.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
@@ -4542,26 +4241,14 @@ exports[`sandbox-factory > validators > Ajv v8 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.html": "<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = {
+export const schema = ({
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const satisfies Schema;;
+} as const satisfies Schema);;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import addFormats from 'ajv-formats';
@@ -4605,10 +4292,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	});
 }",
   "src/routes/+layout.svelte": "<script lang="ts">
-	import './layout.css';
-	import type { Snippet } from 'svelte';
+  import '@import "@sjsf/basic-theme/css/basic.css";';
+  import type { Snippet } from 'svelte';
 
-	const { children }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 </script>
 
 {@render children()}",
@@ -4669,7 +4356,7 @@ exports[`sandbox-factory > validators > Valibot 1`] = `
   },
   "devDependencies": {
     "vite": "^8.2.1",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0-next.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0"
@@ -4678,18 +4365,6 @@ exports[`sandbox-factory > validators > Valibot 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.html": "<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
   "src/lib/model.ts": "import * as v from "valibot";
 
 export const schema = v.object({ name: v.string() });
@@ -4725,10 +4400,10 @@ export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();",
   "src/routes/+layout.svelte": "<script lang="ts">
-	import './layout.css';
-	import type { Snippet } from 'svelte';
+  import '@import "@sjsf/basic-theme/css/basic.css";';
+  import type { Snippet } from 'svelte';
 
-	const { children }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 </script>
 
 {@render children()}",
@@ -4794,7 +4469,7 @@ exports[`sandbox-factory > validators > Zod v4 1`] = `
   },
   "devDependencies": {
     "vite": "^8.2.1",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0-next.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0"
@@ -4803,18 +4478,6 @@ exports[`sandbox-factory > validators > Zod v4 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.html": "<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
   "src/lib/model.ts": "import * as z from "zod";
 
 export const schema = z.object({ name: z.string() });
@@ -4850,10 +4513,10 @@ export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();",
   "src/routes/+layout.svelte": "<script lang="ts">
-	import './layout.css';
-	import type { Snippet } from 'svelte';
+  import '@import "@sjsf/basic-theme/css/basic.css";';
+  import type { Snippet } from 'svelte';
 
-	const { children }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 </script>
 
 {@render children()}",
@@ -4919,7 +4582,7 @@ exports[`sandbox-factory > validators > ata-validator (2020-12) 1`] = `
   },
   "devDependencies": {
     "vite": "^8.2.1",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0-next.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
@@ -4929,26 +4592,14 @@ exports[`sandbox-factory > validators > ata-validator (2020-12) 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.html": "<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = {
+export const schema = ({
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const satisfies Schema;;
+} as const satisfies Schema);;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import { Validator } from 'ata-validator';
@@ -4996,10 +4647,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	});
 }",
   "src/routes/+layout.svelte": "<script lang="ts">
-	import './layout.css';
-	import type { Snippet } from 'svelte';
+  import '@import "@sjsf/basic-theme/css/basic.css";';
+  import type { Snippet } from 'svelte';
 
-	const { children }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 </script>
 
 {@render children()}",
@@ -5059,7 +4710,7 @@ exports[`sandbox-factory > validators > ata-validator (precompiled) 1`] = `
   },
   "devDependencies": {
     "vite": "^8.2.1",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0-next.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
@@ -5133,18 +4784,6 @@ async function main() {
 if (import.meta.main) {
 	await main();
 }",
-  "src/app.html": "<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
   "src/lib/model/initial-value.json": "{
 	
 }",
@@ -5191,10 +4830,10 @@ export { theme } from '@sjsf/basic-theme';
 
 export const onSubmitError = createFocusOnFirstError();",
   "src/routes/+layout.svelte": "<script lang="ts">
-	import './layout.css';
-	import type { Snippet } from 'svelte';
+  import '@import "@sjsf/basic-theme/css/basic.css";';
+  import type { Snippet } from 'svelte';
 
-	const { children }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 </script>
 
 {@render children()}",
@@ -5262,7 +4901,7 @@ exports[`sandbox-factory > validators > ata-validator 1`] = `
   },
   "devDependencies": {
     "vite": "^8.2.1",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0-next.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esm-env": "^1.2.0",
@@ -5272,26 +4911,14 @@ exports[`sandbox-factory > validators > ata-validator 1`] = `
     "dev": "vite dev"
   }
 }",
-  "src/app.html": "<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>",
   "src/lib/model.ts": "import type { Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-export const schema = {
+export const schema = ({
 	"type": "object",
 	"title": "Test",
 	"properties": { "name": { "type": "string" } }
-} as const satisfies Schema;;
+} as const satisfies Schema);;
 
 export type Model = FromSchema<typeof schema>;",
   "src/lib/sjsf/defaults.ts": "import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
@@ -5326,10 +4953,10 @@ export { theme } from '@sjsf/basic-theme';
 export const onSubmitError = createFocusOnFirstError();
 export { createFormValidator as validator } from '@sjsf/ata-validator';",
   "src/routes/+layout.svelte": "<script lang="ts">
-	import './layout.css';
-	import type { Snippet } from 'svelte';
+  import '@import "@sjsf/basic-theme/css/basic.css";';
+  import type { Snippet } from 'svelte';
 
-	const { children }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 </script>
 
 {@render children()}",

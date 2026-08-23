@@ -1,4 +1,4 @@
-import { loadResults } from "$lib/server";
+import { loadResults } from "#lib/server.js";
 
 import type { LayoutServerLoad } from "./$types";
 

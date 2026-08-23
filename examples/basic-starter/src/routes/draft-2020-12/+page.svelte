@@ -3,7 +3,7 @@
   import { convert } from "@sjsf/form/converters/draft-2020-12";
   import type { JSONSchema } from "json-schema-typed/draft-2020-12";
 
-  import * as defaults from "$lib/sjsf/defaults";
+  import * as defaults from "#lib/sjsf/defaults.js";
 
   const schema = {
     $schema: "https://json-schema.org/draft/2020-12/schema",

@@ -23,6 +23,10 @@
   "type": "module",
   "types": "./dist/index.d.ts",
   "svelte": "./dist/index.js",
+  "imports": {
+    "#lib": "./src/lib/index.js",
+    "#lib/*": "./src/lib/*"
+  },
   "exports": {
     "./package.json": "./package.json",
     "./components/*": {
@@ -72,6 +76,8 @@
     "@sjsf/form": "workspace:*",
     "@skeletonlabs/skeleton": "catalog:skeleton4",
     "@skeletonlabs/skeleton-svelte": "catalog:skeleton4",
+    "@sveltejs/adapter-static": "catalog:",
+    "@sveltejs/kit": "catalog:",
     "@sveltejs/svelte-json-tree": "catalog:",
     "@tailwindcss/forms": "catalog:",
     "@tailwindcss/vite": "catalog:",

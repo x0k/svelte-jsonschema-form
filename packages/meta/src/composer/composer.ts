@@ -144,6 +144,17 @@ export function normalizeProjectName(name: string): string {
     .replace(/^-|-$/g, "");
 }
 
+function assign(
+  files: Record<string, string>,
+  path: string,
+  content: string | false
+) {
+  // A `false` result means the transform aborted and no file should be written
+  if (content) {
+    files[path] = content;
+  }
+}
+
 export async function createComposer<T extends CodegenThemeOrSubTheme>(
   options: ComposerOptions<T>
 ): Promise<Record<string, string>> {
@@ -227,14 +238,19 @@ export async function createComposer<T extends CodegenThemeOrSubTheme>(
       precompiled: validator.precompiled,
       language,
     }),
-    "vite.config.js": createViteConfig({
-      themeOrSubTheme,
-      icons,
-      sveltekit,
-    })(VITE_CONFIG),
     "tsconfig.json": TSCONFIG,
-    "src/app.html": createAppHtml({ themeOrSubTheme })(APP_HTML),
-    "src/lib/sjsf/defaults.ts": createDefaults({
+  };
+
+  assign(
+    files,
+    "vite.config.js",
+    createViteConfig({ themeOrSubTheme, icons, sveltekit })(VITE_CONFIG)
+  );
+  assign(files, "src/app.html", createAppHtml({ themeOrSubTheme })(APP_HTML));
+  assign(
+    files,
+    "src/lib/sjsf/defaults.ts",
+    createDefaults({
       themeOrSubTheme,
       validator,
       icons,
@@ -250,73 +266,83 @@ export async function createComposer<T extends CodegenThemeOrSubTheme>(
       themeExtension,
       moduleAugmentation,
       uiOptionsRegistry,
-    })(""),
-    "src/routes/+page.svelte": createPage({
+    })("")
+  );
+  assign(
+    files,
+    "src/routes/+page.svelte",
+    createPage({
       language,
       themeOrSubTheme,
       validator,
       lib,
       form,
       html5Validation,
-    })(""),
-  };
+    })("")
+  );
 
   if (schema && !validator.precompiled) {
-    files[`src/lib/${modelName}.${language}`] = (
-      await createModel({
-        validator,
-        isTs,
-        ts,
-        schema,
-        uiSchema,
-        initialValue,
-        fieldsValidationMode,
-      })
-    )("");
+    const createModelContent = await createModel({
+      validator,
+      isTs,
+      ts,
+      schema,
+      uiSchema,
+      initialValue,
+      fieldsValidationMode,
+    });
+    assign(files, `src/lib/${modelName}.${language}`, createModelContent(""));
   } else if (schema && validator.precompiled) {
     const modelDir = `src/lib/${modelName}/`;
-    files[`${modelDir}schema.json`] = createJsonFile(JSON.parse(schema))("");
-    files[`${modelDir}ui-schema.json`] = createJsonFile(uiSchema)("");
-    files[`${modelDir}initial-value.json`] = createJsonFile(initialValue)("");
-    files[`scripts/compile-validators.${language}`] =
+    assign(
+      files,
+      `${modelDir}schema.json`,
+      createJsonFile(JSON.parse(schema))("")
+    );
+    assign(files, `${modelDir}ui-schema.json`, createJsonFile(uiSchema)(""));
+    assign(
+      files,
+      `${modelDir}initial-value.json`,
+      createJsonFile(initialValue)("")
+    );
+    assign(
+      files,
+      `scripts/compile-validators.${language}`,
       createCompileValidatorsScript({
         modelPaths: [modelDir],
         validator,
         language,
         ts,
         fieldsValidationMode,
-      })("");
+      })("")
+    );
   }
 
-  function addFile(filePath: string, content: string) {
-    if (content) {
-      files[filePath] = content;
-    }
-    return content;
-  }
-
-  const stylesContent = addFile(
-    "src/routes/layout.css",
-    createStyles({
-      nodeModulesPath,
-      themeOrSubTheme,
-      icons,
-      sandbox: true,
-    })(css)
-  );
+  const styles = createStyles({
+    nodeModulesPath,
+    themeOrSubTheme,
+    icons,
+    sandbox: true,
+  })(css);
+  assign(files, "src/routes/layout.css", styles);
 
   // NOTE: We cannot move the padding functionality to `createLayout` because
   // it is used in `sv` to create the global layout (should not be padded)
   const layout = getLayoutContent(PADDED_THEMES.includes(themeOrSubTheme));
-  files["src/routes/+layout.svelte"] = createLayout({
-    language,
-    themeOrSubTheme,
-    lib,
-    isKit,
-    stylesheetPath: stylesContent && "./layout.css",
-  })(layout);
+  assign(
+    files,
+    "src/routes/+layout.svelte",
+    createLayout({
+      language,
+      themeOrSubTheme,
+      lib,
+      isKit,
+      stylesheetPath: styles || "",
+    })(layout)
+  );
 
-  addFile(
+  assign(
+    files,
     `src/lib/sjsf/shadcn.${language}`,
     createShadcnLib({
       themeOrSubTheme,

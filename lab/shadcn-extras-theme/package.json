@@ -24,6 +24,10 @@
   "type": "module",
   "types": "./dist/theme/index.d.ts",
   "svelte": "./dist/theme/index.js",
+  "imports": {
+    "#lib": "./src/lib/index.js",
+    "#lib/*": "./src/lib/*"
+  },
   "exports": {
     "./package.json": "./package.json",
     "./extra-widgets/*": {
@@ -67,6 +71,8 @@
     "@sjsf/ajv8-validator": "workspace:*",
     "@sjsf/form": "workspace:*",
     "@sjsf/shadcn4-theme": "workspace:*",
+    "@sveltejs/adapter-static": "catalog:",
+    "@sveltejs/kit": "catalog:",
     "@sveltejs/svelte-json-tree": "catalog:",
     "@tailwindcss/vite": "catalog:",
     "@zxcvbn-ts/core": "catalog:shadcn",

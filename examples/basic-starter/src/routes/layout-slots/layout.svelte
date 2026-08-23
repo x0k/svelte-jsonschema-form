@@ -20,7 +20,7 @@
 <script lang="ts">
   import type { ComponentProps } from "@sjsf/form";
 
-  import { theme } from "$lib/sjsf/defaults";
+  import { theme } from "#lib/sjsf/defaults.js";
 
   const { children, config, errors, type }: ComponentProps["layout"] = $props();
 

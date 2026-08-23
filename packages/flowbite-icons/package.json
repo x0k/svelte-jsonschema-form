@@ -23,6 +23,10 @@
   "type": "module",
   "types": "./dist/index.d.ts",
   "svelte": "./dist/index.js",
+  "imports": {
+    "#lib": "./src/lib/index.js",
+    "#lib/*": "./src/lib/*"
+  },
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -57,6 +61,8 @@
   },
   "devDependencies": {
     "@sjsf/form": "workspace:*",
+    "@sveltejs/adapter-static": "catalog:",
+    "@sveltejs/kit": "catalog:",
     "@tailwindcss/vite": "catalog:",
     "flowbite-svelte-icons": "^3.1.0",
     "globals": "catalog:",

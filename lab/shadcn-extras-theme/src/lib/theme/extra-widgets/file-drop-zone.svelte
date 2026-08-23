@@ -2,7 +2,7 @@
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { Component } from "svelte";
 
-  import type { FileDropZoneRootProps } from "$lib/components/ui/file-drop-zone/index.js";
+  import type { FileDropZoneRootProps } from "../../components/ui/file-drop-zone/index.js";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
@@ -38,8 +38,8 @@
   } from "@sjsf/form";
   import { getThemeContext } from "@sjsf/shadcn4-theme";
 
-  import { displaySize } from "$lib/components/ui/file-drop-zone/index.js";
-  import type { FileDropZoneTriggerProps } from "$lib/components/ui/file-drop-zone/types.js";
+  import { displaySize } from "../../components/ui/file-drop-zone/index.js";
+  import type { FileDropZoneTriggerProps } from "../../components/ui/file-drop-zone/types.js";
 
   let {
     value = $bindable(),

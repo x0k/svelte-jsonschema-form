@@ -23,6 +23,10 @@
   "type": "module",
   "types": "./dist/index.d.ts",
   "svelte": "./dist/index.js",
+  "imports": {
+    "#lib": "./src/lib/index.js",
+    "#lib/*": "./src/lib/*"
+  },
   "exports": {
     "./package.json": "./package.json",
     "./components/*": {
@@ -71,6 +75,8 @@
     "@sjsf/ajv8-validator": "workspace:*",
     "@sjsf/form": "workspace:*",
     "@svar-ui/svelte-core": "catalog:",
+    "@sveltejs/adapter-static": "catalog:",
+    "@sveltejs/kit": "catalog:",
     "ajv": "catalog:",
     "globals": "catalog:",
     "svelte": "catalog:",

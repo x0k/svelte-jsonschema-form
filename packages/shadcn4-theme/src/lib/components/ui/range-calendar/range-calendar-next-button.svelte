@@ -2,11 +2,8 @@
   import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
   import { RangeCalendar as RangeCalendarPrimitive } from "bits-ui";
 
-  import {
-    buttonVariants,
-    type ButtonVariant,
-  } from "$lib/components/ui/button/index.js";
-  import { cn } from "$lib/utils.js";
+  import { cn } from "../../../utils.js";
+  import { buttonVariants, type ButtonVariant } from "../button/index.js";
 
   let {
     ref = $bindable(null),

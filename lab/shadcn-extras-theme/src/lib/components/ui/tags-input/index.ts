@@ -1,8 +1,8 @@
-import TagsInput from "$lib/components/ui/tags-input/tags-input.svelte";
+import TagsInput from "./tags-input.svelte";
 
 export { TagsInput };
 
 export type {
   TagsInputPropsWithoutHTML,
   TagsInputProps,
-} from "$lib/components/ui/tags-input/types.js";
+} from "./types.js";

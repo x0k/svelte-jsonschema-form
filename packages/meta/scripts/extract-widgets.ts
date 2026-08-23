@@ -98,18 +98,25 @@ async function main() {
       continue;
     }
     const theme = e.name.slice(0, -THEME_SUFFIX.length);
-    if (!isTheme(theme)) {
-      throw new Error(`Unknown theme: "${theme}"`);
-    }
     const packagePath = (...paths: string[]) =>
       path.join(e.parentPath, e.name, ...paths);
     const packageJsonPath = packagePath("package.json");
-    const packageJson = JSON.parse(
-      await fs.readFile(packageJsonPath, { encoding: "utf-8" })
-    );
+    const packageJsonContent = await fs
+      .readFile(packageJsonPath, { encoding: "utf-8" })
+      .catch(() => null);
+    if (packageJsonContent === null) {
+      continue;
+    }
+    if (!isTheme(theme)) {
+      throw new Error(`Unknown theme: "${theme}"`);
+    }
+    const packageJson = JSON.parse(packageJsonContent);
     const svelteConfigPath = packagePath("svelte.config.js");
-    const svelteConfig = await import(svelteConfigPath);
-    const libDir = svelteConfig.default.kit?.files?.lib ?? "src/lib";
+    const svelteConfig = await fs
+      .stat(svelteConfigPath)
+      .then(() => import(svelteConfigPath))
+      .catch(() => null);
+    const libDir = svelteConfig?.default?.kit?.files?.lib ?? "src/lib";
     const themeOptionalDeps = themePackage(theme).dependencies.filter(
       (d) => d.optional
     );

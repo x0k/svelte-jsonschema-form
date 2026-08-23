@@ -1,6 +1,6 @@
 import type { Component } from "svelte";
 
-import type { ButtonProps } from "$lib/components/ui/button/button.svelte";
+import type { ButtonProps } from "../../components/ui/button/button.svelte";
 
 export type { ButtonProps };
 

@@ -2,9 +2,8 @@
   import { Select as SelectPrimitive } from "bits-ui";
   import type { ComponentProps } from "svelte";
 
-  import { cn, type WithoutChild } from "$lib/utils.js";
-  import type { WithoutChildrenOrChild } from "$lib/utils.js";
-
+  import { cn, type WithoutChild } from "../../../utils.js";
+  import type { WithoutChildrenOrChild } from "../../../utils.js";
   import SelectPortal from "./select-portal.svelte";
   import SelectScrollDownButton from "./select-scroll-down-button.svelte";
   import SelectScrollUpButton from "./select-scroll-up-button.svelte";

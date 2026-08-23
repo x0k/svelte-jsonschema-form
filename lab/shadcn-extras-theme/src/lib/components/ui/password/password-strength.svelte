@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { tv } from 'tailwind-variants';
-	import { usePasswordStrength } from '$lib/components/ui/password/password.svelte.js';
-	import type { PasswordStrengthProps } from '$lib/components/ui/password/types.js';
+	import { usePasswordStrength } from './password.svelte.js';
+	import type { PasswordStrengthProps } from './types.js';
 	import { Meter } from 'bits-ui';
-	import { cn } from '$lib/utils.js';
+	import { cn } from '../../../utils.js';
 	import { box } from 'svelte-toolbelt';
 
 	let { strength = $bindable(), class: className }: PasswordStrengthProps = $props();

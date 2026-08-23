@@ -23,6 +23,10 @@
   "type": "module",
   "types": "./dist/index.d.ts",
   "svelte": "./dist/index.js",
+  "imports": {
+    "#lib": "./src/lib/index.js",
+    "#lib/*": "./src/lib/*"
+  },
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -53,6 +57,8 @@
   "devDependencies": {
     "@lucide/svelte": "catalog:",
     "@sjsf/form": "workspace:*",
+    "@sveltejs/adapter-static": "catalog:",
+    "@sveltejs/kit": "catalog:",
     "globals": "catalog:",
     "svelte": "catalog:",
     "theme-testing": "workspace:*"

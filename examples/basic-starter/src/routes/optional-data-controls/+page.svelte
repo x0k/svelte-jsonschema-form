@@ -13,7 +13,7 @@
   import OptionalMultiFieldTemplate from "@sjsf/form/templates/extra/optional-multi-field.svelte";
   import OptionalObjectTemplate from "@sjsf/form/templates/extra/optional-object.svelte";
 
-  import * as defaults from "$lib/sjsf/defaults";
+  import * as defaults from "#lib/sjsf/defaults.js";
 
   const schema = {
     title: "test",

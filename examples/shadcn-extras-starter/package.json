@@ -3,6 +3,10 @@
   "version": "0.0.20",
   "private": true,
   "type": "module",
+  "imports": {
+    "#lib": "./src/lib/index.js",
+    "#lib/*": "./src/lib/*"
+  },
   "scripts": {
     "dev": "vite dev",
     "preview": "vite preview",
@@ -31,6 +35,8 @@
     "yeezy-dates": "catalog:shadcn"
   },
   "devDependencies": {
+    "@sveltejs/adapter-auto": "catalog:",
+    "@sveltejs/kit": "catalog:",
     "@tailwindcss/vite": "catalog:",
     "svelte": "catalog:",
     "tailwind-merge": "catalog:shadcn",

@@ -1,13 +1,13 @@
-import Root from '$lib/components/ui/dialog/dialog.svelte';
-import Portal from '$lib/components/ui/dialog/dialog-portal.svelte';
-import Title from '$lib/components/ui/dialog/dialog-title.svelte';
-import Footer from '$lib/components/ui/dialog/dialog-footer.svelte';
-import Header from '$lib/components/ui/dialog/dialog-header.svelte';
-import Overlay from '$lib/components/ui/dialog/dialog-overlay.svelte';
-import Content from '$lib/components/ui/dialog/dialog-content.svelte';
-import Description from '$lib/components/ui/dialog/dialog-description.svelte';
-import Trigger from '$lib/components/ui/dialog/dialog-trigger.svelte';
-import Close from '$lib/components/ui/dialog/dialog-close.svelte';
+import Root from './dialog.svelte';
+import Portal from './dialog-portal.svelte';
+import Title from './dialog-title.svelte';
+import Footer from './dialog-footer.svelte';
+import Header from './dialog-header.svelte';
+import Overlay from './dialog-overlay.svelte';
+import Content from './dialog-content.svelte';
+import Description from './dialog-description.svelte';
+import Trigger from './dialog-trigger.svelte';
+import Close from './dialog-close.svelte';
 
 export {
 	Root,

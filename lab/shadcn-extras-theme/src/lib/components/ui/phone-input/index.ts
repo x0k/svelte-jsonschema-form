@@ -1,7 +1,7 @@
 import PhoneInput, {
   defaultOptions,
-} from "$lib/components/ui/phone-input/phone-input.svelte";
+} from "./phone-input.svelte";
 
 export { PhoneInput, defaultOptions };
 
-export type { PhoneInputProps } from "$lib/components/ui/phone-input/types.js";
+export type { PhoneInputProps } from "./types.js";

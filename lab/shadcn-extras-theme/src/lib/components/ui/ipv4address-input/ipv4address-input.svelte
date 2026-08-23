@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { cn } from '$lib/utils.js';
-	import Input from '$lib/components/ui/ipv4address-input/ipv4address-input-input.svelte';
-	import { safeParseIPv4Address } from '$lib/components/ui/ipv4address-input/index.js';
-	import { isNumber } from '$lib/utils/is-number.js';
-	import * as ipv4address from '$lib/utils/ipv4-address.js';
-	import type { IPv4AddressInputProps } from '$lib/components/ui/ipv4address-input/types.js';
+	import { cn } from '../../../utils.js';
+	import Input from './ipv4address-input-input.svelte';
+	import { safeParseIPv4Address } from './index.js';
+	import { isNumber } from '../../../utils/is-number.js';
+	import * as ipv4address from '../../../utils/ipv4-address.js';
+	import type { IPv4AddressInputProps } from './types.js';
 
 	let {
 		separator = '.',

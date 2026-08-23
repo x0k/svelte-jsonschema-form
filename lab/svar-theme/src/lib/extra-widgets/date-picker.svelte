@@ -19,7 +19,7 @@
     type ComponentProps,
   } from "@sjsf/form";
 
-  import { parseLocalDate, toLocalDate } from "$lib/local-date.js";
+  import { parseLocalDate, toLocalDate } from "../local-date.js";
 
   let {
     value = $bindable(),

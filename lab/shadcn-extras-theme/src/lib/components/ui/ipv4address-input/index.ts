@@ -1,5 +1,5 @@
-import { isNumber } from "$lib/utils/is-number.js";
-import IPv4AddressInput from "$lib/components/ui/ipv4address-input/ipv4address-input.svelte";
+import { isNumber } from "../../../utils/is-number.js";
+import IPv4AddressInput from "./ipv4address-input.svelte";
 
 /** Attempts to parse the provided address into a valid IP. Returns undefined for
  * undefined returns a valid IP in array form for a valid IP and returns a 0 filled array for a incomplete IP.
@@ -49,4 +49,4 @@ export { IPv4AddressInput };
 export type {
   IPv4AddressInputProps,
   IPv4AddressInputPropsWithoutHTML,
-} from "$lib/components/ui/ipv4address-input/types.js";
+} from "./types.js";

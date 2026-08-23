@@ -19,7 +19,7 @@
   } from "@sjsf/form";
   import Datepicker from "flowbite-svelte/Datepicker.svelte";
 
-  import { parseLocalDate, toLocalDate } from "$lib/local-date.js";
+  import { parseLocalDate, toLocalDate } from "../local-date.js";
 
   let {
     value = $bindable(),

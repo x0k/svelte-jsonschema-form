@@ -2,8 +2,8 @@
 	Installed from @ieedan/std
 */
 
-import { isNumber } from "$lib/utils/is-number.js";
-import { Err, Ok, type Result } from "$lib/utils/result.js";
+import { isNumber } from "./is-number.js";
+import { Err, Ok, type Result } from "./result.js";
 
 export type Octets = [number, number, number, number];
 

@@ -2,8 +2,8 @@ import type { InitialFormData } from "@sjsf/sveltekit";
 import { createFormHandler } from "@sjsf/sveltekit/server";
 import { error, fail, redirect, type Actions } from "@sveltejs/kit";
 
-import { loadSchemaById, saveResult } from "$lib/server";
-import * as defaults from "$lib/sjsf/defaults";
+import { loadSchemaById, saveResult } from "#lib/server.js";
+import * as defaults from "#lib/sjsf/defaults.js";
 
 import type { PageServerLoad } from "./$types";
 

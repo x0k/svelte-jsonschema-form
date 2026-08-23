@@ -3,9 +3,9 @@
   import { adapt } from "@sjsf/valibot-validator";
   import * as v from "valibot";
 
-  import * as defaults from "$lib/sjsf/defaults";
-  import unknownBigIntField from "$lib/unknown-big-int-field.svelte";
-  import unknownDateField from "$lib/unknown-date-field.svelte";
+  import * as defaults from "#lib/sjsf/defaults.js";
+  import unknownBigIntField from "#lib/unknown-big-int-field.svelte";
+  import unknownDateField from "#lib/unknown-date-field.svelte";
 
   const schema = v.pipe(
     v.object({

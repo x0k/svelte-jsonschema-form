@@ -3,9 +3,8 @@
   import { RangeCalendar as RangeCalendarPrimitive } from "bits-ui";
   import type { Snippet } from "svelte";
 
-  import type { ButtonVariant } from "$lib/components/ui/button/index.js";
-  import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
-
+  import { cn, type WithoutChildrenOrChild } from "../../../utils.js";
+  import type { ButtonVariant } from "../button/index.js";
   import * as RangeCalendar from "./index.js";
 
   let {

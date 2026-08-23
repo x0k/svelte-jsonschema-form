@@ -25,7 +25,7 @@
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
   import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
-  import * as defaults from "$lib/sjsf/defaults";
+  import * as defaults from "#lib/sjsf/defaults.js";
 
   import comboboxWidget from "./combobox.svelte";
   import { COUNTRIES } from "./countries";

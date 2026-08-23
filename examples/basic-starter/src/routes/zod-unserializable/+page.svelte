@@ -3,9 +3,9 @@
   import { adapt } from "@sjsf/zod4-validator/classic";
   import * as z from "zod";
 
-  import * as defaults from "$lib/sjsf/defaults";
-  import unknownBigIntField from "$lib/unknown-big-int-field.svelte";
-  import unknownDateField from "$lib/unknown-date-field.svelte";
+  import * as defaults from "#lib/sjsf/defaults.js";
+  import unknownBigIntField from "#lib/unknown-big-int-field.svelte";
+  import unknownDateField from "#lib/unknown-date-field.svelte";
 
   const schema = z
     .object({

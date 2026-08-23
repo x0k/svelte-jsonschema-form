@@ -1,9 +1,9 @@
 import { createServerValidator } from "@sjsf/sveltekit/rf/server";
 import { error, invalid, redirect } from "@sveltejs/kit";
 
+import { loadResults, loadSchemaById, saveResult } from "#lib/server.js";
+import * as defaults from "#lib/sjsf/remote-defaults.js";
 import { form, getRequestEvent, query } from "$app/server";
-import { loadResults, loadSchemaById, saveResult } from "$lib/server";
-import * as defaults from "$lib/sjsf/remote-defaults";
 
 export const getResults = query(loadResults);
 

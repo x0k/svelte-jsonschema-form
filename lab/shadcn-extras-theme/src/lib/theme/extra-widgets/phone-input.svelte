@@ -2,7 +2,7 @@
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { Component } from "svelte";
 
-  import type { PhoneInputProps } from "$lib/components/ui/phone-input/types.js";
+  import type { PhoneInputProps } from "../../components/ui/phone-input/types.js";
 
   declare module "@sjsf/form" {
     interface ComponentProps {

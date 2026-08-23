@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { cn } from '$lib/utils.js';
-	import type { TagsInputProps } from '$lib/components/ui/tags-input/types.ts';
-	import TagsInputTag from '$lib/components/ui/tags-input/tags-input-tag.svelte';
-	import TagsInputSuggestion from '$lib/components/ui/tags-input/tags-input-suggestion.svelte';
+	import { cn } from '../../../utils.js';
+	import type { TagsInputProps } from './types.ts';
+	import TagsInputTag from './tags-input-tag.svelte';
+	import TagsInputSuggestion from './tags-input-suggestion.svelte';
 	import { untrack } from 'svelte';
 
 	const defaultValidate: TagsInputProps['validate'] = (val, tags) => {

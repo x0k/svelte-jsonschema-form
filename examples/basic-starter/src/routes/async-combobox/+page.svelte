@@ -7,8 +7,8 @@
   } from "@sjsf/form";
   import { identity } from "@sjsf/form/lib/function";
 
-  import { browser } from "$app/environment";
-  import * as defaults from "$lib/sjsf/defaults";
+  import * as defaults from "#lib/sjsf/defaults.js";
+  import { browser } from "$app/env";
 
   import AsyncComboboxWidget, {
     type MyAsyncComboboxOptions,

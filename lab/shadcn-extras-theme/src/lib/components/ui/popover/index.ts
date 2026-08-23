@@ -1,11 +1,11 @@
-import Root from '$lib/components/ui/popover/popover.svelte';
-import Close from '$lib/components/ui/popover/popover-close.svelte';
-import Content from '$lib/components/ui/popover/popover-content.svelte';
-import Description from '$lib/components/ui/popover/popover-description.svelte';
-import Header from '$lib/components/ui/popover/popover-header.svelte';
-import Title from '$lib/components/ui/popover/popover-title.svelte';
-import Trigger from '$lib/components/ui/popover/popover-trigger.svelte';
-import Portal from '$lib/components/ui/popover/popover-portal.svelte';
+import Root from './popover.svelte';
+import Close from './popover-close.svelte';
+import Content from './popover-content.svelte';
+import Description from './popover-description.svelte';
+import Header from './popover-header.svelte';
+import Title from './popover-title.svelte';
+import Trigger from './popover-trigger.svelte';
+import Portal from './popover-portal.svelte';
 
 export {
 	Root,

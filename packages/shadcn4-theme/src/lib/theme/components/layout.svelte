@@ -2,8 +2,8 @@
   import type { Component } from "svelte";
   import type { HTMLAttributes, HTMLFieldsetAttributes } from "svelte/elements";
 
-  import type { ButtonGroupOrientation } from "$lib/components/ui/button-group/button-group.svelte";
-  import type { FieldOrientation } from "$lib/components/ui/field/field.svelte";
+  import type { ButtonGroupOrientation } from "../../components/ui/button-group/button-group.svelte";
+  import type { FieldOrientation } from "../../components/ui/field/field.svelte";
 
   export type ButtonGroupProps = HTMLAttributes<HTMLDivElement> & {
     orientation?: ButtonGroupOrientation;

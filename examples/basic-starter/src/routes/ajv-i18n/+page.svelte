@@ -8,7 +8,7 @@
   import addFormats from "ajv-formats";
   import localize from "ajv-i18n/localize/ru";
 
-  import * as defaults from "$lib/sjsf/defaults";
+  import * as defaults from "#lib/sjsf/defaults.js";
 
   const schema = {
     type: "object",

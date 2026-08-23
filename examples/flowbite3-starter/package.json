@@ -3,6 +3,10 @@
   "version": "0.0.20",
   "private": true,
   "type": "module",
+  "imports": {
+    "#lib": "./src/lib/index.js",
+    "#lib/*": "./src/lib/*"
+  },
   "scripts": {
     "dev": "vite dev",
     "preview": "vite preview",
@@ -20,6 +24,8 @@
     "ajv": "catalog:"
   },
   "devDependencies": {
+    "@sveltejs/adapter-auto": "catalog:",
+    "@sveltejs/kit": "catalog:",
     "@tailwindcss/vite": "catalog:",
     "flowbite": "catalog:",
     "flowbite-svelte": "catalog:",

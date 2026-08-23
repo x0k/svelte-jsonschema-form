@@ -23,10 +23,11 @@ catalog:
   "@standard-schema/spec": ^1.1.0
   "@svar-ui/svelte-core": ^2.6.0
   "@sveltejs/acorn-typescript": ^1.0.12
-  "@sveltejs/adapter-auto": ^7.0.1
-  "@sveltejs/kit": ^2.70.2
+  "@sveltejs/adapter-auto": ^8.0.0-next.3
+  "@sveltejs/adapter-static": ^4.0.0-next.4
+  "@sveltejs/kit": ^3.0.0-next.25
   "@sveltejs/svelte-json-tree": ^2.2.1
-  "@sveltejs/sv-utils": npm:@x0k/sv-utils@0.3.3
+  "@sveltejs/sv-utils": npm:@x0k/sv-utils@1.0.0-next.4
   "@sveltejs/vite-plugin-svelte": ^7.3.0
   "@tailwindcss/forms": ^0.5.11
   "@tailwindcss/vite": ^4.3.3
@@ -88,6 +89,7 @@ catalogs:
     "@skeletonlabs/skeleton-svelte": ^4.15.2
   legacy:
     "@internationalized/date": 3.8.1
+    "@sveltejs/kit": ^2.70.3
     "@skeletonlabs/skeleton": ^3.2.2
     "@skeletonlabs/skeleton-svelte": ^1.5.3
     daisyui: ^4.12.24
@@ -120,4 +122,6 @@ allowBuilds:
   sharp: true
   ata-validator: false
 minimumReleaseAgeExclude:
-  - "@x0k/sv-utils@0.3.3"
+  - "@x0k/sv-utils@1.0.0-next.4"
+  - "@sveltejs/sv-utils@1.0.0-next.4"
+  - sv@1.0.0-next.5

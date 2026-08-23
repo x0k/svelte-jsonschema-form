@@ -3,6 +3,10 @@
   "version": "0.0.16",
   "private": true,
   "type": "module",
+  "imports": {
+    "#lib": "./src/lib/index.js",
+    "#lib/*": "./src/lib/*"
+  },
   "scripts": {
     "dev": "vite dev",
     "preview": "vite preview",
@@ -19,5 +23,9 @@
     "ajv": "catalog:",
     "beercss": "catalog:",
     "svelte": "catalog:"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-auto": "catalog:",
+    "@sveltejs/kit": "catalog:"
   }
 }

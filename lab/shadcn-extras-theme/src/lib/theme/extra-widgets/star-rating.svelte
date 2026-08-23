@@ -3,7 +3,7 @@
   import type { RatingGroupRootProps } from "bits-ui";
   import type { Component } from "svelte";
 
-  import type { StarRatingStarProps } from "$lib/components/ui/star-rating/types.js";
+  import type { StarRatingStarProps } from "../../components/ui/star-rating/types.js";
 
   declare module "@sjsf/form" {
     interface ComponentProps {

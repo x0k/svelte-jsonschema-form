@@ -1,6 +1,6 @@
 <script lang="ts" module>
   import "@sjsf/form/fields/extra-widgets/radio-buttons";
-  import type { SegmentProps, SegmentItemProps } from "$lib/segment-types.js";
+  import type { SegmentProps, SegmentItemProps } from "../segment-types.js";
 
   declare module "@sjsf/form" {
     interface UiOptions {

@@ -2,7 +2,7 @@
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { Component } from "svelte";
 
-  import type { IPv4AddressInputProps } from "$lib/components/ui/ipv4address-input/types.js";
+  import type { IPv4AddressInputProps } from "../../components/ui/ipv4address-input/types.js";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
