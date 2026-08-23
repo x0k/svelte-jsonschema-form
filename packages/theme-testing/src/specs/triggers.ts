@@ -234,3 +234,18 @@ export const changeSvarDateRangePicker = withTab(
   inputSvarDateRangePicker,
   true
 );
+
+export const changeFluentuiDatePicker: FieldValidationTrigger = async (l) => {
+  const btn = l.getByRole("button").first();
+  await userEvent.click(btn);
+  const day = l.getByText("19").first();
+  await userEvent.click(day);
+};
+
+export const inputFluentuiCombobox: FieldValidationTrigger = async (l) => {
+  const box = getTextbox(l);
+  await userEvent.click(box);
+  await box.fill(enumeration.enum[0]);
+  await userEvent.keyboard("{ArrowDown}");
+  await userEvent.keyboard("{Enter}");
+};
