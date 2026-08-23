@@ -1,6 +1,6 @@
 <script lang="ts">
   import { BasicForm, createForm } from "@sjsf/form";
-  import { connect } from "@sjsf/sveltekit/rf/client";
+  import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
   import * as defaults from "#lib/sjsf/remote-defaults.js";

@@ -5,7 +5,7 @@ import "@sjsf/basic-theme/extra-widgets/textarea-include";
 
 export { translation } from "@sjsf/form/translations/en";
 
-export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit/rf";
+export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit3/rf";
 
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 

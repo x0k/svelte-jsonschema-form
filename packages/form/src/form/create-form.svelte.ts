@@ -58,6 +58,7 @@ import {
   FORM_ID_FROM_PATH,
   internalRegisterFieldPath,
   FORM_ROOT_PATH,
+  FORM_FIELD_NAME_SUFFIX,
   FORM_ERRORS,
   FORM_PATHS_TRIE_REF,
   internalHasFieldState,
@@ -187,6 +188,12 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
   validateByRetrievedSchema?: boolean;
   fieldsValidationMode?: FieldsValidationMode;
   disabled?: boolean;
+  /**
+   * Suffix appended to the names of the service (non-value) inputs, e.g. the
+   * hidden id prefix input. Useful for integrations where the form field names
+   * must follow a specific format, like SvelteKit remote forms.
+   */
+  fieldNameSuffix?: string;
   initialValue?: DeepPartial<T>;
   value?: Bind<T>;
   initialErrors?: InitialErrors;
@@ -561,6 +568,9 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     },
     get [FORM_DISABLED]() {
       return disabled;
+    },
+    get [FORM_FIELD_NAME_SUFFIX]() {
+      return options.fieldNameSuffix;
     },
     get [FORM_VALIDATOR]() {
       return validator;

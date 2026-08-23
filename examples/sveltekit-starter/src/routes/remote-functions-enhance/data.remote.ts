@@ -1,5 +1,5 @@
-import type { InitialFormData } from "@sjsf/sveltekit";
-import { createServerValidator } from "@sjsf/sveltekit/rf/server";
+import type { InitialFormData } from "@sjsf/sveltekit3";
+import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
 import { invalid } from "@sveltejs/kit";
 
 import * as post from "#lib/post.js";

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createMeta, SvelteKitForm } from "@sjsf/sveltekit/client";
+  import { createMeta, SvelteKitForm } from "@sjsf/sveltekit3/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
 

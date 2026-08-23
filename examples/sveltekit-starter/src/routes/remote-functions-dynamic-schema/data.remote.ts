@@ -1,4 +1,4 @@
-import { createServerValidator } from "@sjsf/sveltekit/rf/server";
+import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
 import { error, invalid, redirect } from "@sveltejs/kit";
 
 import { loadResults, loadSchemaById, saveResult } from "#lib/server.js";

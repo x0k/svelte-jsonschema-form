@@ -8,7 +8,7 @@
   } from "@sjsf/form";
   import { isRecord } from "@sjsf/form/lib/object";
   import { fromFactories } from "@sjsf/form/lib/resolver";
-  import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit/client";
+  import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit3/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
 

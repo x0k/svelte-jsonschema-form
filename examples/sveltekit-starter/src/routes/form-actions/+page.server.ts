@@ -1,5 +1,5 @@
-import type { InitialFormData } from "@sjsf/sveltekit";
-import { createAction } from "@sjsf/sveltekit/server";
+import type { InitialFormData } from "@sjsf/sveltekit3";
+import { createAction } from "@sjsf/sveltekit3/server";
 import type { Actions } from "@sveltejs/kit";
 
 import * as post from "#lib/post.js";

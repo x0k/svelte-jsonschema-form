@@ -1,6 +1,6 @@
 <script lang="ts">
   import { setFormContext, Content, SubmitButton } from "@sjsf/form";
-  import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit/client";
+  import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit3/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
 

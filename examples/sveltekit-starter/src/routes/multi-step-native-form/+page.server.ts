@@ -1,5 +1,5 @@
-import type { InitialFormData } from "@sjsf/sveltekit";
-import { createFormHandler } from "@sjsf/sveltekit/server";
+import type { InitialFormData } from "@sjsf/sveltekit3";
+import { createFormHandler } from "@sjsf/sveltekit3/server";
 import { fail } from "@sveltejs/kit";
 
 import * as defaults from "#lib/sjsf/defaults.js";

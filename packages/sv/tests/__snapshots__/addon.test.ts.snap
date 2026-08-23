@@ -2213,8 +2213,8 @@ exports[`@sjsf/sv sveltekit__formActions__ajv8 kit-ts 1`] = `
 		"@sjsf/ajv8-validator": "^3.8.1",
 		"@sjsf/basic-theme": "^3.8.1",
 		"@sjsf/form": "^3.8.1",
-		"@sjsf/sveltekit": "^3.8.1",
-		"@sveltejs/kit": "^2.48.3",
+		"@sjsf/sveltekit3": "^3.8.1",
+		"@sveltejs/kit": "^3.0.0-next.25",
 		"ajv": "^8.17.0",
 		"ajv-formats": "^3.0.1",
 		"svelte": "^5.34.8"
@@ -2314,7 +2314,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 
 export { translation } from "@sjsf/form/translations/en";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit";
+export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit3";
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -2356,8 +2356,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 <a href={resolve('/demo/sjsf')}>sjsf</a>
 ",
   "src/routes/demo/sjsf/+page.server.ts": "import type { Actions } from "@sveltejs/kit";
-import type { InitialFormData } from "@sjsf/sveltekit";
-import { createAction } from "@sjsf/sveltekit/server";
+import type { InitialFormData } from "@sjsf/sveltekit3";
+import { createAction } from "@sjsf/sveltekit3/server";
 import * as post from "#lib/post";
 import * as defaults from "#lib/sjsf/defaults";
 
@@ -2376,7 +2376,7 @@ export const actions = {
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '#lib/sjsf/defaults';
 	import type { ActionData, PageData } from './$types';
-	import { createMeta, setupSvelteKitForm } from '@sjsf/sveltekit/client';
+	import { createMeta, setupSvelteKitForm } from '@sjsf/sveltekit3/client';
 	import { BasicForm } from '@sjsf/form';
 
 	const meta = createMeta<ActionData, PageData>().postForm;
@@ -2455,8 +2455,8 @@ exports[`@sjsf/sv sveltekit__formActions__ajv8_precompiled kit-ts 1`] = `
 		"@sjsf/ajv8-validator": "^3.8.1",
 		"@sjsf/basic-theme": "^3.8.1",
 		"@sjsf/form": "^3.8.1",
-		"@sjsf/sveltekit": "^3.8.1",
-		"@sveltejs/kit": "^2.48.3",
+		"@sjsf/sveltekit3": "^3.8.1",
+		"@sveltejs/kit": "^3.0.0-next.25",
 		"ajv": "^8.17.0",
 		"ajv-formats": "^3.0.1",
 		"svelte": "^5.34.8"
@@ -2662,7 +2662,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 
 export { translation } from "@sjsf/form/translations/en";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit";
+export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit3";
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -2697,8 +2697,8 @@ export const onSubmitError = createFocusOnFirstError();
 <a href={resolve('/demo/sjsf')}>sjsf</a>
 ",
   "src/routes/demo/sjsf/+page.server.ts": "import type { Actions } from "@sveltejs/kit";
-import type { InitialFormData } from "@sjsf/sveltekit";
-import { createAction } from "@sjsf/sveltekit/server";
+import type { InitialFormData } from "@sjsf/sveltekit3";
+import { createAction } from "@sjsf/sveltekit3/server";
 import { fromValidators } from "@sjsf/form/validators/precompile";
 import { createFormValidatorFactory } from "@sjsf/ajv8-validator/precompile";
 import * as validateFunctions from "#lib/post/validators.generated";
@@ -2729,7 +2729,7 @@ export const actions = {
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '#lib/sjsf/defaults';
 	import type { ActionData, PageData } from './$types';
-	import { createMeta, setupSvelteKitForm } from '@sjsf/sveltekit/client';
+	import { createMeta, setupSvelteKitForm } from '@sjsf/sveltekit3/client';
 	import * as validateFunctions from '#lib/post/validators.generated';
 	import { createFormValidatorFactory } from '@sjsf/ajv8-validator/precompile';
 	import { fromValidators } from '@sjsf/form/validators/precompile';
@@ -2813,8 +2813,8 @@ exports[`@sjsf/sv sveltekit__formActions__hyperjump_preco… kit-ts 1`] = `
 		"@sjsf-lab/hyperjump-validator": "^3.1.0",
 		"@sjsf/basic-theme": "^3.8.1",
 		"@sjsf/form": "^3.8.1",
-		"@sjsf/sveltekit": "^3.8.1",
-		"@sveltejs/kit": "^2.48.3",
+		"@sjsf/sveltekit3": "^3.8.1",
+		"@sveltejs/kit": "^3.0.0-next.25",
 		"svelte": "^5.34.8"
 	}
 }
@@ -3021,7 +3021,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 
 export { translation } from "@sjsf/form/translations/en";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit";
+export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit3";
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -3056,8 +3056,8 @@ export const onSubmitError = createFocusOnFirstError();
 <a href={resolve('/demo/sjsf')}>sjsf</a>
 ",
   "src/routes/demo/sjsf/+page.server.ts": "import type { Actions } from "@sveltejs/kit";
-import type { InitialFormData } from "@sjsf/sveltekit";
-import { createAction } from "@sjsf/sveltekit/server";
+import type { InitialFormData } from "@sjsf/sveltekit3";
+import { createAction } from "@sjsf/sveltekit3/server";
 import * as post from "#lib/post/model.generated";
 import { ast } from "#lib/post/ast.generated";
 import { createFormValidatorFactory, fromAst } from "@sjsf-lab/hyperjump-validator/precompile";
@@ -3087,7 +3087,7 @@ export const actions = {
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '#lib/sjsf/defaults';
 	import type { ActionData, PageData } from './$types';
-	import { createMeta, setupSvelteKitForm } from '@sjsf/sveltekit/client';
+	import { createMeta, setupSvelteKitForm } from '@sjsf/sveltekit3/client';
 	import { createFormValidatorFactory, fromAst } from '@sjsf-lab/hyperjump-validator/precompile';
 	import { ast } from '#lib/post/ast.generated';
 	import * as post from '#lib/post/model.generated';
@@ -3166,9 +3166,9 @@ exports[`@sjsf/sv sveltekit__formActions__zod4 kit-ts 1`] = `
 	"dependencies": {
 		"@sjsf/basic-theme": "^3.8.1",
 		"@sjsf/form": "^3.8.1",
-		"@sjsf/sveltekit": "^3.8.1",
+		"@sjsf/sveltekit3": "^3.8.1",
 		"@sjsf/zod4-validator": "^3.8.1",
-		"@sveltejs/kit": "^2.48.3",
+		"@sveltejs/kit": "^3.0.0-next.25",
 		"svelte": "^5.34.8",
 		"zod": "^4.1.0"
 	}
@@ -3256,7 +3256,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 
 export { translation } from "@sjsf/form/translations/en";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit";
+export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit3";
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -3291,8 +3291,8 @@ export const onSubmitError = createFocusOnFirstError();
 <a href={resolve('/demo/sjsf')}>sjsf</a>
 ",
   "src/routes/demo/sjsf/+page.server.ts": "import type { Actions } from "@sveltejs/kit";
-import type { InitialFormData } from "@sjsf/sveltekit";
-import { createAction } from "@sjsf/sveltekit/server";
+import type { InitialFormData } from "@sjsf/sveltekit3";
+import { createAction } from "@sjsf/sveltekit3/server";
 import { adapt } from "@sjsf/zod4-validator/classic";
 import * as post from "#lib/post";
 import * as defaults from "#lib/sjsf/defaults";
@@ -3324,7 +3324,7 @@ export const actions = {
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '#lib/sjsf/defaults';
 	import type { ActionData, PageData } from './$types';
-	import { createMeta, setupSvelteKitForm } from '@sjsf/sveltekit/client';
+	import { createMeta, setupSvelteKitForm } from '@sjsf/sveltekit3/client';
 	import * as post from '#lib/post';
 	import { adapt } from '@sjsf/zod4-validator/classic';
 	import { BasicForm } from '@sjsf/form';
@@ -3404,8 +3404,8 @@ exports[`@sjsf/sv sveltekit__remoteFunctions__ajv8 kit-ts 1`] = `
 		"@sjsf/ajv8-validator": "^3.8.1",
 		"@sjsf/basic-theme": "^3.8.1",
 		"@sjsf/form": "^3.8.1",
-		"@sjsf/sveltekit": "^3.8.1",
-		"@sveltejs/kit": "^2.48.3",
+		"@sjsf/sveltekit3": "^3.8.1",
+		"@sveltejs/kit": "^3.0.0-next.25",
 		"ajv": "^8.17.0",
 		"ajv-formats": "^3.0.1",
 		"svelte": "^5.34.8"
@@ -3505,7 +3505,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 
 export { translation } from "@sjsf/form/translations/en";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit/rf";
+export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit3/rf";
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -3549,7 +3549,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '#lib/sjsf/defaults';
 	import { createPost, getInitialData } from './data.remote';
-	import { connect } from '@sjsf/sveltekit/rf/client';
+	import { connect } from '@sjsf/sveltekit3/rf/client';
 	import * as post from '#lib/post';
 	import { BasicForm, createForm } from '@sjsf/form';
 
@@ -3567,8 +3567,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm form={form} novalidate />
 ",
-  "src/routes/demo/sjsf/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit";
-import { createServerValidator } from "@sjsf/sveltekit/rf/server";
+  "src/routes/demo/sjsf/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
+import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
 import { form, query } from "$app/server";
 import * as post from "#lib/post";
 import * as defaults from "#lib/sjsf/defaults";
@@ -3650,8 +3650,8 @@ exports[`@sjsf/sv sveltekit__remoteFunctions__ajv8_precom… kit-ts 1`] = `
 		"@sjsf/ajv8-validator": "^3.8.1",
 		"@sjsf/basic-theme": "^3.8.1",
 		"@sjsf/form": "^3.8.1",
-		"@sjsf/sveltekit": "^3.8.1",
-		"@sveltejs/kit": "^2.48.3",
+		"@sjsf/sveltekit3": "^3.8.1",
+		"@sveltejs/kit": "^3.0.0-next.25",
 		"ajv": "^8.17.0",
 		"ajv-formats": "^3.0.1",
 		"svelte": "^5.34.8"
@@ -3857,7 +3857,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 
 export { translation } from "@sjsf/form/translations/en";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit/rf";
+export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit3/rf";
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -3894,7 +3894,7 @@ export const onSubmitError = createFocusOnFirstError();
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '#lib/sjsf/defaults';
 	import { createPost, getInitialData } from './data.remote';
-	import { connect } from '@sjsf/sveltekit/rf/client';
+	import { connect } from '@sjsf/sveltekit3/rf/client';
 	import * as post from '#lib/post/model.generated';
 	import * as validateFunctions from '#lib/post/validators.generated';
 	import { createFormValidatorFactory } from '@sjsf/ajv8-validator/precompile';
@@ -3919,8 +3919,8 @@ export const onSubmitError = createFocusOnFirstError();
 
 <BasicForm form={form} novalidate />
 ",
-  "src/routes/demo/sjsf/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit";
-import { createServerValidator } from "@sjsf/sveltekit/rf/server";
+  "src/routes/demo/sjsf/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
+import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
 import { form, query } from "$app/server";
 import { fromValidators } from "@sjsf/form/validators/precompile";
 import { createFormValidatorFactory } from "@sjsf/ajv8-validator/precompile";
@@ -4013,8 +4013,8 @@ exports[`@sjsf/sv sveltekit__remoteFunctions__hyperjump_p… kit-ts 1`] = `
 		"@sjsf-lab/hyperjump-validator": "^3.1.0",
 		"@sjsf/basic-theme": "^3.8.1",
 		"@sjsf/form": "^3.8.1",
-		"@sjsf/sveltekit": "^3.8.1",
-		"@sveltejs/kit": "^2.48.3",
+		"@sjsf/sveltekit3": "^3.8.1",
+		"@sveltejs/kit": "^3.0.0-next.25",
 		"svelte": "^5.34.8"
 	}
 }
@@ -4221,7 +4221,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 
 export { translation } from "@sjsf/form/translations/en";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit/rf";
+export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit3/rf";
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -4258,7 +4258,7 @@ export const onSubmitError = createFocusOnFirstError();
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '#lib/sjsf/defaults';
 	import { createPost, getInitialData } from './data.remote';
-	import { connect } from '@sjsf/sveltekit/rf/client';
+	import { connect } from '@sjsf/sveltekit3/rf/client';
 	import { createFormValidatorFactory, fromAst } from '@sjsf-lab/hyperjump-validator/precompile';
 	import { ast } from '#lib/post/ast.generated';
 	import * as post from '#lib/post/model.generated';
@@ -4282,8 +4282,8 @@ export const onSubmitError = createFocusOnFirstError();
 
 <BasicForm form={form} novalidate />
 ",
-  "src/routes/demo/sjsf/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit";
-import { createServerValidator } from "@sjsf/sveltekit/rf/server";
+  "src/routes/demo/sjsf/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
+import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
 import { form, query } from "$app/server";
 import * as post from "#lib/post/model.generated";
 import { ast } from "#lib/post/ast.generated";
@@ -4370,9 +4370,9 @@ exports[`@sjsf/sv sveltekit__remoteFunctions__zod4 kit-ts 1`] = `
 	"dependencies": {
 		"@sjsf/basic-theme": "^3.8.1",
 		"@sjsf/form": "^3.8.1",
-		"@sjsf/sveltekit": "^3.8.1",
+		"@sjsf/sveltekit3": "^3.8.1",
 		"@sjsf/zod4-validator": "^3.8.1",
-		"@sveltejs/kit": "^2.48.3",
+		"@sveltejs/kit": "^3.0.0-next.25",
 		"svelte": "^5.34.8",
 		"zod": "^4.1.0"
 	}
@@ -4460,7 +4460,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 
 export { translation } from "@sjsf/form/translations/en";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit/rf";
+export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit3/rf";
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -4497,7 +4497,7 @@ export const onSubmitError = createFocusOnFirstError();
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
 	import * as defaults from '#lib/sjsf/defaults';
 	import { createPost, getInitialData } from './data.remote';
-	import { connect } from '@sjsf/sveltekit/rf/client';
+	import { connect } from '@sjsf/sveltekit3/rf/client';
 	import * as post from '#lib/post';
 	import { adapt } from '@sjsf/zod4-validator/classic';
 	import { BasicForm, createForm } from '@sjsf/form';
@@ -4516,8 +4516,8 @@ export const onSubmitError = createFocusOnFirstError();
 
 <BasicForm form={form} novalidate />
 ",
-  "src/routes/demo/sjsf/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit";
-import { createServerValidator } from "@sjsf/sveltekit/rf/server";
+  "src/routes/demo/sjsf/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
+import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
 import { form, query } from "$app/server";
 import { adapt } from "@sjsf/zod4-validator/classic";
 import * as post from "#lib/post";

@@ -84,7 +84,7 @@
     "@sjsf/skeleton3-theme": "workspace:*",
     "@sjsf/skeleton4-theme": "workspace:*",
     "@sjsf/skeleton5-theme": "workspace:*",
-    "@sjsf/sveltekit": "workspace:*",
+    "@sjsf/sveltekit3": "workspace:*",
     "@sjsf/valibot-validator": "workspace:*",
     "@sjsf/zod4-validator": "workspace:*"
   },

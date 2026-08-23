@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { connect } from "@sjsf/sveltekit/rf/client";
+  import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import * as defaults from "#lib/sjsf/remote-defaults.js";
 

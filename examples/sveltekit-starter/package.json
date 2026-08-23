@@ -20,7 +20,7 @@
     "@sjsf/ajv8-validator": "workspace:*",
     "@sjsf/basic-theme": "workspace:*",
     "@sjsf/form": "workspace:*",
-    "@sjsf/sveltekit": "workspace:*",
+    "@sjsf/sveltekit3": "workspace:*",
     "ajv": "catalog:",
     "svelte": "catalog:"
   },

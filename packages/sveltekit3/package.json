@@ -1,0 +1,97 @@
+{
+  "name": "@sjsf/sveltekit3",
+  "version": "3.8.1",
+  "description": "The SvelteKit integration for svelte-jsonschema-form",
+  "keywords": [
+    "form",
+    "jsonschema",
+    "svelte",
+    "sveltekit"
+  ],
+  "homepage": "https://x0k.github.io/svelte-jsonschema-form/",
+  "bugs": "https://github.com/x0k/svelte-jsonschema-form/issues",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/x0k/svelte-jsonschema-form.git",
+    "directory": "packages/sveltekit3"
+  },
+  "files": [
+    "dist",
+    "!dist/**/*.test.*",
+    "!dist/**/*.spec.*"
+  ],
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "svelte": "./dist/index.js",
+  "imports": {
+    "#lib": "./src/lib/index.js",
+    "#lib/*": "./src/lib/*"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "svelte": "./dist/index.js"
+    },
+    "./client": {
+      "types": "./dist/client/index.d.ts",
+      "svelte": "./dist/client/index.js"
+    },
+    "./server": {
+      "types": "./dist/server/index.d.ts",
+      "svelte": "./dist/server/index.js"
+    },
+    "./rf": {
+      "types": "./dist/rf/index.d.ts",
+      "svelte": "./dist/rf/index.js"
+    },
+    "./rf/client": {
+      "types": "./dist/rf/client/index.d.ts",
+      "svelte": "./dist/rf/client/index.js"
+    },
+    "./rf/server": {
+      "types": "./dist/rf/server/index.d.ts",
+      "svelte": "./dist/rf/server/index.js"
+    }
+  },
+  "publishConfig": {
+    "provenance": true
+  },
+  "scripts": {
+    "dev": "vite dev",
+    "build": "svelte-package && vite build && publint",
+    "build:app": "vite build",
+    "preview": "vite preview",
+    "test": "npm run test:unit -- --run && npm run test:integration",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "lint": "eslint .",
+    "test:integration": "playwright test",
+    "test:unit": "vitest",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check ."
+  },
+  "dependencies": {
+    "@standard-schema/spec": "catalog:"
+  },
+  "devDependencies": {
+    "@sjsf/ajv8-validator": "workspace:*",
+    "@sjsf/basic-theme": "workspace:*",
+    "@sjsf/form": "workspace:*",
+    "@sveltejs/adapter-node": "^6.0.0-next.10",
+    "@sveltejs/kit": "catalog:",
+    "@sveltejs/load-config": "^0.2.3",
+    "ajv": "catalog:",
+    "esm-env": "catalog:",
+    "globals": "catalog:",
+    "svelte": "catalog:",
+    "theme-testing": "workspace:*"
+  },
+  "peerDependencies": {
+    "@sjsf/form": "workspace:^3.5.0",
+    "@sveltejs/kit": "^3.0.0-next.25",
+    "esm-env": "^1.2.0",
+    "svelte": "^5.34.8"
+  }
+}

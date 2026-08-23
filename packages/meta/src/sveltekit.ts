@@ -1,4 +1,4 @@
-import _packageJson from "@sjsf/sveltekit/package.json" with { type: "json" };
+import _packageJson from "@sjsf/sveltekit3/package.json" with { type: "json" };
 
 import { fromPackageJson } from "./package.ts";
 

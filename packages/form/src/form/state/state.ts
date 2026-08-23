@@ -40,6 +40,7 @@ import {
   FormErrors,
   FORM_RETRIEVED_SCHEMA,
   FORM_CONFIGS_CACHE,
+  FORM_FIELD_NAME_SUFFIX,
 } from "../internals.js";
 import type { FormMerger } from "../merger.js";
 import type { FormValue, KeyedArraysMap, PathTrieRef } from "../model.js";
@@ -91,6 +92,8 @@ export interface FormState<T> {
   readonly [FORM_THEME]: Theme;
   readonly [FORM_FIELDS_STATE_MAP]: SvelteMap<FieldPath, FieldState>;
   readonly [FORM_CONFIGS_CACHE]: WeakMap<FieldPath, Config>;
+  /** Suffix appended to the names of the service (non-value) inputs */
+  readonly [FORM_FIELD_NAME_SUFFIX]?: string;
 }
 
 export function getFormContext<T>(): FormState<T> {
