@@ -1,0 +1,24 @@
+{
+  "extends": "$app/tsconfig",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext"
+  },
+  "include": ["src", "test", "tests", "vite.config.ts"],
+  "exclude": [
+    "node_modules",
+    "build",
+    "dist",
+    ".svelte-kit",
+    "src/service-worker",
+    "src/service-worker.js"
+  ]
+}
