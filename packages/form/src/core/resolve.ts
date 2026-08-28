@@ -2,8 +2,6 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-// TODO: Remove all usage of `expandAllBranches` in v4
-
 import { array } from "#lib/array.js";
 import { isJsonSchemaType } from "#lib/json-schema/index.js";
 import { getOwn, isRecordEmpty, setOwn } from "#lib/object.js";
@@ -70,7 +68,6 @@ export function retrieveSchema(
     schema,
     rootSchema,
     formData,
-    undefined,
     undefined,
     resolveAnyOfOrOneOfRefs
   )[0]!;
@@ -234,7 +231,6 @@ export function resolveReference(
   merger: Merger,
   schema: Schema,
   rootSchema: Schema,
-  expandAllBranches: boolean,
   stack: Set<string>,
   formData?: SchemaValue,
   resolveAnyOfOrOneOfRefs?: boolean,
@@ -264,7 +260,6 @@ export function resolveReference(
       resolvedSchema,
       rootSchema,
       formData,
-      expandAllBranches,
       stack,
       resolveAnyOfOrOneOfRefs,
       preserveDependencies,
@@ -283,7 +278,6 @@ export function retrieveSchemaInternal(
   schema: Schema,
   rootSchema: Schema,
   formData?: SchemaValue,
-  expandAllBranches = false,
   stack = new Set<string>(),
   resolveAnyOfOrOneOfRefs?: boolean,
   preserveDependencies = false,
@@ -294,7 +288,6 @@ export function retrieveSchemaInternal(
     merger,
     schema,
     rootSchema,
-    expandAllBranches,
     stack,
     formData,
     resolveAnyOfOrOneOfRefs,
@@ -309,7 +302,6 @@ export function retrieveSchemaInternal(
         merger,
         resolvedSchema,
         rootSchema,
-        expandAllBranches,
         stack,
         formData,
         preserveDependencies,
@@ -319,19 +311,6 @@ export function retrieveSchemaInternal(
     const resolvedAllOf = resolvedSchema.allOf;
     if (resolvedAllOf) {
       // resolve allOf schemas
-      if (expandAllBranches) {
-        const { allOf: _, ...restOfSchema } = resolvedSchema;
-        const schemas: Schema[] = [];
-        for (let i = 0; i < resolvedAllOf.length; i++) {
-          const schema = resolvedAllOf[i]!;
-          if (typeof schema === "boolean") {
-            continue;
-          }
-          schemas.push(schema);
-        }
-        schemas.push(restOfSchema);
-        return schemas;
-      }
       try {
         // CHANGED: No need for `contains` workaround this with modern merger
         resolvedSchema = merger.mergeAllOf(resolvedSchema);
@@ -370,7 +349,6 @@ export function retrieveSchemaInternal(
               formDataIsSchemaObjectValue ? formData[key] : undefined,
               undefined,
               undefined,
-              undefined,
               preserveDependencies
             )[0]!
           );
@@ -395,7 +373,6 @@ export function resolveCondition(
   merger: Merger,
   schema: Schema,
   rootSchema: Schema,
-  expandAllBranches: boolean,
   stack: Set<string>,
   formData?: SchemaValue,
   preserveDependencies = false,
@@ -414,57 +391,21 @@ export function resolveCondition(
     expression !== undefined && validator.isValid(expression, formData ?? {});
   let resolvedSchemas = [resolvedSchemaLessConditional];
   let schemas: Schema[] = [];
-  if (expandAllBranches) {
-    if (then && typeof then !== "boolean") {
-      schemas = schemas.concat(
-        retrieveSchemaInternal(
-          validator,
-          merger,
-          then,
-          rootSchema,
-          formData,
-          expandAllBranches,
-          enclosingRefPath(schema, stack, passCount),
-          undefined,
-          preserveDependencies,
-          passCount > 0 ? 1 : 0
-        )
-      );
-    }
-    if (otherwise && typeof otherwise !== "boolean") {
-      schemas = schemas.concat(
-        retrieveSchemaInternal(
-          validator,
-          merger,
-          otherwise,
-          rootSchema,
-          formData,
-          expandAllBranches,
-          enclosingRefPath(schema, stack, passCount),
-          undefined,
-          preserveDependencies,
-          passCount > 0 ? 1 : 0
-        )
-      );
-    }
-  } else {
-    const conditionalSchema = conditionValue ? then : otherwise;
-    if (conditionalSchema !== undefined) {
-      schemas = schemas.concat(
-        retrieveSchemaInternal(
-          validator,
-          merger,
-          normalizeBooleanSchema(conditionalSchema),
-          rootSchema,
-          formData,
-          expandAllBranches,
-          enclosingRefPath(schema, stack, passCount),
-          undefined,
-          preserveDependencies,
-          passCount > 0 ? 1 : 0
-        )
-      );
-    }
+  const conditionalSchema = conditionValue ? then : otherwise;
+  if (conditionalSchema !== undefined) {
+    schemas = schemas.concat(
+      retrieveSchemaInternal(
+        validator,
+        merger,
+        normalizeBooleanSchema(conditionalSchema),
+        rootSchema,
+        formData,
+        enclosingRefPath(schema, stack, passCount),
+        undefined,
+        preserveDependencies,
+        passCount > 0 ? 1 : 0
+      )
+    );
   }
   if (schemas.length) {
     resolvedSchemas = isRecordEmpty(resolvedSchemaLessConditional)
@@ -480,7 +421,6 @@ export function resolveCondition(
       s,
       rootSchema,
       formData,
-      expandAllBranches,
       stack,
       undefined,
       preserveDependencies,
@@ -581,7 +521,6 @@ export function resolveSchema(
   merger: Merger,
   schema: Schema,
   rootSchema: Schema,
-  expandAllBranches: boolean,
   stack: Set<string>,
   formData?: SchemaValue,
   resolveAnyOfOrOneOfRefs?: boolean,
@@ -593,7 +532,6 @@ export function resolveSchema(
     merger,
     schema,
     rootSchema,
-    expandAllBranches,
     stack,
     formData,
     resolveAnyOfOrOneOfRefs,
@@ -609,7 +547,6 @@ export function resolveSchema(
       merger,
       schema,
       rootSchema,
-      expandAllBranches,
       stack,
       formData,
       passCount
@@ -621,7 +558,6 @@ export function resolveSchema(
         s,
         rootSchema,
         formData,
-        expandAllBranches,
         stack,
         undefined,
         preserveDependencies,
@@ -639,7 +575,6 @@ export function resolveSchema(
           allOfSubSchema,
           rootSchema,
           formData,
-          expandAllBranches,
           enclosingRefPath(schema, stack, passCount),
           undefined,
           preserveDependencies,
@@ -661,7 +596,6 @@ export function resolveDependencies(
   merger: Merger,
   schema: Schema,
   rootSchema: Schema,
-  expandAllBranches: boolean,
   stack: Set<string>,
   formData?: SchemaValue,
   passCount = 0
@@ -672,7 +606,6 @@ export function resolveDependencies(
     merger,
     remainingSchema,
     rootSchema,
-    expandAllBranches,
     formData
   );
   return resolvedSchemas.flatMap((resolvedSchema) =>
@@ -682,7 +615,6 @@ export function resolveDependencies(
       dependencies,
       resolvedSchema,
       rootSchema,
-      expandAllBranches,
       stack,
       formData,
       passCount
@@ -695,7 +627,6 @@ export function resolveAnyOrOneOfSchemas(
   merger: Merger,
   schema: Schema,
   rootSchema: Schema,
-  expandAllBranches: boolean,
   rawFormData?: SchemaValue
 ) {
   let anyOrOneOf: Schema[] | undefined;
@@ -706,9 +637,7 @@ export function resolveAnyOrOneOfSchemas(
     anyOrOneOf = anyOf as Schema[];
   }
   if (anyOrOneOf) {
-    // Ensure that during expand all branches we pass an object rather than undefined so that all options are interrogated
-    const formData =
-      rawFormData === undefined && expandAllBranches ? {} : rawFormData;
+    const formData = rawFormData;
     const discriminator = getDiscriminatorFieldFromSchema(schema);
     anyOrOneOf = anyOrOneOf.map((s) => {
       // Due to anyOf/oneOf possibly using the same $ref we always pass a fresh recurse list array so that each option
@@ -723,11 +652,6 @@ export function resolveAnyOrOneOfSchemas(
       discriminator
     );
     const isRemainingEmpty = isRecordEmpty(remaining);
-    if (expandAllBranches) {
-      return isRemainingEmpty
-        ? anyOrOneOf
-        : anyOrOneOf.map((item) => merger.mergeSchemas(remaining, item));
-    }
     schema = isRemainingEmpty
       ? anyOrOneOf[option]!
       : merger.mergeSchemas(remaining, anyOrOneOf[option]!);
@@ -741,7 +665,6 @@ export function processDependencies(
   dependencies: Schema[typeof DEPENDENCIES_KEY],
   resolvedSchema: Schema,
   rootSchema: Schema,
-  expandAllBranches: boolean,
   stack: Set<string>,
   formData?: SchemaValue,
   passCount = 0
@@ -751,9 +674,8 @@ export function processDependencies(
   for (const dependencyKey in dependencies) {
     // Skip this dependency if its trigger property is not present.
     if (
-      !expandAllBranches &&
-      (!isSchemaObjectValue(formData) ||
-        getOwn(formData, dependencyKey) === undefined)
+      !isSchemaObjectValue(formData) ||
+      getOwn(formData, dependencyKey) === undefined
     ) {
       continue;
     }
@@ -778,7 +700,6 @@ export function processDependencies(
         rootSchema,
         dependencyKey,
         dependencyValue,
-        expandAllBranches,
         stack,
         formData,
         passCount
@@ -791,7 +712,6 @@ export function processDependencies(
         remainingDependencies,
         schema,
         rootSchema,
-        expandAllBranches,
         stack,
         formData,
         passCount
@@ -808,7 +728,6 @@ export function withDependentSchema(
   rootSchema: Schema,
   dependencyKey: string,
   dependencyValue: Schema,
-  expandAllBranches: boolean,
   stack: Set<string>,
   formData?: SchemaValue,
   passCount = 0
@@ -819,7 +738,6 @@ export function withDependentSchema(
     dependencyValue,
     rootSchema,
     formData,
-    expandAllBranches,
     enclosingRefPath(schema, stack, passCount),
     undefined,
     undefined,
@@ -844,7 +762,6 @@ export function withDependentSchema(
         merger,
         subschema,
         rootSchema,
-        expandAllBranches,
         enclosingRefPath(schema, stack, passCount),
         formData,
         undefined,
@@ -861,7 +778,6 @@ export function withDependentSchema(
         rootSchema,
         dependencyKey,
         resolvedOneOf,
-        expandAllBranches,
         stack,
         formData,
         passCount
@@ -877,7 +793,6 @@ export function withExactlyOneSubSchema(
   rootSchema: Schema,
   dependencyKey: string,
   oneOf: Exclude<Schema["oneOf"], undefined>,
-  expandAllBranches: boolean,
   stack: Set<string>,
   formData?: SchemaValue,
   passCount = 0
@@ -893,18 +808,16 @@ export function withExactlyOneSubSchema(
       }
       const { [dependencyKey]: conditionPropertySchema } = subschema.properties;
       if (conditionPropertySchema) {
-        return (
-          validator.isValid(
-            createConditionSchema(dependencyKey, conditionPropertySchema),
-            formData
-          ) || expandAllBranches
+        return validator.isValid(
+          createConditionSchema(dependencyKey, conditionPropertySchema),
+          formData
         );
       }
       return false;
     }
   );
 
-  if (!expandAllBranches && validSubSchemas.length !== 1) {
+  if (validSubSchemas.length !== 1) {
     console.warn(
       "ignoring oneOf in dependencies because there isn't exactly one subschema that is valid"
     );
@@ -920,7 +833,6 @@ export function withExactlyOneSubSchema(
       dependentSchema,
       rootSchema,
       formData,
-      expandAllBranches,
       enclosingRefPath(schema, stack, passCount),
       undefined,
       undefined,
