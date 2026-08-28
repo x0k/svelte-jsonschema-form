@@ -96,7 +96,6 @@ export function getDefaultFormState(
     formData,
     undefined,
     undefined,
-    undefined,
     emptyFormData
   )[0]!;
   // Get the computed defaults with 'shouldMergeDefaultsIntoFormData' set to true to merge defaults into formData.
@@ -407,7 +406,6 @@ export function computeDefaults(
       merger,
       schema,
       rootSchema,
-      false,
       new Set(),
       defaultFormData
     );
