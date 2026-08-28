@@ -31,10 +31,8 @@ import type { Merger } from "./merger.js";
 import {
   getAllPermutationsOfXxxOf,
   resolveAnyOrOneOfSchemas,
-  resolveCondition,
   resolveDependencies,
   retrieveSchema,
-  retrieveSchemaInternal,
   stubExistingAdditionalProperties,
   withExactlyOneSubSchema,
 } from "./resolve.js";
