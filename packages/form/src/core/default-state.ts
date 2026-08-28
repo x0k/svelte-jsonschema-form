@@ -366,7 +366,6 @@ export function computeDefaults(
       merger,
       schema,
       rootSchema,
-      false,
       new Set(),
       defaultFormData
     );
