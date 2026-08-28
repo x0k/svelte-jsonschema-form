@@ -22,6 +22,11 @@ property is missing from the branches' `required`, or an empty tuple
 `items: []` in draft-07) now fails at form creation instead of at first
 validation. Fix such schemas to be spec-compliant.
 
+## Schema resolution internals
+
+The unused `expandAllBranches` parameter was removed from the schema-resolution
+functions in `@sjsf/form/core`. Drop the argument from any direct calls.
+
 ## Etc.
 
 Feel free to get in touch about migrating to v4 on
