@@ -57,10 +57,15 @@ export function mergeDefaultsWithFormData<T = any>(
       const keyDefault = defaultsObject[key];
 
       // NOTE: This code is bad, but maintaining compatibility with RSJF > "good" code
+      // If any direct child of this key's default is itself an object or array,
+      // the shallow spread below would bypass its merge rules. Route those cases
+      // to the recursive path; the recursive call repeats this check one level deeper.
       if (
         isSchemaObjectValue(keyDefault) &&
         isSchemaObjectValue(value) &&
-        !Object.values(keyDefault).some(isSchemaObjectValue)
+        !Object.values(keyDefault).some(
+          (v) => isSchemaObjectValue(v) || Array.isArray(v)
+        )
       ) {
         acc[key as keyof T] = {
           ...keyDefault,

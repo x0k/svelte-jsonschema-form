@@ -282,6 +282,16 @@ describe("mergeDefaultsWithFormData()", () => {
       ).toEqual(expected);
     });
 
+    it("should deeply merge an array that sits under an object key", () => {
+      const defaults = { outer: { rows: [{ name: "Name", grade: "A" }] } };
+      const formData = { outer: { rows: [{ name: "Name" }] } };
+      expect(
+        mergeDefaultsWithFormData<any>(defaults, formData, true, false, true)
+      ).toEqual({
+        outer: { rows: [{ name: "Name", grade: "A" }] },
+      });
+    });
+
     // it("should recursively merge File objects", () => {
     //   const file = new File(["test"], "test.txt");
     //   const obj1 = {
@@ -405,6 +415,26 @@ describe("mergeDefaultsWithFormData()", () => {
     expect(mergeDefaultsWithFormData([{ a: 1 }], [{ b: 2 }, { c: 3 }])).toEqual(
       [{ a: 1, b: 2 }, { c: 3 }]
     );
+  });
+
+  it("should append extra array defaults under an object key, the same as at the root", () => {
+    expect(
+      mergeDefaultsWithFormData(
+        { config: { tags: ["a", "b"] } },
+        { config: { tags: ["x"] } },
+        true
+      )
+    ).toEqual({
+      config: { tags: ["x", "b"] },
+    });
+    expect(
+      mergeDefaultsWithFormData(
+        { config: { tags: ["a", "b"] } },
+        { config: { tags: ["x"] } }
+      )
+    ).toEqual({
+      config: { tags: ["x"] },
+    });
   });
 
   it("should recursively merge deeply nested objects", () => {
