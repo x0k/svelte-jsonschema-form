@@ -8,6 +8,7 @@ export type AugmentedSchemaFactory = (
   schema: $ZodType
 ) => $ZodTypes | undefined;
 
-export function createAugmentedId(id: string): string {
-  return `${id}::ag`;
-}
+export type ConditionSchemaFactory = (
+  key: string,
+  propSchema: $ZodTypes
+) => $ZodTypes;

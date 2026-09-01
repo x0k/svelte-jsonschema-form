@@ -1,20 +1,31 @@
+import type { Schema } from "@sjsf/form";
+import {
+  conditionSchemaEntries,
+  DEFAULT_ID_AUGMENTATIONS,
+  type IdAugmentations,
+} from "@sjsf/form/validators/precompile";
 import { type $ZodTypes, JSONSchema } from "zod/v4/core";
 
 import {
-  createAugmentedId,
   type AugmentedSchemaFactory,
+  type ConditionSchemaFactory,
   type SchemaRegistry,
 } from "./model.js";
 
 export interface SchemaRegistryOptions {
   createAugmentedSchema: AugmentedSchemaFactory;
+  createConditionSchema: ConditionSchemaFactory;
   map?: Map<string, $ZodTypes>;
+  idAugmentations?: Partial<IdAugmentations>;
 }
 
 export function createSchemaRegistry({
   createAugmentedSchema,
+  createConditionSchema,
   map = new Map(),
+  idAugmentations,
 }: SchemaRegistryOptions) {
+  const augmentations = { ...DEFAULT_ID_AUGMENTATIONS, ...idAugmentations };
   return {
     get(id: string) {
       return map.get(id);
@@ -71,8 +82,22 @@ export function createSchemaRegistry({
           if (id === undefined) {
             throw new Error(`Id for item of 'anyOf' item not found`);
           }
-          map.set(createAugmentedId(id), augmentedSchema);
+          map.set(augmentations.combination(id), augmentedSchema);
         }
+      }
+      // Register condition schemas for dependencies with oneOf
+      for (const { dependencyKey, propertyId } of conditionSchemaEntries(
+        jsonSchema as Schema
+      )) {
+        const propZodSchema = map.get(propertyId);
+        if (propZodSchema === undefined) {
+          continue;
+        }
+        const conditionSchema = createConditionSchema(
+          dependencyKey,
+          propZodSchema
+        );
+        map.set(augmentations.condition(propertyId), conditionSchema);
       }
       jsonSchema.$id = id;
     },

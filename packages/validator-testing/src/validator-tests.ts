@@ -499,6 +499,83 @@ export function validatorTests(
 
         expect(result).toEqual({ kind: "b", q: 42 });
       });
+
+      it("Should validate dependencies with oneOf (conditionSchema)", async () => {
+        const { validator, schema } = await init({
+          schema: {
+            $id: "deps-test",
+            type: "object",
+            properties: {
+              a: { type: "string", enum: ["int", "bool"] },
+            },
+            dependencies: {
+              a: {
+                oneOf: [
+                  {
+                    properties: {
+                      a: { type: "string", enum: ["int"] },
+                      b: { type: "integer" },
+                    },
+                  },
+                  {
+                    properties: {
+                      a: { type: "string", enum: ["bool"] },
+                      b: { type: "boolean" },
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        });
+        // The condition schema { type: "object", properties: { a: { enum: ["int"] } } }
+        // should validate successfully for formData.a = "int"
+        expect(validator.isValid(schema, schema, { a: "int" })).toBe(true);
+        expect(validator.isValid(schema, schema, { a: "bool" })).toBe(true);
+        // Invalid value should fail
+        expect(validator.isValid(schema, schema, { a: "invalid" })).toBe(false);
+      });
+
+      it("Should validate dependencies with oneOf using inline schemas", async () => {
+        const { validator, schema } = await init({
+          schema: {
+            $id: "deps-inline-test",
+            type: "object",
+            properties: {
+              employee_accounts: { type: "boolean" },
+            },
+            dependencies: {
+              employee_accounts: {
+                oneOf: [
+                  {
+                    properties: {
+                      employee_accounts: { const: true },
+                      update_absences: {
+                        title: "Update Absences",
+                        type: "string",
+                        oneOf: [{ title: "Both", const: "BOTH" }],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        });
+        // Valid: employee_accounts is true, condition schema matches
+        expect(
+          validator.isValid(schema, schema, {
+            employee_accounts: true,
+          })
+        ).toBe(true);
+        // Invalid: employee_accounts is false — dependency IS triggered because
+        // the property is present, and { const: true } rejects false.
+        expect(
+          validator.isValid(schema, schema, {
+            employee_accounts: false,
+          })
+        ).toBe(false);
+      });
     });
   });
 }

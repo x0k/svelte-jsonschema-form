@@ -1,8 +1,18 @@
 import type { Schema } from "@sjsf/form";
-import { ZodMiniObject, partial, safeParse, safeParseAsync } from "zod/mini";
+import {
+  ZodMiniObject,
+  object as miniObject,
+  partial,
+  safeParse,
+  safeParseAsync,
+} from "zod/mini";
 import type { $ZodType, output as InferOutput } from "zod/v4/core";
 
-import type { AugmentedSchemaFactory, SchemaRegistry } from "../model.js";
+import type {
+  AugmentedSchemaFactory,
+  ConditionSchemaFactory,
+  SchemaRegistry,
+} from "../model.js";
 import { createFormValidatorFactory } from "../setup.js";
 import {
   createAsyncFormValidator,
@@ -32,6 +42,13 @@ export const createAugmentedSchema: AugmentedSchemaFactory = (schema) => {
   });
 };
 
+export const createConditionSchema: ConditionSchemaFactory = (
+  key,
+  propSchema
+) => {
+  return miniObject({ [key]: propSchema });
+};
+
 function createSyncValidator<S extends $ZodType>(
   schemaRegistry: SchemaRegistry
 ) {
@@ -51,6 +68,7 @@ function createSyncValidator<S extends $ZodType>(
 
 const _adapt = createFormValidatorFactory({
   createAugmentedSchema,
+  createConditionSchema,
   createFormValidator: createSyncValidator,
 });
 
@@ -89,6 +107,7 @@ function createAsyncValidator<S extends $ZodType>(
 
 const _adaptAsync = createFormValidatorFactory({
   createAugmentedSchema,
+  createConditionSchema,
   createFormValidator: createAsyncValidator,
 });
 

@@ -1,5 +1,6 @@
 import {
   createAugmentSchema,
+  createConditionSchema,
   isPrimitiveSchemaType,
   isSchemaDeepEqual,
   isSchemaWithProperties,
@@ -24,6 +25,7 @@ import {
   type AnySubSchemaKey,
   type SchemaTraverserContext,
   transformSchemaDefinition,
+  isSchemaObject,
 } from "@/lib/json-schema/index.js";
 import { getValueByKeys, insertValue, type Trie } from "@/lib/trie.js";
 import { allowAdditionalProperties } from "@/omit-extra-data.js";
@@ -37,6 +39,8 @@ export type SubSchemas = Trie<Path[number], SchemaMeta>;
 
 /** @deprecated */
 export const DEFAULT_AUGMENT_SUFFIX = "ag";
+
+export const DEFAULT_CONDITION_SUFFIX = "cond";
 
 export function createIdFactory() {
   let id = 0;
@@ -156,9 +160,12 @@ export function insertSubSchemaIds(
   };
 }
 
-export type IdAugmentationType = "combination";
+export type IdAugmentationType = "combination" | "condition";
 
-type IdAugmentations = Record<IdAugmentationType, (id: string) => string>;
+export type IdAugmentations = Record<
+  IdAugmentationType,
+  (id: string) => string
+>;
 
 export interface FragmentSchemaOptions {
   schema: Schema;
@@ -169,9 +176,10 @@ export interface FragmentSchemaOptions {
   idAugmentations?: Partial<IdAugmentations>;
 }
 
-const DEFAULT_ID_AUGMENTATIONS: IdAugmentations = {
+export const DEFAULT_ID_AUGMENTATIONS: IdAugmentations = {
   // eslint-disable-next-line @typescript-eslint/no-deprecated
   combination: (id) => id + DEFAULT_AUGMENT_SUFFIX,
+  condition: (id) => id + DEFAULT_CONDITION_SUFFIX,
 };
 
 export function fragmentSchema({
@@ -192,6 +200,28 @@ export function fragmentSchema({
     transformSchemaDefinition(schema, (copy: SchemaDefinition, ctx) => {
       if (typeof copy === "boolean") {
         return copy;
+      }
+      // Capture condition schemas when visiting oneOf options inside dependencies
+      // Must happen before the meta check since the oneOf option IS a combination branch
+      // Path pattern: [..., "dependencies", <depKey>, "oneOf", <index>]
+      if (
+        ctx.type === "array" &&
+        ctx.key === "oneOf" &&
+        ctx.path.length >= 4 &&
+        ctx.path[ctx.path.length - 4] === "dependencies"
+      ) {
+        const depKey = ctx.path[ctx.path.length - 3];
+        if (typeof depKey === "string") {
+          const option = ctx.parent.oneOf?.[ctx.index];
+          if (isSchemaObject(option) && isSchemaWithProperties(option)) {
+            const propSchema = option.properties[depKey];
+            if (isSchemaObject(propSchema) && propSchema.$id !== undefined) {
+              const conditionSchema = createConditionSchema(depKey, propSchema);
+              conditionSchema.$id = augmentations.condition(propSchema.$id);
+              schemas.push(conditionSchema);
+            }
+          }
+        }
       }
       const meta = getValueByKeys(subSchemas, ctx.path);
       if (meta !== undefined && meta.id !== rootId) {
@@ -250,15 +280,28 @@ export function createValidatorRetriever<F>({
     ...DEFAULT_ID_AUGMENTATIONS,
     ...idAugmentations,
   };
-  return ({ $id: id, allOf }: Schema) => {
+  return (schema: Schema) => {
+    let { $id: id } = schema;
     if (id === undefined) {
-      const firstAllOfItem = allOf?.[0];
+      // combination pattern: allOf[0].$id
+      const firstAllOfItem = schema.allOf?.[0];
       if (
         typeof firstAllOfItem === "object" &&
         firstAllOfItem.$id !== undefined
       ) {
         id = augmentations.combination(firstAllOfItem.$id);
-      } else {
+      }
+      // condition pattern: single property with $id
+      else if (schema.type === "object" && schema.properties !== undefined) {
+        const keys = Object.keys(schema.properties);
+        if (keys.length === 1) {
+          const propSchema = schema.properties[keys[0]!];
+          if (isSchemaObject(propSchema) && propSchema.$id !== undefined) {
+            id = augmentations.condition(propSchema.$id);
+          }
+        }
+      }
+      if (id === undefined) {
         throw new Error("Schema id not found");
       }
     }
@@ -282,4 +325,45 @@ export function fromValidators<F>(
     },
     ...options,
   });
+}
+
+export interface ConditionSchemaEntry {
+  dependencyKey: string;
+  propertyId: string;
+}
+
+/**
+ * Yields entries for each property within `dependencies` that uses a `oneOf`
+ * condition schema. Each entry maps a dependency key to the `$id` of the
+ * property schema inside the matching `oneOf` branch.
+ */
+export function* conditionSchemaEntries({
+  dependencies,
+}: Schema): Generator<ConditionSchemaEntry> {
+  if (
+    dependencies === undefined ||
+    Array.isArray(dependencies) ||
+    typeof dependencies !== "object"
+  ) {
+    return;
+  }
+  for (const [depKey, depValue] of Object.entries(dependencies)) {
+    if (
+      Array.isArray(depValue) ||
+      typeof depValue !== "object" ||
+      !Array.isArray(depValue.oneOf)
+    ) {
+      continue;
+    }
+    for (const option of depValue.oneOf) {
+      if (typeof option !== "object" || option.properties === undefined) {
+        continue;
+      }
+      const propDef = option.properties[depKey];
+      if (typeof propDef !== "object" || propDef.$id === undefined) {
+        continue;
+      }
+      yield { dependencyKey: depKey, propertyId: propDef.$id };
+    }
+  }
 }

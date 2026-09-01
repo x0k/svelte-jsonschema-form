@@ -1,9 +1,9 @@
 import { isSchemaObject } from "@sjsf/form/lib/json-schema";
+import { DEFAULT_ID_AUGMENTATIONS } from "@sjsf/form/validators/precompile";
 import { toJsonSchema } from "@valibot/to-json-schema";
 import * as v from "valibot";
 import { describe, expect, it } from "vitest";
 
-import { createAugmentedId } from "./model.js";
 import { createSchemaRegistry } from "./schemas-registry.js";
 
 describe("SchemasRegistry", () => {
@@ -270,7 +270,7 @@ describe("SchemasRegistry", () => {
       if (id === undefined) {
         throw new Error(`$id is undefined for anyOf[${i}] item`);
       }
-      const schema = registry.get(createAugmentedId(id));
+      const schema = registry.get(DEFAULT_ID_AUGMENTATIONS.combination(id));
       if (schema === undefined) {
         throw new Error(`Augmented schema is undefined for anyOf[${i}] item`);
       }
@@ -312,7 +312,7 @@ describe("SchemasRegistry", () => {
       if (id === undefined) {
         throw new Error(`$id is undefined for oneOf[${i}] item`);
       }
-      const schema = registry.get(createAugmentedId(id));
+      const schema = registry.get(DEFAULT_ID_AUGMENTATIONS.combination(id));
       if (schema === undefined) {
         throw new Error(`Augmented schema is undefined for oneOf[${i}] item`);
       }

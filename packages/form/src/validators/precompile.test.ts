@@ -503,6 +503,124 @@ describe("fragmentSchema", () => {
       { oneOf: [{ $ref: "v1#" }, { $ref: "v4#" }], $id: "v0" },
     ]);
   });
+
+  it("should create condition schemas for dependencies with oneOf", () => {
+    const depSchema: Schema = {
+      $id: "deps-test",
+      type: "object",
+      properties: {
+        a: { type: "string", enum: ["int", "bool"] },
+      },
+      dependencies: {
+        a: {
+          oneOf: [
+            {
+              properties: {
+                a: { type: "string", enum: ["int"] },
+              },
+            },
+          ],
+        },
+      },
+    };
+    const data = insertSubSchemaIds(depSchema, {
+      fieldsValidationMode: ON_INPUT | ON_ARRAY_CHANGE | ON_OBJECT_CHANGE,
+    });
+    const fragments = fragmentSchema(data);
+    const conditionFragments = fragments.filter(
+      (f) => typeof f === "object" && f.$id?.endsWith("cond")
+    );
+    expect(conditionFragments.length).toBe(1);
+    expect(conditionFragments[0]).toEqual({
+      $id: expect.stringMatching(/cond$/),
+      type: "object",
+      properties: {
+        a: expect.objectContaining({ $id: expect.any(String) }),
+      },
+    });
+  });
+
+  it("should create condition schemas for inline dependencies with oneOf", () => {
+    const depSchema: Schema = {
+      $id: "deps-inline-test",
+      type: "object",
+      properties: {
+        employee_accounts: { type: "boolean" },
+      },
+      dependencies: {
+        employee_accounts: {
+          oneOf: [
+            {
+              properties: {
+                employee_accounts: { const: true },
+              },
+            },
+          ],
+        },
+      },
+    };
+    const data = insertSubSchemaIds(depSchema, {
+      fieldsValidationMode: ON_INPUT | ON_ARRAY_CHANGE | ON_OBJECT_CHANGE,
+    });
+    // Debug: check if the property schema has $id
+    const deps = data.schema.dependencies as Record<string, Schema>;
+    const oneOfOpt = (deps?.employee_accounts as Schema).oneOf?.[0] as Schema;
+    const propInOption = oneOfOpt?.properties?.employee_accounts as Schema;
+    expect(propInOption?.$id).toBeDefined();
+    const fragments = fragmentSchema(data);
+    const conditionFragments = fragments.filter(
+      (f) => typeof f === "object" && f.$id?.endsWith("cond")
+    );
+    expect(conditionFragments.length).toBe(1);
+    expect(conditionFragments[0]).toEqual({
+      $id: expect.stringMatching(/cond$/),
+      type: "object",
+      properties: {
+        employee_accounts: expect.objectContaining({ $id: expect.any(String) }),
+      },
+    });
+  });
+
+  it("should create condition schemas for nested dependencies with oneOf", () => {
+    const depSchema: Schema = {
+      $id: "nested-deps-test",
+      type: "object",
+      properties: {
+        nested: {
+          type: "object",
+          properties: {
+            a: { type: "string", enum: ["int", "bool"] },
+          },
+          dependencies: {
+            a: {
+              oneOf: [
+                {
+                  properties: {
+                    a: { type: "string", enum: ["int"] },
+                  },
+                },
+              ],
+            },
+          },
+        },
+      },
+    };
+    const data = insertSubSchemaIds(depSchema, {
+      fieldsValidationMode: ON_INPUT | ON_ARRAY_CHANGE | ON_OBJECT_CHANGE,
+    });
+    const fragments = fragmentSchema(data);
+    const conditionFragments = fragments.filter(
+      (f) => typeof f === "object" && f.$id?.endsWith("cond")
+    );
+    expect(conditionFragments.length).toBe(1);
+    expect(conditionFragments[0]).toEqual({
+      $id: expect.stringMatching(/cond$/),
+      type: "object",
+      properties: {
+        a: expect.objectContaining({ $id: expect.any(String) }),
+      },
+    });
+  });
 });
 
 type FakeValidator = { name: string };

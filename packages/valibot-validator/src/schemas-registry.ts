@@ -1,4 +1,9 @@
 import { isSchemaObject } from "@sjsf/form/lib/json-schema";
+import {
+  conditionSchemaEntries,
+  DEFAULT_ID_AUGMENTATIONS,
+  type IdAugmentations,
+} from "@sjsf/form/validators/precompile";
 import type {
   JSONSchema7,
   OverrideSchemaContext,
@@ -6,7 +11,6 @@ import type {
 import * as v from "valibot";
 
 import {
-  createAugmentedId,
   type SchemaRegistry,
   type ValibotJsonableSchema,
   type ValibotSchema,
@@ -14,6 +18,7 @@ import {
 
 export interface SchemaRegistryOptions {
   map?: Map<string, ValibotSchema>;
+  idAugmentations?: Partial<IdAugmentations>;
 }
 
 function createAugmentedSchema(schema: ValibotJsonableSchema) {
@@ -36,7 +41,9 @@ function createAugmentedSchema(schema: ValibotJsonableSchema) {
 
 export function createSchemaRegistry({
   map = new Map(),
+  idAugmentations,
 }: SchemaRegistryOptions = {}) {
+  const augmentations = { ...DEFAULT_ID_AUGMENTATIONS, ...idAugmentations };
   return {
     get(id: string) {
       return map.get(id);
@@ -109,10 +116,23 @@ export function createSchemaRegistry({
             if (id === undefined) {
               throw new Error(`Id for item of 'anyOf' item not found`);
             }
-            map.set(createAugmentedId(id), augmentedSchema);
+            map.set(augmentations.combination(id), augmentedSchema);
           }
           break;
         }
+      }
+      // Register condition schemas for dependencies with oneOf
+      for (const { dependencyKey, propertyId } of conditionSchemaEntries(
+        jsonSchema
+      )) {
+        const propValibotSchema = map.get(propertyId);
+        if (propValibotSchema === undefined) {
+          continue;
+        }
+        const conditionSchema = v.object({
+          [dependencyKey]: propValibotSchema,
+        });
+        map.set(augmentations.condition(propertyId), conditionSchema);
       }
       result.$id = id;
       return result;
