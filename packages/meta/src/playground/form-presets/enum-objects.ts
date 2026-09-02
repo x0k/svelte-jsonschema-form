@@ -74,6 +74,9 @@ export default definePreset({
     "ui:globalOptions": {
       enumNames: ["New York", "Amsterdam", "Hong Kong"],
     },
+    "ui:options": {
+      enumValueMapperBuilder: "registry:idEnumValueMapper",
+    },
     locationRadio: {
       "ui:components": {
         selectWidget: "radioWidget",
