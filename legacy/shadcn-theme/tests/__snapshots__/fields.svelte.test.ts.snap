@@ -2547,7 +2547,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                 >
                   <!---->
                   <span>
-                    Default
+                    
                   </span>
                   <!---->
                    
@@ -2873,7 +2873,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                 >
                   <!---->
                   <span>
-                    HTML
+                    
                   </span>
                   <!---->
                    
@@ -3454,7 +3454,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                 >
                   <!---->
                   <span>
-                    Manual
+                    
                   </span>
                   <!---->
                    
@@ -4645,7 +4645,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                 >
                   <!---->
                   <span>
-                    HTML
+                    
                   </span>
                   <!---->
                    
@@ -25513,7 +25513,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                 >
                   <!---->
                   <span>
-                    Default
+                    
                   </span>
                   <!---->
                    
@@ -25839,7 +25839,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                 >
                   <!---->
                   <span>
-                    HTML
+                    
                   </span>
                   <!---->
                    
@@ -26420,7 +26420,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                 >
                   <!---->
                   <span>
-                    Manual
+                    
                   </span>
                   <!---->
                    
@@ -27611,7 +27611,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                 >
                   <!---->
                   <span>
-                    HTML
+                    
                   </span>
                   <!---->
                    

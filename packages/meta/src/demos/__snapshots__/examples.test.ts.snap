@@ -30390,11 +30390,14 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts" module>
-  import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type {
+    SingleSelectOptions,
+    WidgetCommonProps,
+  } from "@sjsf/form/fields/widgets";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
-      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options;
+      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
     }
     interface ComponentBindings {
       myDynamicEnumWidget: "value";
@@ -30509,7 +30512,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 ",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -30719,11 +30722,14 @@ export { createFormValidator as validator } from '@sjsf/ata-validator';",
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts" module>
-  import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type {
+    SingleSelectOptions,
+    WidgetCommonProps,
+  } from "@sjsf/form/fields/widgets";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
-      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options;
+      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
     }
     interface ComponentBindings {
       myDynamicEnumWidget: "value";
@@ -30838,7 +30844,7 @@ export { createFormValidator as validator } from '@sjsf/ata-validator';",
 ",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -31048,11 +31054,14 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts" module>
-  import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type {
+    SingleSelectOptions,
+    WidgetCommonProps,
+  } from "@sjsf/form/fields/widgets";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
-      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options;
+      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
     }
     interface ComponentBindings {
       myDynamicEnumWidget: "value";
@@ -31167,7 +31176,7 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
 ",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -31375,11 +31384,14 @@ export { createFormValidator as validator } from '@sjsf/form/validators/noop';",
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts" module>
-  import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type {
+    SingleSelectOptions,
+    WidgetCommonProps,
+  } from "@sjsf/form/fields/widgets";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
-      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options;
+      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
     }
     interface ComponentBindings {
       myDynamicEnumWidget: "value";
@@ -31494,7 +31506,7 @@ export { createFormValidator as validator } from '@sjsf/form/validators/noop';",
 ",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -31704,11 +31716,14 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts" module>
-  import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type {
+    SingleSelectOptions,
+    WidgetCommonProps,
+  } from "@sjsf/form/fields/widgets";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
-      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options;
+      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
     }
     interface ComponentBindings {
       myDynamicEnumWidget: "value";
@@ -31823,7 +31838,7 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
 ",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -32031,11 +32046,11 @@ export const onSubmitError = createFocusOnFirstError();",
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts" module>
-	import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+	import type { SingleSelectOptions, WidgetCommonProps } from "@sjsf/form/fields/widgets";
 
 	declare module "@sjsf/form" {
 		interface ComponentProps {
-			myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options
+			myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions
 		}
 
 		interface ComponentBindings { myDynamicEnumWidget: "value" }
@@ -32149,7 +32164,7 @@ export const onSubmitError = createFocusOnFirstError();",
 <pre><code>{JSON.stringify(getValueSnapshot(form), null, 2)}</code></pre>",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -32358,11 +32373,11 @@ export const onSubmitError = createFocusOnFirstError();",
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts" module>
-	import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+	import type { SingleSelectOptions, WidgetCommonProps } from "@sjsf/form/fields/widgets";
 
 	declare module "@sjsf/form" {
 		interface ComponentProps {
-			myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options
+			myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions
 		}
 
 		interface ComponentBindings { myDynamicEnumWidget: "value" }
@@ -32453,7 +32468,7 @@ export const onSubmitError = createFocusOnFirstError();",
 <pre><code>{JSON.stringify(getValueSnapshot(form), null, 2)}</code></pre>",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -32661,11 +32676,11 @@ export const onSubmitError = createFocusOnFirstError();",
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts" module>
-	import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+	import type { SingleSelectOptions, WidgetCommonProps } from "@sjsf/form/fields/widgets";
 
 	declare module "@sjsf/form" {
 		interface ComponentProps {
-			myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options
+			myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions
 		}
 
 		interface ComponentBindings { myDynamicEnumWidget: "value" }
@@ -32756,7 +32771,7 @@ export const onSubmitError = createFocusOnFirstError();",
 <pre><code>{JSON.stringify(getValueSnapshot(form), null, 2)}</code></pre>",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -32977,11 +32992,14 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
-  import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type {
+    SingleSelectOptions,
+    WidgetCommonProps,
+  } from "@sjsf/form/fields/widgets";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
-      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options;
+      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
     }
     interface ComponentBindings {
       myDynamicEnumWidget: "value";
@@ -33095,7 +33113,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 <pre><code>{JSON.stringify(getValueSnapshot(form), null, 2)}</code></pre>
 ",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -33325,11 +33343,14 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
-  import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type {
+    SingleSelectOptions,
+    WidgetCommonProps,
+  } from "@sjsf/form/fields/widgets";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
-      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options;
+      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
     }
     interface ComponentBindings {
       myDynamicEnumWidget: "value";
@@ -33446,7 +33467,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 @import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -33677,11 +33698,14 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
-  import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type {
+    SingleSelectOptions,
+    WidgetCommonProps,
+  } from "@sjsf/form/fields/widgets";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
-      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options;
+      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
     }
     interface ComponentBindings {
       myDynamicEnumWidget: "value";
@@ -33822,7 +33846,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   --color-secondary-900: #0c4a6e;
 };",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -34045,11 +34069,14 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
-  import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type {
+    SingleSelectOptions,
+    WidgetCommonProps,
+  } from "@sjsf/form/fields/widgets";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
-      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options;
+      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
     }
     interface ComponentBindings {
       myDynamicEnumWidget: "value";
@@ -34165,7 +34192,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   "src/routes/layout.css": "@import "@picocss/pico/css/pico.css";
 @import "@sjsf/basic-theme/css/pico.css";",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -34481,11 +34508,14 @@ export function setShadcnThemeContext() {
 
 <div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
-  import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type {
+    SingleSelectOptions,
+    WidgetCommonProps,
+  } from "@sjsf/form/fields/widgets";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
-      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options;
+      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
     }
     interface ComponentBindings {
       myDynamicEnumWidget: "value";
@@ -34719,7 +34749,7 @@ export function setShadcnThemeContext() {
   }
 };",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -35022,11 +35052,14 @@ export function setShadcnThemeContext() {
 
 <div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
-  import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type {
+    SingleSelectOptions,
+    WidgetCommonProps,
+  } from "@sjsf/form/fields/widgets";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
-      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options;
+      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
     }
     interface ComponentBindings {
       myDynamicEnumWidget: "value";
@@ -35259,7 +35292,7 @@ export function setShadcnThemeContext() {
   }
 };",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -35496,11 +35529,14 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts" module>
-  import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type {
+    SingleSelectOptions,
+    WidgetCommonProps,
+  } from "@sjsf/form/fields/widgets";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
-      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options;
+      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
     }
     interface ComponentBindings {
       myDynamicEnumWidget: "value";
@@ -35617,7 +35653,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 @import "@sjsf/skeleton4-theme/styles.css";
 @plugin '@tailwindcss/forms';",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -35858,11 +35894,14 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
-  import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type {
+    SingleSelectOptions,
+    WidgetCommonProps,
+  } from "@sjsf/form/fields/widgets";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
-      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options;
+      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
     }
     interface ComponentBindings {
       myDynamicEnumWidget: "value";
@@ -35982,7 +36021,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -36210,11 +36249,14 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <Willow>{@render children()}</Willow>",
   "src/routes/+page.svelte": "<script lang="ts" module>
-  import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type {
+    SingleSelectOptions,
+    WidgetCommonProps,
+  } from "@sjsf/form/fields/widgets";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
-      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options;
+      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
     }
     interface ComponentBindings {
       myDynamicEnumWidget: "value";
@@ -36328,7 +36370,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 <pre><code>{JSON.stringify(getValueSnapshot(form), null, 2)}</code></pre>
 ",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -103940,6 +103982,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
       mapper: () => mapper,
@@ -104422,6 +104465,7 @@ export { createFormValidator as validator } from '@sjsf/ata-validator';",
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
       mapper: () => mapper,
@@ -104904,6 +104948,7 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
       mapper: () => mapper,
@@ -105384,6 +105429,7 @@ export { createFormValidator as validator } from '@sjsf/form/validators/noop';",
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
       mapper: () => mapper,
@@ -105866,6 +105912,7 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
       mapper: () => mapper,
@@ -106350,6 +106397,7 @@ export const onSubmitError = createFocusOnFirstError();",
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
       mapper: () => mapper,
@@ -106816,6 +106864,7 @@ export const onSubmitError = createFocusOnFirstError();",
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
       mapper: () => mapper,
@@ -107281,6 +107330,7 @@ export const onSubmitError = createFocusOnFirstError();",
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
       mapper: () => mapper,
@@ -107774,6 +107824,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
       mapper: () => mapper,
@@ -108275,6 +108326,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
       mapper: () => mapper,
@@ -108780,6 +108832,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
       mapper: () => mapper,
@@ -109301,6 +109354,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
       mapper: () => mapper,
@@ -109890,6 +109944,7 @@ export function setShadcnThemeContext() {
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
       mapper: () => mapper,
@@ -110584,6 +110639,7 @@ export function setShadcnThemeContext() {
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
       mapper: () => mapper,
@@ -111211,6 +111267,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
       mapper: () => mapper,
@@ -111726,6 +111783,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
       mapper: () => mapper,
@@ -112231,6 +112289,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
       mapper: () => mapper,
