@@ -26,7 +26,8 @@ import {
 import { isRecordEmpty } from "@/lib/object.js";
 import type { Ref } from "@/lib/svelte.svelte.js";
 import {
-  IdEnumValueMapperBuilder,
+  createMappedOption,
+  resolveEnumValueMapperBuilder,
   singleOption,
   type EnumValueMapper,
 } from "@/options.svelte.js";
@@ -280,21 +281,16 @@ export function createCombinationContext<T>({
   });
 
   const { options: enumOptions, mapper } = $derived.by(() => {
-    const builder =
-      retrieveUiOption(
-        ctx,
-        optionSelectorConfig,
-        "enumValueMapperBuilder"
-      )?.() ?? new IdEnumValueMapperBuilder();
+    const builder = resolveEnumValueMapperBuilder(
+      retrieveUiOption(ctx, optionSelectorConfig, "enumValueMapperBuilder")
+    );
     const options = optionTitles.map((label, i) => {
-      const option: FormEnumOption = {
+      return createMappedOption(builder, {
         id: getPseudoId(ctx, config().path, i),
         label,
         value: i,
         disabled: false,
-      };
-      option.mappedValue = builder.push(option);
-      return option;
+      });
     });
     return { options, mapper: builder.build() };
   });

@@ -28,8 +28,7 @@ export type FormValueRef = Ref<FormValue>;
 export type PathTrieRef<T> = Ref<Trie<RPath[number], T>>;
 
 export type FormEnumOption = EnumOption<SchemaValue> & {
-  // TODO: Make required in v4
-  mappedValue?: string;
+  mappedValue: string;
 };
 
 export const DEFAULT_BOOLEAN_ENUM = [true, false];

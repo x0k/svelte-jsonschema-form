@@ -48,7 +48,7 @@
     uiOptionProps,
     type ComponentProps,
   } from "@sjsf/form";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
   import { tick } from "svelte";
 
   import { cn } from "$lib/utils.js";
@@ -76,15 +76,16 @@
     config,
     handlers,
     options,
+    mapper,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
   }: ComponentProps["comboboxWidget"] = $props();
 
   const labels = $derived(
-    new Map(options.map((o) => [o.mappedValue ?? o.id, o.label]))
+    new Map(options.map((o) => [o.mappedValue, o.label]))
   );
 
   let open = $state(false);
@@ -150,7 +151,7 @@
         {/if}
         <CommandGroup>
           {#each options as option (option.id)}
-            {@const ov = option.mappedValue ?? option.id}
+            {@const ov = option.mappedValue}
             <CommandItem
               value={option.label}
               onSelect={() => {
