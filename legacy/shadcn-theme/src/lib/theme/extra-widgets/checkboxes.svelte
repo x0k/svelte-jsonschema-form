@@ -18,7 +18,7 @@
     getId,
     type ComponentProps,
   } from "@sjsf/form";
-  import { multipleOptions, idMapper } from "@sjsf/form/options.svelte";
+  import { multipleOptions } from "@sjsf/form/options.svelte";
 
   import { getThemeContext } from "../context.js";
 
@@ -31,12 +31,13 @@
   let {
     value = $bindable(),
     options,
+    mapper,
     config,
     handlers,
   }: ComponentProps["checkboxesWidget"] = $props();
 
   const mapped = multipleOptions({
-    mapper: () => idMapper(options),
+    mapper: () => mapper,
     value: () => value,
     update: (v) => (value = v),
   });
@@ -63,12 +64,12 @@
 {#each options as option (option.id)}
   <div class="flex items-center space-x-3">
     <Checkbox
-      checked={selected.has(option.id)}
-      value={option.id}
+      checked={selected.has(option.mappedValue)}
+      value={option.mappedValue}
       onCheckedChange={(v) => {
         mapped.current = v
-          ? mapped.current.concat(option.id)
-          : mapped.current.filter((id) => id !== option.id);
+          ? mapped.current.concat(option.mappedValue)
+          : mapped.current.filter((id) => id !== option.mappedValue);
         oninput?.();
         onchange?.();
       }}

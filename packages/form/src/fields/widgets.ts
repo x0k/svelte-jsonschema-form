@@ -45,22 +45,16 @@ export type FoundationalWidgetType = keyof {
 
 export interface Options {
   options: FormEnumOption[];
-  // TODO: Make required in v4
-  mapper?: EnumValueMapper;
+  mapper: EnumValueMapper;
 }
 
 export interface SingleSelectOptions extends Options {
-  /** @deprecated use `clearable` instead */
-  hasInitialValue?: boolean;
-  // TODO: Make required in v4
-  clearable?: boolean;
-  // TODO: Make required in v4
-  mapped?: Ref<string>;
+  clearable: boolean;
+  mapped: Ref<string>;
 }
 
 export interface MultiSelectOptions extends Options {
-  // TODO: Make required in v4
-  mapped?: Ref<string[]>;
+  mapped: Ref<string[]>;
 }
 
 declare module "../form/index.js" {

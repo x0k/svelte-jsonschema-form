@@ -4,17 +4,18 @@
     selectAttributes,
     type ComponentProps,
   } from "@sjsf/form";
-  import { idMapper, multipleOptions } from "@sjsf/form/options.svelte";
+  import { multipleOptions } from "@sjsf/form/options.svelte";
   import "@sjsf/basic-theme/extra-widgets/multi-select.svelte";
 
   let {
     value = $bindable(),
     options,
+    mapper,
     config,
     errors,
     handlers,
     mapped = multipleOptions({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -30,7 +31,7 @@
   {...selectAttributes(ctx, config, "multiSelect", handlers, {})}
 >
   {#each options as option (option.id)}
-    <option value={option.mappedValue ?? option.id} disabled={option.disabled}>
+    <option value={option.mappedValue} disabled={option.disabled}>
       {option.label}
     </option>
   {/each}

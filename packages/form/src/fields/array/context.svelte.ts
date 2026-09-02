@@ -168,8 +168,7 @@ export interface ArrayContextOptions<T> {
   config: () => Config;
   value: () => SchemaArrayValue | null | undefined;
   keyedArray: () => KeyedFieldValues;
-  // TODO: Make required in v4
-  setValue?: (value: null | undefined) => void;
+  setValue: (value: SchemaArrayValue | null | undefined) => void;
 }
 
 export function createArrayContext<T>({
@@ -177,7 +176,7 @@ export function createArrayContext<T>({
   config,
   value,
   keyedArray,
-  setValue = noop,
+  setValue,
 }: ArrayContextOptions<T>): ArrayContext {
   const arr = $derived.by(value);
 

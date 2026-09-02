@@ -2529,12 +2529,12 @@ exports[`object fields > one of defaults > default preset 1`] = `
                   <!---->
                    
                   <option
-                    value="root_preset__0"
+                    value="Default"
                   >
                     Default
                   </option>
                   <option
-                    value="root_preset__1"
+                    value="Manual"
                   >
                     Manual
                   </option>
@@ -2768,17 +2768,17 @@ exports[`object fields > one of defaults > default preset 1`] = `
                   <!---->
                    
                   <option
-                    value="root_format__0"
+                    value="HTML"
                   >
                     HTML
                   </option>
                   <option
-                    value="root_format__1"
+                    value="XLSX"
                   >
                     XLSX
                   </option>
                   <option
-                    value="root_format__2"
+                    value="ASCII"
                   >
                     ASCII
                   </option>
@@ -3224,12 +3224,12 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   <!---->
                    
                   <option
-                    value="root_preset__0"
+                    value="Default"
                   >
                     Default
                   </option>
                   <option
-                    value="root_preset__1"
+                    value="Manual"
                   >
                     Manual
                   </option>
@@ -4135,17 +4135,17 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   <!---->
                    
                   <option
-                    value="root_format__0"
+                    value="HTML"
                   >
                     HTML
                   </option>
                   <option
-                    value="root_format__1"
+                    value="XLSX"
                   >
                     XLSX
                   </option>
                   <option
-                    value="root_format__2"
+                    value="ASCII"
                   >
                     ASCII
                   </option>
@@ -11266,22 +11266,22 @@ exports[`widgets > multiSelect > snapshots > disabled 1`] = `
           required=""
         >
           <option
-            value="root__0"
+            value="foo"
           >
             foo
           </option>
           <option
-            value="root__1"
+            value="bar"
           >
             bar
           </option>
           <option
-            value="root__2"
+            value="fuzz"
           >
             fuzz
           </option>
           <option
-            value="root__3"
+            value="qux"
           >
             qux
           </option>
@@ -11412,22 +11412,22 @@ exports[`widgets > multiSelect > snapshots > error 1`] = `
           required=""
         >
           <option
-            value="root__0"
+            value="foo"
           >
             foo
           </option>
           <option
-            value="root__1"
+            value="bar"
           >
             bar
           </option>
           <option
-            value="root__2"
+            value="fuzz"
           >
             fuzz
           </option>
           <option
-            value="root__3"
+            value="qux"
           >
             qux
           </option>
@@ -11569,22 +11569,22 @@ exports[`widgets > multiSelect > snapshots > normal 1`] = `
           required=""
         >
           <option
-            value="root__0"
+            value="foo"
           >
             foo
           </option>
           <option
-            value="root__1"
+            value="bar"
           >
             bar
           </option>
           <option
-            value="root__2"
+            value="fuzz"
           >
             fuzz
           </option>
           <option
-            value="root__3"
+            value="qux"
           >
             qux
           </option>
@@ -11714,22 +11714,22 @@ exports[`widgets > multiSelect > snapshots > readonly 1`] = `
           required=""
         >
           <option
-            value="root__0"
+            value="foo"
           >
             foo
           </option>
           <option
-            value="root__1"
+            value="bar"
           >
             bar
           </option>
           <option
-            value="root__2"
+            value="fuzz"
           >
             fuzz
           </option>
           <option
-            value="root__3"
+            value="qux"
           >
             qux
           </option>
@@ -12253,7 +12253,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
           name="root"
           required=""
           type="radio"
-          value="root__0"
+          value="foo"
         />
          
         foo
@@ -12274,7 +12274,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
           name="root"
           required=""
           type="radio"
-          value="root__1"
+          value="bar"
         />
          
         bar
@@ -12295,7 +12295,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
           name="root"
           required=""
           type="radio"
-          value="root__2"
+          value="fuzz"
         />
          
         fuzz
@@ -12316,7 +12316,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
           name="root"
           required=""
           type="radio"
-          value="root__3"
+          value="qux"
         />
          
         qux
@@ -12410,7 +12410,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
           name="root"
           required=""
           type="radio"
-          value="root__0"
+          value="foo"
         />
          
         foo
@@ -12430,7 +12430,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
           name="root"
           required=""
           type="radio"
-          value="root__1"
+          value="bar"
         />
          
         bar
@@ -12450,7 +12450,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
           name="root"
           required=""
           type="radio"
-          value="root__2"
+          value="fuzz"
         />
          
         fuzz
@@ -12470,7 +12470,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
           name="root"
           required=""
           type="radio"
-          value="root__3"
+          value="qux"
         />
          
         qux
@@ -12575,7 +12575,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
           name="root"
           required=""
           type="radio"
-          value="root__0"
+          value="foo"
         />
          
         foo
@@ -12595,7 +12595,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
           name="root"
           required=""
           type="radio"
-          value="root__1"
+          value="bar"
         />
          
         bar
@@ -12615,7 +12615,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
           name="root"
           required=""
           type="radio"
-          value="root__2"
+          value="fuzz"
         />
          
         fuzz
@@ -12635,7 +12635,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
           name="root"
           required=""
           type="radio"
-          value="root__3"
+          value="qux"
         />
          
         qux
@@ -12729,7 +12729,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
           readonly=""
           required=""
           type="radio"
-          value="root__0"
+          value="foo"
         />
          
         foo
@@ -12750,7 +12750,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
           readonly=""
           required=""
           type="radio"
-          value="root__1"
+          value="bar"
         />
          
         bar
@@ -12771,7 +12771,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
           readonly=""
           required=""
           type="radio"
-          value="root__2"
+          value="fuzz"
         />
          
         fuzz
@@ -12792,7 +12792,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
           readonly=""
           required=""
           type="radio"
-          value="root__3"
+          value="qux"
         />
          
         qux
@@ -12895,7 +12895,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__0"
+            value="foo"
           />
            
           foo
@@ -12920,7 +12920,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__1"
+            value="bar"
           />
            
           bar
@@ -12945,7 +12945,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__2"
+            value="fuzz"
           />
            
           fuzz
@@ -12970,7 +12970,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__3"
+            value="qux"
           />
            
           qux
@@ -13077,7 +13077,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__0"
+            value="foo"
           />
            
           foo
@@ -13101,7 +13101,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__1"
+            value="bar"
           />
            
           bar
@@ -13125,7 +13125,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__2"
+            value="fuzz"
           />
            
           fuzz
@@ -13149,7 +13149,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__3"
+            value="qux"
           />
            
           qux
@@ -13267,7 +13267,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__0"
+            value="foo"
           />
            
           foo
@@ -13291,7 +13291,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__1"
+            value="bar"
           />
            
           bar
@@ -13315,7 +13315,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__2"
+            value="fuzz"
           />
            
           fuzz
@@ -13339,7 +13339,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__3"
+            value="qux"
           />
            
           qux
@@ -13447,7 +13447,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             readonly=""
             required=""
             type="radio"
-            value="root__0"
+            value="foo"
           />
            
           foo
@@ -13472,7 +13472,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             readonly=""
             required=""
             type="radio"
-            value="root__1"
+            value="bar"
           />
            
           bar
@@ -13497,7 +13497,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             readonly=""
             required=""
             type="radio"
-            value="root__2"
+            value="fuzz"
           />
            
           fuzz
@@ -13522,7 +13522,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             readonly=""
             required=""
             type="radio"
-            value="root__3"
+            value="qux"
           />
            
           qux
@@ -13965,22 +13965,22 @@ exports[`widgets > select > snapshots > disabled 1`] = `
           <!---->
            
           <option
-            value="root__0"
+            value="foo"
           >
             foo
           </option>
           <option
-            value="root__1"
+            value="bar"
           >
             bar
           </option>
           <option
-            value="root__2"
+            value="fuzz"
           >
             fuzz
           </option>
           <option
-            value="root__3"
+            value="qux"
           >
             qux
           </option>
@@ -14083,22 +14083,22 @@ exports[`widgets > select > snapshots > error 1`] = `
           <!---->
            
           <option
-            value="root__0"
+            value="foo"
           >
             foo
           </option>
           <option
-            value="root__1"
+            value="bar"
           >
             bar
           </option>
           <option
-            value="root__2"
+            value="fuzz"
           >
             fuzz
           </option>
           <option
-            value="root__3"
+            value="qux"
           >
             qux
           </option>
@@ -14212,22 +14212,22 @@ exports[`widgets > select > snapshots > normal 1`] = `
           <!---->
            
           <option
-            value="root__0"
+            value="foo"
           >
             foo
           </option>
           <option
-            value="root__1"
+            value="bar"
           >
             bar
           </option>
           <option
-            value="root__2"
+            value="fuzz"
           >
             fuzz
           </option>
           <option
-            value="root__3"
+            value="qux"
           >
             qux
           </option>
@@ -14329,22 +14329,22 @@ exports[`widgets > select > snapshots > readonly 1`] = `
           <!---->
            
           <option
-            value="root__0"
+            value="foo"
           >
             foo
           </option>
           <option
-            value="root__1"
+            value="bar"
           >
             bar
           </option>
           <option
-            value="root__2"
+            value="fuzz"
           >
             fuzz
           </option>
           <option
-            value="root__3"
+            value="qux"
           >
             qux
           </option>

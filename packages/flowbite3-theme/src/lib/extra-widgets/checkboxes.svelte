@@ -15,7 +15,7 @@
     inputAttributes,
     type ComponentProps,
   } from "@sjsf/form";
-  import { idMapper, multipleOptions } from "@sjsf/form/options.svelte";
+  import { multipleOptions } from "@sjsf/form/options.svelte";
   import Checkbox from "flowbite-svelte/Checkbox.svelte";
 
   let {
@@ -23,8 +23,9 @@
     handlers,
     value = $bindable(),
     options,
+    mapper,
     mapped = multipleOptions({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -40,7 +41,7 @@
 </script>
 
 {#each options as option (option.id)}
-  {@const ov = option.mappedValue ?? option.id}
+  {@const ov = option.mappedValue}
   <Checkbox
     bind:checked={
       () => selected.has(ov),

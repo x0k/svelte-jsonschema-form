@@ -21,7 +21,7 @@
     uiOptionProps,
     type ComponentProps,
   } from "@sjsf/form";
-  import { multipleOptions, idMapper } from "@sjsf/form/options.svelte";
+  import { multipleOptions } from "@sjsf/form/options.svelte";
   import {
     Combobox,
     Portal,
@@ -33,7 +33,7 @@
     handlers,
     options,
     value = $bindable(),
-    mapper = idMapper(options),
+    mapper,
   }: ComponentProps["comboboxWidget"] = $props();
 
   const ctx = getFormContext();
@@ -48,7 +48,7 @@
     options.map((o) => ({
       disabled: o.disabled,
       label: o.label,
-      value: o.mappedValue ?? o.id,
+      value: o.mappedValue,
     }))
   );
 

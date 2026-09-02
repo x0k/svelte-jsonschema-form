@@ -297,34 +297,17 @@ Widgets that work with enumerations receive the following properties:
 ```ts
 export interface Options {
   options: FormEnumOption[];
-  mapper?: EnumValueMapper;
+  mapper: EnumValueMapper;
 }
 
 export interface SingleSelectOptions extends Options {
-  clearable?: boolean;
-  mapped?: Ref<string>;
+  clearable: boolean;
+  mapped: Ref<string>;
 }
 
 export interface MultiSelectOptions extends Options {
-  mapped?: Ref<string[]>;
+  mapped: Ref<string[]>;
 }
-```
-
-These properties are marked as optional for backward compatibility,
-but in practice they are always defined.
-You can either use them with `!` or provide a fallback value:
-
-```ts
-import { idMapper, singleOption } from "@sjsf/form/options.svelte";
-
-let {
-  clearable = config.schema.default === undefined,
-  mapped = singleOption({
-    mapper: () => idMapper(options),
-    value: () => value,
-    update: (v) => (value = v),
-  }),
-}: ComponentProps["selectWidget"] = $props();
 ```
 
 `mapped.current` contains the value produced by `EnumValueMapper` and can be used as follows:
@@ -335,7 +318,7 @@ let {
     <option value={EMPTY_VALUE}>{placeholder}</option>
   {/if}
   {#each options as option (option.id)}
-    <option value={option.mappedValue ?? option.id} disabled={option.disabled}>
+    <option value={option.mappedValue} disabled={option.disabled}>
       {option.label}
     </option>
   {/each}

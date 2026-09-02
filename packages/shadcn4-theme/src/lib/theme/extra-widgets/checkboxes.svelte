@@ -18,7 +18,7 @@
     getId,
     type ComponentProps,
   } from "@sjsf/form";
-  import { multipleOptions, idMapper } from "@sjsf/form/options.svelte";
+  import { multipleOptions } from "@sjsf/form/options.svelte";
 
   import { getThemeContext } from "../context.js";
 
@@ -31,10 +31,11 @@
   let {
     value = $bindable(),
     options,
+    mapper,
     config,
     handlers,
     mapped = multipleOptions({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -61,7 +62,7 @@
 </script>
 
 {#each options as option (option.id)}
-  {@const ov = option.mappedValue ?? option.id}
+  {@const ov = option.mappedValue}
   <div class="flex items-center space-x-3">
     <Checkbox
       checked={selected.has(ov)}

@@ -1,9 +1,12 @@
 <script lang="ts" module>
-  import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type {
+    SingleSelectOptions,
+    WidgetCommonProps,
+  } from "@sjsf/form/fields/widgets";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
-      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options;
+      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
     }
     interface ComponentBindings {
       myDynamicEnumWidget: "value";

@@ -17,12 +17,13 @@
     getId,
     type ComponentProps,
   } from "@sjsf/form";
-  import { multipleOptions, idMapper } from "@sjsf/form/options.svelte";
+  import { multipleOptions } from "@sjsf/form/options.svelte";
 
   let {
     config,
     handlers,
     options,
+    mapper,
     value = $bindable(),
   }: ComponentProps["comboboxWidget"] = $props();
 
@@ -31,7 +32,7 @@
   const data = $derived(options.map((o) => ({ label: o.label, value: o.id })));
 
   const mapped = multipleOptions({
-    mapper: () => idMapper(options),
+    mapper: () => mapper,
     value: () => (value === undefined ? undefined : [value]),
     update: (v) => (value = v[0]),
   });

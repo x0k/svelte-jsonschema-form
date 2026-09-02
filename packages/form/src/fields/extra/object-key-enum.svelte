@@ -108,6 +108,5 @@
     {mapper}
     {mapped}
     clearable={false}
-    hasInitialValue={true}
   />
 </Template>

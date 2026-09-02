@@ -13,5 +13,6 @@ declare module "@sjsf/form" {
   }
   interface UiOptionsRegistry {
     stringEnumValueMapper: () => EnumValueMapperBuilder;
+    idEnumValueMapper: () => EnumValueMapperBuilder;
   }
 }
