@@ -593,10 +593,10 @@ export function validatorTests(
         });
         // The condition schema { type: "object", properties: { a: { enum: ["int"] } } }
         // should validate successfully for formData.a = "int"
-        expect(validator.isValid(schema, schema, { a: "int" })).toBe(true);
-        expect(validator.isValid(schema, schema, { a: "bool" })).toBe(true);
+        expect(validator.isValid(schema, { a: "int" })).toBe(true);
+        expect(validator.isValid(schema, { a: "bool" })).toBe(true);
         // Invalid value should fail
-        expect(validator.isValid(schema, schema, { a: "invalid" })).toBe(false);
+        expect(validator.isValid(schema, { a: "invalid" })).toBe(false);
       });
 
       it("Should validate dependencies with oneOf using inline schemas", async () => {
@@ -627,14 +627,14 @@ export function validatorTests(
         });
         // Valid: employee_accounts is true, condition schema matches
         expect(
-          validator.isValid(schema, schema, {
+          validator.isValid(schema, {
             employee_accounts: true,
           })
         ).toBe(true);
         // Invalid: employee_accounts is false — dependency IS triggered because
         // the property is present, and { const: true } rejects false.
         expect(
-          validator.isValid(schema, schema, {
+          validator.isValid(schema, {
             employee_accounts: false,
           })
         ).toBe(false);
