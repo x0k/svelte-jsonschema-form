@@ -103892,7 +103892,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
   import * as defaults from "$lib/sjsf/defaults";
 
@@ -103935,7 +103934,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     },
     "ui:options": {
       enumOptionsQuery: "foo",
-      enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
     },
   };
 
@@ -104375,7 +104373,6 @@ export { createFormValidator as validator } from '@sjsf/ata-validator';",
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
   import * as defaults from "$lib/sjsf/defaults";
 
@@ -104418,7 +104415,6 @@ export { createFormValidator as validator } from '@sjsf/ata-validator';",
     },
     "ui:options": {
       enumOptionsQuery: "foo",
-      enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
     },
   };
 
@@ -104858,7 +104854,6 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
   import * as defaults from "$lib/sjsf/defaults";
 
@@ -104901,7 +104896,6 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
     },
     "ui:options": {
       enumOptionsQuery: "foo",
-      enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
     },
   };
 
@@ -105339,7 +105333,6 @@ export { createFormValidator as validator } from '@sjsf/form/validators/noop';",
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
   import * as defaults from "$lib/sjsf/defaults";
 
@@ -105382,7 +105375,6 @@ export { createFormValidator as validator } from '@sjsf/form/validators/noop';",
     },
     "ui:options": {
       enumOptionsQuery: "foo",
-      enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
     },
   };
 
@@ -105822,7 +105814,6 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
   import * as defaults from "$lib/sjsf/defaults";
 
@@ -105865,7 +105856,6 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
     },
     "ui:options": {
       enumOptionsQuery: "foo",
-      enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
     },
   };
 
@@ -106304,7 +106294,6 @@ export const onSubmitError = createFocusOnFirstError();",
 	import remoteEnumField, { setEnumOptionsQueriesContext, type EnumOptionsQueries } from "@sjsf/form/fields/extra/remote-enum.svelte";
 	import { extendByRecord } from "@sjsf/form/lib/resolver";
 	import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-	import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 	import * as defaults from "$lib/sjsf/defaults";
 	import comboboxWidget from "./combobox.svelte";
 	import { COUNTRIES } from "./countries";
@@ -106353,10 +106342,7 @@ export const onSubmitError = createFocusOnFirstError();",
 			stringField: "remoteEnumField",
 			selectWidget: "comboboxWidget"
 		},
-		"ui:options": {
-			enumOptionsQuery: "foo",
-			enumValueMapperBuilder: () => new StringEnumValueMapperBuilder()
-		}
+		"ui:options": { enumOptionsQuery: "foo" }
 	};
 
 	const form = createForm({
@@ -106790,7 +106776,6 @@ export const onSubmitError = createFocusOnFirstError();",
 	import remoteEnumField, { setEnumOptionsQueriesContext, type EnumOptionsQueries } from "@sjsf/form/fields/extra/remote-enum.svelte";
 	import { extendByRecord } from "@sjsf/form/lib/resolver";
 	import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-	import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 	import * as defaults from "$lib/sjsf/defaults";
 	import comboboxWidget from "./combobox.svelte";
 	import { COUNTRIES } from "./countries";
@@ -106820,10 +106805,7 @@ export const onSubmitError = createFocusOnFirstError();",
 			stringField: "remoteEnumField",
 			selectWidget: "comboboxWidget"
 		},
-		"ui:options": {
-			enumOptionsQuery: "foo",
-			enumValueMapperBuilder: () => new StringEnumValueMapperBuilder()
-		}
+		"ui:options": { enumOptionsQuery: "foo" }
 	};
 
 	const form = createForm({
@@ -107256,7 +107238,6 @@ export const onSubmitError = createFocusOnFirstError();",
 	import remoteEnumField, { setEnumOptionsQueriesContext, type EnumOptionsQueries } from "@sjsf/form/fields/extra/remote-enum.svelte";
 	import { extendByRecord } from "@sjsf/form/lib/resolver";
 	import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-	import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 	import * as defaults from "$lib/sjsf/defaults";
 	import comboboxWidget from "./combobox.svelte";
 	import { COUNTRIES } from "./countries";
@@ -107286,10 +107267,7 @@ export const onSubmitError = createFocusOnFirstError();",
 			stringField: "remoteEnumField",
 			selectWidget: "comboboxWidget"
 		},
-		"ui:options": {
-			enumOptionsQuery: "foo",
-			enumValueMapperBuilder: () => new StringEnumValueMapperBuilder()
-		}
+		"ui:options": { enumOptionsQuery: "foo" }
 	};
 
 	const form = createForm({
@@ -107734,7 +107712,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
   import * as defaults from "$lib/sjsf/defaults";
 
@@ -107777,7 +107754,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     },
     "ui:options": {
       enumOptionsQuery: "foo",
-      enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
     },
   };
 
@@ -108236,7 +108212,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
   import * as defaults from "$lib/sjsf/defaults";
 
@@ -108279,7 +108254,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     },
     "ui:options": {
       enumOptionsQuery: "foo",
-      enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
     },
   };
 
@@ -108742,7 +108716,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
   import * as defaults from "$lib/sjsf/defaults";
 
@@ -108785,7 +108758,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     },
     "ui:options": {
       enumOptionsQuery: "foo",
-      enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
     },
   };
 
@@ -109264,7 +109236,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
   import * as defaults from "$lib/sjsf/defaults";
 
@@ -109307,7 +109278,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     },
     "ui:options": {
       enumOptionsQuery: "foo",
-      enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
     },
   };
 
@@ -109854,7 +109824,6 @@ export function setShadcnThemeContext() {
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
   import * as defaults from "$lib/sjsf/defaults";
 
@@ -109897,7 +109866,6 @@ export function setShadcnThemeContext() {
     },
     "ui:options": {
       enumOptionsQuery: "foo",
-      enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
     },
   };
 
@@ -110549,7 +110517,6 @@ export function setShadcnThemeContext() {
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
   import * as defaults from "$lib/sjsf/defaults";
 
@@ -110592,7 +110559,6 @@ export function setShadcnThemeContext() {
     },
     "ui:options": {
       enumOptionsQuery: "foo",
-      enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
     },
   };
 
@@ -111177,7 +111143,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
   import * as defaults from "$lib/sjsf/defaults";
 
@@ -111220,7 +111185,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     },
     "ui:options": {
       enumOptionsQuery: "foo",
-      enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
     },
   };
 
@@ -111693,7 +111657,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
   import * as defaults from "$lib/sjsf/defaults";
 
@@ -111736,7 +111699,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     },
     "ui:options": {
       enumOptionsQuery: "foo",
-      enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
     },
   };
 
@@ -112199,7 +112161,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
   import * as defaults from "$lib/sjsf/defaults";
 
@@ -112242,7 +112203,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     },
     "ui:options": {
       enumOptionsQuery: "foo",
-      enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
     },
   };
 
