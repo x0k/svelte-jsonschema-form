@@ -91,22 +91,6 @@ export function resolveEnumValueMapperBuilder(
   return factory?.() ?? new StringEnumValueMapperBuilder();
 }
 
-// TODO: Remove in v4
-/** @deprecated */
-export function idMapper(options: EnumOption<SchemaValue>[]): EnumValueMapper {
-  const builder = new IdEnumValueMapperBuilder();
-  for (const o of options) {
-    builder.push(o);
-  }
-  return builder.build();
-}
-
-// TODO: Remove in v4
-interface OptionValue<V> {
-  /** @deprecated use `current` instead */
-  value: V;
-}
-
 export function singleOption<V>({
   mapper,
   value,
@@ -115,16 +99,10 @@ export function singleOption<V>({
   mapper: () => OptionsMapper<V>;
   value: () => SchemaValue | undefined;
   update: (value: SchemaValue | undefined) => void;
-}): OptionValue<V> & Ref<V> {
+}): Ref<V> {
   const m = $derived(mapper());
   const val = $derived(m.fromValue(value()));
   return {
-    get value() {
-      return val;
-    },
-    set value(v) {
-      update(m.toValue(v));
-    },
     get current() {
       return val;
     },
@@ -155,16 +133,10 @@ export function multipleOptions<V>({
   value: () => SchemaArrayValue | undefined;
   update: (value: SchemaArrayValue) => void;
   emptyValue?: V;
-}): OptionValue<V[]> & Ref<V[]> {
+}): Ref<V[]> {
   const m = $derived(mapper());
   const val = $derived(mapAndExclude(value() ?? [], m.fromValue, emptyValue));
   return {
-    get value() {
-      return val;
-    },
-    set value(v) {
-      update(mapAndExclude(v, m.toValue, undefined));
-    },
     get current() {
       return val;
     },

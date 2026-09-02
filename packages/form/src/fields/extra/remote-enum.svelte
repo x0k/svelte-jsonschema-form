@@ -159,6 +159,5 @@
     {mapper}
     {mapped}
     {clearable}
-    hasInitialValue={!clearable}
   />
 </Template>

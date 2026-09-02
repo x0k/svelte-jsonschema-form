@@ -140,6 +140,5 @@
     {uiOption}
     {config}
     {clearable}
-    hasInitialValue={!clearable}
   />
 </Template>

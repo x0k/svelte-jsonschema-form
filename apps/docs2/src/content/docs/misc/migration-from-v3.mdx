@@ -41,6 +41,20 @@ To restore ID-based mapping:
 }
 ```
 
+## Widget options
+
+`Options.mapper`, `SingleSelectOptions.clearable`, `SingleSelectOptions.mapped`,
+and `MultiSelectOptions.mapped` are now required. The `singleOption()` and
+`multipleOptions()` helpers no longer return a deprecated `.value` property —
+use `.current` instead. `SingleSelectOptions.hasInitialValue` has been removed
+(use `clearable` instead).
+
+## Removed deprecated APIs
+
+- `createOptions()` — use `createFormOptions()`.
+- `idMapper()` — use `resolveEnumValueMapperBuilder()` + `builder.build()`.
+- `isSchemaExpandable()` — use `isObjectSchemaExpandable()`.
+
 ## Etc.
 
 Feel free to get in touch about migrating to v4 on

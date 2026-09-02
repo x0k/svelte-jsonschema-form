@@ -2,7 +2,22 @@
 "@sjsf/form": major
 ---
 
-- Make `mappedValue` required on `FormEnumOption`. Use the new `createMappedOption(builder, option)` helper from `@sjsf/form/options.svelte` to create options cleanly.
-- Add `createMappedOption(builder, option)` factory function to `@sjsf/form/options.svelte`. It calls `builder.push()` internally and returns a complete `FormEnumOption`.
-- Add `resolveEnumValueMapperBuilder(factory?)` helper to `@sjsf/form/options.svelte`. It resolves the enum value mapper builder from a UI option factory, falling back to `StringEnumValueMapperBuilder`.
-- Change the default enum value mapper from `IdEnumValueMapperBuilder` to `StringEnumValueMapperBuilder`. If you relied on ID-based mapping, pass `{ enumValueMapperBuilder: () => new IdEnumValueMapperBuilder() }` in your UI options.
+Breaking changes:
+
+- `FormEnumOption.mappedValue` is now required. Use `createMappedOption(builder, option)` from `@sjsf/form/options.svelte`.
+- `Options.mapper`, `SingleSelectOptions.clearable`, `SingleSelectOptions.mapped`, `MultiSelectOptions.mapped` are now required.
+- `ArrayContextOptions.setValue` is now required.
+- `singleOption()` and `multipleOptions()` no longer return a deprecated `.value` property (use `.current`).
+- `SingleSelectOptions.hasInitialValue` removed (was deprecated in favor of `clearable`).
+- Default enum mapper changed from `IdEnumValueMapperBuilder` to `StringEnumValueMapperBuilder`.
+
+Removed deprecated APIs:
+
+- `createOptions()` — use `createFormOptions()` instead.
+- `idMapper()` — use `resolveEnumValueMapperBuilder()` + `builder.build()`.
+- `isSchemaExpandable()` — use `isObjectSchemaExpandable()`.
+
+New helpers:
+
+- `createMappedOption(builder, option)` — creates a `FormEnumOption` with `mappedValue` populated.
+- `resolveEnumValueMapperBuilder(factory?)` — resolves builder from UI option, defaults to `StringEnumValueMapperBuilder`.
