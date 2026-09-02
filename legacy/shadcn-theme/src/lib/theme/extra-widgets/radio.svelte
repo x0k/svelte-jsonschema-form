@@ -81,7 +81,7 @@
     <div class="flex items-center space-x-2">
       <RadioGroupItem
         {...itemAttributes}
-        value={option.id}
+        value={option.mappedValue}
         id={option.id}
         disabled={option.disabled}
       />

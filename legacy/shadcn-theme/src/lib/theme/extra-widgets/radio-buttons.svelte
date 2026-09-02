@@ -85,7 +85,7 @@
     <ToggleGroupItem
       {...uiOptionProps("shadcnRadioButtonsItem")(
         {
-          value: option.id,
+          value: option.mappedValue,
           disabled: option.disabled,
         },
         config,

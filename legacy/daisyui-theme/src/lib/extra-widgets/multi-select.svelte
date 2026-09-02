@@ -31,7 +31,7 @@
   {...selectAttributes(ctx, config, "multiSelect", handlers, {})}
 >
   {#each options as option (option.id)}
-    <option value={option.id} disabled={option.disabled}>
+    <option value={option.mappedValue} disabled={option.disabled}>
       {option.label}
     </option>
   {/each}

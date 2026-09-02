@@ -34,7 +34,7 @@
     <input
       class={["radio", errors.length > 0 && "radio-error"]}
       bind:group={mapped.current}
-      value={option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}

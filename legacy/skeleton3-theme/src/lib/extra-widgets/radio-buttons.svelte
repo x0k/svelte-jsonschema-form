@@ -59,7 +59,7 @@
     <Segment.Item
       {...uiOptionProps("skeleton3SegmentItem")(
         {
-          value: option.id,
+          value: option.mappedValue,
           disabled: option.disabled,
         },
         config,

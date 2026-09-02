@@ -46,7 +46,7 @@
     <input
       class={["btn join-item", errors.length > 0 && "btn-error"]}
       bind:group={mapped.current}
-      value={option.id}
+      value={option.mappedValue}
       aria-label={option.label}
       {...attributes}
       id={option.id}

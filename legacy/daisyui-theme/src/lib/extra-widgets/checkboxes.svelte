@@ -36,7 +36,7 @@
     <input
       class={["checkbox", errors.length > 0 && "checkbox-error"]}
       bind:group={mapped.current}
-      value={option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}

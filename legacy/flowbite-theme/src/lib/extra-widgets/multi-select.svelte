@@ -36,7 +36,7 @@
 
   const selectOptions = $derived(
     options.map((option) => ({
-      value: option.id,
+      value: option.mappedValue,
       name: option.label,
       disabled: option.disabled,
     }))

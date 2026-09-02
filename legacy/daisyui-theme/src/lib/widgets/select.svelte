@@ -38,7 +38,7 @@
     <option value={EMPTY_VALUE}>{attributes.placeholder}</option>
   {/if}
   {#each options as option (option.id)}
-    <option value={option.id} disabled={option.disabled}>
+    <option value={option.mappedValue} disabled={option.disabled}>
       {option.label}
     </option>
   {/each}

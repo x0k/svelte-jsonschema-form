@@ -39,7 +39,9 @@
     config,
   }: ComponentProps["selectWidget"] = $props();
 
-  const labels = $derived(new Map(options.map((o) => [o.id, o.label])));
+  const labels = $derived(
+    new Map(options.map((o) => [o.mappedValue, o.label]))
+  );
   const mapped = singleOption({
     mapper: () => mapper,
     value: () => value,
@@ -92,7 +94,7 @@
     {/if}
     {#each options as option (option.id)}
       <SelectItem
-        value={option.id}
+        value={option.mappedValue}
         label={option.label}
         disabled={option.disabled}
       />

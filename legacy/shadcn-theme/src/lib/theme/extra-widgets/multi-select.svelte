@@ -39,7 +39,9 @@
     config,
   }: ComponentProps["multiSelectWidget"] = $props();
 
-  const labels = $derived(new Map(options.map((o) => [o.id, o.label])));
+  const labels = $derived(
+    new Map(options.map((o) => [o.mappedValue, o.label]))
+  );
   const mapped = multipleOptions({
     mapper: () => mapper,
     value: () => value,
@@ -75,7 +77,7 @@
   <SelectContent>
     {#each options as option (option.id)}
       <SelectItem
-        value={option.id}
+        value={option.mappedValue}
         label={option.label}
         disabled={option.disabled}
       />

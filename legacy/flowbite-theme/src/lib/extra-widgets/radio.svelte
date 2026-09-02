@@ -42,7 +42,7 @@
 {#each options as option (option.id)}
   <Radio
     bind:group={mapped.current}
-    value={option.id}
+    value={option.mappedValue}
     {...attributes}
     id={option.id}
     disabled={option.disabled || attributes.disabled}

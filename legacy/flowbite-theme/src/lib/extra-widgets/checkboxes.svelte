@@ -34,7 +34,7 @@
 
   const choices = $derived(
     options.map((option) => ({
-      value: option.id,
+      value: option.mappedValue,
       label: option.label,
     }))
   );
