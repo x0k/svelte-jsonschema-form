@@ -1,6 +1,5 @@
 import type { Schema, UiSchema } from "@sjsf/form";
 import { getValueSnapshot } from "@sjsf/form";
-import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 import { describe, expect, test } from "vitest";
 import { page, userEvent } from "vitest/browser";
 
@@ -185,9 +184,6 @@ describe("object field contracts", () => {
 
     const enumUiSchema: UiSchema = {
       "ui:components": { stringField: "enumField" },
-      "ui:options": {
-        enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
-      },
     };
 
     test("sanitizes stale enum data when switching dependent schema", async () => {

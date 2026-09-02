@@ -21,11 +21,7 @@
     uiOptionProps,
     type ComponentProps,
   } from "@sjsf/form";
-  import {
-    idMapper,
-    singleOption,
-    EMPTY_VALUE,
-  } from "@sjsf/form/options.svelte";
+  import { singleOption, EMPTY_VALUE } from "@sjsf/form/options.svelte";
   import { SegmentedControl } from "@skeletonlabs/skeleton-svelte";
 
   let {
@@ -33,8 +29,9 @@
     handlers,
     value = $bindable(),
     options,
+    mapper,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -68,7 +65,7 @@
     <SegmentedControl.Indicator />
     {#each options as option (option.id)}
       <SegmentedControl.Item
-        value={option.mappedValue ?? option.id}
+        value={option.mappedValue}
         disabled={option.disabled}
         {...itemAttributes}
       >

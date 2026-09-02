@@ -33,11 +33,7 @@
     uiOptionProps,
     type ComponentProps,
   } from "@sjsf/form";
-  import {
-    idMapper,
-    singleOption,
-    EMPTY_VALUE,
-  } from "@sjsf/form/options.svelte";
+  import { singleOption, EMPTY_VALUE } from "@sjsf/form/options.svelte";
   import ButtonToggle from "flowbite-svelte/ButtonToggle.svelte";
   import ButtonToggleGroup from "flowbite-svelte/ButtonToggleGroup.svelte";
 
@@ -46,8 +42,9 @@
     handlers,
     value = $bindable(),
     options,
+    mapper,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -75,7 +72,7 @@
   })}
 >
   {#each options as option (option.id)}
-    {@const ov = option.mappedValue ?? option.id}
+    {@const ov = option.mappedValue}
     <ButtonToggle
       {...itemAttributes}
       selected={mapped.current === ov}
