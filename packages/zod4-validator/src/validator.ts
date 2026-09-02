@@ -3,32 +3,13 @@ import type {
   AsyncFormValueValidator,
   FieldValueValidator,
   FormValueValidator,
-  Schema,
   Validator,
 } from "@sjsf/form";
+import { createValidatorRetriever } from "@sjsf/form/validators/precompile";
 import type { $ZodTypes, util } from "zod/v4/core";
 
 import { transformFormErrors, transformFieldErrors } from "./errors.js";
-import { createAugmentedId, type SchemaRegistry } from "./model.js";
-
-function getZodSchema(registry: SchemaRegistry, { $id: id, allOf }: Schema) {
-  if (id === undefined) {
-    const firstAllOfItem = allOf?.[0];
-    if (
-      typeof firstAllOfItem === "object" &&
-      firstAllOfItem.$id !== undefined
-    ) {
-      id = createAugmentedId(firstAllOfItem.$id);
-    } else {
-      throw new Error("Schema id not found");
-    }
-  }
-  const zodSchema = registry.get(id);
-  if (zodSchema === undefined) {
-    throw new Error(`Zod schema with id "${id}" not found`);
-  }
-  return zodSchema;
-}
+import type { SchemaRegistry } from "./model.js";
 
 export interface SchemaRegistryProvider {
   schemaRegistry: SchemaRegistry;
@@ -52,13 +33,13 @@ export function createValidator({
   schemaRegistry,
   safeParse,
 }: ValidatorOptions): Validator {
+  const getZodSchema = createValidatorRetriever({ registry: schemaRegistry });
   return {
     isValid(schema, _, formValue) {
       if (typeof schema === "boolean") {
         return schema;
       }
-      const zodSchema = getZodSchema(schemaRegistry, schema);
-      return safeParse(zodSchema, formValue).success;
+      return safeParse(getZodSchema(schema), formValue).success;
     },
   };
 }
@@ -68,11 +49,13 @@ export interface FormValueValidatorOptions extends ValidatorOptions {}
 export function createFormValueValidator<T>(
   options: FormValueValidatorOptions
 ): FormValueValidator<T> {
+  const getZodSchema = createValidatorRetriever({
+    registry: options.schemaRegistry,
+  });
   return {
     validateFormValue(rootSchema, formValue) {
-      const zodSchema = getZodSchema(options.schemaRegistry, rootSchema);
       return transformFormErrors(
-        options.safeParse(zodSchema, formValue),
+        options.safeParse(getZodSchema(rootSchema), formValue),
         formValue
       );
     },
@@ -85,10 +68,15 @@ export interface AsyncFormValueValidatorOptions
 export function createAsyncFormValueValidator<T>(
   options: AsyncFormValueValidatorOptions
 ): AsyncFormValueValidator<T> {
+  const getZodSchema = createValidatorRetriever({
+    registry: options.schemaRegistry,
+  });
   return {
     async validateFormValueAsync(_, rootSchema, formValue) {
-      const zodSchema = getZodSchema(options.schemaRegistry, rootSchema);
-      const result = await options.safeParseAsync(zodSchema, formValue);
+      const result = await options.safeParseAsync(
+        getZodSchema(rootSchema),
+        formValue
+      );
       return transformFormErrors(result, formValue);
     },
   };
@@ -101,10 +89,10 @@ export function createFieldValueValidator({
   schemaRegistry,
   safeParse,
 }: FieldValueValidatorOptions): FieldValueValidator {
+  const getZodSchema = createValidatorRetriever({ registry: schemaRegistry });
   return {
     validateFieldValue(field, fieldValue) {
-      const zodSchema = getZodSchema(schemaRegistry, field.schema);
-      const result = safeParse(zodSchema, fieldValue);
+      const result = safeParse(getZodSchema(field.schema), fieldValue);
       return transformFieldErrors(result);
     },
   };
@@ -117,10 +105,13 @@ export function createAsyncFieldValueValidator({
   schemaRegistry,
   safeParseAsync,
 }: AsyncFieldValueValidatorOptions): AsyncFieldValueValidator {
+  const getZodSchema = createValidatorRetriever({ registry: schemaRegistry });
   return {
     async validateFieldValueAsync(_, field, fieldValue) {
-      const zodSchema = getZodSchema(schemaRegistry, field.schema);
-      const result = await safeParseAsync(zodSchema, fieldValue);
+      const result = await safeParseAsync(
+        getZodSchema(field.schema),
+        fieldValue
+      );
       return transformFieldErrors(result);
     },
   };

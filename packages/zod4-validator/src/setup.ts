@@ -5,7 +5,11 @@ import {
   type output as InferOutput,
 } from "zod/v4/core";
 
-import type { AugmentedSchemaFactory, SchemaRegistry } from "./model.js";
+import type {
+  AugmentedSchemaFactory,
+  ConditionSchemaFactory,
+  SchemaRegistry,
+} from "./model.js";
 import { createSchemaRegistry } from "./schemas-registry.js";
 
 export interface CreateFormValidatorFactoryOptions<
@@ -14,6 +18,7 @@ export interface CreateFormValidatorFactoryOptions<
   ) => (options: Partial<Record<string, any>>) => FormValidator<InferOutput<S>>,
 > {
   createAugmentedSchema: AugmentedSchemaFactory;
+  createConditionSchema: ConditionSchemaFactory;
   createFormValidator: F;
 }
 
@@ -24,6 +29,7 @@ export function createFormValidatorFactory<
 >({
   createFormValidator,
   createAugmentedSchema,
+  createConditionSchema,
 }: CreateFormValidatorFactoryOptions<F>) {
   return <S extends $ZodType>(
     zodSchema: S
@@ -32,7 +38,10 @@ export function createFormValidatorFactory<
     schemaRegistry: SchemaRegistry;
     validator: ReturnType<typeof createFormValidator<S>>;
   } => {
-    const schemaRegistry = createSchemaRegistry({ createAugmentedSchema });
+    const schemaRegistry = createSchemaRegistry({
+      createAugmentedSchema,
+      createConditionSchema,
+    });
     const schema = toJSONSchema(zodSchema, {
       target: "draft-7",
       override: schemaRegistry.register,

@@ -102,7 +102,7 @@ export type TransformedSchemaDefinition<R, S> =
   | boolean;
 
 export function isSchemaObject<D extends JSONSchema7Definition>(
-  schemaDef: D
+  schemaDef: D | undefined
 ): schemaDef is Exclude<D, boolean> {
   return typeof schemaDef === "object";
 }

@@ -34,6 +34,19 @@ import { typeOfValue } from "./type.js";
 import type { Validator } from "./validator.js";
 import { isSchemaObjectValue } from "./value.js";
 
+// WARN: Any change to this function must be synchronized with `validators/precompile`
+export function createConditionSchema(
+  dependencyKey: string,
+  propertySchema: SchemaDefinition
+): Schema {
+  return {
+    type: "object",
+    properties: {
+      [dependencyKey]: propertySchema,
+    },
+  };
+}
+
 export function retrieveSchema(
   validator: Validator,
   merger: Merger,
@@ -761,15 +774,12 @@ export function withExactlyOneSubSchema(
       }
       const { [dependencyKey]: conditionPropertySchema } = subschema.properties;
       if (conditionPropertySchema) {
-        const conditionSchema: Schema = {
-          type: "object",
-          properties: {
-            [dependencyKey]: conditionPropertySchema,
-          },
-        };
         return (
-          validator.isValid(conditionSchema, rootSchema, formData) ||
-          expandAllBranches
+          validator.isValid(
+            createConditionSchema(dependencyKey, conditionPropertySchema),
+            rootSchema,
+            formData
+          ) || expandAllBranches
         );
       }
       return false;

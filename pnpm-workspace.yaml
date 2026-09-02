@@ -42,7 +42,7 @@ catalog:
   ajv-formats: ^3.0.1
   ajv-i18n: ^4.2.0
   arktype: ^2.2.3
-  ata-validator: ^1.6.1
+  ata-validator: ^1.11.0
   autoprefixer: ^10.5.4
   beercss: 5.0.3
   bits-ui: 2.18.1

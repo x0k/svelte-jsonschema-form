@@ -95,7 +95,3 @@ export type ValibotJsonableSchema =
 export interface SchemaRegistry {
   get(id: string): ValibotSchema | undefined;
 }
-
-export function createAugmentedId(id: string): string {
-  return `${id}::ag`;
-}
