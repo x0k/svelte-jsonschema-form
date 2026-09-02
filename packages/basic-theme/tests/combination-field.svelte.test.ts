@@ -1,5 +1,4 @@
 import { getValueSnapshot } from "@sjsf/form";
-import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 import { describe, expect, test } from "vitest";
 import { page, userEvent } from "vitest/browser";
 
@@ -21,16 +20,6 @@ import {
   stringAnyOfSchema,
   stringOneOfSchema,
 } from "./test-data/combination-defaults.js";
-
-const enumUiSchema = {
-  status: {
-    combinationFieldOptionSelector: {
-      "ui:options": {
-        enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
-      },
-    },
-  },
-};
 
 describe("combination field contracts", () => {
   describe("discriminated oneOf", () => {
@@ -172,7 +161,6 @@ describe("combination field contracts", () => {
     test("selection does not reset when switching to option without defaults", async () => {
       const { form } = await renderFieldForm({
         schema: refObjectOneOfSchema,
-        uiSchema: enumUiSchema,
         initialValue: { status: {} },
       });
 
@@ -188,7 +176,6 @@ describe("combination field contracts", () => {
     test("selection does not reset when switching to option without defaults", async () => {
       const { form } = await renderFieldForm({
         schema: refObjectAnyOfSchema,
-        uiSchema: enumUiSchema,
         initialValue: { status: {} },
       });
 

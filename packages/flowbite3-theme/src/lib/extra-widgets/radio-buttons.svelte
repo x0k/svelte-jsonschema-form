@@ -20,7 +20,7 @@
     inputAttributes,
     type ComponentProps,
   } from "@sjsf/form";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
   import ButtonGroup from "flowbite-svelte/ButtonGroup.svelte";
   import RadioButton from "flowbite-svelte/RadioButton.svelte";
 
@@ -29,8 +29,9 @@
     handlers,
     value = $bindable(),
     options,
+    mapper,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -51,7 +52,7 @@
   {#each options as option (option.id)}
     <RadioButton
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}

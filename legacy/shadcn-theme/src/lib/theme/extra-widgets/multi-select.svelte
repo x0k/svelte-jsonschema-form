@@ -20,7 +20,7 @@
     getFormContext,
     type ComponentProps,
   } from "@sjsf/form";
-  import { multipleOptions, idMapper } from "@sjsf/form/options.svelte";
+  import { multipleOptions } from "@sjsf/form/options.svelte";
 
   import { getThemeContext } from "../context";
 
@@ -35,12 +35,15 @@
     handlers,
     value = $bindable(),
     options,
+    mapper,
     config,
   }: ComponentProps["multiSelectWidget"] = $props();
 
-  const labels = $derived(new Map(options.map((o) => [o.id, o.label])));
+  const labels = $derived(
+    new Map(options.map((o) => [o.mappedValue, o.label]))
+  );
   const mapped = multipleOptions({
-    mapper: () => idMapper(options),
+    mapper: () => mapper,
     value: () => value,
     update: (v) => (value = v),
   });
@@ -74,7 +77,7 @@
   <SelectContent>
     {#each options as option (option.id)}
       <SelectItem
-        value={option.id}
+        value={option.mappedValue}
         label={option.label}
         disabled={option.disabled}
       />

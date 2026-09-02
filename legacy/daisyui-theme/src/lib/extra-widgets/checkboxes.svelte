@@ -4,7 +4,7 @@
     inputAttributes,
     type ComponentProps,
   } from "@sjsf/form";
-  import { multipleOptions, idMapper } from "@sjsf/form/options.svelte";
+  import { multipleOptions } from "@sjsf/form/options.svelte";
   import "@sjsf/basic-theme/extra-widgets/checkboxes.svelte";
 
   let {
@@ -12,11 +12,12 @@
     config,
     value = $bindable(),
     options,
+    mapper,
     errors,
   }: ComponentProps["checkboxesWidget"] = $props();
 
   const mapped = multipleOptions({
-    mapper: () => idMapper(options),
+    mapper: () => mapper,
     value: () => value,
     update: (v) => (value = v),
   });
@@ -35,7 +36,7 @@
     <input
       class={["checkbox", errors.length > 0 && "checkbox-error"]}
       bind:group={mapped.current}
-      value={option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}

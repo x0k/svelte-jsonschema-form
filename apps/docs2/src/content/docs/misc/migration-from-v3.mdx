@@ -27,6 +27,36 @@ validation. Fix such schemas to be spec-compliant.
 The unused `expandAllBranches` parameter was removed from the schema-resolution
 functions in `@sjsf/form/core`. Drop the argument from any direct calls.
 
+## Enum options
+
+`FormEnumOption.mappedValue` is now required. Use `createMappedOption()`
+from `@sjsf/form/options.svelte` instead of building objects manually.
+
+The default mapper is now `StringEnumValueMapperBuilder` (better autofill).
+To restore ID-based mapping:
+
+```ts
+"ui:options": {
+  enumValueMapperBuilder: () => new IdEnumValueMapperBuilder(),
+}
+```
+
+## Widget options
+
+`Options.mapper`, `SingleSelectOptions.clearable`, `SingleSelectOptions.mapped`,
+`MultiSelectOptions.mapped`, and `ArrayContextOptions.setValue` are now required.
+The `singleOption()` and
+`multipleOptions()` helpers no longer return a deprecated `.value` property —
+use `.current` instead. `SingleSelectOptions.hasInitialValue` has been removed
+(use `clearable` instead).
+
+## Removed deprecated APIs
+
+- `createOptions()` — use `createFormOptions()`.
+- `idMapper()` — use `resolveEnumValueMapperBuilder()` + `builder.build()`.
+- `isSchemaExpandable()` — use `isObjectSchemaExpandable()`.
+- `UNDEFINED_ID` — use `EMPTY_VALUE` instead.
+
 ## Etc.
 
 Feel free to get in touch about migrating to v4 on

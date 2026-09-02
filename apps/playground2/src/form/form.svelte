@@ -32,7 +32,10 @@
     debounce,
   } from "@sjsf/form/lib/task.svelte";
   import { createFormMerger } from "@sjsf/form/mergers/modern";
-  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
+  import {
+    IdEnumValueMapperBuilder,
+    StringEnumValueMapperBuilder,
+  } from "@sjsf/form/options.svelte";
   import { translation } from "@sjsf/form/translations/en";
   import { withOmitExtraData } from "@sjsf/form/validators/omit-extra-data";
   import { Willow, WillowDark } from "@svar-ui/svelte-core";
@@ -325,6 +328,7 @@
     }),
     uiOptionsRegistry: {
       stringEnumValueMapper: () => new StringEnumValueMapperBuilder(),
+      idEnumValueMapper: () => new IdEnumValueMapperBuilder(),
     },
     onSubmit(value) {
       console.log("submit", value);

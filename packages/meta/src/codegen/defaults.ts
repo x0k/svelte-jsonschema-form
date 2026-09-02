@@ -468,8 +468,6 @@ export const validator = (options) => createFormValidator({
       for (const [key, entry] of Object.entries(uiOptionsRegistry)) {
         switch (entry.kind) {
           case "StringEnumValueMapperBuilder":
-            importedClasses.add("StringEnumValueMapperBuilder");
-            entries.push(`${key}: () => new StringEnumValueMapperBuilder()`);
             break;
           case "IdEnumValueMapperBuilder":
             importedClasses.add("IdEnumValueMapperBuilder");
@@ -477,16 +475,18 @@ export const validator = (options) => createFormValidator({
             break;
         }
       }
-      for (const importedClass of importedClasses) {
-        jsApi.imports.addNamed(ast, {
-          from: `${formPackage.name}/options.svelte`,
-          imports: [importedClass],
+      if (entries.length > 0) {
+        for (const importedClass of importedClasses) {
+          jsApi.imports.addNamed(ast, {
+            from: `${formPackage.name}/options.svelte`,
+            imports: [importedClass],
+          });
+        }
+        jsApi.common.appendFromString(ast, {
+          code: `export const uiOptionsRegistry = {\n  ${entries.join(",\n  ")},\n};`,
+          comments,
         });
       }
-      jsApi.common.appendFromString(ast, {
-        code: `export const uiOptionsRegistry = {\n  ${entries.join(",\n  ")},\n};`,
-        comments,
-      });
     }
   });
 }

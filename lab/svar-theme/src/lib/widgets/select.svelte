@@ -17,11 +17,7 @@
     uiOptionProps,
     type ComponentProps,
   } from "@sjsf/form";
-  import {
-    idMapper,
-    singleOption,
-    EMPTY_VALUE,
-  } from "@sjsf/form/options.svelte";
+  import { singleOption, EMPTY_VALUE } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
@@ -29,8 +25,9 @@
     config,
     errors,
     handlers,
+    mapper,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -59,7 +56,7 @@
       items.push({ id: EMPTY_VALUE, label: placeholder });
     }
     for (const o of options) {
-      items.push({ id: o.mappedValue ?? o.id, label: o.label });
+      items.push({ id: o.mappedValue, label: o.label });
     }
     return items;
   });
