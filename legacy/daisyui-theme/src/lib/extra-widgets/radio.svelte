@@ -4,7 +4,7 @@
     inputAttributes,
     type ComponentProps,
   } from "@sjsf/form";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
   import "@sjsf/basic-theme/extra-widgets/radio.svelte";
 
   let {
@@ -12,11 +12,12 @@
     handlers,
     value = $bindable(),
     options,
+    mapper,
     errors,
   }: ComponentProps["radioWidget"] = $props();
 
   const mapped = singleOption({
-    mapper: () => idMapper(options),
+    mapper: () => mapper,
     value: () => value,
     update: (v) => (value = v),
   });

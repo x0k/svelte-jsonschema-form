@@ -15,16 +15,17 @@
     inputAttributes,
     type ComponentProps,
   } from "@sjsf/form";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     config,
     handlers,
     value = $bindable(),
     options,
+    mapper,
     errors,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -44,7 +45,7 @@
     <input
       class={["join-item btn", errors.length > 0 && "btn-error"]}
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       aria-label={option.label}
       {...attributes}
       id={option.id}

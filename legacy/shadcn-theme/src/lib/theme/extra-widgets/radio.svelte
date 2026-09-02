@@ -35,7 +35,7 @@
     getFormContext,
     uiOptionProps,
   } from "@sjsf/form";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   import { getThemeContext } from "../context";
 
@@ -49,10 +49,11 @@
     handlers,
     value = $bindable(),
     options,
+    mapper,
   }: ComponentProps["radioWidget"] = $props();
 
   const mapped = singleOption({
-    mapper: () => idMapper(options),
+    mapper: () => mapper,
     value: () => value,
     update: (v) => (value = v),
   });

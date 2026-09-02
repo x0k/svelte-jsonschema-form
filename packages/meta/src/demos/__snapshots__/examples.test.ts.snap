@@ -30589,7 +30589,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -30918,7 +30918,7 @@ export { createFormValidator as validator } from '@sjsf/ata-validator';",
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -31247,7 +31247,7 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -31574,7 +31574,7 @@ export { createFormValidator as validator } from '@sjsf/form/validators/noop';",
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -31903,7 +31903,7 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -32229,7 +32229,7 @@ export const onSubmitError = createFocusOnFirstError();",
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -32533,7 +32533,7 @@ export const onSubmitError = createFocusOnFirstError();",
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -32836,7 +32836,7 @@ export const onSubmitError = createFocusOnFirstError();",
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -33175,7 +33175,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -33526,7 +33526,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -33902,7 +33902,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -34245,7 +34245,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -34799,7 +34799,7 @@ export function setShadcnThemeContext() {
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -35339,7 +35339,7 @@ export function setShadcnThemeContext() {
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -35697,7 +35697,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -36062,7 +36062,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -36408,7 +36408,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -103934,7 +103934,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
@@ -103942,7 +103942,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     options,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -103981,7 +103981,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
@@ -104416,7 +104416,7 @@ export { createFormValidator as validator } from '@sjsf/ata-validator';",
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
@@ -104424,7 +104424,7 @@ export { createFormValidator as validator } from '@sjsf/ata-validator';",
     options,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -104463,7 +104463,7 @@ export { createFormValidator as validator } from '@sjsf/ata-validator';",
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
@@ -104898,7 +104898,7 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
@@ -104906,7 +104906,7 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
     options,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -104945,7 +104945,7 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
@@ -105378,7 +105378,7 @@ export { createFormValidator as validator } from '@sjsf/form/validators/noop';",
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
@@ -105386,7 +105386,7 @@ export { createFormValidator as validator } from '@sjsf/form/validators/noop';",
     options,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -105425,7 +105425,7 @@ export { createFormValidator as validator } from '@sjsf/form/validators/noop';",
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
@@ -105860,7 +105860,7 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
@@ -105868,7 +105868,7 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
     options,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -105907,7 +105907,7 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
@@ -106344,7 +106344,7 @@ export const onSubmitError = createFocusOnFirstError();",
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
@@ -106352,7 +106352,7 @@ export const onSubmitError = createFocusOnFirstError();",
     options,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -106391,7 +106391,7 @@ export const onSubmitError = createFocusOnFirstError();",
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
@@ -106810,7 +106810,7 @@ export const onSubmitError = createFocusOnFirstError();",
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
@@ -106818,7 +106818,7 @@ export const onSubmitError = createFocusOnFirstError();",
     options,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -106857,7 +106857,7 @@ export const onSubmitError = createFocusOnFirstError();",
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
@@ -107275,7 +107275,7 @@ export const onSubmitError = createFocusOnFirstError();",
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
@@ -107283,7 +107283,7 @@ export const onSubmitError = createFocusOnFirstError();",
     options,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -107322,7 +107322,7 @@ export const onSubmitError = createFocusOnFirstError();",
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
@@ -107768,7 +107768,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
@@ -107776,7 +107776,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     options,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -107815,7 +107815,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
@@ -108269,7 +108269,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
@@ -108277,7 +108277,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     options,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -108316,7 +108316,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
@@ -108774,7 +108774,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
@@ -108782,7 +108782,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     options,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -108821,7 +108821,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
@@ -109295,7 +109295,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
@@ -109303,7 +109303,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     options,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -109342,7 +109342,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
@@ -109884,7 +109884,7 @@ export function setShadcnThemeContext() {
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
@@ -109892,7 +109892,7 @@ export function setShadcnThemeContext() {
     options,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -109931,7 +109931,7 @@ export function setShadcnThemeContext() {
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
@@ -110578,7 +110578,7 @@ export function setShadcnThemeContext() {
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
@@ -110586,7 +110586,7 @@ export function setShadcnThemeContext() {
     options,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -110625,7 +110625,7 @@ export function setShadcnThemeContext() {
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
@@ -111205,7 +111205,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
@@ -111213,7 +111213,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     options,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -111252,7 +111252,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
@@ -111720,7 +111720,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
@@ -111728,7 +111728,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     options,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -111767,7 +111767,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
@@ -112225,7 +112225,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
@@ -112233,7 +112233,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     options,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -112272,7 +112272,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button

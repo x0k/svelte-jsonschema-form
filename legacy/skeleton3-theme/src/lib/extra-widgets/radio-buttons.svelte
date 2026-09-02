@@ -18,7 +18,7 @@
     uiOptionProps,
     type ComponentProps,
   } from "@sjsf/form";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
   import { Segment } from "@skeletonlabs/skeleton-svelte";
 
   let {
@@ -26,10 +26,11 @@
     handlers,
     value = $bindable(),
     options,
+    mapper,
   }: ComponentProps["radioButtonsWidget"] = $props();
 
   const mapped = singleOption({
-    mapper: () => idMapper(options),
+    mapper: () => mapper,
     value: () => value,
     update: (v) => (value = v),
   });

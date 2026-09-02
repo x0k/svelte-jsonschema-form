@@ -22,10 +22,6 @@ export interface EnumValueMapperBuilder {
 
 export const EMPTY_VALUE = "";
 
-// TODO: Remove in v4
-/** @deprecated use `EMPTY_VALUE` instead */
-export const UNDEFINED_ID = EMPTY_VALUE;
-
 abstract class AbstractValueMapperBuilder implements EnumValueMapperBuilder {
   #strToValue = new Map<string, SchemaValue>();
   #valueToStr = new Map<SchemaValue, string>();

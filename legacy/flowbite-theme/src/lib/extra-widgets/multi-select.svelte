@@ -15,20 +15,21 @@
     selectAttributes,
     type ComponentProps,
   } from "@sjsf/form";
-  import { multipleOptions, idMapper } from "@sjsf/form/options.svelte";
+  import { multipleOptions } from "@sjsf/form/options.svelte";
   import MultiSelect from "flowbite-svelte/MultiSelect.svelte";
 
   let {
     handlers,
     value = $bindable(),
     options,
+    mapper,
     config,
   }: ComponentProps["multiSelectWidget"] = $props();
 
   const ctx = getFormContext();
 
   const mapped = multipleOptions({
-    mapper: () => idMapper(options),
+    mapper: () => mapper,
     value: () => value,
     update: (v) => (value = v),
   });

@@ -16,6 +16,7 @@ Removed deprecated APIs:
 - `createOptions()` — use `createFormOptions()` instead.
 - `idMapper()` — use `resolveEnumValueMapperBuilder()` + `builder.build()`.
 - `isSchemaExpandable()` — use `isObjectSchemaExpandable()`.
+- `UNDEFINED_ID` — use `EMPTY_VALUE` instead.
 
 New helpers:
 

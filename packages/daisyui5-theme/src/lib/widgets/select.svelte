@@ -4,21 +4,18 @@
     selectAttributes,
     type ComponentProps,
   } from "@sjsf/form";
-  import {
-    singleOption,
-    idMapper,
-    EMPTY_VALUE,
-  } from "@sjsf/form/options.svelte";
+  import { singleOption, EMPTY_VALUE } from "@sjsf/form/options.svelte";
   import "@sjsf/basic-theme/widgets/select.svelte";
 
   let {
     value = $bindable(),
     options,
+    mapper,
     config,
     errors,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -41,7 +38,7 @@
     <option value={EMPTY_VALUE}>{attributes.placeholder}</option>
   {/if}
   {#each options as option (option.id)}
-    <option value={option.mappedValue ?? option.id} disabled={option.disabled}>
+    <option value={option.mappedValue} disabled={option.disabled}>
       {option.label}
     </option>
   {/each}

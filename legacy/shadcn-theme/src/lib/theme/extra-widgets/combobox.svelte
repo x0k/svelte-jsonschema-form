@@ -36,7 +36,7 @@
     uiOptionProps,
     type ComponentProps,
   } from "@sjsf/form";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
   import { tick } from "svelte";
 
   import { cn } from "$lib/utils.js";
@@ -64,11 +64,12 @@
     config,
     handlers,
     options,
+    mapper,
   }: ComponentProps["selectWidget"] = $props();
 
   const labels = $derived(new Map(options.map((o) => [o.id, o.label])));
   const mapped = singleOption({
-    mapper: () => idMapper(options),
+    mapper: () => mapper,
     value: () => value,
     update: (v) => (value = v),
   });
