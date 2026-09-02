@@ -16,7 +16,7 @@
     uiOptionProps,
     type ComponentProps,
   } from "@sjsf/form";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
   import { on } from "svelte/events";
 
   let {
@@ -24,8 +24,9 @@
     options,
     config,
     handlers,
+    mapper,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -42,7 +43,7 @@
 <div {@attach (n) => on(n, "click", (e) => e.preventDefault())}>
   <Segmented
     options={options.map((o) => ({
-      id: o.mappedValue ?? o.id,
+      id: o.mappedValue,
       label: o.label,
     }))}
     bind:value={mapped.current}

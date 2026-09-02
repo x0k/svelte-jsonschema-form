@@ -659,7 +659,7 @@ exports[`default-ui > array fields > checkboxes 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__0"
+            value="a"
           />
           
           
@@ -742,7 +742,7 @@ exports[`default-ui > array fields > checkboxes 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__1"
+            value="b"
           />
           
           
@@ -825,7 +825,7 @@ exports[`default-ui > array fields > checkboxes 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__2"
+            value="c"
           />
           
           
@@ -9514,7 +9514,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__0"
+            value="foo"
           />
           
           
@@ -9600,7 +9600,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__1"
+            value="bar"
           />
           
           
@@ -9686,7 +9686,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__2"
+            value="fuzz"
           />
           
           
@@ -9772,7 +9772,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__3"
+            value="qux"
           />
           
           
@@ -9929,7 +9929,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__0"
+            value="foo"
           />
           
           
@@ -10012,7 +10012,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__1"
+            value="bar"
           />
           
           
@@ -10095,7 +10095,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__2"
+            value="fuzz"
           />
           
           
@@ -10178,7 +10178,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__3"
+            value="qux"
           />
           
           
@@ -10346,7 +10346,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__0"
+            value="foo"
           />
           
           
@@ -10429,7 +10429,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__1"
+            value="bar"
           />
           
           
@@ -10512,7 +10512,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__2"
+            value="fuzz"
           />
           
           
@@ -10595,7 +10595,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__3"
+            value="qux"
           />
           
           
@@ -10751,7 +10751,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__0"
+            value="foo"
           />
           
           
@@ -10834,7 +10834,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__1"
+            value="bar"
           />
           
           
@@ -10917,7 +10917,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__2"
+            value="fuzz"
           />
           
           
@@ -11000,7 +11000,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__3"
+            value="qux"
           />
           
           
@@ -13843,7 +13843,7 @@ exports[`default-ui > widgets > radio > snapshots > disabled 1`] = `
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
-              data-value="root__0"
+              data-value="foo"
               disabled=""
               id="root__0"
               role="radio"
@@ -13888,7 +13888,7 @@ exports[`default-ui > widgets > radio > snapshots > disabled 1`] = `
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
-              data-value="root__1"
+              data-value="bar"
               disabled=""
               id="root__1"
               role="radio"
@@ -13933,7 +13933,7 @@ exports[`default-ui > widgets > radio > snapshots > disabled 1`] = `
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
-              data-value="root__2"
+              data-value="fuzz"
               disabled=""
               id="root__2"
               role="radio"
@@ -13978,7 +13978,7 @@ exports[`default-ui > widgets > radio > snapshots > disabled 1`] = `
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
-              data-value="root__3"
+              data-value="qux"
               disabled=""
               id="root__3"
               role="radio"
@@ -14119,7 +14119,7 @@ exports[`default-ui > widgets > radio > snapshots > error 1`] = `
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
-              data-value="root__0"
+              data-value="foo"
               id="root__0"
               role="radio"
               tabindex="0"
@@ -14162,7 +14162,7 @@ exports[`default-ui > widgets > radio > snapshots > error 1`] = `
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
-              data-value="root__1"
+              data-value="bar"
               id="root__1"
               role="radio"
               tabindex="-1"
@@ -14205,7 +14205,7 @@ exports[`default-ui > widgets > radio > snapshots > error 1`] = `
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
-              data-value="root__2"
+              data-value="fuzz"
               id="root__2"
               role="radio"
               tabindex="-1"
@@ -14248,7 +14248,7 @@ exports[`default-ui > widgets > radio > snapshots > error 1`] = `
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
-              data-value="root__3"
+              data-value="qux"
               id="root__3"
               role="radio"
               tabindex="-1"
@@ -14399,7 +14399,7 @@ exports[`default-ui > widgets > radio > snapshots > normal 1`] = `
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
-              data-value="root__0"
+              data-value="foo"
               id="root__0"
               role="radio"
               tabindex="0"
@@ -14442,7 +14442,7 @@ exports[`default-ui > widgets > radio > snapshots > normal 1`] = `
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
-              data-value="root__1"
+              data-value="bar"
               id="root__1"
               role="radio"
               tabindex="-1"
@@ -14485,7 +14485,7 @@ exports[`default-ui > widgets > radio > snapshots > normal 1`] = `
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
-              data-value="root__2"
+              data-value="fuzz"
               id="root__2"
               role="radio"
               tabindex="-1"
@@ -14528,7 +14528,7 @@ exports[`default-ui > widgets > radio > snapshots > normal 1`] = `
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
-              data-value="root__3"
+              data-value="qux"
               id="root__3"
               role="radio"
               tabindex="-1"
@@ -14668,7 +14668,7 @@ exports[`default-ui > widgets > radio > snapshots > readonly 1`] = `
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
-              data-value="root__0"
+              data-value="foo"
               id="root__0"
               role="radio"
               tabindex="0"
@@ -14711,7 +14711,7 @@ exports[`default-ui > widgets > radio > snapshots > readonly 1`] = `
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
-              data-value="root__1"
+              data-value="bar"
               id="root__1"
               role="radio"
               tabindex="-1"
@@ -14754,7 +14754,7 @@ exports[`default-ui > widgets > radio > snapshots > readonly 1`] = `
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
-              data-value="root__2"
+              data-value="fuzz"
               id="root__2"
               role="radio"
               tabindex="-1"
@@ -14797,7 +14797,7 @@ exports[`default-ui > widgets > radio > snapshots > readonly 1`] = `
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
-              data-value="root__3"
+              data-value="qux"
               id="root__3"
               role="radio"
               tabindex="-1"
@@ -14935,7 +14935,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > disabled 1`] = `
             data-orientation="horizontal"
             data-state="off"
             data-toggle-group-item=""
-            data-value="root__0"
+            data-value="foo"
             disabled=""
             id="bits-c114"
             role="radio"
@@ -14958,7 +14958,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > disabled 1`] = `
             data-orientation="horizontal"
             data-state="off"
             data-toggle-group-item=""
-            data-value="root__1"
+            data-value="bar"
             disabled=""
             id="bits-c115"
             role="radio"
@@ -14981,7 +14981,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > disabled 1`] = `
             data-orientation="horizontal"
             data-state="off"
             data-toggle-group-item=""
-            data-value="root__2"
+            data-value="fuzz"
             disabled=""
             id="bits-c116"
             role="radio"
@@ -15004,7 +15004,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > disabled 1`] = `
             data-orientation="horizontal"
             data-state="off"
             data-toggle-group-item=""
-            data-value="root__3"
+            data-value="qux"
             disabled=""
             id="bits-c117"
             role="radio"
@@ -15118,7 +15118,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > error 1`] = `
             data-orientation="horizontal"
             data-state="off"
             data-toggle-group-item=""
-            data-value="root__0"
+            data-value="foo"
             id="bits-c109"
             role="radio"
             tabindex="0"
@@ -15139,7 +15139,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > error 1`] = `
             data-orientation="horizontal"
             data-state="off"
             data-toggle-group-item=""
-            data-value="root__1"
+            data-value="bar"
             id="bits-c110"
             role="radio"
             tabindex="-1"
@@ -15160,7 +15160,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > error 1`] = `
             data-orientation="horizontal"
             data-state="off"
             data-toggle-group-item=""
-            data-value="root__2"
+            data-value="fuzz"
             id="bits-c111"
             role="radio"
             tabindex="-1"
@@ -15181,7 +15181,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > error 1`] = `
             data-orientation="horizontal"
             data-state="off"
             data-toggle-group-item=""
-            data-value="root__3"
+            data-value="qux"
             id="bits-c112"
             role="radio"
             tabindex="-1"
@@ -15305,7 +15305,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > normal 1`] = `
             data-orientation="horizontal"
             data-state="off"
             data-toggle-group-item=""
-            data-value="root__0"
+            data-value="foo"
             id="bits-c104"
             role="radio"
             tabindex="0"
@@ -15326,7 +15326,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > normal 1`] = `
             data-orientation="horizontal"
             data-state="off"
             data-toggle-group-item=""
-            data-value="root__1"
+            data-value="bar"
             id="bits-c105"
             role="radio"
             tabindex="-1"
@@ -15347,7 +15347,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > normal 1`] = `
             data-orientation="horizontal"
             data-state="off"
             data-toggle-group-item=""
-            data-value="root__2"
+            data-value="fuzz"
             id="bits-c106"
             role="radio"
             tabindex="-1"
@@ -15368,7 +15368,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > normal 1`] = `
             data-orientation="horizontal"
             data-state="off"
             data-toggle-group-item=""
-            data-value="root__3"
+            data-value="qux"
             id="bits-c107"
             role="radio"
             tabindex="-1"
@@ -15481,7 +15481,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > readonly 1`] = `
             data-orientation="horizontal"
             data-state="off"
             data-toggle-group-item=""
-            data-value="root__0"
+            data-value="foo"
             id="bits-c119"
             role="radio"
             tabindex="0"
@@ -15502,7 +15502,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > readonly 1`] = `
             data-orientation="horizontal"
             data-state="off"
             data-toggle-group-item=""
-            data-value="root__1"
+            data-value="bar"
             id="bits-c120"
             role="radio"
             tabindex="-1"
@@ -15523,7 +15523,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > readonly 1`] = `
             data-orientation="horizontal"
             data-state="off"
             data-toggle-group-item=""
-            data-value="root__2"
+            data-value="fuzz"
             id="bits-c121"
             role="radio"
             tabindex="-1"
@@ -15544,7 +15544,7 @@ exports[`default-ui > widgets > radioButtons > snapshots > readonly 1`] = `
             data-orientation="horizontal"
             data-state="off"
             data-toggle-group-item=""
-            data-value="root__3"
+            data-value="qux"
             id="bits-c122"
             role="radio"
             tabindex="-1"
@@ -18723,7 +18723,7 @@ exports[`default-ui > with title and description > checkboxes 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__0"
+            value="a"
           />
           
           
@@ -18806,7 +18806,7 @@ exports[`default-ui > with title and description > checkboxes 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__1"
+            value="b"
           />
           
           
@@ -18889,7 +18889,7 @@ exports[`default-ui > with title and description > checkboxes 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__2"
+            value="c"
           />
           
           
@@ -20084,7 +20084,7 @@ exports[`default-ui > with title and description from both > checkboxes 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__0"
+            value="a"
           />
           
           
@@ -20167,7 +20167,7 @@ exports[`default-ui > with title and description from both > checkboxes 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__1"
+            value="b"
           />
           
           
@@ -20250,7 +20250,7 @@ exports[`default-ui > with title and description from both > checkboxes 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__2"
+            value="c"
           />
           
           
@@ -21445,7 +21445,7 @@ exports[`default-ui > with title and description from uiSchema > checkboxes 1`] 
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__0"
+            value="a"
           />
           
           
@@ -21528,7 +21528,7 @@ exports[`default-ui > with title and description from uiSchema > checkboxes 1`] 
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__1"
+            value="b"
           />
           
           
@@ -21611,7 +21611,7 @@ exports[`default-ui > with title and description from uiSchema > checkboxes 1`] 
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__2"
+            value="c"
           />
           
           
@@ -22600,7 +22600,7 @@ exports[`default-ui > with title and description with global label off > checkbo
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__0"
+            value="a"
           />
           
           
@@ -22683,7 +22683,7 @@ exports[`default-ui > with title and description with global label off > checkbo
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__1"
+            value="b"
           />
           
           
@@ -22766,7 +22766,7 @@ exports[`default-ui > with title and description with global label off > checkbo
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__2"
+            value="c"
           />
           
           
@@ -23703,7 +23703,7 @@ exports[`new-york-ui > array fields > checkboxes 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__0"
+            value="a"
           />
           
           
@@ -23786,7 +23786,7 @@ exports[`new-york-ui > array fields > checkboxes 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__1"
+            value="b"
           />
           
           
@@ -23869,7 +23869,7 @@ exports[`new-york-ui > array fields > checkboxes 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__2"
+            value="c"
           />
           
           
@@ -32558,7 +32558,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__0"
+            value="foo"
           />
           
           
@@ -32644,7 +32644,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__1"
+            value="bar"
           />
           
           
@@ -32730,7 +32730,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__2"
+            value="fuzz"
           />
           
           
@@ -32816,7 +32816,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__3"
+            value="qux"
           />
           
           
@@ -32973,7 +32973,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__0"
+            value="foo"
           />
           
           
@@ -33056,7 +33056,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__1"
+            value="bar"
           />
           
           
@@ -33139,7 +33139,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__2"
+            value="fuzz"
           />
           
           
@@ -33222,7 +33222,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__3"
+            value="qux"
           />
           
           
@@ -33390,7 +33390,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__0"
+            value="foo"
           />
           
           
@@ -33473,7 +33473,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__1"
+            value="bar"
           />
           
           
@@ -33556,7 +33556,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__2"
+            value="fuzz"
           />
           
           
@@ -33639,7 +33639,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__3"
+            value="qux"
           />
           
           
@@ -33795,7 +33795,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__0"
+            value="foo"
           />
           
           
@@ -33878,7 +33878,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__1"
+            value="bar"
           />
           
           
@@ -33961,7 +33961,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__2"
+            value="fuzz"
           />
           
           
@@ -34044,7 +34044,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__3"
+            value="qux"
           />
           
           
@@ -36887,7 +36887,7 @@ exports[`new-york-ui > widgets > radio > snapshots > disabled 1`] = `
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
-              data-value="root__0"
+              data-value="foo"
               disabled=""
               id="root__0"
               role="radio"
@@ -36932,7 +36932,7 @@ exports[`new-york-ui > widgets > radio > snapshots > disabled 1`] = `
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
-              data-value="root__1"
+              data-value="bar"
               disabled=""
               id="root__1"
               role="radio"
@@ -36977,7 +36977,7 @@ exports[`new-york-ui > widgets > radio > snapshots > disabled 1`] = `
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
-              data-value="root__2"
+              data-value="fuzz"
               disabled=""
               id="root__2"
               role="radio"
@@ -37022,7 +37022,7 @@ exports[`new-york-ui > widgets > radio > snapshots > disabled 1`] = `
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
-              data-value="root__3"
+              data-value="qux"
               disabled=""
               id="root__3"
               role="radio"
@@ -37163,7 +37163,7 @@ exports[`new-york-ui > widgets > radio > snapshots > error 1`] = `
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
-              data-value="root__0"
+              data-value="foo"
               id="root__0"
               role="radio"
               tabindex="0"
@@ -37206,7 +37206,7 @@ exports[`new-york-ui > widgets > radio > snapshots > error 1`] = `
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
-              data-value="root__1"
+              data-value="bar"
               id="root__1"
               role="radio"
               tabindex="-1"
@@ -37249,7 +37249,7 @@ exports[`new-york-ui > widgets > radio > snapshots > error 1`] = `
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
-              data-value="root__2"
+              data-value="fuzz"
               id="root__2"
               role="radio"
               tabindex="-1"
@@ -37292,7 +37292,7 @@ exports[`new-york-ui > widgets > radio > snapshots > error 1`] = `
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
-              data-value="root__3"
+              data-value="qux"
               id="root__3"
               role="radio"
               tabindex="-1"
@@ -37443,7 +37443,7 @@ exports[`new-york-ui > widgets > radio > snapshots > normal 1`] = `
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
-              data-value="root__0"
+              data-value="foo"
               id="root__0"
               role="radio"
               tabindex="0"
@@ -37486,7 +37486,7 @@ exports[`new-york-ui > widgets > radio > snapshots > normal 1`] = `
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
-              data-value="root__1"
+              data-value="bar"
               id="root__1"
               role="radio"
               tabindex="-1"
@@ -37529,7 +37529,7 @@ exports[`new-york-ui > widgets > radio > snapshots > normal 1`] = `
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
-              data-value="root__2"
+              data-value="fuzz"
               id="root__2"
               role="radio"
               tabindex="-1"
@@ -37572,7 +37572,7 @@ exports[`new-york-ui > widgets > radio > snapshots > normal 1`] = `
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
-              data-value="root__3"
+              data-value="qux"
               id="root__3"
               role="radio"
               tabindex="-1"
@@ -37712,7 +37712,7 @@ exports[`new-york-ui > widgets > radio > snapshots > readonly 1`] = `
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
-              data-value="root__0"
+              data-value="foo"
               id="root__0"
               role="radio"
               tabindex="0"
@@ -37755,7 +37755,7 @@ exports[`new-york-ui > widgets > radio > snapshots > readonly 1`] = `
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
-              data-value="root__1"
+              data-value="bar"
               id="root__1"
               role="radio"
               tabindex="-1"
@@ -37798,7 +37798,7 @@ exports[`new-york-ui > widgets > radio > snapshots > readonly 1`] = `
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
-              data-value="root__2"
+              data-value="fuzz"
               id="root__2"
               role="radio"
               tabindex="-1"
@@ -37841,7 +37841,7 @@ exports[`new-york-ui > widgets > radio > snapshots > readonly 1`] = `
               data-orientation="vertical"
               data-radio-group-item=""
               data-state="unchecked"
-              data-value="root__3"
+              data-value="qux"
               id="root__3"
               role="radio"
               tabindex="-1"
@@ -37979,7 +37979,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > disabled 1`] = `
             data-orientation="horizontal"
             data-state="off"
             data-toggle-group-item=""
-            data-value="root__0"
+            data-value="foo"
             disabled=""
             id="bits-c396"
             role="radio"
@@ -38002,7 +38002,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > disabled 1`] = `
             data-orientation="horizontal"
             data-state="off"
             data-toggle-group-item=""
-            data-value="root__1"
+            data-value="bar"
             disabled=""
             id="bits-c397"
             role="radio"
@@ -38025,7 +38025,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > disabled 1`] = `
             data-orientation="horizontal"
             data-state="off"
             data-toggle-group-item=""
-            data-value="root__2"
+            data-value="fuzz"
             disabled=""
             id="bits-c398"
             role="radio"
@@ -38048,7 +38048,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > disabled 1`] = `
             data-orientation="horizontal"
             data-state="off"
             data-toggle-group-item=""
-            data-value="root__3"
+            data-value="qux"
             disabled=""
             id="bits-c399"
             role="radio"
@@ -38162,7 +38162,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > error 1`] = `
             data-orientation="horizontal"
             data-state="off"
             data-toggle-group-item=""
-            data-value="root__0"
+            data-value="foo"
             id="bits-c391"
             role="radio"
             tabindex="0"
@@ -38183,7 +38183,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > error 1`] = `
             data-orientation="horizontal"
             data-state="off"
             data-toggle-group-item=""
-            data-value="root__1"
+            data-value="bar"
             id="bits-c392"
             role="radio"
             tabindex="-1"
@@ -38204,7 +38204,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > error 1`] = `
             data-orientation="horizontal"
             data-state="off"
             data-toggle-group-item=""
-            data-value="root__2"
+            data-value="fuzz"
             id="bits-c393"
             role="radio"
             tabindex="-1"
@@ -38225,7 +38225,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > error 1`] = `
             data-orientation="horizontal"
             data-state="off"
             data-toggle-group-item=""
-            data-value="root__3"
+            data-value="qux"
             id="bits-c394"
             role="radio"
             tabindex="-1"
@@ -38349,7 +38349,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > normal 1`] = `
             data-orientation="horizontal"
             data-state="off"
             data-toggle-group-item=""
-            data-value="root__0"
+            data-value="foo"
             id="bits-c386"
             role="radio"
             tabindex="0"
@@ -38370,7 +38370,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > normal 1`] = `
             data-orientation="horizontal"
             data-state="off"
             data-toggle-group-item=""
-            data-value="root__1"
+            data-value="bar"
             id="bits-c387"
             role="radio"
             tabindex="-1"
@@ -38391,7 +38391,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > normal 1`] = `
             data-orientation="horizontal"
             data-state="off"
             data-toggle-group-item=""
-            data-value="root__2"
+            data-value="fuzz"
             id="bits-c388"
             role="radio"
             tabindex="-1"
@@ -38412,7 +38412,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > normal 1`] = `
             data-orientation="horizontal"
             data-state="off"
             data-toggle-group-item=""
-            data-value="root__3"
+            data-value="qux"
             id="bits-c389"
             role="radio"
             tabindex="-1"
@@ -38525,7 +38525,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > readonly 1`] = `
             data-orientation="horizontal"
             data-state="off"
             data-toggle-group-item=""
-            data-value="root__0"
+            data-value="foo"
             id="bits-c401"
             role="radio"
             tabindex="0"
@@ -38546,7 +38546,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > readonly 1`] = `
             data-orientation="horizontal"
             data-state="off"
             data-toggle-group-item=""
-            data-value="root__1"
+            data-value="bar"
             id="bits-c402"
             role="radio"
             tabindex="-1"
@@ -38567,7 +38567,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > readonly 1`] = `
             data-orientation="horizontal"
             data-state="off"
             data-toggle-group-item=""
-            data-value="root__2"
+            data-value="fuzz"
             id="bits-c403"
             role="radio"
             tabindex="-1"
@@ -38588,7 +38588,7 @@ exports[`new-york-ui > widgets > radioButtons > snapshots > readonly 1`] = `
             data-orientation="horizontal"
             data-state="off"
             data-toggle-group-item=""
-            data-value="root__3"
+            data-value="qux"
             id="bits-c404"
             role="radio"
             tabindex="-1"
@@ -41767,7 +41767,7 @@ exports[`new-york-ui > with title and description > checkboxes 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__0"
+            value="a"
           />
           
           
@@ -41850,7 +41850,7 @@ exports[`new-york-ui > with title and description > checkboxes 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__1"
+            value="b"
           />
           
           
@@ -41933,7 +41933,7 @@ exports[`new-york-ui > with title and description > checkboxes 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__2"
+            value="c"
           />
           
           
@@ -43128,7 +43128,7 @@ exports[`new-york-ui > with title and description from both > checkboxes 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__0"
+            value="a"
           />
           
           
@@ -43211,7 +43211,7 @@ exports[`new-york-ui > with title and description from both > checkboxes 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__1"
+            value="b"
           />
           
           
@@ -43294,7 +43294,7 @@ exports[`new-york-ui > with title and description from both > checkboxes 1`] = `
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__2"
+            value="c"
           />
           
           
@@ -44489,7 +44489,7 @@ exports[`new-york-ui > with title and description from uiSchema > checkboxes 1`]
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__0"
+            value="a"
           />
           
           
@@ -44572,7 +44572,7 @@ exports[`new-york-ui > with title and description from uiSchema > checkboxes 1`]
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__1"
+            value="b"
           />
           
           
@@ -44655,7 +44655,7 @@ exports[`new-york-ui > with title and description from uiSchema > checkboxes 1`]
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__2"
+            value="c"
           />
           
           
@@ -45644,7 +45644,7 @@ exports[`new-york-ui > with title and description with global label off > checkb
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__0"
+            value="a"
           />
           
           
@@ -45727,7 +45727,7 @@ exports[`new-york-ui > with title and description with global label off > checkb
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__1"
+            value="b"
           />
           
           
@@ -45810,7 +45810,7 @@ exports[`new-york-ui > with title and description with global label off > checkb
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
             tabindex="-1"
             type="checkbox"
-            value="root__2"
+            value="c"
           />
           
           

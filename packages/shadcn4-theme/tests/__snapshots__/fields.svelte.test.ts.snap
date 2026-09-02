@@ -750,7 +750,7 @@ exports[`array fields > checkboxes 1`] = `
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
           tabindex="-1"
           type="checkbox"
-          value="root__0"
+          value="a"
         />
         
         
@@ -814,7 +814,7 @@ exports[`array fields > checkboxes 1`] = `
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
           tabindex="-1"
           type="checkbox"
-          value="root__1"
+          value="b"
         />
         
         
@@ -878,7 +878,7 @@ exports[`array fields > checkboxes 1`] = `
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
           tabindex="-1"
           type="checkbox"
-          value="root__2"
+          value="c"
         />
         
         
@@ -11206,7 +11206,7 @@ exports[`with title and description > checkboxes 1`] = `
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
           tabindex="-1"
           type="checkbox"
-          value="root__0"
+          value="a"
         />
         
         
@@ -11270,7 +11270,7 @@ exports[`with title and description > checkboxes 1`] = `
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
           tabindex="-1"
           type="checkbox"
-          value="root__1"
+          value="b"
         />
         
         
@@ -11334,7 +11334,7 @@ exports[`with title and description > checkboxes 1`] = `
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
           tabindex="-1"
           type="checkbox"
-          value="root__2"
+          value="c"
         />
         
         
@@ -12757,7 +12757,7 @@ exports[`with title and description from both > checkboxes 1`] = `
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
           tabindex="-1"
           type="checkbox"
-          value="root__0"
+          value="a"
         />
         
         
@@ -12821,7 +12821,7 @@ exports[`with title and description from both > checkboxes 1`] = `
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
           tabindex="-1"
           type="checkbox"
-          value="root__1"
+          value="b"
         />
         
         
@@ -12885,7 +12885,7 @@ exports[`with title and description from both > checkboxes 1`] = `
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
           tabindex="-1"
           type="checkbox"
-          value="root__2"
+          value="c"
         />
         
         
@@ -14308,7 +14308,7 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
           tabindex="-1"
           type="checkbox"
-          value="root__0"
+          value="a"
         />
         
         
@@ -14372,7 +14372,7 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
           tabindex="-1"
           type="checkbox"
-          value="root__1"
+          value="b"
         />
         
         
@@ -14436,7 +14436,7 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
           tabindex="-1"
           type="checkbox"
-          value="root__2"
+          value="c"
         />
         
         
@@ -15595,7 +15595,7 @@ exports[`with title and description with global label off > checkboxes 1`] = `
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
           tabindex="-1"
           type="checkbox"
-          value="root__0"
+          value="a"
         />
         
         
@@ -15659,7 +15659,7 @@ exports[`with title and description with global label off > checkboxes 1`] = `
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
           tabindex="-1"
           type="checkbox"
-          value="root__1"
+          value="b"
         />
         
         
@@ -15723,7 +15723,7 @@ exports[`with title and description with global label off > checkboxes 1`] = `
           style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
           tabindex="-1"
           type="checkbox"
-          value="root__2"
+          value="c"
         />
         
         

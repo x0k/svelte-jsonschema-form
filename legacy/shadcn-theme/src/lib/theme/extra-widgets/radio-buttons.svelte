@@ -46,7 +46,7 @@
     uiOptionProps,
     type ComponentProps,
   } from "@sjsf/form";
-  import { singleOption, idMapper } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   import { getThemeContext } from "../context";
 
@@ -60,10 +60,11 @@
     config,
     handlers,
     options,
+    mapper,
   }: ComponentProps["radioButtonsWidget"] = $props();
 
   const mapped = singleOption({
-    mapper: () => idMapper(options),
+    mapper: () => mapper,
     value: () => value,
     update: (v) => (value = v),
   });
@@ -84,7 +85,7 @@
     <ToggleGroupItem
       {...uiOptionProps("shadcnRadioButtonsItem")(
         {
-          value: option.id,
+          value: option.mappedValue,
           disabled: option.disabled,
         },
         config,

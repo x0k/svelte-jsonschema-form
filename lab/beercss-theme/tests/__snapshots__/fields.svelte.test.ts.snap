@@ -534,7 +534,7 @@ exports[`array fields > checkboxes 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__0"
+            value="a"
           />
            
           <span>
@@ -551,7 +551,7 @@ exports[`array fields > checkboxes 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__1"
+            value="b"
           />
            
           <span>
@@ -568,7 +568,7 @@ exports[`array fields > checkboxes 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__2"
+            value="c"
           />
            
           <span>
@@ -2209,12 +2209,12 @@ exports[`object fields > one of defaults > default preset 1`] = `
               >
                 <!---->
                 <option
-                  value="root_preset__0"
+                  value="Default"
                 >
                   Default
                 </option>
                 <option
-                  value="root_preset__1"
+                  value="Manual"
                 >
                   Manual
                 </option>
@@ -2420,17 +2420,17 @@ exports[`object fields > one of defaults > default preset 1`] = `
               >
                 <!---->
                 <option
-                  value="root_format__0"
+                  value="HTML"
                 >
                   HTML
                 </option>
                 <option
-                  value="root_format__1"
+                  value="XLSX"
                 >
                   XLSX
                 </option>
                 <option
-                  value="root_format__2"
+                  value="ASCII"
                 >
                   ASCII
                 </option>
@@ -2837,12 +2837,12 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               >
                 <!---->
                 <option
-                  value="root_preset__0"
+                  value="Default"
                 >
                   Default
                 </option>
                 <option
-                  value="root_preset__1"
+                  value="Manual"
                 >
                   Manual
                 </option>
@@ -3660,17 +3660,17 @@ exports[`object fields > one of defaults > manual preset 1`] = `
               >
                 <!---->
                 <option
-                  value="root_format__0"
+                  value="HTML"
                 >
                   HTML
                 </option>
                 <option
-                  value="root_format__1"
+                  value="XLSX"
                 >
                   XLSX
                 </option>
                 <option
-                  value="root_format__2"
+                  value="ASCII"
                 >
                   ASCII
                 </option>
@@ -7903,7 +7903,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__0"
+            value="foo"
           />
            
           <span>
@@ -7921,7 +7921,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__1"
+            value="bar"
           />
            
           <span>
@@ -7939,7 +7939,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__2"
+            value="fuzz"
           />
            
           <span>
@@ -7957,7 +7957,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__3"
+            value="qux"
           />
            
           <span>
@@ -8043,7 +8043,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__0"
+            value="foo"
           />
            
           <span>
@@ -8060,7 +8060,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__1"
+            value="bar"
           />
            
           <span>
@@ -8077,7 +8077,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__2"
+            value="fuzz"
           />
            
           <span>
@@ -8094,7 +8094,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__3"
+            value="qux"
           />
            
           <span>
@@ -8193,7 +8193,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__0"
+            value="foo"
           />
            
           <span>
@@ -8210,7 +8210,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__1"
+            value="bar"
           />
            
           <span>
@@ -8227,7 +8227,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__2"
+            value="fuzz"
           />
            
           <span>
@@ -8244,7 +8244,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__3"
+            value="qux"
           />
            
           <span>
@@ -8330,7 +8330,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
             readonly=""
             required=""
             type="checkbox"
-            value="root__0"
+            value="foo"
           />
            
           <span>
@@ -8348,7 +8348,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
             readonly=""
             required=""
             type="checkbox"
-            value="root__1"
+            value="bar"
           />
            
           <span>
@@ -8366,7 +8366,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
             readonly=""
             required=""
             type="checkbox"
-            value="root__2"
+            value="fuzz"
           />
            
           <span>
@@ -8384,7 +8384,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
             readonly=""
             required=""
             type="checkbox"
-            value="root__3"
+            value="qux"
           />
            
           <span>
@@ -9778,7 +9778,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__0"
+            value="foo"
           />
            
           <span>
@@ -9796,7 +9796,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__1"
+            value="bar"
           />
            
           <span>
@@ -9814,7 +9814,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__2"
+            value="fuzz"
           />
            
           <span>
@@ -9832,7 +9832,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__3"
+            value="qux"
           />
            
           <span>
@@ -9918,7 +9918,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__0"
+            value="foo"
           />
            
           <span>
@@ -9935,7 +9935,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__1"
+            value="bar"
           />
            
           <span>
@@ -9952,7 +9952,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__2"
+            value="fuzz"
           />
            
           <span>
@@ -9969,7 +9969,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__3"
+            value="qux"
           />
            
           <span>
@@ -10068,7 +10068,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__0"
+            value="foo"
           />
            
           <span>
@@ -10085,7 +10085,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__1"
+            value="bar"
           />
            
           <span>
@@ -10102,7 +10102,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__2"
+            value="fuzz"
           />
            
           <span>
@@ -10119,7 +10119,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__3"
+            value="qux"
           />
            
           <span>
@@ -10205,7 +10205,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
             readonly=""
             required=""
             type="radio"
-            value="root__0"
+            value="foo"
           />
            
           <span>
@@ -10223,7 +10223,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
             readonly=""
             required=""
             type="radio"
-            value="root__1"
+            value="bar"
           />
            
           <span>
@@ -10241,7 +10241,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
             readonly=""
             required=""
             type="radio"
-            value="root__2"
+            value="fuzz"
           />
            
           <span>
@@ -10259,7 +10259,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
             readonly=""
             required=""
             type="radio"
-            value="root__3"
+            value="qux"
           />
            
           <span>
@@ -10680,22 +10680,22 @@ exports[`widgets > select > snapshots > disabled 1`] = `
       >
         <!---->
         <option
-          value="root__0"
+          value="foo"
         >
           foo
         </option>
         <option
-          value="root__1"
+          value="bar"
         >
           bar
         </option>
         <option
-          value="root__2"
+          value="fuzz"
         >
           fuzz
         </option>
         <option
-          value="root__3"
+          value="qux"
         >
           qux
         </option>
@@ -10776,22 +10776,22 @@ exports[`widgets > select > snapshots > error 1`] = `
       >
         <!---->
         <option
-          value="root__0"
+          value="foo"
         >
           foo
         </option>
         <option
-          value="root__1"
+          value="bar"
         >
           bar
         </option>
         <option
-          value="root__2"
+          value="fuzz"
         >
           fuzz
         </option>
         <option
-          value="root__3"
+          value="qux"
         >
           qux
         </option>
@@ -10885,22 +10885,22 @@ exports[`widgets > select > snapshots > normal 1`] = `
       >
         <!---->
         <option
-          value="root__0"
+          value="foo"
         >
           foo
         </option>
         <option
-          value="root__1"
+          value="bar"
         >
           bar
         </option>
         <option
-          value="root__2"
+          value="fuzz"
         >
           fuzz
         </option>
         <option
-          value="root__3"
+          value="qux"
         >
           qux
         </option>
@@ -10980,22 +10980,22 @@ exports[`widgets > select > snapshots > readonly 1`] = `
       >
         <!---->
         <option
-          value="root__0"
+          value="foo"
         >
           foo
         </option>
         <option
-          value="root__1"
+          value="bar"
         >
           bar
         </option>
         <option
-          value="root__2"
+          value="fuzz"
         >
           fuzz
         </option>
         <option
-          value="root__3"
+          value="qux"
         >
           qux
         </option>
@@ -12695,7 +12695,7 @@ exports[`with title and description > checkboxes 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__0"
+            value="a"
           />
            
           <span>
@@ -12712,7 +12712,7 @@ exports[`with title and description > checkboxes 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__1"
+            value="b"
           />
            
           <span>
@@ -12729,7 +12729,7 @@ exports[`with title and description > checkboxes 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__2"
+            value="c"
           />
            
           <span>
@@ -13790,7 +13790,7 @@ exports[`with title and description from both > checkboxes 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__0"
+            value="a"
           />
            
           <span>
@@ -13807,7 +13807,7 @@ exports[`with title and description from both > checkboxes 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__1"
+            value="b"
           />
            
           <span>
@@ -13824,7 +13824,7 @@ exports[`with title and description from both > checkboxes 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__2"
+            value="c"
           />
            
           <span>
@@ -14885,7 +14885,7 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__0"
+            value="a"
           />
            
           <span>
@@ -14902,7 +14902,7 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__1"
+            value="b"
           />
            
           <span>
@@ -14919,7 +14919,7 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__2"
+            value="c"
           />
            
           <span>
@@ -15765,7 +15765,7 @@ exports[`with title and description with global label off > checkboxes 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__0"
+            value="a"
           />
            
           <span>
@@ -15782,7 +15782,7 @@ exports[`with title and description with global label off > checkboxes 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__1"
+            value="b"
           />
            
           <span>
@@ -15799,7 +15799,7 @@ exports[`with title and description with global label off > checkboxes 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__2"
+            value="c"
           />
            
           <span>

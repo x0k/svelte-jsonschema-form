@@ -37,7 +37,7 @@
     getFormContext,
     uiOptionProps,
   } from "@sjsf/form";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   import { getThemeContext } from "../context.js";
 
@@ -53,8 +53,9 @@
     handlers,
     value = $bindable(),
     options,
+    mapper,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -85,7 +86,7 @@
     <div class="flex items-center space-x-3">
       <RadioGroupItem
         {...itemAttributes}
-        value={option.mappedValue ?? option.id}
+        value={option.mappedValue}
         id={option.id}
         disabled={option.disabled}
       />

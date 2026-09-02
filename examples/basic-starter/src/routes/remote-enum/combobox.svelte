@@ -19,15 +19,16 @@
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -66,7 +67,7 @@
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
