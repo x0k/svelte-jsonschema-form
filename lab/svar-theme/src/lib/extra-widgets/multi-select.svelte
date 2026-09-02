@@ -18,7 +18,7 @@
     uiOptionProps,
     type ComponentProps,
   } from "@sjsf/form";
-  import { idMapper, multipleOptions } from "@sjsf/form/options.svelte";
+  import { multipleOptions } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
@@ -26,8 +26,9 @@
     config,
     handlers,
     errors,
+    mapper,
     mapped = multipleOptions({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -44,7 +45,7 @@
 </script>
 
 <SvarMultiCombo
-  options={options.map((o) => ({ id: o.mappedValue ?? o.id, label: o.label }))}
+  options={options.map((o) => ({ id: o.mappedValue, label: o.label }))}
   bind:value={mapped.current}
   {...uiOptionProps("svarMultiSelect")(
     {

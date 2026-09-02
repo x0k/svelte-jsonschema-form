@@ -49,7 +49,7 @@
     type ComponentProps,
     ariaInvalidProp,
   } from "@sjsf/form";
-  import { singleOption, idMapper } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   import { getThemeContext } from "../context.js";
 
@@ -63,8 +63,9 @@
     config,
     handlers,
     options,
+    mapper,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -93,7 +94,7 @@
         config,
         {
           class: "grow",
-          value: option.mappedValue ?? option.id,
+          value: option.mappedValue,
         },
         uiOptionProps("shadcn4RadioButtonsItem"),
         handlersAttachment(buttonHandles),

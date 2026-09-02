@@ -36,7 +36,7 @@
     uiOptionProps,
     type ComponentProps,
   } from "@sjsf/form";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
   import { tick } from "svelte";
 
   import { cn } from "$lib/utils.js";
@@ -64,11 +64,14 @@
     config,
     handlers,
     options,
+    mapper,
   }: ComponentProps["selectWidget"] = $props();
 
-  const labels = $derived(new Map(options.map((o) => [o.id, o.label])));
+  const labels = $derived(
+    new Map(options.map((o) => [o.mappedValue, o.label]))
+  );
   const mapped = singleOption({
-    mapper: () => idMapper(options),
+    mapper: () => mapper,
     value: () => value,
     update: (v) => (value = v),
   });
@@ -129,7 +132,7 @@
             <CommandItem
               value={option.label}
               onSelect={() => {
-                mapped.current = option.id;
+                mapped.current = option.mappedValue;
                 closeAndFocusTrigger();
               }}
               disabled={option.disabled}
@@ -137,7 +140,7 @@
               <Check
                 class={cn(
                   "mr-2 size-4",
-                  option.id !== mapped.current && "text-transparent"
+                  option.mappedValue !== mapped.current && "text-transparent"
                 )}
               />
               {option.label}

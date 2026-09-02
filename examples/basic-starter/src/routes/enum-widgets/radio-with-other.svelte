@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -79,7 +79,7 @@
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
