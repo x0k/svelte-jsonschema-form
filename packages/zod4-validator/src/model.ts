@@ -9,6 +9,11 @@ export type AugmentedSchemaFactory = (
   schema: $ZodType
 ) => $ZodTypes | undefined;
 
+export type ConditionSchemaFactory = (
+  key: string,
+  propSchema: $ZodTypes
+) => $ZodTypes;
+
 export interface SchemaProvider {
   schema: Schema;
 }
