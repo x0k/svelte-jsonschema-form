@@ -1,5 +1,4 @@
 import type { Schema, UiSchema } from "@sjsf/form";
-import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 import { tick } from "svelte";
 import { describe, expect, test, vi } from "vitest";
 import { page, userEvent } from "vitest/browser";
@@ -9,9 +8,6 @@ import { expectValue, renderFieldForm } from "./helpers.js";
 const enumUiSchema: UiSchema = {
   "ui:components": {
     stringField: "enumField",
-  },
-  "ui:options": {
-    enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
   },
 };
 

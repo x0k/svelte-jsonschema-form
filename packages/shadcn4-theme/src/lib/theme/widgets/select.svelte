@@ -20,11 +20,7 @@
     getId,
     type ComponentProps,
   } from "@sjsf/form";
-  import {
-    singleOption,
-    idMapper,
-    EMPTY_VALUE,
-  } from "@sjsf/form/options.svelte";
+  import { singleOption, EMPTY_VALUE } from "@sjsf/form/options.svelte";
 
   import { getThemeContext } from "../context.js";
 
@@ -39,9 +35,10 @@
     handlers,
     value = $bindable(),
     options,
+    mapper,
     config,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -49,7 +46,7 @@
   }: ComponentProps["selectWidget"] = $props();
 
   const labels = $derived(
-    new Map(options.map((o) => [o.mappedValue ?? o.id, o.label]))
+    new Map(options.map((o) => [o.mappedValue, o.label]))
   );
 
   const { oninput, onchange, ...buttonHandlers } = $derived(handlers);
@@ -98,7 +95,7 @@
     {/if}
     {#each options as option (option.id)}
       <SelectItem
-        value={option.mappedValue ?? option.id}
+        value={option.mappedValue}
         label={option.label}
         disabled={option.disabled}
       />

@@ -516,7 +516,7 @@ exports[`array fields > checkboxes 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__0"
+            value="a"
           />
            
           <p>
@@ -534,7 +534,7 @@ exports[`array fields > checkboxes 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__1"
+            value="b"
           />
            
           <p>
@@ -552,7 +552,7 @@ exports[`array fields > checkboxes 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__2"
+            value="c"
           />
            
           <p>
@@ -2090,12 +2090,12 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 >
                   <!---->
                   <option
-                    value="root_preset__0"
+                    value="Default"
                   >
                     Default
                   </option>
                   <option
-                    value="root_preset__1"
+                    value="Manual"
                   >
                     Manual
                   </option>
@@ -2291,17 +2291,17 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 >
                   <!---->
                   <option
-                    value="root_format__0"
+                    value="HTML"
                   >
                     HTML
                   </option>
                   <option
-                    value="root_format__1"
+                    value="XLSX"
                   >
                     XLSX
                   </option>
                   <option
-                    value="root_format__2"
+                    value="ASCII"
                   >
                     ASCII
                   </option>
@@ -2682,12 +2682,12 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 >
                   <!---->
                   <option
-                    value="root_preset__0"
+                    value="Default"
                   >
                     Default
                   </option>
                   <option
-                    value="root_preset__1"
+                    value="Manual"
                   >
                     Manual
                   </option>
@@ -3465,17 +3465,17 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 >
                   <!---->
                   <option
-                    value="root_format__0"
+                    value="HTML"
                   >
                     HTML
                   </option>
                   <option
-                    value="root_format__1"
+                    value="XLSX"
                   >
                     XLSX
                   </option>
                   <option
-                    value="root_format__2"
+                    value="ASCII"
                   >
                     ASCII
                   </option>
@@ -7467,7 +7467,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__0"
+            value="foo"
           />
            
           <p>
@@ -7486,7 +7486,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__1"
+            value="bar"
           />
            
           <p>
@@ -7505,7 +7505,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__2"
+            value="fuzz"
           />
            
           <p>
@@ -7524,7 +7524,7 @@ exports[`widgets > checkboxes > snapshots > disabled 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__3"
+            value="qux"
           />
            
           <p>
@@ -7610,7 +7610,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__0"
+            value="foo"
           />
            
           <p>
@@ -7628,7 +7628,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__1"
+            value="bar"
           />
            
           <p>
@@ -7646,7 +7646,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__2"
+            value="fuzz"
           />
            
           <p>
@@ -7664,7 +7664,7 @@ exports[`widgets > checkboxes > snapshots > error 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__3"
+            value="qux"
           />
            
           <p>
@@ -7761,7 +7761,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__0"
+            value="foo"
           />
            
           <p>
@@ -7779,7 +7779,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__1"
+            value="bar"
           />
            
           <p>
@@ -7797,7 +7797,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__2"
+            value="fuzz"
           />
            
           <p>
@@ -7815,7 +7815,7 @@ exports[`widgets > checkboxes > snapshots > normal 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__3"
+            value="qux"
           />
            
           <p>
@@ -7901,7 +7901,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
             readonly=""
             required=""
             type="checkbox"
-            value="root__0"
+            value="foo"
           />
            
           <p>
@@ -7920,7 +7920,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
             readonly=""
             required=""
             type="checkbox"
-            value="root__1"
+            value="bar"
           />
            
           <p>
@@ -7939,7 +7939,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
             readonly=""
             required=""
             type="checkbox"
-            value="root__2"
+            value="fuzz"
           />
            
           <p>
@@ -7958,7 +7958,7 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
             readonly=""
             required=""
             type="checkbox"
-            value="root__3"
+            value="qux"
           />
            
           <p>
@@ -10583,22 +10583,22 @@ exports[`widgets > multiSelect > snapshots > disabled 1`] = `
           required=""
         >
           <option
-            value="root__0"
+            value="foo"
           >
             foo
           </option>
           <option
-            value="root__1"
+            value="bar"
           >
             bar
           </option>
           <option
-            value="root__2"
+            value="fuzz"
           >
             fuzz
           </option>
           <option
-            value="root__3"
+            value="qux"
           >
             qux
           </option>
@@ -10680,22 +10680,22 @@ exports[`widgets > multiSelect > snapshots > error 1`] = `
           required=""
         >
           <option
-            value="root__0"
+            value="foo"
           >
             foo
           </option>
           <option
-            value="root__1"
+            value="bar"
           >
             bar
           </option>
           <option
-            value="root__2"
+            value="fuzz"
           >
             fuzz
           </option>
           <option
-            value="root__3"
+            value="qux"
           >
             qux
           </option>
@@ -10788,22 +10788,22 @@ exports[`widgets > multiSelect > snapshots > normal 1`] = `
           required=""
         >
           <option
-            value="root__0"
+            value="foo"
           >
             foo
           </option>
           <option
-            value="root__1"
+            value="bar"
           >
             bar
           </option>
           <option
-            value="root__2"
+            value="fuzz"
           >
             fuzz
           </option>
           <option
-            value="root__3"
+            value="qux"
           >
             qux
           </option>
@@ -10884,22 +10884,22 @@ exports[`widgets > multiSelect > snapshots > readonly 1`] = `
           required=""
         >
           <option
-            value="root__0"
+            value="foo"
           >
             foo
           </option>
           <option
-            value="root__1"
+            value="bar"
           >
             bar
           </option>
           <option
-            value="root__2"
+            value="fuzz"
           >
             fuzz
           </option>
           <option
-            value="root__3"
+            value="qux"
           >
             qux
           </option>
@@ -11314,7 +11314,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__0"
+            value="foo"
           />
            
           <p>
@@ -11333,7 +11333,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__1"
+            value="bar"
           />
            
           <p>
@@ -11352,7 +11352,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__2"
+            value="fuzz"
           />
            
           <p>
@@ -11371,7 +11371,7 @@ exports[`widgets > radio > snapshots > disabled 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__3"
+            value="qux"
           />
            
           <p>
@@ -11457,7 +11457,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__0"
+            value="foo"
           />
            
           <p>
@@ -11475,7 +11475,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__1"
+            value="bar"
           />
            
           <p>
@@ -11493,7 +11493,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__2"
+            value="fuzz"
           />
            
           <p>
@@ -11511,7 +11511,7 @@ exports[`widgets > radio > snapshots > error 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__3"
+            value="qux"
           />
            
           <p>
@@ -11608,7 +11608,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__0"
+            value="foo"
           />
            
           <p>
@@ -11626,7 +11626,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__1"
+            value="bar"
           />
            
           <p>
@@ -11644,7 +11644,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__2"
+            value="fuzz"
           />
            
           <p>
@@ -11662,7 +11662,7 @@ exports[`widgets > radio > snapshots > normal 1`] = `
             name="root"
             required=""
             type="radio"
-            value="root__3"
+            value="qux"
           />
            
           <p>
@@ -11748,7 +11748,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
             readonly=""
             required=""
             type="radio"
-            value="root__0"
+            value="foo"
           />
            
           <p>
@@ -11767,7 +11767,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
             readonly=""
             required=""
             type="radio"
-            value="root__1"
+            value="bar"
           />
            
           <p>
@@ -11786,7 +11786,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
             readonly=""
             required=""
             type="radio"
-            value="root__2"
+            value="fuzz"
           />
            
           <p>
@@ -11805,7 +11805,7 @@ exports[`widgets > radio > snapshots > readonly 1`] = `
             readonly=""
             required=""
             type="radio"
-            value="root__3"
+            value="qux"
           />
            
           <p>
@@ -11912,8 +11912,8 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
             data-scope="radio-group"
             data-state="unchecked"
             data-testid="segment-item"
-            for="radio-group:c17:radio:input:root__0"
-            id="radio-group:c17:radio:root__0"
+            for="radio-group:c17:radio:input:foo"
+            id="radio-group:c17:radio:foo"
           >
             <span
               class="pointer-events-none transition-colors duration-100  "
@@ -11923,7 +11923,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               data-testid="segment-item-label"
-              id="radio-group:c17:radio:label:root__0"
+              id="radio-group:c17:radio:label:foo"
             >
               foo
               <!---->
@@ -11933,11 +11933,11 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
               data-ownedby="root"
               data-testid="segment-item-input"
               disabled=""
-              id="radio-group:c17:radio:input:root__0"
+              id="radio-group:c17:radio:input:foo"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
               type="radio"
-              value="root__0"
+              value="foo"
             />
           </label>
           
@@ -11950,8 +11950,8 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
             data-scope="radio-group"
             data-state="unchecked"
             data-testid="segment-item"
-            for="radio-group:c17:radio:input:root__1"
-            id="radio-group:c17:radio:root__1"
+            for="radio-group:c17:radio:input:bar"
+            id="radio-group:c17:radio:bar"
           >
             <span
               class="pointer-events-none transition-colors duration-100  "
@@ -11961,7 +11961,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               data-testid="segment-item-label"
-              id="radio-group:c17:radio:label:root__1"
+              id="radio-group:c17:radio:label:bar"
             >
               bar
               <!---->
@@ -11971,11 +11971,11 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
               data-ownedby="root"
               data-testid="segment-item-input"
               disabled=""
-              id="radio-group:c17:radio:input:root__1"
+              id="radio-group:c17:radio:input:bar"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
               type="radio"
-              value="root__1"
+              value="bar"
             />
           </label>
           
@@ -11988,8 +11988,8 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
             data-scope="radio-group"
             data-state="unchecked"
             data-testid="segment-item"
-            for="radio-group:c17:radio:input:root__2"
-            id="radio-group:c17:radio:root__2"
+            for="radio-group:c17:radio:input:fuzz"
+            id="radio-group:c17:radio:fuzz"
           >
             <span
               class="pointer-events-none transition-colors duration-100  "
@@ -11999,7 +11999,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               data-testid="segment-item-label"
-              id="radio-group:c17:radio:label:root__2"
+              id="radio-group:c17:radio:label:fuzz"
             >
               fuzz
               <!---->
@@ -12009,11 +12009,11 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
               data-ownedby="root"
               data-testid="segment-item-input"
               disabled=""
-              id="radio-group:c17:radio:input:root__2"
+              id="radio-group:c17:radio:input:fuzz"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
               type="radio"
-              value="root__2"
+              value="fuzz"
             />
           </label>
           
@@ -12026,8 +12026,8 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
             data-scope="radio-group"
             data-state="unchecked"
             data-testid="segment-item"
-            for="radio-group:c17:radio:input:root__3"
-            id="radio-group:c17:radio:root__3"
+            for="radio-group:c17:radio:input:qux"
+            id="radio-group:c17:radio:qux"
           >
             <span
               class="pointer-events-none transition-colors duration-100  "
@@ -12037,7 +12037,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               data-testid="segment-item-label"
-              id="radio-group:c17:radio:label:root__3"
+              id="radio-group:c17:radio:label:qux"
             >
               qux
               <!---->
@@ -12047,11 +12047,11 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
               data-ownedby="root"
               data-testid="segment-item-input"
               disabled=""
-              id="radio-group:c17:radio:input:root__3"
+              id="radio-group:c17:radio:input:qux"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
               type="radio"
-              value="root__3"
+              value="qux"
             />
           </label>
           
@@ -12155,8 +12155,8 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
             data-scope="radio-group"
             data-state="unchecked"
             data-testid="segment-item"
-            for="radio-group:c16:radio:input:root__0"
-            id="radio-group:c16:radio:root__0"
+            for="radio-group:c16:radio:input:foo"
+            id="radio-group:c16:radio:foo"
           >
             <span
               class="pointer-events-none transition-colors duration-100  "
@@ -12165,7 +12165,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               data-testid="segment-item-label"
-              id="radio-group:c16:radio:label:root__0"
+              id="radio-group:c16:radio:label:foo"
             >
               foo
               <!---->
@@ -12174,11 +12174,11 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
             <input
               data-ownedby="root"
               data-testid="segment-item-input"
-              id="radio-group:c16:radio:input:root__0"
+              id="radio-group:c16:radio:input:foo"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
               type="radio"
-              value="root__0"
+              value="foo"
             />
           </label>
           
@@ -12190,8 +12190,8 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
             data-scope="radio-group"
             data-state="unchecked"
             data-testid="segment-item"
-            for="radio-group:c16:radio:input:root__1"
-            id="radio-group:c16:radio:root__1"
+            for="radio-group:c16:radio:input:bar"
+            id="radio-group:c16:radio:bar"
           >
             <span
               class="pointer-events-none transition-colors duration-100  "
@@ -12200,7 +12200,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               data-testid="segment-item-label"
-              id="radio-group:c16:radio:label:root__1"
+              id="radio-group:c16:radio:label:bar"
             >
               bar
               <!---->
@@ -12209,11 +12209,11 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
             <input
               data-ownedby="root"
               data-testid="segment-item-input"
-              id="radio-group:c16:radio:input:root__1"
+              id="radio-group:c16:radio:input:bar"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
               type="radio"
-              value="root__1"
+              value="bar"
             />
           </label>
           
@@ -12225,8 +12225,8 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
             data-scope="radio-group"
             data-state="unchecked"
             data-testid="segment-item"
-            for="radio-group:c16:radio:input:root__2"
-            id="radio-group:c16:radio:root__2"
+            for="radio-group:c16:radio:input:fuzz"
+            id="radio-group:c16:radio:fuzz"
           >
             <span
               class="pointer-events-none transition-colors duration-100  "
@@ -12235,7 +12235,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               data-testid="segment-item-label"
-              id="radio-group:c16:radio:label:root__2"
+              id="radio-group:c16:radio:label:fuzz"
             >
               fuzz
               <!---->
@@ -12244,11 +12244,11 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
             <input
               data-ownedby="root"
               data-testid="segment-item-input"
-              id="radio-group:c16:radio:input:root__2"
+              id="radio-group:c16:radio:input:fuzz"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
               type="radio"
-              value="root__2"
+              value="fuzz"
             />
           </label>
           
@@ -12260,8 +12260,8 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
             data-scope="radio-group"
             data-state="unchecked"
             data-testid="segment-item"
-            for="radio-group:c16:radio:input:root__3"
-            id="radio-group:c16:radio:root__3"
+            for="radio-group:c16:radio:input:qux"
+            id="radio-group:c16:radio:qux"
           >
             <span
               class="pointer-events-none transition-colors duration-100  "
@@ -12270,7 +12270,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               data-testid="segment-item-label"
-              id="radio-group:c16:radio:label:root__3"
+              id="radio-group:c16:radio:label:qux"
             >
               qux
               <!---->
@@ -12279,11 +12279,11 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
             <input
               data-ownedby="root"
               data-testid="segment-item-input"
-              id="radio-group:c16:radio:input:root__3"
+              id="radio-group:c16:radio:input:qux"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
               type="radio"
-              value="root__3"
+              value="qux"
             />
           </label>
           
@@ -12398,8 +12398,8 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
             data-scope="radio-group"
             data-state="unchecked"
             data-testid="segment-item"
-            for="radio-group:c15:radio:input:root__0"
-            id="radio-group:c15:radio:root__0"
+            for="radio-group:c15:radio:input:foo"
+            id="radio-group:c15:radio:foo"
           >
             <span
               class="pointer-events-none transition-colors duration-100  "
@@ -12408,7 +12408,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               data-testid="segment-item-label"
-              id="radio-group:c15:radio:label:root__0"
+              id="radio-group:c15:radio:label:foo"
             >
               foo
               <!---->
@@ -12417,11 +12417,11 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
             <input
               data-ownedby="root"
               data-testid="segment-item-input"
-              id="radio-group:c15:radio:input:root__0"
+              id="radio-group:c15:radio:input:foo"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
               type="radio"
-              value="root__0"
+              value="foo"
             />
           </label>
           
@@ -12433,8 +12433,8 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
             data-scope="radio-group"
             data-state="unchecked"
             data-testid="segment-item"
-            for="radio-group:c15:radio:input:root__1"
-            id="radio-group:c15:radio:root__1"
+            for="radio-group:c15:radio:input:bar"
+            id="radio-group:c15:radio:bar"
           >
             <span
               class="pointer-events-none transition-colors duration-100  "
@@ -12443,7 +12443,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               data-testid="segment-item-label"
-              id="radio-group:c15:radio:label:root__1"
+              id="radio-group:c15:radio:label:bar"
             >
               bar
               <!---->
@@ -12452,11 +12452,11 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
             <input
               data-ownedby="root"
               data-testid="segment-item-input"
-              id="radio-group:c15:radio:input:root__1"
+              id="radio-group:c15:radio:input:bar"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
               type="radio"
-              value="root__1"
+              value="bar"
             />
           </label>
           
@@ -12468,8 +12468,8 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
             data-scope="radio-group"
             data-state="unchecked"
             data-testid="segment-item"
-            for="radio-group:c15:radio:input:root__2"
-            id="radio-group:c15:radio:root__2"
+            for="radio-group:c15:radio:input:fuzz"
+            id="radio-group:c15:radio:fuzz"
           >
             <span
               class="pointer-events-none transition-colors duration-100  "
@@ -12478,7 +12478,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               data-testid="segment-item-label"
-              id="radio-group:c15:radio:label:root__2"
+              id="radio-group:c15:radio:label:fuzz"
             >
               fuzz
               <!---->
@@ -12487,11 +12487,11 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
             <input
               data-ownedby="root"
               data-testid="segment-item-input"
-              id="radio-group:c15:radio:input:root__2"
+              id="radio-group:c15:radio:input:fuzz"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
               type="radio"
-              value="root__2"
+              value="fuzz"
             />
           </label>
           
@@ -12503,8 +12503,8 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
             data-scope="radio-group"
             data-state="unchecked"
             data-testid="segment-item"
-            for="radio-group:c15:radio:input:root__3"
-            id="radio-group:c15:radio:root__3"
+            for="radio-group:c15:radio:input:qux"
+            id="radio-group:c15:radio:qux"
           >
             <span
               class="pointer-events-none transition-colors duration-100  "
@@ -12513,7 +12513,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               data-testid="segment-item-label"
-              id="radio-group:c15:radio:label:root__3"
+              id="radio-group:c15:radio:label:qux"
             >
               qux
               <!---->
@@ -12522,11 +12522,11 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
             <input
               data-ownedby="root"
               data-testid="segment-item-input"
-              id="radio-group:c15:radio:input:root__3"
+              id="radio-group:c15:radio:input:qux"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
               type="radio"
-              value="root__3"
+              value="qux"
             />
           </label>
           
@@ -12630,8 +12630,8 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             data-scope="radio-group"
             data-state="unchecked"
             data-testid="segment-item"
-            for="radio-group:c18:radio:input:root__0"
-            id="radio-group:c18:radio:root__0"
+            for="radio-group:c18:radio:input:foo"
+            id="radio-group:c18:radio:foo"
           >
             <span
               class="pointer-events-none transition-colors duration-100  "
@@ -12641,7 +12641,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               data-testid="segment-item-label"
-              id="radio-group:c18:radio:label:root__0"
+              id="radio-group:c18:radio:label:foo"
             >
               foo
               <!---->
@@ -12650,11 +12650,11 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             <input
               data-ownedby="root"
               data-testid="segment-item-input"
-              id="radio-group:c18:radio:input:root__0"
+              id="radio-group:c18:radio:input:foo"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
               type="radio"
-              value="root__0"
+              value="foo"
             />
           </label>
           
@@ -12667,8 +12667,8 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             data-scope="radio-group"
             data-state="unchecked"
             data-testid="segment-item"
-            for="radio-group:c18:radio:input:root__1"
-            id="radio-group:c18:radio:root__1"
+            for="radio-group:c18:radio:input:bar"
+            id="radio-group:c18:radio:bar"
           >
             <span
               class="pointer-events-none transition-colors duration-100  "
@@ -12678,7 +12678,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               data-testid="segment-item-label"
-              id="radio-group:c18:radio:label:root__1"
+              id="radio-group:c18:radio:label:bar"
             >
               bar
               <!---->
@@ -12687,11 +12687,11 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             <input
               data-ownedby="root"
               data-testid="segment-item-input"
-              id="radio-group:c18:radio:input:root__1"
+              id="radio-group:c18:radio:input:bar"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
               type="radio"
-              value="root__1"
+              value="bar"
             />
           </label>
           
@@ -12704,8 +12704,8 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             data-scope="radio-group"
             data-state="unchecked"
             data-testid="segment-item"
-            for="radio-group:c18:radio:input:root__2"
-            id="radio-group:c18:radio:root__2"
+            for="radio-group:c18:radio:input:fuzz"
+            id="radio-group:c18:radio:fuzz"
           >
             <span
               class="pointer-events-none transition-colors duration-100  "
@@ -12715,7 +12715,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               data-testid="segment-item-label"
-              id="radio-group:c18:radio:label:root__2"
+              id="radio-group:c18:radio:label:fuzz"
             >
               fuzz
               <!---->
@@ -12724,11 +12724,11 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             <input
               data-ownedby="root"
               data-testid="segment-item-input"
-              id="radio-group:c18:radio:input:root__2"
+              id="radio-group:c18:radio:input:fuzz"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
               type="radio"
-              value="root__2"
+              value="fuzz"
             />
           </label>
           
@@ -12741,8 +12741,8 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             data-scope="radio-group"
             data-state="unchecked"
             data-testid="segment-item"
-            for="radio-group:c18:radio:input:root__3"
-            id="radio-group:c18:radio:root__3"
+            for="radio-group:c18:radio:input:qux"
+            id="radio-group:c18:radio:qux"
           >
             <span
               class="pointer-events-none transition-colors duration-100  "
@@ -12752,7 +12752,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               data-testid="segment-item-label"
-              id="radio-group:c18:radio:label:root__3"
+              id="radio-group:c18:radio:label:qux"
             >
               qux
               <!---->
@@ -12761,11 +12761,11 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             <input
               data-ownedby="root"
               data-testid="segment-item-input"
-              id="radio-group:c18:radio:input:root__3"
+              id="radio-group:c18:radio:input:qux"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
               type="radio"
-              value="root__3"
+              value="qux"
             />
           </label>
           
@@ -14363,22 +14363,22 @@ exports[`widgets > select > snapshots > disabled 1`] = `
           </option>
           <!---->
           <option
-            value="root__0"
+            value="foo"
           >
             foo
           </option>
           <option
-            value="root__1"
+            value="bar"
           >
             bar
           </option>
           <option
-            value="root__2"
+            value="fuzz"
           >
             fuzz
           </option>
           <option
-            value="root__3"
+            value="qux"
           >
             qux
           </option>
@@ -14465,22 +14465,22 @@ exports[`widgets > select > snapshots > error 1`] = `
           </option>
           <!---->
           <option
-            value="root__0"
+            value="foo"
           >
             foo
           </option>
           <option
-            value="root__1"
+            value="bar"
           >
             bar
           </option>
           <option
-            value="root__2"
+            value="fuzz"
           >
             fuzz
           </option>
           <option
-            value="root__3"
+            value="qux"
           >
             qux
           </option>
@@ -14578,22 +14578,22 @@ exports[`widgets > select > snapshots > normal 1`] = `
           </option>
           <!---->
           <option
-            value="root__0"
+            value="foo"
           >
             foo
           </option>
           <option
-            value="root__1"
+            value="bar"
           >
             bar
           </option>
           <option
-            value="root__2"
+            value="fuzz"
           >
             fuzz
           </option>
           <option
-            value="root__3"
+            value="qux"
           >
             qux
           </option>
@@ -14679,22 +14679,22 @@ exports[`widgets > select > snapshots > readonly 1`] = `
           </option>
           <!---->
           <option
-            value="root__0"
+            value="foo"
           >
             foo
           </option>
           <option
-            value="root__1"
+            value="bar"
           >
             bar
           </option>
           <option
-            value="root__2"
+            value="fuzz"
           >
             fuzz
           </option>
           <option
-            value="root__3"
+            value="qux"
           >
             qux
           </option>
@@ -17559,7 +17559,7 @@ exports[`with title and description > checkboxes 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__0"
+            value="a"
           />
            
           <p>
@@ -17577,7 +17577,7 @@ exports[`with title and description > checkboxes 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__1"
+            value="b"
           />
            
           <p>
@@ -17595,7 +17595,7 @@ exports[`with title and description > checkboxes 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__2"
+            value="c"
           />
            
           <p>
@@ -18600,7 +18600,7 @@ exports[`with title and description from both > checkboxes 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__0"
+            value="a"
           />
            
           <p>
@@ -18618,7 +18618,7 @@ exports[`with title and description from both > checkboxes 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__1"
+            value="b"
           />
            
           <p>
@@ -18636,7 +18636,7 @@ exports[`with title and description from both > checkboxes 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__2"
+            value="c"
           />
            
           <p>
@@ -19641,7 +19641,7 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__0"
+            value="a"
           />
            
           <p>
@@ -19659,7 +19659,7 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__1"
+            value="b"
           />
            
           <p>
@@ -19677,7 +19677,7 @@ exports[`with title and description from uiSchema > checkboxes 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__2"
+            value="c"
           />
            
           <p>
@@ -20489,7 +20489,7 @@ exports[`with title and description with global label off > checkboxes 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__0"
+            value="a"
           />
            
           <p>
@@ -20507,7 +20507,7 @@ exports[`with title and description with global label off > checkboxes 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__1"
+            value="b"
           />
            
           <p>
@@ -20525,7 +20525,7 @@ exports[`with title and description with global label off > checkboxes 1`] = `
             name="root"
             required=""
             type="checkbox"
-            value="root__2"
+            value="c"
           />
            
           <p>
