@@ -40,7 +40,7 @@ export type SubSchemas = Trie<Path[number], SchemaMeta>;
 /** @deprecated */
 export const DEFAULT_AUGMENT_SUFFIX = "ag";
 
-export const DEFAULT_CONDITION_SUFFIX = "cond";
+const DEFAULT_CONDITION_SUFFIX = "cond";
 
 export function createIdFactory() {
   let id = 0;
