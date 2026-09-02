@@ -4,6 +4,7 @@ import {
   type SchemaArrayValue,
   type SchemaValue,
 } from "@/core/index.js";
+import type { FormEnumOption } from "@/form/model.js";
 import { isObject } from "@/lib/object.js";
 import type { Ref } from "@/lib/svelte.svelte.js";
 
@@ -20,10 +21,6 @@ export interface EnumValueMapperBuilder {
 }
 
 export const EMPTY_VALUE = "";
-
-// TODO: Remove in v4
-/** @deprecated use `EMPTY_VALUE` instead */
-export const UNDEFINED_ID = EMPTY_VALUE;
 
 abstract class AbstractValueMapperBuilder implements EnumValueMapperBuilder {
   #strToValue = new Map<string, SchemaValue>();
@@ -76,20 +73,18 @@ export class StringEnumValueMapperBuilder extends AbstractValueMapperBuilder {
   }
 }
 
-// TODO: Remove in v4
-/** @deprecated */
-export function idMapper(options: EnumOption<SchemaValue>[]): EnumValueMapper {
-  const builder = new IdEnumValueMapperBuilder();
-  for (const o of options) {
-    builder.push(o);
-  }
-  return builder.build();
+export function createMappedOption(
+  builder: EnumValueMapperBuilder,
+  option: EnumOption<SchemaValue>
+): FormEnumOption {
+  const mappedValue = builder.push(option);
+  return { ...option, mappedValue };
 }
 
-// TODO: Remove in v4
-interface OptionValue<V> {
-  /** @deprecated use `current` instead */
-  value: V;
+export function resolveEnumValueMapperBuilder(
+  factory?: () => EnumValueMapperBuilder
+): EnumValueMapperBuilder {
+  return factory?.() ?? new StringEnumValueMapperBuilder();
 }
 
 export function singleOption<V>({
@@ -100,16 +95,10 @@ export function singleOption<V>({
   mapper: () => OptionsMapper<V>;
   value: () => SchemaValue | undefined;
   update: (value: SchemaValue | undefined) => void;
-}): OptionValue<V> & Ref<V> {
+}): Ref<V> {
   const m = $derived(mapper());
   const val = $derived(m.fromValue(value()));
   return {
-    get value() {
-      return val;
-    },
-    set value(v) {
-      update(m.toValue(v));
-    },
     get current() {
       return val;
     },
@@ -140,16 +129,10 @@ export function multipleOptions<V>({
   value: () => SchemaArrayValue | undefined;
   update: (value: SchemaArrayValue) => void;
   emptyValue?: V;
-}): OptionValue<V[]> & Ref<V[]> {
+}): Ref<V[]> {
   const m = $derived(mapper());
   const val = $derived(mapAndExclude(value() ?? [], m.fromValue, emptyValue));
   return {
-    get value() {
-      return val;
-    },
-    set value(v) {
-      update(mapAndExclude(v, m.toValue, undefined));
-    },
     get current() {
       return val;
     },

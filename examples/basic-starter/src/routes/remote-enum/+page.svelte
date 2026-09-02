@@ -23,7 +23,6 @@
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
   import * as defaults from "$lib/sjsf/defaults";
 
@@ -66,7 +65,6 @@
     },
     "ui:options": {
       enumOptionsQuery: "foo",
-      enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
     },
   };
 

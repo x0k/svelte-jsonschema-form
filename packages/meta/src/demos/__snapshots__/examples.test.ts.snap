@@ -30390,11 +30390,14 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts" module>
-  import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type {
+    SingleSelectOptions,
+    WidgetCommonProps,
+  } from "@sjsf/form/fields/widgets";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
-      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options;
+      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
     }
     interface ComponentBindings {
       myDynamicEnumWidget: "value";
@@ -30509,7 +30512,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 ",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -30589,7 +30592,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -30719,11 +30722,14 @@ export { createFormValidator as validator } from '@sjsf/ata-validator';",
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts" module>
-  import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type {
+    SingleSelectOptions,
+    WidgetCommonProps,
+  } from "@sjsf/form/fields/widgets";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
-      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options;
+      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
     }
     interface ComponentBindings {
       myDynamicEnumWidget: "value";
@@ -30838,7 +30844,7 @@ export { createFormValidator as validator } from '@sjsf/ata-validator';",
 ",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -30918,7 +30924,7 @@ export { createFormValidator as validator } from '@sjsf/ata-validator';",
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -31048,11 +31054,14 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts" module>
-  import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type {
+    SingleSelectOptions,
+    WidgetCommonProps,
+  } from "@sjsf/form/fields/widgets";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
-      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options;
+      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
     }
     interface ComponentBindings {
       myDynamicEnumWidget: "value";
@@ -31167,7 +31176,7 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
 ",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -31247,7 +31256,7 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -31375,11 +31384,14 @@ export { createFormValidator as validator } from '@sjsf/form/validators/noop';",
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts" module>
-  import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type {
+    SingleSelectOptions,
+    WidgetCommonProps,
+  } from "@sjsf/form/fields/widgets";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
-      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options;
+      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
     }
     interface ComponentBindings {
       myDynamicEnumWidget: "value";
@@ -31494,7 +31506,7 @@ export { createFormValidator as validator } from '@sjsf/form/validators/noop';",
 ",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -31574,7 +31586,7 @@ export { createFormValidator as validator } from '@sjsf/form/validators/noop';",
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -31704,11 +31716,14 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts" module>
-  import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type {
+    SingleSelectOptions,
+    WidgetCommonProps,
+  } from "@sjsf/form/fields/widgets";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
-      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options;
+      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
     }
     interface ComponentBindings {
       myDynamicEnumWidget: "value";
@@ -31823,7 +31838,7 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
 ",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -31903,7 +31918,7 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -32031,11 +32046,11 @@ export const onSubmitError = createFocusOnFirstError();",
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts" module>
-	import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+	import type { SingleSelectOptions, WidgetCommonProps } from "@sjsf/form/fields/widgets";
 
 	declare module "@sjsf/form" {
 		interface ComponentProps {
-			myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options
+			myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions
 		}
 
 		interface ComponentBindings { myDynamicEnumWidget: "value" }
@@ -32149,7 +32164,7 @@ export const onSubmitError = createFocusOnFirstError();",
 <pre><code>{JSON.stringify(getValueSnapshot(form), null, 2)}</code></pre>",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -32229,7 +32244,7 @@ export const onSubmitError = createFocusOnFirstError();",
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -32358,11 +32373,11 @@ export const onSubmitError = createFocusOnFirstError();",
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts" module>
-	import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+	import type { SingleSelectOptions, WidgetCommonProps } from "@sjsf/form/fields/widgets";
 
 	declare module "@sjsf/form" {
 		interface ComponentProps {
-			myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options
+			myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions
 		}
 
 		interface ComponentBindings { myDynamicEnumWidget: "value" }
@@ -32453,7 +32468,7 @@ export const onSubmitError = createFocusOnFirstError();",
 <pre><code>{JSON.stringify(getValueSnapshot(form), null, 2)}</code></pre>",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -32533,7 +32548,7 @@ export const onSubmitError = createFocusOnFirstError();",
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -32661,11 +32676,11 @@ export const onSubmitError = createFocusOnFirstError();",
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts" module>
-	import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+	import type { SingleSelectOptions, WidgetCommonProps } from "@sjsf/form/fields/widgets";
 
 	declare module "@sjsf/form" {
 		interface ComponentProps {
-			myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options
+			myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions
 		}
 
 		interface ComponentBindings { myDynamicEnumWidget: "value" }
@@ -32756,7 +32771,7 @@ export const onSubmitError = createFocusOnFirstError();",
 <pre><code>{JSON.stringify(getValueSnapshot(form), null, 2)}</code></pre>",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -32836,7 +32851,7 @@ export const onSubmitError = createFocusOnFirstError();",
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -32977,11 +32992,14 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
-  import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type {
+    SingleSelectOptions,
+    WidgetCommonProps,
+  } from "@sjsf/form/fields/widgets";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
-      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options;
+      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
     }
     interface ComponentBindings {
       myDynamicEnumWidget: "value";
@@ -33095,7 +33113,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 <pre><code>{JSON.stringify(getValueSnapshot(form), null, 2)}</code></pre>
 ",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -33175,7 +33193,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -33325,11 +33343,14 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
-  import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type {
+    SingleSelectOptions,
+    WidgetCommonProps,
+  } from "@sjsf/form/fields/widgets";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
-      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options;
+      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
     }
     interface ComponentBindings {
       myDynamicEnumWidget: "value";
@@ -33446,7 +33467,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 @import "@sjsf/daisyui5-theme/styles.css";
 @plugin "daisyui";",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -33526,7 +33547,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -33677,11 +33698,14 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
-  import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type {
+    SingleSelectOptions,
+    WidgetCommonProps,
+  } from "@sjsf/form/fields/widgets";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
-      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options;
+      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
     }
     interface ComponentBindings {
       myDynamicEnumWidget: "value";
@@ -33822,7 +33846,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   --color-secondary-900: #0c4a6e;
 };",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -33902,7 +33926,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -34045,11 +34069,14 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
-  import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type {
+    SingleSelectOptions,
+    WidgetCommonProps,
+  } from "@sjsf/form/fields/widgets";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
-      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options;
+      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
     }
     interface ComponentBindings {
       myDynamicEnumWidget: "value";
@@ -34165,7 +34192,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   "src/routes/layout.css": "@import "@picocss/pico/css/pico.css";
 @import "@sjsf/basic-theme/css/pico.css";",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -34245,7 +34272,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -34481,11 +34508,14 @@ export function setShadcnThemeContext() {
 
 <div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
-  import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type {
+    SingleSelectOptions,
+    WidgetCommonProps,
+  } from "@sjsf/form/fields/widgets";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
-      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options;
+      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
     }
     interface ComponentBindings {
       myDynamicEnumWidget: "value";
@@ -34719,7 +34749,7 @@ export function setShadcnThemeContext() {
   }
 };",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -34799,7 +34829,7 @@ export function setShadcnThemeContext() {
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -35022,11 +35052,14 @@ export function setShadcnThemeContext() {
 
 <div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
-  import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type {
+    SingleSelectOptions,
+    WidgetCommonProps,
+  } from "@sjsf/form/fields/widgets";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
-      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options;
+      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
     }
     interface ComponentBindings {
       myDynamicEnumWidget: "value";
@@ -35259,7 +35292,7 @@ export function setShadcnThemeContext() {
   }
 };",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -35339,7 +35372,7 @@ export function setShadcnThemeContext() {
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -35496,11 +35529,14 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts" module>
-  import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type {
+    SingleSelectOptions,
+    WidgetCommonProps,
+  } from "@sjsf/form/fields/widgets";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
-      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options;
+      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
     }
     interface ComponentBindings {
       myDynamicEnumWidget: "value";
@@ -35617,7 +35653,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 @import "@sjsf/skeleton4-theme/styles.css";
 @plugin '@tailwindcss/forms';",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -35697,7 +35733,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -35858,11 +35894,14 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts" module>
-  import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type {
+    SingleSelectOptions,
+    WidgetCommonProps,
+  } from "@sjsf/form/fields/widgets";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
-      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options;
+      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
     }
     interface ComponentBindings {
       myDynamicEnumWidget: "value";
@@ -35982,7 +36021,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 @import "@skeletonlabs/skeleton-svelte";
 @import "@skeletonlabs/skeleton/themes/cerberus";",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -36062,7 +36101,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -36210,11 +36249,14 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <Willow>{@render children()}</Willow>",
   "src/routes/+page.svelte": "<script lang="ts" module>
-  import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+  import type {
+    SingleSelectOptions,
+    WidgetCommonProps,
+  } from "@sjsf/form/fields/widgets";
 
   declare module "@sjsf/form" {
     interface ComponentProps {
-      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & Options;
+      myDynamicEnumWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
     }
     interface ComponentBindings {
       myDynamicEnumWidget: "value";
@@ -36328,7 +36370,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 <pre><code>{JSON.stringify(getValueSnapshot(form), null, 2)}</code></pre>
 ",
   "src/routes/radio-with-other.svelte": "<script lang="ts" module>
-  import type { Schema, SchemaValue } from "@sjsf/form";
+  import type { SchemaValue } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
   import type { HTMLInputAttributes } from "svelte/elements";
 
@@ -36408,7 +36450,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   <label>
     <input
       bind:group={mapped.current}
-      value={option.mappedValue ?? option.id}
+      value={option.mappedValue}
       {...attributes}
       id={option.id}
       disabled={option.disabled || attributes.disabled}
@@ -103850,7 +103892,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
   import * as defaults from "$lib/sjsf/defaults";
 
@@ -103893,7 +103934,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     },
     "ui:options": {
       enumOptionsQuery: "foo",
-      enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
     },
   };
 
@@ -103934,15 +103974,16 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -103981,7 +104022,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
@@ -104332,7 +104373,6 @@ export { createFormValidator as validator } from '@sjsf/ata-validator';",
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
   import * as defaults from "$lib/sjsf/defaults";
 
@@ -104375,7 +104415,6 @@ export { createFormValidator as validator } from '@sjsf/ata-validator';",
     },
     "ui:options": {
       enumOptionsQuery: "foo",
-      enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
     },
   };
 
@@ -104416,15 +104455,16 @@ export { createFormValidator as validator } from '@sjsf/ata-validator';",
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -104463,7 +104503,7 @@ export { createFormValidator as validator } from '@sjsf/ata-validator';",
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
@@ -104814,7 +104854,6 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
   import * as defaults from "$lib/sjsf/defaults";
 
@@ -104857,7 +104896,6 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
     },
     "ui:options": {
       enumOptionsQuery: "foo",
-      enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
     },
   };
 
@@ -104898,15 +104936,16 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -104945,7 +104984,7 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
@@ -105294,7 +105333,6 @@ export { createFormValidator as validator } from '@sjsf/form/validators/noop';",
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
   import * as defaults from "$lib/sjsf/defaults";
 
@@ -105337,7 +105375,6 @@ export { createFormValidator as validator } from '@sjsf/form/validators/noop';",
     },
     "ui:options": {
       enumOptionsQuery: "foo",
-      enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
     },
   };
 
@@ -105378,15 +105415,16 @@ export { createFormValidator as validator } from '@sjsf/form/validators/noop';",
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -105425,7 +105463,7 @@ export { createFormValidator as validator } from '@sjsf/form/validators/noop';",
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
@@ -105776,7 +105814,6 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
   import * as defaults from "$lib/sjsf/defaults";
 
@@ -105819,7 +105856,6 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
     },
     "ui:options": {
       enumOptionsQuery: "foo",
-      enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
     },
   };
 
@@ -105860,15 +105896,16 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -105907,7 +105944,7 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
@@ -106257,7 +106294,6 @@ export const onSubmitError = createFocusOnFirstError();",
 	import remoteEnumField, { setEnumOptionsQueriesContext, type EnumOptionsQueries } from "@sjsf/form/fields/extra/remote-enum.svelte";
 	import { extendByRecord } from "@sjsf/form/lib/resolver";
 	import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-	import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 	import * as defaults from "$lib/sjsf/defaults";
 	import comboboxWidget from "./combobox.svelte";
 	import { COUNTRIES } from "./countries";
@@ -106306,10 +106342,7 @@ export const onSubmitError = createFocusOnFirstError();",
 			stringField: "remoteEnumField",
 			selectWidget: "comboboxWidget"
 		},
-		"ui:options": {
-			enumOptionsQuery: "foo",
-			enumValueMapperBuilder: () => new StringEnumValueMapperBuilder()
-		}
+		"ui:options": { enumOptionsQuery: "foo" }
 	};
 
 	const form = createForm({
@@ -106344,15 +106377,16 @@ export const onSubmitError = createFocusOnFirstError();",
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -106391,7 +106425,7 @@ export const onSubmitError = createFocusOnFirstError();",
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
@@ -106742,7 +106776,6 @@ export const onSubmitError = createFocusOnFirstError();",
 	import remoteEnumField, { setEnumOptionsQueriesContext, type EnumOptionsQueries } from "@sjsf/form/fields/extra/remote-enum.svelte";
 	import { extendByRecord } from "@sjsf/form/lib/resolver";
 	import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-	import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 	import * as defaults from "$lib/sjsf/defaults";
 	import comboboxWidget from "./combobox.svelte";
 	import { COUNTRIES } from "./countries";
@@ -106772,10 +106805,7 @@ export const onSubmitError = createFocusOnFirstError();",
 			stringField: "remoteEnumField",
 			selectWidget: "comboboxWidget"
 		},
-		"ui:options": {
-			enumOptionsQuery: "foo",
-			enumValueMapperBuilder: () => new StringEnumValueMapperBuilder()
-		}
+		"ui:options": { enumOptionsQuery: "foo" }
 	};
 
 	const form = createForm({
@@ -106810,15 +106840,16 @@ export const onSubmitError = createFocusOnFirstError();",
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -106857,7 +106888,7 @@ export const onSubmitError = createFocusOnFirstError();",
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
@@ -107207,7 +107238,6 @@ export const onSubmitError = createFocusOnFirstError();",
 	import remoteEnumField, { setEnumOptionsQueriesContext, type EnumOptionsQueries } from "@sjsf/form/fields/extra/remote-enum.svelte";
 	import { extendByRecord } from "@sjsf/form/lib/resolver";
 	import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-	import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 	import * as defaults from "$lib/sjsf/defaults";
 	import comboboxWidget from "./combobox.svelte";
 	import { COUNTRIES } from "./countries";
@@ -107237,10 +107267,7 @@ export const onSubmitError = createFocusOnFirstError();",
 			stringField: "remoteEnumField",
 			selectWidget: "comboboxWidget"
 		},
-		"ui:options": {
-			enumOptionsQuery: "foo",
-			enumValueMapperBuilder: () => new StringEnumValueMapperBuilder()
-		}
+		"ui:options": { enumOptionsQuery: "foo" }
 	};
 
 	const form = createForm({
@@ -107275,15 +107302,16 @@ export const onSubmitError = createFocusOnFirstError();",
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -107322,7 +107350,7 @@ export const onSubmitError = createFocusOnFirstError();",
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
@@ -107684,7 +107712,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
   import * as defaults from "$lib/sjsf/defaults";
 
@@ -107727,7 +107754,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     },
     "ui:options": {
       enumOptionsQuery: "foo",
-      enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
     },
   };
 
@@ -107768,15 +107794,16 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -107815,7 +107842,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
@@ -108185,7 +108212,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
   import * as defaults from "$lib/sjsf/defaults";
 
@@ -108228,7 +108254,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     },
     "ui:options": {
       enumOptionsQuery: "foo",
-      enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
     },
   };
 
@@ -108269,15 +108294,16 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -108316,7 +108342,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
@@ -108690,7 +108716,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
   import * as defaults from "$lib/sjsf/defaults";
 
@@ -108733,7 +108758,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     },
     "ui:options": {
       enumOptionsQuery: "foo",
-      enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
     },
   };
 
@@ -108774,15 +108798,16 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -108821,7 +108846,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
@@ -109211,7 +109236,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
   import * as defaults from "$lib/sjsf/defaults";
 
@@ -109254,7 +109278,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     },
     "ui:options": {
       enumOptionsQuery: "foo",
-      enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
     },
   };
 
@@ -109295,15 +109318,16 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -109342,7 +109366,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
@@ -109800,7 +109824,6 @@ export function setShadcnThemeContext() {
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
   import * as defaults from "$lib/sjsf/defaults";
 
@@ -109843,7 +109866,6 @@ export function setShadcnThemeContext() {
     },
     "ui:options": {
       enumOptionsQuery: "foo",
-      enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
     },
   };
 
@@ -109884,15 +109906,16 @@ export function setShadcnThemeContext() {
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -109931,7 +109954,7 @@ export function setShadcnThemeContext() {
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
@@ -110494,7 +110517,6 @@ export function setShadcnThemeContext() {
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
   import * as defaults from "$lib/sjsf/defaults";
 
@@ -110537,7 +110559,6 @@ export function setShadcnThemeContext() {
     },
     "ui:options": {
       enumOptionsQuery: "foo",
-      enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
     },
   };
 
@@ -110578,15 +110599,16 @@ export function setShadcnThemeContext() {
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -110625,7 +110647,7 @@ export function setShadcnThemeContext() {
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
@@ -111121,7 +111143,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
   import * as defaults from "$lib/sjsf/defaults";
 
@@ -111164,7 +111185,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     },
     "ui:options": {
       enumOptionsQuery: "foo",
-      enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
     },
   };
 
@@ -111205,15 +111225,16 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -111252,7 +111273,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
@@ -111636,7 +111657,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
   import * as defaults from "$lib/sjsf/defaults";
 
@@ -111679,7 +111699,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     },
     "ui:options": {
       enumOptionsQuery: "foo",
-      enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
     },
   };
 
@@ -111720,15 +111739,16 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -111767,7 +111787,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button
@@ -112141,7 +112161,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
-  import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
   import * as defaults from "$lib/sjsf/defaults";
 
@@ -112184,7 +112203,6 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     },
     "ui:options": {
       enumOptionsQuery: "foo",
-      enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
     },
   };
 
@@ -112225,15 +112243,16 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     getEnumOptionsQueriesContext,
     getEnumOptionsQuery,
   } from "@sjsf/form/fields/extra/remote-enum.svelte";
-  import { idMapper, singleOption } from "@sjsf/form/options.svelte";
+  import { singleOption } from "@sjsf/form/options.svelte";
 
   let {
     value = $bindable(),
     config,
     options,
+    mapper,
     handlers,
     mapped = singleOption({
-      mapper: () => idMapper(options),
+      mapper: () => mapper,
       value: () => value,
       update: (v) => (value = v),
     }),
@@ -112272,7 +112291,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
         <button
           type="button"
           onclick={() => {
-            // mapped.current = option.mappedValue ?? option.id
+            // mapped.current = option.mappedValue
             // is equivalent to
             value = structuredClone(option.value);
           }}>{option.label}</button

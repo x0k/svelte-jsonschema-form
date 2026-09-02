@@ -12,11 +12,10 @@ import {
   type UiOption,
   type FormState,
   getPseudoId,
-  type FormEnumOption,
 } from "@/form/index.js";
 import {
-  IdEnumValueMapperBuilder,
-  type EnumValueMapperBuilder,
+  createMappedOption,
+  resolveEnumValueMapperBuilder,
 } from "@/options.svelte.js";
 
 function getAltSchemas(
@@ -28,36 +27,35 @@ function getAltSchemas(
     : [schema.oneOf, uiSchema.oneOf];
 }
 
-// TODO: Inline in v4
-/** @deprecated use `createFormOptions` instead  */
-export function createOptions<T>(
+export function createFormOptions<T>(
   ctx: FormState<T>,
   config: Config,
   uiOption: UiOption,
-  schema: Schema,
-  builder: EnumValueMapperBuilder = uiOption("enumValueMapperBuilder")?.() ??
-    new IdEnumValueMapperBuilder()
-): FormEnumOption[] | undefined {
-  const enumValues = schema.enum;
+  schema: Schema
+) {
+  const builder = resolveEnumValueMapperBuilder(
+    uiOption("enumValueMapperBuilder")
+  );
   const disabledValues = new Set(uiOption("disabledEnumValues"));
+
+  const enumValues = schema.enum;
   if (enumValues) {
     const enumNames = uiOption("enumNames");
-    return enumValues.map((value, index) => {
+    const options = enumValues.map((value, index) => {
       const label = enumNames?.[index] ?? schemaValueToString(value);
-      const option: FormEnumOption = {
+      return createMappedOption(builder, {
         id: getPseudoId(ctx, config.path, index),
         label,
         value,
         disabled: disabledValues.has(value),
-      };
-      option.mappedValue = builder.push(option);
-      return option;
+      });
     });
+    return { options, mapper: builder.build() };
   }
+
   const [altSchemas, altUiSchemas] = getAltSchemas(schema, config.uiSchema);
-  return (
-    altSchemas &&
-    altSchemas.map((altSchemaDef, index) => {
+  const options =
+    altSchemas?.map((altSchemaDef, index) => {
       if (typeof altSchemaDef === "boolean") {
         throw new Error(`Invalid enum definition in anyOf ${index}`);
       }
@@ -66,28 +64,14 @@ export function createOptions<T>(
         retrieveUiSchema(ctx, altUiSchemas?.[index])["ui:options"]?.title ??
         altSchemaDef.title ??
         schemaValueToString(value);
-      const option: FormEnumOption = {
+      return createMappedOption(builder, {
         id: getPseudoId(ctx, config.path, index),
         schema: altSchemaDef,
         label,
         value,
         disabled: disabledValues.has(value),
-      };
-      option.mappedValue = builder.push(option);
-      return option;
-    })
-  );
-}
+      });
+    }) ?? [];
 
-export function createFormOptions<T>(
-  ctx: FormState<T>,
-  config: Config,
-  uiOption: UiOption,
-  schema: Schema
-) {
-  const builder =
-    uiOption("enumValueMapperBuilder")?.() ?? new IdEnumValueMapperBuilder();
-  // eslint-disable-next-line @typescript-eslint/no-deprecated
-  const options = createOptions(ctx, config, uiOption, schema, builder) ?? [];
   return { options, mapper: builder.build() };
 }

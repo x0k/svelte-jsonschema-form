@@ -29,6 +29,7 @@
     ctx,
     config: () => config,
     value: () => value,
+    setValue: (v) => (value = v),
     keyedArray: createKeyedArrayDeriver(
       ctx,
       () => value,

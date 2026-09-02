@@ -99,6 +99,7 @@ function detectCustomComponentsAndFields(
   usesTransparentLayout: boolean;
   usesMarkdownDescription: boolean;
   usesStringEnumMapper: boolean;
+  usesIdEnumMapper: boolean;
   extraWidgets: ExtraWidgetFileNames[Theme][];
   extraFields: ExtraFieldFileName[];
 } {
@@ -108,6 +109,7 @@ function detectCustomComponentsAndFields(
   let usesTransparentLayout = false;
   let usesMarkdownDescription = false;
   let usesStringEnumMapper = false;
+  let usesIdEnumMapper = false;
 
   // Build reverse map: widget type name → file name for this theme
   const widgetTypeToFile = new Map<string, string>();
@@ -152,12 +154,16 @@ function detectCustomComponentsAndFields(
     if (options?.enumValueMapperBuilder === "registry:stringEnumValueMapper") {
       usesStringEnumMapper = true;
     }
+    if (options?.enumValueMapperBuilder === "registry:idEnumValueMapper") {
+      usesIdEnumMapper = true;
+    }
   });
 
   return {
     usesTransparentLayout,
     usesMarkdownDescription,
     usesStringEnumMapper,
+    usesIdEnumMapper,
     extraWidgets: [
       ...extraWidgetFileNames,
     ] as ExtraWidgetFileNames[typeof actualTheme][],
@@ -187,6 +193,7 @@ export async function createSandboxFiles({
     usesTransparentLayout,
     usesMarkdownDescription,
     usesStringEnumMapper,
+    usesIdEnumMapper,
     extraWidgets,
     extraFields,
   } = detectCustomComponentsAndFields(uiSchema, formState.theme);
@@ -215,6 +222,12 @@ export async function createSandboxFiles({
   if (usesStringEnumMapper) {
     moduleAugmentation.uiOptionsRegistry = {
       stringEnumValueMapper: "EnumValueMapperBuilder",
+    };
+  }
+  if (usesIdEnumMapper) {
+    moduleAugmentation.uiOptionsRegistry = {
+      ...moduleAugmentation.uiOptionsRegistry,
+      idEnumValueMapper: "EnumValueMapperBuilder",
     };
   }
 
@@ -284,13 +297,22 @@ export async function createSandboxFiles({
           mergeDefaultsIntoFormData: formState.mergeDefaultsIntoFormData,
         }
       : {},
-    uiOptionsRegistry: usesStringEnumMapper
-      ? {
-          stringEnumValueMapper: {
-            kind: "StringEnumValueMapperBuilder",
-          },
-        }
-      : {},
+    uiOptionsRegistry: {
+      ...(usesStringEnumMapper
+        ? {
+            stringEnumValueMapper: {
+              kind: "StringEnumValueMapperBuilder" as const,
+            },
+          }
+        : {}),
+      ...(usesIdEnumMapper
+        ? {
+            idEnumValueMapper: {
+              kind: "IdEnumValueMapperBuilder" as const,
+            },
+          }
+        : {}),
+    },
     moduleAugmentation,
     themeExtension,
     omitExtraData,
