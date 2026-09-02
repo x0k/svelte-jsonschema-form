@@ -65,7 +65,6 @@
     getFormContext,
     type ComponentProps,
     type SchemaValue,
-    type FormEnumOption,
     getFieldErrors,
     getFieldAction,
     getComponent,
@@ -75,7 +74,8 @@
   import "@/form/extra-fields/remote-enum.js";
   import {
     EMPTY_VALUE,
-    IdEnumValueMapperBuilder,
+    resolveEnumValueMapperBuilder,
+    createMappedOption,
     singleOption,
   } from "@/options.svelte.js";
 
@@ -103,12 +103,10 @@
   let remoteOptions = $derived(query.current ?? []);
 
   const { options, mapper } = $derived.by(() => {
-    const builder =
-      uiOption("enumValueMapperBuilder")?.() ?? new IdEnumValueMapperBuilder();
-    const options: FormEnumOption[] = remoteOptions.map((o) => ({
-      ...o,
-      mappedValue: builder.push(o),
-    }));
+    const builder = resolveEnumValueMapperBuilder(
+      uiOption("enumValueMapperBuilder")
+    );
+    const options = remoteOptions.map((o) => createMappedOption(builder, o));
     return { options, mapper: builder.build() };
   });
   const mapped = singleOption({

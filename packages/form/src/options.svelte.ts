@@ -4,6 +4,7 @@ import {
   type SchemaArrayValue,
   type SchemaValue,
 } from "@/core/index.js";
+import type { FormEnumOption } from "@/form/model.js";
 import { isObject } from "@/lib/object.js";
 import type { Ref } from "@/lib/svelte.svelte.js";
 
@@ -74,6 +75,20 @@ export class StringEnumValueMapperBuilder extends AbstractValueMapperBuilder {
     }
     return String(option.value);
   }
+}
+
+export function createMappedOption(
+  builder: EnumValueMapperBuilder,
+  option: EnumOption<SchemaValue>
+): FormEnumOption {
+  const mappedValue = builder.push(option);
+  return { ...option, mappedValue };
+}
+
+export function resolveEnumValueMapperBuilder(
+  factory?: () => EnumValueMapperBuilder
+): EnumValueMapperBuilder {
+  return factory?.() ?? new StringEnumValueMapperBuilder();
 }
 
 // TODO: Remove in v4

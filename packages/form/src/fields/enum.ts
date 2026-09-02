@@ -12,10 +12,10 @@ import {
   type UiOption,
   type FormState,
   getPseudoId,
-  type FormEnumOption,
 } from "@/form/index.js";
 import {
-  IdEnumValueMapperBuilder,
+  createMappedOption,
+  resolveEnumValueMapperBuilder,
   type EnumValueMapperBuilder,
 } from "@/options.svelte.js";
 
@@ -35,23 +35,22 @@ export function createOptions<T>(
   config: Config,
   uiOption: UiOption,
   schema: Schema,
-  builder: EnumValueMapperBuilder = uiOption("enumValueMapperBuilder")?.() ??
-    new IdEnumValueMapperBuilder()
-): FormEnumOption[] | undefined {
+  builder: EnumValueMapperBuilder = resolveEnumValueMapperBuilder(
+    uiOption("enumValueMapperBuilder")
+  )
+) {
   const enumValues = schema.enum;
   const disabledValues = new Set(uiOption("disabledEnumValues"));
   if (enumValues) {
     const enumNames = uiOption("enumNames");
     return enumValues.map((value, index) => {
       const label = enumNames?.[index] ?? schemaValueToString(value);
-      const option: FormEnumOption = {
+      return createMappedOption(builder, {
         id: getPseudoId(ctx, config.path, index),
         label,
         value,
         disabled: disabledValues.has(value),
-      };
-      option.mappedValue = builder.push(option);
-      return option;
+      });
     });
   }
   const [altSchemas, altUiSchemas] = getAltSchemas(schema, config.uiSchema);
@@ -66,15 +65,13 @@ export function createOptions<T>(
         retrieveUiSchema(ctx, altUiSchemas?.[index])["ui:options"]?.title ??
         altSchemaDef.title ??
         schemaValueToString(value);
-      const option: FormEnumOption = {
+      return createMappedOption(builder, {
         id: getPseudoId(ctx, config.path, index),
         schema: altSchemaDef,
         label,
         value,
         disabled: disabledValues.has(value),
-      };
-      option.mappedValue = builder.push(option);
-      return option;
+      });
     })
   );
 }
@@ -85,8 +82,9 @@ export function createFormOptions<T>(
   uiOption: UiOption,
   schema: Schema
 ) {
-  const builder =
-    uiOption("enumValueMapperBuilder")?.() ?? new IdEnumValueMapperBuilder();
+  const builder = resolveEnumValueMapperBuilder(
+    uiOption("enumValueMapperBuilder")
+  );
   // eslint-disable-next-line @typescript-eslint/no-deprecated
   const options = createOptions(ctx, config, uiOption, schema, builder) ?? [];
   return { options, mapper: builder.build() };
