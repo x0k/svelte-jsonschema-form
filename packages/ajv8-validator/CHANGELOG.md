@@ -1,5 +1,7 @@
 # @sjsf/ajv8-validator
 
+## 3.8.2
+
 ## 3.8.1
 
 ### Patch Changes

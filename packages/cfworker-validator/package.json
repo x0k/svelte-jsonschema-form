@@ -1,6 +1,6 @@
 {
   "name": "@sjsf/cfworker-validator",
-  "version": "3.8.1",
+  "version": "3.8.2",
   "description": "The @cfworker/json-schema based validator for svelte-jsonschema-form",
   "keywords": [
     "@cfworker/json-schema",
