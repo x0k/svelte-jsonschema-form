@@ -9,7 +9,6 @@ import type {
 import { transformFormErrors, transformFieldErrors } from "./errors.js";
 import {
   createContext,
-  createRetriever,
   validate,
   type CoreValidatorOptions,
   type SchemaProvider,
@@ -34,7 +33,7 @@ export type FormValueValidatorOptions = ValidatorOptions & SchemaProvider;
 export function createFormValueValidator<T>(
   options: FormValueValidatorOptions
 ): FormValueValidator<T> {
-  const compiledSchema = createRetriever(options)(options.schema);
+  const compiledSchema = options.validatorRetriever(options.schema);
   return {
     validateFormValue(formValue) {
       const out = evaluateCompiledSchema(
@@ -76,8 +75,6 @@ export function createFormValidatorFactory<T>(
     const full: FormValidatorOptions = {
       ...options,
       ...vOptions,
-      validatorRetriever:
-        vOptions.validatorRetriever ?? createRetriever(vOptions),
       valueToJSON:
         vOptions.valueToJSON ??
         ((v) =>
