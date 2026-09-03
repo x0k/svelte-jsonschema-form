@@ -73,8 +73,6 @@ export interface FormState<T> {
   readonly [FORM_KEYED_ARRAYS]: KeyedArraysMap;
   readonly [FORM_FIELDS_VALIDATION_MODE]: number;
   readonly [FORM_SCHEMA]: Schema;
-  // TODO: Remove in v4
-  /** @deprecated */
   readonly [FORM_RETRIEVED_SCHEMA]: Schema;
   readonly [FORM_UI_SCHEMA_ROOT]: UiSchemaRoot;
   readonly [FORM_UI_SCHEMA]: UiSchema;
@@ -100,7 +98,3 @@ export function getFormContext<T>(): FormState<T> {
 export function setFormContext<T>(form: FormState<T>) {
   setContext(FORM_CONTEXT, form);
 }
-
-// TODO: Remove in v4
-/** @deprecated use `setFormContext` */
-export const setFormContext2 = setFormContext;
