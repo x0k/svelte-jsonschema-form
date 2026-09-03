@@ -72,10 +72,6 @@ export const adapt = _adapt as unknown as <S extends $ZodType>(
   validator: ReturnType<typeof createSyncValidator<S>>;
 };
 
-// TODO: Remove in v4
-/** @deprecated use `adapt` */
-export const setupFormValidator = adapt;
-
 function createAsyncValidator<S extends $ZodType>(
   schemaRegistry: SchemaRegistry,
   schema: Schema
@@ -112,7 +108,3 @@ export const adaptAsync = _adaptAsync as unknown as <S extends $ZodType>(
   schemaRegistry: SchemaRegistry;
   validator: ReturnType<typeof createAsyncValidator<S>>;
 };
-
-// TODO: Remove in v4
-/** @deprecated use `adaptAsync` */
-export const setupAsyncFormValidator = adaptAsync;
