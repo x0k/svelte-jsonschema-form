@@ -5,7 +5,6 @@ import type {
   Validator,
 } from "@sjsf/form";
 import { DATA_URL_FORMAT } from "@sjsf/form/core";
-import { fromValidators } from "@sjsf/form/validators/precompile";
 import type { ValidationError } from "ata-validator";
 import type { BundleStandaloneOptions } from "ata-validator/build";
 
@@ -52,49 +51,23 @@ export type ValidateFunctions = {
   [key: string]: CompiledValidator;
 };
 
-// TODO: Remove in v4
-interface LegacyValidatorOptions {
-  /** @deprecated use `validatorRetriever` instead */
-  validateFunctions: ValidateFunctions;
-  /** @deprecated use `validatorRetriever` instead */
-  augmentSuffix?: string;
-  validatorRetriever?: (schema: Schema) => CompiledValidator;
-}
-
-interface ModernValidatorOptions {
+type CoreValidatorOptions = {
   validatorRetriever: (schema: Schema) => CompiledValidator;
-}
-
-type CoreValidatorOptions = LegacyValidatorOptions | ModernValidatorOptions;
-
-// TODO: Remove in v4
-function createRetriever(options: CoreValidatorOptions) {
-  return "validateFunctions" in options
-    ? (options.validatorRetriever ??
-        fromValidators(
-          options.validateFunctions,
-          options.augmentSuffix
-            ? {
-                idAugmentations: {
-                  combination: (id) => id + options.augmentSuffix,
-                },
-              }
-            : undefined
-        ))
-    : options.validatorRetriever;
-}
+};
 
 export type ValidatorOptions = ValueCloner & CoreValidatorOptions;
 
-export function createValidator(options: ValidatorOptions): Validator {
-  const getValidator = createRetriever(options);
+export function createValidator({
+  validatorRetriever,
+  cloneValue,
+}: ValidatorOptions): Validator {
   return {
     isValid(schema, formValue) {
       if (typeof schema === "boolean") {
         return schema;
       }
-      const validator = getValidator(schema);
-      return validator(options.cloneValue(formValue)).valid;
+      const validator = validatorRetriever(schema);
+      return validator(cloneValue(formValue)).valid;
     },
   };
 }
@@ -103,17 +76,17 @@ export type FormValueValidatorOptions = ValidatorOptions &
   Schemas &
   ValueCloner;
 
-export function createFormValueValidator<T>(
-  options: FormValueValidatorOptions
-): FormValueValidator<T> {
-  const validator = createRetriever(options)(options.schema);
-  const transformErrors = createFormErrorsTransformer(
-    options.schema,
-    options.uiSchema ?? {}
-  );
+export function createFormValueValidator<T>({
+  schema,
+  uiSchema = {},
+  cloneValue,
+  validatorRetriever,
+}: FormValueValidatorOptions): FormValueValidator<T> {
+  const validator = validatorRetriever(schema);
+  const transformErrors = createFormErrorsTransformer(schema, uiSchema);
   return {
     validateFormValue(formValue) {
-      const { valid, errors } = validator(options.cloneValue(formValue));
+      const { valid, errors } = validator(cloneValue(formValue));
       if (valid) {
         return {
           value: formValue as T,
@@ -126,14 +99,14 @@ export function createFormValueValidator<T>(
 
 export type FieldValueValidatorOptions = ValidatorOptions & ValueCloner;
 
-export function createFieldValueValidator(
-  options: FieldValueValidatorOptions
-): FieldValueValidator {
-  const getValidator = createRetriever(options);
+export function createFieldValueValidator({
+  validatorRetriever,
+  cloneValue,
+}: FieldValueValidatorOptions): FieldValueValidator {
   return {
     validateFieldValue(field, fieldValue) {
-      const validator = getValidator(field.schema);
-      const { valid, errors } = validator(options.cloneValue(fieldValue));
+      const validator = validatorRetriever(field.schema);
+      const { valid, errors } = validator(cloneValue(fieldValue));
       if (valid) {
         return [];
       }
@@ -153,8 +126,6 @@ export function createFormValidatorFactory<T>(
     const full: FormValidatorOptions = {
       ...options,
       ...vOptions,
-      validatorRetriever:
-        vOptions.validatorRetriever ?? createRetriever(vOptions),
       cloneValue: vOptions.cloneValue ?? ((value) => $state.snapshot(value)),
     };
     return Object.assign(

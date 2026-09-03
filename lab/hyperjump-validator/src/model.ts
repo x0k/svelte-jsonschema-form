@@ -14,49 +14,9 @@ import {
   type ValidatorRetrieverOptions,
 } from "@sjsf/form/validators/precompile";
 
-// TODO: Remove in v4
-interface LegacyValidatorOptions {
-  /** @deprecated use `validatorRetriever` instead */
-  ast: AST;
-  /** @deprecated use `validatorRetriever` instead */
-  augmentSuffix?: string;
-  validatorRetriever?: (schema: Schema) => CompiledSchema;
-}
-
-interface ModernValidatorOptions {
+export type CoreValidatorOptions = {
   validatorRetriever: (schema: Schema) => CompiledSchema;
-}
-
-export type CoreValidatorOptions = (
-  | LegacyValidatorOptions
-  | ModernValidatorOptions
-) &
-  Partial<ValidationOptions>;
-
-// TODO: Remove in v4
-export function createRetriever(options: CoreValidatorOptions) {
-  return "ast" in options
-    ? (options.validatorRetriever ??
-        createValidatorRetriever({
-          registry: {
-            get: (id) => {
-              const schemaUri = `${id}#`;
-              return schemaUri in options.ast
-                ? {
-                    schemaUri,
-                    ast: options.ast,
-                  }
-                : undefined;
-            },
-          },
-          idAugmentations: options.augmentSuffix
-            ? {
-                combination: (id) => id + options.augmentSuffix,
-              }
-            : undefined,
-        }))
-    : options.validatorRetriever;
-}
+} & Partial<ValidationOptions>;
 
 export interface ValueToJSON {
   valueToJSON: (value: FormValue) => SchemaValue;
@@ -98,9 +58,8 @@ export function createContext(
   schema: Schema,
   value: FormValue
 ): Context {
-  const getCompiledSchema = createRetriever(options);
   return {
-    compiledSchema: getCompiledSchema(schema),
+    compiledSchema: options.validatorRetriever(schema),
     value: options.valueToJSON(value) as HyperjumpJson,
   };
 }
