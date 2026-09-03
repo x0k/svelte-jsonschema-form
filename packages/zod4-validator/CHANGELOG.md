@@ -1,5 +1,11 @@
 # @sjsf/zod4-validator
 
+## 3.8.2
+
+### Patch Changes
+
+- Compiled validators (precompile flow) now resolve `dependencies` conditions declared via `oneOf` branches. ([#454](https://github.com/x0k/svelte-jsonschema-form/pull/454))
+
 ## 3.8.1
 
 ## 3.8.0

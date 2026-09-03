@@ -1,5 +1,15 @@
 # @sjsf/form
 
+## 3.8.2
+
+### Patch Changes
+
+- Port <https://github.com/rjsf-team/react-jsonschema-form/pull/5202> ([#452](https://github.com/x0k/svelte-jsonschema-form/pull/452))
+
+- Compiled validators (precompile flow) now resolve `dependencies` conditions declared via `oneOf` branches. ([#454](https://github.com/x0k/svelte-jsonschema-form/pull/454))
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/5218 ([#459](https://github.com/x0k/svelte-jsonschema-form/pull/459))
+
 ## 3.8.1
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@sjsf/schemasafe-validator",
-  "version": "3.8.1",
+  "version": "3.8.2",
   "description": "The @exodus/schemasafe based validator for svelte-jsonschema-form",
   "keywords": [
     "@exodus/schemasafe",

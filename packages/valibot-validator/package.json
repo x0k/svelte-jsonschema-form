@@ -1,6 +1,6 @@
 {
   "name": "@sjsf/valibot-validator",
-  "version": "3.8.1",
+  "version": "3.8.2",
   "description": "The Valibot based validator for svelte-jsonschema-form",
   "keywords": [
     "jsonschema",
