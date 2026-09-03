@@ -128,6 +128,8 @@ export function sanitizeDataForNewSchema(
     const nestedData: SchemaObjectValue = {};
     keys.forEach((key) => {
       const formValue = isDataObject ? data[key] : undefined;
+      const isNewProperty =
+        oldSchemaProperties === undefined || !(key in oldSchemaProperties);
       const oldKeyedSchemaDef = oldSchemaProperties?.[key];
       let oldKeyedSchema =
         typeof oldKeyedSchemaDef === "object" ? oldKeyedSchemaDef : {};
@@ -164,7 +166,9 @@ export function sanitizeDataForNewSchema(
             merger,
             rootSchema,
             newKeyedSchema,
-            oldKeyedSchema,
+            isNewProperty && newSchemaTypeForKey === "array"
+              ? newKeyedSchema
+              : oldKeyedSchema,
             formValue
           );
           if (itemData !== undefined || newSchemaTypeForKey === "array") {
@@ -175,7 +179,11 @@ export function sanitizeDataForNewSchema(
           const newOptionDefault = newKeyedSchema.default ?? NO_VALUE;
           const oldOptionDefault = oldKeyedSchema.default ?? NO_VALUE;
           if (newOptionDefault !== NO_VALUE && newOptionDefault !== formValue) {
-            if (oldOptionDefault === formValue) {
+            if (
+              (isNewProperty && formValue === undefined) ||
+              oldOptionDefault === formValue
+            ) {
+              // Initialize a newly entered property or replace an old default with the new default.
               removeOldSchemaData[key] = newOptionDefault;
             } else if (newKeyedSchema.readOnly === true) {
               removeOldSchemaData[key] = undefined;
