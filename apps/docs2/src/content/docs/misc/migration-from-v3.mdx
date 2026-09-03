@@ -56,6 +56,31 @@ use `.current` instead. `SingleSelectOptions.hasInitialValue` has been removed
 - `idMapper()` — use `resolveEnumValueMapperBuilder()` + `builder.build()`.
 - `isSchemaExpandable()` — use `isObjectSchemaExpandable()`.
 - `UNDEFINED_ID` — use `EMPTY_VALUE` instead.
+- `FormErrorsMap` type — use `SvelteMap<FieldPath, string[]>` directly.
+- `setFormContext2` — use `setFormContext`.
+- `KeyedArray2` type — use `KeyedArray`.
+- `validateByRetrievedSchema` option — use `retrieveSchema` from `@sjsf/form/core`.
+- `DEFAULT_AUGMENT_SUFFIX` — use `idAugmentations` on `FragmentSchemaOptions`.
+- `augmentSuffix` on `FragmentSchemaOptions` — use `idAugmentations`.
+- `Query.result` — use `Query.current`.
+- `getSelectOptionValues()` — use `getSelectOptionValuesSafe()`.
+- `@sjsf/form/fields/any-of` — use `@sjsf/form/fields/combination/any-of`.
+- `@sjsf/form/fields/one-of` — use `@sjsf/form/fields/combination/one-of`.
+- `@sjsf/form/fields/combination` — use `@sjsf/form/fields/combination/combination`.
+- `Config.value` is now required.
+
+## Validator packages
+
+- `LegacyValidatorOptions` (`validateFunctions`, `augmentSuffix`, `ast`) removed — use
+  `validatorRetriever` directly (ajv8, schemasafe, ata, hyperjump).
+- `setupFormValidator` removed — use `adapt` (zod4, valibot).
+- `setupAsyncFormValidator` removed — use `adaptAsync` (zod4, valibot).
+
+## Theme packages
+
+- `skeleton4DateRangePickerWidget` removed — use `dateRangePickerWidget`.
+- `shadcn4DateRangePickerWidget` removed — use `dateRangePickerWidget`.
+- `svarDateRangePickerWidget` removed — use `dateRangePickerWidget`.
 
 ## Etc.
 
