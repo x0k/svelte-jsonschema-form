@@ -37,11 +37,6 @@ export interface SchemaMeta {
 
 export type SubSchemas = Trie<Path[number], SchemaMeta>;
 
-/** @deprecated */
-export const DEFAULT_AUGMENT_SUFFIX = "ag";
-
-const DEFAULT_CONDITION_SUFFIX = "cond";
-
 export function createIdFactory() {
   let id = 0;
   return () => `v${id++}`;
@@ -170,28 +165,21 @@ export type IdAugmentations = Record<
 export interface FragmentSchemaOptions {
   schema: Schema;
   subSchemas: SubSchemas;
-  /** @deprecated use `idAugmentations` property instead */
-  augmentSuffix?: string;
-  /** New IDs should be valid ECMAScript identifiers (if possible) */
   idAugmentations?: Partial<IdAugmentations>;
 }
 
 export const DEFAULT_ID_AUGMENTATIONS: IdAugmentations = {
-  // eslint-disable-next-line @typescript-eslint/no-deprecated
-  combination: (id) => id + DEFAULT_AUGMENT_SUFFIX,
-  condition: (id) => id + DEFAULT_CONDITION_SUFFIX,
+  combination: (id) => id + "ag",
+  condition: (id) => id + "cond",
 };
 
 export function fragmentSchema({
   schema,
   subSchemas,
-  // eslint-disable-next-line @typescript-eslint/no-deprecated
-  augmentSuffix = DEFAULT_AUGMENT_SUFFIX,
   idAugmentations,
 }: FragmentSchemaOptions): Schema[] {
   const augmentations: IdAugmentations = {
     ...DEFAULT_ID_AUGMENTATIONS,
-    combination: (id) => id + augmentSuffix,
     ...idAugmentations,
   };
   const schemas: Schema[] = [];
