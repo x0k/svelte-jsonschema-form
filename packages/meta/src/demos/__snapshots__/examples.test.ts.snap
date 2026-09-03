@@ -69387,6 +69387,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     schema: stepSchemas[stepperCtx.current],
     uiSchema: stepUiSchemas[stepperCtx.current],
     title: stepTitles[stepperCtx.current],
+    value: () => value?.[stepperCtx.current],
   });
   const StepComponent = $derived(getFieldComponent(ctx, stepConfig));
 </script>
@@ -69757,6 +69758,7 @@ export { createFormValidator as validator } from '@sjsf/ata-validator';",
     schema: stepSchemas[stepperCtx.current],
     uiSchema: stepUiSchemas[stepperCtx.current],
     title: stepTitles[stepperCtx.current],
+    value: () => value?.[stepperCtx.current],
   });
   const StepComponent = $derived(getFieldComponent(ctx, stepConfig));
 </script>
@@ -70127,6 +70129,7 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
     schema: stepSchemas[stepperCtx.current],
     uiSchema: stepUiSchemas[stepperCtx.current],
     title: stepTitles[stepperCtx.current],
+    value: () => value?.[stepperCtx.current],
   });
   const StepComponent = $derived(getFieldComponent(ctx, stepConfig));
 </script>
@@ -70495,6 +70498,7 @@ export { createFormValidator as validator } from '@sjsf/form/validators/noop';",
     schema: stepSchemas[stepperCtx.current],
     uiSchema: stepUiSchemas[stepperCtx.current],
     title: stepTitles[stepperCtx.current],
+    value: () => value?.[stepperCtx.current],
   });
   const StepComponent = $derived(getFieldComponent(ctx, stepConfig));
 </script>
@@ -70865,6 +70869,7 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
     schema: stepSchemas[stepperCtx.current],
     uiSchema: stepUiSchemas[stepperCtx.current],
     title: stepTitles[stepperCtx.current],
+    value: () => value?.[stepperCtx.current],
   });
   const StepComponent = $derived(getFieldComponent(ctx, stepConfig));
 </script>
@@ -71233,6 +71238,7 @@ export const onSubmitError = createFocusOnFirstError();",
     schema: stepSchemas[stepperCtx.current],
     uiSchema: stepUiSchemas[stepperCtx.current],
     title: stepTitles[stepperCtx.current],
+    value: () => value?.[stepperCtx.current],
   });
   const StepComponent = $derived(getFieldComponent(ctx, stepConfig));
 </script>
@@ -71602,6 +71608,7 @@ export const onSubmitError = createFocusOnFirstError();",
     schema: stepSchemas[stepperCtx.current],
     uiSchema: stepUiSchemas[stepperCtx.current],
     title: stepTitles[stepperCtx.current],
+    value: () => value?.[stepperCtx.current],
   });
   const StepComponent = $derived(getFieldComponent(ctx, stepConfig));
 </script>
@@ -71970,6 +71977,7 @@ export const onSubmitError = createFocusOnFirstError();",
     schema: stepSchemas[stepperCtx.current],
     uiSchema: stepUiSchemas[stepperCtx.current],
     title: stepTitles[stepperCtx.current],
+    value: () => value?.[stepperCtx.current],
   });
   const StepComponent = $derived(getFieldComponent(ctx, stepConfig));
 </script>
@@ -72350,6 +72358,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     schema: stepSchemas[stepperCtx.current],
     uiSchema: stepUiSchemas[stepperCtx.current],
     title: stepTitles[stepperCtx.current],
+    value: () => value?.[stepperCtx.current],
   });
   const StepComponent = $derived(getFieldComponent(ctx, stepConfig));
 </script>
@@ -72742,6 +72751,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     schema: stepSchemas[stepperCtx.current],
     uiSchema: stepUiSchemas[stepperCtx.current],
     title: stepTitles[stepperCtx.current],
+    value: () => value?.[stepperCtx.current],
   });
   const StepComponent = $derived(getFieldComponent(ctx, stepConfig));
 </script>
@@ -73159,6 +73169,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     schema: stepSchemas[stepperCtx.current],
     uiSchema: stepUiSchemas[stepperCtx.current],
     title: stepTitles[stepperCtx.current],
+    value: () => value?.[stepperCtx.current],
   });
   const StepComponent = $derived(getFieldComponent(ctx, stepConfig));
 </script>
@@ -73543,6 +73554,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     schema: stepSchemas[stepperCtx.current],
     uiSchema: stepUiSchemas[stepperCtx.current],
     title: stepTitles[stepperCtx.current],
+    value: () => value?.[stepperCtx.current],
   });
   const StepComponent = $derived(getFieldComponent(ctx, stepConfig));
 </script>
@@ -74138,6 +74150,7 @@ export function setShadcnThemeContext() {
     schema: stepSchemas[stepperCtx.current],
     uiSchema: stepUiSchemas[stepperCtx.current],
     title: stepTitles[stepperCtx.current],
+    value: () => value?.[stepperCtx.current],
   });
   const StepComponent = $derived(getFieldComponent(ctx, stepConfig));
 </script>
@@ -74719,6 +74732,7 @@ export function setShadcnThemeContext() {
     schema: stepSchemas[stepperCtx.current],
     uiSchema: stepUiSchemas[stepperCtx.current],
     title: stepTitles[stepperCtx.current],
+    value: () => value?.[stepperCtx.current],
   });
   const StepComponent = $derived(getFieldComponent(ctx, stepConfig));
 </script>
@@ -75118,6 +75132,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     schema: stepSchemas[stepperCtx.current],
     uiSchema: stepUiSchemas[stepperCtx.current],
     title: stepTitles[stepperCtx.current],
+    value: () => value?.[stepperCtx.current],
   });
   const StepComponent = $derived(getFieldComponent(ctx, stepConfig));
 </script>
@@ -75524,6 +75539,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     schema: stepSchemas[stepperCtx.current],
     uiSchema: stepUiSchemas[stepperCtx.current],
     title: stepTitles[stepperCtx.current],
+    value: () => value?.[stepperCtx.current],
   });
   const StepComponent = $derived(getFieldComponent(ctx, stepConfig));
 </script>
@@ -75911,6 +75927,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
     schema: stepSchemas[stepperCtx.current],
     uiSchema: stepUiSchemas[stepperCtx.current],
     title: stepTitles[stepperCtx.current],
+    value: () => value?.[stepperCtx.current],
   });
   const StepComponent = $derived(getFieldComponent(ctx, stepConfig));
 </script>

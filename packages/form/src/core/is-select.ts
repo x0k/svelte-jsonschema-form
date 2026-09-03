@@ -89,17 +89,6 @@ export function getSelectOptionValuesSafe({
   return values;
 }
 
-/** @deprecated use `getSelectOptionValuesSafe` */
-export function getSelectOptionValues(
-  schema: Schema
-): SchemaValue[] | undefined {
-  const values = getSelectOptionValuesSafe(schema);
-  if (values === undefined) {
-    throw new Error(`Invalid enum definition in altSchema.`);
-  }
-  return values.length > 0 ? values : undefined;
-}
-
 /**
  * Detects `multi select` schema
  * - Array with unique items

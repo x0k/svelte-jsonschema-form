@@ -8,10 +8,6 @@ export interface KeyedArray<K, V> {
   splice(index: number, count: number, ...items: V[]): V[];
 }
 
-// TODO: Remove in v4
-/** @deprecated use `KeyedArray` */
-export type KeyedArray2<K, V> = KeyedArray<K, V>;
-
 export class SimpleKeyedArray<K, T> implements KeyedArray<K, T> {
   protected changesPropagator = $state.raw(0);
 

@@ -21,8 +21,7 @@ export interface Config {
   readonly schema: Schema;
   readonly uiSchema: UiSchema;
   readonly required: boolean;
-  // TODO: Make required in v4
-  readonly value?: () => Readonly<FieldValue>;
+  readonly value: () => Readonly<FieldValue>;
   readonly eventHandlers?: EventHandlers;
 }
 

@@ -315,8 +315,6 @@ export interface Query<
   E = unknown,
   Result = R | undefined,
 > extends Task<T, R, E> {
-  /** @deprecated use `current` property instead */
-  readonly result: Result;
   readonly error: FailedTask<E> | undefined;
   current: Result;
 }
@@ -367,9 +365,6 @@ export function createQuery<
 
   return Object.setPrototypeOf(
     {
-      get result() {
-        return value;
-      },
       get error() {
         const s = task.state;
         return s.status === "failed" ? s : undefined;
