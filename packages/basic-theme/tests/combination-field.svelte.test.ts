@@ -6,12 +6,15 @@ import { page, userEvent } from "vitest/browser";
 import { expectValue, renderFieldForm } from "./helpers.js";
 import {
   ambiguousSchema,
+  anyOfDisjointDefaultsSchema,
+  dependencyDefaultsSchema,
   discriminatedSchema,
   discriminatedUiSchema,
   numberAnyOfSchema,
   numberOneOfSchema,
   objectSharedAnyOfSchema,
   objectSharedOneOfSchema,
+  oneOfDisjointDefaultsSchema,
   plainOneOfSchema,
   refObjectAnyOfSchema,
   refObjectOneOfSchema,
@@ -38,9 +41,7 @@ describe("combination field contracts", () => {
         initialValue: { kind: "company", shared: "kept" },
       });
 
-      const val = getValueSnapshot(form) as any;
-      expect(val.kind).toBe("company");
-      expect(val.shared).toBe("kept");
+      expectValue(form, { kind: "company", shared: "kept" });
     });
 
     test("switch from person to company", async () => {
@@ -64,6 +65,34 @@ describe("combination field contracts", () => {
       expect(val.companyName).toBeDefined();
       expect(val.shared).toBe("kept");
     });
+
+    test("restores defaults when switching back to person", async () => {
+      const { form } = await renderFieldForm({
+        schema: discriminatedSchema,
+        uiSchema: discriminatedUiSchema,
+        initialValue: {
+          kind: "person",
+          name: "Grace",
+          shared: "kept",
+        },
+      });
+
+      const select = page.getByRole("combobox").first();
+      await userEvent.selectOptions(
+        select,
+        select.getByRole("option", { name: "Company kind" })
+      );
+      await userEvent.selectOptions(
+        select,
+        select.getByRole("option", { name: "Person from UI" })
+      );
+
+      expectValue(form, {
+        kind: "person",
+        name: "Ada",
+        shared: "kept",
+      });
+    });
   });
 
   describe("ambiguous oneOf", () => {
@@ -72,8 +101,19 @@ describe("combination field contracts", () => {
         schema: ambiguousSchema,
       });
 
-      const val = getValueSnapshot(form) as any;
-      expect(val.shared).toBe("string-default");
+      expectValue(form, { shared: "string-default" });
+    });
+
+    test("restores defaults when returning to first option", async () => {
+      const { form } = await renderFieldForm({
+        schema: ambiguousSchema,
+      });
+
+      const select = page.getByRole("combobox").first();
+      await userEvent.selectOptions(select, "1");
+      await userEvent.selectOptions(select, "0");
+
+      expectValue(form, { shared: "string-default" });
     });
   });
 
@@ -83,8 +123,7 @@ describe("combination field contracts", () => {
         schema: plainOneOfSchema,
       });
 
-      const val = getValueSnapshot(form) as any;
-      expect(val.firstField).toBe("default-first");
+      expectValue(form, { firstField: "default-first" });
     });
 
     test("switch to second option", async () => {
@@ -94,8 +133,19 @@ describe("combination field contracts", () => {
 
       const select = page.getByRole("combobox").first();
       await userEvent.selectOptions(select, "Second");
-      const val = getValueSnapshot(form) as any;
-      expect(val.secondField).toBeDefined();
+      expectValue(form, { secondField: 42 });
+    });
+
+    test("restores defaults when returning to first option", async () => {
+      const { form } = await renderFieldForm({
+        schema: plainOneOfSchema,
+      });
+
+      const select = page.getByRole("combobox").first();
+      await userEvent.selectOptions(select, "Second");
+      await userEvent.selectOptions(select, "First");
+
+      expectValue(form, { firstField: "default-first" });
     });
   });
 
@@ -127,8 +177,7 @@ describe("combination field contracts", () => {
       await userEvent.selectOptions(select, "Rejected");
 
       await expect.element(select).toHaveValue("1");
-      const val = getValueSnapshot(form) as any;
-      expect(val.status).toEqual({ reason: undefined });
+      expectValue(form, { status: { reason: undefined } });
     });
   });
 
@@ -144,8 +193,7 @@ describe("combination field contracts", () => {
       await userEvent.selectOptions(select, "Rejected");
 
       await expect.element(select).toHaveValue("1");
-      const val = getValueSnapshot(form) as any;
-      expect(val.status).toEqual({ reason: undefined });
+      expectValue(form, { status: { reason: undefined } });
     });
   });
 
@@ -252,6 +300,73 @@ describe("combination field contracts", () => {
       await expect
         .element(page.getByRole("combobox").first())
         .toBeInTheDocument();
+    });
+  });
+
+  // Ported from rjsf PR #5218
+  describe("anyOf disjoint defaults (#3736)", () => {
+    test("restores defaults and preserves shared properties when toggling options", async () => {
+      const { form } = await renderFieldForm({
+        schema: anyOfDisjointDefaultsSchema,
+        initialValue: { age: 42 },
+      });
+
+      const select = page.getByRole("combobox").first();
+      // Option 0 is selected by default, firstName should have its default
+      expectValue(form, { firstName: "Chuck", age: 42 });
+
+      // Switch to option 1 (idCode) — firstName drops, idCode appears, age preserved
+      await userEvent.selectOptions(select, "1");
+      const val1 = getValueSnapshot(form) as any;
+      expect(val1.idCode).toBeDefined();
+      expect(val1.firstName).toBeUndefined();
+      expect(val1.age).toBe(42);
+
+      // Switch back to option 0 — firstName default restored, age still preserved
+      await userEvent.selectOptions(select, "0");
+      expectValue(form, { firstName: "Chuck", age: 42 });
+    });
+  });
+
+  describe("oneOf disjoint defaults (#3736)", () => {
+    test("restores defaults when returning to an option with disjoint properties", async () => {
+      const { form } = await renderFieldForm({
+        schema: oneOfDisjointDefaultsSchema,
+      });
+
+      const select = page.getByRole("combobox").first();
+
+      // Switch to option 1 (idCode)
+      await userEvent.selectOptions(select, "1");
+      // Switch back to option 0 — firstName default should be restored
+      await userEvent.selectOptions(select, "0");
+
+      expectValue(form, { firstName: "Chuck" });
+    });
+  });
+
+  describe("dependency defaults in controlled forms", () => {
+    test("preserves an empty array already present when enabling the dependency branch", async () => {
+      const { form } = await renderFieldForm({
+        schema: dependencyDefaultsSchema,
+        initialValue: {
+          triggersOverride: false,
+          triggers: [],
+          repoData: { triggers: [] },
+        },
+      });
+
+      const select = page.getByRole("combobox").first();
+      await userEvent.selectOptions(
+        select,
+        select.getByRole("option", { name: "Override Repo Triggers" })
+      );
+
+      expectValue(form, {
+        triggersOverride: true,
+        triggers: [],
+        repoData: { triggers: [] },
+      });
     });
   });
 });

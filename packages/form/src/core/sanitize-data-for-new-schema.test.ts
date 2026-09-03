@@ -43,6 +43,109 @@ describe("sanitizeDataForNewSchema", () => {
   //   const newSchema = retrieveSchema2(testValidator, defaultMerger, SECOND_ONE_OF, oneOfSchema);
   //   expect(sanitizeDataForNewSchema2(testValidator, defaultMerger, oneOfSchema, newSchema, undefined, oneOfData)).toEqual(oneOfData);
   // });
+  const oldDisjointSchema: Schema = {
+    type: "object",
+    properties: {
+      idCode: { type: "string" },
+    },
+  };
+  const newArraySchema: Schema = {
+    type: "object",
+    properties: {
+      values: {
+        type: "array",
+        default: [],
+        items: { type: "string", enum: ["a", "b"] },
+      },
+    },
+  };
+  it("restores the default for an undefined property that is newly defined by the new schema", () => {
+    const newSchema: Schema = {
+      type: "object",
+      properties: {
+        firstName: { type: "string", default: "Chuck" },
+      },
+    };
+
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        oneOfSchema,
+        newSchema,
+        oldDisjointSchema,
+        { firstName: undefined, idCode: undefined }
+      )
+    ).toEqual({ firstName: "Chuck", idCode: undefined });
+  });
+  it("restores an empty array default for an undefined property newly defined by the new schema", () => {
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        oneOfSchema,
+        newArraySchema,
+        oldDisjointSchema,
+        { values: undefined, idCode: undefined }
+      )
+    ).toEqual({ values: [], idCode: undefined });
+  });
+  it("sanitizes array data already present for a property newly defined by the new schema", () => {
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        oneOfSchema,
+        newArraySchema,
+        oldDisjointSchema,
+        { values: ["a", "x"], idCode: undefined }
+      )
+    ).toEqual({ values: ["a"], idCode: undefined });
+  });
+  it("continues sanitizing an existing array when the old schema omits its type", () => {
+    const oldSchema: Schema = {
+      type: "object",
+      properties: {
+        values: { items: { type: "string" } },
+      },
+    };
+
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        oneOfSchema,
+        newArraySchema,
+        oldSchema,
+        { values: ["existing"] }
+      )
+    ).toEqual({ values: undefined });
+  });
+  it("preserves explicit undefined data for a property shared by both schemas", () => {
+    const oldSchema: Schema = {
+      type: "object",
+      properties: {
+        firstName: { type: "string" },
+      },
+    };
+    const newSchema: Schema = {
+      type: "object",
+      properties: {
+        firstName: { type: "string", default: "Chuck" },
+      },
+    };
+
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        oneOfSchema,
+        newSchema,
+        oldSchema,
+        { firstName: undefined }
+      )
+    ).toEqual({ firstName: undefined });
+  });
   it('returns input formData when the old schema does not contain a "property" object', () => {
     const newSchema = retrieveSchema(
       testValidator,

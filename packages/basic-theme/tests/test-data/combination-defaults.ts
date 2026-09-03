@@ -243,3 +243,92 @@ export const objectSharedAnyOfSchema = {
     { properties: { bar: { type: "string" } } },
   ],
 } as const satisfies Schema;
+
+// Schemas from rjsf PR #5218 — test default restoration for disjoint properties
+export const anyOfDisjointDefaultsSchema = {
+  type: "object",
+  properties: {
+    age: { type: "integer", title: "Age" },
+  },
+  anyOf: [
+    {
+      title: "First method of identification",
+      properties: {
+        firstName: {
+          type: "string",
+          title: "First name",
+          default: "Chuck",
+        },
+        lastName: { type: "string", title: "Last name" },
+      },
+    },
+    {
+      title: "Second method of identification",
+      properties: {
+        idCode: { type: "string", title: "ID code" },
+      },
+    },
+  ],
+} as const satisfies Schema;
+
+export const oneOfDisjointDefaultsSchema = {
+  type: "object",
+  oneOf: [
+    {
+      title: "First method of identification",
+      properties: {
+        firstName: { type: "string", default: "Chuck" },
+      },
+    },
+    {
+      title: "Second method of identification",
+      properties: {
+        idCode: { type: "string" },
+      },
+    },
+  ],
+} as const satisfies Schema;
+
+export const dependencyDefaultsSchema = {
+  type: "object",
+  properties: {
+    triggersOverride: {
+      type: "boolean",
+      oneOf: [
+        { title: "Override Repo Triggers", enum: [true] },
+        { title: "Default to Repo Triggers", enum: [false] },
+      ],
+    },
+  },
+  dependencies: {
+    triggersOverride: {
+      oneOf: [
+        {
+          properties: {
+            triggersOverride: { enum: [false] },
+            repoData: {
+              type: "object",
+              properties: {
+                triggers: {
+                  type: "array",
+                  default: [],
+                  items: { type: "object" },
+                },
+              },
+            },
+          },
+        },
+        {
+          properties: {
+            triggersOverride: { enum: [true] },
+            triggers: {
+              type: "array",
+              default: [],
+              items: { type: "object" },
+            },
+          },
+        },
+      ],
+    },
+  },
+} as const satisfies Schema;
