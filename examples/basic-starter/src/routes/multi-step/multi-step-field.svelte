@@ -58,6 +58,7 @@
     schema: stepSchemas[stepperCtx.current],
     uiSchema: stepUiSchemas[stepperCtx.current],
     title: stepTitles[stepperCtx.current],
+    value: () => value?.[stepperCtx.current],
   });
   const StepComponent = $derived(getFieldComponent(ctx, stepConfig));
 </script>

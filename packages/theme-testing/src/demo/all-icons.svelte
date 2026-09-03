@@ -18,6 +18,7 @@
     schema: {},
     uiSchema: {},
     title: "title",
+    value: () => undefined,
   };
   const labels = {
     "move-array-item-up": {},
