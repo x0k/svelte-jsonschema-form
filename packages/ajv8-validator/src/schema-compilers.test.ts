@@ -15,6 +15,7 @@ function createConfig(schema: Schema): Config {
     schema,
     uiSchema: {},
     required: false,
+    value: () => undefined,
   };
 }
 
