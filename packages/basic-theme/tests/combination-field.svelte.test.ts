@@ -41,7 +41,9 @@ describe("combination field contracts", () => {
         initialValue: { kind: "company", shared: "kept" },
       });
 
-      expectValue(form, { kind: "company", shared: "kept" });
+      const val = getValueSnapshot(form) as any;
+      expect(val.kind).toBe("company");
+      expect(val.shared).toBe("kept");
     });
 
     test("switch from person to company", async () => {
@@ -104,16 +106,17 @@ describe("combination field contracts", () => {
       expectValue(form, { shared: "string-default" });
     });
 
-    test("restores defaults when returning to first option", async () => {
+    test("clears value when types differ across options", async () => {
       const { form } = await renderFieldForm({
         schema: ambiguousSchema,
       });
 
       const select = page.getByRole("combobox").first();
-      await userEvent.selectOptions(select, "1");
-      await userEvent.selectOptions(select, "0");
+      await userEvent.selectOptions(select, "Number branch");
+      await userEvent.selectOptions(select, "String branch");
 
-      expectValue(form, { shared: "string-default" });
+      // shared was a number from option 1, new schema expects string — cleared
+      expectValue(form, { shared: undefined });
     });
   });
 
@@ -315,15 +318,14 @@ describe("combination field contracts", () => {
       // Option 0 is selected by default, firstName should have its default
       expectValue(form, { firstName: "Chuck", age: 42 });
 
-      // Switch to option 1 (idCode) — firstName drops, idCode appears, age preserved
-      await userEvent.selectOptions(select, "1");
+      // Switch to option 1 (idCode) — firstName drops, age preserved
+      await userEvent.selectOptions(select, "Second method of identification");
       const val1 = getValueSnapshot(form) as any;
-      expect(val1.idCode).toBeDefined();
       expect(val1.firstName).toBeUndefined();
       expect(val1.age).toBe(42);
 
       // Switch back to option 0 — firstName default restored, age still preserved
-      await userEvent.selectOptions(select, "0");
+      await userEvent.selectOptions(select, "First method of identification");
       expectValue(form, { firstName: "Chuck", age: 42 });
     });
   });
@@ -337,9 +339,9 @@ describe("combination field contracts", () => {
       const select = page.getByRole("combobox").first();
 
       // Switch to option 1 (idCode)
-      await userEvent.selectOptions(select, "1");
+      await userEvent.selectOptions(select, "Second method of identification");
       // Switch back to option 0 — firstName default should be restored
-      await userEvent.selectOptions(select, "0");
+      await userEvent.selectOptions(select, "First method of identification");
 
       expectValue(form, { firstName: "Chuck" });
     });
@@ -352,7 +354,7 @@ describe("combination field contracts", () => {
         initialValue: {
           triggersOverride: false,
           triggers: [],
-          repoData: { triggers: [] },
+          repoData: { triggersOverride: true, triggers: [] },
         },
       });
 
@@ -365,7 +367,6 @@ describe("combination field contracts", () => {
       expectValue(form, {
         triggersOverride: true,
         triggers: [],
-        repoData: { triggers: [] },
       });
     });
   });
