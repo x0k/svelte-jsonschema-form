@@ -9,14 +9,10 @@
 
   declare module "@sjsf/form" {
     interface ComponentProps {
-      // TODO: Remove in v4
-      /** @deprecated use `dateRangePickerWidget` instead */
-      skeleton4DateRangePickerWidget: WidgetCommonProps<Partial<Range<string>>>;
+      dateRangePickerWidget: WidgetCommonProps<Partial<Range<string>>>;
     }
     interface ComponentBindings {
-      // TODO: Remove in v4
-      /** @deprecated use `dateRangePickerWidget` instead */
-      skeleton4DateRangePickerWidget: "value";
+      dateRangePickerWidget: "value";
     }
     interface UiOptions {
       skeleton4DateRangePicker?: DatePickerRootProps;

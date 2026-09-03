@@ -7,14 +7,10 @@
 
   declare module "@sjsf/form" {
     interface ComponentProps {
-      // TODO: Remove in v4
-      /** @deprecated use `dateRangePickerWidget` instead */
-      svarDateRangePickerWidget: WidgetCommonProps<Partial<Range<string>>>;
+      dateRangePickerWidget: WidgetCommonProps<Partial<Range<string>>>;
     }
     interface ComponentBindings {
-      // TODO: Remove in v4
-      /** @deprecated use `dateRangePickerWidget` instead */
-      svarDateRangePickerWidget: "value";
+      dateRangePickerWidget: "value";
     }
     interface UiOptions {
       svarDateRangePicker?: SvelteComponentProps<typeof SvarDateRangePicker>;
