@@ -65,7 +65,7 @@ export default definePreset({
       },
     },
   }),
-  initialValue: jsonValue({
+  formData: jsonValue({
     title: "My current tasks",
     tasks: [
       {

@@ -3,18 +3,18 @@ import { describe, it, expect } from "vitest";
 
 import { codegenThemeOrSubTheme } from "../codegen/index.ts";
 import { jsonSchema, jsonUiSchema, jsonValue } from "./form-preset.ts";
-import type { NormalizedFormState } from "./form-state.ts";
+import type { FormState } from "./form-state.ts";
 import { playgroundValidators2, playgroundValidatorTitle } from "./model.ts";
 import { createSandboxFiles, type CustomComponents } from "./sandbox.ts";
 
-const BASE_FORM_STATE: NormalizedFormState = {
+const BASE_FORM_STATE: FormState = {
   schema: jsonSchema({
     type: "object",
     title: "Test",
     properties: { name: { type: "string" } },
   }),
   uiSchema: jsonUiSchema({}),
-  initialValue: jsonValue(null),
+  formData: jsonValue(null),
   css: "",
   disabled: false,
   html5Validation: false,
@@ -43,7 +43,7 @@ const CUSTOM_COMPONENTS: CustomComponents = {
   transparentLayout: "<stub>transparent</stub>",
 };
 
-function testCase(name: string, overrides: Partial<NormalizedFormState> = {}) {
+function testCase(name: string, overrides: Partial<FormState> = {}) {
   it(name, async () => {
     expect(
       await createSandboxFiles({
@@ -68,7 +68,7 @@ describe("sandbox-factory", () => {
 
   describe("validators", () => {
     for (const validator of playgroundValidators2()) {
-      const overrides: Partial<NormalizedFormState> = { validator };
+      const overrides: Partial<FormState> = { validator };
       if (validator.name === "zod4") {
         overrides.schema = `import * as z from "zod";\n\nexport default z.object({ name: z.string() })`;
       } else if (validator.name === "valibot") {

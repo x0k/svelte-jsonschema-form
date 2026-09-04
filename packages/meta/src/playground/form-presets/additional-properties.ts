@@ -53,7 +53,7 @@ export default definePreset({
       },
     },
   }),
-  initialValue: jsonValue({
+  formData: jsonValue({
     firstName: "Chuck",
     lastName: "Norris",
     assKickCount: "infinity",

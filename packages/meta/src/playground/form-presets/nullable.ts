@@ -118,7 +118,7 @@ export default definePreset({
       },
     },
   }),
-  initialValue: jsonValue({
+  formData: jsonValue({
     lastName: "Norris",
     age: 75,
     bio: null,

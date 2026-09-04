@@ -1,6 +1,5 @@
 import type { Draft2020, Precompiled } from "../codegen/index.ts";
 import {
-  normalizeValidator,
   type PlaygroundValidator,
   type PlaygroundValidator2,
 } from "./model.ts";
@@ -54,7 +53,7 @@ const PRECOMPILED_DRAFT_07: Record<
 };
 
 export function playgroundValidator<T>(options: ValidatorFactoryOptions) {
-  const v: PlaygroundValidator2 = normalizeValidator(options.validator);
+  const v: PlaygroundValidator2 = options.validator;
   const factory = v.precompiled
     ? PRECOMPILED_DRAFT_07[v.name]
     : v.draft2020
