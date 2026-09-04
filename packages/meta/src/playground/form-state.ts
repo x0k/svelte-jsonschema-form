@@ -1,9 +1,4 @@
-import type {
-  FieldsValidationMode,
-  FormValue,
-  Schema,
-  UiSchemaRoot,
-} from "@sjsf/form";
+import type { FieldsValidationMode } from "@sjsf/form";
 import type {
   Experimental_ArrayMinItems,
   Experimental_DefaultFormStateBehavior,
@@ -14,20 +9,12 @@ import {
   type PlaygroundTheme,
   type PlaygroundIconSet,
   type PlaygroundResolver,
-  normalizeJsonValue,
-  type Normalize,
-  normalizeValidator,
 } from "./model.ts";
 
-// NOTE: We use legacy types in combination with `| string`
-// to maintain compatibility with old URLs.
-// TODO: This should be removed in v4.
 export interface FormState {
-  schema: Schema | string;
-  uiSchema: UiSchemaRoot | string;
-  // TODO: Replace with `formData: string` in v4
-  initialValue: FormValue | string;
-  //
+  schema: string;
+  uiSchema: string;
+  formData: string;
   disabled: boolean;
   html5Validation: boolean;
   focusOnFirstError: boolean;
@@ -37,7 +24,7 @@ export interface FormState {
   theme: PlaygroundTheme;
   icons: PlaygroundIconSet;
   resolver: PlaygroundResolver;
-  css?: string;
+  css: string;
   // Merger config
   arrayMinItemsPopulate: ArrayMinItemsPopulate;
   arrayMinItemsMergeExtraDefaults: boolean;
@@ -45,7 +32,7 @@ export interface FormState {
   constAsDefault: ConstAsDefaultStateBehavior;
   emptyObjectFields: EmptyObjectFieldsStateBehavior;
   mergeDefaultsIntoFormData: MergeDefaultsIntoFormDataStateBehavior;
-  nestedDefaultsPrecedence?: NestedDefaultsPrecedence;
+  nestedDefaultsPrecedence: NestedDefaultsPrecedence;
 }
 
 type ArrayMinItemsPopulate = Exclude<
@@ -155,19 +142,3 @@ export const NESTED_DEFAULTS_PRECEDENCE_TITLES: Record<
 export const NESTED_DEFAULTS_PRECEDENCE = Object.keys(
   NESTED_DEFAULTS_PRECEDENCE_TITLES
 ) as NestedDefaultsPrecedence[];
-
-// TODO: Remove in v4
-export type NormalizedFormState = Normalize<FormState>;
-
-// TODO: Remove in v4
-export function normalizeFormState(state: FormState): NormalizedFormState {
-  return {
-    ...state,
-    nestedDefaultsPrecedence: "descendantWins",
-    css: state.css ?? "",
-    validator: normalizeValidator(state.validator),
-    schema: normalizeJsonValue(state.schema),
-    uiSchema: normalizeJsonValue(state.uiSchema),
-    initialValue: normalizeJsonValue(state.initialValue),
-  };
-}

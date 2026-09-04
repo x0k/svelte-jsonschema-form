@@ -1,8 +1,10 @@
+import type { FormValue, Schema, UiSchemaRoot } from "@sjsf/form";
+
 import type { CatalogMeta } from "../catalog.ts";
-import type { FormState, NormalizedFormState } from "./form-state.ts";
+import type { FormState } from "./form-state.ts";
 import type { SchemaType } from "./typed-schema.ts";
 
-type RequiredFormPresetProperties = "schema" | "uiSchema" | "initialValue";
+type RequiredFormPresetProperties = "schema" | "uiSchema" | "formData";
 
 type Preset<T extends Record<string, any>> = Pick<
   T,
@@ -11,8 +13,6 @@ type Preset<T extends Record<string, any>> = Pick<
   Partial<Omit<T, RequiredFormPresetProperties>>;
 
 export type FormPreset = Preset<FormState>;
-
-export type NormalizedFormPreset = Preset<NormalizedFormState>;
 
 // NOTE: Order is important
 export enum FormPresetCategory {
@@ -44,21 +44,19 @@ export function defineMetadata(meta: PresetMeta): PresetMeta {
   return meta;
 }
 
-export function definePreset(
-  preset: NormalizedFormPreset
-): NormalizedFormPreset {
+export function definePreset(preset: FormPreset): FormPreset {
   return preset;
 }
 
-export function jsonSchema(schema: FormState["schema"]): string {
+export function jsonSchema(schema: Schema): string {
   return JSON.stringify(schema, null, 2);
 }
 
-export function jsonUiSchema(uiSchema: FormState["uiSchema"]): string {
+export function jsonUiSchema(uiSchema: UiSchemaRoot): string {
   return JSON.stringify(uiSchema, null, 2);
 }
 
-export function jsonValue(value: FormState["initialValue"]): string {
+export function jsonValue(value: FormValue): string {
   return JSON.stringify(value, null, 2);
 }
 

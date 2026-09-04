@@ -1,3 +1,5 @@
+import type { Schema } from "@sjsf/form";
+
 import {
   defineMetadata,
   definePreset,
@@ -7,7 +9,6 @@ import {
   jsonUiSchema,
   jsonValue,
 } from "../form-preset.ts";
-import type { FormState } from "../form-state.ts";
 
 export const meta = defineMetadata({
   category: FormPresetCategory.SchemaBasics,
@@ -57,7 +58,7 @@ export default definePreset({
         },
       },
     },
-  } as FormState["schema"]),
-  initialValue: jsonValue({}),
+  } as Schema),
+  formData: jsonValue({}),
   uiSchema: jsonUiSchema({}),
 });
