@@ -68,6 +68,9 @@ use `.current` instead. `SingleSelectOptions.hasInitialValue` has been removed
 - `@sjsf/form/fields/one-of` — use `@sjsf/form/fields/combination/one-of`.
 - `@sjsf/form/fields/combination` — use `@sjsf/form/fields/combination/combination`.
 - `Config.value` is now required.
+- `removeVirtualAdditionalProperties()` — removed from `@sjsf/form/validators/properties`.
+- `createVirtualAdditionalPropertiesRemover()` — removed from `@sjsf/form/validators/properties`.
+- `createPatternPropertyKeyValidator()` `error` parameter no longer accepts a string — pass a function `(ctx) => string` instead.
 
 ## Validator packages
 
