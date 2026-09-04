@@ -213,7 +213,7 @@
 
 <Header
   transitions={{
-    "": () => ({ schema: data.schema, initialValue: data.input }),
+    "": () => ({ schema: data.schema, formData: data.input }),
     v: () => ({ schema: data.schema, input: data.input }),
     m: () => ({ schema: data.schema }),
     o: () => data,

@@ -240,7 +240,7 @@ export default definePreset({
       },
     },
   }),
-  initialValue: jsonValue({
+  formData: jsonValue({
     stringFormats: {
       email: "chuck@norris.net",
       uri: "http://chucknorris.com/",

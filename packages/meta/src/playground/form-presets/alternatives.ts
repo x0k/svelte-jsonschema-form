@@ -107,7 +107,7 @@ export default definePreset({
       },
     },
   }),
-  initialValue: jsonValue({
+  formData: jsonValue({
     currentColor: "#00ff00",
     colorMask: ["#0000ff"],
     colorPalette: ["#ff0000"],
