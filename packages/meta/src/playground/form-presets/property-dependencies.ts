@@ -92,7 +92,7 @@ export default definePreset({
       },
     },
   }),
-  initialValue: jsonValue({
+  formData: jsonValue({
     unidirectional: {
       name: "Tim",
     },

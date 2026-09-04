@@ -216,7 +216,7 @@ export default definePreset({
       },
     },
   }),
-  initialValue: jsonValue({
+  formData: jsonValue({
     listOfStrings: ["foo", "bar"],
     multipleChoicesList: ["foo", "bar"],
     fixedItemsList: ["Some text", true, 123],

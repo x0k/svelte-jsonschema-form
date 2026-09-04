@@ -1,7 +1,7 @@
 import {
   createSandboxFiles,
   type CustomComponents,
-  type NormalizedFormState,
+  type FormState,
 } from "meta/playground";
 import { sandboxOpen, type SandboxPlatform } from "meta/sandbox";
 
@@ -9,7 +9,7 @@ import markdownDescriptionSource from "./custom-form-components/markdown-descrip
 import transparentLayoutSource from "./custom-form-components/transparent-layout.svelte?raw";
 
 export interface SandboxOptions {
-  formState: NormalizedFormState;
+  formState: FormState;
   platform: SandboxPlatform;
 }
 
