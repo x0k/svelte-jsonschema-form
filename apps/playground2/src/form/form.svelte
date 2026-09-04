@@ -64,11 +64,10 @@
     playgroundResolvers,
     playgroundThemes,
     type FormState,
-    normalizeFormState,
     parseFormData,
     parseUiSchema,
     type PresetEntry,
-    type NormalizedFormPreset,
+    type FormPreset,
     schemaTypeFromValidator,
     NESTED_DEFAULTS_PRECEDENCE_TITLES,
     NESTED_DEFAULTS_PRECEDENCE,
@@ -131,7 +130,7 @@
   import SamplePicker from "./sample-picker.svelte";
 
   const DEFAULT_PLAYGROUND_STATE: FormState = {
-    schema: {
+    schema: JSON.stringify({
       type: "object",
       title: "Basic form",
       properties: {
@@ -141,16 +140,16 @@
         },
       },
       required: ["hello"],
-    },
-    uiSchema: {},
-    initialValue: null,
+    }),
+    uiSchema: JSON.stringify({}),
+    formData: "null",
     css: "",
     disabled: false,
     html5Validation: false,
     focusOnFirstError: true,
     omitExtraData: false,
     fieldsValidationMode: 0,
-    validator: "ajv8",
+    validator: { name: "ajv8", draft2020: false, precompiled: false },
     theme: "basic",
     icons: "none",
     resolver: "compat",
@@ -161,13 +160,14 @@
     constAsDefault: "always",
     emptyObjectFields: "populateAllDefaults",
     mergeDefaultsIntoFormData: "useFormDataIfPresent",
+    nestedDefaultsPrecedence: "descendantWins",
   };
 
-  let originalInitialValue = $state.raw("");
+  let originalFormData = $state.raw("");
   const data = $state(
     (() => {
-      const data = normalizeFormState(router.load(DEFAULT_PLAYGROUND_STATE));
-      originalInitialValue = data.initialValue;
+      const data = router.load(DEFAULT_PLAYGROUND_STATE);
+      originalFormData = data.formData;
       return data;
     })()
   );
@@ -251,10 +251,10 @@
     })
   );
 
-  const initialValueQuery = createParseQuery({
+  const formDataQuery = createParseQuery({
     parse: parseFormData,
     get input() {
-      return data.initialValue;
+      return data.formData;
     },
     defaultValue: undefined,
   });
@@ -272,7 +272,7 @@
       return PLAYGROUND_RESOLVERS[data.resolver];
     },
     get initialValue() {
-      return initialValueQuery.value;
+      return formDataQuery.value;
     },
     get theme() {
       return theme;
@@ -350,7 +350,7 @@
   debouncedEffect(() => {
     const snap = $state.snapshot(data);
     valueSnapshotStr;
-    return () => router.store({ ...snap, initialValue: valueSnapshotStr });
+    return () => router.store({ ...snap, formData: valueSnapshotStr });
   });
 
   setShadcnContext();
@@ -471,7 +471,7 @@
     };
   });
 
-  type KeyName = "schema" | "uiSchema" | "initialValue" | "css";
+  type KeyName = "schema" | "uiSchema" | "formData" | "css";
 
   function toKeyName(k: string): KeyName | undefined {
     switch (k) {
@@ -480,7 +480,7 @@
       case "css":
         return k;
       case "preview":
-        return "initialValue";
+        return "formData";
     }
   }
 
@@ -490,7 +490,7 @@
 
   const format = createFormatTask();
 
-  const loadPresetTask = createTask<[PresetEntry], NormalizedFormPreset>({
+  const loadPresetTask = createTask<[PresetEntry], FormPreset>({
     combinator: abortPrevious,
     execute: debounce(async (s, { load, meta }) => {
       const preset = await load();
@@ -522,7 +522,7 @@
       };
     }),
     onSuccess(preset) {
-      originalInitialValue = preset.initialValue;
+      originalFormData = preset.formData;
       Object.assign(data, preset);
     },
     onFailure: createOnFailure("Example loading"),
@@ -726,7 +726,7 @@
     {#if tile.titles[tile.selectedTab] === FORM_DATA_TITLE}
       <Button
         onclick={() => {
-          data.initialValue = originalInitialValue;
+          data.formData = originalFormData;
         }}
         size="sm"
         variant="ghost"
@@ -776,11 +776,11 @@
     bind:value={
       () => valueSnapshotStr,
       (v) => {
-        data.initialValue = v;
+        data.formData = v;
       }
     }
     class="h-full"
-    data-state={initialValueQuery.state}
+    data-state={formDataQuery.state}
   />
 {/snippet}
 

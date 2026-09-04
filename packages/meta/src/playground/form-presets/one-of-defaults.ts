@@ -226,7 +226,7 @@ export default definePreset({
   resolver: "compat",
   schema: jsonSchema(_schema),
   uiSchema: jsonUiSchema(_uiSchema),
-  initialValue: jsonValue({
+  formData: jsonValue({
     preset: TransformPreset.Default,
     transform: false,
     format: OutputFormat.HTML,

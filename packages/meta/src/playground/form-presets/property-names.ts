@@ -37,7 +37,7 @@ export default definePreset({
       },
     },
   }),
-  initialValue: jsonValue({
+  formData: jsonValue({
     foo: 123,
   }),
 });

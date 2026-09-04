@@ -14,11 +14,7 @@
     debounce,
   } from "@sjsf/form/lib/task.svelte";
   import { createMerger as createSchemaMerger } from "@sjsf/form/mergers/modern";
-  import {
-    normalizeValidatorState,
-    parseFormData,
-    type ValidatorState,
-  } from "meta/playground";
+  import { parseFormData, type ValidatorState } from "meta/playground";
   import { Panel, setTilerContext, type Tiles } from "svelte-tiler";
   import { fromRecord } from "svelte-tiler/shared/registry";
   import * as Leaf from "svelte-tiler/tiles/leaf.svelte";
@@ -49,7 +45,7 @@
   } from "./shared.svelte";
 
   const DEFAULT_PAGE_STATE: ValidatorState = {
-    schema: {
+    schema: JSON.stringify({
       type: "object",
       title: "Basic form",
       properties: {
@@ -59,13 +55,13 @@
         },
       },
       required: ["hello"],
-    },
-    input: null,
-    output: undefined,
-    validator: "ajv8",
+    }),
+    input: "null",
+    output: "[]",
+    validator: { name: "ajv8", draft2020: false, precompiled: false },
   };
 
-  const data = $state(normalizeValidatorState(router.load(DEFAULT_PAGE_STATE)));
+  const data = $state(router.load(DEFAULT_PAGE_STATE));
 
   debouncedEffect(() => {
     const snap = $state.snapshot(data);
@@ -236,7 +232,7 @@
   transitions={{
     "": () => ({
       schema: data.schema,
-      initialValue: data.input,
+      formData: data.input,
       validator: data.validator,
     }),
     v: () => data,

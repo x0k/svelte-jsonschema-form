@@ -2,13 +2,13 @@ import { describe, it, expect } from "vitest";
 
 import { codegenThemeOrSubTheme } from "../codegen/index.ts";
 import { jsonSchema } from "../playground/form-preset.ts";
-import { builderValidators2, normalizeBuilderValidator } from "./model.ts";
+import { builderValidators2 } from "./model.ts";
 import { createSandboxFiles, type BuilderSandboxOptions } from "./sandbox.ts";
 
 const BASE_OPTIONS: BuilderSandboxOptions = {
   name: "Sandbox",
   theme: "basic",
-  validator: normalizeBuilderValidator("ajv8"),
+  validator: { name: "ajv8", draft2020: false, precompiled: false },
   schema: jsonSchema({
     type: "object",
     title: "Test",

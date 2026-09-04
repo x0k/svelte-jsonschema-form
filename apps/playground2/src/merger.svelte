@@ -8,7 +8,6 @@
     createShallowAllOfMerge,
   } from "@sjsf/form/lib/json-schema";
   import {
-    normalizeMergerState,
     parseFormData,
     parseJsonSchema,
     type MergerState,
@@ -39,7 +38,7 @@
   import { createFormatTask, createParseQuery } from "./shared.svelte";
 
   const DEFAULT_PAGE_STATE: MergerState = {
-    schema: {
+    schema: JSON.stringify({
       allOf: [
         {
           type: "object",
@@ -49,15 +48,15 @@
         },
         { required: ["foo"] },
       ],
-    },
-    output: {},
+    }),
+    output: JSON.stringify({}),
     deep: false,
     intersectJson: false,
     deduplicateJsonSchemas: false,
   };
 
   const loadedState = router.load<MergerState>(DEFAULT_PAGE_STATE);
-  const data = $state(normalizeMergerState(loadedState));
+  const data = $state(loadedState);
 
   debouncedEffect(() => {
     const snap = $state.snapshot(data);
