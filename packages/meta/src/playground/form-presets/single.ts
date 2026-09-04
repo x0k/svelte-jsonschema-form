@@ -21,6 +21,6 @@ export default definePreset({
     title: "A single-field form",
     type: "string",
   }),
-  initialValue: jsonValue("initial value"),
+  formData: jsonValue("initial value"),
   uiSchema: jsonUiSchema({}),
 });

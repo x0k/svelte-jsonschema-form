@@ -88,7 +88,7 @@ export default definePreset({
       },
     },
   }),
-  initialValue: jsonValue({
+  formData: jsonValue({
     location: {
       name: "Amsterdam",
       lat: 52,

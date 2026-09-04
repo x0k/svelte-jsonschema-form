@@ -22,8 +22,8 @@ import { extraPackage, type AbstractPackage } from "../package.ts";
 import { toTheme, type Theme } from "../themes.ts";
 import { WIDGETS } from "../widgets.generated.ts";
 import { isThemeBaseWidget, type ExtraWidgetFileNames } from "../widgets.ts";
-import type { NormalizedFormState } from "./form-state.ts";
-import { normalizeValidator, type PlaygroundTheme } from "./model.ts";
+import type { FormState } from "./form-state.ts";
+import { type PlaygroundTheme } from "./model.ts";
 import { parseFormData, parseUiSchema } from "./parse.ts";
 import { WIDGET_EXTRA_FIELD } from "./widget-extra-fields.ts";
 
@@ -39,7 +39,7 @@ export interface SandboxFiles {
 
 function getChangedMergerOptionsCount(
   options: Pick<
-    NormalizedFormState,
+    FormState,
     | "arrayMinItemsPopulate"
     | "arrayMinItemsMergeExtraDefaults"
     | "allOf"
@@ -173,7 +173,7 @@ function detectCustomComponentsAndFields(
 
 export interface SandboxFilesOptions {
   name: string;
-  formState: NormalizedFormState;
+  formState: FormState;
   customComponents: CustomComponents;
 }
 
@@ -182,11 +182,11 @@ export async function createSandboxFiles({
   formState,
   customComponents: { markdownDescription, transparentLayout },
 }: SandboxFilesOptions) {
-  const validator = normalizeValidator(formState.validator);
+  const validator = formState.validator;
 
   const [uiSchema, initialValue] = await Promise.all([
     parseUiSchema(formState.uiSchema),
-    parseFormData(formState.initialValue),
+    parseFormData(formState.formData),
   ]);
 
   const {
