@@ -64,5 +64,5 @@ export default definePreset({
     ],
   }),
   uiSchema: jsonUiSchema({}),
-  initialValue: jsonValue({}),
+  formData: jsonValue({}),
 });

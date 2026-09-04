@@ -80,7 +80,7 @@ export default definePreset({
       $ref: "node",
     },
   }),
-  initialValue: jsonValue({
+  formData: jsonValue({
     billing_address: {
       street_address: "21, Jump Street",
       city: "Babel",
