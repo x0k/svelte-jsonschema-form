@@ -73,7 +73,7 @@ export default definePreset({
       },
     },
   }),
-  initialValue: jsonValue({
+  formData: jsonValue({
     number: 3.14,
     integer: 42,
     numberEnum: 2,

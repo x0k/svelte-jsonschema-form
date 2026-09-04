@@ -70,5 +70,5 @@ export default definePreset({
       },
     },
   }),
-  initialValue: jsonValue({}),
+  formData: jsonValue({}),
 });

@@ -54,7 +54,7 @@ export default definePreset({
     },
   }),
   uiSchema: jsonUiSchema({}),
-  initialValue: jsonValue({
+  formData: jsonValue({
     firstName: "Chuck",
     active: "wrong",
     skills: ["karate", "budo", "aikido"],
