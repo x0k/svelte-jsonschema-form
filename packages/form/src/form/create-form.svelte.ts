@@ -25,8 +25,7 @@ import type { DeepPartial } from "@/lib/types.js";
 
 import type { Theme } from "./components.js";
 import type { Config } from "./config.js";
-import type { FormSubmission, FieldsValidation } from "./errors.js";
-import { FIELD_SUBMITTED } from "./field-state.js";
+import type { FormValidation, FieldsValidation } from "./errors.js";
 import type { ResolveFieldType } from "./fields.js";
 import type { Icons } from "./icons.js";
 import {
@@ -60,11 +59,12 @@ import {
   FORM_ROOT_PATH,
   FORM_ERRORS,
   FORM_PATHS_TRIE_REF,
-  internalHasFieldState,
   FORM_ID_PREFIX,
   FormErrors,
   FORM_RETRIEVED_SCHEMA,
   FORM_CONFIGS_CACHE,
+  FORM_INITIAL_DEFAULTS_GENERATED,
+  FORM_INITIAL_VALUE,
 } from "./internals.js";
 import type { FormMerger } from "./merger.js";
 import {
@@ -78,10 +78,12 @@ import {
 } from "./model.js";
 import { createFormValueReconciler } from "./reconcile.js";
 import {
-  setFieldState,
+  reset,
   updateErrors,
   updateFieldErrors,
+  validate,
   type FormState,
+  type ValidateHandlers,
 } from "./state/index.js";
 import { createTranslate, type Translation } from "./translation.js";
 import {
@@ -98,7 +100,6 @@ import {
   type AsyncFieldValueValidator,
   type ValidationError,
   type ValidationResult,
-  type FailureValidationResult,
   type FormValidator,
 } from "./validator.js";
 
@@ -158,7 +159,8 @@ export interface MergerFactoryOptions {
   uiOptionsRegistry: UiOptionsRegistry;
 }
 
-export interface FormOptions<T> extends UiOptionsRegistryOption {
+export interface FormOptions<T>
+  extends ValidateHandlers<T, FailedTask<unknown>>, UiOptionsRegistryOption {
   schema: Schema;
   theme: Theme;
   translation: Translation;
@@ -181,19 +183,19 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
   /**
    * @default waitPrevious
    */
-  submissionCombinator?: TasksCombinator<
-    [event: SubmitEvent],
+  validationCombinator?: TasksCombinator<
+    [FormValue],
     ValidationResult<T>,
     unknown
   >;
   /**
    * @default 500
    */
-  submissionDelayedMs?: number;
+  validationDelayedMs?: number;
   /**
    * @default 8000
    */
-  submissionTimeoutMs?: number;
+  validationTimeoutMs?: number;
   /**
    * @default 300
    */
@@ -215,52 +217,13 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
    */
   fieldsValidationTimeoutMs?: number;
   /**
-   * Submit handler
-   *
-   * Will be called when the form is submitted and form data
-   * snapshot is valid
-   *
-   * Note that we rely on `validator.validateFormData` to check that the
-   * `formData is T`. So make sure you provide a `T` type that
-   * matches the validator check result.
-   */
-  onSubmit?: (value: T, e: SubmitEvent) => void;
-  /**
-   * Submit error handler
-   *
-   * Will be called when the form is submitted and form data
-   * snapshot is not valid
-   */
-  onSubmitError?: (
-    result: FailureValidationResult,
-    e: SubmitEvent,
-    form: FormState<T>
-  ) => void;
-  /**
-   * Form submission error handler
-   *
-   * Will be called when the submission fails by a different reasons:
-   * - submission is cancelled
-   * - error during validation
-   * - validation timeout
-   */
-  onSubmissionFailure?: (state: FailedTask<unknown>, e: SubmitEvent) => void;
-  /**
    * Field validation error handler
    */
-  onFieldsValidationFailure?: (
+  onFieldsValidationProcessError?: (
     state: FailedTask<unknown>,
     config: Config,
     value: FormValue
   ) => void;
-  /**
-   * Reset handler
-   *
-   * Will be called when the form is reset.
-   *
-   * The event will be `undefined` if `reset` is called manually without passing an event.
-   */
-  onReset?: (e?: Event) => void;
   schedulerYield?: SchedulerYield;
   keyedArraysMap?: KeyedArraysMap;
 }
@@ -366,10 +329,6 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   const dataUrlToBlob = $derived(createDataURLtoBlob(schedulerYield));
   const translate = $derived(createTranslate(options.translation));
   const fieldsStateMap = new SvelteMap<FieldPath, number>();
-  const isChanged = $derived(fieldsStateMap.size > 0);
-  const isSubmitted = $derived(
-    internalHasFieldState(fieldsStateMap, rootPath, FIELD_SUBMITTED)
-  );
   let isFirstRender = true;
   let initialDefaultsGenerated = $derived.by(() => {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
@@ -390,34 +349,33 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
         Promise.resolve(validator.validateFormValue(formValue));
     });
 
-  const submission: FormSubmission<T> = createTask({
-    async execute(signal) {
-      setFieldState(formState, rootPath, FIELD_SUBMITTED);
-      return await validateForm(signal, $state.snapshot(valueRef.current));
+  const validation: FormValidation<T> = createTask({
+    async execute(signal, value) {
+      return await validateForm(signal, value);
     },
-    onSuccess(result, event) {
+    onSuccess(result) {
       updateErrors(formState, result.errors ?? []);
       if (result.errors === undefined) {
-        options.onSubmit?.(result.value, event);
+        options.onValid?.(result.value);
         fieldsStateMap.clear();
         return;
       }
-      options.onSubmitError?.(result, event, formState);
+      options.onInvalid?.(result);
     },
-    onFailure(error, e) {
+    onFailure(error) {
       updateFieldErrors(formState, rootPath, [
         translate("validation-process-error", { error }),
       ]);
-      options.onSubmissionFailure?.(error, e);
+      options.onValidationProcessError?.(error);
     },
     get combinator() {
-      return options.submissionCombinator;
+      return options.validationCombinator;
     },
     get delayedMs() {
-      return options.submissionDelayedMs;
+      return options.validationDelayedMs;
     },
     get timeoutMs() {
-      return options.submissionTimeoutMs;
+      return options.validationTimeoutMs;
     },
   });
 
@@ -450,7 +408,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
           translate("validation-process-error", { error }),
         ]);
       }
-      options.onFieldsValidationFailure?.(error, config, value);
+      options.onFieldsValidationProcessError?.(error, config, value);
     },
     get combinator() {
       return options.fieldsValidationCombinator ?? abortPrevious;
@@ -463,37 +421,21 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     },
   });
 
-  function submit(e: SubmitEvent) {
-    e.preventDefault();
-    submission.run(e);
-  }
-
-  function reset(e?: Event) {
-    e?.preventDefault();
-    initialDefaultsGenerated = false;
-    fieldsStateMap.clear();
-    errors.clear();
-    valueRef.current = merger.mergeFormDataAndSchemaDefaults({
-      formData: options.initialValue as FormValue,
-      schema: options.schema,
-    });
-    options.onReset?.(e);
-  }
-
   const formState: FormState<T> = {
-    submission,
+    validation,
     fieldsValidation,
-    get isSubmitted() {
-      return isSubmitted;
-    },
-    get isChanged() {
-      return isChanged;
-    },
-    submit,
-    reset,
     // INTERNALS
     [FORM_FIELDS_STATE_MAP]: fieldsStateMap,
     [FORM_CONFIGS_CACHE]: new WeakMap(),
+    get [FORM_INITIAL_VALUE]() {
+      return options.initialValue;
+    },
+    get [FORM_INITIAL_DEFAULTS_GENERATED]() {
+      return initialDefaultsGenerated;
+    },
+    set [FORM_INITIAL_DEFAULTS_GENERATED](v) {
+      initialDefaultsGenerated = v;
+    },
     get [FORM_ID_PREFIX]() {
       return idPrefix;
     },
@@ -634,8 +576,14 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
 
 export function handlers<T>(form: FormState<T>): Attachment<HTMLFormElement> {
   return (node) => {
-    const disposeSubmit = on(node, "submit", form.submit);
-    const disposeReset = on(node, "reset", form.reset);
+    const disposeSubmit = on(node, "submit", (e) => {
+      e.preventDefault();
+      void validate(form);
+    });
+    const disposeReset = on(node, "reset", (e) => {
+      e.preventDefault();
+      reset(form);
+    });
     return () => {
       disposeReset();
       disposeSubmit();

@@ -13,7 +13,7 @@ import {
   type SchemaValue,
 } from "@/core/index.js";
 import {
-  AFTER_SUBMITTED,
+  AFTER_VALIDATED,
   getDefaultFieldState,
   ON_OBJECT_CHANGE,
   validateField,
@@ -225,7 +225,10 @@ export function createObjectContext<T>({
   function onChange(val: SchemaObjectValue | null | undefined) {
     setFieldState(ctx, config().path, FIELD_CHANGED);
     const m = getFieldsValidationMode(ctx);
-    if (!(m & ON_OBJECT_CHANGE) || (m & AFTER_SUBMITTED && !ctx.isSubmitted)) {
+    if (
+      !(m & ON_OBJECT_CHANGE) ||
+      (m & AFTER_VALIDATED && ctx.validation.status === "idle")
+    ) {
       return;
     }
     validateField(ctx, config(), val);
