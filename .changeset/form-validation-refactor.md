@@ -10,3 +10,4 @@ Replace form submission with validation:
 - `AFTER_SUBMITTED` → `AFTER_VALIDATED` (gated on `validation.status === "idle"`); `FIELD_SUBMITTED` removed
 - `validate(ctx)` / `validateAsync(ctx, signal)` → `validateFormValue(ctx)` / `validateFormValueAsync(ctx, signal)`
 - Add `Task.clear()` (silent cancel to `idle`, without `onFailure`); `abort()` still reports `aborted` failure
+- `preventPageReload({ isChanged })` → `preventPageReload(() => boolean)` (getter callback)
