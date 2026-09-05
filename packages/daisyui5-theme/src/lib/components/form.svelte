@@ -2,6 +2,7 @@
   import {
     formAttributes,
     getFormContext,
+    handlers,
     type ComponentProps,
   } from "@sjsf/form";
   import "@sjsf/basic-theme/components/form.svelte";
@@ -18,8 +19,7 @@
 
 <form
   class="flex flex-col gap-4"
-  onsubmit={ctx.submit}
-  onreset={ctx.reset}
+  {@attach handlers(ctx)}
   bind:this={ref}
   {...formAttributes(ctx, config, "form", attributes, {})}
 >

@@ -2,6 +2,7 @@
   import {
     formAttributes,
     getFormContext,
+    handlers,
     type ComponentProps,
   } from "@sjsf/form";
   import "@sjsf/basic-theme/components/form.svelte";
@@ -17,8 +18,7 @@
 </script>
 
 <form
-  onsubmit={ctx.submit}
-  onreset={ctx.reset}
+  {@attach handlers(ctx)}
   {...formAttributes(ctx, config, "form", attributes, {})}
   bind:this={ref}
 >

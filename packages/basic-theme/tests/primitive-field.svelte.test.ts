@@ -46,7 +46,7 @@ describe("primitive field contracts", () => {
 
     // https://github.com/rjsf-team/react-jsonschema-form/pull/5136
     test("clearing a field with a schema default does not re-apply the default", async () => {
-      const onSubmit = vi.fn();
+      const onValid = vi.fn();
       const { form } = await renderFieldForm(
         {
           schema: {
@@ -55,7 +55,7 @@ describe("primitive field contracts", () => {
               name: { type: "string", default: "Chuck" },
             },
           },
-          onSubmit,
+          onValid,
         },
         { novalidate: true }
       );
@@ -71,14 +71,14 @@ describe("primitive field contracts", () => {
       await userEvent.click(page.getByRole("button", { name: "Submit" }));
       await tick();
 
-      expect(onSubmit).toHaveBeenCalled();
-      const [submittedValue] = onSubmit.mock.calls.at(-1)!;
-      expect(submittedValue).toEqual({});
+      expect(onValid).toHaveBeenCalled();
+      const [validValue] = onValid.mock.calls.at(-1)!;
+      expect(validValue).toEqual({});
     });
 
     // https://github.com/rjsf-team/react-jsonschema-form/pull/5138
     test("clearing a second field does not re-apply the default to a previously-cleared field", async () => {
-      const onSubmit = vi.fn();
+      const onValid = vi.fn();
       const { form } = await renderFieldForm(
         {
           schema: {
@@ -88,7 +88,7 @@ describe("primitive field contracts", () => {
               someNumbers: { type: "number", default: 1 },
             },
           },
-          onSubmit,
+          onValid,
         },
         { novalidate: true }
       );
@@ -116,9 +116,9 @@ describe("primitive field contracts", () => {
       await userEvent.click(page.getByRole("button", { name: "Submit" }));
       await tick();
 
-      expect(onSubmit).toHaveBeenCalled();
-      const [submittedValue] = onSubmit.mock.calls.at(-1)!;
-      expect(submittedValue).toEqual({});
+      expect(onValid).toHaveBeenCalled();
+      const [validValue] = onValid.mock.calls.at(-1)!;
+      expect(validValue).toEqual({});
     });
 
     test("clearing value returns empty string when stringEmptyValue is set", async () => {
