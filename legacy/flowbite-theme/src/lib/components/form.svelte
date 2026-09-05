@@ -12,6 +12,7 @@
   import {
     formAttributes,
     getFormContext,
+    handlers,
     type ComponentProps,
   } from "@sjsf/form";
 
@@ -27,8 +28,7 @@
 
 <form
   bind:this={ref}
-  onsubmit={ctx.submit}
-  onreset={ctx.reset}
+  {@attach handlers(ctx)}
   class="flex flex-col gap-4"
   {...formAttributes(ctx, config, "flowbiteForm", attributes, {})}
 >
