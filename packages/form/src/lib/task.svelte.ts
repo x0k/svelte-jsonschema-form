@@ -133,6 +133,10 @@ export interface Task<T extends ReadonlyArray<any>, R, E> {
    * The task will fail with an "aborted" reason and trigger any associated failure callbacks.
    */
   abort(): void;
+  /**
+   * Cancels the ongoing task silently (without `onFailure`) and returns it to `idle`.
+   */
+  clear(): void;
 }
 
 export function createTask<
@@ -286,6 +290,15 @@ export function createTask<
         clearTimeouts();
         state = { status: "failed", reason: "aborted" };
         options.onFailure?.(state, ...args);
+      });
+    },
+    clear() {
+      untrack(() => {
+        if (state.status === "processing") {
+          abort(state);
+          clearTimeouts();
+        }
+        state = { status: "idle" };
       });
     },
   };

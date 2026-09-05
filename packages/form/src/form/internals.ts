@@ -40,6 +40,10 @@ export const FORM_RESOLVER = Symbol("form-resolver");
 export const FORM_THEME = Symbol("form-theme");
 export const FORM_FIELDS_STATE_MAP = Symbol("form-fields-state-map");
 export const FORM_CONFIGS_CACHE = Symbol("form-schemas-cache");
+export const FORM_INITIAL_DEFAULTS_GENERATED = Symbol(
+  "form-initial-defaults-generated"
+);
+export const FORM_INITIAL_VALUE = Symbol("form-initial-value");
 
 export function internalRegisterFieldPath(
   ref: PathTrieRef<FieldPath>,
