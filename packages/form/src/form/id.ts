@@ -21,6 +21,15 @@ export type FieldPseudoElement = keyof IdentifiableFieldElement | number;
 
 export interface FormIdBuilder {
   fromPath: (path: FieldPath) => string;
+  /**
+   * Returns the name of the hidden input that carries the form id prefix.
+   *
+   * Allows integrations where input names must follow a specific format
+   * (like SvelteKit remote forms) to customize it.
+   *
+   * TODO: make required in v4
+   */
+  idPrefixName?: () => string;
 }
 
 export const SJSF_ID_PREFIX = "__sjsf_id_prefix";

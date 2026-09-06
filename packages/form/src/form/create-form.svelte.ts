@@ -65,6 +65,7 @@ import {
   FormErrors,
   FORM_RETRIEVED_SCHEMA,
   FORM_CONFIGS_CACHE,
+  FORM_ID_BUILDER,
 } from "./internals.js";
 import type { FormMerger } from "./merger.js";
 import {
@@ -567,6 +568,9 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     },
     get [FORM_MERGER]() {
       return merger;
+    },
+    get [FORM_ID_BUILDER]() {
+      return idBuilder;
     },
     get [FORM_RESOLVER]() {
       return fieldTypeResolver;

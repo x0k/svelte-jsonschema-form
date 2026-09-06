@@ -264,6 +264,20 @@ kit/:
     pnpm run test $@
   popd
 
+kit3/:
+  pushd lab/sveltekit3
+  c:
+    pnpm run check
+  b:
+    pnpm run build
+  p:
+    pnpm run preview
+  d:
+    pnpm run dev
+  t:
+    pnpm run test $@
+  popd
+
 pushd lab
 hyper/:
   pushd hyperjump-validator
