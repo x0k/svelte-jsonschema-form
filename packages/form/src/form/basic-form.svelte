@@ -2,7 +2,8 @@
   import type { HTMLFormAttributes } from "svelte/elements";
 
   import Content from "./content.svelte";
-  import Form from "./form.svelte";
+  import { handlers } from "./create-form.svelte.js";
+  import Root from "./root.svelte";
   import { type FormState, setFormContext } from "./state/index.js";
   import SubmitButton from "./submit-button.svelte";
 
@@ -19,7 +20,9 @@
   setFormContext(form);
 </script>
 
-<Form bind:ref {attributes}>
-  <Content />
-  <SubmitButton />
-</Form>
+<form bind:this={ref} {@attach handlers(form)} {...attributes}>
+  <Root>
+    <Content />
+    <SubmitButton />
+  </Root>
+</form>
