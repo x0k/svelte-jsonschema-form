@@ -401,6 +401,15 @@ export function titleAttributes<T, const O extends keyof ObjectUiOptions>(
   );
 }
 
+export function rootAttributes<T, const O extends keyof ObjectUiOptions>(
+  ctx: FormState<T>,
+  config: Config,
+  option: O,
+  props: NonNullable<UiOptions[O]>
+) {
+  return composeProps(ctx, config, props, uiOptionProps(option));
+}
+
 // WARN: basic layout depends on amount of required props
 export function layoutAttributes<
   FT,
