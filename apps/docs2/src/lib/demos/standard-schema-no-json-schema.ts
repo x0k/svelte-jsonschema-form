@@ -14,7 +14,7 @@ const meta: DemoMeta = {
   "extraDependencies": [
     {
       "name": "effect",
-      "version": "3.22.1",
+      "version": "3.22.2",
       "dev": false
     }
   ]

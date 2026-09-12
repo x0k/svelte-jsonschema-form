@@ -1,7 +1,10 @@
-import { createMatrix, fromMatrix } from "@json-table/core/block-matrix";
-import { blockToHTML } from "@json-table/core/block-to-html";
-import { makeBlockFactory } from "@json-table/core/json-to-table";
-import { transpose } from "@json-table/core/lib/matrix";
+import {
+  makeTreeFactory,
+  transposeTree,
+  toHTML,
+  joinPrimitiveArrayValues,
+} from "@json-table/core";
+import type { JSONValue } from "@json-table/core/lib/json";
 import type { UiSchema } from "@sjsf/form";
 import {
   themeExtraWidgetSubPath,
@@ -73,9 +76,11 @@ export function createSchemas(specs: s.Specs = {}) {
   return schemas;
 }
 
-const createBlock = makeBlockFactory({
+const createTree = makeTreeFactory<JSONValue>({
   cornerCellValue: "№",
-  joinPrimitiveArrayValues: true,
+  joinArrayValues: joinPrimitiveArrayValues,
+  createHeader: (k) => k,
+  createIndex: (i) => `${i + 1}`,
 });
 
 export function validationEvents(specs: s.Specs) {
@@ -85,15 +90,7 @@ export function validationEvents(specs: s.Specs) {
       Object.keys(e).join(", ") ?? "none",
     ])
   );
-  let block = createBlock(data);
-  let matrix = createMatrix(block, ({ type, value }) => ({ type, value }));
-  matrix = transpose(matrix);
-  block = fromMatrix(
-    matrix,
-    ({ type }) => type,
-    ({ value }) => value
-  );
-  return blockToHTML(block);
+  return toHTML(transposeTree(createTree(data)));
 }
 
 export function replacer(_: string, value: any) {
