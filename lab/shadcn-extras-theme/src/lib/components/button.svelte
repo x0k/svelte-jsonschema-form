@@ -46,6 +46,7 @@
     type ButtonProps as ButtonPrimitiveProps,
   } from "$lib/components/ui/button/index.js";
   import { Spinner } from "$lib/components/ui/spinner/index.js";
+  import { cn } from "$lib/utils.js";
 
   let {
     ref = $bindable(null),
@@ -53,6 +54,7 @@
     onClickPromise,
     onclick,
     disabled,
+    class: className,
     children,
     ...restProps
   }: ButtonProps = $props();
@@ -64,6 +66,7 @@
 
 <Button
   bind:ref
+  class={cn(loading && "[&_svg:not([data-loading-icon])]:hidden", className)}
   disabled={loading || disabled}
   onclick={async (e) => {
     onclick?.(e as never);
@@ -80,7 +83,7 @@
   {...restProps}
 >
   {#if loading}
-    <Spinner data-icon="inline-start" />
+    <Spinner data-icon="inline-start" data-loading-icon />
   {/if}
   {@render children?.()}
 </Button>

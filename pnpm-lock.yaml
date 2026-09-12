@@ -246,14 +246,14 @@ catalogs:
       version: 1.0.7
   shadcn:
     '@zxcvbn-ts/core':
-      specifier: ^3.0.4
-      version: 3.0.4
+      specifier: ^4.2.0
+      version: 4.2.0
     '@zxcvbn-ts/language-common':
-      specifier: ^3.0.4
-      version: 3.0.4
+      specifier: ^4.1.3
+      version: 4.1.3
     '@zxcvbn-ts/language-en':
-      specifier: ^3.0.2
-      version: 3.0.2
+      specifier: ^4.1.1
+      version: 4.1.1
     clsx:
       specifier: ^2.1.1
       version: 2.1.1
@@ -1237,13 +1237,13 @@ importers:
         version: link:../../packages/shadcn4-theme
       '@zxcvbn-ts/core':
         specifier: catalog:shadcn
-        version: 3.0.4
+        version: 4.2.0
       '@zxcvbn-ts/language-common':
         specifier: catalog:shadcn
-        version: 3.0.4
+        version: 4.1.3
       '@zxcvbn-ts/language-en':
         specifier: catalog:shadcn
-        version: 3.0.2
+        version: 4.1.1
       ajv:
         specifier: 'catalog:'
         version: 8.20.0
@@ -1633,13 +1633,13 @@ importers:
         version: 4.3.3(vite@8.3.0(@types/node@26.5.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))
       '@zxcvbn-ts/core':
         specifier: catalog:shadcn
-        version: 3.0.4
+        version: 4.2.0
       '@zxcvbn-ts/language-common':
         specifier: catalog:shadcn
-        version: 3.0.4
+        version: 4.1.3
       '@zxcvbn-ts/language-en':
         specifier: catalog:shadcn
-        version: 3.0.2
+        version: 4.1.1
       ajv:
         specifier: 'catalog:'
         version: 8.20.0
@@ -5464,14 +5464,17 @@ packages:
   '@zag-js/utils@1.43.0':
     resolution: {integrity: sha512-ZxkL+AuKRv/UGmmp5iZwmzfcVV7iWiDIrhYiMrKDKPJGdIPIFpMOisM+bTKYVkvn0jmCZV0CTF0jJm29hEV+LQ==}
 
-  '@zxcvbn-ts/core@3.0.4':
-    resolution: {integrity: sha512-aQeiT0F09FuJaAqNrxynlAwZ2mW/1MdXakKWNmGM1Qp/VaY6CnB/GfnMS2T8gB2231Esp1/maCWd8vTG4OuShw==}
+  '@zxcvbn-ts/core@4.2.0':
+    resolution: {integrity: sha512-tuwzwOcYVca9MufHuUvzKGRyL04iP52OjCNoRDuGXjzzrtPiPcl8r5QtOotbx0AyTR/CMcDTU9qLkN16b9fXiw==}
 
-  '@zxcvbn-ts/language-common@3.0.4':
-    resolution: {integrity: sha512-viSNNnRYtc7ULXzxrQIVUNwHAPSXRtoIwy/Tq4XQQdIknBzw4vz36lQLF6mvhMlTIlpjoN/Z1GFu/fwiAlUSsw==}
+  '@zxcvbn-ts/dictionary-compression@3.0.1':
+    resolution: {integrity: sha512-p3KyPzxGc3vWSap5hHA6SllbUCmh7s+NtpGyC3qEWrxYJT9t9TUAzjPm48Okipo+UUyPQfDlIvTcs9JRShBFiQ==}
 
-  '@zxcvbn-ts/language-en@3.0.2':
-    resolution: {integrity: sha512-Zp+zL+I6Un2Bj0tRXNs6VUBq3Djt+hwTwUz4dkt2qgsQz47U0/XthZ4ULrT/RxjwJRl5LwiaKOOZeOtmixHnjg==}
+  '@zxcvbn-ts/language-common@4.1.3':
+    resolution: {integrity: sha512-g2bg4skmlJG9aJqC/nWziZzgYpSe/f3rKeGobrkdFiOrfZVFqqzUgC6BUQWuX54Sua9j0Jxxt+1bf4f/Mal1Kg==}
+
+  '@zxcvbn-ts/language-en@4.1.1':
+    resolution: {integrity: sha512-6UdzuBd3Uex8TKubohcn+uXRVAH34Zjs2eCfT4hQVo9zeTy7AkQRQfdV4OnHR5hQfW/XBrK/AGTZk7VBWh7wwQ==}
 
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -12162,13 +12165,19 @@ snapshots:
 
   '@zag-js/utils@1.43.0': {}
 
-  '@zxcvbn-ts/core@3.0.4':
+  '@zxcvbn-ts/core@4.2.0':
     dependencies:
       fastest-levenshtein: 1.0.16
 
-  '@zxcvbn-ts/language-common@3.0.4': {}
+  '@zxcvbn-ts/dictionary-compression@3.0.1': {}
 
-  '@zxcvbn-ts/language-en@3.0.2': {}
+  '@zxcvbn-ts/language-common@4.1.3':
+    dependencies:
+      '@zxcvbn-ts/dictionary-compression': 3.0.1
+
+  '@zxcvbn-ts/language-en@4.1.1':
+    dependencies:
+      '@zxcvbn-ts/dictionary-compression': 3.0.1
 
   acorn-jsx@5.3.2(acorn@8.18.0):
     dependencies:

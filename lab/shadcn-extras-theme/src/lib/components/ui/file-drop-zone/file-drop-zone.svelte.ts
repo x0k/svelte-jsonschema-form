@@ -1,226 +1,347 @@
-import type { ReadableBoxedValues } from 'svelte-toolbelt';
-import type { FileRejectedReason } from '$lib/components/ui/file-drop-zone/types.js';
-import { Context } from 'runed';
-import type { HTMLAttributes } from 'svelte/elements';
+import type { ReadableBoxedValues } from "svelte-toolbelt";
+import type { FileRejectedReason } from "$lib/components/ui/file-drop-zone/types.js";
+import { Context } from "runed";
+import type { HTMLAttributes } from "svelte/elements";
+
+function getFiles(dataTransfer: DataTransfer | null): File[] {
+  return Array.from(dataTransfer?.files ?? []);
+}
+
+function hasFiles(dataTransfer: DataTransfer | null): boolean {
+  return dataTransfer?.types.includes("Files") ?? false;
+}
 
 type FileDropZoneStateOptions = ReadableBoxedValues<{
-	id: string;
-	disabled: boolean;
-	onUpload: (files: File[]) => Promise<void>;
-	maxFiles: number | undefined;
-	fileCount: number | undefined;
-	maxFileSize: number | undefined;
-	onFileRejected: ((opts: { reason: FileRejectedReason; file: File }) => void) | undefined;
-	accept: string | undefined;
+  id: string;
+  disabled: boolean;
+  onUpload: (files: File[]) => Promise<void>;
+  maxFiles: number | undefined;
+  fileCount: number | undefined;
+  maxFileSize: number | undefined;
+  onFileRejected:
+    | ((opts: { reason: FileRejectedReason; file: File }) => void)
+    | undefined;
+  accept: string | undefined;
 }>;
 
 class FileDropZoneState {
-	uploading = $state(false);
+  uploading = $state(false);
+  #handledPasteEvents = new WeakSet<ClipboardEvent>();
 
-	constructor(readonly opts: FileDropZoneStateOptions) {
-		if (this.opts.maxFiles !== undefined && this.opts.fileCount === undefined) {
-			console.warn(
-				'Make sure to provide FileDropZone with `fileCount` when using the `maxFiles` prompt'
-			);
-		}
+  constructor(readonly opts: FileDropZoneStateOptions) {
+    if (this.opts.maxFiles !== undefined && this.opts.fileCount === undefined) {
+      console.warn(
+        "Make sure to provide FileDropZone with `fileCount` when using the `maxFiles` prompt",
+      );
+    }
 
-		this.onchange = this.onchange.bind(this);
-		this.ondrop = this.ondrop.bind(this);
-	}
+    this.onchange = this.onchange.bind(this);
+    this.ondrop = this.ondrop.bind(this);
+    this.onpaste = this.onpaste.bind(this);
+  }
 
-	async ondrop(
-		e: DragEvent & {
-			currentTarget: EventTarget;
-		}
-	) {
-		if (this.opts.disabled.current || !this.canUploadFiles) return;
+  onpaste(e: ClipboardEvent) {
+    this.uploadFromClipboard(e);
+  }
 
-		e.preventDefault();
+  async ondrop(
+    e: DragEvent & {
+      currentTarget: EventTarget;
+    },
+  ) {
+    if (this.opts.disabled.current || !this.canUploadFiles) return;
 
-		const droppedFiles = Array.from(e.dataTransfer?.files ?? []);
+    e.preventDefault();
 
-		await this.upload(droppedFiles);
-	}
+    const droppedFiles = getFiles(e.dataTransfer);
 
-	async onchange(
-		e: Event & {
-			currentTarget: EventTarget & HTMLInputElement;
-		}
-	) {
-		if (this.opts.disabled.current) return;
+    await this.upload(droppedFiles);
+  }
 
-		const selectedFiles = e.currentTarget.files;
+  async uploadFromClipboard(e: ClipboardEvent) {
+    if (this.opts.disabled.current || !this.canUploadFiles) return;
 
-		if (!selectedFiles) return;
+    if (this.#handledPasteEvents.has(e)) return;
 
-		await this.upload(Array.from(selectedFiles));
+    this.#handledPasteEvents.add(e);
 
-		// this if a file fails and we upload the same file again we still get feedback
-		(e.target as HTMLInputElement).value = '';
-	}
+    const pastedFiles = getFiles(e.clipboardData);
 
-	shouldAcceptFile(file: File, fileNumber: number): FileRejectedReason | undefined {
-		if (this.opts.maxFileSize.current !== undefined && file.size > this.opts.maxFileSize.current)
-			return 'Maximum file size exceeded';
+    if (pastedFiles.length === 0) return;
 
-		if (this.opts.maxFiles.current !== undefined && fileNumber > this.opts.maxFiles.current)
-			return 'Maximum files uploaded';
+    await this.upload(pastedFiles);
+  }
 
-		if (!this.opts.accept.current) return undefined;
+  async onchange(
+    e: Event & {
+      currentTarget: EventTarget & HTMLInputElement;
+    },
+  ) {
+    if (this.opts.disabled.current) return;
 
-		const acceptedTypes = this.opts.accept.current.split(',').map((a) => a.trim().toLowerCase());
-		const fileType = file.type.toLowerCase();
-		const fileName = file.name.toLowerCase();
+    const selectedFiles = e.currentTarget.files;
 
-		const isAcceptable = acceptedTypes.some((pattern) => {
-			// check extension like .mp4
-			if (fileType === '' || pattern.startsWith('.')) {
-				return fileName.endsWith(pattern);
-			}
+    if (!selectedFiles) return;
 
-			// if pattern has wild card like video/*
-			if (pattern.endsWith('/*')) {
-				const baseType = pattern.slice(0, pattern.indexOf('/*'));
-				return fileType.startsWith(baseType + '/');
-			}
+    await this.upload(Array.from(selectedFiles));
 
-			// otherwise it must be a specific type like video/mp4
-			return fileType === pattern;
-		});
+    // this if a file fails and we upload the same file again we still get feedback
+    (e.target as HTMLInputElement).value = "";
+  }
 
-		if (!isAcceptable) return 'File type not allowed';
+  shouldAcceptFile(
+    file: File,
+    fileNumber: number,
+  ): FileRejectedReason | undefined {
+    if (
+      this.opts.maxFileSize.current !== undefined &&
+      file.size > this.opts.maxFileSize.current
+    )
+      return "Maximum file size exceeded";
 
-		return undefined;
-	}
+    if (
+      this.opts.maxFiles.current !== undefined &&
+      fileNumber > this.opts.maxFiles.current
+    )
+      return "Maximum files uploaded";
 
-	upload = async (uploadFiles: File[]) => {
-		this.uploading = true;
+    if (!this.opts.accept.current) return undefined;
 
-		const validFiles: File[] = [];
+    const acceptedTypes = this.opts.accept.current
+      .split(",")
+      .map((a) => a.trim().toLowerCase());
+    const fileType = file.type.toLowerCase();
+    const fileName = file.name.toLowerCase();
 
-		for (let i = 0; i < uploadFiles.length; i++) {
-			const file = uploadFiles[i];
+    const isAcceptable = acceptedTypes.some((pattern) => {
+      // check extension like .mp4
+      if (fileType === "" || pattern.startsWith(".")) {
+        return fileName.endsWith(pattern);
+      }
 
-			const rejectedReason = this.shouldAcceptFile(
-				file,
-				(this.opts.fileCount?.current ?? 0) + i + 1
-			);
+      // if pattern has wild card like video/*
+      if (pattern.endsWith("/*")) {
+        const baseType = pattern.slice(0, pattern.indexOf("/*"));
+        return fileType.startsWith(baseType + "/");
+      }
 
-			if (rejectedReason) {
-				this.opts.onFileRejected.current?.({ file, reason: rejectedReason });
-				continue;
-			}
+      // otherwise it must be a specific type like video/mp4
+      return fileType === pattern;
+    });
 
-			validFiles.push(file);
-		}
+    if (!isAcceptable) return "File type not allowed";
 
-		await this.opts.onUpload.current?.(validFiles);
+    return undefined;
+  }
 
-		this.uploading = false;
-	};
+  upload = async (uploadFiles: File[]) => {
+    this.uploading = true;
 
-	canUploadFiles = $derived.by(() => {
-		if (this.opts.disabled.current) return false;
-		if (this.uploading) return false;
-		if (
-			this.opts.maxFiles.current !== undefined &&
-			this.opts.fileCount.current !== undefined &&
-			this.opts.fileCount.current >= this.opts.maxFiles.current
-		)
-			return false;
-		return true;
-	});
+    const validFiles: File[] = [];
 
-	props = $derived.by(() => ({
-		disabled: !this.canUploadFiles,
-		id: this.opts.id.current,
-		accept: this.opts.accept.current,
-		multiple:
-			this.opts.maxFiles.current === undefined ||
-			this.opts.maxFiles.current - (this.opts.fileCount.current ?? 0) > 1,
-		type: 'file',
-		onchange: this.onchange
-	}));
+    for (let i = 0; i < uploadFiles.length; i++) {
+      const file = uploadFiles[i];
+
+      const rejectedReason = this.shouldAcceptFile(
+        file,
+        (this.opts.fileCount?.current ?? 0) + i + 1,
+      );
+
+      if (rejectedReason) {
+        this.opts.onFileRejected.current?.({ file, reason: rejectedReason });
+        continue;
+      }
+
+      validFiles.push(file);
+    }
+
+    await this.opts.onUpload.current?.(validFiles);
+
+    this.uploading = false;
+  };
+
+  canUploadFiles = $derived.by(() => {
+    if (this.opts.disabled.current) return false;
+    if (this.uploading) return false;
+    if (
+      this.opts.maxFiles.current !== undefined &&
+      this.opts.fileCount.current !== undefined &&
+      this.opts.fileCount.current >= this.opts.maxFiles.current
+    )
+      return false;
+    return true;
+  });
+
+  props = $derived.by(() => ({
+    disabled: !this.canUploadFiles,
+    id: this.opts.id.current,
+    accept: this.opts.accept.current,
+    multiple:
+      this.opts.maxFiles.current === undefined ||
+      this.opts.maxFiles.current - (this.opts.fileCount.current ?? 0) > 1,
+    type: "file",
+    onchange: this.onchange,
+  }));
 }
 
 class FileDropZoneTrigger {
-	constructor(readonly rootState: FileDropZoneState) {}
+  constructor(readonly rootState: FileDropZoneState) {}
 
-	ondragover(e: DragEvent) {
-		e.preventDefault();
-	}
+  ondragover(e: DragEvent) {
+    e.preventDefault();
+  }
 
-	ondrop(
-		e: DragEvent & {
-			currentTarget: EventTarget & HTMLLabelElement;
-		}
-	) {
-		this.rootState.ondrop(e);
-	}
+  ondrop(
+    e: DragEvent & {
+      currentTarget: EventTarget & HTMLLabelElement;
+    },
+  ) {
+    this.rootState.ondrop(e);
+  }
 
-	props = $derived.by(() => ({
-		ondragover: this.ondragover.bind(this),
-		ondrop: this.ondrop.bind(this),
-		for: this.rootState.opts.id.current,
-		'aria-disabled': !this.rootState.canUploadFiles
-	}));
+  props = $derived.by(() => ({
+    ondragover: this.ondragover.bind(this),
+    ondrop: this.ondrop.bind(this),
+    for: this.rootState.opts.id.current,
+    "aria-disabled": !this.rootState.canUploadFiles,
+  }));
 }
 
 type FileDropZoneTextareaOptions = ReadableBoxedValues<{
-	ondragover: HTMLAttributes<HTMLTextAreaElement>['ondragover'];
-	ondrop: HTMLAttributes<HTMLTextAreaElement>['ondrop'];
-	onpaste: HTMLAttributes<HTMLTextAreaElement>['onpaste'];
+  ondragover: HTMLAttributes<HTMLTextAreaElement>["ondragover"];
+  ondrop: HTMLAttributes<HTMLTextAreaElement>["ondrop"];
+  onpaste: HTMLAttributes<HTMLTextAreaElement>["onpaste"];
 }>;
 
 class FileDropZoneTextareaState {
-	constructor(
-		readonly opts: FileDropZoneTextareaOptions,
-		readonly rootState: FileDropZoneState
-	) {}
+  constructor(
+    readonly opts: FileDropZoneTextareaOptions,
+    readonly rootState: FileDropZoneState,
+  ) {}
 
-	ondragover(e: Parameters<NonNullable<HTMLAttributes<HTMLTextAreaElement>['ondragover']>>[0]) {
-		e.preventDefault();
-		this.opts.ondragover.current?.(e);
-	}
+  ondragover(
+    e: Parameters<
+      NonNullable<HTMLAttributes<HTMLTextAreaElement>["ondragover"]>
+    >[0],
+  ) {
+    e.preventDefault();
+    this.opts.ondragover.current?.(e);
+  }
 
-	ondrop(e: Parameters<NonNullable<HTMLAttributes<HTMLTextAreaElement>['ondrop']>>[0]) {
-		this.rootState.ondrop(e);
-		this.opts.ondrop.current?.(e);
-	}
+  ondrop(
+    e: Parameters<
+      NonNullable<HTMLAttributes<HTMLTextAreaElement>["ondrop"]>
+    >[0],
+  ) {
+    this.rootState.ondrop(e);
+    this.opts.ondrop.current?.(e);
+  }
 
-	onpaste(e: Parameters<NonNullable<HTMLAttributes<HTMLTextAreaElement>['onpaste']>>[0]) {
-		const clipboardData = e.clipboardData;
-		if (!clipboardData) {
-			this.opts.onpaste.current?.(e);
-			return;
-		}
+  onpaste(
+    e: Parameters<
+      NonNullable<HTMLAttributes<HTMLTextAreaElement>["onpaste"]>
+    >[0],
+  ) {
+    this.rootState.uploadFromClipboard(e);
 
-		const files = Array.from(clipboardData.items)
-			.map((item) => item.getAsFile())
-			.filter((file) => file !== null);
+    this.opts.onpaste.current?.(e);
+  }
 
-		this.rootState.upload(files);
-
-		this.opts.onpaste.current?.(e);
-	}
-
-	props = $derived.by(() => ({
-		ondragover: this.ondragover.bind(this),
-		ondrop: this.ondrop.bind(this),
-		onpaste: this.onpaste.bind(this)
-	}));
+  props = $derived.by(() => ({
+    ondragover: this.ondragover.bind(this),
+    ondrop: this.ondrop.bind(this),
+    onpaste: this.onpaste.bind(this),
+  }));
 }
 
-const ctx = new Context<FileDropZoneState>('file-drop-zone-state');
+type FileDropZoneDragOverlayStateOptions = ReadableBoxedValues<{
+  disabled: boolean;
+}>;
+
+class FileDropZoneDragOverlayState {
+  #depth = $state(0);
+
+  constructor(
+    readonly opts: FileDropZoneDragOverlayStateOptions,
+    readonly rootState: FileDropZoneState,
+  ) {
+    this.ondragenter = this.ondragenter.bind(this);
+    this.ondragleave = this.ondragleave.bind(this);
+    this.ondragover = this.ondragover.bind(this);
+    this.ondrop = this.ondrop.bind(this);
+    this.reset = this.reset.bind(this);
+  }
+
+  canDropFiles = $derived.by(
+    () => !this.opts.disabled.current && this.rootState.canUploadFiles,
+  );
+
+  dragging = $derived.by(() => this.#depth > 0 && this.canDropFiles);
+
+  ondragenter(e: DragEvent) {
+    if (!hasFiles(e.dataTransfer)) return;
+
+    this.#depth++;
+  }
+
+  ondragleave(e: DragEvent) {
+    if (!hasFiles(e.dataTransfer)) return;
+
+    this.#depth = Math.max(this.#depth - 1, 0);
+  }
+
+  ondragover(e: DragEvent) {
+    if (!this.dragging) return;
+
+    e.preventDefault();
+  }
+
+  reset() {
+    this.#depth = 0;
+  }
+
+  async ondrop(
+    e: DragEvent & {
+      currentTarget: EventTarget;
+    },
+  ) {
+    this.reset();
+
+    if (!this.canDropFiles) return;
+
+    await this.rootState.ondrop(e);
+  }
+
+  windowProps = $derived.by(() => ({
+    ondragenter: this.ondragenter,
+    ondragleave: this.ondragleave,
+    ondragover: this.ondragover,
+    ondragend: this.reset,
+    ondrop: this.reset,
+  }));
+
+  props = $derived.by(() => ({
+    ondragover: this.ondragover,
+    ondrop: this.ondrop,
+  }));
+}
+
+const ctx = new Context<FileDropZoneState>("file-drop-zone-state");
 
 export function useFileDropZone(opts: FileDropZoneStateOptions) {
-	return ctx.set(new FileDropZoneState(opts));
+  return ctx.set(new FileDropZoneState(opts));
 }
 
 export function useFileDropZoneTrigger() {
-	return new FileDropZoneTrigger(ctx.get());
+  return new FileDropZoneTrigger(ctx.get());
 }
 
 export function useFileDropZoneTextarea(opts: FileDropZoneTextareaOptions) {
-	return new FileDropZoneTextareaState(opts, ctx.get());
+  return new FileDropZoneTextareaState(opts, ctx.get());
+}
+
+export function useFileDropZoneDragOverlay(
+  opts: FileDropZoneDragOverlayStateOptions,
+) {
+  return new FileDropZoneDragOverlayState(opts, ctx.get());
 }
