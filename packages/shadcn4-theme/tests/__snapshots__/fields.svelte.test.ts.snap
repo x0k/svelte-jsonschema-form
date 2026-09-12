@@ -2991,7 +2991,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                  
                 <svg
                   aria-hidden="true"
-                  class="lucide-icon lucide lucide-chevron-down text-muted-foreground pointer-events-none size-4"
+                  class="lucide lucide-chevron-down lucide-icon text-muted-foreground pointer-events-none size-4"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -3335,7 +3335,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                  
                 <svg
                   aria-hidden="true"
-                  class="lucide-icon lucide lucide-chevron-down text-muted-foreground pointer-events-none size-4"
+                  class="lucide lucide-chevron-down lucide-icon text-muted-foreground pointer-events-none size-4"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -3647,7 +3647,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                   >
                     <svg
                       aria-hidden="true"
-                      class="lucide-icon lucide lucide-check"
+                      class="lucide lucide-check lucide-icon"
                       fill="none"
                       height="24"
                       stroke="currentColor"
@@ -4007,7 +4007,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                  
                 <svg
                   aria-hidden="true"
-                  class="lucide-icon lucide lucide-chevron-down text-muted-foreground pointer-events-none size-4"
+                  class="lucide lucide-chevron-down lucide-icon text-muted-foreground pointer-events-none size-4"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -4166,7 +4166,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   >
                     <svg
                       aria-hidden="true"
-                      class="lucide-icon lucide lucide-check"
+                      class="lucide lucide-check lucide-icon"
                       fill="none"
                       height="24"
                       stroke="currentColor"
@@ -4342,7 +4342,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   >
                     <svg
                       aria-hidden="true"
-                      class="lucide-icon lucide lucide-check"
+                      class="lucide lucide-check lucide-icon"
                       fill="none"
                       height="24"
                       stroke="currentColor"
@@ -4671,7 +4671,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   >
                     <svg
                       aria-hidden="true"
-                      class="lucide-icon lucide lucide-check"
+                      class="lucide lucide-check lucide-icon"
                       fill="none"
                       height="24"
                       stroke="currentColor"
@@ -5317,7 +5317,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                  
                 <svg
                   aria-hidden="true"
-                  class="lucide-icon lucide lucide-chevron-down text-muted-foreground pointer-events-none size-4"
+                  class="lucide lucide-chevron-down lucide-icon text-muted-foreground pointer-events-none size-4"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -5629,7 +5629,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   >
                     <svg
                       aria-hidden="true"
-                      class="lucide-icon lucide lucide-check"
+                      class="lucide lucide-check lucide-icon"
                       fill="none"
                       height="24"
                       stroke="currentColor"

@@ -113,7 +113,7 @@ export const EXTRA_PACKAGES = {
   },
   "lucideSvelte": {
     "name": "@lucide/svelte",
-    "version": "1.31.0",
+    "version": "1.45.0",
     "dev": false
   },
   "zod": {
@@ -123,7 +123,7 @@ export const EXTRA_PACKAGES = {
   },
   "valibot": {
     "name": "valibot",
-    "version": "1.4.2",
+    "version": "1.5.0",
     "dev": false
   },
   "effect": {
