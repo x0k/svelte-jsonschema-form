@@ -60,6 +60,7 @@
     })
   );
 
+  // TODO: Use `SelectValue` in v4
   const triggerContent = $derived(
     mapped.current.map((v) => labels.get(v)).join(", ") ||
       selectAttributes.placeholder
