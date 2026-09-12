@@ -121,12 +121,3 @@ allowBuilds:
   ata-validator: false
 minimumReleaseAgeExclude:
   - "@x0k/sv-utils@0.3.3"
-  - "@valibot/to-json-schema@1.8.0"
-  - "@ata-validator/native-darwin-arm64@1.15.0"
-  - "@ata-validator/native-darwin-x64@1.15.0"
-  - "@ata-validator/native-linux-arm64-gnu@1.15.0"
-  - "@ata-validator/native-linux-arm64-musl@1.15.0"
-  - "@ata-validator/native-linux-x64-gnu@1.15.0"
-  - "@ata-validator/native-linux-x64-musl@1.15.0"
-  - "@ata-validator/native-win32-x64@1.15.0"
-  - ata-validator@1.15.0
