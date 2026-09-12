@@ -20,14 +20,15 @@
 </script>
 
 {#snippet Fallback()}
-  <ChevronRightIcon class={cn("size-4", className)} />
+  <ChevronRightIcon class={cn("cn-rtl-flip size-4", className)} />
 {/snippet}
 
 <RangeCalendarPrimitive.NextButton
   bind:ref
   class={cn(
     buttonVariants({ variant }),
-    "size-(--cell-size) bg-transparent p-0 select-none disabled:opacity-50 rtl:rotate-180",
+    "size-(--cell-size) bg-transparent p-0 select-none disabled:opacity-50",
+    "rtl:rotate-180",
     className
   )}
   {...restProps}
