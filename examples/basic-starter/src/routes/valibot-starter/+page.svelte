@@ -17,7 +17,7 @@
   const form = createForm({
     ...defaults,
     ...adapt(schema),
-    onSubmit: console.log,
+    onValid: console.log,
   });
 </script>
 

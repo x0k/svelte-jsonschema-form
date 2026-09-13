@@ -85,6 +85,69 @@ use `.current` instead. `SingleSelectOptions.hasInitialValue` has been removed
 - `shadcn4DateRangePickerWidget` removed — use `dateRangePickerWidget`.
 - `svarDateRangePickerWidget` removed — use `dateRangePickerWidget`.
 
+## Form layout (`Form` → `Root`)
+
+The customizable `form` foundational component is replaced by a
+platform-agnostic `root` layout slot:
+
+- `Form` export → `Root` export; theme `form.svelte` files → `root.svelte`
+  (layout `<div>`, no form element attributes).
+- `BasicForm` now renders a plain web `<form>` with the `handlers(form)`
+  attachment and `<Root><Content /><SubmitButton /></Root>` inside.
+- `ui:options.form` (`HTMLFormAttributes`) → `ui:options.root`
+  (`HTMLAttributes<HTMLDivElement>`); pass form element attributes
+  (`action`, `method`, `novalidate`, …) directly to `BasicForm` or your
+  own `<form>` element instead.
+- `formAttributes()` helper removed — use `rootAttributes()`.
+- Custom components resolving `"form"` via `getComponent` or overriding it
+  through `ui:components` must be renamed to `"root"`.
+
+## Validation replaces submission
+
+- `form.submission` → `form.validation`;
+  `submissionCombinator/DelayedMs/TimeoutMs` →
+  `validationCombinator/DelayedMs/TimeoutMs`.
+- `onSubmit(value, e)` / `onSubmitError(result, e, form)` /
+  `onSubmissionFailure(state, e)` / `onReset(e)` →
+  `onValid(value)` / `onInvalid(result)` / `onValidationProcessError(error)`;
+  `onFieldsValidationFailure` → `onFieldsValidationProcessError`.
+- `form.submit(e)` / `form.reset(e)` removed — use the standalone
+  `validate(form, handlers)` / `reset(form)` functions with the
+  `handlers(form)` form attachment.
+- `AFTER_SUBMITTED` → `AFTER_VALIDATED`;
+  `validate(ctx)` / `validateAsync(ctx, signal)` →
+  `validateFormValue(ctx)` / `validateFormValueAsync(ctx, signal)`.
+- `preventPageReload({ isChanged })` → `preventPageReload(() => boolean)`
+  (getter callback); compare the value snapshot with the initial value
+  to detect unsaved changes.
+- `form.isSubmitted` / `form.isChanged` removed.
+
+## Focus on first error
+
+`createFocusOnFirstError` is curried around the submit event so the
+returned callback fits `validate(form, { onInvalid })`:
+
+```svelte
+<script lang="ts">
+  import { createForm, setFormContext, validate } from "@sjsf/form";
+  import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+
+  const form = createForm({ ... });
+  setFormContext(form);
+  const focusOnFirstError = createFocusOnFirstError({ form });
+</script>
+
+<form
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, { onInvalid: focusOnFirstError(e) });
+  }}
+  novalidate
+>
+  <!-- ... -->
+</form>
+```
+
 ## Etc.
 
 Feel free to get in touch about migrating to v4 on

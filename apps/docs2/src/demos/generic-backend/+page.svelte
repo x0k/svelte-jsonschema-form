@@ -2,7 +2,8 @@
   import {
     Content,
     createForm,
-    Form,
+    handlers,
+    Root,
     setFormContext,
     SubmitButton,
   } from "@sjsf/form";
@@ -76,7 +77,7 @@
         },
       },
     },
-    onSubmit: resolve.run,
+    onValid: resolve.run,
     get disabled() {
       return resolve.isProcessed;
     },
@@ -84,13 +85,15 @@
   setFormContext(form);
 </script>
 
-<Form>
-  <Content />
-  <SubmitButton />
-  {#if data !== undefined}
-    <p>Data: {data}</p>
-  {/if}
-  {#if resolve.matches("failed")}
-    <p class="text-red-500">Failed: {resolve.state.reason}</p>
-  {/if}
-</Form>
+<form {@attach handlers(form)}>
+  <Root>
+    <Content />
+    <SubmitButton />
+    {#if data !== undefined}
+      <p>Data: {data}</p>
+    {/if}
+    {#if resolve.matches("failed")}
+      <p class="text-red-500">Failed: {resolve.state.reason}</p>
+    {/if}
+  </Root>
+</form>

@@ -1,4 +1,4 @@
-import type { Schema, UiSchemaRoot } from "@sjsf/form";
+import type { Schema } from "@sjsf/form";
 
 export const objectSchema: Schema = {
   type: "object",
@@ -21,12 +21,4 @@ export const objectSchema: Schema = {
     },
   },
   required: ["number", "text"],
-};
-
-export const objectUiSchema: UiSchemaRoot = {
-  "ui:options": {
-    form: {
-      novalidate: true,
-    },
-  },
 };

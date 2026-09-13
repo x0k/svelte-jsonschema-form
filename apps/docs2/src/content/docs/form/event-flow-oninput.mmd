@@ -4,10 +4,10 @@ flowchart TD
   customRun["eventHandlers.oninput()"]
   setFieldState["setFieldState(ctx, path, FIELD_INPUTTED)"]
   mapSet["fieldsStateMap.set(path, flags | FIELD_INPUTTED)"]
-  isChanged["isChanged = true\n(map.size > 0)"]
+  fieldState["field state recorded\n(map.size > 0)"]
   validationCheck{"fieldsValidationMode\nincludes ON_INPUT?"}
   afterCheck{"Modifier preconditions met?"}
-  afterSubmitted{"AFTER_SUBMITTED set?\nisSubmitted = true?"}
+  afterValidated{"AFTER_VALIDATED set?\nvalidation idle?"}
   afterChanged{"AFTER_CHANGED set?\nFIELD_CHANGED set?"}
   afterTouched{"AFTER_TOUCHED set?\nFIELD_BLURRED set?"}
   skipValidation["skip validation"]
@@ -24,7 +24,7 @@ flowchart TD
   setFieldErrors["set errors for path"]
   onFailure["onFailure"]
   setErrorMsg["updateFieldErrors(ctx, path,\n[translate('validation-process-error',\n{ error })])"]
-  onFieldsValidationFailure["options.onFieldsValidationFailure\n(error, config, value)"]
+  onFieldsValidationProcessError["options.onFieldsValidationProcessError\n(error, config, value)"]
   done["done"]
 
   domInput --> customHandler
@@ -32,13 +32,13 @@ flowchart TD
   customHandler -->|no| setFieldState
   customRun --> setFieldState
   setFieldState --> mapSet
-  mapSet --> isChanged
+  mapSet --> fieldState
   setFieldState --> validationCheck
   validationCheck -->|yes| afterCheck
   validationCheck -->|no| done
-  afterCheck --> afterSubmitted
-  afterSubmitted -->|yes| afterChanged
-  afterSubmitted -->|no| skipValidation
+  afterCheck --> afterValidated
+  afterValidated -->|yes| afterChanged
+  afterValidated -->|no| skipValidation
   afterChanged -->|yes| afterTouched
   afterChanged -->|no| skipValidation
   afterTouched -->|yes| debounce
@@ -60,5 +60,5 @@ flowchart TD
   setFieldErrors --> done
   clearFieldErrors --> done
   onFailure --> setErrorMsg
-  setErrorMsg --> onFieldsValidationFailure
-  onFieldsValidationFailure --> done
+  setErrorMsg --> onFieldsValidationProcessError
+  onFieldsValidationProcessError --> done

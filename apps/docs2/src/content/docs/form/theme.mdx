@@ -21,7 +21,7 @@ const theme = fromRecord({ ...components });
 All components can be divided into four **logical** types:
 
 - components (generic UI element)
-  - `form`
+  - `root`
   - `submitButton`
   - `button`
   - `layout`
@@ -188,16 +188,16 @@ Below are examples of the components required to render the following JSON schem
 The `FoundationalComponentType` is a subset of all components
 (`ComponentType`) that can be explicitly used in form elements.
 
-For example, we can use `form` as an argument for `getComponent` because
-`form` is `FoundationalComponentType`:
+For example, we can use `root` as an argument for `getComponent` because
+`root` is `FoundationalComponentType`:
 
 ```svelte
 <script lang="ts">
   ...
-  const Form = $derived(getComponent(ctx, "form", config));
+  const Root = $derived(getComponent(ctx, "root", config));
 </script>
 
-<Form bind:ref {config} {children} {attributes} />
+<Root {config} {children} />
 ```
 
 The main purpose of this list is to determine which components you can replace

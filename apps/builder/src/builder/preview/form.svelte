@@ -145,9 +145,9 @@
       skeleton5DateRangePicker: options,
       skeleton5DateRangePickerPortal: portalOptions,
     }),
-    onSubmit: console.log,
-    onSubmitError: console.warn,
-    onSubmissionFailure: console.error,
+    onValid: console.log,
+    onInvalid: console.warn,
+    onValidationProcessError: console.error,
   });
 
   function withFile(_: string, value: any) {

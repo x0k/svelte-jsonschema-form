@@ -39,7 +39,7 @@
     theme: overrideByRecord(defaults.theme, { layout: Layout }),
     schema,
     uiSchema,
-    onSubmit: console.log,
+    onValid: console.log,
   });
 </script>
 

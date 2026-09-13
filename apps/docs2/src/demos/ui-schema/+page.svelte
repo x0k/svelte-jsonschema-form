@@ -24,5 +24,5 @@
   {...defaults}
   {schema}
   {uiSchema}
-  onSubmit={(v) => window.alert(v)}
+  onValid={(v) => window.alert(v)}
 />

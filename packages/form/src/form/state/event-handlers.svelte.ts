@@ -21,7 +21,7 @@ import {
   internalSetFieldState,
 } from "../internals.js";
 import {
-  AFTER_SUBMITTED,
+  AFTER_VALIDATED,
   AFTER_CHANGED,
   AFTER_TOUCHED,
   ON_INPUT,
@@ -117,7 +117,7 @@ export function makeEventHandlers<T>(
   const makeHandler = (event: number) => {
     if (
       !(mode & event) ||
-      (mode & AFTER_SUBMITTED && !ctx.isSubmitted) ||
+      (mode & AFTER_VALIDATED && ctx.validation.status === "idle") ||
       (mode & AFTER_CHANGED && !(flag & FIELD_CHANGED)) ||
       (mode & AFTER_TOUCHED && !(flag & FIELD_BLURRED))
     ) {

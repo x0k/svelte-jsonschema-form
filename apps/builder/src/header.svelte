@@ -16,11 +16,9 @@
 
   const { ctx }: { ctx: ProjectsContext } = $props();
 
-  preventPageReload({
-    get isChanged() {
-      return location.hostname !== "localhost" && ctx.isSaveRequired;
-    },
-  });
+  preventPageReload(
+    () => location.hostname !== "localhost" && ctx.isSaveRequired
+  );
 
   const clearLink = new URL(location.href);
   clearLink.search = "";

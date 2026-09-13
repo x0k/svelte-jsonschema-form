@@ -47,7 +47,7 @@
   const form = createForm({
     ...defaults,
     schema,
-    onSubmit: console.log,
+    onValid: console.log,
     extraUiOptions: fromFactories({
       layouts: (config: Config) =>
         config.path.length === 0

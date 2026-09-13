@@ -1,9 +1,12 @@
 <script lang="ts">
   import {
     Content,
-    Form,
+    Root,
     createForm,
+    reset,
     setFormContext,
+    validate,
+    type FailureValidationResult,
     type Schema,
     type UiSchemaRoot,
   } from "@sjsf/form";
@@ -77,22 +80,37 @@
     ...defaults,
     schema,
     uiSchema,
-    onSubmit: (data) => {
+    onValid: (data) => {
       console.log(data);
-      form.reset();
+      reset(form);
       stepperCtx.current = 0;
     },
-    onSubmitError(result, e, form) {
+  });
+  setFormContext(form);
+
+  const focusOnFirstError = createFocusOnFirstError({ form });
+
+  function focusStep<R>(focus: (result: FailureValidationResult) => R) {
+    return (result: FailureValidationResult) => {
       if (result.errors.length === 0) {
         return;
       }
       step = result.errors[0].path[0] as number;
-      createFocusOnFirstError()(result, e, form);
-    },
-  });
-  setFormContext(form);
+      return focus(result);
+    };
+  }
 </script>
 
-<Form attributes={{ novalidate: true }}>
-  <Content />
-</Form>
+<form
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onInvalid: focusStep(focusOnFirstError(e)),
+    });
+  }}
+  novalidate
+>
+  <Root>
+    <Content />
+  </Root>
+</form>
