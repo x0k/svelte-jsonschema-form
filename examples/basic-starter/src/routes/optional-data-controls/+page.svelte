@@ -210,7 +210,7 @@
         ...options,
         emptyObjectFields: "populateRequiredDefaults",
       }),
-    onSubmit: console.log,
+    onValid: console.log,
   });
 </script>
 

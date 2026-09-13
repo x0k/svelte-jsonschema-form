@@ -26,5 +26,5 @@
   merger={createFormMerger}
   idBuilder={createFormIdBuilder}
   validator={createFormValidator<{ text: string }>}
-  onSubmit={(v) => window.alert(v.text)}
+  onValid={(v) => window.alert(v.text)}
 />

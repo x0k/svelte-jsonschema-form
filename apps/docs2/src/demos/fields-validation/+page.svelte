@@ -1,16 +1,17 @@
 <script lang="ts">
-  import { ON_CHANGE, ON_INPUT, SimpleForm } from "@sjsf/form";
+  import { ON_CHANGE, ON_INPUT, BasicForm, createForm } from "@sjsf/form";
 
   import { getDemoContext } from "@/lib/demo";
 
-  import { objectSchema, objectUiSchema } from "../demo-schemas";
+  import { objectSchema } from "../demo-schemas";
 
   const { defaults } = getDemoContext();
+
+  const form = createForm({
+    ...defaults,
+    schema: objectSchema,
+    fieldsValidationMode: ON_INPUT | ON_CHANGE,
+  });
 </script>
 
-<SimpleForm
-  {...defaults}
-  schema={objectSchema}
-  uiSchema={objectUiSchema}
-  fieldsValidationMode={ON_INPUT | ON_CHANGE}
-/>
+<BasicForm {form} novalidate />

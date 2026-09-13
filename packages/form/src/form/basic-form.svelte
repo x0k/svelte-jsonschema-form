@@ -2,8 +2,13 @@
   import type { HTMLFormAttributes } from "svelte/elements";
 
   import Content from "./content.svelte";
-  import Form from "./form.svelte";
-  import { type FormState, setFormContext } from "./state/index.js";
+  import Root from "./root.svelte";
+  import {
+    type FormState,
+    reset,
+    setFormContext,
+    validate,
+  } from "./state/index.js";
   import SubmitButton from "./submit-button.svelte";
 
   let {
@@ -19,7 +24,20 @@
   setFormContext(form);
 </script>
 
-<Form bind:ref {attributes}>
-  <Content />
-  <SubmitButton />
-</Form>
+<form
+  bind:this={ref}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form);
+  }}
+  onreset={(e) => {
+    e.preventDefault();
+    reset(form);
+  }}
+  {...attributes}
+>
+  <Root>
+    <Content />
+    <SubmitButton />
+  </Root>
+</form>

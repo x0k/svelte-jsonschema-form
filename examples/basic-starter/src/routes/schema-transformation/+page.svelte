@@ -161,14 +161,7 @@
   } satisfies FormValueValidator<FormValue>}
   {merger}
   {schema}
-  uiSchema={{
-    "ui:options": {
-      form: {
-        novalidate: true,
-      },
-    },
-  }}
-  onSubmit={(value) => {
+  onValid={(value) => {
     console.log(omitExtraData(validator, merger, originalSchema, value));
   }}
   extraUiOptions={fromFactories({

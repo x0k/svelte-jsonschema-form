@@ -9,7 +9,7 @@
   // svelte-ignore state_referenced_locally
   const form = createForm(options);
   onDestroy(() => {
-    form.submission.abort();
+    form.validation.abort();
     form.fieldsValidation.abort();
   });
 </script>

@@ -17,5 +17,5 @@ export const ON_OBJECT_CHANGE = 1 << iota++;
 export const AFTER_CHANGED = 1 << iota++;
 /** Validation is not triggered before first blur event */
 export const AFTER_TOUCHED = 1 << iota++;
-/** Validation is not triggered before first form submission */
-export const AFTER_SUBMITTED = 1 << iota;
+/** Validation is not triggered before first form validation */
+export const AFTER_VALIDATED = 1 << iota;

@@ -1,4 +1,4 @@
-export { default as form } from "./form.svelte";
+export { default as root } from "./root.svelte";
 export { default as submitButton } from "./submit-button.svelte";
 export { default as button } from "./button.svelte";
 export { default as layout } from "./layout.svelte";

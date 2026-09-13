@@ -33,7 +33,6 @@ export interface IdBuilderFactoryOptions {
 }
 
 export interface ValidatorFactoryOptions {
-  idBuilder: FormIdBuilder;
   schema: Schema;
   uiSchema: UiSchemaRoot;
   uiOptionsRegistry: UiOptionsRegistry;
@@ -62,7 +61,7 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
   translation: Translation;
   resolver: (ctx: FormState<T>) => ResolveFieldType;
   idBuilder: Creatable<FormIdBuilder, IdBuilderFactoryOptions>;
-  validator: Creatable<Validator, ValidatorFactoryOptions>;
+  validator: Creatable<FormValidator<T>, ValidatorFactoryOptions>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
   /**
    * @default DEFAULT_ID_PREFIX
@@ -79,19 +78,19 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
   /**
    * @default waitPrevious
    */
-  submissionCombinator?: TasksCombinator<
-    [event: SubmitEvent],
-    FormValidationResult,
+  validationCombinator?: TasksCombinator<
+    [FormValue],
+    ValidationResult<T>,
     unknown
   >;
   /**
    * @default 500
    */
-  submissionDelayedMs?: number;
+  validationDelayedMs?: number;
   /**
    * @default 8000
    */
-  submissionTimeoutMs?: number;
+  validationTimeoutMs?: number;
   /**
    * @default 300
    */
@@ -113,52 +112,38 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
    */
   fieldsValidationTimeoutMs?: number;
   /**
-   * Submit handler
+   * Valid value handler
    *
-   * Will be called when the form is submitted and form data
-   * snapshot is valid
+   * Will be called when the form value snapshot is valid
    *
    * Note that we rely on `validator.validateFormData` to check that the
    * `formData is T`. So make sure you provide a `T` type that
    * matches the validator check result.
    */
-  onSubmit?: (value: T, e: SubmitEvent) => void;
+  onValid?: (value: T) => void;
   /**
-   * Submit error handler
+   * Invalid value handler
    *
-   * Will be called when the form is submitted and form data
-   * snapshot is not valid
+   * Will be called when the form value snapshot is not valid
    */
-  onSubmitError?: (
-    result: FailureValidationResult,
-    e: SubmitEvent,
-    form: FormState<T>
-  ) => void;
+  onInvalid?: (result: FailureValidationResult) => void;
   /**
-   * Form submission error handler
+   * Form validation process error handler
    *
-   * Will be called when the submission fails by a different reasons:
-   * - submission is cancelled
+   * Will be called when the validation fails by a different reasons:
+   * - validation is cancelled
    * - error during validation
    * - validation timeout
    */
-  onSubmissionFailure?: (state: FailedTask<unknown>, e: SubmitEvent) => void;
+  onValidationProcessError?: (error: unknown) => void;
   /**
    * Field validation error handler
    */
-  onFieldsValidationFailure?: (
+  onFieldsValidationProcessError?: (
     state: FailedTask<unknown>,
     config: Config,
     value: FormValue
   ) => void;
-  /**
-   * Reset handler
-   *
-   * Will be called when the form is reset.
-   *
-   * The event will be `undefined` if `reset` is called manually without passing an event.
-   */
-  onReset?: (e?: Event) => void;
   schedulerYield?: SchedulerYield;
   keyedArraysMap?: KeyedArraysMap;
 }
