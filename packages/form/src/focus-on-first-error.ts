@@ -52,35 +52,41 @@ export function getFocusAction(
   return null;
 }
 
-export function createFocusOnFirstError(
-  options: GetFocusableElementOptions = {}
+export interface FocusOnFirstErrorOptions<
+  T,
+> extends GetFocusableElementOptions {
+  form: FormState<T>;
+}
+
+export function createFocusOnFirstError<T>(
+  options: FocusOnFirstErrorOptions<T>
 ) {
-  return (
-    { errors }: FailureValidationResult,
-    e: SubmitEvent,
-    ctx: FormState<any>
-  ) => {
-    if (errors.length === 0) {
-      return false;
-    }
-    const form = e.target;
-    if (!(form instanceof HTMLElement)) {
-      console.warn("Expected form to be an HTMLElement, got", form);
-      return false;
-    }
-    const { path } = errors[0]!;
-    const focusAction = getFocusAction(
-      getFocusableElement(form, getIdByPath(ctx, path), options),
-      () =>
-        getErrorsList(
-          form,
-          getIdByPath(ctx, path.concat(encodePseudoElement("errors")))
-        )
-    );
-    if (focusAction === null) {
-      return false;
-    }
-    // NOTE: We use tick here because new errors may produce layout changes.
-    return tick().then(focusAction);
-  };
+  return (e: SubmitEvent) =>
+    ({ errors }: FailureValidationResult) => {
+      if (errors.length === 0) {
+        return false;
+      }
+      const form = e.target;
+      if (!(form instanceof HTMLElement)) {
+        console.warn("Expected form to be an HTMLElement, got", form);
+        return false;
+      }
+      const { path } = errors[0]!;
+      const focusAction = getFocusAction(
+        getFocusableElement(form, getIdByPath(options.form, path), options),
+        () =>
+          getErrorsList(
+            form,
+            getIdByPath(
+              options.form,
+              path.concat(encodePseudoElement("errors"))
+            )
+          )
+      );
+      if (focusAction === null) {
+        return false;
+      }
+      // NOTE: We use tick here because new errors may produce layout changes.
+      return tick().then(focusAction);
+    };
 }

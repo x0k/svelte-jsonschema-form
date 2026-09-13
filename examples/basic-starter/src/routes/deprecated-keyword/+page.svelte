@@ -43,7 +43,7 @@
       action: (config: Config) =>
         config.schema.deprecated ? deprecated : undefined,
     }),
-    onSubmit: console.log,
+    onValid: console.log,
   });
 </script>
 

@@ -1,31 +1,22 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
-  import type { HTMLFormAttributes } from "svelte/elements";
 
   import { constUndefined } from "@/lib/function.js";
 
   import type { Config } from "./config.js";
   import { FORM_ROOT_PATH, FORM_SCHEMA, FORM_UI_SCHEMA } from "./internals.js";
   import {
-    getPseudoPath,
     getComponent,
     getFormContext,
+    getPseudoPath,
   } from "./state/index.js";
 
-  let {
-    ref = $bindable(),
-    children,
-    attributes,
-  }: {
-    ref?: HTMLFormElement | undefined;
-    attributes?: HTMLFormAttributes | undefined;
-    children: Snippet;
-  } = $props();
+  let { children }: { children: Snippet } = $props();
 
   const ctx = getFormContext();
 
   const config: Config = $derived({
-    path: getPseudoPath(ctx, ctx[FORM_ROOT_PATH], "form"),
+    path: getPseudoPath(ctx, ctx[FORM_ROOT_PATH], "root"),
     title: "",
     schema: ctx[FORM_SCHEMA],
     uiSchema: ctx[FORM_UI_SCHEMA],
@@ -33,7 +24,9 @@
     value: constUndefined,
   });
 
-  const Form = $derived(getComponent(ctx, "form", config));
+  const RootLayout = $derived(getComponent(ctx, "root", config));
 </script>
 
-<Form bind:ref {config} {children} {attributes} />
+<RootLayout {config}>
+  {@render children()}
+</RootLayout>

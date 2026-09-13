@@ -9,17 +9,18 @@
     ON_CHANGE,
     ON_INPUT,
     AFTER_CHANGED,
-    AFTER_SUBMITTED,
+    AFTER_VALIDATED,
     AFTER_TOUCHED,
     createForm,
     ON_ARRAY_CHANGE,
     ON_OBJECT_CHANGE,
     setFormContext,
-    Form,
     Content,
     SubmitButton,
     getValueSnapshot,
+    reset,
     type FormMerger,
+    validate,
   } from "@sjsf/form";
   import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
   import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
@@ -259,7 +260,6 @@
     defaultValue: undefined,
   });
 
-  const focusOnFirstError = createFocusOnFirstError();
   const formValidator = $derived(
     data.omitExtraData
       ? withOmitExtraData(validatorState.validator)
@@ -330,17 +330,9 @@
       stringEnumValueMapper: () => new StringEnumValueMapperBuilder(),
       idEnumValueMapper: () => new IdEnumValueMapperBuilder(),
     },
-    onSubmit(value) {
-      console.log("submit", value);
-    },
-    onSubmitError(errors, e) {
-      if (data.focusOnFirstError) {
-        focusOnFirstError(errors, e, form);
-      }
-      console.log("errors", errors);
-    },
   });
   setFormContext(form);
+  const focusOnFirstError = createFocusOnFirstError({ form });
 
   // TODO: Transform Files into constructors
   const valueSnapshotStr = $derived(
@@ -618,7 +610,7 @@
         flags={[
           [AFTER_CHANGED, "After Changed"],
           [AFTER_TOUCHED, "After Touched"],
-          [AFTER_SUBMITTED, "After Submitted"],
+          [AFTER_VALIDATED, "After Validated"],
         ]}
       />
       <Separator.Root class="my-1" />
@@ -715,7 +707,7 @@
     <CopyFormData />
     <Button
       onclick={() => {
-        form.reset();
+        reset(form);
       }}
       size="sm"
       variant="ghost"
@@ -809,20 +801,32 @@
               console.error("Form render error", err);
             }}
           >
-            <Form
-              attributes={{
-                id: "form",
-                class: themeManager.darkOrLight,
-                style: `flex-grow: 1; display: flex; flex-direction: column; gap: 1rem; padding: 1.5rem; color-scheme: ${themeManager.darkOrLight}`,
-                novalidate: !data.html5Validation || undefined,
-                ["data-theme"]: data.theme.startsWith("skeleton")
-                  ? "cerberus"
-                  : themeManager.darkOrLight,
+            <form
+              onsubmit={(e) => {
+                e.preventDefault();
+                void validate(form, {
+                  onValid(value) {
+                    console.log("submit", value);
+                  },
+                  onInvalid(result) {
+                    if (data.focusOnFirstError) {
+                      focusOnFirstError(e)(result);
+                    }
+                    console.log("errors", result.errors);
+                  },
+                });
               }}
+              id="form"
+              class={themeManager.darkOrLight}
+              style="flex-grow: 1; display: flex; flex-direction: column; gap: 1rem; padding: 1.5rem; color-scheme: {themeManager.darkOrLight}"
+              novalidate={!data.html5Validation}
+              data-theme={data.theme.startsWith("skeleton")
+                ? "cerberus"
+                : themeManager.darkOrLight}
             >
               <Content />
               <SubmitButton />
-            </Form>
+            </form>
             {#snippet failed(error, reset)}
               {const _ = setTimeout(reset, 1000)}
               <p style="color: red; padding: 1rem;">{error}</p>

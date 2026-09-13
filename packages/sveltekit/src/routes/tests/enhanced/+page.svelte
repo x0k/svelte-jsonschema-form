@@ -11,9 +11,8 @@
 
   // https://github.com/sveltejs/kit/pull/15657#issue-4208847537
   createPost.enhance(async ({ submit }) => {
-    if (await submit()) {
-      form.reset();
-    }
+    // STUB: form.reset() was removed; @sjsf/sveltekit is stubbed until sveltekit3
+    await submit();
   });
 
   const form = createForm(

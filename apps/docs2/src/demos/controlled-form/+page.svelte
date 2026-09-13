@@ -15,7 +15,7 @@
     ...defaults,
     schema,
     value: [() => value, (v) => (value = v)],
-    onSubmit: console.log,
+    onValid: console.log,
   });
 </script>
 

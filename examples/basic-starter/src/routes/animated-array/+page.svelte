@@ -30,7 +30,7 @@
     ...defaults,
     theme,
     schema,
-    onSubmit: console.log,
+    onValid: console.log,
   });
 </script>
 
