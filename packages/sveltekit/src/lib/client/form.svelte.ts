@@ -120,5 +120,8 @@ export function setupSvelteKitForm<
   request: ReturnType<typeof createSvelteKitRequest>;
   form: FormState<Meta["__formValue"]>;
 } {
+  void meta;
+  void formOptions;
+  void requestOptions;
   throw new Error(STUB_ERROR);
 }

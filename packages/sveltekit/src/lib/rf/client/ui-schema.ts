@@ -6,6 +6,9 @@ export function createUiSchemaWithFormAttributes(
   schema: UiSchemaRoot | undefined,
   uiOptionsRegistry: UiOptionsRegistry | undefined
 ): UiSchemaRoot {
+  void remoteForm;
+  void schema;
+  void uiOptionsRegistry;
   throw new Error(
     "@sjsf/sveltekit is stubbed until the sveltekit3 package is available"
   );

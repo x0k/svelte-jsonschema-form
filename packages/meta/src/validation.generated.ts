@@ -22,10 +22,10 @@ export const AFTER_CHANGED = 1 << 5;
 /** Validation is not triggered before first blur event */
 export const AFTER_TOUCHED = 1 << 6;
 
-/** Validation is not triggered before first form submission */
-export const AFTER_SUBMITTED = 1 << 7;
+/** Validation is not triggered before first form validation */
+export const AFTER_VALIDATED = 1 << 7;
 
-export type FieldValidationFlag = "ON_INPUT" | "ON_CHANGE" | "ON_BLUR" | "ON_ARRAY_CHANGE" | "ON_OBJECT_CHANGE" | "AFTER_CHANGED" | "AFTER_TOUCHED" | "AFTER_SUBMITTED";
+export type FieldValidationFlag = "ON_INPUT" | "ON_CHANGE" | "ON_BLUR" | "ON_ARRAY_CHANGE" | "ON_OBJECT_CHANGE" | "AFTER_CHANGED" | "AFTER_TOUCHED" | "AFTER_VALIDATED";
 
 export const FIELD_VALIDATION_FLAGS: Record<FieldValidationFlag, FieldsValidationMode> = {
   ON_INPUT,
@@ -35,5 +35,5 @@ export const FIELD_VALIDATION_FLAGS: Record<FieldValidationFlag, FieldsValidatio
   ON_OBJECT_CHANGE,
   AFTER_CHANGED,
   AFTER_TOUCHED,
-  AFTER_SUBMITTED,
+  AFTER_VALIDATED,
 };

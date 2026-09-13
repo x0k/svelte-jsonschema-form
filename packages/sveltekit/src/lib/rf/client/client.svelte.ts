@@ -1,6 +1,5 @@
 import type { FormOptions, FormState } from "@sjsf/form";
-import type { StandardSchemaV1 } from "@standard-schema/spec";
-import type { RemoteForm, RemoteFormInput } from "@sveltejs/kit";
+import type { RemoteForm } from "@sveltejs/kit";
 
 import type { SvelteKitDataParserOptions } from "../internal/sveltekit-data-parser.js";
 
@@ -8,6 +7,7 @@ const STUB_ERROR =
   "@sjsf/sveltekit is stubbed until the sveltekit3 package is available";
 
 export function createClientValidator<T>(form: FormState<T>) {
+  void form;
   throw new Error(STUB_ERROR);
 }
 
@@ -24,5 +24,7 @@ export async function connect<T>(
   remoteForm: RemoteForm<any, any>,
   options: FormOptions<T> & ConnectOptions
 ): Promise<FormOptions<T>> {
+  void remoteForm;
+  void options;
   throw new Error(STUB_ERROR);
 }

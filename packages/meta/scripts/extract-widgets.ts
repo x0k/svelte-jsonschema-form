@@ -97,12 +97,18 @@ async function main() {
     if (!e.isDirectory() || !e.name.endsWith(THEME_SUFFIX)) {
       continue;
     }
+    const packagePath = (...paths: string[]) =>
+      path.join(e.parentPath, e.name, ...paths);
+    try {
+      await fs.access(packagePath("package.json"));
+    } catch {
+      // Skip stale directories without sources (only build outputs remain)
+      continue;
+    }
     const theme = e.name.slice(0, -THEME_SUFFIX.length);
     if (!isTheme(theme)) {
       throw new Error(`Unknown theme: "${theme}"`);
     }
-    const packagePath = (...paths: string[]) =>
-      path.join(e.parentPath, e.name, ...paths);
     const packageJsonPath = packagePath("package.json");
     const packageJson = JSON.parse(
       await fs.readFile(packageJsonPath, { encoding: "utf-8" })
