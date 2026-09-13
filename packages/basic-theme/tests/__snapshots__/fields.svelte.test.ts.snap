@@ -2816,6 +2816,578 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <div
                     class="sjsf-description"
+                    id="root_collapseIndexes__description"
+                  >
+                    Combines hierarchical indexes into one cell (1.1, 1.2, ...)
+                  </div>
+                  
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <div
+                  class="sjsf-layout"
+                  data-layout="field-content"
+                >
+                  <!---->
+                  <!---->
+                  <label
+                    class="sjsf-checkbox"
+                  >
+                    <input
+                      aria-describedby="root_collapseIndexes__description root_collapseIndexes__help root_collapseIndexes__errors"
+                      aria-invalid="false"
+                      id="root_collapseIndexes"
+                      name="root_collapseIndexes"
+                      type="checkbox"
+                    />
+                     Combine nested indexes
+                  </label>
+                  
+                  
+                  <!---->
+                </div>
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              <!---->
+            </div>
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="object-property"
+          >
+            <!---->
+            <!---->
+             
+            <div
+              class="sjsf-layout"
+              data-layout="object-property-content"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="sjsf-layout"
+                data-layout="field"
+              >
+                <!---->
+                <!---->
+                <div
+                  class="sjsf-layout"
+                  data-layout="field-meta"
+                >
+                  <!---->
+                  <!---->
+                   
+                  <!---->
+                  <div
+                    class="sjsf-description"
+                    id="root_joinPrimitiveArrayValues__description"
+                  >
+                    Combines the values of an array of primitives into one cell (separated by ',')
+                  </div>
+                  
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <div
+                  class="sjsf-layout"
+                  data-layout="field-content"
+                >
+                  <!---->
+                  <!---->
+                  <label
+                    class="sjsf-checkbox"
+                  >
+                    <input
+                      aria-describedby="root_joinPrimitiveArrayValues__description root_joinPrimitiveArrayValues__help root_joinPrimitiveArrayValues__errors"
+                      aria-invalid="false"
+                      id="root_joinPrimitiveArrayValues"
+                      name="root_joinPrimitiveArrayValues"
+                      type="checkbox"
+                    />
+                     Combine simple values
+                  </label>
+                  
+                  
+                  <!---->
+                </div>
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              <!---->
+            </div>
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="object-property"
+          >
+            <!---->
+            <!---->
+             
+            <div
+              class="sjsf-layout"
+              data-layout="object-property-content"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="sjsf-layout"
+                data-layout="field"
+              >
+                <!---->
+                <!---->
+                <div
+                  class="sjsf-layout"
+                  data-layout="field-meta"
+                >
+                  <!---->
+                  <!---->
+                   
+                  <!---->
+                  <div
+                    class="sjsf-description"
+                    id="root_combineArraysOfObjects__description"
+                  >
+                    Combine arrays of objects into a single object
+                  </div>
+                  
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <div
+                  class="sjsf-layout"
+                  data-layout="field-content"
+                >
+                  <!---->
+                  <!---->
+                  <label
+                    class="sjsf-checkbox"
+                  >
+                    <input
+                      aria-describedby="root_combineArraysOfObjects__description root_combineArraysOfObjects__help root_combineArraysOfObjects__errors"
+                      aria-invalid="false"
+                      id="root_combineArraysOfObjects"
+                      name="root_combineArraysOfObjects"
+                      type="checkbox"
+                    />
+                     Combine objects
+                  </label>
+                  
+                  
+                  <!---->
+                </div>
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              <!---->
+            </div>
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="object-property"
+          >
+            <!---->
+            <!---->
+             
+            <div
+              class="sjsf-layout"
+              data-layout="object-property-content"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="sjsf-layout"
+                data-layout="field"
+              >
+                <!---->
+                <!---->
+                <div
+                  class="sjsf-layout"
+                  data-layout="field-meta"
+                >
+                  <!---->
+                  <!---->
+                   
+                  <!---->
+                  <div
+                    class="sjsf-description"
+                    id="root_stabilizeOrderOfPropertiesInArraysOfObjects__description"
+                  >
+                    Stabilizing the order in which properties are displayed for arrays of objects
+                  </div>
+                  
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <div
+                  class="sjsf-layout"
+                  data-layout="field-content"
+                >
+                  <!---->
+                  <!---->
+                  <label
+                    class="sjsf-checkbox"
+                  >
+                    <input
+                      aria-describedby="root_stabilizeOrderOfPropertiesInArraysOfObjects__description root_stabilizeOrderOfPropertiesInArraysOfObjects__help root_stabilizeOrderOfPropertiesInArraysOfObjects__errors"
+                      aria-invalid="false"
+                      id="root_stabilizeOrderOfPropertiesInArraysOfObjects"
+                      name="root_stabilizeOrderOfPropertiesInArraysOfObjects"
+                      type="checkbox"
+                    />
+                     Stabilize order of properties
+                  </label>
+                  
+                  
+                  <!---->
+                </div>
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              <!---->
+            </div>
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="object-property"
+          >
+            <!---->
+            <!---->
+             
+            <div
+              class="sjsf-layout"
+              data-layout="object-property-content"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="sjsf-layout"
+                data-layout="field"
+              >
+                <!---->
+                <!---->
+                <div
+                  class="sjsf-layout"
+                  data-layout="field-meta"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="sjsf-layout"
+                    data-layout="field-title-row"
+                  >
+                    <!---->
+                    <label
+                      class="sjsf-label"
+                      for="root_proportionalSizeAdjustmentThreshold"
+                    >
+                      Proportional size adjustment threshold 
+                      <span>
+                        *
+                      </span>
+                      <!---->
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <div
+                    class="sjsf-description"
+                    id="root_proportionalSizeAdjustmentThreshold__description"
+                  >
+                    Specifies the threshold to which the value (height, width) can be increased for a proportional increase. The default is 1 (by 100%).
+                  </div>
+                  
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <div
+                  class="sjsf-layout"
+                  data-layout="field-content"
+                >
+                  <!---->
+                  <!---->
+                  <input
+                    aria-describedby="root_proportionalSizeAdjustmentThreshold__description root_proportionalSizeAdjustmentThreshold__help root_proportionalSizeAdjustmentThreshold__errors"
+                    aria-invalid="false"
+                    class="sjsf-number"
+                    id="root_proportionalSizeAdjustmentThreshold"
+                    min="0"
+                    name="root_proportionalSizeAdjustmentThreshold"
+                    required=""
+                    step="any"
+                    type="number"
+                  />
+                   
+                  <!---->
+                  
+                  <!---->
+                  
+                  
+                  <!---->
+                </div>
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              <!---->
+            </div>
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="object-property"
+          >
+            <!---->
+            <!---->
+             
+            <div
+              class="sjsf-layout"
+              data-layout="object-property-content"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="sjsf-layout"
+                data-layout="field"
+              >
+                <!---->
+                <!---->
+                <div
+                  class="sjsf-layout"
+                  data-layout="field-meta"
+                >
+                  <!---->
+                  <!---->
+                  <div
+                    class="sjsf-layout"
+                    data-layout="field-title-row"
+                  >
+                    <!---->
+                    <label
+                      class="sjsf-label"
+                      for="root_cornerCellValue"
+                    >
+                      Corner cell value 
+                      <!---->
+                    </label>
+                    <!---->
+                     
+                    <!---->
+                    <!---->
+                  </div>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <div
+                    class="sjsf-description"
+                    id="root_cornerCellValue__description"
+                  >
+                    The value of the corner cell.
+                  </div>
+                  
+                  <!---->
+                  <!---->
+                </div>
+                
+                <!---->
+                 
+                <div
+                  class="sjsf-layout"
+                  data-layout="field-content"
+                >
+                  <!---->
+                  <!---->
+                  <input
+                    aria-describedby="root_cornerCellValue__description root_cornerCellValue__help root_cornerCellValue__errors"
+                    aria-invalid="false"
+                    class="sjsf-text"
+                    id="root_cornerCellValue"
+                    name="root_cornerCellValue"
+                    type="text"
+                  />
+                   
+                  <!---->
+                  
+                  <!---->
+                  
+                  
+                  <!---->
+                </div>
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              
+              
+              
+              <!---->
+            </div>
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="sjsf-layout"
+            data-layout="object-property"
+          >
+            <!---->
+            <!---->
+             
+            <div
+              class="sjsf-layout"
+              data-layout="object-property-content"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <div
+                class="sjsf-layout"
+                data-layout="field"
+              >
+                <!---->
+                <!---->
+                <div
+                  class="sjsf-layout"
+                  data-layout="field-meta"
+                >
+                  <!---->
+                  <!---->
+                   
+                  <!---->
+                  <div
+                    class="sjsf-description"
                     id="root_transform__description"
                   >
                     Apply a transformation to the output data
