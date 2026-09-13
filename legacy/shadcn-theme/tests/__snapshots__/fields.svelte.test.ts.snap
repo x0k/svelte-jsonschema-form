@@ -622,7 +622,7 @@ exports[`default-ui > array fields > checkboxes 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -704,7 +704,7 @@ exports[`default-ui > array fields > checkboxes 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -786,7 +786,7 @@ exports[`default-ui > array fields > checkboxes 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -2553,7 +2553,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                    
                   <svg
                     aria-hidden="true"
-                    class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+                    class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
                     fill="none"
                     height="24"
                     stroke="currentColor"
@@ -2694,7 +2694,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                     >
                       <svg
                         aria-hidden="true"
-                        class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                        class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                         fill="none"
                         height="24"
                         stroke="currentColor"
@@ -2879,7 +2879,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                    
                   <svg
                     aria-hidden="true"
-                    class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+                    class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
                     fill="none"
                     height="24"
                     stroke="currentColor"
@@ -3020,7 +3020,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                     >
                       <svg
                         aria-hidden="true"
-                        class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                        class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                         fill="none"
                         height="24"
                         stroke="currentColor"
@@ -3176,7 +3176,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                     >
                       <svg
                         aria-hidden="true"
-                        class="lucide-icon lucide lucide-check size-3.5"
+                        class="lucide lucide-check lucide-icon size-3.5"
                         fill="none"
                         height="24"
                         stroke="currentColor"
@@ -3460,7 +3460,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                    
                   <svg
                     aria-hidden="true"
-                    class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+                    class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
                     fill="none"
                     height="24"
                     stroke="currentColor"
@@ -3601,7 +3601,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     >
                       <svg
                         aria-hidden="true"
-                        class="lucide-icon lucide lucide-check size-3.5"
+                        class="lucide lucide-check lucide-icon size-3.5"
                         fill="none"
                         height="24"
                         stroke="currentColor"
@@ -3757,7 +3757,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     >
                       <svg
                         aria-hidden="true"
-                        class="lucide-icon lucide lucide-check size-3.5"
+                        class="lucide lucide-check lucide-icon size-3.5"
                         fill="none"
                         height="24"
                         stroke="currentColor"
@@ -3913,7 +3913,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     >
                       <svg
                         aria-hidden="true"
-                        class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                        class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                         fill="none"
                         height="24"
                         stroke="currentColor"
@@ -4069,7 +4069,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     >
                       <svg
                         aria-hidden="true"
-                        class="lucide-icon lucide lucide-check size-3.5"
+                        class="lucide lucide-check lucide-icon size-3.5"
                         fill="none"
                         height="24"
                         stroke="currentColor"
@@ -4466,7 +4466,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     >
                       <svg
                         aria-hidden="true"
-                        class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                        class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                         fill="none"
                         height="24"
                         stroke="currentColor"
@@ -4651,7 +4651,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                    
                   <svg
                     aria-hidden="true"
-                    class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+                    class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
                     fill="none"
                     height="24"
                     stroke="currentColor"
@@ -4792,7 +4792,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     >
                       <svg
                         aria-hidden="true"
-                        class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                        class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                         fill="none"
                         height="24"
                         stroke="currentColor"
@@ -4948,7 +4948,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     >
                       <svg
                         aria-hidden="true"
-                        class="lucide-icon lucide lucide-check size-3.5"
+                        class="lucide lucide-check lucide-icon size-3.5"
                         fill="none"
                         height="24"
                         stroke="currentColor"
@@ -8817,7 +8817,7 @@ exports[`default-ui > widgets > checkbox > snapshots > disabled 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -8972,7 +8972,7 @@ exports[`default-ui > widgets > checkbox > snapshots > error 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -9137,7 +9137,7 @@ exports[`default-ui > widgets > checkbox > snapshots > normal 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -9290,7 +9290,7 @@ exports[`default-ui > widgets > checkbox > snapshots > readonly 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -9446,7 +9446,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -9531,7 +9531,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -9616,7 +9616,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -9701,7 +9701,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -9858,7 +9858,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -9940,7 +9940,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -10022,7 +10022,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -10104,7 +10104,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -10271,7 +10271,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -10353,7 +10353,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -10435,7 +10435,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -10517,7 +10517,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -10672,7 +10672,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -10754,7 +10754,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -10836,7 +10836,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -10918,7 +10918,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -11072,7 +11072,7 @@ exports[`default-ui > widgets > combobox > snapshots > disabled 1`] = `
            
           <svg
             aria-hidden="true"
-            class="lucide-icon lucide lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50"
+            class="lucide lucide-chevrons-up-down lucide-icon ml-2 size-4 shrink-0 opacity-50"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -11212,7 +11212,7 @@ exports[`default-ui > widgets > combobox > snapshots > error 1`] = `
            
           <svg
             aria-hidden="true"
-            class="lucide-icon lucide lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50"
+            class="lucide lucide-chevrons-up-down lucide-icon ml-2 size-4 shrink-0 opacity-50"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -11363,7 +11363,7 @@ exports[`default-ui > widgets > combobox > snapshots > normal 1`] = `
            
           <svg
             aria-hidden="true"
-            class="lucide-icon lucide lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50"
+            class="lucide lucide-chevrons-up-down lucide-icon ml-2 size-4 shrink-0 opacity-50"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -11502,7 +11502,7 @@ exports[`default-ui > widgets > combobox > snapshots > readonly 1`] = `
            
           <svg
             aria-hidden="true"
-            class="lucide-icon lucide lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50"
+            class="lucide lucide-chevrons-up-down lucide-icon ml-2 size-4 shrink-0 opacity-50"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -12815,7 +12815,7 @@ exports[`default-ui > widgets > multiSelect > snapshots > disabled 1`] = `
            
           <svg
             aria-hidden="true"
-            class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+            class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -12963,7 +12963,7 @@ exports[`default-ui > widgets > multiSelect > snapshots > error 1`] = `
            
           <svg
             aria-hidden="true"
-            class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+            class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -13122,7 +13122,7 @@ exports[`default-ui > widgets > multiSelect > snapshots > normal 1`] = `
            
           <svg
             aria-hidden="true"
-            class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+            class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -13270,7 +13270,7 @@ exports[`default-ui > widgets > multiSelect > snapshots > readonly 1`] = `
            
           <svg
             aria-hidden="true"
-            class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+            class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -16141,7 +16141,7 @@ exports[`default-ui > widgets > select > snapshots > disabled 1`] = `
            
           <svg
             aria-hidden="true"
-            class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+            class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -16287,7 +16287,7 @@ exports[`default-ui > widgets > select > snapshots > error 1`] = `
            
           <svg
             aria-hidden="true"
-            class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+            class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -16444,7 +16444,7 @@ exports[`default-ui > widgets > select > snapshots > normal 1`] = `
            
           <svg
             aria-hidden="true"
-            class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+            class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -16590,7 +16590,7 @@ exports[`default-ui > widgets > select > snapshots > readonly 1`] = `
            
           <svg
             aria-hidden="true"
-            class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+            class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -18620,7 +18620,7 @@ exports[`default-ui > with title and description > checkboxes 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -18702,7 +18702,7 @@ exports[`default-ui > with title and description > checkboxes 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -18784,7 +18784,7 @@ exports[`default-ui > with title and description > checkboxes 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -19978,7 +19978,7 @@ exports[`default-ui > with title and description from both > checkboxes 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -20060,7 +20060,7 @@ exports[`default-ui > with title and description from both > checkboxes 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -20142,7 +20142,7 @@ exports[`default-ui > with title and description from both > checkboxes 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -21336,7 +21336,7 @@ exports[`default-ui > with title and description from uiSchema > checkboxes 1`] 
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -21418,7 +21418,7 @@ exports[`default-ui > with title and description from uiSchema > checkboxes 1`] 
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -21500,7 +21500,7 @@ exports[`default-ui > with title and description from uiSchema > checkboxes 1`] 
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -22488,7 +22488,7 @@ exports[`default-ui > with title and description with global label off > checkbo
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -22570,7 +22570,7 @@ exports[`default-ui > with title and description with global label off > checkbo
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -22652,7 +22652,7 @@ exports[`default-ui > with title and description with global label off > checkbo
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                class="lucide lucide-check lucide-icon size-3.5 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -23588,7 +23588,7 @@ exports[`new-york-ui > array fields > checkboxes 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -23670,7 +23670,7 @@ exports[`new-york-ui > array fields > checkboxes 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -23752,7 +23752,7 @@ exports[`new-york-ui > array fields > checkboxes 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -25519,7 +25519,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                    
                   <svg
                     aria-hidden="true"
-                    class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+                    class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
                     fill="none"
                     height="24"
                     stroke="currentColor"
@@ -25660,7 +25660,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                     >
                       <svg
                         aria-hidden="true"
-                        class="lucide-icon lucide lucide-check size-4 text-transparent"
+                        class="lucide lucide-check lucide-icon size-4 text-transparent"
                         fill="none"
                         height="24"
                         stroke="currentColor"
@@ -25845,7 +25845,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                    
                   <svg
                     aria-hidden="true"
-                    class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+                    class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
                     fill="none"
                     height="24"
                     stroke="currentColor"
@@ -25986,7 +25986,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                     >
                       <svg
                         aria-hidden="true"
-                        class="lucide-icon lucide lucide-check size-4 text-transparent"
+                        class="lucide lucide-check lucide-icon size-4 text-transparent"
                         fill="none"
                         height="24"
                         stroke="currentColor"
@@ -26142,7 +26142,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                     >
                       <svg
                         aria-hidden="true"
-                        class="lucide-icon lucide lucide-check size-4"
+                        class="lucide lucide-check lucide-icon size-4"
                         fill="none"
                         height="24"
                         stroke="currentColor"
@@ -26426,7 +26426,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                    
                   <svg
                     aria-hidden="true"
-                    class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+                    class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
                     fill="none"
                     height="24"
                     stroke="currentColor"
@@ -26567,7 +26567,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                     >
                       <svg
                         aria-hidden="true"
-                        class="lucide-icon lucide lucide-check size-4"
+                        class="lucide lucide-check lucide-icon size-4"
                         fill="none"
                         height="24"
                         stroke="currentColor"
@@ -26723,7 +26723,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                     >
                       <svg
                         aria-hidden="true"
-                        class="lucide-icon lucide lucide-check size-4"
+                        class="lucide lucide-check lucide-icon size-4"
                         fill="none"
                         height="24"
                         stroke="currentColor"
@@ -26879,7 +26879,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                     >
                       <svg
                         aria-hidden="true"
-                        class="lucide-icon lucide lucide-check size-4 text-transparent"
+                        class="lucide lucide-check lucide-icon size-4 text-transparent"
                         fill="none"
                         height="24"
                         stroke="currentColor"
@@ -27035,7 +27035,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                     >
                       <svg
                         aria-hidden="true"
-                        class="lucide-icon lucide lucide-check size-4"
+                        class="lucide lucide-check lucide-icon size-4"
                         fill="none"
                         height="24"
                         stroke="currentColor"
@@ -27432,7 +27432,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                     >
                       <svg
                         aria-hidden="true"
-                        class="lucide-icon lucide lucide-check size-4 text-transparent"
+                        class="lucide lucide-check lucide-icon size-4 text-transparent"
                         fill="none"
                         height="24"
                         stroke="currentColor"
@@ -27617,7 +27617,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                    
                   <svg
                     aria-hidden="true"
-                    class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+                    class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
                     fill="none"
                     height="24"
                     stroke="currentColor"
@@ -27758,7 +27758,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                     >
                       <svg
                         aria-hidden="true"
-                        class="lucide-icon lucide lucide-check size-4 text-transparent"
+                        class="lucide lucide-check lucide-icon size-4 text-transparent"
                         fill="none"
                         height="24"
                         stroke="currentColor"
@@ -27914,7 +27914,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                     >
                       <svg
                         aria-hidden="true"
-                        class="lucide-icon lucide lucide-check size-4"
+                        class="lucide lucide-check lucide-icon size-4"
                         fill="none"
                         height="24"
                         stroke="currentColor"
@@ -31783,7 +31783,7 @@ exports[`new-york-ui > widgets > checkbox > snapshots > disabled 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -31938,7 +31938,7 @@ exports[`new-york-ui > widgets > checkbox > snapshots > error 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -32103,7 +32103,7 @@ exports[`new-york-ui > widgets > checkbox > snapshots > normal 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -32256,7 +32256,7 @@ exports[`new-york-ui > widgets > checkbox > snapshots > readonly 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -32412,7 +32412,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -32497,7 +32497,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -32582,7 +32582,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -32667,7 +32667,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -32824,7 +32824,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -32906,7 +32906,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -32988,7 +32988,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -33070,7 +33070,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -33237,7 +33237,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -33319,7 +33319,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -33401,7 +33401,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -33483,7 +33483,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -33638,7 +33638,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -33720,7 +33720,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -33802,7 +33802,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -33884,7 +33884,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -34038,7 +34038,7 @@ exports[`new-york-ui > widgets > combobox > snapshots > disabled 1`] = `
            
           <svg
             aria-hidden="true"
-            class="lucide-icon lucide lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50"
+            class="lucide lucide-chevrons-up-down lucide-icon ml-2 size-4 shrink-0 opacity-50"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -34178,7 +34178,7 @@ exports[`new-york-ui > widgets > combobox > snapshots > error 1`] = `
            
           <svg
             aria-hidden="true"
-            class="lucide-icon lucide lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50"
+            class="lucide lucide-chevrons-up-down lucide-icon ml-2 size-4 shrink-0 opacity-50"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -34329,7 +34329,7 @@ exports[`new-york-ui > widgets > combobox > snapshots > normal 1`] = `
            
           <svg
             aria-hidden="true"
-            class="lucide-icon lucide lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50"
+            class="lucide lucide-chevrons-up-down lucide-icon ml-2 size-4 shrink-0 opacity-50"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -34468,7 +34468,7 @@ exports[`new-york-ui > widgets > combobox > snapshots > readonly 1`] = `
            
           <svg
             aria-hidden="true"
-            class="lucide-icon lucide lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50"
+            class="lucide lucide-chevrons-up-down lucide-icon ml-2 size-4 shrink-0 opacity-50"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -35781,7 +35781,7 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > disabled 1`] = `
            
           <svg
             aria-hidden="true"
-            class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+            class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -35929,7 +35929,7 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > error 1`] = `
            
           <svg
             aria-hidden="true"
-            class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+            class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -36088,7 +36088,7 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > normal 1`] = `
            
           <svg
             aria-hidden="true"
-            class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+            class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -36236,7 +36236,7 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > readonly 1`] = `
            
           <svg
             aria-hidden="true"
-            class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+            class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -39107,7 +39107,7 @@ exports[`new-york-ui > widgets > select > snapshots > disabled 1`] = `
            
           <svg
             aria-hidden="true"
-            class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+            class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -39253,7 +39253,7 @@ exports[`new-york-ui > widgets > select > snapshots > error 1`] = `
            
           <svg
             aria-hidden="true"
-            class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+            class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -39410,7 +39410,7 @@ exports[`new-york-ui > widgets > select > snapshots > normal 1`] = `
            
           <svg
             aria-hidden="true"
-            class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+            class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -39556,7 +39556,7 @@ exports[`new-york-ui > widgets > select > snapshots > readonly 1`] = `
            
           <svg
             aria-hidden="true"
-            class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+            class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -41586,7 +41586,7 @@ exports[`new-york-ui > with title and description > checkboxes 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -41668,7 +41668,7 @@ exports[`new-york-ui > with title and description > checkboxes 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -41750,7 +41750,7 @@ exports[`new-york-ui > with title and description > checkboxes 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -42944,7 +42944,7 @@ exports[`new-york-ui > with title and description from both > checkboxes 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -43026,7 +43026,7 @@ exports[`new-york-ui > with title and description from both > checkboxes 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -43108,7 +43108,7 @@ exports[`new-york-ui > with title and description from both > checkboxes 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -44302,7 +44302,7 @@ exports[`new-york-ui > with title and description from uiSchema > checkboxes 1`]
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -44384,7 +44384,7 @@ exports[`new-york-ui > with title and description from uiSchema > checkboxes 1`]
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -44466,7 +44466,7 @@ exports[`new-york-ui > with title and description from uiSchema > checkboxes 1`]
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -45454,7 +45454,7 @@ exports[`new-york-ui > with title and description with global label off > checkb
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -45536,7 +45536,7 @@ exports[`new-york-ui > with title and description with global label off > checkb
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -45618,7 +45618,7 @@ exports[`new-york-ui > with title and description with global label off > checkb
             >
               <svg
                 aria-hidden="true"
-                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                class="lucide lucide-check lucide-icon size-4 text-transparent"
                 fill="none"
                 height="24"
                 stroke="currentColor"

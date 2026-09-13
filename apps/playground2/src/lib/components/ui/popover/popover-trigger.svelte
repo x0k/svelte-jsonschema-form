@@ -13,6 +13,6 @@
 <PopoverPrimitive.Trigger
   bind:ref
   data-slot="popover-trigger"
-  class={cn("", className)}
+  class={cn(className)}
   {...restProps}
 />

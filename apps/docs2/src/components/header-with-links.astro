@@ -1,6 +1,5 @@
 ---
 import type { ComponentProps } from "astro/types";
-import config from "virtual:starlight/user-config";
 import { LinkButton } from "@astrojs/starlight/components";
 
 import Header from "@astrojs/starlight/components/Header.astro";
@@ -16,9 +15,7 @@ export type Props = ComponentProps<typeof Header>;
 /**
  * Render the `Search` component if Pagefind is enabled or the default search component has been overridden.
  */
-const shouldRenderSearch =
-  config.pagefind ||
-  config.components.Search !== "@astrojs/starlight/components/Search.astro";
+const shouldRenderSearch = true;
 ---
 
 <div class="header sl-flex">

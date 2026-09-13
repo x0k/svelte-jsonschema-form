@@ -23,7 +23,7 @@ export const EXTRA_PACKAGES = {
   },
   "devalue": {
     "name": "devalue",
-    "version": "5.9.0",
+    "version": "5.9.2",
     "dev": true
   },
   "pico": {
@@ -33,7 +33,7 @@ export const EXTRA_PACKAGES = {
   },
   "vite": {
     "name": "vite",
-    "version": "8.2.1",
+    "version": "8.3.0",
     "dev": true
   },
   "typescript": {
@@ -58,12 +58,12 @@ export const EXTRA_PACKAGES = {
   },
   "postcss": {
     "name": "postcss",
-    "version": "8.5.26",
+    "version": "8.5.28",
     "dev": true
   },
   "autoprefixer": {
     "name": "autoprefixer",
-    "version": "10.5.4",
+    "version": "10.5.6",
     "dev": true
   },
   "tailwindcss4": {
@@ -78,7 +78,7 @@ export const EXTRA_PACKAGES = {
   },
   "typebox": {
     "name": "typebox",
-    "version": "1.3.13",
+    "version": "1.3.30",
     "dev": false
   },
   "arktype": {
@@ -113,22 +113,22 @@ export const EXTRA_PACKAGES = {
   },
   "lucideSvelte": {
     "name": "@lucide/svelte",
-    "version": "1.31.0",
+    "version": "1.45.0",
     "dev": false
   },
   "zod": {
     "name": "zod",
-    "version": "4.4.3",
+    "version": "4.6.2",
     "dev": false
   },
   "valibot": {
     "name": "valibot",
-    "version": "1.4.2",
+    "version": "1.5.0",
     "dev": false
   },
   "effect": {
     "name": "effect",
-    "version": "3.22.1",
+    "version": "3.22.2",
     "dev": false
   }
 } as const satisfies Record<string, AbstractPackage>;
