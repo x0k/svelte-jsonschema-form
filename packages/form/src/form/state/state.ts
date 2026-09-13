@@ -3,10 +3,12 @@ import type { SvelteMap } from "svelte/reactivity";
 
 import type { Schema } from "@/core/index.js";
 import type { DataURLToBlob } from "@/lib/file.js";
+import { noop } from "@/lib/function.js";
+import type { DeepPartial } from "@/lib/types.js";
 
 import type { Theme } from "../components.js";
 import type { Config } from "../config.js";
-import type { FormSubmission, FieldsValidation } from "../errors.js";
+import type { FormValidation, FieldsValidation } from "../errors.js";
 import type { FieldState } from "../field-state.js";
 import type { ResolveFieldType } from "../fields.js";
 import type { Icons } from "../icons.js";
@@ -40,6 +42,8 @@ import {
   FormErrors,
   FORM_RETRIEVED_SCHEMA,
   FORM_CONFIGS_CACHE,
+  FORM_INITIAL_DEFAULTS_GENERATED,
+  FORM_INITIAL_VALUE,
 } from "../internals.js";
 import type { FormMerger } from "../merger.js";
 import type { FormValue, KeyedArraysMap, PathTrieRef } from "../model.js";
@@ -50,20 +54,16 @@ import {
   type UiSchema,
   type UiSchemaRoot,
 } from "../ui-schema.js";
-import type { FormValidator } from "../validator.js";
+import type { FailureValidationResult, FormValidator } from "../validator.js";
+import { getValueSnapshot } from "./value.svelte.js";
 
 export interface FormState<T> {
-  readonly submission: FormSubmission<T>;
+  readonly validation: FormValidation<T>;
   readonly fieldsValidation: FieldsValidation;
-  readonly isChanged: boolean;
-  readonly isSubmitted: boolean;
-
-  submit: (e: SubmitEvent) => void;
-  reset: (e?: Event) => void;
-
   // Internals
-
   [FORM_VALUE]: FormValue;
+  [FORM_INITIAL_DEFAULTS_GENERATED]: boolean;
+  readonly [FORM_INITIAL_VALUE]: DeepPartial<T> | undefined;
   readonly [FORM_ID_PREFIX]: string;
   readonly [FORM_ROOT_PATH]: FieldPath;
   readonly [FORM_ID_FROM_PATH]: (path: FieldPath) => Id;
@@ -97,4 +97,36 @@ export function getFormContext<T>(): FormState<T> {
 
 export function setFormContext<T>(form: FormState<T>) {
   setContext(FORM_CONTEXT, form);
+}
+
+export interface ValidateHandlers<T, E> {
+  onValid?: (value: T) => void;
+  onInvalid?: (result: FailureValidationResult) => void;
+  onValidationProcessError?: (error: E) => void;
+}
+
+export function validate<T>(
+  form: FormState<T>,
+  handlers: ValidateHandlers<T, unknown> = {}
+) {
+  const snapshot = getValueSnapshot(form);
+  return form.validation.runAsync(snapshot).then((result) => {
+    if (result.errors) {
+      handlers.onInvalid?.(result);
+    } else {
+      handlers.onValid?.(result.value);
+    }
+  }, handlers.onValidationProcessError ?? noop);
+}
+
+export function reset<T>(form: FormState<T>) {
+  form.validation.clear();
+  form.fieldsValidation.clear();
+  form[FORM_INITIAL_DEFAULTS_GENERATED] = false;
+  form[FORM_FIELDS_STATE_MAP].clear();
+  form[FORM_ERRORS].clear();
+  form[FORM_VALUE] = form[FORM_MERGER].mergeFormDataAndSchemaDefaults({
+    formData: form[FORM_INITIAL_VALUE] as FormValue,
+    schema: form[FORM_SCHEMA],
+  });
 }

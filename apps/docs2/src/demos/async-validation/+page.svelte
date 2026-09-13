@@ -41,10 +41,10 @@
     validator: (options) => createAsyncFormValidator({ ...options, ajv }),
     schema,
     fieldsValidationMode: ON_INPUT,
-    onSubmit: console.log,
+    onValid: console.log,
   });
   onDestroy(() => {
-    form.submission.abort();
+    form.validation.abort();
     form.fieldsValidation.abort();
   });
 </script>
@@ -55,7 +55,7 @@
   verification)
 </p>
 <p>
-  form validation: {form.submission.status}, fields validation: {form
+  form validation: {form.validation.status}, fields validation: {form
     .fieldsValidation.status}, errors: {hasErrors(form)}
 </p>
 <BasicForm {form} novalidate autocomplete="off" />

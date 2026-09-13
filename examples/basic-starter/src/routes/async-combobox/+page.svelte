@@ -39,7 +39,7 @@
       } satisfies MyAsyncComboboxOptions<string>,
       translations: {
         get submit(): string {
-          return form.submission.isProcessed ? "Validation..." : "Submit";
+          return form.validation.isProcessed ? "Validation..." : "Submit";
         },
       },
     },
@@ -78,11 +78,11 @@
     },
     // NOTE: the behavior of the `$derived` rune during SSR is different from the browser
     get disabled(): boolean {
-      return browser && form.submission.isProcessed;
+      return browser && form.validation.isProcessed;
     },
     schema,
     uiSchema,
-    onSubmit: console.log,
+    onValid: console.log,
   });
 </script>
 

@@ -76,7 +76,7 @@
     }),
     schema,
     uiSchema,
-    onSubmit: console.log,
+    onValid: console.log,
   });
 </script>
 

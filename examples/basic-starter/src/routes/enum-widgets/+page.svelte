@@ -111,7 +111,7 @@
     schema,
     uiSchema,
     extraUiOptions,
-    onSubmit: console.log,
+    onValid: console.log,
   });
 </script>
 

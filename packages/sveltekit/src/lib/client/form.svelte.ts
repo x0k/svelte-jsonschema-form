@@ -2,10 +2,10 @@ import {
   createForm,
   type Schema,
   type FormOptions,
+  type FormState,
   updateErrors,
   DEFAULT_ID_PREFIX,
   setValue,
-  getValueSnapshot,
 } from "@sjsf/form";
 import { isRecord } from "@sjsf/form/lib/object";
 
@@ -13,9 +13,9 @@ import { page } from "$app/state";
 
 import type { InitialFormData, ValidatedFormData } from "../model.js";
 import type { SvelteKitFormMeta } from "./meta.js";
-import {
+import type {
   createSvelteKitRequest,
-  type SveltekitRequestOptions,
+  SveltekitRequestOptions,
 } from "./request.svelte.js";
 
 type SchemaOption<SendSchema> = SendSchema extends true
@@ -100,12 +100,11 @@ export function createSvelteKitForm<
 
 export type SvelteKitFormSetupOptions<
   Meta extends SvelteKitFormMeta<any, any, string, any>,
-> = SvelteKitFormOptions<
-  Meta["__formValue"],
-  Meta["__sendSchema"],
-  "onSubmit"
-> &
+> = SvelteKitFormOptions<Meta["__formValue"], Meta["__sendSchema"], never> &
   SveltekitRequestOptions<Meta["__actionData"], Meta["__formValue"]>;
+
+const STUB_ERROR =
+  "@sjsf/sveltekit is stubbed until the sveltekit3 package is available";
 
 export function setupSvelteKitForm<
   Meta extends SvelteKitFormMeta<any, any, string, any>,
@@ -117,27 +116,12 @@ export function setupSvelteKitForm<
     Meta["__actionData"],
     Meta["__formValue"]
   > = formOptions
-) {
-  const request = createSvelteKitRequest(meta, requestOptions);
-  function onSubmit(_: Meta["__formValue"], e: SubmitEvent) {
-    request.run(getValueSnapshot(form), e);
-  }
-  const form = createSvelteKitForm(
-    meta,
-    new Proxy(formOptions, {
-      has(target, p) {
-        if (p === "onSubmit") {
-          return true;
-        }
-        return Reflect.has(target, p);
-      },
-      get(target, p, receiver) {
-        if (p === "onSubmit") {
-          return onSubmit;
-        }
-        return Reflect.get(target, p, receiver);
-      },
-    }) as FormOptions & SchemaOption<Meta["__sendSchema"]>
-  );
-  return { request, form };
+): {
+  request: ReturnType<typeof createSvelteKitRequest>;
+  form: FormState<Meta["__formValue"]>;
+} {
+  void meta;
+  void formOptions;
+  void requestOptions;
+  throw new Error(STUB_ERROR);
 }

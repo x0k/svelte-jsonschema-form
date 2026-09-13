@@ -10,7 +10,7 @@ import {
   type SchemaValue,
 } from "@/core/index.js";
 import {
-  AFTER_SUBMITTED,
+  AFTER_VALIDATED,
   getDefaultFieldState,
   getFieldErrors,
   getFieldsValidationMode,
@@ -93,7 +93,10 @@ function createItems<T>({
   function onChange() {
     setFieldState(ctx, config().path, FIELD_CHANGED);
     const m = getFieldsValidationMode(ctx);
-    if (!(m & ON_ARRAY_CHANGE) || (m & AFTER_SUBMITTED && !ctx.isSubmitted)) {
+    if (
+      !(m & ON_ARRAY_CHANGE) ||
+      (m & AFTER_VALIDATED && ctx.validation.status === "idle")
+    ) {
       return;
     }
     validateField(ctx, config(), value());
