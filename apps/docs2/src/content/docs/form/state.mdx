@@ -9,8 +9,8 @@ import { LinkCard } from "@astrojs/starlight/components";
 import { withBase } from "@/lib/base-path";
 
 ```typescript
-export type FormSubmission<Output> = Task<
-  [event: SubmitEvent],
+export type FormValidation<Output> = Task<
+  [FormValue],
   ValidationResult<Output>,
   unknown
 >;
@@ -22,13 +22,8 @@ export type FieldsValidation = Task<
 >;
 
 export interface FormState<T> {
-  readonly submission: FormSubmission<T>;
+  readonly validation: FormValidation<T>;
   readonly fieldsValidation: FieldsValidation;
-  readonly isChanged: boolean;
-  readonly isSubmitted: boolean;
-
-  submit: (e: SubmitEvent) => void;
-  reset: (e?: Event) => void;
 
   // Internals
 
@@ -81,7 +76,11 @@ All the methods listed below are marked with `@query` or `@command` in their JSD
 `getDefaultFieldState`, `retrieveUiSchema`, `uiTitleOption`, `retrieveUiOption`,
 `retrieveNestedUiOption`, `uiOptionProps`, `uiOptionNestedProps`,
 `retrieveTranslate`, `getFieldTitle`, `getFieldAction`,
-`getFieldsValidationMode`, `validate`, `validateAsync`, `getValueSnapshot`
+`getFieldsValidationMode`, `validateFormValue`, `validateFormValueAsync`,
+`getValueSnapshot`
+
+Use the standalone `validate(form, handlers)` and `reset(form)` functions
+(with the `handlers(form)` form attachment) to validate or reset the whole form.
 
 **Commands:**
 `updateErrors`, `updateFieldErrors`, `updateFieldErrorsByPath`,

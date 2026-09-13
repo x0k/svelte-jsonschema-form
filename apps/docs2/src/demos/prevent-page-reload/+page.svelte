@@ -1,5 +1,11 @@
 <script lang="ts">
-  import { Content, createForm, setFormContext } from "@sjsf/form";
+  import {
+    Content,
+    createForm,
+    getValueSnapshot,
+    setFormContext,
+  } from "@sjsf/form";
+  import { isSchemaValueDeepEqual } from "@sjsf/form/core";
   import { preventPageReload } from "@sjsf/form/prevent-page-reload.svelte";
 
   import { getDemoContext } from "@/lib/demo";
@@ -12,7 +18,10 @@
   });
   setFormContext(form);
 
-  preventPageReload(form);
+  const initialValue = getValueSnapshot(form);
+  preventPageReload(
+    () => !isSchemaValueDeepEqual(initialValue, getValueSnapshot(form))
+  );
 </script>
 
 <Content />

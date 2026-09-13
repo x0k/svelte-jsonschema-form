@@ -1,12 +1,10 @@
 flowchart TD
   domSubmit["DOM submit event"]
   prevent["e.preventDefault()"]
-  run["submission.run(e)"]
+  run["validation.runAsync(snapshot)"]
   combinator{"combinator check\n(default: waitPrevious)"}
   ignore["ignore request\n(currently processing)"]
   proceed["proceed"]
-  setState["setFieldState(formState, rootPath, FIELD_SUBMITTED)"]
-  isSubmitted["isSubmitted = true"]
   snapshot["$state.snapshot(valueRef.current)"]
   validate["validator.validateFormValue\nor validateFormValueAsync"]
   taskState["Task state: processing"]
@@ -18,14 +16,13 @@ flowchart TD
   valid{"result.errors\n=== undefined?"}
   updateErrors["updateErrors(formState, [])"]
   clearFields["fieldsStateMap.clear()"]
-  isChanged["isChanged = false"]
-  onSubmit["options.onSubmit(value, event)"]
+  onValid["options.onValid(value)"]
   taskSuccess["Task state: success"]
   updateErrorsInvalid["updateErrors(formState, result.errors)"]
-  onSubmitError["options.onSubmitError(result, event, formState)"]
+  onInvalid["options.onInvalid(result)"]
   onFailure["onFailure"]
   updateFieldErrors["updateFieldErrors(formState, rootPath,\n[translate('validation-process-error',\n{ error })])"]
-  onSubmissionFailure["options.onSubmissionFailure(error, event)"]
+  onValidationProcessError["options.onValidationProcessError(error)"]
   taskFailed["Task state: failed"]
 
   domSubmit --> prevent
@@ -33,8 +30,6 @@ flowchart TD
   run --> combinator
   combinator -->|ignore| ignore
   combinator -->|proceed| proceed
-  proceed --> setState
-  setState --> isSubmitted
   proceed --> snapshot
   snapshot --> validate
   validate --> taskState
@@ -49,11 +44,10 @@ flowchart TD
   valid -->|yes| updateErrors
   valid -->|no| updateErrorsInvalid
   updateErrors --> clearFields
-  clearFields --> isChanged
-  updateErrors --> onSubmit
-  onSubmit --> taskSuccess
-  updateErrorsInvalid --> onSubmitError
-  onSubmitError --> taskFailed
+  updateErrors --> onValid
+  onValid --> taskSuccess
+  updateErrorsInvalid --> onInvalid
+  onInvalid --> taskFailed
   onFailure --> updateFieldErrors
-  updateFieldErrors --> onSubmissionFailure
-  onSubmissionFailure --> taskFailed
+  updateFieldErrors --> onValidationProcessError
+  onValidationProcessError --> taskFailed

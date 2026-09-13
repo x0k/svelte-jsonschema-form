@@ -33,7 +33,7 @@
   const form = createForm<FromSchema<typeof schema>>({
     ...defaults,
     schema,
-    onSubmit(value) {
+    onValid(value) {
       console.log(value);
     },
   });

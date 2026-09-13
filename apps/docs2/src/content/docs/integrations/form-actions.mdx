@@ -162,8 +162,7 @@ if something important is still missing.
 ### Tainted fields
 
 SJSF does not track the difference between the current and initial form state.
-The `form.isChanged` property becomes `true` after any interaction with a form field
-until the form is either successfully submitted or reset.
+Compare the current value snapshot with the initial value to detect unsaved changes.
 
 You can use the following code to check whether any changes have been made.
 
@@ -172,14 +171,11 @@ import { isSchemaValueDeepEqual } from "@sjsf/form/core";
 import { getValueSnapshot } from "@sjsf/form";
 import { preventPageReload } from "@sjsf/form/prevent-page-reload.svelte";
 
-preventPageReload({
-  get isChanged() {
-    return (
-      form.isChanged &&
-      !isSchemaValueDeepEqual(initialValue, getValueSnapshot(form))
-    );
-  },
-});
+const initialValue = getValueSnapshot(form);
+
+preventPageReload(
+  () => !isSchemaValueDeepEqual(initialValue, getValueSnapshot(form))
+);
 ```
 
 ### Available events
@@ -188,8 +184,8 @@ preventPageReload({
   receiving an `ActionResult<NonNullable<ActionData>>` as the result
 - `onFailure` — triggered when a request fails,
   receiving a `FailedTask<unknown>` as the argument
-- `onSubmitError` — triggered when client-side validation errors are present
-- `onSubmissionFailure` — triggered when an error occurs during validation
+- `onInvalid` — triggered when client-side validation errors are present
+- `onValidationProcessError` — triggered when an error occurs during validation
 
 ### Loading timers
 

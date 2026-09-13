@@ -2,7 +2,6 @@ import { createAttachmentKey, type Attachment } from "svelte/attachments";
 import type {
   AriaAttributes,
   HTMLButtonAttributes,
-  HTMLFormAttributes,
   HTMLInputAttributes,
   HTMLSelectAttributes,
   HTMLTextareaAttributes,
@@ -363,22 +362,6 @@ export function errorsListAttributes<T, const O extends keyof ObjectUiOptions>(
   );
 }
 
-export function formAttributes<T, const O extends keyof ObjectUiOptions>(
-  ctx: FormState<T>,
-  config: Config,
-  option: O,
-  attributes: HTMLFormAttributes | undefined,
-  props: NonNullable<UiOptions[O]>
-) {
-  return composeProps(
-    ctx,
-    config,
-    props,
-    uiOptionProps(option),
-    assignProps(attributes)
-  );
-}
-
 export function helpAttributes<T, const O extends keyof ObjectUiOptions>(
   ctx: FormState<T>,
   config: Config,
@@ -416,6 +399,15 @@ export function titleAttributes<T, const O extends keyof ObjectUiOptions>(
     idProp("title"),
     uiOptionProps(option)
   );
+}
+
+export function rootAttributes<T, const O extends keyof ObjectUiOptions>(
+  ctx: FormState<T>,
+  config: Config,
+  option: O,
+  props: NonNullable<UiOptions[O]>
+) {
+  return composeProps(ctx, config, props, uiOptionProps(option));
 }
 
 // WARN: basic layout depends on amount of required props

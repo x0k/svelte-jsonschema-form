@@ -73,7 +73,7 @@ export async function validateFileList<T>(
 /**
  * @query
  */
-export function validate<T>(ctx: FormState<T>) {
+export function validateFormValue<T>(ctx: FormState<T>) {
   const validator = ctx[FORM_VALIDATOR];
   if (!isFormValueValidator<typeof validator, T>(validator)) {
     throw new InvalidValidatorError(`expected sync from validator`);
@@ -84,7 +84,10 @@ export function validate<T>(ctx: FormState<T>) {
 /**
  * @query
  */
-export function validateAsync<T>(ctx: FormState<T>, signal: AbortSignal) {
+export function validateFormValueAsync<T>(
+  ctx: FormState<T>,
+  signal: AbortSignal
+) {
   const validator = ctx[FORM_VALIDATOR];
   if (!isAsyncFormValueValidator<typeof validator, T>(validator)) {
     throw new InvalidValidatorError(`expected async form validator`);

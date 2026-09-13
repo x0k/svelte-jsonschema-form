@@ -1,5 +1,4 @@
 import type { Snippet, Component as SvelteComponent } from "svelte";
-import type { HTMLFormAttributes } from "svelte/elements";
 
 import type { Resolver } from "@/lib/resolver.js";
 import type { Expand } from "@/lib/types.js";
@@ -7,11 +6,9 @@ import type { Expand } from "@/lib/types.js";
 import type { Config } from "./config.js";
 
 export interface ComponentProps {
-  form: {
+  root: {
     config: Config;
-    ref?: HTMLFormElement | undefined;
     children: Snippet;
-    attributes?: HTMLFormAttributes | undefined;
   };
   submitButton: {
     config: Config;
@@ -20,14 +17,14 @@ export interface ComponentProps {
 }
 
 export interface ComponentBindings {
-  form: "ref";
+  root: "";
   submitButton: "";
 }
 
 export type ComponentType = keyof ComponentProps;
 
 export interface FoundationalComponents {
-  form: {};
+  root: {};
   submitButton: {};
 }
 

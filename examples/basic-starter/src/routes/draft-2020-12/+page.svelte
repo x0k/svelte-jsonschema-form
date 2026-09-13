@@ -26,7 +26,7 @@
     //     ...options,
     //     Ajv: Ajv2020,
     //   }),
-    onSubmit: console.log,
+    onValid: console.log,
   });
 </script>
 

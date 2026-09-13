@@ -110,14 +110,20 @@
     type="button"
     data-active={stepperCtx.current < stepSchemas.length - 1}
     onclick={() => {
-      const { errors } = validate(ctx);
       const s = stepperCtx.current;
-      const currentErrors = errors?.filter((e) => e.path[0] === s);
-      if (currentErrors?.length) {
-        updateErrors(ctx, currentErrors);
-      } else {
-        stepperCtx.current++;
-      }
+      void validate(ctx, {
+        onValid: () => {
+          stepperCtx.current++;
+        },
+        onInvalid: (result) => {
+          const currentErrors = result.errors.filter((e) => e.path[0] === s);
+          if (currentErrors.length) {
+            updateErrors(ctx, currentErrors);
+          } else {
+            stepperCtx.current++;
+          }
+        },
+      });
     }}
   >
     Continue

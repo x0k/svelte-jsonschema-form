@@ -1,71 +1,14 @@
-import {
-  DEFAULT_ID_PREFIX,
-  SJSF_ID_PREFIX,
-  validate,
-  type FormOptions,
-  type FormState,
-  type UiSchemaRoot,
-} from "@sjsf/form";
-import { isRecordEmpty } from "@sjsf/form/lib/object";
-import type { DeepPartial } from "@sjsf/form/lib/types";
-import type { StandardSchemaV1 } from "@standard-schema/spec";
-import type { RemoteForm, RemoteFormInput } from "@sveltejs/kit";
-import { getAbortSignal, onMount, untrack, hydratable } from "svelte";
+import type { FormOptions, FormState } from "@sjsf/form";
+import type { RemoteForm } from "@sveltejs/kit";
 
-import { chunks } from "$lib/internal.js";
-import { FORM_DATA_FILE_PREFIX, JSON_CHUNKS_KEY } from "$lib/model.js";
+import type { SvelteKitDataParserOptions } from "../internal/sveltekit-data-parser.js";
 
-import { encode } from "../internal/codec.js";
-import {
-  createSvelteKitDataParser,
-  type SvelteKitDataParserOptions,
-} from "../internal/sveltekit-data-parser.js";
-import { createUiSchemaWithFormAttributes } from "./ui-schema.ts";
+const STUB_ERROR =
+  "@sjsf/sveltekit is stubbed until the sveltekit3 package is available";
 
 export function createClientValidator<T>(form: FormState<T>) {
-  return {
-    "~standard": {
-      version: 1,
-      vendor: "svelte-jsonschema-form",
-      validate(): StandardSchemaV1.Result<void> {
-        const result = validate(form);
-        if (result.errors) {
-          return {
-            issues: result.errors,
-          };
-        }
-        return {
-          value: undefined,
-        };
-      },
-    },
-  } satisfies StandardSchemaV1<RemoteFormInput, void>;
-}
-
-const CHUNK_KEY = `${JSON_CHUNKS_KEY}[]`;
-
-function createDefaultReplacer(formElement: HTMLFormElement) {
-  const seen = new Set<string>();
-  function fileInput(name: string, value: File) {
-    const fileInput = document.createElement("input");
-    fileInput.type = "file";
-    fileInput.name = name;
-    const dt = new DataTransfer();
-    dt.items.add(value);
-    fileInput.files = dt.files;
-    formElement.appendChild(fileInput);
-  }
-  return (key: string, value: any) => {
-    if (!(value instanceof File)) {
-      return value;
-    }
-    const initialKey = `${FORM_DATA_FILE_PREFIX}${key}`;
-    let fdKey = initialKey;
-    let i = 1;
-    while (seen.has(fdKey)) fdKey = `${initialKey}__${i++}`;
-    fileInput(encode(fdKey), value);
-    return fdKey;
-  };
+  void form;
+  throw new Error(STUB_ERROR);
 }
 
 export interface ConnectOptions extends SvelteKitDataParserOptions {
@@ -77,110 +20,11 @@ export interface ConnectOptions extends SvelteKitDataParserOptions {
   jsonChunkSize?: number;
 }
 
-const HYDRATABLE_KEY_PREFIX = "__sjsf_sveltekit_h__";
-
 export async function connect<T>(
   remoteForm: RemoteForm<any, any>,
   options: FormOptions<T> & ConnectOptions
 ): Promise<FormOptions<T>> {
-  let formElement: HTMLFormElement;
-  let originalFormElement: HTMLFormElement;
-
-  onMount(() => {
-    const symbols = Object.getOwnPropertySymbols(remoteForm);
-    if (symbols.length !== 1) {
-      throw new Error(
-        `The remote form specification was changed; only one custom symbol was expected, but got "${symbols.length}"`
-      );
-    }
-    formElement = document.createElement("form");
-    formElement.style.display = "none";
-    formElement.onreset = () => {
-      originalFormElement.reset();
-    };
-    const attach = remoteForm[symbols[0]];
-    return attach(formElement);
-  });
-
-  const dataParser = createSvelteKitDataParser(options);
-
-  const idPrefix = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX);
-
-  const fields = $derived(remoteForm.fields);
-
-  async function getInitialValue() {
-    const formValue = fields.value();
-    if (isRecordEmpty(formValue)) {
-      return undefined;
-    }
-    return (await dataParser(
-      getAbortSignal(),
-      idPrefix,
-      formValue
-    )) as DeepPartial<T>;
-  }
-  // svelte-ignore await_waterfall
-  const initialValue = $derived(
-    await hydratable(`${HYDRATABLE_KEY_PREFIX}${idPrefix}`, getInitialValue)
-  );
-
-  function hiddenInput(name: string, value: string) {
-    const input = document.createElement("input");
-    input.type = "hidden";
-    input.name = name;
-    input.value = value;
-    formElement.append(input);
-  }
-
-  const jsonChunkSize = $derived(options.jsonChunkSize ?? 500000);
-  const createReplacer = $derived(
-    options.createReplacer ?? createDefaultReplacer
-  );
-
-  const uiSchema: UiSchemaRoot = $derived.by(() => {
-    const { uiSchema, uiOptionsRegistry } = options;
-    return untrack(() =>
-      createUiSchemaWithFormAttributes(remoteForm, uiSchema, uiOptionsRegistry)
-    );
-  });
-
-  return Object.setPrototypeOf(
-    {
-      get initialValue() {
-        return initialValue ?? options.initialValue;
-      },
-      get initialErrors() {
-        return fields.allIssues() ?? options.initialErrors;
-      },
-      get uiSchema() {
-        return uiSchema;
-      },
-      onSubmit(value, e) {
-        if (!(e.target instanceof HTMLFormElement)) {
-          throw new Error("HTMLFormElement expected as submit event target");
-        }
-        originalFormElement = e.target;
-        formElement.enctype = originalFormElement.enctype;
-        formElement.method = originalFormElement.method;
-        formElement.action = originalFormElement.action;
-        formElement.target = originalFormElement.target;
-        formElement.acceptCharset = originalFormElement.acceptCharset;
-        formElement.name = originalFormElement.name;
-        formElement.rel = originalFormElement.rel;
-        hiddenInput(SJSF_ID_PREFIX, idPrefix);
-        for (const chunk of chunks(
-          JSON.stringify(value, createReplacer(formElement)),
-          jsonChunkSize
-        )) {
-          hiddenInput(CHUNK_KEY, chunk);
-        }
-        document.body.appendChild(formElement);
-        formElement.requestSubmit();
-        formElement.remove();
-        formElement.replaceChildren();
-        options.onSubmit?.(value, e);
-      },
-    } satisfies Partial<FormOptions<T>>,
-    options
-  );
+  void remoteForm;
+  void options;
+  throw new Error(STUB_ERROR);
 }

@@ -34,7 +34,7 @@
         },
       },
     },
-    onSubmit: console.log,
+    onValid: console.log,
   });
 </script>
 
