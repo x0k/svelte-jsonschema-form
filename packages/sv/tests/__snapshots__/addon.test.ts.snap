@@ -7814,10 +7814,10 @@ exports[`@sjsf/sv theme__shadcn-extras kit-ts 1`] = `
 		"@sjsf/shadcn4-theme": "^3.5.0",
 		"ajv": "^8.17.0",
 		"ajv-formats": "^3.0.1",
-		"bits-ui": "^2.14.0",
-		"clsx": "^2.1.0",
+		"bits-ui": "^2.16.5",
+		"clsx": "^2.1.1",
 		"svelte": "^5.34.8",
-		"tailwind-merge": "^3.3.0"
+		"tailwind-merge": "^3.5.0"
 	}
 }
 ",
@@ -8255,10 +8255,10 @@ exports[`@sjsf/sv theme__shadcn-extras vite-ts 1`] = `
     "@sjsf/shadcn4-theme": "^3.5.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1",
-    "bits-ui": "^2.14.0",
-    "clsx": "^2.1.0",
+    "bits-ui": "^2.16.5",
+    "clsx": "^2.1.1",
     "svelte": "^5.34.8",
-    "tailwind-merge": "^3.3.0"
+    "tailwind-merge": "^3.5.0"
   }
 }
 ",

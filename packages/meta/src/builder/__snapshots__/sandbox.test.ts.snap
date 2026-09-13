@@ -1024,9 +1024,9 @@ exports[`builder sandbox-factory > themes > shadcn-extras 1`] = `
     "svelte": "^5.34.8",
     "@sjsf-lab/shadcn-extras-theme": "^3.4.2",
     "@sjsf/shadcn4-theme": "^3.5.0",
-    "bits-ui": "^2.14.0",
-    "clsx": "^2.1.0",
-    "tailwind-merge": "^3.3.0",
+    "bits-ui": "^2.16.5",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.5.0",
     "@sjsf/ajv8-validator": "^3.8.1",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
