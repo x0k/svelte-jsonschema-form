@@ -23,9 +23,7 @@ flowchart TD
 
   subgraph FormState["FormState"]
     formValue["value"]
-    formIsSubmitted["isSubmitted"]
-    formIsChanged["isChanged"]
-    submission["submission"]
+    validation["validation"]
     fieldsValidation["fieldsValidation"]
   end
 
@@ -34,7 +32,7 @@ flowchart TD
     getFieldErrors["getFieldErrors"]
     hasErrors["hasErrors"]
     getErrors["getErrors"]
-    validate["validate"]
+    validateFormValue["validateFormValue"]
     getComponent["getComponent"]
     getFieldComponent["getFieldComponent"]
     retrieveSchema["retrieveSchema"]
@@ -64,12 +62,9 @@ flowchart TD
   value --> formValue
   initialValue --> formValue
 
-  pathsTrieRef --> formIsSubmitted
-  pathsTrieRef --> formIsChanged
-  fieldsStateMap --> formIsSubmitted
-  fieldsStateMap --> formIsChanged
+  pathsTrieRef --> fieldsStateMap
 
-  validator --> submission
+  validator --> validation
   validator --> fieldsValidation
 
   initialErrors --> errors
@@ -78,7 +73,7 @@ flowchart TD
   errors -.-> getFieldErrors
   errors -.-> hasErrors
   errors -.-> getErrors
-  formValue -.-> validate
+  formValue -.-> validateFormValue
   FormState -.-> getComponent
   FormState -.-> getFieldComponent
   FormState -.-> retrieveSchema

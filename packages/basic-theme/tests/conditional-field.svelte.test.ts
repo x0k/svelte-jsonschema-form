@@ -8,7 +8,7 @@ import { renderFieldForm } from "./helpers.js";
 describe("conditional field contracts", () => {
   describe("if/then with boolean false branch", () => {
     test("should block submit when a matched if/then branch resolves to false", async () => {
-      const onSubmit = vi.fn();
+      const onValid = vi.fn();
 
       const { form } = await renderFieldForm({
         schema: {
@@ -19,13 +19,13 @@ describe("conditional field contracts", () => {
           then: false,
         },
         initialValue: 13,
-        onSubmit,
+        onValid,
       });
 
       await userEvent.click(page.getByRole("button", { name: "Submit" }));
       await tick();
 
-      expect(onSubmit).not.toHaveBeenCalled();
+      expect(onValid).not.toHaveBeenCalled();
 
       const errors = [...getErrors(form)];
       expect(errors.length).toBeGreaterThan(0);

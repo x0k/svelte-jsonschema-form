@@ -3,7 +3,7 @@ import { SvelteMap } from "svelte/reactivity";
 import type { Task } from "#lib/task.svelte.js";
 
 import type { Config } from "./config.js";
-import type { FieldValue, Update } from "./model.js";
+import type { FieldValue, FormValue, Update } from "./model.js";
 import type { ValidationResult } from "./validator.js";
 
 export class FileListValidationError {}
@@ -12,8 +12,8 @@ export class InvalidValidatorError extends Error {}
 
 export type FieldErrors = Readonly<string[]>;
 
-export type FormSubmission<Output> = Task<
-  [event: SubmitEvent],
+export type FormValidation<Output> = Task<
+  [FormValue],
   ValidationResult<Output>,
   unknown
 >;

@@ -46,7 +46,7 @@
     },
     schema,
     uiSchema,
-    onSubmit: console.log,
+    onValid: console.log,
   });
 
   function sleep(ms: number) {

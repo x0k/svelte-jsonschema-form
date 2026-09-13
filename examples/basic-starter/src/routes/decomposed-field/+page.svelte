@@ -31,7 +31,7 @@
   const form = createForm<FromSchema<typeof schema>>({
     ...defaults,
     schema,
-    onSubmit: console.log,
+    onValid: console.log,
   });
 
   const t = defaults.theme;

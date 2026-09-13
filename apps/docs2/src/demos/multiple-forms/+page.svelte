@@ -16,13 +16,13 @@
     {schema}
     initialValue="foo"
     idPrefix="form1"
-    onSubmit={(v) => window.alert(v)}
+    onValid={(v) => window.alert(v)}
   />
   <SimpleForm
     {...defaults}
     {schema}
     initialValue="bar"
     idPrefix="form2"
-    onSubmit={(v) => window.alert(v)}
+    onValid={(v) => window.alert(v)}
   />
 </div>
