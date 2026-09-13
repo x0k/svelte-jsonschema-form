@@ -55,7 +55,7 @@ To prevent this issue, use the following code (not required for `SimpleForm`):
 
 ```ts
 onDestroy(() => {
-  form.submission.abort();
+  form.validation.abort();
   form.fieldsValidation.abort();
 });
 ```
@@ -81,7 +81,7 @@ The form supports asynchronous validation. By default:
 
 :::note
 
-You can change this behavior by passing the `submissionCombinator` and `fieldsValidationCombinator` options.
+You can change this behavior by passing the `validationCombinator` and `fieldsValidationCombinator` options.
 
 :::
 
@@ -92,6 +92,27 @@ Please see your validator page for more information.
 ## Focus on first error
 
 You can achieve focus on the first error by using the `createFocusOnFirstError` function.
+
+```svelte
+<script lang="ts">
+  import { createForm, setFormContext, validate } from "@sjsf/form";
+  import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+
+  const form = createForm({ ... });
+  setFormContext(form);
+  const focusOnFirstError = createFocusOnFirstError({ form });
+</script>
+
+<form
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, { onInvalid: focusOnFirstError(e) });
+  }}
+  novalidate
+>
+  <!-- ... -->
+</form>
+```
 
 <Demo name="focus-on-first-error" client:visible />
 
@@ -124,7 +145,7 @@ The `omitExtraData` function does not perform data validation!
 :::
 
 ```ts
-import { createForm, type FormValueValidator, validate } from "@sjsf/form";
+import { createForm, type FormValueValidator, validateFormValue } from "@sjsf/form";
 import { omitExtraData } from "@sjsf/form/omit-extra-data";
 
 import * as defaults from "@/lib/form/defaults";
@@ -149,17 +170,16 @@ const form = createForm<FormValue>({
     } satisfies FormValueValidator<FormValue>;
   },
   schema,
-  onSubmit(value) {
+  onValid(value) {
     console.log("transformed", value);
   },
-  onSubmitError({ value, errors }) {
-    console.log("transformed", value);
+  onInvalid({ errors }) {
     console.log("errors", errors);
   },
 });
 
 // Obtaining a value with the applied transformation
-const { value } = validate(form);
+const { value } = validateFormValue(form);
 ```
 
 You can also use the `withOmitExtraData(defaults.validator)` function from the
@@ -177,7 +197,7 @@ const form = createForm<FormValue>({
   ...defaults,
   validator: withOmitExtraData(defaults.validator),
   schema,
-  onSubmit({ value }) {
+  onValid({ value }) {
     console.log("transformed", value);
   },
 });

@@ -184,8 +184,8 @@ preventPageReload(
   receiving an `ActionResult<NonNullable<ActionData>>` as the result
 - `onFailure` — triggered when a request fails,
   receiving a `FailedTask<unknown>` as the argument
-- `onSubmitError` — triggered when client-side validation errors are present
-- `onSubmissionFailure` — triggered when an error occurs during validation
+- `onInvalid` — triggered when client-side validation errors are present
+- `onValidationProcessError` — triggered when an error occurs during validation
 
 ### Loading timers
 
