@@ -6,7 +6,7 @@
     type Schema,
     FIELD_INTERACTED,
     updateErrors,
-    validate,
+    validateFormValue,
   } from "@sjsf/form";
   import { untrack } from "svelte";
 
@@ -35,13 +35,13 @@
       bar: 1,
     },
     schema,
-    onSubmit: console.log,
+    onValid: console.log,
   });
 
   $effect(() => {
-    // NOTE: `validate()` reads the state snapshot,
+    // NOTE: `validateFormValue()` reads the state snapshot,
     // causing `$effect` to subscribe to all changes.
-    const { errors = [] } = validate(form);
+    const { errors = [] } = validateFormValue(form);
     updateErrors(
       form,
       untrack(() =>

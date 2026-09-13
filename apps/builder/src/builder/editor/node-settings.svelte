@@ -6,7 +6,7 @@
     ON_CHANGE,
     ON_INPUT,
     setFormContext,
-    validate,
+    validateFormValue,
   } from "@sjsf/form";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
   import { onDestroy, untrack } from "svelte";
@@ -72,7 +72,7 @@
     if (form.fieldsValidation.isProcessed) {
       return;
     }
-    const { value } = validate(form);
+    const { value } = validateFormValue(form);
     node.options = value as any;
   });
 </script>

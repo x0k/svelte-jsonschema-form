@@ -10,7 +10,7 @@
   const form = createForm<createUser.Model>({
     ...defaults,
     ...createUser,
-    onSubmit: ({ name }) => window.alert(`Hello, ${name}`),
+    onValid: ({ name }) => window.alert(`Hello, ${name}`),
   });
 </script>
 

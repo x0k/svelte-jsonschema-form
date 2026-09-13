@@ -2,8 +2,10 @@
   import {
     Content,
     createForm,
-    Form,
+    reset,
+    Root,
     setFormContext,
+    validate,
     type Schema,
   } from "@sjsf/form";
 
@@ -20,30 +22,28 @@
     ...defaults,
     schema,
     initialValue: "initial",
-    onSubmit: (v) => window.alert(v),
+    onValid: (v) => window.alert(v),
   });
   setFormContext(form);
-
-  let ref: HTMLFormElement | undefined;
 </script>
 
-<Form bind:ref>
-  <Content />
-</Form>
+<form novalidate>
+  <Root>
+    <Content />
+  </Root>
+</form>
 <button
-  onclick={(_e) => {
-    ref?.requestSubmit();
+  onclick={() => {
+    void validate(form);
     // or
-    // form.submit(new SubmitEvent("submit", { submitter: _e.currentTarget }));
-    // (`target` and `currentTarget` will not be properly set)
+    // validate(form, { onValid }) to handle the validation result
   }}>My submit</button
 >
 <button
   onclick={() => {
-    ref?.reset();
+    reset(form);
     // or
-    // form.reset(new Event("reset"))
-    // (`target` and `currentTarget` will not be properly set)
+    // ref?.reset() to reset the native form element only
   }}
 >
   My reset

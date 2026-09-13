@@ -10,7 +10,7 @@
 
   const { form } = setupSvelteKitForm(meta, {
     ...defaults,
-    onSubmit: console.log,
+    onValid: console.log,
   });
   setFormContext(form);
 </script>

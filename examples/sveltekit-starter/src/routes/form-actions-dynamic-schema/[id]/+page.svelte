@@ -8,14 +8,4 @@
   const meta = createMeta<ActionData, PageData>().form;
 </script>
 
-<SvelteKitForm
-  {...defaults}
-  {meta}
-  uiSchema={{
-    "ui:options": {
-      form: {
-        novalidate: true,
-      },
-    },
-  }}
-/>
+<SvelteKitForm {...defaults} {meta} />
