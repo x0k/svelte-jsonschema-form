@@ -156,6 +156,8 @@ const CONDITION_ASSIGNER_KEYS = [
   "else",
 ] as const satisfies SchemaKey[];
 
+const CONTAINS_ASSIGNER_KEYS = ["contains"] as const satisfies SchemaKey[];
+
 function assignCondition(target: JSONSchema7, source: JSONSchema7) {
   if (source.if !== undefined) {
     target.if = source.if;
@@ -172,7 +174,8 @@ function assignCondition(target: JSONSchema7, source: JSONSchema7) {
 type AssignerKey =
   | (typeof PROPERTIES_ASSIGNER_KEYS)[number]
   | (typeof ITEMS_ASSIGNER_KEYS)[number]
-  | (typeof CONDITION_ASSIGNER_KEYS)[number];
+  | (typeof CONDITION_ASSIGNER_KEYS)[number]
+  | (typeof CONTAINS_ASSIGNER_KEYS)[number];
 
 function intersectSchemaTypes(
   a: JSONSchema7TypeName,
@@ -649,6 +652,45 @@ export function createMerger({
     return target;
   };
 
+  const containsAssigner: Assigner<JSONSchema7> = (target, l, r) => {
+    const lContains = l.contains!;
+    const rContains = r.contains!;
+    // Cheapest hot path: identical reference (target already holds it via spread).
+    if (lContains === rContains) return target;
+    // `contains: false` rejects every array, so it dominates the conjunction
+    // (non-array instances ignore `contains` on both sides).
+    if (lContains === false || rContains === false) {
+      target.contains = false;
+      return target;
+    }
+    // `contains: true` (or `{}`) only requires a non-empty array, which is
+    // already implied by any other `contains`, so the other side wins.
+    // (If both sides allow any, either one is equivalent.)
+    if (isAllowAnySchema(lContains)) {
+      target.contains = rContains;
+      return target;
+    }
+    if (isAllowAnySchema(rContains)) {
+      target.contains = lContains;
+      return target;
+    }
+    // Idempotence: `contains: C` ∧ `contains: C` ≡ `contains: C`
+    // (target already holds `lContains` via spread).
+    if (deduplicateJsonSchemaDef([lContains, rContains]).length === 1) {
+      return target;
+    }
+    // Existential conjunction cannot be expressed as a single `contains`
+    // (`∃i C1(i) ∧ ∃j C2(j)` allows `i ≠ j`, while `∃k C1(k) ∧ C2(k)`
+    // requires a single witness), so preserve both branches exactly.
+    // Like `conditionAssigner`, keep left at root and move only right to `allOf`.
+    const branch: JSONSchema7Definition = { contains: rContains };
+    target.allOf =
+      target.allOf === undefined
+        ? [branch]
+        : deduplicateJsonSchemaDef(target.allOf.concat(branch));
+    return target;
+  };
+
   function mergeArraysOfSchemaDefinition(
     l: JSONSchema7Definition[],
     r: JSONSchema7Definition[]
@@ -673,6 +715,7 @@ export function createMerger({
     [PROPERTIES_ASSIGNER_KEYS, propertiesAssigner],
     [ITEMS_ASSIGNER_KEYS, itemsAssigner],
     [CONDITION_ASSIGNER_KEYS, conditionAssigner],
+    [CONTAINS_ASSIGNER_KEYS, containsAssigner],
     ...assigners,
   ]);
 
@@ -823,7 +866,6 @@ export function createMerger({
     oneOf: mergeArraysOfSchemaDefinition,
     allOf: (l, r) => deduplicateJsonSchemaDef(l.concat(r)),
     propertyNames: mergeSchemaDefinitions,
-    contains: mergeSchemaDefinitions,
     dependencies: createRecordsMerge((a, b) => {
       if (Array.isArray(a)) {
         if (Array.isArray(b)) {
