@@ -1056,41 +1056,41 @@ describe("basic", () => {
     });
 
     it("merges contains", () => {
+      const barContains: JSONSchema7Definition = {
+        properties: {
+          name: {
+            type: "string",
+            pattern: "bar",
+          },
+        },
+      };
+      const fooContains: JSONSchema7Definition = {
+        properties: {
+          name: {
+            type: "string",
+            pattern: "foo",
+          },
+        },
+      };
       const result = merger({
         allOf: [
           {},
           {
-            contains: {
-              properties: {
-                name: {
-                  type: "string",
-                  pattern: "bar",
-                },
-              },
-            },
+            contains: barContains,
           },
           {
-            contains: {
-              properties: {
-                name: {
-                  type: "string",
-                  pattern: "foo",
-                },
-              },
-            },
+            contains: fooContains,
           },
         ],
       });
 
+      // `contains` is existential, so `∃i C1(i) ∧ ∃j C2(j)` cannot be
+      // collapsed into a single `contains: C1 ∧ C2` (which would require
+      // a single witness). Like `if`/`then`/`else`, left stays at root
+      // and right moves to `allOf`.
       expect(result).toEqual({
-        contains: {
-          properties: {
-            name: {
-              type: "string",
-              pattern: legacyPatternsMerger("bar", "foo"),
-            },
-          },
-        },
+        contains: barContains,
+        allOf: [{ contains: fooContains }],
       });
     });
 
