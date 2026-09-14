@@ -102,12 +102,14 @@ export function makeSchemaDefinitionTraverser<
       for (const key of keys) {
         if (isSubSchemaKey(key)) {
           const value = schema[key];
-          if (value === undefined || Array.isArray(value)) {
-            continue;
+          // NOTE: no `continue` here on purpose: `items` is both a sub-schema key (single schema)
+          // and a sub-schemas array key (tuple), so an array value must still fall through to the
+          // array branch below instead of skipping the key entirely.
+          if (value !== undefined && !Array.isArray(value)) {
+            subCtx.key = key;
+            subCtx.path[subCtx.path.length - 1] = key;
+            yield* traverse(value, subCtx);
           }
-          subCtx.key = key;
-          subCtx.path[subCtx.path.length - 1] = key;
-          yield* traverse(value, subCtx);
         }
         if (isSubSchemasArrayKey(key)) {
           const array = schema[key];

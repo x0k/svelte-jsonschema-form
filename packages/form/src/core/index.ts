@@ -15,6 +15,7 @@ export * from "./is-expandable.js";
 export * from "./matching.js";
 export * from "./discriminator.js";
 export * from "./sanitize-data-for-new-schema.js";
+export * from "./schema-has-nested-conditional.js";
 export * from "./prefix-schema-refs.js";
 export * from "./schema-hash.js";
 export * from "./enum-option.js";

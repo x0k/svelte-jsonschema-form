@@ -7,6 +7,7 @@ import {
   isSchemaValueDeepEqual,
   retrieveSchema,
   sanitizeDataForNewSchema,
+  schemaHasNestedConditional,
   type Schema,
   type Validator,
 } from "@/core/index.js";
@@ -340,6 +341,13 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       valueRef.current
     ));
   });
+  // A `dependencies`/`if` branch switch nested inside an object property never changes the ROOT retrieved
+  // schema (only the schema's own top-level `dependencies`/`if` get resolved into it), so comparing
+  // retrieved schemas below can't detect it (#5250). When the schema has such a nested conditional,
+  // sanitization must still be attempted.
+  const hasNestedConditionalSchema = $derived(
+    schemaHasNestedConditional(options.schema)
+  );
   const idCache = new WeakMap<FieldPath, Id>();
   const idFromPath = $derived(
     weakMemoize(idCache, (path) => idBuilder.fromPath(path) as Id)
@@ -597,8 +605,18 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     let currentRetrievedSchema = previousRetrievedSchema;
 
     if (currentRetrievedSchema === undefined) {
-      throw new Error(
-        "Invalid invariant, previous retrieved schema is `undefined`, please report this error"
+      // `previousRetrievedSchema` is only assigned when the `retrievedSchema` derived above is
+      // (re-)evaluated, which may not have happened yet when a nested conditional fires
+      // `markSchemaChange` before the form-level derived re-runs (#5250). Fall back to resolving
+      // against the current data: without a root-level change the loop below is a no-op unless a
+      // nested conditional requires sanitization, which is exactly the `hasNestedConditionalSchema`
+      // case that keeps the loop running.
+      currentRetrievedSchema = retrieveSchema(
+        validator,
+        merger,
+        options.schema,
+        options.schema,
+        valueRef.current
       );
     }
 
@@ -627,7 +645,10 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
         formData
       );
 
-      if (isSchemaDeepEqual(currentRetrievedSchema, nextRetrievedSchema)) {
+      if (
+        !hasNestedConditionalSchema &&
+        isSchemaDeepEqual(currentRetrievedSchema, nextRetrievedSchema)
+      ) {
         break sanitization;
       }
 

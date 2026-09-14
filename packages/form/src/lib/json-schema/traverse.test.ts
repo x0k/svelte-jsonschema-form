@@ -100,4 +100,47 @@ describe("traverseSchemaDefinition", () => {
       "leave::",
     ]);
   });
+  it("Should traverse tuple items", () => {
+    const schema: JSONSchema7 = {
+      type: "array",
+      items: [{ type: "object" }, { type: "string" }],
+    };
+    expect(
+      Array.from(
+        makeSchemaDefinitionTraverser(["items"], {
+          *onEnter(_, ctx) {
+            yield `enter::${ctx.path.join("/")}`;
+          },
+          *onLeave(_, ctx) {
+            yield `leave::${ctx.path.join("/")}`;
+          },
+        })(schema)
+      )
+    ).toEqual([
+      "enter::",
+      "enter::items/0",
+      "leave::items/0",
+      "enter::items/1",
+      "leave::items/1",
+      "leave::",
+    ]);
+  });
+  it("Should traverse a single items schema", () => {
+    const schema: JSONSchema7 = {
+      type: "array",
+      items: { type: "object" },
+    };
+    expect(
+      Array.from(
+        makeSchemaDefinitionTraverser(["items"], {
+          *onEnter(_, ctx) {
+            yield `enter::${ctx.path.join("/")}`;
+          },
+          *onLeave(_, ctx) {
+            yield `leave::${ctx.path.join("/")}`;
+          },
+        })(schema)
+      )
+    ).toEqual(["enter::", "enter::items", "leave::items", "leave::"]);
+  });
 });

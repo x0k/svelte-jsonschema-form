@@ -67,11 +67,13 @@ export const SET_OF_SUB_SCHEMAS = new Set(SUB_SCHEMAS);
 export type SubSchemaKey = (typeof SUB_SCHEMAS)[number];
 
 // WARN: Order is important
-export const ALL_SUB_SCHEMA_KEYS = [
-  ...RECORDS_OF_SUB_SCHEMAS,
-  ...ARRAYS_OF_SUB_SCHEMAS,
-  ...SUB_SCHEMAS,
-];
+// NOTE: `items` is intentionally listed in both `ARRAYS_OF_SUB_SCHEMAS` (tuple
+// form) and `SUB_SCHEMAS` (single-schema form) so callers traversing with an
+// explicit `["items"]` key list still visit both forms (see `traverse.ts`).
+// It is deduped here so visitors over `ALL_SUB_SCHEMA_KEYS` don't see it twice.
+export const ALL_SUB_SCHEMA_KEYS = Array.from(
+  new Set([...RECORDS_OF_SUB_SCHEMAS, ...ARRAYS_OF_SUB_SCHEMAS, ...SUB_SCHEMAS])
+);
 
 export type AnySubSchemaKey = (typeof ALL_SUB_SCHEMA_KEYS)[number];
 
