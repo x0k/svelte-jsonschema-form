@@ -2,12 +2,11 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { isSchemaValueDeepEqual } from "./deep-equal.js";
+import { isSchemaDeepEqual, isSchemaValueDeepEqual } from "./deep-equal.js";
 import { getSelectOptionValuesSafe } from "./is-select.js";
 import type { Merger } from "./merger.js";
 import { retrieveSchema } from "./resolve.js";
 import {
-  REF_KEY,
   type Schema,
   type SchemaArrayValue,
   type SchemaObjectValue,
@@ -42,39 +41,63 @@ function replacementForInvalidEnumValue(
   return enumValues.length === 1 ? enumValues[0] : undefined;
 }
 
-function retrieveIfNeeded(
-  validator: Validator,
-  merger: Merger,
-  schema: Schema,
-  rootSchema: Schema,
-  formData?: SchemaValue
-) {
-  return schema[REF_KEY] !== undefined
-    ? retrieveSchema(validator, merger, schema, rootSchema, formData)
-    : schema;
-}
-
 function sanitizeArrays(
   newSchema: Schema,
-  oldSchemaItems: Schema,
-  newSchemaItems: Schema,
+  oldSchemaItemsRaw: Schema,
+  newSchemaItemsRaw: Schema,
   validator: Validator,
   merger: Merger,
   rootSchema: Schema,
   data: SchemaArrayValue
 ) {
+  // Resolve refs, dependencies, if/then/else and allOf, not just a direct `$ref`, so the type check below
+  // reflects an items schema whose object type is only reachable through one of those keywords (#5250)
+  const oldSchemaItems = retrieveSchema(
+    validator,
+    merger,
+    oldSchemaItemsRaw,
+    rootSchema,
+    data
+  );
+  // The old and new raw items schema are usually identical, so skip resolving a second time in that common case
+  const newSchemaItems = isSchemaDeepEqual(oldSchemaItemsRaw, newSchemaItemsRaw)
+    ? oldSchemaItems
+    : retrieveSchema(validator, merger, newSchemaItemsRaw, rootSchema, data);
   const oldSchemaType = oldSchemaItems.type;
   const newSchemaType = newSchemaItems.type;
   if (!oldSchemaType || oldSchemaType === newSchemaType) {
     const maxItems = newSchema.maxItems ?? -1;
     if (newSchemaType === "object") {
       return data.reduce((newValue: SchemaArrayValue, aValue) => {
+        // Resolve refs, dependencies, if/then/else and allOf against this item's own value, so a conditional
+        // nested inside `items` picks the branch that matches this element rather than the whole array (#5250).
+        // Keep the raw (pre-resolution) items schema around: it must be re-resolved per element below,
+        // against that element's own value, rather than the whole array.
+        const oldItemSchema = retrieveSchema(
+          validator,
+          merger,
+          oldSchemaItemsRaw,
+          rootSchema,
+          aValue
+        );
+        const newItemSchema = isSchemaDeepEqual(
+          oldSchemaItemsRaw,
+          newSchemaItemsRaw
+        )
+          ? oldItemSchema
+          : retrieveSchema(
+              validator,
+              merger,
+              newSchemaItemsRaw,
+              rootSchema,
+              aValue
+            );
         const itemValue = sanitizeDataForNewSchema(
           validator,
           merger,
           rootSchema,
-          newSchemaItems,
-          oldSchemaItems,
+          newItemSchema,
+          oldItemSchema,
           aValue
         );
         if (
@@ -131,25 +154,34 @@ export function sanitizeDataForNewSchema(
       const isNewProperty =
         oldSchemaProperties === undefined || !(key in oldSchemaProperties);
       const oldKeyedSchemaDef = oldSchemaProperties?.[key];
-      let oldKeyedSchema =
+      const oldRawKeyedSchema: Schema =
         typeof oldKeyedSchemaDef === "object" ? oldKeyedSchemaDef : {};
       const newKeyedSchemaDef = newSchemaProperties?.[key];
-      let newKeyedSchema =
+      const newRawKeyedSchema: Schema =
         typeof newKeyedSchemaDef === "object" ? newKeyedSchemaDef : {};
-      oldKeyedSchema = retrieveIfNeeded(
+      // Resolve refs, dependencies, if/then/else and allOf so a dependency nested inside this key
+      // (not just at the root schema) is taken into account when sanitizing its data (#5250)
+      const oldKeyedSchema = retrieveSchema(
         validator,
         merger,
-        oldKeyedSchema,
+        oldRawKeyedSchema,
         rootSchema,
         formValue
       );
-      newKeyedSchema = retrieveIfNeeded(
-        validator,
-        merger,
-        newKeyedSchema,
-        rootSchema,
-        formValue
-      );
+      // The old and new raw schema for a key are usually identical (most keys aren't touched by whatever changed),
+      // so skip resolving (and re-running any oneOf/dependency validity checks) a second time in that common case.
+      const newKeyedSchema = isSchemaDeepEqual(
+        oldRawKeyedSchema,
+        newRawKeyedSchema
+      )
+        ? oldKeyedSchema
+        : retrieveSchema(
+            validator,
+            merger,
+            newRawKeyedSchema,
+            rootSchema,
+            formValue
+          );
 
       const oldSchemaTypeForKey = oldKeyedSchema.type;
       const newSchemaTypeForKey = newKeyedSchema.type;
@@ -229,8 +261,8 @@ export function sanitizeDataForNewSchema(
     ) {
       const newFormDataArray = sanitizeArrays(
         newSchema,
-        retrieveIfNeeded(validator, merger, oldSchemaItems, rootSchema, data),
-        retrieveIfNeeded(validator, merger, newSchemaItems, rootSchema, data),
+        oldSchemaItems,
+        newSchemaItems,
         validator,
         merger,
         rootSchema,

@@ -13,7 +13,7 @@ import {
 import type { Merger } from "./merger.js";
 import { retrieveSchema } from "./resolve.js";
 import { sanitizeDataForNewSchema } from "./sanitize-data-for-new-schema.js";
-import type { Schema } from "./schema.js";
+import { type Schema, type SchemaDefinition, REF_FLAG } from "./schema.js";
 import { createMerger } from "./test-merger.js";
 import { createValidator } from "./test-validator.js";
 import type { Validator } from "./validator.js";
@@ -1265,5 +1265,183 @@ describe("sanitizeDataForNewSchema", () => {
         ["qwerty", "asdfg"]
       )
     ).toEqual({});
+  });
+  describe("with a dependency nested inside a property (#5250)", () => {
+    const animalProp: Schema = { type: "string", enum: ["Cat", "Fish"] };
+    const catFood: Schema = { type: "string", enum: ["meat"] };
+    const fishFood: Schema = { type: "string", enum: ["worms"] };
+    const animalDependency: Record<string, SchemaDefinition> = {
+      animal: {
+        oneOf: [
+          {
+            properties: {
+              animal: { enum: ["Cat"] },
+              food: catFood,
+            },
+          },
+          {
+            properties: {
+              animal: { enum: ["Fish"] },
+              food: fishFood,
+            },
+          },
+        ],
+      },
+    };
+    // Exactly what `createConditionSchema` produces for each `oneOf` branch in
+    // `withExactlyOneSubSchema`, matched against the item's own value.
+    const catCondition: Schema = {
+      type: "object",
+      properties: { animal: { enum: ["Cat"] } },
+    };
+    const fishCondition: Schema = {
+      type: "object",
+      properties: { animal: { enum: ["Fish"] } },
+    };
+    // The `m`/`items` schema with its `dependencies` stripped, as `resolveDependencies` leaves it.
+    const baseItem: Schema = {
+      type: "object",
+      properties: { animal: animalProp },
+    };
+    // The branch remainder (dependency key stripped) merged onto `baseItem`.
+    const catRemainder: Schema = { properties: { food: catFood } };
+    const fishRemainder: Schema = { properties: { food: fishFood } };
+    const catItem: Schema = {
+      type: "object",
+      properties: { animal: animalProp, food: catFood },
+    };
+    const fishItem: Schema = {
+      type: "object",
+      properties: { animal: animalProp, food: fishFood },
+    };
+    const catValue = { animal: "Cat", food: "worms" };
+    const fishValue = { animal: "Fish", food: "meat" };
+    it("resolves a dependency nested inside a property before sanitizing its data", () => {
+      // The root schema itself has no top-level `dependencies`, so its own retrieved form is identical whether
+      // `animal` is "Cat" or "Fish" -- only calling retrieveSchema() on the `m` property itself (as
+      // sanitizeDataForNewSchema now does) picks up the active `food` branch for the current `animal` value.
+      testValidator = createValidator({
+        cases: [
+          { schema: catCondition, value: catValue, result: true },
+          { schema: fishCondition, value: catValue, result: false },
+        ],
+      });
+      defaultMerger = createMerger({
+        merges: [{ left: baseItem, right: catRemainder, result: catItem }],
+      });
+      const rootSchema: Schema = {
+        type: "object",
+        properties: {
+          m: {
+            type: "object",
+            properties: { animal: animalProp },
+            dependencies: animalDependency,
+          },
+        },
+      };
+      expect(
+        sanitizeDataForNewSchema(
+          testValidator,
+          defaultMerger,
+          rootSchema,
+          rootSchema,
+          rootSchema,
+          { m: catValue }
+        )
+      ).toEqual({ m: { animal: "Cat", food: "meat" } });
+    });
+    it("resolves a dependency nested inside array items, per item, before sanitizing its data", () => {
+      testValidator = createValidator({
+        cases: [
+          { schema: catCondition, value: catValue, result: true },
+          { schema: fishCondition, value: catValue, result: false },
+          { schema: catCondition, value: fishValue, result: false },
+          { schema: fishCondition, value: fishValue, result: true },
+        ],
+      });
+      defaultMerger = createMerger({
+        merges: [
+          { left: baseItem, right: catRemainder, result: catItem },
+          { left: baseItem, right: fishRemainder, result: fishItem },
+        ],
+      });
+      const rootSchema: Schema = {
+        type: "array",
+        items: {
+          type: "object",
+          properties: { animal: animalProp },
+          dependencies: animalDependency,
+        },
+      };
+      // Each of the two array items resolves its own dependency independently: item 0 matches the "Cat" branch,
+      // item 1 matches the "Fish" branch.
+      expect(
+        sanitizeDataForNewSchema(
+          testValidator,
+          defaultMerger,
+          rootSchema,
+          rootSchema,
+          rootSchema,
+          [catValue, fishValue]
+        )
+      ).toEqual([
+        { animal: "Cat", food: "meat" },
+        { animal: "Fish", food: "worms" },
+      ]);
+    });
+    it("resolves an items schema whose object type and dependency are only reachable through allOf, not a direct $ref", () => {
+      const animalRef = "#/definitions/Animal";
+      // `$ref` resolution decorates the resolved schema with a `REF_FLAG` symbol, which the mock
+      // matchers compare via `Reflect.ownKeys`, so the schemas flowing through the mocks below must
+      // declare it -- exactly like the retrieved-schema expectations in `resolve.test.ts` do.
+      const resolvedBaseItem: Schema = { ...baseItem, [REF_FLAG]: animalRef };
+      testValidator = createValidator({
+        cases: [
+          { schema: catCondition, value: catValue, result: true },
+          { schema: fishCondition, value: catValue, result: false },
+          { schema: catCondition, value: fishValue, result: false },
+          { schema: fishCondition, value: fishValue, result: true },
+        ],
+      });
+      defaultMerger = createMerger({
+        merges: [
+          { left: resolvedBaseItem, right: catRemainder, result: catItem },
+          { left: resolvedBaseItem, right: fishRemainder, result: fishItem },
+        ],
+        allOfMerges: [
+          { input: { allOf: [resolvedBaseItem] }, result: baseItem },
+          { input: { allOf: [catItem] }, result: catItem },
+          { input: { allOf: [fishItem] }, result: fishItem },
+        ],
+      });
+      const rootSchema: Schema = {
+        definitions: {
+          Animal: {
+            type: "object",
+            properties: { animal: animalProp },
+            dependencies: animalDependency,
+          },
+        },
+        type: "array",
+        // No direct `$ref` on `items` itself -- the object type and the nested dependency are only visible after
+        // resolving the `allOf` wrapper, which the array-items type check must do to detect them (#5250).
+        items: {
+          allOf: [{ $ref: animalRef }],
+        },
+      };
+      expect(
+        sanitizeDataForNewSchema(
+          testValidator,
+          defaultMerger,
+          rootSchema,
+          rootSchema,
+          rootSchema,
+          [catValue, fishValue]
+        )
+      ).toEqual([
+        { animal: "Cat", food: "meat" },
+        { animal: "Fish", food: "worms" },
+      ]);
+    });
   });
 });
