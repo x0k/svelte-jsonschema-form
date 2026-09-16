@@ -272,6 +272,23 @@ interface ComputeDefaultsProps<FormData = SchemaValue | undefined> {
   initialDefaultsGenerated: boolean;
 }
 
+/** Determines whether a schema has an allOf key AND the experimental_defaultFormStateBehavior for all of is set
+ * to `populateDefaults`.
+ *
+ * @param schema - The schema to check
+ * @param defaultFormStateBehavior - The Experimental_DefaultFormStateBehavior to check
+ * @returns - True if allOf defaults should be populated, false otherwise.
+ */
+function shouldPopulateAllOfDefaults(
+  schema: Schema,
+  defaultFormStateBehavior?: Experimental_DefaultFormStateBehavior
+): boolean {
+  return Boolean(
+    defaultFormStateBehavior?.allOf === "populateDefaults" &&
+    ALL_OF_KEY in schema
+  );
+}
+
 export function computeDefaults(
   validator: Validator,
   merger: Merger,
@@ -474,6 +491,24 @@ export function computeDefaults(
     schemaToCompute = isRecordEmpty(remaining)
       ? nextSchema
       : merger.mergeSchemas(remaining, nextSchema);
+  } else if (
+    shouldPopulateAllOfDefaults(
+      schema,
+      experimental_defaultFormStateBehavior
+    ) &&
+    getSimpleSchemaType(schema) !== "object"
+  ) {
+    // `allOf` on an object schema is already resolved by `getObjectDefaults()`. On any other schema
+    // nothing resolves it, so the defaults of the subschemas are lost. This happens, for instance,
+    // for a single-element `allOf` wrapping a `$ref` to a string, which is equivalent to using the
+    // `$ref` directly. Merge the `allOf` here so those defaults are picked up as well.
+    schemaToCompute = retrieveSchema(
+      validator,
+      merger,
+      schema,
+      rootSchema,
+      rawFormData
+    );
   }
 
   if (schemaToCompute) {
@@ -548,9 +583,10 @@ export function ensureFormDataMatchingSchema(
   formData: SchemaValue | undefined,
   experimental_defaultFormStateBehavior?: Experimental_DefaultFormStateBehavior
 ): SchemaValue | undefined {
-  const shouldRetrieveAllOf =
-    experimental_defaultFormStateBehavior?.allOf === "populateDefaults" &&
-    ALL_OF_KEY in schema;
+  const shouldRetrieveAllOf = shouldPopulateAllOfDefaults(
+    schema,
+    experimental_defaultFormStateBehavior
+  );
   const schemaToMatch = shouldRetrieveAllOf
     ? retrieveSchema(validator, merger, schema, rootSchema, formData)
     : schema;
@@ -784,8 +820,10 @@ export function getObjectDefaults(
   // - OR if schema contains an 'if' AND `emptyObjectFields` is not set to `skipEmptyDefaults`
   // This ensures we compute defaults correctly for schemas with these keywords.
   const shouldRetrieveSchema =
-    (experimental_defaultFormStateBehavior?.allOf === "populateDefaults" &&
-      ALL_OF_KEY in schema) ||
+    shouldPopulateAllOfDefaults(
+      schema,
+      experimental_defaultFormStateBehavior
+    ) ||
     (experimental_defaultFormStateBehavior?.emptyObjectFields !==
       "skipEmptyDefaults" &&
       IF_KEY in schema);
