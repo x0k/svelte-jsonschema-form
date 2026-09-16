@@ -28,7 +28,7 @@ import {
 } from "./default-state.js";
 import { RECURSIVE_REF, RECURSIVE_REF_ALLOF } from "./fixtures/test-data.js";
 import type { Merger } from "./merger.js";
-import { REF_FLAG, type Schema } from "./schema.js";
+import { REF_FLAG, type Schema, type SchemaValue } from "./schema.js";
 import { createMerger } from "./test-merger.js";
 import { createValidator } from "./test-validator.js";
 import type { Validator } from "./validator.js";
@@ -8593,6 +8593,602 @@ describe("getDefaultFormState()", () => {
     });
   });
   describe("with dependencies", () => {
+    it.each([
+      "inline",
+      "allOf",
+      "$ref",
+      "inside allOf",
+      "$ref inside allOf",
+      "nested allOf",
+      "properties outside allOf",
+    ])(
+      "should populate dependency defaults when formData is undefined with %s",
+      (variant) => {
+        const typeDefault: Schema = { type: "integer", default: 0 };
+        const valueDefault: Schema = { type: "integer", default: 5 };
+        const firstBranch: Schema = {
+          properties: {
+            type: { enum: [0] },
+            value: valueDefault,
+          },
+          required: ["value"],
+        };
+        const secondBranch: Schema = {
+          properties: {
+            type: { enum: [1] },
+          },
+        };
+        const dependencySchema: Schema = {
+          type: "object",
+          required: ["type"],
+          properties: { type: typeDefault },
+          dependencies: { type: { oneOf: [firstBranch, secondBranch] } },
+        };
+        const valueBranch: Schema = {
+          properties: { value: valueDefault },
+          required: ["value"],
+        };
+        const resolvedProperties = {
+          type: typeDefault,
+          value: valueDefault,
+        };
+        let schema = dependencySchema;
+        let merges: { left: Schema; right: Schema; result: Schema }[] = [
+          {
+            left: {
+              type: "object",
+              required: ["type"],
+              properties: { type: typeDefault },
+            },
+            right: valueBranch,
+            result: {
+              type: "object",
+              required: ["type", "value"],
+              properties: resolvedProperties,
+            },
+          },
+        ];
+        let allOfMerges: { input: Schema; result: Schema }[] = [];
+        if (variant === "$ref") {
+          schema = {
+            $ref: "#/definitions/dep",
+            definitions: { dep: dependencySchema },
+          };
+          merges = [
+            {
+              left: dependencySchema,
+              right: { definitions: { dep: dependencySchema } },
+              result: {
+                ...dependencySchema,
+                definitions: { dep: dependencySchema },
+              },
+            },
+            {
+              left: {
+                type: "object",
+                required: ["type"],
+                properties: { type: typeDefault },
+                definitions: { dep: dependencySchema },
+                [REF_FLAG]: "#/definitions/dep",
+              },
+              right: valueBranch,
+              result: {
+                type: "object",
+                required: ["type", "value"],
+                properties: resolvedProperties,
+                definitions: { dep: dependencySchema },
+                [REF_FLAG]: "#/definitions/dep",
+              },
+            },
+          ];
+        } else if (variant === "allOf") {
+          const fromAllOf: Schema = { type: "string", default: "A" };
+          schema = {
+            ...dependencySchema,
+            allOf: [{ properties: { fromAllOf } }],
+          };
+          allOfMerges = [
+            {
+              input: schema,
+              result: {
+                type: "object",
+                required: ["type"],
+                properties: { type: typeDefault, fromAllOf },
+                dependencies: { type: { oneOf: [firstBranch, secondBranch] } },
+              },
+            },
+          ];
+          merges = [
+            {
+              left: {
+                type: "object",
+                required: ["type"],
+                properties: { type: typeDefault, fromAllOf },
+              },
+              right: valueBranch,
+              result: {
+                type: "object",
+                required: ["type", "value"],
+                properties: { ...resolvedProperties, fromAllOf },
+              },
+            },
+          ];
+        } else if (variant === "inside allOf") {
+          schema = { type: "object", allOf: [dependencySchema] };
+          allOfMerges = [
+            {
+              input: schema,
+              result: {
+                type: "object",
+                required: ["type"],
+                properties: { type: typeDefault },
+                dependencies: { type: { oneOf: [firstBranch, secondBranch] } },
+              },
+            },
+          ];
+        } else if (variant === "$ref inside allOf") {
+          schema = {
+            type: "object",
+            allOf: [{ $ref: "#/definitions/dep" }],
+            definitions: { dep: dependencySchema },
+          };
+          allOfMerges = [
+            {
+              input: {
+                type: "object",
+                allOf: [
+                  {
+                    ...dependencySchema,
+                    [REF_FLAG]: "#/definitions/dep",
+                  },
+                ],
+                definitions: { dep: dependencySchema },
+              },
+              result: {
+                type: "object",
+                required: ["type"],
+                properties: { type: typeDefault },
+                dependencies: { type: { oneOf: [firstBranch, secondBranch] } },
+                definitions: { dep: dependencySchema },
+              },
+            },
+          ];
+          merges = [
+            {
+              left: {
+                type: "object",
+                required: ["type"],
+                properties: { type: typeDefault },
+                definitions: { dep: dependencySchema },
+              },
+              right: valueBranch,
+              result: {
+                type: "object",
+                required: ["type", "value"],
+                properties: resolvedProperties,
+                definitions: { dep: dependencySchema },
+              },
+            },
+          ];
+        } else if (variant === "nested allOf") {
+          const innerResult: Schema = {
+            required: ["type"],
+            properties: { type: typeDefault },
+            dependencies: { type: { oneOf: [firstBranch, secondBranch] } },
+          };
+          schema = { type: "object", allOf: [{ allOf: [dependencySchema] }] };
+          allOfMerges = [
+            {
+              input: { allOf: [dependencySchema] },
+              result: innerResult,
+            },
+            {
+              input: { type: "object", allOf: [innerResult] },
+              result: {
+                type: "object",
+                required: ["type"],
+                properties: { type: typeDefault },
+                dependencies: { type: { oneOf: [firstBranch, secondBranch] } },
+              },
+            },
+          ];
+        } else if (variant === "properties outside allOf") {
+          schema = {
+            type: "object",
+            properties: { type: typeDefault },
+            allOf: [
+              {
+                dependencies: {
+                  type: { oneOf: [firstBranch, secondBranch] },
+                },
+              },
+            ],
+          };
+          allOfMerges = [
+            {
+              input: schema,
+              result: {
+                type: "object",
+                properties: { type: typeDefault },
+                dependencies: { type: { oneOf: [firstBranch, secondBranch] } },
+              },
+            },
+          ];
+          merges = [
+            {
+              left: {
+                type: "object",
+                properties: { type: typeDefault },
+              },
+              right: valueBranch,
+              result: {
+                type: "object",
+                properties: resolvedProperties,
+              },
+            },
+          ];
+        }
+        defaultMerger = createMerger({ merges, allOfMerges });
+        const validationFormData =
+          variant === "allOf" ? { type: 0, fromAllOf: "A" } : { type: 0 };
+        testValidator = createValidator({
+          cases: [
+            {
+              schema: {
+                type: "object",
+                properties: { type: { enum: [0] } },
+              },
+              value: validationFormData,
+              result: true,
+            },
+            {
+              schema: {
+                type: "object",
+                properties: { type: { enum: [1] } },
+              },
+              value: validationFormData,
+              result: false,
+            },
+          ],
+        });
+        expect(
+          getDefaultFormState(
+            testValidator,
+            defaultMerger,
+            schema,
+            undefined,
+            schema
+          )
+        ).toEqual({
+          type: 0,
+          value: 5,
+          ...(variant === "allOf" ? { fromAllOf: "A" } : {}),
+        });
+      }
+    );
+    it("should populate dependency defaults when formData is an empty object", () => {
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: {
+              type: "object",
+              properties: { type: { type: "integer", default: 0 } },
+            },
+            right: {
+              properties: { value: { type: "integer", default: 5 } },
+            },
+            result: {
+              type: "object",
+              properties: {
+                type: { type: "integer", default: 0 },
+                value: { type: "integer", default: 5 },
+              },
+            },
+          },
+        ],
+      });
+      testValidator = createValidator({
+        cases: [
+          {
+            schema: {
+              type: "object",
+              properties: { type: { enum: [0] } },
+            },
+            value: { type: 0 },
+            result: true,
+          },
+        ],
+      });
+      const schema: Schema = {
+        type: "object",
+        properties: { type: { type: "integer", default: 0 } },
+        dependencies: {
+          type: {
+            oneOf: [
+              {
+                properties: {
+                  type: { enum: [0] },
+                  value: { type: "integer", default: 5 },
+                },
+              },
+            ],
+          },
+        },
+      };
+      expect(
+        getDefaultFormState(testValidator, defaultMerger, schema, {}, schema)
+      ).toEqual({ type: 0, value: 5 });
+    });
+    it.each([undefined, {}] as (SchemaValue | undefined)[])(
+      "should resolve dependency references without rootSchema and with formData=%j",
+      (formData) => {
+        const extraDefault: Schema = { type: "string", default: "RefDefault" };
+        defaultMerger = createMerger({
+          merges: [
+            {
+              left: {
+                type: "object",
+                definitions: { extra: extraDefault },
+                properties: { type: { type: "integer", default: 0 } },
+              },
+              right: {
+                properties: {
+                  extraField: {
+                    type: "string",
+                    default: "RefDefault",
+                    [REF_FLAG]: "#/definitions/extra",
+                  },
+                },
+              },
+              result: {
+                type: "object",
+                definitions: { extra: extraDefault },
+                properties: {
+                  type: { type: "integer", default: 0 },
+                  extraField: extraDefault,
+                },
+              },
+            },
+          ],
+        });
+        testValidator = createValidator({
+          cases: [
+            {
+              schema: {
+                type: "object",
+                properties: { type: { enum: [0] } },
+              },
+              value: { type: 0 },
+              result: true,
+            },
+          ],
+        });
+        const schema: Schema = {
+          type: "object",
+          definitions: { extra: extraDefault },
+          properties: { type: { type: "integer", default: 0 } },
+          dependencies: {
+            type: {
+              oneOf: [
+                {
+                  properties: {
+                    type: { enum: [0] },
+                    extraField: { $ref: "#/definitions/extra" },
+                  },
+                },
+              ],
+            },
+          },
+        };
+        expect(
+          getDefaultFormState(testValidator, defaultMerger, schema, formData)
+        ).toEqual({ type: 0, extraField: "RefDefault" });
+      }
+    );
+    describe.each(["oneOf", "anyOf"])("inside %s", (keyword) => {
+      it.each([undefined, {}] as (SchemaValue | undefined)[])(
+        "should resolve dependency references without rootSchema and with formData=%j",
+        (formData) => {
+          const extraDefault: Schema = {
+            type: "string",
+            default: "RefDefault",
+          };
+          const extraFieldRef: Schema = {
+            type: "string",
+            default: "RefDefault",
+            [REF_FLAG]: "#/definitions/extra",
+          };
+          const option: Schema = {
+            properties: { type: { type: "integer", default: 0 } },
+            dependencies: {
+              type: {
+                properties: {
+                  extraField: { $ref: "#/definitions/extra" },
+                },
+              },
+            },
+          };
+          defaultMerger = createMerger({
+            merges: [
+              {
+                left: {
+                  type: "object",
+                  definitions: { extra: extraDefault },
+                },
+                right: option,
+                result: {
+                  type: "object",
+                  definitions: { extra: extraDefault },
+                  properties: { type: { type: "integer", default: 0 } },
+                  dependencies: {
+                    type: {
+                      properties: {
+                        extraField: { $ref: "#/definitions/extra" },
+                      },
+                    },
+                  },
+                },
+              },
+              {
+                left: {
+                  type: "object",
+                  definitions: { extra: extraDefault },
+                  properties: { type: { type: "integer", default: 0 } },
+                },
+                right: {
+                  properties: { extraField: extraFieldRef },
+                },
+                result: {
+                  type: "object",
+                  definitions: { extra: extraDefault },
+                  properties: {
+                    type: { type: "integer", default: 0 },
+                    extraField: extraDefault,
+                  },
+                },
+              },
+            ],
+          });
+          testValidator = createValidator({
+            cases: [
+              {
+                schema: {
+                  allOf: [option, { anyOf: [{ required: ["type"] }] }],
+                },
+                value: {},
+                result: false,
+              },
+            ],
+          });
+          const schema: Schema = {
+            type: "object",
+            definitions: { extra: extraDefault },
+            ...(keyword === "oneOf"
+              ? { oneOf: [option] }
+              : { anyOf: [option] }),
+          };
+          expect(
+            getDefaultFormState(testValidator, defaultMerger, schema, formData)
+          ).toEqual({ type: 0, extraField: "RefDefault" });
+        }
+      );
+    });
+    it("should preserve dependency defaults when resolving a conditional branch", () => {
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: { type: "object" },
+            right: {
+              properties: { name: { type: "string", default: "Name" } },
+              dependencies: {
+                name: {
+                  properties: { grade: { type: "string", default: "A" } },
+                },
+              },
+            },
+            result: {
+              type: "object",
+              properties: { name: { type: "string", default: "Name" } },
+              dependencies: {
+                name: {
+                  properties: { grade: { type: "string", default: "A" } },
+                },
+              },
+            },
+          },
+          {
+            left: {
+              type: "object",
+              properties: { name: { type: "string", default: "Name" } },
+            },
+            right: {
+              properties: { grade: { type: "string", default: "A" } },
+            },
+            result: {
+              type: "object",
+              properties: {
+                name: { type: "string", default: "Name" },
+                grade: { type: "string", default: "A" },
+              },
+            },
+          },
+        ],
+      });
+      testValidator = createValidator({
+        cases: [{ schema: {}, value: {}, result: true }],
+      });
+      const schema: Schema = {
+        type: "object",
+        if: {},
+        then: {
+          properties: { name: { type: "string", default: "Name" } },
+          dependencies: {
+            name: { properties: { grade: { type: "string", default: "A" } } },
+          },
+        },
+      };
+      expect(getDefaultFormState(testValidator, defaultMerger, schema)).toEqual(
+        { name: "Name", grade: "A" }
+      );
+    });
+    it("should preserve dependency defaults when merging matching pattern properties", () => {
+      const childSchema: Schema = {
+        type: "object",
+        properties: { name: { type: "string", default: "Name" } },
+        dependencies: {
+          name: { properties: { grade: { type: "string", default: "A" } } },
+        },
+      };
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: {
+              type: "object",
+              properties: { name: { type: "string", default: "Name" } },
+            },
+            right: {
+              properties: { grade: { type: "string", default: "A" } },
+            },
+            result: {
+              type: "object",
+              properties: {
+                name: { type: "string", default: "Name" },
+                grade: { type: "string", default: "A" },
+              },
+            },
+          },
+        ],
+        allOfMerges: [
+          {
+            input: { allOf: [{ type: "object" }, childSchema] },
+            result: childSchema,
+          },
+          {
+            input: {
+              allOf: [
+                { type: "object" },
+                {
+                  type: "object",
+                  properties: { name: { type: "string", default: "Name" } },
+                },
+              ],
+            },
+            result: {
+              type: "object",
+              properties: { name: { type: "string", default: "Name" } },
+            },
+          },
+        ],
+      });
+      const schema: Schema = {
+        type: "object",
+        properties: { child: childSchema },
+        patternProperties: { "^child$": { type: "object" } },
+      };
+      expect(getDefaultFormState(testValidator, defaultMerger, schema)).toEqual(
+        { child: { name: "Name", grade: "A" } }
+      );
+    });
     it("should populate defaults for dependencies", () => {
       testValidator = createValidator({
         cases: [

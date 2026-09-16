@@ -17,7 +17,11 @@ import {
 import { getClosestMatchingOption } from "./matching.js";
 import { mergeDefaultsWithFormData, mergeSchemaObjects } from "./merge.js";
 import type { Merger } from "./merger.js";
-import { resolveDependencies, retrieveSchema } from "./resolve.js";
+import {
+  resolveDependencies,
+  retrieveSchema,
+  retrieveSchemaInternal,
+} from "./resolve.js";
 import {
   ALL_OF_KEY,
   DEPENDENCIES_KEY,
@@ -58,23 +62,43 @@ export function getDefaultValueForType(type: SchemaType) {
   }
 }
 
+/** Checks whether form data is undefined or an empty object.
+ *
+ * @param formData - The form data to inspect
+ * @returns - True if there is no existing form data
+ */
+function isEmptyFormData(formData: SchemaValue | undefined): boolean {
+  return (
+    formData === undefined ||
+    (isSchemaObjectValue(formData) && isRecordEmpty(formData))
+  );
+}
+
 export function getDefaultFormState(
   validator: Validator,
   merger: Merger,
   theSchema: Schema,
   formData: SchemaValue | undefined = undefined,
-  rootSchema: Schema = {},
+  // Defaults to `theSchema` so dependency references, including inside
+  // oneOf/anyOf, resolve when the caller omits `rootSchema`.
+  rootSchema: Schema = theSchema,
   includeUndefinedValues: boolean | "excludeObjectChildren" = false,
   experimental_defaultFormStateBehavior: Experimental_DefaultFormStateBehavior = {},
   initialDefaultsGenerated = false
 ): SchemaValue | undefined {
-  const schema = retrieveSchema(
+  // Empty formData needs the defaults that computeDefaults will generate to resolve dependencies.
+  const emptyFormData = isEmptyFormData(formData);
+  const schema = retrieveSchemaInternal(
     validator,
     merger,
     theSchema,
     rootSchema,
-    formData
-  );
+    formData,
+    undefined,
+    undefined,
+    undefined,
+    emptyFormData
+  )[0]!;
   // Get the computed defaults with 'shouldMergeDefaultsIntoFormData' set to true to merge defaults into formData.
   // This is done when for example the value from formData does not exist in the schema 'enum' property, in such
   // cases we take the value from the defaults because the value from the formData is not valid.
@@ -117,7 +141,7 @@ export function getDefaultFormState(
       validator,
       merger,
       schema,
-      rootSchema ?? schema,
+      rootSchema,
       formData,
       experimental_defaultFormStateBehavior
     );

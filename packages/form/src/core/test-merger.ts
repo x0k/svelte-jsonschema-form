@@ -17,6 +17,9 @@ export function createMerger({
   }[];
 } = {}): Merger {
   return {
+    // NOTE: `retrieveSchemaInternal` calls `mergeAllOf` inside a try-catch
+    // and silently drops `allOf` on error, so a missing `allOfMerges` entry
+    // will not fail loudly. Always declare every expected `allOf` merge.
     mergeAllOf(schema) {
       const c = allOfMerges.find((c) => isSchemaDeepEqual(c.input, schema));
       if (c === undefined) {
