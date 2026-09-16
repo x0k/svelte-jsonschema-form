@@ -186,7 +186,8 @@ export function resolveReference(
   expandAllBranches: boolean,
   stack: Set<string>,
   formData?: SchemaValue,
-  resolveAnyOfOrOneOfRefs?: boolean
+  resolveAnyOfOrOneOfRefs?: boolean,
+  preserveDependencies = false
 ): Schema[] {
   const resolvedSchema = resolveAllReferences(
     merger,
@@ -204,7 +205,8 @@ export function resolveReference(
       formData,
       expandAllBranches,
       stack,
-      resolveAnyOfOrOneOfRefs
+      resolveAnyOfOrOneOfRefs,
+      preserveDependencies
     );
   }
   return [schema];
@@ -221,7 +223,8 @@ export function retrieveSchemaInternal(
   formData?: SchemaValue,
   expandAllBranches = false,
   stack = new Set<string>(),
-  resolveAnyOfOrOneOfRefs?: boolean
+  resolveAnyOfOrOneOfRefs?: boolean,
+  preserveDependencies = false
 ): Schema[] {
   const resolvedSchemas = resolveSchema(
     validator,
@@ -231,7 +234,8 @@ export function retrieveSchemaInternal(
     expandAllBranches,
     stack,
     formData,
-    resolveAnyOfOrOneOfRefs
+    resolveAnyOfOrOneOfRefs,
+    preserveDependencies
   );
   return resolvedSchemas.flatMap((s): Schema | Schema[] => {
     let resolvedSchema = s;
@@ -243,7 +247,8 @@ export function retrieveSchemaInternal(
         rootSchema,
         expandAllBranches,
         stack,
-        formData
+        formData,
+        preserveDependencies
       );
     }
     const resolvedAllOf = resolvedSchema.allOf;
@@ -289,13 +294,17 @@ export function retrieveSchemaInternal(
         );
         if (matchingProperties.length > 0) {
           matchingProperties.push(properties[key]!);
-          properties[key] = retrieveSchema(
+          properties[key] = retrieveSchemaInternal(
             validator,
             merger,
             { allOf: matchingProperties },
             rootSchema,
-            formDataIsSchemaObjectValue ? formData[key] : undefined
-          );
+            formDataIsSchemaObjectValue ? formData[key] : undefined,
+            undefined,
+            undefined,
+            undefined,
+            preserveDependencies
+          )[0]!;
         }
       }
     }
@@ -319,7 +328,8 @@ export function resolveCondition(
   rootSchema: Schema,
   expandAllBranches: boolean,
   stack: Set<string>,
-  formData?: SchemaValue
+  formData?: SchemaValue,
+  preserveDependencies = false
 ): Schema[] {
   const {
     if: expression,
@@ -342,7 +352,9 @@ export function resolveCondition(
           rootSchema,
           formData,
           expandAllBranches,
-          stack
+          stack,
+          undefined,
+          preserveDependencies
         )
       );
     }
@@ -355,7 +367,9 @@ export function resolveCondition(
           rootSchema,
           formData,
           expandAllBranches,
-          stack
+          stack,
+          undefined,
+          preserveDependencies
         )
       );
     }
@@ -370,7 +384,9 @@ export function resolveCondition(
           rootSchema,
           formData,
           expandAllBranches,
-          stack
+          stack,
+          undefined,
+          preserveDependencies
         )
       );
     }
@@ -390,7 +406,9 @@ export function resolveCondition(
       rootSchema,
       formData,
       expandAllBranches,
-      stack
+      stack,
+      undefined,
+      preserveDependencies
     )
   );
 }
@@ -490,7 +508,8 @@ export function resolveSchema(
   expandAllBranches: boolean,
   stack: Set<string>,
   formData?: SchemaValue,
-  resolveAnyOfOrOneOfRefs?: boolean
+  resolveAnyOfOrOneOfRefs?: boolean,
+  preserveDependencies = false
 ): Schema[] {
   const updatedSchemas = resolveReference(
     validator,
@@ -500,12 +519,13 @@ export function resolveSchema(
     expandAllBranches,
     stack,
     formData,
-    resolveAnyOfOrOneOfRefs
+    resolveAnyOfOrOneOfRefs,
+    preserveDependencies
   );
   if (updatedSchemas.length > 1 || updatedSchemas[0] !== schema) {
     return updatedSchemas;
   }
-  if (DEPENDENCIES_KEY in schema) {
+  if (DEPENDENCIES_KEY in schema && !preserveDependencies) {
     const resolvedSchemas = resolveDependencies(
       validator,
       merger,
@@ -523,7 +543,9 @@ export function resolveSchema(
         rootSchema,
         formData,
         expandAllBranches,
-        stack
+        stack,
+        undefined,
+        preserveDependencies
       );
     });
   }
@@ -538,7 +560,9 @@ export function resolveSchema(
           rootSchema,
           formData,
           expandAllBranches,
-          stack
+          stack,
+          undefined,
+          preserveDependencies
         )
       );
     const allPermutations = getAllPermutationsOfXxxOf(allOfSchemaElements);
