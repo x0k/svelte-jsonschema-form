@@ -1,5 +1,23 @@
 # @sjsf/form
 
+## 3.8.2
+
+### Patch Changes
+
+- Port <https://github.com/rjsf-team/react-jsonschema-form/pull/5235> ([#468](https://github.com/x0k/svelte-jsonschema-form/pull/468))
+
+- Port <https://github.com/rjsf-team/react-jsonschema-form/pull/5202> ([#452](https://github.com/x0k/svelte-jsonschema-form/pull/452))
+
+- Compiled validators (precompile flow) now resolve `dependencies` conditions declared via `oneOf` branches. ([#454](https://github.com/x0k/svelte-jsonschema-form/pull/454))
+
+- Port <https://github.com/rjsf-team/react-jsonschema-form/pull/5245> ([#467](https://github.com/x0k/svelte-jsonschema-form/pull/467))
+
+- Port <https://github.com/rjsf-team/react-jsonschema-form/pull/5274> ([#465](https://github.com/x0k/svelte-jsonschema-form/pull/465))
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/5218 ([#459](https://github.com/x0k/svelte-jsonschema-form/pull/459))
+
+- Fix `contains` merging to follow JSON Schema semantics. `contains` is existential, so `allOf: [{ contains: A }, { contains: B }]` no longer collapses into a single `contains: A ∧ B` (which incorrectly required one array item to satisfy both). Distinct `contains` branches are now preserved like `if`/`then`/`else`: left stays at root, right moves to `allOf`. Trivial cases still collapse: identical branches deduplicate, `true`/`{}` yields the other side, `false` dominates. ([#466](https://github.com/x0k/svelte-jsonschema-form/pull/466))
+
 ## 3.8.1
 
 ### Patch Changes
