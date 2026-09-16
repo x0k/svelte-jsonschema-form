@@ -1,5 +1,9 @@
 # @sjsf/ata-validator
 
+## 3.8.2
+
+No changes in this release.
+
 ## 3.8.1
 
 ## 3.8.0
