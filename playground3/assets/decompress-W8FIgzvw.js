@@ -1,0 +1,1 @@
+function e(e){let t=e.split(/([A-Z])/g),n=[],r=``,i=1;for(;i<t.length;i+=2)r=r.slice(0,t[i].charCodeAt(0)-65)+t[i+1],n.push(r);return n}export{e as t};
