@@ -60,9 +60,6 @@ catalogs:
     '@sveltejs/kit':
       specifier: ^2.70.3
       version: 2.70.3
-    '@sveltejs/sv-utils':
-      specifier: npm:@x0k/sv-utils@0.3.3
-      version: 0.3.3
     '@sveltejs/svelte-json-tree':
       specifier: ^2.2.1
       version: 2.2.1
@@ -293,6 +290,7 @@ catalogs:
       version: 4.15.2
 
 overrides:
+  '@sveltejs/sv-utils': https://pkg.svelte.dev/@sveltejs/sv-utils/c/3bc2879b08344a2e3433f7a21502448195620331
   playwright: 1.63.0
   vite: ^8.3.0
 
@@ -2267,6 +2265,9 @@ importers:
       '@sveltejs/kit':
         specifier: 'catalog:'
         version: 2.70.3(@sveltejs/vite-plugin-svelte@7.3.0(svelte@5.57.0(@typescript-eslint/types@8.70.0))(vite@8.3.0(@types/node@26.5.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0)))(svelte@5.57.0(@typescript-eslint/types@8.70.0))(typescript@6.0.3)(vite@8.3.0(@types/node@26.5.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))
+      '@sveltejs/sv-utils':
+        specifier: https://pkg.svelte.dev/@sveltejs/sv-utils/c/3bc2879b08344a2e3433f7a21502448195620331
+        version: https://pkg.svelte.dev/@sveltejs/sv-utils/c/3bc2879b08344a2e3433f7a21502448195620331
       json-schema-to-ts:
         specifier: 'catalog:'
         version: 3.1.1
@@ -2289,9 +2290,6 @@ importers:
       '@sveltejs/acorn-typescript':
         specifier: 'catalog:'
         version: 1.0.13(acorn@8.18.0)
-      '@sveltejs/sv-utils':
-        specifier: 'catalog:'
-        version: '@x0k/sv-utils@0.3.3'
       '@types/css-tree':
         specifier: 'catalog:'
         version: 3.2.0
@@ -2523,8 +2521,8 @@ importers:
   packages/sv:
     devDependencies:
       '@sveltejs/sv-utils':
-        specifier: 'catalog:'
-        version: '@x0k/sv-utils@0.3.3'
+        specifier: https://pkg.svelte.dev/@sveltejs/sv-utils/c/3bc2879b08344a2e3433f7a21502448195620331
+        version: https://pkg.svelte.dev/@sveltejs/sv-utils/c/3bc2879b08344a2e3433f7a21502448195620331
       '@types/node':
         specifier: 'catalog:'
         version: 26.2.0
@@ -2532,8 +2530,8 @@ importers:
         specifier: workspace:*
         version: link:../meta
       sv:
-        specifier: ^0.17.0
-        version: 0.17.0
+        specifier: https://pkg.svelte.dev/sv/c/3bc2879b08344a2e3433f7a21502448195620331
+        version: https://pkg.svelte.dev/sv/c/3bc2879b08344a2e3433f7a21502448195620331
       tsdown:
         specifier: ^0.23.0
         version: 0.23.0(@volar/typescript@2.4.28(typescript@6.0.3))(publint@0.3.24)(typescript@6.0.3)
@@ -4423,8 +4421,9 @@ packages:
     peerDependencies:
       svelte: ^3.44.0 || ^4.0.0 || ^5.0.0-next.1
 
-  '@sveltejs/sv-utils@0.3.3':
-    resolution: {integrity: sha512-K6Voe+/4Ry6o3QTFdG4cNkdgW9kvbkJuRyyIyUbSVkuJUVz4jCdvYNuDCBNYC1mpxBFi7nuulpOeuqRjldZXRA==}
+  '@sveltejs/sv-utils@https://pkg.svelte.dev/@sveltejs/sv-utils/c/3bc2879b08344a2e3433f7a21502448195620331':
+    resolution: {integrity: sha512-G9ZE5KOsrCNKoooCHprZQ3eSBGZO5b86HFao0vK73Z1cXz1kvw9RlnmukNVdSd2YimoBphAcEwzed5w4I/3ZAw==, tarball: https://pkg.svelte.dev/@sveltejs/sv-utils/c/3bc2879b08344a2e3433f7a21502448195620331}
+    version: 1.0.0-next.4
 
   '@sveltejs/svelte-json-tree@2.2.1':
     resolution: {integrity: sha512-M8l23/R3y1fI2+RaOzfUzmkysTWWsw/NClUgGpvydl9vXRonPN1/btQQievaNyeWNfUj12tjPfh5yTrXWpaKkg==}
@@ -4915,9 +4914,6 @@ packages:
 
   '@webcontainer/api@1.6.4':
     resolution: {integrity: sha512-r9sHCXg1FcC1AMgppGwAc0vYWaQhqvg282cnsuPbJEzYnWifAdCVvg+8ngJUEHyHcomhJJp+/zuytite4ITHLw==}
-
-  '@x0k/sv-utils@0.3.3':
-    resolution: {integrity: sha512-Dptm+vkyuJrNgI5qbS5dt9WQpIg3lhO66ewVYTmjY0G1rVLeLiq53EdGxz7YrSsxFYy9GSY76d5KdHcwyCP3WA==}
 
   '@yr/monotone-cubic-spline@1.0.3':
     resolution: {integrity: sha512-FQXkOta0XBSUPHndIKON2Y9JeQz5ZeMqLYZVVK93FliNBFm7LNMIZmY6FrMEB9XPcDbE2bekMbZD6kzDkxwYjA==}
@@ -7977,8 +7973,9 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  sv@0.17.0:
-    resolution: {integrity: sha512-bYEZjqq2XSAf6+uE59sXKgGQLS/W8vXrSvuDPeFN7Kit+iDA/LtL8oN/KkldU3pHufSS/R73xaLS4eDrZae62w==}
+  sv@https://pkg.svelte.dev/sv/c/3bc2879b08344a2e3433f7a21502448195620331:
+    resolution: {integrity: sha512-Dfc7DqD0bO2+tNg9o+Ug8MXUpChwijiwVDAf3onQMGH3E+7BcPpO3BtQKyCZwgJA8Out+aulo8045CAGfH6xqQ==, tarball: https://pkg.svelte.dev/sv/c/3bc2879b08344a2e3433f7a21502448195620331}
+    version: 1.0.0-next.7
     hasBin: true
 
   svelte-check@4.7.6:
@@ -10581,7 +10578,7 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@sveltejs/sv-utils@0.3.3': {}
+  '@sveltejs/sv-utils@https://pkg.svelte.dev/@sveltejs/sv-utils/c/3bc2879b08344a2e3433f7a21502448195620331': {}
 
   '@sveltejs/svelte-json-tree@2.2.1(svelte@5.57.0(@typescript-eslint/types@8.70.0))':
     dependencies:
@@ -11181,8 +11178,6 @@ snapshots:
   '@vscode/l10n@0.0.18': {}
 
   '@webcontainer/api@1.6.4': {}
-
-  '@x0k/sv-utils@0.3.3': {}
 
   '@yr/monotone-cubic-spline@1.0.3': {}
 
@@ -15332,9 +15327,9 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  sv@0.17.0:
+  sv@https://pkg.svelte.dev/sv/c/3bc2879b08344a2e3433f7a21502448195620331:
     dependencies:
-      '@sveltejs/sv-utils': 0.3.3
+      '@sveltejs/sv-utils': https://pkg.svelte.dev/@sveltejs/sv-utils/c/3bc2879b08344a2e3433f7a21502448195620331
 
   svelte-check@4.7.6(picomatch@4.0.7)(svelte@5.57.0(@typescript-eslint/types@8.70.0))(typescript@6.0.3):
     dependencies:

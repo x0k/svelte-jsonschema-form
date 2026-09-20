@@ -1,4 +1,8 @@
-import { transforms, type SvelteAst, js as jsUtils } from "@sveltejs/sv-utils";
+import {
+  transforms,
+  type SvelteAst,
+  js as jsUtils,
+} from "@sveltejs/sv-utils/browser";
 
 import {
   shadcn4ExtraWidgetComponents,

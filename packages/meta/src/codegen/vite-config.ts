@@ -1,4 +1,4 @@
-import { transforms } from "@sveltejs/sv-utils";
+import { transforms } from "@sveltejs/sv-utils/browser";
 
 import { iconSetPackage } from "../icons.ts";
 import { isTailwindcss4Theme, themePackage, toTheme } from "../themes.ts";

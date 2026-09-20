@@ -24,7 +24,7 @@ export default defineAddon({
     defaultsTs(ctx);
     shadcnTs(ctx);
     appCss(ctx);
-    await postTs(ctx);
+    postTs(ctx);
     scriptsFolder(ctx);
     viteConfig(ctx);
     sveltekitTs(ctx);

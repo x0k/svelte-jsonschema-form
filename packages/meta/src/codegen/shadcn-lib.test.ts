@@ -100,14 +100,14 @@ describe("createShadcnLib", () => {
     expect(output).toContain("// CommandInput");
   });
 
-  it("returns empty for non-shadcn themes", () => {
+  it("aborts for non-shadcn themes", () => {
     const output = createShadcnLib({
       themeOrSubTheme: "basic",
       resolveImportPath: alwaysLib,
       widgets: [],
     })("");
 
-    expect(output).toBe("");
+    expect(output).toBe(false);
   });
 
   it("active extras appear in active import statement", () => {

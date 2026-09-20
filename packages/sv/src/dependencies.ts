@@ -34,11 +34,12 @@ function dependenciesTailwindCss4({
   dependencyVersion,
   language,
   packageManager,
+  cwd,
 }: Context) {
   if (packageManager === "pnpm") {
     sv.file(
       file.findUp("pnpm-workspace.yaml"),
-      pnpm.allowBuilds("@tailwindcss/oxide")
+      pnpm.allowBuilds({ cwd, packages: ["@tailwindcss/oxide"] })
     );
   }
 

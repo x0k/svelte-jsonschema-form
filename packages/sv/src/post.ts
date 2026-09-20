@@ -11,7 +11,7 @@ import {
   type Context,
 } from "./model.js";
 
-export async function postTs({
+export function postTs({
   isTs,
   sv,
   directory,
@@ -32,7 +32,7 @@ export async function postTs({
       createJsonFile(POST_INITIAL_VALUE)
     );
   } else {
-    const modelTransform = await createModel({
+    const modelTransform = createModel({
       validator,
       ts,
       schema:

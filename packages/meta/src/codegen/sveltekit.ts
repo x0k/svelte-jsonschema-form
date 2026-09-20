@@ -1,4 +1,4 @@
-import { transforms } from "@sveltejs/sv-utils";
+import { transforms } from "@sveltejs/sv-utils/browser";
 
 import {
   sveltekitPackage,

@@ -1,5 +1,9 @@
 // This file is a separate entry point (see tsdown.config.js) so that
-import { transforms, type AstTypes, type SvelteAst } from "@sveltejs/sv-utils";
+import {
+  transforms,
+  type AstTypes,
+  type SvelteAst,
+} from "@sveltejs/sv-utils/browser";
 
 export interface NamedImportOptions {
   /**

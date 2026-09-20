@@ -1,6 +1,6 @@
 import type { UiSchemaRoot, FormValue } from "@sjsf/form";
 import { isRecordEmpty } from "@sjsf/form/lib/object";
-import { transforms, type AstTypes } from "@sveltejs/sv-utils";
+import { transforms, type AstTypes } from "@sveltejs/sv-utils/browser";
 
 import { neverError } from "../errors.ts";
 import { formPackage } from "../form.ts";
@@ -24,7 +24,7 @@ export interface ModelOptions {
   fieldsValidationMode: FieldsValidationMode;
 }
 
-export async function createModel({
+export function createModel({
   validator,
   isTs,
   schema,

@@ -1,4 +1,4 @@
-import { transforms, type SvelteAst } from "@sveltejs/sv-utils";
+import { transforms, type SvelteAst } from "@sveltejs/sv-utils/browser";
 
 import type { AtRule, AtRuleOptions } from "../css.ts";
 import { iconSetAtRules } from "../icons.ts";
