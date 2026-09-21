@@ -22,6 +22,7 @@ import { isValidRegExp } from "$lib/reg-exp.js";
 
 import {
   isArrayNode,
+  isArraySchemaNode,
   isBooleanNode,
   isCustomizableNode,
   isFileNode,
@@ -213,12 +214,18 @@ const validateNumberComparisonOperator = createComparisonOperatorValidator(
   }
 );
 
-const validateArrayComparisonOperator = createComparisonOperatorValidator(
-  (ctx, op, affected) => {
-    if (!isArrayNode(affected)) {
-      ctx.addError(op, "The operator can only be applied to list field");
-    }
+const affectedNodeIsArraySchemaNode = (
+  ctx: ValidatorContext,
+  op: AbstractNode<NodeType.Operator> & Operator,
+  affected: Node
+) => {
+  if (!isArraySchemaNode(affected)) {
+    ctx.addError(op, "The operator can only be applied to list field");
   }
+};
+
+const validateArrayComparisonOperator = createComparisonOperatorValidator(
+  affectedNodeIsArraySchemaNode
 );
 
 const OPERATOR_VALIDATORS: {
@@ -347,11 +354,9 @@ const OPERATOR_VALIDATORS: {
   [OperatorType.MinItems]: validateArrayComparisonOperator,
   [OperatorType.MaxItems]: validateArrayComparisonOperator,
   [OperatorType.UniqueItems]: (ctx, op) => {
-    checkAffected(ctx, op, (affected) => {
-      if (!isArrayNode(affected)) {
-        ctx.addError(op, "The operator can only be applied to list field");
-      }
-    });
+    checkAffected(ctx, op, (affected) =>
+      affectedNodeIsArraySchemaNode(ctx, op, affected)
+    );
   },
   // Object
   [OperatorType.HasProperty]: (ctx, op) => {

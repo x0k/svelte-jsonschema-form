@@ -109,3 +109,19 @@ export const isFileNode = createNodeGuard(NodeType.File);
 export const isTagsNode = createNodeGuard(NodeType.Tags);
 
 export const isRangeNode = createNodeGuard(NodeType.Range);
+
+export function isArraySchemaNode(
+  node: Node
+): node is Extract<
+  Node,
+  AbstractNode<
+    NodeType.Array | NodeType.MultiEnum | NodeType.File | NodeType.Tags
+  >
+> {
+  return (
+    isArrayNode(node) ||
+    isMultiEnumNode(node) ||
+    (isFileNode(node) && node.options.multiple) ||
+    isTagsNode(node)
+  );
+}
