@@ -12,12 +12,10 @@ import { assertThing } from "$lib/assert.js";
 import { mergeSchemas } from "$lib/json-schema.js";
 
 import {
-  isArrayNode,
+  isArraySchemaNode,
   isCustomizableNode,
-  isFileNode,
   isMultiEnumNode,
   isObjectNode,
-  isTagsNode,
 } from "./node-guards.js";
 import { getNodeChild, getNodeProperty } from "./node-props.js";
 import type {
@@ -95,12 +93,7 @@ function buildPropertyDependencies(
       throw new Error(`This dependency on the object does not make sense`);
     }
     // field with array schema
-    if (
-      isArrayNode(affected) ||
-      isMultiEnumNode(affected) ||
-      (isFileNode(affected) && affected.options.multiple) ||
-      isTagsNode(affected)
-    ) {
+    if (isArraySchemaNode(affected)) {
       return {
         oneOf: [
           mergeSchemas(
