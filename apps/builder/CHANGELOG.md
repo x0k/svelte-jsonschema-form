@@ -1,5 +1,11 @@
 # builder
 
+## 0.8.3
+
+### Patch Changes
+
+- Extract `isArraySchemaNode` type guard to consolidate array-schema checks ([#470](https://github.com/x0k/svelte-jsonschema-form/pull/470))
+
 ## 0.8.2
 
 ### Patch Changes
