@@ -34,6 +34,7 @@ catalog:
   "@types/estree": ^1.0.9
   "@types/pikaday": ^1.7.10
   "@types/node": ^26.2.0
+  "@typescript/native": npm:typescript@^7.0.2
   "@typescript-eslint/types": ^8.70.0
   "@valibot/to-json-schema": ^1.8.0
   "@webcontainer/api": ^1.6.4
