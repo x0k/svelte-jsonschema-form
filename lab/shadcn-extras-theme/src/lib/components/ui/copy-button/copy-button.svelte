@@ -20,7 +20,7 @@
 
 <script lang="ts">
 	import Button from '$lib/components/button.svelte';
-	import { UseClipboard } from '$lib/hooks/use-clipboard.svelte';
+	import { UseClipboard } from '$lib/hooks/use-clipboard.svelte.js';
 	import { cn } from '$lib/utils.js';
 	import { mergeProps } from 'bits-ui';
 	import CheckIcon from '@lucide/svelte/icons/check';
