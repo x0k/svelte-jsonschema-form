@@ -3,6 +3,11 @@
   "version": "1.0.9",
   "private": true,
   "license": "MIT",
+  "files": [
+    "dist",
+    "!dist/**/*.test.*",
+    "!dist/**/*.spec.*"
+  ],
   "type": "module",
   "exports": {
     ".": {
