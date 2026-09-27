@@ -40,7 +40,7 @@
           buildInputs = [
             mk.packages.${system}.default
             pkgs.nodejs_26
-            pkgs.pnpm
+            unstablePkgs.pnpm_12
           ];
           shellHook = ''
             export PLAYWRIGHT_BROWSERS_PATH=${playwright-browsers}
