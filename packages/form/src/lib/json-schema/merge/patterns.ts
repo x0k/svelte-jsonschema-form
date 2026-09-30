@@ -3,5 +3,5 @@ export function legacyPatternsMerger(a: string, b: string): string {
 }
 
 export function simplePatternsMerger(a: string, b: string): string {
-  return a === b ? a : `^(?=.*(?:${a}))(?=.*(?:${b})).*$`;
+  return a === b ? a : `(?=.*(?:${a}))(?=.*(?:${b}))`;
 }

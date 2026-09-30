@@ -657,6 +657,64 @@ const cases: TestCase[] = [
       },
     ],
   },
+  {
+    name: "Newlines in the value",
+    left: "a",
+    right: "b",
+    data: [
+      {
+        value: "ab",
+        expected: {
+          simplePatternsMerger: true,
+          legacyPatternsMerger: false,
+        },
+      },
+      {
+        // `.` does not match a newline, so an anchored `^….*$` would reject this
+        value: "ab\ncd",
+        expected: {
+          simplePatternsMerger: true,
+          legacyPatternsMerger: false,
+        },
+      },
+      {
+        value: "abc\nbad",
+        expected: {
+          simplePatternsMerger: true,
+          legacyPatternsMerger: false,
+        },
+      },
+      {
+        value: "zzz\nab",
+        expected: {
+          simplePatternsMerger: true,
+          legacyPatternsMerger: false,
+        },
+      },
+      {
+        value: "ab\n",
+        expected: {
+          simplePatternsMerger: true,
+          legacyPatternsMerger: false,
+        },
+      },
+      {
+        // Neither pattern may be looked for past a newline
+        value: "a\nb",
+        expected: {
+          simplePatternsMerger: false,
+          legacyPatternsMerger: false,
+        },
+      },
+      {
+        value: "zzz\nzzz",
+        expected: {
+          simplePatternsMerger: false,
+          legacyPatternsMerger: false,
+        },
+      },
+    ],
+  },
 ];
 
 describe("Pattern Mergers", () => {

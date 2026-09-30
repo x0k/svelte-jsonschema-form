@@ -132,3 +132,13 @@ export function isSubSchemasArrayKey(key: string): key is SubSchemasArrayKey {
 export function isSubSchemasRecordKey(key: string): key is SubSchemasRecordKey {
   return SET_OF_RECORDS_OF_SUB_SCHEMAS.has(key as SubSchemasRecordKey);
 }
+
+export type SchemaWithItems = JSONSchema7 & {
+  items: Exclude<JSONSchema7["items"], undefined>;
+};
+
+export function isSchemaWithItems(
+  schema: JSONSchema7
+): schema is SchemaWithItems {
+  return schema.items !== undefined;
+}
