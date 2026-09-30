@@ -1,7 +1,8 @@
 import { unique } from "@/lib/array.js";
 import { isSchemaObject } from "@/lib/json-schema/index.js";
 
-import type { Schema, SchemaType } from "./schema.js";
+import type { Schema, SchemaDefinition, SchemaType } from "./schema.js";
+import { getAllOfOptions, getXxxOfOptions } from "./xxx-of-options.js";
 
 export function typeOfValue(
   value: null | boolean | number | string | object
@@ -44,8 +45,13 @@ export function typeOfSchema(schema: Schema): SchemaType | SchemaType[] {
   if (Array.isArray(schema.enum) && schema.enum.length > 0) {
     return unique(schema.enum.map(typeOfValue));
   }
-  const alt = schema.allOf ?? schema.anyOf ?? schema.oneOf;
-  if (alt) {
+  // `allOf` keeps its own precedence, so only the `oneOf`/`anyOf` pair is read
+  // through `getXxxOfOptions()`. An empty list offers no type to take, so a
+  // schema carrying only empty lists falls through to `"unknown"` rather than
+  // reaching `pickSchemaType()` with an empty array.
+  const alt: SchemaDefinition[] | undefined =
+    getAllOfOptions(schema) ?? getXxxOfOptions(schema)?.options;
+  if (alt !== undefined) {
     let types: SchemaType[] = [];
     for (let i = 0; i < alt.length; i++) {
       const item = alt[i]!;

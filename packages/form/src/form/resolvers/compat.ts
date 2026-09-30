@@ -1,5 +1,6 @@
 import {
   getSimpleSchemaType,
+  getXxxOfKey,
   isFileSchema,
   isFixedItems,
 } from "@/core/index.js";
@@ -27,11 +28,9 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
     if (isSelect(ctx, schema)) {
       return "enumField";
     }
-    if (schema.oneOf !== undefined) {
-      return "oneOfField";
-    }
-    if (schema.anyOf !== undefined) {
-      return "anyOfField";
+    const xxxOfKey = getXxxOfKey(schema);
+    if (xxxOfKey !== undefined) {
+      return `${xxxOfKey}Field`;
     }
     const type = getSimpleSchemaType(schema);
     if (type === "array") {
