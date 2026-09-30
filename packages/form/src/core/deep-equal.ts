@@ -62,7 +62,7 @@ function createSchemaValueComparator(
           return false;
         }
         for (let i = length; i-- !== 0;) {
-          if (!isSchemaValueDeepEqual(a[i], b[i])) {
+          if (!compare(a[i], b[i])) {
             return false;
           }
         }
