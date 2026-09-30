@@ -272,9 +272,6 @@ catalogs:
     json-schema-typed:
       specifier: ^8.0.2
       version: 8.0.2
-    jsonpointer:
-      specifier: ^5.0.1
-      version: 5.0.1
     lz-string:
       specifier: ^1.5.0
       version: 1.5.0
@@ -1878,9 +1875,6 @@ importers:
       globals:
         specifier: 'catalog:'
         version: 17.12.0
-      jsonpointer:
-        specifier: 'catalog:'
-        version: 5.0.1
       postcss:
         specifier: 'catalog:'
         version: 8.5.28
@@ -2214,9 +2208,6 @@ importers:
       globals:
         specifier: 'catalog:'
         version: 17.12.0
-      jsonpointer:
-        specifier: 'catalog:'
-        version: 5.0.1
       svelte:
         specifier: 'catalog:'
         version: 5.57.0(@typescript-eslint/types@8.70.0)
@@ -2235,9 +2226,6 @@ importers:
       esm-env:
         specifier: ^1.2.0
         version: 1.2.2
-      jsonpointer:
-        specifier: 'catalog:'
-        version: 5.0.1
     devDependencies:
       '@standard-schema/spec':
         specifier: 'catalog:'
@@ -7020,10 +7008,6 @@ packages:
 
   jsonc-parser@3.3.1:
     resolution: {integrity: sha512-HUgH65KyejrUFPvHFPbqOY0rsFip3Bo5wb4ngvdi1EpCYWUQDC5V+Y7mZws+DLkr4M//zQJoanu1SP+87Dv1oQ==}
-
-  jsonpointer@5.0.1:
-    resolution: {integrity: sha512-p/nXbhSEcu3pZRdkW1OfJhpsVtW1gd4Wa1fnQc9YLiTfAjn0312eMKimbdIQzuZl9aa9xUGaRlP9T/CJE/ditQ==}
-    engines: {node: '>=0.10.0'}
 
   jsrepo@3.8.1:
     resolution: {integrity: sha512-ruBJYmmXMN923dMWnVruWmFyHBcD0TzQ+upx6nssiSzRheqTakE/nciEhIpLlO3JcrPsVSXKaXpdt4ExXkVEYA==}
@@ -14025,8 +14009,6 @@ snapshots:
   jsonc-parser@2.3.1: {}
 
   jsonc-parser@3.3.1: {}
-
-  jsonpointer@5.0.1: {}
 
   jsrepo@3.8.1(@emnapi/core@1.11.2)(@emnapi/runtime@1.11.3)(svelte@5.57.0(@typescript-eslint/types@8.70.0)):
     dependencies:

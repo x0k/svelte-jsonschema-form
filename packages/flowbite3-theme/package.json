@@ -77,7 +77,6 @@
     "flowbite": "catalog:",
     "flowbite-svelte": "catalog:",
     "globals": "catalog:",
-    "jsonpointer": "catalog:",
     "svelte": "catalog:",
     "tailwindcss": "catalog:",
     "theme-testing": "workspace:*"

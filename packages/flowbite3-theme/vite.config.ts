@@ -16,7 +16,6 @@ export default defineConfig({
       "@sveltejs/svelte-json-tree",
       "ajv",
       "esm-env",
-      "jsonpointer",
       "flowbite-svelte/**",
     ],
     rolldownOptions: {

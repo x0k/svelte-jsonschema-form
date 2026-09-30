@@ -9,7 +9,7 @@ const VIRTUAL_MODULE_PREFIX = "virtual-module:";
 export default defineConfig({
   plugins: [sveltekit()],
   optimizeDeps: {
-    include: ["ajv", "esm-env", "jsonpointer", "flowbite-svelte/**"],
+    include: ["ajv", "esm-env", "flowbite-svelte/**"],
     rolldownOptions: {
       resolve: {
         conditionNames: ["svelte", "import", "node", "default"],
