@@ -2,6 +2,8 @@
 // MIT © Martin Hansen
 // Modifications made by Roman Krasilnikov.
 
+import { Ajv } from "ajv";
+import type { JSONSchema7Definition } from "json-schema";
 import { describe, expect, it } from "vitest";
 
 import { createDeduplicator, createIntersector } from "@/lib/array.js";
@@ -377,6 +379,90 @@ describe("items", () => {
           },
         ],
       });
+    });
+  });
+
+  describe("additionalItems without items", () => {
+    // `additionalItems` only applies next to an array of `items`
+    const mergeAllOf = createShallowAllOfMerge(
+      createMerger().mergeArrayOfSchemaDefinitions
+    );
+    const ajv = new Ajv({ strict: false });
+
+    function expectEquivalent(
+      original: JSONSchema7Definition,
+      merged: JSONSchema7Definition,
+      instances: unknown[]
+    ) {
+      const validateOriginal = ajv.compile(original);
+      const validateMerged = ajv.compile(merged);
+      for (const instance of instances) {
+        expect(
+          validateMerged(instance),
+          `merged schema disagrees on ${JSON.stringify(instance)}`
+        ).toBe(validateOriginal(instance));
+      }
+    }
+
+    const instances = [[], ["a"], [1], ["a", 1], ["a", "b"], [1, 2, 3]];
+
+    it("does not apply a later `additionalItems` to earlier `items`", () => {
+      const original: JSONSchema7Definition = {
+        allOf: [{ items: [{ type: "string" }] }, { additionalItems: false }],
+      };
+      const result = mergeAllOf(original);
+
+      expect(result).toEqual({ items: [{ type: "string" }] });
+      expectEquivalent(original, result, instances);
+    });
+
+    it("does not apply an earlier `additionalItems` to later `items`", () => {
+      const original: JSONSchema7Definition = {
+        allOf: [{ additionalItems: false }, { items: [{}] }],
+      };
+      const result = mergeAllOf(original);
+
+      expect(result).toEqual({ items: [{}] });
+      expectEquivalent(original, result, instances);
+    });
+
+    it("does not merge `additionalItems` into the other side's `items`", () => {
+      const original: JSONSchema7Definition = {
+        allOf: [
+          { items: [{ type: "string" }], additionalItems: false },
+          { additionalItems: { type: "number" } },
+        ],
+      };
+      const result = mergeAllOf(original);
+
+      expect(result).toEqual({
+        items: [{ type: "string" }],
+        additionalItems: false,
+      });
+      expectEquivalent(original, result, instances);
+    });
+
+    it("drops `additionalItems` next to a schema-valued `items`", () => {
+      const original: JSONSchema7Definition = {
+        allOf: [{ items: { type: "number" } }, { additionalItems: false }],
+      };
+      const result = mergeAllOf(original);
+
+      expect(result).toEqual({ items: { type: "number" } });
+      expectEquivalent(original, result, instances);
+    });
+
+    it("does not produce an empty `items` array", () => {
+      const original: JSONSchema7Definition = {
+        allOf: [
+          { additionalItems: false },
+          { additionalItems: { type: "number" } },
+        ],
+      };
+      const result = mergeAllOf(original);
+
+      expect(result).toEqual({ additionalItems: false });
+      expectEquivalent(original, result, instances);
     });
   });
 });

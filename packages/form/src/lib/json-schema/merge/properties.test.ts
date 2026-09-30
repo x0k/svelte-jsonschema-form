@@ -622,4 +622,56 @@ describe("properties", () => {
       });
     });
   });
+
+  describe("when only one side has a keyword of the group", () => {
+    it("applies `additionalProperties` to the other side's `properties`", () => {
+      const lSchema: JSONSchema7Definition = {
+        properties: { a: { type: "string" } },
+      };
+      const rSchema: JSONSchema7Definition = { additionalProperties: false };
+      const result = testMerger(lSchema, rSchema, {
+        additionalProperties: false,
+      });
+
+      [{}, { a: "x" }, { a: 1 }, { b: 1 }].forEach((val) => {
+        validateInputOutput({ allOf: [lSchema, rSchema] }, result, val);
+      });
+    });
+
+    it("applies `additionalProperties` to later `properties`", () => {
+      const lSchema: JSONSchema7Definition = { additionalProperties: false };
+      const rSchema: JSONSchema7Definition = { properties: { a: {} } };
+      const result = testMerger(lSchema, rSchema, {
+        additionalProperties: false,
+      });
+
+      [{}, { a: 1 }, { b: 1 }].forEach((val) => {
+        validateInputOutput({ allOf: [lSchema, rSchema] }, result, val);
+      });
+    });
+
+    it("applies `additionalProperties` to the other side's `patternProperties`", () => {
+      const lSchema: JSONSchema7Definition = {
+        patternProperties: { "^x": { type: "string" } },
+      };
+      const rSchema: JSONSchema7Definition = {
+        additionalProperties: { minLength: 2 },
+      };
+      const result = testMerger(lSchema, rSchema, {
+        patternProperties: { "^x": { type: "string", minLength: 2 } },
+        additionalProperties: { minLength: 2 },
+      });
+
+      [
+        {},
+        { x1: "a" },
+        { x1: "ab" },
+        { x1: 1 },
+        { b: "a" },
+        { b: "ab" },
+      ].forEach((val) => {
+        validateInputOutput({ allOf: [lSchema, rSchema] }, result, val);
+      });
+    });
+  });
 });

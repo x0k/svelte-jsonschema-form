@@ -12,7 +12,11 @@ import {
   type Intersector,
 } from "@/lib/array.js";
 import { identity } from "@/lib/function.js";
-import { isAllowAnySchema } from "@/lib/json-schema/index.js";
+import {
+  isAllowAnySchema,
+  isSchemaWithItems,
+  type SchemaWithItems,
+} from "@/lib/json-schema/index.js";
 import { lcm } from "@/lib/math.js";
 
 import { simplePatternsMerger } from "./patterns.js";
@@ -168,6 +172,19 @@ function assignCondition(target: JSONSchema7, source: JSONSchema7) {
   if (source.else !== undefined) {
     target.else = source.else;
   }
+  return target;
+}
+
+function assignItems(
+  target: JSONSchema7,
+  { items, additionalItems }: SchemaWithItems
+) {
+  target.items = items;
+  assignSchemaDefinitionOrRecordOfSchemaDefinitions(
+    target,
+    "additionalItems",
+    Array.isArray(items) ? additionalItems : undefined
+  );
   return target;
 }
 
@@ -577,14 +594,22 @@ export function createMerger({
     return target;
   };
 
-  const itemsAssigner: Assigner<JSONSchema7> = (
-    target,
-    // NOTE: Schema that has `additionalItems` without an `items` keyword is invalid
-    // so the assigner should be triggered only be colliding `items` properties
-    // so default values are used only for type narrowing
-    { items: lItems = [], additionalItems: lAdditional },
-    { items: rItems = [], additionalItems: rAdditional }
-  ) => {
+  const itemsAssigner: Assigner<JSONSchema7> = (target, l, r) => {
+    // `additionalItems` only applies next to an array of `items`, so a side
+    // without `items` constrains nothing here and the other side is kept as is
+    if (!isSchemaWithItems(l)) {
+      if (!isSchemaWithItems(r)) {
+        delete target.items;
+        delete target.additionalItems;
+        return target;
+      }
+      return assignItems(target, r);
+    }
+    if (!isSchemaWithItems(r)) {
+      return assignItems(target, l);
+    }
+    const { items: lItems, additionalItems: lAdditional } = l;
+    const { items: rItems, additionalItems: rAdditional } = r;
     const isLArr = Array.isArray(lItems);
     const isRArr = Array.isArray(rItems);
     const itemsArray: JSONSchema7Definition[] = [];
@@ -719,6 +744,26 @@ export function createMerger({
     ...assigners,
   ]);
 
+  const ASSIGNEER_KEYS = new Map<Assigner<JSONSchema7>, SchemaKey[]>();
+  for (const [key, assigner] of ASSIGNERS_MAP) {
+    const owned = ASSIGNEER_KEYS.get(assigner);
+    if (owned === undefined) {
+      ASSIGNEER_KEYS.set(assigner, [key]);
+    } else {
+      owned.push(key);
+    }
+  }
+
+  function hasAssignerKey(left: JSONSchema7, assigner: Assigner<JSONSchema7>) {
+    const keys = ASSIGNEER_KEYS.get(assigner)!;
+    for (let i = 0; i < keys.length; i++) {
+      if (left[keys[i]!] !== undefined) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   const CHECKS_MAP = createChecksMap(checks);
 
   function mergeSchemaDefinitions(
@@ -758,15 +803,15 @@ export function createMerger({
           }
         }
       }
+      const assign = ASSIGNERS_MAP.get(rKey);
+      if (assign !== undefined && hasAssignerKey(left, assign)) {
+        assigners.add(assign);
+        continue;
+      }
       const lv = left[rKey];
       if (lv === undefined) {
         // @ts-expect-error too complex
         target[rKey] = rv;
-        continue;
-      }
-      const assign = ASSIGNERS_MAP.get(rKey);
-      if (assign) {
-        assigners.add(assign);
         continue;
       }
       const merge = MERGERS[rKey] ?? defaultMerger;
