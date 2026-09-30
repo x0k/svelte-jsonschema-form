@@ -4,7 +4,11 @@
 
 import { beforeEach, describe, it, expect } from "vitest";
 
-import { isMultiSelect, isSelect } from "./is-select.js";
+import {
+  getSelectOptionValuesSafe,
+  isMultiSelect,
+  isSelect,
+} from "./is-select.js";
 import type { Merger } from "./merger.js";
 import type { Schema } from "./schema.js";
 import { createMerger } from "./test-merger.js";
@@ -142,5 +146,40 @@ describe("isMultiSelect2()", () => {
     expect(isMultiSelect(testValidator, defaultMerger, schema, schema)).toBe(
       false
     );
+  });
+});
+
+describe("a schema carrying both oneOf and anyOf", () => {
+  const CONST: Schema[] = [{ const: "x" }, { const: "y" }];
+  const TYPES: Schema[] = [{ type: "string" }, { type: "number" }];
+
+  beforeEach(() => {
+    testValidator = createValidator();
+    defaultMerger = createMerger();
+  });
+
+  it("reads anyOf for the select decision when both lists are populated", () => {
+    const schema: Schema = { oneOf: TYPES, anyOf: CONST };
+    expect(isSelect(testValidator, defaultMerger, schema, schema)).toBe(true);
+  });
+
+  it("reads anyOf for the option values when both lists are populated", () => {
+    const schema: Schema = { oneOf: TYPES, anyOf: CONST };
+    expect(getSelectOptionValuesSafe(schema)).toEqual(["x", "y"]);
+  });
+
+  // An empty list offers no option to select, so it never shadowed a
+  // populated sibling: the field rendered as a select with zero options.
+  it.each([
+    ["empty oneOf, populated anyOf", { oneOf: [], anyOf: CONST }],
+    ["empty anyOf, populated oneOf", { anyOf: [], oneOf: CONST }],
+  ])("reads the populated list for %s", (_name, schema) => {
+    expect(isSelect(testValidator, defaultMerger, schema, schema)).toBe(true);
+    expect(getSelectOptionValuesSafe(schema)).toEqual(["x", "y"]);
+  });
+
+  it("offers no options when every list is empty", () => {
+    const schema: Schema = { oneOf: [], anyOf: [] };
+    expect(getSelectOptionValuesSafe(schema)).toEqual([]);
   });
 });
