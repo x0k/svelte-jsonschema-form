@@ -1,5 +1,30 @@
 # playground2
 
+## 1.8.4
+
+### Patch Changes
+
+- Updated dependencies [[`4118378`](https://github.com/x0k/svelte-jsonschema-form/commit/41183783b600c2a3de618c35e33c673f7ca5bcbf), [`38b877a`](https://github.com/x0k/svelte-jsonschema-form/commit/38b877ab4ce2eb33f9e1e74729481df902372761), [`e1e4a1b`](https://github.com/x0k/svelte-jsonschema-form/commit/e1e4a1b0a3a865f9e2cda4fa455250da1f63e14f), [`4118378`](https://github.com/x0k/svelte-jsonschema-form/commit/41183783b600c2a3de618c35e33c673f7ca5bcbf)]:
+  - @sjsf/form@3.8.3
+  - @sjsf-lab/beercss-theme@3.4.0
+  - @sjsf-lab/shadcn-extras-theme@3.4.3
+  - @sjsf-lab/svar-theme@3.3.0
+  - @sjsf/skeleton4-theme@3.7.2
+  - @sjsf/ajv8-validator@3.8.3
+  - @sjsf/ata-validator@3.8.3
+  - @sjsf/basic-theme@3.8.3
+  - @sjsf/cfworker-validator@3.8.3
+  - @sjsf/daisyui5-theme@3.8.3
+  - @sjsf/flowbite-icons@3.8.3
+  - @sjsf/flowbite3-theme@3.8.3
+  - @sjsf/lucide-icons@3.8.3
+  - meta@1.0.10
+  - @sjsf/moving-icons@3.8.3
+  - @sjsf/radix-icons@3.8.3
+  - @sjsf/schemasafe-validator@3.8.3
+  - @sjsf/shadcn4-theme@3.8.3
+  - @sjsf/skeleton5-theme@3.8.3
+
 ## 1.8.3
 
 ### Patch Changes

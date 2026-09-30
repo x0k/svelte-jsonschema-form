@@ -1,5 +1,15 @@
 # daisyui-starter
 
+## 0.0.23
+
+### Patch Changes
+
+- Updated dependencies [[`4118378`](https://github.com/x0k/svelte-jsonschema-form/commit/41183783b600c2a3de618c35e33c673f7ca5bcbf), [`38b877a`](https://github.com/x0k/svelte-jsonschema-form/commit/38b877ab4ce2eb33f9e1e74729481df902372761), [`e1e4a1b`](https://github.com/x0k/svelte-jsonschema-form/commit/e1e4a1b0a3a865f9e2cda4fa455250da1f63e14f), [`4118378`](https://github.com/x0k/svelte-jsonschema-form/commit/41183783b600c2a3de618c35e33c673f7ca5bcbf)]:
+  - @sjsf/form@3.8.3
+  - @sjsf/daisyui-theme@3.1.1
+  - @sjsf/ajv8-validator@3.8.3
+  - @sjsf/basic-theme@3.8.3
+
 ## 0.0.22
 
 ### Patch Changes

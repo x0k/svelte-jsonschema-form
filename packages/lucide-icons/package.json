@@ -1,6 +1,6 @@
 {
   "name": "@sjsf/lucide-icons",
-  "version": "3.8.2",
+  "version": "3.8.3",
   "description": "The lucide based icons set for svelte-jsonschema-form",
   "keywords": [
     "form",
