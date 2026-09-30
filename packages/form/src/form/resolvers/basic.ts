@@ -1,4 +1,8 @@
-import { getSimpleSchemaType, isFixedItems } from "@/core/index.js";
+import {
+  getSimpleSchemaType,
+  getXxxOfKey,
+  isFixedItems,
+} from "@/core/index.js";
 
 import type { ResolveFieldType } from "../fields.js";
 import { isCycleRef, type FormState } from "../state/index.js";
@@ -9,11 +13,9 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
     if (isCycleRef(ctx, config)) {
       return "expandField";
     }
-    if (schema.oneOf !== undefined) {
-      return "oneOfField";
-    }
-    if (schema.anyOf !== undefined) {
-      return "anyOfField";
+    const xxxOfKey = getXxxOfKey(schema);
+    if (xxxOfKey !== undefined) {
+      return `${xxxOfKey}Field`;
     }
     const type = getSimpleSchemaType(schema);
     if (type === "array") {

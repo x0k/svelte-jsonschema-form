@@ -1,3 +1,4 @@
+import { getXxxOfOptions } from "@/core/index.js";
 import type { RPath, SchemaValue } from "@/core/index.js";
 import type { Resolver } from "@/lib/resolver.js";
 
@@ -147,8 +148,8 @@ export function getUiSchemaByPath(
     if (schema === undefined) {
       return undefined;
     }
-    const alt = schema.anyOf ?? schema.oneOf;
-    if (alt) {
+    const alt = getXxxOfOptions(schema)?.options;
+    if (alt !== undefined) {
       let def: UiSchema | undefined;
       const slice = path.slice(i);
       for (const sub of alt) {
