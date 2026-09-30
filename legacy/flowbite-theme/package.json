@@ -75,7 +75,6 @@
     "flowbite": "catalog:legacy",
     "flowbite-svelte": "catalog:legacy",
     "globals": "catalog:",
-    "jsonpointer": "catalog:",
     "postcss": "catalog:",
     "svelte": "catalog:",
     "tailwindcss": "catalog:legacy",

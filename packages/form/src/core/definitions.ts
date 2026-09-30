@@ -2,19 +2,45 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import jsonpointer from "jsonpointer";
-
 import { isSchemaObject } from "@/lib/json-schema/index.js";
+import { isObject } from "@/lib/object.js";
 
 import type { Merger } from "./merger.js";
 import { REF_KEY, type Schema, type SchemaDefinition } from "./schema.js";
+
+/**
+ * Resolves an RFC 6901 JSON pointer against `obj`: the empty pointer is `obj`
+ * itself, every other pointer is a `/`-led list of reference tokens with `~1`
+ * and `~0` unescaped in that order. A token must be an OWN property, so
+ * inherited members are never read: `#/__proto__` and `#/toString` find
+ * nothing rather than `Object.prototype` and `Function.prototype.toString`. A
+ * pointer without the leading `/` is not a JSON pointer, so it finds nothing
+ * too.
+ */
+function getByPointer<R>(obj: R, pointer: string): R | undefined {
+  if (pointer === "") {
+    return obj;
+  }
+  if (!pointer.startsWith("/")) {
+    return undefined;
+  }
+  let result: unknown = obj;
+  for (const token of pointer.slice(1).split("/")) {
+    const key = token.replaceAll("~1", "/").replaceAll("~0", "~");
+    if (!isObject(result) || !Object.hasOwn(result, key)) {
+      return undefined;
+    }
+    result = (result as Record<string, unknown>)[key];
+  }
+  return result as R;
+}
 
 export function resolveRef(ref: string, rootSchema: Schema) {
   if (!ref.startsWith("#")) {
     throw new Error(`Invalid reference: ${ref}, must start with #`);
   }
 
-  const schemaDef: SchemaDefinition | undefined = jsonpointer.get(
+  const schemaDef: SchemaDefinition | undefined = getByPointer(
     rootSchema,
     decodeURIComponent(ref.substring(1))
   );

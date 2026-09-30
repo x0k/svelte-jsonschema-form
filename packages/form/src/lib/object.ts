@@ -26,6 +26,15 @@ export function isRecordEmpty<R extends Record<string, any>>(
   return true;
 }
 
+/**
+ * Reads `path` off `from`, returning `defaultValue` when a segment does not resolve.
+ *
+ * Every segment must be an OWN property, so inherited members are never read:
+ * `getValueByPath({}, ["toString"])` returns `defaultValue`, not
+ * `Function.prototype.toString`. The schemas and form data walked here hold no
+ * data in inherited members, and the own-property rule also makes prototype
+ * internals such as `__proto__` unreachable unless they are genuine own keys.
+ */
 export function getValueByPath<T, R>(
   from: T,
   path: PropertyKey[],
@@ -41,7 +50,7 @@ export function getValueByPath<T, R>(
     ) {
       result = result[k];
       continue;
-    } else if (isRecord(result) && k in result) {
+    } else if (isRecord(result) && Object.hasOwn(result, k)) {
       result = result[k];
       continue;
     }

@@ -173,8 +173,7 @@
     "format:check": "oxfmt --check ."
   },
   "dependencies": {
-    "@types/json-schema": "^7.0.15",
-    "jsonpointer": "catalog:"
+    "@types/json-schema": "^7.0.15"
   },
   "devDependencies": {
     "@standard-schema/spec": "catalog:",
