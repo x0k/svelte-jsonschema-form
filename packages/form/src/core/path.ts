@@ -16,6 +16,7 @@ import {
 } from "./schema.js";
 import type { Validator } from "./validator.js";
 import { isSchemaArrayValue, isSchemaObjectValue } from "./value.js";
+import { getSubSchemaOptions } from "./xxx-of-options.js";
 
 export type Path = Array<string | number>;
 export type RPath = Readonly<Path>;
@@ -141,8 +142,8 @@ export function getSchemaDefinitionByPath(
           return getSchemaDefinition(merged, path.slice(i), value);
         }
       }
-      const alt = schema.anyOf ?? schema.oneOf ?? schema.allOf;
-      if (alt) {
+      const alt: SchemaDefinition[] | undefined = getSubSchemaOptions(schema);
+      if (alt !== undefined) {
         const subSchema = pickSubSchema(alt, schema, path.slice(i), value);
         if (subSchema !== undefined) {
           return subSchema;

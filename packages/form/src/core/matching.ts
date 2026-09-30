@@ -22,6 +22,7 @@ import {
 import { typeOfValue } from "./type.js";
 import type { Validator } from "./validator.js";
 import { isSchemaObjectValue } from "./value.js";
+import { getXxxOfOptions } from "./xxx-of-options.js";
 
 // WARN: Any change to this function must be synchronized with `validators/precompile`
 export function createAugmentSchema({
@@ -157,8 +158,8 @@ export function calculateIndexScore(
           );
           continue;
         }
-        const altSchemas = propertySchema.oneOf || propertySchema.anyOf;
-        if (altSchemas && formValue != null) {
+        const altSchemas = getXxxOfOptions(propertySchema)?.options;
+        if (altSchemas !== undefined && formValue != null) {
           const discriminator = getDiscriminatorFieldFromSchema(propertySchema);
           totalScore += getClosestMatchingOption(
             validator,

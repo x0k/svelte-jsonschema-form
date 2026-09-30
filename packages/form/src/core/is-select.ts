@@ -13,6 +13,7 @@ import { retrieveSchema } from "./resolve.js";
 import type { Schema, SchemaValue } from "./schema.js";
 import type { Validator } from "./validator.js";
 import { isSchemaObjectValue } from "./value.js";
+import { getXxxOfOptions } from "./xxx-of-options.js";
 
 /**
  * Detects `select` schema
@@ -50,8 +51,8 @@ export function isSelect(
   if (Array.isArray(schema.enum)) {
     return true;
   }
-  const altSchemas = schema.oneOf || schema.anyOf;
-  if (Array.isArray(altSchemas)) {
+  const altSchemas = getXxxOfOptions(schema)?.options;
+  if (altSchemas !== undefined) {
     return altSchemas.every(
       (altSchemas) =>
         typeof altSchemas !== "boolean" && isSchemaOfConstantValue(altSchemas)
@@ -63,15 +64,14 @@ export function isSelect(
 /**
  * @returns `undefined` for non select schemas
  */
-export function getSelectOptionValuesSafe({
-  enum: enumValues,
-  oneOf,
-  anyOf,
-}: Schema): SchemaValue[] | undefined {
+export function getSelectOptionValuesSafe(
+  schema: Schema
+): SchemaValue[] | undefined {
+  const enumValues = schema.enum;
   if (enumValues !== undefined) {
     return enumValues;
   }
-  const altSchema = oneOf ?? anyOf;
+  const altSchema = getXxxOfOptions(schema)?.options;
   if (altSchema === undefined) {
     return [];
   }

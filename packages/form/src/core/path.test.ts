@@ -285,4 +285,46 @@ describe("getSchemaDefinitionByPath", () => {
       enum: ["lake", "sea"],
     });
   });
+
+  describe("a schema declaring one group in allOf and the other in oneOf", () => {
+    const schema: Schema = {
+      allOf: [{ properties: { a: { type: "string", title: "FROM-ALLOF" } } }],
+      oneOf: [{ properties: { b: { type: "string", title: "FROM-ONEOF" } } }],
+    };
+
+    // mergeAllOf() is attempted for any schema carrying `allOf`, so the test
+    // merger needs a case; merging is not what this group of tests exercises
+    beforeEach(() => {
+      defaultMerger = createMerger({
+        allOfMerges: [{ input: schema, result: schema }],
+      });
+    });
+
+    // A path may descend into either group. Reading only one and stopping once it
+    // yields nothing meant a property declared solely in the other was not found,
+    // so its schema, its defaults and its id were all missing.
+    it("finds a property declared only in the allOf branch", () => {
+      expect(get(schema, ["a"])).toEqual({
+        type: "string",
+        title: "FROM-ALLOF",
+      });
+    });
+    it("finds a property declared only in the oneOf branch", () => {
+      expect(get(schema, ["b"])).toEqual({
+        type: "string",
+        title: "FROM-ONEOF",
+      });
+    });
+
+    it("prefers the allOf member when both groups declare the property", () => {
+      const both: Schema = {
+        allOf: [{ properties: { x: { type: "string", title: "FROM-ALLOF" } } }],
+        anyOf: [{ properties: { x: { type: "string", title: "FROM-ANYOF" } } }],
+      };
+      defaultMerger = createMerger({
+        allOfMerges: [{ input: both, result: both }],
+      });
+      expect(get(both, ["x"])).toEqual({ type: "string", title: "FROM-ALLOF" });
+    });
+  });
 });
