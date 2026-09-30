@@ -84,6 +84,30 @@ describe("getUiSchemaByPath", () => {
     });
   });
 
+  it("should read anyOf when a uiSchema carries both keywords", () => {
+    // The rendered field comes from one keyword only, so the uiSchema of a field
+    // has to be read from that same keyword. Reading anyOf while a oneOf field
+    // renders used to title it from the branch that is never displayed.
+    const schema: UiSchema = {
+      oneOf: [{ a: { "ui:options": { title: "from-oneOf" } } }],
+      anyOf: [{ a: { "ui:options": { title: "from-anyOf" } } }],
+    };
+    expect(getUiSchemaByPath({}, schema, ["a"])).toEqual({
+      "ui:options": { title: "from-anyOf" },
+    });
+  });
+
+  it("should skip an empty list and read the populated sibling", () => {
+    const populated = { a: { "ui:options": { title: "from-oneOf" } } };
+    expect(
+      getUiSchemaByPath({}, { oneOf: [], anyOf: [populated] }, ["a"])
+    ).toEqual({ "ui:options": { title: "from-oneOf" } });
+    const anyOfPopulated = { a: { "ui:options": { title: "from-anyOf" } } };
+    expect(
+      getUiSchemaByPath({}, { anyOf: [], oneOf: [anyOfPopulated] }, ["a"])
+    ).toEqual({ "ui:options": { title: "from-anyOf" } });
+  });
+
   it("should use oneOf alternative when available", () => {
     const schema: UiSchema = {
       oneOf: [

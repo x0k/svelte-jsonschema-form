@@ -4,6 +4,7 @@ export * from "./type.js";
 export * from "./resolve.js";
 export * from "./value.js";
 export * from "./is-select.js";
+export * from "./xxx-of-options.js";
 export * from "./default-state.js";
 export * from "./merge.js";
 export * from "./definitions.js";

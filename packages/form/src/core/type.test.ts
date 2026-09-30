@@ -91,4 +91,54 @@ describe("typeOfSchema", () => {
     `should correctly guess the type "%s" of a schema %j`,
     (expected, schema) => expect(getSimpleSchemaType(schema)).toBe(expected)
   );
+
+  describe("empty oneOf/anyOf/allOf lists", () => {
+    // An empty list offers no type to take. Reading one used to reach
+    // `pickSchemaType()` with an empty array, which throws
+    // "Unsupported schema types: empty type array" for every field config.
+    it.each([
+      ["empty oneOf", { oneOf: [] }],
+      ["empty anyOf", { anyOf: [] }],
+      ["empty allOf", { allOf: [] }],
+      ["both oneOf and anyOf empty", { oneOf: [], anyOf: [] }],
+    ])("falls through to unknown for %s", (_name, schema) => {
+      expect(getSimpleSchemaType(schema)).toBe("unknown");
+    });
+
+    it("ignores an empty list in favour of a populated sibling", () => {
+      const consts: Schema = { oneOf: [{ type: "string" }] };
+      expect(getSimpleSchemaType({ ...consts, anyOf: [] })).toBe("string");
+      expect(
+        getSimpleSchemaType({ ...consts, oneOf: [], anyOf: consts.oneOf })
+      ).toBe("string");
+    });
+
+    it("reads anyOf when both lists are populated", () => {
+      expect(
+        getSimpleSchemaType({
+          oneOf: [{ type: "string" }],
+          anyOf: [{ type: "number" }],
+        })
+      ).toBe("number");
+    });
+
+    it("keeps allOf ahead of oneOf/anyOf", () => {
+      expect(
+        getSimpleSchemaType({
+          allOf: [{ type: "number" }],
+          oneOf: [{ type: "string" }],
+        })
+      ).toBe("number");
+    });
+
+    it("falls through to allOf when every oneOf/anyOf list is empty", () => {
+      expect(
+        getSimpleSchemaType({
+          allOf: [{ type: "number" }],
+          oneOf: [],
+          anyOf: [],
+        })
+      ).toBe("number");
+    });
+  });
 });
