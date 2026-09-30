@@ -49,4 +49,45 @@ describe("isSchemaDeepEqual", () => {
       expect(compare(schema1, schema2)).toBe(expected);
     }
   );
+  it.each([
+    [isSchemaDeepEqual, true],
+    [isOrderedSchemaDeepEqual, false],
+  ])(
+    "should compare correctly simple schemas with different order in array items",
+    (compare, expected) => {
+      const schema1: Schema = {
+        type: "array",
+        items: [
+          {
+            type: "object",
+            properties: {
+              foo: {
+                type: "string",
+              },
+              bar: {
+                type: "number",
+              },
+            },
+          },
+        ],
+      };
+      const schema2: Schema = {
+        type: "array",
+        items: [
+          {
+            type: "object",
+            properties: {
+              bar: {
+                type: "number",
+              },
+              foo: {
+                type: "string",
+              },
+            },
+          },
+        ],
+      };
+      expect(compare(schema1, schema2)).toBe(expected);
+    }
+  );
 });
