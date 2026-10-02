@@ -89,9 +89,7 @@ export function createFormHandler<T, SD extends SendData>({
   escapeCharacter = DEFAULT_ESCAPE_CHAR,
   sendData,
   createReviver = createDefaultReviver,
-  enumItemDecoder = createEnumItemDecoder(
-    createOptionIndexDecoder(pseudoSeparator)
-  ),
+  enumItemDecoder,
 }: FormHandlerOptions<T, SD>) {
   const validator = create(createValidator, {
     schema,
@@ -105,6 +103,10 @@ export function createFormHandler<T, SD extends SendData>({
     validator,
     uiOptionsRegistry,
   });
+  enumItemDecoder ??= createEnumItemDecoder(
+    createOptionIndexDecoder(pseudoSeparator),
+    merger
+  );
   const convertEntry = create(createEntryConverter, {
     validator,
     merger,

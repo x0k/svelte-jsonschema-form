@@ -37,7 +37,7 @@ To restore ID-based mapping:
 
 ```ts
 "ui:options": {
-  enumValueMapperBuilder: () => new IdEnumValueMapperBuilder(),
+  enumValueMapperBuilder: (comparer) => new IdEnumValueMapperBuilder(comparer),
 }
 ```
 
@@ -53,7 +53,7 @@ use `.current` instead. `SingleSelectOptions.hasInitialValue` has been removed
 ## Removed deprecated APIs
 
 - `createOptions()` — use `createFormOptions()`.
-- `idMapper()` — use `resolveEnumValueMapperBuilder()` + `builder.build()`.
+- `idMapper()` — use the `enumValueMapperBuilder` UI option with `IdEnumValueMapperBuilder`.
 - `isSchemaExpandable()` — use `isObjectSchemaExpandable()`.
 - `UNDEFINED_ID` — use `EMPTY_VALUE` instead.
 - `FormErrorsMap` type — use `SvelteMap<FieldPath, string[]>` directly.

@@ -13,9 +13,9 @@ import {
   getPseudoId,
   getPseudoPath,
   getRenderedOptionSchema,
+  retrieveEnumValueMapperBuilder,
   retrieveSchema,
   retrieveUiSchema,
-  retrieveUiOption,
   uiTitleOption,
   type Config,
   type FormEnumOption,
@@ -26,7 +26,6 @@ import {
 import type { Ref } from "#lib/svelte.svelte.js";
 import {
   createMappedOption,
-  resolveEnumValueMapperBuilder,
   singleOption,
   type EnumValueMapper,
 } from "#options.svelte.js";
@@ -289,9 +288,7 @@ export function createCombinationContext<T>({
   });
 
   const { options: enumOptions, mapper } = $derived.by(() => {
-    const builder = resolveEnumValueMapperBuilder(
-      retrieveUiOption(ctx, optionSelectorConfig, "enumValueMapperBuilder")
-    );
+    const builder = retrieveEnumValueMapperBuilder(ctx, optionSelectorConfig);
     const options = optionTitles.map((label, i) => {
       return createMappedOption(builder, {
         id: getPseudoId(ctx, config().path, i),

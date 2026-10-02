@@ -327,8 +327,9 @@
       skeleton5DateRangePickerPortal: portalOptions,
     }),
     uiOptionsRegistry: {
-      stringEnumValueMapper: () => new StringEnumValueMapperBuilder(),
-      idEnumValueMapper: () => new IdEnumValueMapperBuilder(),
+      stringEnumValueMapper: (comparer) =>
+        new StringEnumValueMapperBuilder(comparer),
+      idEnumValueMapper: (comparer) => new IdEnumValueMapperBuilder(comparer),
     },
   });
   setFormContext(form);
