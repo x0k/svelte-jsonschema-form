@@ -133,7 +133,11 @@ export const addonOptions = defineAddonOptions()
   .add("validator", {
     question: "Select a validation engine",
     type: "select",
-    default: "ajv8",
+    default: JSON.stringify({
+      name: "ajv8",
+      precompiled: false,
+      draft2020: false,
+    } satisfies SvValidator),
     options: Array.from(validatorOptions()),
   })
   .add("sveltekit", {

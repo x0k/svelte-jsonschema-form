@@ -1,6 +1,6 @@
 import { isRecordEmpty } from "@sjsf/form/lib/object";
 import type { DeepPartial } from "@sjsf/form/lib/types";
-import { transforms, type AstTypes } from "@sveltejs/sv-utils";
+import { transforms, type AstTypes } from "@sveltejs/sv-utils/browser";
 
 import {
   extraFields,
