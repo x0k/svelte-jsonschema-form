@@ -12,11 +12,9 @@ import {
   type UiOption,
   type FormState,
   getPseudoId,
+  retrieveEnumValueMapperBuilder,
 } from "@/form/index.js";
-import {
-  createMappedOption,
-  resolveEnumValueMapperBuilder,
-} from "@/options.svelte.js";
+import { createMappedOption } from "@/options.svelte.js";
 
 function getAltSchemas(
   schema: Schema,
@@ -33,9 +31,7 @@ export function createFormOptions<T>(
   uiOption: UiOption,
   schema: Schema
 ) {
-  const builder = resolveEnumValueMapperBuilder(
-    uiOption("enumValueMapperBuilder")
-  );
+  const builder = retrieveEnumValueMapperBuilder(ctx, config);
   const disabledValues = new Set(uiOption("disabledEnumValues"));
 
   const enumValues = schema.enum;

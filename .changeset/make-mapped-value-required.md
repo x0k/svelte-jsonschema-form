@@ -14,11 +14,11 @@ Breaking changes:
 Removed deprecated APIs:
 
 - `createOptions()` — use `createFormOptions()` instead.
-- `idMapper()` — use `resolveEnumValueMapperBuilder()` + `builder.build()`.
+- `idMapper()` — use `retrieveEnumValueMapperBuilder()` + `builder.build()`.
 - `isSchemaExpandable()` — use `isObjectSchemaExpandable()`.
 - `UNDEFINED_ID` — use `EMPTY_VALUE` instead.
 
 New helpers:
 
 - `createMappedOption(builder, option)` — creates a `FormEnumOption` with `mappedValue` populated.
-- `resolveEnumValueMapperBuilder(factory?)` — resolves builder from UI option, defaults to `StringEnumValueMapperBuilder`.
+- `retrieveEnumValueMapperBuilder(ctx, config)` — resolves the builder from the `enumValueMapperBuilder` UI option, defaults to `StringEnumValueMapperBuilder`.

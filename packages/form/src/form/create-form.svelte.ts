@@ -4,7 +4,6 @@ import { SvelteMap } from "svelte/reactivity";
 
 import {
   isSchemaDeepEqual,
-  isSchemaValueDeepEqual,
   retrieveSchema,
   sanitizeDataForNewSchema,
   schemaHasNestedConditional,
@@ -318,7 +317,12 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   const keyedArrays: KeyedArraysMap = $derived(
     options.keyedArraysMap ?? new WeakMap()
   );
-  const reconcileFormValue = $derived(createFormValueReconciler(keyedArrays));
+  const reconcileFormValue = $derived(
+    createFormValueReconciler({
+      keyedArraysMap: keyedArrays,
+      valueComparer: merger,
+    })
+  );
   const schedulerYield: SchedulerYield = $derived(
     (options.schedulerYield ??
       (typeof scheduler !== "undefined" && "yield" in scheduler))
@@ -557,7 +561,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       initialDefaultsGenerated = true;
 
       for (let i = values.length - 1; i >= 0; i--) {
-        if (isSchemaValueDeepEqual(values[i], formData)) {
+        if (merger.isValueDeepEqual(values[i], formData)) {
           break sanitization;
         }
       }

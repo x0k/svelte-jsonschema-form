@@ -4,6 +4,7 @@ import {
   DEPENDENCIES_KEY,
   getDefaultFormState,
   isSchemaObjectValue,
+  isSchemaValueDeepEqual,
   ITEMS_KEY,
   REQUIRED_KEY,
   type Experimental_DefaultFormStateBehavior,
@@ -168,6 +169,7 @@ export function createMerger(): Merger {
     mergeAllOf(schema) {
       return mergeAllOf(schema, { deep: false } as Options) as Schema;
     },
+    isValueDeepEqual: isSchemaValueDeepEqual,
   };
 }
 

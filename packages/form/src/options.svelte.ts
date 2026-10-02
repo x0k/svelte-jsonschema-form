@@ -1,8 +1,8 @@
 import {
-  isSchemaValueDeepEqual,
   type EnumOption,
   type SchemaArrayValue,
   type SchemaValue,
+  type ValueComparer,
 } from "@/core/index.js";
 import type { FormEnumOption } from "@/form/model.js";
 import { isObject } from "@/lib/object.js";
@@ -26,6 +26,8 @@ abstract class AbstractValueMapperBuilder implements EnumValueMapperBuilder {
   #strToValue = new Map<string, SchemaValue>();
   #valueToStr = new Map<SchemaValue, string>();
 
+  constructor(protected readonly merger: ValueComparer) {}
+
   protected abstract optionToStr(option: EnumOption<SchemaValue>): string;
 
   push(option: EnumOption<SchemaValue>): string {
@@ -48,7 +50,8 @@ abstract class AbstractValueMapperBuilder implements EnumValueMapperBuilder {
         return (
           this.#valueToStr
             .entries()
-            .find(([v]) => isSchemaValueDeepEqual(v, value))?.[1] ?? EMPTY_VALUE
+            .find(([v]) => this.merger.isValueDeepEqual(v, value))?.[1] ??
+          EMPTY_VALUE
         );
       },
       toValue: (str) => this.#strToValue.get(str),
@@ -79,12 +82,6 @@ export function createMappedOption(
 ): FormEnumOption {
   const mappedValue = builder.push(option);
   return { ...option, mappedValue };
-}
-
-export function resolveEnumValueMapperBuilder(
-  factory?: () => EnumValueMapperBuilder
-): EnumValueMapperBuilder {
-  return factory?.() ?? new StringEnumValueMapperBuilder();
 }
 
 export function singleOption<V>({

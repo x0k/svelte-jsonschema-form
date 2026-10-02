@@ -5,7 +5,6 @@
 import { isRecordEmpty, isObject } from "@/lib/object.js";
 
 import { isSchemaOfConstantValue } from "./constant-schema.js";
-import { isSchemaValueDeepEqual } from "./deep-equal.js";
 import { findSchemaDefinition } from "./definitions.js";
 import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
 import { isFixedItems } from "./is-fixed-items.js";
@@ -595,7 +594,7 @@ export function ensureFormDataMatchingSchema(
   if (isSelectField) {
     const selectOptionValues = getSelectOptionValuesSafe(schemaToMatch);
     const isValid = selectOptionValues?.some((v) =>
-      isSchemaValueDeepEqual(v, formData)
+      merger.isValueDeepEqual(v, formData)
     );
     validFormData = isValid ? formData : undefined;
   }
