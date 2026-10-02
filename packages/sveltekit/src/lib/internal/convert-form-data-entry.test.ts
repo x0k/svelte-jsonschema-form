@@ -13,13 +13,15 @@ import {
   type FormDataConverterOptions,
 } from "./convert-form-data-entry.js";
 
+const merger = createMerger();
 const defaultOptions: FormDataConverterOptions = {
   validator: createFormValidator({ schema: {} }),
-  merger: createMerger(),
+  merger,
   rootSchema: {},
   rootUiSchema: {},
   enumItemDecoder: createEnumItemDecoder(
-    createOptionIndexDecoder(DEFAULT_PSEUDO_SEPARATOR)
+    createOptionIndexDecoder(DEFAULT_PSEUDO_SEPARATOR),
+    merger
   ),
 };
 

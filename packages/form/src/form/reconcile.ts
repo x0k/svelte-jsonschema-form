@@ -1,16 +1,24 @@
-import type { SchemaValue } from "@/core/index.js";
+import type { SchemaValue, ValueComparer } from "@/core/index.js";
 import { isRecordProto } from "@/lib/object.js";
 
 import type { FieldValue, FormValueRef, KeyedArraysMap } from "./model.js";
 
 const UNCHANGED = Symbol("unchanged");
 
-export function createFormValueReconciler(keyedArraysMap: KeyedArraysMap) {
+export interface FormValueReconcilerOptions {
+  keyedArraysMap: KeyedArraysMap;
+  valueComparer: ValueComparer;
+}
+
+export function createFormValueReconciler({
+  keyedArraysMap,
+  valueComparer,
+}: FormValueReconcilerOptions) {
   function reconcile(
     target: SchemaValue | undefined,
     source: SchemaValue | undefined
   ): SchemaValue | undefined | typeof UNCHANGED {
-    if (target === source) {
+    if (valueComparer.isValueDeepEqual(target, source)) {
       return UNCHANGED;
     }
     if (typeof target === "object" && typeof source === "object") {

@@ -1,4 +1,4 @@
-import { isSchemaDeepEqual } from "./deep-equal.js";
+import { isSchemaDeepEqual, isSchemaValueDeepEqual } from "./deep-equal.js";
 import type { Merger } from "./merger.js";
 import type { Schema } from "./schema.js";
 
@@ -41,5 +41,6 @@ export function createMerger({
       }
       return c.result;
     },
+    isValueDeepEqual: isSchemaValueDeepEqual,
   };
 }

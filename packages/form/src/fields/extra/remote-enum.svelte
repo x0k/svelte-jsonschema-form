@@ -70,11 +70,11 @@
     getComponent,
     makeEventHandlers,
     validateField,
+    retrieveEnumValueMapperBuilder,
   } from "@/form/index.js";
   import "@/form/extra-fields/remote-enum.js";
   import {
     EMPTY_VALUE,
-    resolveEnumValueMapperBuilder,
     createMappedOption,
     singleOption,
   } from "@/options.svelte.js";
@@ -103,9 +103,7 @@
   let remoteOptions = $derived(query.current ?? []);
 
   const { options, mapper } = $derived.by(() => {
-    const builder = resolveEnumValueMapperBuilder(
-      uiOption("enumValueMapperBuilder")
-    );
+    const builder = retrieveEnumValueMapperBuilder(ctx, config);
     const options = remoteOptions.map((o) => createMappedOption(builder, o));
     return { options, mapper: builder.build() };
   });

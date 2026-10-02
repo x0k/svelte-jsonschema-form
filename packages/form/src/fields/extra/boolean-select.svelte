@@ -19,13 +19,10 @@
     DEFAULT_BOOLEAN_ENUM,
     getPseudoId,
     getFieldAction,
+    retrieveEnumValueMapperBuilder,
   } from "@/form/index.js";
   import "@/form/extra-fields/boolean-select.js";
-  import {
-    resolveEnumValueMapperBuilder,
-    createMappedOption,
-    singleOption,
-  } from "@/options.svelte.js";
+  import { createMappedOption, singleOption } from "@/options.svelte.js";
 
   import { createFormOptions } from "../enum.js";
 
@@ -66,9 +63,7 @@
       enumValues.every((v) => typeof v === "boolean") &&
       uiOption("enumNames") === undefined
     ) {
-      const builder = resolveEnumValueMapperBuilder(
-        uiOption("enumValueMapperBuilder")
-      );
+      const builder = retrieveEnumValueMapperBuilder(ctx, config);
       const options = enumValues.map((v, i) => {
         return createMappedOption(builder, {
           id: getPseudoId(ctx, config.path, i),

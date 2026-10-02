@@ -1,6 +1,10 @@
 import { getSchemaDefinitionByPath, type RPath } from "@/core/index.js";
 import { overrideByRecord } from "@/lib/resolver.js";
 import type { ObjectProperties } from "@/lib/types.js";
+import {
+  StringEnumValueMapperBuilder,
+  type EnumValueMapperBuilder,
+} from "@/options.svelte.js";
 
 import type { Config } from "../config.js";
 import type { ActionField } from "../field-actions.js";
@@ -192,4 +196,18 @@ export function getFieldAction<T, const F extends ActionField>(
     return action;
   }
   return retrieveUiOption(ctx, config, "action");
+}
+
+/**
+ * @query
+ */
+export function retrieveEnumValueMapperBuilder<T>(
+  ctx: FormState<T>,
+  config: Config
+): EnumValueMapperBuilder {
+  const comparer = ctx[FORM_MERGER];
+  return (
+    retrieveUiOption(ctx, config, "enumValueMapperBuilder")?.(comparer) ??
+    new StringEnumValueMapperBuilder(comparer)
+  );
 }

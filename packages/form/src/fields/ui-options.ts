@@ -1,3 +1,4 @@
+import type { ValueComparer } from "@/core/index.js";
 import type { SchemaValue } from "@/form/index.js";
 import type { EnumValueMapperBuilder } from "@/options.svelte.js";
 
@@ -17,9 +18,11 @@ declare module "../form/index.js" {
     disabledEnumValues?: SchemaValue[];
     /**
      * Overrides the enumeration value mapper (may be required to work with non primitive options)
-     * @default () => new StringEnumValueMapperBuilder()
+     * @default (comparer) => new StringEnumValueMapperBuilder(comparer)
      */
-    enumValueMapperBuilder?: () => EnumValueMapperBuilder;
+    enumValueMapperBuilder?: (
+      comparer: ValueComparer
+    ) => EnumValueMapperBuilder;
     /**
      * Determines whether the current field can be cleared (e.g., the empty option in the select widget)
      */
