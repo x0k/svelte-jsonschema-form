@@ -179,9 +179,9 @@ interface UiOptions {
   disabledEnumValues?: SchemaValue[];
   /**
    * Overrides the enumeration value mapper (may be required for autofill to work)
-   * @default () => new IdEnumValueMapperBuilder()
+   * @default (comparer) => new StringEnumValueMapperBuilder(comparer)
    */
-  enumValueMapperBuilder?: () => EnumValueMapperBuilder;
+  enumValueMapperBuilder?: (comparer: ValueComparer) => EnumValueMapperBuilder;
   /**
    * Determines whether the current field can be cleared (e.g., the empty option in the select widget)
    */

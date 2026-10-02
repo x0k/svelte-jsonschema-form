@@ -1,4 +1,5 @@
 import type { FormValidator, Schema, SchemaValue, UiSchema } from "@sjsf/form";
+import { isSchemaValueDeepEqual } from "@sjsf/form/core";
 import { noop } from "@sjsf/form/lib/function";
 import {
   abortPrevious,
@@ -148,7 +149,9 @@ export function createValidatorState(
   });
   const { schema, validator } = $derived(validatorQuery.current);
 
-  const builder = new IdEnumValueMapperBuilder();
+  const builder = new IdEnumValueMapperBuilder({
+    isValueDeepEqual: isSchemaValueDeepEqual,
+  });
   const items: string[] = [];
   const labels: Record<string, string> = {};
   const labels2020: Record<string, string> = {};
