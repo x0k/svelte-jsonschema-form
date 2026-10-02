@@ -7,13 +7,13 @@ import {
 import {
   getSchemaConstantValue,
   isNullableSchemaType,
-  isSchemaValueDeepEqual,
   isSelect,
   pickSchemaType,
   typeOfSchema,
   type Merger,
   type SchemaValue,
   type Validator,
+  type ValueComparer,
 } from "@sjsf/form/core";
 import { fileToDataURL } from "@sjsf/form/lib/file";
 
@@ -60,8 +60,9 @@ function parseJson<T, E>(jsonStr: string): JSONParseResult<T, E> {
 }
 
 export function createEnumItemDecoder(
-  decodeOptionIndex: (value: string) => number | undefined
-) {
+  decodeOptionIndex: (value: string) => number | undefined,
+  comparer: ValueComparer
+): EnumItemDecoder {
   return (options: SchemaValue[], value: string) => {
     const index = decodeOptionIndex(value);
     if (index !== undefined && index >= 0 && index < options.length) {
@@ -73,7 +74,7 @@ export function createEnumItemDecoder(
     const parsed = parseJson<SchemaValue, unknown>(value);
     if (
       parsed.ok &&
-      options.some((o) => isSchemaValueDeepEqual(o, parsed.value))
+      options.some((o) => comparer.isValueDeepEqual(o, parsed.value))
     ) {
       return parsed.value;
     }

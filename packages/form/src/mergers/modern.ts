@@ -1,5 +1,6 @@
 import {
   getDefaultFormState,
+  isSchemaValueDeepEqual,
   type Experimental_DefaultFormStateBehavior,
   type Merger,
   type Validator,
@@ -29,6 +30,7 @@ export function createMerger({
     mergeAllOf(schema) {
       return jsonSchemaAllOfMerge(schema) as Schema;
     },
+    isValueDeepEqual: isSchemaValueDeepEqual,
   };
 }
 

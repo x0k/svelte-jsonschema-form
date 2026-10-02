@@ -33,7 +33,8 @@ const opts = ({
     rootSchema: schema,
     rootUiSchema: uiSchema,
     enumItemDecoder: createEnumItemDecoder(
-      createOptionIndexDecoder(codec.encode(pseudoPrefix))
+      createOptionIndexDecoder(codec.encode(pseudoPrefix)),
+      merger
     ),
   }),
 }: Partial<

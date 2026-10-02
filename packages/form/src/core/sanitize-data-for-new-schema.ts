@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { isSchemaDeepEqual, isSchemaValueDeepEqual } from "./deep-equal.js";
+import { isSchemaDeepEqual, type ValueComparer } from "./deep-equal.js";
 import { getSelectOptionValuesSafe } from "./is-select.js";
 import type { Merger } from "./merger.js";
 import { retrieveSchema } from "./resolve.js";
@@ -19,13 +19,14 @@ const NO_VALUE = Symbol("no Value");
 const NO_OPTIONS: SchemaValue[] = [];
 
 function replacementForInvalidEnumValue(
+  comparer: ValueComparer,
   schema: Schema,
   formValue: SchemaValue | undefined
 ) {
   const enumValues = getSelectOptionValuesSafe(schema) ?? NO_OPTIONS;
   if (
     enumValues.length === 0 ||
-    enumValues.some((value) => isSchemaValueDeepEqual(value, formValue))
+    enumValues.some((value) => comparer.isValueDeepEqual(value, formValue))
   ) {
     return NO_VALUE;
   }
@@ -33,7 +34,7 @@ function replacementForInvalidEnumValue(
   const defaultValue = schema.default;
   if (
     defaultValue !== undefined &&
-    enumValues.some((value) => isSchemaValueDeepEqual(value, defaultValue))
+    enumValues.some((value) => comparer.isValueDeepEqual(value, defaultValue))
   ) {
     return defaultValue;
   }
@@ -117,7 +118,7 @@ function sanitizeArrays(
       const filteredData =
         newItemEnumValues.length > 0
           ? data.filter((item) =>
-              newItemEnumValues.some((v) => isSchemaValueDeepEqual(v, item))
+              newItemEnumValues.some((v) => merger.isValueDeepEqual(v, item))
             )
           : data;
       // `maxItems` of 0 allows no item at all, which is how the object items path above reads it too
@@ -235,6 +236,7 @@ export function sanitizeDataForNewSchema(
 
           if (isDataObject && key in data) {
             const enumReplacement = replacementForInvalidEnumValue(
+              merger,
               newKeyedSchema,
               formValue
             );

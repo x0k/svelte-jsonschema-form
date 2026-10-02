@@ -1,5 +1,4 @@
 import type { Schema } from "@sjsf/form";
-import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 import { describe, expect, test } from "vitest";
 import { page, userEvent } from "vitest/browser";
 
@@ -8,9 +7,6 @@ import { expectValue, renderFieldForm } from "./helpers.js";
 describe("nested dependencies sanitization (rjsf#5250)", () => {
   const enumUiSchema = {
     "ui:components": { stringField: "enumField" },
-    "ui:options": {
-      enumValueMapperBuilder: () => new StringEnumValueMapperBuilder(),
-    },
   };
   const nestedUiSchema = {
     m: {
