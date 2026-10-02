@@ -14,6 +14,7 @@ export function sveltekitTs({
   validator,
   cwd,
   lib,
+  kit,
 }: Context) {
   if (!isKit || sveltekit === "no" || !demo) {
     return;
@@ -23,6 +24,7 @@ export function sveltekitTs({
     isTs,
     lib,
     sveltekit,
+    sveltekitPackage: kit.pkg,
     ts,
     modelName: POST_MODEL_NAME,
     validator,

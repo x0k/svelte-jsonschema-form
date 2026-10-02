@@ -1,3 +1,5 @@
+import { isRecordEmpty } from "@sjsf/form/lib/object";
+
 import type { Language } from "../codegen/model.ts";
 import type { AbstractPackage } from "../package.ts";
 
@@ -6,6 +8,8 @@ export interface PackageJson {
   dependencies: Iterable<AbstractPackage>;
   precompiled: boolean;
   language: Language;
+  /** `package.json#imports`; empty when the project's lib prefix needs none */
+  libImports: Record<string, string>;
 }
 
 export function buildPackageJson({
@@ -13,6 +17,7 @@ export function buildPackageJson({
   dependencies: deps,
   precompiled,
   language,
+  libImports,
 }: PackageJson) {
   const dependencies: Record<string, string> = {};
   const devDependencies: Record<string, string> = {};
@@ -31,6 +36,7 @@ export function buildPackageJson({
       name,
       version: "0.0.1",
       type: "module",
+      ...(!isRecordEmpty(libImports) && { imports: libImports }),
       dependencies,
       devDependencies,
       scripts,

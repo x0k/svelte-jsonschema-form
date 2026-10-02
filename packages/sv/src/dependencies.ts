@@ -5,7 +5,7 @@ import { type Context } from "./model.js";
 import { pnpm, transforms } from "./sv-utils.js";
 
 export function dependencies(ctx: Context) {
-  const { sv, options } = ctx;
+  const { sv, options, kit } = ctx;
   function addDependency({ name, version, dev }: AbstractPackage) {
     const v = `^${version}`;
     if (dev) {
@@ -17,6 +17,7 @@ export function dependencies(ctx: Context) {
   resolveDependencies({
     ...options,
     addDependency,
+    sveltekitPackage: kit.pkg,
     widgets: [],
   });
 

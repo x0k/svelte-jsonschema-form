@@ -10,7 +10,7 @@ sidebar:
 ---
 
 import { Code, Tabs, TabItem } from "@astrojs/starlight/components";
-import { sveltekitPackage } from "meta";
+import { sveltekit3Package, sveltekitPackage } from "meta";
 
 import { getPackageDependencies } from "@/shared";
 import Npm from "@/components/npm.astro";
@@ -29,19 +29,35 @@ Remote functions integration is experimental
 
 ## Installation
 
-<Npm pkg={getPackageDependencies(sveltekitPackage)} />
-{/* Svelte `hydratable` API: https://github.com/sveltejs/svelte/pull/17154 */}
-{/* SvelteKit programmatic submission API: https://github.com/sveltejs/kit/pull/15657 */}
-<Deps
-  pkg={sveltekitPackage}
-  versionOverrides={{ "@sveltejs/kit": "2.61.0", svelte: "5.44.0" }}
-/>
+Pick the package that matches your project's `@sveltejs/kit` major version.
+`sv add @sjsf` does this for you.
+
+<Tabs syncKey="kit">
+  <TabItem label="SvelteKit 3">
+    <Npm pkg={getPackageDependencies(sveltekit3Package)} />
+
+    <Deps pkg={sveltekit3Package} />
+
+  </TabItem>
+  <TabItem label="SvelteKit 2">
+    <Npm pkg={getPackageDependencies(sveltekitPackage)} />
+
+    {/* Svelte `hydratable` API: https://github.com/sveltejs/svelte/pull/17154 */}
+    {/* SvelteKit programmatic submission API: https://github.com/sveltejs/kit/pull/15657 */}
+    <Deps
+      pkg={sveltekitPackage}
+      versionOverrides={{ "@sveltejs/kit": "2.61.0", svelte: "5.44.0" }}
+    />
+
+  </TabItem>
+</Tabs>
 
 ## Example
 
 :::note
 
-For correct operation, you must use ID Builder from the `@sjsf/sveltekit/rf`.
+For correct operation, you must use ID Builder from the `@sjsf/sveltekit/rf`
+(or `@sjsf/sveltekit3/rf` on `SvelteKit 3`).
 
 :::
 
@@ -74,6 +90,8 @@ For correct operation, you must use ID Builder from the `@sjsf/sveltekit/rf`.
     exclude: ['@sjsf/form', '@sjsf/sveltekit/rf/client'],
   }
   ```
+
+  On `SvelteKit 3` the subpath is `@sjsf/sveltekit3/rf/client`.
 
 - The `form.value` type on the client side is `unknown` because the `RemoteForm`
   type does not include information about the validator's output type.

@@ -19,7 +19,7 @@ import {
   createModel,
   createJsonFile,
   createCompileValidatorsScript,
-  KIT_PATH_FACTORY,
+  createKitPathFactory,
   type MergerOptions,
   type ModuleAugmentation,
   type ThemeExtension,
@@ -36,7 +36,7 @@ import {
   filterPackageDependencies,
   type AbstractPackage,
 } from "../package.ts";
-import { sveltekitPackage } from "../sveltekit.ts";
+import { resolveSvelteKitProject } from "../sveltekit.ts";
 import type { ToTheme } from "../themes.ts";
 import type { ExtraWidgetFileNames } from "../widgets.ts";
 import { buildPackageJson } from "./package-json.ts";
@@ -50,6 +50,12 @@ export interface ComposerOptions<T extends CodegenThemeOrSubTheme> {
   icons: CodegenIconSet;
   validator: CodegenValidator;
   sveltekit: CodegenSvelteKitIntegration;
+  /**
+   * Target `@sveltejs/kit` range; decides whether the generated project gets
+   * `@sjsf/sveltekit` or `@sjsf/sveltekit3`, and the matching Kit shape.
+   * Defaults to Kit 3 when omitted.
+   */
+  kitRange?: string;
   widgets: ExtraWidgetFileNames[ToTheme<T>][];
   fields: ExtraFieldFileName[];
   extraFiles: Record<string, string>;
@@ -73,24 +79,26 @@ export interface ComposerOptions<T extends CodegenThemeOrSubTheme> {
   css: string;
 }
 
-const TSCONFIG = JSON.stringify(
-  {
-    extends: "./.svelte-kit/tsconfig.json",
-    compilerOptions: {
-      allowJs: true,
-      checkJs: true,
-      esModuleInterop: true,
-      forceConsistentCasingInFileNames: true,
-      resolveJsonModule: true,
-      skipLibCheck: true,
-      sourceMap: true,
-      strict: true,
-      moduleResolution: "bundler",
+function createTsconfig(extendsPath: string): string {
+  return JSON.stringify(
+    {
+      extends: extendsPath,
+      compilerOptions: {
+        allowJs: true,
+        checkJs: true,
+        esModuleInterop: true,
+        forceConsistentCasingInFileNames: true,
+        resolveJsonModule: true,
+        skipLibCheck: true,
+        sourceMap: true,
+        strict: true,
+        moduleResolution: "bundler",
+      },
     },
-  },
-  null,
-  2
-);
+    null,
+    2
+  );
+}
 
 const APP_HTML = `<!DOCTYPE html>
 <html lang="en">
@@ -165,6 +173,7 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
     icons,
     validator,
     sveltekit,
+    kitRange,
     widgets,
     fields,
     extraFiles,
@@ -191,7 +200,10 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
   const isTs = language === "ts";
   const ts = createPrinter(isTs);
   const js = createPrinter(!isTs);
-  const lib = KIT_PATH_FACTORY;
+  // The only place the SvelteKit version is turned into a package and a project
+  // shape; everything below just uses the result
+  const kit = resolveSvelteKitProject(kitRange);
+  const lib = createKitPathFactory(kit.libPrefix);
 
   const dependencies: AbstractPackage[] = [
     extraPackage("vite"),
@@ -199,7 +211,7 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
     extraPackage("svelteVitePlugin"),
     extraPackage("typescript"),
     ...extraDependencies,
-    ...filterPackageDependencies(sveltekitPackage.dependencies, false),
+    ...filterPackageDependencies(kit.pkg.dependencies, false),
   ];
 
   function addDependency(pkg: AbstractPackage) {
@@ -212,6 +224,7 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
     validator,
     icons,
     sveltekit,
+    sveltekitPackage: kit.pkg,
     widgets,
   });
 
@@ -228,6 +241,7 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
     isTs,
     modelName,
     sveltekit,
+    sveltekitPackage: kit.pkg,
     omitExtraData,
   });
 
@@ -237,8 +251,9 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
       dependencies: new Map(dependencies.map((d) => [d.name, d])).values(),
       precompiled: validator.precompiled,
       language,
+      libImports: kit.libImports,
     }),
-    "tsconfig.json": TSCONFIG,
+    "tsconfig.json": createTsconfig(kit.tsconfigExtends),
   };
 
   assign(
@@ -256,6 +271,7 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
       icons,
       resolver,
       sveltekit,
+      sveltekitPackage: kit.pkg,
       widgets,
       fields,
       isTs,

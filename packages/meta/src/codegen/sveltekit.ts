@@ -1,10 +1,7 @@
 import { transforms } from "@sveltejs/sv-utils/browser";
 
-import {
-  sveltekitPackage,
-  svelteKitRfSubPath,
-  svelteKitSubPath,
-} from "../sveltekit.ts";
+import type { Package } from "../package.ts";
+import { svelteKitExport } from "../sveltekit.ts";
 import { renderImports } from "./lib.ts";
 import type {
   ConditionalPrinter,
@@ -22,12 +19,15 @@ export interface SvelteKitIntegrationOptions {
   isTs: boolean;
   modelName: string;
   sveltekit: Exclude<CodegenSvelteKitIntegration, "no">;
+  /** The SvelteKit integration package generated code imports from */
+  sveltekitPackage: Package;
   ts: ConditionalPrinter;
 }
 
 export function createSvelteKitIntegration({
   validator,
   sveltekit,
+  sveltekitPackage,
   lib,
   ts,
   isTs,
@@ -39,12 +39,15 @@ export function createSvelteKitIntegration({
   const isInputTypeRequired = isTs && !validator.canInferFormType;
   const inputType = `${modelName}.Model`;
   const validatorProps = schemaAndValidatorProp(modelName, validator);
+  const root = svelteKitExport(sveltekitPackage, "");
+  const server = svelteKitExport(sveltekitPackage, "server");
+  const rfServer = svelteKitExport(sveltekitPackage, "rf/server");
   const setup = (
     {
       formActions: {
         filename: `+page.server`,
         code: `${ts(`import type { Actions } from "@sveltejs/kit";
-import type { InitialFormData } from "${sveltekitPackage.name}";\n`)}import { createAction } from "${svelteKitSubPath("server")}";
+import type { InitialFormData } from "${root}";\n`)}import { createAction } from "${server}";
 ${validatorImports};
 import * as defaults from "${lib("sjsf/defaults")}";
 
@@ -70,7 +73,7 @@ export const actions = {
       },
       remoteFunctions: {
         filename: `data.remote`,
-        code: `${ts(`import type { InitialFormData } from "${sveltekitPackage.name}";\n`)}import { createServerValidator } from "${svelteKitRfSubPath("server")}";
+        code: `${ts(`import type { InitialFormData } from "${root}";\n`)}import { createServerValidator } from "${rfServer}";
 
 import { form, query } from "$app/server";
 ${validatorImports};

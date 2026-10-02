@@ -87,10 +87,20 @@ export function defineExample(c: Partial<ExampleContent>): ExampleContent {
 export const remoteFormDefaultsReplacer: CodeTransformer = (_filepath, code) =>
   code.replace("sjsf/remote-defaults", "sjsf/defaults");
 
+/**
+ * Demos copy their sources from `examples/*`, which are all SvelteKit 2 today:
+ * those files import through `$lib`, which Kit 3 dropped. Keeping the range here
+ * is what stops the composer from emitting `imports`/`$app/tsconfig` for projects
+ * whose copied sources would not resolve. Delete this once the demos are ported
+ * to the Kit 3 examples — `resolveSvelteKitProject` already defaults to Kit 3.
+ */
+const DEMOS_KIT_RANGE = "^2.70.3";
+
 export const COMPOSER_DEFAULTS = {
   modelName: "model",
   language: "ts",
   sveltekit: "no",
+  kitRange: DEMOS_KIT_RANGE,
   focusOnFirstError: true,
   // These options are not relevant for demos,
   // because if they are used at all,

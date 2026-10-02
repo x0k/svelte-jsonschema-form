@@ -9,6 +9,8 @@ import {
   toTheme,
   FIELD_VALIDATION_FLAGS,
   type Generated,
+  type SvelteKitProject,
+  resolveSvelteKitProject,
 } from "meta";
 import {
   createKitPathFactory,
@@ -35,7 +37,7 @@ import {
 } from "sv";
 
 import packageJson from "../package.json" with { type: "json" };
-import { createPrinter, resolveLibPrefix } from "./sv-utils.js";
+import { createPrinter } from "./sv-utils.js";
 
 const _ADDON_ID = packageJson.name;
 
@@ -172,7 +174,8 @@ export type Context = Omit<Workspace, "options"> & {
   ts: (content: string, alt?: string) => string;
   js: (content: string, alt?: string) => string;
   lib: PathFactory;
-  libPrefix: "#lib" | "$lib";
+  /** resolved once from the project's `@sveltejs/kit` range */
+  kit: SvelteKitProject;
   validator: ValidatorDefinition;
   form: FormDefinition;
 };
@@ -189,9 +192,9 @@ export function createContext(ws: Workspace): Context {
     ...ws.options,
     validator: JSON.parse(ws.options.validator),
   };
-  const libPrefix = resolveLibPrefix(dependencyVersion("@sveltejs/kit"));
+  const kit = resolveSvelteKitProject(dependencyVersion("@sveltejs/kit"));
   const lib: PathFactory = isKit
-    ? createKitPathFactory(libPrefix)
+    ? createKitPathFactory(kit.libPrefix)
     : (path) =>
         file.getRelative({
           from: `${directory.kitRoutes}/sjsf.svelte`,
@@ -210,6 +213,7 @@ export function createContext(ws: Workspace): Context {
     isTs,
     modelName: POST_MODEL_NAME,
     validator,
+    sveltekitPackage: kit.pkg,
   });
   return {
     ...ws,
@@ -218,7 +222,7 @@ export function createContext(ws: Workspace): Context {
     ts: ts!,
     js: js!,
     lib,
-    libPrefix,
+    kit,
     validator,
     form,
   };

@@ -2431,6 +2431,9 @@ importers:
       '@sjsf/sveltekit':
         specifier: workspace:*
         version: link:../../legacy/sveltekit
+      '@sjsf/sveltekit3':
+        specifier: workspace:*
+        version: link:../sveltekit3
       '@sjsf/valibot-validator':
         specifier: workspace:*
         version: link:../valibot-validator
