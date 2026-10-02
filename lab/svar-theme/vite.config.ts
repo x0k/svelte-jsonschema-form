@@ -1,3 +1,4 @@
+import adapter from "@sveltejs/adapter-static";
 import { sveltekit } from "@sveltejs/kit/vite";
 import { playwright } from "@vitest/browser-playwright";
 import { defaultExclude } from "vitest/config";
@@ -6,7 +7,13 @@ import { defineConfig } from "vitest/config";
 const vrtPattern = "**/*.vrt.test.[tj]s?(x)";
 
 export default defineConfig({
-  plugins: [sveltekit()],
+  plugins: [
+    sveltekit({
+      adapter: adapter({
+        strict: false,
+      }),
+    }),
+  ],
   test: {
     expect: { requireAssertions: true },
     projects: [

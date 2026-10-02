@@ -72,6 +72,7 @@
     "@sjsf/form": "workspace:*",
     "@skeletonlabs/skeleton": "catalog:skeleton4",
     "@skeletonlabs/skeleton-svelte": "catalog:skeleton4",
+    "@sveltejs/kit": "catalog:kit2",
     "@sveltejs/svelte-json-tree": "catalog:",
     "@tailwindcss/forms": "catalog:",
     "@tailwindcss/vite": "catalog:",

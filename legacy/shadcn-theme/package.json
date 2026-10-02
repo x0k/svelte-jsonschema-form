@@ -82,6 +82,7 @@
     "@internationalized/date": "catalog:legacy",
     "@lucide/svelte": "catalog:",
     "@sjsf/form": "workspace:*",
+    "@sveltejs/kit": "catalog:kit2",
     "autoprefixer": "catalog:",
     "bits-ui": "catalog:",
     "clsx": "catalog:shadcn",

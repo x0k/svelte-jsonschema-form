@@ -7,7 +7,7 @@
   } from "@sjsf/form";
   import { createPatternPropertyKeyValidator } from "@sjsf/form/validators/properties";
 
-  import * as defaults from "$lib/sjsf/defaults";
+  import * as defaults from "#lib/sjsf/defaults.js";
 
   const schema = {
     title: "Pattern properties",

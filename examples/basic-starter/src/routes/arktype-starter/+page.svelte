@@ -3,7 +3,7 @@
   import { adapt } from "@sjsf/form/validators/standard-schema";
   import { type } from "arktype";
 
-  import * as defaults from "$lib/sjsf/defaults";
+  import * as defaults from "#lib/sjsf/defaults.js";
 
   const schema = type({
     hello: "string",

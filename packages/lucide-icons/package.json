@@ -53,6 +53,7 @@
   "devDependencies": {
     "@lucide/svelte": "catalog:",
     "@sjsf/form": "workspace:*",
+    "@sveltejs/kit": "catalog:",
     "globals": "catalog:",
     "svelte": "catalog:",
     "theme-testing": "workspace:*"

@@ -21,7 +21,7 @@ exports[`builder sandbox-factory > basic > basic 1`] = `
   },
   "devDependencies": {
     "vite": "^8.3.0",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "json-schema-to-ts": "^3.1.1"
@@ -166,7 +166,7 @@ exports[`builder sandbox-factory > fields > extra fields 1`] = `
   },
   "devDependencies": {
     "vite": "^8.3.0",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "json-schema-to-ts": "^3.1.1"
@@ -311,7 +311,7 @@ exports[`builder sandbox-factory > themes > basic 1`] = `
   },
   "devDependencies": {
     "vite": "^8.3.0",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "json-schema-to-ts": "^3.1.1"
@@ -457,7 +457,7 @@ exports[`builder sandbox-factory > themes > beercss 1`] = `
   },
   "devDependencies": {
     "vite": "^8.3.0",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "json-schema-to-ts": "^3.1.1"
@@ -603,7 +603,7 @@ exports[`builder sandbox-factory > themes > daisyui5 1`] = `
   },
   "devDependencies": {
     "vite": "^8.3.0",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "tailwindcss": "^4.3.3",
@@ -761,7 +761,7 @@ exports[`builder sandbox-factory > themes > flowbite3 1`] = `
   },
   "devDependencies": {
     "vite": "^8.3.0",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "flowbite": "^3.1.0",
@@ -942,7 +942,7 @@ exports[`builder sandbox-factory > themes > pico 1`] = `
   },
   "devDependencies": {
     "vite": "^8.3.0",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "@picocss/pico": "^2.1.1",
@@ -1093,7 +1093,7 @@ exports[`builder sandbox-factory > themes > shadcn-extras 1`] = `
   },
   "devDependencies": {
     "vite": "^8.3.0",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "tailwindcss": "^4.3.3",
@@ -1459,7 +1459,7 @@ exports[`builder sandbox-factory > themes > shadcn4 1`] = `
   },
   "devDependencies": {
     "vite": "^8.3.0",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "tailwindcss": "^4.3.3",
@@ -1800,7 +1800,7 @@ exports[`builder sandbox-factory > themes > skeleton4 1`] = `
   },
   "devDependencies": {
     "vite": "^8.3.0",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "@tailwindcss/forms": "^0.5.11",
@@ -1963,7 +1963,7 @@ exports[`builder sandbox-factory > themes > skeleton5 1`] = `
   },
   "devDependencies": {
     "vite": "^8.3.0",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "@tailwindcss/forms": "^0.5.11",
@@ -2128,7 +2128,7 @@ exports[`builder sandbox-factory > themes > svar 1`] = `
   },
   "devDependencies": {
     "vite": "^8.3.0",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "json-schema-to-ts": "^3.1.1"
@@ -2277,7 +2277,7 @@ exports[`builder sandbox-factory > ui-schema > with uiSchema 1`] = `
   },
   "devDependencies": {
     "vite": "^8.3.0",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "json-schema-to-ts": "^3.1.1"
@@ -2429,7 +2429,7 @@ exports[`builder sandbox-factory > validators > ajv8 1`] = `
   },
   "devDependencies": {
     "vite": "^8.3.0",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "json-schema-to-ts": "^3.1.1"
@@ -2574,7 +2574,7 @@ exports[`builder sandbox-factory > validators > ajv8 2`] = `
   },
   "devDependencies": {
     "vite": "^8.3.0",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "esbuild": "^0.28.2",
@@ -2813,7 +2813,7 @@ exports[`builder sandbox-factory > validators > ata 1`] = `
   },
   "devDependencies": {
     "vite": "^8.3.0",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "json-schema-to-ts": "^3.1.1"
@@ -2948,7 +2948,7 @@ exports[`builder sandbox-factory > validators > ata 2`] = `
   },
   "devDependencies": {
     "vite": "^8.3.0",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "json-schema-to-ts": "^3.1.1"
@@ -3159,7 +3159,7 @@ exports[`builder sandbox-factory > validators > cfworker 1`] = `
   },
   "devDependencies": {
     "vite": "^8.3.0",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "json-schema-to-ts": "^3.1.1"
@@ -3294,7 +3294,7 @@ exports[`builder sandbox-factory > validators > hyperjump 1`] = `
   },
   "devDependencies": {
     "vite": "^8.3.0",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "devalue": "^5.9.2",
@@ -3535,7 +3535,7 @@ exports[`builder sandbox-factory > validators > schemasafe 1`] = `
   },
   "devDependencies": {
     "vite": "^8.3.0",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "json-schema-to-ts": "^3.1.1"
@@ -3670,7 +3670,7 @@ exports[`builder sandbox-factory > validators > schemasafe 2`] = `
   },
   "devDependencies": {
     "vite": "^8.3.0",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "json-schema-to-ts": "^3.1.1"
@@ -3889,7 +3889,7 @@ exports[`builder sandbox-factory > validators > valibot 1`] = `
   },
   "devDependencies": {
     "vite": "^8.3.0",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3"
   },
@@ -4022,7 +4022,7 @@ exports[`builder sandbox-factory > validators > zod4 1`] = `
   },
   "devDependencies": {
     "vite": "^8.3.0",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3"
   },
@@ -4156,7 +4156,7 @@ exports[`builder sandbox-factory > widgets > extra widgets 1`] = `
   },
   "devDependencies": {
     "vite": "^8.3.0",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-auto": "^8.0.0",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "typescript": "^6.0.3",
     "json-schema-to-ts": "^3.1.1"

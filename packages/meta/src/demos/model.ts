@@ -62,6 +62,13 @@ export interface ExampleContent {
   dependencies: AbstractPackage[];
   codeTransformers: CodeTransformer[];
   sveltekit: CodegenSvelteKitIntegration;
+  /**
+   * Target `@sveltejs/kit` range, when the example's copied sources pin one.
+   *
+   * Demos whose sources come from `examples/sveltekit-starter` target Kit 2,
+   * since `@sjsf/sveltekit` peers `^2.48.3` and those files import `$lib`.
+   */
+  kitRange?: string;
   fields: ExtraFieldFileName[];
   widgets: ExtraWidgetFileNames[ToTheme<CodegenThemeOrSubTheme>][];
   validator: DemosValidator["name"];
@@ -88,19 +95,19 @@ export const remoteFormDefaultsReplacer: CodeTransformer = (_filepath, code) =>
   code.replace("sjsf/remote-defaults", "sjsf/defaults");
 
 /**
- * Demos copy their sources from `examples/*`, which are all SvelteKit 2 today:
- * those files import through `$lib`, which Kit 3 dropped. Keeping the range here
- * is what stops the composer from emitting `imports`/`$app/tsconfig` for projects
- * whose copied sources would not resolve. Delete this once the demos are ported
- * to the Kit 3 examples — `resolveSvelteKitProject` already defaults to Kit 3.
+ * The `@sveltejs/kit` range for demos whose sources come from
+ * `examples/sveltekit-starter`: `@sjsf/sveltekit` peers `^2.48.3` and those
+ * files import through `$lib`, so the surrounding project has to match.
  */
-const DEMOS_KIT_RANGE = "^2.70.3";
+export const KIT2_DEMO_RANGE = "^2.70.3";
 
 export const COMPOSER_DEFAULTS = {
   modelName: "model",
   language: "ts",
   sveltekit: "no",
-  kitRange: DEMOS_KIT_RANGE,
+  // No `kitRange`: the demos copy their sources from the Kit 3 `examples/*`,
+  // which import through `#lib`, so the composer has to emit the matching
+  // `imports` map. `resolveSvelteKitProject` already defaults to Kit 3.
   focusOnFirstError: true,
   // These options are not relevant for demos,
   // because if they are used at all,

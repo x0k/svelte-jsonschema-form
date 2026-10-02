@@ -54,6 +54,7 @@
   "devDependencies": {
     "@jis3r/icons": "^2.9.0",
     "@sjsf/form": "workspace:*",
+    "@sveltejs/kit": "catalog:",
     "globals": "catalog:",
     "svelte": "catalog:",
     "theme-testing": "workspace:*"

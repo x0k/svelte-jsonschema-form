@@ -23,8 +23,8 @@ catalog:
   "@standard-schema/spec": ^1.1.0
   "@svar-ui/svelte-core": ^2.6.1
   "@sveltejs/acorn-typescript": ^1.0.13
-  "@sveltejs/adapter-auto": ^7.0.1
-  "@sveltejs/kit": ^2.70.3
+  "@sveltejs/adapter-auto": ^8.0.0
+  "@sveltejs/kit": ^3.0.0
   "@sveltejs/svelte-json-tree": ^2.2.1
   "@sveltejs/sv-utils": ^1.0.0
   "@sveltejs/vite-plugin-svelte": ^7.3.0
@@ -86,6 +86,10 @@ catalogs:
   sveltekit3:
     "@sveltejs/adapter-node": ^6.0.0
     "@sveltejs/kit": ^3.0.0
+  # SvelteKit 2 is only here for the `legacy/sveltekit` integration, whose peer
+  # range is `^2.48.3`. Everything else targets Kit 3 via the default catalog.
+  kit2:
+    "@sveltejs/kit": ^2.70.3
   skeleton4:
     "@skeletonlabs/skeleton": ^4.15.2
     "@skeletonlabs/skeleton-svelte": ^4.15.2
