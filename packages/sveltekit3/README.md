@@ -1,6 +1,6 @@
-# @sjsf/sveltekit
+# @sjsf/sveltekit3
 
-The [SvelteKit](https://svelte.dev/docs/kit/introduction) integration for [svelte-jsonschema-form](https://github.com/x0k/svelte-jsonschema-form).
+The [SvelteKit v3](https://svelte.dev/docs/kit/introduction) integration for [svelte-jsonschema-form](https://github.com/x0k/svelte-jsonschema-form).
 
 - [Form actions documentation](https://x0k.github.io/svelte-jsonschema-form/integrations/form-actions/)
 - [Remote functions documentation](https://x0k.github.io/svelte-jsonschema-form/integrations/remote-functions/)
@@ -9,7 +9,7 @@ The [SvelteKit](https://svelte.dev/docs/kit/introduction) integration for [svelt
 ## Installation
 
 ```shell
-npm install @sjsf/sveltekit
+npm install @sjsf/sveltekit3
 ```
 
 ## License
