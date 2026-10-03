@@ -51,7 +51,7 @@ You can create a new component that adapts the interface of the original compone
   import type { ComponentProps } from "@sjsf/form";
   import TagsField from "@sjsf/form/fields/extra/tags.svelte";
 
-  import { assertStrings } from "$lib/form/cast";
+  import { assertStrings } from "#lib/form/cast.js";
 
   let { value = $bindable(), ...rest }: ComponentProps["arrayTagsField"] =
     $props();
@@ -96,7 +96,7 @@ import { cast } from "@sjsf/form/lib/component";
 import type { ComponentDefinition } from "@sjsf/form";
 import TagsField from "@sjsf/form/fields/extra/tags.svelte";
 
-import { assertStrings } from "$lib/form/cast";
+import { assertStrings } from "#lib/form/cast.js";
 
 declare module "@sjsf/form" {
   interface ComponentProps {

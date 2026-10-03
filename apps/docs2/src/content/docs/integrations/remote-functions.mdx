@@ -16,10 +16,10 @@ import { getPackageDependencies } from "@/shared";
 import Npm from "@/components/npm.astro";
 import Deps from "@/components/peer-dependencies.astro";
 
-import modelCode from "examples/sveltekit-starter/src/lib/post.ts?raw";
-import clientCode from "examples/sveltekit-starter/src/routes/remote-functions/+page.svelte?raw";
-import clientEnhanceCode from "examples/sveltekit-starter/src/routes/remote-functions-enhance/+page.svelte?raw";
-import serverCode from "examples/sveltekit-starter/src/routes/remote-functions/data.remote?raw";
+import modelCode from "examples/sveltekit3-starter/src/lib/post.ts?raw";
+import clientCode from "examples/sveltekit3-starter/src/routes/remote-functions/+page.svelte?raw";
+import clientEnhanceCode from "examples/sveltekit3-starter/src/routes/remote-functions-enhance/+page.svelte?raw";
+import serverCode from "examples/sveltekit3-starter/src/routes/remote-functions/data.remote?raw";
 
 :::caution
 
@@ -56,12 +56,10 @@ Pick the package that matches your project's `@sveltejs/kit` major version.
 
 :::note
 
-For correct operation, you must use ID Builder from the `@sjsf/sveltekit/rf`
-(or `@sjsf/sveltekit3/rf` on `SvelteKit 3`).
+For correct operation, you must use ID Builder from the integration package's
+remote-functions subpath.
 
 :::
-
-{/* TODO: Fix `$lib/remote-form-defaults` */}
 
 <Tabs>
   <TabItem label="+page.svelte">
@@ -87,11 +85,9 @@ For correct operation, you must use ID Builder from the `@sjsf/sveltekit/rf`
 
   ```js
   optimizeDeps: {
-    exclude: ['@sjsf/form', '@sjsf/sveltekit/rf/client'],
+    exclude: ['@sjsf/form', '@sjsf/sveltekit3/rf/client'],
   }
   ```
-
-  On `SvelteKit 3` the subpath is `@sjsf/sveltekit3/rf/client`.
 
 - The `form.value` type on the client side is `unknown` because the `RemoteForm`
   type does not include information about the validator's output type.
