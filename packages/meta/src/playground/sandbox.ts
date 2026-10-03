@@ -8,6 +8,7 @@ import {
 import {
   type ThemeExtension,
   codegemIsJsonSchemaValidator,
+  createKitPathFactory,
 } from "../codegen/index.ts";
 import {
   createComposer,
@@ -19,6 +20,7 @@ import {
   type ExtraFieldFileName,
 } from "../fields.ts";
 import { extraPackage, type AbstractPackage } from "../package.ts";
+import { resolveSvelteKitProject } from "../sveltekit.ts";
 import { toTheme, type Theme } from "../themes.ts";
 import { WIDGETS } from "../widgets.generated.ts";
 import { isThemeBaseWidget, type ExtraWidgetFileNames } from "../widgets.ts";
@@ -241,16 +243,19 @@ export async function createSandboxFiles({
   }
 
   const themeExtension: ThemeExtension = [];
+  // Same resolution `createComposer` does for the options passed below
+  const lib = createKitPathFactory(resolveSvelteKitProject().libPrefix);
+  const customComponentsModule = lib("custom-components/index");
   if (usesMarkdownDescription) {
     themeExtension.push({
       imports: ["markdownDescription"],
-      from: "$lib/custom-components",
+      from: customComponentsModule,
     });
   }
   if (usesTransparentLayout) {
     themeExtension.push({
       imports: ["transparentLayout"],
-      from: "$lib/custom-components",
+      from: customComponentsModule,
     });
   }
 

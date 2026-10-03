@@ -23,10 +23,10 @@ catalog:
   "@standard-schema/spec": ^1.1.0
   "@svar-ui/svelte-core": ^2.6.1
   "@sveltejs/acorn-typescript": ^1.0.13
-  "@sveltejs/adapter-auto": ^7.0.1
-  "@sveltejs/kit": ^2.70.3
+  "@sveltejs/adapter-auto": ^8.0.0
+  "@sveltejs/kit": ^3.0.0
   "@sveltejs/svelte-json-tree": ^2.2.1
-  "@sveltejs/sv-utils": npm:@x0k/sv-utils@0.3.3
+  "@sveltejs/sv-utils": ^1.0.0
   "@sveltejs/vite-plugin-svelte": ^7.3.0
   "@tailwindcss/forms": ^0.5.11
   "@tailwindcss/vite": ^4.3.3
@@ -70,7 +70,7 @@ catalog:
   postcss: ^8.5.28
   shadcn-svelte: ^1.6.1
   shiki: ^4.4.3
-  svelte: ^5.57.0
+  svelte: ^5.57.1
   svelte-exmarkdown: ^5.0.2
   tailwindcss: ^4.3.3
   typebox: ^1.3.30
@@ -83,6 +83,13 @@ catalog:
   rolldown: ^1.2.8
 
 catalogs:
+  sveltekit3:
+    "@sveltejs/adapter-node": ^6.0.0
+    "@sveltejs/kit": ^3.0.0
+  # SvelteKit 2 is only here for the `legacy/sveltekit` integration, whose peer
+  # range is `^2.48.3`. Everything else targets Kit 3 via the default catalog.
+  kit2:
+    "@sveltejs/kit": ^2.70.3
   skeleton4:
     "@skeletonlabs/skeleton": ^4.15.2
     "@skeletonlabs/skeleton-svelte": ^4.15.2
@@ -120,4 +127,7 @@ allowBuilds:
   sharp: true
   ata-validator: false
 minimumReleaseAgeExclude:
-  - "@x0k/sv-utils@0.3.3"
+  - '@sveltejs/adapter-node@6.0.0'
+  - '@sveltejs/kit@3.0.0'
+  - '@sveltejs/sv-utils@1.0.0'
+  - sv@1.0.1

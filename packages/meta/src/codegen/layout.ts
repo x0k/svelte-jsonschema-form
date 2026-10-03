@@ -1,4 +1,4 @@
-import { transforms } from "@sveltejs/sv-utils";
+import { transforms } from "@sveltejs/sv-utils/browser";
 
 import { svelteWrapFragment } from "./lib.ts";
 import type { CodegenThemeOrSubTheme, PathFactory } from "./model.ts";

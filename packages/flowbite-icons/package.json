@@ -57,6 +57,7 @@
   },
   "devDependencies": {
     "@sjsf/form": "workspace:*",
+    "@sveltejs/kit": "catalog:",
     "@tailwindcss/vite": "catalog:",
     "flowbite-svelte-icons": "^3.1.0",
     "globals": "catalog:",

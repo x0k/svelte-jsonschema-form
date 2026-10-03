@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { SJSF_ID_PREFIX } from "./id.js";
-  import { FORM_ID_PREFIX } from "./internals.js";
+  import { resolveIdPrefixName } from "./id.js";
+  import { FORM_ID_BUILDER, FORM_ID_PREFIX } from "./internals.js";
   import type { FormState } from "./state/index.js";
 
   const {
     form,
-    name = SJSF_ID_PREFIX,
+    name = resolveIdPrefixName(form[FORM_ID_BUILDER]),
   }: { form: FormState<any>; name?: string } = $props();
 </script>
 

@@ -1,6 +1,3 @@
-import fs from "node:fs";
-import path from "node:path";
-
 import {
   codegenIconSets,
   codegenSvelteKitIntegrations,
@@ -86,18 +83,6 @@ function* kinds() {
       });
     }
   }
-  yield kind("kit3__basic", {});
-}
-
-function patchKitVersion(dir: string) {
-  const pkgPath = path.join(dir, "package.json");
-  const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf-8"));
-  if (pkg.devDependencies?.["@sveltejs/kit"]) {
-    pkg.devDependencies["@sveltejs/kit"] = "^3.0.0";
-  } else if (pkg.dependencies?.["@sveltejs/kit"]) {
-    pkg.dependencies["@sveltejs/kit"] = "^3.0.0";
-  }
-  fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, "\t") + "\n");
 }
 
 const { test, testCases } = setupSnapshotTest(
@@ -113,11 +98,6 @@ const { test, testCases } = setupSnapshotTest(
         return false;
       }
       return true;
-    },
-    beforeAdd(dir, variant) {
-      if (variant === "kit-ts" && dir.includes("kit3")) {
-        patchKitVersion(dir);
-      }
     },
   }
 );

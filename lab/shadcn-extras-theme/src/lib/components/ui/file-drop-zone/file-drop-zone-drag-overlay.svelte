@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { cn } from '$lib/utils.js';
-	import { useFileDropZoneDragOverlay } from '$lib/components/ui/file-drop-zone/file-drop-zone.svelte.js';
-	import type { FileDropZoneDragOverlayProps } from '$lib/components/ui/file-drop-zone/types.js';
+	import { cn } from '#lib/utils.js';
+	import { useFileDropZoneDragOverlay } from '#lib/components/ui/file-drop-zone/file-drop-zone.svelte.js';
+	import type { FileDropZoneDragOverlayProps } from '#lib/components/ui/file-drop-zone/types.js';
 	import UploadIcon from '@lucide/svelte/icons/upload';
 	import { Portal } from 'bits-ui';
 	import { box, mergeProps } from 'svelte-toolbelt';

@@ -1,5 +1,6 @@
 import { neverError } from "../errors.ts";
-import { svelteKitRfSubPath, svelteKitSubPath } from "../sveltekit.ts";
+import type { Package } from "../package.ts";
+import { svelteKitExport } from "../sveltekit.ts";
 import { internalValidatorSubPath } from "../validators.ts";
 import type { NamedImportOptions, NamespaceImportOptions } from "./lib.ts";
 import type { CodegenSvelteKitIntegration } from "./model.ts";
@@ -9,6 +10,8 @@ export interface FormOptions {
   isTs: boolean;
   modelName: string;
   sveltekit: CodegenSvelteKitIntegration;
+  /** The SvelteKit integration package generated code imports from */
+  sveltekitPackage: Package;
   disabled: boolean;
   validator: ValidatorDefinition;
   omitExtraData: boolean;
@@ -23,6 +26,7 @@ export interface FormDefinition {
 
 export function createForm({
   sveltekit,
+  sveltekitPackage,
   isTs,
   disabled,
   modelName,
@@ -61,7 +65,7 @@ export function createForm({
         ...additionalImports,
         {
           imports: ["createMeta", "setupSvelteKitForm"],
-          from: svelteKitSubPath("client"),
+          from: svelteKitExport(sveltekitPackage, "client"),
         },
         {
           imports: ["ActionData", "PageData"],
@@ -90,7 +94,7 @@ ${bodyBlock}
         ...(isInputTypeRequired ? validator.schemaImports : []),
         {
           imports: ["connect"],
-          from: svelteKitRfSubPath("client"),
+          from: svelteKitExport(sveltekitPackage, "rf/client"),
         },
         {
           imports: ["createPost", "getInitialData"],

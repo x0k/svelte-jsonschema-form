@@ -1,3 +1,4 @@
+import adapter from "@sveltejs/adapter-static";
 import { sveltekit } from "@sveltejs/kit/vite";
 import tailwindcss from "@tailwindcss/vite";
 import { playwright } from "@vitest/browser-playwright";
@@ -7,7 +8,14 @@ import { defineConfig } from "vitest/config";
 const vrtPattern = "**/*.vrt.test.[tj]s?(x)";
 
 export default defineConfig({
-  plugins: [tailwindcss(), sveltekit()],
+  plugins: [
+    tailwindcss(),
+    sveltekit({
+      adapter: adapter({
+        strict: false,
+      }),
+    }),
+  ],
   test: {
     projects: [
       {

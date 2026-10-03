@@ -10,6 +10,7 @@ export function defaultsTs({
   directory,
   ts,
   js,
+  kit,
 }: Context) {
   const filepath = `${directory.lib}/sjsf/defaults.${language}`;
 
@@ -22,6 +23,7 @@ export function defaultsTs({
       js,
       resolver: "inline",
       widgets: POST_EXTRA_WIDGETS,
+      sveltekitPackage: kit.pkg,
       focusOnFirstError: true,
       merger: {},
       fields: [],
