@@ -4,7 +4,7 @@ import { createTask, type TaskOptions } from "@sjsf/form/lib/task.svelte";
 import { dev } from "$app/env";
 import type { ActionResult } from "$app/forms";
 import { applyAction, deserialize } from "$app/forms";
-import { refreshAll } from "$app/navigation";
+import { goto, refreshAll } from "$app/navigation";
 
 import { chunks } from "../internal.js";
 import { FORM_DATA_FILE_PREFIX, JSON_CHUNKS_KEY } from "../model.js";
@@ -21,18 +21,68 @@ export type SveltekitRequestOptions<ActionData, V> = Omit<
   /** @default DEFAULT_ID_PREFIX */
   idPrefix?: string;
   /** By default, handles conversion of `File` */
-  createReplacer?: (formData: FormData) => (key: string, value: any) => any;
+  createReplacer?: (options: RequestReplacerOptions) => Replacer;
   /** @default 500000 */
   jsonChunkSize?: number;
   /** @default true */
   reset?: boolean;
-  /** @default true */
+  /**
+   * Reruns the destination's `load` functions. Defaults to `true` for
+   * successes and `false` for failures, like `enhance`.
+   */
   refreshAll?: boolean;
+  /**
+   * When `false`, apply non-redirect results to the current page rather than
+   * navigating to `result.location`. Redirects are always followed.
+   *
+   * @default true
+   */
+  navigate?: boolean;
 };
 
-function createDefaultReplacer(formData: FormData) {
+/**
+ * Kit's `is_current_location`: same origin, path and query params. Modelled on
+ * its `resolve_url`, which resolves against `document.baseURI` to honour
+ * `<base>`.
+ */
+function isCurrentLocation(value: string): boolean {
+  const destination = new URL(value, document.baseURI);
+  const current = new URL(location.href);
+  if (
+    destination.origin !== current.origin ||
+    destination.pathname !== current.pathname
+  ) {
+    return false;
+  }
+  const keys = new Set([
+    ...destination.searchParams.keys(),
+    ...current.searchParams.keys(),
+  ]);
+  for (const key of keys) {
+    const destinationValues = destination.searchParams.getAll(key).sort();
+    const currentValues = current.searchParams.getAll(key).sort();
+    if (
+      destinationValues.length !== currentValues.length ||
+      destinationValues.some((value, i) => value !== currentValues[i])
+    ) {
+      return false;
+    }
+  }
+  return true;
+}
+
+/** The context a `File` replacer needs to build a submission entry. */
+export interface RequestReplacerOptions {
+  /** The payload the submission is sent as. */
+  formData: FormData;
+}
+
+/** The `JSON.stringify` replacer the value is submitted with. */
+export type Replacer = (key: string, value: any) => any;
+
+function createDefaultReplacer({ formData }: RequestReplacerOptions): Replacer {
   const seen = new Set<string>();
-  return (key: string, value: any) => {
+  return (key, value) => {
     if (!(value instanceof File)) {
       return value;
     }
@@ -40,6 +90,7 @@ function createDefaultReplacer(formData: FormData) {
     let fdKey = initialKey;
     let i = 1;
     while (seen.has(fdKey)) fdKey = `${initialKey}__${i++}`;
+    seen.add(fdKey);
     formData.append(fdKey, value);
     return fdKey;
   };
@@ -56,7 +107,12 @@ export function createSvelteKitRequest<
     options.createReplacer ?? createDefaultReplacer
   );
   return createTask({
-    // Based on https://github.com/sveltejs/kit/blob/92b2686314a7dbebee1761c3da7719d599f003c7/packages/kit/src/runtime/app/forms.js
+    // A copy of Kit's `enhance` fallback, which `request()` replaces with this
+    // one to submit the value as JSON chunks. Based on
+    // `@sveltejs/kit`'s `src/runtime/app/forms/client.js` — note that Kit 3
+    // split the single `forms.js` this used to live in. Diff against the
+    // installed version when bumping Kit; see the notes on the branches below
+    // for the parts that cannot be followed.
     async execute(
       signal: AbortSignal,
       data: Meta["__formValue"] | FormValue,
@@ -95,7 +151,7 @@ export function createSvelteKitRequest<
       const formData = new FormData();
       formData.append(SJSF_ID_PREFIX, options.idPrefix ?? DEFAULT_ID_PREFIX);
       for (const chunk of chunks(
-        JSON.stringify(data, createReplacer(formData)),
+        JSON.stringify(data, createReplacer({ formData })),
         jsonChunkSize
       )) {
         formData.append(JSON_CHUNKS_KEY, chunk);
@@ -134,9 +190,59 @@ export function createSvelteKitRequest<
           signal,
         });
 
-        result = deserialize(await response.text());
-        if (result.type === "error") result.status = response.status;
+        const text = await response.text();
+
+        let parsed: any;
+        try {
+          // an empty body carries no result for an error response
+          parsed = text === "" && !response.ok ? undefined : deserialize(text);
+        } catch (error) {
+          // a proxy may redirect to a login page or return a non-JSON error
+          // response, neither of which is an action result
+          if (response.ok && !response.redirected) throw error;
+        }
+
+        if (
+          parsed?.type === "success" ||
+          parsed?.type === "failure" ||
+          parsed?.type === "redirect" ||
+          parsed?.type === "error"
+        ) {
+          result = parsed;
+          if (result.type === "error" || result.type === "failure") {
+            result.status = response.status;
+          }
+        } else if (response.redirected) {
+          // fetch followed the HTTP redirect, so its original status is gone
+          result = { type: "redirect", status: 303, location: response.url };
+        } else if (!response.ok) {
+          // The action never ran, e.g. the CSRF check or a proxy rejected it.
+          // Kit throws `HttpError`/`SvelteKitError` here so that
+          // `handle_error` renders the nearest error page; neither is public
+          // API, but `applyAction` renders that same page for an `error`
+          // result, so report it here and keep the real status.
+          result = {
+            type: "error",
+            error: {
+              status: response.status,
+              message:
+                (parsed && typeof parsed === "object" && "message" in parsed
+                  ? String(parsed.message)
+                  : typeof parsed === "string"
+                    ? parsed
+                    : response.statusText) || `Error: ${response.status}`,
+            },
+          };
+        } else {
+          result = parsed;
+        }
       } catch (error) {
+        // An aborted submission is not a failure of the action; the task that
+        // owns `signal` has already been cancelled or has timed out, and
+        // rendering an error page on top of that would be misleading
+        if ((error as { name?: string } | null)?.name === "AbortError") {
+          throw error;
+        }
         result = {
           type: "error",
           error: {
@@ -146,24 +252,45 @@ export function createSvelteKitRequest<
         };
       }
 
-      if (result.type === "success") {
-        if (options.reset !== false) {
-          // We call reset from the prototype to avoid DOM clobbering
-          HTMLFormElement.prototype.reset.call(formElement);
-        }
-        if (options.refreshAll !== false) {
+      if (result.type === "success" && options.reset !== false) {
+        // We call reset from the prototype to avoid DOM clobbering
+        HTMLFormElement.prototype.reset.call(formElement);
+      }
+
+      // `true` for successes, `false` for failures, like `enhance`
+      const shouldRefreshAll = options.refreshAll ?? result.type === "success";
+
+      // An error always renders the nearest error page, and a redirect is
+      // always followed; neither is a navigation to `result.location`
+      if (
+        result.type === "error" ||
+        options.navigate === false ||
+        result.location === undefined ||
+        result.type === "redirect"
+      ) {
+        if (shouldRefreshAll && result.type !== "redirect") {
           await refreshAll();
         }
-      }
-      // For success/failure results, only apply action if it belongs to the
-      // current page, otherwise `form` will be updated erroneously
-      if (
-        location.origin + location.pathname ===
-          action.origin + action.pathname ||
-        result.type === "redirect" ||
-        result.type === "error"
-      ) {
         await applyAction(result);
+        return result;
+      }
+
+      // Success/failure on the current page updates `page.form` in place. Anywhere
+      // else has to navigate, the way a native submission would.
+      const destination = new URL(result.location, document.baseURI);
+      if (
+        destination.origin !== location.origin ||
+        isCurrentLocation(result.location)
+      ) {
+        if (shouldRefreshAll) {
+          await refreshAll();
+        }
+        await applyAction(result);
+      } else {
+        // NOTE: Kit navigates with `apply_action_navigation`, which also hands
+        // the result to the destination's `form` prop. That is an internal
+        // `goto` option, so `page.form` is `null` on arrival here.
+        await goto(destination.href, { refreshAll: shouldRefreshAll });
       }
       return result;
     },
