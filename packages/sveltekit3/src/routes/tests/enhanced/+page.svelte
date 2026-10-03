@@ -23,4 +23,4 @@
   );
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm {form} novalidate enctype="multipart/form-data" />
