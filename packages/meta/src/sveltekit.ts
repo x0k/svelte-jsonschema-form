@@ -53,7 +53,7 @@ export interface SvelteKitProject {
 const KIT2_TSCONFIG = "./.svelte-kit/tsconfig.json";
 
 /** Assumed when the target project's `@sveltejs/kit` range is unknown */
-const DEFAULT_KIT_RANGE = "^3.0.0";
+export const DEFAULT_KIT_RANGE = "^3.0.0";
 
 /**
  * Resolves the integration and the project shape from the target project's
@@ -61,14 +61,21 @@ const DEFAULT_KIT_RANGE = "^3.0.0";
  *
  * Kit 2 and Kit 3 ship separate packages, and a Kit 3 app cannot use the Kit 2
  * one, so the version the project declares decides both.
+ *
+ * `kitRange` is required even though `undefined` is accepted, so that a caller
+ * which has not resolved the range has to say so. A default parameter would let
+ * that omission decide which integration package generated code imports from.
  */
 export function resolveSvelteKitProject(
-  kitRange: string | undefined = DEFAULT_KIT_RANGE
+  kitRange: string | undefined
 ): SvelteKitProject {
-  const kit3 = isKit3(kitRange);
+  // Not `kitRange` itself: `isKit3(undefined)` is false, so reading it directly
+  // would resolve an unknown range to Kit 2
+  const range = kitRange ?? DEFAULT_KIT_RANGE;
+  const kit3 = isKit3(range);
   return {
     pkg: kit3 ? sveltekit3Package : sveltekitPackage,
-    libPrefix: resolveLibPrefix(kitRange),
+    libPrefix: resolveLibPrefix(range),
     tsconfigExtends: kit3 ? KIT3_TSCONFIG : KIT2_TSCONFIG,
     libImports: kit3 ? libSubpathImports("src/lib") : {},
   };
