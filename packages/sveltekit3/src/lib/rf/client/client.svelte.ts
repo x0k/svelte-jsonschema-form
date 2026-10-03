@@ -48,7 +48,25 @@ export function createClientValidator<T>(form: FormState<T>) {
 
 const CHUNK_KEY = `${JSON_CHUNKS_KEY}[]`;
 
-function createDefaultReplacer(formElement: HTMLFormElement) {
+/** The context a `File` replacer needs to build a submission input. */
+export interface ConnectReplacerOptions {
+  /** The hidden form the submission is read from. */
+  formElement: HTMLFormElement;
+  /**
+   * Kit v3 requires every field name to end with `/{formId}` (see
+   * `parse_form_key`). It belongs on the input's `name`; the JSON payload keeps
+   * the bare key, which is what the server looks a file up by.
+   */
+  fieldSuffix: string;
+}
+
+/** The `JSON.stringify` replacer `connect()` submits the value with. */
+export type Replacer = (key: string, value: any) => any;
+
+function createDefaultReplacer({
+  formElement,
+  fieldSuffix,
+}: ConnectReplacerOptions): Replacer {
   const seen = new Set<string>();
   function fileInput(name: string, value: File) {
     const fileInput = document.createElement("input");
@@ -59,7 +77,7 @@ function createDefaultReplacer(formElement: HTMLFormElement) {
     fileInput.files = dt.files;
     formElement.appendChild(fileInput);
   }
-  return (key: string, value: any) => {
+  return (key, value) => {
     if (!(value instanceof File)) {
       return value;
     }
@@ -67,7 +85,8 @@ function createDefaultReplacer(formElement: HTMLFormElement) {
     let fdKey = initialKey;
     let i = 1;
     while (seen.has(fdKey)) fdKey = `${initialKey}__${i++}`;
-    fileInput(encode(fdKey), value);
+    seen.add(fdKey);
+    fileInput(encode(fdKey) + fieldSuffix, value);
     return fdKey;
   };
 }
@@ -100,9 +119,7 @@ export function getRemoteFormFieldId(
 export interface ConnectOptions extends SvelteKitDataParserOptions {
   idBuilder: Creatable<FormIdBuilder, FormIdBuilderOptions>;
   /** By default, handles conversion of `File` */
-  createReplacer?: (
-    formElement: HTMLFormElement
-  ) => (key: string, value: any) => any;
+  createReplacer?: (options: ConnectReplacerOptions) => Replacer;
   /** @default 500000 */
   jsonChunkSize?: number;
 }
@@ -129,7 +146,12 @@ export async function connect<T>(
       originalFormElement.reset();
     };
     const attach = remoteForm[symbols[0]];
-    return attach(formElement);
+    attach(formElement);
+    return () => {
+      // The last submission's inputs are still around when `reset` never
+      // fires, so don't let them outlive the component
+      detachSubmittedForm();
+    };
   });
 
   const dataParser = createSvelteKitDataParser(options);
@@ -217,10 +239,14 @@ export async function connect<T>(
         formElement.rel = originalFormElement.rel;
         submittedFormCleanup?.abort();
         submittedFormCleanup = new AbortController();
-        formElement.replaceChildren();
+        // Releases the previous submission's inputs, including any `File` blobs
+        // they reference. `reset` below normally does this first, but
+        // `remoteForm.enhance` may have been replaced with a callback that never
+        // calls `HTMLFormElement.prototype.reset`, so it cannot be relied on.
+        detachSubmittedForm();
         hiddenInput(`${SJSF_ID_PREFIX}${fieldSuffix}`, idPrefix);
         for (const chunk of chunks(
-          JSON.stringify(value, createReplacer(formElement)),
+          JSON.stringify(value, createReplacer({ formElement, fieldSuffix })),
           jsonChunkSize
         )) {
           hiddenInput(`${CHUNK_KEY}${fieldSuffix}`, chunk);
@@ -228,7 +254,9 @@ export async function connect<T>(
         document.body.appendChild(formElement);
         // NOTE: The form must stay connected until Kit resets it after the
         // submission completes, otherwise the reset is skipped (it is guarded
-        // by `isConnected`) and the original form won't be restored
+        // by `isConnected`) and the original form won't be restored.
+        // `setTimeout` because Kit's own reset handler reads
+        // `new FormData(form)` after an `await tick()`.
         formElement.addEventListener(
           "reset",
           () => setTimeout(detachSubmittedForm, 0),
