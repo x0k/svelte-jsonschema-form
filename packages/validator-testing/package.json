@@ -16,7 +16,7 @@
     }
   },
   "scripts": {
-    "build": "svelte-package && publint",
+    "build": "svelte-package --input src && publint",
     "check": "svelte-check --tsconfig ./tsconfig.json --tsgo-experimental-api",
     "lint": "eslint .",
     "format": "oxfmt .",
