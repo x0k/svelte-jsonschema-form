@@ -55,7 +55,7 @@
     "vitest-browser-svelte": "^3.1.0"
   },
   "lint-staged": {
-    "*.{js,ts,svelte,json,css,md}": "oxfmt"
+    "*.{js,ts,svelte,json,css,md}": "oxfmt --no-error-on-unmatched-pattern"
   },
   "packageManager": "pnpm@12.3.4"
 }
