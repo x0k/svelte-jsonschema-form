@@ -8,9 +8,6 @@ export default {
     files: {
       lib: "src",
     },
-    alias: {
-      "@/": "./src/",
-    },
   },
   compilerOptions: {
     runes: true,
