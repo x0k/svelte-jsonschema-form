@@ -11,14 +11,14 @@ import {
   type Schema,
   type SchemaDefinition,
   type Validator,
-} from "@/core/index.js";
-import type { FormMerger } from "@/form/index.js";
-import { unique as uniqueItems } from "@/lib/array.js";
+} from "#core/index.js";
+import type { FormMerger } from "#form/index.js";
+import { unique as uniqueItems } from "#lib/array.js";
 import {
   ARRAYS_OF_SUB_SCHEMAS,
   RECORDS_OF_SUB_SCHEMAS,
   SUB_SCHEMAS,
-} from "@/lib/json-schema/index.js";
+} from "#lib/json-schema/index.js";
 
 function mergeRecords<T>(
   left: Record<string, T>,

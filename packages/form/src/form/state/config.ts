@@ -1,4 +1,4 @@
-import { REF_FLAG } from "@/core/schema.js";
+import { REF_FLAG } from "#core/schema.js";
 
 import { isConfigEqual, type Config } from "../config.js";
 import { FIELD_EXPANDED } from "../field-state.js";

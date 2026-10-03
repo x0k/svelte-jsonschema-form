@@ -1,6 +1,6 @@
 import type { Snippet } from "svelte";
 
-import type { Config, FieldErrors } from "@/form/index.js";
+import type { Config, FieldErrors } from "#form/index.js";
 
 export interface ComponentCommonProps {
   config: Config;

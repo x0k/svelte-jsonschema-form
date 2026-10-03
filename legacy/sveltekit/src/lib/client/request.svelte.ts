@@ -3,9 +3,9 @@ import { createTask, type TaskOptions } from "@sjsf/form/lib/task.svelte";
 import type { ActionResult } from "@sveltejs/kit";
 import { DEV } from "esm-env";
 
+import { chunks } from "#lib/internal.js";
 import { applyAction, deserialize } from "$app/forms";
 import { invalidateAll } from "$app/navigation";
-import { chunks } from "$lib/internal.js";
 
 import { FORM_DATA_FILE_PREFIX, JSON_CHUNKS_KEY } from "../model.js";
 import type { SvelteKitFormMeta } from "./meta.js";

@@ -3,7 +3,7 @@ import {
   type AsyncFileListValidator,
   type UiOptionsRegistry,
   type UiSchemaRoot,
-} from "@/form/main.js";
+} from "#form/main.js";
 
 declare module "../form/index.js" {
   interface UiOptions {

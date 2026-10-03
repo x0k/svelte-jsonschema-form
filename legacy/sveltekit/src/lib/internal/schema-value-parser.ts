@@ -31,8 +31,8 @@ import {
   ONE_OF,
   ANY_OF,
   compilePatterns,
-} from "$lib/internal.js";
-import type { Codec, Entries, Entry, EntryConverter } from "$lib/model.js";
+} from "#lib/internal.js";
+import type { Codec, Entries, Entry, EntryConverter } from "#lib/model.js";
 
 export interface SchemaValueParserOptions<T> {
   schema: Schema;

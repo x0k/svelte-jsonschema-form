@@ -28,7 +28,7 @@
     "@sveltejs/adapter-auto": "catalog:",
     "@sveltejs/adapter-static": "^4.0.0",
     "@sveltejs/kit": "catalog:",
-    "@sveltejs/package": "2.5.8",
+    "@sveltejs/package": "3.0.0",
     "@sveltejs/vite-plugin-svelte": "catalog:",
     "@total-typescript/tsconfig": "^1.0.4",
     "@types/node": "catalog:",

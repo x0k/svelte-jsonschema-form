@@ -10,19 +10,19 @@ import {
   schemaHasNestedConditional,
   type Schema,
   type Validator,
-} from "@/core/index.js";
-import { createDataURLtoBlob } from "@/lib/file.js";
-import { weakMemoize } from "@/lib/memoize.js";
-import type { SchedulerYield } from "@/lib/scheduler.js";
-import { refFromBind, type Bind } from "@/lib/svelte.svelte.js";
+} from "#core/index.js";
+import { createDataURLtoBlob } from "#lib/file.js";
+import { weakMemoize } from "#lib/memoize.js";
+import type { SchedulerYield } from "#lib/scheduler.js";
+import { refFromBind, type Bind } from "#lib/svelte.svelte.js";
 import {
   abortPrevious,
   createTask,
   type TasksCombinator,
   type FailedTask,
   debounce,
-} from "@/lib/task.svelte.js";
-import type { DeepPartial } from "@/lib/types.js";
+} from "#lib/task.svelte.js";
+import type { DeepPartial } from "#lib/types.js";
 
 import type { Theme } from "./components.js";
 import type { Config } from "./config.js";

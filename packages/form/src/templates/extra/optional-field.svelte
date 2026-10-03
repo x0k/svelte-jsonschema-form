@@ -1,10 +1,10 @@
 <script lang="ts" module>
-  import "@/fields/extra-templates/optional-field.js";
-  import "@/fields/extra-components/title.js";
-  import "@/fields/extra-components/label.js";
-  import "@/fields/extra-components/description.js";
-  import "@/fields/extra-components/errors-list.js";
-  import "@/fields/extra-components/help.js";
+  import "#fields/extra-templates/optional-field.js";
+  import "#fields/extra-components/title.js";
+  import "#fields/extra-components/label.js";
+  import "#fields/extra-components/description.js";
+  import "#fields/extra-components/errors-list.js";
+  import "#fields/extra-components/help.js";
   import "../field-layouts.js";
 </script>
 
@@ -13,8 +13,8 @@
     getComponent,
     getFormContext,
     type ComponentProps,
-  } from "@/form/index.js";
-  import { isNil } from "@/lib/types.js";
+  } from "#form/index.js";
+  import { isNil } from "#lib/types.js";
 
   import { getTemplateProps } from "../get-template-props.js";
 

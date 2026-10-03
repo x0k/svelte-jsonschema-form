@@ -3,7 +3,7 @@ import { DEFAULT_ID_PREFIX, SJSF_ID_PREFIX, type Schema } from "@sjsf/form";
 import { createMerger } from "@sjsf/form/mergers/modern";
 import { beforeEach, describe, expect, it } from "vitest";
 
-import type { Entries } from "$lib/model.js";
+import type { Entries } from "#lib/model.js";
 
 import { createOptionIndexDecoder } from "../id-builder.js";
 import { createCodec } from "./codec.js";

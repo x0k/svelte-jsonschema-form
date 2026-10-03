@@ -4,7 +4,7 @@ import type {
   JSONSchema7Definition,
 } from "json-schema";
 
-import { isRecordEmpty } from "@/lib/object.js";
+import { isRecordEmpty } from "#lib/object.js";
 
 export const JSON_SCHEMA_TYPE_NAMES: string[] = [
   "array",

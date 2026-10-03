@@ -1,4 +1,4 @@
-import type { SchemaArrayValue } from "@/core/schema.js";
+import type { SchemaArrayValue } from "#core/schema.js";
 
 import type { FieldCommonProps } from "../fields.js";
 

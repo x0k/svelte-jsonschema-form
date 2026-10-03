@@ -15,17 +15,17 @@ import { isRecord } from "@sjsf/form/lib/object";
 import type { MaybePromise } from "@sjsf/form/lib/types";
 import type { StandardSchemaV1 } from "@standard-schema/spec";
 
-import { getRequestEvent } from "$app/server";
 import {
   createFormDataEntryConverter,
   type FormDataConverterOptions,
   type UnknownEntryConverter,
-} from "$lib/internal/convert-form-data-entry.js";
+} from "#lib/internal/convert-form-data-entry.js";
 import {
   FORM_DATA_FILE_PREFIX,
   JSON_CHUNKS_KEY,
   type EntryConverter,
-} from "$lib/model.js";
+} from "#lib/model.js";
+import { getRequestEvent } from "$app/server";
 
 import { DEFAULT_PSEUDO_PREFIX } from "../id-builder.js";
 import { decode } from "../internal/codec.js";

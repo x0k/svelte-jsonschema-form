@@ -11,7 +11,7 @@ import {
   orderProperties,
   type SchemaObjectValue,
   type SchemaValue,
-} from "@/core/index.js";
+} from "#core/index.js";
 import {
   AFTER_SUBMITTED,
   getDefaultFieldState,
@@ -38,8 +38,8 @@ import {
   getStableConfig,
   isSelect,
   type UiSchema,
-} from "@/form/index.js";
-import { snapshotWithSymbols } from "@/lib/svelte.svelte.js";
+} from "#form/index.js";
+import { snapshotWithSymbols } from "#lib/svelte.svelte.js";
 
 import { createFormOptions } from "../enum.js";
 import {

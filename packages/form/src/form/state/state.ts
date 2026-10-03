@@ -1,8 +1,8 @@
 import { getContext, setContext } from "svelte";
 import type { SvelteMap } from "svelte/reactivity";
 
-import type { Schema } from "@/core/index.js";
-import type { DataURLToBlob } from "@/lib/file.js";
+import type { Schema } from "#core/index.js";
+import type { DataURLToBlob } from "#lib/file.js";
 
 import type { Theme } from "../components.js";
 import type { Config } from "../config.js";

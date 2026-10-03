@@ -9,7 +9,7 @@ import {
   type Path,
   type SchemaDefinition,
   type SchemaType,
-} from "@/core/index.js";
+} from "#core/index.js";
 import {
   ON_ARRAY_CHANGE,
   ON_BLUR,
@@ -18,7 +18,7 @@ import {
   ON_OBJECT_CHANGE,
   type FieldsValidationMode,
   type Schema,
-} from "@/form/main.js";
+} from "#form/main.js";
 import {
   makeSchemaDefinitionTraverser,
   ALL_SUB_SCHEMA_KEYS,
@@ -26,9 +26,9 @@ import {
   type SchemaTraverserContext,
   transformSchemaDefinition,
   isSchemaObject,
-} from "@/lib/json-schema/index.js";
-import { getValueByKeys, insertValue, type Trie } from "@/lib/trie.js";
-import { allowAdditionalProperties } from "@/omit-extra-data.js";
+} from "#lib/json-schema/index.js";
+import { getValueByKeys, insertValue, type Trie } from "#lib/trie.js";
+import { allowAdditionalProperties } from "#omit-extra-data.js";
 
 export interface SchemaMeta {
   id: string;

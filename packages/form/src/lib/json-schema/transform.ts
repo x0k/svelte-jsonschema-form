@@ -11,13 +11,13 @@ import {
   type AnySubSchemaKey,
   type TransformedSchemaDefinition,
   type TransformedSchema,
-} from "@/lib/json-schema/index.js";
+} from "#lib/json-schema/index.js";
 import type {
   ArraySchemaTraverserContext,
   RecordSchemaTraverserContext,
   SchemaTraverserContext,
   SubSchemaTraverserContext,
-} from "@/lib/json-schema/traverse.js";
+} from "#lib/json-schema/traverse.js";
 
 export function transformSchemaDefinition<R>(
   schema: SchemaDefinition,

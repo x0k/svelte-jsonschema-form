@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import type { Schema } from "@/core/index.js";
+import type { Schema } from "#core/index.js";
 
 import { mergeSchemas } from "./legacy.js";
 

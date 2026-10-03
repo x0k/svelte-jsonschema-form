@@ -1,4 +1,4 @@
-import type { ComponentDefinitions } from "@/form/components.js";
+import type { ComponentDefinitions } from "#form/components.js";
 
 import * as fields from "../fields/exports.js";
 import * as templates from "../templates/exports.js";

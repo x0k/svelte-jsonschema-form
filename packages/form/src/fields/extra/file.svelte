@@ -22,10 +22,10 @@
     validateFileList,
     FileListValidationError,
     getFieldAction,
-  } from "@/form/index.js";
-  import { fileToDataURL } from "@/lib/file.js";
-  import { createAsyncBinding } from "@/lib/svelte.svelte.js";
-  import "@/form/extra-fields/file.js";
+  } from "#form/index.js";
+  import { fileToDataURL } from "#lib/file.js";
+  import { createAsyncBinding } from "#lib/svelte.svelte.js";
+  import "#form/extra-fields/file.js";
 
   import "../extra-widgets/file.js";
 

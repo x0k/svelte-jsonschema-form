@@ -1,14 +1,14 @@
 import { describe, expect, it } from "vitest";
 
-import { pathFromRef } from "@/core/index.js";
+import { pathFromRef } from "#core/index.js";
 import {
   ON_ARRAY_CHANGE,
   ON_INPUT,
   ON_OBJECT_CHANGE,
   type Schema,
-} from "@/form/main.js";
-import { createMerger } from "@/lib/json-schema/index.js";
-import { insertValue } from "@/lib/trie.js";
+} from "#form/main.js";
+import { createMerger } from "#lib/json-schema/index.js";
+import { insertValue } from "#lib/trie.js";
 
 import {
   createValidatorRetriever,

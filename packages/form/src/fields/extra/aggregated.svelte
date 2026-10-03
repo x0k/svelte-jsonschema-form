@@ -21,8 +21,8 @@
     getFieldErrors,
     getFieldAction,
     getSubtreePaths,
-  } from "@/form/index.js";
-  import "@/form/extra-fields/aggregated.js";
+  } from "#form/index.js";
+  import "#form/extra-fields/aggregated.js";
 
   import "../extra-widgets/aggregated.js";
 

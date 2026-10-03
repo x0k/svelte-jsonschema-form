@@ -2,7 +2,7 @@ import type {
   SchemaValue,
   SchemaArrayValue,
   SchemaObjectValue,
-} from "@/core/index.js";
+} from "#core/index.js";
 
 import type {
   ComponentProps,

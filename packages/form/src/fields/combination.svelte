@@ -4,7 +4,7 @@
 -->
 
 <script lang="ts">
-  import type { ComponentProps } from "@/form/index.js";
+  import type { ComponentProps } from "#form/index.js";
 
   import Combination from "./combination/combination.svelte";
   import type { CombinationKey } from "./combination/context.svelte.js";
