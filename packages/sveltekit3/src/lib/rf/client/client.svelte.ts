@@ -148,17 +148,34 @@ export async function connect<T>(
     }
     formElement = document.createElement("form");
     formElement.style.display = "none";
-    // NOTE: the form is left detached once submitted (see `onSubmit`), and it
-    // must not be reset afterwards. Kit v3 guards its own reset with
-    // `isConnected`, so a connected form would be reset here — and Kit would
-    // then read back the hidden form's own wire fields
-    // (`__sjsf_id_prefix`, the JSON chunks) as if they were the form value.
-    // Resetting is the caller's business: `remoteForm.enhance(async ({submit}) =>
-    // { if (await submit()) form.reset(); })`.
-    // Kit types the attachment as returning `void`, but it does return a
-    // cleanup that removes the listeners it added, so this still runs on unmount
-    const attach = remoteForm[symbols[0]];
-    return attach(formElement);
+    // Registered before `attach()` so this runs ahead of Kit's own `reset`
+    // listener, which is the only way to keep the two from fighting: Kit's
+    // `handle_reset` reads the form back with `new FormData(form)` after an
+    // `await tick()` and assigns it to the form value, which would read this
+    // form's own wire fields (`__sjsf_id_prefix`, the JSON chunks) as if they
+    // were the user's input and empty the visible form.
+    formElement.addEventListener("reset", (e) => {
+      // Undo the submission on the form the user can actually see. The theme
+      // wires this to `form.reset()`, which restores `options.initialValue`.
+      originalFormElement.reset();
+      // Kit must not observe the reset, or it rebuilds its value from the
+      // wire fields it is about to receive.
+      e.stopImmediatePropagation();
+      // The submission is done, so release the inputs and the `File` blobs
+      // they referenced.
+      detachSubmittedForm();
+    });
+    // Kit types the attachment as returning `void`, which hides the cleanup its
+    // implementation does return; the cast recovers it so `onMount` can hand it
+    // back and Kit's listeners come off with the component.
+    const attach = remoteForm[symbols[0]] as (
+      node: HTMLFormElement
+    ) => () => void;
+    const detachRemoteForm = attach(formElement);
+    return () => {
+      detachRemoteForm();
+      detachSubmittedForm();
+    };
   });
 
   const dataParser = createSvelteKitDataParser(options);
@@ -186,6 +203,11 @@ export async function connect<T>(
   const initialValue = $derived(
     await hydratable(`${HYDRATABLE_KEY_PREFIX}${idPrefix}`, getInitialValue)
   );
+
+  function detachSubmittedForm() {
+    formElement.remove();
+    formElement.replaceChildren();
+  }
 
   function hiddenInput(name: string, value: string) {
     const input = document.createElement("input");
@@ -245,18 +267,13 @@ export async function connect<T>(
         )) {
           hiddenInput(`${CHUNK_KEY}${fieldSuffix}`, chunk);
         }
+        // Kit only resets the form while it is connected, and that reset is what
+        // carries the submission back to the visible form (see the `reset`
+        // listener in `onMount`). This is the only append: the form is detached
+        // again by that listener, so it is connected exactly across the
+        // submission.
         document.body.appendChild(formElement);
         formElement.requestSubmit();
-        // Detach straight away. Kit snapshots `new FormData(form)` inside its
-        // submit handler before its first `await`, so the inputs are already
-        // read by the time this runs, and clearing them here releases the
-        // `File` blobs the submission referenced.
-        //
-        // Staying connected would make Kit v3 reset the form (its reset is
-        // guarded by `isConnected`) and then read back this form's own wire
-        // fields as the form value, which blanks the visible form.
-        formElement.remove();
-        formElement.replaceChildren();
         options.onSubmit?.(value, e);
       },
     } satisfies Partial<FormOptions<T>>,
