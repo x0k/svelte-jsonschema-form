@@ -91,9 +91,15 @@ function createDefaultReplacer({
   };
 }
 
-export function getRemoteFormFieldId(
-  remoteForm: RemoteForm<any, any> | Omit<RemoteForm<any, void>, "for">
-): string {
+/**
+ * A remote form, or the instance `RemoteForm.for(...)` hands back — the latter
+ * has no `for` of its own, since it is already bound to a key.
+ */
+export type RemoteFormInstance =
+  | RemoteForm<any, any>
+  | Omit<RemoteForm<any, void>, "for">;
+
+export function getRemoteFormFieldId(remoteForm: RemoteFormInstance): string {
   const action = remoteForm.action;
   const query = action.slice(action.indexOf("?") + 1);
   const actionId = new URLSearchParams(query).get("/remote");
@@ -127,7 +133,7 @@ export interface ConnectOptions extends SvelteKitDataParserOptions {
 const HYDRATABLE_KEY_PREFIX = "__sjsf_sveltekit_h__";
 
 export async function connect<T>(
-  remoteForm: RemoteForm<any, any>,
+  remoteForm: RemoteFormInstance,
   options: Omit<FormOptions<T>, "idBuilder"> & ConnectOptions
 ): Promise<FormOptions<T>> {
   let formElement: HTMLFormElement;
