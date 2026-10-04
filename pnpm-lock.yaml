@@ -761,9 +761,6 @@ importers:
       '@sjsf/skeleton5-theme':
         specifier: workspace:*
         version: link:../../packages/skeleton5-theme
-      '@sjsf/sveltekit':
-        specifier: workspace:*
-        version: link:../../legacy/sveltekit
       '@sjsf/valibot-validator':
         specifier: workspace:*
         version: link:../../packages/valibot-validator
