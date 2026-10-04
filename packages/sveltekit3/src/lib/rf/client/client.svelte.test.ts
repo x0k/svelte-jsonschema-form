@@ -11,8 +11,6 @@ import type { ConnectReplacerOptions } from "./client.svelte.js";
 const ATTACH = Symbol("attach");
 
 const FORM_ID = "kd7yhg/createPost";
-const CHUNK_INPUT = `input[name^="${JSON_CHUNKS_KEY}"]`;
-const INJECTED_FORM = 'form:not([data-testid="original"])';
 
 function createFakeRemoteForm(actionId: string = FORM_ID) {
   return {
@@ -45,6 +43,9 @@ async function renderConnected(
 /**
  * Runs `connect`'s submit handler and returns the inputs of the form it
  * injects, which is what Kit reads the submission from.
+ *
+ * `connect()` detaches that form as soon as `requestSubmit()` returns, so the
+ * inputs have to be captured while its submit event is still being dispatched.
  */
 async function submitWith(
   connected: Partial<FormOptions<any>>,
@@ -54,26 +55,35 @@ async function submitWith(
   const original = screen.getByTestId("original").element() as HTMLFormElement;
   const event = new Event("submit", { bubbles: true, cancelable: true });
   Object.defineProperty(event, "target", { value: original });
-  await connected.onSubmit!(value, event as unknown as SubmitEvent);
-  return Array.from(
-    document.querySelectorAll<HTMLInputElement>(`${INJECTED_FORM} input`)
-  );
+
+  let captured: HTMLInputElement[] = [];
+  const capture = (e: Event) => {
+    if (
+      e.target instanceof HTMLFormElement &&
+      !e.target.hasAttribute("data-testid")
+    ) {
+      captured = Array.from(e.target.querySelectorAll("input"));
+    }
+  };
+  document.addEventListener("submit", capture, true);
+  try {
+    await connected.onSubmit!(value, event as unknown as SubmitEvent);
+  } finally {
+    document.removeEventListener("submit", capture, true);
+  }
+  return captured;
 }
 
-function chunkValue(): any {
-  const chunks = Array.from(
-    document.querySelectorAll<HTMLInputElement>(
-      `${INJECTED_FORM} ${CHUNK_INPUT}`
-    )
-  ).map((input) => input.value);
+function chunkValue(inputs: HTMLInputElement[]): any {
+  const chunks = inputs
+    .filter((input) => input.name.startsWith(JSON_CHUNKS_KEY))
+    .map((input) => input.value);
   expect(chunks.length).toBeGreaterThan(0);
   return JSON.parse(chunks.join(""));
 }
 
 afterEach(() => {
-  document.body
-    .querySelectorAll(INJECTED_FORM)
-    .forEach((form) => form.remove());
+  document.body.innerHTML = "";
 });
 
 describe("connect field names", () => {
@@ -109,12 +119,10 @@ describe("connect field names", () => {
   test("the suffix stays out of the JSON payload", async () => {
     const { connected, screen } = await renderConnected();
 
-    await submitWith(connected, screen, {
+    const inputs = await submitWith(connected, screen, {
       avatar: new File(["x"], "avatar.png"),
     });
-
-    // The server looks the file up by the bare key carried in the JSON
-    const chunk = chunkValue();
+    const chunk = chunkValue(inputs);
     expect(chunk.avatar).toBeTypeOf("string");
     expect(chunk.avatar.endsWith(`/${FORM_ID}`)).toBe(false);
   });
@@ -165,6 +173,6 @@ describe("connect field names", () => {
 
     // No file input was injected, since the custom replacer did not add one
     expect(inputs.find((input) => input.type === "file")).toBeUndefined();
-    expect(chunkValue().avatar).toBe("custom/avatar");
+    expect(chunkValue(inputs).avatar).toBe("custom/avatar");
   });
 });

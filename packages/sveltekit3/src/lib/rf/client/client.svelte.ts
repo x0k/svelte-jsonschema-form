@@ -148,16 +148,17 @@ export async function connect<T>(
     }
     formElement = document.createElement("form");
     formElement.style.display = "none";
-    formElement.onreset = () => {
-      originalFormElement.reset();
-    };
+    // NOTE: the form is left detached once submitted (see `onSubmit`), and it
+    // must not be reset afterwards. Kit v3 guards its own reset with
+    // `isConnected`, so a connected form would be reset here — and Kit would
+    // then read back the hidden form's own wire fields
+    // (`__sjsf_id_prefix`, the JSON chunks) as if they were the form value.
+    // Resetting is the caller's business: `remoteForm.enhance(async ({submit}) =>
+    // { if (await submit()) form.reset(); })`.
+    // Kit types the attachment as returning `void`, but it does return a
+    // cleanup that removes the listeners it added, so this still runs on unmount
     const attach = remoteForm[symbols[0]];
-    attach(formElement);
-    return () => {
-      // The last submission's inputs are still around when `reset` never
-      // fires, so don't let them outlive the component
-      detachSubmittedForm();
-    };
+    return attach(formElement);
   });
 
   const dataParser = createSvelteKitDataParser(options);
@@ -199,13 +200,6 @@ export async function connect<T>(
     options.createReplacer ?? createDefaultReplacer
   );
 
-  let submittedFormCleanup: AbortController | undefined;
-
-  function detachSubmittedForm() {
-    formElement.remove();
-    formElement.replaceChildren();
-  }
-
   const uiSchema: UiSchemaRoot = $derived.by(() => {
     const { uiSchema, uiOptionsRegistry } = options;
     return untrack(() =>
@@ -243,13 +237,7 @@ export async function connect<T>(
         formElement.acceptCharset = originalFormElement.acceptCharset;
         formElement.name = originalFormElement.name;
         formElement.rel = originalFormElement.rel;
-        submittedFormCleanup?.abort();
-        submittedFormCleanup = new AbortController();
-        // Releases the previous submission's inputs, including any `File` blobs
-        // they reference. `reset` below normally does this first, but
-        // `remoteForm.enhance` may have been replaced with a callback that never
-        // calls `HTMLFormElement.prototype.reset`, so it cannot be relied on.
-        detachSubmittedForm();
+        formElement.replaceChildren();
         hiddenInput(`${SJSF_ID_PREFIX}${fieldSuffix}`, idPrefix);
         for (const chunk of chunks(
           JSON.stringify(value, createReplacer({ formElement, fieldSuffix })),
@@ -258,17 +246,17 @@ export async function connect<T>(
           hiddenInput(`${CHUNK_KEY}${fieldSuffix}`, chunk);
         }
         document.body.appendChild(formElement);
-        // NOTE: The form must stay connected until Kit resets it after the
-        // submission completes, otherwise the reset is skipped (it is guarded
-        // by `isConnected`) and the original form won't be restored.
-        // `setTimeout` because Kit's own reset handler reads
-        // `new FormData(form)` after an `await tick()`.
-        formElement.addEventListener(
-          "reset",
-          () => setTimeout(detachSubmittedForm, 0),
-          { once: true, signal: submittedFormCleanup.signal }
-        );
         formElement.requestSubmit();
+        // Detach straight away. Kit snapshots `new FormData(form)` inside its
+        // submit handler before its first `await`, so the inputs are already
+        // read by the time this runs, and clearing them here releases the
+        // `File` blobs the submission referenced.
+        //
+        // Staying connected would make Kit v3 reset the form (its reset is
+        // guarded by `isConnected`) and then read back this form's own wire
+        // fields as the form value, which blanks the visible form.
+        formElement.remove();
+        formElement.replaceChildren();
         options.onSubmit?.(value, e);
       },
     } satisfies Partial<FormOptions<T>>,
