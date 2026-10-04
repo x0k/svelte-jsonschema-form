@@ -10,6 +10,10 @@ defineFormTests({
 test.describe("connect() file upload", () => {
   test("submits a File alongside the other fields", async ({ page }) => {
     await page.goto("/tests/connect");
+    // Clicking before hydration leaves the form with its native submit, so the
+    // page reloads instead of enhancing, and the assertions race the
+    // navigation.
+    await page.waitForLoadState("networkidle");
 
     const form = page.locator("form").first();
     await expect(form.getByLabel("First name")).toHaveValue("Jane");
@@ -26,13 +30,15 @@ test.describe("connect() file upload", () => {
     await form.getByLabel("Last name").fill("WithFile");
     await form.locator('button[type="submit"]').click();
 
-    // `/tests` returns a module-global "last submission", so the values here
-    // have to be unique to this test — otherwise a previous test's payload
-    // would satisfy the assertion even if this submission was rejected.
-    // Kit v3 rejects the whole submission with `form_field_unbound` unless
-    // every field name ends with `/{formId}`, the injected file input included.
+    // The values here have to be unique to this test — otherwise a previous
+    // test's payload would satisfy the assertion even if this submission was
+    // rejected. Kit v3 rejects the whole submission with
+    // `form_field_unbound` unless every field name ends with `/{formId}`, the
+    // injected file input included.
     await expect
-      .poll(async () => (await page.request.get("/tests")).json())
+      .poll(async () =>
+        (await page.request.get("/tests?firstName=Uploads")).json()
+      )
       .toMatchObject({
         firstName: "Uploads",
         lastName: "WithFile",

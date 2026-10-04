@@ -13,6 +13,7 @@ const ATTACH = Symbol("attach");
 const FORM_ID = "kd7yhg/createPost";
 
 function createFakeRemoteForm(actionId: string = FORM_ID) {
+  const detached: number[] = [];
   return {
     // `getRemoteFormFieldId` reads the id out of the `/remote` query param
     action: `/current?/remote=${encodeURIComponent(actionId)}`,
@@ -20,7 +21,13 @@ function createFakeRemoteForm(actionId: string = FORM_ID) {
       value: () => ({}),
       allIssues: () => undefined,
     },
-    [ATTACH]: () => {},
+    // Kit's attachment returns the cleanup that removes the listeners it added
+    // (see `form.svelte.js` in `@sveltejs/kit`), which `connect()` hands back to
+    // `onMount`. Counting the calls is what proves the cleanup is not dropped.
+    [ATTACH]: () => () => {
+      detached.push(1);
+    },
+    detached,
   };
 }
 
@@ -29,23 +36,24 @@ async function renderConnected(
   options: Record<string, unknown> = {}
 ) {
   let connected: Partial<FormOptions<any>> | undefined;
+  const remoteForm = createFakeRemoteForm(actionId);
   const screen = await render(ConnectProbe, {
-    remoteForm: createFakeRemoteForm(actionId),
+    remoteForm,
     options: { ...defaults, ...options },
     connected: (value: Partial<FormOptions<any>>) => {
       connected = value;
     },
   });
   await expect.element(screen.getByTestId("original")).toBeInTheDocument();
-  return { connected: connected!, screen };
+  return { connected: connected!, screen, remoteForm };
 }
 
 /**
  * Runs `connect`'s submit handler and returns the inputs of the form it
  * injects, which is what Kit reads the submission from.
  *
- * `connect()` detaches that form as soon as `requestSubmit()` returns, so the
- * inputs have to be captured while its submit event is still being dispatched.
+ * Those inputs are cleared once the submission resolves, so they have to be
+ * captured while Kit's submit event is still being dispatched.
  */
 async function submitWith(
   connected: Partial<FormOptions<any>>,
@@ -174,5 +182,20 @@ describe("connect field names", () => {
     // No file input was injected, since the custom replacer did not add one
     expect(inputs.find((input) => input.type === "file")).toBeUndefined();
     expect(chunkValue(inputs).avatar).toBe("custom/avatar");
+  });
+});
+
+describe("connect teardown", () => {
+  // Kit's attachment returns the cleanup that removes the listeners it added to
+  // the form it is given. `connect()` only has `onMount` to return it from, so
+  // dropping it would leave those listeners bound for the page's lifetime.
+  test("hands Kit's attachment cleanup back to `onMount`", async () => {
+    const { screen, remoteForm } = await renderConnected();
+
+    expect(remoteForm.detached).toHaveLength(0);
+
+    await screen.unmount();
+
+    expect(remoteForm.detached).toHaveLength(1);
   });
 });

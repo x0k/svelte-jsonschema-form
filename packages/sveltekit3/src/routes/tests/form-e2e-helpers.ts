@@ -17,6 +17,10 @@ export function defineFormTests({
 
     test.beforeEach(async ({ page }) => {
       await page.goto(route);
+      // Clicking before hydration leaves the form with its native submit, so
+      // the page reloads instead of enhancing and the assertions race the
+      // navigation.
+      await page.waitForLoadState("networkidle");
       form = page.locator("form").first();
     });
 
@@ -72,7 +76,9 @@ export function defineFormTests({
         await page.waitForURL(`**${route}**`);
       }
 
-      const response = await page.request.get("/tests");
+      // Scoped by submitted name: the store is shared and the routes run
+      // concurrently, so a test cannot read "whatever arrived last".
+      const response = await page.request.get("/tests?firstName=Alice");
       const data = await response.json();
       expect(data).toEqual({ firstName: "Alice", lastName: "Smith" });
 
