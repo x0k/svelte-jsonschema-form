@@ -259,7 +259,12 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
   assign(
     files,
     "vite.config.js",
-    createViteConfig({ themeOrSubTheme, icons, sveltekit })(VITE_CONFIG)
+    createViteConfig({
+      themeOrSubTheme,
+      icons,
+      sveltekit,
+      sveltekitPackage: kit.pkg,
+    })(VITE_CONFIG)
   );
   assign(files, "src/app.html", createAppHtml({ themeOrSubTheme })(APP_HTML));
   assign(

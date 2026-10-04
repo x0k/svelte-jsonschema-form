@@ -11,7 +11,7 @@
 </script>
 
 <script lang="ts">
-  import { isSchemaObjectValue } from "@/core/index.js";
+  import { isSchemaObjectValue } from "#core/index.js";
   import {
     makeEventHandlers,
     getFieldErrors,
@@ -20,9 +20,9 @@
     getComponent,
     getFieldAction,
     type ComponentProps,
-  } from "@/form/index.js";
-  import "@/form/extra-fields/multi-enum.js";
-  import { multipleOptions } from "@/options.svelte.js";
+  } from "#form/index.js";
+  import "#form/extra-fields/multi-enum.js";
+  import { multipleOptions } from "#options.svelte.js";
 
   import { createFormOptions } from "../enum.js";
   import "../extra-widgets/checkboxes.js";

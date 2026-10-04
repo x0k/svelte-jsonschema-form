@@ -16,9 +16,9 @@
     getComponent,
     type ComponentProps,
     getFieldAction,
-  } from "@/form/index.js";
-  import "@/form/extra-fields/enum.js";
-  import { EMPTY_VALUE, singleOption } from "@/options.svelte.js";
+  } from "#form/index.js";
+  import "#form/extra-fields/enum.js";
+  import { EMPTY_VALUE, singleOption } from "#options.svelte.js";
 
   import { createFormOptions } from "../enum.js";
 

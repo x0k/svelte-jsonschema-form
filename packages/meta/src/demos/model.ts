@@ -107,7 +107,7 @@ export const COMPOSER_DEFAULTS = {
   sveltekit: "no",
   // No `kitRange`: the demos copy their sources from the Kit 3 `examples/*`,
   // which import through `#lib`, so the composer has to emit the matching
-  // `imports` map. `resolveSvelteKitProject` already defaults to Kit 3.
+  // `imports` map. An absent `kitRange` resolves to Kit 3.
   focusOnFirstError: true,
   // These options are not relevant for demos,
   // because if they are used at all,

@@ -1,8 +1,8 @@
 <script lang="ts">
   import { createForm } from "@sjsf/form";
 
-  import { connect } from "$lib/rf/client/index.js";
-  import { createFormIdBuilder } from "$lib/rf/index.js";
+  import { connect } from "#lib/rf/client/index.js";
+  import { createFormIdBuilder } from "#lib/rf/index.js";
 
   import * as defaults from "../../form-defaults.js";
   import { createPost, loadInitialData } from "../data.remote.js";

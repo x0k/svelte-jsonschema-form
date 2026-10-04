@@ -2,7 +2,7 @@ import {
   getSimpleSchemaType,
   isFileSchema,
   isFixedItems,
-} from "@/core/index.js";
+} from "#core/index.js";
 
 import type { ResolveFieldType } from "../fields.js";
 import {

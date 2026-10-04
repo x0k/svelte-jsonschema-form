@@ -4,7 +4,7 @@ import { fromRecord } from "@sjsf/form/lib/resolver";
 import { createFormMerger } from "@sjsf/form/mergers/modern";
 import { describe, expect, it, vi } from "vitest";
 
-import { JSON_CHUNKS_KEY } from "$lib/model.js";
+import { JSON_CHUNKS_KEY } from "#lib/model.js";
 
 const mockRequest = new Request("http://localhost");
 vi.mock("$app/server", () => ({

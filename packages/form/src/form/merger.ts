@@ -1,4 +1,4 @@
-import type { Merger, Schema, SchemaValue } from "@/core/index.js";
+import type { Merger, Schema, SchemaValue } from "#core/index.js";
 
 export interface MergeFormDataAndSchemaDefaultsOptions {
   schema: Schema;

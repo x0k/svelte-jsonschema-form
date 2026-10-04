@@ -16,8 +16,8 @@ import {
   createFormDataEntryConverter,
   type FormDataConverterOptions,
   type UnknownEntryConverter,
-} from "$lib/internal/convert-form-data-entry.js";
-import type { EntryConverter, EnumItemDecoder } from "$lib/model.js";
+} from "#lib/internal/convert-form-data-entry.js";
+import type { EntryConverter, EnumItemDecoder } from "#lib/model.js";
 
 import {
   createOptionIndexDecoder,

@@ -1,4 +1,4 @@
-import type { SchemaArrayValue, SchemaValue } from "@/core/index.js";
+import type { SchemaArrayValue, SchemaValue } from "#core/index.js";
 
 type ArrayAssert<T extends SchemaValue> = (
   arr: SchemaArrayValue | null | undefined

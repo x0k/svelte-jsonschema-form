@@ -1,4 +1,4 @@
-import type { SchemaArrayValue } from "@/core/index.js";
+import type { SchemaArrayValue } from "#core/index.js";
 
 import type { MultiSelectOptions, WidgetCommonProps } from "../widgets.js";
 

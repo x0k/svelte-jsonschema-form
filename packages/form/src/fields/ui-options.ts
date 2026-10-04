@@ -1,5 +1,5 @@
-import type { SchemaValue } from "@/form/index.js";
-import type { EnumValueMapperBuilder } from "@/options.svelte.js";
+import type { SchemaValue } from "#form/index.js";
+import type { EnumValueMapperBuilder } from "#options.svelte.js";
 
 declare module "../form/index.js" {
   interface UiOptions {

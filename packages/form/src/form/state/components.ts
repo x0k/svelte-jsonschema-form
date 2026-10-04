@@ -1,4 +1,4 @@
-import type { Resolved } from "@/lib/resolver.js";
+import type { Resolved } from "#lib/resolver.js";
 
 import type {
   CompatibleComponentDefinitions,

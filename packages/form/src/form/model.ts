@@ -3,10 +3,10 @@ import type {
   RPath,
   SchemaArrayValue,
   SchemaValue,
-} from "@/core/index.js";
-import type { KeyedArray } from "@/lib/keyed-array.svelte.js";
-import type { Ref } from "@/lib/svelte.svelte.js";
-import type { Trie } from "@/lib/trie.js";
+} from "#core/index.js";
+import type { KeyedArray } from "#lib/keyed-array.svelte.js";
+import type { Ref } from "#lib/svelte.svelte.js";
+import type { Trie } from "#lib/trie.js";
 
 export type Creatable<Result, Options> =
   | ((options: Options) => Result)

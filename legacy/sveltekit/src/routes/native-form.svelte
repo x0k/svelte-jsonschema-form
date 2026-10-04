@@ -5,7 +5,7 @@
     createMeta,
     createSvelteKitForm,
     createSvelteKitRequest,
-  } from "$lib/client/index.js";
+  } from "#lib/client/index.js";
 
   import type { PageData, ActionData } from "./$types.js";
   import * as defaults from "./form-defaults.js";

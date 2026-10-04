@@ -6,7 +6,7 @@ import { describe, beforeEach, expect, it } from "vitest";
 import {
   createEnumItemDecoder,
   createFormDataEntryConverter,
-} from "$lib/internal/convert-form-data-entry.js";
+} from "#lib/internal/convert-form-data-entry.js";
 
 import {
   DEFAULT_PSEUDO_PREFIX,

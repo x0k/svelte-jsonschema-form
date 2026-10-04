@@ -1,6 +1,6 @@
 import { onMount, untrack } from "svelte";
 
-import type { RPath } from "@/core/index.js";
+import type { RPath } from "#core/index.js";
 
 import type { Config } from "../config.js";
 import {

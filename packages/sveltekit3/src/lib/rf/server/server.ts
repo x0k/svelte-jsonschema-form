@@ -146,8 +146,10 @@ export function createServerValidator<T>({
     if (!isRecord(input)) {
       return failure(t("expected-record", { input }));
     }
-    const { request } = getRequestEvent();
     try {
+      // Inside the `try`, since it throws `request_event_unavailable` when
+      // there is no active request, and this function never throws
+      const { request } = getRequestEvent();
       const idPrefix = parseIdPrefix(input);
       const value = await parseData(request.signal, idPrefix, input);
       const result =

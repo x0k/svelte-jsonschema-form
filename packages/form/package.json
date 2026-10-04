@@ -27,6 +27,14 @@
   "type": "module",
   "types": "./dist/form/index.d.ts",
   "svelte": "./dist/form/index.js",
+  "imports": {
+    "#lib/*": "./src/lib/*",
+    "#form/*": "./src/form/*",
+    "#core/*": "./src/core/*",
+    "#fields/*": "./src/fields/*",
+    "#options.svelte.js": "./src/options.svelte.js",
+    "#omit-extra-data.js": "./src/omit-extra-data.js"
+  },
   "exports": {
     "./package.json": "./package.json",
     "./lib/json-schema": {
@@ -166,7 +174,7 @@
     "dev": "vite",
     "test": "vitest run --typecheck",
     "bench": "vitest bench",
-    "build": "svelte-package && publint",
+    "build": "svelte-package --input src && publint",
     "check": "svelte-check --tsconfig ./tsconfig.json --tsgo-experimental-api",
     "lint": "eslint .",
     "format": "oxfmt .",

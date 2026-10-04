@@ -1,4 +1,4 @@
-import type { SchemaArrayValue } from "@/core/index.js";
+import type { SchemaArrayValue } from "#core/index.js";
 
 import { FORM_KEYED_ARRAYS } from "../internals.js";
 import type { KeyedFieldValues } from "../model.js";

@@ -1,4 +1,4 @@
-import type { Range } from "@/lib/range.js";
+import type { Range } from "#lib/range.js";
 
 import type { WidgetCommonProps } from "../widgets.js";
 

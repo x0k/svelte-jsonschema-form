@@ -6,8 +6,8 @@ import { Ajv } from "ajv";
 import type { JSONSchema7Definition } from "json-schema";
 import { describe, expect, it } from "vitest";
 
-import { createDeduplicator, createIntersector } from "@/lib/array.js";
-import { createComparator } from "@/lib/json-schema/compare/index.js";
+import { createDeduplicator, createIntersector } from "#lib/array.js";
+import { createComparator } from "#lib/json-schema/compare/index.js";
 
 import {
   createDeepAllOfMerge,

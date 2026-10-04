@@ -3,8 +3,8 @@ import { describe, it, expect } from "vitest";
 import { resolveSvelteKitProject } from "./sveltekit.ts";
 
 describe("resolveSvelteKitProject", () => {
-  it("defaults to Kit 3 when the range is unknown", () => {
-    const kit = resolveSvelteKitProject();
+  it("resolves an unknown range to Kit 3, not Kit 2", () => {
+    const kit = resolveSvelteKitProject(undefined);
 
     expect(kit.pkg.name).toBe("@sjsf/sveltekit3");
     expect(kit.libPrefix).toBe("#lib");
@@ -14,6 +14,22 @@ describe("resolveSvelteKitProject", () => {
       "#lib/*": "./src/lib/*",
     });
   });
+
+  it.each([undefined, "", "^2.70.3", "^3.0.0"] as const)(
+    "agrees with itself on every field for %s",
+    (range) => {
+      const kit = resolveSvelteKitProject(range);
+      // `isKit3(undefined)` is false, so the fallback range has to be applied
+      // before it decides any field, not just the package
+      const kit3 = kit.pkg.name === "@sjsf/sveltekit3";
+
+      expect(kit.libPrefix).toBe(kit3 ? "#lib" : "$lib");
+      expect(kit.tsconfigExtends).toBe(
+        kit3 ? "$app/tsconfig" : "./.svelte-kit/tsconfig.json"
+      );
+      expect(Object.keys(kit.libImports).length > 0).toBe(kit3);
+    }
+  );
 
   it.each([
     ["^2.70.3", "@sjsf/sveltekit", "$lib", "./.svelte-kit/tsconfig.json"],

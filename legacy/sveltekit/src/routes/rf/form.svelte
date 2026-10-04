@@ -2,8 +2,8 @@
   import { BasicForm, createForm } from "@sjsf/form";
   import { resolver } from "@sjsf/form/resolvers/compat";
 
-  import { connect } from "$lib/rf/client/index.js";
-  import { createFormIdBuilder } from "$lib/rf/index.js";
+  import { connect } from "#lib/rf/client/index.js";
+  import { createFormIdBuilder } from "#lib/rf/index.js";
 
   import * as defaults from "../form-defaults.js";
   import { schema, uiSchema } from "../model.js";

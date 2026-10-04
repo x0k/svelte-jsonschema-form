@@ -6,7 +6,7 @@
   } from "bits-ui";
   import type { Snippet } from "svelte";
 
-  import { cn } from "$lib/utils.js";
+  import { cn } from "#lib/utils.js";
 
   import * as Dialog from "./index.js";
 

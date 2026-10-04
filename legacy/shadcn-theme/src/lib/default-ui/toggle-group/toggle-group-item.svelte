@@ -4,8 +4,8 @@
   import {
     type ToggleVariants,
     toggleVariants,
-  } from "$lib/default-ui/toggle/index.js";
-  import { cn } from "$lib/utils.js";
+  } from "#lib/default-ui/toggle/index.js";
+  import { cn } from "#lib/utils.js";
 
   import { getToggleGroupCtx } from "./toggle-group.svelte";
 

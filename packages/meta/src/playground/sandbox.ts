@@ -20,7 +20,7 @@ import {
   type ExtraFieldFileName,
 } from "../fields.ts";
 import { extraPackage, type AbstractPackage } from "../package.ts";
-import { resolveSvelteKitProject } from "../sveltekit.ts";
+import { DEFAULT_KIT_RANGE, resolveSvelteKitProject } from "../sveltekit.ts";
 import { toTheme, type Theme } from "../themes.ts";
 import { WIDGETS } from "../widgets.generated.ts";
 import { isThemeBaseWidget, type ExtraWidgetFileNames } from "../widgets.ts";
@@ -243,8 +243,10 @@ export async function createSandboxFiles({
   }
 
   const themeExtension: ThemeExtension = [];
-  // Same resolution `createComposer` does for the options passed below
-  const lib = createKitPathFactory(resolveSvelteKitProject().libPrefix);
+  // Passed to `createComposer` below as well, so the prefix and the generated
+  // project shape cannot drift apart
+  const kitRange = DEFAULT_KIT_RANGE;
+  const lib = createKitPathFactory(resolveSvelteKitProject(kitRange).libPrefix);
   const customComponentsModule = lib("custom-components/index");
   if (usesMarkdownDescription) {
     themeExtension.push({
@@ -269,6 +271,7 @@ export async function createSandboxFiles({
     themeOrSubTheme: formState.theme,
     icons: formState.icons,
     sveltekit: "no",
+    kitRange,
     widgets: extraWidgets,
     fields: extraFields,
     extraFiles,

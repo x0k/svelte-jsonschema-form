@@ -140,7 +140,7 @@ class FileDropZoneState {
     const validFiles: File[] = [];
 
     for (let i = 0; i < uploadFiles.length; i++) {
-      const file = uploadFiles[i];
+      const file = uploadFiles[i]!;
 
       const rejectedReason = this.shouldAcceptFile(
         file,

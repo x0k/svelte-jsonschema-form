@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  import type { FieldCommonProps, SchemaValue } from "@/form/index.js";
+  import type { FieldCommonProps, SchemaValue } from "#form/index.js";
 
   const field = "objectKeyEnumField";
   declare module "../../form/index.js" {
@@ -24,8 +24,8 @@
     getFieldAction,
     makeEventHandlers,
     validateField,
-  } from "@/form/index.js";
-  import { singleOption } from "@/options.svelte.js";
+  } from "#form/index.js";
+  import { singleOption } from "#options.svelte.js";
 
   import { createFormOptions } from "../enum.js";
   import { getObjectContext } from "../object/context.svelte.js";
