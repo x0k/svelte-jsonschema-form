@@ -1,0 +1,31 @@
+import { createServerValidator } from "#lib/rf/server/server.js";
+import { form, query } from "$app/server";
+
+import * as defaults from "../../form-defaults.js";
+import { setLastSubmission } from "../submission-store.js";
+import { schema, uiSchema } from "./model.js";
+
+const validator = createServerValidator({
+  ...defaults,
+  schema,
+  uiSchema,
+});
+
+export const loadInitialData = query(() => {
+  return {
+    schema,
+    uiSchema,
+    initialValue: {
+      firstName: "Jane",
+      lastName: "Doe",
+      // Rows 19-20. Both keys are awkward on purpose: `::` is the pseudo
+      // element separator the id builder encodes, and `.` is the path separator.
+      "newKey::123": "seed",
+      "also.333": "seed",
+    },
+  };
+});
+
+export const createPost = form(validator, (data) => {
+  setLastSubmission(data.data);
+});
