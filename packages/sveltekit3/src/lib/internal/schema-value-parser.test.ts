@@ -303,19 +303,15 @@ describe("parseSchemaValue", async () => {
     await expect(
       parseSchemaValue(c.signal, opts({ schema, entries }))
     ).resolves.toEqual({
+      // The nested `children` are optional and arrive with nothing in them, so
+      // they are dropped rather than kept as `[]`.
       tree: {
         children: [
           {
-            children: [
-              {
-                children: [],
-                name: "bar",
-              },
-            ],
+            children: [{ name: "bar" }],
             name: "leaf",
           },
           {
-            children: [],
             name: "foo",
           },
         ],
@@ -333,6 +329,84 @@ describe("parseSchemaValue", async () => {
       },
     });
   });
+  // An optional array that ends up with nothing in it is dropped rather than
+  // kept empty — absent is what the JSON path sends for the same input, and
+  // `[]` would otherwise trip `minItems` on a field the user never filled in.
+  it("Should drop an optional array that arrives empty", async () => {
+    const schema: Schema = {
+      type: "object",
+      properties: {
+        tags: { type: "array", items: { type: "string" } },
+        keep: { type: "array", items: { type: "string" } },
+      },
+    };
+    const entries: Entries<string> = [
+      [SJSF_ID_PREFIX, "root"],
+      ["root.keep@0", "a"],
+    ];
+    await expect(
+      parseSchemaValue(c.signal, opts({ schema, entries }))
+    ).resolves.toEqual({ keep: ["a"] });
+  });
+
+  // A required one is the user's to answer, so it stays and the validator
+  // reports it rather than the parser quietly discarding it.
+  it("Should keep a required array that arrives empty", async () => {
+    const schema: Schema = {
+      type: "object",
+      required: ["tags"],
+      properties: {
+        tags: { type: "array", items: { type: "string" } },
+      },
+    };
+    const entries: Entries<string> = [[SJSF_ID_PREFIX, "root"]];
+    await expect(
+      parseSchemaValue(c.signal, opts({ schema, entries }))
+    ).resolves.toEqual({ tags: [] });
+  });
+
+  // A cleared dynamic property converts to `undefined`, which `setProperty`
+  // drops. The key is still put back: the form rendered inputs for it, and
+  // keeping it preserves the row. `toEqual` cannot see it — `{ k: undefined }`
+  // equals `{}` — so the assertions use `in`.
+  it("Should keep the key of a cleared additional property", async () => {
+    const schema: Schema = {
+      type: "object",
+      additionalProperties: { type: "string" },
+      properties: { firstName: { type: "string" } },
+    };
+    const entries: Entries<string> = [
+      [SJSF_ID_PREFIX, "root"],
+      ["root.firstName", "Chuck"],
+      ["root.extra", ""],
+    ];
+    const result = (await parseSchemaValue(
+      c.signal,
+      opts({ schema, entries })
+    )) as Record<string, unknown>;
+    expect("extra" in result).toBe(true);
+    expect(result.extra).toBeUndefined();
+  });
+
+  it("Should keep the key of a cleared pattern property", async () => {
+    const schema: Schema = {
+      type: "object",
+      patternProperties: { "^x-": { type: "string" } },
+      properties: { firstName: { type: "string" } },
+    };
+    const entries: Entries<string> = [
+      [SJSF_ID_PREFIX, "root"],
+      ["root.firstName", "Chuck"],
+      ["root.x-one", ""],
+    ];
+    const result = (await parseSchemaValue(
+      c.signal,
+      opts({ schema, entries })
+    )) as Record<string, unknown>;
+    expect("x-one" in result).toBe(true);
+    expect(result["x-one"]).toBeUndefined();
+  });
+
   it("Should parse schema with oneOf (select)", async () => {
     const schema: Schema = {
       definitions: {
