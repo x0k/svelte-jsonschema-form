@@ -120,6 +120,8 @@ export function setupSvelteKitForm<
 ) {
   const request = createSvelteKitRequest(meta, requestOptions);
   function onSubmit(_: Meta["__formValue"], e: SubmitEvent) {
+    // `execute` builds the payload from the form's own controls and never
+    // reads this value; `run` still requires one.
     request.run(getValueSnapshot(form), e);
   }
   const form = createSvelteKitForm(

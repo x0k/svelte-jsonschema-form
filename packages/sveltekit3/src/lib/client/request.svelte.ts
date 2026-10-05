@@ -6,8 +6,6 @@ import type { ActionResult } from "$app/forms";
 import { applyAction, deserialize } from "$app/forms";
 import { goto, refreshAll } from "$app/navigation";
 
-import { chunks } from "../internal.js";
-import { FORM_DATA_FILE_PREFIX, JSON_CHUNKS_KEY } from "../model.js";
 import type { SvelteKitFormMeta } from "./meta.js";
 
 export type SveltekitRequestOptions<ActionData, V> = Omit<
@@ -20,10 +18,6 @@ export type SveltekitRequestOptions<ActionData, V> = Omit<
 > & {
   /** @default DEFAULT_ID_PREFIX */
   idPrefix?: string;
-  /** By default, handles conversion of `File` */
-  createReplacer?: (options: RequestReplacerOptions) => Replacer;
-  /** @default 500000 */
-  jsonChunkSize?: number;
   /** @default true */
   reset?: boolean;
   /**
@@ -71,51 +65,21 @@ function isCurrentLocation(value: string): boolean {
   return true;
 }
 
-/** The context a `File` replacer needs to build a submission entry. */
-export interface RequestReplacerOptions {
-  /** The payload the submission is sent as. */
-  formData: FormData;
-}
-
-/** The `JSON.stringify` replacer the value is submitted with. */
-export type Replacer = (key: string, value: any) => any;
-
-function createDefaultReplacer({ formData }: RequestReplacerOptions): Replacer {
-  const seen = new Set<string>();
-  return (key, value) => {
-    if (!(value instanceof File)) {
-      return value;
-    }
-    const initialKey = `${FORM_DATA_FILE_PREFIX}${key}`;
-    let fdKey = initialKey;
-    let i = 1;
-    while (seen.has(fdKey)) fdKey = `${initialKey}__${i++}`;
-    seen.add(fdKey);
-    formData.append(fdKey, value);
-    return fdKey;
-  };
-}
-
 export function createSvelteKitRequest<
   Meta extends SvelteKitFormMeta<any, any, any, any>,
 >(
   _meta: Meta,
   options: SveltekitRequestOptions<Meta["__actionData"], Meta["__formValue"]>
 ) {
-  const jsonChunkSize = $derived(options.jsonChunkSize ?? 500000);
-  const createReplacer = $derived(
-    options.createReplacer ?? createDefaultReplacer
-  );
   return createTask({
-    // A copy of Kit's `enhance` fallback, which `request()` replaces with this
-    // one to submit the value as JSON chunks. Based on
+    // A copy of Kit's `enhance` fallback. Based on
     // `@sveltejs/kit`'s `src/runtime/app/forms/client.js` — note that Kit 3
     // split the single `forms.js` this used to live in. Diff against the
     // installed version when bumping Kit; see the notes on the branches below
     // for the parts that cannot be followed.
     async execute(
       signal: AbortSignal,
-      data: Meta["__formValue"] | FormValue,
+      _data: Meta["__formValue"] | FormValue,
       e: SubmitEvent
     ) {
       const formElement = e.currentTarget;
@@ -148,13 +112,12 @@ export function createSvelteKitRequest<
         }
       }
 
-      const formData = new FormData();
-      formData.append(SJSF_ID_PREFIX, options.idPrefix ?? DEFAULT_ID_PREFIX);
-      for (const chunk of chunks(
-        JSON.stringify(data, createReplacer({ formData })),
-        jsonChunkSize
-      )) {
-        formData.append(JSON_CHUNKS_KEY, chunk);
+      const formData = new FormData(formElement);
+      // The form renders its own id prefix input, which is required for the
+      // integration, so trust it: only the configured value fills in when the
+      // form has none, instead of overriding what it rendered.
+      if (!formData.has(SJSF_ID_PREFIX)) {
+        formData.append(SJSF_ID_PREFIX, options.idPrefix ?? DEFAULT_ID_PREFIX);
       }
 
       let result: ActionResult<NonNullable<Meta["__actionData"]>>;

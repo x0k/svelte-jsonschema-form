@@ -1,9 +1,17 @@
 import { createFormValidator } from "@sjsf/ajv8-validator";
-import { DEFAULT_ID_PREFIX, SJSF_ID_PREFIX, type Schema } from "@sjsf/form";
+import {
+  DEFAULT_ID_PREFIX,
+  SJSF_ID_PREFIX,
+  type FieldPath,
+  type Schema,
+} from "@sjsf/form";
 import { createMerger } from "@sjsf/form/mergers/modern";
 import { beforeEach, describe, expect, it } from "vitest";
 
-import { createOptionIndexDecoder } from "../id-builder.js";
+import {
+  createOptionIndexDecoder,
+  createFormIdBuilder,
+} from "../id-builder.js";
 import type { Entries } from "../model.js";
 import { createCodec } from "./codec.js";
 import {
@@ -236,6 +244,35 @@ describe("parseSchemaValue", async () => {
       lastName: "Norris",
       assKickCountChanged: "infinity",
       "new.keyChanged": "foo",
+    });
+  });
+  // Separator characters inside a key are escaped when the name is built, so
+  // the server reads one key instead of splitting it into path segments.
+  it("Should keep a dotted key the id builder encoded", async () => {
+    const p = (...segments: (string | number)[]) =>
+      segments as unknown as FieldPath;
+    const builder = createFormIdBuilder();
+    const schema: Schema = {
+      type: "object",
+      additionalProperties: {
+        type: "string",
+      },
+      properties: {
+        firstName: {
+          type: "string",
+          title: "First name",
+        },
+      },
+    };
+    const entries: Entries<string> = [
+      ["root.firstName", "Chuck"],
+      [builder.fromPath(p("also.333")), "seed"],
+    ];
+    await expect(
+      parseSchemaValue(c.signal, opts({ schema, entries }))
+    ).resolves.toEqual({
+      firstName: "Chuck",
+      "also.333": "seed",
     });
   });
   it("Should resolve references", async () => {

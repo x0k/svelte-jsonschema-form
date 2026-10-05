@@ -27,13 +27,12 @@ import { createCodec, DEFAULT_ESCAPE_CHAR } from "../internal/codec.js";
 import {
   createEnumItemDecoder,
   createFormDataEntryConverter,
+  EntryDecodeError,
   type FormDataConverterOptions,
   type UnknownEntryConverter,
 } from "../internal/convert-form-data-entry.js";
 import { parseSchemaValue } from "../internal/schema-value-parser.js";
 import {
-  FORM_DATA_FILE_PREFIX,
-  JSON_CHUNKS_KEY,
   type EntryConverter,
   type EnumItemDecoder,
   type InvalidFormData,
@@ -60,18 +59,7 @@ export interface FormHandlerOptions<T, SD extends SendData> extends Omit<
   enumItemDecoder?: EnumItemDecoder;
   /** @default false */
   sendData?: SD;
-  /** By default, handles conversion of `File` */
-  createReviver?: (formData: FormData) => (key: string, value: any) => any;
   escapeCharacter?: string;
-}
-
-function createDefaultReviver(formData: FormData) {
-  return (_: string, value: any) => {
-    if (typeof value === "string" && value.startsWith(FORM_DATA_FILE_PREFIX)) {
-      return formData.get(value);
-    }
-    return value;
-  };
 }
 
 export function createFormHandler<T, SD extends SendData>({
@@ -87,7 +75,6 @@ export function createFormHandler<T, SD extends SendData>({
   pseudoSeparator = DEFAULT_PSEUDO_SEPARATOR,
   escapeCharacter = DEFAULT_ESCAPE_CHAR,
   sendData,
-  createReviver = createDefaultReviver,
   enumItemDecoder = createEnumItemDecoder(
     createOptionIndexDecoder(pseudoSeparator)
   ),
@@ -128,40 +115,50 @@ export function createFormHandler<T, SD extends SendData>({
         `"${SJSF_ID_PREFIX}" key is missing in FormData or not a string`
       );
     }
-    const data: FormValue = formData.has(JSON_CHUNKS_KEY)
-      ? JSON.parse(
-          formData.getAll(JSON_CHUNKS_KEY).join(""),
-          createReviver(formData)
-        )
-      : await parseSchemaValue(signal, {
-          idPrefix,
-          idSeparator: propertySeparator,
-          idIndexSeparator: indexSeparator,
-          idPseudoSeparator: pseudoSeparator,
-          schema,
-          uiSchema,
-          entries: Array.from(formData.entries()),
-          validator,
-          merger,
-          convertEntry,
-          codec: createCodec({
-            escapeChar: escapeCharacter,
-            sequencesToEncode: [
-              propertySeparator,
-              indexSeparator,
-              pseudoSeparator,
-            ],
-          }),
-        });
+    let data: FormValue = {};
+    try {
+      data = await parseSchemaValue(signal, {
+        idPrefix,
+        idSeparator: propertySeparator,
+        idIndexSeparator: indexSeparator,
+        idPseudoSeparator: pseudoSeparator,
+        schema,
+        uiSchema,
+        entries: Array.from(formData.entries()),
+        validator,
+        merger,
+        convertEntry,
+        codec: createCodec({
+          escapeChar: escapeCharacter,
+          sequencesToEncode: [
+            propertySeparator,
+            indexSeparator,
+            pseudoSeparator,
+          ],
+        }),
+      });
+    } catch (e) {
+      // An undecodable value is reported against its own field instead of
+      // failing the request, so the form comes back with the error on it.
+      // Nothing is pushed back into the form: there is no parsed data, and
+      // pushing the `{}` initializer would wipe what the user typed.
+      if (e instanceof EntryDecodeError) {
+        const errors: ValidationError[] = [
+          { path: [...e.path], message: e.message },
+        ];
+        return [validated(errors, false), data, validated];
+      }
+      throw e;
+    }
     const result: ValidationResult<T> =
       "validateFormValueAsync" in validator
         ? await validator.validateFormValueAsync(signal, schema, data)
         : validator.validateFormValue(schema, data);
-    function validated(errors: ReadonlyArray<ValidationError>) {
+    function validated(errors: ReadonlyArray<ValidationError>, update = true) {
       const isValid = errors.length === 0;
       return {
         idPrefix: idPrefix as string,
-        updateData: !isValid && sendData === true,
+        updateData: update && !isValid && sendData === true,
         errors,
         ...(isValid
           ? ({

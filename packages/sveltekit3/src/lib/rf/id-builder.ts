@@ -105,7 +105,8 @@ export function createFormIdBuilder({
       } else {
         parts.push(".", encodedPseudoPrefix);
       }
-      return parts.join("") + fieldSuffix;
+      parts.push(fieldSuffix);
+      return parts.join("");
     },
     idPrefixName: () => `${SJSF_ID_PREFIX}${fieldSuffix}`,
   };

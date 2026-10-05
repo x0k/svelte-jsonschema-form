@@ -177,3 +177,93 @@ describe("createSvelteKitRequest result handling", () => {
     expect((result as { error: { status: number } }).error.status).toBe(403);
   });
 });
+
+describe("request payload", () => {
+  // The request carries the form's own controls — read with `new FormData`,
+  // exactly what a native submission would send.
+  test("sends the form's controls", async () => {
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = "/current";
+    form.enctype = "multipart/form-data";
+
+    const text = document.createElement("input");
+    text.name = "root.firstName";
+    text.value = "Jane";
+    form.append(text);
+
+    const checked = document.createElement("input");
+    checked.type = "checkbox";
+    checked.name = "root.agree";
+    checked.checked = true;
+    form.append(checked);
+
+    const unchecked = document.createElement("input");
+    unchecked.type = "checkbox";
+    unchecked.name = "root.skipped";
+    form.append(unchecked);
+
+    const select = document.createElement("select");
+    select.name = "root.color";
+    for (const color of ["red", "green"]) {
+      const option = document.createElement("option");
+      option.value = color;
+      select.append(option);
+    }
+    select.value = "green";
+    form.append(select);
+
+    const prefix = document.createElement("input");
+    prefix.type = "hidden";
+    prefix.name = "__sjsf_id_prefix";
+    prefix.value = "custom";
+    form.append(prefix);
+
+    document.body.append(form);
+    stubFetch({ type: "success", status: 200, location: CURRENT });
+
+    const event = new Event("submit", { bubbles: true, cancelable: true });
+    Object.defineProperty(event, "currentTarget", { value: form });
+
+    const meta = createMeta<{ default: any }, Record<string, never>>().default;
+    const request = createSvelteKitRequest(meta as any, {} as any);
+    await request.runAsync({ name: "Jane" } as any, event as SubmitEvent);
+
+    const body = vi.mocked(fetch).mock.calls[0]![1]!.body as FormData;
+    expect(body).toBeInstanceOf(FormData);
+    expect(body.get("root.firstName")).toBe("Jane");
+    expect(body.get("root.agree")).toBe("on");
+    expect(body.has("root.skipped")).toBe(false);
+    expect(body.get("root.color")).toBe("green");
+
+    // The form's own id prefix input is required for the integration, so it
+    // is sent as rendered instead of being overridden with the default.
+    expect(body.getAll("__sjsf_id_prefix")).toEqual(["custom"]);
+  });
+
+  test("adds the configured id prefix when the form has none", async () => {
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = "/current";
+    form.enctype = "multipart/form-data";
+
+    const text = document.createElement("input");
+    text.name = "root.firstName";
+    text.value = "Jane";
+    form.append(text);
+
+    document.body.append(form);
+    stubFetch({ type: "success", status: 200, location: CURRENT });
+
+    const event = new Event("submit", { bubbles: true, cancelable: true });
+    Object.defineProperty(event, "currentTarget", { value: form });
+
+    const meta = createMeta<{ default: any }, Record<string, never>>().default;
+    const request = createSvelteKitRequest(meta as any, {} as any);
+    await request.runAsync({ name: "Jane" } as any, event as SubmitEvent);
+
+    const body = vi.mocked(fetch).mock.calls[0]![1]!.body as FormData;
+    expect(body.get("root.firstName")).toBe("Jane");
+    expect(body.getAll("__sjsf_id_prefix")).toEqual(["root"]);
+  });
+});

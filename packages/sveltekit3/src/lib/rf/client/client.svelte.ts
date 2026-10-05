@@ -16,10 +16,7 @@ import { getAbortSignal, onMount, untrack, hydratable } from "svelte";
 
 import type { RemoteForm, RemoteFormInput } from "$app/server";
 
-import { chunks } from "../../internal.js";
-import { FORM_DATA_FILE_PREFIX, JSON_CHUNKS_KEY } from "../../model.js";
 import type { FormIdBuilderOptions } from "../id-builder.ts";
-import { encode } from "../internal/codec.js";
 import {
   createSvelteKitDataParser,
   type SvelteKitDataParserOptions,
@@ -44,51 +41,6 @@ export function createClientValidator<T>(form: FormState<T>) {
       },
     },
   } satisfies StandardSchemaV1<RemoteFormInput, void>;
-}
-
-const CHUNK_KEY = `${JSON_CHUNKS_KEY}[]`;
-
-/** The context a `File` replacer needs to build a submission input. */
-export interface ConnectReplacerOptions {
-  /** The hidden form the submission is read from. */
-  formElement: HTMLFormElement;
-  /**
-   * Kit v3 requires every field name to end with `/{formId}` (see
-   * `parse_form_key`). It belongs on the input's `name`; the JSON payload keeps
-   * the bare key, which is what the server looks a file up by.
-   */
-  fieldSuffix: string;
-}
-
-/** The `JSON.stringify` replacer `connect()` submits the value with. */
-export type Replacer = (key: string, value: any) => any;
-
-function createDefaultReplacer({
-  formElement,
-  fieldSuffix,
-}: ConnectReplacerOptions): Replacer {
-  const seen = new Set<string>();
-  function fileInput(name: string, value: File) {
-    const fileInput = document.createElement("input");
-    fileInput.type = "file";
-    fileInput.name = name;
-    const dt = new DataTransfer();
-    dt.items.add(value);
-    fileInput.files = dt.files;
-    formElement.appendChild(fileInput);
-  }
-  return (key, value) => {
-    if (!(value instanceof File)) {
-      return value;
-    }
-    const initialKey = `${FORM_DATA_FILE_PREFIX}${key}`;
-    let fdKey = initialKey;
-    let i = 1;
-    while (seen.has(fdKey)) fdKey = `${initialKey}__${i++}`;
-    seen.add(fdKey);
-    fileInput(encode(fdKey) + fieldSuffix, value);
-    return fdKey;
-  };
 }
 
 /**
@@ -124,10 +76,6 @@ export function getRemoteFormFieldId(remoteForm: RemoteFormInstance): string {
 
 export interface ConnectOptions extends SvelteKitDataParserOptions {
   idBuilder: Creatable<FormIdBuilder, FormIdBuilderOptions>;
-  /** By default, handles conversion of `File` */
-  createReplacer?: (options: ConnectReplacerOptions) => Replacer;
-  /** @default 500000 */
-  jsonChunkSize?: number;
 }
 
 const HYDRATABLE_KEY_PREFIX = "__sjsf_sveltekit_h__";
@@ -152,14 +100,13 @@ export async function connect<T>(
     // listener, which is the only way to keep the two from fighting: Kit's
     // `handle_reset` reads the form back with `new FormData(form)` after an
     // `await tick()` and assigns it to the form value, which would read this
-    // form's own wire fields (`__sjsf_id_prefix`, the JSON chunks) as if they
-    // were the user's input and empty the visible form.
+    // form's own inputs back as if they were a fresh submission.
     formElement.addEventListener("reset", (e) => {
       // Undo the submission on the form the user can actually see. The theme
       // wires this to `form.reset()`, which restores `options.initialValue`.
       originalFormElement.reset();
       // Kit must not observe the reset, or it rebuilds its value from the
-      // wire fields it is about to receive.
+      // hidden form's inputs.
       e.stopImmediatePropagation();
       // The submission is done, so release the inputs and the `File` blobs
       // they referenced.
@@ -185,6 +132,13 @@ export async function connect<T>(
   // Kit v3 requires form field names to end with `/{formId}` (see
   // `parse_form_key`), otherwise submissions are rejected server-side
   const fieldSuffix = `/${getRemoteFormFieldId(remoteForm)}`;
+  // The id prefix input's name. `resolveIdPrefixName` from `@sjsf/form` would
+  // be the canonical source, but it needs the built `FormIdBuilder` instance,
+  // which only `createForm` holds — `connect()` sees factories, never the
+  // instance. This matches what the stock builder returns for the same
+  // `fieldSuffix` (`rf/id-builder.ts`), which is also what the visible form
+  // renders, so inject and skip below always agree.
+  const idPrefixName = `${SJSF_ID_PREFIX}${fieldSuffix}`;
 
   const fields = $derived(remoteForm.fields);
 
@@ -217,10 +171,23 @@ export async function connect<T>(
     formElement.append(input);
   }
 
-  const jsonChunkSize = $derived(options.jsonChunkSize ?? 500000);
-  const createReplacer = $derived(
-    options.createReplacer ?? createDefaultReplacer
-  );
+  // The hidden form carries what the visible form holds, so the server parses
+  // it through `parseSvelteKitData`.
+  function copyVisibleInputs(data: FormData) {
+    for (const [name, value] of data) {
+      if (value instanceof File) {
+        const clone = document.createElement("input");
+        clone.type = "file";
+        clone.name = name;
+        const files = new DataTransfer();
+        files.items.add(value);
+        clone.files = files.files;
+        formElement.append(clone);
+      } else {
+        hiddenInput(name, value);
+      }
+    }
+  }
 
   const uiSchema: UiSchemaRoot = $derived.by(() => {
     const { uiSchema, uiOptionsRegistry } = options;
@@ -260,13 +227,13 @@ export async function connect<T>(
         formElement.name = originalFormElement.name;
         formElement.rel = originalFormElement.rel;
         formElement.replaceChildren();
-        hiddenInput(`${SJSF_ID_PREFIX}${fieldSuffix}`, idPrefix);
-        for (const chunk of chunks(
-          JSON.stringify(value, createReplacer({ formElement, fieldSuffix })),
-          jsonChunkSize
-        )) {
-          hiddenInput(`${CHUNK_KEY}${fieldSuffix}`, chunk);
+        const data = new FormData(originalFormElement);
+        // The form renders its own id prefix input, so trust it: only fill in
+        // the configured value when the form has none.
+        if (!data.has(idPrefixName)) {
+          hiddenInput(idPrefixName, idPrefix);
         }
+        copyVisibleInputs(data);
         // Kit only resets the form while it is connected, and that reset is what
         // carries the submission back to the visible form (see the `reset`
         // listener in `onMount`). This is the only append: the form is detached

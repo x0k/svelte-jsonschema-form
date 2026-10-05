@@ -23,13 +23,8 @@ import {
   type FormDataConverterOptions,
   type UnknownEntryConverter,
 } from "../../internal/convert-form-data-entry.js";
-import {
-  FORM_DATA_FILE_PREFIX,
-  JSON_CHUNKS_KEY,
-  type EntryConverter,
-} from "../../model.js";
+import type { EntryConverter } from "../../model.js";
 import { DEFAULT_PSEUDO_PREFIX } from "../id-builder.js";
-import { decode } from "../internal/codec.js";
 import { createSvelteKitDataParser } from "../internal/sveltekit-data-parser.js";
 import { enServerTranslation, type ServerTranslation } from "./translation.js";
 
@@ -45,10 +40,6 @@ export interface SvelteKitFormValidatorOptions<T> {
   >;
   convertUnknownEntry?: UnknownEntryConverter;
   pseudoPrefix?: string;
-  /** By default, handles conversion of `File` */
-  createReviver?: (
-    input: Record<string, unknown>
-  ) => (key: string, value: any) => any;
   serverTranslation?: ServerTranslation;
 }
 
@@ -70,15 +61,6 @@ function failure(
   };
 }
 
-function createDefaultReviver(input: Record<string, unknown>) {
-  return (_: string, value: any) => {
-    if (typeof value === "string" && value.startsWith(FORM_DATA_FILE_PREFIX)) {
-      return input[decode(value)];
-    }
-    return value;
-  };
-}
-
 export interface ValidationResult<R> {
   idPrefix: string;
   data: R;
@@ -94,7 +76,6 @@ export function createServerValidator<T>({
   createEntryConverter = createFormDataEntryConverter,
   convertUnknownEntry,
   pseudoPrefix = DEFAULT_PSEUDO_PREFIX,
-  createReviver = createDefaultReviver,
 }: SvelteKitFormValidatorOptions<T>): StandardSchemaV1<
   any,
   ValidationResult<T>
@@ -133,17 +114,6 @@ export function createServerValidator<T>({
     }
     throw new PublicError(t("missing-or-invalid-id-prefix-key", {}));
   }
-  function parseData(
-    signal: AbortSignal,
-    idPrefix: string,
-    input: Record<string, unknown>
-  ) {
-    const data = input[JSON_CHUNKS_KEY];
-    if (Array.isArray(data) && data.every((t) => typeof t === "string")) {
-      return JSON.parse(data.join(""), createReviver(input));
-    }
-    return parseSvelteKitData(signal, idPrefix, input);
-  }
   async function validate(
     input: unknown
   ): Promise<StandardSchemaV1.Result<ValidationResult<T>>> {
@@ -155,7 +125,7 @@ export function createServerValidator<T>({
       // there is no active request, and this function never throws
       const { request } = getRequestEvent();
       const idPrefix = parseIdPrefix(input);
-      const value = await parseData(request.signal, idPrefix, input);
+      const value = await parseSvelteKitData(request.signal, idPrefix, input);
       const result =
         "validateFormValueAsync" in validator
           ? await validator.validateFormValueAsync(

@@ -1,23 +1,18 @@
 import type { Schema, UiSchemaRoot } from "@sjsf/form";
 
 /**
- * Every field here is a place the two submission paths can disagree.
- *
- * With JS, `connect()` sends the state as `JSON.stringify` chunks. Without it,
- * the browser posts real parts and every value goes through
- * `convertFormDataEntry`, which coerces `""` to `undefined`, `"on"` to `true`,
- * `parseInt`, enum lookups, and `File` to a data URL. `JSON.parse` needs none of
- * that, so each coercion is a candidate.
- *
- * Both routes render this schema, so a disagreement fails on one side only.
+ * Every field here exercises a coercion in `convertFormDataEntry` — `""` to
+ * `undefined`, `"on"` to `true`, `parseInt`, enum lookups, `File` to a data
+ * URL — or a parser branch both submission paths share, since both now send the
+ * same parts. A row that disagrees fails on one side only.
  */
 export const schema: Schema = {
   title: "Submission parity",
-  description: "Every field is a known JSON/FormData divergence.",
+  description: "Every field exercises a FormData coercion or parser branch.",
   type: "object",
   required: ["firstName"],
-  // Awkward keys on purpose: FormData has to encode these into an input `name`
-  // and decode them again, where the JSON path carries them verbatim.
+  // Awkward keys on purpose: encoded into an input `name` and decoded again
+  // on the server.
   additionalProperties: { type: "string" },
   // Reached by the same machinery but through a different branch of the parser,
   // so it is covered separately.
@@ -25,13 +20,13 @@ export const schema: Schema = {
   properties: {
     // Correlation key: the store picks a submission by its `firstName`.
     firstName: { type: "string", title: "First name", minLength: 2 },
-    // Optional and left blank: JSON drops the key, FormData sends `""`.
+    // Optional and left blank: submitted as `""`, dropped by the converter.
     lastName: { type: "string", title: "Last name" },
     // `parseInt` accepts `"12abc"`; `JSON.parse` does not.
     age: { type: "integer", title: "Age" },
     // `parseFloat` accepts `"1e3"`.
     score: { type: "number", title: "Score" },
-    // Unchecked sends no part at all; the JSON path carries `false`.
+    // Unchecked sends no part at all; the server answers `false`.
     agree: { type: "boolean", title: "Agree" },
     // `"true"` in a boolean field.
     newsletter: { type: "boolean", title: "Newsletter", enum: [true, false] },
@@ -45,7 +40,7 @@ export const schema: Schema = {
     },
     // `null` against `type: ["string", "null"]`.
     nickname: { type: ["string", "null"], title: "Nickname" },
-    // Nested: flattened to `profile.city` on the FormData path.
+    // Nested: flattened to `profile.city` parts.
     profile: {
       type: "object",
       title: "Profile",

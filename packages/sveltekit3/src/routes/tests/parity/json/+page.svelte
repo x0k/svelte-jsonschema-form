@@ -8,7 +8,8 @@
 
   const initialData = await loadInitialData();
 
-  // JS on: `connect()` sends the state as JSON chunks through a hidden form.
+  // JS on: `connect()` copies the visible form's parts into a hidden form
+  // submitted through Kit's remote machinery.
   const form = createForm(
     await connect(createPost, {
       ...defaults,

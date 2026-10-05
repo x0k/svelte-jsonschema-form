@@ -30,10 +30,8 @@ describe("package entry points", () => {
     }
   );
 
-  it("root re-exports the id builder and the form-data keys", () => {
+  it("root re-exports the id builder", () => {
     expect(root.createFormIdBuilder).toBeTypeOf("function");
-    expect(root.JSON_CHUNKS_KEY).toBe("__sjsf_sveltekit_json_chunks");
-    expect(root.FORM_DATA_FILE_PREFIX).toBe("__sjsf_sveltekit_file__");
   });
 
   it("the remote-functions subpaths expose the connect/validate pair", () => {

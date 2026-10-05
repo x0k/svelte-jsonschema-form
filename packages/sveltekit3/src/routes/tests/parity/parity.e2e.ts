@@ -3,12 +3,12 @@ import { expect, test, type Locator, type Page } from "@playwright/test";
 /**
  * Submits one schema through both paths and compares what the server holds.
  *
- * - `/tests/parity/json` — JS on. `connect()` sends the state as `JSON.stringify`
- *   chunks; the server reads them with `JSON.parse` and a reviver.
- * - `/tests/parity/native` — JS off. The browser posts real parts, and every
- *   value goes through `convertFormDataEntry`: `""` to `undefined`, `"on"` to
- *   `true`, `parseInt`, enum lookups, `File` to a data URL. `JSON.parse` needs
- *   none of that, so each coercion is a place the paths can disagree.
+ * - `/tests/parity/json` — JS on. `connect()` copies the visible form's parts
+ *   into a hidden form submitted through Kit's remote machinery.
+ * - `/tests/parity/native` — JS off. The browser posts real parts with a full
+ *   reload. Every value goes through `convertFormDataEntry`: `""` to
+ *   `undefined`, `"on"` to `true`, `parseInt`, enum lookups, `File` to a data
+ *   URL.
  *
  * Rows marked `test.fail` are known to diverge. The marker goes inside the test
  * body: at describe scope it leaks onto every row. Fix the row and it fails as
@@ -106,18 +106,10 @@ export function defineParityTests({
       });
     });
 
-    // `tags` used to arrive as `[]` here, invented from parts that never
-    // existed. Both paths now agree on absent, which matters beyond
-    // consistency: an untouched optional array with `minItems: 1` used to fail
-    // validation the user did nothing to earn.
-    //
-    // `profile` is deliberately not converged the same way. Its inputs always
-    // render, so untouched and cleared both submit, and the JSON path tells them
-    // apart (untouched keeps the default `{}`, cleared collapses) while the
-    // FormData path cannot. Keeping `{}` matches the client's default state for
-    // the case that actually occurs without the user touching anything.
-    //
-    // `agree` is deliberately not converged — see the contract row below. The
+    // Cleared strings arrive as `""` and are dropped; an unchecked checkbox
+    // sends nothing and the server answers `false`; an object whose inputs all
+    // render arrives as `{}`. All three are server-side reconstruction
+    // conventions both paths share, since both submit the same parts. The
     // additional properties keep their seeded values, since clearing one is a
     // later row and it fails on both paths.
     test("submits when the optional values are cleared", async () => {
@@ -138,23 +130,14 @@ export function defineParityTests({
         "tag-one": "seed",
         newsletter: true,
         color: "red",
-        // `profile` and `agree` are the two remaining divergences, and both are
-        // contracts rather than defects — see the rows below.
-        ...(native && { profile: {}, agree: false }),
+        profile: {},
+        agree: false,
       });
     });
 
-    // CONTRACT — an untouched optional checkbox is absent on the JSON path and
-    // `false` on the FormData path, and the same holds for an untouched optional
-    // object arriving as `{}`. Both are intentional: the parts either never
-    // existed or always rendered, and no server-side reading can separate
-    // untouched from touched-then-cleared without changing the wire.
-    //
-    // So the FormData path keeps HTML's conventions (unchecked means false, an
-    // empty-but-rendered object means `{}`), while the JSON path keeps what the
-    // state holds. Consumers use the usual falsy check; only a strict `===`
-    // tells the two apart, which is an application-level choice.
-    test("reports an untouched optional checkbox as the contract requires", async () => {
+    // An untouched optional checkbox sends nothing on either path, and the
+    // server answers `false` — HTML's convention, kept by both sides.
+    test("reports an untouched optional checkbox", async () => {
       await form.getByLabel("First name").fill(`${key}Untouched`);
       await form.getByLabel("Newsletter").selectOption({ label: "Yes" });
       await form.getByLabel("Color").selectOption({ label: "red" });
@@ -167,7 +150,8 @@ export function defineParityTests({
         "tag-one": "seed",
         newsletter: true,
         color: "red",
-        ...(native && { agree: false, profile: {} }),
+        agree: false,
+        profile: {},
       });
     });
 
@@ -199,7 +183,7 @@ export function defineParityTests({
 }
 
 defineParityTests({
-  name: "parity (JSON path)",
+  name: "parity (enhanced submission)",
   route: "/tests/parity/json",
   key: "ParityJson",
 });

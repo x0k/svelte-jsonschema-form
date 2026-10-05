@@ -41,4 +41,23 @@ describe("makeFormDataParser", () => {
     const [, data] = await parse(c.signal, fd);
     expect(data).toBe(undefined);
   });
+  // An undecodable value comes back as a field issue instead of failing the
+  // request, so the form renders with the error on it.
+  it("Should report an undecodable value against its own field", async () => {
+    fd.append("root", "text");
+    const parse = createFormHandler({
+      validator: createFormValidator,
+      merger: createFormMerger,
+      schema: {},
+      sendData: true,
+    });
+    const c = new AbortController();
+    const [form] = await parse(c.signal, fd);
+    expect(form.isValid).toBe(false);
+    expect(form.errors).toHaveLength(1);
+    expect(form.errors[0]!.path).toEqual([]);
+    // With no parsed data there is nothing trustworthy to push back: pushing
+    // the `{}` initializer would wipe what the user typed.
+    expect(form.updateData).toBe(false);
+  });
 });
