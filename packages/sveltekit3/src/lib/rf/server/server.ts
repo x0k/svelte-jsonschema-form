@@ -38,6 +38,7 @@ export interface SvelteKitFormValidatorOptions<T> {
     EntryConverter<FormDataEntryValue>,
     FormDataConverterOptions
   >;
+  /** Handles submitted values whose schema declares no `type`. */
   convertUnknownEntry?: UnknownEntryConverter;
   pseudoPrefix?: string;
   serverTranslation?: ServerTranslation;

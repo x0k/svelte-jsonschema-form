@@ -76,6 +76,25 @@ remote-functions subpath.
   </TabItem>
 </Tabs>
 
+## Submission encoding
+
+Enhanced submissions send the form's own controls — the same parts a native
+submission would send — so the server parses both identically. No JSON
+serialization of the form value is involved.
+
+Fields whose schema declares no `type` are rejected unless the validator is
+given a `convertUnknownEntry` to handle them:
+
+```ts
+import type { FieldValue } from "@sjsf/form";
+
+const validator = createServerValidator({
+  ...defaults,
+  schema,
+  convertUnknownEntry: ({ value }) => value as FieldValue,
+});
+```
+
 ## Known issues
 
 - `experimental.async` does not apply to dependency code -

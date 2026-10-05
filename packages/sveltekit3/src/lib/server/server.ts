@@ -55,6 +55,7 @@ export interface FormHandlerOptions<T, SD extends SendData> extends Omit<
     EntryConverter<FormDataEntryValue>,
     FormDataConverterOptions
   >;
+  /** Handles submitted values whose schema declares no `type`. */
   convertUnknownEntry?: UnknownEntryConverter;
   enumItemDecoder?: EnumItemDecoder;
   /** @default false */

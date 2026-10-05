@@ -24,6 +24,11 @@ import type {
   EnumItemDecoder,
 } from "../model.js";
 
+/**
+ * Handles a submitted value whose schema declares no `type`. Receives the
+ * entry's path, schema, uiSchema and raw value, and returns what to store.
+ * Without it, such values fail with `Unexpected schema type`.
+ */
 export type UnknownEntryConverter = (
   options: EntryConverterOptions<FormDataEntryValue>
 ) => Promise<FieldValue> | FieldValue;

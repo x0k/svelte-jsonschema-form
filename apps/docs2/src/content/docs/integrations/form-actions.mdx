@@ -117,6 +117,18 @@ By using the `createFormHandler` API, you can gain more control over the action 
 
 - run checks before processing the form data
 - work with dynamic schemas (call `createFormHandler` inside the action handler)
+- handle fields whose schema declares no `type`, via `convertUnknownEntry`
+  (without it, a submitted value for such a field fails the request):
+
+```ts
+import type { FieldValue } from "@sjsf/form";
+
+const handleForm = createFormHandler({
+  ...defaults,
+  schema,
+  convertUnknownEntry: ({ value }) => value as FieldValue,
+});
+```
 
 :::note
 
@@ -154,6 +166,8 @@ According to Svelte documentation your form should always use `POST` requests.
 ### Progressive enhancement
 
 By default, the form will work even with JavaScript disabled, but you should consider the following limitations of this mode of operation:
+
+Enhanced and native submissions carry the same parts, so validation results match between the two modes.
 
 - `action` should be created with `sendData: true` to persist form data between page updates
 - Form fields for `oneOf`, `anyOf`, `dependencies`, `additionalProperties` and `additionalItems`
