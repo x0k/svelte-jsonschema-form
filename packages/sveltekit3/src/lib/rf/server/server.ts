@@ -19,6 +19,7 @@ import { getRequestEvent } from "$app/server";
 
 import {
   createFormDataEntryConverter,
+  EntryDecodeError,
   type FormDataConverterOptions,
   type UnknownEntryConverter,
 } from "../../internal/convert-form-data-entry.js";
@@ -55,12 +56,15 @@ class PublicError {
   constructor(public readonly message: string) {}
 }
 
-function failure(message: string): StandardSchemaV1.FailureResult {
+function failure(
+  message: string,
+  path: PropertyKey[] = []
+): StandardSchemaV1.FailureResult {
   return {
     issues: [
       {
         message,
-        path: [],
+        path,
       },
     ],
   };
@@ -169,6 +173,11 @@ export function createServerValidator<T>({
             },
           };
     } catch (e) {
+      // Report an undecodable value against its own field rather than as a pathless
+      // error, which nothing can be attached to.
+      if (e instanceof EntryDecodeError) {
+        return failure(e.message, [...e.path]);
+      }
       return failure(
         e instanceof PublicError ? e.message : t("unexpected-error", {})
       );

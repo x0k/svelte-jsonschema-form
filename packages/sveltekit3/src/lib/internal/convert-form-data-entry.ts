@@ -12,6 +12,7 @@ import {
   pickSchemaType,
   typeOfSchema,
   type Merger,
+  type RPath,
   type SchemaValue,
   type Validator,
 } from "@sjsf/form/core";
@@ -26,6 +27,17 @@ import type {
 export type UnknownEntryConverter = (
   options: EntryConverterOptions<FormDataEntryValue>
 ) => Promise<FieldValue> | FieldValue;
+
+/** A value the converter could not decode, with the path it came from. */
+export class EntryDecodeError extends Error {
+  constructor(
+    message: string,
+    readonly path: RPath
+  ) {
+    super(message);
+    this.name = "EntryDecodeError";
+  }
+}
 export interface FormDataConverterOptions {
   validator: Validator;
   merger: Merger;
@@ -90,7 +102,7 @@ export function createFormDataEntryConverter({
   convertUnknownEntry,
 }: FormDataConverterOptions): EntryConverter<FormDataEntryValue> {
   return async (signal, options) => {
-    const { value, schema, uiSchema } = options;
+    const { path, value, schema, uiSchema } = options;
     if (typeof schema === "boolean") {
       return schema ? (value as FieldValue) : undefined;
     }
@@ -111,8 +123,9 @@ export function createFormDataEntryConverter({
       if (type === "string") {
         const format = schema.format;
         if (format !== "data-url") {
-          throw new Error(
-            `Unexpected format "${format}" for File value, expected: "data-url"`
+          throw new EntryDecodeError(
+            `Unexpected format "${format}" for File value, expected: "data-url"`,
+            path
           );
         }
         return await fileToDataURL(signal, value);
@@ -120,8 +133,9 @@ export function createFormDataEntryConverter({
       if (type === "unknown") {
         return value as FieldValue;
       }
-      throw new Error(
-        `Unexpected type "${type}" for 'File' value instance, expected: "string", "unknown"`
+      throw new EntryDecodeError(
+        `Unexpected type "${type}" for 'File' value instance, expected: "string", "unknown"`,
+        path
       );
     }
     if (isSelect(validator, merger, schema, rootSchema)) {
@@ -133,12 +147,23 @@ export function createFormDataEntryConverter({
         : (schema.enum ??
           (type === "boolean" ? DEFAULT_BOOLEAN_ENUM : undefined));
       if (options === undefined) {
-        throw new Error(`Invalid select options: ${JSON.stringify(schema)}`);
+        throw new EntryDecodeError(
+          `Invalid select options: ${JSON.stringify(schema)}`,
+          path
+        );
       }
       const v = enumItemDecoder(options, value);
       if (v === undefined) {
-        throw new Error(
-          `Value "${value}" does not match the schema: ${JSON.stringify(schema)}`
+        // A blank option posts `""`, meaning "nothing chosen" rather than a value
+        // that has to match an option. Decided only after the lookup, since
+        // `StringEnumValueMapperBuilder` puts raw option values on the wire and a
+        // schema may list `""` itself.
+        if (value === "") {
+          return undefined;
+        }
+        throw new EntryDecodeError(
+          `Value "${value}" does not match the schema: ${JSON.stringify(schema)}`,
+          path
         );
       }
       return v;
@@ -163,7 +188,7 @@ export function createFormDataEntryConverter({
       case "number":
         return value.trim() === "" ? undefined : parseFloat(value);
       default: {
-        throw new Error(`Unexpected schema type: ${type}`);
+        throw new EntryDecodeError(`Unexpected schema type: ${type}`, path);
       }
     }
   };
