@@ -382,19 +382,15 @@ describe("parseSchemaValue", async () => {
     await expect(
       parseSchemaValue(c.signal, opts({ schema, input }))
     ).resolves.toEqual({
+      // The nested `children` are optional and arrive with nothing in them, so
+      // they are dropped rather than kept as `[]` — see the empty-container rows.
       tree: {
         children: [
           {
-            children: [
-              {
-                children: [],
-                name: "bar",
-              },
-            ],
+            children: [{ name: "bar" }],
             name: "leaf",
           },
           {
-            children: [],
             name: "foo",
           },
         ],
@@ -411,6 +407,59 @@ describe("parseSchemaValue", async () => {
         state: "N/A",
       },
     });
+  });
+
+  // An optional array or object that ends up with nothing in it is dropped
+  // rather than kept empty — absent is what the JSON path sends for the same
+  // input, and an empty `[]` or `{}` would otherwise trip `minItems` or
+  // `minProperties` on a field the user never filled in.
+  it("Should drop an optional array or object that arrives empty", async () => {
+    const schema: Schema = {
+      type: "object",
+      properties: {
+        tags: { type: "array", items: { type: "string" } },
+        profile: {
+          type: "object",
+          properties: { city: { type: "string" } },
+        },
+        keep: { type: "array", items: { type: "string" } },
+      },
+    };
+    const input: Input<FormDataEntryValue> = {
+      [DEFAULT_ID_PREFIX]: {
+        tags: [],
+        profile: { city: "" },
+        keep: ["a"],
+      },
+    };
+    await expect(
+      parseSchemaValue(c.signal, opts({ schema, input }))
+    ).resolves.toEqual({ keep: ["a"] });
+  });
+
+  // A required one is the user's to answer, so it stays and the validator
+  // reports it rather than the parser quietly discarding it.
+  it("Should keep a required array or object that arrives empty", async () => {
+    const schema: Schema = {
+      type: "object",
+      required: ["tags", "profile"],
+      properties: {
+        tags: { type: "array", items: { type: "string" } },
+        profile: {
+          type: "object",
+          properties: { city: { type: "string" } },
+        },
+      },
+    };
+    const input: Input<FormDataEntryValue> = {
+      [DEFAULT_ID_PREFIX]: {
+        tags: [],
+        profile: { city: "" },
+      },
+    };
+    await expect(
+      parseSchemaValue(c.signal, opts({ schema, input }))
+    ).resolves.toEqual({ tags: [], profile: {} });
   });
 
   it("Should parse schema with oneOf (select)", async () => {

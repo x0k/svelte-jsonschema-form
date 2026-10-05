@@ -22,6 +22,8 @@ export const loadInitialData = query(() => {
       // builder encodes, and `.` is the path separator.
       "newKey::123": "seed",
       "also.333": "seed",
+      // Matches `^tag-`, seeded the same way an additional property is.
+      "tag-one": "seed",
     },
   };
 });

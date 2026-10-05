@@ -19,6 +19,9 @@ export const schema: Schema = {
   // Awkward keys on purpose: FormData has to encode these into an input `name`
   // and decode them again, where the JSON path carries them verbatim.
   additionalProperties: { type: "string" },
+  // Reached by the same machinery but through a different branch of the parser,
+  // so it is covered separately.
+  patternProperties: { "^tag-": { type: "string" } },
   properties: {
     // Correlation key: the store picks a submission by its `firstName`.
     firstName: { type: "string", title: "First name", minLength: 2 },

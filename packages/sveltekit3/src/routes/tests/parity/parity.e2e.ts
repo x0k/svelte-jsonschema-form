@@ -94,6 +94,7 @@ export function defineParityTests({
         avatar: "data:image/png;name=avatar.png;base64,AQIDBA==",
         "newKey::123": "colon-key",
         "also.333": "dot-key",
+        "tag-one": "seed",
       });
     });
 
@@ -105,16 +106,15 @@ export function defineParityTests({
       });
     });
 
-    // KNOWN DIVERGENCE — the state has none of `agree: false`, `tags: []` or
-    // `profile: {}`, so `JSON.stringify` drops them, while the FormData path
-    // rebuilds all three. Whether they belong in the state is undecided, so this
-    // records it. The additional properties keep their seeded values, since
-    // clearing one is the next row and it fails on both paths.
+    // `tags` and `profile` used to arrive as `[]` and `{}` here, invented from parts
+    // that never existed. Both paths now agree on absent, which matters beyond
+    // consistency: an untouched optional array with `minItems: 1` used to fail
+    // validation the user did nothing to earn.
+    //
+    // `agree` is deliberately not converged — see the contract row below. The
+    // additional properties keep their seeded values, since clearing one is a
+    // later row and it fails on both paths.
     test("submits when the optional values are cleared", async () => {
-      test.fail(
-        !native,
-        "the JSON path drops `agree: false`, `tags: []` and `profile: {}`, which FormData rebuilds"
-      );
       await form.getByLabel("First name").fill(`${key}Cleared`);
       await form.getByLabel("Last name").fill("");
       await form.getByLabel("Nickname").fill("");
@@ -129,11 +129,42 @@ export function defineParityTests({
         firstName: `${key}Cleared`,
         "newKey::123": "seed",
         "also.333": "seed",
-        agree: false,
+        "tag-one": "seed",
         newsletter: true,
         color: "red",
-        tags: [],
-        profile: {},
+        // `agree` is the one remaining divergence, and it is a contract rather
+        // than a defect — see the row below.
+        ...(native && { agree: false }),
+      });
+    });
+
+    // CONTRACT — an untouched optional checkbox is absent on the JSON path and
+    // `false` on the FormData path, and that is intentional.
+    //
+    // Both histories submit literally nothing: untouched never writes a part,
+    // and checked-then-unchecked reverts to the unchecked state. No server-side
+    // reading can separate them without changing the wire, and the change would
+    // only matter with JavaScript, where the state already holds both the absent
+    // key and `FIELD_CHANGED`.
+    //
+    // So the paths keep HTML's convention that an unchecked checkbox means
+    // false. Consumers that care use the usual falsy check; only a strict
+    // `=== false` tells the two apart, which is an application-level choice. A
+    // checkbox that must be answered belongs in a required select instead.
+    test("reports an untouched optional checkbox as the contract requires", async () => {
+      await form.getByLabel("First name").fill(`${key}Untouched`);
+      await form.getByLabel("Newsletter").selectOption({ label: "Yes" });
+      await form.getByLabel("Color").selectOption({ label: "red" });
+
+      expect(await submit("Untouched")).toEqual({
+        firstName: `${key}Untouched`,
+        lastName: "Doe",
+        "newKey::123": "seed",
+        "also.333": "seed",
+        "tag-one": "seed",
+        newsletter: true,
+        color: "red",
+        ...(native && { agree: false }),
       });
     });
 
@@ -141,19 +172,25 @@ export function defineParityTests({
     // rather than guarding on `!== undefined` like `properties`, so the `undefined`
     // both paths now hold fails AJV with "must be string". Own row because it
     // blocks submission on both sides, hiding the row above.
-    test("submits when an additional property is cleared", async () => {
-      test.fail(
-        true,
-        "an `undefined` additional property fails AJV on both paths"
-      );
+    // Both rows assert the shared defect: the key is kept holding `undefined`,
+    // so neither path submits. Written as `toBeNull` rather than the payload it
+    // should carry, because that is what makes them guards — drop the key again
+    // and the submission succeeds, so the payload no longer matches.
+    test("does not submit when an additional property is cleared", async () => {
       await form.getByLabel("First name").fill(`${key}Additional`);
       await form.getByLabel("newKey::123", { exact: true }).fill("");
       await form.getByLabel("also.333", { exact: true }).fill("");
 
-      expect(await submit("Additional")).toEqual({
-        firstName: `${key}Additional`,
-        "also.333": "seed",
-      });
+      expect(await submit("Additional")).toBeNull();
+    });
+
+    // Reaches the parser through `patternProperties` rather than
+    // `additionalProperties` — a separate branch of `parseObject`.
+    test("does not submit when a pattern property is cleared", async () => {
+      await form.getByLabel("First name").fill(`${key}Pattern`);
+      await form.getByLabel("tag-one", { exact: true }).fill("");
+
+      expect(await submit("Pattern")).toBeNull();
     });
   });
 }
