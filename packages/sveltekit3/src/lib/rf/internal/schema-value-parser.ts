@@ -273,11 +273,19 @@ export async function parseSchemaValue<T>(
           continue;
         }
         pushKey(input, key);
+        const propertyKey =
+          additionalKeys[encodedKey][encodedPseudoPrefix] ?? key;
         await setProperty(
-          additionalKeys[encodedKey][encodedPseudoPrefix] ?? key,
+          propertyKey,
           additionalProperties,
           additionalUiSchema
         );
+        // A cleared value converts to `undefined`, which `setProperty` drops — losing a
+        // key the form rendered. Keeping it preserves the row, since `resolve.ts`
+        // derives additional properties from `Object.keys`.
+        if (!(propertyKey in value)) {
+          value[propertyKey] = undefined;
+        }
         pop();
       }
     }

@@ -1,55 +1,48 @@
 import type { Schema, UiSchemaRoot } from "@sjsf/form";
 
 /**
- * Every field here exists because the two submission paths disagree about it.
+ * Every field here is a place the two submission paths can disagree.
  *
- * With JavaScript, `connect()` serializes the form state with `JSON.stringify`
- * into hidden inputs, and the server reads them back with `JSON.parse`. Without
- * JavaScript the browser posts real parts, and the server runs each value
- * through `convertFormDataEntry`, which coerces: `""` to `undefined`,
- * `"on"` to `true`, `parseInt`, `parseFloat`, enum lookups, and a `File` to a
- * data URL. `JSON.parse` needs none of that, so any coercion is a place the two
- * paths can return different values for the same form.
+ * With JS, `connect()` sends the state as `JSON.stringify` chunks. Without it,
+ * the browser posts real parts and every value goes through
+ * `convertFormDataEntry`, which coerces `""` to `undefined`, `"on"` to `true`,
+ * `parseInt`, enum lookups, and `File` to a data URL. `JSON.parse` needs none of
+ * that, so each coercion is a candidate.
  *
- * Both routes render this one schema, so a row that disagrees fails on exactly
- * one of them and the diff names the field.
+ * Both routes render this schema, so a disagreement fails on one side only.
  */
 export const schema: Schema = {
   title: "Submission parity",
   description: "Every field is a known JSON/FormData divergence.",
   type: "object",
   required: ["firstName"],
-  // Rows 19-20: keys the FormData path has to encode into an input `name` and
-  // decode again, where the JSON path carries them verbatim.
+  // Awkward keys on purpose: FormData has to encode these into an input `name`
+  // and decode them again, where the JSON path carries them verbatim.
   additionalProperties: { type: "string" },
   properties: {
-    // The correlation key: the submission store is shared between the routes
-    // and picks a submission by its `firstName`.
+    // Correlation key: the store picks a submission by its `firstName`.
     firstName: { type: "string", title: "First name", minLength: 2 },
-    // Rows 2-3: optional and left blank, where the JSON path drops the key
-    // entirely and the FormData path sends `""`.
+    // Optional and left blank: JSON drops the key, FormData sends `""`.
     lastName: { type: "string", title: "Last name" },
-    // Rows 8-9: `parseInt` accepts `"12abc"`, `JSON.parse` does not.
+    // `parseInt` accepts `"12abc"`; `JSON.parse` does not.
     age: { type: "integer", title: "Age" },
-    // Row 10: `parseFloat` accepts `"1e3"` and `"Infinity"`.
+    // `parseFloat` accepts `"1e3"`.
     score: { type: "number", title: "Score" },
-    // Rows 4-5: an unchecked checkbox sends no part at all, where the JSON path
-    // carries `false`.
+    // Unchecked sends no part at all; the JSON path carries `false`.
     agree: { type: "boolean", title: "Agree" },
-    // Row 6: `"true"` in a boolean field.
+    // `"true"` in a boolean field.
     newsletter: { type: "boolean", title: "Newsletter", enum: [true, false] },
-    // Row 9: an unmatched enum value throws on the FormData path instead of
-    // reaching the validator.
+    // An unmatched value throws here rather than reaching the validator.
     color: { type: "string", title: "Color", enum: ["red", "green", "blue"] },
-    // Rows 11-13: repeated keys, and no keys at all when nothing is picked.
+    // Repeated keys, and no keys at all when nothing is picked.
     tags: {
       type: "array",
       title: "Tags",
       items: { type: "string", title: "Tag" },
     },
-    // Rows 14-15: `null` against `type: ["string", "null"]`.
+    // `null` against `type: ["string", "null"]`.
     nickname: { type: ["string", "null"], title: "Nickname" },
-    // Row 13: a nested object, flattened to `profile.city` on the FormData path.
+    // Nested: flattened to `profile.city` on the FormData path.
     profile: {
       type: "object",
       title: "Profile",
@@ -58,10 +51,9 @@ export const schema: Schema = {
         zip: { type: "string", title: "Zip" },
       },
     },
-    // Row 16: `format: "data-url"`, where `File` becomes a data URL.
+    // `format: "data-url"`, where `File` becomes a data URL.
     avatar: { type: "string", title: "Avatar", format: "data-url" },
-    // Rows 17-18: an untyped property, where `File` stays a `File`, and an
-    // empty file input arrives as a zero-byte `File`.
+    // Untyped: `File` stays a `File`, and an empty input arrives zero-byte.
     attachment: { title: "Attachment" },
   },
 };
@@ -76,8 +68,8 @@ export const uiSchema: UiSchemaRoot = {
   },
   newsletter: { "ui:components": { booleanField: "booleanSelectField" } },
   color: { "ui:components": { stringField: "enumField" } },
-  // `arrayField` is left at its default: `arrayTagsField` is registered as an
-  // extra component rather than an action field, so it cannot replace a field.
+  // `tags` keeps the default `arrayField`: `arrayTagsField` is an extra
+  // component rather than an action field, so it cannot replace one.
   avatar: { "ui:components": { stringField: "fileField" } },
   attachment: { "ui:components": { unknownField: "unknownNativeFileField" } },
 };

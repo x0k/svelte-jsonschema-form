@@ -18,8 +18,8 @@ export const loadInitialData = query(() => {
     initialValue: {
       firstName: "Jane",
       lastName: "Doe",
-      // Rows 19-20. Both keys are awkward on purpose: `::` is the pseudo
-      // element separator the id builder encodes, and `.` is the path separator.
+      // Awkward keys on purpose: `::` is the pseudo-element separator the id
+      // builder encodes, and `.` is the path separator.
       "newKey::123": "seed",
       "also.333": "seed",
     },

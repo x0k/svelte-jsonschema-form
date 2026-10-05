@@ -8,8 +8,7 @@
 
   const initialData = await loadInitialData();
 
-  // Path A: JavaScript on. `connect()` serializes the state as JSON into hidden
-  // inputs and submits them through a second, hidden form.
+  // JS on: `connect()` sends the state as JSON chunks through a hidden form.
   const form = createForm(
     await connect(createPost, {
       ...defaults,

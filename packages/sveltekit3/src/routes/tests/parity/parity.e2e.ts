@@ -1,30 +1,21 @@
 import { expect, test, type Locator, type Page } from "@playwright/test";
 
 /**
- * Submits one schema through both submission paths and compares what the server
- * ends up holding.
+ * Submits one schema through both paths and compares what the server holds.
  *
- * - `/tests/parity/json` — JavaScript on. `connect()` serializes the state with
- *   `JSON.stringify` into hidden inputs; the server reads them back with
- *   `JSON.parse` and a reviver (`rf/server/server.ts`).
- * - `/tests/parity/native` — JavaScript off. The browser posts real parts and
- *   the server runs every value through `convertFormDataEntry`, which coerces:
- *   `""` to `undefined`, `"on"` to `true`, `parseInt`, `parseFloat`, enum
- *   lookups, `File` to a data URL.
+ * - `/tests/parity/json` — JS on. `connect()` sends the state as `JSON.stringify`
+ *   chunks; the server reads them with `JSON.parse` and a reviver.
+ * - `/tests/parity/native` — JS off. The browser posts real parts, and every
+ *   value goes through `convertFormDataEntry`: `""` to `undefined`, `"on"` to
+ *   `true`, `parseInt`, enum lookups, `File` to a data URL. `JSON.parse` needs
+ *   none of that, so each coercion is a place the paths can disagree.
  *
- * `JSON.parse` needs none of those coercions, so each one is a place the two
- * paths can disagree for the same form. These tests assert what both paths
- * *should* produce, so a divergence fails on one side and names the field.
+ * Rows marked `test.fail` are known to diverge. The marker goes inside the test
+ * body: at describe scope it leaks onto every row. Fix the row and it fails as
+ * "expected to fail but passed" — then drop the marker.
  *
- * Rows known to diverge are marked with `test.fail` inside the test body, which
- * scopes the marker to that row alone — at describe scope it leaks onto every
- * test in the group. Fix the divergence and the row fails as "expected to fail
- * but passed", at which point the marker comes off.
- *
- * Every row submits a distinct `firstName`, because the submission store is
- * shared across the routes and the suite runs several workers at once: the
- * reader picks a submission by its `firstName`, so a repeated key hands one test
- * another test's payload.
+ * Each row submits a distinct `firstName`, since the store is shared and the
+ * suite runs concurrent workers.
  */
 export function defineParityTests({
   name,
@@ -106,56 +97,62 @@ export function defineParityTests({
       });
     });
 
-    // KNOWN DIVERGENCE — an untouched optional `<select>`.
-    //
-    // It posts `value=""`. `createEnumItemDecoder` finds no match and throws,
-    // which `validate()` turns into a pathless `unexpected-error` rather than a
-    // field issue, and Kit cannot render that for a native POST: the response is
-    // a 500 and the user gets an error page instead of the form back. The JSON
-    // path never sends the key, so it is unaffected — which means a form with
-    // any optional select is unsubmittable without JavaScript.
+    // A blank option posts `""`. That used to fail the decode and answer 500.
     test("submits when an optional select is left on its blank option", async () => {
-      test.fail(
-        native,
-        "an untouched optional select 500s the whole no-JS submission"
-      );
       await form.getByLabel("First name").fill(`${key}Select`);
       expect(await submit("Select")).toMatchObject({
         firstName: `${key}Select`,
       });
     });
 
-    // KNOWN DIVERGENCE — clearing an optional value.
-    //
-    // Clearing an additional property leaves `null` in the state, which the JSON
-    // path carries into the validator and rejects, so the whole submission is
-    // refused; the FormData path drops the empty value first and accepts. The
-    // same user action therefore either succeeds or fails depending on whether
-    // JavaScript is on.
+    // KNOWN DIVERGENCE — the state has none of `agree: false`, `tags: []` or
+    // `profile: {}`, so `JSON.stringify` drops them, while the FormData path
+    // rebuilds all three. Whether they belong in the state is undecided, so this
+    // records it. The additional properties keep their seeded values, since
+    // clearing one is the next row and it fails on both paths.
     test("submits when the optional values are cleared", async () => {
       test.fail(
         !native,
-        'clearing an additional property becomes null and fails "must be string"'
+        "the JSON path drops `agree: false`, `tags: []` and `profile: {}`, which FormData rebuilds"
       );
       await form.getByLabel("First name").fill(`${key}Cleared`);
       await form.getByLabel("Last name").fill("");
       await form.getByLabel("Nickname").fill("");
       await form.getByLabel("City").fill("");
       await form.getByLabel("Zip").fill("");
-      await form.getByLabel("newKey::123", { exact: true }).fill("");
-      await form.getByLabel("also.333", { exact: true }).fill("");
-      // `agree` stays unchecked, and the selects get real values so this row
-      // measures the cleared strings rather than the select divergence above.
+      // `agree` stays unchecked; the selects get values so this row measures the
+      // cleared strings rather than the select row above.
       await form.getByLabel("Newsletter").selectOption({ label: "Yes" });
       await form.getByLabel("Color").selectOption({ label: "red" });
 
       expect(await submit("Cleared")).toEqual({
         firstName: `${key}Cleared`,
+        "newKey::123": "seed",
+        "also.333": "seed",
         agree: false,
         newsletter: true,
         color: "red",
         tags: [],
         profile: {},
+      });
+    });
+
+    // KNOWN DEFECT, not a divergence — `additionalProperties` validates own keys
+    // rather than guarding on `!== undefined` like `properties`, so the `undefined`
+    // both paths now hold fails AJV with "must be string". Own row because it
+    // blocks submission on both sides, hiding the row above.
+    test("submits when an additional property is cleared", async () => {
+      test.fail(
+        true,
+        "an `undefined` additional property fails AJV on both paths"
+      );
+      await form.getByLabel("First name").fill(`${key}Additional`);
+      await form.getByLabel("newKey::123", { exact: true }).fill("");
+      await form.getByLabel("also.333", { exact: true }).fill("");
+
+      expect(await submit("Additional")).toEqual({
+        firstName: `${key}Additional`,
+        "also.333": "seed",
       });
     });
   });

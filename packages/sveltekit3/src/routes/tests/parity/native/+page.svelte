@@ -9,9 +9,8 @@
 
   const initialData = await loadInitialData();
 
-  // Path B: JavaScript off. `connect()` is used only for the schema, the
-  // id builder that appends the `/{formId}` suffix, and the form attributes —
-  // the form below posts natively and never goes through its `onSubmit`.
+  // JS off: `connect()` supplies only the schema, the `/{formId}` suffixing id
+  // builder, and the form attributes. The form posts natively.
   const connected = await connect(createPost, {
     ...defaults,
     ...initialData,
