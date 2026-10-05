@@ -64,6 +64,7 @@
     "build": "svelte-package && vite build && publint",
     "build:app": "vite build",
     "preview": "vite preview",
+    "prepare": "svelte-kit sync || echo ''",
     "test": "npm run test:unit -- --run && npm run test:integration",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --tsgo-experimental-api",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --tsgo-experimental-api --watch",
