@@ -107,6 +107,13 @@ describe("convertFormDataEntries", async () => {
       convert(c.signal, { schema, uiSchema: {}, path: [], value: "" })
     ).resolves.toEqual("");
   });
+  it("Should reject a string for a schema with no type", async () => {
+    // Reaches the `default` branch: there is no `convertUnknownEntry` for the
+    // remote-function path, and `unknown` is not one of the coerced types.
+    await expect(
+      convert(c.signal, { schema: {}, uiSchema: {}, path: [], value: "text" })
+    ).rejects.toThrow(/Unexpected schema type/);
+  });
   it("Should treat an empty string as nothing chosen when it is not listed", async () => {
     const schema: Schema = {
       type: "string",
