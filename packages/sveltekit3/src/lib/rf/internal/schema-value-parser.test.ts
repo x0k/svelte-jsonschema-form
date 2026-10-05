@@ -409,11 +409,10 @@ describe("parseSchemaValue", async () => {
     });
   });
 
-  // An optional array or object that ends up with nothing in it is dropped
-  // rather than kept empty — absent is what the JSON path sends for the same
-  // input, and an empty `[]` or `{}` would otherwise trip `minItems` or
-  // `minProperties` on a field the user never filled in.
-  it("Should drop an optional array or object that arrives empty", async () => {
+  // An optional array that ends up with nothing in it is dropped rather than kept
+  // empty — absent is what the JSON path sends for the same input, and `[]`
+  // would otherwise trip `minItems` on a field the user never filled in.
+  it("Should drop an optional array that arrives empty", async () => {
     const schema: Schema = {
       type: "object",
       properties: {
@@ -432,34 +431,31 @@ describe("parseSchemaValue", async () => {
         keep: ["a"],
       },
     };
+    // `profile` stays: its inputs always render, so untouched and cleared both
+    // submit, and keeping `{}` matches the client default state.
     await expect(
       parseSchemaValue(c.signal, opts({ schema, input }))
-    ).resolves.toEqual({ keep: ["a"] });
+    ).resolves.toEqual({ profile: {}, keep: ["a"] });
   });
 
   // A required one is the user's to answer, so it stays and the validator
   // reports it rather than the parser quietly discarding it.
-  it("Should keep a required array or object that arrives empty", async () => {
+  it("Should keep a required array that arrives empty", async () => {
     const schema: Schema = {
       type: "object",
-      required: ["tags", "profile"],
+      required: ["tags"],
       properties: {
         tags: { type: "array", items: { type: "string" } },
-        profile: {
-          type: "object",
-          properties: { city: { type: "string" } },
-        },
       },
     };
     const input: Input<FormDataEntryValue> = {
       [DEFAULT_ID_PREFIX]: {
         tags: [],
-        profile: { city: "" },
       },
     };
     await expect(
       parseSchemaValue(c.signal, opts({ schema, input }))
-    ).resolves.toEqual({ tags: [], profile: {} });
+    ).resolves.toEqual({ tags: [] });
   });
 
   it("Should parse schema with oneOf (select)", async () => {

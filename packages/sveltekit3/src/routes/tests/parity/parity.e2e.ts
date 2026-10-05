@@ -106,10 +106,16 @@ export function defineParityTests({
       });
     });
 
-    // `tags` and `profile` used to arrive as `[]` and `{}` here, invented from parts
-    // that never existed. Both paths now agree on absent, which matters beyond
+    // `tags` used to arrive as `[]` here, invented from parts that never
+    // existed. Both paths now agree on absent, which matters beyond
     // consistency: an untouched optional array with `minItems: 1` used to fail
     // validation the user did nothing to earn.
+    //
+    // `profile` is deliberately not converged the same way. Its inputs always
+    // render, so untouched and cleared both submit, and the JSON path tells them
+    // apart (untouched keeps the default `{}`, cleared collapses) while the
+    // FormData path cannot. Keeping `{}` matches the client's default state for
+    // the case that actually occurs without the user touching anything.
     //
     // `agree` is deliberately not converged — see the contract row below. The
     // additional properties keep their seeded values, since clearing one is a
@@ -132,25 +138,22 @@ export function defineParityTests({
         "tag-one": "seed",
         newsletter: true,
         color: "red",
-        // `agree` is the one remaining divergence, and it is a contract rather
-        // than a defect — see the row below.
-        ...(native && { agree: false }),
+        // `profile` and `agree` are the two remaining divergences, and both are
+        // contracts rather than defects — see the rows below.
+        ...(native && { profile: {}, agree: false }),
       });
     });
 
     // CONTRACT — an untouched optional checkbox is absent on the JSON path and
-    // `false` on the FormData path, and that is intentional.
+    // `false` on the FormData path, and the same holds for an untouched optional
+    // object arriving as `{}`. Both are intentional: the parts either never
+    // existed or always rendered, and no server-side reading can separate
+    // untouched from touched-then-cleared without changing the wire.
     //
-    // Both histories submit literally nothing: untouched never writes a part,
-    // and checked-then-unchecked reverts to the unchecked state. No server-side
-    // reading can separate them without changing the wire, and the change would
-    // only matter with JavaScript, where the state already holds both the absent
-    // key and `FIELD_CHANGED`.
-    //
-    // So the paths keep HTML's convention that an unchecked checkbox means
-    // false. Consumers that care use the usual falsy check; only a strict
-    // `=== false` tells the two apart, which is an application-level choice. A
-    // checkbox that must be answered belongs in a required select instead.
+    // So the FormData path keeps HTML's conventions (unchecked means false, an
+    // empty-but-rendered object means `{}`), while the JSON path keeps what the
+    // state holds. Consumers use the usual falsy check; only a strict `===`
+    // tells the two apart, which is an application-level choice.
     test("reports an untouched optional checkbox as the contract requires", async () => {
       await form.getByLabel("First name").fill(`${key}Untouched`);
       await form.getByLabel("Newsletter").selectOption({ label: "Yes" });
@@ -164,7 +167,7 @@ export function defineParityTests({
         "tag-one": "seed",
         newsletter: true,
         color: "red",
-        ...(native && { agree: false }),
+        ...(native && { agree: false, profile: {} }),
       });
     });
 

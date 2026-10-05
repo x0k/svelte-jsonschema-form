@@ -23,7 +23,7 @@ import {
   type SchemaValue,
 } from "@sjsf/form/core";
 import { isSchemaObject } from "@sjsf/form/lib/json-schema";
-import { isRecord, isRecordEmpty } from "@sjsf/form/lib/object";
+import { isRecord } from "@sjsf/form/lib/object";
 
 import {
   ANY_OF,
@@ -196,15 +196,22 @@ export async function parseSchemaValue<T>(
       if (value[property] === undefined) {
         const propValue = await parseSchemaDef(schemaDef, uiSchema, undefined);
         if (propValue !== undefined) {
-          // An empty container here means nothing was submitted for it: the
-          // declared properties below all converted to `undefined` and any array
-          // items did too. Absent is what the JSON path sends for the same input,
-          // and an empty `{}`/`[]` would instead trip `minProperties`/`minItems`
-          // on a field the user never filled in.
-          const isEmptyContainer = isSchemaArrayValue(propValue)
-            ? propValue.length === 0
-            : isSchemaObjectValue(propValue) && isRecordEmpty(propValue);
-          if (!(isEmptyContainer && !required)) {
+          // An empty array means nothing was submitted for it: untouched arrays
+          // render no item inputs, so there is nothing to read. Absent is what
+          // the JSON path sends for the same input, and a kept `[]` would trip
+          // `minItems` on a field the user never filled in.
+          //
+          // Objects are deliberately not dropped here. Their inputs always
+          // render, so untouched and cleared both submit, and the two cannot be
+          // told apart — the same reason an unchecked checkbox stays `false`.
+          // Keeping `{}` matches the client default state for the untouched case.
+          if (
+            !(
+              isSchemaArrayValue(propValue) &&
+              propValue.length === 0 &&
+              !required
+            )
+          ) {
             value[property] = propValue;
           }
         }
