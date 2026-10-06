@@ -48,7 +48,14 @@ export function createClientValidator<T>(form: FormState<T>) {
 
 const CHUNK_KEY = `${JSON_CHUNKS_KEY}[]`;
 
-/** Builds a file input on the hidden submission form. */
+/**
+ * Builds a file input on the hidden submission form.
+ *
+ * Only a selected file belongs here: assigning a `DataTransfer`-made file to
+ * `input.files` gives the renderer a file it has no consent to read, and
+ * Chromium terminates the renderer that then uploads one (see
+ * `copyVisibleInputs`).
+ */
 function appendFileInput(
   formElement: HTMLFormElement,
   name: string,
@@ -253,7 +260,15 @@ export async function connect<T>(
         continue;
       }
       if (value instanceof File) {
-        appendFileInput(formElement, name, value);
+        // An untouched file input reports `File("")`, which the server drops
+        // (`convertFormDataEntry`), so the part carries nothing — skip it as
+        // the JSON path does. Injecting it is not merely redundant: the file
+        // it holds was built in script rather than chosen by the user, and
+        // Chromium kills the renderer that uploads a file it has no consent to
+        // read ("bad IPC message, reason 2"), taking the form down with it.
+        if (isSelectedFile(value)) {
+          appendFileInput(formElement, name, value);
+        }
       } else {
         hiddenInput(name, value);
       }
