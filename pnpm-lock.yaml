@@ -162,8 +162,8 @@ catalogs:
       specifier: ^3.0.0
       version: 3.0.0
     '@sveltejs/sv-utils':
-      specifier: ^1.0.0
-      version: 1.0.0
+      specifier: ^1.0.1
+      version: 1.0.1
     '@sveltejs/svelte-json-tree':
       specifier: ^2.2.1
       version: 2.2.1
@@ -2548,7 +2548,7 @@ importers:
         version: 1.0.13(acorn@8.18.0)
       '@sveltejs/sv-utils':
         specifier: 'catalog:'
-        version: 1.0.0
+        version: 1.0.1
       '@types/css-tree':
         specifier: 'catalog:'
         version: 3.2.0
@@ -2793,7 +2793,7 @@ importers:
     devDependencies:
       '@sveltejs/sv-utils':
         specifier: 'catalog:'
-        version: 1.0.0
+        version: 1.0.1
       '@types/node':
         specifier: 'catalog:'
         version: 26.5.1
@@ -4716,6 +4716,9 @@ packages:
 
   '@sveltejs/sv-utils@1.0.0':
     resolution: {integrity: sha512-nK6hcTMF9Iffu3zHS6+1bE7yDROFPvraKGvzjUy7aBQkzoccKse6WSWhpMvPLMP2tOC9+el4+HI+RhfA1OPFpQ==}
+
+  '@sveltejs/sv-utils@1.0.1':
+    resolution: {integrity: sha512-Y1tHH+8jpaoiGGiWPG8WcRiJrQW122QbofCv/uDYXelHCp8YcOErZYOjSP0XNgoV4oN5H2gbPEAeL6fQX9Rlpg==}
 
   '@sveltejs/svelte-json-tree@2.2.1':
     resolution: {integrity: sha512-M8l23/R3y1fI2+RaOzfUzmkysTWWsw/NClUgGpvydl9vXRonPN1/btQQievaNyeWNfUj12tjPfh5yTrXWpaKkg==}
@@ -11000,6 +11003,8 @@ snapshots:
       typescript: 6.0.3
 
   '@sveltejs/sv-utils@1.0.0': {}
+
+  '@sveltejs/sv-utils@1.0.1': {}
 
   '@sveltejs/svelte-json-tree@2.2.1(svelte@5.57.1(@typescript-eslint/types@8.70.0))':
     dependencies:
