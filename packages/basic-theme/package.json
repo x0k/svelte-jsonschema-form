@@ -1,6 +1,6 @@
 {
   "name": "@sjsf/basic-theme",
-  "version": "3.8.2",
+  "version": "3.9.0",
   "description": "Basic theme for svelte-jsonschema-form",
   "keywords": [
     "jsonschema",
@@ -55,7 +55,7 @@
     "dev": "vite",
     "test": "vitest run --exclude '.svelte-kit/**'",
     "test:visual": "vitest --project vrt",
-    "build": "svelte-package && publint",
+    "build": "svelte-package --input src && publint",
     "check": "svelte-check --tsconfig ./tsconfig.json --tsgo-experimental-api",
     "lint": "eslint .",
     "format": "oxfmt .",

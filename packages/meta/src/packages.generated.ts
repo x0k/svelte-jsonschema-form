@@ -48,7 +48,7 @@ export const EXTRA_PACKAGES = {
   },
   "svelteAdapterAuto": {
     "name": "@sveltejs/adapter-auto",
-    "version": "7.0.1",
+    "version": "8.0.0",
     "dev": true
   },
   "tailwindcss3": {

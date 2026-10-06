@@ -1,6 +1,6 @@
 import type { Snippet } from "svelte";
 
-import type { SchemaArrayValue } from "@/core/index.js";
+import type { SchemaArrayValue } from "#core/index.js";
 
 import type { TemplateCommonProps } from "../templates.js";
 

@@ -9,14 +9,14 @@
   import { overrideByRecord } from "@sjsf/form/lib/resolver";
   import { resolver } from "@sjsf/form/resolvers/compat";
 
-  import * as defaults from "$lib/sjsf/defaults";
+  import * as defaults from "#lib/sjsf/defaults.js";
   import {
     Layout,
     createFocusOnFirstErrorTab,
     schema,
     setTabsContext,
     type TabsContext,
-  } from "$lib/tabs";
+  } from "#lib/tabs/index.js";
 
   const tabsCtx: TabsContext = { current: undefined };
   setTabsContext(tabsCtx);

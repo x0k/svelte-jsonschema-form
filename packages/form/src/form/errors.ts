@@ -1,4 +1,4 @@
-import type { Task } from "@/lib/task.svelte.js";
+import type { Task } from "#lib/task.svelte.js";
 
 import type { Config } from "./config.js";
 import type { FieldValue, FormValue, Update } from "./model.js";

@@ -1,10 +1,10 @@
-import { getSchemaDefinitionByPath, type RPath } from "@/core/index.js";
-import { overrideByRecord } from "@/lib/resolver.js";
-import type { ObjectProperties } from "@/lib/types.js";
+import { getSchemaDefinitionByPath, type RPath } from "#core/index.js";
+import { overrideByRecord } from "#lib/resolver.js";
+import type { ObjectProperties } from "#lib/types.js";
 import {
   StringEnumValueMapperBuilder,
   type EnumValueMapperBuilder,
-} from "@/options.svelte.js";
+} from "#options.svelte.js";
 
 import type { Config } from "../config.js";
 import type { ActionField } from "../field-actions.js";

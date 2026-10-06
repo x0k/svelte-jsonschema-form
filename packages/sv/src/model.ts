@@ -9,6 +9,8 @@ import {
   toTheme,
   FIELD_VALIDATION_FLAGS,
   type Generated,
+  type SvelteKitProject,
+  resolveSvelteKitProject,
 } from "meta";
 import {
   createKitPathFactory,
@@ -35,7 +37,7 @@ import {
 } from "sv";
 
 import packageJson from "../package.json" with { type: "json" };
-import { createPrinter, resolveLibPrefix } from "./sv-utils.js";
+import { createPrinter, defineDemoPage, type DemoPage } from "./sv-utils.js";
 
 const _ADDON_ID = packageJson.name;
 
@@ -133,7 +135,11 @@ export const addonOptions = defineAddonOptions()
   .add("validator", {
     question: "Select a validation engine",
     type: "select",
-    default: "ajv8",
+    default: JSON.stringify({
+      name: "ajv8",
+      precompiled: false,
+      draft2020: false,
+    } satisfies SvValidator),
     options: Array.from(validatorOptions()),
   })
   .add("sveltekit", {
@@ -168,9 +174,12 @@ export type Context = Omit<Workspace, "options"> & {
   ts: (content: string, alt?: string) => string;
   js: (content: string, alt?: string) => string;
   lib: PathFactory;
-  libPrefix: "#lib" | "$lib";
+  /** resolved once from the project's `@sveltejs/kit` range */
+  kit: SvelteKitProject;
   validator: ValidatorDefinition;
   form: FormDefinition;
+  /** demo route wiring, `undefined` for non-SvelteKit projects */
+  demoPage: DemoPage | undefined;
 };
 
 export interface AddonSetupOptions {
@@ -185,9 +194,9 @@ export function createContext(ws: Workspace): Context {
     ...ws.options,
     validator: JSON.parse(ws.options.validator),
   };
-  const libPrefix = resolveLibPrefix(dependencyVersion("@sveltejs/kit"));
+  const kit = resolveSvelteKitProject(dependencyVersion("@sveltejs/kit"));
   const lib: PathFactory = isKit
-    ? createKitPathFactory(libPrefix)
+    ? createKitPathFactory(kit.libPrefix)
     : (path) =>
         file.getRelative({
           from: `${directory.kitRoutes}/sjsf.svelte`,
@@ -206,6 +215,7 @@ export function createContext(ws: Workspace): Context {
     isTs,
     modelName: POST_MODEL_NAME,
     validator,
+    sveltekitPackage: kit.pkg,
   });
   return {
     ...ws,
@@ -214,13 +224,19 @@ export function createContext(ws: Workspace): Context {
     ts: ts!,
     js: js!,
     lib,
-    libPrefix,
+    kit,
     validator,
     form,
+    demoPage: isKit
+      ? defineDemoPage(DEMO_NAME, ws.language, directory.kitRoutes)
+      : undefined,
   };
 }
 
 export const POST_MODEL_NAME = "post";
+
+/** name of the add-on demo route, also used as the `DemoLinks` entry name */
+export const DEMO_NAME = "sjsf";
 
 export const POST_MODEL_DIR = `/${POST_MODEL_NAME}/`;
 

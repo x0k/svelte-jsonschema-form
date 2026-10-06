@@ -21,8 +21,8 @@
     makeEventHandlers,
     validateField,
     type ComponentProps,
-  } from "@/form/index.js";
-  import "@/form/extra-fields/tags.js";
+  } from "#form/index.js";
+  import "#form/extra-fields/tags.js";
 
   import "../extra-widgets/tags.js";
 

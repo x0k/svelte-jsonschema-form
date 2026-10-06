@@ -1,5 +1,37 @@
 # @sjsf/sv
 
+## 0.3.0
+
+### Minor Changes
+
+- Generate the integration package that matches the target project's `@sveltejs/kit` ([#479](https://github.com/x0k/svelte-jsonschema-form/pull/479))
+  range: `@sjsf/sveltekit` for Kit 2, `@sjsf/sveltekit3` for Kit 3. Since `sv@1`
+  templates all scaffold Kit 3, `sv add @sjsf` no longer installs a Kit 2 package
+  into a Kit 3 app.
+
+  The composer's Kit 3 output also gains the shape that `sv create` provides for
+  its templates: `tsconfig.json` extends `$app/tsconfig` instead of the removed
+  `.svelte-kit/tsconfig.json`, and `package.json` gains the `#lib` subpath imports.
+
+  `#lib` specifiers now carry a file extension. Unlike `$lib`, which Kit 2 resolves
+  through `tsconfig` `paths`, `#lib` is a `package.json#imports` subpath and has to
+  be unambiguous for Node and TypeScript to resolve it.
+
+- Require `sv@^1` and migrate to the published `@sveltejs/sv-utils@^1`, importing ([#479](https://github.com/x0k/svelte-jsonschema-form/pull/479))
+  `transforms` from its `browser` entry so codegen stays off the Node-only one.
+
+  Generated files are now formatted by the `@sveltejs/sv-utils@1` printer, which
+  reorders imports, parenthesizes `as const` expressions and rewraps long lines.
+
+### Patch Changes
+
+- List the demo route in the floating `DemoLinks` post-it that `sv` renders from the ([#483](https://github.com/x0k/svelte-jsonschema-form/pull/483))
+  root layout, instead of linking it from a `/demo` index page.
+
+  Uses `defineDemoPage` from `@sveltejs/sv-utils@^1.0.1`, so both transforms are
+  idempotent and re-running the add-on no longer duplicates the link. The
+  `meta/codegen` `addToDemoPage` helper, a copy of the removed `sv` one, is gone.
+
 ## 0.2.6
 
 ### Patch Changes

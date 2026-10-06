@@ -1,5 +1,11 @@
 # @sjsf/cfworker-validator
 
+## 3.9.0
+
+### Minor Changes
+
+- Added `setupFormFormats()` function that installs `color` and `data-url` format checkers into `@cfworker/json-schema`'s global format registry ([#434](https://github.com/x0k/svelte-jsonschema-form/pull/434))
+
 ## 3.8.2
 
 No changes in this release.

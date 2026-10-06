@@ -11,7 +11,7 @@ import type {
   FormValue,
   FormValueValidator,
   ValidationResult,
-} from "@/form/main.js";
+} from "#form/main.js";
 
 function issueToPath({ path }: StandardSchemaV1.Issue): Path {
   if (!path) {

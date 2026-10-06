@@ -1,6 +1,6 @@
 {
   "name": "@sjsf/skeleton5-theme",
-  "version": "3.8.2",
+  "version": "3.9.0",
   "description": "The skeleton v5 based theme for svelte-jsonschema-form",
   "keywords": [
     "form",
@@ -54,6 +54,7 @@
     "dev": "vite dev",
     "build": "svelte-package && vite build && mv $(find .svelte-kit/output/server/_app/immutable/assets/ -name \"_page*.css\" | head -n 1) dist/styles.css && sed -i 's/:root/:host/g' dist/styles.css && ../../scripts/validate-theme-css.sh && publint",
     "preview": "vite preview",
+    "prepare": "svelte-kit sync || echo ''",
     "test": "npm run test:unit -- --run",
     "test:visual": "vitest --project vrt",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --tsgo-experimental-api",
@@ -65,13 +66,14 @@
     "format:check": "oxfmt --check ."
   },
   "dependencies": {
-    "@sjsf/basic-theme": "workspace:^3.8.2"
+    "@sjsf/basic-theme": "workspace:^3.9.0"
   },
   "devDependencies": {
     "@sjsf/ajv8-validator": "workspace:*",
     "@sjsf/form": "workspace:*",
     "@skeletonlabs/skeleton": "catalog:",
     "@skeletonlabs/skeleton-svelte": "catalog:",
+    "@sveltejs/kit": "catalog:",
     "@sveltejs/svelte-json-tree": "catalog:",
     "@tailwindcss/forms": "catalog:",
     "@tailwindcss/vite": "catalog:",

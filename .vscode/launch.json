@@ -28,13 +28,13 @@
         "run",
         "../../${relativeFile}",
         "-r",
-        "${workspaceRoot}/packages/sveltekit/"
+        "${workspaceRoot}/packages/sveltekit3/"
       ],
       "env": {
         "NODE_ENV": "development",
         "VITE_TEST": "true"
       },
-      "cwd": "${workspaceRoot}/packages/sveltekit",
+      "cwd": "${workspaceRoot}/packages/sveltekit3",
       "smartStep": true,
       "console": "integratedTerminal"
     }

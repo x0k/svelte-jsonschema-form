@@ -2,8 +2,8 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { isSchemaObject } from "@/lib/json-schema/index.js";
-import { isObject } from "@/lib/object.js";
+import { isSchemaObject } from "#lib/json-schema/index.js";
+import { isObject } from "#lib/object.js";
 
 import type { Merger } from "./merger.js";
 import { REF_KEY, type Schema, type SchemaDefinition } from "./schema.js";

@@ -51,7 +51,7 @@
   import { singleOption } from "@sjsf/form/options.svelte";
   import { tick } from "svelte";
 
-  import { cn } from "$lib/utils.js";
+  import { cn } from "#lib/utils.js";
 
   import { getThemeContext } from "../context.js";
 

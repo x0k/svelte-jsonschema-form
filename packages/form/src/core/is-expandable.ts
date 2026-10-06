@@ -1,4 +1,4 @@
-import { isNil } from "@/lib/types.js";
+import { isNil } from "#lib/types.js";
 
 import type { Schema, SchemaObjectValue } from "./schema.js";
 import { isSchemaObjectValue } from "./value.js";

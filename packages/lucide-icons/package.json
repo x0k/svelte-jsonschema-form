@@ -1,6 +1,6 @@
 {
   "name": "@sjsf/lucide-icons",
-  "version": "3.8.2",
+  "version": "3.9.0",
   "description": "The lucide based icons set for svelte-jsonschema-form",
   "keywords": [
     "form",
@@ -41,6 +41,7 @@
     "dev": "vite dev",
     "build": "svelte-package && publint",
     "preview": "vite preview",
+    "prepare": "svelte-kit sync || echo ''",
     "test": "npm run test:unit -- --run",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --tsgo-experimental-api",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --tsgo-experimental-api --watch",
@@ -53,6 +54,7 @@
   "devDependencies": {
     "@lucide/svelte": "catalog:",
     "@sjsf/form": "workspace:*",
+    "@sveltejs/kit": "catalog:",
     "globals": "catalog:",
     "svelte": "catalog:",
     "theme-testing": "workspace:*"

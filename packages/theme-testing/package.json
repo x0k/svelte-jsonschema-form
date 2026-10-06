@@ -1,6 +1,6 @@
 {
   "name": "theme-testing",
-  "version": "1.0.32",
+  "version": "1.0.33",
   "private": true,
   "license": "(MIT AND Apache-2.0)",
   "files": [
@@ -28,7 +28,7 @@
     }
   },
   "scripts": {
-    "build": "svelte-package && publint",
+    "build": "svelte-package --input src && publint",
     "check": "svelte-check --tsconfig ./tsconfig.json --tsgo-experimental-api",
     "lint": "eslint .",
     "format": "oxfmt .",

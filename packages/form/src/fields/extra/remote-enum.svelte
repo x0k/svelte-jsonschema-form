@@ -1,13 +1,13 @@
 <script lang="ts" module>
   import { getContext, hasContext, setContext } from "svelte";
 
-  import type { EnumOption } from "@/core/index.js";
+  import type { EnumOption } from "#core/index.js";
   import {
     type Config,
     type FormState,
     retrieveUiOption,
-  } from "@/form/index.js";
-  import type { Query } from "@/lib/task.svelte.js";
+  } from "#form/index.js";
+  import type { Query } from "#lib/task.svelte.js";
 
   const field = "remoteEnumField";
   export interface EnumOptionsQueries {}
@@ -71,13 +71,13 @@
     makeEventHandlers,
     validateField,
     retrieveEnumValueMapperBuilder,
-  } from "@/form/index.js";
-  import "@/form/extra-fields/remote-enum.js";
+  } from "#form/index.js";
+  import "#form/extra-fields/remote-enum.js";
   import {
     EMPTY_VALUE,
     createMappedOption,
     singleOption,
-  } from "@/options.svelte.js";
+  } from "#options.svelte.js";
 
   let {
     config,

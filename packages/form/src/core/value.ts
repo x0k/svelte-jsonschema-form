@@ -1,4 +1,4 @@
-import { isRecord, isObject, isRecordEmpty } from "@/lib/object.js";
+import { isRecord, isObject, isRecordEmpty } from "#lib/object.js";
 
 import type {
   SchemaArrayValue,

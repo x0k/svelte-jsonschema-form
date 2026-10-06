@@ -1,7 +1,7 @@
 import { SvelteMap } from "svelte/reactivity";
 
-import { REF_FLAG, type RPath } from "@/core/index.js";
-import { getNodeByKeys, insertValue } from "@/lib/trie.js";
+import { REF_FLAG, type RPath } from "#core/index.js";
+import { getNodeByKeys, insertValue } from "#lib/trie.js";
 
 import type { Config } from "./config.js";
 import type { FieldState } from "./field-state.js";
@@ -31,6 +31,7 @@ export const FORM_UI_OPTIONS_REGISTRY = Symbol("form-ui-options-registry");
 export const FORM_UI_EXTRA_OPTIONS = Symbol("form-ui-extra-options");
 export const FORM_VALIDATOR = Symbol("form-validator");
 export const FORM_MERGER = Symbol("form-merger");
+export const FORM_ID_BUILDER = Symbol("form-id-builder");
 export const FORM_ICONS = Symbol("form-icons");
 export const FORM_DISABLED = Symbol("form-disabled");
 export const FORM_DATA_URL_TO_BLOB = Symbol("form-data-url-to-blob");

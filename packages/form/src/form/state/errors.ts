@@ -1,6 +1,6 @@
 import { untrack } from "svelte";
 
-import type { RPath } from "@/core/index.js";
+import type { RPath } from "#core/index.js";
 
 import type { FieldErrors } from "../errors.js";
 import type { FieldPath } from "../id.js";

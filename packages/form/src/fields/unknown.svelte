@@ -5,7 +5,7 @@
     getFormContext,
     type ComponentProps,
     ErrorMessage,
-  } from "@/form/index.js";
+  } from "#form/index.js";
 
   const {
     // eslint-disable-next-line no-useless-assignment

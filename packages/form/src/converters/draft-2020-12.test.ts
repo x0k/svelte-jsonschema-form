@@ -1,7 +1,7 @@
 import type { JSONSchema } from "json-schema-typed/draft-2020-12";
 import { describe, it, expect } from "vitest";
 
-import type { Schema } from "@/core/index.js";
+import type { Schema } from "#core/index.js";
 
 import { convert } from "./draft-2020-12.js";
 

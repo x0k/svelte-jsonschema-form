@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { constUndefined } from "@/lib/function.js";
+  import { constUndefined } from "#lib/function.js";
 
   import type { Config } from "./config.js";
   import { FORM_ROOT_PATH, FORM_SCHEMA, FORM_UI_SCHEMA } from "./internals.js";

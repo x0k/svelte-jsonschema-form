@@ -1,6 +1,6 @@
 import { untrack } from "svelte";
 
-import type { DeepPartial } from "@/lib/types.js";
+import type { DeepPartial } from "#lib/types.js";
 
 import { FORM_MERGER, FORM_SCHEMA, FORM_VALUE } from "../internals.js";
 import type { FormValue } from "../model.js";

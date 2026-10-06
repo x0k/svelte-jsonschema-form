@@ -2,7 +2,7 @@ import {
   isOrderedSchemaDeepEqual,
   isSchemaDeepEqual,
   type Schema,
-} from "@/core/index.js";
+} from "#core/index.js";
 
 import type { FieldPath } from "./id.js";
 import type { FieldValue } from "./model.js";

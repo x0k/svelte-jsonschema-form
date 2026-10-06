@@ -10,14 +10,14 @@ import {
   union,
   type Deduplicator,
   type Intersector,
-} from "@/lib/array.js";
-import { identity } from "@/lib/function.js";
+} from "#lib/array.js";
+import { identity } from "#lib/function.js";
 import {
   isAllowAnySchema,
   isSchemaWithItems,
   type SchemaWithItems,
-} from "@/lib/json-schema/index.js";
-import { lcm } from "@/lib/math.js";
+} from "#lib/json-schema/index.js";
+import { lcm } from "#lib/math.js";
 
 import { simplePatternsMerger } from "./patterns.js";
 

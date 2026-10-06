@@ -7,7 +7,7 @@
 </script>
 
 <script lang="ts">
-  import type { ComponentProps } from "@/form/index.js";
+  import type { ComponentProps } from "#form/index.js";
 
   import ArrayBase from "./array-base.svelte";
   import { createTupleContext } from "./context.svelte.js";

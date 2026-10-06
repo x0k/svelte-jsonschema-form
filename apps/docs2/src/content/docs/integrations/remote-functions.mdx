@@ -10,16 +10,16 @@ sidebar:
 ---
 
 import { Code, Tabs, TabItem } from "@astrojs/starlight/components";
-import { sveltekitPackage } from "meta";
+import { sveltekit3Package, sveltekitPackage } from "meta";
 
 import { getPackageDependencies } from "@/shared";
 import Npm from "@/components/npm.astro";
 import Deps from "@/components/peer-dependencies.astro";
 
-import modelCode from "examples/sveltekit-starter/src/lib/post.ts?raw";
-import clientCode from "examples/sveltekit-starter/src/routes/remote-functions/+page.svelte?raw";
-import clientEnhanceCode from "examples/sveltekit-starter/src/routes/remote-functions-enhance/+page.svelte?raw";
-import serverCode from "examples/sveltekit-starter/src/routes/remote-functions/data.remote?raw";
+import modelCode from "examples/sveltekit3-starter/src/lib/post.ts?raw";
+import clientCode from "examples/sveltekit3-starter/src/routes/remote-functions/+page.svelte?raw";
+import clientEnhanceCode from "examples/sveltekit3-starter/src/routes/remote-functions-enhance/+page.svelte?raw";
+import serverCode from "examples/sveltekit3-starter/src/routes/remote-functions/data.remote?raw";
 
 :::caution
 
@@ -29,23 +29,37 @@ Remote functions integration is experimental
 
 ## Installation
 
-<Npm pkg={getPackageDependencies(sveltekitPackage)} />
-{/* Svelte `hydratable` API: https://github.com/sveltejs/svelte/pull/17154 */}
-{/* SvelteKit programmatic submission API: https://github.com/sveltejs/kit/pull/15657 */}
-<Deps
-  pkg={sveltekitPackage}
-  versionOverrides={{ "@sveltejs/kit": "2.61.0", svelte: "5.44.0" }}
-/>
+Pick the package that matches your project's `@sveltejs/kit` major version.
+`sv add @sjsf` does this for you.
+
+<Tabs syncKey="kit">
+  <TabItem label="SvelteKit 3">
+    <Npm pkg={getPackageDependencies(sveltekit3Package)} />
+
+    <Deps pkg={sveltekit3Package} />
+
+  </TabItem>
+  <TabItem label="SvelteKit 2 (legacy)">
+    <Npm pkg={getPackageDependencies(sveltekitPackage)} />
+
+    {/* Svelte `hydratable` API: https://github.com/sveltejs/svelte/pull/17154 */}
+    {/* SvelteKit programmatic submission API: https://github.com/sveltejs/kit/pull/15657 */}
+    <Deps
+      pkg={sveltekitPackage}
+      versionOverrides={{ "@sveltejs/kit": "2.61.0", svelte: "5.44.0" }}
+    />
+
+  </TabItem>
+</Tabs>
 
 ## Example
 
 :::note
 
-For correct operation, you must use ID Builder from the `@sjsf/sveltekit/rf`.
+For correct operation, you must use ID Builder from the integration package's
+remote-functions subpath.
 
 :::
-
-{/* TODO: Fix `$lib/remote-form-defaults` */}
 
 <Tabs>
   <TabItem label="+page.svelte">
@@ -62,6 +76,28 @@ For correct operation, you must use ID Builder from the `@sjsf/sveltekit/rf`.
   </TabItem>
 </Tabs>
 
+## Submission encoding
+
+By default, enhanced submissions send the form's own controls — the same parts a native
+submission would send — so the server parses both identically. No JSON
+serialization of the form value is involved.
+
+Pass `useJsonChunks` to `connect()` to submit the form data as JSON. This needs JavaScript:
+without it the browser submits the fields on its own, so the submission may look different from the JSON one.
+
+Fields whose schema declares no `type` are rejected unless the validator is
+given a `convertUnknownEntry` to handle them:
+
+```ts
+import type { FieldValue } from "@sjsf/form";
+
+const validator = createServerValidator({
+  ...defaults,
+  schema,
+  convertUnknownEntry: ({ value }) => value as FieldValue,
+});
+```
+
 ## Known issues
 
 - `experimental.async` does not apply to dependency code -
@@ -71,7 +107,7 @@ For correct operation, you must use ID Builder from the `@sjsf/sveltekit/rf`.
 
   ```js
   optimizeDeps: {
-    exclude: ['@sjsf/form', '@sjsf/sveltekit/rf/client'],
+    exclude: ['@sjsf/form', '@sjsf/sveltekit3/rf/client'],
   }
   ```
 

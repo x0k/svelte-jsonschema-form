@@ -1,6 +1,6 @@
 {
   "name": "@sjsf/flowbite-icons",
-  "version": "3.8.2",
+  "version": "3.9.0",
   "description": "The flowbite based icons set for svelte-jsonschema-form",
   "keywords": [
     "flowbite",
@@ -46,6 +46,7 @@
     "dev": "vite dev",
     "build": "svelte-package && vite build && mv $(find .svelte-kit/output/server/_app/immutable/assets/ -name \"_page*.css\" | head -n 1) dist/styles.css && publint",
     "preview": "vite preview",
+    "prepare": "svelte-kit sync || echo ''",
     "test": "npm run test:unit -- --run",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --tsgo-experimental-api",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --tsgo-experimental-api --watch",
@@ -57,6 +58,7 @@
   },
   "devDependencies": {
     "@sjsf/form": "workspace:*",
+    "@sveltejs/kit": "catalog:",
     "@tailwindcss/vite": "catalog:",
     "flowbite-svelte-icons": "^3.1.0",
     "globals": "catalog:",

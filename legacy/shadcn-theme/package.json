@@ -23,6 +23,9 @@
   "type": "module",
   "types": "./dist/theme/index.d.ts",
   "svelte": "./dist/theme/index.js",
+  "imports": {
+    "#lib/*": "./src/lib/*"
+  },
   "exports": {
     "./package.json": "./package.json",
     "./components/*": {
@@ -76,12 +79,13 @@
     "format:check": "oxfmt --check ."
   },
   "dependencies": {
-    "@sjsf/basic-theme": "workspace:^3.8.2"
+    "@sjsf/basic-theme": "workspace:^3.9.0"
   },
   "devDependencies": {
     "@internationalized/date": "catalog:legacy",
     "@lucide/svelte": "catalog:",
     "@sjsf/form": "workspace:*",
+    "@sveltejs/kit": "catalog:kit2",
     "autoprefixer": "catalog:",
     "bits-ui": "catalog:",
     "clsx": "catalog:shadcn",

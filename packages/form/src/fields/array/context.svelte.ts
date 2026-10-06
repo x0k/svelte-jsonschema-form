@@ -8,7 +8,7 @@ import {
   type Schema,
   type SchemaArrayValue,
   type SchemaValue,
-} from "@/core/index.js";
+} from "#core/index.js";
 import {
   AFTER_VALIDATED,
   getDefaultFieldState,
@@ -30,8 +30,8 @@ import {
   getChildPath,
   type FieldErrors,
   getStableConfig,
-} from "@/form/index.js";
-import { noop } from "@/lib/function.js";
+} from "#form/index.js";
+import { noop } from "#lib/function.js";
 
 import { titleWithIndex, type ItemTitle } from "./model.js";
 

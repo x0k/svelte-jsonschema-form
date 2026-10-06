@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  import "@/form/extra-fields/object-property.js";
+  import "#form/extra-fields/object-property.js";
   import "../extra-templates/object-property.js";
 
   declare module "../components.js" {
@@ -22,7 +22,7 @@
     uiTitleOption,
     retrieveUiOption,
     retrieveTranslate,
-  } from "@/form/index.js";
+  } from "#form/index.js";
 
   import { getObjectContext } from "./context.svelte.js";
 

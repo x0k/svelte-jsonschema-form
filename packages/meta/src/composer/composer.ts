@@ -19,7 +19,7 @@ import {
   createModel,
   createJsonFile,
   createCompileValidatorsScript,
-  KIT_PATH_FACTORY,
+  createKitPathFactory,
   type MergerOptions,
   type ModuleAugmentation,
   type ThemeExtension,
@@ -36,7 +36,7 @@ import {
   filterPackageDependencies,
   type AbstractPackage,
 } from "../package.ts";
-import { sveltekitPackage } from "../sveltekit.ts";
+import { resolveSvelteKitProject } from "../sveltekit.ts";
 import type { ToTheme } from "../themes.ts";
 import type { ExtraWidgetFileNames } from "../widgets.ts";
 import { buildPackageJson } from "./package-json.ts";
@@ -50,6 +50,12 @@ export interface ComposerOptions<T extends CodegenThemeOrSubTheme> {
   icons: CodegenIconSet;
   validator: CodegenValidator;
   sveltekit: CodegenSvelteKitIntegration;
+  /**
+   * Target `@sveltejs/kit` range; decides whether the generated project gets
+   * `@sjsf/sveltekit` or `@sjsf/sveltekit3`, and the matching Kit shape.
+   * Defaults to Kit 3 when omitted.
+   */
+  kitRange?: string;
   widgets: ExtraWidgetFileNames[ToTheme<T>][];
   fields: ExtraFieldFileName[];
   extraFiles: Record<string, string>;
@@ -73,24 +79,26 @@ export interface ComposerOptions<T extends CodegenThemeOrSubTheme> {
   css: string;
 }
 
-const TSCONFIG = JSON.stringify(
-  {
-    extends: "./.svelte-kit/tsconfig.json",
-    compilerOptions: {
-      allowJs: true,
-      checkJs: true,
-      esModuleInterop: true,
-      forceConsistentCasingInFileNames: true,
-      resolveJsonModule: true,
-      skipLibCheck: true,
-      sourceMap: true,
-      strict: true,
-      moduleResolution: "bundler",
+function createTsconfig(extendsPath: string): string {
+  return JSON.stringify(
+    {
+      extends: extendsPath,
+      compilerOptions: {
+        allowJs: true,
+        checkJs: true,
+        esModuleInterop: true,
+        forceConsistentCasingInFileNames: true,
+        resolveJsonModule: true,
+        skipLibCheck: true,
+        sourceMap: true,
+        strict: true,
+        moduleResolution: "bundler",
+      },
     },
-  },
-  null,
-  2
-);
+    null,
+    2
+  );
+}
 
 const APP_HTML = `<!DOCTYPE html>
 <html lang="en">
@@ -144,9 +152,20 @@ export function normalizeProjectName(name: string): string {
     .replace(/^-|-$/g, "");
 }
 
-export async function createComposer<T extends CodegenThemeOrSubTheme>(
+function assign(
+  files: Record<string, string>,
+  path: string,
+  content: string | false
+) {
+  // A `false` result means the transform aborted and no file should be written
+  if (content) {
+    files[path] = content;
+  }
+}
+
+export function createComposer<T extends CodegenThemeOrSubTheme>(
   options: ComposerOptions<T>
-): Promise<Record<string, string>> {
+): Record<string, string> {
   const {
     name,
     language,
@@ -154,6 +173,7 @@ export async function createComposer<T extends CodegenThemeOrSubTheme>(
     icons,
     validator,
     sveltekit,
+    kitRange,
     widgets,
     fields,
     extraFiles,
@@ -180,7 +200,10 @@ export async function createComposer<T extends CodegenThemeOrSubTheme>(
   const isTs = language === "ts";
   const ts = createPrinter(isTs);
   const js = createPrinter(!isTs);
-  const lib = KIT_PATH_FACTORY;
+  // The only place the SvelteKit version is turned into a package and a project
+  // shape; everything below just uses the result
+  const kit = resolveSvelteKitProject(kitRange);
+  const lib = createKitPathFactory(kit.libPrefix);
 
   const dependencies: AbstractPackage[] = [
     extraPackage("vite"),
@@ -188,7 +211,7 @@ export async function createComposer<T extends CodegenThemeOrSubTheme>(
     extraPackage("svelteVitePlugin"),
     extraPackage("typescript"),
     ...extraDependencies,
-    ...filterPackageDependencies(sveltekitPackage.dependencies, false),
+    ...filterPackageDependencies(kit.pkg.dependencies, false),
   ];
 
   function addDependency(pkg: AbstractPackage) {
@@ -201,6 +224,7 @@ export async function createComposer<T extends CodegenThemeOrSubTheme>(
     validator,
     icons,
     sveltekit,
+    sveltekitPackage: kit.pkg,
     widgets,
   });
 
@@ -217,6 +241,7 @@ export async function createComposer<T extends CodegenThemeOrSubTheme>(
     isTs,
     modelName,
     sveltekit,
+    sveltekitPackage: kit.pkg,
     omitExtraData,
   });
 
@@ -226,20 +251,32 @@ export async function createComposer<T extends CodegenThemeOrSubTheme>(
       dependencies: new Map(dependencies.map((d) => [d.name, d])).values(),
       precompiled: validator.precompiled,
       language,
+      libImports: kit.libImports,
     }),
-    "vite.config.js": createViteConfig({
+    "tsconfig.json": createTsconfig(kit.tsconfigExtends),
+  };
+
+  assign(
+    files,
+    "vite.config.js",
+    createViteConfig({
       themeOrSubTheme,
       icons,
       sveltekit,
-    })(VITE_CONFIG),
-    "tsconfig.json": TSCONFIG,
-    "src/app.html": createAppHtml({ themeOrSubTheme })(APP_HTML),
-    "src/lib/sjsf/defaults.ts": createDefaults({
+      sveltekitPackage: kit.pkg,
+    })(VITE_CONFIG)
+  );
+  assign(files, "src/app.html", createAppHtml({ themeOrSubTheme })(APP_HTML));
+  assign(
+    files,
+    "src/lib/sjsf/defaults.ts",
+    createDefaults({
       themeOrSubTheme,
       validator,
       icons,
       resolver,
       sveltekit,
+      sveltekitPackage: kit.pkg,
       widgets,
       fields,
       isTs,
@@ -250,73 +287,83 @@ export async function createComposer<T extends CodegenThemeOrSubTheme>(
       themeExtension,
       moduleAugmentation,
       uiOptionsRegistry,
-    })(""),
-    "src/routes/+page.svelte": createPage({
+    })("")
+  );
+  assign(
+    files,
+    "src/routes/+page.svelte",
+    createPage({
       language,
       themeOrSubTheme,
       validator,
       lib,
       form,
       html5Validation,
-    })(""),
-  };
+    })("")
+  );
 
   if (schema && !validator.precompiled) {
-    files[`src/lib/${modelName}.${language}`] = (
-      await createModel({
-        validator,
-        isTs,
-        ts,
-        schema,
-        uiSchema,
-        initialValue,
-        fieldsValidationMode,
-      })
-    )("");
+    const createModelContent = createModel({
+      validator,
+      isTs,
+      ts,
+      schema,
+      uiSchema,
+      initialValue,
+      fieldsValidationMode,
+    });
+    assign(files, `src/lib/${modelName}.${language}`, createModelContent(""));
   } else if (schema && validator.precompiled) {
     const modelDir = `src/lib/${modelName}/`;
-    files[`${modelDir}schema.json`] = createJsonFile(JSON.parse(schema))("");
-    files[`${modelDir}ui-schema.json`] = createJsonFile(uiSchema)("");
-    files[`${modelDir}initial-value.json`] = createJsonFile(initialValue)("");
-    files[`scripts/compile-validators.${language}`] =
+    assign(
+      files,
+      `${modelDir}schema.json`,
+      createJsonFile(JSON.parse(schema))("")
+    );
+    assign(files, `${modelDir}ui-schema.json`, createJsonFile(uiSchema)(""));
+    assign(
+      files,
+      `${modelDir}initial-value.json`,
+      createJsonFile(initialValue)("")
+    );
+    assign(
+      files,
+      `scripts/compile-validators.${language}`,
       createCompileValidatorsScript({
         modelPaths: [modelDir],
         validator,
         language,
         ts,
         fieldsValidationMode,
-      })("");
+      })("")
+    );
   }
 
-  function addFile(filePath: string, content: string) {
-    if (content) {
-      files[filePath] = content;
-    }
-    return content;
-  }
-
-  const stylesContent = addFile(
-    "src/routes/layout.css",
-    createStyles({
-      nodeModulesPath,
-      themeOrSubTheme,
-      icons,
-      sandbox: true,
-    })(css)
-  );
+  const styles = createStyles({
+    nodeModulesPath,
+    themeOrSubTheme,
+    icons,
+    sandbox: true,
+  })(css);
+  assign(files, "src/routes/layout.css", styles);
 
   // NOTE: We cannot move the padding functionality to `createLayout` because
   // it is used in `sv` to create the global layout (should not be padded)
   const layout = getLayoutContent(PADDED_THEMES.includes(themeOrSubTheme));
-  files["src/routes/+layout.svelte"] = createLayout({
-    language,
-    themeOrSubTheme,
-    lib,
-    isKit,
-    stylesheetPath: stylesContent && "./layout.css",
-  })(layout);
+  assign(
+    files,
+    "src/routes/+layout.svelte",
+    createLayout({
+      language,
+      themeOrSubTheme,
+      lib,
+      isKit,
+      stylesheetPath: styles ? "./layout.css" : "",
+    })(layout)
+  );
 
-  addFile(
+  assign(
+    files,
     `src/lib/sjsf/shadcn.${language}`,
     createShadcnLib({
       themeOrSubTheme,

@@ -1,5 +1,5 @@
-import { type Schema } from "@/core/index.js";
-import type { AdditionalPropertyKeyValidator } from "@/form/main.js";
+import { type Schema } from "#core/index.js";
+import type { AdditionalPropertyKeyValidator } from "#form/main.js";
 
 export interface ErrorFactoryOptions {
   key: string;

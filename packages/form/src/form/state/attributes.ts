@@ -8,8 +8,8 @@ import type {
 } from "svelte/elements";
 import { on } from "svelte/events";
 
-import { weakMemoize } from "@/lib/memoize.js";
-import type { Nullable, ObjectProperties } from "@/lib/types.js";
+import { weakMemoize } from "#lib/memoize.js";
+import type { Nullable, ObjectProperties } from "#lib/types.js";
 
 import type { Config, EventHandlers } from "../config.js";
 import type { FieldPseudoElement } from "../id.js";

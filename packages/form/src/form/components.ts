@@ -1,7 +1,7 @@
 import type { Snippet, Component as SvelteComponent } from "svelte";
 
-import type { Resolver } from "@/lib/resolver.js";
-import type { Expand } from "@/lib/types.js";
+import type { Resolver } from "#lib/resolver.js";
+import type { Expand } from "#lib/types.js";
 
 import type { Config } from "./config.js";
 

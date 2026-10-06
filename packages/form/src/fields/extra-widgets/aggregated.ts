@@ -1,4 +1,4 @@
-import type { SchemaObjectValue } from "@/core/schema.js";
+import type { SchemaObjectValue } from "#core/schema.js";
 
 import type { WidgetCommonProps } from "../widgets.js";
 

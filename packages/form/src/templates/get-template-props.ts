@@ -1,4 +1,4 @@
-import type { Config, UiOption } from "@/form/index.js";
+import type { Config, UiOption } from "#form/index.js";
 
 export function getTemplateProps(uiOption: UiOption, config: Config) {
   return {

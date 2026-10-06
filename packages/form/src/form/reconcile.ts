@@ -1,5 +1,5 @@
-import type { SchemaValue, ValueComparer } from "@/core/index.js";
-import { isRecordProto } from "@/lib/object.js";
+import type { SchemaValue, ValueComparer } from "#core/index.js";
+import { isRecordProto } from "#lib/object.js";
 
 import type { FieldValue, FormValueRef, KeyedArraysMap } from "./model.js";
 

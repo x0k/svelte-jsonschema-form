@@ -1,5 +1,5 @@
-import type { RPath } from "@/core/index.js";
-import { getNodeByKeys, type Node } from "@/lib/trie.js";
+import type { RPath } from "#core/index.js";
+import { getNodeByKeys, type Node } from "#lib/trie.js";
 
 import {
   encodePseudoElement,

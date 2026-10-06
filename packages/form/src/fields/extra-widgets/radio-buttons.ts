@@ -1,4 +1,4 @@
-import type { SchemaValue } from "@/form/index.js";
+import type { SchemaValue } from "#form/index.js";
 
 import type { SingleSelectOptions, WidgetCommonProps } from "../widgets.js";
 

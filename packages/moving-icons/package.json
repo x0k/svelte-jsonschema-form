@@ -1,6 +1,6 @@
 {
   "name": "@sjsf/moving-icons",
-  "version": "3.8.2",
+  "version": "3.9.0",
   "description": "The jis3r/icons based icons set for svelte-jsonschema-form",
   "keywords": [
     "animated",
@@ -42,6 +42,7 @@
     "dev": "vite dev",
     "build": "svelte-package && publint",
     "preview": "vite preview",
+    "prepare": "svelte-kit sync || echo ''",
     "test": "npm run test:unit -- --run",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --tsgo-experimental-api",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --tsgo-experimental-api --watch",
@@ -54,6 +55,7 @@
   "devDependencies": {
     "@jis3r/icons": "^2.9.0",
     "@sjsf/form": "workspace:*",
+    "@sveltejs/kit": "catalog:",
     "globals": "catalog:",
     "svelte": "catalog:",
     "theme-testing": "workspace:*"

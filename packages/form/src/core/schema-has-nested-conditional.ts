@@ -5,7 +5,7 @@ import {
   ALL_SUB_SCHEMA_KEYS,
   isSchemaObject,
   makeSchemaDefinitionTraverser,
-} from "@/lib/json-schema/index.js";
+} from "#lib/json-schema/index.js";
 
 import { DEPENDENCIES_KEY, IF_KEY, type SchemaDefinition } from "./schema.js";
 

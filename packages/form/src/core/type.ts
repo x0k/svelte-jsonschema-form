@@ -1,5 +1,5 @@
-import { unique } from "@/lib/array.js";
-import { isSchemaObject } from "@/lib/json-schema/index.js";
+import { unique } from "#lib/array.js";
+import { isSchemaObject } from "#lib/json-schema/index.js";
 
 import type { Schema, SchemaDefinition, SchemaType } from "./schema.js";
 import { getAllOfOptions, getXxxOfOptions } from "./xxx-of-options.js";

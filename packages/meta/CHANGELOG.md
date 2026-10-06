@@ -1,5 +1,82 @@
 # meta
 
+## 1.0.10
+
+### Patch Changes
+
+- Generate the integration package that matches the target project's `@sveltejs/kit` ([#479](https://github.com/x0k/svelte-jsonschema-form/pull/479))
+  range: `@sjsf/sveltekit` for Kit 2, `@sjsf/sveltekit3` for Kit 3. Since `sv@1`
+  templates all scaffold Kit 3, `sv add @sjsf` no longer installs a Kit 2 package
+  into a Kit 3 app.
+
+  The composer's Kit 3 output also gains the shape that `sv create` provides for
+  its templates: `tsconfig.json` extends `$app/tsconfig` instead of the removed
+  `.svelte-kit/tsconfig.json`, and `package.json` gains the `#lib` subpath imports.
+
+  `#lib` specifiers now carry a file extension. Unlike `$lib`, which Kit 2 resolves
+  through `tsconfig` `paths`, `#lib` is a `package.json#imports` subpath and has to
+  be unambiguous for Node and TypeScript to resolve it.
+
+- Move the workspace to SvelteKit 3. ([#479](https://github.com/x0k/svelte-jsonschema-form/pull/479))
+
+  `@sveltejs/kit` `^3.0.0` is now the default catalog, so every package that ran
+  `svelte-kit sync` against the hoisted Kit 2 — the themes, the validators, the
+  icon packs — now typechecks against Kit 3. The 29 of them that never declared
+  the dependency (and so inherited both the module and the `svelte-kit` CLI bin
+  through hoisting) now declare it, which is what makes the version bump reach
+  their tooling at all.
+
+  Following [the Kit 3 migration guide](https://svelte.dev/docs/kit/migrating-to-sveltekit-3):
+
+  - `svelte.config.js` is gone; `kit.*` options moved into the `sveltekit()` Vite
+    plugin. The deprecated `kit.alias` was an unused shadcn template placeholder
+    pointing at `./path/to/lib/*`, so it is dropped rather than moved.
+  - `$lib` became `#lib` subpath imports, with an `imports` map per package and
+    the extensions Kit 3 requires on them.
+  - `tsconfig.json` extends `$app/tsconfig` and now declares `include`/`exclude`
+    itself — `$app/tsconfig` supplies `compilerOptions` only, so dropping it
+    silently widened every project to `build/` and `dist/`.
+  - `$app/environment` became `$app/env`.
+  - `adapter-auto` `^8` and `adapter-static` `^4`, the releases that peer Kit 3.
+    `adapter-auto@7` was also being emitted into Kit 3 projects by the composer.
+
+  `legacy/sveltekit`, the legacy themes and `examples/sveltekit-starter` stay on
+  Kit 2 via a new `kit2` catalog: `@sjsf/sveltekit` peers `^2.48.3`. They reach
+  `src/lib` through the same `#lib` subpath imports as everything else — Kit 2
+  resolves those too, since `package.json#imports` is Node's, not Kit's. The nine
+  demos that copy from `examples/sveltekit-starter` pin `kitRange` per example
+  rather than through `COMPOSER_DEFAULTS`, so the rest get the Kit 3 output their
+  migrated example sources need.
+
+- Updated dependencies [[`7180d9c`](https://github.com/x0k/svelte-jsonschema-form/commit/7180d9c546e9ec342489266f4db1bd59bd0dd299), [`4118378`](https://github.com/x0k/svelte-jsonschema-form/commit/41183783b600c2a3de618c35e33c673f7ca5bcbf), [`38b877a`](https://github.com/x0k/svelte-jsonschema-form/commit/38b877ab4ce2eb33f9e1e74729481df902372761), [`e1e4a1b`](https://github.com/x0k/svelte-jsonschema-form/commit/e1e4a1b0a3a865f9e2cda4fa455250da1f63e14f), [`4118378`](https://github.com/x0k/svelte-jsonschema-form/commit/41183783b600c2a3de618c35e33c673f7ca5bcbf), [`df64456`](https://github.com/x0k/svelte-jsonschema-form/commit/df644562fdcf5108055432286e7c3e9794f93906), [`2eecc21`](https://github.com/x0k/svelte-jsonschema-form/commit/2eecc21dc8a8d784e72b51837d56895bccc0b595)]:
+  - @sjsf/cfworker-validator@3.9.0
+  - @sjsf/form@3.9.0
+  - @sjsf/sveltekit3@3.9.0
+  - @sjsf-lab/beercss-theme@3.4.0
+  - @sjsf-lab/hyperjump-validator@3.1.0
+  - @sjsf-lab/shadcn-extras-theme@3.4.3
+  - @sjsf-lab/svar-theme@3.3.0
+  - @sjsf/daisyui-theme@3.1.1
+  - @sjsf/flowbite-theme@3.1.1
+  - @sjsf/shadcn-theme@3.1.2
+  - @sjsf/skeleton3-theme@3.1.1
+  - @sjsf/skeleton4-theme@3.7.2
+  - @sjsf/sveltekit@3.8.2
+  - @sjsf/ajv8-validator@3.9.0
+  - @sjsf/ata-validator@3.9.0
+  - @sjsf/basic-theme@3.9.0
+  - @sjsf/daisyui5-theme@3.9.0
+  - @sjsf/flowbite-icons@3.9.0
+  - @sjsf/flowbite3-theme@3.9.0
+  - @sjsf/lucide-icons@3.9.0
+  - @sjsf/moving-icons@3.9.0
+  - @sjsf/radix-icons@3.9.0
+  - @sjsf/schemasafe-validator@3.9.0
+  - @sjsf/shadcn4-theme@3.9.0
+  - @sjsf/skeleton5-theme@3.9.0
+  - @sjsf/valibot-validator@3.9.0
+  - @sjsf/zod4-validator@3.9.0
+
 ## 1.0.9
 
 ### Patch Changes

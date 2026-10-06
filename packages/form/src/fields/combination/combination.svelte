@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  import type { UiSchemaDefinition } from "@/form/index.js";
+  import type { UiSchemaDefinition } from "#form/index.js";
 
   import "../extra-templates/multi-field.js";
 
@@ -20,7 +20,7 @@
     retrieveTranslate,
     getFieldAction,
     getFieldErrors,
-  } from "@/form/index.js";
+  } from "#form/index.js";
 
   import {
     createCombinationContext,

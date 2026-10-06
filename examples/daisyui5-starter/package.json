@@ -1,8 +1,12 @@
 {
   "name": "daisyui5-starter",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "private": true,
   "type": "module",
+  "imports": {
+    "#lib": "./src/lib/index.js",
+    "#lib/*": "./src/lib/*"
+  },
   "scripts": {
     "dev": "vite dev",
     "preview": "vite preview",
@@ -20,6 +24,7 @@
     "ajv": "catalog:"
   },
   "devDependencies": {
+    "@sveltejs/kit": "catalog:",
     "@tailwindcss/vite": "catalog:",
     "daisyui": "catalog:",
     "svelte": "catalog:",

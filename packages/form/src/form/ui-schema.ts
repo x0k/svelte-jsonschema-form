@@ -1,6 +1,6 @@
-import { getXxxOfOptions } from "@/core/index.js";
-import type { RPath, SchemaValue } from "@/core/index.js";
-import type { Resolver } from "@/lib/resolver.js";
+import { getXxxOfOptions } from "#core/index.js";
+import type { RPath, SchemaValue } from "#core/index.js";
+import type { Resolver } from "#lib/resolver.js";
 
 import type {
   CompatibleComponentType,
