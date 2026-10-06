@@ -1,5 +1,9 @@
 # @sjsf/schemasafe
 
+## 3.9.0
+
+No changes in this release.
+
 ## 3.8.2
 
 No changes in this release.

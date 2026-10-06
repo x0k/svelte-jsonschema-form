@@ -1,5 +1,12 @@
 # @sjsf/daisyui5-theme
 
+## 3.9.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/basic-theme@3.9.0
+
 ## 3.8.2
 
 ### Patch Changes
