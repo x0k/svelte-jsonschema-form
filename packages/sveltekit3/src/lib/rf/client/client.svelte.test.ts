@@ -197,6 +197,29 @@ describe("connect submission", () => {
     expect(prefixes[0]!.value).toBe(DEFAULT_ID_PREFIX);
   });
 
+  // An untouched file input reports `File("")`, and `convertFormDataEntry`
+  // drops it server-side, so the part it would produce carries nothing. Sending
+  // it is also what crashes the page: the file is built in script, so the
+  // renderer has no consent to read it and Chromium terminates the process
+  // that uploads one ("bad IPC message, reason 2"), taking the form with it.
+  test("leaves an untouched file input out of the injected form", async () => {
+    const { connected, screen } = await renderConnected(FORM_ID);
+    const original = screen
+      .getByTestId("original")
+      .element() as HTMLFormElement;
+
+    const untouched = document.createElement("input");
+    untouched.type = "file";
+    untouched.name = `root.avatar/${FORM_ID}`;
+    original.append(untouched);
+
+    const inputs = await submitWith(connected, screen, {});
+
+    expect(
+      inputs.filter((input) => input.name === `root.avatar/${FORM_ID}`)
+    ).toEqual([]);
+  });
+
   test("a keyed remote form copies names without the key", async () => {
     // Kit builds `action_id` as `id + "/" + JSON.stringify(key)`
     const { connected, screen } = await renderFilled(
