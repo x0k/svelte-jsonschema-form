@@ -190,17 +190,36 @@ export async function parseSchemaValue<T>(
     async function setProperty(
       property: string,
       schemaDef: SchemaDefinition,
-      uiSchema: UiSchemaDefinition
+      uiSchema: UiSchemaDefinition,
+      required: boolean
     ) {
       if (value[property] === undefined) {
         const propValue = await parseSchemaDef(schemaDef, uiSchema, undefined);
         if (propValue !== undefined) {
-          value[property] = propValue;
+          // An empty array means nothing was submitted for it: untouched arrays
+          // render no item inputs, so there is nothing to read. Absent is what
+          // the JSON path sends for the same input, and a kept `[]` would trip
+          // `minItems` on a field the user never filled in.
+          //
+          // Objects are deliberately not dropped here. Their inputs always
+          // render, so untouched and cleared both submit, and the two cannot be
+          // told apart — the same reason an unchecked checkbox stays `false`.
+          // Keeping `{}` matches the client default state for the untouched case.
+          if (
+            !(
+              isSchemaArrayValue(propValue) &&
+              propValue.length === 0 &&
+              !required
+            )
+          ) {
+            value[property] = propValue;
+          }
         }
       }
     }
 
     const { properties, patternProperties, additionalProperties } = schema;
+    const requiredProperties = new Set(schema.required);
     if (properties !== undefined) {
       const keys = Object.keys(properties);
       for (let i = 0; i < keys.length; i++) {
@@ -209,7 +228,8 @@ export async function parseSchemaValue<T>(
         await setProperty(
           key,
           properties[key],
-          (uiSchema[key] ?? {}) as UiSchema
+          (uiSchema[key] ?? {}) as UiSchema,
+          requiredProperties.has(key)
         );
         pop();
       }
@@ -235,11 +255,16 @@ export async function parseSchemaValue<T>(
             shift++;
           } else if (regExp.test(key)) {
             pushKey(input, key);
-            await setProperty(
-              additionalKeys[encodedKey][encodedPseudoPrefix] ?? key,
-              schema,
-              uiSchema
-            );
+            const propertyKey =
+              additionalKeys[encodedKey][encodedPseudoPrefix] ?? key;
+            await setProperty(propertyKey, schema, uiSchema, false);
+            // As for `additionalProperties` below: a cleared value converts to
+            // `undefined`, which `setProperty` drops, losing a key the form
+            // rendered. `resolve.ts` stubs every key in `Object.keys(formData)`,
+            // so keeping it keeps the row.
+            if (!(propertyKey in value)) {
+              value[propertyKey] = undefined;
+            }
             pop();
             shift++;
           } else {
@@ -273,11 +298,20 @@ export async function parseSchemaValue<T>(
           continue;
         }
         pushKey(input, key);
+        const propertyKey =
+          additionalKeys[encodedKey][encodedPseudoPrefix] ?? key;
         await setProperty(
-          additionalKeys[encodedKey][encodedPseudoPrefix] ?? key,
+          propertyKey,
           additionalProperties,
-          additionalUiSchema
+          additionalUiSchema,
+          false
         );
+        // A cleared value converts to `undefined`, which `setProperty` drops —
+        // losing a key the form rendered. Keeping it preserves the row, since
+        // `resolve.ts` derives additional properties from `Object.keys`.
+        if (!(propertyKey in value)) {
+          value[propertyKey] = undefined;
+        }
         pop();
       }
     }

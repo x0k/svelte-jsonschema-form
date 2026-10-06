@@ -17,18 +17,16 @@ import type { StandardSchemaV1 } from "@standard-schema/spec";
 
 import { getRequestEvent } from "$app/server";
 
+import { isFileMarker } from "../../internal.js";
 import {
   createFormDataEntryConverter,
+  EntryDecodeError,
   type FormDataConverterOptions,
   type UnknownEntryConverter,
 } from "../../internal/convert-form-data-entry.js";
-import {
-  FORM_DATA_FILE_PREFIX,
-  JSON_CHUNKS_KEY,
-  type EntryConverter,
-} from "../../model.js";
+import { JSON_CHUNKS_KEY, type EntryConverter } from "../../model.js";
 import { DEFAULT_PSEUDO_PREFIX } from "../id-builder.js";
-import { decode } from "../internal/codec.js";
+import { encode } from "../internal/codec.js";
 import { createSvelteKitDataParser } from "../internal/sveltekit-data-parser.js";
 import { enServerTranslation, type ServerTranslation } from "./translation.js";
 
@@ -42,9 +40,10 @@ export interface SvelteKitFormValidatorOptions<T> {
     EntryConverter<FormDataEntryValue>,
     FormDataConverterOptions
   >;
+  /** Handles submitted values whose schema declares no `type`. */
   convertUnknownEntry?: UnknownEntryConverter;
   pseudoPrefix?: string;
-  /** By default, handles conversion of `File` */
+  /** By default, handles conversion of `File`. Marker values starting with the file prefix are resolved as file references. */
   createReviver?: (
     input: Record<string, unknown>
   ) => (key: string, value: any) => any;
@@ -55,29 +54,37 @@ class PublicError {
   constructor(public readonly message: string) {}
 }
 
-function failure(message: string): StandardSchemaV1.FailureResult {
+function failure(
+  message: string,
+  path: PropertyKey[] = []
+): StandardSchemaV1.FailureResult {
   return {
     issues: [
       {
         message,
-        path: [],
+        path,
       },
     ],
-  };
-}
-
-function createDefaultReviver(input: Record<string, unknown>) {
-  return (_: string, value: any) => {
-    if (typeof value === "string" && value.startsWith(FORM_DATA_FILE_PREFIX)) {
-      return input[decode(value)];
-    }
-    return value;
   };
 }
 
 export interface ValidationResult<R> {
   idPrefix: string;
   data: R;
+}
+
+function createDefaultReviver(input: Record<string, unknown>) {
+  return (_: string, value: any) => {
+    if (isFileMarker(value)) {
+      // The record is keyed by wire names, which carry the encoded file key
+      // (Kit rejects raw separator characters in names), while the payload
+      // holds the bare key — so encode here, matching what the client sent.
+      // A missing part answers `null`, like the form-action reviver, instead
+      // of `undefined`, which `JSON.parse` would silently delete.
+      return input[encode(value)] ?? null;
+    }
+    return value;
+  };
 }
 
 export function createServerValidator<T>({
@@ -135,8 +142,20 @@ export function createServerValidator<T>({
     input: Record<string, unknown>
   ) {
     const data = input[JSON_CHUNKS_KEY];
-    if (Array.isArray(data) && data.every((t) => typeof t === "string")) {
-      return JSON.parse(data.join(""), createReviver(input));
+    if (
+      Array.isArray(data) &&
+      data.every((chunk) => typeof chunk === "string")
+    ) {
+      try {
+        return JSON.parse(data.join(""), createReviver(input));
+      } catch (e) {
+        // Like the form-action path: a malformed chunk payload is undecodable
+        // input reported at the root, not a generic failure.
+        if (e instanceof SyntaxError) {
+          throw new EntryDecodeError(e.message, []);
+        }
+        throw e;
+      }
     }
     return parseSvelteKitData(signal, idPrefix, input);
   }
@@ -169,6 +188,11 @@ export function createServerValidator<T>({
             },
           };
     } catch (e) {
+      // Report an undecodable value against its own field rather than as a pathless
+      // error, which nothing can be attached to.
+      if (e instanceof EntryDecodeError) {
+        return failure(e.message, [...e.path]);
+      }
       return failure(
         e instanceof PublicError ? e.message : t("unexpected-error", {})
       );

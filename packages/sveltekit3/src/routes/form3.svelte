@@ -1,5 +1,6 @@
 <script lang="ts">
   import { SvelteKitForm, createMeta } from "#lib/client/index.js";
+  import { createFormIdBuilder } from "#lib/id-builder.js";
 
   import type { ActionData, PageData } from "./$types.js";
   import * as defaults from "./form-defaults.js";
@@ -10,6 +11,7 @@
 <SvelteKitForm
   {...defaults}
   {meta}
+  idBuilder={createFormIdBuilder}
   idPrefix="form3"
   onSubmitError={console.warn}
   onSuccess={console.log}

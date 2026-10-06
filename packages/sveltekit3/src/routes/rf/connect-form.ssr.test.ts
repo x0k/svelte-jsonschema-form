@@ -1,4 +1,5 @@
 import type { FormOptions, Schema } from "@sjsf/form";
+import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
 import { render as renderServer } from "svelte/server";
 import { describe, expect, test } from "vitest";
 
@@ -26,6 +27,7 @@ function ssrForm(formOptions: Partial<FormOptions<any>> & { schema: Schema }) {
   return renderServer(ConnectForm, {
     props: {
       ...defaults,
+      idBuilder: createFormIdBuilder,
       ...formOptions,
     },
   });

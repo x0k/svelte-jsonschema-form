@@ -6,8 +6,8 @@ import type { ActionResult } from "$app/forms";
 import { applyAction, deserialize } from "$app/forms";
 import { goto, refreshAll } from "$app/navigation";
 
-import { chunks } from "../internal.js";
-import { FORM_DATA_FILE_PREFIX, JSON_CHUNKS_KEY } from "../model.js";
+import { chunks, createFileMarker } from "../internal.js";
+import { JSON_CHUNKS_KEY } from "../model.js";
 import type { SvelteKitFormMeta } from "./meta.js";
 
 export type SveltekitRequestOptions<ActionData, V> = Omit<
@@ -20,9 +20,19 @@ export type SveltekitRequestOptions<ActionData, V> = Omit<
 > & {
   /** @default DEFAULT_ID_PREFIX */
   idPrefix?: string;
-  /** By default, handles conversion of `File` */
+  /**
+   * Submit the value as JSON chunks instead of the form's own parts.
+   *
+   * @default false
+   * */
+  useJsonChunks?: boolean;
+  /** By default, handles conversion of `File`. Marker values starting with the file prefix are reserved for file references. */
   createReplacer?: (options: RequestReplacerOptions) => Replacer;
-  /** @default 500000 */
+  /**
+   * Chunk length in code points, not bytes. Lower it if the server caps body size.
+   *
+   * @default 500000
+   * */
   jsonChunkSize?: number;
   /** @default true */
   reset?: boolean;
@@ -71,6 +81,15 @@ function isCurrentLocation(value: string): boolean {
   return true;
 }
 
+/**
+ * A file input with a real selection. Untouched inputs report `File("")`,
+ * which Kit filters out of the submission — mirroring that here keeps them
+ * from tripping file handling.
+ */
+function isSelectedFile(value: unknown): value is File {
+  return value instanceof File && (value.name !== "" || value.size > 0);
+}
+
 /** The context a `File` replacer needs to build a submission entry. */
 export interface RequestReplacerOptions {
   /** The payload the submission is sent as. */
@@ -81,16 +100,22 @@ export interface RequestReplacerOptions {
 export type Replacer = (key: string, value: any) => any;
 
 function createDefaultReplacer({ formData }: RequestReplacerOptions): Replacer {
-  const seen = new Set<string>();
+  const marker = createFileMarker();
   return (key, value) => {
     if (!(value instanceof File)) {
       return value;
     }
-    const initialKey = `${FORM_DATA_FILE_PREFIX}${key}`;
-    let fdKey = initialKey;
-    let i = 1;
-    while (seen.has(fdKey)) fdKey = `${initialKey}__${i++}`;
-    seen.add(fdKey);
+    // An empty nameless `File` never reaches the state through the widgets
+    // (untouched and cleared both write `undefined`); only programmatic
+    // state can hold one. Omit it so the key stays absent, like the parts
+    // path does for it (the entry converter drops it to `undefined`).
+    // Omitting also keeps such a part out of `hasFiles`, so an empty-only
+    // payload cannot stringify a `File` to `"[object File]"` on the
+    // `URLSearchParams` path.
+    if (!isSelectedFile(value)) {
+      return undefined;
+    }
+    const fdKey = marker(key);
     formData.append(fdKey, value);
     return fdKey;
   };
@@ -102,17 +127,19 @@ export function createSvelteKitRequest<
   _meta: Meta,
   options: SveltekitRequestOptions<Meta["__actionData"], Meta["__formValue"]>
 ) {
+  const useJsonChunks = $derived(options.useJsonChunks ?? false);
   const jsonChunkSize = $derived(options.jsonChunkSize ?? 500000);
   const createReplacer = $derived(
     options.createReplacer ?? createDefaultReplacer
   );
   return createTask({
-    // A copy of Kit's `enhance` fallback, which `request()` replaces with this
-    // one to submit the value as JSON chunks. Based on
+    // A copy of Kit's `enhance` fallback. Based on
     // `@sveltejs/kit`'s `src/runtime/app/forms/client.js` — note that Kit 3
     // split the single `forms.js` this used to live in. Diff against the
     // installed version when bumping Kit; see the notes on the branches below
-    // for the parts that cannot be followed.
+    // for the parts that cannot be followed. Known divergences from Kit: the
+    // dev file check and `hasFiles` use `isSelectedFile` (untouched `File("")`
+    // inputs ignored) where Kit checks `instanceof File`.
     async execute(
       signal: AbortSignal,
       data: Meta["__formValue"] | FormValue,
@@ -130,6 +157,10 @@ export function createSvelteKitRequest<
       const action = new URL(getAttribute("action"));
       const enctype = getAttribute("enctype");
 
+      // Read once: the dev check, the prefix lookup and the parts payload
+      // below all observe the rendered controls.
+      const rendered = new FormData(formElement);
+
       if (dev) {
         if (method !== "post") {
           throw new Error(
@@ -137,9 +168,12 @@ export function createSvelteKitRequest<
           );
         }
         if (enctype !== "multipart/form-data") {
-          const formData = new FormData(formElement);
-          for (const value of formData.values()) {
-            if (value instanceof File) {
+          // Only rendered controls can reach a native submission, so only
+          // they are checked: state-held files exist solely in JS-land.
+          // Chunk mode builds its payload from the state, but the warning is
+          // about what native would send.
+          for (const value of rendered.values()) {
+            if (isSelectedFile(value)) {
               throw new Error(
                 'Your form contains <input type="file"> fields, but is missing the necessary `enctype="multipart/form-data"` attribute. This will lead to inconsistent behavior between enhanced and native forms. For more details, see https://github.com/sveltejs/kit/issues/9819.'
               );
@@ -148,13 +182,42 @@ export function createSvelteKitRequest<
         }
       }
 
-      const formData = new FormData();
-      formData.append(SJSF_ID_PREFIX, options.idPrefix ?? DEFAULT_ID_PREFIX);
-      for (const chunk of chunks(
-        JSON.stringify(data, createReplacer({ formData })),
-        jsonChunkSize
-      )) {
-        formData.append(JSON_CHUNKS_KEY, chunk);
+      // The form renders its own id prefix input, which is required for the
+      // integration, so trust it: only the configured value fills in when the
+      // form has none, instead of overriding what it rendered. `FormData.get`
+      // reads the first value like the server does, so duplicate prefix inputs
+      // agree on both sides; a disabled input is invisible to `FormData`, so
+      // it counts as absent.
+      const renderedPrefix = rendered.get(SJSF_ID_PREFIX);
+      const hasPrefix = typeof renderedPrefix === "string";
+      const idPrefix = hasPrefix
+        ? renderedPrefix
+        : (options.idPrefix ?? DEFAULT_ID_PREFIX);
+      let formData: FormData;
+      if (useJsonChunks) {
+        formData = new FormData();
+        formData.append(SJSF_ID_PREFIX, idPrefix);
+        // `JSON.stringify` answers `undefined` (not a string) for `undefined`
+        // and friends: fall back to `"null"` so `chunks` keeps a decodable
+        // payload instead of throwing on `.length`.
+        for (const chunk of chunks(
+          JSON.stringify(data, createReplacer({ formData })) ?? "null",
+          jsonChunkSize
+        )) {
+          formData.append(JSON_CHUNKS_KEY, chunk);
+        }
+      } else {
+        // Untouched file inputs serialize as `File("")`, which would ride
+        // `URLSearchParams` as `"[object File]"` on a non-multipart form:
+        // drop them while copying, like Kit does server-side.
+        formData = new FormData();
+        for (const [key, value] of rendered) {
+          if (value instanceof File && !isSelectedFile(value)) continue;
+          formData.append(key, value);
+        }
+        if (!hasPrefix) {
+          formData.append(SJSF_ID_PREFIX, idPrefix);
+        }
       }
 
       let result: ActionResult<NonNullable<Meta["__actionData"]>>;
@@ -167,7 +230,19 @@ export function createSvelteKitRequest<
         // do not explicitly set the `Content-Type` header when sending `FormData`
         // or else it will interfere with the browser's header setting
         // see https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest_API/Using_FormData_Objects#sect4
-        if (enctype !== "multipart/form-data") {
+        //
+        // Files cannot ride in `URLSearchParams` — they stringify to
+        // "[object File]". A non-multipart form carrying any real selection,
+        // rendered or state-held, in either submission mode, uploads as
+        // multipart instead. Untouched inputs report `File("")` and stay put.
+        let hasFiles = false;
+        for (const value of formData.values()) {
+          if (isSelectedFile(value)) {
+            hasFiles = true;
+            break;
+          }
+        }
+        if (enctype !== "multipart/form-data" && !hasFiles) {
           headers.set(
             "Content-Type",
             /^(:?application\/x-www-form-urlencoded|text\/plain)$/.test(enctype)
@@ -177,7 +252,7 @@ export function createSvelteKitRequest<
         }
 
         const body =
-          enctype === "multipart/form-data"
+          enctype === "multipart/form-data" || hasFiles
             ? formData
             : // @ts-expect-error `URLSearchParams(form_data)` is kosher, but typescript doesn't know that
               new URLSearchParams(formData);

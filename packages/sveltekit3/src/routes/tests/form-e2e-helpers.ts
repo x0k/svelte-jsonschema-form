@@ -67,8 +67,16 @@ export function defineFormTests({
       await expect(currentForm.getByLabel("First name")).toHaveValue("Jane");
       await expect(currentForm.getByLabel("Last name")).toHaveValue("Doe");
 
-      await currentForm.getByLabel("First name").fill("Alice");
-      await currentForm.getByLabel("Last name").fill("Smith");
+      // Scoped by submitted name: the store is shared and the routes run
+      // concurrently, so a test cannot read "whatever arrived last". The name
+      // also has to differ per route — every route shares one store and would
+      // otherwise submit the same one, letting a sibling's submission satisfy
+      // the read below even when this route's submission never landed.
+      const firstName = `Alice ${name}`;
+      const lastName = "Smith";
+
+      await currentForm.getByLabel("First name").fill(firstName);
+      await currentForm.getByLabel("Last name").fill(lastName);
 
       await currentForm.locator('button[type="submit"]').click();
 
@@ -76,11 +84,19 @@ export function defineFormTests({
         await page.waitForURL(`**${route}**`);
       }
 
-      // Scoped by submitted name: the store is shared and the routes run
-      // concurrently, so a test cannot read "whatever arrived last".
-      const response = await page.request.get("/tests?firstName=Alice");
-      const data = await response.json();
-      expect(data).toEqual({ firstName: "Alice", lastName: "Smith" });
+      // Polled rather than read once: the submission is still in flight, and
+      // the store answers `null` for a name nothing has submitted yet, so a
+      // rejected submission fails here instead of silently reading a stale
+      // sibling payload and leaving the reset assertion to explain it.
+      await expect
+        .poll(async () =>
+          (
+            await page.request.get(
+              `/tests?firstName=${encodeURIComponent(firstName)}`
+            )
+          ).json()
+        )
+        .toEqual({ firstName, lastName });
 
       const afterForm = native ? page.locator("form").first() : form;
       await expect(afterForm.getByLabel("First name")).toHaveValue("Jane");

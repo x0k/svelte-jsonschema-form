@@ -6,6 +6,7 @@
     createSvelteKitForm,
     createSvelteKitRequest,
   } from "#lib/client/index.js";
+  import { createFormIdBuilder } from "#lib/id-builder.js";
 
   import type { PageData, ActionData } from "./$types.js";
   import * as defaults from "./form-defaults.js";
@@ -17,6 +18,7 @@
   });
   const form = createSvelteKitForm(meta, {
     ...defaults,
+    idBuilder: createFormIdBuilder,
     onSubmit: request.run,
     onSubmitError: console.warn,
   });

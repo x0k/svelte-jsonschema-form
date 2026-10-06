@@ -3,6 +3,7 @@
   generics="Meta extends SvelteKitFormMeta<any, any, string, any>"
 >
   import { BasicForm } from "@sjsf/form";
+  import type { HTMLFormAttributes } from "svelte/elements";
 
   import {
     setupSvelteKitForm,
@@ -12,6 +13,7 @@
 
   type Props = SvelteKitFormSetupOptions<Meta> & {
     meta: Meta;
+    enctype?: HTMLFormAttributes["enctype"];
   };
 
   const props: Props = $props();
@@ -19,4 +21,4 @@
   const { form } = setupSvelteKitForm(props.meta, props);
 </script>
 
-<BasicForm {form} method="POST" />
+<BasicForm {form} method="POST" enctype={props.enctype} />

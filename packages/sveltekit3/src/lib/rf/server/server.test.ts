@@ -4,7 +4,8 @@ import { fromRecord } from "@sjsf/form/lib/resolver";
 import { createFormMerger } from "@sjsf/form/mergers/modern";
 import { describe, expect, it, vi } from "vitest";
 
-import { JSON_CHUNKS_KEY } from "../../model.js";
+import { FORM_DATA_FILE_PREFIX, JSON_CHUNKS_KEY } from "../../model.js";
+import { encode } from "../internal/codec.js";
 
 const mockRequest = new Request("http://localhost");
 vi.mock("$app/server", () => ({
@@ -31,14 +32,11 @@ function opts(overrides?: Record<string, unknown>) {
   };
 }
 
-function makeChunks(data: unknown): string[] {
-  const json = JSON.stringify(data);
-  const chunks: string[] = [];
-  const size = 100;
-  for (let i = 0; i < json.length; i += size) {
-    chunks.push(json.slice(i, i + size));
-  }
-  return chunks;
+function formData(data: Record<string, unknown>) {
+  return {
+    [SJSF_ID_PREFIX]: DEFAULT_ID_PREFIX,
+    [DEFAULT_ID_PREFIX]: data,
+  };
 }
 
 describe("createServerValidator", () => {
@@ -71,13 +69,10 @@ describe("createServerValidator", () => {
     expect(result.issues![0].message).toContain("Missing or invalid id prefix");
   });
 
-  it("should validate valid form data via JSON chunks", async () => {
+  it("should validate valid form data", async () => {
     const v = createServerValidator(opts());
     const data = { firstName: "John", lastName: "Doe" };
-    const result = await v.validate({
-      [SJSF_ID_PREFIX]: DEFAULT_ID_PREFIX,
-      [JSON_CHUNKS_KEY]: makeChunks(data),
-    });
+    const result = await v.validate(formData(data));
     expect(result).toEqual({
       value: {
         data,
@@ -89,10 +84,7 @@ describe("createServerValidator", () => {
   it("should return validation errors for invalid data", async () => {
     const v = createServerValidator(opts());
     const data = { lastName: "Doe" };
-    const result = await v.validate({
-      [SJSF_ID_PREFIX]: DEFAULT_ID_PREFIX,
-      [JSON_CHUNKS_KEY]: makeChunks(data),
-    });
+    const result = await v.validate(formData(data));
     expect(result.issues).toBeDefined();
   });
 
@@ -101,7 +93,7 @@ describe("createServerValidator", () => {
     const data = { firstName: "Jane" };
     const result = await v.validate({
       [SJSF_ID_PREFIX]: "myform",
-      [JSON_CHUNKS_KEY]: makeChunks(data),
+      myform: data,
     });
     expect(result).toEqual({
       value: {
@@ -136,12 +128,112 @@ describe("createServerValidator", () => {
     expect(result.issues![0].message).toBe("Got number");
   });
 
-  it("should return unexpected error for internal failures", async () => {
+  it("should report an undecodable value against its own field", async () => {
+    const v = createServerValidator(
+      opts({
+        schema: {
+          type: "object",
+          properties: { color: { type: "string", enum: ["red"] } },
+        } as Schema,
+      })
+    );
+    const result = await v.validate(formData({ color: "nope" }));
+    expect(result.issues).toHaveLength(1);
+    expect(result.issues![0]!.path).toEqual(["color"]);
+  });
+
+  it("should parse JSON chunks when present", async () => {
     const v = createServerValidator(opts());
     const result = await v.validate({
       [SJSF_ID_PREFIX]: DEFAULT_ID_PREFIX,
-      [JSON_CHUNKS_KEY]: ["{invalid json"],
+      [JSON_CHUNKS_KEY]: ['{"firstName":"Ja', 'ne"}'],
     });
-    expect(result.issues).toBeDefined();
+    expect(result).toEqual({
+      value: {
+        data: { firstName: "Jane" },
+        idPrefix: DEFAULT_ID_PREFIX,
+      },
+    });
+  });
+
+  it("should use a custom reviver for JSON chunks", async () => {
+    const seen: unknown[] = [];
+    const v = createServerValidator(
+      opts({
+        createReviver: () => (key: string, value: any) => {
+          seen.push([key, value]);
+          return value;
+        },
+      })
+    );
+    const result = await v.validate({
+      [SJSF_ID_PREFIX]: DEFAULT_ID_PREFIX,
+      [JSON_CHUNKS_KEY]: ['{"firstName":"Jane"}'],
+    });
+    expect(seen.length).toBeGreaterThan(0);
+    expect(result).toEqual({
+      value: {
+        data: { firstName: "Jane" },
+        idPrefix: DEFAULT_ID_PREFIX,
+      },
+    });
+  });
+
+  it("should report malformed JSON chunks at the root", async () => {
+    const v = createServerValidator(opts());
+    const result = await v.validate({
+      [SJSF_ID_PREFIX]: DEFAULT_ID_PREFIX,
+      [JSON_CHUNKS_KEY]: ["{bad"],
+    });
+    expect(result.issues).toHaveLength(1);
+    expect(result.issues![0]!.path).toEqual([]);
+    // The parse error itself, not the generic failure message.
+    expect(result.issues![0]!.message).not.toContain("Unexpected");
+  });
+
+  it("should resolve a missing file marker to null", async () => {
+    const v = createServerValidator(
+      opts({
+        schema: {
+          type: "object",
+          properties: { avatar: { type: ["string", "null"] } },
+        } as Schema,
+      })
+    );
+    const result = await v.validate({
+      [SJSF_ID_PREFIX]: DEFAULT_ID_PREFIX,
+      [JSON_CHUNKS_KEY]: [`{"avatar":"${FORM_DATA_FILE_PREFIX}gone"}`],
+    });
+    expect(result).toEqual({
+      value: {
+        data: { avatar: null },
+        idPrefix: DEFAULT_ID_PREFIX,
+      },
+    });
+  });
+
+  it("should resolve a file marker through the encoded wire name", async () => {
+    // A hyphen is outside Kit's name charset, so the client sends the input
+    // under the encoded key while the payload keeps the bare one.
+    const bareKey = `${FORM_DATA_FILE_PREFIX}my-file`;
+    const v = createServerValidator(
+      opts({
+        schema: {
+          type: "object",
+          properties: { avatar: { type: "string" } },
+        } as Schema,
+      })
+    );
+    const result = await v.validate({
+      [SJSF_ID_PREFIX]: DEFAULT_ID_PREFIX,
+      [JSON_CHUNKS_KEY]: [`{"avatar":"${bareKey}"}`],
+      [encode(bareKey)]: "FILEDATA",
+    });
+    expect(result).toEqual({
+      value: {
+        data: { avatar: "FILEDATA" },
+        idPrefix: DEFAULT_ID_PREFIX,
+      },
+    });
   });
 });

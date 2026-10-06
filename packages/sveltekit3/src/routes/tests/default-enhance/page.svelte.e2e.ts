@@ -70,10 +70,10 @@ test.describe("connect() with the default enhance", () => {
       .toMatchObject({ firstName: "Wire", lastName: "Fields" });
 
     // The regression this guards: Kit's `reset` listener read the hidden form
-    // back with `new FormData(form)` after an `await tick()`, so the ID prefix
-    // and JSON chunks it had just submitted became the form value and emptied
-    // the inputs while the state still held the submission. Resetting to the
-    // initial data above means those keys never reached the visible form.
+    // back with `new FormData(form)` after an `await tick()`, so its inputs
+    // became the form value and emptied the visible ones while the state still
+    // held the submission. Resetting to the initial data above means those keys
+    // never reached the visible form.
     const value = await form.getByLabel("First name").inputValue();
     expect(value).not.toContain("__sjsf");
   });

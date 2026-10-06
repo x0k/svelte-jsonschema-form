@@ -6,6 +6,7 @@
     createAdditionalPropertyKeyValidator,
     setupSvelteKitForm,
   } from "#lib/client/index.js";
+  import { createFormIdBuilder } from "#lib/id-builder.js";
 
   import type { PageData, ActionData } from "./$types.js";
   import * as defaults from "./form-defaults.js";
@@ -14,6 +15,7 @@
   const meta = createMeta<ActionData, PageData>().form2;
   const { form } = setupSvelteKitForm(meta, {
     ...defaults,
+    idBuilder: createFormIdBuilder,
     idPrefix: "form2",
     schema: {
       title: "Parent",

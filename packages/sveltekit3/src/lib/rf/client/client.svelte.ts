@@ -16,8 +16,8 @@ import { getAbortSignal, onMount, untrack, hydratable } from "svelte";
 
 import type { RemoteForm, RemoteFormInput } from "$app/server";
 
-import { chunks } from "../../internal.js";
-import { FORM_DATA_FILE_PREFIX, JSON_CHUNKS_KEY } from "../../model.js";
+import { chunks, createFileMarker } from "../../internal.js";
+import { JSON_CHUNKS_KEY } from "../../model.js";
 import type { FormIdBuilderOptions } from "../id-builder.ts";
 import { encode } from "../internal/codec.js";
 import {
@@ -48,6 +48,30 @@ export function createClientValidator<T>(form: FormState<T>) {
 
 const CHUNK_KEY = `${JSON_CHUNKS_KEY}[]`;
 
+/** Builds a file input on the hidden submission form. */
+function appendFileInput(
+  formElement: HTMLFormElement,
+  name: string,
+  value: File
+) {
+  const fileInput = document.createElement("input");
+  fileInput.type = "file";
+  fileInput.name = name;
+  const dt = new DataTransfer();
+  dt.items.add(value);
+  fileInput.files = dt.files;
+  formElement.appendChild(fileInput);
+}
+
+/**
+ * A file input with a real selection. Untouched inputs report `File("")`,
+ * which the parts path drops — mirroring that here keeps empty state-held
+ * files from resolving to an empty `File` where parts would omit.
+ */
+function isSelectedFile(value: unknown): value is File {
+  return value instanceof File && (value.name !== "" || value.size > 0);
+}
+
 /** The context a `File` replacer needs to build a submission input. */
 export interface ConnectReplacerOptions {
   /** The hidden form the submission is read from. */
@@ -67,26 +91,21 @@ function createDefaultReplacer({
   formElement,
   fieldSuffix,
 }: ConnectReplacerOptions): Replacer {
-  const seen = new Set<string>();
-  function fileInput(name: string, value: File) {
-    const fileInput = document.createElement("input");
-    fileInput.type = "file";
-    fileInput.name = name;
-    const dt = new DataTransfer();
-    dt.items.add(value);
-    fileInput.files = dt.files;
-    formElement.appendChild(fileInput);
-  }
+  const marker = createFileMarker();
   return (key, value) => {
     if (!(value instanceof File)) {
       return value;
     }
-    const initialKey = `${FORM_DATA_FILE_PREFIX}${key}`;
-    let fdKey = initialKey;
-    let i = 1;
-    while (seen.has(fdKey)) fdKey = `${initialKey}__${i++}`;
-    seen.add(fdKey);
-    fileInput(encode(fdKey) + fieldSuffix, value);
+    // An empty nameless `File` never reaches the state through the widgets
+    // (untouched and cleared both write `undefined`); only programmatic
+    // state can hold one. Omit it so the key stays absent, like the parts
+    // path does for it, instead of appending an empty input where parts
+    // would leave nothing behind.
+    if (!isSelectedFile(value)) {
+      return undefined;
+    }
+    const fdKey = marker(key);
+    appendFileInput(formElement, encode(fdKey) + fieldSuffix, value);
     return fdKey;
   };
 }
@@ -124,9 +143,11 @@ export function getRemoteFormFieldId(remoteForm: RemoteFormInstance): string {
 
 export interface ConnectOptions extends SvelteKitDataParserOptions {
   idBuilder: Creatable<FormIdBuilder, FormIdBuilderOptions>;
-  /** By default, handles conversion of `File` */
+  /** Submit the value as JSON chunks instead of the form's own parts. @default false */
+  useJsonChunks?: boolean;
+  /** By default, handles conversion of `File`. Marker values starting with the file prefix are reserved for file references. */
   createReplacer?: (options: ConnectReplacerOptions) => Replacer;
-  /** @default 500000 */
+  /** Chunk length in code points, not bytes. Lower it if the server caps body size. @default 500000 */
   jsonChunkSize?: number;
 }
 
@@ -152,14 +173,13 @@ export async function connect<T>(
     // listener, which is the only way to keep the two from fighting: Kit's
     // `handle_reset` reads the form back with `new FormData(form)` after an
     // `await tick()` and assigns it to the form value, which would read this
-    // form's own wire fields (`__sjsf_id_prefix`, the JSON chunks) as if they
-    // were the user's input and empty the visible form.
+    // form's own inputs back as if they were a fresh submission.
     formElement.addEventListener("reset", (e) => {
       // Undo the submission on the form the user can actually see. The theme
       // wires this to `form.reset()`, which restores `options.initialValue`.
       originalFormElement.reset();
       // Kit must not observe the reset, or it rebuilds its value from the
-      // wire fields it is about to receive.
+      // hidden form's inputs.
       e.stopImmediatePropagation();
       // The submission is done, so release the inputs and the `File` blobs
       // they referenced.
@@ -185,6 +205,13 @@ export async function connect<T>(
   // Kit v3 requires form field names to end with `/{formId}` (see
   // `parse_form_key`), otherwise submissions are rejected server-side
   const fieldSuffix = `/${getRemoteFormFieldId(remoteForm)}`;
+  // The id prefix input's name. `resolveIdPrefixName` from `@sjsf/form` would
+  // be the canonical source, but it needs the built `FormIdBuilder` instance,
+  // which only `createForm` holds — `connect()` sees factories, never the
+  // instance. This matches what the stock builder returns for the same
+  // `fieldSuffix` (`rf/id-builder.ts`), which is also what the visible form
+  // renders, so inject and skip below always agree.
+  const idPrefixName = `${SJSF_ID_PREFIX}${fieldSuffix}`;
 
   const fields = $derived(remoteForm.fields);
 
@@ -217,10 +244,27 @@ export async function connect<T>(
     formElement.append(input);
   }
 
+  // The hidden form carries what the visible form holds, so the server parses
+  // it through `parseSvelteKitData`. The id prefix input is skipped: it is
+  // injected separately, trusting the rendered value.
+  function copyVisibleInputs(data: FormData) {
+    for (const [name, value] of data) {
+      if (name === idPrefixName) {
+        continue;
+      }
+      if (value instanceof File) {
+        appendFileInput(formElement, name, value);
+      } else {
+        hiddenInput(name, value);
+      }
+    }
+  }
+
   const jsonChunkSize = $derived(options.jsonChunkSize ?? 500000);
   const createReplacer = $derived(
     options.createReplacer ?? createDefaultReplacer
   );
+  const useJsonChunks = $derived(options.useJsonChunks ?? false);
 
   const uiSchema: UiSchemaRoot = $derived.by(() => {
     const { uiSchema, uiOptionsRegistry } = options;
@@ -260,12 +304,34 @@ export async function connect<T>(
         formElement.name = originalFormElement.name;
         formElement.rel = originalFormElement.rel;
         formElement.replaceChildren();
-        hiddenInput(`${SJSF_ID_PREFIX}${fieldSuffix}`, idPrefix);
-        for (const chunk of chunks(
-          JSON.stringify(value, createReplacer({ formElement, fieldSuffix })),
-          jsonChunkSize
-        )) {
-          hiddenInput(`${CHUNK_KEY}${fieldSuffix}`, chunk);
+        // Read once: the prefix lookup and the parts copy below observe the
+        // same rendered controls.
+        const visibleData = new FormData(originalFormElement);
+        // The form renders its own id prefix input, so trust it: only fill in
+        // the configured value when the form has none. `FormData.get` reads the
+        // first value like the server does, so duplicate prefix inputs agree
+        // on both sides; a disabled input is invisible to `FormData`, so it
+        // counts as absent.
+        const renderedPrefix = visibleData.get(idPrefixName);
+        hiddenInput(
+          idPrefixName,
+          typeof renderedPrefix === "string" ? renderedPrefix : idPrefix
+        );
+        if (useJsonChunks) {
+          // `JSON.stringify` answers `undefined` (not a string) for `undefined`
+          // and friends: fall back to `"null"` so `chunks` keeps a decodable
+          // payload instead of throwing on `.length`.
+          for (const chunk of chunks(
+            JSON.stringify(
+              value,
+              createReplacer({ formElement, fieldSuffix })
+            ) ?? "null",
+            jsonChunkSize
+          )) {
+            hiddenInput(`${CHUNK_KEY}${fieldSuffix}`, chunk);
+          }
+        } else {
+          copyVisibleInputs(visibleData);
         }
         // Kit only resets the form while it is connected, and that reset is what
         // carries the submission back to the visible form (see the `reset`

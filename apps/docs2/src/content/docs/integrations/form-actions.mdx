@@ -40,7 +40,7 @@ Pick the package that matches your project's `@sveltejs/kit` major version.
     <Deps pkg={sveltekit3Package} />
 
   </TabItem>
-  <TabItem label="SvelteKit 2">
+  <TabItem label="SvelteKit 2 (legacy)">
     <Npm pkg={getPackageDependencies(sveltekitPackage)} />
 
     <Deps pkg={sveltekitPackage} />
@@ -117,6 +117,18 @@ By using the `createFormHandler` API, you can gain more control over the action 
 
 - run checks before processing the form data
 - work with dynamic schemas (call `createFormHandler` inside the action handler)
+- handle fields whose schema declares no `type`, via `convertUnknownEntry`
+  (without it, a submitted value for such a field fails the request):
+
+```ts
+import type { FieldValue } from "@sjsf/form";
+
+const handleForm = createFormHandler({
+  ...defaults,
+  schema,
+  convertUnknownEntry: ({ value }) => value as FieldValue,
+});
+```
 
 :::note
 
@@ -155,10 +167,17 @@ According to Svelte documentation your form should always use `POST` requests.
 
 By default, the form will work even with JavaScript disabled, but you should consider the following limitations of this mode of operation:
 
+Enhanced and native submissions carry the same parts, so validation results match between the two modes.
+
 - `action` should be created with `sendData: true` to persist form data between page updates
 - Form fields for `oneOf`, `anyOf`, `dependencies`, `additionalProperties` and `additionalItems`
   will not expand/switch their state.
 - Some widgets (like multiselect, depends on the theme) may will not work, because they require `JavaScript`.
+
+### JSON chunks
+
+Pass `useJsonChunks` to the request to submit the form data as JSON. This needs JavaScript:
+without it the browser submits the fields on its own, so the submission may look different from the JSON one.
 
 ## Comparison with Superforms
 

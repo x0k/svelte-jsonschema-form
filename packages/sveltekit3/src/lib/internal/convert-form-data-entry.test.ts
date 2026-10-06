@@ -95,6 +95,34 @@ describe("convertFormDataEntries", async () => {
       convert(c.signal, { schema, uiSchema: {}, path, value: "root::3" })
     ).rejects.toThrow(/does not match the schema/);
   });
+  // `EMPTY_VALUE` is `""` under either mapper, so `""` is ambiguous on the wire:
+  // a blank option, or a `""` member when `StringEnumValueMapperBuilder` puts raw
+  // values there. The member has to survive.
+  it("Should keep an empty string that the schema lists", async () => {
+    const schema: Schema = {
+      type: "string",
+      enum: ["", "a"],
+    };
+    await expect(
+      convert(c.signal, { schema, uiSchema: {}, path: [], value: "" })
+    ).resolves.toEqual("");
+  });
+  it("Should reject a string for a schema with no type", async () => {
+    // Reaches the `default` branch: there is no `convertUnknownEntry` for the
+    // remote-function path, and `unknown` is not one of the coerced types.
+    await expect(
+      convert(c.signal, { schema: {}, uiSchema: {}, path: [], value: "text" })
+    ).rejects.toThrow(/Unexpected schema type/);
+  });
+  it("Should treat an empty string as nothing chosen when it is not listed", async () => {
+    const schema: Schema = {
+      type: "string",
+      enum: ["a", "b"],
+    };
+    await expect(
+      convert(c.signal, { schema, uiSchema: {}, path: [], value: "" })
+    ).resolves.toBeUndefined();
+  });
   it("Should return correct value for enum and raw value", async () => {
     const schema: Schema = {
       type: "string",

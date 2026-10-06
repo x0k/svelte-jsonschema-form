@@ -165,7 +165,8 @@ export function parseSchemaValue<T>(
     async function setProperty(
       property: string,
       schemaDef: SchemaDefinition,
-      uiSchema: UiSchemaDefinition
+      uiSchema: UiSchemaDefinition,
+      required: boolean
     ) {
       if (value[property] === undefined) {
         const propertyValue = await parseSchemaDef(
@@ -174,10 +175,23 @@ export function parseSchemaValue<T>(
           undefined
         );
         if (propertyValue !== undefined) {
-          value[property] = propertyValue;
+          // An empty array means nothing was submitted for it. Absent is what
+          // the JSON path sends for the same input, and a kept `[]` would trip
+          // `minItems` on a field the user never filled in.
+          if (
+            !(
+              isSchemaArrayValue(propertyValue) &&
+              propertyValue.length === 0 &&
+              !required
+            )
+          ) {
+            value[property] = propertyValue;
+          }
         }
       }
     }
+
+    const requiredProperties = new Set(schema.required);
 
     if (properties !== undefined) {
       for (const [property, schema] of Object.entries(properties)) {
@@ -189,7 +203,8 @@ export function parseSchemaValue<T>(
         await setProperty(
           property,
           schema,
-          (uiSchema[property] ?? {}) as UiSchema
+          (uiSchema[property] ?? {}) as UiSchema,
+          requiredProperties.has(property)
         );
         popEntriesAndFilter();
       }
@@ -236,13 +251,17 @@ export function parseSchemaValue<T>(
           const [decodedKey, items] = unknown[i];
           if (regExp.test(decodedKey)) {
             const encodedKey = encode(decodedKey);
+            const propertyKey =
+              encodedKeyToNewDecodedKey.get(encodedKey) ?? decodedKey;
             pushFilter(escapedPropertySeparator, encodedKey, decodedKey);
             entriesStack.push(items);
-            await setProperty(
-              encodedKeyToNewDecodedKey.get(encodedKey) ?? decodedKey,
-              schema,
-              uiSchema
-            );
+            await setProperty(propertyKey, schema, uiSchema, false);
+            // A cleared value converts to `undefined`, which `setProperty`
+            // drops — losing a key the form rendered. Keeping it preserves the
+            // row, since rows derive from submitted keys.
+            if (!(propertyKey in value)) {
+              value[propertyKey] = undefined;
+            }
             entriesStack.pop();
             popFilter();
             shift++;
@@ -294,13 +313,19 @@ export function parseSchemaValue<T>(
       const additionalUiSchema = uiSchema.additionalProperties ?? {};
       for (const [decodedKey, entries] of unknown) {
         const encodedKey = encode(decodedKey);
+        const propertyKey =
+          encodedKeyToNewDecodedKey.get(encodedKey) ?? decodedKey;
         pushFilter(escapedPropertySeparator, encodedKey, decodedKey);
         entriesStack.push(entries);
         await setProperty(
-          encodedKeyToNewDecodedKey.get(encodedKey) ?? decodedKey,
+          propertyKey,
           additionalProperties,
-          additionalUiSchema
+          additionalUiSchema,
+          false
         );
+        if (!(propertyKey in value)) {
+          value[propertyKey] = undefined;
+        }
         entriesStack.pop();
         popFilter();
       }
