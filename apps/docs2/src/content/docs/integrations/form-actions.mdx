@@ -11,7 +11,7 @@ import {
   DEFAULT_ID_SEPARATOR,
   DEFAULT_ID_PSEUDO_SEPARATOR,
 } from "@sjsf/form/id-builders/legacy";
-import { sveltekitPackage } from "meta";
+import { sveltekit3Package, sveltekitPackage } from "meta";
 
 import { getPackageDependencies } from "@/shared";
 import Npm from "@/components/npm.astro";
@@ -30,9 +30,23 @@ even if the user has `JavaScript` disabled.
 
 ## Installation
 
-<Npm pkg={getPackageDependencies(sveltekitPackage)} />
+Pick the package that matches your project's `@sveltejs/kit` major version.
+`sv add @sjsf` does this for you.
 
-<Deps pkg={sveltekitPackage} />
+<Tabs syncKey="kit">
+  <TabItem label="SvelteKit 3">
+    <Npm pkg={getPackageDependencies(sveltekit3Package)} />
+
+    <Deps pkg={sveltekit3Package} />
+
+  </TabItem>
+  <TabItem label="SvelteKit 2">
+    <Npm pkg={getPackageDependencies(sveltekitPackage)} />
+
+    <Deps pkg={sveltekitPackage} />
+
+  </TabItem>
+</Tabs>
 
 ## Example
 
@@ -40,7 +54,8 @@ See details in the sections below
 
 :::note
 
-For correct operation, you must use ID Builder from the `@sjsf/sveltekit`.
+For correct operation, you must use ID Builder from the `@sjsf/sveltekit`
+(or `@sjsf/sveltekit3` on `SvelteKit 3`).
 
 :::
 
@@ -63,6 +78,8 @@ you can return `InitialFormData` object inside the `load` function.
 
 ```typescript
 import type { InitialFormData } from "@sjsf/sveltekit";
+// or, on SvelteKit 3:
+// import type { InitialFormData } from "@sjsf/sveltekit3";
 
 export const load = async () => {
   return {

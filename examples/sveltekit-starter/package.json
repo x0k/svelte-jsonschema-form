@@ -21,6 +21,7 @@
     "svelte": "catalog:"
   },
   "devDependencies": {
+    "@sveltejs/kit": "catalog:kit2",
     "json-schema-to-ts": "catalog:"
   }
 }

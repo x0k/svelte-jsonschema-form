@@ -57,7 +57,7 @@ const multiEmptyLinesRegExp = /\n\s*\n+/g;
 
 export function cleanPage(content: string) {
   return content
-    .replace(importRegExp, 'import * as defaults from "$lib/sjsf/defaults"')
+    .replace(importRegExp, 'import * as defaults from "#lib/sjsf/defaults.js"')
     .replace(contextRegExp, "")
     .replaceAll(multiEmptyLinesRegExp, "\n\n");
 }

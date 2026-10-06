@@ -8,7 +8,7 @@
   import type { SchemaObjectValue } from "@sjsf/form/core";
   import type { FromSchema } from "json-schema-to-ts";
 
-  import * as defaults from "$lib/sjsf/defaults";
+  import * as defaults from "#lib/sjsf/defaults.js";
 
   import ObjectField from "./object-field.svelte";
 

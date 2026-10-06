@@ -48,10 +48,18 @@ export function createPrinter(condition: boolean): ConditionalPrinter {
 
 export type PathFactory = (path: string) => string;
 
-export const KIT_PATH_FACTORY: PathFactory = (path) => `$lib/${path}`;
-
+/**
+ * Turns a `src/lib`-relative module path into an import specifier.
+ *
+ * `$lib` on Kit 2 is a `paths` mapping, so TypeScript still searches extensions.
+ * `#lib` on Kit 3 is a `package.json#imports` subpath, which Node and TypeScript
+ * require to be unambiguous, so the extension has to be spelled out.
+ */
 export function createKitPathFactory(prefix: "#lib" | "$lib"): PathFactory {
-  return (path) => `${prefix}/${path}`;
+  if (prefix === "$lib") {
+    return (path) => `$lib/${path}`;
+  }
+  return (path) => `#lib/${path}.js`;
 }
 
 export function* codegenThemeOrSubTheme() {

@@ -72,6 +72,7 @@
     "@sjsf/form": "workspace:*",
     "@skeletonlabs/skeleton": "catalog:legacy",
     "@skeletonlabs/skeleton-svelte": "catalog:legacy",
+    "@sveltejs/kit": "catalog:kit2",
     "@tailwindcss/forms": "catalog:",
     "@tailwindcss/vite": "catalog:",
     "@zag-js/radio-group": "^1.18.3",

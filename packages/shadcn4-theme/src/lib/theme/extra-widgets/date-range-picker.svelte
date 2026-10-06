@@ -57,8 +57,8 @@
   } from "@sjsf/form";
   import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
 
-  import { buttonVariants } from "$lib/components/ui/button/index.js";
-  import { cn } from "$lib/utils.js";
+  import { buttonVariants } from "#lib/components/ui/button/index.js";
+  import { cn } from "#lib/utils.js";
 
   import { getThemeContext } from "../context.js";
 

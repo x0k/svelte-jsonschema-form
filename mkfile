@@ -251,7 +251,7 @@ shad/:
   popd
 
 kit/:
-  pushd packages/sveltekit
+  pushd packages/sveltekit3
   c:
     pnpm run check
   b:
@@ -355,6 +355,19 @@ leg/:
     popd
   shad/:
     pushd shadcn-theme
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    p:
+      pnpm run preview
+    d:
+      pnpm run dev
+    t:
+      pnpm run test $@
+    popd
+  kit/:
+    pushd sveltekit
     c:
       pnpm run check
     b:
@@ -491,8 +504,19 @@ e/:
     d:
       pnpm run dev
     popd
-  kit/:
+  kit2/:
     pushd sveltekit-starter
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    p:
+      pnpm run preview
+    d:
+      pnpm run dev
+    popd
+  kit/:
+    pushd sveltekit3-starter
     c:
       pnpm run check
     b:

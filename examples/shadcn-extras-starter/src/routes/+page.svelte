@@ -1,7 +1,7 @@
 <script lang="ts">
   import { createForm, BasicForm, type Schema } from "@sjsf/form";
 
-  import * as defaults from "$lib/sjsf/defaults";
+  import * as defaults from "#lib/sjsf/defaults.js";
 
   const schema = {
     type: "object",

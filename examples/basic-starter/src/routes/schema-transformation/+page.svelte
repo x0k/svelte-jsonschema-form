@@ -24,7 +24,7 @@
   import "@sjsf/form/fields/extra/enum-include";
 
   // https://github.com/sveltejs/svelte/issues/17220
-  import * as _defaults from "$lib/sjsf/defaults";
+  import * as _defaults from "#lib/sjsf/defaults.js";
 
   const defaults = { ..._defaults };
 

@@ -1,5 +1,6 @@
 import { resolve, dirname } from "node:path";
 
+import adapter from "@sveltejs/adapter-static";
 import { sveltekit } from "@sveltejs/kit/vite";
 import tailwindcss from "@tailwindcss/vite";
 import { playwright } from "@vitest/browser-playwright";
@@ -10,7 +11,14 @@ const vrtPattern = "**/*.vrt.test.[tj]s?(x)";
 const VIRTUAL_MODULE_PREFIX = "virtual-module:";
 
 export default defineConfig({
-  plugins: [tailwindcss(), sveltekit()],
+  plugins: [
+    tailwindcss(),
+    sveltekit({
+      adapter: adapter({
+        strict: false,
+      }),
+    }),
+  ],
   optimizeDeps: {
     include: [
       "@sveltejs/svelte-json-tree",

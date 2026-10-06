@@ -1,0 +1,45 @@
+<script lang="ts">
+  import {
+    Content,
+    createForm,
+    setFormContext,
+    SubmitButton,
+  } from "@sjsf/form";
+  import { resolver } from "@sjsf/form/resolvers/compat";
+
+  import { getRemoteFormFieldId } from "#lib/rf/client/index.js";
+  import { createFormIdBuilder } from "#lib/rf/index.js";
+
+  import * as defaults from "../form-defaults.js";
+  import { schema, uiSchema } from "../model.js";
+  import { createPost } from "./data.remote.js";
+
+  const native = createPost.for("native");
+
+  // Without `connect()` there's nothing to inject the `/{formId}` suffix that
+  // Kit requires on every field name (see `parse_form_key`), so pass a factory
+  // with it captured
+  const fieldSuffix = `/${getRemoteFormFieldId(native)}`;
+
+  const form = createForm({
+    ...defaults,
+    idPrefix: "native",
+    get initialErrors() {
+      return native.fields.allIssues()?.map((i) => ({
+        path: [],
+        message: i.message,
+      }));
+    },
+    resolver,
+    idBuilder: (options) => createFormIdBuilder({ ...options, fieldSuffix }),
+    schema,
+    uiSchema,
+  });
+  setFormContext(form);
+</script>
+
+<form novalidate enctype="multipart/form-data" {...native}>
+  <Content />
+  <br />
+  <SubmitButton />
+</form>

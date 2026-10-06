@@ -71,6 +71,7 @@
   },
   "devDependencies": {
     "@sjsf/form": "workspace:*",
+    "@sveltejs/kit": "catalog:kit2",
     "autoprefixer": "catalog:",
     "daisyui": "catalog:legacy",
     "globals": "catalog:",

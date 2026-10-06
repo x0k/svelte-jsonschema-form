@@ -9,7 +9,7 @@ export function shadcnTs({
   directory,
   language,
   cwd,
-  libPrefix,
+  kit,
 }: Context) {
   const isShadcn4 = options.themeOrSubTheme === "shadcn4";
   const isShadcnExtras = options.themeOrSubTheme === "shadcn-extras";
@@ -36,7 +36,7 @@ export function shadcnTs({
         return;
       }
       // TODO: Support for custom aliases
-      realUiPath = configUiPath.replace(libPrefix, directory.lib);
+      realUiPath = configUiPath.replace(kit.libPrefix, directory.lib);
       return false;
     })
   );

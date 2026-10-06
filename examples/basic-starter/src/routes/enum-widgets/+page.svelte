@@ -24,7 +24,7 @@
   import { chain, fromRecord, fromFactories } from "@sjsf/form/lib/resolver";
   import "@sjsf/form/fields/extra/enum-include";
 
-  import * as defaults from "$lib/sjsf/defaults";
+  import * as defaults from "#lib/sjsf/defaults.js";
 
   import RadioWithOther, { OTHER_VALUE } from "./radio-with-other.svelte";
 

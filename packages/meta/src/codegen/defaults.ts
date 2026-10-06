@@ -1,6 +1,6 @@
 import { isRecordEmpty } from "@sjsf/form/lib/object";
 import type { DeepPartial } from "@sjsf/form/lib/types";
-import { transforms, type AstTypes } from "@sveltejs/sv-utils";
+import { transforms, type AstTypes } from "@sveltejs/sv-utils/browser";
 
 import {
   extraFields,
@@ -17,7 +17,8 @@ import {
   type Resolver,
 } from "../form.ts";
 import { iconSetPackage } from "../icons.ts";
-import { sveltekitPackage, svelteKitRfSubPath } from "../sveltekit.ts";
+import type { Package } from "../package.ts";
+import { svelteKitExport } from "../sveltekit.ts";
 import {
   isThemeExtension,
   themeExtensionOrigin,
@@ -85,6 +86,8 @@ export interface DefaultsOptions<T extends CodegenThemeOrSubTheme> {
   icons: CodegenIconSet;
   resolver: Resolver | "inline";
   sveltekit: CodegenSvelteKitIntegration;
+  /** The SvelteKit integration package generated code imports from */
+  sveltekitPackage: Package;
   widgets: Iterable<ExtraWidgetFileNames[ToTheme<T>]>;
   fields: Iterable<ExtraFieldFileName>;
   isTs: boolean;
@@ -97,14 +100,20 @@ export interface DefaultsOptions<T extends CodegenThemeOrSubTheme> {
   uiOptionsRegistry: Record<string, UiOptionsRegistryEntry>;
 }
 
-const SVELTE_KIT_INTEGRATION_ID_BUILDERS: Record<
-  CodegenSvelteKitIntegration,
-  string
-> = {
-  no: formIdBuilderSubPath("modern"),
-  formActions: sveltekitPackage.name,
-  remoteFunctions: svelteKitRfSubPath(),
-};
+/** The `idBuilder` a generated `defaults` file re-exports for the chosen integration. */
+function kitIdBuilder(
+  sveltekitPackage: Package,
+  sveltekit: CodegenSvelteKitIntegration
+): string {
+  switch (sveltekit) {
+    case "formActions":
+      return svelteKitExport(sveltekitPackage, "");
+    case "remoteFunctions":
+      return svelteKitExport(sveltekitPackage, "rf");
+    default:
+      return formIdBuilderSubPath("modern");
+  }
+}
 
 const LINK_COMMENT =
   "// https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/";
@@ -115,6 +124,7 @@ export function createDefaults<T extends CodegenThemeOrSubTheme>({
   icons,
   resolver,
   sveltekit,
+  sveltekitPackage,
   widgets,
   fields,
   isTs,
@@ -237,7 +247,7 @@ export function resolver(_ctx) {`
     createReExport(ast, {
       name: "idBuilder",
       imported: "createFormIdBuilder",
-      source: SVELTE_KIT_INTEGRATION_ID_BUILDERS[sveltekit],
+      source: kitIdBuilder(sveltekitPackage, sveltekit),
     });
 
     const theme = toTheme(themeOrSubTheme);
