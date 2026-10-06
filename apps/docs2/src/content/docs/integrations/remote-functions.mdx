@@ -39,7 +39,7 @@ Pick the package that matches your project's `@sveltejs/kit` major version.
     <Deps pkg={sveltekit3Package} />
 
   </TabItem>
-  <TabItem label="SvelteKit 2">
+  <TabItem label="SvelteKit 2 (legacy)">
     <Npm pkg={getPackageDependencies(sveltekitPackage)} />
 
     {/* Svelte `hydratable` API: https://github.com/sveltejs/svelte/pull/17154 */}
@@ -78,9 +78,12 @@ remote-functions subpath.
 
 ## Submission encoding
 
-Enhanced submissions send the form's own controls — the same parts a native
+By default, enhanced submissions send the form's own controls — the same parts a native
 submission would send — so the server parses both identically. No JSON
 serialization of the form value is involved.
+
+Pass `useJsonChunks` to `connect()` to submit the form data as JSON. This needs JavaScript:
+without it the browser submits the fields on its own, so the submission may look different from the JSON one.
 
 Fields whose schema declares no `type` are rejected unless the validator is
 given a `convertUnknownEntry` to handle them:

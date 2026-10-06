@@ -3,7 +3,11 @@ import { DEFAULT_ID_PREFIX, SJSF_ID_PREFIX } from "@sjsf/form";
 import { afterEach, describe, expect, test } from "vitest";
 import { render } from "vitest-browser-svelte";
 
+import { createFormIdBuilder } from "#lib/rf/index.js";
+import { encode } from "#lib/rf/internal/codec.js";
+
 import * as defaults from "../../../routes/form-defaults.js";
+import { JSON_CHUNKS_KEY } from "../../model.js";
 import ConnectProbe from "./__test__/connect-probe.svelte";
 
 /** Stands in for the symbol Kit puts on a `RemoteForm` */
@@ -205,6 +209,123 @@ describe("connect submission", () => {
     for (const input of inputs) {
       expect(input.name).not.toContain("my-key");
     }
+  });
+});
+
+describe("connect JSON chunks", () => {
+  function chunkValue(inputs: HTMLInputElement[], minChunks = 1): any {
+    const chunks = inputs
+      .filter((input) => input.name.startsWith(JSON_CHUNKS_KEY))
+      .map((input) => input.value);
+    expect(chunks.length).toBeGreaterThanOrEqual(minChunks);
+    return JSON.parse(chunks.join(""));
+  }
+
+  test("submits the value as JSON chunks", async () => {
+    const { connected, screen } = await renderConnected(FORM_ID, {
+      idBuilder: createFormIdBuilder,
+      useJsonChunks: true,
+      jsonChunkSize: 10,
+    });
+
+    const inputs = await submitWith(connected, screen, {
+      firstName: "Jane",
+      age: 33,
+    });
+
+    // Tiny `jsonChunkSize` forces several chunks, proving they join back.
+    expect(chunkValue(inputs, 2)).toEqual({ firstName: "Jane", age: 33 });
+    const prefixes = inputs.filter(
+      (input) => input.name === `${SJSF_ID_PREFIX}/${FORM_ID}`
+    );
+    expect(prefixes).toHaveLength(1);
+    expect(prefixes[0]!.value).toBe(DEFAULT_ID_PREFIX);
+  });
+
+  test("trusts the rendered id prefix in JSON mode", async () => {
+    const { connected, screen } = await renderConnected(FORM_ID, {
+      idBuilder: createFormIdBuilder,
+      useJsonChunks: true,
+    });
+    const original = screen
+      .getByTestId("original")
+      .element() as HTMLFormElement;
+    const prefix = document.createElement("input");
+    prefix.type = "hidden";
+    prefix.name = `${SJSF_ID_PREFIX}/${FORM_ID}`;
+    prefix.value = "custom";
+    original.append(prefix);
+
+    const inputs = await submitWith(connected, screen, { firstName: "Jane" });
+
+    const prefixes = inputs.filter(
+      (input) => input.name === `${SJSF_ID_PREFIX}/${FORM_ID}`
+    );
+    expect(prefixes).toHaveLength(1);
+    expect(prefixes[0]!.value).toBe("custom");
+  });
+
+  test("ignores a disabled id prefix input", async () => {
+    const { connected, screen } = await renderConnected(FORM_ID, {
+      idBuilder: createFormIdBuilder,
+      useJsonChunks: true,
+    });
+    const original = screen
+      .getByTestId("original")
+      .element() as HTMLFormElement;
+    const prefix = document.createElement("input");
+    prefix.type = "hidden";
+    prefix.name = `${SJSF_ID_PREFIX}/${FORM_ID}`;
+    prefix.value = "custom";
+    prefix.disabled = true;
+    original.append(prefix);
+
+    const inputs = await submitWith(connected, screen, { firstName: "Jane" });
+
+    // A disabled input is invisible to `FormData`: trusting it would send a
+    // prefix the server never receives alongside.
+    const prefixes = inputs.filter(
+      (input) => input.name === `${SJSF_ID_PREFIX}/${FORM_ID}`
+    );
+    expect(prefixes).toHaveLength(1);
+    expect(prefixes[0]!.value).toBe(DEFAULT_ID_PREFIX);
+  });
+
+  test("submits files alongside the chunks", async () => {
+    const { connected, screen } = await renderConnected(FORM_ID, {
+      idBuilder: createFormIdBuilder,
+      useJsonChunks: true,
+    });
+
+    const inputs = await submitWith(connected, screen, {
+      "my-file": new File(["x"], "avatar.png"),
+    });
+
+    // The payload keeps the bare file key, which the server looks the file up
+    // by; the input name carries the encoded form Kit accepts in names.
+    const bareKey = "__sjsf_sveltekit_file__my-file";
+    expect(JSON.stringify(chunkValue(inputs))).toContain(`"${bareKey}"`);
+    const fileInput = inputs.find((input) => input.type === "file");
+    expect(fileInput).toBeDefined();
+    expect(fileInput!.name).toBe(`${encode(bareKey)}/${FORM_ID}`);
+  });
+
+  test("omits an empty nameless File from the chunks payload", async () => {
+    const { connected, screen } = await renderConnected(FORM_ID, {
+      idBuilder: createFormIdBuilder,
+      useJsonChunks: true,
+    });
+
+    // Only programmatic state can hold such a File: the widgets write
+    // `undefined` for untouched and cleared inputs.
+    const inputs = await submitWith(connected, screen, {
+      "my-file": new File([], ""),
+    });
+
+    // The key stays absent, like the parts path leaves it, and no file input
+    // is appended to the hidden form.
+    expect(chunkValue(inputs)).toEqual({});
+    expect(inputs.some((input) => input.type === "file")).toBe(false);
   });
 });
 

@@ -3,7 +3,7 @@ import { expect, test, type Locator, type Page } from "@playwright/test";
 /**
  * Submits one schema through both paths and compares what the server holds.
  *
- * - `/tests/parity/json` — JS on. `connect()` copies the visible form's parts
+ * - `/tests/parity/parts` — JS on. `connect()` copies the visible form's parts
  *   into a hidden form submitted through Kit's remote machinery.
  * - `/tests/parity/native` — JS off. The browser posts real parts with a full
  *   reload. Every value goes through `convertFormDataEntry`: `""` to
@@ -184,8 +184,8 @@ export function defineParityTests({
 
 defineParityTests({
   name: "parity (enhanced submission)",
-  route: "/tests/parity/json",
-  key: "ParityJson",
+  route: "/tests/parity/parts",
+  key: "ParityParts",
 });
 
 defineParityTests({

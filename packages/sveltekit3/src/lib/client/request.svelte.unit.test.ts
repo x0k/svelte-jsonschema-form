@@ -4,6 +4,7 @@ import type { ActionResult } from "$app/forms";
 
 import { applyAction } from "../../../mocks/app-forms.js";
 import { goto, refreshAll } from "../../../mocks/app-navigation.js";
+import { FORM_DATA_FILE_PREFIX, JSON_CHUNKS_KEY } from "../model.js";
 import { createMeta } from "./meta.js";
 import { createSvelteKitRequest } from "./request.svelte.js";
 
@@ -264,6 +265,297 @@ describe("request payload", () => {
 
     const body = vi.mocked(fetch).mock.calls[0]![1]!.body as FormData;
     expect(body.get("root.firstName")).toBe("Jane");
+    expect(body.getAll("__sjsf_id_prefix")).toEqual(["root"]);
+  });
+
+  test("sends the value as JSON chunks with `useJsonChunks`", async () => {
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = "/current";
+    form.enctype = "multipart/form-data";
+    document.body.append(form);
+    stubFetch({ type: "success", status: 200, location: CURRENT });
+
+    const event = new Event("submit", { bubbles: true, cancelable: true });
+    Object.defineProperty(event, "currentTarget", { value: form });
+
+    const meta = createMeta<{ default: any }, Record<string, never>>().default;
+    const request = createSvelteKitRequest(
+      meta as any,
+      {
+        useJsonChunks: true,
+        jsonChunkSize: 10,
+      } as any
+    );
+    await request.runAsync(
+      { firstName: "Jane", age: 33 } as any,
+      event as SubmitEvent
+    );
+
+    const body = vi.mocked(fetch).mock.calls[0]![1]!.body as FormData;
+    const chunks = body.getAll(JSON_CHUNKS_KEY);
+    // Tiny `jsonChunkSize` forces several chunks, proving they join back.
+    expect(chunks.length).toBeGreaterThan(1);
+    expect(JSON.parse(chunks.join(""))).toEqual({
+      firstName: "Jane",
+      age: 33,
+    });
+    expect(body.getAll("__sjsf_id_prefix")).toEqual(["root"]);
+  });
+
+  test("uploads as multipart when the payload holds Files on a non-multipart form", async () => {
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = "/current";
+    // Default enctype and no rendered file input: the File lives only in the
+    // state. The guard has nothing rendered to check, so the multipart
+    // switch below is what saves the upload.
+    document.body.append(form);
+    stubFetch({ type: "success", status: 200, location: CURRENT });
+
+    const event = new Event("submit", { bubbles: true, cancelable: true });
+    Object.defineProperty(event, "currentTarget", { value: form });
+
+    const meta = createMeta<{ default: any }, Record<string, never>>().default;
+    const request = createSvelteKitRequest(
+      meta as any,
+      {
+        useJsonChunks: true,
+      } as any
+    );
+    await request.runAsync(
+      { avatar: new File(["x"], "avatar.png") } as any,
+      event as SubmitEvent
+    );
+
+    const body = vi.mocked(fetch).mock.calls[0]![1]!.body;
+    // `URLSearchParams` would stringify the File to "[object File]".
+    expect(body).toBeInstanceOf(FormData);
+    const file = (body as FormData).get(`${FORM_DATA_FILE_PREFIX}avatar`);
+    expect(file).toBeInstanceOf(File);
+    expect((file as File).name).toBe("avatar.png");
+  });
+
+  test("omits an empty nameless File from the chunks payload", async () => {
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = "/current";
+    // Only programmatic state can hold such a File: the widgets write
+    // `undefined` for untouched and cleared inputs.
+    document.body.append(form);
+    stubFetch({ type: "success", status: 200, location: CURRENT });
+
+    const event = new Event("submit", { bubbles: true, cancelable: true });
+    Object.defineProperty(event, "currentTarget", { value: form });
+
+    const meta = createMeta<{ default: any }, Record<string, never>>().default;
+    const request = createSvelteKitRequest(
+      meta as any,
+      {
+        useJsonChunks: true,
+      } as any
+    );
+    await request.runAsync(
+      { avatar: new File([], "") } as any,
+      event as SubmitEvent
+    );
+
+    const body = vi.mocked(fetch).mock.calls[0]![1]!.body;
+    // No real selection, so nothing trips multipart — and the key must stay
+    // absent, like the parts path leaves it, rather than riding the params.
+    expect(body).toBeInstanceOf(URLSearchParams);
+    const params = body as URLSearchParams;
+    expect(params.toString()).not.toContain("[object File]");
+    expect(params.toString()).not.toContain(FORM_DATA_FILE_PREFIX);
+    expect(JSON.parse(params.get(JSON_CHUNKS_KEY)!)).toEqual({});
+  });
+
+  test("still uploads a genuine zero-byte file that has a name", async () => {
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = "/current";
+    document.body.append(form);
+    stubFetch({ type: "success", status: 200, location: CURRENT });
+
+    const event = new Event("submit", { bubbles: true, cancelable: true });
+    Object.defineProperty(event, "currentTarget", { value: form });
+
+    const meta = createMeta<{ default: any }, Record<string, never>>().default;
+    const request = createSvelteKitRequest(
+      meta as any,
+      {
+        useJsonChunks: true,
+      } as any
+    );
+    await request.runAsync(
+      { avatar: new File([], "empty.txt") } as any,
+      event as SubmitEvent
+    );
+
+    const body = vi.mocked(fetch).mock.calls[0]![1]!.body;
+    expect(body).toBeInstanceOf(FormData);
+    const file = (body as FormData).get(`${FORM_DATA_FILE_PREFIX}avatar`);
+    expect(file).toBeInstanceOf(File);
+    expect((file as File).name).toBe("empty.txt");
+  });
+
+  test("drops untouched file inputs from a non-multipart parts submission", async () => {
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = "/current";
+    // Parts mode: the payload is the rendered controls, and the untouched
+    // input serializes as `File("")`.
+    const file = document.createElement("input");
+    file.type = "file";
+    file.name = "avatar";
+    form.append(file);
+
+    const text = document.createElement("input");
+    text.name = "root.firstName";
+    text.value = "Jane";
+    form.append(text);
+
+    document.body.append(form);
+    stubFetch({ type: "success", status: 200, location: CURRENT });
+
+    const event = new Event("submit", { bubbles: true, cancelable: true });
+    Object.defineProperty(event, "currentTarget", { value: form });
+
+    const meta = createMeta<{ default: any }, Record<string, never>>().default;
+    const request = createSvelteKitRequest(meta as any, {} as any);
+    await request.runAsync({} as any, event as SubmitEvent);
+
+    const body = vi.mocked(fetch).mock.calls[0]![1]!.body;
+    // Nothing selected, so nothing trips multipart — and the empty input
+    // must stay out instead of riding the params as "[object File]".
+    expect(body).toBeInstanceOf(URLSearchParams);
+    const params = body as URLSearchParams;
+    expect(params.toString()).not.toContain("[object File]");
+    expect(params.has("avatar")).toBe(false);
+    expect(params.get("root.firstName")).toBe("Jane");
+  });
+
+  test("does not throw for state-held Files with no rendered file input", async () => {
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = "/current";
+    // Default enctype and no rendered file input: the File lives only in the
+    // state, which no native submission could send, so there is nothing to
+    // warn about.
+    document.body.append(form);
+    stubFetch({ type: "success", status: 200, location: CURRENT });
+
+    const event = new Event("submit", { bubbles: true, cancelable: true });
+    Object.defineProperty(event, "currentTarget", { value: form });
+
+    const meta = createMeta<{ default: any }, Record<string, never>>().default;
+    const request = createSvelteKitRequest(
+      meta as any,
+      {
+        useJsonChunks: true,
+      } as any
+    );
+    await request.runAsync(
+      { avatar: new File(["x"], "avatar.png") } as any,
+      event as SubmitEvent
+    );
+
+    expect(vi.mocked(fetch)).toHaveBeenCalledOnce();
+  });
+
+  test("throws in dev for a selected rendered file input on a non-multipart form", async () => {
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = "/current";
+
+    const file = document.createElement("input");
+    file.type = "file";
+    file.name = "avatar";
+    const files = new DataTransfer();
+    files.items.add(new File(["x"], "avatar.png"));
+    file.files = files.files;
+    form.append(file);
+
+    document.body.append(form);
+    stubFetch({ type: "success", status: 200, location: CURRENT });
+
+    const event = new Event("submit", { bubbles: true, cancelable: true });
+    Object.defineProperty(event, "currentTarget", { value: form });
+
+    const meta = createMeta<{ default: any }, Record<string, never>>().default;
+    const request = createSvelteKitRequest(
+      meta as any,
+      {
+        useJsonChunks: true,
+      } as any
+    );
+    await expect(
+      request.runAsync({} as any, event as SubmitEvent)
+    ).rejects.toThrowError(/multipart\/form-data/);
+  });
+
+  test("trusts the rendered id prefix in JSON mode", async () => {
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = "/current";
+    form.enctype = "multipart/form-data";
+
+    const prefix = document.createElement("input");
+    prefix.type = "hidden";
+    prefix.name = "__sjsf_id_prefix";
+    prefix.value = "custom";
+    form.append(prefix);
+
+    document.body.append(form);
+    stubFetch({ type: "success", status: 200, location: CURRENT });
+
+    const event = new Event("submit", { bubbles: true, cancelable: true });
+    Object.defineProperty(event, "currentTarget", { value: form });
+
+    const meta = createMeta<{ default: any }, Record<string, never>>().default;
+    const request = createSvelteKitRequest(
+      meta as any,
+      {
+        useJsonChunks: true,
+      } as any
+    );
+    await request.runAsync({ name: "Jane" } as any, event as SubmitEvent);
+
+    const body = vi.mocked(fetch).mock.calls[0]![1]!.body as FormData;
+    expect(body.getAll("__sjsf_id_prefix")).toEqual(["custom"]);
+  });
+
+  test("ignores a disabled id prefix input", async () => {
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = "/current";
+    form.enctype = "multipart/form-data";
+
+    const prefix = document.createElement("input");
+    prefix.type = "hidden";
+    prefix.name = "__sjsf_id_prefix";
+    prefix.value = "custom";
+    prefix.disabled = true;
+    form.append(prefix);
+
+    document.body.append(form);
+    stubFetch({ type: "success", status: 200, location: CURRENT });
+
+    const event = new Event("submit", { bubbles: true, cancelable: true });
+    Object.defineProperty(event, "currentTarget", { value: form });
+
+    const meta = createMeta<{ default: any }, Record<string, never>>().default;
+    const request = createSvelteKitRequest(
+      meta as any,
+      {
+        useJsonChunks: true,
+      } as any
+    );
+    await request.runAsync({ name: "Jane" } as any, event as SubmitEvent);
+
+    // A disabled input is invisible to `FormData`: trusting it would send a
+    // prefix the server never receives alongside.
+    const body = vi.mocked(fetch).mock.calls[0]![1]!.body as FormData;
     expect(body.getAll("__sjsf_id_prefix")).toEqual(["root"]);
   });
 });

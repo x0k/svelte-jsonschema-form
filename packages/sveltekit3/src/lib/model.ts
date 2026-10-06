@@ -12,6 +12,9 @@ import type { DeepPartial, MaybePromise } from "@sjsf/form/lib/types";
 
 import type { PickOptionalSerializable } from "./internal.js";
 
+export const JSON_CHUNKS_KEY = "__sjsf_sveltekit_json_chunks";
+export const FORM_DATA_FILE_PREFIX = "__sjsf_sveltekit_file__";
+
 export type SerializableOptionalFormOptions<T> = PickOptionalSerializable<
   FormOptions<T>
 >;

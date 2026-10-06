@@ -23,6 +23,7 @@ import {
   DEFAULT_PSEUDO_SEPARATOR,
   type IdOptions,
 } from "../id-builder.js";
+import { isFileMarker } from "../internal.js";
 import { createCodec, DEFAULT_ESCAPE_CHAR } from "../internal/codec.js";
 import {
   createEnumItemDecoder,
@@ -33,6 +34,7 @@ import {
 } from "../internal/convert-form-data-entry.js";
 import { parseSchemaValue } from "../internal/schema-value-parser.js";
 import {
+  JSON_CHUNKS_KEY,
   type EntryConverter,
   type EnumItemDecoder,
   type InvalidFormData,
@@ -60,7 +62,18 @@ export interface FormHandlerOptions<T, SD extends SendData> extends Omit<
   enumItemDecoder?: EnumItemDecoder;
   /** @default false */
   sendData?: SD;
+  /** By default, handles conversion of `File`. Marker values starting with the file prefix are resolved as file references. */
+  createReviver?: (formData: FormData) => (key: string, value: any) => any;
   escapeCharacter?: string;
+}
+
+function createDefaultReviver(formData: FormData) {
+  return (_: string, value: any) => {
+    if (isFileMarker(value)) {
+      return formData.get(value);
+    }
+    return value;
+  };
 }
 
 export function createFormHandler<T, SD extends SendData>({
@@ -76,6 +89,7 @@ export function createFormHandler<T, SD extends SendData>({
   pseudoSeparator = DEFAULT_PSEUDO_SEPARATOR,
   escapeCharacter = DEFAULT_ESCAPE_CHAR,
   sendData,
+  createReviver = createDefaultReviver,
   enumItemDecoder = createEnumItemDecoder(
     createOptionIndexDecoder(pseudoSeparator)
   ),
@@ -117,39 +131,60 @@ export function createFormHandler<T, SD extends SendData>({
       );
     }
     let data: FormValue = {};
-    try {
-      data = await parseSchemaValue(signal, {
-        idPrefix,
-        idSeparator: propertySeparator,
-        idIndexSeparator: indexSeparator,
-        idPseudoSeparator: pseudoSeparator,
-        schema,
-        uiSchema,
-        entries: Array.from(formData.entries()),
-        validator,
-        merger,
-        convertEntry,
-        codec: createCodec({
-          escapeChar: escapeCharacter,
-          sequencesToEncode: [
-            propertySeparator,
-            indexSeparator,
-            pseudoSeparator,
-          ],
-        }),
-      });
-    } catch (e) {
-      // An undecodable value is reported against its own field instead of
-      // failing the request, so the form comes back with the error on it.
-      // Nothing is pushed back into the form: there is no parsed data, and
-      // pushing the `{}` initializer would wipe what the user typed.
-      if (e instanceof EntryDecodeError) {
-        const errors: ValidationError[] = [
-          { path: [...e.path], message: e.message },
-        ];
-        return [validated(errors, false), data, validated];
+    const chunkParts = formData.getAll(JSON_CHUNKS_KEY);
+    // A parts-mode field could theoretically carry this key (e.g. a file
+    // input by that name): only string parts decode as chunks, like the
+    // remote path already requires.
+    if (
+      chunkParts.length > 0 &&
+      chunkParts.every((part) => typeof part === "string")
+    ) {
+      try {
+        data = JSON.parse(chunkParts.join(""), createReviver(formData));
+      } catch (e) {
+        // A truncated or tampered chunk payload is undecodable input, not a
+        // server failure: report it at the root instead of failing the request.
+        if (e instanceof SyntaxError) {
+          const errors: ValidationError[] = [{ path: [], message: e.message }];
+          return [validated(errors, false), data, validated];
+        }
+        throw e;
       }
-      throw e;
+    } else {
+      try {
+        data = await parseSchemaValue(signal, {
+          idPrefix,
+          idSeparator: propertySeparator,
+          idIndexSeparator: indexSeparator,
+          idPseudoSeparator: pseudoSeparator,
+          schema,
+          uiSchema,
+          entries: Array.from(formData.entries()),
+          validator,
+          merger,
+          convertEntry,
+          codec: createCodec({
+            escapeChar: escapeCharacter,
+            sequencesToEncode: [
+              propertySeparator,
+              indexSeparator,
+              pseudoSeparator,
+            ],
+          }),
+        });
+      } catch (e) {
+        // An undecodable value is reported against its own field instead of
+        // failing the request, so the form comes back with the error on it.
+        // Nothing is pushed back into the form: there is no parsed data, and
+        // pushing the `{}` initializer would wipe what the user typed.
+        if (e instanceof EntryDecodeError) {
+          const errors: ValidationError[] = [
+            { path: [...e.path], message: e.message },
+          ];
+          return [validated(errors, false), data, validated];
+        }
+        throw e;
+      }
     }
     const result: ValidationResult<T> =
       "validateFormValueAsync" in validator

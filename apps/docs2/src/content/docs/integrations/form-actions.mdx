@@ -40,7 +40,7 @@ Pick the package that matches your project's `@sveltejs/kit` major version.
     <Deps pkg={sveltekit3Package} />
 
   </TabItem>
-  <TabItem label="SvelteKit 2">
+  <TabItem label="SvelteKit 2 (legacy)">
     <Npm pkg={getPackageDependencies(sveltekitPackage)} />
 
     <Deps pkg={sveltekitPackage} />
@@ -173,6 +173,11 @@ Enhanced and native submissions carry the same parts, so validation results matc
 - Form fields for `oneOf`, `anyOf`, `dependencies`, `additionalProperties` and `additionalItems`
   will not expand/switch their state.
 - Some widgets (like multiselect, depends on the theme) may will not work, because they require `JavaScript`.
+
+### JSON chunks
+
+Pass `useJsonChunks` to the request to submit the form data as JSON. This needs JavaScript:
+without it the browser submits the fields on its own, so the submission may look different from the JSON one.
 
 ## Comparison with Superforms
 

@@ -17,14 +17,16 @@ import type { StandardSchemaV1 } from "@standard-schema/spec";
 
 import { getRequestEvent } from "$app/server";
 
+import { isFileMarker } from "../../internal.js";
 import {
   createFormDataEntryConverter,
   EntryDecodeError,
   type FormDataConverterOptions,
   type UnknownEntryConverter,
 } from "../../internal/convert-form-data-entry.js";
-import type { EntryConverter } from "../../model.js";
+import { JSON_CHUNKS_KEY, type EntryConverter } from "../../model.js";
 import { DEFAULT_PSEUDO_PREFIX } from "../id-builder.js";
+import { encode } from "../internal/codec.js";
 import { createSvelteKitDataParser } from "../internal/sveltekit-data-parser.js";
 import { enServerTranslation, type ServerTranslation } from "./translation.js";
 
@@ -41,6 +43,10 @@ export interface SvelteKitFormValidatorOptions<T> {
   /** Handles submitted values whose schema declares no `type`. */
   convertUnknownEntry?: UnknownEntryConverter;
   pseudoPrefix?: string;
+  /** By default, handles conversion of `File`. Marker values starting with the file prefix are resolved as file references. */
+  createReviver?: (
+    input: Record<string, unknown>
+  ) => (key: string, value: any) => any;
   serverTranslation?: ServerTranslation;
 }
 
@@ -67,6 +73,20 @@ export interface ValidationResult<R> {
   data: R;
 }
 
+function createDefaultReviver(input: Record<string, unknown>) {
+  return (_: string, value: any) => {
+    if (isFileMarker(value)) {
+      // The record is keyed by wire names, which carry the encoded file key
+      // (Kit rejects raw separator characters in names), while the payload
+      // holds the bare key — so encode here, matching what the client sent.
+      // A missing part answers `null`, like the form-action reviver, instead
+      // of `undefined`, which `JSON.parse` would silently delete.
+      return input[encode(value)] ?? null;
+    }
+    return value;
+  };
+}
+
 export function createServerValidator<T>({
   serverTranslation = enServerTranslation,
   schema,
@@ -77,6 +97,7 @@ export function createServerValidator<T>({
   createEntryConverter = createFormDataEntryConverter,
   convertUnknownEntry,
   pseudoPrefix = DEFAULT_PSEUDO_PREFIX,
+  createReviver = createDefaultReviver,
 }: SvelteKitFormValidatorOptions<T>): StandardSchemaV1<
   any,
   ValidationResult<T>
@@ -115,6 +136,29 @@ export function createServerValidator<T>({
     }
     throw new PublicError(t("missing-or-invalid-id-prefix-key", {}));
   }
+  function parseData(
+    signal: AbortSignal,
+    idPrefix: string,
+    input: Record<string, unknown>
+  ) {
+    const data = input[JSON_CHUNKS_KEY];
+    if (
+      Array.isArray(data) &&
+      data.every((chunk) => typeof chunk === "string")
+    ) {
+      try {
+        return JSON.parse(data.join(""), createReviver(input));
+      } catch (e) {
+        // Like the form-action path: a malformed chunk payload is undecodable
+        // input reported at the root, not a generic failure.
+        if (e instanceof SyntaxError) {
+          throw new EntryDecodeError(e.message, []);
+        }
+        throw e;
+      }
+    }
+    return parseSvelteKitData(signal, idPrefix, input);
+  }
   async function validate(
     input: unknown
   ): Promise<StandardSchemaV1.Result<ValidationResult<T>>> {
@@ -126,7 +170,7 @@ export function createServerValidator<T>({
       // there is no active request, and this function never throws
       const { request } = getRequestEvent();
       const idPrefix = parseIdPrefix(input);
-      const value = await parseSvelteKitData(request.signal, idPrefix, input);
+      const value = await parseData(request.signal, idPrefix, input);
       const result =
         "validateFormValueAsync" in validator
           ? await validator.validateFormValueAsync(
