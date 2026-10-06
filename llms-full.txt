@@ -207,6 +207,10 @@ import Redirect from "./redirect.astro";
 
 
 
+# @sjsf/sveltekit3
+
+
+
 # @sjsf/valibot-validator
 
 
@@ -1638,7 +1642,7 @@ You can create a new component that adapts the interface of the original compone
   import type { ComponentProps } from "@sjsf/form";
   import TagsField from "@sjsf/form/fields/extra/tags.svelte";
 
-  import { assertStrings } from "$lib/form/cast";
+  import { assertStrings } from "#lib/form/cast.js";
 
   let { value = $bindable(), ...rest }: ComponentProps["arrayTagsField"] =
     $props();
@@ -1683,7 +1687,7 @@ import { cast } from "@sjsf/form/lib/component";
 import type { ComponentDefinition } from "@sjsf/form";
 import TagsField from "@sjsf/form/fields/extra/tags.svelte";
 
-import { assertStrings } from "$lib/form/cast";
+import { assertStrings } from "#lib/form/cast.js";
 
 declare module "@sjsf/form" {
   interface ComponentProps {
@@ -2832,7 +2836,7 @@ define `export const defaults = { ... }` in a `defaults` file.
 :::
 
 ```typescript
-import * as defaults from '$lib/sjsf/defaults'
+import * as defaults from '#lib/sjsf/defaults.js'
 
 const form = createForm({ ...defaults, <your-options> })
 ```
@@ -3119,17 +3123,17 @@ import {
   DEFAULT_ID_SEPARATOR,
   DEFAULT_ID_PSEUDO_SEPARATOR,
 } from "@sjsf/form/id-builders/legacy";
-import { sveltekitPackage } from "meta";
+import { sveltekit3Package, sveltekitPackage } from "meta";
 
 import { getPackageDependencies } from "@/shared";
 import Npm from "@/components/npm.astro";
 import Deps from "@/components/peer-dependencies.astro";
 
-import modelCode from "examples/sveltekit-starter/src/lib/post.ts?raw";
-import clientCode from "examples/sveltekit-starter/src/routes/form-actions/+page.svelte?raw";
-import serverCode from "examples/sveltekit-starter/src/routes/form-actions/+page.server?raw";
-import clientFlexCode from "examples/sveltekit-starter/src/routes/form-actions-flex/+page.svelte?raw";
-import serverFlexCode from "examples/sveltekit-starter/src/routes/form-actions-flex/+page.server?raw";
+import modelCode from "examples/sveltekit3-starter/src/lib/post.ts?raw";
+import clientCode from "examples/sveltekit3-starter/src/routes/form-actions/+page.svelte?raw";
+import serverCode from "examples/sveltekit3-starter/src/routes/form-actions/+page.server?raw";
+import clientFlexCode from "examples/sveltekit3-starter/src/routes/form-actions-flex/+page.svelte?raw";
+import serverFlexCode from "examples/sveltekit3-starter/src/routes/form-actions-flex/+page.server?raw";
 
 Since this is a `Svelte` library, you may want to use it with the `SvelteKit`.
 
@@ -3138,9 +3142,23 @@ even if the user has `JavaScript` disabled.
 
 ## Installation
 
-<Npm pkg={getPackageDependencies(sveltekitPackage)} />
+Pick the package that matches your project's `@sveltejs/kit` major version.
+`sv add @sjsf` does this for you.
 
-<Deps pkg={sveltekitPackage} />
+<Tabs syncKey="kit">
+  <TabItem label="SvelteKit 3">
+    <Npm pkg={getPackageDependencies(sveltekit3Package)} />
+
+    <Deps pkg={sveltekit3Package} />
+
+  </TabItem>
+  <TabItem label="SvelteKit 2 (legacy)">
+    <Npm pkg={getPackageDependencies(sveltekitPackage)} />
+
+    <Deps pkg={sveltekitPackage} />
+
+  </TabItem>
+</Tabs>
 
 ## Example
 
@@ -3148,7 +3166,7 @@ See details in the sections below
 
 :::note
 
-For correct operation, you must use ID Builder from the `@sjsf/sveltekit`.
+For correct operation, you must use ID Builder from the integration package.
 
 :::
 
@@ -3170,7 +3188,7 @@ If you want to populate the form from the database,
 you can return `InitialFormData` object inside the `load` function.
 
 ```typescript
-import type { InitialFormData } from "@sjsf/sveltekit";
+import type { InitialFormData } from "@sjsf/sveltekit3";
 
 export const load = async () => {
   return {
@@ -3211,6 +3229,18 @@ By using the `createFormHandler` API, you can gain more control over the action 
 
 - run checks before processing the form data
 - work with dynamic schemas (call `createFormHandler` inside the action handler)
+- handle fields whose schema declares no `type`, via `convertUnknownEntry`
+  (without it, a submitted value for such a field fails the request):
+
+```ts
+import type { FieldValue } from "@sjsf/form";
+
+const handleForm = createFormHandler({
+  ...defaults,
+  schema,
+  convertUnknownEntry: ({ value }) => value as FieldValue,
+});
+```
 
 :::note
 
@@ -3249,10 +3279,17 @@ According to Svelte documentation your form should always use `POST` requests.
 
 By default, the form will work even with JavaScript disabled, but you should consider the following limitations of this mode of operation:
 
+Enhanced and native submissions carry the same parts, so validation results match between the two modes.
+
 - `action` should be created with `sendData: true` to persist form data between page updates
 - Form fields for `oneOf`, `anyOf`, `dependencies`, `additionalProperties` and `additionalItems`
   will not expand/switch their state.
 - Some widgets (like multiselect, depends on the theme) may will not work, because they require `JavaScript`.
+
+### JSON chunks
+
+Pass `useJsonChunks` to the request to submit the form data as JSON. This needs JavaScript:
+without it the browser submits the fields on its own, so the submission may look different from the JSON one.
 
 ## Comparison with Superforms
 
@@ -3370,16 +3407,16 @@ when sending form data to a server.
 # Remote functions
 
 import { Code, Tabs, TabItem } from "@astrojs/starlight/components";
-import { sveltekitPackage } from "meta";
+import { sveltekit3Package, sveltekitPackage } from "meta";
 
 import { getPackageDependencies } from "@/shared";
 import Npm from "@/components/npm.astro";
 import Deps from "@/components/peer-dependencies.astro";
 
-import modelCode from "examples/sveltekit-starter/src/lib/post.ts?raw";
-import clientCode from "examples/sveltekit-starter/src/routes/remote-functions/+page.svelte?raw";
-import clientEnhanceCode from "examples/sveltekit-starter/src/routes/remote-functions-enhance/+page.svelte?raw";
-import serverCode from "examples/sveltekit-starter/src/routes/remote-functions/data.remote?raw";
+import modelCode from "examples/sveltekit3-starter/src/lib/post.ts?raw";
+import clientCode from "examples/sveltekit3-starter/src/routes/remote-functions/+page.svelte?raw";
+import clientEnhanceCode from "examples/sveltekit3-starter/src/routes/remote-functions-enhance/+page.svelte?raw";
+import serverCode from "examples/sveltekit3-starter/src/routes/remote-functions/data.remote?raw";
 
 :::caution
 
@@ -3389,23 +3426,37 @@ Remote functions integration is experimental
 
 ## Installation
 
-<Npm pkg={getPackageDependencies(sveltekitPackage)} />
-{/* Svelte `hydratable` API: https://github.com/sveltejs/svelte/pull/17154 */}
-{/* SvelteKit programmatic submission API: https://github.com/sveltejs/kit/pull/15657 */}
-<Deps
-  pkg={sveltekitPackage}
-  versionOverrides={{ "@sveltejs/kit": "2.61.0", svelte: "5.44.0" }}
-/>
+Pick the package that matches your project's `@sveltejs/kit` major version.
+`sv add @sjsf` does this for you.
+
+<Tabs syncKey="kit">
+  <TabItem label="SvelteKit 3">
+    <Npm pkg={getPackageDependencies(sveltekit3Package)} />
+
+    <Deps pkg={sveltekit3Package} />
+
+  </TabItem>
+  <TabItem label="SvelteKit 2 (legacy)">
+    <Npm pkg={getPackageDependencies(sveltekitPackage)} />
+
+    {/* Svelte `hydratable` API: https://github.com/sveltejs/svelte/pull/17154 */}
+    {/* SvelteKit programmatic submission API: https://github.com/sveltejs/kit/pull/15657 */}
+    <Deps
+      pkg={sveltekitPackage}
+      versionOverrides={{ "@sveltejs/kit": "2.61.0", svelte: "5.44.0" }}
+    />
+
+  </TabItem>
+</Tabs>
 
 ## Example
 
 :::note
 
-For correct operation, you must use ID Builder from the `@sjsf/sveltekit/rf`.
+For correct operation, you must use ID Builder from the integration package's
+remote-functions subpath.
 
 :::
-
-{/* TODO: Fix `$lib/remote-form-defaults` */}
 
 <Tabs>
   <TabItem label="+page.svelte">
@@ -3422,6 +3473,28 @@ For correct operation, you must use ID Builder from the `@sjsf/sveltekit/rf`.
   </TabItem>
 </Tabs>
 
+## Submission encoding
+
+By default, enhanced submissions send the form's own controls — the same parts a native
+submission would send — so the server parses both identically. No JSON
+serialization of the form value is involved.
+
+Pass `useJsonChunks` to `connect()` to submit the form data as JSON. This needs JavaScript:
+without it the browser submits the fields on its own, so the submission may look different from the JSON one.
+
+Fields whose schema declares no `type` are rejected unless the validator is
+given a `convertUnknownEntry` to handle them:
+
+```ts
+import type { FieldValue } from "@sjsf/form";
+
+const validator = createServerValidator({
+  ...defaults,
+  schema,
+  convertUnknownEntry: ({ value }) => value as FieldValue,
+});
+```
+
 ## Known issues
 
 - `experimental.async` does not apply to dependency code -
@@ -3431,7 +3504,7 @@ For correct operation, you must use ID Builder from the `@sjsf/sveltekit/rf`.
 
   ```js
   optimizeDeps: {
-    exclude: ['@sjsf/form', '@sjsf/sveltekit/rf/client'],
+    exclude: ['@sjsf/form', '@sjsf/sveltekit3/rf/client'],
   }
   ```
 
@@ -5324,9 +5397,26 @@ Form validator implementation based on [@cfworker/json-schema](https://github.co
 
 <Demo name="cfworker" iconsPicker client:visible />
 
-## Caveats
+## Format support
 
-- `data-url` and `color` formats are ignored.
+By default, `data-url` and `color` formats are not installed. Call `setupFormFormats()` once at app startup to enable them:
+
+```typescript
+import { format } from "@cfworker/json-schema";
+import { setupFormFormats } from "@sjsf/cfworker-validator";
+
+setupFormFormats(format);
+```
+
+Custom formats can be added directly to `@cfworker/json-schema`'s global format registry:
+
+```typescript
+import { format } from "@cfworker/json-schema";
+
+format.phone = (value) => /^\+\d{10,15}$/.test(value);
+```
+
+## Caveats
 
 - By itself this validator does not support undefined values. But we use the
   `valueToJSON` function with the following default implementation to fix it,
