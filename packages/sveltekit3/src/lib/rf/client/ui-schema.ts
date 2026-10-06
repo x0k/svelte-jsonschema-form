@@ -8,8 +8,6 @@ import {
   type UiSchemaRoot,
 } from "@sjsf/form";
 
-import type { RemoteForm } from "$app/server";
-
 function createObjectProxy<T extends object>(
   target: T,
   overrides: Record<string, (target: T) => unknown>
@@ -43,8 +41,13 @@ function createObjectProxy<T extends object>(
   });
 }
 
+/**
+ * Only the form attributes are read, so this stays structural: it accepts a
+ * `RemoteForm` as well as the instance `RemoteForm.for(...)` returns, which
+ * has no `for` of its own.
+ */
 export function createUiSchemaWithFormAttributes(
-  remoteForm: RemoteForm<any, any>,
+  remoteForm: { action: string; method: "POST" },
   schema: UiSchemaRoot | undefined,
   uiOptionsRegistry: UiOptionsRegistry | undefined
 ): UiSchemaRoot {

@@ -1,6 +1,6 @@
 <script lang="ts" module>
-  import type { SchemaArrayValue } from "@/core/index.js";
-  import type { FieldCommonProps } from "@/form/index.js";
+  import type { SchemaArrayValue } from "#core/index.js";
+  import type { FieldCommonProps } from "#form/index.js";
 
   declare module "../../form/index.js" {
     interface ComponentProps {
@@ -13,7 +13,7 @@
 </script>
 
 <script lang="ts">
-  import type { ComponentProps } from "@/form/index.js";
+  import type { ComponentProps } from "#form/index.js";
 
   import { assertStrings } from "../assert.js";
   import Tags from "./tags.svelte";

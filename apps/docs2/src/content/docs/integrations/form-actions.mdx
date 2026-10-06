@@ -17,11 +17,11 @@ import { getPackageDependencies } from "@/shared";
 import Npm from "@/components/npm.astro";
 import Deps from "@/components/peer-dependencies.astro";
 
-import modelCode from "examples/sveltekit-starter/src/lib/post.ts?raw";
-import clientCode from "examples/sveltekit-starter/src/routes/form-actions/+page.svelte?raw";
-import serverCode from "examples/sveltekit-starter/src/routes/form-actions/+page.server?raw";
-import clientFlexCode from "examples/sveltekit-starter/src/routes/form-actions-flex/+page.svelte?raw";
-import serverFlexCode from "examples/sveltekit-starter/src/routes/form-actions-flex/+page.server?raw";
+import modelCode from "examples/sveltekit3-starter/src/lib/post.ts?raw";
+import clientCode from "examples/sveltekit3-starter/src/routes/form-actions/+page.svelte?raw";
+import serverCode from "examples/sveltekit3-starter/src/routes/form-actions/+page.server?raw";
+import clientFlexCode from "examples/sveltekit3-starter/src/routes/form-actions-flex/+page.svelte?raw";
+import serverFlexCode from "examples/sveltekit3-starter/src/routes/form-actions-flex/+page.server?raw";
 
 Since this is a `Svelte` library, you may want to use it with the `SvelteKit`.
 
@@ -54,8 +54,7 @@ See details in the sections below
 
 :::note
 
-For correct operation, you must use ID Builder from the `@sjsf/sveltekit`
-(or `@sjsf/sveltekit3` on `SvelteKit 3`).
+For correct operation, you must use ID Builder from the integration package.
 
 :::
 
@@ -77,9 +76,7 @@ If you want to populate the form from the database,
 you can return `InitialFormData` object inside the `load` function.
 
 ```typescript
-import type { InitialFormData } from "@sjsf/sveltekit";
-// or, on SvelteKit 3:
-// import type { InitialFormData } from "@sjsf/sveltekit3";
+import type { InitialFormData } from "@sjsf/sveltekit3";
 
 export const load = async () => {
   return {

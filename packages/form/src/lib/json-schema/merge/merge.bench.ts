@@ -3,8 +3,8 @@ import type { JSONSchema7, JSONSchema7Definition } from "json-schema";
 import jsonSchemaMergeAllOf, { type Options } from "json-schema-merge-allof";
 import { describe, test } from "vitest";
 
-import { createDeduplicator, createIntersector } from "@/lib/array.js";
-import { createComparator } from "@/lib/json-schema/compare/index.js";
+import { createDeduplicator, createIntersector } from "#lib/array.js";
+import { createComparator } from "#lib/json-schema/compare/index.js";
 
 import {
   createDeepAllOfMerge,

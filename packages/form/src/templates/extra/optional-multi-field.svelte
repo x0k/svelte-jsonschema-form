@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  import "@/fields/extra-templates/optional-multi-field.js";
+  import "#fields/extra-templates/optional-multi-field.js";
   import "../multi-field-layout.js";
 </script>
 
@@ -8,8 +8,8 @@
     getComponent,
     getFormContext,
     type ComponentProps,
-  } from "@/form/index.js";
-  import { isNil } from "@/lib/types.js";
+  } from "#form/index.js";
+  import { isNil } from "#lib/types.js";
 
   const {
     children,

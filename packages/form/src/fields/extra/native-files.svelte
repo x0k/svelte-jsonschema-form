@@ -23,9 +23,9 @@
     validateFileList,
     FileListValidationError,
     getFieldAction,
-  } from "@/form/index.js";
-  import { abortPrevious, createTask } from "@/lib/task.svelte.js";
-  import "@/form/extra-fields/native-files.js";
+  } from "#form/index.js";
+  import { abortPrevious, createTask } from "#lib/task.svelte.js";
+  import "#form/extra-fields/native-files.js";
 
   import "../extra-widgets/file.js";
 

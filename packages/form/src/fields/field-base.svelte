@@ -13,7 +13,7 @@
     type UiOption,
     type ActionField,
     getFieldAction,
-  } from "@/form/index.js";
+  } from "#form/index.js";
 
   import type { FoundationalWidgetType } from "./widgets.js";
 

@@ -2,8 +2,8 @@ import {
   isSchemaObject,
   SET_OF_ARRAYS_OF_SUB_SCHEMAS,
   type SubSchemasArrayKey,
-} from "@/lib/json-schema/index.js";
-import { isRecord } from "@/lib/object.js";
+} from "#lib/json-schema/index.js";
+import { isRecord } from "#lib/object.js";
 
 import { resolveRef } from "./definitions.js";
 import { getDiscriminatorFieldFromSchema } from "./discriminator.js";

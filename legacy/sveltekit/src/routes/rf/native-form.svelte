@@ -7,7 +7,7 @@
   } from "@sjsf/form";
   import { resolver } from "@sjsf/form/resolvers/compat";
 
-  import { createFormIdBuilder } from "$lib/rf/index.js";
+  import { createFormIdBuilder } from "#lib/rf/index.js";
 
   import * as defaults from "../form-defaults.js";
   import { schema, uiSchema } from "../model.js";

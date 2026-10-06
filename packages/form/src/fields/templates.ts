@@ -1,6 +1,6 @@
 import type { Snippet } from "svelte";
 
-import type { SchemaValue } from "@/core/index.js";
+import type { SchemaValue } from "#core/index.js";
 import type {
   ComponentProps,
   ComponentType,
@@ -8,7 +8,7 @@ import type {
   FieldErrors,
   FoundationalComponentType,
   UiOption,
-} from "@/form/index.js";
+} from "#form/index.js";
 
 export interface TemplateCommonProps<V extends SchemaValue> {
   type: "template";

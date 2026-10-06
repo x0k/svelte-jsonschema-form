@@ -4,7 +4,7 @@
 -->
 
 <script lang="ts">
-  import type { ComponentProps } from "@/form/index.js";
+  import type { ComponentProps } from "#form/index.js";
 
   import AnyOf from "./combination/any-of.svelte";
 

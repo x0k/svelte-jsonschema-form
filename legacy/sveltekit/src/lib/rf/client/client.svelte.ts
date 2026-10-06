@@ -12,8 +12,8 @@ import type { StandardSchemaV1 } from "@standard-schema/spec";
 import type { RemoteForm, RemoteFormInput } from "@sveltejs/kit";
 import { getAbortSignal, onMount, untrack, hydratable } from "svelte";
 
-import { chunks } from "$lib/internal.js";
-import { FORM_DATA_FILE_PREFIX, JSON_CHUNKS_KEY } from "$lib/model.js";
+import { chunks } from "#lib/internal.js";
+import { FORM_DATA_FILE_PREFIX, JSON_CHUNKS_KEY } from "#lib/model.js";
 
 import { encode } from "../internal/codec.js";
 import {

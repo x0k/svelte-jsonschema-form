@@ -26,8 +26,9 @@ Following [the Kit 3 migration guide](https://svelte.dev/docs/kit/migrating-to-s
   `adapter-auto@7` was also being emitted into Kit 3 projects by the composer.
 
 `legacy/sveltekit`, the legacy themes and `examples/sveltekit-starter` stay on
-Kit 2 via a new `kit2` catalog: `@sjsf/sveltekit` peers `^2.48.3`, and their
-sources import through `$lib`. The nine demos that copy from
-`examples/sveltekit-starter` now pin `kitRange` per example rather than through
-`COMPOSER_DEFAULTS`, so the rest of the demos get the Kit 3 output their
+Kit 2 via a new `kit2` catalog: `@sjsf/sveltekit` peers `^2.48.3`. They reach
+`src/lib` through the same `#lib` subpath imports as everything else — Kit 2
+resolves those too, since `package.json#imports` is Node's, not Kit's. The nine
+demos that copy from `examples/sveltekit-starter` pin `kitRange` per example
+rather than through `COMPOSER_DEFAULTS`, so the rest get the Kit 3 output their
 migrated example sources need.

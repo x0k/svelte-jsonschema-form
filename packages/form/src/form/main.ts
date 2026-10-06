@@ -4,7 +4,7 @@ export type {
   Validator,
   RPath,
   Path,
-} from "@/core/index.js";
+} from "#core/index.js";
 
 export * from "./model.js";
 export * from "./components.js";

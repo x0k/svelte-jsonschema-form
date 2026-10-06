@@ -1,7 +1,7 @@
 import { SvelteMap } from "svelte/reactivity";
 
-import { REF_FLAG, type RPath } from "@/core/index.js";
-import { getNodeByKeys, insertValue } from "@/lib/trie.js";
+import { REF_FLAG, type RPath } from "#core/index.js";
+import { getNodeByKeys, insertValue } from "#lib/trie.js";
 
 import type { Config } from "./config.js";
 import type { FieldState } from "./field-state.js";

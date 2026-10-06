@@ -7,7 +7,7 @@ import {
   type FormValidator,
   type FormValueValidator,
   type ValidatorFactoryOptions,
-} from "@/form/index.js";
+} from "#form/index.js";
 
 import { omitExtraData } from "../omit-extra-data.js";
 

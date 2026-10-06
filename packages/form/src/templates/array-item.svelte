@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  import "@/fields/extra-templates/array-item.js";
+  import "#fields/extra-templates/array-item.js";
 
   declare module "../fields/components.js" {
     interface LayoutTypes {
@@ -15,7 +15,7 @@
     getComponent,
     getFormContext,
     type ComponentProps,
-  } from "@/form/index.js";
+  } from "#form/index.js";
 
   const {
     children,

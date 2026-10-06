@@ -1,4 +1,4 @@
-import { fromRecord } from "@/lib/resolver.js";
+import { fromRecord } from "#lib/resolver.js";
 
 import "../fields/exports.js";
 import "../templates/exports.js";

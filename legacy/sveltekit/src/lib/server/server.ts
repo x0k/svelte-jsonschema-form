@@ -16,7 +16,7 @@ import {
 import type { MaybePromise } from "@sjsf/form/lib/types";
 import { fail, type ActionFailure, type RequestEvent } from "@sveltejs/kit";
 
-import { createCodec, DEFAULT_ESCAPE_CHAR } from "$lib/internal/codec.js";
+import { createCodec, DEFAULT_ESCAPE_CHAR } from "#lib/internal/codec.js";
 import {
   FORM_DATA_FILE_PREFIX,
   JSON_CHUNKS_KEY,
@@ -26,7 +26,7 @@ import {
   type SendData,
   type ValidatedFormData,
   type ValidFormData,
-} from "$lib/model.js";
+} from "#lib/model.js";
 
 import {
   createOptionIndexDecoder,

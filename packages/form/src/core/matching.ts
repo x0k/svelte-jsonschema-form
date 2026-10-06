@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { weakMemoize } from "@/lib/memoize.js";
+import { weakMemoize } from "#lib/memoize.js";
 
 import {
   getDiscriminatorFieldFromSchema,

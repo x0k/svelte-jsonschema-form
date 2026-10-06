@@ -1,4 +1,4 @@
-import type { SchemaObjectValue } from "@/core/index.js";
+import type { SchemaObjectValue } from "#core/index.js";
 
 import type { FieldCommonProps } from "../fields.js";
 

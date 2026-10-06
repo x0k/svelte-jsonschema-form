@@ -1,5 +1,5 @@
-import type { SchemaArrayValue } from "@/core/index.js";
-import type { FieldValue, KeyedFieldValues } from "@/form/index.js";
+import type { SchemaArrayValue } from "#core/index.js";
+import type { FieldValue, KeyedFieldValues } from "#form/index.js";
 
 export class VirtualKeyedArray implements KeyedFieldValues {
   constructor(protected readonly setValue: (v: SchemaArrayValue) => void) {}

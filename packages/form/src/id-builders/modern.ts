@@ -3,7 +3,7 @@ import {
   decodePseudoElement,
   type FieldPath,
   type FormIdBuilder,
-} from "@/form/main.js";
+} from "#form/main.js";
 
 export interface IdOptions {
   idPrefix?: string;
