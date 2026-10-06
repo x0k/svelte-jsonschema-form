@@ -37,7 +37,7 @@ import {
 } from "sv";
 
 import packageJson from "../package.json" with { type: "json" };
-import { createPrinter } from "./sv-utils.js";
+import { createPrinter, defineDemoPage, type DemoPage } from "./sv-utils.js";
 
 const _ADDON_ID = packageJson.name;
 
@@ -178,6 +178,8 @@ export type Context = Omit<Workspace, "options"> & {
   kit: SvelteKitProject;
   validator: ValidatorDefinition;
   form: FormDefinition;
+  /** demo route wiring, `undefined` for non-SvelteKit projects */
+  demoPage: DemoPage | undefined;
 };
 
 export interface AddonSetupOptions {
@@ -225,10 +227,16 @@ export function createContext(ws: Workspace): Context {
     kit,
     validator,
     form,
+    demoPage: isKit
+      ? defineDemoPage(DEMO_NAME, ws.language, directory.kitRoutes)
+      : undefined,
   };
 }
 
 export const POST_MODEL_NAME = "post";
+
+/** name of the add-on demo route, also used as the `DemoLinks` entry name */
+export const DEMO_NAME = "sjsf";
 
 export const POST_MODEL_DIR = `/${POST_MODEL_NAME}/`;
 
