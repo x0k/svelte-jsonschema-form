@@ -7,9 +7,6 @@ import "@sjsf/form/fields/extra/file-include";
 
 export { translation } from "@sjsf/form/translations/en";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-// The integration builder, not the modern one: names must round-trip through
-// the codec the server parses with, and only this builder encodes them.
-export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit3";
 export { createFormValidator as validator } from "@sjsf/ajv8-validator";
 export { theme } from "@sjsf/basic-theme";
 import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
