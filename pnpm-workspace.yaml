@@ -126,8 +126,3 @@ allowBuilds:
   esbuild: true
   sharp: true
   ata-validator: false
-minimumReleaseAgeExclude:
-  - '@sveltejs/adapter-node@6.0.0'
-  - '@sveltejs/kit@3.0.0'
-  - '@sveltejs/sv-utils@1.0.0'
-  - sv@1.0.1
