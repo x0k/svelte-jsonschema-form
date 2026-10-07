@@ -212,9 +212,9 @@ export async function connect<T>(
   // Kit v3 requires form field names to end with `/{formId}` (see
   // `parse_form_key`), otherwise submissions are rejected server-side
   const fieldSuffix = `/${getRemoteFormFieldId(remoteForm)}`;
-  // The id prefix input's name. `resolveIdPrefixName` from `@sjsf/form` would
-  // be the canonical source, but it needs the built `FormIdBuilder` instance,
-  // which only `createForm` holds — `connect()` sees factories, never the
+  // The id prefix input's name. `idPrefixName` on the built `FormIdBuilder`
+  // would be the canonical source, but it needs the built instance, which
+  // only `createForm` holds — `connect()` sees factories, never the
   // instance. This matches what the stock builder returns for the same
   // `fieldSuffix` (`rf/id-builder.ts`), which is also what the visible form
   // renders, so inject and skip below always agree.

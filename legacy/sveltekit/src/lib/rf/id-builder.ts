@@ -1,5 +1,6 @@
 import {
   decodePseudoElement,
+  SJSF_ID_PREFIX,
   type FieldPath,
   type FieldPseudoElement,
   type FormIdBuilder,
@@ -98,6 +99,7 @@ export function createFormIdBuilder({
       }
       return parts.join("");
     },
+    idPrefixName: () => SJSF_ID_PREFIX,
   };
 }
 
