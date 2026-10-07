@@ -1,14 +1,8 @@
-import pageServerTs from "examples/sveltekit-starter/src/routes/multi-step-native-form/+page.server.ts?raw";
-import pageSvelte from "examples/sveltekit-starter/src/routes/multi-step-native-form/+page.svelte?raw";
-import modelTs from "examples/sveltekit-starter/src/routes/multi-step-native-form/model.ts?raw";
+import pageServerTs from "examples/sveltekit3-starter/src/routes/multi-step-native-form/+page.server.ts?raw";
+import pageSvelte from "examples/sveltekit3-starter/src/routes/multi-step-native-form/+page.svelte?raw";
+import modelTs from "examples/sveltekit3-starter/src/routes/multi-step-native-form/model.ts?raw";
 
-import {
-  ExampleCategory,
-  KIT2_DEMO_RANGE,
-  Tag,
-  defineExample,
-  defineMeta,
-} from "../model.js";
+import { ExampleCategory, Tag, defineExample, defineMeta } from "../model.js";
 
 export const meta = defineMeta({
   category: ExampleCategory.SvelteKitIntegrations,
@@ -18,7 +12,6 @@ export const meta = defineMeta({
 });
 
 export default defineExample({
-  kitRange: KIT2_DEMO_RANGE,
   sveltekit: "formActions",
   files: {
     "src/routes/+page.server.ts": pageServerTs,

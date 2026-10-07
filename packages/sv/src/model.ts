@@ -13,7 +13,7 @@ import {
   resolveSvelteKitProject,
 } from "meta";
 import {
-  createKitPathFactory,
+  kitPathFactory,
   codegenSvelteKitIntegrations,
   codegenThemeOrSubTheme,
   codegenValidators,
@@ -174,7 +174,7 @@ export type Context = Omit<Workspace, "options"> & {
   ts: (content: string, alt?: string) => string;
   js: (content: string, alt?: string) => string;
   lib: PathFactory;
-  /** resolved once from the project's `@sveltejs/kit` range */
+  /** SvelteKit 3 project shape, generated code targets Kit 3 only */
   kit: SvelteKitProject;
   validator: ValidatorDefinition;
   form: FormDefinition;
@@ -187,16 +187,16 @@ export interface AddonSetupOptions {
 }
 
 export function createContext(ws: Workspace): Context {
-  const { language, file, directory, isKit, dependencyVersion } = ws;
+  const { language, file, directory, isKit } = ws;
   const isTs = language === "ts";
   const [ts, js] = createPrinter(isTs, !isTs);
   const options: ContextOptions = {
     ...ws.options,
     validator: JSON.parse(ws.options.validator),
   };
-  const kit = resolveSvelteKitProject(dependencyVersion("@sveltejs/kit"));
+  const kit = resolveSvelteKitProject();
   const lib: PathFactory = isKit
-    ? createKitPathFactory(kit.libPrefix)
+    ? kitPathFactory
     : (path) =>
         file.getRelative({
           from: `${directory.kitRoutes}/sjsf.svelte`,

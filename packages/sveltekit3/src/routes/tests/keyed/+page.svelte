@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, reset } from "@sjsf/form";
 
   import { connect } from "#lib/rf/client/index.js";
 
@@ -16,7 +16,7 @@
 
   createKeyedPost.enhance(async ({ submit }) => {
     if (await submit()) {
-      form.reset();
+      reset(form);
     }
   });
 

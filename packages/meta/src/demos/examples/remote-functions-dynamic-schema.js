@@ -1,11 +1,10 @@
-import serverTs from "examples/sveltekit-starter/src/lib/server.ts?raw";
-import layoutTs from "examples/sveltekit-starter/src/routes/remote-functions-dynamic-schema/+layout.ts?raw";
-import pageSvelte from "examples/sveltekit-starter/src/routes/remote-functions-dynamic-schema/+page.svelte?raw";
-import nestedPageSvelte from "examples/sveltekit-starter/src/routes/remote-functions-dynamic-schema/[id]/+page.svelte?raw";
-import dataRemoteTs from "examples/sveltekit-starter/src/routes/remote-functions-dynamic-schema/data.remote.ts?raw";
+import serverTs from "examples/sveltekit3-starter/src/lib/server.ts?raw";
+import layoutTs from "examples/sveltekit3-starter/src/routes/remote-functions-dynamic-schema/+layout.ts?raw";
+import pageSvelte from "examples/sveltekit3-starter/src/routes/remote-functions-dynamic-schema/+page.svelte?raw";
+import nestedPageSvelte from "examples/sveltekit3-starter/src/routes/remote-functions-dynamic-schema/[id]/+page.svelte?raw";
+import dataRemoteTs from "examples/sveltekit3-starter/src/routes/remote-functions-dynamic-schema/data.remote.ts?raw";
 
 import {
-  KIT2_DEMO_RANGE,
   defineExample,
   defineMeta,
   remoteFormDefaultsReplacer,
@@ -21,7 +20,6 @@ export const meta = defineMeta({
 });
 
 export default defineExample({
-  kitRange: KIT2_DEMO_RANGE,
   sveltekit: "remoteFunctions",
   files: {
     "src/lib/server.ts": serverTs,

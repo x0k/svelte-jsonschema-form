@@ -19,7 +19,7 @@ import {
   createModel,
   createJsonFile,
   createCompileValidatorsScript,
-  createKitPathFactory,
+  kitPathFactory,
   type MergerOptions,
   type ModuleAugmentation,
   type ThemeExtension,
@@ -50,12 +50,6 @@ export interface ComposerOptions<T extends CodegenThemeOrSubTheme> {
   icons: CodegenIconSet;
   validator: CodegenValidator;
   sveltekit: CodegenSvelteKitIntegration;
-  /**
-   * Target `@sveltejs/kit` range; decides whether the generated project gets
-   * `@sjsf/sveltekit` or `@sjsf/sveltekit3`, and the matching Kit shape.
-   * Defaults to Kit 3 when omitted.
-   */
-  kitRange?: string;
   widgets: ExtraWidgetFileNames[ToTheme<T>][];
   fields: ExtraFieldFileName[];
   extraFiles: Record<string, string>;
@@ -173,7 +167,6 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
     icons,
     validator,
     sveltekit,
-    kitRange,
     widgets,
     fields,
     extraFiles,
@@ -200,10 +193,8 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
   const isTs = language === "ts";
   const ts = createPrinter(isTs);
   const js = createPrinter(!isTs);
-  // The only place the SvelteKit version is turned into a package and a project
-  // shape; everything below just uses the result
-  const kit = resolveSvelteKitProject(kitRange);
-  const lib = createKitPathFactory(kit.libPrefix);
+  // The SvelteKit project shape; everything below just uses it
+  const kit = resolveSvelteKitProject();
 
   const dependencies: AbstractPackage[] = [
     extraPackage("vite"),
@@ -231,7 +222,7 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
   const validatorDefinition = createValidator({
     validator,
     isTs,
-    lib,
+    lib: kitPathFactory,
     modelName,
   });
 
@@ -296,7 +287,7 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
       language,
       themeOrSubTheme,
       validator,
-      lib,
+      lib: kitPathFactory,
       form,
       html5Validation,
     })("")
@@ -356,7 +347,7 @@ export function createComposer<T extends CodegenThemeOrSubTheme>(
     createLayout({
       language,
       themeOrSubTheme,
-      lib,
+      lib: kitPathFactory,
       isKit,
       stylesheetPath: styles ? "./layout.css" : "",
     })(layout)

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, reset } from "@sjsf/form";
 
   import { connect } from "#lib/rf/client/index.js";
 
@@ -11,7 +11,7 @@
   // https://github.com/sveltejs/kit/pull/15657#issue-4208847537
   createPost.enhance(async ({ submit }) => {
     if (await submit()) {
-      form.reset();
+      reset(form);
     }
   });
 

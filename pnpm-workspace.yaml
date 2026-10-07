@@ -86,8 +86,8 @@ catalogs:
   sveltekit3:
     "@sveltejs/adapter-node": ^6.0.0
     "@sveltejs/kit": ^3.0.0
-  # SvelteKit 2 is only here for the `legacy/sveltekit` integration, whose peer
-  # range is `^2.48.3`. Everything else targets Kit 3 via the default catalog.
+  # SvelteKit 2 is only here for the legacy themes' dev shells.
+  # Everything else targets Kit 3 via the default catalog.
   kit2:
     "@sveltejs/kit": ^2.70.3
   skeleton4:
