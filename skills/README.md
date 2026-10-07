@@ -1,6 +1,6 @@
 # Svelte JSON Schema Form (SJSF) Skills
 
-Central collection of AI agent skills for developing, customizing, integrating, and migrating [svelte-jsonschema-form](https://github.com/x0k/svelte-jsonschema-form) (v3) in Svelte 5 and SvelteKit projects.
+Central collection of AI agent skills for developing, customizing, integrating, and migrating [svelte-jsonschema-form](https://github.com/x0k/svelte-jsonschema-form/) (v3) in Svelte 5 and SvelteKit projects.
 
 Compatible with Gemini CLI, Claude Code, Antigravity, VS Code Copilot, Cursor, and any Agent Skills compliant CLI or editor.
 
@@ -22,7 +22,7 @@ Compatible with Gemini CLI, Claude Code, Antigravity, VS Code Copilot, Cursor, a
 Install skills directly into your project or global agent environment using `npx skills`:
 
 ```bash
-npx skills add <repo-url-or-path>
+npx skills add https://github.com/x0k/svelte-jsonschema-form/
 ```
 
 This command opens an interactive CLI to:
@@ -32,12 +32,6 @@ This command opens an interactive CLI to:
 
 ---
 
-## Specification & Validation
+## Specification
 
-All skills in this directory follow the [Agent Skills specification](https://agentskills.io/specification) and [Best Practices](https://agentskills.io/skill-creation/best-practices).
-
-To validate all skills in this directory:
-
-```bash
-node skills/scripts/validate-skills.mjs
-```
+All skills in this directory adhere to the [Agent Skills specification](https://agentskills.io/specification) and [Best Practices](https://agentskills.io/skill-creation/best-practices).
