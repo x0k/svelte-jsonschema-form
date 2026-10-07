@@ -86,9 +86,13 @@ pnpm changeset
 ```
 
 Follow the interactive prompts:
+
 1. Select packages that changed.
 2. Select semver bump type (`patch`, `minor`, `major`).
 3. Enter a clear summary of changes.
+
+Versioning uses fixed groups (see `.changeset/config.json`):
+bumping one grouped package bumps the whole group.
 
 ---
 

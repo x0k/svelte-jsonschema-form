@@ -40,6 +40,9 @@ export { createFormValidator as validator } from "@sjsf/ajv8-validator";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 ```
 
+Add side-effect `include` imports for extra fields/widgets you use
+(e.g. `import "@sjsf/form/fields/extra/file-include"`).
+
 ---
 
 ## Step 3: Define Schema and Render Form
@@ -57,9 +60,9 @@ In a Svelte 5 component (`+page.svelte` or form component):
     properties: {
       username: { type: "string", title: "Username", minLength: 3 },
       email: { type: "string", title: "Email", format: "email" },
-      age: { type: "integer", title: "Age", minimum: 18 }
+      age: { type: "integer", title: "Age", minimum: 18 },
     },
-    required: ["username", "email"]
+    required: ["username", "email"],
   } as const satisfies Schema;
 
   const form = createForm({
@@ -70,7 +73,7 @@ In a Svelte 5 component (`+page.svelte` or form component):
     },
     onSubmitError(result, event, form) {
       console.error("Submission failed validation:", result);
-    }
+    },
   });
 </script>
 
@@ -85,18 +88,16 @@ For quick prototyping without accessing form state directly, use `<SimpleForm>`:
   import * as defaults from "$lib/sjsf/defaults";
 </script>
 
-<SimpleForm
-  {...defaults}
-  {schema}
-  onSubmit={(data) => console.log(data)}
-/>
+<SimpleForm {...defaults} {schema} onSubmit={(data) => console.log(data)} />
 ```
 
 ---
 
 ## Step 4: Controlled Forms (State Binding)
 
-By default, forms are **uncontrolled** (internal state managed by SJSF, initial values supplied via `initialValue`). When you need bidirectional binding with external state:
+Prefer uncontrolled forms (`initialValue` + `onSubmit`).
+Use controlled `value` binding only for simultaneous editing from multiple
+locations (e.g. form + sidebar):
 
 ```svelte
 <script lang="ts">
@@ -104,8 +105,7 @@ By default, forms are **uncontrolled** (internal state managed by SJSF, initial 
   import * as defaults from "$lib/sjsf/defaults";
 
   const initial = { username: "octocat" };
-  // Initialize state with merged defaults
-  let data = $state(defaults.merger().mergeFormDataAndSchemaDefaults(initial, schema));
+  let data = $state(initial);
 
   const form = createForm({
     ...defaults,
@@ -114,7 +114,7 @@ By default, forms are **uncontrolled** (internal state managed by SJSF, initial 
     value: [() => data, (v) => (data = v)],
     onSubmit(val) {
       console.log("Submitted:", val);
-    }
+    },
   });
 </script>
 
@@ -128,13 +128,16 @@ See [Form Options Reference](references/form-options.md) for complete configurat
 ## Gotchas & Rules
 
 1. **JSON Schema Draft-07 Only**: SJSF natively processes Draft-07 schemas. `$schema` declarations are ignored.
-2. **Reactive Options**: When passing reactive Svelte 5 state into `createForm`, wrap in a getter function:
+2. **Reactive Options via Getters**: All options support Svelte 5 reactivity through JS getters:
    ```ts
-   createForm({
+   let schema: Schema = $state.raw({ ... });
+   const form = createForm({
      ...defaults,
-     schema: () => activeSchema,
-     disabled: () => isSubmitting
+     get schema() {
+       return schema;
+     }
    });
    ```
+   Never recreate `form` to apply new options.
 3. **Array Mutation in Controlled Mode**: In Svelte 5 controlled forms, mutating arrays in place (e.g. `data.items.push(x)`) may not trigger SJSF tracking. Always reassign (`data.items = [...data.items, x]`) or use `keyedArraysMap`.
 4. **Local Definitions in `$ref`**: Only local JSON Pointer fragments (e.g. `#/definitions/address`) are supported for schema `$ref`. External URI `$ref` fetching is not supported.

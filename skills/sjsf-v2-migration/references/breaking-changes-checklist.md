@@ -4,25 +4,25 @@ Use this checklist when auditing an existing SJSF v2 codebase.
 
 ## 1. Package Renames
 
-| Old v2 Package | New v3 Package |
-| :--- | :--- |
-| `@sjsf/shadcn-theme` | `@sjsf/shadcn4-theme` (for Tailwind v4) |
-| `@sjsf/daisyui-theme` | `@sjsf/daisyui5-theme` |
-| `@sjsf/flowbite-theme` | `@sjsf/flowbite3-theme` |
-| `@sjsf/skeleton3-theme` / `skeleton4-theme` | `@sjsf/skeleton5-theme` |
-| `@sjsf/sveltekit` | `@sjsf/sveltekit3` |
+| Old v2 Package                              | New v3 Package                          |
+| :------------------------------------------ | :-------------------------------------- |
+| `@sjsf/shadcn-theme`                        | `@sjsf/shadcn4-theme` (for Tailwind v4) |
+| `@sjsf/daisyui-theme`                       | `@sjsf/daisyui5-theme`                  |
+| `@sjsf/flowbite-theme`                      | `@sjsf/flowbite3-theme`                 |
+| `@sjsf/skeleton3-theme` / `skeleton4-theme` | `@sjsf/skeleton5-theme`                 |
+| `@sjsf/sveltekit`                           | `@sjsf/sveltekit3`                      |
 
 ---
 
 ## 2. Form Instance Property Removals
 
-| v2 Pattern | v3 Replacement |
-| :--- | :--- |
-| `form.context` | Removed. Use exported query functions (`getComponent`, `retrieveUiOption`) or `getFormContext()`. |
-| `form.value` | Removed. Use `getValueSnapshot(form)` for snapshot, or pass `value: [() => state, (v) => state = v]` for controlled forms. |
-| `form.errors` | Removed. Access via `form.submission.errors` or `getFieldErrorsByPath(form, path)`. |
-| `getSnapshot` option | Removed. Replaced by `getValueSnapshot(form)`. |
-| `$form` (store subscription) | SJSF v3 uses Svelte 5 runes (`FormState` interface). Access properties directly without `$` prefix. |
+| v2 Pattern                   | v3 Replacement                                                                                                             |
+| :--------------------------- | :------------------------------------------------------------------------------------------------------------------------- |
+| `form.context`               | Removed. Use exported query functions (`getComponent`, `retrieveUiOption`) or `getFormContext()`.                          |
+| `form.value`                 | Removed. Use `getValueSnapshot(form)` for snapshot, or pass `value: [() => state, (v) => state = v]` for controlled forms. |
+| `form.errors`                | Removed. Access via `getFieldErrorsByPath(form, path)` / `getErrors(form)` / `getFieldErrors(form, config)`.               |
+| `getSnapshot` option         | Removed. Replaced by `getValueSnapshot(form)`.                                                                             |
+| `$form` (store subscription) | SJSF v3 uses Svelte 5 runes (`FormState` interface). Access properties directly without `$` prefix.                        |
 
 ---
 
@@ -57,5 +57,5 @@ import { createFormValidator as validator } from "@sjsf/ajv8-validator";
     let { value = $bindable(), config, handlers }: ComponentProps["textWidget"] = $props();
   </script>
   ```
-- Use `handlers.input` and `handlers.blur` instead of dispatching events.
-- All field components must safely accommodate nullable values (`null` / `undefined`).
+- Use `inputAttributes` (native elements) and spread `{...attributes}` — the embedded `handlersAttachment` forwards through spreads. Only if the custom input drops attachments, spread `{...handlers}` onto its event props or call `handlers.oninput?.()`/`handlers.onchange?.()`/`handlers.onblur?.()` inside your own wrapper handler. `Config` has no `id`/`disabled`; use `getId(ctx, config.path)` and `isDisabled(ctx)`.
+- Widgets receive `value: V | undefined`; map empty input to `undefined`, never `null`.

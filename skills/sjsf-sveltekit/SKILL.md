@@ -14,6 +14,8 @@ pnpm add @sjsf/sveltekit3
 ```
 
 Ensure your `src/lib/sjsf/defaults.ts` is configured with a validator, theme, and merger.
+Use the ID builder from the integration package (`@sjsf/sveltekit3`),
+not `@sjsf/form/id-builders/modern`.
 
 ---
 
@@ -32,9 +34,9 @@ const schema = {
   type: "object",
   properties: {
     title: { type: "string", title: "Title", minLength: 3 },
-    content: { type: "string", title: "Content" }
+    content: { type: "string", title: "Content" },
   },
-  required: ["title"]
+  required: ["title"],
 } as const;
 
 type PostForm = { title: string; content?: string };
@@ -44,8 +46,8 @@ export const load: PageServerLoad = async () => {
     // Key MUST match action name
     postForm: {
       schema,
-      initialValue: { title: "Draft", content: "" }
-    } satisfies InitialFormData<PostForm>
+      initialValue: { title: "Draft", content: "" },
+    } satisfies InitialFormData<PostForm>,
   };
 };
 
@@ -55,7 +57,7 @@ export const actions: Actions = {
       ...defaults,
       schema,
       name: "postForm",
-      sendData: true
+      sendData: true,
     },
     ({ title, content }: PostForm) => {
       // Custom server-side validation error
@@ -67,7 +69,7 @@ export const actions: Actions = {
       const id = "post-123";
       return { success: true, postId: id };
     }
-  )
+  ),
 };
 ```
 
@@ -95,12 +97,14 @@ In `+page.svelte`, connect client state to server metadata using `createMeta` an
   {meta}
   refreshAll
   onSuccess={(result) => {
-    if (result.type === "success") {
-      console.log("Post saved successfully:", result.data);
-    }
+    // Server responded. result.type: "success" | "failure" | "redirect" | "error".
+    // "failure" carries fail(400) validation errors in result.data.
   }}
-  onError={(result) => {
-    console.error("Action error:", result);
+  onFailure={(failure) => {
+    // No usable response: request aborted, timed out, or threw.
+  }}
+  onSubmitError={(result) => {
+    // Client-side submit validation failed. Nothing was sent.
   }}
 />
 ```
@@ -111,9 +115,12 @@ See [Form Actions API Reference](references/form-actions-api.md) for full option
 
 ## Step 4: Progressive Enhancement
 
-`<SvelteKitForm>` provides native SvelteKit progressive enhancement out of the box:
-- Works with JavaScript disabled (submits standard POST request).
-- With JavaScript enabled, intercepts submission, runs client validation, and handles multipart form data seamlessly.
+`<SvelteKitForm>` submits a standard POST with JavaScript disabled.
+Limits in that mode:
+
+- Create the action with `sendData: true` to persist form data between page updates.
+- `oneOf` / `anyOf` / `dependencies` / `additionalProperties` / `additionalItems` do not expand or switch.
+- Widgets needing JavaScript (e.g. multiselect) do not work.
 
 For remote functions without form actions, see [Remote Functions Reference](references/remote-functions.md).
 
@@ -121,7 +128,7 @@ For remote functions without form actions, see [Remote Functions Reference](refe
 
 ## Gotchas & Rules
 
-1. **Name Matching Rule**: The form identifier string must match identically across 3 locations:
+1. **Name Matching Rule**: The identifier must match the `name` option (not the `actions` key) across 3 locations:
    - `load` return object key: `return { postForm: ... }`
    - `createAction` option: `name: "postForm"`
    - `createMeta` selector: `createMeta<...>().postForm`

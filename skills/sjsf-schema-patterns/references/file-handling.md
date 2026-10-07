@@ -4,7 +4,8 @@ SJSF supports two approaches for handling file uploads:
 
 ## 1. Data URL (Base64 Encoded Strings)
 
-Native schema format `data-url` converts uploaded files directly into base64 data URIs:
+Native schema format `data-url` converts uploaded files into base64 data URIs
+(requires the `compat` resolver):
 
 ```json
 {
@@ -28,14 +29,18 @@ Native schema format `data-url` converts uploaded files directly into base64 dat
 ```
 
 ### UI Schema for Data URL
-Specify accepted file types via `ui:options`:
+
+`accept` lives in the namespaced file attribute bag:
+
 ```ts
 const uiSchema = {
   avatar: {
     "ui:options": {
-      accept: "image/png, image/jpeg",
-    }
-  }
+      file: {
+        accept: "image/png, image/jpeg",
+      },
+    },
+  },
 };
 ```
 
@@ -43,30 +48,50 @@ const uiSchema = {
 
 ## 2. Native File / FileList (Multipart Uploads)
 
-When files should not be base64-encoded in the client (e.g. large files or SvelteKit form actions using `FormData`):
+`native-file` / `native-files` fields hold `File` / `File[]` directly.
+Set `enctype="multipart/form-data"` on the form.
 
-1. Define a string or object property in schema.
-2. In SvelteKit, `<SvelteKitForm>` sends standard multipart `FormData`.
-3. In custom widgets, bind `<input type="file" />` directly and attach the `File` or `FileList` object.
+### File Validation
 
-### File Validation (Custom Keyword with Ajv)
+Custom Ajv keyword on `File` instances (see `custom-keyword` demo).
+Augment `Schema` first, keep factory options plumbing
+(`ValidatorFactoryOptions`: `schema`, `uiSchema`, `uiOptionsRegistry`, `merger`):
+
 ```ts
-import { createFormValidator } from "@sjsf/ajv8-validator";
+import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
+import type { ValidatorFactoryOptions } from "@sjsf/form";
+import type { Ajv } from "ajv";
 
-export const validator = createFormValidator({
-  ajvPlugins: [
-    (ajv) => {
-      ajv.addKeyword({
-        keyword: "maxFileSize",
-        type: "string",
-        validate: (maxBytes: number, data: string) => {
-          // Calculate approx base64 decoded size
-          const size = (data.length * 3) / 4;
-          return size <= maxBytes;
-        },
-        error: { message: "File exceeds maximum permitted size" }
-      });
-    }
-  ]
-});
+declare module "@sjsf/form" {
+  interface Schema {
+    maxSizeBytes?: number;
+  }
+}
+
+function addKeywords(ajv: Ajv): Ajv {
+  ajv.addKeyword({
+    keyword: "maxSizeBytes",
+    validate(max: number, data: unknown) {
+      if (data === undefined) {
+        return true;
+      }
+      if (!(data instanceof File)) {
+        throw new Error(`Expected "File", but got "${typeof data}"`);
+      }
+      return data.size <= max;
+    },
+  });
+  return ajv;
+}
+
+// Export a Creatable that preserves per-form factory options
+// (don't bake in an empty schema context with a plain instance):
+export const validator = (options: ValidatorFactoryOptions) =>
+  createFormValidator({
+    ...options,
+    ajvPlugins: (ajv) => addKeywords(addFormComponents(ajv)),
+  });
 ```
+
+Alternative for `FileList`: `maxFileSizeBytes` UI option with
+`createFileSizeValidator` from `@sjsf/form/validators/file-size`.

@@ -11,14 +11,13 @@ import type { ComponentProps } from "@sjsf/form";
 
 declare module "@sjsf/form" {
   interface ComponentProps {
-    // Prefix custom component names to prevent conflicts
-    colorPickerWidget: ComponentProps["textWidget"];
-    ratingWidget: ComponentProps["numberWidget"];
+    myColorPickerWidget: ComponentProps["textWidget"];
+    myRatingWidget: ComponentProps["numberWidget"];
   }
 
   interface ComponentBindings {
-    colorPickerWidget: "value";
-    ratingWidget: "value";
+    myColorPickerWidget: "value";
+    myRatingWidget: "value";
   }
 }
 ```
@@ -27,19 +26,16 @@ declare module "@sjsf/form" {
 
 ## 2. Augmenting `UiOptions`
 
-To add custom properties to `ui:options`:
+Prefix custom keys. Prefer one namespaced object per widget,
+matching the theme pattern (`text?: HTMLInputAttributes`):
 
 ```ts
+import type { HTMLInputAttributes } from "svelte/elements";
+
 declare module "@sjsf/form" {
   interface UiOptions {
-    /** Show clear button in text widgets */
-    showClearButton?: boolean;
-
-    /** Star rating max score */
-    ratingMax?: number;
-
-    /** Custom CSS classes passed to input */
-    inputClass?: string;
+    myColorPicker?: HTMLInputAttributes;
+    myRating?: { max?: number; showClearButton?: boolean };
   }
 }
 ```
@@ -49,7 +45,9 @@ declare module "@sjsf/form" {
 ## 3. Reading Options in Svelte 5 Components
 
 ### Direct helper `uiOption`
+
 In component `$props`:
+
 ```svelte
 <script lang="ts">
   import type { ComponentProps } from "@sjsf/form";
@@ -59,18 +57,22 @@ In component `$props`:
     config,
     handlers,
     uiOption,
-  }: ComponentProps["colorPickerWidget"] = $props();
+  }: ComponentProps["myColorPickerWidget"] = $props();
 
-  const clearable = $derived(uiOption("showClearButton") ?? false);
-  const inputClass = $derived(uiOption("inputClass") ?? "");
+  const myProps = $derived(uiOption("myColorPicker"));
 </script>
 ```
 
 ### Merging props with `uiOptionProps`
-When merging options between UI schema and `extraUiOptions`:
+
+Pass it as a step to `composeProps` (`inputAttributes` and friends
+do this internally):
+
 ```ts
-import { getFormContext, uiOptionProps } from "@sjsf/form";
+import { composeProps, getFormContext, uiOptionProps } from "@sjsf/form";
 
 const ctx = getFormContext();
-const mergedOptions = $derived(uiOptionProps(ctx, config, "myOptionsKey"));
+const props = $derived(
+  composeProps(ctx, config, { type: "color" }, uiOptionProps("myColorPicker"))
+);
 ```

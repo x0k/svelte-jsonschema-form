@@ -12,14 +12,14 @@ This skill covers authoring JSON Schemas, UI Schemas, dynamic fields, and valida
 SJSF expects **JSON Schema Draft-07**. Keep schemas compliant with these engine rules:
 
 1. **Definitions & `$ref`**:
-   - Use local JSON pointers only: `"$ref": "#/definitions/User"` or `"$ref": "#/$defs/User"`.
+   - Use local JSON pointers only: `"$ref": "#/definitions/User"`.
+   - `#/$defs/` needs the `@sjsf/form/converters/draft-2020-12` converter.
    - External URLs or remote network schemas are not resolved at runtime.
 2. **String Formats**:
    - `date-time`: maps to `datetime-local` input.
-   - `date`: maps to `date` input (or date picker with `@sjsf/form/fields/extra-widgets/date-picker`).
-   - `email`: maps to `email` input.
+   - `date`, `time`, `email`, `color`: map to same-named inputs.
    - `uri`: maps to `url` input.
-   - `data-url`: activates the file upload widget.
+   - `data-url`: file upload widget (requires `compat` resolver).
 
 ---
 
@@ -31,31 +31,28 @@ Customize UI appearance, widgets, and labels without altering validation rules v
 import type { UiSchema } from "@sjsf/form";
 
 const uiSchema: UiSchema = {
-  // Field order for object
-  "ui:order": ["username", "email", "password", "*"],
+  // Field order for object (v3: inside ui:options)
+  "ui:options": {
+    order: ["username", "email", "password", "*"],
+  },
 
-  // Custom widget
+  // Override title without touching validation
   password: {
-    "ui:widget": "password",
-    "ui:placeholder": "Enter strong password...",
-    "ui:help": "Must contain at least 8 characters",
-  },
-
-  // Options passed to theme widget
-  bio: {
-    "ui:widget": "textarea",
     "ui:options": {
-      rows: 5,
-      placeholder: "Tell us about yourself"
-    }
+      title: "Password",
+    },
   },
 
-  // Disabled / readonly state
-  systemId: {
-    "ui:disabled": true
-  }
+  // Theme-specific options require UiOptions augmentation
+  bio: {
+    "ui:components": {
+      textWidget: "textareaWidget",
+    },
+  },
 };
 ```
+
+No per-field `disabled`/`ui:disabled` in v3. Whole form: `disabled` option. Per field: `readOnly: true` in schema, or `inert` attribute where readonly has no effect.
 
 ---
 
@@ -70,7 +67,11 @@ For dynamic forms, use `oneOf` with `discriminator.propertyName`:
     {
       "title": "Credit Card",
       "properties": {
-        "paymentMethod": { "type": "string", "enum": ["card"], "default": "card" },
+        "paymentMethod": {
+          "type": "string",
+          "enum": ["card"],
+          "default": "card"
+        },
         "cardNumber": { "type": "string", "title": "Card Number" }
       },
       "required": ["paymentMethod", "cardNumber"]
@@ -78,7 +79,11 @@ For dynamic forms, use `oneOf` with `discriminator.propertyName`:
     {
       "title": "Bank Transfer",
       "properties": {
-        "paymentMethod": { "type": "string", "enum": ["bank"], "default": "bank" },
+        "paymentMethod": {
+          "type": "string",
+          "enum": ["bank"],
+          "default": "bank"
+        },
         "iban": { "type": "string", "title": "IBAN" }
       },
       "required": ["paymentMethod", "iban"]
@@ -97,20 +102,23 @@ See [Dynamic Schemas Guide](references/dynamic-schemas.md) for conditional `if/t
 ## Step 4: Validation Configuration
 
 Validation happens on two levels:
-1. **Form-level submit validation**: executes `validator.validateFormData(value, schema)`.
+
+1. **Form-level submit validation**: executes `validator.validateFormValue(schema, value)`.
 2. **Field-level live validation**: configured by `fieldsValidationMode`.
 
 ```ts
-import { FieldsValidationMode } from "@sjsf/form";
+import { ON_CHANGE, ON_INPUT } from "@sjsf/form";
 
 const form = createForm({
   ...defaults,
   schema,
-  // Bitmask: validate on blur and change (default is input | change)
-  fieldsValidationMode: FieldsValidationMode.Blur | FieldsValidationMode.Change,
-  fieldsValidationDebounceMs: 250, // Debounce input events
+  // Bitmask (default is 0 = no live validation)
+  fieldsValidationMode: ON_INPUT | ON_CHANGE,
+  fieldsValidationDebounceMs: 250, // Debounce input events (default: 300)
 });
 ```
+
+HTML5 validation runs by default; set `novalidate` on the form to disable it.
 
 See [File Handling Reference](references/file-handling.md) for handling file uploads and custom keywords.
 

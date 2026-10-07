@@ -33,6 +33,10 @@ Recommended pattern for dynamic forms where a selector changes the fields:
 
 > **CRITICAL RULE**: Properties defined inside `oneOf` options must not overlap with properties outside `oneOf` on the same level.
 
+`oneOf` / `anyOf` also work without `discriminator` as a virtual selector:
+the schema is auto-selected from `initialValue`. Use
+`combinationFieldOptionSelector` UI options to customize the selector.
+
 ---
 
 ## 2. Schema Dependencies
@@ -87,7 +91,13 @@ Supported for conditional field schemas in Draft-07:
     "properties": { "country": { "const": "US" } }
   },
   "then": {
-    "properties": { "state": { "type": "string", "title": "State (2-letter code)", "maxLength": 2 } },
+    "properties": {
+      "state": {
+        "type": "string",
+        "title": "State (2-letter code)",
+        "maxLength": 2
+      }
+    },
     "required": ["state"]
   },
   "else": {

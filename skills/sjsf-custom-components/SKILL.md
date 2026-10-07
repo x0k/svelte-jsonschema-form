@@ -9,45 +9,80 @@ This skill explains how to build custom widgets, modify theme components, and ex
 
 ## Step 1: Writing a Custom Widget Component
 
-Custom widgets must accept `$bindable()` for `value`, `config`, and `handlers`.
-
-Example: A custom color picker widget (`color-picker-widget.svelte`):
+Custom widgets receive `value = $bindable()`, `config`, and `handlers`.
+For native elements, build props with `inputAttributes`:
 
 ```svelte
+<script lang="ts" module>
+  import type { HTMLInputAttributes } from "svelte/elements";
+
+  declare module "@sjsf/form" {
+    interface UiOptions {
+      myColorPicker?: HTMLInputAttributes;
+    }
+  }
+</script>
+
 <script lang="ts">
-  import type { ComponentProps } from "@sjsf/form";
+  import {
+    getFormContext,
+    inputAttributes,
+    type ComponentProps,
+  } from "@sjsf/form";
 
   let {
     value = $bindable(),
     config,
     handlers,
-    uiOption
   }: ComponentProps["textWidget"] = $props();
 
-  const id = $derived(config.id);
-  const disabled = $derived(config.disabled);
-  const placeholder = $derived(uiOption("placeholder") ?? "#000000");
+  const ctx = getFormContext();
+
+  const attributes = $derived(
+    inputAttributes(ctx, config, "myColorPicker", handlers, { type: "color" })
+  );
 </script>
 
-<div class="color-picker-container">
-  <input
-    {id}
-    type="color"
-    bind:value={value}
-    {disabled}
-    oninput={handlers.input}
-    onblur={handlers.blur}
-    onfocus={handlers.focus}
-  />
-  <input
-    type="text"
-    bind:value={value}
-    {placeholder}
-    {disabled}
-    oninput={handlers.input}
-    onblur={handlers.blur}
-  />
-</div>
+<input bind:value {...attributes} />
+```
+
+If your widget renders a wrapper component instead of a native element
+directly, keep spreading — the attachment (a symbol-keyed prop inside
+`attributes`) forwards through each spread until it lands on a native element:
+
+```svelte
+<!-- color-picker-widget.svelte (attributes from above) -->
+<MyWrapper bind:value {...attributes} />
+```
+
+```svelte
+<!-- MyWrapper.svelte -->
+<script lang="ts">
+  import type { HTMLInputAttributes } from "svelte/elements";
+
+  let { value = $bindable(), ...rest }: HTMLInputAttributes = $props();
+</script>
+
+<input bind:value {...rest} />
+```
+
+Only when the third-party input does NOT forward spreads/attachments
+(e.g. bits-ui / skeleton components with explicit `onValueChange` props),
+map `handlers: { oninput, onchange, onblur }` (`Handlers` in
+`WidgetCommonProps`) to its event props via spread. Call manually only inside
+your own handler when you also do work (filtering, value mapping):
+
+```svelte
+<CustomInput {value} {...handlers} />
+```
+
+```ts
+// When you wrap the event with extra logic:
+function handleValueChange(details: { value: string }) {
+  value = details.value;
+  handlers.oninput?.();
+  handlers.onchange?.();
+}
 ```
 
 See [Component Types Reference](references/component-types.md) for available component and widget prop signatures.
@@ -60,29 +95,34 @@ To use a custom component for a specific field or across the form without alteri
 
 ```svelte
 <script lang="ts">
-  import { createForm, BasicForm, type Schema, type UiSchema } from "@sjsf/form";
+  import {
+    createForm,
+    BasicForm,
+    type Schema,
+    type UiSchema,
+  } from "@sjsf/form";
   import * as defaults from "$lib/sjsf/defaults";
   import ColorPickerWidget from "./color-picker-widget.svelte";
 
   const schema = {
     type: "object",
     properties: {
-      brandColor: { type: "string", title: "Theme Color" }
-    }
+      brandColor: { type: "string", title: "Theme Color" },
+    },
   } as const satisfies Schema;
 
   const uiSchema: UiSchema = {
     brandColor: {
       "ui:components": {
-        textWidget: ColorPickerWidget
-      }
-    }
+        textWidget: ColorPickerWidget,
+      },
+    },
   };
 
   const form = createForm({
     ...defaults,
     schema,
-    uiSchema
+    uiSchema,
   });
 </script>
 
@@ -93,7 +133,7 @@ To use a custom component for a specific field or across the form without alteri
 
 ## Step 3: Overriding Theme Globally with `overrideByRecord`
 
-To replace standard widgets (or templates) across your entire app, wrap your theme using `overrideByRecord` or `extendByRecord`:
+`extendByRecord` registers new components; `overrideByRecord` replaces existing ones:
 
 ```ts
 // src/lib/sjsf/theme.ts
@@ -104,7 +144,7 @@ import CustomFieldTemplate from "./custom-field-template.svelte";
 
 export const theme = overrideByRecord(baseTheme, {
   textWidget: CustomTextWidget,
-  fieldTemplate: CustomFieldTemplate
+  fieldTemplate: CustomFieldTemplate,
 });
 ```
 
@@ -114,21 +154,53 @@ Export this modified `theme` from `src/lib/sjsf/defaults.ts`.
 
 ## Step 4: Custom UI Options & Type Augmentation
 
-When your widget needs custom flags (e.g. `ui:options: { showPreview: true }`):
+Namespace custom widget options under one prefixed key:
 
 ```ts
-// src/app.d.ts or src/lib/sjsf/types.d.ts
-import type { ComponentProps } from "@sjsf/form";
+// src/lib/sjsf/types.d.ts
+import type { HTMLInputAttributes } from "svelte/elements";
 
 declare module "@sjsf/form" {
   interface UiOptions {
-    showPreview?: boolean;
-    colorPresets?: string[];
+    myColorPicker?: HTMLInputAttributes;
   }
 }
 ```
 
-Read this in your widget using `uiOption("showPreview")`.
+Set via `"ui:options": { myColorPicker: { ... } }`.
+Read with `uiOption("myColorPicker")`, or merge a custom option bag
+with `composeProps` — include the common steps (`inputProps` for
+`id`/`name`/`required`, `disabledProp`, aria helpers), not just
+`uiOptionProps` alone:
+
+```ts
+import {
+  ariaDescribedByProp,
+  ariaInvalidProp,
+  composeProps,
+  disabledProp,
+  getFormContext,
+  inputProps,
+  uiOptionProps,
+} from "@sjsf/form";
+
+const ctx = getFormContext();
+const props = $derived(
+  composeProps(
+    ctx,
+    config,
+    { type: "color" },
+    inputProps,
+    uiOptionProps("myColorPicker"),
+    disabledProp,
+    ariaInvalidProp,
+    ariaDescribedByProp
+  )
+);
+```
+
+For native elements skip the hand-rolled chain and use `inputAttributes`
+(Step 1) — it composes all of the above plus the `handlers` attachment.
 
 See [UI Options Augmentation Reference](references/ui-options-augmentation.md) for full TypeScript recipes.
 
@@ -136,11 +208,11 @@ See [UI Options Augmentation Reference](references/ui-options-augmentation.md) f
 
 ## Gotchas & Rules
 
-1. **Nullable Values**: Schemas with nullable types (e.g. `type: ["string", "null"]`) can pass `null` or `undefined` into your widget. Always handle fallback values:
+1. **Nullable Values**: Widgets receive `value: V | undefined`. For text inputs map empty to `undefined`:
    ```svelte
-   <input bind:value={() => value ?? "", (v) => value = v || null} />
+   <input bind:value={() => value ?? "", (v) => (value = v || undefined)} />
    ```
-2. **Event Attachment via `handlers`**: Always forward `oninput={handlers.input}` and `onblur={handlers.blur}` so SJSF can trigger live validation according to `fieldsValidationMode`.
+2. **Event Attachment via `handlers`**: `inputAttributes`/`selectAttributes`/`textareaAttributes` embed `handlersAttachment(handlers)` (symbol-keyed `@attach`, forwarded through spreads). Spread `{...attributes}` and do nothing else. Only if the custom input drops attachments, map by reference (`onValueChange: handlers.oninput`) or call `handlers.oninput?.()` inside your own wrapper handler. `Config` has no `id`/`disabled`.
 3. **Queries vs Commands in Form Context**:
    - Queries (`retrieveUiOption`, `getFieldErrors`, `getId`) track reactive dependencies.
    - Commands (`updateErrors`, `setValue`, `validateField`) do not track dependencies and are used in callbacks.
