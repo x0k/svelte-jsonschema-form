@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Content, setFormContext } from "@sjsf/form";
+  import { Content, setFormContext, validate } from "@sjsf/form";
 
   import {
     createMeta,
@@ -19,8 +19,7 @@
   const form = createSvelteKitForm(meta, {
     ...defaults,
     idBuilder: createFormIdBuilder,
-    onSubmit: request.run,
-    onSubmitError: console.warn,
+    onInvalid: console.warn,
   });
   setFormContext(form);
 </script>
@@ -31,6 +30,14 @@
   enctype="multipart/form-data"
   novalidate
   style="display: flex; flex-direction: column; gap: 1rem"
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => {
+        void request.run(value, e);
+      },
+    });
+  }}
 >
   <Content />
   <button type="submit" style="padding: 0.5rem;">Submit</button>

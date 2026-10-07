@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { BasicForm, createForm, reset } from "@sjsf/form";
+  import { BasicForm, createForm, reset, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -18,12 +18,22 @@
 
   // `connect()` takes care of the `/{formId}` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>

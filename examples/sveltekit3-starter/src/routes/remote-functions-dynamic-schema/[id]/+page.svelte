@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import * as defaults from "#lib/sjsf/remote-defaults.js";
@@ -9,12 +9,22 @@
 
   const schema = await getCurrentSchema(page.params.id);
 
-  const form = createForm(
-    await connect(createResult, {
-      ...defaults,
-      schema,
-    })
-  );
+  const connected = await connect(createResult, {
+    ...defaults,
+    schema,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createResult.action}
+  method={createResult.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>

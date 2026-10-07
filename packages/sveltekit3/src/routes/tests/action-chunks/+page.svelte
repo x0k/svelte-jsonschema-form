@@ -17,5 +17,5 @@
   {uiSchema}
   useJsonChunks
   enctype="multipart/form-data"
-  onSubmitError={console.warn}
+  onInvalid={console.warn}
 />

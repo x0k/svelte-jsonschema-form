@@ -46299,7 +46299,7 @@ export const actions = {
 } satisfies Actions;
 ",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm } from "@sjsf/form";
+  import { BasicForm, validate } from "@sjsf/form";
   import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit3/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -46307,7 +46307,7 @@ export const actions = {
   import type { ActionData, PageData } from "./$types.js";
 
   const meta = createMeta<ActionData, PageData>().form;
-  const { form } = setupSvelteKitForm(meta, {
+  const { form, request } = setupSvelteKitForm(meta, {
     ...defaults,
     onSuccess: (result) => {
       if (result.type === "success") {
@@ -46317,7 +46317,18 @@ export const actions = {
   });
 </script>
 
-<BasicForm {form} method="POST" />
+<BasicForm
+  {form}
+  method="POST"
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => {
+        void request.run(value, e);
+      },
+    });
+  }}
+/>
 ",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "tsconfig.json": "{
@@ -46510,7 +46521,7 @@ export const actions = {
 } satisfies Actions;
 ",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm } from "@sjsf/form";
+  import { BasicForm, validate } from "@sjsf/form";
   import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit3/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -46518,7 +46529,7 @@ export const actions = {
   import type { ActionData, PageData } from "./$types.js";
 
   const meta = createMeta<ActionData, PageData>().form;
-  const { form } = setupSvelteKitForm(meta, {
+  const { form, request } = setupSvelteKitForm(meta, {
     ...defaults,
     onSuccess: (result) => {
       if (result.type === "success") {
@@ -46528,7 +46539,18 @@ export const actions = {
   });
 </script>
 
-<BasicForm {form} method="POST" />
+<BasicForm
+  {form}
+  method="POST"
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => {
+        void request.run(value, e);
+      },
+    });
+  }}
+/>
 ",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "tsconfig.json": "{
@@ -46721,7 +46743,7 @@ export const actions = {
 } satisfies Actions;
 ",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm } from "@sjsf/form";
+  import { BasicForm, validate } from "@sjsf/form";
   import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit3/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -46729,7 +46751,7 @@ export const actions = {
   import type { ActionData, PageData } from "./$types.js";
 
   const meta = createMeta<ActionData, PageData>().form;
-  const { form } = setupSvelteKitForm(meta, {
+  const { form, request } = setupSvelteKitForm(meta, {
     ...defaults,
     onSuccess: (result) => {
       if (result.type === "success") {
@@ -46739,7 +46761,18 @@ export const actions = {
   });
 </script>
 
-<BasicForm {form} method="POST" />
+<BasicForm
+  {form}
+  method="POST"
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => {
+        void request.run(value, e);
+      },
+    });
+  }}
+/>
 ",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "tsconfig.json": "{
@@ -46930,7 +46963,7 @@ export const actions = {
 } satisfies Actions;
 ",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm } from "@sjsf/form";
+  import { BasicForm, validate } from "@sjsf/form";
   import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit3/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -46938,7 +46971,7 @@ export const actions = {
   import type { ActionData, PageData } from "./$types.js";
 
   const meta = createMeta<ActionData, PageData>().form;
-  const { form } = setupSvelteKitForm(meta, {
+  const { form, request } = setupSvelteKitForm(meta, {
     ...defaults,
     onSuccess: (result) => {
       if (result.type === "success") {
@@ -46948,7 +46981,18 @@ export const actions = {
   });
 </script>
 
-<BasicForm {form} method="POST" />
+<BasicForm
+  {form}
+  method="POST"
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => {
+        void request.run(value, e);
+      },
+    });
+  }}
+/>
 ",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "tsconfig.json": "{
@@ -47141,7 +47185,7 @@ export const actions = {
 } satisfies Actions;
 ",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm } from "@sjsf/form";
+  import { BasicForm, validate } from "@sjsf/form";
   import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit3/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -47149,7 +47193,7 @@ export const actions = {
   import type { ActionData, PageData } from "./$types.js";
 
   const meta = createMeta<ActionData, PageData>().form;
-  const { form } = setupSvelteKitForm(meta, {
+  const { form, request } = setupSvelteKitForm(meta, {
     ...defaults,
     onSuccess: (result) => {
       if (result.type === "success") {
@@ -47159,7 +47203,18 @@ export const actions = {
   });
 </script>
 
-<BasicForm {form} method="POST" />
+<BasicForm
+  {form}
+  method="POST"
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => {
+        void request.run(value, e);
+      },
+    });
+  }}
+/>
 ",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "tsconfig.json": "{
@@ -47351,7 +47406,7 @@ export const actions = {
 } satisfies Actions;
 ",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm } from "@sjsf/form";
+  import { BasicForm, validate } from "@sjsf/form";
   import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit3/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -47359,7 +47414,7 @@ export const actions = {
   import type { ActionData, PageData } from "./$types.js";
 
   const meta = createMeta<ActionData, PageData>().form;
-  const { form } = setupSvelteKitForm(meta, {
+  const { form, request } = setupSvelteKitForm(meta, {
     ...defaults,
     onSuccess: (result) => {
       if (result.type === "success") {
@@ -47369,7 +47424,18 @@ export const actions = {
   });
 </script>
 
-<BasicForm {form} method="POST" />
+<BasicForm
+  {form}
+  method="POST"
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => {
+        void request.run(value, e);
+      },
+    });
+  }}
+/>
 ",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "tsconfig.json": "{
@@ -47561,7 +47627,7 @@ export const actions = {
 } satisfies Actions;
 ",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm } from "@sjsf/form";
+  import { BasicForm, validate } from "@sjsf/form";
   import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit3/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -47569,7 +47635,7 @@ export const actions = {
   import type { ActionData, PageData } from "./$types.js";
 
   const meta = createMeta<ActionData, PageData>().form;
-  const { form } = setupSvelteKitForm(meta, {
+  const { form, request } = setupSvelteKitForm(meta, {
     ...defaults,
     onSuccess: (result) => {
       if (result.type === "success") {
@@ -47579,7 +47645,18 @@ export const actions = {
   });
 </script>
 
-<BasicForm {form} method="POST" />
+<BasicForm
+  {form}
+  method="POST"
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => {
+        void request.run(value, e);
+      },
+    });
+  }}
+/>
 ",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "tsconfig.json": "{
@@ -47770,7 +47847,7 @@ export const actions = {
 } satisfies Actions;
 ",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm } from "@sjsf/form";
+  import { BasicForm, validate } from "@sjsf/form";
   import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit3/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -47778,7 +47855,7 @@ export const actions = {
   import type { ActionData, PageData } from "./$types.js";
 
   const meta = createMeta<ActionData, PageData>().form;
-  const { form } = setupSvelteKitForm(meta, {
+  const { form, request } = setupSvelteKitForm(meta, {
     ...defaults,
     onSuccess: (result) => {
       if (result.type === "success") {
@@ -47788,7 +47865,18 @@ export const actions = {
   });
 </script>
 
-<BasicForm {form} method="POST" />
+<BasicForm
+  {form}
+  method="POST"
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => {
+        void request.run(value, e);
+      },
+    });
+  }}
+/>
 ",
   "src/routes/layout.css": "@import "@sjsf/basic-theme/css/basic.css";",
   "tsconfig.json": "{
@@ -47992,7 +48080,7 @@ export const actions = {
 } satisfies Actions;
 ",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm } from "@sjsf/form";
+  import { BasicForm, validate } from "@sjsf/form";
   import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit3/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -48000,7 +48088,7 @@ export const actions = {
   import type { ActionData, PageData } from "./$types.js";
 
   const meta = createMeta<ActionData, PageData>().form;
-  const { form } = setupSvelteKitForm(meta, {
+  const { form, request } = setupSvelteKitForm(meta, {
     ...defaults,
     onSuccess: (result) => {
       if (result.type === "success") {
@@ -48010,7 +48098,18 @@ export const actions = {
   });
 </script>
 
-<BasicForm {form} method="POST" />
+<BasicForm
+  {form}
+  method="POST"
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => {
+        void request.run(value, e);
+      },
+    });
+  }}
+/>
 ",
   "tsconfig.json": "{
   "extends": "$app/tsconfig",
@@ -48221,7 +48320,7 @@ export const actions = {
 } satisfies Actions;
 ",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm } from "@sjsf/form";
+  import { BasicForm, validate } from "@sjsf/form";
   import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit3/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -48229,7 +48328,7 @@ export const actions = {
   import type { ActionData, PageData } from "./$types.js";
 
   const meta = createMeta<ActionData, PageData>().form;
-  const { form } = setupSvelteKitForm(meta, {
+  const { form, request } = setupSvelteKitForm(meta, {
     ...defaults,
     onSuccess: (result) => {
       if (result.type === "success") {
@@ -48239,7 +48338,18 @@ export const actions = {
   });
 </script>
 
-<BasicForm {form} method="POST" />
+<BasicForm
+  {form}
+  method="POST"
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => {
+        void request.run(value, e);
+      },
+    });
+  }}
+/>
 ",
   "src/routes/layout.css": "@import 'tailwindcss';
 @import "@sjsf/daisyui5-theme/styles.css";
@@ -48455,7 +48565,7 @@ export const actions = {
 } satisfies Actions;
 ",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm } from "@sjsf/form";
+  import { BasicForm, validate } from "@sjsf/form";
   import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit3/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -48463,7 +48573,7 @@ export const actions = {
   import type { ActionData, PageData } from "./$types.js";
 
   const meta = createMeta<ActionData, PageData>().form;
-  const { form } = setupSvelteKitForm(meta, {
+  const { form, request } = setupSvelteKitForm(meta, {
     ...defaults,
     onSuccess: (result) => {
       if (result.type === "success") {
@@ -48473,7 +48583,18 @@ export const actions = {
   });
 </script>
 
-<BasicForm {form} method="POST" />
+<BasicForm
+  {form}
+  method="POST"
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => {
+        void request.run(value, e);
+      },
+    });
+  }}
+/>
 ",
   "src/routes/layout.css": "@import 'tailwindcss';
 @import "@sjsf/flowbite3-theme/styles.css";
@@ -48705,7 +48826,7 @@ export const actions = {
 } satisfies Actions;
 ",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm } from "@sjsf/form";
+  import { BasicForm, validate } from "@sjsf/form";
   import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit3/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -48713,7 +48834,7 @@ export const actions = {
   import type { ActionData, PageData } from "./$types.js";
 
   const meta = createMeta<ActionData, PageData>().form;
-  const { form } = setupSvelteKitForm(meta, {
+  const { form, request } = setupSvelteKitForm(meta, {
     ...defaults,
     onSuccess: (result) => {
       if (result.type === "success") {
@@ -48723,7 +48844,18 @@ export const actions = {
   });
 </script>
 
-<BasicForm {form} method="POST" />
+<BasicForm
+  {form}
+  method="POST"
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => {
+        void request.run(value, e);
+      },
+    });
+  }}
+/>
 ",
   "src/routes/layout.css": "@import "@picocss/pico/css/pico.css";
 @import "@sjsf/basic-theme/css/pico.css";",
@@ -49024,7 +49156,7 @@ export const actions = {
 } satisfies Actions;
 ",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm } from "@sjsf/form";
+  import { BasicForm, validate } from "@sjsf/form";
   import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit3/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -49032,7 +49164,7 @@ export const actions = {
   import type { ActionData, PageData } from "./$types.js";
 
   const meta = createMeta<ActionData, PageData>().form;
-  const { form } = setupSvelteKitForm(meta, {
+  const { form, request } = setupSvelteKitForm(meta, {
     ...defaults,
     onSuccess: (result) => {
       if (result.type === "success") {
@@ -49042,7 +49174,18 @@ export const actions = {
   });
 </script>
 
-<BasicForm {form} method="POST" />
+<BasicForm
+  {form}
+  method="POST"
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => {
+        void request.run(value, e);
+      },
+    });
+  }}
+/>
 ",
   "src/routes/layout.css": "@import 'tailwindcss';
 @import "@sjsf/shadcn4-theme/styles.css";
@@ -49447,7 +49590,7 @@ export const actions = {
 } satisfies Actions;
 ",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm } from "@sjsf/form";
+  import { BasicForm, validate } from "@sjsf/form";
   import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit3/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -49455,7 +49598,7 @@ export const actions = {
   import type { ActionData, PageData } from "./$types.js";
 
   const meta = createMeta<ActionData, PageData>().form;
-  const { form } = setupSvelteKitForm(meta, {
+  const { form, request } = setupSvelteKitForm(meta, {
     ...defaults,
     onSuccess: (result) => {
       if (result.type === "success") {
@@ -49465,7 +49608,18 @@ export const actions = {
   });
 </script>
 
-<BasicForm {form} method="POST" />
+<BasicForm
+  {form}
+  method="POST"
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => {
+        void request.run(value, e);
+      },
+    });
+  }}
+/>
 ",
   "src/routes/layout.css": "@import 'tailwindcss';
 @import "@sjsf/shadcn4-theme/styles.css";
@@ -49802,7 +49956,7 @@ export const actions = {
 } satisfies Actions;
 ",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm } from "@sjsf/form";
+  import { BasicForm, validate } from "@sjsf/form";
   import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit3/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -49810,7 +49964,7 @@ export const actions = {
   import type { ActionData, PageData } from "./$types.js";
 
   const meta = createMeta<ActionData, PageData>().form;
-  const { form } = setupSvelteKitForm(meta, {
+  const { form, request } = setupSvelteKitForm(meta, {
     ...defaults,
     onSuccess: (result) => {
       if (result.type === "success") {
@@ -49820,7 +49974,18 @@ export const actions = {
   });
 </script>
 
-<BasicForm {form} method="POST" />
+<BasicForm
+  {form}
+  method="POST"
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => {
+        void request.run(value, e);
+      },
+    });
+  }}
+/>
 ",
   "src/routes/layout.css": "@import 'tailwindcss';
 @import "@sjsf/skeleton4-theme/styles.css";
@@ -50040,7 +50205,7 @@ export const actions = {
 } satisfies Actions;
 ",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm } from "@sjsf/form";
+  import { BasicForm, validate } from "@sjsf/form";
   import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit3/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -50048,7 +50213,7 @@ export const actions = {
   import type { ActionData, PageData } from "./$types.js";
 
   const meta = createMeta<ActionData, PageData>().form;
-  const { form } = setupSvelteKitForm(meta, {
+  const { form, request } = setupSvelteKitForm(meta, {
     ...defaults,
     onSuccess: (result) => {
       if (result.type === "success") {
@@ -50058,7 +50223,18 @@ export const actions = {
   });
 </script>
 
-<BasicForm {form} method="POST" />
+<BasicForm
+  {form}
+  method="POST"
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => {
+        void request.run(value, e);
+      },
+    });
+  }}
+/>
 ",
   "src/routes/layout.css": "@import 'tailwindcss';
 @import "@sjsf/skeleton5-theme/styles.css";
@@ -50274,7 +50450,7 @@ export const actions = {
 } satisfies Actions;
 ",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm } from "@sjsf/form";
+  import { BasicForm, validate } from "@sjsf/form";
   import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit3/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -50282,7 +50458,7 @@ export const actions = {
   import type { ActionData, PageData } from "./$types.js";
 
   const meta = createMeta<ActionData, PageData>().form;
-  const { form } = setupSvelteKitForm(meta, {
+  const { form, request } = setupSvelteKitForm(meta, {
     ...defaults,
     onSuccess: (result) => {
       if (result.type === "success") {
@@ -50292,7 +50468,18 @@ export const actions = {
   });
 </script>
 
-<BasicForm {form} method="POST" />
+<BasicForm
+  {form}
+  method="POST"
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => {
+        void request.run(value, e);
+      },
+    });
+  }}
+/>
 ",
   "tsconfig.json": "{
   "extends": "$app/tsconfig",
@@ -115728,7 +115915,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -115740,15 +115927,25 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -115931,7 +116128,7 @@ export { createFormValidator as validator } from '@sjsf/ata-validator';",
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -115943,15 +116140,25 @@ export { createFormValidator as validator } from '@sjsf/ata-validator';",
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -116134,7 +116341,7 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -116146,15 +116353,25 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -116335,7 +116552,7 @@ export { createFormValidator as validator } from '@sjsf/form/validators/noop';",
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -116347,15 +116564,25 @@ export { createFormValidator as validator } from '@sjsf/form/validators/noop';",
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -116538,7 +116765,7 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -116550,15 +116777,25 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -116740,7 +116977,7 @@ export const onSubmitError = createFocusOnFirstError();",
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -116752,15 +116989,25 @@ export const onSubmitError = createFocusOnFirstError();",
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -116942,7 +117189,7 @@ export const onSubmitError = createFocusOnFirstError();",
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -116954,15 +117201,25 @@ export const onSubmitError = createFocusOnFirstError();",
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -117143,7 +117400,7 @@ export const onSubmitError = createFocusOnFirstError();",
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -117155,15 +117412,25 @@ export const onSubmitError = createFocusOnFirstError();",
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -117357,7 +117624,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -117369,15 +117636,25 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -117578,7 +117855,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -117590,15 +117867,25 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -117804,7 +118091,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -117816,15 +118103,25 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -118046,7 +118343,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -118058,15 +118355,25 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -118357,7 +118664,7 @@ export function setShadcnThemeContext() {
 
 <div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -118369,15 +118676,25 @@ export function setShadcnThemeContext() {
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -118772,7 +119089,7 @@ export function setShadcnThemeContext() {
 
 <div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -118784,15 +119101,25 @@ export function setShadcnThemeContext() {
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -119119,7 +119446,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -119131,15 +119458,25 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -119349,7 +119686,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -119361,15 +119698,25 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -119575,7 +119922,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <Willow>{@render children()}</Willow>",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -119587,15 +119934,25 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -119822,7 +120179,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </style>
 ",
   "src/routes/[id]/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -119832,15 +120189,25 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
   const schema = await getCurrentSchema(page.params.id);
 
-  const form = createForm(
-    await connect(createResult, {
-      ...defaults,
-      schema,
-    })
-  );
+  const connected = await connect(createResult, {
+    ...defaults,
+    schema,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createResult.action}
+  method={createResult.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
 import { error, invalid, redirect } from "@sveltejs/kit";
@@ -120065,7 +120432,7 @@ export { createFormValidator as validator } from '@sjsf/ata-validator';",
 </style>
 ",
   "src/routes/[id]/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -120075,15 +120442,25 @@ export { createFormValidator as validator } from '@sjsf/ata-validator';",
 
   const schema = await getCurrentSchema(page.params.id);
 
-  const form = createForm(
-    await connect(createResult, {
-      ...defaults,
-      schema,
-    })
-  );
+  const connected = await connect(createResult, {
+    ...defaults,
+    schema,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createResult.action}
+  method={createResult.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
 import { error, invalid, redirect } from "@sveltejs/kit";
@@ -120308,7 +120685,7 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
 </style>
 ",
   "src/routes/[id]/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -120318,15 +120695,25 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
 
   const schema = await getCurrentSchema(page.params.id);
 
-  const form = createForm(
-    await connect(createResult, {
-      ...defaults,
-      schema,
-    })
-  );
+  const connected = await connect(createResult, {
+    ...defaults,
+    schema,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createResult.action}
+  method={createResult.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
 import { error, invalid, redirect } from "@sveltejs/kit";
@@ -120549,7 +120936,7 @@ export { createFormValidator as validator } from '@sjsf/form/validators/noop';",
 </style>
 ",
   "src/routes/[id]/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -120559,15 +120946,25 @@ export { createFormValidator as validator } from '@sjsf/form/validators/noop';",
 
   const schema = await getCurrentSchema(page.params.id);
 
-  const form = createForm(
-    await connect(createResult, {
-      ...defaults,
-      schema,
-    })
-  );
+  const connected = await connect(createResult, {
+    ...defaults,
+    schema,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createResult.action}
+  method={createResult.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
 import { error, invalid, redirect } from "@sveltejs/kit";
@@ -120792,7 +121189,7 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
 </style>
 ",
   "src/routes/[id]/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -120802,15 +121199,25 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
 
   const schema = await getCurrentSchema(page.params.id);
 
-  const form = createForm(
-    await connect(createResult, {
-      ...defaults,
-      schema,
-    })
-  );
+  const connected = await connect(createResult, {
+    ...defaults,
+    schema,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createResult.action}
+  method={createResult.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
 import { error, invalid, redirect } from "@sveltejs/kit";
@@ -121034,7 +121441,7 @@ export const onSubmitError = createFocusOnFirstError();",
 </style>
 ",
   "src/routes/[id]/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -121044,15 +121451,25 @@ export const onSubmitError = createFocusOnFirstError();",
 
   const schema = await getCurrentSchema(page.params.id);
 
-  const form = createForm(
-    await connect(createResult, {
-      ...defaults,
-      schema,
-    })
-  );
+  const connected = await connect(createResult, {
+    ...defaults,
+    schema,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createResult.action}
+  method={createResult.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
 import { error, invalid, redirect } from "@sveltejs/kit";
@@ -121276,7 +121693,7 @@ export const onSubmitError = createFocusOnFirstError();",
 </style>
 ",
   "src/routes/[id]/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -121286,15 +121703,25 @@ export const onSubmitError = createFocusOnFirstError();",
 
   const schema = await getCurrentSchema(page.params.id);
 
-  const form = createForm(
-    await connect(createResult, {
-      ...defaults,
-      schema,
-    })
-  );
+  const connected = await connect(createResult, {
+    ...defaults,
+    schema,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createResult.action}
+  method={createResult.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
 import { error, invalid, redirect } from "@sveltejs/kit";
@@ -121517,7 +121944,7 @@ export const onSubmitError = createFocusOnFirstError();",
 </style>
 ",
   "src/routes/[id]/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -121527,15 +121954,25 @@ export const onSubmitError = createFocusOnFirstError();",
 
   const schema = await getCurrentSchema(page.params.id);
 
-  const form = createForm(
-    await connect(createResult, {
-      ...defaults,
-      schema,
-    })
-  );
+  const connected = await connect(createResult, {
+    ...defaults,
+    schema,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createResult.action}
+  method={createResult.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
 import { error, invalid, redirect } from "@sveltejs/kit";
@@ -121771,7 +122208,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </style>
 ",
   "src/routes/[id]/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -121781,15 +122218,25 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
   const schema = await getCurrentSchema(page.params.id);
 
-  const form = createForm(
-    await connect(createResult, {
-      ...defaults,
-      schema,
-    })
-  );
+  const connected = await connect(createResult, {
+    ...defaults,
+    schema,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createResult.action}
+  method={createResult.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
 import { error, invalid, redirect } from "@sveltejs/kit";
@@ -122033,7 +122480,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </style>
 ",
   "src/routes/[id]/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -122043,15 +122490,25 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
   const schema = await getCurrentSchema(page.params.id);
 
-  const form = createForm(
-    await connect(createResult, {
-      ...defaults,
-      schema,
-    })
-  );
+  const connected = await connect(createResult, {
+    ...defaults,
+    schema,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createResult.action}
+  method={createResult.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
 import { error, invalid, redirect } from "@sveltejs/kit";
@@ -122299,7 +122756,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </style>
 ",
   "src/routes/[id]/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -122309,15 +122766,25 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
   const schema = await getCurrentSchema(page.params.id);
 
-  const form = createForm(
-    await connect(createResult, {
-      ...defaults,
-      schema,
-    })
-  );
+  const connected = await connect(createResult, {
+    ...defaults,
+    schema,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createResult.action}
+  method={createResult.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
 import { error, invalid, redirect } from "@sveltejs/kit";
@@ -122581,7 +123048,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </style>
 ",
   "src/routes/[id]/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -122591,15 +123058,25 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
   const schema = await getCurrentSchema(page.params.id);
 
-  const form = createForm(
-    await connect(createResult, {
-      ...defaults,
-      schema,
-    })
-  );
+  const connected = await connect(createResult, {
+    ...defaults,
+    schema,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createResult.action}
+  method={createResult.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
 import { error, invalid, redirect } from "@sveltejs/kit";
@@ -122931,7 +123408,7 @@ export function setShadcnThemeContext() {
 </style>
 ",
   "src/routes/[id]/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -122941,15 +123418,25 @@ export function setShadcnThemeContext() {
 
   const schema = await getCurrentSchema(page.params.id);
 
-  const form = createForm(
-    await connect(createResult, {
-      ...defaults,
-      schema,
-    })
-  );
+  const connected = await connect(createResult, {
+    ...defaults,
+    schema,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createResult.action}
+  method={createResult.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
 import { error, invalid, redirect } from "@sveltejs/kit";
@@ -123386,7 +123873,7 @@ export function setShadcnThemeContext() {
 </style>
 ",
   "src/routes/[id]/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -123396,15 +123883,25 @@ export function setShadcnThemeContext() {
 
   const schema = await getCurrentSchema(page.params.id);
 
-  const form = createForm(
-    await connect(createResult, {
-      ...defaults,
-      schema,
-    })
-  );
+  const connected = await connect(createResult, {
+    ...defaults,
+    schema,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createResult.action}
+  method={createResult.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
 import { error, invalid, redirect } from "@sveltejs/kit";
@@ -123774,7 +124271,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </style>
 ",
   "src/routes/[id]/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -123784,15 +124281,25 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
   const schema = await getCurrentSchema(page.params.id);
 
-  const form = createForm(
-    await connect(createResult, {
-      ...defaults,
-      schema,
-    })
-  );
+  const connected = await connect(createResult, {
+    ...defaults,
+    schema,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createResult.action}
+  method={createResult.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
 import { error, invalid, redirect } from "@sveltejs/kit";
@@ -124045,7 +124552,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </style>
 ",
   "src/routes/[id]/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -124055,15 +124562,25 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
   const schema = await getCurrentSchema(page.params.id);
 
-  const form = createForm(
-    await connect(createResult, {
-      ...defaults,
-      schema,
-    })
-  );
+  const connected = await connect(createResult, {
+    ...defaults,
+    schema,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createResult.action}
+  method={createResult.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
 import { error, invalid, redirect } from "@sveltejs/kit";
@@ -124311,7 +124828,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </style>
 ",
   "src/routes/[id]/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -124321,15 +124838,25 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
   const schema = await getCurrentSchema(page.params.id);
 
-  const form = createForm(
-    await connect(createResult, {
-      ...defaults,
-      schema,
-    })
-  );
+  const connected = await connect(createResult, {
+    ...defaults,
+    schema,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createResult.action}
+  method={createResult.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
 import { error, invalid, redirect } from "@sveltejs/kit";
@@ -124528,7 +125055,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm, reset } from "@sjsf/form";
+  import { BasicForm, createForm, reset, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -124547,15 +125074,25 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -124738,7 +125275,7 @@ export { createFormValidator as validator } from '@sjsf/ata-validator';",
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm, reset } from "@sjsf/form";
+  import { BasicForm, createForm, reset, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -124757,15 +125294,25 @@ export { createFormValidator as validator } from '@sjsf/ata-validator';",
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -124948,7 +125495,7 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm, reset } from "@sjsf/form";
+  import { BasicForm, createForm, reset, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -124967,15 +125514,25 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -125156,7 +125713,7 @@ export { createFormValidator as validator } from '@sjsf/form/validators/noop';",
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm, reset } from "@sjsf/form";
+  import { BasicForm, createForm, reset, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -125175,15 +125732,25 @@ export { createFormValidator as validator } from '@sjsf/form/validators/noop';",
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -125366,7 +125933,7 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm, reset } from "@sjsf/form";
+  import { BasicForm, createForm, reset, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -125385,15 +125952,25 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -125575,7 +126152,7 @@ export const onSubmitError = createFocusOnFirstError();",
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm, reset } from "@sjsf/form";
+  import { BasicForm, createForm, reset, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -125594,15 +126171,25 @@ export const onSubmitError = createFocusOnFirstError();",
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -125784,7 +126371,7 @@ export const onSubmitError = createFocusOnFirstError();",
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm, reset } from "@sjsf/form";
+  import { BasicForm, createForm, reset, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -125803,15 +126390,25 @@ export const onSubmitError = createFocusOnFirstError();",
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -125992,7 +126589,7 @@ export const onSubmitError = createFocusOnFirstError();",
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm, reset } from "@sjsf/form";
+  import { BasicForm, createForm, reset, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -126011,15 +126608,25 @@ export const onSubmitError = createFocusOnFirstError();",
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -126213,7 +126820,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm, reset } from "@sjsf/form";
+  import { BasicForm, createForm, reset, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -126232,15 +126839,25 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -126441,7 +127058,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm, reset } from "@sjsf/form";
+  import { BasicForm, createForm, reset, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -126460,15 +127077,25 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -126674,7 +127301,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm, reset } from "@sjsf/form";
+  import { BasicForm, createForm, reset, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -126693,15 +127320,25 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -126923,7 +127560,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm, reset } from "@sjsf/form";
+  import { BasicForm, createForm, reset, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -126942,15 +127579,25 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -127241,7 +127888,7 @@ export function setShadcnThemeContext() {
 
 <div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm, reset } from "@sjsf/form";
+  import { BasicForm, createForm, reset, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -127260,15 +127907,25 @@ export function setShadcnThemeContext() {
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -127663,7 +128320,7 @@ export function setShadcnThemeContext() {
 
 <div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm, reset } from "@sjsf/form";
+  import { BasicForm, createForm, reset, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -127682,15 +128339,25 @@ export function setShadcnThemeContext() {
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -128017,7 +128684,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 {@render children()}",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm, reset } from "@sjsf/form";
+  import { BasicForm, createForm, reset, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -128036,15 +128703,25 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -128254,7 +128931,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <div style="padding: 2rem">{@render children()}</div>",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm, reset } from "@sjsf/form";
+  import { BasicForm, createForm, reset, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -128273,15 +128950,25 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -128487,7 +129174,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <Willow>{@render children()}</Willow>",
   "src/routes/+page.svelte": "<script lang="ts">
-  import { BasicForm, createForm, reset } from "@sjsf/form";
+  import { BasicForm, createForm, reset, validate } from "@sjsf/form";
   import { connect } from "@sjsf/sveltekit3/rf/client";
 
   import type { Model } from "#lib/post.js";
@@ -128506,15 +129193,25 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
   // \`connect()\` takes care of the \`/{formId}\` suffix that Kit v3 requires on
   // every field name
-  const form = createForm(
-    await connect<Model>(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect<Model>(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm
+  {form}
+  novalidate
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
 ",
   "src/routes/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -128773,6 +129470,7 @@ export const createPost = form(
 
   const { formOptions }: { formOptions: FormOptions<any> } = $props();
 
+  // svelte-ignore state_referenced_locally
   const form = createForm(formOptions);
   setFormContext(form);
 </script>
@@ -128999,6 +129697,7 @@ export const createPost = form(
 
   const { formOptions }: { formOptions: FormOptions<any> } = $props();
 
+  // svelte-ignore state_referenced_locally
   const form = createForm(formOptions);
   setFormContext(form);
 </script>
@@ -129225,6 +129924,7 @@ export const createPost = form(
 
   const { formOptions }: { formOptions: FormOptions<any> } = $props();
 
+  // svelte-ignore state_referenced_locally
   const form = createForm(formOptions);
   setFormContext(form);
 </script>
@@ -129449,6 +130149,7 @@ export const createPost = form(
 
   const { formOptions }: { formOptions: FormOptions<any> } = $props();
 
+  // svelte-ignore state_referenced_locally
   const form = createForm(formOptions);
   setFormContext(form);
 </script>
@@ -129675,6 +130376,7 @@ export const createPost = form(
 
   const { formOptions }: { formOptions: FormOptions<any> } = $props();
 
+  // svelte-ignore state_referenced_locally
   const form = createForm(formOptions);
   setFormContext(form);
 </script>
@@ -129900,6 +130602,7 @@ export const createPost = form(
 
   const { formOptions }: { formOptions: FormOptions<any> } = $props();
 
+  // svelte-ignore state_referenced_locally
   const form = createForm(formOptions);
   setFormContext(form);
 </script>
@@ -130125,6 +130828,7 @@ export const createPost = form(
 
   const { formOptions }: { formOptions: FormOptions<any> } = $props();
 
+  // svelte-ignore state_referenced_locally
   const form = createForm(formOptions);
   setFormContext(form);
 </script>
@@ -130349,6 +131053,7 @@ export const createPost = form(
 
   const { formOptions }: { formOptions: FormOptions<any> } = $props();
 
+  // svelte-ignore state_referenced_locally
   const form = createForm(formOptions);
   setFormContext(form);
 </script>
@@ -130586,6 +131291,7 @@ export const createPost = form(
 
   const { formOptions }: { formOptions: FormOptions<any> } = $props();
 
+  // svelte-ignore state_referenced_locally
   const form = createForm(formOptions);
   setFormContext(form);
 </script>
@@ -130830,6 +131536,7 @@ export const createPost = form(
 
   const { formOptions }: { formOptions: FormOptions<any> } = $props();
 
+  // svelte-ignore state_referenced_locally
   const form = createForm(formOptions);
   setFormContext(form);
 </script>
@@ -131079,6 +131786,7 @@ export const createPost = form(
 
   const { formOptions }: { formOptions: FormOptions<any> } = $props();
 
+  // svelte-ignore state_referenced_locally
   const form = createForm(formOptions);
   setFormContext(form);
 </script>
@@ -131344,6 +132052,7 @@ export const createPost = form(
 
   const { formOptions }: { formOptions: FormOptions<any> } = $props();
 
+  // svelte-ignore state_referenced_locally
   const form = createForm(formOptions);
   setFormContext(form);
 </script>
@@ -131678,6 +132387,7 @@ export const createPost = form(
 
   const { formOptions }: { formOptions: FormOptions<any> } = $props();
 
+  // svelte-ignore state_referenced_locally
   const form = createForm(formOptions);
   setFormContext(form);
 </script>
@@ -132116,6 +132826,7 @@ export const createPost = form(
 
   const { formOptions }: { formOptions: FormOptions<any> } = $props();
 
+  // svelte-ignore state_referenced_locally
   const form = createForm(formOptions);
   setFormContext(form);
 </script>
@@ -132486,6 +133197,7 @@ export const createPost = form(
 
   const { formOptions }: { formOptions: FormOptions<any> } = $props();
 
+  // svelte-ignore state_referenced_locally
   const form = createForm(formOptions);
   setFormContext(form);
 </script>
@@ -132739,6 +133451,7 @@ export const createPost = form(
 
   const { formOptions }: { formOptions: FormOptions<any> } = $props();
 
+  // svelte-ignore state_referenced_locally
   const form = createForm(formOptions);
   setFormContext(form);
 </script>
@@ -132988,6 +133701,7 @@ export const createPost = form(
 
   const { formOptions }: { formOptions: FormOptions<any> } = $props();
 
+  // svelte-ignore state_referenced_locally
   const form = createForm(formOptions);
   setFormContext(form);
 </script>

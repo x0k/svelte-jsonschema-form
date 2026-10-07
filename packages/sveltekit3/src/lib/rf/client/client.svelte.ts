@@ -2,17 +2,16 @@ import {
   create,
   DEFAULT_ID_PREFIX,
   SJSF_ID_PREFIX,
-  validate,
+  validateFormValue,
   type Creatable,
   type FormIdBuilder,
   type FormOptions,
   type FormState,
-  type UiSchemaRoot,
 } from "@sjsf/form";
 import { isRecordEmpty } from "@sjsf/form/lib/object";
 import type { DeepPartial } from "@sjsf/form/lib/types";
 import type { StandardSchemaV1 } from "@standard-schema/spec";
-import { getAbortSignal, onMount, untrack, hydratable } from "svelte";
+import { getAbortSignal, onMount, hydratable } from "svelte";
 
 import type { RemoteForm, RemoteFormInput } from "$app/server";
 
@@ -24,7 +23,6 @@ import {
   createSvelteKitDataParser,
   type SvelteKitDataParserOptions,
 } from "../internal/sveltekit-data-parser.js";
-import { createUiSchemaWithFormAttributes } from "./ui-schema.ts";
 
 export function createClientValidator<T>(form: FormState<T>) {
   return {
@@ -32,7 +30,7 @@ export function createClientValidator<T>(form: FormState<T>) {
       version: 1,
       vendor: "svelte-jsonschema-form",
       validate(): StandardSchemaV1.Result<void> {
-        const result = validate(form);
+        const result = validateFormValue(form);
         if (result.errors) {
           return {
             issues: result.errors,
@@ -160,10 +158,29 @@ export interface ConnectOptions extends SvelteKitDataParserOptions {
 
 const HYDRATABLE_KEY_PREFIX = "__sjsf_sveltekit_h__";
 
+/**
+ * The form options `connect()` builds, plus the submission entry point.
+ * Pass the options to `createForm` and call `submit` from your form's
+ * `onsubmit` once validation succeeds.
+ */
+export interface ConnectedForm<T> extends FormOptions<T> {
+  /**
+   * Submits a validated value through the hidden remote form, which is
+   * what carries the submission to the server through Kit's remote
+   * machinery. Call it from your form's `onsubmit` once validation
+   * succeeds, e.g.
+   * `validate(form, { onValid: (value) => submit(value, e) })`.
+   *
+   * The `onValid`/`onInvalid` form options still fire on validation, so
+   * this only initiates the submission and reports nothing back.
+   */
+  submit(value: T, e: SubmitEvent): void;
+}
+
 export async function connect<T>(
   remoteForm: RemoteFormInstance,
   options: Omit<FormOptions<T>, "idBuilder"> & ConnectOptions
-): Promise<FormOptions<T>> {
+): Promise<ConnectedForm<T>> {
   let formElement: HTMLFormElement;
   let originalFormElement: HTMLFormElement;
 
@@ -183,7 +200,7 @@ export async function connect<T>(
     // form's own inputs back as if they were a fresh submission.
     formElement.addEventListener("reset", (e) => {
       // Undo the submission on the form the user can actually see. The theme
-      // wires this to `form.reset()`, which restores `options.initialValue`.
+      // wires this to `reset(form)`, which restores `options.initialValue`.
       originalFormElement.reset();
       // Kit must not observe the reset, or it rebuilds its value from the
       // hidden form's inputs.
@@ -281,13 +298,6 @@ export async function connect<T>(
   );
   const useJsonChunks = $derived(options.useJsonChunks ?? false);
 
-  const uiSchema: UiSchemaRoot = $derived.by(() => {
-    const { uiSchema, uiOptionsRegistry } = options;
-    return untrack(() =>
-      createUiSchemaWithFormAttributes(remoteForm, uiSchema, uiOptionsRegistry)
-    );
-  });
-
   const idBuilder: FormOptions<T>["idBuilder"] = (opts) =>
     create(options.idBuilder, {
       ...opts,
@@ -303,10 +313,7 @@ export async function connect<T>(
       get initialErrors() {
         return fields.allIssues() ?? options.initialErrors;
       },
-      get uiSchema() {
-        return uiSchema;
-      },
-      onSubmit(value, e) {
+      submit(value: T, e: SubmitEvent) {
         if (!(e.target instanceof HTMLFormElement)) {
           throw new Error("HTMLFormElement expected as submit event target");
         }
@@ -355,9 +362,8 @@ export async function connect<T>(
         // submission.
         document.body.appendChild(formElement);
         formElement.requestSubmit();
-        options.onSubmit?.(value, e);
       },
-    } satisfies Partial<FormOptions<T>>,
+    } satisfies Partial<ConnectedForm<T>>,
     options
   );
 }

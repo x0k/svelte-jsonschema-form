@@ -1,5 +1,6 @@
 import type { FormOptions, Schema, UiSchemaRoot } from "@sjsf/form";
 import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
+import type { HTMLFormAttributes } from "svelte/elements";
 import { render as renderServer } from "svelte/server";
 import { describe, expect, test } from "vitest";
 
@@ -21,7 +22,12 @@ const simpleSchema: Schema = {
   },
 };
 
-function ssrForm(formOptions: Partial<FormOptions<any>> & { schema: Schema }) {
+function ssrForm(
+  formOptions: Partial<FormOptions<any>> & {
+    schema: Schema;
+    formAttributes?: HTMLFormAttributes;
+  }
+) {
   return renderServer(UiSchemaProxyForm, {
     props: {
       ...defaults,
@@ -31,89 +37,55 @@ function ssrForm(formOptions: Partial<FormOptions<any>> & { schema: Schema }) {
   });
 }
 
-describe("uiSchema form options SSR", () => {
+describe("form element attributes SSR", () => {
   test("renders form with novalidate attribute", () => {
-    const uiSchema: UiSchemaRoot = {
-      "ui:options": {
-        form: {
-          novalidate: true,
-        },
-      },
-    };
     const { body } = ssrForm({
       schema: simpleSchema,
-      uiSchema,
+      formAttributes: { novalidate: true },
     });
     expect(body).toContain("novalidate");
   });
 
   test("renders form with target attribute", () => {
-    const uiSchema: UiSchemaRoot = {
-      "ui:options": {
-        form: {
-          target: "_blank",
-        },
-      },
-    };
     const { body } = ssrForm({
       schema: simpleSchema,
-      uiSchema,
+      formAttributes: { target: "_blank" },
     });
     expect(body).toContain('target="_blank"');
   });
 
   test("renders form with enctype attribute", () => {
-    const uiSchema: UiSchemaRoot = {
-      "ui:options": {
-        form: {
-          enctype: "multipart/form-data",
-        },
-      },
-    };
     const { body } = ssrForm({
       schema: simpleSchema,
-      uiSchema,
+      formAttributes: { enctype: "multipart/form-data" },
     });
     expect(body).toContain('enctype="multipart/form-data"');
   });
 
   test("renders form with action and method attributes", () => {
-    const uiSchema: UiSchemaRoot = {
-      "ui:options": {
-        form: {
-          action: "/custom-endpoint",
-          method: "POST",
-        },
-      },
-    };
     const { body } = ssrForm({
       schema: simpleSchema,
-      uiSchema,
+      formAttributes: { action: "/custom-endpoint", method: "POST" },
     });
     expect(body).toContain('action="/custom-endpoint"');
     expect(body).toContain('method="POST"');
   });
 
-  test("renders form with multiple form options combined", () => {
-    const uiSchema: UiSchemaRoot = {
-      "ui:options": {
-        form: {
-          novalidate: true,
-          target: "_blank",
-          enctype: "multipart/form-data",
-        },
-      },
-    };
+  test("renders form with multiple form attributes combined", () => {
     const { body } = ssrForm({
       schema: simpleSchema,
-      uiSchema,
+      formAttributes: {
+        novalidate: true,
+        target: "_blank",
+        enctype: "multipart/form-data",
+      },
     });
     expect(body).toContain("novalidate");
     expect(body).toContain('target="_blank"');
     expect(body).toContain('enctype="multipart/form-data"');
   });
 
-  test("renders form without form options when uiSchema has none", () => {
+  test("renders form without form attributes when none are passed", () => {
     const { body } = ssrForm({
       schema: simpleSchema,
     });
@@ -122,17 +94,10 @@ describe("uiSchema form options SSR", () => {
     expect(body).not.toContain("target=");
   });
 
-  test("renders form with only some form options", () => {
-    const uiSchema: UiSchemaRoot = {
-      "ui:options": {
-        form: {
-          novalidate: true,
-        },
-      },
-    };
+  test("renders form with only some form attributes", () => {
     const { body } = ssrForm({
       schema: simpleSchema,
-      uiSchema,
+      formAttributes: { novalidate: true },
     });
     expect(body).toContain("novalidate");
     expect(body).not.toContain("target=");
