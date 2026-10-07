@@ -1,5 +1,11 @@
 # docs
 
+## 1.18.5
+
+### Patch Changes
+
+- Added SJSF agent skills for form setup, custom components, schema patterns, SvelteKit, v2 migration, and monorepo development ([#485](https://github.com/x0k/svelte-jsonschema-form/pull/485))
+
 ## 1.18.4
 
 ### Patch Changes
