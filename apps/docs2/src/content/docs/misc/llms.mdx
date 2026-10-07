@@ -1,8 +1,10 @@
 ---
-title: LLMs
+title: LLMs & Agent Skills
 sidebar:
   order: 200
 ---
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
 
 The `llms.txt` files were generated using [starlight-llms-txt](https://github.com/delucis/starlight-llms-txt).
 Their usefulness is somewhat limited because the code from some snippets is not inlined (contributions are welcome).
@@ -15,3 +17,82 @@ You can also use the following third-party services for working with LLMs:
 
 - [Context7](https://context7.com/x0k/svelte-jsonschema-form)
 - [DeepWiki](https://deepwiki.com/x0k/svelte-jsonschema-form)
+
+---
+
+## Agent Skills
+
+We provide official [Agent Skills](https://agentskills.io/) designed to teach AI coding assistants (such as Claude Code, VS Code Copilot, Gemini CLI, Antigravity, and Cursor) the conventions of `svelte-jsonschema-form` v3, Svelte 5 runes, themes, validators, and SvelteKit integration.
+
+### Available Skills
+
+| Skill | Description |
+| :--- | :--- |
+| `sjsf-form-setup` | Initialize `createForm`, setup `defaults.ts`, select themes/validators, handle controlled vs uncontrolled forms, and configure submissions. |
+| `sjsf-custom-components` | Create custom widgets, templates, and theme adapters using Svelte 5 runes (`$props`, `$bindable`), override theme components, and augment `UiOptions`. |
+| `sjsf-schema-patterns` | Design JSON Schema (Draft-07) and UI Schema, handle dynamic forms (`oneOf`/`anyOf` discriminators, `dependencies`, `if/then/else`), validation modes, and file uploads. |
+| `sjsf-sveltekit` | Integrate SJSF with SvelteKit (`@sjsf/sveltekit3`), server form actions (`createAction`), client `<SvelteKitForm>` (`createMeta`), progressive enhancement, and remote functions. |
+| `sjsf-v2-migration` | Migrate SJSF codebases from v2 to v3, adapt to Svelte 5 runes, replace removed properties (`form.context`, `form.value`, `form.errors`), and update renamed packages. |
+| `sjsf-monorepo-dev` | Monorepo development workflows: building packages, running vitest browser tests with Playwright, typechecking with Turbo, and managing changesets. |
+
+### Adding Skills to Your Agent
+
+The easiest way to install these skills into your project or global agent environment is via `npx skills`:
+
+```bash
+npx skills add https://github.com/x0k/svelte-jsonschema-form/
+```
+
+This command opens an interactive CLI that allows you to:
+1. Select which skills you want to install (or install all).
+2. Choose your target agent (Universal, Claude Code, Gemini CLI, Antigravity, VS Code Copilot, Cursor, etc.).
+3. Choose the installation scope:
+   - **Project**: Installs the skills in your current project folder for your team.
+   - **Global**: Installs the skills in your user configuration directory to use across all your projects.
+
+### Manual Installation
+
+If you prefer adding skills manually without running `npx skills`:
+
+<Tabs>
+  <TabItem label="VS Code / Copilot">
+    Copy the desired skill folders from `skills/` in the repository into your project's `.agents/skills/` directory:
+    ```
+    .agents/skills/
+    ├── sjsf-form-setup/
+    │   ├── SKILL.md
+    │   └── references/
+    └── ...
+    ```
+  </TabItem>
+  <TabItem label="Claude Code">
+    Copy the desired skill folders from `skills/` into your project's `.claude/skills/` directory:
+    ```
+    .claude/skills/
+    ├── sjsf-form-setup/
+    │   ├── SKILL.md
+    │   └── references/
+    └── ...
+    ```
+  </TabItem>
+  <TabItem label="Antigravity / Gemini CLI">
+    Copy the desired skill folders from `skills/` into your project's `.agents/skills/` or globally into `~/.gemini/config/skills/`:
+    ```
+    ~/.gemini/config/skills/
+    ├── sjsf-form-setup/
+    │   ├── SKILL.md
+    │   └── references/
+    └── ...
+    ```
+  </TabItem>
+  <TabItem label="Cursor">
+    Copy the desired skill folders from `skills/` into your project's `.cursor/skills/` or `.agents/skills/`:
+    ```
+    .cursor/skills/
+    ├── sjsf-form-setup/
+    │   ├── SKILL.md
+    │   └── references/
+    └── ...
+    ```
+  </TabItem>
+</Tabs>
