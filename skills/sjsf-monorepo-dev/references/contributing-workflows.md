@@ -20,6 +20,7 @@
 ## Detailed Commands
 
 ### 1. Build
+
 ```bash
 # Build all packages
 pnpm build
@@ -29,7 +30,9 @@ pnpm --filter @sjsf/form build
 ```
 
 ### 2. Run Tests
+
 SJSF uses Vitest with `@vitest/browser` and Playwright for real browser-based component testing:
+
 ```bash
 # Run all tests
 pnpm test
@@ -42,6 +45,7 @@ pnpm --filter @sjsf/shadcn4-theme test --ui
 ```
 
 ### 3. Linting and Formatting
+
 ```bash
 # Fast formatting with oxfmt
 pnpm format
@@ -53,6 +57,7 @@ pnpm lint:fix
 ```
 
 ### 4. Type Checking
+
 ```bash
 pnpm check
 # Or via svelte-check directly in a package

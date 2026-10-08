@@ -1,6 +1,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
+import { svelte } from "@sveltejs/vite-plugin-svelte";
 import type { Plugin } from "vite";
 import { defineConfig } from "vitest/config";
 
@@ -32,29 +33,42 @@ function resolveFile(file: string): string {
  */
 function rawExamples(): Plugin {
   const PREFIX = "\0raw:";
+  /**
+   * Keeps the virtual id from ending in the real extension. Without it the
+   * `svelte` plugin below claims `.../+page.svelte` as a component and tries
+   * to compile a JSON string as Svelte source.
+   */
+  const SUFFIX = ".txt";
   return {
     name: "meta:raw-examples",
     enforce: "pre",
     resolveId(id) {
       const [file, query] = id.split("?");
       return query === "raw" && file.startsWith(EXAMPLES)
-        ? PREFIX + resolveFile(file)
+        ? PREFIX + resolveFile(file) + SUFFIX
         : null;
     },
     load(id) {
       if (!id.startsWith(PREFIX)) {
         return null;
       }
-      const source = readFileSync(id.slice(PREFIX.length), "utf8");
+      const source = readFileSync(
+        id.slice(PREFIX.length, id.length - SUFFIX.length),
+        "utf8"
+      );
       return `export default ${JSON.stringify(source)}`;
     },
   };
 }
 
 export default defineConfig({
-  plugins: [rawExamples()],
+  // The playground sources under test are runes modules. The plugin compiles
+  // them so `$state` and friends resolve, as in every validator package.
+  plugins: [svelte(), rawExamples()],
   test: {
-    include: ["**/*.test.ts"],
+    // `*.test.svelte.ts` is how the plugin-enabled packages name runes test
+    // modules, so it needs matching coverage here.
+    include: ["**/*.test.ts", "**/*.test.svelte.ts"],
   },
   resolve: {
     alias: {

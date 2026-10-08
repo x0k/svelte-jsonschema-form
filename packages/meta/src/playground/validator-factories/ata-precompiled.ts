@@ -1,6 +1,6 @@
-import { DEFAULT_VALIDATOR_OPTIONS as DEFAULT_ATA_OPTIONS } from "@sjsf/ata-validator";
 import {
   createFormValidatorFactory as ataFactory,
+  DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS,
   type ValidateFunctions as AtaValidateFunctions,
 } from "@sjsf/ata-validator/precompile";
 import { type Schema } from "@sjsf/form";
@@ -13,10 +13,10 @@ import type { CompileValidator } from "../validator-factory.ts";
 
 export const draft07: CompileValidator = async (schemas: Schema[]) => {
   const schemasWithBase = schemas.map((s) => Object.assign(s, DRAFT_07));
-  const bundle = AtaValidator.bundleStandalone(schemasWithBase, {
-    ...DEFAULT_ATA_OPTIONS,
-    format: "esm",
-  })
+  const bundle = AtaValidator.bundleStandalone(
+    schemasWithBase,
+    DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS
+  )
     .replace(
       "const validators",
       `export const [${schemasWithBase.map((s) => s.$id).join(", ")}]`
