@@ -1,5 +1,15 @@
 # sveltekit3-starter
 
+## 0.0.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/ajv8-validator@3.9.1
+  - @sjsf/basic-theme@3.9.1
+  - @sjsf/form@3.9.1
+  - @sjsf/sveltekit3@3.9.1
+
 ## 0.0.2
 
 ### Patch Changes

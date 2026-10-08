@@ -1,5 +1,16 @@
 # basic-starter
 
+## 0.0.23
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/ajv8-validator@3.9.1
+  - @sjsf/basic-theme@3.9.1
+  - @sjsf/form@3.9.1
+  - @sjsf/valibot-validator@3.9.1
+  - @sjsf/zod4-validator@3.9.1
+
 ## 0.0.22
 
 ### Patch Changes
