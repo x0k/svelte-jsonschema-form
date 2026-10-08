@@ -1,6 +1,6 @@
 {
   "name": "@sjsf/sveltekit3",
-  "version": "3.9.0",
+  "version": "3.9.1",
   "description": "The SvelteKit 3 integration for svelte-jsonschema-form",
   "keywords": [
     "form",

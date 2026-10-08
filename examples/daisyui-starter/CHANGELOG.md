@@ -1,5 +1,15 @@
 # daisyui-starter
 
+## 0.0.24
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/ajv8-validator@3.9.1
+  - @sjsf/basic-theme@3.9.1
+  - @sjsf/form@3.9.1
+  - @sjsf/daisyui-theme@3.1.1
+
 ## 0.0.23
 
 ### Patch Changes

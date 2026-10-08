@@ -1,5 +1,9 @@
 # @sjsf/sveltekit3
 
+## 3.9.1
+
+No changes in this release.
+
 ## 3.9.0
 
 ### Minor Changes
