@@ -15,31 +15,36 @@ import {
   type ErrorsTransformerOptions,
 } from "../errors.js";
 import {
-  COLOR_FORMAT_REGEX,
-  DATA_URL_FORMAT_REGEX,
   DEFAULT_VALIDATOR_OPTIONS,
   type ValueCloner,
 } from "../validator.svelte.js";
 
 type FormatPredicate = NonNullable<BundleStandaloneOptions["formats"]>[string];
 
-function createFormatPredicate(regExp: RegExp) {
-  return new Function(
-    "value",
-    `return ${regExp}.test(value)`
-  ) as FormatPredicate;
-}
+// `bundleStandalone` embeds a format predicate through `Function#toString`,
+// so the function must not close over anything: the regular expressions are
+// written out here instead of referencing `COLOR_FORMAT_REGEX` and
+// `DATA_URL_FORMAT_REGEX`. They are kept equal by a test. Building the
+// predicates with `new Function` was the previous way to inline them, but it
+// ran at import time and throws where dynamic code is refused (a page under
+// a Content-Security-Policy without `unsafe-eval`), which is the page a
+// precompiled validator is for.
+const PRECOMPILED_FORMATS = {
+  color: (value: string) =>
+    /^(#?([0-9A-Fa-f]{3}){1,2}\b|aqua|black|blue|fuchsia|gray|green|lime|maroon|navy|olive|orange|purple|red|silver|teal|white|yellow|(rgb\(\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*\))|(rgb\(\s*(\d?\d%|100%)+\s*,\s*(\d?\d%|100%)+\s*,\s*(\d?\d%|100%)+\s*\)))$/.test(
+      value
+    ),
+  [DATA_URL_FORMAT]: (value: string) =>
+    /^data:([a-z]+\/[a-z0-9-+.]+)?;(?:name=(.*);)?base64,(.*)$/.test(value),
+} satisfies Record<
+  keyof (typeof DEFAULT_VALIDATOR_OPTIONS)["formats"],
+  FormatPredicate
+>;
 
 export const DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS = {
   ...DEFAULT_VALIDATOR_OPTIONS,
   format: "esm",
-  formats: {
-    color: createFormatPredicate(COLOR_FORMAT_REGEX),
-    [DATA_URL_FORMAT]: createFormatPredicate(DATA_URL_FORMAT_REGEX),
-  } satisfies Record<
-    keyof (typeof DEFAULT_VALIDATOR_OPTIONS)["formats"],
-    FormatPredicate
-  >,
+  formats: PRECOMPILED_FORMATS,
 } satisfies BundleStandaloneOptions;
 
 export type CompiledValidator = (data: unknown) =>
