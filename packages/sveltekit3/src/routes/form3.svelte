@@ -13,16 +13,12 @@
   {meta}
   idBuilder={createFormIdBuilder}
   idPrefix="form3"
-  onSubmitError={console.warn}
+  action="?/first"
+  novalidate
+  onInvalid={console.warn}
   onSuccess={console.log}
   onFailure={console.error}
   uiSchema={{
-    "ui:options": {
-      form: {
-        action: "?/first",
-        novalidate: true,
-      },
-    },
     nativeFile: {
       "ui:components": {
         unknownField: "unknownNativeFileField",

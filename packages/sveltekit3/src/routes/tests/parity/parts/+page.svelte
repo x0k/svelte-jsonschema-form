@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, validate } from "@sjsf/form";
 
   import { connect } from "#lib/rf/client/index.js";
 
@@ -10,12 +10,23 @@
 
   // JS on: `connect()` copies the visible form's parts into a hidden form
   // submitted through Kit's remote machinery.
-  const form = createForm(
-    await connect(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm novalidate enctype="multipart/form-data" {form} />
+<BasicForm
+  novalidate
+  enctype="multipart/form-data"
+  action={createPost.action}
+  method={createPost.method}
+  {form}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>

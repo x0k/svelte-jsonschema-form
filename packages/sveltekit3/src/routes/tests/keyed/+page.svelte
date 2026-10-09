@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, reset, validate } from "@sjsf/form";
 
   import { connect } from "#lib/rf/client/index.js";
 
@@ -16,16 +16,27 @@
 
   createKeyedPost.enhance(async ({ submit }) => {
     if (await submit()) {
-      form.reset();
+      reset(form);
     }
   });
 
-  const form = createForm(
-    await connect(createKeyedPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect(createKeyedPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm novalidate enctype="multipart/form-data" {form} />
+<BasicForm
+  novalidate
+  enctype="multipart/form-data"
+  action={createKeyedPost.action}
+  method={createKeyedPost.method}
+  {form}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>

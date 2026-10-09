@@ -1,11 +1,10 @@
 <script lang="ts">
-  import { resolveIdPrefixName } from "./id.js";
   import { FORM_ID_BUILDER, FORM_ID_PREFIX } from "./internals.js";
   import type { FormState } from "./state/index.js";
 
   const {
     form,
-    name = resolveIdPrefixName(form[FORM_ID_BUILDER]),
+    name = form[FORM_ID_BUILDER].idPrefixName(),
   }: { form: FormState<any>; name?: string } = $props();
 </script>
 

@@ -57,13 +57,6 @@ export const schema: Schema = {
 };
 
 export const uiSchema: UiSchemaRoot = {
-  "ui:options": {
-    form: {
-      enctype: "multipart/form-data",
-      method: "POST",
-      action: "?/first",
-    },
-  },
   newsletter: { "ui:components": { booleanField: "booleanSelectField" } },
   color: { "ui:components": { stringField: "enumField" } },
   // `tags` keeps the default `arrayField`: `arrayTagsField` is an extra

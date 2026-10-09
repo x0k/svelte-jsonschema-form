@@ -1,5 +1,3 @@
-import { SvelteMap } from "svelte/reactivity";
-
 import type { Task } from "#lib/task.svelte.js";
 
 import type { Config } from "./config.js";
