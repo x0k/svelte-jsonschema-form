@@ -117,8 +117,8 @@ catalogs:
       specifier: ^5.3.0
       version: 5.3.0
     '@hyperjump/json-schema':
-      specifier: ^1.17.8
-      version: 1.17.8
+      specifier: ^1.18.0
+      version: 1.18.0
     '@internationalized/date':
       specifier: 3.12.4
       version: 3.12.4
@@ -236,9 +236,6 @@ catalogs:
     daisyui:
       specifier: ^5.7.37
       version: 5.7.37
-    devalue:
-      specifier: ^5.9.2
-      version: 5.9.4
     effect:
       specifier: ^3.22.2
       version: 3.22.2
@@ -695,9 +692,6 @@ importers:
       '@sjsf-lab/beercss-theme':
         specifier: workspace:*
         version: link:../../lab/beercss-theme
-      '@sjsf-lab/hyperjump-validator':
-        specifier: workspace:*
-        version: link:../../lab/hyperjump-validator
       '@sjsf-lab/shadcn-extras-theme':
         specifier: workspace:*
         version: link:../../lab/shadcn-extras-theme
@@ -734,6 +728,9 @@ importers:
       '@sjsf/form':
         specifier: workspace:*
         version: link:../../packages/form
+      '@sjsf/hyperjump-validator':
+        specifier: workspace:*
+        version: link:../../packages/hyperjump-validator
       '@sjsf/lucide-icons':
         specifier: workspace:*
         version: link:../../packages/lucide-icons
@@ -875,7 +872,7 @@ importers:
         version: 9.0.1(@types/node@26.5.1)(astro@7.3.2(@emnapi/core@1.11.2)(@emnapi/runtime@1.11.3)(@types/node@26.5.1)(jiti@2.7.0)(yaml@2.9.0))(esbuild@0.28.2)(jiti@2.7.0)(svelte@5.57.1(@typescript-eslint/types@8.70.0))(typescript@6.0.3)(yaml@2.9.0)
       '@hyperjump/json-schema':
         specifier: 'catalog:'
-        version: 1.17.8(@hyperjump/browser@1.3.1)
+        version: 1.18.0(@hyperjump/browser@1.3.1)
       '@internationalized/date':
         specifier: 'catalog:'
         version: 3.12.4
@@ -918,9 +915,6 @@ importers:
       css-tree:
         specifier: ^3.2.1
         version: 3.2.1
-      devalue:
-        specifier: 'catalog:'
-        version: 5.9.4
       esm-env:
         specifier: 'catalog:'
         version: 1.2.2
@@ -1779,25 +1773,6 @@ importers:
         specifier: workspace:*
         version: link:../../packages/theme-testing
 
-  lab/hyperjump-validator:
-    dependencies:
-      '@hyperjump/json-schema-errors':
-        specifier: github:hyperjump-io/json-schema-errors#62fae98af952384170ef6842cb06c8780ca38157
-        version: https://codeload.github.com/hyperjump-io/json-schema-errors/tar.gz/62fae98af952384170ef6842cb06c8780ca38157(@hyperjump/browser@1.3.1)
-    devDependencies:
-      '@hyperjump/json-schema':
-        specifier: 'catalog:'
-        version: 1.17.8(@hyperjump/browser@1.3.1)
-      '@sjsf/form':
-        specifier: workspace:*
-        version: link:../../packages/form
-      svelte:
-        specifier: 'catalog:'
-        version: 5.57.1(@typescript-eslint/types@8.70.0)
-      validator-testing:
-        specifier: workspace:*
-        version: link:../../packages/validator-testing
-
   lab/shadcn-extras-theme:
     devDependencies:
       '@fontsource-variable/inter':
@@ -2417,6 +2392,25 @@ importers:
         specifier: 'catalog:'
         version: 5.57.1(@typescript-eslint/types@8.70.0)
 
+  packages/hyperjump-validator:
+    dependencies:
+      '@hyperjump/json-schema-errors':
+        specifier: ^1.0.0
+        version: 1.0.0(@hyperjump/browser@1.3.1)
+    devDependencies:
+      '@hyperjump/json-schema':
+        specifier: 'catalog:'
+        version: 1.18.0(@hyperjump/browser@1.3.1)
+      '@sjsf/form':
+        specifier: workspace:*
+        version: link:../form
+      svelte:
+        specifier: 'catalog:'
+        version: 5.57.1(@typescript-eslint/types@8.70.0)
+      validator-testing:
+        specifier: workspace:*
+        version: link:../validator-testing
+
   packages/lucide-icons:
     devDependencies:
       '@lucide/svelte':
@@ -2443,9 +2437,6 @@ importers:
       '@sjsf-lab/beercss-theme':
         specifier: workspace:*
         version: link:../../lab/beercss-theme
-      '@sjsf-lab/hyperjump-validator':
-        specifier: workspace:*
-        version: link:../../lab/hyperjump-validator
       '@sjsf-lab/shadcn-extras-theme':
         specifier: workspace:*
         version: link:../../lab/shadcn-extras-theme
@@ -2482,6 +2473,9 @@ importers:
       '@sjsf/form':
         specifier: workspace:*
         version: link:../form
+      '@sjsf/hyperjump-validator':
+        specifier: workspace:*
+        version: link:../hyperjump-validator
       '@sjsf/lucide-icons':
         specifier: workspace:*
         version: link:../lucide-icons
@@ -2536,7 +2530,7 @@ importers:
         version: 1.3.0
       '@hyperjump/json-schema':
         specifier: 'catalog:'
-        version: 1.17.8(@hyperjump/browser@1.3.1)
+        version: 1.18.0(@hyperjump/browser@1.3.1)
       '@picocss/pico':
         specifier: 'catalog:'
         version: 2.1.1
@@ -3638,15 +3632,14 @@ packages:
   '@hyperjump/json-pointer@1.1.2':
     resolution: {integrity: sha512-zPNgu1zdhtjQHFNLGzvEsLDsLOEvhRj6u6ktIQmlz7YPESv5uF8SnAe3Dq0oL6gZ6OGWSLq2n7pphRNF6Hpg6w==}
 
-  '@hyperjump/json-schema-errors@https://codeload.github.com/hyperjump-io/json-schema-errors/tar.gz/62fae98af952384170ef6842cb06c8780ca38157':
-    resolution: {gitHosted: true, integrity: sha512-wRor/Tzqxaa1Kx7RtlMQF1ljKR1WuMvCGqnuaziMEspv5BwdWWTinD/1qgnaFqry2q3z/dHXr9Y85Z3daVh3SQ==, tarball: https://codeload.github.com/hyperjump-io/json-schema-errors/tar.gz/62fae98af952384170ef6842cb06c8780ca38157}
-    version: 1.0.0-alpha.1
+  '@hyperjump/json-schema-errors@1.0.0':
+    resolution: {integrity: sha512-bAG+IGp6IOtTOkYKnmfp9GdG9Dtzyrrd2qHk1MP5XtVICxkrn2uC7YF3Db3dKX258ITQlec0u0RR857bvTkExA==}
 
   '@hyperjump/json-schema-formats@1.0.1':
     resolution: {integrity: sha512-qvcIxysnMfcPxyPSFFzzo28o2BN1CNT5b0tQXNUP0kaFpvptQNDg8SCLvlnMg2sYxuiuqna8+azGBaBthiskAw==}
 
-  '@hyperjump/json-schema@1.17.8':
-    resolution: {integrity: sha512-XOqbR9GRNHaH4JEXHdbsm7xfYwudZG7HVDq3qPZUb1gi+ZQPklgNvhMi6zf0Plf433qR61MK+xeeprUwUUvGPg==}
+  '@hyperjump/json-schema@1.18.0':
+    resolution: {integrity: sha512-YPLJsCosW6pHhulKrFogUsl1WxQVRy+fY0pROt66FDFygjIWZkMxXyiy8HLRR1JKeAd5OE6NSZs0NVjSBNwb2Q==}
     peerDependencies:
       '@hyperjump/browser': ^1.1.0
 
@@ -10091,11 +10084,11 @@ snapshots:
 
   '@hyperjump/json-pointer@1.1.2': {}
 
-  '@hyperjump/json-schema-errors@https://codeload.github.com/hyperjump-io/json-schema-errors/tar.gz/62fae98af952384170ef6842cb06c8780ca38157(@hyperjump/browser@1.3.1)':
+  '@hyperjump/json-schema-errors@1.0.0(@hyperjump/browser@1.3.1)':
     dependencies:
       '@fluent/bundle': 0.19.1
       '@hyperjump/json-pointer': 1.1.2
-      '@hyperjump/json-schema': 1.17.8(@hyperjump/browser@1.3.1)
+      '@hyperjump/json-schema': 1.18.0(@hyperjump/browser@1.3.1)
       '@hyperjump/pact': 1.4.0
       '@hyperjump/uri': 1.3.4
       json-stringify-deterministic: 1.0.13
@@ -10107,7 +10100,7 @@ snapshots:
       '@hyperjump/uri': 1.3.4
       idn-hostname: 15.1.8
 
-  '@hyperjump/json-schema@1.17.8(@hyperjump/browser@1.3.1)':
+  '@hyperjump/json-schema@1.18.0(@hyperjump/browser@1.3.1)':
     dependencies:
       '@hyperjump/browser': 1.3.1
       '@hyperjump/json-pointer': 1.1.2
@@ -10115,7 +10108,6 @@ snapshots:
       '@hyperjump/pact': 1.4.0
       '@hyperjump/uri': 1.3.4
       content-type: 1.0.5
-      json-stringify-deterministic: 1.0.13
       just-curry-it: 5.3.0
       uuid: 14.0.2
 

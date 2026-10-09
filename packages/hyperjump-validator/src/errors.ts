@@ -1,9 +1,9 @@
-import type * as H from "@hyperjump/json-schema-errors";
+import type { JSEOutput } from "@hyperjump/json-schema-errors";
 import type { FormValue, ValidationResult } from "@sjsf/form";
 import { pathFromLocation } from "@sjsf/form/core";
 
 export function transformFormErrors<T>(
-  out: H.ValidationResult,
+  out: JSEOutput,
   data: FormValue
 ): ValidationResult<T> {
   return out.valid
@@ -19,6 +19,6 @@ export function transformFormErrors<T>(
       };
 }
 
-export function transformFieldErrors(out: H.ValidationResult) {
+export function transformFieldErrors(out: JSEOutput) {
   return out.valid ? [] : out.errors.map((e) => e.message);
 }

@@ -21,11 +21,6 @@ export const EXTRA_PACKAGES = {
     "version": "0.28.2",
     "dev": true
   },
-  "devalue": {
-    "name": "devalue",
-    "version": "5.9.2",
-    "dev": true
-  },
   "pico": {
     "name": "@picocss/pico",
     "version": "2.1.1",
