@@ -26,23 +26,12 @@ export interface FormIdBuilder {
    *
    * Allows integrations where input names must follow a specific format
    * (like SvelteKit remote forms) to customize it.
-   *
-   * TODO: make required in v4
    */
-  idPrefixName?: () => string;
+  idPrefixName: () => string;
 }
 
 export const SJSF_ID_PREFIX = "__sjsf_id_prefix";
 export const DEFAULT_ID_PREFIX = "root";
-
-/**
- * Resolves the name of the hidden input that carries the form id prefix.
- *
- * Builders that don't customize it fall back to {@link SJSF_ID_PREFIX}.
- */
-export function resolveIdPrefixName(builder: FormIdBuilder): string {
-  return builder.idPrefixName?.() ?? SJSF_ID_PREFIX;
-}
 
 const PSEUDO_PREFIX = "__sjsf_pseudo_element";
 const PSEUDO_PREFIX_LEN = PSEUDO_PREFIX.length;

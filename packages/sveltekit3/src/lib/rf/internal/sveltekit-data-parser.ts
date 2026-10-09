@@ -49,7 +49,9 @@ export function createSvelteKitDataParser({
   createEntryConverter = createFormDataEntryConverter,
   convertUnknownEntry,
   pseudoPrefix = DEFAULT_PSEUDO_PREFIX,
-  enumItemDecoder,
+  enumItemDecoder = createEnumItemDecoder(
+    createOptionIndexDecoder(encode(pseudoPrefix))
+  ),
 }: SvelteKitDataParserOptions) {
   const validator: Validator = create(createValidator, {
     schema: schema,
@@ -63,10 +65,6 @@ export function createSvelteKitDataParser({
     validator,
     uiOptionsRegistry,
   });
-  enumItemDecoder ??= createEnumItemDecoder(
-    createOptionIndexDecoder(encode(pseudoPrefix)),
-    merger
-  );
   const convertEntry = create(createEntryConverter, {
     validator,
     merger,

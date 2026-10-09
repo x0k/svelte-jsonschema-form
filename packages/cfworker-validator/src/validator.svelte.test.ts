@@ -19,36 +19,26 @@ formValueValidatorTests(createFormValidator, {
 describe("setupFormFormats", () => {
   it("installs color and data-url formats", () => {
     setupFormFormats(format);
-    const validator = createFormValidator();
+    const validator = createFormValidator({ schema: {} });
 
     // color format
+    expect(validator.isValid({ type: "string", format: "color" }, "#fff")).toBe(
+      true
+    );
     expect(
-      validator.isValid(
-        { type: "string", format: "color" },
-        { type: "string" },
-        "#fff"
-      )
-    ).toBe(true);
-    expect(
-      validator.isValid(
-        { type: "string", format: "color" },
-        { type: "string" },
-        "not-a-color"
-      )
+      validator.isValid({ type: "string", format: "color" }, "not-a-color")
     ).toBe(false);
 
     // data-url format
     expect(
       validator.isValid(
         { type: "string", format: "data-url" },
-        { type: "string" },
         "data:text/plain;base64,eA=="
       )
     ).toBe(true);
     expect(
       validator.isValid(
         { type: "string", format: "data-url" },
-        { type: "string" },
         "not-a-data-url"
       )
     ).toBe(false);

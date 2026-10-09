@@ -87,7 +87,7 @@ ${bodyBlock}
     };
   } else if (sveltekit === "remoteFunctions") {
     return {
-      formPackageImports: ["BasicForm", "createForm"],
+      formPackageImports: ["BasicForm", "createForm", "reset"],
       additionalImports: [
         ...validator.imports,
         ...additionalImports,
@@ -106,7 +106,7 @@ ${bodyBlock}
 createPost.enhance(async ({ submit }) => {
   if (await submit()) {
     console.log(createPost.result);
-    form.reset();
+    reset(form);
   }
 });
 

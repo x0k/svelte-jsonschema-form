@@ -10,6 +10,7 @@
 
   const { form }: { form: FormState<any> } = $props();
 
+  // svelte-ignore state_referenced_locally
   setFormContext(form);
 </script>
 

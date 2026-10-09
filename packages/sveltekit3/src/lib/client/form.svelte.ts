@@ -5,7 +5,6 @@ import {
   updateErrors,
   DEFAULT_ID_PREFIX,
   setValue,
-  getValueSnapshot,
 } from "@sjsf/form";
 import { isRecord } from "@sjsf/form/lib/object";
 
@@ -100,11 +99,7 @@ export function createSvelteKitForm<
 
 export type SvelteKitFormSetupOptions<
   Meta extends SvelteKitFormMeta<any, any, string, any>,
-> = SvelteKitFormOptions<
-  Meta["__formValue"],
-  Meta["__sendSchema"],
-  "onSubmit"
-> &
+> = SvelteKitFormOptions<Meta["__formValue"], Meta["__sendSchema"]> &
   SveltekitRequestOptions<Meta["__actionData"], Meta["__formValue"]>;
 
 export function setupSvelteKitForm<
@@ -119,25 +114,6 @@ export function setupSvelteKitForm<
   > = formOptions
 ) {
   const request = createSvelteKitRequest(meta, requestOptions);
-  function onSubmit(_: Meta["__formValue"], e: SubmitEvent) {
-    request.run(getValueSnapshot(form), e);
-  }
-  const form = createSvelteKitForm(
-    meta,
-    new Proxy(formOptions, {
-      has(target, p) {
-        if (p === "onSubmit") {
-          return true;
-        }
-        return Reflect.has(target, p);
-      },
-      get(target, p, receiver) {
-        if (p === "onSubmit") {
-          return onSubmit;
-        }
-        return Reflect.get(target, p, receiver);
-      },
-    }) as FormOptions & SchemaOption<Meta["__sendSchema"]>
-  );
+  const form = createSvelteKitForm(meta, formOptions);
   return { request, form };
 }

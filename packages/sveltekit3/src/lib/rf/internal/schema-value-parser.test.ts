@@ -24,7 +24,7 @@ const opts = ({
   input,
   schema = {},
   uiSchema = {},
-  validator = createFormValidator({ schema, uiSchema }),
+  validator = createFormValidator({ schema }),
   merger = createMerger(),
   codec = { encode, decode },
   convertEntry = createFormDataEntryConverter({
@@ -33,8 +33,7 @@ const opts = ({
     rootSchema: schema,
     rootUiSchema: uiSchema,
     enumItemDecoder: createEnumItemDecoder(
-      createOptionIndexDecoder(codec.encode(pseudoPrefix)),
-      merger
+      createOptionIndexDecoder(codec.encode(pseudoPrefix))
     ),
   }),
 }: Partial<
