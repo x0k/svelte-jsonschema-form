@@ -283,17 +283,21 @@ function hyperjumpImportsAndBody(lib: PathFactory, modelName: string) {
       from: lib(`${modelName}/model.generated`),
     },
     {
-      imports: ["ast"],
-      from: lib(`${modelName}/ast.generated`),
+      imports: ["fromValidators"],
+      from: internalValidatorSubPath("precompile"),
     },
     {
-      imports: ["createFormValidatorFactory", "fromAst"],
+      imports: ["createFormValidatorFactory"],
       from: precompiledValidatorSubPath("hyperjump"),
+    },
+    {
+      imports: ["validators"],
+      from: lib(`${modelName}/validators.generated`),
     },
   ];
   return {
     imports,
-    body: `validatorRetriever: fromAst(ast)`,
+    body: `validatorRetriever: fromValidators(validators)`,
   };
 }
 

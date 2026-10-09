@@ -24,14 +24,15 @@ All themes are designed for Svelte 5 and export a `theme` object.
 
 SJSF requires a `FormValidator<T>` instance created via `createFormValidator`.
 
-| Validator Package            | Underlying Engine     | Highlights                                                               | Precompiled Support                           | Installation Command                                      |
-| :--------------------------- | :-------------------- | :----------------------------------------------------------------------- | :-------------------------------------------- | :-------------------------------------------------------- |
-| `@sjsf/ajv8-validator`       | Ajv v8                | Industry standard Draft-07 validator, fastest runtime, extensive formats | Yes (`@sjsf/ajv8-validator/precompile`)       | `pnpm add @sjsf/ajv8-validator ajv ajv-formats`           |
-| `@sjsf/zod4-validator`       | Zod v4                | Seamless integration when schemas are authored with Zod                  | N/A (use `/classic` or `/mini` adapters)      | `pnpm add @sjsf/zod4-validator zod`                       |
-| `@sjsf/valibot-validator`    | Valibot               | Ultra-lightweight schema validation                                      | N/A                                           | `pnpm add @sjsf/valibot-validator valibot`                |
-| `@sjsf/cfworker-validator`   | @cfworker/json-schema | Works in Cloudflare Workers and strict sandboxes                         | N/A                                           | `pnpm add @sjsf/cfworker-validator @cfworker/json-schema` |
-| `@sjsf/schemasafe-validator` | @exodus/schemasafe    | ReDoS-safe validator without `eval`                                      | Yes (`@sjsf/schemasafe-validator/precompile`) | `pnpm add @sjsf/schemasafe-validator @exodus/schemasafe`  |
-| `@sjsf/ata-validator`        | ata-validator         | Pure TypeScript validator with code generation                           | Yes (`@sjsf/ata-validator/precompile`)        | `pnpm add @sjsf/ata-validator`                            |
+| Validator Package            | Underlying Engine      | Highlights                                                               | Precompiled Support                               | Installation Command                                        |
+| :--------------------------- | :--------------------- | :----------------------------------------------------------------------- | :------------------------------------------------ | :---------------------------------------------------------- |
+| `@sjsf/ajv8-validator`       | Ajv v8                 | Industry standard Draft-07 validator, fastest runtime, extensive formats | Yes (`@sjsf/ajv8-validator/precompile`)           | `pnpm add @sjsf/ajv8-validator ajv ajv-formats`             |
+| `@sjsf/zod4-validator`       | Zod v4                 | Seamless integration when schemas are authored with Zod                  | N/A (use `/classic` or `/mini` adapters)          | `pnpm add @sjsf/zod4-validator zod`                         |
+| `@sjsf/valibot-validator`    | Valibot                | Ultra-lightweight schema validation                                      | N/A                                               | `pnpm add @sjsf/valibot-validator valibot`                  |
+| `@sjsf/cfworker-validator`   | @cfworker/json-schema  | Works in Cloudflare Workers and strict sandboxes                         | N/A                                               | `pnpm add @sjsf/cfworker-validator @cfworker/json-schema`   |
+| `@sjsf/schemasafe-validator` | @exodus/schemasafe     | ReDoS-safe validator without `eval`                                      | Yes (`@sjsf/schemasafe-validator/precompile`)     | `pnpm add @sjsf/schemasafe-validator @exodus/schemasafe`    |
+| `@sjsf/ata-validator`        | ata-validator          | Pure TypeScript validator with code generation                           | Yes (`@sjsf/ata-validator/precompile`)            | `pnpm add @sjsf/ata-validator`                              |
+| `@sjsf/hyperjump-validator`  | @hyperjump/json-schema | Broad draft coverage, localized messages, no `unsafe-eval`               | Required (`@sjsf/hyperjump-validator/precompile`) | `pnpm add @sjsf/hyperjump-validator @hyperjump/json-schema` |
 
 ---
 

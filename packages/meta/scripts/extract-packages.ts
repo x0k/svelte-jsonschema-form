@@ -16,7 +16,6 @@ const EXTRA_PACKAGES_META: Record<string, ExtraPackageMeta> = {
   ajvI18n: { name: "ajv-i18n", dev: false },
   jsonSchemaToTs: { name: "json-schema-to-ts", dev: true },
   esbuild: { name: "esbuild", dev: true },
-  devalue: { name: "devalue", dev: true },
   pico: { name: "@picocss/pico", dev: true },
   vite: { name: "vite", dev: true },
   typescript: { name: "typescript", dev: true },

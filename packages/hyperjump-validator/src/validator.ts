@@ -1,6 +1,6 @@
-import { evaluateCompiledSchema } from "@hyperjump/json-schema-errors";
 import type {
   FieldValueValidator,
+  FormValue,
   FormValueValidator,
   Validator,
 } from "@sjsf/form";
@@ -8,7 +8,7 @@ import type {
 import { transformFormErrors, transformFieldErrors } from "./errors.js";
 import {
   createContext,
-  createRetriever,
+  evaluate,
   validate,
   type CoreValidatorOptions,
   type ValidatorOptions,
@@ -34,12 +34,8 @@ export function createFormValueValidator<T>(
 ): FormValueValidator<T> {
   return {
     validateFormValue(rootSchema, formValue) {
-      const { compiledSchema, value } = createContext(
-        options,
-        rootSchema,
-        formValue
-      );
-      const out = evaluateCompiledSchema(compiledSchema, value, options);
+      const ctx = createContext(options, rootSchema, formValue);
+      const out = evaluate(ctx, options);
       return transformFormErrors(out, formValue);
     },
   };
@@ -52,12 +48,8 @@ export function createFieldValueValidator(
 ): FieldValueValidator {
   return {
     validateFieldValue(field, fieldValue) {
-      const { compiledSchema, value } = createContext(
-        options,
-        field.schema,
-        fieldValue
-      );
-      const out = evaluateCompiledSchema(compiledSchema, value, options);
+      const ctx = createContext(options, field.schema, fieldValue);
+      const out = evaluate(ctx, options);
       return transformFieldErrors(out);
     },
   };
@@ -74,11 +66,9 @@ export function createFormValidatorFactory<T>(
     const full: FormValidatorOptions = {
       ...options,
       ...vOptions,
-      validatorRetriever:
-        vOptions.validatorRetriever ?? createRetriever(vOptions),
       valueToJSON:
         vOptions.valueToJSON ??
-        ((v) =>
+        ((v: FormValue) =>
           v === undefined || v === null
             ? null
             : typeof v === "object"

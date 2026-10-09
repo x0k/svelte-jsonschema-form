@@ -1,15 +1,14 @@
 import {
   registerSchema,
+  restoreValidator,
   unregisterSchema,
+  validate,
   type SchemaObject,
+  type Validator,
 } from "@hyperjump/json-schema/draft-07";
 import {
-  getSchema,
-  Validation,
-  type AST,
-} from "@hyperjump/json-schema/experimental";
-import {
   fragmentSchema,
+  fromValidators,
   type IdFactory,
 } from "@sjsf/form/validators/precompile";
 import {
@@ -18,7 +17,6 @@ import {
   validatorTests,
 } from "validator-testing";
 
-import { fromAst } from "./model.js";
 import { createFormValidatorFactory } from "./validator.js";
 
 const toId = (n: number) => `https://example.com/v${n}`;
@@ -39,14 +37,13 @@ const createFormValidator = createPrecompiledValidatorFactory(
       );
     }
     try {
-      // https://github.com/hyperjump-io/json-schema/issues/116
-      const ast = { metaData: {}, plugins: new Set() } as unknown as AST;
+      const validators: Record<string, Validator> = {};
       for (const schema of schemas) {
-        const s = await getSchema(schema.$id!);
-        await Validation.compile(s, ast, s);
+        const validator = await validate(schema.$id!);
+        validators[schema.$id!] = restoreValidator(validator.serialize());
       }
       const factory = createFormValidatorFactory({
-        validatorRetriever: fromAst(ast),
+        validatorRetriever: fromValidators(validators),
       });
       return factory(options);
     } finally {
