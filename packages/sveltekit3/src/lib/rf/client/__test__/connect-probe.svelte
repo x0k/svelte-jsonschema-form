@@ -1,7 +1,5 @@
 <script lang="ts">
-  import type { FormOptions } from "@sjsf/form";
-
-  import { connect } from "#lib/rf/client/index.js";
+  import { connect, type ConnectedForm } from "#lib/rf/client/index.js";
 
   const {
     remoteForm,
@@ -10,7 +8,7 @@
   }: {
     remoteForm: any;
     options: any;
-    connected: (value: Partial<FormOptions<any>>) => void;
+    connected: (value: Partial<ConnectedForm<any>>) => void;
   } = $props();
 
   // The props are set once by the test and never change

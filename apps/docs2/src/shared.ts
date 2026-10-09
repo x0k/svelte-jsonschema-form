@@ -45,7 +45,7 @@ function getPackageByCodeName(n: string) {
   switch (true) {
     case n === "form":
       return formPackage;
-    case n === "sveltekit":
+    case n === "sveltekit3":
       return sveltekitPackage;
     case isTheme(n):
       return themePackage(n);

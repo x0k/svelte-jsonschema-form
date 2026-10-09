@@ -1,6 +1,7 @@
 import {
   DEFAULT_ID_PREFIX,
   decodePseudoElement,
+  SJSF_ID_PREFIX,
   type FieldPath,
   type FormIdBuilder,
 } from "@sjsf/form";
@@ -45,6 +46,7 @@ export function createFormIdBuilder({
       }
       return `${codec.encode(idPrefix)}${str}`;
     },
+    idPrefixName: () => SJSF_ID_PREFIX,
   };
 }
 

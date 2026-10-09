@@ -21,7 +21,7 @@ function builder({
   isPrivate?: (path: FieldPath) => boolean;
   fieldSuffix?: string;
 }) {
-  const validator = createFormValidator();
+  const validator = createFormValidator({ schema });
   const merger = createFormMerger({ validator, schema });
   return createFormIdBuilder({
     schema,

@@ -1,5 +1,9 @@
 <script lang="ts">
-  import { BasicForm, type ValidatorFactoryOptions } from "@sjsf/form";
+  import {
+    BasicForm,
+    validate,
+    type ValidatorFactoryOptions,
+  } from "@sjsf/form";
 
   import {
     createMeta,
@@ -13,7 +17,7 @@
   import { ERROR_TYPE_OBJECTS } from "./model.js";
 
   const meta = createMeta<ActionData, PageData>().form2;
-  const { form } = setupSvelteKitForm(meta, {
+  const { form, request } = setupSvelteKitForm(meta, {
     ...defaults,
     idBuilder: createFormIdBuilder,
     idPrefix: "form2",
@@ -28,7 +32,7 @@
         },
       },
     },
-    onSubmitError: console.warn,
+    onInvalid: console.warn,
     validator: <T>(options: ValidatorFactoryOptions) =>
       Object.assign(
         defaults.validator<T>(options),
@@ -41,4 +45,16 @@
   });
 </script>
 
-<BasicForm {form} method="POST" action="?/second" />
+<BasicForm
+  {form}
+  method="POST"
+  action="?/second"
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => {
+        void request.run(value, e);
+      },
+    });
+  }}
+/>

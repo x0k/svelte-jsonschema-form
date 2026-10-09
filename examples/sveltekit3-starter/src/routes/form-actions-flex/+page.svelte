@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { BasicForm } from "@sjsf/form";
+  import { BasicForm, validate } from "@sjsf/form";
   import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit3/client";
 
   import * as defaults from "#lib/sjsf/defaults.js";
@@ -7,7 +7,7 @@
   import type { ActionData, PageData } from "./$types.js";
 
   const meta = createMeta<ActionData, PageData>().form;
-  const { form } = setupSvelteKitForm(meta, {
+  const { form, request } = setupSvelteKitForm(meta, {
     ...defaults,
     onSuccess: (result) => {
       if (result.type === "success") {
@@ -17,4 +17,15 @@
   });
 </script>
 
-<BasicForm {form} method="POST" />
+<BasicForm
+  {form}
+  method="POST"
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => {
+        void request.run(value, e);
+      },
+    });
+  }}
+/>

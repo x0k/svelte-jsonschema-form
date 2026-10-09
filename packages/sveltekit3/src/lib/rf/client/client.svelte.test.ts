@@ -1,8 +1,8 @@
-import type { FormOptions } from "@sjsf/form";
 import { DEFAULT_ID_PREFIX, SJSF_ID_PREFIX } from "@sjsf/form";
 import { afterEach, describe, expect, test } from "vitest";
 import { render } from "vitest-browser-svelte";
 
+import type { ConnectedForm } from "#lib/rf/client/index.js";
 import { createFormIdBuilder } from "#lib/rf/index.js";
 import { encode } from "#lib/rf/internal/codec.js";
 
@@ -38,12 +38,14 @@ async function renderConnected(
   actionId: string = FORM_ID,
   options: Record<string, unknown> = {}
 ) {
-  let connected: Partial<FormOptions<any>> | undefined;
+  let connected: Partial<ConnectedForm<any>> | undefined;
   const remoteForm = createFakeRemoteForm(actionId);
   const screen = await render(ConnectProbe, {
     remoteForm,
-    options: { ...defaults, ...options },
-    connected: (value: Partial<FormOptions<any>>) => {
+    // `connect()` compiles the validator eagerly, so it needs a schema even
+    // though the submission path under test never validates against it.
+    options: { schema: {}, ...defaults, ...options },
+    connected: (value: Partial<ConnectedForm<any>>) => {
       connected = value;
     },
   });
@@ -59,7 +61,7 @@ async function renderConnected(
  * captured while Kit's submit event is still being dispatched.
  */
 async function submitWith(
-  connected: Partial<FormOptions<any>>,
+  connected: Partial<ConnectedForm<any>>,
   screen: Awaited<ReturnType<typeof render>>,
   value: unknown
 ) {
@@ -78,7 +80,7 @@ async function submitWith(
   };
   document.addEventListener("submit", capture, true);
   try {
-    await connected.onSubmit!(value, event as unknown as SubmitEvent);
+    await connected.submit!(value, event as unknown as SubmitEvent);
   } finally {
     document.removeEventListener("submit", capture, true);
   }

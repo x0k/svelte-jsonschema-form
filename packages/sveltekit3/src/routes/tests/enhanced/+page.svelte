@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, reset, validate } from "@sjsf/form";
 
   import { connect } from "#lib/rf/client/index.js";
 
@@ -11,16 +11,27 @@
   // https://github.com/sveltejs/kit/pull/15657#issue-4208847537
   createPost.enhance(async ({ submit }) => {
     if (await submit()) {
-      form.reset();
+      reset(form);
     }
   });
 
-  const form = createForm(
-    await connect(createPost, {
-      ...defaults,
-      ...initialData,
-    })
-  );
+  const connected = await connect(createPost, {
+    ...defaults,
+    ...initialData,
+  });
+  const form = createForm(connected);
 </script>
 
-<BasicForm {form} novalidate enctype="multipart/form-data" />
+<BasicForm
+  {form}
+  novalidate
+  enctype="multipart/form-data"
+  action={createPost.action}
+  method={createPost.method}
+  onsubmit={(e) => {
+    e.preventDefault();
+    void validate(form, {
+      onValid: (value) => connected.submit(value, e),
+    });
+  }}
+/>
