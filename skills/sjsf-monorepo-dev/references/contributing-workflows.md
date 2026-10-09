@@ -5,10 +5,10 @@
 - `packages/`:
   - `form`: Core SJSF engine, basic resolver, translations, modern id-builder, modern merger.
   - `basic-theme`, `shadcn4-theme`, `daisyui5-theme`, `flowbite3-theme`, `skeleton5-theme`: Official theme implementations.
-  - `ajv8-validator`, `zod4-validator`, `valibot-validator`, `cfworker-validator`, `schemasafe-validator`, `ata-validator`: Official validator adapters.
+  - `ajv8-validator`, `zod4-validator`, `valibot-validator`, `cfworker-validator`, `schemasafe-validator`, `ata-validator`, `hyperjump-validator`: Official validator adapters.
   - `sveltekit3`: SvelteKit form actions and progressive enhancement integration.
   - `theme-testing`, `validator-testing`: Reusable test harnesses.
-- `lab/`: Experimental packages (`beercss-theme`, `hyperjump-validator`, `shadcn-extras-theme`, `svar-theme`).
+- `lab/`: Experimental packages (`beercss-theme`, `shadcn-extras-theme`, `svar-theme`).
 - `apps/`:
   - `docs2`: Starlight documentation site.
   - `playground2`: Interactive schema and theme tester.

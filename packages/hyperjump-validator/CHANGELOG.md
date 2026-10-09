@@ -1,4 +1,4 @@
-# @sjsf-lab/hyperjump-validator
+# @sjsf/hyperjump-validator
 
 ## 3.1.0
 

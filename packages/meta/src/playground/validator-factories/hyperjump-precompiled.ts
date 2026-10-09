@@ -1,18 +1,14 @@
 import {
   registerSchema,
+  restoreValidator,
   unregisterSchema,
+  validate,
   type SchemaObject,
+  type Validator,
 } from "@hyperjump/json-schema/draft-07";
-import {
-  getSchema,
-  Validation,
-  type AST,
-} from "@hyperjump/json-schema/experimental";
-import {
-  fromAst,
-  createFormValidatorFactory as hyperjumpFactory,
-} from "@sjsf-lab/hyperjump-validator/precompile";
 import { type Schema } from "@sjsf/form";
+import { fromValidators } from "@sjsf/form/validators/precompile";
+import { createFormValidatorFactory as hyperjumpFactory } from "@sjsf/hyperjump-validator/precompile";
 
 import { DRAFT_07 } from "../validator-factory.ts";
 import type { CompileValidator } from "../validator-factory.ts";
@@ -30,13 +26,13 @@ export const draft07: CompileValidator = async (schemas: Schema[]) => {
     } as SchemaObject);
   }
   try {
-    const ast = { metaData: {}, plugins: new Set() } as unknown as AST;
+    const validators: Record<string, Validator> = {};
     for (const schema of schemas) {
-      const s = await getSchema(schema.$id!);
-      await Validation.compile(s, ast, s);
+      const validator = await validate(schema.$id!);
+      validators[schema.$id!] = restoreValidator(validator.serialize());
     }
     return hyperjumpFactory({
-      validatorRetriever: fromAst(ast),
+      validatorRetriever: fromValidators(validators),
     });
   } finally {
     for (const s of schemas) {

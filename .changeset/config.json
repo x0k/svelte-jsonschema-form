@@ -17,6 +17,7 @@
       "@sjsf/flowbite-icons",
       "@sjsf/flowbite3-theme",
       "@sjsf/form",
+      "@sjsf/hyperjump-validator",
       "@sjsf/moving-icons",
       "@sjsf/schemasafe-validator",
       "@sjsf/shadcn4-theme",

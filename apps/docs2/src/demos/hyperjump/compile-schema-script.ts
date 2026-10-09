@@ -3,19 +3,15 @@ import path from "node:path";
 
 import {
   registerSchema,
+  unregisterSchema,
+  validate,
   type SchemaObject,
 } from "@hyperjump/json-schema/draft-07";
-import {
-  getSchema,
-  Validation,
-  type AST,
-} from "@hyperjump/json-schema/experimental";
 import { ON_ARRAY_CHANGE, ON_CHANGE, ON_INPUT } from "@sjsf/form";
 import {
   insertSubSchemaIds,
   fragmentSchema,
 } from "@sjsf/form/validators/precompile";
-import { uneval } from "devalue";
 
 import inputSchema from "../input-schema.json" with { type: "json" };
 
@@ -50,15 +46,29 @@ for (const schema of schemas) {
   );
 }
 
-// https://github.com/hyperjump-io/json-schema/issues/116
-const ast = { metaData: {}, plugins: new Set() } as unknown as AST;
-for (const schema of schemas) {
-  const s = await getSchema(schema.$id!);
-  await Validation.compile(s, ast, s);
-}
+try {
+  const serialized: Record<string, string> = {};
+  for (const schema of schemas) {
+    const validator = await validate(schema.$id!);
+    serialized[schema.$id!] = validator.serialize();
+  }
 
-fs.writeFileSync(
-  path.join(import.meta.dirname, "ast.ts"),
-  `import type { AST } from "@hyperjump/json-schema/experimental";
-export const ast = ${uneval(ast)} as unknown as AST`
-);
+  fs.writeFileSync(
+    path.join(import.meta.dirname, "validators.generated.ts"),
+    `import { restoreValidator } from "@hyperjump/json-schema/draft-07";
+
+export const validators = {
+${Object.entries(serialized)
+  .map(
+    ([id, json]) =>
+      `  ${JSON.stringify(id)}: restoreValidator(${JSON.stringify(json)}),`
+  )
+  .join("\n")}
+};
+`
+  );
+} finally {
+  for (const s of schemas) {
+    unregisterSchema(s.$id!);
+  }
+}
