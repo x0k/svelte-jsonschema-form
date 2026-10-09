@@ -1,7 +1,7 @@
-import pageServerTs from "examples/sveltekit-starter/src/routes/form-actions-without-js/+page.server.ts?raw";
-import pageSvelte from "examples/sveltekit-starter/src/routes/form-actions-without-js/+page.svelte?raw";
+import pageServerTs from "examples/sveltekit3-starter/src/routes/form-actions-without-js/+page.server.ts?raw";
+import pageSvelte from "examples/sveltekit3-starter/src/routes/form-actions-without-js/+page.svelte?raw";
 
-import { defineExample, defineMeta, Tag, ExampleCategory } from "../model.js";
+import { ExampleCategory, Tag, defineExample, defineMeta } from "../model.js";
 
 export const meta = defineMeta({
   category: ExampleCategory.SvelteKitIntegrations,

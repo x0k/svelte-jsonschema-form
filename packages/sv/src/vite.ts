@@ -7,6 +7,7 @@ export function viteConfig(ctx: Context) {
     sv,
     file,
     options: { themeOrSubTheme, icons, sveltekit },
+    kit,
   } = ctx;
 
   sv.file(
@@ -15,6 +16,7 @@ export function viteConfig(ctx: Context) {
       themeOrSubTheme,
       icons,
       sveltekit,
+      sveltekitPackage: kit.pkg,
     })
   );
 }

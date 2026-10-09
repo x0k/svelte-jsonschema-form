@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  import "@/form/extra-fields/array-item.js";
+  import "#form/extra-fields/array-item.js";
   import "../extra-templates/array-item.js";
 
   declare module "../components.js" {
@@ -21,7 +21,7 @@
     getFormContext,
     Text,
     type ComponentProps,
-  } from "@/form/index.js";
+  } from "#form/index.js";
 
   import { getArrayContext } from "./context.svelte.js";
 

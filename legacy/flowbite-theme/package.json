@@ -69,6 +69,7 @@
   },
   "devDependencies": {
     "@sjsf/form": "workspace:*",
+    "@sveltejs/kit": "catalog:kit2",
     "ajv": "catalog:",
     "autoprefixer": "catalog:",
     "esm-env": "catalog:",

@@ -1,6 +1,8 @@
-import { transforms } from "@sveltejs/sv-utils";
+import { transforms } from "@sveltejs/sv-utils/browser";
 
 import { iconSetPackage } from "../icons.ts";
+import type { Package } from "../package.ts";
+import { svelteKitExport } from "../sveltekit.ts";
 import { isTailwindcss4Theme, themePackage, toTheme } from "../themes.ts";
 import type {
   CodegenIconSet,
@@ -12,6 +14,8 @@ export interface ViteConfigOptions {
   themeOrSubTheme: CodegenThemeOrSubTheme;
   icons: CodegenIconSet;
   sveltekit: CodegenSvelteKitIntegration;
+  /** The SvelteKit integration package generated code imports from */
+  sveltekitPackage: Package;
 }
 
 const SSR_SAFE_DEPS = new Set(["@sjsf/form", "svelte", "tailwind-merge"]);
@@ -20,6 +24,7 @@ export function createViteConfig({
   themeOrSubTheme,
   icons,
   sveltekit,
+  sveltekitPackage,
 }: ViteConfigOptions) {
   return transforms.script(({ ast, js, comments }) => {
     const theme = toTheme(themeOrSubTheme);
@@ -73,7 +78,7 @@ export function createViteConfig({
         value: " https://github.com/sveltejs/kit/issues/14788",
       });
       js.array.append(exclude, "@sjsf/form");
-      js.array.append(exclude, "@sjsf/sveltekit/rf/client");
+      js.array.append(exclude, svelteKitExport(sveltekitPackage, "rf/client"));
     }
   });
 }

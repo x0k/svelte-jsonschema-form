@@ -9,7 +9,7 @@
   } from "@sjsf/form";
   import { extendByRecord } from "@sjsf/form/lib/resolver";
 
-  import * as defaults from "$lib/sjsf/defaults";
+  import * as defaults from "#lib/sjsf/defaults.js";
 
   import nullableField, { isNullableField } from "./nullable-field.svelte";
 

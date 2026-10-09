@@ -1,8 +1,8 @@
 <script lang="ts" module>
-  import "@/fields/extra-templates/array.js";
-  import "@/fields/extra-components/title.js";
-  import "@/fields/extra-components/description.js";
-  import "@/fields/extra-components/errors-list.js";
+  import "#fields/extra-templates/array.js";
+  import "#fields/extra-components/title.js";
+  import "#fields/extra-components/description.js";
+  import "#fields/extra-components/errors-list.js";
   import "./array-layouts.js";
 </script>
 
@@ -11,7 +11,7 @@
     getComponent,
     getFormContext,
     type ComponentProps,
-  } from "@/form/index.js";
+  } from "#form/index.js";
 
   import { getTemplateProps } from "./get-template-props.js";
 

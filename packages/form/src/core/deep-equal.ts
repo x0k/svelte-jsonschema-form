@@ -1,4 +1,4 @@
-import { isObject, isRecordProto } from "@/lib/object.js";
+import { isObject, isRecordProto } from "#lib/object.js";
 
 import type { Schema, SchemaValue } from "./schema.js";
 

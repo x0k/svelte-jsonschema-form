@@ -3,10 +3,10 @@ import {
   type SchemaArrayValue,
   type SchemaValue,
   type ValueComparer,
-} from "@/core/index.js";
-import type { FormEnumOption } from "@/form/model.js";
-import { isObject } from "@/lib/object.js";
-import type { Ref } from "@/lib/svelte.svelte.js";
+} from "#core/index.js";
+import type { FormEnumOption } from "#form/model.js";
+import { isObject } from "#lib/object.js";
+import type { Ref } from "#lib/svelte.svelte.js";
 
 export interface OptionsMapper<V> {
   fromValue: (value: SchemaValue | undefined) => V;

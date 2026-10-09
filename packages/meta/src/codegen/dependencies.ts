@@ -6,9 +6,9 @@ import {
   optionalPackageName,
   type AbstractPackage,
   type IncludeOptional,
+  type Package,
   type PackageDependency,
 } from "../package.ts";
-import { sveltekitPackage } from "../sveltekit.ts";
 import { tailwindcss4PluginPackage } from "../tailwindcss.ts";
 import {
   isSubTheme,
@@ -40,6 +40,8 @@ interface DependenciesOptions<T extends CodegenThemeOrSubTheme> {
   validator: CodegenValidator;
   icons: CodegenIconSet;
   sveltekit: CodegenSvelteKitIntegration;
+  /** The SvelteKit integration package generated code imports from */
+  sveltekitPackage: Package;
   widgets: ExtraWidgetFileNames[ToTheme<T>][];
   addDependency: (pkg: AbstractPackage) => void;
 }
@@ -50,6 +52,7 @@ export function resolveDependencies<T extends CodegenThemeOrSubTheme>({
   validator,
   icons,
   sveltekit,
+  sveltekitPackage,
   widgets,
 }: DependenciesOptions<T>) {
   function addDependencies(

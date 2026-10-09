@@ -3,7 +3,7 @@ import {
   schemaValueToString,
   type Schema,
   type SchemaDefinition,
-} from "@/core/index.js";
+} from "#core/index.js";
 import {
   type UiSchema,
   type UiSchemaDefinition,
@@ -13,8 +13,8 @@ import {
   type FormState,
   getPseudoId,
   retrieveEnumValueMapperBuilder,
-} from "@/form/index.js";
-import { createMappedOption } from "@/options.svelte.js";
+} from "#form/index.js";
+import { createMappedOption } from "#options.svelte.js";
 
 function getAltSchemas(
   schema: Schema,

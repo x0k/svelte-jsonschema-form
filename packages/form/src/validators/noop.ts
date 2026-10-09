@@ -1,4 +1,4 @@
-import type { FormValidator } from "@/form/validator.js";
+import type { FormValidator } from "#form/validator.js";
 
 export const createFormValidator = <T>() =>
   ({

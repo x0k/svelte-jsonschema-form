@@ -12,8 +12,8 @@ import {
   type SubSchemaKey,
   type SubSchemasArrayKey,
   type SubSchemasRecordKey,
-} from "@/lib/json-schema/index.js";
-import type { Visitor } from "@/lib/traverser.js";
+} from "#lib/json-schema/index.js";
+import type { Visitor } from "#lib/traverser.js";
 
 export type SchemaTraverserContextType = "array" | "record" | "sub" | "root";
 

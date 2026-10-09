@@ -91,6 +91,8 @@ export const COMPOSER_DEFAULTS = {
   modelName: "model",
   language: "ts",
   sveltekit: "no",
+  // The demos copy their sources from the Kit 3 `examples/*`, which import
+  // through `#lib`, so the composer emits the matching `imports` map.
   focusOnFirstError: true,
   // These options are not relevant for demos,
   // because if they are used at all,

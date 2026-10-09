@@ -2,7 +2,7 @@ import type { JSONSchema7, JSONSchema7Definition } from "json-schema";
 import legacyIsEqual from "json-schema-compare";
 import { describe, it, expect } from "vitest";
 
-import type { Brand } from "@/lib/types.js";
+import type { Brand } from "#lib/types.js";
 
 import { createComparator } from "./compare.js";
 

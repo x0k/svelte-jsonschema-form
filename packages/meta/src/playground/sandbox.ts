@@ -8,6 +8,7 @@ import {
 import {
   type ThemeExtension,
   codegemIsJsonSchemaValidator,
+  kitPathFactory,
 } from "../codegen/index.ts";
 import {
   createComposer,
@@ -254,16 +255,17 @@ export async function createSandboxFiles({
   }
 
   const themeExtension: ThemeExtension = [];
+  const customComponentsModule = kitPathFactory("custom-components/index");
   if (usesMarkdownDescription) {
     themeExtension.push({
       imports: ["markdownDescription"],
-      from: "$lib/custom-components",
+      from: customComponentsModule,
     });
   }
   if (usesTransparentLayout) {
     themeExtension.push({
       imports: ["transparentLayout"],
-      from: "$lib/custom-components",
+      from: customComponentsModule,
     });
   }
 

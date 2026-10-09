@@ -1,7 +1,7 @@
-import postModelTs from "examples/sveltekit-starter/src/lib/post.ts?raw";
-import pageSvelte from "examples/sveltekit-starter/src/routes/remote-functions-without-js/+page.svelte?raw";
-import dataRemoteTs from "examples/sveltekit-starter/src/routes/remote-functions-without-js/data.remote?raw";
-import formContentSvelte from "examples/sveltekit-starter/src/routes/remote-functions-without-js/form-content.svelte?raw";
+import postModelTs from "examples/sveltekit3-starter/src/lib/post.ts?raw";
+import pageSvelte from "examples/sveltekit3-starter/src/routes/remote-functions-without-js/+page.svelte?raw";
+import dataRemoteTs from "examples/sveltekit3-starter/src/routes/remote-functions-without-js/data.remote?raw";
+import formContentSvelte from "examples/sveltekit3-starter/src/routes/remote-functions-without-js/form-content.svelte?raw";
 
 import {
   defineExample,

@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { isNil } from "@/lib/types.js";
+import { isNil } from "#lib/types.js";
 
 import type { SchemaObjectValue } from "./schema.js";
 import { isSchemaObjectValue } from "./value.js";

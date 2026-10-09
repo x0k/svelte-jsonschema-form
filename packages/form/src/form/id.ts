@@ -1,5 +1,5 @@
-import type { RPath } from "@/core/index.js";
-import type { Brand } from "@/lib/types.js";
+import type { RPath } from "#core/index.js";
+import type { Brand } from "#lib/types.js";
 
 export type Id = Brand<"sjsf-id">;
 export type FieldPath = Brand<"sjsf-path", RPath>;
@@ -21,6 +21,13 @@ export type FieldPseudoElement = keyof IdentifiableFieldElement | number;
 
 export interface FormIdBuilder {
   fromPath: (path: FieldPath) => string;
+  /**
+   * Returns the name of the hidden input that carries the form id prefix.
+   *
+   * Allows integrations where input names must follow a specific format
+   * (like SvelteKit remote forms) to customize it.
+   */
+  idPrefixName: () => string;
 }
 
 export const SJSF_ID_PREFIX = "__sjsf_id_prefix";

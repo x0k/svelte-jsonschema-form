@@ -11,7 +11,7 @@
   import { fromFactories } from "@sjsf/form/lib/resolver";
   import type { HTMLAttributes } from "svelte/elements";
 
-  import * as defaults from "$lib/sjsf/defaults";
+  import * as defaults from "#lib/sjsf/defaults.js";
 
   const schema = {
     type: "object",

@@ -9,14 +9,14 @@
   import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
   import { resolver } from "@sjsf/form/resolvers/compat";
 
-  import * as defaults from "$lib/sjsf/defaults";
+  import * as defaults from "#lib/sjsf/defaults.js";
   import {
     createFocusOnFirstErrorTab,
     Layout,
     schema,
     setTabsContext,
     type TabsContext,
-  } from "$lib/tabs";
+  } from "#lib/tabs/index.js";
 
   const uiSchema = {
     "ui:components": {

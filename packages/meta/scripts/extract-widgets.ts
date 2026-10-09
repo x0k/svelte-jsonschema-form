@@ -113,9 +113,23 @@ async function main() {
     const packageJson = JSON.parse(
       await fs.readFile(packageJsonPath, { encoding: "utf-8" })
     );
-    const svelteConfigPath = packagePath("svelte.config.js");
-    const svelteConfig = await import(svelteConfigPath);
-    const libDir = svelteConfig.default.kit?.files?.lib ?? "src/lib";
+    // Kit 3 removed `kit.files.lib`, so there is no config left to read the lib
+    // dir from. Take it from the `#lib` subpath import where the package
+    // declares one, and otherwise from the layout on disk — themes that keep
+    // their sources straight in `src` predate the `src/lib` convention.
+    const libDir = await (async () => {
+      const subpath = packageJson.imports?.["#lib/*"];
+      if (subpath) {
+        return subpath.replace(/^\.\//, "").replace(/\/?\*$/, "");
+      }
+      try {
+        return (await fs.stat(packagePath("src/lib"))).isDirectory()
+          ? "src/lib"
+          : "src";
+      } catch {
+        return "src";
+      }
+    })();
     const themeOptionalDeps = themePackage(theme).dependencies.filter(
       (d) => d.optional
     );

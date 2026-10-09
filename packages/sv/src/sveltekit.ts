@@ -4,9 +4,8 @@ import { POST_MODEL_NAME, type Context } from "./model.js";
 import { svelteConfig } from "./sv-utils.js";
 
 export function sveltekitTs({
-  isKit,
   options: { sveltekit, demo },
-  directory,
+  demoPage,
   language,
   sv,
   ts,
@@ -14,8 +13,9 @@ export function sveltekitTs({
   validator,
   cwd,
   lib,
+  kit,
 }: Context) {
-  if (!isKit || sveltekit === "no" || !demo) {
+  if (sveltekit === "no" || !demo || !demoPage) {
     return;
   }
 
@@ -23,14 +23,12 @@ export function sveltekitTs({
     isTs,
     lib,
     sveltekit,
+    sveltekitPackage: kit.pkg,
     ts,
     modelName: POST_MODEL_NAME,
     validator,
   });
-  sv.file(
-    `${directory.kitRoutes}/demo/sjsf/${filename}.${language}`,
-    transform
-  );
+  sv.file(`${demoPage.addonPath}/${filename}.${language}`, transform);
 
   if (sveltekit === "remoteFunctions") {
     svelteConfig.edit({ sv, cwd }, ({ override }) => {

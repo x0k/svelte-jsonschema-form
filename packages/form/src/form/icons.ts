@@ -1,6 +1,6 @@
 import type { Snippet } from "svelte";
 
-import type { Resolver } from "@/lib/resolver.js";
+import type { Resolver } from "#lib/resolver.js";
 
 import type { Config } from "./config.js";
 import type { Label, Labels } from "./translation.js";

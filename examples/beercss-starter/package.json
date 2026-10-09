@@ -1,8 +1,12 @@
 {
   "name": "beercss-starter",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "private": true,
   "type": "module",
+  "imports": {
+    "#lib": "./src/lib/index.js",
+    "#lib/*": "./src/lib/*"
+  },
   "scripts": {
     "dev": "vite dev",
     "preview": "vite preview",
@@ -19,5 +23,8 @@
     "ajv": "catalog:",
     "beercss": "catalog:",
     "svelte": "catalog:"
+  },
+  "devDependencies": {
+    "@sveltejs/kit": "catalog:"
   }
 }

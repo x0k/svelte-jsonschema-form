@@ -1,17 +1,49 @@
-import _packageJson from "@sjsf/sveltekit/package.json" with { type: "json" };
+import _packageJson from "@sjsf/sveltekit3/package.json" with { type: "json" };
+import { KIT3_TSCONFIG, libSubpathImports } from "@sveltejs/sv-utils/browser";
 
-import { fromPackageJson } from "./package.ts";
+import { fromPackageJson, type Package } from "./package.ts";
 
-export const sveltekitPackage = fromPackageJson(_packageJson);
+/** The SvelteKit integration, for projects that target Kit 3. */
+export const sveltekitPackage: Package = fromPackageJson(_packageJson);
 
-const _SUB_PATHS = ["client", "server"] as const;
+/**
+ * An export of the SvelteKit integration package, mirroring the `exports` map
+ * it declares. `""` is the package root (`.`).
+ */
+export type SvelteKitExport =
+  | ""
+  | "client"
+  | "server"
+  | "rf"
+  | "rf/client"
+  | "rf/server";
 
-type SvelteKitSubPath = (typeof _SUB_PATHS)[number];
-
-export function svelteKitSubPath(subPath: SvelteKitSubPath) {
-  return `${sveltekitPackage.name}/${subPath}`;
+/**
+ * The specifier a generated file imports `subPath` from,
+ * e.g. `@sjsf/sveltekit3/rf/client`.
+ */
+export function svelteKitExport(
+  pkg: Package,
+  subPath: SvelteKitExport
+): string {
+  return `${pkg.name}${subPath && `/${subPath}`}`;
 }
 
-export function svelteKitRfSubPath(subPath: SvelteKitSubPath | "" = "") {
-  return `${sveltekitPackage.name}/rf${subPath && `/${subPath}`}`;
+/** The SvelteKit project shape generated code targets. */
+export interface SvelteKitProject {
+  /** The integration package generated code imports from */
+  pkg: Package;
+  /** what the generated `tsconfig.json` extends */
+  tsconfigExtends: string;
+  /** `package.json#imports` backing the `#lib` alias */
+  libImports: Record<string, string>;
+}
+
+/** Resolves the SvelteKit project shape generated code targets. */
+export function resolveSvelteKitProject(): SvelteKitProject {
+  return {
+    pkg: sveltekitPackage,
+    tsconfigExtends: KIT3_TSCONFIG,
+    libImports: libSubpathImports("src/lib"),
+  };
 }

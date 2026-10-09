@@ -11,10 +11,7 @@
       "DOM"
     ],
     "rootDir": "src",
-    "types": ["node", "vite/client"],
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "types": ["node", "vite/client"]
   },
   "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.svelte"]
 }

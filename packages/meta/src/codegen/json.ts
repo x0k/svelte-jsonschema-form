@@ -1,5 +1,5 @@
 import { isRecordEmpty } from "@sjsf/form/lib/object";
-import { transforms } from "@sveltejs/sv-utils";
+import { transforms } from "@sveltejs/sv-utils/browser";
 
 export function createJsonFile<T>(content: T) {
   return transforms.json(({ data }) => {

@@ -251,7 +251,7 @@ shad/:
   popd
 
 kit/:
-  pushd packages/sveltekit
+  pushd packages/sveltekit3
   c:
     pnpm run check
   b:
@@ -492,7 +492,7 @@ e/:
       pnpm run dev
     popd
   kit/:
-    pushd sveltekit-starter
+    pushd sveltekit3-starter
     c:
       pnpm run check
     b:

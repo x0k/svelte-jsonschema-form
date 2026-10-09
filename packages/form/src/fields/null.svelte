@@ -4,7 +4,7 @@
     getFieldErrors,
     getFormContext,
     type ComponentProps,
-  } from "@/form/index.js";
+  } from "#form/index.js";
 
   let {
     value = $bindable(),

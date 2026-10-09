@@ -20,9 +20,9 @@
     getPseudoId,
     getFieldAction,
     retrieveEnumValueMapperBuilder,
-  } from "@/form/index.js";
-  import "@/form/extra-fields/boolean-select.js";
-  import { createMappedOption, singleOption } from "@/options.svelte.js";
+  } from "#form/index.js";
+  import "#form/extra-fields/boolean-select.js";
+  import { createMappedOption, singleOption } from "#options.svelte.js";
 
   import { createFormOptions } from "../enum.js";
 

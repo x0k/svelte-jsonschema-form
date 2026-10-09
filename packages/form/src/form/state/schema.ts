@@ -7,7 +7,7 @@ import {
   retrieveSchema as retrieveSchemaInternal,
   sanitizeDataForNewSchema as sanitizeDataForNewSchemaInternal,
   getClosestMatchingOption as getClosestMatchingOptionInternal,
-} from "@/core/index.js";
+} from "#core/index.js";
 
 import {
   FORM_MARK_SCHEMA_CHANGE,

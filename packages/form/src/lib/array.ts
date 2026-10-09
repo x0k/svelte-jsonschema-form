@@ -1,4 +1,4 @@
-import type { Comparator } from "@/lib/ord.js";
+import type { Comparator } from "#lib/ord.js";
 
 export function array<R>(count: number, factory: (index: number) => R): R[] {
   return Array.from(new Array(count), (_, i) => factory(i));

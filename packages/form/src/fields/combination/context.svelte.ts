@@ -6,7 +6,7 @@ import {
   getSimpleSchemaType,
   ONE_OF_KEY,
   type Schema,
-} from "@/core/index.js";
+} from "#core/index.js";
 import {
   getClosestMatchingOption,
   getDefaultFieldState,
@@ -22,14 +22,14 @@ import {
   type FormState,
   type FormValue,
   type Translate,
-} from "@/form/index.js";
-import { isRecordEmpty } from "@/lib/object.js";
-import type { Ref } from "@/lib/svelte.svelte.js";
+} from "#form/index.js";
+import { isRecordEmpty } from "#lib/object.js";
+import type { Ref } from "#lib/svelte.svelte.js";
 import {
   createMappedOption,
   singleOption,
   type EnumValueMapper,
-} from "@/options.svelte.js";
+} from "#options.svelte.js";
 
 export type CombinationKey = typeof ONE_OF_KEY | typeof ANY_OF_KEY;
 

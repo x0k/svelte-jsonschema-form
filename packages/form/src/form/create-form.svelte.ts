@@ -9,19 +9,19 @@ import {
   schemaHasNestedConditional,
   type Schema,
   type Validator,
-} from "@/core/index.js";
-import { createDataURLtoBlob } from "@/lib/file.js";
-import { weakMemoize } from "@/lib/memoize.js";
-import type { SchedulerYield } from "@/lib/scheduler.js";
-import { refFromBind, type Bind } from "@/lib/svelte.svelte.js";
+} from "#core/index.js";
+import { createDataURLtoBlob } from "#lib/file.js";
+import { weakMemoize } from "#lib/memoize.js";
+import type { SchedulerYield } from "#lib/scheduler.js";
+import { refFromBind, type Bind } from "#lib/svelte.svelte.js";
 import {
   abortPrevious,
   createTask,
   type TasksCombinator,
   type FailedTask,
   debounce,
-} from "@/lib/task.svelte.js";
-import type { DeepPartial } from "@/lib/types.js";
+} from "#lib/task.svelte.js";
+import type { DeepPartial } from "#lib/types.js";
 
 import type { Theme } from "./components.js";
 import type { Config } from "./config.js";
@@ -65,6 +65,7 @@ import {
   FORM_CONFIGS_CACHE,
   FORM_INITIAL_DEFAULTS_GENERATED,
   FORM_INITIAL_VALUE,
+  FORM_ID_BUILDER,
 } from "./internals.js";
 import type { FormMerger } from "./merger.js";
 import {
@@ -504,6 +505,9 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     },
     get [FORM_MERGER]() {
       return merger;
+    },
+    get [FORM_ID_BUILDER]() {
+      return idBuilder;
     },
     get [FORM_RESOLVER]() {
       return fieldTypeResolver;

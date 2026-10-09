@@ -1,7 +1,7 @@
 import {
   isSchemaObject,
   transformSchemaDefinition,
-} from "@/lib/json-schema/index.js";
+} from "#lib/json-schema/index.js";
 
 import { type SchemaDefinition, type Schema, REF_KEY } from "./schema.js";
 

@@ -1,6 +1,6 @@
 import type { JSONSchema7, JSONSchema7TypeName } from "json-schema";
 
-import type { TransformedSchema } from "@/lib/json-schema/index.js";
+import type { TransformedSchema } from "#lib/json-schema/index.js";
 
 export interface OpenAPIDiscriminator {
   propertyName: string;

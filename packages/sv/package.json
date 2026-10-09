@@ -1,6 +1,6 @@
 {
   "name": "@sjsf/sv",
-  "version": "0.2.6",
+  "version": "0.3.0",
   "description": "sv add-on for svelte-jsonschema-form",
   "keywords": [
     "sv-add",
@@ -29,7 +29,7 @@
   "scripts": {
     "demo-create": "sv create demo --types ts --template minimal --no-add-ons --no-install",
     "demo-add": "pnpm build && sv add file:../ --cwd demo --no-git-check --no-install",
-    "demo-add:ci": "pnpm build && sv add file:../=who:you --cwd demo --no-git-check --no-download-check --no-install",
+    "demo-add:ci": "pnpm build && sv add file:../ --cwd demo --no-git-check --no-download-check --no-install",
     "build": "tsdown",
     "test": "vitest run",
     "check": "tsc",
@@ -41,11 +41,11 @@
     "@sveltejs/sv-utils": "catalog:",
     "@types/node": "catalog:",
     "meta": "workspace:*",
-    "sv": "^0.17.0",
+    "sv": "^1.0.1",
     "tsdown": "^0.23.0",
     "vitest": "catalog:"
   },
   "peerDependencies": {
-    "sv": "^0.17.0"
+    "sv": "^1.0.1"
   }
 }

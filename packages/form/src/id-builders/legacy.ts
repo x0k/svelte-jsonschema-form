@@ -1,9 +1,10 @@
 import {
   DEFAULT_ID_PREFIX,
   decodePseudoElement,
+  SJSF_ID_PREFIX,
   type FieldPath,
   type FormIdBuilder,
-} from "@/form/main.js";
+} from "#form/main.js";
 
 export interface IdOptions {
   idPrefix?: string;
@@ -32,5 +33,6 @@ export function createFormIdBuilder({
       }
       return `${idPrefix}${str}`;
     },
+    idPrefixName: () => SJSF_ID_PREFIX,
   };
 }

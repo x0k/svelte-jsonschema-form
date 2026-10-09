@@ -1,7 +1,7 @@
 <script lang="ts" module>
-  import type { ActionField } from "@/form/index.js";
-  import type { Expand } from "@/lib/types.js";
-  import "@/form/extra-fields/array-item.js";
+  import type { ActionField } from "#form/index.js";
+  import type { Expand } from "#lib/types.js";
+  import "#form/extra-fields/array-item.js";
 
   import "../extra-templates/array.js";
 
@@ -31,8 +31,8 @@
     retrieveTranslate,
     createKeyedArrayDeriver,
     getFieldAction,
-  } from "@/form/index.js";
-  import { SimpleKeyedArray } from "@/lib/keyed-array.svelte.js";
+  } from "#form/index.js";
+  import { SimpleKeyedArray } from "#lib/keyed-array.svelte.js";
 
   import {
     setArrayContext,

@@ -1,10 +1,10 @@
 import { getContext, setContext } from "svelte";
 import type { SvelteMap } from "svelte/reactivity";
 
-import type { Schema } from "@/core/index.js";
-import type { DataURLToBlob } from "@/lib/file.js";
-import { noop } from "@/lib/function.js";
-import type { DeepPartial } from "@/lib/types.js";
+import type { Schema } from "#core/index.js";
+import type { DataURLToBlob } from "#lib/file.js";
+import { noop } from "#lib/function.js";
+import type { DeepPartial } from "#lib/types.js";
 
 import type { Theme } from "../components.js";
 import type { Config } from "../config.js";
@@ -12,7 +12,7 @@ import type { FormValidation, FieldsValidation } from "../errors.js";
 import type { FieldState } from "../field-state.js";
 import type { ResolveFieldType } from "../fields.js";
 import type { Icons } from "../icons.js";
-import type { FieldPath, Id } from "../id.js";
+import type { FieldPath, FormIdBuilder, Id } from "../id.js";
 import {
   FORM_CONTEXT,
   FORM_DATA_URL_TO_BLOB,
@@ -44,6 +44,7 @@ import {
   FORM_CONFIGS_CACHE,
   FORM_INITIAL_DEFAULTS_GENERATED,
   FORM_INITIAL_VALUE,
+  FORM_ID_BUILDER,
 } from "../internals.js";
 import type { FormMerger } from "../merger.js";
 import type { FormValue, KeyedArraysMap, PathTrieRef } from "../model.js";
@@ -80,6 +81,7 @@ export interface FormState<T> {
   readonly [FORM_UI_EXTRA_OPTIONS]?: ExtraUiOptions;
   readonly [FORM_VALIDATOR]: FormValidator<T>;
   readonly [FORM_MERGER]: FormMerger;
+  readonly [FORM_ID_BUILDER]: FormIdBuilder;
   readonly [FORM_ICONS]?: Icons;
   readonly [FORM_DISABLED]: boolean;
   readonly [FORM_DATA_URL_TO_BLOB]: DataURLToBlob;

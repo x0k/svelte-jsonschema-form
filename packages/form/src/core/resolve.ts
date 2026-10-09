@@ -2,9 +2,9 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { array } from "@/lib/array.js";
-import { isJsonSchemaType } from "@/lib/json-schema/index.js";
-import { isRecordEmpty } from "@/lib/object.js";
+import { array } from "#lib/array.js";
+import { isJsonSchemaType } from "#lib/json-schema/index.js";
+import { isRecordEmpty } from "#lib/object.js";
 
 import { isSchemaDeepEqual } from "./deep-equal.js";
 import { findSchemaDefinition } from "./definitions.js";

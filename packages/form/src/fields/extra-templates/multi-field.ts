@@ -1,6 +1,6 @@
 import type { Snippet } from "svelte";
 
-import type { SchemaValue } from "@/form/index.js";
+import type { SchemaValue } from "#form/index.js";
 
 import type { TemplateCommonProps } from "../templates.js";
 

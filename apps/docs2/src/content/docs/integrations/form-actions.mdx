@@ -1,7 +1,7 @@
 ---
 title: Form actions
 type: package
-packageCodeName: "sveltekit"
+packageCodeName: "sveltekit3"
 sidebar:
   order: 100
 ---
@@ -17,11 +17,11 @@ import { getPackageDependencies } from "@/shared";
 import Npm from "@/components/npm.astro";
 import Deps from "@/components/peer-dependencies.astro";
 
-import modelCode from "examples/sveltekit-starter/src/lib/post.ts?raw";
-import clientCode from "examples/sveltekit-starter/src/routes/form-actions/+page.svelte?raw";
-import serverCode from "examples/sveltekit-starter/src/routes/form-actions/+page.server?raw";
-import clientFlexCode from "examples/sveltekit-starter/src/routes/form-actions-flex/+page.svelte?raw";
-import serverFlexCode from "examples/sveltekit-starter/src/routes/form-actions-flex/+page.server?raw";
+import modelCode from "examples/sveltekit3-starter/src/lib/post.ts?raw";
+import clientCode from "examples/sveltekit3-starter/src/routes/form-actions/+page.svelte?raw";
+import serverCode from "examples/sveltekit3-starter/src/routes/form-actions/+page.server?raw";
+import clientFlexCode from "examples/sveltekit3-starter/src/routes/form-actions-flex/+page.svelte?raw";
+import serverFlexCode from "examples/sveltekit3-starter/src/routes/form-actions-flex/+page.server?raw";
 
 Since this is a `Svelte` library, you may want to use it with the `SvelteKit`.
 
@@ -29,6 +29,9 @@ With this package you will be able to perform server-side validation of the form
 even if the user has `JavaScript` disabled.
 
 ## Installation
+
+Install the SvelteKit 3 integration package.
+`sv add @sjsf` does this for you.
 
 <Npm pkg={getPackageDependencies(sveltekitPackage)} />
 
@@ -40,7 +43,7 @@ See details in the sections below
 
 :::note
 
-For correct operation, you must use ID Builder from the `@sjsf/sveltekit`.
+For correct operation, you must use ID Builder from the integration package.
 
 :::
 
@@ -62,7 +65,7 @@ If you want to populate the form from the database,
 you can return `InitialFormData` object inside the `load` function.
 
 ```typescript
-import type { InitialFormData } from "@sjsf/sveltekit";
+import type { InitialFormData } from "@sjsf/sveltekit3";
 
 export const load = async () => {
   return {
@@ -103,6 +106,18 @@ By using the `createFormHandler` API, you can gain more control over the action 
 
 - run checks before processing the form data
 - work with dynamic schemas (call `createFormHandler` inside the action handler)
+- handle fields whose schema declares no `type`, via `convertUnknownEntry`
+  (without it, a submitted value for such a field fails the request):
+
+```ts
+import type { FieldValue } from "@sjsf/form";
+
+const handleForm = createFormHandler({
+  ...defaults,
+  schema,
+  convertUnknownEntry: ({ value }) => value as FieldValue,
+});
+```
 
 :::note
 
@@ -141,10 +156,17 @@ According to Svelte documentation your form should always use `POST` requests.
 
 By default, the form will work even with JavaScript disabled, but you should consider the following limitations of this mode of operation:
 
+Enhanced and native submissions carry the same parts, so validation results match between the two modes.
+
 - `action` should be created with `sendData: true` to persist form data between page updates
 - Form fields for `oneOf`, `anyOf`, `dependencies`, `additionalProperties` and `additionalItems`
   will not expand/switch their state.
 - Some widgets (like multiselect, depends on the theme) may will not work, because they require `JavaScript`.
+
+### JSON chunks
+
+Pass `useJsonChunks` to the request to submit the form data as JSON. This needs JavaScript:
+without it the browser submits the fields on its own, so the submission may look different from the JSON one.
 
 ## Comparison with Superforms
 

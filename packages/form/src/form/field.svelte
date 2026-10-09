@@ -5,10 +5,10 @@
   import {
     getSchemaDefinitionByPath,
     isSchemaObjectValue,
-  } from "@/core/index.js";
-  import { isObject } from "@/lib/object.js";
-  import type { Ref } from "@/lib/svelte.svelte.js";
-  import type { JsonPaths } from "@/lib/types.js";
+  } from "#core/index.js";
+  import { isObject } from "#lib/object.js";
+  import type { Ref } from "#lib/svelte.svelte.js";
+  import type { JsonPaths } from "#lib/types.js";
 
   import type { ComponentProps } from "./components.js";
   import type { Config } from "./config.js";

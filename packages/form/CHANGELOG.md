@@ -1,5 +1,40 @@
 # @sjsf/form
 
+## 3.9.0
+
+### Minor Changes
+
+- Add `@sjsf/sveltekit3`, the SvelteKit 3 integration. `@sjsf/sveltekit` is now a legacy package for SvelteKit 2. ([#479](https://github.com/x0k/svelte-jsonschema-form/pull/479))
+
+  `FormIdBuilder` gained an optional `idPrefixName()` hook, so integrations can rename the hidden input that carries the form id prefix.
+
+### Patch Changes
+
+- Stop `getValueByPath()` reading inherited members. Each path segment was resolved with `in`, which walks the prototype chain, so reading `toString`, `constructor`, `valueOf` or `__proto__` off a plain object returned the inherited member rather than `defaultValue`. Segments are now matched as own properties. The validators build part of their error messages by walking a schema with this function (`@sjsf/ajv8-validator`, `@sjsf/ata-validator`, `@sjsf/schemasafe-validator`), so a schema path segment named after an inherited member now yields no title instead of one taken from `Object.prototype`. ([#475](https://github.com/x0k/svelte-jsonschema-form/pull/475))
+
+  Port <https://github.com/rjsf-team/react-jsonschema-form/pull/5314>
+
+- Merge keyword groups as a whole, and fix merged patterns rejecting newlines. ([#473](https://github.com/x0k/svelte-jsonschema-form/pull/473))
+
+  `properties`/`patternProperties`/`additionalProperties`, `items`/`additionalItems` and `if`/`then`/`else` constrain each other, so when only the left side of a merge held a keyword of one of those groups, the right side's keywords of the same group were copied next to it without going through the group's assigner. `allOf: [{ properties: { a: {} } }, { additionalProperties: false }]` merged into a schema that allows `a`, which the original forbids; `allOf: [{ if: { minimum: 5 } }, { then: { maximum: 2 } }]` rejected everything from 5 up, where a `then` without an `if` is inert. When the left side holds any keyword of a group, the right side's keywords of that group now go to the group's assigner: left at the root, right in `allOf`. A right-side keyword the left side already has keeps merging as before.
+
+  `additionalItems` is no longer treated as if a missing `items` were `items: []`, so it is dropped next to a missing or schema-valued `items` instead of being applied to the other side's `items` or producing an invalid `items: []`.
+
+  `simplePatternsMerger()` no longer anchors the merged pattern with `^` and `.*$`. Since `.` does not match a newline, that made every merged `patternProperties` entry and merged `pattern` keyword reject values containing one: `allOf: [{ patternProperties: { "^x": { pattern: "a" } } }, { patternProperties: { "^x": { pattern: "b" } } }]` merged into a `^x` that rejected `"ab\ncd"`, though both original patterns are satisfied.
+
+  > [!NOTE]
+  > Custom `assigners` are now consulted per group, not per keyword: a keyword of your group that the left side lacks routes to your assigner instead of being copied to the root.
+
+  Port <https://github.com/x0k/json-schema-merge/pull/11>
+
+- Fix `isOrderedSchemaDeepEqual` ignoring key order inside array items: it recursed into arrays with the unordered comparator, so only record keys outside arrays were compared in order. Affects change detection only, and can now report a schema as changed more often, never less. ([#477](https://github.com/x0k/svelte-jsonschema-form/pull/477))
+
+- Stop `$ref` resolution reading inherited members. `findSchemaDefinition()` resolved a `$ref` fragment with `jsonpointer`, which walks the prototype chain, so `#/__proto__` resolved to `Object.prototype` and `#/toString` to `Function.prototype.toString` — a `$ref` in an untrusted schema could read prototype internals instead of a schema. The fragment is now walked with an own-property-only JSON pointer resolver, so an inherited member finds nothing and a `$ref` naming one throws `Could not find a definition` as any other unresolvable ref does. A fragment with no leading `/` is no longer a `jsonpointer` error either; it now reports the same unresolvable-ref message as the rest. ([#475](https://github.com/x0k/svelte-jsonschema-form/pull/475))
+
+  The `jsonpointer` dependency is gone. `@sjsf/form` now has one runtime dependency instead of two, and the `flowbite3` and legacy `flowbite` themes drop the `devDependency` and Vite pre-bundling entry they held only for it.
+
+  Port <https://github.com/rjsf-team/react-jsonschema-form/pull/5314>
+
 ## 3.8.2
 
 ### Patch Changes

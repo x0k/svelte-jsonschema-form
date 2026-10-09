@@ -4,8 +4,8 @@ import {
   compareRecords,
   createSchemaValueComparator,
   isSchemaValueDeepEqual,
-} from "@/core/index.js";
-import type { SchemaValue } from "@/core/index.js";
+} from "#core/index.js";
+import type { SchemaValue } from "#core/index.js";
 
 import { createFormValueReconciler } from "./reconcile.js";
 

@@ -1,6 +1,6 @@
 import type { JSONSchema7Definition } from "json-schema";
 
-import { transformSchemaDefinition } from "@/lib/json-schema/transform.js";
+import { transformSchemaDefinition } from "#lib/json-schema/transform.js";
 
 function getAllOfSchemas(
   schema: JSONSchema7Definition
