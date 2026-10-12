@@ -15,10 +15,10 @@
 
 <script lang="ts">
   import {
+    customInputAttributes,
     getFormContext,
     getId,
-    isDisabled,
-    uiOptionProps,
+    handlersAttachment,
     type ComponentProps,
   } from "@sjsf/form";
 
@@ -30,22 +30,25 @@
 
   const ctx = getFormContext();
 
-  function onchange() {
-    handlers.oninput?.();
-    handlers.onchange?.();
-  }
+  const id = $derived(getId(ctx, config.path));
+
+  // `ToggleSwitch` spreads onto a real `<input type="checkbox" role="switch">`.
+  const attributes = $derived(
+    customInputAttributes(
+      ctx,
+      config,
+      "fluentuiSwitch",
+      handlersAttachment(handlers)({
+        id,
+        name: id,
+        label: config.title,
+        required: config.required,
+      })
+    )
+  );
 </script>
 
 <ToggleSwitch
   bind:checked={() => value ?? false, (v) => (value = v)}
-  label={config.title}
-  {...uiOptionProps("fluentuiSwitch")(
-    {
-      id: getId(ctx, config.path),
-      disabled: isDisabled(ctx),
-      onchange,
-    },
-    config,
-    ctx
-  )}
+  {...attributes}
 />

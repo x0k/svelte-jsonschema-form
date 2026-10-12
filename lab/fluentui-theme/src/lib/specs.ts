@@ -18,19 +18,24 @@ function prepareSpecs(specs: s.Specs) {
   delete copy.multiFile;
   for (const key of Object.keys(copy)) {
     const spec = copy[key];
-    delete spec[2].onblur;
-    switch (key) {
-      case "checkbox": {
-        spec[1]["ui:options"] = { title: "checkbox" };
-        break;
-      }
-      case "checkboxes": {
-        spec[2] = {
-          oninput: "inputMultiSelect",
-          onchange: "changeMultiSelect",
-        };
-        break;
-      }
+    if (key === "checkbox") {
+      spec[1]["ui:options"] = { title: "checkbox" };
+    }
+    // `select` is rendered as a button-backed `Dropdown`, so the shared
+    // `selectOptions` triggers do not apply.
+    if (key === "select") {
+      spec[2] = {
+        oninput: "inputFluentuiSelect",
+        onchange: "changeFluentuiSelect",
+        onblur: "visitFluentuiSelect",
+      };
+    }
+    if (key === "multiSelect") {
+      spec[2] = {
+        oninput: "inputFluentuiMultiSelect",
+        onchange: "changeFluentuiMultiSelect",
+        onblur: "visitFluentuiMultiSelect",
+      };
     }
   }
   return copy;

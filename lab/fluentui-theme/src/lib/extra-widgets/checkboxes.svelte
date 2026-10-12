@@ -1,13 +1,13 @@
 <script lang="ts" module>
-  import { DropdownSelect as FluentDropdownSelect } from "fluentui-svelte";
+  import { Checkbox } from "fluentui-svelte";
   import type { ComponentProps as SvelteComponentProps } from "svelte";
   import "@sjsf/form/fields/extra-widgets/checkboxes";
 
   declare module "@sjsf/form" {
     interface UiOptions {
       fluentuiCheckboxes?: Omit<
-        SvelteComponentProps<typeof FluentDropdownSelect>,
-        "value" | "children" | "multiple"
+        SvelteComponentProps<typeof Checkbox>,
+        "checked" | "children" | "indeterminate"
       >;
     }
   }
@@ -16,18 +16,17 @@
 <script lang="ts">
   import {
     getFormContext,
-    isDisabled,
-    uiOptionProps,
+    handlersAttachment,
+    inputAttributes,
     type ComponentProps,
   } from "@sjsf/form";
   import { idMapper, multipleOptions } from "@sjsf/form/options.svelte";
-  import { DropdownSelect, DropdownSelectOption } from "fluentui-svelte";
 
   let {
+    config,
     handlers,
     value = $bindable(),
     options,
-    config,
     mapped = multipleOptions({
       mapper: () => idMapper(options),
       value: () => value,
@@ -35,31 +34,34 @@
     }),
   }: ComponentProps["checkboxesWidget"] = $props();
 
+  const selected = $derived(new Set(mapped.current));
+
   const ctx = getFormContext();
 
-  function onchange() {
-    handlers.oninput?.();
-    handlers.onchange?.();
-  }
-
+  // Rendered as one checkbox per option, matching every published theme, so each
+  // option gets its own id, label and focusable control.
   const attributes = $derived(
-    uiOptionProps("fluentuiCheckboxes")(
-      {
-        disabled: isDisabled(ctx),
-        onchange,
-      },
-      config,
-      ctx
-    )
+    inputAttributes(ctx, config, "fluentuiCheckboxes", handlers, {})
   );
 </script>
 
-<DropdownSelect multiple bind:value={mapped.current} {...attributes}>
+<fieldset>
   {#each options as option (option.id)}
-    <DropdownSelectOption
-      value={option.mappedValue ?? option.id}
-      text={option.label}
-      disabled={option.disabled}
-    />
+    {@const ov = option.mappedValue ?? option.id}
+    <Checkbox
+      bind:checked={
+        () => selected.has(ov),
+        (checked) => {
+          mapped.current = checked
+            ? mapped.current.concat(ov)
+            : mapped.current.filter((v) => v !== ov);
+        }
+      }
+      {...handlersAttachment(handlers)(attributes)}
+      id={option.id}
+      disabled={option.disabled || attributes.disabled}
+    >
+      {option.label}
+    </Checkbox>
   {/each}
-</DropdownSelect>
+</fieldset>

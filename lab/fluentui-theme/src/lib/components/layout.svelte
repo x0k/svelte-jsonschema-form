@@ -20,6 +20,9 @@
         return "display: flex; gap: 0.5rem; align-items: center;";
       case "array-item-content":
         return "flex-grow: 1;";
+      case "multi-field-content":
+      case "object-property-controls":
+        return "display: flex; gap: 0.5rem; align-items: center;";
       case "field-content":
         return "display: flex; gap: 0.5rem; flex-wrap: wrap;";
       case "array-items":

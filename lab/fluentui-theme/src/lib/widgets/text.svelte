@@ -14,10 +14,9 @@
 
 <script lang="ts">
   import {
+    Datalist,
     getFormContext,
-    getId,
-    isDisabled,
-    uiOptionProps,
+    inputAttributes,
     type ComponentProps,
   } from "@sjsf/form";
 
@@ -29,30 +28,14 @@
 
   const ctx = getFormContext();
 
-  const id = $derived(getId(ctx, config.path));
-
-  function textChanged(e: Event) {
-    if (e.type === "input") {
-      handlers.oninput?.();
-    } else {
-      handlers.onchange?.();
-    }
-  }
-</script>
-
-<TextBox
-  bind:value={() => value ?? "", (v) => (value = v)}
-  {...uiOptionProps("fluentuiText")(
-    {
-      id,
+  const attributes = $derived(
+    inputAttributes(ctx, config, "fluentuiText", handlers, {
       placeholder: "",
-      readonly: config.schema.readOnly,
-      disabled: isDisabled(ctx),
       hideActionButtons: true,
       justify: true,
-      textChanged,
-    },
-    config,
-    ctx
-  )}
-/>
+    })
+  );
+</script>
+
+<TextBox bind:value={() => value ?? "", (v) => (value = v)} {...attributes} />
+<Datalist id={attributes.list} {config} />

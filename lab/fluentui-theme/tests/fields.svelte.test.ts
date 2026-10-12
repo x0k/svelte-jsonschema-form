@@ -5,6 +5,6 @@ import { theme } from "../src/lib/index.js";
 import { specs } from "../src/lib/specs.js";
 import Form from "./form.svelte";
 
-describe.skip("snapshot fails due dynamic ids", () => {
+describe("fluent-ui fields", () => {
   fieldTests(theme, { specs, Form });
 });
