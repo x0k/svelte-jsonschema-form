@@ -1,6 +1,6 @@
 {
   "name": "@sjsf-lab/fluentui-theme",
-  "version": "3.4.2",
+  "version": "2.0.0",
   "description": "The Fluent UI (fluentui-svelte) based theme for svelte-jsonschema-form",
   "keywords": [
     "Fluent UI",
@@ -57,7 +57,7 @@
   },
   "scripts": {
     "dev": "vite dev",
-    "build": "svelte-package && vite build && mv $(find .svelte-kit/output/server/_app/immutable/assets/ -name \"_page*.css\" | head -n 1) dist/styles.css && sed -i 's/:root/:host/g' dist/styles.css && ../../scripts/validate-theme-css.sh && publint",
+    "build": "svelte-package && vite build && cat .svelte-kit/output/server/_app/immutable/assets/*.css > dist/styles.css && sed -i 's/:root/:host/g' dist/styles.css && ../../scripts/validate-theme-css.sh && publint",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --tsgo-experimental-api",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --tsgo-experimental-api --watch",
