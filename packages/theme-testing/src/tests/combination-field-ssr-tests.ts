@@ -61,7 +61,7 @@ export function combinationFieldSsrTests(
         schema: ambiguousSchema,
       });
 
-      expect(body).toContain("String branch");
+      assertInBody(body, "String branch");
       expect(body).toContain("string-default");
     });
 
@@ -71,7 +71,7 @@ export function combinationFieldSsrTests(
         schema: plainOneOfSchema,
       });
 
-      expect(body).toContain("First");
+      assertInBody(body, "First");
       expect(body).toContain("default-first");
     });
 

@@ -249,3 +249,20 @@ export const inputFluentuiCombobox: FieldValidationTrigger = async (l) => {
   await userEvent.keyboard("{ArrowDown}");
   await userEvent.keyboard("{Enter}");
 };
+
+// `fluentui-svelte`'s `Dropdown` trigger is a `<button role="combobox">` and
+// its options are `role="option"` list items, so the native `selectOptions`
+// path used by `inputSelect` does not apply.
+export const inputFluentuiSelect: FieldValidationTrigger = async (l) => {
+  await userEvent.click(getCombobox(l));
+  await userEvent.click(l.getByRole("option").last());
+};
+export const changeFluentuiSelect = inputFluentuiSelect;
+export const visitFluentuiSelect = withTab(inputFluentuiSelect);
+
+export const inputFluentuiMultiSelect: FieldValidationTrigger = async (l) => {
+  await userEvent.click(getCombobox(l));
+  await userEvent.click(l.getByRole("option").first());
+};
+export const changeFluentuiMultiSelect = inputFluentuiMultiSelect;
+export const visitFluentuiMultiSelect = withTab(inputFluentuiMultiSelect);
