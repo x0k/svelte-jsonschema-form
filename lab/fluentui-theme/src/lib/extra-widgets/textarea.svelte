@@ -16,9 +16,7 @@
 <script lang="ts">
   import {
     getFormContext,
-    getId,
-    isDisabled,
-    uiOptionProps,
+    textareaAttributes,
     type ComponentProps,
   } from "@sjsf/form";
 
@@ -26,39 +24,18 @@
     value = $bindable(),
     config,
     handlers,
-    errors,
   }: ComponentProps["textareaWidget"] = $props();
 
   const ctx = getFormContext();
 
-  const id = $derived(getId(ctx, config.path));
-
-  function onchange() {
-    handlers.oninput?.();
-    handlers.onchange?.();
-  }
+  // The wrapper is `width: fit-content` behind a scoped `.fs-textarea.svelte-*`
+  // selector, which outranks a `:global(.fs-textarea)` override. An inline
+  // style on the wrapper is the only override that reliably wins.
+  const attributes = $derived(
+    textareaAttributes(ctx, config, "fluentuiTextarea", handlers, {
+      wrapperAttributes: { style: "width: 100%" },
+    })
+  );
 </script>
 
-<TextArea
-  bind:value={() => value ?? "", (v) => (value = v)}
-  {...uiOptionProps("fluentuiTextarea")(
-    {
-      id,
-      disabled: isDisabled(ctx),
-      readonly: config.schema.readOnly,
-      "aria-invalid": errors.length > 0,
-      oninput: onchange,
-    },
-    config,
-    ctx
-  )}
-/>
-
-<style>
-  :global(.fs-textarea) {
-    width: 100%;
-  }
-  :global(.fs-textarea textarea) {
-    width: 100%;
-  }
-</style>
+<TextArea bind:value={() => value ?? "", (v) => (value = v)} {...attributes} />

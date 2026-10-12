@@ -11,10 +11,8 @@
 
 <script lang="ts">
   import {
-    composeProps,
-    disabledProp,
+    buttonAttributes,
     getFormContext,
-    uiOptionProps,
     type ComponentProps,
   } from "@sjsf/form";
 
@@ -24,15 +22,7 @@
 </script>
 
 <FluentButton
-  {...composeProps(
-    ctx,
-    config,
-    {
-      type: "submit",
-    } satisfies SvelteComponentProps<typeof FluentButton>,
-    uiOptionProps("fluentuiSubmitButton"),
-    disabledProp
-  )}
+  {...buttonAttributes(ctx, config, "fluentuiSubmitButton", "submit", {})}
 >
   {@render children()}
 </FluentButton>

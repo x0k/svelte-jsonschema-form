@@ -1,27 +1,25 @@
 <script lang="ts" module>
-  import { DropdownSelect as FluentDropdownSelect } from "fluentui-svelte";
+  import { Dropdown, DropdownOption } from "fluentui-svelte";
   import type { ComponentProps as SvelteComponentProps } from "svelte";
   import "@sjsf/form/fields/extra-widgets/multi-select";
 
   declare module "@sjsf/form" {
     interface UiOptions {
-      fluentuiMultiSelect?: Omit<
-        SvelteComponentProps<typeof FluentDropdownSelect>,
-        "value" | "children" | "multiple"
-      >;
+      fluentuiMultiSelect?: SvelteComponentProps<typeof Dropdown>;
     }
   }
 </script>
 
 <script lang="ts">
   import {
+    customInputAttributes,
     getFormContext,
+    getId,
     isDisabled,
-    uiOptionProps,
     type ComponentProps,
   } from "@sjsf/form";
   import { idMapper, multipleOptions } from "@sjsf/form/options.svelte";
-  import { DropdownSelect, DropdownSelectOption } from "fluentui-svelte";
+  import type { HTMLButtonAttributes } from "svelte/elements";
 
   let {
     handlers,
@@ -37,29 +35,55 @@
 
   const ctx = getFormContext();
 
-  function onchange() {
+  const id = $derived(getId(ctx, config.path));
+
+  const attributes = $derived(
+    customInputAttributes(ctx, config, "fluentuiMultiSelect", {
+      id,
+      name: id,
+      disabled: isDisabled(ctx),
+    })
+  );
+
+  const dropdownProps = $derived.by(() => {
+    const { value: _bound, ...rest } = attributes;
+    return rest;
+  });
+
+  // See `select.svelte`: the trigger is a `<button type="button">` and is the
+  // only reachable surface for the aria state.
+  const buttonProps: HTMLButtonAttributes = $derived({
+    type: "button",
+    "aria-invalid": attributes["aria-invalid"],
+    "aria-describedby": attributes["aria-describedby"],
+    "aria-readonly": attributes["aria-readonly"],
+    "aria-required": attributes["aria-required"],
+    // See `select.svelte`: the attachment cannot survive `Dropdown`'s closed
+    // destructure, so blur is wired on the trigger itself.
+    onblur: handlers.onblur,
+  });
+
+  // `Dropdown` sets `toggleOnClick={multiple}`, so a plain click toggles an
+  // option without needing Ctrl/Cmd.
+  function setValue(v: string[]) {
+    mapped.current = v;
     handlers.oninput?.();
     handlers.onchange?.();
   }
-
-  const attributes = $derived(
-    uiOptionProps("fluentuiMultiSelect")(
-      {
-        disabled: isDisabled(ctx),
-        onchange,
-      },
-      config,
-      ctx
-    )
-  );
 </script>
 
-<DropdownSelect multiple bind:value={mapped.current} {...attributes}>
+<Dropdown
+  bind:value={() => mapped.current, setValue}
+  {...dropdownProps}
+  multiple={true}
+  placeholder={attributes.placeholder ?? ""}
+  {buttonProps}
+>
   {#each options as option (option.id)}
-    <DropdownSelectOption
+    <DropdownOption
       value={option.mappedValue ?? option.id}
       text={option.label}
       disabled={option.disabled}
     />
   {/each}
-</DropdownSelect>
+</Dropdown>

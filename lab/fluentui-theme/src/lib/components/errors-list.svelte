@@ -19,7 +19,7 @@
 
 <style>
   ul {
-    color: var(--fs-palette-red20);
+    color: var(--fs-system-critical);
     list-style-position: inside;
     padding: 0;
     margin: 0;

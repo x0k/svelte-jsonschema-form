@@ -26,16 +26,16 @@
     font-family: var(--fs-font-family-base);
     font-size: var(--fs-body-font-size);
     line-height: var(--fs-body-line-height);
-    font-weight: var(--fs-font-weight-semibold);
+    font-weight: 600;
     color: var(--fs-text-primary);
   }
 
   label[data-error="true"] {
-    color: var(--fs-palette-red20);
+    color: var(--fs-system-critical);
   }
 
   label[data-required="true"]::after {
     content: " *";
-    color: var(--fs-palette-red20);
+    color: var(--fs-system-critical);
   }
 </style>

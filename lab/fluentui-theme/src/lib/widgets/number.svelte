@@ -14,10 +14,9 @@
 
 <script lang="ts">
   import {
+    Datalist,
     getFormContext,
-    getId,
-    isDisabled,
-    uiOptionProps,
+    inputAttributes,
     type ComponentProps,
   } from "@sjsf/form";
 
@@ -29,35 +28,20 @@
 
   const ctx = getFormContext();
 
-  const id = $derived(getId(ctx, config.path));
-
-  function textChanged(e: Event) {
-    if (e.type === "input") {
-      handlers.oninput?.();
-    } else {
-      handlers.onchange?.();
-    }
+  function update(v: number | null) {
+    value = typeof v === "number" && Number.isFinite(v) ? v : undefined;
   }
 
-  function update(v: string | number | undefined) {
-    value =
-      typeof v === "number" && Number.isFinite(v) ? v : (undefined as never);
-  }
+  const attributes = $derived(
+    inputAttributes(ctx, config, "fluentuiNumber", handlers, {
+      placeholder: "",
+      variant: "compact",
+    })
+  );
 </script>
 
 <NumberBox
-  bind:value={() => value ?? undefined, update}
-  {...uiOptionProps("fluentuiNumber")(
-    {
-      id,
-      placeholder: "",
-      disabled: isDisabled(ctx),
-      readonly: config.schema.readOnly,
-      justify: true,
-      hideActionButtons: true,
-      textChanged,
-    },
-    config,
-    ctx
-  )}
+  bind:value={() => value ?? null, update}
+  {...attributes as SvelteComponentProps<typeof NumberBox>}
 />
+<Datalist id={attributes.list} {config} />

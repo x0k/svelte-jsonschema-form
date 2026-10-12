@@ -14,10 +14,10 @@
 
 <script lang="ts">
   import {
+    customInputAttributes,
     getFormContext,
     getId,
-    isDisabled,
-    uiOptionProps,
+    handlersAttachment,
     type ComponentProps,
   } from "@sjsf/form";
 
@@ -31,23 +31,21 @@
 
   const id = $derived(getId(ctx, config.path));
 
-  function onchange() {
-    handlers.oninput?.();
-    handlers.onchange?.();
-  }
+  // `Checkbox` spreads its attributes onto a real `<input type="checkbox">`,
+  // so the attachment delivers input/change/focus/blur straight to the field.
+  const attributes = $derived(
+    customInputAttributes(
+      ctx,
+      config,
+      "fluentuiCheckbox",
+      handlersAttachment(handlers)({ id, name: id, required: config.required })
+    )
+  );
 </script>
 
 <Checkbox
   bind:checked={() => value ?? false, (v) => (value = v)}
-  {...uiOptionProps("fluentuiCheckbox")(
-    {
-      id,
-      disabled: isDisabled(ctx),
-      onchange,
-    },
-    config,
-    ctx
-  )}
+  {...attributes}
 >
   {config.title}
 </Checkbox>

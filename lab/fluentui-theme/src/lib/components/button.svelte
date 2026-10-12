@@ -40,6 +40,9 @@
     config,
     {
       disabled,
+      // fluent's `Button` sets no default `type`, so without this the button
+      // would submit the surrounding form whenever it is clicked.
+      type: "button" as const,
       onclick: (e: MouseEvent) => {
         e.preventDefault();
         onclick();
