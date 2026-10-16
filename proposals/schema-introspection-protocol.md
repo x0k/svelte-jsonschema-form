@@ -215,7 +215,8 @@ portable kind. `any` means the schema accepts every value in its value domain;
 `never` means it accepts no values. `integer` is a refinement of `number`, so
 consumers that handle `number` should also handle `integer`.
 
-`property` uses `name` for its name and `required` when known.
+`property` uses `name` for its name and `required` when known; an omitted
+`required` leaves requiredness unknown.
 `pattern-property` applies its child schema to property values whose names
 match `pattern`, using ECMAScript regular-expression syntax and search
 semantics; `flags` defaults to the empty string. When multiple patterns match,
@@ -238,16 +239,22 @@ exhaustive per relation: if the list contains an edge of a relation, it
 contains every direct edge of that relation on this node. A relation with no
 edges in the list is one the implementation does not support or cannot
 enumerate, and consumers must not infer zero edges for it. An implementation
-that knows some edges but cannot list them all may expose the known structure
-through a namespaced relation instead. The claim is local: it says nothing
+with no edges to report omits `edges`; an empty list carries no information.
+An implementation that knows some edges but cannot list them all may expose
+the known structure through a namespaced relation instead. The claim is local: it says nothing
 about other relations, whether the child nodes themselves are fully
 described, or the schema's overall validation behavior. Edge order is stable
 within a view; consumers use `index` where supplied for meaningful position.
 
-Reporting an edge describes coverage, not what the source rejects. A closed
-object, for example, is expressed by an `additional-property` edge whose
-child node has kind `never`, while an unrestricted additional-property schema
-has an `additional-property` edge whose child node has kind `any`.
+Reporting an edge describes coverage, not what the source rejects.
+Implementations report the source's effective schema for each category,
+including the schema a source leaves implicit: an unconstrained category is
+reported with a child node of kind `any`, and a rejected one with a child node
+of kind `never`. A closed object, for example, is expressed by an
+`additional-property` edge whose child node has kind `never`, a tuple with no
+positions after the fixed ones reports a `rest-item` edge whose child node has
+kind `never`, and an unrestricted additional-property schema reports an
+`additional-property` edge whose child node has kind `any`.
 
 Implementations may report a more specific namespaced relation when these
 conventions lose source semantics.
@@ -329,6 +336,8 @@ function walk(node: AnySchemaNode, seen = new WeakSet<object>()): void {
     walk(edge.node(), seen);
   }
 }
+
+declare const schema: AnyStandardSchemaIntrospectionV1;
 
 const root = schema["~standard"].introspect({ direction: "input" });
 if (root) walk(root);
