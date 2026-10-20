@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { isRecordEmpty, isObject, setOwn } from "#lib/object.js";
+import { getOwn, isRecordEmpty, isObject, setOwn } from "#lib/object.js";
 
 import { isSchemaOfConstantValue } from "./constant-schema.js";
 import { isSchemaValueDeepEqual } from "./deep-equal.js";
@@ -852,8 +852,8 @@ export function getObjectDefaults(
         stack,
         experimental_defaultFormStateBehavior,
         includeUndefinedValues: includeUndefinedValues === true,
-        parentDefaults: defaultsAsObject?.[key],
-        rawFormData: formDataAsObject?.[key],
+        parentDefaults: defaultsAsObject && getOwn(defaultsAsObject, key),
+        rawFormData: formDataAsObject && getOwn(formDataAsObject, key),
         required: retrievedSchemaRequired.has(key),
         isSchemaRoot: false,
         shouldMergeDefaultsIntoFormData,
@@ -861,8 +861,7 @@ export function getObjectDefaults(
       });
       const isConst =
         (value.const !== undefined ||
-          (Object.hasOwn(parentConstObject, key) &&
-            parentConstObject[key] !== undefined)) &&
+          getOwn(parentConstObject, key) !== undefined) &&
         experimental_defaultFormStateBehavior.constAsDefaults !== "never";
       maybeAddDefaultToObject(
         objDefaults,
@@ -915,8 +914,8 @@ export function getObjectDefaults(
           stack: stack,
           experimental_defaultFormStateBehavior,
           includeUndefinedValues: includeUndefinedValues === true,
-          parentDefaults: defaultsAsObject?.[key],
-          rawFormData: formDataAsObject?.[key],
+          parentDefaults: defaultsAsObject && getOwn(defaultsAsObject, key),
+          rawFormData: formDataAsObject && getOwn(formDataAsObject, key),
           required: retrievedSchemaRequired.has(key),
           isSchemaRoot,
           shouldMergeDefaultsIntoFormData,

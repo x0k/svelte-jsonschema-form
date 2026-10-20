@@ -6,7 +6,7 @@
 
 import { array } from "#lib/array.js";
 import { isJsonSchemaType } from "#lib/json-schema/index.js";
-import { isRecordEmpty, setOwn } from "#lib/object.js";
+import { getOwn, isRecordEmpty, setOwn } from "#lib/object.js";
 
 import { isSchemaDeepEqual } from "./deep-equal.js";
 import { findSchemaDefinition } from "./definitions.js";
@@ -676,14 +676,15 @@ export function processDependencies(
     // Skip this dependency if its trigger property is not present.
     if (
       !expandAllBranches &&
-      (!isSchemaObjectValue(formData) || formData[dependencyKey] === undefined)
+      (!isSchemaObjectValue(formData) ||
+        getOwn(formData, dependencyKey) === undefined)
     ) {
       continue;
     }
     // Skip this dependency if it is not included in the schema (such as when dependencyKey is itself a hidden dependency.)
     if (
       resolvedSchema.properties &&
-      !(dependencyKey in resolvedSchema.properties)
+      !Object.hasOwn(resolvedSchema.properties, dependencyKey)
     ) {
       continue;
     }

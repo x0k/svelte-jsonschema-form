@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { setOwn } from "#lib/object.js";
+import { getOwn, setOwn } from "#lib/object.js";
 import { isNil } from "#lib/types.js";
 
 import type { SchemaObjectValue } from "./schema.js";
@@ -54,10 +54,10 @@ export function mergeDefaultsWithFormData<T = any>(
       : {};
     // Seed from the object defaults only: a scalar or array default must not
     // become numeric index keys on the object form data.
-    const acc = { ...defaultsObject } as { [key in keyof T]: any };
+    const acc = { ...defaultsObject };
     for (const [key, value] of Object.entries(formData)) {
       const keyExistsInDefaults = Object.hasOwn(defaultsObject, key);
-      const keyDefault = keyExistsInDefaults ? defaultsObject[key] : undefined;
+      const keyDefault = getOwn(defaultsObject, key);
 
       // NOTE: This code is bad, but maintaining compatibility with RSJF > "good" code
       // If any direct child of this key's default is itself an object or array,
@@ -81,7 +81,7 @@ export function mergeDefaultsWithFormData<T = any>(
         acc,
         key,
         mergeDefaultsWithFormData(
-          defaultsObject[key],
+          keyDefault,
           value,
           mergeExtraArrayDefaults,
           defaultsSupersedesUndefined,
@@ -94,7 +94,7 @@ export function mergeDefaultsWithFormData<T = any>(
         )
       );
     }
-    return acc;
+    return acc as T;
   }
 
   if (
