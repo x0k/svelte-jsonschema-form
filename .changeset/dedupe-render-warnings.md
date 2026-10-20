@@ -1,5 +1,5 @@
 ---
-"@sjsf/form": patch
+"@sjsf/form": minor
 ---
 
 Log repeated render-time warnings only once
