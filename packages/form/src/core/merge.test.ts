@@ -17,6 +17,23 @@ describe("mergeSchemaObjects()", () => {
     expect(mergeSchemaObjects({ a: 1 }, { b: 2 })).toEqual({ a: 1, b: 2 });
   });
 
+  it("should preserve an own __proto__ key without changing the prototype", () => {
+    const result = mergeSchemaObjects(
+      {},
+      JSON.parse('{"__proto__":{"polluted":true}}')
+    );
+    expect(Object.hasOwn(result, "__proto__")).toBe(true);
+    expect(Object.getPrototypeOf(result)).toBe(Object.prototype);
+    expect(result["__proto__"]).toEqual({ polluted: true });
+    expect(({} as { polluted?: boolean }).polluted).toBeUndefined();
+  });
+
+  it("should not read inherited properties from the first object", () => {
+    expect(mergeSchemaObjects({}, JSON.parse('{"toString":1}'))).toEqual(
+      JSON.parse('{"toString":1}')
+    );
+  });
+
   it("should override the first object with the values from the second", () => {
     expect(mergeSchemaObjects({ a: 1 }, { a: 2 })).toEqual({ a: 2 });
   });
@@ -116,6 +133,19 @@ describe("mergeSchemaObjects()", () => {
 });
 
 describe("mergeDefaultsWithFormData()", () => {
+  it("should preserve an own __proto__ key without changing the prototype", () => {
+    const result = mergeDefaultsWithFormData(
+      {},
+      JSON.parse('{"__proto__":{"polluted":true}}')
+    );
+    expect(Object.hasOwn(result as object, "__proto__")).toBe(true);
+    expect(Object.getPrototypeOf(result)).toBe(Object.prototype);
+    expect((result as Record<string, unknown>)["__proto__"]).toEqual({
+      polluted: true,
+    });
+    expect(({} as { polluted?: boolean }).polluted).toBeUndefined();
+  });
+
   describe("test with overrideFormDataWithDefaults set to true", () => {
     it("should return data in formData when no defaults", () => {
       expect(

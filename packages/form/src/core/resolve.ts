@@ -6,7 +6,7 @@
 
 import { array } from "#lib/array.js";
 import { isJsonSchemaType } from "#lib/json-schema/index.js";
-import { isRecordEmpty } from "#lib/object.js";
+import { isRecordEmpty, setOwn } from "#lib/object.js";
 
 import { isSchemaDeepEqual } from "./deep-equal.js";
 import { findSchemaDefinition } from "./definitions.js";
@@ -294,17 +294,21 @@ export function retrieveSchemaInternal(
         );
         if (matchingProperties.length > 0) {
           matchingProperties.push(properties[key]!);
-          properties[key] = retrieveSchemaInternal(
-            validator,
-            merger,
-            { allOf: matchingProperties },
-            rootSchema,
-            formDataIsSchemaObjectValue ? formData[key] : undefined,
-            undefined,
-            undefined,
-            undefined,
-            preserveDependencies
-          )[0]!;
+          setOwn(
+            properties,
+            key,
+            retrieveSchemaInternal(
+              validator,
+              merger,
+              { allOf: matchingProperties },
+              rootSchema,
+              formDataIsSchemaObjectValue ? formData[key] : undefined,
+              undefined,
+              undefined,
+              undefined,
+              preserveDependencies
+            )[0]!
+          );
         }
       }
     }
@@ -489,7 +493,7 @@ export function stubExistingAdditionalProperties(
 
   if (formData !== undefined) {
     for (const key of Object.keys(formData)) {
-      if (key in schema.properties) {
+      if (Object.hasOwn(schema.properties, key)) {
         // No need to stub, our schema already has the property
         continue;
       }
@@ -497,7 +501,7 @@ export function stubExistingAdditionalProperties(
       // Set our additional property flag so we know it was dynamically added
       propertySchema[ADDITIONAL_PROPERTY_FLAG] = true;
       // The type of our new key should match the additionalProperties value;
-      schema.properties[key] = propertySchema;
+      setOwn(schema.properties, key, propertySchema);
     }
   }
   return schema;

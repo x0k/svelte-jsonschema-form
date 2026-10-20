@@ -1,5 +1,5 @@
 import type { SchemaValue } from "#core/index.js";
-import { isRecordProto } from "#lib/object.js";
+import { isRecordProto, setOwn } from "#lib/object.js";
 
 import type { FieldValue, FormValueRef, KeyedArraysMap } from "./model.js";
 
@@ -46,7 +46,7 @@ export function createFormValueReconciler(keyedArraysMap: KeyedArraysMap) {
         let l = tKeys.length;
         for (let i = 0; i < l; i++) {
           const key = tKeys[i]!;
-          if (!(key in source)) {
+          if (!Object.hasOwn(source, key)) {
             delete target[key];
           }
         }
@@ -54,13 +54,13 @@ export function createFormValueReconciler(keyedArraysMap: KeyedArraysMap) {
         l = sKeys.length;
         for (let i = 0; i < l; i++) {
           const key = sKeys[i]!;
-          if (key in target) {
+          if (Object.hasOwn(target, key)) {
             const v = reconcile(target[key], source[key]);
             if (v !== UNCHANGED) {
-              target[key] = v;
+              setOwn(target, key, v);
             }
           } else {
-            target[key] = source[key];
+            setOwn(target, key, source[key]);
           }
         }
         return UNCHANGED;

@@ -2622,5 +2622,26 @@ describe("omitExtraData (RJSF tests)", () => {
         })
       ).toEqual({ name: "John" });
     });
+
+    it("should keep an own __proto__ key without changing the prototype", () => {
+      const schema: Schema = {
+        type: "object",
+        additionalProperties: {
+          type: "object",
+          additionalProperties: true,
+        },
+      };
+      const formData = JSON.parse('{"__proto__":{"polluted":true}}');
+      const result = omitExtraData(
+        validator,
+        defaultMerger,
+        schema,
+        formData
+      ) as Record<string, unknown>;
+      expect(Object.hasOwn(result, "__proto__")).toBe(true);
+      expect(Object.getPrototypeOf(result)).toBe(Object.prototype);
+      expect(result["__proto__"]).toEqual({ polluted: true });
+      expect(({} as { polluted?: boolean }).polluted).toBeUndefined();
+    });
   });
 });

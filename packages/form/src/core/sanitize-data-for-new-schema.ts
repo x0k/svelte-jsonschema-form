@@ -2,6 +2,8 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
+import { setOwn } from "#lib/object.js";
+
 import { isSchemaDeepEqual, isSchemaValueDeepEqual } from "./deep-equal.js";
 import { getSelectOptionValuesSafe } from "./is-select.js";
 import type { Merger } from "./merger.js";
@@ -145,18 +147,22 @@ export function sanitizeDataForNewSchema(
     const oldSchemaProperties = oldSchema.properties;
     if (oldSchemaProperties !== undefined && isDataObject) {
       Object.keys(oldSchemaProperties).forEach((key) => {
-        if (key in data) {
-          removeOldSchemaData[key] = undefined;
+        if (Object.hasOwn(data, key)) {
+          setOwn(removeOldSchemaData, key, undefined);
         }
       });
     }
     const keys: string[] = Object.keys(newSchemaProperties);
     const nestedData: SchemaObjectValue = {};
     keys.forEach((key) => {
-      const formValue = isDataObject ? data[key] : undefined;
+      const formValue =
+        isDataObject && Object.hasOwn(data, key) ? data[key] : undefined;
       const isNewProperty =
-        oldSchemaProperties === undefined || !(key in oldSchemaProperties);
-      const oldKeyedSchemaDef = oldSchemaProperties?.[key];
+        oldSchemaProperties === undefined ||
+        !Object.hasOwn(oldSchemaProperties, key);
+      const oldKeyedSchemaDef = Object.hasOwn(oldSchemaProperties ?? {}, key)
+        ? oldSchemaProperties?.[key]
+        : undefined;
       const oldRawKeyedSchema: Schema =
         typeof oldKeyedSchemaDef === "object" ? oldKeyedSchemaDef : {};
       const newKeyedSchemaDef = newSchemaProperties?.[key];
@@ -189,7 +195,7 @@ export function sanitizeDataForNewSchema(
       const oldSchemaTypeForKey = oldKeyedSchema.type;
       const newSchemaTypeForKey = newKeyedSchema.type;
       if (!oldSchemaTypeForKey || oldSchemaTypeForKey === newSchemaTypeForKey) {
-        if (key in removeOldSchemaData) {
+        if (Object.hasOwn(removeOldSchemaData, key)) {
           delete removeOldSchemaData[key];
         }
         if (
@@ -207,7 +213,7 @@ export function sanitizeDataForNewSchema(
             formValue
           );
           if (itemData !== undefined || newSchemaTypeForKey === "array") {
-            nestedData[key] = itemData;
+            setOwn(nestedData, key, itemData);
           }
         } else {
           // NOTE: `null` default is treated as `NO_VALUE`
@@ -219,9 +225,9 @@ export function sanitizeDataForNewSchema(
               oldOptionDefault === formValue
             ) {
               // Initialize a newly entered property or replace an old default with the new default.
-              removeOldSchemaData[key] = newOptionDefault;
+              setOwn(removeOldSchemaData, key, newOptionDefault);
             } else if (newKeyedSchema.readOnly === true) {
-              removeOldSchemaData[key] = undefined;
+              setOwn(removeOldSchemaData, key, undefined);
             }
           }
 
@@ -229,17 +235,20 @@ export function sanitizeDataForNewSchema(
           const newOptionConst = newKeyedSchema.const ?? NO_VALUE;
           const oldOptionConst = oldKeyedSchema.const ?? NO_VALUE;
           if (newOptionConst !== NO_VALUE && newOptionConst !== formValue) {
-            removeOldSchemaData[key] =
-              oldOptionConst === formValue ? newOptionConst : undefined;
+            setOwn(
+              removeOldSchemaData,
+              key,
+              oldOptionConst === formValue ? newOptionConst : undefined
+            );
           }
 
-          if (isDataObject && key in data) {
+          if (isDataObject && Object.hasOwn(data, key)) {
             const enumReplacement = replacementForInvalidEnumValue(
               newKeyedSchema,
               formValue
             );
             if (enumReplacement !== NO_VALUE) {
-              removeOldSchemaData[key] = enumReplacement;
+              setOwn(removeOldSchemaData, key, enumReplacement);
             }
           }
         }

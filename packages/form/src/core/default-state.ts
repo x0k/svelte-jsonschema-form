@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { isRecordEmpty, isObject } from "#lib/object.js";
+import { isRecordEmpty, isObject, setOwn } from "#lib/object.js";
 
 import { isSchemaOfConstantValue } from "./constant-schema.js";
 import { isSchemaValueDeepEqual } from "./deep-equal.js";
@@ -621,16 +621,20 @@ export function ensureFormDataMatchingSchema(
         continue;
       }
       if (
-        key in result &&
+        Object.hasOwn(result, key) &&
         (shouldRetrieveAllOf || ALL_OF_KEY in propertySchema)
       ) {
-        result[key] = ensureFormDataMatchingSchema(
-          validator,
-          merger,
-          propertySchema,
-          rootSchema,
-          result[key],
-          experimental_defaultFormStateBehavior
+        setOwn(
+          result,
+          key,
+          ensureFormDataMatchingSchema(
+            validator,
+            merger,
+            propertySchema,
+            rootSchema,
+            result[key],
+            experimental_defaultFormStateBehavior
+          )
         );
       }
     }
@@ -856,7 +860,9 @@ export function getObjectDefaults(
         initialDefaultsGenerated,
       });
       const isConst =
-        (value.const !== undefined || parentConstObject[key] !== undefined) &&
+        (value.const !== undefined ||
+          (Object.hasOwn(parentConstObject, key) &&
+            parentConstObject[key] !== undefined)) &&
         experimental_defaultFormStateBehavior.constAsDefaults !== "never";
       maybeAddDefaultToObject(
         objDefaults,
@@ -876,7 +882,9 @@ export function getObjectDefaults(
   if (schemaAdditionalProperties !== undefined && !initialDefaultsGenerated) {
     let formDataKeys = Object.keys(formData);
     if (schemaProperties !== undefined) {
-      formDataKeys = formDataKeys.filter((k) => !(k in schemaProperties));
+      formDataKeys = formDataKeys.filter(
+        (k) => !Object.hasOwn(schemaProperties, k)
+      );
     }
     const formDataRequired = new Set(formDataKeys);
     const keys = new Set(formDataRequired);
@@ -885,7 +893,10 @@ export function getObjectDefaults(
     // re-add stale entries that no longer exist in formData.
     if (formDataRequired.size === 0 && isSchemaObjectValue(defaults)) {
       for (const k of Object.keys(defaults)) {
-        if (schemaProperties === undefined || !(k in schemaProperties)) {
+        if (
+          schemaProperties === undefined ||
+          !Object.hasOwn(schemaProperties, k)
+        ) {
           keys.add(k);
         }
       }

@@ -3358,6 +3358,27 @@ describe("retrieveSchema()", () => {
         },
       });
     });
+    it("stubs an own __proto__ key without changing the properties prototype", () => {
+      const schema = {
+        additionalProperties: true,
+        properties: {},
+      } satisfies Schema;
+      const formData = JSON.parse('{"__proto__":{"a":1}}');
+      const resolved = stubExistingAdditionalProperties(
+        testValidator,
+        defaultMerger,
+        schema,
+        schema,
+        formData
+      );
+      expect(Object.hasOwn(resolved.properties!, "__proto__")).toBe(true);
+      expect(Object.getPrototypeOf(resolved.properties)).toBe(Object.prototype);
+      expect(resolved.properties!["__proto__"]).toEqual({
+        type: "object",
+        [ADDITIONAL_PROPERTY_FLAG]: true,
+      });
+    });
+
     it("has property keys that match schema AND formData, additionalProperties is boolean", () => {
       const schema = {
         properties: {

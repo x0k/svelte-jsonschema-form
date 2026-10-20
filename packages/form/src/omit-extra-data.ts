@@ -15,7 +15,7 @@ import {
   getDiscriminatorFieldFromSchema,
 } from "#core/index.js";
 import { isSchemaObject } from "#lib/json-schema/index.js";
-import { isObject, isRecordEmpty } from "#lib/object.js";
+import { isObject, isRecordEmpty, setOwn } from "#lib/object.js";
 
 // WARN: Any change to this function must be synchronized with `validators/precompile`
 export function allowAdditionalProperties(s: Schema): Schema {
@@ -64,20 +64,24 @@ export function omitExtraData(
       additionalProperties = false,
     } = schema;
 
+    function ownValue(obj: SchemaObjectValue, key: string) {
+      return Object.hasOwn(obj, key) ? obj[key] : undefined;
+    }
+
     function setProperty(
       key: string,
       schemaDef: SchemaDefinition,
       value: SchemaValue | undefined
     ) {
-      const v = omit(schemaDef, value, target[key]);
+      const v = omit(schemaDef, value, ownValue(target, key));
       if (v !== undefined) {
-        target[key] = v;
+        setOwn(target, key, v);
       }
     }
 
     if (properties !== undefined) {
       for (const [key, schema] of Object.entries(properties)) {
-        setProperty(key, schema, source[key]);
+        setProperty(key, schema, ownValue(source, key));
       }
     }
     let patternPropertiesRest: string[] | undefined;
@@ -224,7 +228,7 @@ export function omitExtraData(
       return target;
     }
     for (const [key, deps] of Object.entries(dependencies)) {
-      if (!(key in source) || Array.isArray(deps)) {
+      if (!Object.hasOwn(source, key) || Array.isArray(deps)) {
         continue;
       }
       target = omit(deps, source, target, false);
