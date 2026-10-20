@@ -91,6 +91,10 @@ describe("calculateIndexScore", () => {
         firstOption,
         ONE_OF_SCHEMA_DATA
       )
+      // CHANGED: This is a bug in original implementation it this condition
+      // `if (propertySchema.default) {`.
+      // But we use this `if (propertySchema.default !== undefined) {`
+      // so falsy default values behavior is changed
     ).toEqual(0);
   });
   it("returns 9 for second option in oneOf schema", () => {
@@ -102,6 +106,7 @@ describe("calculateIndexScore", () => {
         secondOption,
         ONE_OF_SCHEMA_DATA
       )
+      // CHANGED: The same as above (i guess)
     ).toEqual(8);
   });
   it("returns 1 for a schema that has a type matching the formData type", () => {
@@ -491,6 +496,9 @@ describe("oneOfMatchingOption", () => {
         { flag: true },
         ONE_OF_SCHEMA_OPTIONS
       )
+      // CHANGED: Our implementation of `calculateIndexScore` has fixed
+      // the `falsy` handling of constant values, so different result
+      // ).toEqual(0);
     ).toEqual(-1);
   });
   it("returns the second option, which exactly matches the data", () => {
