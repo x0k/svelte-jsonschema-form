@@ -1604,7 +1604,7 @@ describe("retrieveSchema()", () => {
               },
             });
             expect(consoleWarnSpy).toHaveBeenCalledWith(
-              "ignoring oneOf in dependencies because there isn't exactly one subschema that is valid"
+              'ignoring oneOf in dependencies of "employee_accounts" because there isn\'t exactly one subschema that is valid'
             );
           });
 

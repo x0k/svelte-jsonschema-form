@@ -6,6 +6,7 @@
 
 import { array } from "#lib/array.js";
 import { isJsonSchemaType } from "#lib/json-schema/index.js";
+import logOnce from "#lib/log-once.js";
 import { isRecordEmpty } from "#lib/object.js";
 
 import { isSchemaDeepEqual } from "./deep-equal.js";
@@ -272,7 +273,7 @@ export function retrieveSchemaInternal(
         // CHANGED: No need for `contains` workaround this with modern merger
         resolvedSchema = merger.mergeAllOf(resolvedSchema);
       } catch (e) {
-        console.warn("could not merge subschemas in allOf:\n", e);
+        logOnce("could not merge subschemas in allOf:\n", "warn", e);
         const { allOf, ...resolvedSchemaWithoutAllOf } = resolvedSchema;
         return resolvedSchemaWithoutAllOf;
       }
@@ -821,8 +822,8 @@ export function withExactlyOneSubSchema(
   );
 
   if (!expandAllBranches && validSubSchemas.length !== 1) {
-    console.warn(
-      "ignoring oneOf in dependencies because there isn't exactly one subschema that is valid"
+    logOnce(
+      `ignoring oneOf in dependencies of "${dependencyKey}" because there isn't exactly one subschema that is valid`
     );
     return [schema];
   }
