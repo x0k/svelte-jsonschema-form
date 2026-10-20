@@ -184,7 +184,7 @@ export function calculateIndexScore(
         ) {
           // If the types match, then we bump the score by one
           totalScore += 1;
-          if (propertySchema.default) {
+          if (propertySchema.default !== undefined) {
             totalScore += formValue === propertySchema.default ? 1 : -1;
           } else if (
             propertySchema.const !== undefined &&
