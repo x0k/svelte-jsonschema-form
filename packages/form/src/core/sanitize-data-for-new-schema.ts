@@ -59,8 +59,13 @@ function sanitizeArrays(
     rootSchema,
     data
   );
-  // The old and new raw items schema are usually identical, so skip resolving a second time in that common case
-  const newSchemaItems = isSchemaDeepEqual(oldSchemaItemsRaw, newSchemaItemsRaw)
+  // The old and new raw items schema are usually identical, so skip resolving a second time in that common case.
+  // Neither changes per element, so compare them once rather than inside the per-element loop below.
+  const sameItemsSchema = isSchemaDeepEqual(
+    oldSchemaItemsRaw,
+    newSchemaItemsRaw
+  );
+  const newSchemaItems = sameItemsSchema
     ? oldSchemaItems
     : retrieveSchema(validator, merger, newSchemaItemsRaw, rootSchema, data);
   const oldSchemaType = oldSchemaItems.type;
@@ -80,10 +85,7 @@ function sanitizeArrays(
           rootSchema,
           aValue
         );
-        const newItemSchema = isSchemaDeepEqual(
-          oldSchemaItemsRaw,
-          newSchemaItemsRaw
-        )
+        const newItemSchema = sameItemsSchema
           ? oldItemSchema
           : retrieveSchema(
               validator,
@@ -118,7 +120,8 @@ function sanitizeArrays(
               newItemEnumValues.some((v) => isSchemaValueDeepEqual(v, item))
             )
           : data;
-      return maxItems > 0 && filteredData.length > maxItems
+      // `maxItems` of 0 allows no item at all, which is how the object items path above reads it too
+      return maxItems >= 0 && filteredData.length > maxItems
         ? filteredData.slice(0, maxItems)
         : filteredData;
     }

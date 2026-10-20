@@ -1007,6 +1007,27 @@ describe("sanitizeDataForNewSchema", () => {
       )
     ).toBeUndefined();
   });
+  it("allows no item at all for maxItems of 0", () => {
+    const oldSchema: Schema = {
+      type: "array",
+      items: { type: "string" },
+    };
+    const newSchema: Schema = {
+      type: "array",
+      maxItems: 0,
+      items: { type: "string" },
+    };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        oneOfSchema,
+        newSchema,
+        oldSchema,
+        ["1"]
+      )
+    ).toEqual([]);
+  });
   it("returns trimmed array when the new schema has maxItems < size for simple type", () => {
     const oldSchema: Schema = {
       type: "array",
