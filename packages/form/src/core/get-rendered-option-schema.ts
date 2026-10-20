@@ -2,9 +2,10 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { isRecord, setOwn } from "#lib/object.js";
+import { isRecord } from "#lib/object.js";
 
 import type { Merger } from "./merger.js";
+import { setOwn } from "./own-property.js";
 import {
   ADDITIONAL_ITEMS_KEY,
   ALL_OF_KEY,
@@ -20,6 +21,7 @@ import {
   REQUIRED_KEY,
   THEN_KEY,
   type Schema,
+  type SchemaType,
 } from "./schema.js";
 import { getSimpleSchemaType } from "./type.js";
 
@@ -56,6 +58,14 @@ const SUBSCHEMA_MAP_KEYWORDS = new Set([
   "dependentSchemas",
   "dependencies",
 ]);
+
+function isSubschemaKeyword(key: string): boolean {
+  return (
+    SUBSCHEMA_MAP_KEYWORDS.has(key) ||
+    SUBSCHEMA_ARRAY_KEYWORDS.has(key) ||
+    SUBSCHEMA_KEYWORDS.has(key)
+  );
+}
 
 function keywordShape(
   key: string,
@@ -115,7 +125,11 @@ const KEYWORDS_TAKEN_FROM_OPTION = new Set<string>([
 const CONDITIONAL_KEYWORDS = [IF_KEY, THEN_KEY, ELSE_KEY];
 const POSITIONAL_KEYWORDS = new Set<string>([ITEMS_KEY, "prefixItems"]);
 
-function meetSchemas(parent: SchemaRecord, option: SchemaRecord): SchemaRecord {
+function meetSchemas(
+  merger: Merger,
+  parent: SchemaRecord,
+  option: SchemaRecord
+): SchemaRecord {
   const result: SchemaRecord = { ...parent, ...option };
   const takesOptionConditional = CONDITIONAL_KEYWORDS.some(
     (key) => option[key] !== undefined
@@ -131,7 +145,7 @@ function meetSchemas(parent: SchemaRecord, option: SchemaRecord): SchemaRecord {
       Object.hasOwn(parent, key) &&
       !CONDITIONAL_KEYWORDS.includes(key)
     ) {
-      setOwn(result, key, meetKeyword(key, parent[key], optionValue));
+      setOwn(result, key, meetKeyword(merger, key, parent[key], optionValue));
     }
   }
   const parentItems = parent[ITEMS_KEY];
@@ -146,7 +160,7 @@ function meetSchemas(parent: SchemaRecord, option: SchemaRecord): SchemaRecord {
     setOwn(
       result,
       ADDITIONAL_ITEMS_KEY,
-      meetSubschema(parent[ADDITIONAL_ITEMS_KEY], optionItems)
+      meetSubschema(merger, parent[ADDITIONAL_ITEMS_KEY], optionItems)
     );
   } else if (
     isRecord(parentItems) &&
@@ -156,7 +170,7 @@ function meetSchemas(parent: SchemaRecord, option: SchemaRecord): SchemaRecord {
     setOwn(
       result,
       ADDITIONAL_ITEMS_KEY,
-      meetSubschema(parentItems, option[ADDITIONAL_ITEMS_KEY])
+      meetSubschema(merger, parentItems, option[ADDITIONAL_ITEMS_KEY])
     );
   }
   if (takesOptionConditional) {
@@ -170,6 +184,7 @@ function meetSchemas(parent: SchemaRecord, option: SchemaRecord): SchemaRecord {
 }
 
 function meetKeyword(
+  merger: Merger,
   key: string,
   parentValue: unknown,
   optionValue: unknown
@@ -186,7 +201,7 @@ function meetKeyword(
       : optionValue;
   }
   if (key === "uniqueItems") {
-    return Boolean(parentValue) || Boolean(optionValue);
+    return parentValue === true || optionValue;
   }
   if (Array.isArray(parentValue) && Array.isArray(optionValue)) {
     if (key === REQUIRED_KEY) {
@@ -196,6 +211,11 @@ function meetKeyword(
       return optionValue;
     }
   }
+  if (!isSubschemaKeyword(key)) {
+    return isRecord(parentValue) && isRecord(optionValue)
+      ? merger.mergeSchemas(parentValue, optionValue)
+      : optionValue;
+  }
   if (
     isRecord(parentValue) &&
     isRecord(optionValue) &&
@@ -204,7 +224,11 @@ function meetKeyword(
     const entries: SchemaRecord = { ...parentValue, ...optionValue };
     for (const [name, optionEntry] of Object.entries(optionValue)) {
       if (Object.hasOwn(parentValue, name)) {
-        setOwn(entries, name, meetSubschema(parentValue[name], optionEntry));
+        setOwn(
+          entries,
+          name,
+          meetSubschema(merger, parentValue[name], optionEntry)
+        );
       }
     }
     return entries;
@@ -215,23 +239,27 @@ function meetKeyword(
     optionValue !== true
   ) {
     if (Array.isArray(parentValue) && Array.isArray(optionValue)) {
-      return meetTuples(parentValue, optionValue);
+      return meetTuples(merger, parentValue, optionValue);
     }
     if (Array.isArray(parentValue)) {
       return parentValue.map((position) =>
-        meetSubschema(position, optionValue)
+        meetSubschema(merger, position, optionValue)
       );
     }
     if (Array.isArray(optionValue)) {
       return optionValue.map((position) =>
-        meetSubschema(parentValue, position)
+        meetSubschema(merger, parentValue, position)
       );
     }
   }
-  return meetSubschema(parentValue, optionValue);
+  return meetSubschema(merger, parentValue, optionValue);
 }
 
-function meetTuples(parent: unknown[], option: unknown[]): unknown[] {
+function meetTuples(
+  merger: Merger,
+  parent: unknown[],
+  option: unknown[]
+): unknown[] {
   return Array.from(
     { length: Math.max(parent.length, option.length) },
     (_, index) => {
@@ -239,13 +267,17 @@ function meetTuples(parent: unknown[], option: unknown[]): unknown[] {
         return parent[index];
       }
       return index < parent.length
-        ? meetSubschema(parent[index], option[index])
+        ? meetSubschema(merger, parent[index], option[index])
         : option[index];
     }
   );
 }
 
-function meetSubschema(parent: unknown, option: unknown): unknown {
+function meetSubschema(
+  merger: Merger,
+  parent: unknown,
+  option: unknown
+): unknown {
   if (parent === undefined) {
     return option;
   }
@@ -257,11 +289,36 @@ function meetSubschema(parent: unknown, option: unknown): unknown {
   }
   return Object.hasOwn(parent, REF_KEY) || Object.hasOwn(option, REF_KEY)
     ? { [ALL_OF_KEY]: [parent, option] }
-    : meetSchemas(parent, option);
+    : meetSchemas(merger, parent, option);
+}
+
+const KNOWN_SCHEMA_TYPES = new Set<SchemaType>([
+  "null",
+  "boolean",
+  "object",
+  "array",
+  "number",
+  "string",
+  "integer",
+]);
+
+function getSchemaType(schema: Schema): SchemaType {
+  const type = schema.type;
+  if (Array.isArray(type)) {
+    return (
+      type.find((type) => type !== "null" && KNOWN_SCHEMA_TYPES.has(type)) ??
+      type.find((type) => type !== "null") ??
+      "null"
+    );
+  }
+  if (!type && schema.enum !== undefined) {
+    return "string";
+  }
+  return type ?? getSimpleSchemaType(schema);
 }
 
 export function rendersOwnFieldBesideOption(schema: Schema): boolean {
-  return getSimpleSchemaType(schema) === "object";
+  return getSchemaType(schema) === "object";
 }
 
 /**
@@ -295,7 +352,7 @@ export function getRenderedOptionSchema(
     return option;
   }
   if (!rendersOwnField) {
-    return meetSchemas(inherited, option as SchemaRecord) as Schema;
+    return meetSchemas(merger, inherited, option as SchemaRecord) as Schema;
   }
   const merged = merger.mergeSchemas(
     inherited as Schema,

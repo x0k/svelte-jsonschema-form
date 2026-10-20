@@ -1,7 +1,10 @@
 import { describe, expect, test } from "vitest";
 
 import { createMerger } from "../mergers/modern.js";
-import { getRenderedOptionSchema } from "./get-rendered-option-schema.js";
+import {
+  getRenderedOptionSchema,
+  rendersOwnFieldBesideOption,
+} from "./get-rendered-option-schema.js";
 import type { Schema } from "./schema.js";
 
 const merger = createMerger();
@@ -78,5 +81,29 @@ describe("getRenderedOptionSchema()", () => {
         { required: ["value"] }
       )
     ).toEqual({ type: "object", required: ["value"] });
+  });
+
+  test("merges a value keyword holding objects", () => {
+    expect(
+      rendered(
+        { type: "string", "x-extra": { a: 1 } } as never,
+        { "x-extra": { b: 2 } } as never
+      )
+    ).toEqual({ type: "string", "x-extra": { a: 1, b: 2 } });
+  });
+
+  test("does not treat an enum of objects as an object schema", () => {
+    expect(rendersOwnFieldBesideOption({ enum: [{ a: 1 }] })).toBe(false);
+  });
+
+  test("skips null and unrecognized type names when choosing a type", () => {
+    expect(
+      rendersOwnFieldBesideOption({
+        type: ["null", "not-a-type", "object"],
+      } as never)
+    ).toBe(true);
+    expect(
+      rendersOwnFieldBesideOption({ type: ["not-a-type", "string"] } as never)
+    ).toBe(false);
   });
 });
