@@ -366,19 +366,6 @@ leg/:
     t:
       pnpm run test $@
     popd
-  kit/:
-    pushd sveltekit
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    p:
-      pnpm run preview
-    d:
-      pnpm run dev
-    t:
-      pnpm run test $@
-    popd
   popd
 
 e/:
@@ -495,17 +482,6 @@ e/:
     popd
   type/:
     pushd typebox-starter
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    p:
-      pnpm run preview
-    d:
-      pnpm run dev
-    popd
-  kit2/:
-    pushd sveltekit-starter
     c:
       pnpm run check
     b:

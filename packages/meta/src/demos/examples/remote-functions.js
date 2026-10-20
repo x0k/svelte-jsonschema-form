@@ -3,7 +3,6 @@ import pageSvelte from "examples/sveltekit3-starter/src/routes/remote-functions/
 import dataRemoteTs from "examples/sveltekit3-starter/src/routes/remote-functions/data.remote?raw";
 
 import {
-  KIT2_DEMO_RANGE,
   defineExample,
   defineMeta,
   remoteFormDefaultsReplacer,
@@ -19,7 +18,6 @@ export const meta = defineMeta({
 });
 
 export default defineExample({
-  kitRange: KIT2_DEMO_RANGE,
   sveltekit: "remoteFunctions",
   files: {
     "src/lib/post.ts": postModelTs,

@@ -1,16 +1,10 @@
-import serverTs from "examples/sveltekit-starter/src/lib/server.ts?raw";
-import layoutServerTs from "examples/sveltekit-starter/src/routes/form-actions-dynamic-schema/+layout.server.ts?raw";
-import pageSvelte from "examples/sveltekit-starter/src/routes/form-actions-dynamic-schema/+page.svelte?raw";
-import pageServerTs from "examples/sveltekit-starter/src/routes/form-actions-dynamic-schema/[id]/+page.server.ts?raw";
-import nestedPageSvelte from "examples/sveltekit-starter/src/routes/form-actions-dynamic-schema/[id]/+page.svelte?raw";
+import serverTs from "examples/sveltekit3-starter/src/lib/server.ts?raw";
+import layoutServerTs from "examples/sveltekit3-starter/src/routes/form-actions-dynamic-schema/+layout.server.ts?raw";
+import pageSvelte from "examples/sveltekit3-starter/src/routes/form-actions-dynamic-schema/+page.svelte?raw";
+import pageServerTs from "examples/sveltekit3-starter/src/routes/form-actions-dynamic-schema/[id]/+page.server.ts?raw";
+import nestedPageSvelte from "examples/sveltekit3-starter/src/routes/form-actions-dynamic-schema/[id]/+page.svelte?raw";
 
-import {
-  ExampleCategory,
-  KIT2_DEMO_RANGE,
-  Tag,
-  defineExample,
-  defineMeta,
-} from "../model.js";
+import { ExampleCategory, Tag, defineExample, defineMeta } from "../model.js";
 
 export const meta = defineMeta({
   category: ExampleCategory.SvelteKitIntegrations,
@@ -20,7 +14,6 @@ export const meta = defineMeta({
 });
 
 export default defineExample({
-  kitRange: KIT2_DEMO_RANGE,
   sveltekit: "formActions",
   files: {
     "src/lib/server.ts": serverTs,

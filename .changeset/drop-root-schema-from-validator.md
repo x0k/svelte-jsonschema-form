@@ -6,7 +6,6 @@
 "@sjsf/schemasafe-validator": major
 "@sjsf/valibot-validator": major
 "@sjsf/zod4-validator": major
-"@sjsf/sveltekit": major
 "@sjsf-lab/hyperjump-validator": major
 ---
 

@@ -1,7 +1,8 @@
 import { isFormValueValidator, type FormValue, type Schema } from "@sjsf/form";
-import type { Merger } from "@sjsf/form/core";
+import { isSchemaValueDeepEqual, type Merger } from "@sjsf/form/core";
 import { describe, expect, it } from "vitest";
 
+import type { ValidatorFactoryOptions } from "../validator-factory.ts";
 import { draft07 } from "./ata-precompiled.ts";
 
 const SCHEMA = {
@@ -25,18 +26,20 @@ describe("ata-precompiled", () => {
     // The compiled validator only validates, it never merges, so the merger
     // the playground would pass has no bearing here.
     const merger: Merger = {
+      isValueDeepEqual: isSchemaValueDeepEqual,
       mergeSchemas: (a) => a,
       mergeAllOf: (a) => a,
     };
 
     const createValidator = (await draft07([SCHEMA]))({
+      schema: SCHEMA,
       merger: () => merger,
-    });
+    } as unknown as ValidatorFactoryOptions);
     if (!isFormValueValidator(createValidator)) {
       throw new Error("the compiled validator cannot validate form values");
     }
     const validate = (formValue: FormValue) =>
-      createValidator.validateFormValue(SCHEMA, formValue);
+      createValidator.validateFormValue(formValue);
 
     expect(
       validate({ color: "#fff", file: "data:text/plain;base64,aGk=" })

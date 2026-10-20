@@ -8,7 +8,7 @@ import {
 import {
   type ThemeExtension,
   codegemIsJsonSchemaValidator,
-  createKitPathFactory,
+  kitPathFactory,
 } from "../codegen/index.ts";
 import {
   createComposer,
@@ -20,7 +20,6 @@ import {
   type ExtraFieldFileName,
 } from "../fields.ts";
 import { extraPackage, type AbstractPackage } from "../package.ts";
-import { DEFAULT_KIT_RANGE, resolveSvelteKitProject } from "../sveltekit.ts";
 import { toTheme, type Theme } from "../themes.ts";
 import { WIDGETS } from "../widgets.generated.ts";
 import { isThemeBaseWidget, type ExtraWidgetFileNames } from "../widgets.ts";
@@ -256,11 +255,7 @@ export async function createSandboxFiles({
   }
 
   const themeExtension: ThemeExtension = [];
-  // Passed to `createComposer` below as well, so the prefix and the generated
-  // project shape cannot drift apart
-  const kitRange = DEFAULT_KIT_RANGE;
-  const lib = createKitPathFactory(resolveSvelteKitProject(kitRange).libPrefix);
-  const customComponentsModule = lib("custom-components/index");
+  const customComponentsModule = kitPathFactory("custom-components/index");
   if (usesMarkdownDescription) {
     themeExtension.push({
       imports: ["markdownDescription"],
@@ -284,7 +279,6 @@ export async function createSandboxFiles({
     themeOrSubTheme: formState.theme,
     icons: formState.icons,
     sveltekit: "no",
-    kitRange,
     widgets: extraWidgets,
     fields: extraFields,
     extraFiles,
