@@ -130,11 +130,21 @@ export function calculateIndexScore(
     const schemaProperties = schema.properties;
     if (schemaProperties && isSchemaObjectValue(formData)) {
       for (const [key, propertySchema] of Object.entries(schemaProperties)) {
-        const formValue = formData[key];
+        // Read only own properties, so a recursive `$ref` under a name every
+        // object inherits, such as `toString`, still sees the data run out.
+        const formValue = Object.hasOwn(formData, key)
+          ? formData[key]
+          : undefined;
         if (typeof propertySchema === "boolean") {
           continue;
         }
         if (propertySchema[REF_KEY] !== undefined) {
+          // A recursive `$ref` stays in place after resolution, so following it
+          // without data would fabricate `{}` at every level and never
+          // terminate. Descending past the data could only score its absence.
+          if (formValue == null) {
+            continue;
+          }
           const newSchema = retrieveSchema(
             validator,
             merger,
