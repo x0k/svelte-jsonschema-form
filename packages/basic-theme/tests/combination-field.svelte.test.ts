@@ -20,6 +20,7 @@ import {
   refObjectOneOfSchema,
   stringAnyOfSchema,
   stringOneOfSchema,
+  swappedObjectDefaultSchema,
 } from "./test-data/combination-defaults.js";
 
 const enumUiSchema = {
@@ -344,6 +345,19 @@ describe("combination field contracts", () => {
       await userEvent.selectOptions(select, "First method of identification");
 
       expectValue(form, { firstName: "Chuck" });
+    });
+  });
+
+  describe("swapped object defaults (#5349)", () => {
+    test("replaces an object default declared without property defaults", async () => {
+      const { form } = await renderFieldForm({
+        schema: swappedObjectDefaultSchema,
+        initialValue: { mode: "first", value: { branch: "first" } },
+      });
+
+      await userEvent.fill(page.getByRole("textbox").first(), "second");
+
+      expectValue(form, { mode: "second", value: { branch: "second" } });
     });
   });
 

@@ -39,6 +39,105 @@ describe("sanitizeDataForNewSchema", () => {
       )
     ).toBeUndefined();
   });
+  it("replaces a swapped-away object default without property defaults", () => {
+    const oldSchema: Schema = {
+      type: "object",
+      properties: {
+        value: {
+          type: "object",
+          default: { branch: "first" },
+          properties: { branch: { type: "string" } },
+        },
+      },
+    };
+    const newSchema: Schema = {
+      type: "object",
+      properties: {
+        value: {
+          type: "object",
+          default: { branch: "second" },
+          properties: { branch: { type: "string" } },
+        },
+      },
+    };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        oneOfSchema,
+        newSchema,
+        oldSchema,
+        { value: { branch: "first" } }
+      )
+    ).toEqual({ value: { branch: "second" } });
+  });
+  it("does not alias a replaced object default in the returned data", () => {
+    const newDefault = { branch: "second" };
+    const oldSchema: Schema = {
+      type: "object",
+      properties: {
+        value: {
+          type: "object",
+          default: { branch: "first" },
+          properties: { branch: { type: "string" } },
+        },
+      },
+    };
+    const newSchema: Schema = {
+      type: "object",
+      properties: {
+        value: {
+          type: "object",
+          default: newDefault,
+          properties: { branch: { type: "string" } },
+        },
+      },
+    };
+    const result = sanitizeDataForNewSchema(
+      testValidator,
+      defaultMerger,
+      oneOfSchema,
+      newSchema,
+      oldSchema,
+      { value: { branch: "first" } }
+    ) as { value: { branch: string } };
+    expect(result).toEqual({ value: { branch: "second" } });
+    expect(result.value).not.toBe(newDefault);
+    result.value.branch = "edited";
+    expect(newDefault).toEqual({ branch: "second" });
+  });
+  it("keeps an edited object that no longer matches the old branch default", () => {
+    const oldSchema: Schema = {
+      type: "object",
+      properties: {
+        value: {
+          type: "object",
+          default: { branch: "first" },
+          properties: { branch: { type: "string" } },
+        },
+      },
+    };
+    const newSchema: Schema = {
+      type: "object",
+      properties: {
+        value: {
+          type: "object",
+          default: { branch: "second" },
+          properties: { branch: { type: "string" } },
+        },
+      },
+    };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        oneOfSchema,
+        newSchema,
+        oldSchema,
+        { value: { branch: "edited" } }
+      )
+    ).toEqual({ value: { branch: "edited" } });
+  });
   // it('returns input formData when the old schema is not an object', () => {
   //   const newSchema = retrieveSchema2(testValidator, defaultMerger, SECOND_ONE_OF, oneOfSchema);
   //   expect(sanitizeDataForNewSchema2(testValidator, defaultMerger, oneOfSchema, newSchema, undefined, oneOfData)).toEqual(oneOfData);

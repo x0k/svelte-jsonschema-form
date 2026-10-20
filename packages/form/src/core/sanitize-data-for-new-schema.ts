@@ -197,7 +197,21 @@ export function sanitizeDataForNewSchema(
         if (Object.hasOwn(removeOldSchemaData, key)) {
           delete removeOldSchemaData[key];
         }
+        // A container's own `default` is not compared by the recursion below,
+        // which only sees the container's properties. Replace the old branch's
+        // object default before entering it, so a key without a property-level
+        // default does not keep the value of the branch that was swapped away.
+        const oldObjectDefault = oldKeyedSchema.default;
+        const newObjectDefault = newKeyedSchema.default;
         if (
+          isSchemaObjectValue(oldObjectDefault) &&
+          isSchemaObjectValue(newObjectDefault) &&
+          isSchemaObjectValue(formValue) &&
+          !isSchemaValueDeepEqual(oldObjectDefault, newObjectDefault) &&
+          isSchemaValueDeepEqual(oldObjectDefault, formValue)
+        ) {
+          setOwn(nestedData, key, { ...newObjectDefault });
+        } else if (
           newSchemaTypeForKey === "object" ||
           (newSchemaTypeForKey === "array" && Array.isArray(formValue))
         ) {

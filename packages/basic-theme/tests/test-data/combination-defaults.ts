@@ -332,3 +332,44 @@ export const dependencyDefaultsSchema = {
     },
   },
 } as const satisfies Schema;
+
+export const swappedObjectDefaultSchema = {
+  type: "object",
+  properties: {
+    mode: {
+      type: "string",
+      enum: ["first", "second"],
+      default: "first",
+    },
+  },
+  dependencies: {
+    mode: {
+      oneOf: [
+        {
+          properties: {
+            mode: { const: "first" },
+            value: {
+              type: "object",
+              default: { branch: "first" },
+              properties: {
+                branch: { type: "string" },
+              },
+            },
+          },
+        },
+        {
+          properties: {
+            mode: { const: "second" },
+            value: {
+              type: "object",
+              default: { branch: "second" },
+              properties: {
+                branch: { type: "string" },
+              },
+            },
+          },
+        },
+      ],
+    },
+  },
+} as const satisfies Schema;
