@@ -42,6 +42,10 @@ selected option: an array's `items` and `uniqueItems`, or a string's `format`,
 for example. An option's own value of a shared keyword wins, except that the
 stricter bound is kept.
 
+Switching options carries over values the new option can hold and applies its
+defaults, including nested object and array defaults, so returning to an
+option restores those defaults.
+
 ---
 
 ## 2. Schema Dependencies

@@ -119,6 +119,61 @@ export const plainOneOfSchema = {
   ],
 } as const satisfies Schema;
 
+export const arrayDefaultsOneOfSchema = {
+  oneOf: [
+    {
+      title: "First",
+      type: "array",
+      default: [1],
+      items: { type: "number" },
+    },
+    {
+      title: "Second",
+      type: "array",
+      default: [2],
+      items: { type: "number" },
+    },
+  ],
+} as const satisfies Schema;
+
+export const objectAndArrayDefaultsOneOfSchema = {
+  type: "object",
+  oneOf: [
+    {
+      title: "First",
+      type: "object",
+      properties: {
+        kind: { type: "string", const: "first", default: "first" },
+        runner: {
+          type: "object",
+          default: { name: "first" },
+          properties: {
+            name: { type: "string" },
+            ratio: { type: "number", default: 0 },
+          },
+        },
+        list: { type: "array", default: [1], items: { type: "number" } },
+      },
+    },
+    {
+      title: "Second",
+      type: "object",
+      properties: {
+        kind: { type: "string", const: "second", default: "second" },
+        runner: {
+          type: "object",
+          default: { name: "second" },
+          properties: {
+            name: { type: "string" },
+            ratio: { type: "number", default: 0 },
+          },
+        },
+        list: { type: "array", default: [2], items: { type: "number" } },
+      },
+    },
+  ],
+} as const satisfies Schema;
+
 export const refObjectOneOfSchema = {
   title: "oneOf Example",
   type: "object",
