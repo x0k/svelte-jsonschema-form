@@ -9,12 +9,7 @@ import {
 } from "@sjsf/form";
 import { PROPERTIES_KEY, pathFromLocation, type Path } from "@sjsf/form/core";
 import { getValueByPath } from "@sjsf/form/lib/object";
-import {
-  Ajv,
-  type AsyncValidateFunction,
-  type ErrorObject,
-  type ValidateFunction,
-} from "ajv";
+import type { AsyncValidateFunction, ErrorObject, ValidateFunction } from "ajv";
 
 import type { CompiledValidateFunction } from "./internals.js";
 
@@ -131,6 +126,19 @@ export function validateAndTransformErrors<T, R>(
   return transformErrors(errors, data);
 }
 
+interface ValidationErrorLike {
+  ajv: true;
+  errors: ErrorObject[];
+}
+
+function isValidationErrorLike(error: unknown): error is ValidationErrorLike {
+  if (!(error instanceof Error)) {
+    return false;
+  }
+  const candidate = error as Partial<ValidationErrorLike>;
+  return candidate.ajv === true && Array.isArray(candidate.errors);
+}
+
 export async function validateAndTransformErrorsAsync<T, R>(
   validate: AsyncValidateFunction,
   data: FormValue,
@@ -140,10 +148,10 @@ export async function validateAndTransformErrorsAsync<T, R>(
   try {
     await validate(data);
   } catch (e) {
-    if (!(e instanceof Ajv.ValidationError)) {
+    if (!isValidationErrorLike(e)) {
       throw e;
     }
-    return transformErrors(e.errors as ErrorObject[], data);
+    return transformErrors(e.errors, data);
   } finally {
     validate.errors = null;
   }
