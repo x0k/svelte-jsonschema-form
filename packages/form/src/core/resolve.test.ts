@@ -4172,6 +4172,73 @@ describe("retrieveSchema()", () => {
         },
       ]);
     });
+    it.each([
+      { type: "integer", value: 0 },
+      { type: "boolean", value: false },
+      { type: "string", value: "" },
+    ] as const)(
+      "evaluates the condition against a falsy $type value",
+      ({ type, value }) => {
+        testValidator = createValidator({
+          cases: [{ schema: { const: value }, value, result: true }],
+        });
+        const schema: Schema = {
+          type,
+          if: { const: value },
+          then: { title: "matched" },
+          else: { title: "unmatched" },
+        };
+        expect(
+          resolveCondition(
+            testValidator,
+            createMerger({
+              merges: [
+                {
+                  left: { type },
+                  right: { title: "matched" },
+                  result: { type, title: "matched" },
+                },
+              ],
+            }),
+            schema,
+            {},
+            false,
+            new Set(),
+            value
+          )
+        ).toEqual([{ type, title: "matched" }]);
+      }
+    );
+    it("evaluates an object condition against a null value as against an empty object", () => {
+      testValidator = createValidator({
+        cases: [{ schema: { required: ["a"] }, value: {}, result: false }],
+      });
+      const schema: Schema = {
+        type: ["object", "null"],
+        if: { required: ["a"] },
+        then: { title: "matched" },
+        else: { title: "unmatched" },
+      };
+      expect(
+        resolveCondition(
+          testValidator,
+          createMerger({
+            merges: [
+              {
+                left: { type: ["object", "null"] },
+                right: { title: "unmatched" },
+                result: { type: ["object", "null"], title: "unmatched" },
+              },
+            ],
+          }),
+          schema,
+          {},
+          false,
+          new Set(),
+          null
+        )
+      ).toEqual([{ type: ["object", "null"], title: "unmatched" }]);
+    });
   });
   describe("retrieveSchema() with resolveAnyOfOrOneOfRefs", () => {
     it("resolves simple ref with no anyOf or oneOfs when false", () => {

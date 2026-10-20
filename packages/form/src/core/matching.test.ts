@@ -91,11 +91,7 @@ describe("calculateIndexScore", () => {
         firstOption,
         ONE_OF_SCHEMA_DATA
       )
-      // CHANGED: This is a bug in original implementation it this condition
-      // `if (propertySchema.default) {`.
-      // But we use this `if (propertySchema.default !== undefined) {`
-      // so falsy default values behavior is changed
-    ).toEqual(0);
+    ).toEqual(1);
   });
   it("returns 9 for second option in oneOf schema", () => {
     expect(
@@ -106,8 +102,7 @@ describe("calculateIndexScore", () => {
         secondOption,
         ONE_OF_SCHEMA_DATA
       )
-      // CHANGED: The same as above (i guess)
-    ).toEqual(8);
+    ).toEqual(9);
   });
   it("returns 1 for a schema that has a type matching the formData type", () => {
     expect(
@@ -141,6 +136,78 @@ describe("calculateIndexScore", () => {
         { foo: "aValue" }
       )
     ).toEqual(0);
+  });
+  it("scores a falsy const the way it scores a truthy one", () => {
+    const schema: Schema = {
+      properties: { flag: { type: "boolean", const: false } },
+    };
+    expect(
+      calculateIndexScore(testValidator, defaultMerger, oneOfSchema, schema, {
+        flag: false,
+      })
+    ).toEqual(2);
+    expect(
+      calculateIndexScore(testValidator, defaultMerger, oneOfSchema, schema, {
+        flag: true,
+      })
+    ).toEqual(0);
+  });
+  it("scores a nested oneOf holding a falsy value the way it scores a truthy one", () => {
+    testValidator = createValidator({
+      cases: [
+        { schema: { type: "string" }, value: 0, result: false },
+        { schema: { type: "number" }, value: 0, result: true },
+        { schema: { type: "string" }, value: 5, result: false },
+        { schema: { type: "number" }, value: 5, result: true },
+      ],
+    });
+    const schema: Schema = {
+      properties: {
+        value: { oneOf: [{ type: "string" }, { type: "number" }] },
+      },
+    };
+    expect(
+      calculateIndexScore(testValidator, defaultMerger, oneOfSchema, schema, {
+        value: 0,
+      })
+    ).toEqual(1);
+    expect(
+      calculateIndexScore(testValidator, defaultMerger, oneOfSchema, schema, {
+        value: 5,
+      })
+    ).toEqual(1);
+  });
+  it("does not score a nested oneOf against a null value", () => {
+    const schema: Schema = {
+      properties: {
+        name: { type: "string" },
+        extra: { oneOf: [{ type: "string" }, { type: "number" }] },
+      },
+    };
+    expect(
+      calculateIndexScore(testValidator, defaultMerger, oneOfSchema, schema, {
+        name: "a",
+        extra: null,
+      })
+    ).toEqual(1);
+    expect(
+      calculateIndexScore(testValidator, defaultMerger, oneOfSchema, schema, {
+        name: "a",
+      })
+    ).toEqual(1);
+  });
+  it("does not compare a missing value to a const of null", () => {
+    const schema: Schema = {
+      properties: { n: { type: "null", const: null } },
+    };
+    expect(
+      calculateIndexScore(testValidator, defaultMerger, oneOfSchema, schema, {})
+    ).toEqual(0);
+    expect(
+      calculateIndexScore(testValidator, defaultMerger, oneOfSchema, schema, {
+        n: null,
+      })
+    ).toEqual(2);
   });
 });
 describe("oneOfMatchingOption", () => {
@@ -424,10 +491,7 @@ describe("oneOfMatchingOption", () => {
         { flag: true },
         ONE_OF_SCHEMA_OPTIONS
       )
-      // CHANGED: Our implementation of `calculateIndexScore` has fixed
-      // the `falsy` handling of constant values, so different result
-      // ).toEqual(0);
-    ).toEqual(-1);
+    ).toEqual(0);
   });
   it("returns the second option, which exactly matches the data", () => {
     // First 3 are mocked false, with the fourth being true for the real second option
