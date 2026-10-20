@@ -72,15 +72,20 @@ export function resolveAllReferences(
   schema: Schema,
   rootSchema: Schema,
   stack = new Set<string>(),
-  resolveAnyOfOrOneOfRefs?: boolean
+  resolveAnyOfOrOneOfRefs?: boolean,
+  expandedRefs?: string[],
+  passCount = 0
 ): Schema {
   let resolvedSchema: Schema = schema;
+  let path = stack;
   const ref = resolvedSchema[REF_KEY];
   if (ref) {
-    if (stack.has(ref)) {
+    if (path.has(ref) || (passCount > 0 && resolvedSchema[REF_FLAG] === ref)) {
       return resolvedSchema;
     }
-    stack.add(ref);
+    path = new Set(path);
+    path.add(ref);
+    expandedRefs?.push(ref);
     const { [REF_KEY]: _, ...resolvedSchemaWithoutRef } = resolvedSchema;
     const schemaDef = findSchemaDefinition(merger, ref, rootSchema);
     return {
@@ -90,44 +95,47 @@ export function resolveAllReferences(
           ? schemaDef
           : merger.mergeSchemas(schemaDef, resolvedSchemaWithoutRef),
         rootSchema,
-        stack,
-        resolveAnyOfOrOneOfRefs
+        path,
+        resolveAnyOfOrOneOfRefs,
+        expandedRefs,
+        passCount
       ),
       [REF_FLAG]: ref,
     };
+  }
+  if (passCount > 0) {
+    const sourceRef = resolvedSchema[REF_FLAG];
+    if (sourceRef !== undefined) {
+      if (!path.has(sourceRef)) {
+        path = new Set(path);
+        path.add(sourceRef);
+      }
+      if (expandedRefs !== undefined && !expandedRefs.includes(sourceRef)) {
+        expandedRefs.push(sourceRef);
+      }
+    }
   }
 
   const properties = resolvedSchema[PROPERTIES_KEY];
   if (properties) {
     const resolvedProps = new Map<string, SchemaDefinition>();
-    const stackCopies: Set<string>[] = [];
     for (const [key, value] of Object.entries(properties)) {
       if (typeof value === "boolean") {
         resolvedProps.set(key, value);
       } else {
-        const stackCopy = new Set(stack);
         resolvedProps.set(
           key,
           resolveAllReferences(
             merger,
             value,
             rootSchema,
-            stackCopy,
-            resolveAnyOfOrOneOfRefs
+            path,
+            resolveAnyOfOrOneOfRefs,
+            expandedRefs,
+            passCount
           )
         );
-        // TODO: Replace stack with an object with a Set of references
-        // to use `union` Set method here
-        stackCopies.push(stackCopy);
       }
-    }
-    const stackSize = stack.size;
-    for (const copy of stackCopies) {
-      if (copy.size === stackSize) {
-        continue;
-      }
-
-      copy.forEach(stack.add, stack);
     }
     resolvedSchema = {
       ...resolvedSchema,
@@ -143,8 +151,10 @@ export function resolveAllReferences(
         merger,
         items,
         rootSchema,
-        stack,
-        resolveAnyOfOrOneOfRefs
+        path,
+        resolveAnyOfOrOneOfRefs,
+        expandedRefs,
+        passCount
       ),
     };
   }
@@ -159,23 +169,55 @@ export function resolveAllReferences(
       schemas = resolvedSchema[ONE_OF_KEY];
     }
     if (key && schemas) {
+      let optionsPath = path;
       resolvedSchema = {
         ...resolvedSchema,
-        [key]: schemas.map((s) =>
-          typeof s === "boolean"
-            ? s
-            : resolveAllReferences(
-                merger,
-                s,
-                rootSchema,
-                stack,
-                resolveAnyOfOrOneOfRefs
-              )
-        ),
+        [key]: schemas.map((s) => {
+          if (typeof s === "boolean") {
+            return s;
+          }
+          const expandedBefore = expandedRefs?.length ?? 0;
+          const option = resolveAllReferences(
+            merger,
+            s,
+            rootSchema,
+            optionsPath,
+            resolveAnyOfOrOneOfRefs,
+            expandedRefs,
+            passCount
+          );
+          if (
+            expandedRefs !== undefined &&
+            expandedRefs.length > expandedBefore
+          ) {
+            optionsPath = new Set(optionsPath);
+            for (const expandedRef of expandedRefs.slice(expandedBefore)) {
+              optionsPath.add(expandedRef);
+            }
+          }
+          return option;
+        }),
       };
     }
   }
   return resolvedSchema;
+}
+
+function enclosingRefPath(
+  schema: Schema,
+  stack: Set<string>,
+  passCount: number
+): Set<string> {
+  if (passCount === 0) {
+    return stack;
+  }
+  const sourceRef = schema[REF_FLAG];
+  if (sourceRef === undefined || stack.has(sourceRef)) {
+    return stack;
+  }
+  const path = new Set(stack);
+  path.add(sourceRef);
+  return path;
 }
 
 export function resolveReference(
@@ -187,14 +229,17 @@ export function resolveReference(
   stack: Set<string>,
   formData?: SchemaValue,
   resolveAnyOfOrOneOfRefs?: boolean,
-  preserveDependencies = false
+  preserveDependencies = false,
+  passCount = 0
 ): Schema[] {
   const resolvedSchema = resolveAllReferences(
     merger,
     schema,
     rootSchema,
     stack,
-    resolveAnyOfOrOneOfRefs
+    resolveAnyOfOrOneOfRefs,
+    undefined,
+    passCount
   );
   if (!isSchemaDeepEqual(schema, resolvedSchema)) {
     return retrieveSchemaInternal(
@@ -206,7 +251,8 @@ export function resolveReference(
       expandAllBranches,
       stack,
       resolveAnyOfOrOneOfRefs,
-      preserveDependencies
+      preserveDependencies,
+      passCount + 1
     );
   }
   return [schema];
@@ -224,7 +270,8 @@ export function retrieveSchemaInternal(
   expandAllBranches = false,
   stack = new Set<string>(),
   resolveAnyOfOrOneOfRefs?: boolean,
-  preserveDependencies = false
+  preserveDependencies = false,
+  passCount = 0
 ): Schema[] {
   const resolvedSchemas = resolveSchema(
     validator,
@@ -235,7 +282,8 @@ export function retrieveSchemaInternal(
     stack,
     formData,
     resolveAnyOfOrOneOfRefs,
-    preserveDependencies
+    preserveDependencies,
+    passCount
   );
   return resolvedSchemas.flatMap((s): Schema | Schema[] => {
     let resolvedSchema = s;
@@ -248,7 +296,8 @@ export function retrieveSchemaInternal(
         expandAllBranches,
         stack,
         formData,
-        preserveDependencies
+        preserveDependencies,
+        passCount
       );
     }
     const resolvedAllOf = resolvedSchema.allOf;
@@ -333,7 +382,8 @@ export function resolveCondition(
   expandAllBranches: boolean,
   stack: Set<string>,
   formData?: SchemaValue,
-  preserveDependencies = false
+  preserveDependencies = false,
+  passCount = 0
 ): Schema[] {
   const {
     if: expression,
@@ -361,7 +411,8 @@ export function resolveCondition(
           expandAllBranches,
           stack,
           undefined,
-          preserveDependencies
+          preserveDependencies,
+          passCount
         )
       );
     }
@@ -376,7 +427,8 @@ export function resolveCondition(
           expandAllBranches,
           stack,
           undefined,
-          preserveDependencies
+          preserveDependencies,
+          passCount
         )
       );
     }
@@ -391,9 +443,10 @@ export function resolveCondition(
           rootSchema,
           formData,
           expandAllBranches,
-          stack,
+          enclosingRefPath(schema, stack, passCount),
           undefined,
-          preserveDependencies
+          preserveDependencies,
+          passCount > 0 ? 1 : 0
         )
       );
     }
@@ -415,7 +468,8 @@ export function resolveCondition(
       expandAllBranches,
       stack,
       undefined,
-      preserveDependencies
+      preserveDependencies,
+      passCount + 1
     )
   );
 }
@@ -516,7 +570,8 @@ export function resolveSchema(
   stack: Set<string>,
   formData?: SchemaValue,
   resolveAnyOfOrOneOfRefs?: boolean,
-  preserveDependencies = false
+  preserveDependencies = false,
+  passCount = 0
 ): Schema[] {
   const updatedSchemas = resolveReference(
     validator,
@@ -527,7 +582,8 @@ export function resolveSchema(
     stack,
     formData,
     resolveAnyOfOrOneOfRefs,
-    preserveDependencies
+    preserveDependencies,
+    passCount
   );
   if (updatedSchemas.length > 1 || updatedSchemas[0] !== schema) {
     return updatedSchemas;
@@ -540,7 +596,8 @@ export function resolveSchema(
       rootSchema,
       expandAllBranches,
       stack,
-      formData
+      formData,
+      passCount
     );
     return resolvedSchemas.flatMap((s) => {
       return retrieveSchemaInternal(
@@ -552,7 +609,8 @@ export function resolveSchema(
         expandAllBranches,
         stack,
         undefined,
-        preserveDependencies
+        preserveDependencies,
+        passCount + 1
       );
     });
   }
@@ -567,9 +625,10 @@ export function resolveSchema(
           rootSchema,
           formData,
           expandAllBranches,
-          stack,
+          enclosingRefPath(schema, stack, passCount),
           undefined,
-          preserveDependencies
+          preserveDependencies,
+          passCount > 0 ? 1 : 0
         )
       );
     const allPermutations = getAllPermutationsOfXxxOf(allOfSchemaElements);
@@ -589,7 +648,8 @@ export function resolveDependencies(
   rootSchema: Schema,
   expandAllBranches: boolean,
   stack: Set<string>,
-  formData?: SchemaValue
+  formData?: SchemaValue,
+  passCount = 0
 ): Schema[] {
   const { dependencies, ...remainingSchema } = schema;
   const resolvedSchemas = resolveAnyOrOneOfSchemas(
@@ -609,7 +669,8 @@ export function resolveDependencies(
       rootSchema,
       expandAllBranches,
       stack,
-      formData
+      formData,
+      passCount
     )
   );
 }
@@ -668,7 +729,8 @@ export function processDependencies(
   rootSchema: Schema,
   expandAllBranches: boolean,
   stack: Set<string>,
-  formData?: SchemaValue
+  formData?: SchemaValue,
+  passCount = 0
 ): Schema[] {
   let schemas = [resolvedSchema];
   // Process dependencies updating the local schema properties as appropriate.
@@ -704,7 +766,8 @@ export function processDependencies(
         dependencyValue,
         expandAllBranches,
         stack,
-        formData
+        formData,
+        passCount
       );
     }
     return schemas.flatMap((schema) =>
@@ -716,7 +779,8 @@ export function processDependencies(
         rootSchema,
         expandAllBranches,
         stack,
-        formData
+        formData,
+        passCount
       )
     );
   }
@@ -732,7 +796,8 @@ export function withDependentSchema(
   dependencyValue: Schema,
   expandAllBranches: boolean,
   stack: Set<string>,
-  formData?: SchemaValue
+  formData?: SchemaValue,
+  passCount = 0
 ): Schema[] {
   const dependentSchemas = retrieveSchemaInternal(
     validator,
@@ -741,7 +806,10 @@ export function withDependentSchema(
     rootSchema,
     formData,
     expandAllBranches,
-    stack
+    enclosingRefPath(schema, stack, passCount),
+    undefined,
+    undefined,
+    passCount > 0 ? 1 : 0
   );
   return dependentSchemas.flatMap((dependent) => {
     const { oneOf, ...dependentSchema } = dependent;
@@ -763,8 +831,11 @@ export function withDependentSchema(
         subschema,
         rootSchema,
         expandAllBranches,
-        stack,
-        formData
+        enclosingRefPath(schema, stack, passCount),
+        formData,
+        undefined,
+        undefined,
+        passCount > 0 ? 1 : 0
       );
     });
     const allPermutations = getAllPermutationsOfXxxOf(resolvedOneOfs);
@@ -778,7 +849,8 @@ export function withDependentSchema(
         resolvedOneOf,
         expandAllBranches,
         stack,
-        formData
+        formData,
+        passCount
       )
     );
   });
@@ -793,7 +865,8 @@ export function withExactlyOneSubSchema(
   oneOf: Exclude<Schema["oneOf"], undefined>,
   expandAllBranches: boolean,
   stack: Set<string>,
-  formData?: SchemaValue
+  formData?: SchemaValue,
+  passCount = 0
 ): Schema[] {
   const validSubSchemas = oneOf.filter(
     (subschema): subschema is SchemaWithProperties => {
@@ -835,7 +908,10 @@ export function withExactlyOneSubSchema(
       rootSchema,
       formData,
       expandAllBranches,
-      stack
+      enclosingRefPath(schema, stack, passCount),
+      undefined,
+      undefined,
+      passCount > 0 ? 1 : 0
     );
     return schemas.map((s) => merger.mergeSchemas(schema, s));
   });
