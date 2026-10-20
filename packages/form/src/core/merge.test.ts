@@ -243,6 +243,52 @@ describe("mergeDefaultsWithFormData()", () => {
       ).toEqual(expected);
     });
 
+    it("should not merge a scalar default into object formData as index keys", () => {
+      expect(mergeDefaultsWithFormData<any>("x", { b: 2 })).toEqual({ b: 2 });
+    });
+
+    it("should not merge an array default into object formData as index keys", () => {
+      expect(mergeDefaultsWithFormData<any>([1, 2], { b: 2 })).toEqual({
+        b: 2,
+      });
+    });
+
+    it("should not merge a nested array default into nested object formData as index keys", () => {
+      expect(
+        mergeDefaultsWithFormData<any>({ a: [1, 2] }, { a: { x: 1 } })
+      ).toEqual({ a: { x: 1 } });
+    });
+
+    it.each([
+      ["string", "x"],
+      ["array", [1, 2]],
+      ["null", null],
+      ["number", 5],
+    ])("should keep object formData over a %s default", (_, defaults) => {
+      expect(
+        mergeDefaultsWithFormData<any>(defaults, { b: 2 }, true, false, true)
+      ).toEqual({ b: 2 });
+    });
+
+    it.each([
+      ["null", { a: null }],
+      ["number", { a: 5 }],
+      ["array", { a: [1, 2] }],
+    ])(
+      "should keep nested object formData over a nested %s default",
+      (_, defaults) => {
+        expect(
+          mergeDefaultsWithFormData<any>(
+            defaults,
+            { a: { x: 1 } },
+            true,
+            false,
+            true
+          )
+        ).toEqual({ a: { x: 1 } });
+      }
+    );
+
     it("should recursively merge deeply nested objects, including extra array data", () => {
       const obj1 = {
         a: 1,

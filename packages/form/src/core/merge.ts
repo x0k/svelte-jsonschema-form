@@ -48,10 +48,12 @@ export function mergeDefaultsWithFormData<T = any>(
     return mapped as unknown as T;
   }
   if (isSchemaObjectValue(formData)) {
-    const acc: { [key in keyof T]: any } = Object.assign({}, defaults); // Prevent mutation of source object.
     const defaultsObject: SchemaObjectValue = isSchemaObjectValue(defaults)
       ? defaults
       : {};
+    // Seed from the object defaults only: a scalar or array default must not
+    // become numeric index keys on the object form data.
+    const acc = { ...defaultsObject } as { [key in keyof T]: any };
     for (const [key, value] of Object.entries(formData)) {
       const keyExistsInDefaults = key in defaultsObject;
       const keyDefault = defaultsObject[key];
