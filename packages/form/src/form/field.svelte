@@ -6,6 +6,7 @@
     getSchemaDefinitionByPath,
     isSchemaObjectValue,
   } from "#core/index.js";
+  import logOnce from "#lib/log-once.js";
   import { isObject } from "#lib/object.js";
   import type { Ref } from "#lib/svelte.svelte.js";
   import type { JsonPaths } from "#lib/types.js";
@@ -64,7 +65,7 @@
   if (DEV) {
     $effect(() => {
       if (providedPath.length === 0 && render === undefined) {
-        console.warn('Use `<Content />` instead of `<Field name="" />`');
+        logOnce('Use `<Content />` instead of `<Field name="" />`');
       }
     });
   }
