@@ -133,6 +133,12 @@ describe("mergeSchemaObjects()", () => {
 });
 
 describe("mergeDefaultsWithFormData()", () => {
+  it("should not read inherited properties from the defaults object", () => {
+    expect(mergeDefaultsWithFormData({}, JSON.parse('{"toString":1}'))).toEqual(
+      JSON.parse('{"toString":1}')
+    );
+  });
+
   it("should preserve an own __proto__ key without changing the prototype", () => {
     const result = mergeDefaultsWithFormData(
       {},

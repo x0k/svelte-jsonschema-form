@@ -893,6 +893,40 @@ describe("retrieveSchema()", () => {
     });
   });
   describe("property dependencies", () => {
+    it("should ignore an inherited trigger property", () => {
+      const formData = Object.create({ a: "1" });
+      expect(
+        retrieveSchema(
+          testValidator,
+          defaultMerger,
+          PROPERTY_DEPENDENCIES,
+          {},
+          formData
+        )
+      ).toEqual({
+        type: "object",
+        properties: {
+          a: { type: "string" },
+          b: { type: "integer" },
+        },
+        required: ["a"],
+      });
+    });
+
+    it("should ignore an inherited dependency key in the resolved properties", () => {
+      const schema: Schema = {
+        type: "object",
+        properties: Object.create({ a: { type: "string" } }),
+        dependencies: { a: { required: ["b"] } },
+      };
+      expect(
+        retrieveSchema(testValidator, defaultMerger, schema, {}, { a: "1" })
+      ).toEqual({
+        type: "object",
+        properties: {},
+      });
+    });
+
     describe("false condition", () => {
       it("should not add required properties", () => {
         const rootSchema: Schema = { definitions: {} };

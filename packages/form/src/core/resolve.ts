@@ -676,14 +676,16 @@ export function processDependencies(
     // Skip this dependency if its trigger property is not present.
     if (
       !expandAllBranches &&
-      (!isSchemaObjectValue(formData) || formData[dependencyKey] === undefined)
+      (!isSchemaObjectValue(formData) ||
+        !Object.hasOwn(formData, dependencyKey) ||
+        formData[dependencyKey] === undefined)
     ) {
       continue;
     }
     // Skip this dependency if it is not included in the schema (such as when dependencyKey is itself a hidden dependency.)
     if (
       resolvedSchema.properties &&
-      !(dependencyKey in resolvedSchema.properties)
+      !Object.hasOwn(resolvedSchema.properties, dependencyKey)
     ) {
       continue;
     }

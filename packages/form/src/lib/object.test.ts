@@ -1,6 +1,26 @@
 import { describe, expect, it } from "vitest";
 
-import { getValueByPath } from "./object.js";
+import { getValueByPath, setOwn } from "./object.js";
+
+describe("setOwn", () => {
+  it("writes a regular property", () => {
+    const target: { a?: number } = {};
+    setOwn(target, "a", 1);
+    expect(target).toEqual({ a: 1 });
+  });
+  it("writes __proto__ as an own property", () => {
+    const target: Record<PropertyKey, unknown> = {};
+    const value = { polluted: true };
+    setOwn(target, "__proto__", value);
+    expect(Object.getPrototypeOf(target)).toBe(Object.prototype);
+    expect(Object.getOwnPropertyDescriptor(target, "__proto__")).toEqual({
+      value,
+      enumerable: true,
+      writable: true,
+      configurable: true,
+    });
+  });
+});
 
 describe("getValueByPath", () => {
   it("reads an own property", () => {

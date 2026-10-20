@@ -852,8 +852,14 @@ export function getObjectDefaults(
         stack,
         experimental_defaultFormStateBehavior,
         includeUndefinedValues: includeUndefinedValues === true,
-        parentDefaults: defaultsAsObject?.[key],
-        rawFormData: formDataAsObject?.[key],
+        parentDefaults:
+          defaultsAsObject && Object.hasOwn(defaultsAsObject, key)
+            ? defaultsAsObject[key]
+            : undefined,
+        rawFormData:
+          formDataAsObject && Object.hasOwn(formDataAsObject, key)
+            ? formDataAsObject[key]
+            : undefined,
         required: retrievedSchemaRequired.has(key),
         isSchemaRoot: false,
         shouldMergeDefaultsIntoFormData,
@@ -915,8 +921,14 @@ export function getObjectDefaults(
           stack: stack,
           experimental_defaultFormStateBehavior,
           includeUndefinedValues: includeUndefinedValues === true,
-          parentDefaults: defaultsAsObject?.[key],
-          rawFormData: formDataAsObject?.[key],
+          parentDefaults:
+            defaultsAsObject && Object.hasOwn(defaultsAsObject, key)
+              ? defaultsAsObject[key]
+              : undefined,
+          rawFormData:
+            formDataAsObject && Object.hasOwn(formDataAsObject, key)
+              ? formDataAsObject[key]
+              : undefined,
           required: retrievedSchemaRequired.has(key),
           isSchemaRoot,
           shouldMergeDefaultsIntoFormData,

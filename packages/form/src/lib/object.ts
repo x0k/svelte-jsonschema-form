@@ -2,16 +2,14 @@ export function isObject(value: unknown): value is object {
   return value !== null && typeof value === "object";
 }
 
-const objProto = Object.prototype;
-
 /**
  * Writes an own property, including a key named `__proto__` that a plain
  * assignment would hand to the prototype setter instead.
  */
-export function setOwn<T extends object>(
+export function setOwn<T extends object, K extends keyof T>(
   obj: T,
-  key: PropertyKey,
-  value: unknown
+  key: K,
+  value: T[K]
 ): void {
   if (key === "__proto__") {
     Object.defineProperty(obj, key, {
@@ -21,9 +19,11 @@ export function setOwn<T extends object>(
       configurable: true,
     });
   } else {
-    (obj as Record<PropertyKey, unknown>)[key] = value;
+    Reflect.set(obj, key, value);
   }
 }
+
+const objProto = Object.prototype;
 
 export function isRecordProto<T>(
   value: object
