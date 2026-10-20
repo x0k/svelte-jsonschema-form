@@ -152,7 +152,7 @@ export function calculateIndexScore(
           continue;
         }
         const altSchemas = propertySchema.oneOf || propertySchema.anyOf;
-        if (altSchemas && formValue) {
+        if (altSchemas && formValue != null) {
           const discriminator = getDiscriminatorFieldFromSchema(propertySchema);
           totalScore += getClosestMatchingOption(
             validator,
@@ -184,9 +184,13 @@ export function calculateIndexScore(
         ) {
           // If the types match, then we bump the score by one
           totalScore += 1;
-          const defaultOrConst = propertySchema.default ?? propertySchema.const;
-          if (defaultOrConst !== undefined) {
-            totalScore += formValue === defaultOrConst ? 1 : -1;
+          if (propertySchema.default !== undefined) {
+            totalScore += formValue === propertySchema.default ? 1 : -1;
+          } else if (
+            propertySchema.const !== undefined &&
+            formValue !== undefined
+          ) {
+            totalScore += formValue === propertySchema.const ? 1 : -1;
           }
           // TODO eventually, deal with enums/arrays
           continue;
