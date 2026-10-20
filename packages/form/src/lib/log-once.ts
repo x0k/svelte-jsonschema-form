@@ -5,6 +5,13 @@ export const LOG_ONCE_MAX_MESSAGES = 2000;
 let currentMessages = new Set<string>();
 let previousMessages = new Set<string>();
 
+/**
+ * Logs a message once per process, keeping the most recent
+ * {@link LOG_ONCE_MAX_MESSAGES} messages. The cache is shared by all forms.
+ *
+ * Call {@link resetLogOnce} when a test needs to observe the same message
+ * again.
+ */
 export default function logOnce(
   message: string,
   level: LogOnceLevel = "warn",
@@ -40,6 +47,9 @@ export default function logOnce(
   }
 }
 
+/**
+ * Clears the process-global {@link logOnce} cache.
+ */
 export function resetLogOnce() {
   currentMessages.clear();
   previousMessages.clear();
