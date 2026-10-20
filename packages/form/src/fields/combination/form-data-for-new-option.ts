@@ -28,11 +28,13 @@ function withParentRequired(
 }
 
 function declaresOwnValue(schema: Schema) {
-  return DEFAULT_KEY in schema || CONST_KEY in schema;
+  return Object.hasOwn(schema, DEFAULT_KEY) || Object.hasOwn(schema, CONST_KEY);
 }
 
 function propertySchema(option: Schema, key: string): Schema {
-  const property = option.properties?.[key];
+  const properties = option.properties;
+  const property =
+    properties && Object.hasOwn(properties, key) ? properties[key] : undefined;
   return typeof property === "object" ? property : {};
 }
 
@@ -50,7 +52,9 @@ function optionDeclaresValueFor<T>(
     return true;
   }
   const optionDefault = option[DEFAULT_KEY];
-  return isSchemaObjectValue(optionDefault) && key in optionDefault;
+  return (
+    isSchemaObjectValue(optionDefault) && Object.hasOwn(optionDefault, key)
+  );
 }
 
 function defaultsFor<T>(
@@ -117,7 +121,7 @@ export function formDataForNewOption<T>(
       ? formData
       : {};
     const carriedKeys = Object.keys(sanitizedData).filter(
-      (key) => oldData[key] !== undefined
+      (key) => Object.hasOwn(oldData, key) && oldData[key] !== undefined
     );
     if (carriedKeys.length > 0) {
       const optionDefaults = defaultsForNewOption();
@@ -128,6 +132,7 @@ export function formDataForNewOption<T>(
         : {};
       const refillableKeys = carriedKeys.filter(
         (key) =>
+          Object.hasOwn(newDefaultsData, key) &&
           newDefaultsData[key] !== undefined &&
           optionDeclaresValueFor(ctx, newOptionForDefaults, key)
       );
@@ -142,6 +147,7 @@ export function formDataForNewOption<T>(
           const computed = defaultsForOldOption();
           return (
             isSchemaObjectValue(computed) &&
+            Object.hasOwn(computed, key) &&
             isSchemaValueDeepEqual(computed[key], oldData[key])
           );
         };
