@@ -1,5 +1,21 @@
 # @sjsf/form
 
+## 3.9.1
+
+### Patch Changes
+
+- Evaluate `if`/`then`/`else` conditions and score matching options against falsy form data. ([#492](https://github.com/x0k/svelte-jsonschema-form/pull/492))
+
+  Port <https://github.com/rjsf-team/react-jsonschema-form/pull/5369>
+
+- Prevent scalar and array defaults from becoming numeric index keys when merged into object form data. ([#494](https://github.com/x0k/svelte-jsonschema-form/pull/494))
+
+  Port <https://github.com/rjsf-team/react-jsonschema-form/pull/5463>
+
+- Clear array data when the new schema sets `maxItems: 0`. ([#493](https://github.com/x0k/svelte-jsonschema-form/pull/493))
+
+  Port <https://github.com/rjsf-team/react-jsonschema-form/pull/5430>
+
 ## 3.9.0
 
 ### Minor Changes

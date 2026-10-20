@@ -1,5 +1,39 @@
 # meta
 
+## 1.0.11
+
+### Patch Changes
+
+- Fix the playground's precompiled ata validator rejecting `color` and `data-url` values. ([#490](https://github.com/x0k/svelte-jsonschema-form/pull/490))
+- Updated dependencies [[`fe8445f`](https://github.com/x0k/svelte-jsonschema-form/commit/fe8445f80999fd8d8599bbee3f59a8285cac3a2c), [`911479b`](https://github.com/x0k/svelte-jsonschema-form/commit/911479b4ec37d6bcfda8cf429fd8cd4022e5af24), [`a663a03`](https://github.com/x0k/svelte-jsonschema-form/commit/a663a03b29acc2b6a7045919ea3afe2a9608d201), [`a30db65`](https://github.com/x0k/svelte-jsonschema-form/commit/a30db65a5f660c5995dd639103e9168c467bb2c2)]:
+  - @sjsf/ata-validator@3.9.1
+  - @sjsf/form@3.9.1
+  - @sjsf-lab/beercss-theme@3.4.0
+  - @sjsf-lab/hyperjump-validator@3.1.0
+  - @sjsf-lab/shadcn-extras-theme@3.4.3
+  - @sjsf-lab/svar-theme@3.3.0
+  - @sjsf/daisyui-theme@3.1.1
+  - @sjsf/flowbite-theme@3.1.1
+  - @sjsf/shadcn-theme@3.1.2
+  - @sjsf/skeleton3-theme@3.1.1
+  - @sjsf/skeleton4-theme@3.7.2
+  - @sjsf/sveltekit@3.8.2
+  - @sjsf/ajv8-validator@3.9.1
+  - @sjsf/basic-theme@3.9.1
+  - @sjsf/cfworker-validator@3.9.1
+  - @sjsf/daisyui5-theme@3.9.1
+  - @sjsf/flowbite-icons@3.9.1
+  - @sjsf/flowbite3-theme@3.9.1
+  - @sjsf/lucide-icons@3.9.1
+  - @sjsf/moving-icons@3.9.1
+  - @sjsf/radix-icons@3.9.1
+  - @sjsf/schemasafe-validator@3.9.1
+  - @sjsf/shadcn4-theme@3.9.1
+  - @sjsf/skeleton5-theme@3.9.1
+  - @sjsf/sveltekit3@3.9.1
+  - @sjsf/valibot-validator@3.9.1
+  - @sjsf/zod4-validator@3.9.1
+
 ## 1.0.10
 
 ### Patch Changes
