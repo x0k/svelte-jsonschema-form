@@ -2,6 +2,7 @@
   "extends": "@total-typescript/tsconfig/tsc/no-dom/library",
   "compilerOptions": {
     "moduleResolution": "NodeNext",
+    "types": ["node"],
     "outDir": "dist",
     "rootDir": "src",
     "sourceMap": false

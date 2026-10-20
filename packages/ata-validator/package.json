@@ -48,8 +48,10 @@
   },
   "devDependencies": {
     "@sjsf/form": "workspace:*",
+    "@types/node": "catalog:",
     "ata-validator": "catalog:",
     "svelte": "catalog:",
+    "typescript": "catalog:",
     "validator-testing": "workspace:*"
   },
   "peerDependencies": {
