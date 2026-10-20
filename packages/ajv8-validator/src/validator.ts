@@ -7,6 +7,7 @@ import type {
   FormValueValidator,
   Validator,
 } from "@sjsf/form";
+import logOnce from "@sjsf/form/lib/log-once";
 import {
   Ajv,
   type AsyncValidateFunction,
@@ -47,7 +48,7 @@ export function createValidator({
       try {
         return validator(formValue);
       } catch (e) {
-        console.warn("Failed to validate", e);
+        logOnce("Failed to validate", "warn", e);
         return false;
       }
     },

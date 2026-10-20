@@ -6,6 +6,7 @@ import type {
   Schema,
   Validator,
 } from "@sjsf/form";
+import logOnce from "@sjsf/form/lib/log-once";
 import { fromValidators } from "@sjsf/form/validators/precompile";
 import type { AsyncValidateFunction } from "ajv";
 
@@ -69,7 +70,7 @@ export function createValidator(options: ValidatorOptions): Validator {
       try {
         return validate(formValue);
       } catch (e) {
-        console.warn("Failed to validate", e);
+        logOnce("Failed to validate", "warn", e);
         return false;
       }
     },
