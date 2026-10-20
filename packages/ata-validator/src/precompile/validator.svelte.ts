@@ -9,12 +9,12 @@ import { fromValidators } from "@sjsf/form/validators/precompile";
 import type { ValidationError } from "ata-validator";
 import type { BundleStandaloneOptions } from "ata-validator/build";
 
-import { DEFAULT_VALIDATOR_OPTIONS } from "../defaults.js";
 import {
   createFormErrorsTransformer,
   transformFieldErrors,
   type ErrorsTransformerOptions,
 } from "../errors.js";
+import { DEFAULT_VALIDATOR_OPTIONS } from "../model.js";
 import type { ValueCloner } from "../validator.svelte.js";
 
 type FormatPredicate = NonNullable<BundleStandaloneOptions["formats"]>[string];
