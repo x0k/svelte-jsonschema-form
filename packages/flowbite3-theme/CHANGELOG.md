@@ -1,5 +1,12 @@
 # @sjsf/flowbite3-theme
 
+## 3.9.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/basic-theme@3.9.1
+
 ## 3.9.0
 
 ### Patch Changes
