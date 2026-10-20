@@ -1,3 +1,5 @@
+import { DEV } from "esm-env";
+
 import {
   type EnumOption,
   type SchemaArrayValue,
@@ -57,7 +59,9 @@ abstract class AbstractValueMapperBuilder implements EnumValueMapperBuilder {
       !this.merger.isValueDeepEqual(this.#strToValue.get(str), value)
     ) {
       throw new Error(
-        `Enum option value ${describeValue(value)} maps to ${JSON.stringify(str)}, which is already used by ${describeValue(this.#strToValue.get(str))}. 'StringEnumValueMapperBuilder' requires enum values that map to unique strings, use 'IdEnumValueMapperBuilder' for the rest`
+        DEV
+          ? `Enum option value ${describeValue(value)} maps to ${JSON.stringify(str)}, which is already used by ${describeValue(this.#strToValue.get(str))}. 'StringEnumValueMapperBuilder' requires enum values that map to unique strings, use 'IdEnumValueMapperBuilder' for the rest`
+          : "Enum values must map to unique strings; use 'IdEnumValueMapperBuilder' for the rest"
       );
     }
   }
@@ -101,7 +105,9 @@ export class StringEnumValueMapperBuilder extends AbstractValueMapperBuilder {
   protected override optionToStr(option: EnumOption<SchemaValue>): string {
     if (!isPrimitiveValue(option.value)) {
       throw new Error(
-        `Option ${JSON.stringify(option.id)} has a value of type ${typeof option.value}, which can't be used with 'StringEnumValueMapperBuilder' because it is not a primitive value. Use 'IdEnumValueMapperBuilder' for non-primitive enum values`
+        DEV
+          ? `Option ${JSON.stringify(option.id)} has a value of type ${typeof option.value}, which can't be used with 'StringEnumValueMapperBuilder' because it is not a primitive value. Use 'IdEnumValueMapperBuilder' for non-primitive enum values`
+          : "StringEnumValueMapperBuilder only supports primitive enum values; use 'IdEnumValueMapperBuilder' for non-primitive values"
       );
     }
     const str = String(option.value);
