@@ -32,6 +32,9 @@ JSON schema validator.
 
 It is possible to use precompiled validator to avoid issues with `unsafe-eval`
 warnings from the browser caused by strict Content Security Policy settings.
+Importing `@sjsf/ata-validator/precompile` no longer pulls the runtime
+`ata-validator` into the bundle; only importing the package root or
+`createFormValidator` does.
 
 <Demo name="ata-precompile" client:visible />
 
