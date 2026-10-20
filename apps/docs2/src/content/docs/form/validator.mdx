@@ -19,6 +19,18 @@ Validator - a collection of functions used by the form to validate data:
 
 You can easily extend/modify the validator to suit your needs.
 
+Repeated render-time and validation warnings are deduplicated process-wide so
+that a re-rendering form does not flood the console. The same cache is available
+as `logOnce` from `@sjsf/form/lib/log-once`; call `resetLogOnce()` between tests
+that assert on a warning already logged in the same process.
+
+```ts
+import logOnce, { resetLogOnce } from "@sjsf/form/lib/log-once";
+
+logOnce("Custom warning", "warn");
+resetLogOnce();
+```
+
 ```ts
 import type { FormValueValidator, ValidatorFactoryOptions } from "@sjsf/form";
 import { createFormValidator } from "@sjsf/ajv8-validator";

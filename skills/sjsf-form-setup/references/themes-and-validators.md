@@ -24,6 +24,8 @@ All themes are designed for Svelte 5 and export a `theme` object.
 
 SJSF requires a `FormValidator<T>` instance created via `createFormValidator`.
 
+Render-time and validation warnings are deduplicated process-wide. In tests that assert on the same warning more than once, call `resetLogOnce()` from `@sjsf/form/lib/log-once` between cases.
+
 | Validator Package            | Underlying Engine     | Highlights                                                               | Precompiled Support                           | Installation Command                                      |
 | :--------------------------- | :-------------------- | :----------------------------------------------------------------------- | :-------------------------------------------- | :-------------------------------------------------------- |
 | `@sjsf/ajv8-validator`       | Ajv v8                | Industry standard Draft-07 validator, fastest runtime, extensive formats | Yes (`@sjsf/ajv8-validator/precompile`)       | `pnpm add @sjsf/ajv8-validator ajv ajv-formats`           |
