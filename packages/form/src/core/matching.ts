@@ -3,6 +3,7 @@
 // Modifications made by Roman Krasilnikov.
 
 import { weakMemoize } from "#lib/memoize.js";
+import { getOwn } from "#lib/object.js";
 
 import {
   getDiscriminatorFieldFromSchema,
@@ -132,9 +133,7 @@ export function calculateIndexScore(
       for (const [key, propertySchema] of Object.entries(schemaProperties)) {
         // Read only own properties, so a recursive `$ref` under a name every
         // object inherits, such as `toString`, still sees the data run out.
-        const formValue = Object.hasOwn(formData, key)
-          ? formData[key]
-          : undefined;
+        const formValue = getOwn(formData, key);
         if (typeof propertySchema === "boolean") {
           continue;
         }
