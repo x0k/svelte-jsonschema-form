@@ -1,8 +1,4 @@
-import {
-  getSimpleSchemaType,
-  getXxxOfKey,
-  isFixedItems,
-} from "#core/index.js";
+import { getSimpleSchemaType, getXxxOfKey, isFixedItems } from "#core/index.js";
 
 import type { ResolveFieldType } from "../fields.js";
 import { isCycleRef, type FormState } from "../state/index.js";

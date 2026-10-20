@@ -1,7 +1,7 @@
 ---
 title: Form actions
 type: package
-packageCodeName: "sveltekit"
+packageCodeName: "sveltekit3"
 sidebar:
   order: 100
 ---
@@ -11,7 +11,7 @@ import {
   DEFAULT_ID_SEPARATOR,
   DEFAULT_ID_PSEUDO_SEPARATOR,
 } from "@sjsf/form/id-builders/legacy";
-import { sveltekit3Package, sveltekitPackage } from "meta";
+import { sveltekitPackage } from "meta";
 
 import { getPackageDependencies } from "@/shared";
 import Npm from "@/components/npm.astro";
@@ -30,23 +30,12 @@ even if the user has `JavaScript` disabled.
 
 ## Installation
 
-Pick the package that matches your project's `@sveltejs/kit` major version.
+Install the SvelteKit 3 integration package.
 `sv add @sjsf` does this for you.
 
-<Tabs syncKey="kit">
-  <TabItem label="SvelteKit 3">
-    <Npm pkg={getPackageDependencies(sveltekit3Package)} />
+<Npm pkg={getPackageDependencies(sveltekitPackage)} />
 
-    <Deps pkg={sveltekit3Package} />
-
-  </TabItem>
-  <TabItem label="SvelteKit 2 (legacy)">
-    <Npm pkg={getPackageDependencies(sveltekitPackage)} />
-
-    <Deps pkg={sveltekitPackage} />
-
-  </TabItem>
-</Tabs>
+<Deps pkg={sveltekitPackage} />
 
 ## Example
 

@@ -4310,14 +4310,14 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 	import { createPost, getInitialData } from './data.remote';
 	import { connect } from '@sjsf/sveltekit3/rf/client';
 	import * as post from '#lib/post.js';
-	import { BasicForm, createForm } from '@sjsf/form';
+	import { BasicForm, createForm, reset } from '@sjsf/form';
 
 	const initialData = await getInitialData();
 
 	createPost.enhance(async ({ submit }) => {
 		if (await submit()) {
 			console.log(createPost.result);
-			form.reset();
+			reset(form);
 		}
 	});
 
@@ -4741,14 +4741,14 @@ export const onSubmitError = createFocusOnFirstError();
 	import * as validateFunctions from '#lib/post/validators.generated.js';
 	import { createFormValidatorFactory } from '@sjsf/ajv8-validator/precompile';
 	import { fromValidators } from '@sjsf/form/validators/precompile';
-	import { BasicForm, createForm } from '@sjsf/form';
+	import { BasicForm, createForm, reset } from '@sjsf/form';
 
 	const initialData = await getInitialData();
 
 	createPost.enhance(async ({ submit }) => {
 		if (await submit()) {
 			console.log(createPost.result);
-			form.reset();
+			reset(form);
 		}
 	});
 
@@ -5194,14 +5194,14 @@ export const onSubmitError = createFocusOnFirstError();
 	import { createFormValidatorFactory } from '@sjsf/hyperjump-validator/precompile';
 	import { fromValidators } from '@sjsf/form/validators/precompile';
 	import * as post from '#lib/post/model.generated.js';
-	import { BasicForm, createForm } from '@sjsf/form';
+	import { BasicForm, createForm, reset } from '@sjsf/form';
 
 	const initialData = await getInitialData();
 
 	createPost.enhance(async ({ submit }) => {
 		if (await submit()) {
 			console.log(createPost.result);
-			form.reset();
+			reset(form);
 		}
 	});
 
@@ -5516,14 +5516,14 @@ export const onSubmitError = createFocusOnFirstError();
 	import { connect } from '@sjsf/sveltekit3/rf/client';
 	import * as post from '#lib/post.js';
 	import { adapt } from '@sjsf/zod4-validator/classic';
-	import { BasicForm, createForm } from '@sjsf/form';
+	import { BasicForm, createForm, reset } from '@sjsf/form';
 
 	const initialData = await getInitialData();
 
 	createPost.enhance(async ({ submit }) => {
 		if (await submit()) {
 			console.log(createPost.result);
-			form.reset();
+			reset(form);
 		}
 	});
 
