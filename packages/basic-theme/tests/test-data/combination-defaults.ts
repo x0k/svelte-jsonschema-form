@@ -373,3 +373,28 @@ export const swappedObjectDefaultSchema = {
     },
   },
 } as const satisfies Schema;
+
+export const arrayItemAnyOfSchema = {
+  type: "array",
+  title: "Array choice",
+  items: {
+    type: "string",
+    title: "Item",
+  },
+  anyOf: [
+    {
+      title: "Up to three",
+      maxItems: 3,
+    },
+    {
+      title: "Four or more",
+      minItems: 4,
+    },
+  ],
+} as const satisfies Schema;
+
+export const formattedStringOneOfSchema = {
+  type: "string",
+  format: "date",
+  oneOf: [{ title: "First date" }, { title: "Second date" }],
+} as const satisfies Schema;
