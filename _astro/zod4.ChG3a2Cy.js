@@ -1,0 +1,1 @@
+import{Yt as e}from"./form.C6QAnDj1.js";import{n as t}from"./classic.B14P6Ot_.js";var n=(n=>async r=>{let{schema:i,validator:a}=t(r);return{schema:i,validator:e(a,n)}});export{n as default};
