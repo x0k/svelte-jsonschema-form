@@ -7,6 +7,7 @@ import { expectValue, renderFieldForm } from "./helpers.js";
 import {
   ambiguousSchema,
   anyOfDisjointDefaultsSchema,
+  arrayDefaultsOneOfSchema,
   arrayItemAnyOfSchema,
   dependencyDefaultsSchema,
   discriminatedSchema,
@@ -14,6 +15,7 @@ import {
   formattedStringOneOfSchema,
   numberAnyOfSchema,
   numberOneOfSchema,
+  objectAndArrayDefaultsOneOfSchema,
   objectSharedAnyOfSchema,
   objectSharedOneOfSchema,
   oneOfDisjointDefaultsSchema,
@@ -109,7 +111,7 @@ describe("combination field contracts", () => {
       expectValue(form, { shared: "string-default" });
     });
 
-    test("clears value when types differ across options", async () => {
+    test("applies the new default when types differ across options", async () => {
       const { form } = await renderFieldForm({
         schema: ambiguousSchema,
       });
@@ -118,8 +120,9 @@ describe("combination field contracts", () => {
       await userEvent.selectOptions(select, "Number branch");
       await userEvent.selectOptions(select, "String branch");
 
-      // shared was a number from option 1, new schema expects string — cleared
-      expectValue(form, { shared: undefined });
+      // shared was a number from option 2, which the string option cannot
+      // hold, so its default replaces the cleared value
+      expectValue(form, { shared: "string-default" });
     });
   });
 
@@ -152,6 +155,66 @@ describe("combination field contracts", () => {
       await userEvent.selectOptions(select, "First");
 
       expectValue(form, { firstField: "default-first" });
+    });
+  });
+
+  describe("object and array option defaults (rjsf#4476)", () => {
+    test("restores nested object and array defaults when switching options", async () => {
+      const { form } = await renderFieldForm({
+        schema: objectAndArrayDefaultsOneOfSchema,
+      });
+
+      const select = page.getByRole("combobox").first();
+      await userEvent.selectOptions(select, "Second");
+
+      expectValue(form, {
+        kind: "second",
+        runner: { name: "second", ratio: 0 },
+        list: [2],
+      });
+
+      await userEvent.selectOptions(select, "First");
+
+      expectValue(form, {
+        kind: "first",
+        runner: { name: "first", ratio: 0 },
+        list: [1],
+      });
+    });
+
+    test("keeps a nested value edited away from the old default", async () => {
+      const { form } = await renderFieldForm({
+        schema: objectAndArrayDefaultsOneOfSchema,
+        initialValue: {
+          kind: "first",
+          runner: { name: "custom", ratio: 0 },
+          list: [1],
+        },
+      });
+
+      await userEvent.selectOptions(
+        page.getByRole("combobox").first(),
+        "Second"
+      );
+
+      expectValue(form, {
+        kind: "second",
+        runner: { name: "custom", ratio: 0 },
+        list: [2],
+      });
+    });
+  });
+
+  describe("array option defaults (rjsf#4476)", () => {
+    test("replaces an option-level array default", async () => {
+      const { form } = await renderFieldForm({
+        schema: arrayDefaultsOneOfSchema,
+      });
+
+      const select = page.getByRole("combobox").first();
+      await userEvent.selectOptions(select, "Second");
+
+      expectValue(form, [2]);
     });
   });
 
