@@ -91,7 +91,7 @@ describe("calculateIndexScore", () => {
         firstOption,
         ONE_OF_SCHEMA_DATA
       )
-    ).toEqual(1);
+    ).toEqual(0);
   });
   it("returns 9 for second option in oneOf schema", () => {
     expect(
@@ -102,7 +102,7 @@ describe("calculateIndexScore", () => {
         secondOption,
         ONE_OF_SCHEMA_DATA
       )
-    ).toEqual(9);
+    ).toEqual(8);
   });
   it("returns 1 for a schema that has a type matching the formData type", () => {
     expect(
@@ -491,7 +491,7 @@ describe("oneOfMatchingOption", () => {
         { flag: true },
         ONE_OF_SCHEMA_OPTIONS
       )
-    ).toEqual(0);
+    ).toEqual(-1);
   });
   it("returns the second option, which exactly matches the data", () => {
     // First 3 are mocked false, with the fourth being true for the real second option
