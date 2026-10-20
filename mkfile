@@ -178,9 +178,7 @@ leg/:
   flow/:
     @use pkg_scripts flowbite-theme
   shad/:
-    @use pkg_scripts shadcn-theme
-  kit/:
-    @use pkg_scripts sveltekit
+    @use scripts shadcn-theme
   popd
 
 e/:
@@ -206,9 +204,7 @@ e/:
   ark/:
     @use pkg_scripts arktype-starter
   type/:
-    @use pkg_scripts typebox-starter
-  kit2/:
-    @use pkg_scripts sveltekit-starter
+    @use scripts typebox-starter
   kit/:
     @use pkg_scripts sveltekit3-starter
   popd

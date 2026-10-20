@@ -45,7 +45,6 @@ import {
   FORM_ID_BUILDER,
   FORM_INITIAL_DEFAULTS_GENERATED,
   FORM_INITIAL_VALUE,
-  FORM_ID_BUILDER,
 } from "../internals.js";
 import type { FormMerger } from "../merger.js";
 import type { FormValue, KeyedArraysMap, PathTrieRef } from "../model.js";

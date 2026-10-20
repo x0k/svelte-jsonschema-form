@@ -1,14 +1,8 @@
-import postModelTs from "examples/sveltekit-starter/src/lib/post.ts?raw";
-import pageServerTs from "examples/sveltekit-starter/src/routes/form-actions-flex/+page.server.ts?raw";
-import pageSvelte from "examples/sveltekit-starter/src/routes/form-actions-flex/+page.svelte?raw";
+import postModelTs from "examples/sveltekit3-starter/src/lib/post.ts?raw";
+import pageServerTs from "examples/sveltekit3-starter/src/routes/form-actions-flex/+page.server.ts?raw";
+import pageSvelte from "examples/sveltekit3-starter/src/routes/form-actions-flex/+page.svelte?raw";
 
-import {
-  ExampleCategory,
-  KIT2_DEMO_RANGE,
-  Tag,
-  defineExample,
-  defineMeta,
-} from "../model.js";
+import { ExampleCategory, Tag, defineExample, defineMeta } from "../model.js";
 
 export const meta = defineMeta({
   category: ExampleCategory.SvelteKitIntegrations,
@@ -18,7 +12,6 @@ export const meta = defineMeta({
 });
 
 export default defineExample({
-  kitRange: KIT2_DEMO_RANGE,
   sveltekit: "formActions",
   files: {
     "src/lib/post.ts": postModelTs,

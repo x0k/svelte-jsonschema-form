@@ -5,7 +5,6 @@ import nestedPageSvelte from "examples/sveltekit3-starter/src/routes/remote-func
 import dataRemoteTs from "examples/sveltekit3-starter/src/routes/remote-functions-dynamic-schema/data.remote.ts?raw";
 
 import {
-  KIT2_DEMO_RANGE,
   defineExample,
   defineMeta,
   remoteFormDefaultsReplacer,
@@ -21,7 +20,6 @@ export const meta = defineMeta({
 });
 
 export default defineExample({
-  kitRange: KIT2_DEMO_RANGE,
   sveltekit: "remoteFunctions",
   files: {
     "src/lib/server.ts": serverTs,
