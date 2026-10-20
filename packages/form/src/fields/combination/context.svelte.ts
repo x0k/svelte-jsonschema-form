@@ -16,7 +16,6 @@ import {
   retrieveSchema,
   retrieveUiSchema,
   retrieveUiOption,
-  sanitizeDataForNewSchema,
   uiTitleOption,
   type Config,
   type FormEnumOption,
@@ -31,6 +30,8 @@ import {
   singleOption,
   type EnumValueMapper,
 } from "#options.svelte.js";
+
+import { formDataForNewOption } from "./form-data-for-new-option.js";
 
 export type CombinationKey = typeof ONE_OF_KEY | typeof ANY_OF_KEY;
 
@@ -201,14 +202,20 @@ export function createCombinationContext<T>({
         normalizedSelected !== undefined
           ? renderedOptions[normalizedSelected]
           : undefined;
-      return getDefaultFieldState(ctx, {
-        schema: nextSchema,
-        formData:
-          oldSchema !== undefined
-            ? sanitizeDataForNewSchema(ctx, nextSchema, oldSchema, value())
-            : value(),
-        includeUndefinedValues: "excludeObjectChildren",
-      });
+      if (oldSchema === undefined) {
+        return getDefaultFieldState(ctx, {
+          schema: nextSchema,
+          formData: value(),
+          includeUndefinedValues: "excludeObjectChildren",
+        });
+      }
+      return formDataForNewOption(
+        ctx,
+        value(),
+        nextSchema,
+        oldSchema,
+        config().schema
+      );
     });
     normalizedSelectedOption = pendingSelected;
     setNormalizedValue(nextValue);
