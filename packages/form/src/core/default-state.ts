@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { isRecordEmpty, isObject, setOwn } from "#lib/object.js";
+import { isRecordEmpty, isObject } from "#lib/object.js";
 
 import { isSchemaOfConstantValue } from "./constant-schema.js";
 import { isSchemaValueDeepEqual } from "./deep-equal.js";
@@ -17,6 +17,7 @@ import {
 import { getClosestMatchingOption } from "./matching.js";
 import { mergeDefaultsWithFormData, mergeSchemaObjects } from "./merge.js";
 import type { Merger } from "./merger.js";
+import { setOwn } from "./own-property.js";
 import {
   resolveDependencies,
   retrieveSchema,
@@ -852,8 +853,14 @@ export function getObjectDefaults(
         stack,
         experimental_defaultFormStateBehavior,
         includeUndefinedValues: includeUndefinedValues === true,
-        parentDefaults: defaultsAsObject?.[key],
-        rawFormData: formDataAsObject?.[key],
+        parentDefaults:
+          defaultsAsObject && Object.hasOwn(defaultsAsObject, key)
+            ? defaultsAsObject[key]
+            : undefined,
+        rawFormData:
+          formDataAsObject && Object.hasOwn(formDataAsObject, key)
+            ? formDataAsObject[key]
+            : undefined,
         required: retrievedSchemaRequired.has(key),
         isSchemaRoot: false,
         shouldMergeDefaultsIntoFormData,
@@ -915,8 +922,14 @@ export function getObjectDefaults(
           stack: stack,
           experimental_defaultFormStateBehavior,
           includeUndefinedValues: includeUndefinedValues === true,
-          parentDefaults: defaultsAsObject?.[key],
-          rawFormData: formDataAsObject?.[key],
+          parentDefaults:
+            defaultsAsObject && Object.hasOwn(defaultsAsObject, key)
+              ? defaultsAsObject[key]
+              : undefined,
+          rawFormData:
+            formDataAsObject && Object.hasOwn(formDataAsObject, key)
+              ? formDataAsObject[key]
+              : undefined,
           required: retrievedSchemaRequired.has(key),
           isSchemaRoot,
           shouldMergeDefaultsIntoFormData,

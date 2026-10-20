@@ -64,6 +64,22 @@ describe("getDefaultFormState()", () => {
     consoleWarnSpy.mockRestore();
   });
 
+  test("ignores inherited raw form data properties", () => {
+    const schema: Schema = {
+      type: "object",
+      properties: {
+        foo: { type: "string", default: "default" },
+      },
+    };
+    expect(
+      computeDefaults(testValidator, defaultMerger, schema, {
+        ...defaults,
+        rootSchema: schema,
+        rawFormData: Object.create({ foo: "inherited" }),
+      })
+    ).toEqual({ foo: "default" });
+  });
+
   describe("object schemas", () => {
     describe("schema with a ref", () => {
       const schema: Schema = {

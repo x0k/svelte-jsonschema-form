@@ -15,7 +15,9 @@ import {
   getDiscriminatorFieldFromSchema,
 } from "#core/index.js";
 import { isSchemaObject } from "#lib/json-schema/index.js";
-import { isObject, isRecordEmpty, setOwn } from "#lib/object.js";
+import { isObject, isRecordEmpty } from "#lib/object.js";
+
+import { setOwn } from "./core/own-property.js";
 
 // WARN: Any change to this function must be synchronized with `validators/precompile`
 export function allowAdditionalProperties(s: Schema): Schema {

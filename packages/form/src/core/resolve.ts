@@ -6,13 +6,14 @@
 
 import { array } from "#lib/array.js";
 import { isJsonSchemaType } from "#lib/json-schema/index.js";
-import { isRecordEmpty, setOwn } from "#lib/object.js";
+import { isRecordEmpty } from "#lib/object.js";
 
 import { isSchemaDeepEqual } from "./deep-equal.js";
 import { findSchemaDefinition } from "./definitions.js";
 import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
 import { getFirstMatchingOption } from "./matching.js";
 import type { Merger } from "./merger.js";
+import { setOwn } from "./own-property.js";
 import {
   ADDITIONAL_PROPERTY_FLAG,
   ALL_OF_KEY,
@@ -676,14 +677,16 @@ export function processDependencies(
     // Skip this dependency if its trigger property is not present.
     if (
       !expandAllBranches &&
-      (!isSchemaObjectValue(formData) || formData[dependencyKey] === undefined)
+      (!isSchemaObjectValue(formData) ||
+        !Object.hasOwn(formData, dependencyKey) ||
+        formData[dependencyKey] === undefined)
     ) {
       continue;
     }
     // Skip this dependency if it is not included in the schema (such as when dependencyKey is itself a hidden dependency.)
     if (
       resolvedSchema.properties &&
-      !(dependencyKey in resolvedSchema.properties)
+      !Object.hasOwn(resolvedSchema.properties, dependencyKey)
     ) {
       continue;
     }

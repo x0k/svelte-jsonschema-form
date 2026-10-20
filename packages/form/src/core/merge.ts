@@ -2,9 +2,9 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { setOwn } from "#lib/object.js";
 import { isNil } from "#lib/types.js";
 
+import { setOwn } from "./own-property.js";
 import type { SchemaObjectValue } from "./schema.js";
 import { isSchemaObjectValue } from "./value.js";
 
@@ -81,7 +81,7 @@ export function mergeDefaultsWithFormData<T = any>(
         acc,
         key,
         mergeDefaultsWithFormData(
-          defaultsObject[key],
+          keyDefault,
           value,
           mergeExtraArrayDefaults,
           defaultsSupersedesUndefined,

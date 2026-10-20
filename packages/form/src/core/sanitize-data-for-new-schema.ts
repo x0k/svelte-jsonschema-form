@@ -2,11 +2,10 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { setOwn } from "#lib/object.js";
-
 import { isSchemaDeepEqual, isSchemaValueDeepEqual } from "./deep-equal.js";
 import { getSelectOptionValuesSafe } from "./is-select.js";
 import type { Merger } from "./merger.js";
+import { setOwn } from "./own-property.js";
 import { retrieveSchema } from "./resolve.js";
 import {
   type Schema,

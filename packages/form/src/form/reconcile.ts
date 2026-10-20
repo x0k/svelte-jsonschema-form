@@ -1,6 +1,7 @@
 import type { SchemaValue } from "#core/index.js";
-import { isRecordProto, setOwn } from "#lib/object.js";
+import { isRecordProto } from "#lib/object.js";
 
+import { setOwn } from "../core/own-property.js";
 import type { FieldValue, FormValueRef, KeyedArraysMap } from "./model.js";
 
 const UNCHANGED = Symbol("unchanged");
