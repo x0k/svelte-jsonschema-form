@@ -43,9 +43,12 @@
   const { options, mapper } = $derived.by(() => {
     const yes = translate("yes", {});
     const no = translate("no", {});
-    const altKey = config.schema.anyOf ? "anyOf" : "oneOf";
+    const altKey =
+      Array.isArray(config.schema.anyOf) && config.schema.anyOf.length > 0
+        ? "anyOf"
+        : "oneOf";
     const altOptions = config.schema[altKey];
-    if (altOptions) {
+    if (Array.isArray(altOptions) && altOptions.length > 0) {
       const normalized: Schema[] = [];
       for (const option of altOptions) {
         if (typeof option === "boolean") {
