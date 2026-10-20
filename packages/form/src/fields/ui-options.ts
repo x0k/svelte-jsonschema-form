@@ -17,7 +17,8 @@ declare module "../form/index.js" {
      */
     disabledEnumValues?: SchemaValue[];
     /**
-     * Overrides the enumeration value mapper (may be required to work with non primitive options)
+     * Overrides the enumeration value mapper (required for non-primitive options or
+     * enum values that are not string-unique)
      * @default (comparer) => new StringEnumValueMapperBuilder(comparer)
      */
     enumValueMapperBuilder?: (

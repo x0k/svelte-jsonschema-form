@@ -22,6 +22,27 @@ export interface EnumValueMapperBuilder {
 
 export const EMPTY_VALUE = "";
 
+function isPrimitiveValue(value: unknown): boolean {
+  return (
+    value === null || (typeof value !== "object" && typeof value !== "function")
+  );
+}
+
+function describeValue(value: unknown): string {
+  switch (typeof value) {
+    case "string":
+      return JSON.stringify(value);
+    case "bigint":
+      return `${value}n`;
+    case "number":
+      return Object.is(value, -0) ? "-0" : String(value);
+    case "symbol":
+      return value.toString();
+    default:
+      return String(value);
+  }
+}
+
 abstract class AbstractValueMapperBuilder implements EnumValueMapperBuilder {
   #strToValue = new Map<string, SchemaValue>();
   #valueToStr = new Map<SchemaValue, string>();
@@ -29,6 +50,17 @@ abstract class AbstractValueMapperBuilder implements EnumValueMapperBuilder {
   constructor(protected readonly merger: ValueComparer) {}
 
   protected abstract optionToStr(option: EnumOption<SchemaValue>): string;
+
+  protected assertUniqueMapping(str: string, value: SchemaValue) {
+    if (
+      this.#strToValue.has(str) &&
+      !this.merger.isValueDeepEqual(this.#strToValue.get(str), value)
+    ) {
+      throw new Error(
+        `Enum option value ${describeValue(value)} maps to ${JSON.stringify(str)}, which is already used by ${describeValue(this.#strToValue.get(str))}. 'StringEnumValueMapperBuilder' requires enum values that map to unique strings, use 'IdEnumValueMapperBuilder' for the rest`
+      );
+    }
+  }
 
   push(option: EnumOption<SchemaValue>): string {
     const str = this.optionToStr(option);
@@ -67,12 +99,14 @@ export class IdEnumValueMapperBuilder extends AbstractValueMapperBuilder {
 
 export class StringEnumValueMapperBuilder extends AbstractValueMapperBuilder {
   protected override optionToStr(option: EnumOption<SchemaValue>): string {
-    if (isObject(option.value)) {
+    if (!isPrimitiveValue(option.value)) {
       throw new Error(
-        `Option "${JSON.stringify(option)}" can't be used with 'StringEnumValueMapperBuilder' due non primitive value`
+        `Option ${JSON.stringify(option.id)} has a value of type ${typeof option.value}, which can't be used with 'StringEnumValueMapperBuilder' because it is not a primitive value. Use 'IdEnumValueMapperBuilder' for non-primitive enum values`
       );
     }
-    return String(option.value);
+    const str = String(option.value);
+    this.assertUniqueMapping(str, option.value);
+    return str;
   }
 }
 
