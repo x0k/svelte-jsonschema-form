@@ -1396,6 +1396,117 @@ describe("retrieveSchema()", () => {
             },
           });
         });
+
+        it("should resolve a $ref shared by dependencies oneOf branches", () => {
+          testValidator = createValidator({
+            cases: [
+              {
+                schema: {
+                  type: "object",
+                  properties: { protocol: { enum: ["SFTP"] } },
+                },
+                value: { protocol: "FTPS" },
+                result: false,
+              },
+              {
+                schema: {
+                  type: "object",
+                  properties: { protocol: { enum: ["FTPS"] } },
+                },
+                value: { protocol: "FTPS" },
+                result: true,
+              },
+            ],
+          });
+          defaultMerger = createMerger({
+            merges: [
+              {
+                left: {
+                  type: "object",
+                  properties: {
+                    protocol: {
+                      type: "string",
+                      enum: ["SFTP", "FTPS"],
+                    },
+                  },
+                },
+                right: {
+                  properties: {
+                    host: {
+                      type: "string",
+                      title: "Host",
+                      [REF_FLAG]: "#/definitions/host",
+                    },
+                  },
+                  [REF_FLAG]: "#/definitions/ftps",
+                },
+                result: {
+                  type: "object",
+                  properties: {
+                    protocol: {
+                      type: "string",
+                      enum: ["SFTP", "FTPS"],
+                    },
+                    host: {
+                      type: "string",
+                      title: "Host",
+                      [REF_FLAG]: "#/definitions/host",
+                    },
+                  },
+                },
+              },
+            ],
+          });
+          const schema: Schema = {
+            type: "object",
+            properties: {
+              protocol: {
+                type: "string",
+                enum: ["SFTP", "FTPS"],
+              },
+            },
+            dependencies: {
+              protocol: {
+                oneOf: [
+                  { $ref: "#/definitions/sftp" },
+                  { $ref: "#/definitions/ftps" },
+                ],
+              },
+            },
+          };
+          const rootSchema: Schema = {
+            definitions: {
+              host: { type: "string", title: "Host" },
+              sftp: {
+                properties: {
+                  protocol: { enum: ["SFTP"] },
+                  host: { $ref: "#/definitions/host" },
+                },
+              },
+              ftps: {
+                properties: {
+                  protocol: { enum: ["FTPS"] },
+                  host: { $ref: "#/definitions/host" },
+                },
+              },
+            },
+          };
+          expect(
+            retrieveSchema(testValidator, defaultMerger, schema, rootSchema, {
+              protocol: "FTPS",
+            })
+          ).toEqual({
+            type: "object",
+            properties: {
+              protocol: { type: "string", enum: ["SFTP", "FTPS"] },
+              host: {
+                type: "string",
+                title: "Host",
+                [REF_FLAG]: "#/definitions/host",
+              },
+            },
+          });
+        });
       });
     });
 
@@ -1894,6 +2005,52 @@ describe("retrieveSchema()", () => {
         )
       ).toEqual({
         type: "string",
+      });
+    });
+    it("should resolve a $ref shared by allOf entries", () => {
+      const host = {
+        type: "string" as const,
+        title: "Host",
+        [REF_FLAG]: "#/definitions/host",
+      };
+      const schema: Schema = {
+        type: "object",
+        allOf: [
+          { properties: { x: { $ref: "#/definitions/host" } } },
+          { properties: { y: { $ref: "#/definitions/host" } } },
+        ],
+      };
+      const rootSchema: Schema = {
+        definitions: {
+          host: { type: "string", title: "Host" },
+        },
+      };
+      expect(
+        retrieveSchema(
+          testValidator,
+          createMerger({
+            allOfMerges: [
+              {
+                input: {
+                  type: "object",
+                  allOf: [
+                    { properties: { x: host } },
+                    { properties: { y: host } },
+                  ],
+                },
+                result: {
+                  type: "object",
+                  properties: { x: host, y: host },
+                },
+              },
+            ],
+          }),
+          schema,
+          rootSchema
+        )
+      ).toEqual({
+        type: "object",
+        properties: { x: host, y: host },
       });
     });
     it.skip("should not merge `allOf.contains` schemas", () => {
