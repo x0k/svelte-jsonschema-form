@@ -10,7 +10,7 @@ import {
   validatorTests,
 } from "validator-testing";
 
-import { DEFAULT_VALIDATOR_OPTIONS } from "../validator.svelte.js";
+import { DEFAULT_VALIDATOR_OPTIONS } from "../model.js";
 import {
   createFormValidatorFactory,
   type ValidateFunctions,

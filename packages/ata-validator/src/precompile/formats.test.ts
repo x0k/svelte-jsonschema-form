@@ -2,7 +2,7 @@ import { Validator } from "ata-validator";
 import { importModule } from "validator-testing";
 import { describe, expect, it, vi } from "vitest";
 
-import { COLOR_FORMAT_REGEX, DATA_URL_FORMAT_REGEX } from "../defaults.js";
+import { COLOR_FORMAT_REGEX, DATA_URL_FORMAT_REGEX } from "../model.js";
 import { DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS } from "./validator.svelte.js";
 
 const { formats } = DEFAULT_PRECOMPILED_VALIDATOR_OPTIONS;

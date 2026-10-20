@@ -10,18 +10,12 @@ import { ID_KEY, prefixSchemaRefs, ROOT_SCHEMA_PREFIX } from "@sjsf/form/core";
 import { memoize, weakMemoize, type MapLike } from "@sjsf/form/lib/memoize";
 import { Validator as AtaValidator } from "ata-validator";
 
-import { DEFAULT_VALIDATOR_OPTIONS } from "./defaults.js";
 import {
   createFormErrorsTransformer,
   transformFieldErrors,
   type ErrorsTransformerOptions,
 } from "./errors.js";
-
-export {
-  COLOR_FORMAT_REGEX,
-  DATA_URL_FORMAT_REGEX,
-  DEFAULT_VALIDATOR_OPTIONS,
-} from "./defaults.js";
+import { DEFAULT_VALIDATOR_OPTIONS } from "./model.js";
 
 // https://github.com/rjsf-team/react-jsonschema-form/pull/5063#issuecomment-4413555901
 export interface ValueCloner {
