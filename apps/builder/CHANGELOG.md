@@ -1,5 +1,29 @@
 # builder
 
+## 0.8.6
+
+### Patch Changes
+
+- Updated dependencies [[`c6609fc`](https://github.com/x0k/svelte-jsonschema-form/commit/c6609fc1aae02f387267cf839bedf5795fb37afb), [`c48edfd`](https://github.com/x0k/svelte-jsonschema-form/commit/c48edfdbe0361e2add3ef6ae44a2938d9127255a)]:
+  - @sjsf/ajv8-validator@3.9.2
+  - @sjsf/form@3.9.2
+  - meta@1.0.12
+  - @sjsf-lab/beercss-theme@3.4.0
+  - @sjsf-lab/shadcn-extras-theme@3.4.3
+  - @sjsf-lab/svar-theme@3.3.0
+  - @sjsf/skeleton4-theme@3.7.2
+  - @sjsf/basic-theme@3.9.2
+  - @sjsf/daisyui5-theme@3.9.2
+  - @sjsf/flowbite3-theme@3.9.2
+  - @sjsf/shadcn4-theme@3.9.2
+  - @sjsf/skeleton5-theme@3.9.2
+  - @sjsf/cfworker-validator@3.9.2
+  - @sjsf/flowbite-icons@3.9.2
+  - @sjsf/lucide-icons@3.9.2
+  - @sjsf/moving-icons@3.9.2
+  - @sjsf/radix-icons@3.9.2
+  - @sjsf/schemasafe-validator@3.9.2
+
 ## 0.8.5
 
 ### Patch Changes

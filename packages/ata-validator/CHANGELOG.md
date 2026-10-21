@@ -1,5 +1,13 @@
 # @sjsf/ata-validator
 
+## 3.9.2
+
+### Patch Changes
+
+- Keep the precompile entry free of runtime `ata-validator` imports. `DEFAULT_VALIDATOR_OPTIONS` and the format regular expressions now live in a shared module that the precompiled validator imports, so an app that imports only `@sjsf/ata-validator/precompile` does not bundle the runtime validator. ([#516](https://github.com/x0k/svelte-jsonschema-form/pull/516))
+
+  Ports https://github.com/rjsf-team/react-jsonschema-form/pull/5559.
+
 ## 3.9.1
 
 ### Patch Changes
