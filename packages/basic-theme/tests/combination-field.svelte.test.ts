@@ -19,6 +19,8 @@ import {
   refObjectOneOfSchema,
   stringAnyOfSchema,
   stringOneOfSchema,
+  swappedDefaultsSchema,
+  swappedDependencyDefaultsSchema,
 } from "./test-data/combination-defaults.js";
 
 describe("combination field contracts", () => {
@@ -331,6 +333,35 @@ describe("combination field contracts", () => {
       await userEvent.selectOptions(select, "First method of identification");
 
       expectValue(form, { firstName: "Chuck" });
+    });
+  });
+
+  describe("swapped option defaults (#5349)", () => {
+    test("applies the new branch's default over the old branch's", async () => {
+      const { form } = await renderFieldForm({
+        schema: swappedDefaultsSchema,
+      });
+
+      const select = page.getByRole("combobox").first();
+      expectValue(form, { value: "first" });
+
+      await userEvent.selectOptions(select, "Second default");
+      expectValue(form, { value: "second" });
+
+      await userEvent.selectOptions(select, "First default");
+      expectValue(form, { value: "first" });
+    });
+  });
+
+  describe("swapped dependency defaults (#5349)", () => {
+    test("applies the newly selected branch's default", async () => {
+      const { form } = await renderFieldForm({
+        schema: swappedDependencyDefaultsSchema,
+        initialValue: { mode: "first", value: { branch: "first" } },
+      });
+
+      await userEvent.fill(page.getByRole("textbox").first(), "second");
+      expectValue(form, { mode: "second", value: { branch: "second" } });
     });
   });
 

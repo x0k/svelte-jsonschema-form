@@ -3,6 +3,8 @@ import { on } from "svelte/events";
 import { SvelteMap } from "svelte/reactivity";
 
 import {
+  DEPENDENCIES_KEY,
+  IF_KEY,
   isSchemaDeepEqual,
   retrieveSchema,
   sanitizeDataForNewSchema,
@@ -25,7 +27,8 @@ import type { DeepPartial } from "#lib/types.js";
 
 import type { Theme } from "./components.js";
 import type { Config } from "./config.js";
-import type { FormValidation, FieldsValidation } from "./errors.js";
+import { dropStaleDefaults } from "./drop-stale-defaults.js";
+import type { FieldsValidation, FormValidation } from "./errors.js";
 import type { ResolveFieldType } from "./fields.js";
 import type { Icons } from "./icons.js";
 import {
@@ -269,6 +272,9 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
           })
         )
   );
+  // The form value is a Svelte ref written directly by fields, and the stale-default
+  // search needs the value the change started from. Record it in the setter below.
+  let previousValue: FormValue | undefined = undefined;
   const idBuilder: FormIdBuilder = $derived(
     create(options.idBuilder, {
       idPrefix,
@@ -298,6 +304,14 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   // sanitization must still be attempted.
   const hasNestedConditionalSchema = $derived(
     schemaHasNestedConditional(options.schema)
+  );
+  // The stale-default search only has a dependency or conditional branch to look at.
+  // Option switches are already settled by `formDataForNewOption()`, so running it for
+  // them would compare the two options' defaults and undo that work.
+  const mayDropStaleDefaults = $derived(
+    hasNestedConditionalSchema ||
+      DEPENDENCIES_KEY in options.schema ||
+      IF_KEY in options.schema
   );
   const idCache = new WeakMap<FieldPath, Id>();
   const idFromPath = $derived(
@@ -468,6 +482,8 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       return valueRef.current;
     },
     set [FORM_VALUE](v) {
+      // Keep the pre-change value for the next defaults pass.
+      previousValue = valueRef.current;
       valueRef.current = v;
     },
     get [FORM_FIELDS_VALIDATION_MODE]() {
@@ -554,9 +570,41 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     }
 
     let formData = valueRef.current;
+    // There is no change path here, only the value before the change, so resolve the
+    // old side once and let the search walk both trees.
+    const oldFormData = previousValue;
+    const oldRetrievedSchema = retrieveSchema(
+      validator,
+      merger,
+      options.schema,
+      options.schema,
+      oldFormData
+    );
     const values: FormValue[] = [];
 
     sanitization: while (true) {
+      const staleRetrievedSchema = retrieveSchema(
+        validator,
+        merger,
+        options.schema,
+        options.schema,
+        formData
+      );
+      // Drop a swapped-away branch's default before the fill, so the fill writes the
+      // newly selected branch's default in this same iteration. Only conditional
+      // schemas can swap a branch; an option switch is already settled by
+      // `formDataForNewOption()`.
+      if (mayDropStaleDefaults) {
+        formData = dropStaleDefaults(
+          validator,
+          merger,
+          options.schema,
+          staleRetrievedSchema,
+          oldRetrievedSchema,
+          formData,
+          oldFormData
+        );
+      }
       formData = merger.mergeFormDataAndSchemaDefaults({
         formData: formData,
         schema: options.schema,
@@ -598,6 +646,8 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     }
 
     reconcileFormValue(valueRef, formData);
+    // The next pass starts from the settled data, not the value the setter recorded.
+    previousValue = valueRef.current;
   }
 
   return formState;
