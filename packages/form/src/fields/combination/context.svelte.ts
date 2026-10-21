@@ -1,6 +1,5 @@
 import { getContext, setContext, untrack } from "svelte";
 
-import { getRenderedOptionSchema } from "#core/get-rendered-option-schema.js";
 import {
   ANY_OF_KEY,
   getDiscriminatorFieldFromSchema,
@@ -13,6 +12,7 @@ import {
   getDefaultFieldState,
   getPseudoId,
   getPseudoPath,
+  getRenderedOptionSchema,
   retrieveSchema,
   retrieveUiSchema,
   retrieveUiOption,
@@ -24,7 +24,6 @@ import {
   type FormValue,
   type Translate,
 } from "#form/index.js";
-import { FORM_MERGER } from "#form/internals.js";
 import type { Ref } from "#lib/svelte.svelte.js";
 import {
   IdEnumValueMapperBuilder,
@@ -100,7 +99,7 @@ export function createCombinationContext<T>({
 
   const renderedOptions: Schema[] = $derived(
     retrievedOptions.map((option) =>
-      getRenderedOptionSchema(ctx[FORM_MERGER], config().schema, option)
+      getRenderedOptionSchema(ctx, config().schema, option)
     )
   );
 

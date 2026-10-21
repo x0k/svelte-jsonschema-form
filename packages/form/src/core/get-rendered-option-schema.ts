@@ -2,6 +2,11 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
+import {
+  isSubSchemaKey,
+  isSubSchemasArrayKey,
+  isSubSchemasRecordKey,
+} from "#lib/json-schema/index.js";
 import { isRecord, setOwn } from "#lib/object.js";
 
 import type { Merger } from "./merger.js";
@@ -24,90 +29,61 @@ import {
 } from "./schema.js";
 import { getSimpleSchemaType } from "./type.js";
 
-type SchemaRecord = Record<string, unknown>;
+type SchemaKey = Exclude<keyof Schema, symbol>;
+type SchemaRecord = Partial<Record<SchemaKey, unknown>>;
 
 const ENUM_KEY = "enum";
 
-const SUBSCHEMA_KEYWORDS = new Set([
-  ITEMS_KEY,
-  ADDITIONAL_ITEMS_KEY,
-  "additionalProperties",
-  "contains",
-  "propertyNames",
-  NOT_KEY,
-  IF_KEY,
-  THEN_KEY,
-  ELSE_KEY,
-  "unevaluatedItems",
-  "unevaluatedProperties",
-  "contentSchema",
-]);
-const SUBSCHEMA_ARRAY_KEYWORDS = new Set([
-  "prefixItems",
-  ALL_OF_KEY,
-  ANY_OF_KEY,
-  ONE_OF_KEY,
-  ITEMS_KEY,
-]);
-const SUBSCHEMA_MAP_KEYWORDS = new Set([
-  "properties",
-  "patternProperties",
-  "$defs",
-  "definitions",
-  "dependentSchemas",
-  "dependencies",
-]);
+function entriesOf(schema: SchemaRecord): [SchemaKey, unknown][] {
+  return Object.entries(schema) as [SchemaKey, unknown][];
+}
 
-function isSubschemaKeyword(key: string): boolean {
+function isSubschemaKeyword(key: SchemaKey): boolean {
   return (
-    SUBSCHEMA_MAP_KEYWORDS.has(key) ||
-    SUBSCHEMA_ARRAY_KEYWORDS.has(key) ||
-    SUBSCHEMA_KEYWORDS.has(key)
+    isSubSchemasRecordKey(key) ||
+    isSubSchemasArrayKey(key) ||
+    isSubSchemaKey(key)
   );
 }
 
 function keywordShape(
-  key: string,
+  key: SchemaKey,
   value: unknown
 ): "map" | "array" | "single" | undefined {
-  if (SUBSCHEMA_MAP_KEYWORDS.has(key) && isRecord(value)) {
+  if (isSubSchemasRecordKey(key) && isRecord(value)) {
     return "map";
   }
-  if (SUBSCHEMA_ARRAY_KEYWORDS.has(key) && Array.isArray(value)) {
+  if (isSubSchemasArrayKey(key) && Array.isArray(value)) {
     return "array";
   }
-  if (SUBSCHEMA_KEYWORDS.has(key) && isRecord(value)) {
+  if (isSubSchemaKey(key) && isRecord(value)) {
     return "single";
   }
   return undefined;
 }
 
-const KEYWORDS_LEFT_ON_PARENT = new Set<string>([
+const KEYWORDS_LEFT_ON_PARENT = new Set<SchemaKey>([
   ANY_OF_KEY,
   ONE_OF_KEY,
   "discriminator",
   "title",
   "description",
-  "deprecated",
   DEFAULT_KEY,
   "$id",
-  "$anchor",
-  "$dynamicAnchor",
   "$schema",
-  "$vocabulary",
   "$comment",
   "$defs",
   "definitions",
 ]);
 
-const LOWER_BOUNDS = new Set<string>([
+const LOWER_BOUNDS = new Set<SchemaKey>([
   "minItems",
   "minLength",
   "minProperties",
   "minimum",
   "exclusiveMinimum",
 ]);
-const UPPER_BOUNDS = new Set<string>([
+const UPPER_BOUNDS = new Set<SchemaKey>([
   "maxItems",
   "maxLength",
   "maxProperties",
@@ -115,14 +91,14 @@ const UPPER_BOUNDS = new Set<string>([
   "exclusiveMaximum",
 ]);
 
-const KEYWORDS_TAKEN_FROM_OPTION = new Set<string>([
+const KEYWORDS_TAKEN_FROM_OPTION = new Set<SchemaKey>([
   CONST_KEY,
   DEFAULT_KEY,
   ENUM_KEY,
   NOT_KEY,
 ]);
-const CONDITIONAL_KEYWORDS = [IF_KEY, THEN_KEY, ELSE_KEY];
-const POSITIONAL_KEYWORDS = new Set<string>([ITEMS_KEY, "prefixItems"]);
+const CONDITIONAL_KEYWORDS = [IF_KEY, THEN_KEY, ELSE_KEY] as const;
+const POSITIONAL_KEYWORDS = new Set<SchemaKey>([ITEMS_KEY]);
 
 function meetSchemas(
   merger: Merger,
@@ -133,7 +109,7 @@ function meetSchemas(
   const takesOptionConditional = CONDITIONAL_KEYWORDS.some(
     (key) => option[key] !== undefined
   );
-  for (const [key, optionValue] of Object.entries(option)) {
+  for (const [key, optionValue] of entriesOf(option)) {
     if (optionValue === undefined) {
       if (Object.hasOwn(parent, key)) {
         setOwn(result, key, parent[key]);
@@ -142,7 +118,9 @@ function meetSchemas(
       }
     } else if (
       Object.hasOwn(parent, key) &&
-      !CONDITIONAL_KEYWORDS.includes(key)
+      !CONDITIONAL_KEYWORDS.includes(
+        key as (typeof CONDITIONAL_KEYWORDS)[number]
+      )
     ) {
       setOwn(result, key, meetKeyword(merger, key, parent[key], optionValue));
     }
@@ -184,7 +162,7 @@ function meetSchemas(
 
 function meetKeyword(
   merger: Merger,
-  key: string,
+  key: SchemaKey,
   parentValue: unknown,
   optionValue: unknown
 ): unknown {
@@ -212,7 +190,7 @@ function meetKeyword(
   }
   if (!isSubschemaKeyword(key)) {
     return isRecord(parentValue) && isRecord(optionValue)
-      ? merger.mergeSchemas(parentValue, optionValue)
+      ? merger.mergeSchemas(parentValue as Schema, optionValue as Schema)
       : optionValue;
   }
   if (
@@ -224,7 +202,7 @@ function meetKeyword(
     for (const [name, optionEntry] of Object.entries(optionValue)) {
       if (Object.hasOwn(parentValue, name)) {
         setOwn(
-          entries,
+          entries as Record<string, unknown>,
           name,
           meetSubschema(merger, parentValue[name], optionEntry)
         );
@@ -341,7 +319,7 @@ export function getRenderedOptionSchema(
       inherited.type = parent.type ?? "object";
     }
   } else {
-    for (const [key, value] of Object.entries(parent)) {
+    for (const [key, value] of entriesOf(parent)) {
       if (!KEYWORDS_LEFT_ON_PARENT.has(key)) {
         setOwn(inherited, key, value);
       }
@@ -357,7 +335,7 @@ export function getRenderedOptionSchema(
     inherited as Schema,
     option
   ) as SchemaRecord;
-  for (const key of Object.keys(inherited)) {
+  for (const key of Object.keys(inherited) as SchemaKey[]) {
     if (merged[key] === undefined) {
       setOwn(merged, key, inherited[key]);
     }

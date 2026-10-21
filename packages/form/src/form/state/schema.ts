@@ -1,3 +1,4 @@
+import { getRenderedOptionSchema as getRenderedOptionSchemaInternal } from "#core/get-rendered-option-schema.js";
 import {
   type Schema,
   type SchemaValue,
@@ -111,6 +112,17 @@ export function getClosestMatchingOption<T>(
     selectedOption,
     discriminatorField
   );
+}
+
+/**
+ * @query
+ */
+export function getRenderedOptionSchema<T>(
+  ctx: FormState<T>,
+  parent: Schema,
+  option: Schema
+) {
+  return getRenderedOptionSchemaInternal(ctx[FORM_MERGER], parent, option);
 }
 
 /**
