@@ -24,6 +24,7 @@ import {
   FORM_KEYED_ARRAYS,
   FORM_MARK_SCHEMA_CHANGE,
   FORM_SET_VALUE_AT_PATH,
+  FORM_UPDATE_VALUE_AT_PATH,
   FORM_MERGER,
   FORM_SCHEMA,
   FORM_THEME,
@@ -80,6 +81,10 @@ export interface FormState<T> {
   readonly [FORM_SET_VALUE_AT_PATH]: (
     path: FieldPath,
     value: FieldValue
+  ) => void;
+  readonly [FORM_UPDATE_VALUE_AT_PATH]: (
+    path: FieldPath,
+    update: (value: FieldValue) => FieldValue
   ) => void;
   readonly [FORM_KEYED_ARRAYS]: KeyedArraysMap;
   readonly [FORM_FIELDS_VALIDATION_MODE]: number;

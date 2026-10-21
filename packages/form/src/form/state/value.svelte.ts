@@ -7,6 +7,7 @@ import {
   FORM_MERGER,
   FORM_SCHEMA,
   FORM_SET_VALUE_AT_PATH,
+  FORM_UPDATE_VALUE_AT_PATH,
   FORM_VALUE,
 } from "../internals.js";
 import type { FieldValue, FormValue } from "../model.js";
@@ -22,6 +23,19 @@ export function setValueAtPath<T>(
 ) {
   untrack(() => {
     ctx[FORM_SET_VALUE_AT_PATH](path, value);
+  });
+}
+
+/**
+ * @command
+ */
+export function updateValueAtPath<T>(
+  ctx: FormState<T>,
+  path: FieldPath,
+  update: (value: FieldValue) => FieldValue
+) {
+  untrack(() => {
+    ctx[FORM_UPDATE_VALUE_AT_PATH](path, update);
   });
 }
 

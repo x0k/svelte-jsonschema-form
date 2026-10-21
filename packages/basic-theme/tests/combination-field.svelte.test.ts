@@ -20,7 +20,8 @@ import {
   stringAnyOfSchema,
   stringOneOfSchema,
   swappedDefaultsSchema,
-  swappedDependencyDefaultsSchema,
+  swappedCfgDefaultsSchema,
+  swappedParentDefaultsSchema,
 } from "./test-data/combination-defaults.js";
 
 describe("combination field contracts", () => {
@@ -354,14 +355,23 @@ describe("combination field contracts", () => {
   });
 
   describe("swapped dependency defaults (#5349)", () => {
-    test("applies the newly selected branch's default", async () => {
+    test("replaces a dependency-swapped object default", async () => {
       const { form } = await renderFieldForm({
-        schema: swappedDependencyDefaultsSchema,
-        initialValue: { mode: "first", value: { branch: "first" } },
+        schema: swappedCfgDefaultsSchema,
+      });
+
+      await userEvent.fill(page.getByRole("textbox").first(), "b");
+      expectValue(form, { mode: "b", cfg: { name: "b" } });
+    });
+
+    test("replaces a parent-level default instead of deleting it", async () => {
+      const { form } = await renderFieldForm({
+        schema: swappedParentDefaultsSchema,
+        initialValue: { mode: "first", x: "a" },
       });
 
       await userEvent.fill(page.getByRole("textbox").first(), "second");
-      expectValue(form, { mode: "second", value: { branch: "second" } });
+      expectValue(form, { mode: "second", x: "b" });
     });
   });
 

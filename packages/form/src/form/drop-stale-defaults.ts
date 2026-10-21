@@ -1,13 +1,10 @@
 /**
- * Removes values that still hold a swapped-away `dependencies` or
- * `if`/`then`/`else` branch's declared default, so the defaults fill can write
- * the newly selected branch's default instead.
+ * Replaces values that still hold a swapped-away `dependencies` or
+ * `if`/`then`/`else` branch's declared default with the newly selected branch's
+ * declaration.
  *
- * The sjsf form keeps no change path, so the search walks both schema trees and
- * compares the values each branch declares. A level whose `oneOf`/`anyOf` options
- * describe its properties is owned by `formDataForNewOption()` and its own keys are
- * left alone; the walk still descends, since a conditional can live under one of
- * those properties.
+ * The sjsf form keeps the changed path and the value it replaced, so the search
+ * walks both resolved schema trees and compares the defaults each level declares.
  */
 
 import {
@@ -21,8 +18,16 @@ import {
   type Validator,
 } from "#core/index.js";
 
+import type { FieldPath } from "./id.js";
+
 function isSchemaObject(value: unknown): value is Schema {
   return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function cloneDefault(value: SchemaValue) {
+  return typeof value === "object" && value !== null
+    ? structuredClone(value)
+    : value;
 }
 
 function getDeclaredDefault(levelSchema: Schema, key: string, schema: Schema) {
@@ -36,32 +41,6 @@ function getDeclaredDefault(levelSchema: Schema, key: string, schema: Schema) {
     : undefined;
 }
 
-function optionsDeclareProperties(
-  validator: Validator,
-  merger: Merger,
-  rootSchema: Schema,
-  level: Schema
-) {
-  const options = level.oneOf ?? level.anyOf;
-  if (!Array.isArray(options)) {
-    return false;
-  }
-  return options.some((option) => {
-    if (!isSchemaObject(option)) {
-      return false;
-    }
-    if (isSchemaObjectValue(option.properties)) {
-      return true;
-    }
-    return (
-      option.$ref !== undefined &&
-      isSchemaObjectValue(
-        retrieveSchema(validator, merger, option, rootSchema).properties
-      )
-    );
-  });
-}
-
 function dropStaleDefaultsAtLevel(
   validator: Validator,
   merger: Merger,
@@ -69,7 +48,9 @@ function dropStaleDefaultsAtLevel(
   newSchema: Schema,
   oldSchema: Schema,
   formData: SchemaObjectValue,
-  oldFormData: SchemaObjectValue
+  oldFormData: SchemaObjectValue,
+  changedPath: FieldPath | undefined,
+  level: number
 ): SchemaObjectValue {
   const newProperties = newSchema.properties;
   const oldProperties = oldSchema.properties;
@@ -79,13 +60,6 @@ function dropStaleDefaultsAtLevel(
   ) {
     return formData;
   }
-
-  // An option switch has already picked its defaults; only the levels below it can
-  // still own a conditional branch.
-  const skipOwnKeys =
-    optionsDeclareProperties(validator, merger, rootSchema, newSchema) ||
-    (newSchema !== oldSchema &&
-      optionsDeclareProperties(validator, merger, rootSchema, oldSchema));
 
   let result = formData;
   for (const key of Object.keys(newProperties)) {
@@ -120,17 +94,19 @@ function dropStaleDefaultsAtLevel(
 
     const oldDefault = getDeclaredDefault(oldSchema, key, oldResolved);
     const newDefault = getDeclaredDefault(newSchema, key, newResolved);
-    if (!skipOwnKeys && oldDefault !== undefined && newDefault !== undefined) {
-      if (
-        !isSchemaValueDeepEqual(oldDefault, newDefault) &&
-        isSchemaValueDeepEqual(oldDefault, oldCurrent)
-      ) {
-        if (result === formData) {
-          result = { ...formData };
-        }
-        delete result[key];
-        continue;
+    const isChangedKey = changedPath?.[level] === key;
+    if (
+      !isChangedKey &&
+      oldDefault !== undefined &&
+      newDefault !== undefined &&
+      !isSchemaValueDeepEqual(oldDefault, newDefault) &&
+      isSchemaValueDeepEqual(oldDefault, oldCurrent)
+    ) {
+      if (result === formData) {
+        result = { ...formData };
       }
+      result[key] = cloneDefault(newDefault);
+      continue;
     }
 
     if (isSchemaObjectValue(current) && isSchemaObjectValue(oldCurrent)) {
@@ -141,7 +117,9 @@ function dropStaleDefaultsAtLevel(
         newResolved,
         oldResolved,
         current,
-        oldCurrent
+        oldCurrent,
+        changedPath,
+        level + 1
       );
       if (next !== current) {
         if (result === formData) {
@@ -155,9 +133,9 @@ function dropStaleDefaultsAtLevel(
 }
 
 /**
- * Removes values that a swapped-in `dependencies` or `if`/`then`/`else`
- * substchema no longer declares, so the form's default fill can replace them
- * with the newly selected branch's defaults.
+ * Replaces values that a swapped-in `dependencies` or `if`/`then`/`else`
+ * substchema declared differently, so the form does not keep the old branch's
+ * default.
  */
 export function dropStaleDefaults(
   validator: Validator,
@@ -166,10 +144,10 @@ export function dropStaleDefaults(
   newSchema: Schema,
   oldSchema: Schema,
   formData: SchemaValue | undefined,
-  oldFormData: SchemaValue | undefined
+  oldFormData: SchemaValue | undefined,
+  changedPath?: FieldPath
 ): SchemaValue | undefined {
   if (
-    newSchema === oldSchema ||
     !isSchemaObjectValue(formData) ||
     !isSchemaObjectValue(oldFormData) ||
     !isSchemaObjectValue(newSchema) ||
@@ -184,6 +162,8 @@ export function dropStaleDefaults(
     newSchema,
     oldSchema,
     formData,
-    oldFormData
+    oldFormData,
+    changedPath,
+    0
   );
 }

@@ -38,6 +38,7 @@ import {
   getStableConfig,
   isSelect,
   setValueAtPath,
+  updateValueAtPath,
   type UiSchema,
 } from "#form/index.js";
 import { snapshotWithSymbols } from "#lib/svelte.svelte.js";
@@ -341,7 +342,10 @@ export function createObjectContext<T>({
         }) ??
         getDefaultValueForType(getSimpleSchemaType(additionalPropertySchema));
       if (val) {
-        val[newKey] = propValue;
+        updateValueAtPath(ctx, config().path, (obj) => {
+          (obj as SchemaObjectValue)[newKey] = propValue;
+          return obj;
+        });
       } else {
         val = { [newKey]: propValue };
         setValue(val);
@@ -360,7 +364,10 @@ export function createObjectContext<T>({
       if (isObjectCanBeRemoved(obj, prop)) {
         removeObject();
       } else {
-        delete obj[prop];
+        updateValueAtPath(ctx, config().path, (obj) => {
+          delete (obj as SchemaObjectValue)[prop];
+          return obj;
+        });
         onChange(obj);
       }
     },
@@ -373,8 +380,12 @@ export function createObjectContext<T>({
       if (!validateAdditionalPropertyKey(ctx, config(), newKey, fieldConfig)) {
         return;
       }
-      val[newKey] = val[oldProp];
-      delete val[oldProp];
+      updateValueAtPath(ctx, config().path, (obj) => {
+        const value = obj as SchemaObjectValue;
+        value[newKey] = value[oldProp];
+        delete value[oldProp];
+        return value;
+      });
       if (oldProp !== lastRenamedProperty.currentKey) {
         lastRenamedProperty.previousKey = oldProp;
       }

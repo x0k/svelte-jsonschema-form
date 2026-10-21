@@ -353,7 +353,7 @@ export const swappedDefaultsSchema = {
   ],
 } as const satisfies Schema;
 
-export const swappedDependencyDefaultsSchema = {
+export const swappedParentDefaultsSchema = {
   type: "object",
   properties: {
     mode: {
@@ -367,24 +367,55 @@ export const swappedDependencyDefaultsSchema = {
         {
           properties: {
             mode: { const: "first" },
-            value: {
+            x: { type: "string" },
+          },
+          default: { x: "a" },
+        },
+        {
+          properties: {
+            mode: { const: "second" },
+            x: { type: "string" },
+          },
+          default: { x: "b" },
+        },
+      ],
+    },
+  },
+} as const satisfies Schema;
+
+export const swappedCfgDefaultsSchema = {
+  type: "object",
+  properties: {
+    mode: {
+      type: "string",
+      enum: ["a", "b"],
+      default: "a",
+    },
+  },
+  dependencies: {
+    mode: {
+      oneOf: [
+        {
+          properties: {
+            mode: { const: "a" },
+            cfg: {
               type: "object",
+              default: { name: "a" },
               properties: {
-                branch: { type: "string", default: "first" },
+                name: { type: "string" },
               },
-              default: { branch: "first" },
             },
           },
         },
         {
           properties: {
-            mode: { const: "second" },
-            value: {
+            mode: { const: "b" },
+            cfg: {
               type: "object",
+              default: { name: "b" },
               properties: {
-                branch: { type: "string", default: "second" },
+                name: { type: "string" },
               },
-              default: { branch: "second" },
             },
           },
         },
