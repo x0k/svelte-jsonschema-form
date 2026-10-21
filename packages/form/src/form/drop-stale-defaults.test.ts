@@ -5,6 +5,7 @@ import { createMerger } from "#core/test-merger.js";
 import { createValidator } from "#core/test-validator.js";
 
 import { dropStaleDefaults } from "./drop-stale-defaults.js";
+import type { FieldPath } from "./id.js";
 
 let testValidator: Validator;
 let defaultMerger: Merger;
@@ -43,7 +44,7 @@ const newSchema: Schema = {
 };
 
 describe("dropStaleDefaults", () => {
-  it("drops an object property that still holds the swapped-away branch's default", () => {
+  it("replaces an object property that still holds the swapped-away branch's default", () => {
     const formData = { mode: "second", value: { branch: "first" } };
     const oldFormData = { mode: "first", value: { branch: "first" } };
 
@@ -57,7 +58,7 @@ describe("dropStaleDefaults", () => {
         formData,
         oldFormData
       )
-    ).toEqual({ mode: "second" });
+    ).toEqual({ mode: "second", value: { branch: "second" } });
   });
 
   it("keeps a value the user changed away from the old default", () => {
@@ -94,7 +95,7 @@ describe("dropStaleDefaults", () => {
     ).toBe(formData);
   });
 
-  it("drops a stale default nested in an object property", () => {
+  it("replaces a stale default nested in an object property", () => {
     const oldNestedSchema: Schema = {
       type: "object",
       properties: {
@@ -140,6 +141,70 @@ describe("dropStaleDefaults", () => {
         { cfg: { kind: { branch: "first" } } },
         { cfg: { kind: { branch: "first" } } }
       )
-    ).toEqual({ cfg: {} });
+    ).toEqual({ cfg: { kind: { branch: "second" } } });
+  });
+
+  it("replaces a stale parent-level default without deleting sibling fields", () => {
+    const oldParentSchema: Schema = {
+      type: "object",
+      properties: {
+        mode: { type: "string" },
+        value: { type: "string" },
+      },
+      default: { value: "first" },
+    };
+    const newParentSchema: Schema = {
+      type: "object",
+      properties: {
+        mode: { type: "string" },
+        value: { type: "string" },
+      },
+      default: { value: "second" },
+    };
+
+    expect(
+      dropStaleDefaults(
+        testValidator,
+        defaultMerger,
+        newParentSchema,
+        newParentSchema,
+        oldParentSchema,
+        { mode: "second", value: "first" },
+        { mode: "first", value: "first" },
+        ["mode"] as unknown as FieldPath
+      )
+    ).toEqual({ mode: "second", value: "second" });
+  });
+
+  it("does not replace the value under the changed path", () => {
+    const oldChangedSchema: Schema = {
+      type: "object",
+      properties: {
+        mode: { type: "string", default: "first" },
+        value: { type: "string" },
+      },
+      default: { mode: "first" },
+    };
+    const newChangedSchema: Schema = {
+      type: "object",
+      properties: {
+        mode: { type: "string", default: "second" },
+        value: { type: "string" },
+      },
+      default: { mode: "second" },
+    };
+
+    expect(
+      dropStaleDefaults(
+        testValidator,
+        defaultMerger,
+        newChangedSchema,
+        newChangedSchema,
+        oldChangedSchema,
+        { mode: "user", value: "kept" },
+        { mode: "first", value: "kept" },
+        ["mode"] as unknown as FieldPath
+      )
+    ).toEqual({ mode: "user", value: "kept" });
   });
 });
