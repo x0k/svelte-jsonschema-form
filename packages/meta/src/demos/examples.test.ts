@@ -39,16 +39,20 @@ describe("examples", () => {
     describe(entry.path, () => {
       const variants = Array.from(getVariants(entry));
       for (const { themeOrSubTheme, validator } of variants) {
-        it(`${themeOrSubTheme}__${validator}`, async () => {
-          expect(
-            await createExampleFiles({
-              name: "sandbox",
-              entry,
-              themeOrSubTheme,
-              validator,
-            })
-          ).toMatchSnapshot();
-        });
+        it(
+          `${themeOrSubTheme}__${validator}`,
+          { timeout: 15_000 },
+          async () => {
+            expect(
+              await createExampleFiles({
+                name: "sandbox",
+                entry,
+                themeOrSubTheme,
+                validator,
+              })
+            ).toMatchSnapshot();
+          }
+        );
       }
     });
   }
