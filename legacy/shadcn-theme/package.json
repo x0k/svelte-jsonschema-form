@@ -79,7 +79,7 @@
     "format:check": "oxfmt --check ."
   },
   "dependencies": {
-    "@sjsf/basic-theme": "workspace:^3.9.1"
+    "@sjsf/basic-theme": "workspace:^3.9.2"
   },
   "devDependencies": {
     "@internationalized/date": "catalog:legacy",
