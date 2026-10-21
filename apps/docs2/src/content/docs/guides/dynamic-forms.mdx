@@ -27,6 +27,8 @@ When the form is initialized with `initialValue`, SJSF **automatically selects t
 
 For non-object schemas, keywords declared beside `oneOf` or `anyOf` also apply to the selected option. For example, an array field's `items` and `uniqueItems`, or a string field's `format`, are inherited by every option. An option's own value of a shared keyword takes precedence, except that the stricter bound is kept.
 
+When you switch options, values the new option can hold are carried over and its defaults are applied, including nested object and array defaults, so switching away from an option and back restores them.
+
 <Demo name="one-of" client:visible />
 
 ## dependencies
