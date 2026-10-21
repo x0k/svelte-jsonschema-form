@@ -2,9 +2,28 @@ import { untrack } from "svelte";
 
 import type { DeepPartial } from "#lib/types.js";
 
-import { FORM_MERGER, FORM_SCHEMA, FORM_VALUE } from "../internals.js";
-import type { FormValue } from "../model.js";
+import type { FieldPath } from "../id.js";
+import {
+  FORM_MERGER,
+  FORM_SCHEMA,
+  FORM_SET_VALUE_AT_PATH,
+  FORM_VALUE,
+} from "../internals.js";
+import type { FieldValue, FormValue } from "../model.js";
 import type { FormState } from "./state.js";
+
+/**
+ * @command
+ */
+export function setValueAtPath<T>(
+  ctx: FormState<T>,
+  path: FieldPath,
+  value: FieldValue
+) {
+  untrack(() => {
+    ctx[FORM_SET_VALUE_AT_PATH](path, value);
+  });
+}
 
 /**
  * @command

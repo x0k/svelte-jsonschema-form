@@ -57,7 +57,7 @@ import {
   FORM_TRANSLATE,
   FORM_ICONS,
   FORM_MARK_SCHEMA_CHANGE,
-  FORM_RECORD_CHANGE,
+  FORM_SET_VALUE_AT_PATH,
   FORM_FIELDS_STATE_MAP,
   FORM_ID_FROM_PATH,
   internalRegisterFieldPath,
@@ -76,6 +76,7 @@ import type { FormMerger } from "./merger.js";
 import {
   create,
   type Creatable,
+  type FieldValue,
   type FormValue,
   type FormValueRef,
   type KeyedArraysMap,
@@ -496,8 +497,23 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
         scheduleDefaultsInjection();
       }
     },
-    [FORM_RECORD_CHANGE](path, oldValue) {
-      pendingChange = { path, oldValue };
+    [FORM_SET_VALUE_AT_PATH](path, value) {
+      if (path.length === 0) {
+        pendingChange = {
+          path,
+          oldValue: valueRef.current,
+        };
+        valueRef.current = value;
+      } else {
+        let node = valueRef.current as Record<PropertyKey, unknown>;
+        const lastIndex = path.length - 1;
+        for (let i = 0; i < lastIndex; i++) {
+          node = node[path[i]!] as Record<PropertyKey, unknown>;
+        }
+        const key = path[lastIndex]!;
+        pendingChange = { path, oldValue: node[key] as FieldValue };
+        node[key] = value;
+      }
       if (mayDropStaleDefaults) {
         scheduleDefaultsInjection();
       }

@@ -21,7 +21,6 @@
     FORM_UI_SCHEMA_ROOT,
     FORM_VALIDATOR,
     FORM_VALUE,
-    FORM_RECORD_CHANGE,
     internalRegisterFieldPath,
   } from "./internals.js";
   import type { FieldValue } from "./model.js";
@@ -31,6 +30,7 @@
     retrieveTranslate,
     retrieveUiOption,
     setFormContext,
+    setValueAtPath,
     uiTitleOption,
     type FormState,
   } from "./state/index.js";
@@ -105,10 +105,7 @@
         return node[lastKey];
       },
       set current(v) {
-        //@ts-expect-error not checked by generic parameter
-        form[FORM_RECORD_CHANGE](path, node[lastKey]);
-        //@ts-expect-error not checked by generic parameter
-        node[lastKey] = v;
+        setValueAtPath(form, path, v);
       },
     };
   });
