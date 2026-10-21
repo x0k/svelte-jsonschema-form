@@ -25,20 +25,25 @@ import {
   REQUIRED_KEY,
   THEN_KEY,
   type Schema,
+  type SchemaDefinition,
   type SchemaType,
 } from "./schema.js";
 import { getSimpleSchemaType } from "./type.js";
 
 type SchemaKey = Exclude<keyof Schema, symbol>;
-type SchemaRecord = Partial<Record<SchemaKey, unknown>>;
+type SchemaValue = Schema[SchemaKey];
+type SubschemaValue = SchemaDefinition | SchemaDefinition[];
+type SchemaObject = Schema & Record<string, SchemaValue | undefined>;
 
 const ENUM_KEY = "enum";
 
-function entriesOf(schema: SchemaRecord): [SchemaKey, unknown][] {
-  return Object.entries(schema) as [SchemaKey, unknown][];
+function isStringArray(value: SchemaValue | undefined): value is string[] {
+  return (
+    Array.isArray(value) && value.every((item) => typeof item === "string")
+  );
 }
 
-function isSubschemaKeyword(key: SchemaKey): boolean {
+function isSubschemaKeyword(key: string): boolean {
   return (
     isSubSchemasRecordKey(key) ||
     isSubSchemasArrayKey(key) ||
@@ -47,8 +52,8 @@ function isSubschemaKeyword(key: SchemaKey): boolean {
 }
 
 function keywordShape(
-  key: SchemaKey,
-  value: unknown
+  key: string,
+  value: SchemaValue | undefined
 ): "map" | "array" | "single" | undefined {
   if (isSubSchemasRecordKey(key) && isRecord(value)) {
     return "map";
@@ -62,7 +67,7 @@ function keywordShape(
   return undefined;
 }
 
-const KEYWORDS_LEFT_ON_PARENT = new Set<SchemaKey>([
+const KEYWORDS_LEFT_ON_PARENT: ReadonlySet<string> = new Set<string>([
   ANY_OF_KEY,
   ONE_OF_KEY,
   "discriminator",
@@ -74,80 +79,85 @@ const KEYWORDS_LEFT_ON_PARENT = new Set<SchemaKey>([
   "$comment",
   "$defs",
   "definitions",
-]);
+] satisfies SchemaKey[]);
 
-const LOWER_BOUNDS = new Set<SchemaKey>([
+const LOWER_BOUNDS: ReadonlySet<string> = new Set<string>([
   "minItems",
   "minLength",
   "minProperties",
   "minimum",
   "exclusiveMinimum",
-]);
-const UPPER_BOUNDS = new Set<SchemaKey>([
+] satisfies SchemaKey[]);
+const UPPER_BOUNDS: ReadonlySet<string> = new Set<string>([
   "maxItems",
   "maxLength",
   "maxProperties",
   "maximum",
   "exclusiveMaximum",
-]);
+] satisfies SchemaKey[]);
 
-const KEYWORDS_TAKEN_FROM_OPTION = new Set<SchemaKey>([
+const KEYWORDS_TAKEN_FROM_OPTION: ReadonlySet<string> = new Set<string>([
   CONST_KEY,
   DEFAULT_KEY,
   ENUM_KEY,
   NOT_KEY,
-]);
-const CONDITIONAL_KEYWORDS = [IF_KEY, THEN_KEY, ELSE_KEY] as const;
-const POSITIONAL_KEYWORDS = new Set<SchemaKey>([ITEMS_KEY]);
+] satisfies SchemaKey[]);
+const CONDITIONAL_KEYWORDS: ReadonlySet<string> = new Set<string>([
+  IF_KEY,
+  THEN_KEY,
+  ELSE_KEY,
+] satisfies SchemaKey[]);
+const POSITIONAL_KEYWORDS: ReadonlySet<string> = new Set<string>([
+  ITEMS_KEY,
+] satisfies SchemaKey[]);
 
 function meetSchemas(
   merger: Merger,
-  parent: SchemaRecord,
-  option: SchemaRecord
-): SchemaRecord {
-  const result: SchemaRecord = { ...parent, ...option };
-  const takesOptionConditional = CONDITIONAL_KEYWORDS.some(
-    (key) => option[key] !== undefined
-  );
-  for (const [key, optionValue] of entriesOf(option)) {
+  parent: SchemaObject,
+  option: SchemaObject
+): SchemaObject {
+  const result: SchemaObject = { ...parent, ...option };
+  let takesOptionConditional = false;
+  for (const key of CONDITIONAL_KEYWORDS) {
+    if (option[key] !== undefined) {
+      takesOptionConditional = true;
+      break;
+    }
+  }
+  for (const [key, optionValue] of Object.entries(option)) {
     if (optionValue === undefined) {
       if (Object.hasOwn(parent, key)) {
         setOwn(result, key, parent[key]);
       } else {
         delete result[key];
       }
-    } else if (
-      Object.hasOwn(parent, key) &&
-      !CONDITIONAL_KEYWORDS.includes(
-        key as (typeof CONDITIONAL_KEYWORDS)[number]
-      )
-    ) {
+    } else if (Object.hasOwn(parent, key) && !CONDITIONAL_KEYWORDS.has(key)) {
       setOwn(result, key, meetKeyword(merger, key, parent[key], optionValue));
     }
   }
   const parentItems = parent[ITEMS_KEY];
   const optionItems = option[ITEMS_KEY];
+  const parentAdditionalItems = parent[ADDITIONAL_ITEMS_KEY];
+  const optionAdditionalItems = option[ADDITIONAL_ITEMS_KEY];
   if (
     Array.isArray(parentItems) &&
-    parent[ADDITIONAL_ITEMS_KEY] !== undefined &&
-    optionItems !== undefined &&
-    optionItems !== true &&
-    !Array.isArray(optionItems)
+    isSchemaDefinition(parentAdditionalItems) &&
+    isSchemaDefinition(optionItems)
   ) {
     setOwn(
       result,
       ADDITIONAL_ITEMS_KEY,
-      meetSubschema(merger, parent[ADDITIONAL_ITEMS_KEY], optionItems)
+      meetSchemaDefinition(merger, parentAdditionalItems, optionItems)
     );
   } else if (
-    isRecord(parentItems) &&
+    isSchemaDefinition(parentItems) &&
     Array.isArray(optionItems) &&
-    option[ADDITIONAL_ITEMS_KEY] !== undefined
+    isSchemaDefinition(optionAdditionalItems)
   ) {
     setOwn(
       result,
       ADDITIONAL_ITEMS_KEY,
-      meetSubschema(merger, parentItems, option[ADDITIONAL_ITEMS_KEY])
+      meetSchemaDefinition(merger, parentItems, optionAdditionalItems)
     );
   }
   if (takesOptionConditional) {
@@ -162,10 +172,10 @@ function meetSchemas(
 
 function meetKeyword(
   merger: Merger,
-  key: SchemaKey,
-  parentValue: unknown,
-  optionValue: unknown
-): unknown {
+  key: string,
+  parentValue: SchemaValue | undefined,
+  optionValue: SchemaValue | undefined
+): SchemaValue | undefined {
   if (KEYWORDS_TAKEN_FROM_OPTION.has(key)) {
     return optionValue;
   }
@@ -181,7 +191,11 @@ function meetKeyword(
     return parentValue === true || optionValue;
   }
   if (Array.isArray(parentValue) && Array.isArray(optionValue)) {
-    if (key === REQUIRED_KEY) {
+    if (
+      key === REQUIRED_KEY &&
+      isStringArray(parentValue) &&
+      isStringArray(optionValue)
+    ) {
       return Array.from(new Set([...parentValue, ...optionValue]));
     }
     if (key === ENUM_KEY) {
@@ -194,79 +208,132 @@ function meetKeyword(
       : optionValue;
   }
   if (
-    isRecord(parentValue) &&
-    isRecord(optionValue) &&
+    isRecord<SchemaValue | undefined>(parentValue) &&
+    isRecord<SchemaValue | undefined>(optionValue) &&
     keywordShape(key, parentValue) === "map"
   ) {
-    const entries: SchemaRecord = { ...parentValue, ...optionValue };
+    const entries: Record<string, SchemaValue | undefined> = {
+      ...parentValue,
+      ...optionValue,
+    };
     for (const [name, optionEntry] of Object.entries(optionValue)) {
       if (Object.hasOwn(parentValue, name)) {
+        const parentEntry = parentValue[name];
         setOwn(
-          entries as Record<string, unknown>,
+          entries,
           name,
-          meetSubschema(merger, parentValue[name], optionEntry)
+          isSchemaDefinition(parentEntry) && isSchemaDefinition(optionEntry)
+            ? meetSchemaDefinition(merger, parentEntry, optionEntry)
+            : optionEntry
         );
       }
     }
-    return entries;
+    return entries as SchemaValue;
   }
   if (
     POSITIONAL_KEYWORDS.has(key) &&
     parentValue !== false &&
     optionValue !== true
   ) {
-    if (Array.isArray(parentValue) && Array.isArray(optionValue)) {
+    if (
+      isSchemaDefinitionArray(parentValue) &&
+      isSchemaDefinitionArray(optionValue)
+    ) {
       return meetTuples(merger, parentValue, optionValue);
     }
-    if (Array.isArray(parentValue)) {
+    if (
+      isSchemaDefinitionArray(parentValue) &&
+      isSchemaDefinition(optionValue)
+    ) {
       return parentValue.map((position) =>
-        meetSubschema(merger, position, optionValue)
+        meetSchemaDefinition(merger, position, optionValue)
       );
     }
-    if (Array.isArray(optionValue)) {
+    if (
+      isSchemaDefinitionArray(optionValue) &&
+      isSchemaDefinition(parentValue)
+    ) {
       return optionValue.map((position) =>
-        meetSubschema(merger, parentValue, position)
+        meetSchemaDefinition(merger, parentValue, position)
       );
     }
   }
   return meetSubschema(merger, parentValue, optionValue);
 }
 
+function isSchemaDefinition(
+  value: SchemaValue | undefined
+): value is SchemaDefinition {
+  return typeof value === "boolean" || isRecord(value);
+}
+
+function isSubschemaValue(
+  value: SchemaValue | undefined
+): value is SubschemaValue {
+  return isSchemaDefinition(value) || isSchemaDefinitionArray(value);
+}
+
+function isSchemaDefinitionArray(
+  value: SchemaValue | undefined
+): value is SchemaDefinition[] {
+  return Array.isArray(value) && value.every(isSchemaDefinition);
+}
+
 function meetTuples(
   merger: Merger,
-  parent: unknown[],
-  option: unknown[]
-): unknown[] {
+  parent: SchemaDefinition[],
+  option: SchemaDefinition[]
+): SchemaDefinition[] {
   return Array.from(
     { length: Math.max(parent.length, option.length) },
     (_, index) => {
       if (index >= option.length) {
-        return parent[index];
+        return parent[index]!;
       }
       return index < parent.length
-        ? meetSubschema(merger, parent[index], option[index])
-        : option[index];
+        ? meetSchemaDefinition(merger, parent[index]!, option[index]!)
+        : option[index]!;
     }
   );
 }
 
-function meetSubschema(
+function meetSchemaDefinition(
   merger: Merger,
-  parent: unknown,
-  option: unknown
-): unknown {
-  if (parent === undefined) {
-    return option;
-  }
-  if (parent === false || option === true || option === undefined) {
+  parent: SchemaDefinition,
+  option: SchemaDefinition
+): SchemaDefinition {
+  if (parent === false || option === true) {
     return parent;
   }
-  if (!isRecord(parent) || !isRecord(option)) {
+  if (parent === true || option === false) {
     return option;
   }
   return Object.hasOwn(parent, REF_KEY) || Object.hasOwn(option, REF_KEY)
     ? { [ALL_OF_KEY]: [parent, option] }
-    : meetSchemas(merger, parent, option);
+    : meetSchemas(merger, parent as SchemaObject, option as SchemaObject);
+}
+
+function meetSubschema(
+  merger: Merger,
+  parent: SchemaValue | undefined,
+  option: SchemaValue | undefined
+): SubschemaValue | undefined {
+  if (parent === undefined) {
+    return isSubschemaValue(option) ? option : undefined;
+  }
+  if (parent === false) {
+    return false;
+  }
+  if (option === true) {
+    return isSubschemaValue(parent) ? parent : undefined;
+  }
+  if (option === undefined) {
+    return isSubschemaValue(parent) ? parent : undefined;
+  }
+  if (!isSchemaDefinition(parent) || !isSchemaDefinition(option)) {
+    return isSubschemaValue(option) ? option : undefined;
+  }
+  return meetSchemaDefinition(merger, parent, option);
 }
 
 const KNOWN_SCHEMA_TYPES = new Set<SchemaType>([
@@ -310,7 +377,9 @@ export function getRenderedOptionSchema(
   option: Schema
 ): Schema {
   const rendersOwnField = rendersOwnFieldBesideOption(parent);
-  const inherited: SchemaRecord = {};
+  const parentObject = parent as SchemaObject;
+  const optionObject = option as SchemaObject;
+  const inherited: SchemaObject = {};
   if (rendersOwnField) {
     if (parent.required?.length) {
       inherited[REQUIRED_KEY] = parent.required;
@@ -319,7 +388,7 @@ export function getRenderedOptionSchema(
       inherited.type = parent.type ?? "object";
     }
   } else {
-    for (const [key, value] of entriesOf(parent)) {
+    for (const [key, value] of Object.entries(parentObject)) {
       if (!KEYWORDS_LEFT_ON_PARENT.has(key)) {
         setOwn(inherited, key, value);
       }
@@ -329,16 +398,13 @@ export function getRenderedOptionSchema(
     return option;
   }
   if (!rendersOwnField) {
-    return meetSchemas(merger, inherited, option as SchemaRecord) as Schema;
+    return meetSchemas(merger, inherited, optionObject);
   }
-  const merged = merger.mergeSchemas(
-    inherited as Schema,
-    option
-  ) as SchemaRecord;
-  for (const key of Object.keys(inherited) as SchemaKey[]) {
+  const merged = merger.mergeSchemas(inherited, optionObject) as SchemaObject;
+  for (const key of Object.keys(inherited)) {
     if (merged[key] === undefined) {
       setOwn(merged, key, inherited[key]);
     }
   }
-  return merged as Schema;
+  return merged;
 }
