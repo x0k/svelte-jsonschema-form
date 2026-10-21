@@ -15,18 +15,15 @@ function copyContainer(value: unknown, nextKey: FieldPath[number]) {
 export function replaceAtPath(
   root: FormValue,
   path: FieldPath,
-  value: FieldValue
+  value: FieldValue,
+  level = 0
 ): FormValue {
-  if (path.length === 0) {
+  if (level === path.length) {
     return value;
   }
-  const key = path[0]!;
+  const key = path[level]!;
   const source = root as Record<PropertyKey, unknown> | undefined;
   const copy = copyContainer(source, key) as Record<PropertyKey, unknown>;
-  copy[key] = replaceAtPath(
-    source?.[key] as FormValue,
-    path.slice(1) as unknown as FieldPath,
-    value
-  );
+  copy[key] = replaceAtPath(source?.[key] as FormValue, path, value, level + 1);
   return copy as FormValue;
 }
