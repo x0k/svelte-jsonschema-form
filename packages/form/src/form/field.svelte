@@ -30,6 +30,7 @@
     retrieveTranslate,
     retrieveUiOption,
     setFormContext,
+    setValueAtPath,
     uiTitleOption,
     type FormState,
   } from "./state/index.js";
@@ -104,8 +105,7 @@
         return node[lastKey];
       },
       set current(v) {
-        //@ts-expect-error not checked by generic parameter
-        node[lastKey] = v;
+        setValueAtPath(form, path, v);
       },
     };
   });

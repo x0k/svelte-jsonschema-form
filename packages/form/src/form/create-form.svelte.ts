@@ -3,6 +3,8 @@ import { on } from "svelte/events";
 import { SvelteMap } from "svelte/reactivity";
 
 import {
+  DEPENDENCIES_KEY,
+  IF_KEY,
   isSchemaDeepEqual,
   retrieveSchema,
   sanitizeDataForNewSchema,
@@ -23,9 +25,11 @@ import {
 } from "#lib/task.svelte.js";
 import type { DeepPartial } from "#lib/types.js";
 
+import { copyForChange, getValueAtPath, replaceAtPath } from "./change-path.js";
 import type { Theme } from "./components.js";
 import type { Config } from "./config.js";
-import type { FormValidation, FieldsValidation } from "./errors.js";
+import { dropStaleDefaults } from "./drop-stale-defaults.js";
+import type { FieldsValidation, FormValidation } from "./errors.js";
 import type { ResolveFieldType } from "./fields.js";
 import type { Icons } from "./icons.js";
 import {
@@ -53,6 +57,8 @@ import {
   FORM_TRANSLATE,
   FORM_ICONS,
   FORM_MARK_SCHEMA_CHANGE,
+  FORM_SET_VALUE_AT_PATH,
+  FORM_UPDATE_VALUE_AT_PATH,
   FORM_FIELDS_STATE_MAP,
   FORM_ID_FROM_PATH,
   internalRegisterFieldPath,
@@ -71,6 +77,7 @@ import type { FormMerger } from "./merger.js";
 import {
   create,
   type Creatable,
+  type FieldValue,
   type FormValue,
   type FormValueRef,
   type KeyedArraysMap,
@@ -269,6 +276,10 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
           })
         )
   );
+  // The stale-default search needs the data as it was before the batch of writes.
+  // Record each changed path with the value it replaced and replay the records in
+  // reverse, copying only the containers along those paths.
+  let pendingChanges: { path: FieldPath; oldValue: FieldValue }[] = [];
   const idBuilder: FormIdBuilder = $derived(
     create(options.idBuilder, {
       idPrefix,
@@ -298,6 +309,12 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   // sanitization must still be attempted.
   const hasNestedConditionalSchema = $derived(
     schemaHasNestedConditional(options.schema)
+  );
+  // Only dependency and conditional branches can swap a declared default.
+  const mayDropStaleDefaults = $derived(
+    hasNestedConditionalSchema ||
+      DEPENDENCIES_KEY in options.schema ||
+      IF_KEY in options.schema
   );
   const idCache = new WeakMap<FieldPath, Id>();
   const idFromPath = $derived(
@@ -468,7 +485,20 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       return valueRef.current;
     },
     set [FORM_VALUE](v) {
+      pendingChanges = [];
       valueRef.current = v;
+    },
+    [FORM_SET_VALUE_AT_PATH](path, value) {
+      recordChange(path, getValueAtPath(valueRef.current, path));
+      writeValueAtPath(path, value);
+    },
+    [FORM_UPDATE_VALUE_AT_PATH](path, update) {
+      const current = getValueAtPath(valueRef.current, path);
+      recordChange(path, copyForChange(current));
+      const next = update(current);
+      if (next !== current) {
+        writeValueAtPath(path, next);
+      }
     },
     get [FORM_FIELDS_VALIDATION_MODE]() {
       return fieldsValidationMode;
@@ -525,14 +555,36 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       return options.icons;
     },
     [FORM_MARK_SCHEMA_CHANGE]() {
-      if (isDefaultsInjectionQueued) return;
-      isDefaultsInjectionQueued = true;
-      queueMicrotask(injectSchemaDefaults);
+      scheduleDefaultsInjection();
     },
   };
   const fieldTypeResolver = $derived(options.resolver(formState));
 
+  function recordChange(path: FieldPath, oldValue: FieldValue) {
+    if (!mayDropStaleDefaults) {
+      return;
+    }
+    pendingChanges.push({ path, oldValue });
+    scheduleDefaultsInjection();
+  }
+  function writeValueAtPath(path: FieldPath, value: FieldValue) {
+    if (path.length === 0) {
+      valueRef.current = value as FormValue;
+      return;
+    }
+    let node = valueRef.current as unknown as Record<PropertyKey, unknown>;
+    const lastIndex = path.length - 1;
+    for (let i = 0; i < lastIndex; i++) {
+      node = node[path[i]!] as Record<PropertyKey, unknown>;
+    }
+    node[path[lastIndex]!] = value;
+  }
   let isDefaultsInjectionQueued = false;
+  function scheduleDefaultsInjection() {
+    if (isDefaultsInjectionQueued) return;
+    isDefaultsInjectionQueued = true;
+    queueMicrotask(injectSchemaDefaults);
+  }
   function injectSchemaDefaults() {
     isDefaultsInjectionQueued = false;
     let currentRetrievedSchema = previousRetrievedSchema;
@@ -553,10 +605,50 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       );
     }
 
+    const changes = pendingChanges;
+    pendingChanges = [];
     let formData = valueRef.current;
+    let oldFormData: FormValue | undefined;
+    let oldRetrievedSchema: Schema | undefined;
+    if (mayDropStaleDefaults && changes.length > 0) {
+      oldFormData = formData;
+      for (let i = changes.length - 1; i >= 0; i--) {
+        const change = changes[i]!;
+        oldFormData = replaceAtPath(oldFormData, change.path, change.oldValue);
+      }
+      oldRetrievedSchema = retrieveSchema(
+        validator,
+        merger,
+        options.schema,
+        options.schema,
+        oldFormData
+      );
+    }
+    const changedPath = changes.at(-1)?.path;
     const values: FormValue[] = [];
 
     sanitization: while (true) {
+      // Replace a swapped-away branch's default before the fill, so the fill sees
+      // the newly selected branch's declaration in this same iteration.
+      if (oldRetrievedSchema !== undefined) {
+        const staleRetrievedSchema = retrieveSchema(
+          validator,
+          merger,
+          options.schema,
+          options.schema,
+          formData
+        );
+        formData = dropStaleDefaults(
+          validator,
+          merger,
+          options.schema,
+          staleRetrievedSchema,
+          oldRetrievedSchema,
+          formData,
+          oldFormData,
+          changedPath
+        );
+      }
       formData = merger.mergeFormDataAndSchemaDefaults({
         formData: formData,
         schema: options.schema,

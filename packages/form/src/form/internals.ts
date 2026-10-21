@@ -18,6 +18,8 @@ export const FORM_ERRORS = Symbol("form-errors");
 export const FORM_ID_FROM_PATH = Symbol("form-id-from-path");
 export const FORM_PATHS_TRIE_REF = Symbol("form-paths-trie-ref");
 export const FORM_MARK_SCHEMA_CHANGE = Symbol("form-mark-schema-change");
+export const FORM_SET_VALUE_AT_PATH = Symbol("form-set-value-at-path");
+export const FORM_UPDATE_VALUE_AT_PATH = Symbol("form-update-value-at-path");
 export const FORM_KEYED_ARRAYS = Symbol("form-keyed-arrays");
 export const FORM_FIELDS_VALIDATION_MODE = Symbol(
   "form-fields-validation-mode"

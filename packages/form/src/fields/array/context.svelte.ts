@@ -30,6 +30,7 @@ import {
   getChildPath,
   type FieldErrors,
   getStableConfig,
+  updateValueAtPath,
 } from "#form/index.js";
 import { noop } from "#lib/function.js";
 
@@ -129,26 +130,41 @@ function createItems<T>({
       if (schema === undefined) {
         return;
       }
-      keyed.push(
-        getDefaultFieldState(ctx, { schema, formData: undefined }) ??
-          getDefaultValueForType(getSimpleSchemaType(schema))
-      );
+      updateValueAtPath(ctx, config().path, (arr) => {
+        keyed.push(
+          getDefaultFieldState(ctx, { schema, formData: undefined }) ??
+            getDefaultValueForType(getSimpleSchemaType(schema))
+        );
+        return arr;
+      });
       onChange();
     },
     moveItemUp(index) {
-      keyed.swap(index, index - 1);
+      updateValueAtPath(ctx, config().path, (arr) => {
+        keyed.swap(index, index - 1);
+        return arr;
+      });
       onChange();
     },
     moveItemDown(index) {
-      keyed.swap(index, index + 1);
+      updateValueAtPath(ctx, config().path, (arr) => {
+        keyed.swap(index, index + 1);
+        return arr;
+      });
       onChange();
     },
     copyItem(index) {
-      keyed.insert(index, $state.snapshot(value()![index]));
+      updateValueAtPath(ctx, config().path, (arr) => {
+        keyed.insert(index, $state.snapshot(value()![index]));
+        return arr;
+      });
       onChange();
     },
     removeItem(index) {
-      keyed.remove(index);
+      updateValueAtPath(ctx, config().path, (arr) => {
+        keyed.remove(index);
+        return arr;
+      });
       onChange();
     },
   } satisfies Partial<ArrayContext>;
@@ -223,7 +239,10 @@ export function createArrayContext<T>({
     },
     length,
     set(index, itemValue) {
-      arr![index] = itemValue;
+      updateValueAtPath(ctx, config().path, (value) => {
+        (value as SchemaArrayValue)[index] = itemValue;
+        return value;
+      });
     },
     canAdd() {
       return canAdd;
@@ -324,7 +343,10 @@ export function createTupleContext<T>({
     },
     set(index, itemValue) {
       if (arr) {
-        arr[index] = itemValue;
+        updateValueAtPath(ctx, config().path, (value) => {
+          (value as SchemaArrayValue)[index] = itemValue;
+          return value;
+        });
       } else {
         initTuple((items) => {
           items[index] = itemValue;

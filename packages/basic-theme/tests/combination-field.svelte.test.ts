@@ -19,6 +19,9 @@ import {
   refObjectOneOfSchema,
   stringAnyOfSchema,
   stringOneOfSchema,
+  swappedDefaultsSchema,
+  swappedCfgDefaultsSchema,
+  swappedParentDefaultsSchema,
 } from "./test-data/combination-defaults.js";
 
 describe("combination field contracts", () => {
@@ -331,6 +334,44 @@ describe("combination field contracts", () => {
       await userEvent.selectOptions(select, "First method of identification");
 
       expectValue(form, { firstName: "Chuck" });
+    });
+  });
+
+  describe("swapped option defaults (#5349)", () => {
+    test("applies the new branch's default over the old branch's", async () => {
+      const { form } = await renderFieldForm({
+        schema: swappedDefaultsSchema,
+      });
+
+      const select = page.getByRole("combobox").first();
+      expectValue(form, { value: "first" });
+
+      await userEvent.selectOptions(select, "Second default");
+      expectValue(form, { value: "second" });
+
+      await userEvent.selectOptions(select, "First default");
+      expectValue(form, { value: "first" });
+    });
+  });
+
+  describe("swapped dependency defaults (#5349)", () => {
+    test("replaces a dependency-swapped object default", async () => {
+      const { form } = await renderFieldForm({
+        schema: swappedCfgDefaultsSchema,
+      });
+
+      await userEvent.fill(page.getByRole("textbox").first(), "b");
+      expectValue(form, { mode: "b", cfg: { name: "b" } });
+    });
+
+    test("replaces a parent-level default instead of deleting it", async () => {
+      const { form } = await renderFieldForm({
+        schema: swappedParentDefaultsSchema,
+        initialValue: { mode: "first", x: "a" },
+      });
+
+      await userEvent.fill(page.getByRole("textbox").first(), "second");
+      expectValue(form, { mode: "second", x: "b" });
     });
   });
 

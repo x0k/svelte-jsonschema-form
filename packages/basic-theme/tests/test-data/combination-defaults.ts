@@ -334,3 +334,92 @@ export const dependencyDefaultsSchema = {
     },
   },
 } as const satisfies Schema;
+
+export const swappedDefaultsSchema = {
+  type: "object",
+  oneOf: [
+    {
+      title: "First default",
+      properties: {
+        value: { type: "string", default: "first" },
+      },
+    },
+    {
+      title: "Second default",
+      properties: {
+        value: { type: "string", default: "second" },
+      },
+    },
+  ],
+} as const satisfies Schema;
+
+export const swappedParentDefaultsSchema = {
+  type: "object",
+  properties: {
+    mode: {
+      type: "string",
+      enum: ["first", "second"],
+    },
+  },
+  dependencies: {
+    mode: {
+      oneOf: [
+        {
+          properties: {
+            mode: { const: "first" },
+            x: { type: "string" },
+          },
+          default: { x: "a" },
+        },
+        {
+          properties: {
+            mode: { const: "second" },
+            x: { type: "string" },
+          },
+          default: { x: "b" },
+        },
+      ],
+    },
+  },
+} as const satisfies Schema;
+
+export const swappedCfgDefaultsSchema = {
+  type: "object",
+  properties: {
+    mode: {
+      type: "string",
+      enum: ["a", "b"],
+      default: "a",
+    },
+  },
+  dependencies: {
+    mode: {
+      oneOf: [
+        {
+          properties: {
+            mode: { const: "a" },
+            cfg: {
+              type: "object",
+              default: { name: "a" },
+              properties: {
+                name: { type: "string" },
+              },
+            },
+          },
+        },
+        {
+          properties: {
+            mode: { const: "b" },
+            cfg: {
+              type: "object",
+              default: { name: "b" },
+              properties: {
+                name: { type: "string" },
+              },
+            },
+          },
+        },
+      ],
+    },
+  },
+} as const satisfies Schema;
