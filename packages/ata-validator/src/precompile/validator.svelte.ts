@@ -14,10 +14,8 @@ import {
   transformFieldErrors,
   type ErrorsTransformerOptions,
 } from "../errors.js";
-import {
-  DEFAULT_VALIDATOR_OPTIONS,
-  type ValueCloner,
-} from "../validator.svelte.js";
+import { DEFAULT_VALIDATOR_OPTIONS } from "../model.js";
+import type { ValueCloner } from "../validator.svelte.js";
 
 type FormatPredicate = NonNullable<BundleStandaloneOptions["formats"]>[string];
 
