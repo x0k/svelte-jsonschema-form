@@ -599,3 +599,61 @@ export const readOnlyDefaultOneOfSchema = {
     },
   ],
 } as const satisfies Schema;
+
+export const swappedDefaultsSchema = {
+  type: "object",
+  oneOf: [
+    {
+      title: "First default",
+      properties: {
+        value: { type: "string", default: "first" },
+      },
+    },
+    {
+      title: "Second default",
+      properties: {
+        value: { type: "string", default: "second" },
+      },
+    },
+  ],
+} as const satisfies Schema;
+
+export const swappedDependencyDefaultsSchema = {
+  type: "object",
+  properties: {
+    mode: {
+      type: "string",
+      enum: ["first", "second"],
+    },
+  },
+  dependencies: {
+    mode: {
+      oneOf: [
+        {
+          properties: {
+            mode: { const: "first" },
+            value: {
+              type: "object",
+              properties: {
+                branch: { type: "string", default: "first" },
+              },
+              default: { branch: "first" },
+            },
+          },
+        },
+        {
+          properties: {
+            mode: { const: "second" },
+            value: {
+              type: "object",
+              properties: {
+                branch: { type: "string", default: "second" },
+              },
+              default: { branch: "second" },
+            },
+          },
+        },
+      ],
+    },
+  },
+} as const satisfies Schema;
