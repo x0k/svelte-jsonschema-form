@@ -23,6 +23,7 @@ import {
   FORM_ICONS,
   FORM_KEYED_ARRAYS,
   FORM_MARK_SCHEMA_CHANGE,
+  FORM_RECORD_CHANGE,
   FORM_MERGER,
   FORM_SCHEMA,
   FORM_THEME,
@@ -47,7 +48,12 @@ import {
   FORM_INITIAL_VALUE,
 } from "../internals.js";
 import type { FormMerger } from "../merger.js";
-import type { FormValue, KeyedArraysMap, PathTrieRef } from "../model.js";
+import type {
+  FieldValue,
+  FormValue,
+  KeyedArraysMap,
+  PathTrieRef,
+} from "../model.js";
 import type { Translate, Translation } from "../translation.js";
 import {
   type ExtraUiOptions,
@@ -71,6 +77,10 @@ export interface FormState<T> {
   readonly [FORM_PATHS_TRIE_REF]: PathTrieRef<FieldPath>;
   readonly [FORM_ERRORS]: FormErrors;
   readonly [FORM_MARK_SCHEMA_CHANGE]: () => void;
+  readonly [FORM_RECORD_CHANGE]: (
+    path: FieldPath,
+    oldValue: FieldValue
+  ) => void;
   readonly [FORM_KEYED_ARRAYS]: KeyedArraysMap;
   readonly [FORM_FIELDS_VALIDATION_MODE]: number;
   readonly [FORM_SCHEMA]: Schema;

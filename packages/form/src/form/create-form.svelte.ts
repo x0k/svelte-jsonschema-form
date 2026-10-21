@@ -25,6 +25,7 @@ import {
 } from "#lib/task.svelte.js";
 import type { DeepPartial } from "#lib/types.js";
 
+import { replaceAtPath } from "./change-path.js";
 import type { Theme } from "./components.js";
 import type { Config } from "./config.js";
 import { dropStaleDefaults } from "./drop-stale-defaults.js";
@@ -56,6 +57,7 @@ import {
   FORM_TRANSLATE,
   FORM_ICONS,
   FORM_MARK_SCHEMA_CHANGE,
+  FORM_RECORD_CHANGE,
   FORM_FIELDS_STATE_MAP,
   FORM_ID_FROM_PATH,
   internalRegisterFieldPath,
@@ -272,9 +274,12 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
           })
         )
   );
-  // The form value is a Svelte ref written directly by fields, and the stale-default
-  // search needs the value the change started from. Record it in the setter below.
-  let previousValue: FormValue | undefined = undefined;
+  // The stale-default search needs the value the change started from. Record the
+  // changed path and its old value before each write, then rebuild the old data by
+  // copying only the containers along that path.
+  let pendingChange:
+    | { path: FieldPath; oldValue: FormValue | undefined }
+    | undefined;
   const idBuilder: FormIdBuilder = $derived(
     create(options.idBuilder, {
       idPrefix,
@@ -482,9 +487,20 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       return valueRef.current;
     },
     set [FORM_VALUE](v) {
-      // Keep the pre-change value for the next defaults pass.
-      previousValue = valueRef.current;
+      pendingChange = {
+        path: [] as unknown as FieldPath,
+        oldValue: valueRef.current,
+      };
       valueRef.current = v;
+      if (mayDropStaleDefaults) {
+        scheduleDefaultsInjection();
+      }
+    },
+    [FORM_RECORD_CHANGE](path, oldValue) {
+      pendingChange = { path, oldValue };
+      if (mayDropStaleDefaults) {
+        scheduleDefaultsInjection();
+      }
     },
     get [FORM_FIELDS_VALIDATION_MODE]() {
       return fieldsValidationMode;
@@ -541,14 +557,17 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       return options.icons;
     },
     [FORM_MARK_SCHEMA_CHANGE]() {
-      if (isDefaultsInjectionQueued) return;
-      isDefaultsInjectionQueued = true;
-      queueMicrotask(injectSchemaDefaults);
+      scheduleDefaultsInjection();
     },
   };
   const fieldTypeResolver = $derived(options.resolver(formState));
 
   let isDefaultsInjectionQueued = false;
+  function scheduleDefaultsInjection() {
+    if (isDefaultsInjectionQueued) return;
+    isDefaultsInjectionQueued = true;
+    queueMicrotask(injectSchemaDefaults);
+  }
   function injectSchemaDefaults() {
     isDefaultsInjectionQueued = false;
     let currentRetrievedSchema = previousRetrievedSchema;
@@ -570,9 +589,11 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     }
 
     let formData = valueRef.current;
-    // There is no change path here, only the value before the change, so resolve the
-    // old side once and let the search walk both trees.
-    const oldFormData = previousValue;
+    // Put the changed value back to rebuild the data as it arrived, without copying
+    // anything outside the changed path.
+    const oldFormData = pendingChange
+      ? replaceAtPath(formData, pendingChange.path, pendingChange.oldValue)
+      : undefined;
     const oldRetrievedSchema = retrieveSchema(
       validator,
       merger,
@@ -646,8 +667,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     }
 
     reconcileFormValue(valueRef, formData);
-    // The next pass starts from the settled data, not the value the setter recorded.
-    previousValue = valueRef.current;
+    pendingChange = undefined;
   }
 
   return formState;
