@@ -215,4 +215,4 @@ See [UI Options Augmentation Reference](references/ui-options-augmentation.md) f
 2. **Event Attachment via `handlers`**: `inputAttributes`/`selectAttributes`/`textareaAttributes` embed `handlersAttachment(handlers)` (symbol-keyed `@attach`, forwarded through spreads). Spread `{...attributes}` and do nothing else. Only if the custom input drops attachments, map by reference (`onValueChange: handlers.oninput`) or call `handlers.oninput?.()` inside your own wrapper handler. `Config` has no `id`/`disabled`.
 3. **Queries vs Commands in Form Context**:
    - Queries (`retrieveUiOption`, `getFieldErrors`, `getId`) track reactive dependencies.
-   - Commands (`updateErrors`, `setValue`, `validateField`) do not track dependencies and are used in callbacks.
+   - Commands (`updateErrors`, `setValue`, `setValueAtPath`, `validateField`) do not track dependencies and are used in callbacks.
