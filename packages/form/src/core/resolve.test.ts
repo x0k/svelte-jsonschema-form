@@ -893,6 +893,40 @@ describe("retrieveSchema()", () => {
     });
   });
   describe("property dependencies", () => {
+    it("should ignore an inherited trigger property", () => {
+      const formData = Object.create({ a: "1" });
+      expect(
+        retrieveSchema(
+          testValidator,
+          defaultMerger,
+          PROPERTY_DEPENDENCIES,
+          {},
+          formData
+        )
+      ).toEqual({
+        type: "object",
+        properties: {
+          a: { type: "string" },
+          b: { type: "integer" },
+        },
+        required: ["a"],
+      });
+    });
+
+    it("should ignore an inherited dependency key in the resolved properties", () => {
+      const schema: Schema = {
+        type: "object",
+        properties: Object.create({ a: { type: "string" } }),
+        dependencies: { a: { required: ["b"] } },
+      };
+      expect(
+        retrieveSchema(testValidator, defaultMerger, schema, {}, { a: "1" })
+      ).toEqual({
+        type: "object",
+        properties: {},
+      });
+    });
+
     describe("false condition", () => {
       it("should not add required properties", () => {
         const rootSchema: Schema = { definitions: {} };
@@ -3358,6 +3392,27 @@ describe("retrieveSchema()", () => {
         },
       });
     });
+    it("stubs an own __proto__ key without changing the properties prototype", () => {
+      const schema = {
+        additionalProperties: true,
+        properties: {},
+      } satisfies Schema;
+      const formData = JSON.parse('{"__proto__":{"a":1}}');
+      const resolved = stubExistingAdditionalProperties(
+        testValidator,
+        defaultMerger,
+        schema,
+        schema,
+        formData
+      );
+      expect(Object.hasOwn(resolved.properties!, "__proto__")).toBe(true);
+      expect(Object.getPrototypeOf(resolved.properties)).toBe(Object.prototype);
+      expect(resolved.properties!["__proto__"]).toEqual({
+        type: "object",
+        [ADDITIONAL_PROPERTY_FLAG]: true,
+      });
+    });
+
     it("has property keys that match schema AND formData, additionalProperties is boolean", () => {
       const schema = {
         properties: {

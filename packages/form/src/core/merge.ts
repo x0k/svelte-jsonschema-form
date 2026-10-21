@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
+import { getOwn, setOwn } from "#lib/object.js";
 import { isNil } from "#lib/types.js";
 
 import type { SchemaObjectValue } from "./schema.js";
@@ -53,10 +54,10 @@ export function mergeDefaultsWithFormData<T = any>(
       : {};
     // Seed from the object defaults only: a scalar or array default must not
     // become numeric index keys on the object form data.
-    const acc = { ...defaultsObject } as { [key in keyof T]: any };
+    const acc = { ...defaultsObject };
     for (const [key, value] of Object.entries(formData)) {
-      const keyExistsInDefaults = key in defaultsObject;
-      const keyDefault = defaultsObject[key];
+      const keyExistsInDefaults = Object.hasOwn(defaultsObject, key);
+      const keyDefault = getOwn(defaultsObject, key);
 
       // NOTE: This code is bad, but maintaining compatibility with RSJF > "good" code
       // If any direct child of this key's default is itself an object or array,
@@ -69,27 +70,31 @@ export function mergeDefaultsWithFormData<T = any>(
           (v) => isSchemaObjectValue(v) || Array.isArray(v)
         )
       ) {
-        acc[key as keyof T] = {
+        setOwn(acc, key, {
           ...keyDefault,
           ...value,
-        };
+        });
         continue;
       }
 
-      acc[key as keyof T] = mergeDefaultsWithFormData(
-        defaultsObject[key],
-        value,
-        mergeExtraArrayDefaults,
-        defaultsSupersedesUndefined,
-        // overrideFormDataWithDefaults can be true only when the key value exists in defaults
-        // Or if the key value doesn't exist in formData
-        // CHANGED: key is always in form data, maybe this condition should be value === undefined
-        // overrideFormDataWithDefaults &&
-        //   (keyExistsInDefaults || !keyExistsInFormData)
-        overrideFormDataWithDefaults && keyExistsInDefaults
+      setOwn(
+        acc,
+        key,
+        mergeDefaultsWithFormData(
+          keyDefault,
+          value,
+          mergeExtraArrayDefaults,
+          defaultsSupersedesUndefined,
+          // overrideFormDataWithDefaults can be true only when the key value exists in defaults
+          // Or if the key value doesn't exist in formData
+          // CHANGED: key is always in form data, maybe this condition should be value === undefined
+          // overrideFormDataWithDefaults &&
+          //   (keyExistsInDefaults || !keyExistsInFormData)
+          overrideFormDataWithDefaults && keyExistsInDefaults
+        )
       );
     }
-    return acc;
+    return acc as T;
   }
 
   if (
@@ -114,17 +119,21 @@ export function mergeSchemaObjects<
 >(obj1: A, obj2: B, concatArrays: boolean | "preventDuplicates" = false) {
   const acc: SchemaObjectValue = Object.assign({}, obj1);
   for (const [key, right] of Object.entries(obj2)) {
-    const left = obj1 ? obj1[key] : {};
+    const left = Object.hasOwn(obj1, key) ? obj1[key] : undefined;
     if (isSchemaObjectValue(left) && isSchemaObjectValue(right)) {
-      acc[key] = mergeSchemaObjects(left, right, concatArrays);
+      setOwn(acc, key, mergeSchemaObjects(left, right, concatArrays));
     } else if (concatArrays && Array.isArray(left) && Array.isArray(right)) {
-      acc[key] = left.concat(
-        concatArrays === "preventDuplicates"
-          ? right.filter((v) => !left.includes(v))
-          : right
+      setOwn(
+        acc,
+        key,
+        left.concat(
+          concatArrays === "preventDuplicates"
+            ? right.filter((v) => !left.includes(v))
+            : right
+        )
       );
     } else {
-      acc[key] = right;
+      setOwn(acc, key, right);
     }
   }
   return acc as A & B;

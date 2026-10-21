@@ -1,6 +1,42 @@
 import { describe, expect, it } from "vitest";
 
-import { getValueByPath } from "./object.js";
+import { getOwn, getValueByPath, setOwn } from "./object.js";
+
+describe("getOwn", () => {
+  it("reads an own property", () => {
+    expect(getOwn({ a: 1 }, "a")).toBe(1);
+  });
+  it("reads an own property that is undefined", () => {
+    expect(getOwn({ a: undefined }, "a")).toBe(undefined);
+  });
+  it("ignores an inherited property", () => {
+    expect(getOwn(Object.create({ a: 1 }), "a")).toBe(undefined);
+  });
+  it("returns undefined for a missing property", () => {
+    const source: Record<string, number> = { a: 1 };
+    expect(getOwn(source, "b")).toBe(undefined);
+  });
+});
+
+describe("setOwn", () => {
+  it("writes a regular property", () => {
+    const target: { a?: number } = {};
+    setOwn(target, "a", 1);
+    expect(target).toEqual({ a: 1 });
+  });
+  it("writes __proto__ as an own property", () => {
+    const target: Record<PropertyKey, unknown> = {};
+    const value = { polluted: true };
+    setOwn(target, "__proto__", value);
+    expect(Object.getPrototypeOf(target)).toBe(Object.prototype);
+    expect(Object.getOwnPropertyDescriptor(target, "__proto__")).toEqual({
+      value,
+      enumerable: true,
+      writable: true,
+      configurable: true,
+    });
+  });
+});
 
 describe("getValueByPath", () => {
   it("reads an own property", () => {
