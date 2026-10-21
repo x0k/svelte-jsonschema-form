@@ -39,6 +39,7 @@ import {
   isSelect,
   type UiSchema,
 } from "#form/index.js";
+import { FORM_RECORD_CHANGE } from "#form/internals.js";
 import { snapshotWithSymbols } from "#lib/svelte.svelte.js";
 
 import { createFormOptions } from "../enum.js";
@@ -281,6 +282,10 @@ export function createObjectContext<T>({
       } else if (isEmptyValue(v) && isObjectCanBeRemoved(obj, property)) {
         removeObject();
       } else {
+        ctx[FORM_RECORD_CHANGE](
+          getChildPath(ctx, config().path, property),
+          obj[property]
+        );
         obj[property] = v;
       }
     },
