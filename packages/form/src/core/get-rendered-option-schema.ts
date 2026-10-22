@@ -17,6 +17,7 @@ import {
   CONST_KEY,
   DEFAULT_KEY,
   ELSE_KEY,
+  ENUM_KEY,
   IF_KEY,
   ITEMS_KEY,
   NOT_KEY,
@@ -34,8 +35,6 @@ type SchemaKey = Exclude<keyof Schema, symbol>;
 type SchemaValue = Schema[SchemaKey];
 type SubschemaValue = SchemaDefinition | SchemaDefinition[];
 type SchemaObject = Schema & Record<string, SchemaValue | undefined>;
-
-const ENUM_KEY = "enum";
 
 function isStringArray(value: SchemaValue | undefined): value is string[] {
   return (
@@ -400,11 +399,12 @@ export function getRenderedOptionSchema(
   if (!rendersOwnField) {
     return meetSchemas(merger, inherited, optionObject);
   }
-  const merged = merger.mergeSchemas(inherited, optionObject) as SchemaObject;
-  for (const key of Object.keys(inherited)) {
-    if (merged[key] === undefined) {
-      setOwn(merged, key, inherited[key]);
-    }
+  const merged = merger.mergeSchemas(inherited, optionObject);
+  if (merged.required === undefined && inherited[REQUIRED_KEY] !== undefined) {
+    merged.required = inherited[REQUIRED_KEY];
+  }
+  if (merged.type === undefined && inherited.type !== undefined) {
+    merged.type = inherited.type;
   }
   return merged;
 }
