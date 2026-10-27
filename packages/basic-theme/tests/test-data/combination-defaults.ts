@@ -342,12 +342,17 @@ export const arrayItemAnyOfSchema = {
   },
   anyOf: [
     {
-      title: "Up to three",
-      maxItems: 3,
+      title: "With text items",
+      contains: {
+        type: "string",
+      },
     },
     {
-      title: "Four or more",
-      minItems: 4,
+      title: "Number items",
+      items: {
+        type: "number",
+        title: "Item",
+      },
     },
   ],
 } as const satisfies Schema;
@@ -355,5 +360,14 @@ export const arrayItemAnyOfSchema = {
 export const formattedStringOneOfSchema = {
   type: "string",
   format: "date",
-  oneOf: [{ title: "First date" }, { title: "Second date" }],
+  oneOf: [
+    {
+      title: "First half of the year",
+      pattern: "^\\d{4}-(0[1-6])-\\d{2}$",
+    },
+    {
+      title: "Second half of the year",
+      pattern: "^\\d{4}-(0[7-9]|1[0-2])-\\d{2}$",
+    },
+  ],
 } as const satisfies Schema;
