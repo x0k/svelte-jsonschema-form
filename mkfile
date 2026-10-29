@@ -2,6 +2,22 @@
 
 set -xe
 
+@template scripts pkg_dir:
+  pushd pkg_dir
+  c:
+    pnpm run check
+  b:
+    pnpm run build
+  p:
+    pnpm run preview
+  d:
+    pnpm run dev
+  t:
+    pnpm run test $@
+  tv:
+    pnpm run test:visual $@
+  popd
+
 update:
   pnpm -w update --no-save
   pnpm dedupe
@@ -51,8 +67,9 @@ cs:
 h:
   mk -P targets "*"
 
+pushd packages
 f/:
-  pushd packages/form
+  pushd form
   l:
     pnpm run lint
   f:
@@ -63,30 +80,64 @@ f/:
     pnpm run test $@
   ben:
     pnpm run bench $@
-  d:
-    pnpm run dev
   b:
     pnpm run build
-  tui:
-    pnpm run test:ui
   popd
 
 tt/:
-  pushd packages/theme-testing
-  c:
-    pnpm run check
-  b:
-    pnpm run build
-  popd
-
+  @use scripts theme-testing
 
 vt/:
-  pushd packages/validator-testing
-  c:
-    pnpm run check
-  b:
-    pnpm run build
-  popd
+  @use scripts validator-testing
+
+ajv/:
+  @use scripts ajv8-validator
+
+zod/:
+  @use scripts zod4-validator
+
+val/:
+  @use scripts valibot-validator
+
+cfw/:
+  @use scripts cfworker-validator
+
+safe/:
+  @use scripts schemasafe-validator
+
+ata/:
+  @use scripts ata-validator
+
+basic/:
+  @use scripts basic-theme
+
+daisy/:
+  @use scripts daisyui5-theme
+
+skel/:
+  @use scripts skeleton5-theme
+
+flow/:
+  @use scripts flowbite3-theme
+
+flowi/:
+  @use scripts flowbite-icons
+
+luci/:
+  @use scripts lucide-icons
+
+movi/:
+  @use scripts moving-icons
+
+radi/:
+  @use scripts radix-icons
+
+shad/:
+  @use scripts shadcn4-theme
+
+kit/:
+  @use scripts sveltekit3
+popd
 
 sjsf/:
   filter=(--filter="@sjsf/*" --filter="@sjsf-lab/*")
@@ -97,446 +148,65 @@ sjsf/:
   b:
     pnpm run build ${filter[@]} $@
 
-ajv/:
-  pushd packages/ajv8-validator
-  b:
-    pnpm run build
-  t:
-    pnpm run test
-  popd
-
-zod/:
-  pushd packages/zod4-validator
-  b:
-    pnpm run build
-  t:
-    pnpm run test $@
-  popd
-
-val/:
-  pushd packages/valibot-validator
-  b:
-    pnpm run build
-  t:
-    pnpm run test $@
-  popd
-
-cfw/:
-  pushd packages/cfworker-validator
-  b:
-    pnpm run build
-  t:
-    pnpm run test
-  popd
-
-safe/:
-  pushd packages/schemasafe-validator
-  b:
-    pnpm run build
-  t:
-    pnpm run test
-  popd
-
-
-ata/:
-  pushd ata-validator
-  b:
-    pnpm run build
-  t:
-    pnpm run test
-  popd
-
-basic/:
-  pushd packages/basic-theme
-  c:
-    pnpm run check
-  b:
-    pnpm run build
-  d:
-    pnpm run dev
-  t:
-    pnpm run test $@
-  popd
-
-daisy/:
-  pushd packages/daisyui5-theme
-  c:
-    pnpm run check
-  b:
-    pnpm run build
-  d:
-    pnpm run dev
-  t:
-    pnpm run test $@
-  popd
-
-skel/:
-  pushd packages/skeleton5-theme
-  c:
-    pnpm run check
-  b:
-    pnpm run build
-  d:
-    pnpm run dev
-  t:
-    pnpm run test $@
-  popd
-
-flow/:
-  pushd packages/flowbite3-theme
-  c:
-    pnpm run check
-  b:
-    pnpm run build
-  d:
-    pnpm run dev
-  t:
-    pnpm run test $@
-  tv:
-    pnpm run test:visual $@
-  popd
-
-flowi/:
-  pushd packages/flowbite-icons
-  c:
-    pnpm run check
-  b:
-    pnpm run build
-  d:
-    pnpm run dev
-  popd
-
-luci/:
-  pushd packages/lucide-icons
-  c:
-    pnpm run check
-  b:
-    pnpm run build
-  d:
-    pnpm run dev
-  popd
-
-movi/:
-  pushd packages/moving-icons
-  c:
-    pnpm run check
-  b:
-    pnpm run build
-  d:
-    pnpm run dev
-  popd
-
-radi/:
-  pushd packages/radix-icons
-  c:
-    pnpm run check
-  b:
-    pnpm run build
-  d:
-    pnpm run dev
-  popd
-
-shad/:
-  pushd packages/shadcn4-theme
-  c:
-    pnpm run check
-  b:
-    pnpm run build
-  p:
-    pnpm run preview
-  d:
-    pnpm run dev
-  t:
-    pnpm run test $@
-  popd
-
-kit/:
-  pushd packages/sveltekit3
-  c:
-    pnpm run check
-  b:
-    pnpm run build
-  p:
-    pnpm run preview
-  d:
-    pnpm run dev
-  t:
-    pnpm run test $@
-  popd
-
 pushd lab
 hyper/:
-  pushd hyperjump-validator
-  b:
-    pnpm run build
-  t:
-    pnpm run test
-  popd
+  @use scripts hyperjump-validator
 shade/:
-  pushd shadcn-extras-theme
-  c:
-    pnpm run check
-  b:
-    pnpm run build
-  d:
-    pnpm run dev
-  t:
-    pnpm run test $@
-  popd
+  @use scripts shadcn-extras-theme
 svar/:
-  pushd svar-theme
-  c:
-    pnpm run check
-  b:
-    pnpm run build
-  d:
-    pnpm run dev
-  t:
-    pnpm run test $@
-  popd
+  @use scripts svar-theme
 beer/:
-  pushd beercss-theme
-  c:
-    pnpm run check
-  b:
-    pnpm run build
-  d:
-    pnpm run dev
-  t:
-    pnpm run test $@
-  popd
+  @use scripts beercss-theme
 popd
 
 leg/:
   pushd legacy
   daisy/:
-    pushd daisyui-theme
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    d:
-      pnpm run dev
-    t:
-      pnpm run test $@
-    popd
+    @use scripts daisyui-theme
   skel3/:
-    pushd skeleton3-theme
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    d:
-      pnpm run dev
-    t:
-      pnpm run test $@
-    popd
+    @use scripts skeleton3-theme
   skel/:
-    pushd skeleton4-theme
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    d:
-      pnpm run dev
-    t:
-      pnpm run test $@
-    popd
+    @use scripts skeleton4-theme
   flow/:
-    pushd flowbite-theme
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    d:
-      pnpm run dev
-    t:
-      pnpm run test $@
-    popd
+    @use scripts flowbite-theme
   shad/:
-    pushd shadcn-theme
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    p:
-      pnpm run preview
-    d:
-      pnpm run dev
-    t:
-      pnpm run test $@
-    popd
+    @use scripts shadcn-theme
   kit/:
-    pushd sveltekit
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    p:
-      pnpm run preview
-    d:
-      pnpm run dev
-    t:
-      pnpm run test $@
-    popd
+    @use scripts sveltekit
   popd
 
 e/:
   pushd examples
   basic/:
-    pushd basic-starter
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    p:
-      pnpm run preview
-    d:
-      pnpm run dev
-    popd
+    @use scripts basic-starter
   daisy/:
-    pushd daisyui5-starter
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    p:
-      pnpm run preview
-    d:
-      pnpm run dev
-    popd
+    @use scripts daisyui5-starter
   flow/:
-    pushd flowbite3-starter
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    p:
-      pnpm run preview
-    d:
-      pnpm run dev
-    popd
+    @use scripts flowbite3-starter
   skel/:
-    pushd skeleton5-starter
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    p:
-      pnpm run preview
-    d:
-      pnpm run dev
-    popd
+    @use scripts skeleton5-starter
   shad/:
-    pushd shadcn4-starter
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    p:
-      pnpm run preview
-    d:
-      pnpm run dev
-    popd
+    @use scripts shadcn4-starter
   shad-extras/:
-    pushd shadcn4-starter
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    p:
-      pnpm run preview
-    d:
-      pnpm run dev
-    popd
+    @use scripts shadcn4-starter
   mark/:
-    pushd markdown-description
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    p:
-      pnpm run preview
-    d:
-      pnpm run dev
-    popd
+    @use scripts markdown-description
   zod/:
-    pushd zod-starter
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    p:
-      pnpm run preview
-    d:
-      pnpm run dev
-    popd
+    @use scripts zod-starter
   valibot/:
-    pushd valibot-starter
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    p:
-      pnpm run preview
-    d:
-      pnpm run dev
-    popd
+    @use scripts valibot-starter
   ark/:
-    pushd arktype-starter
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    p:
-      pnpm run preview
-    d:
-      pnpm run dev
-    popd
+    @use scripts arktype-starter
   type/:
-    pushd typebox-starter
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    p:
-      pnpm run preview
-    d:
-      pnpm run dev
-    popd
+    @use scripts typebox-starter
   kit2/:
-    pushd sveltekit-starter
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    p:
-      pnpm run preview
-    d:
-      pnpm run dev
-    popd
+    @use scripts sveltekit-starter
   kit/:
-    pushd sveltekit3-starter
-    c:
-      pnpm run check
-    b:
-      pnpm run build
-    p:
-      pnpm run preview
-    d:
-      pnpm run dev
-    popd
+    @use scripts sveltekit3-starter
   popd
 
 meta/:
-  pushd packages/meta
-  c:
-    pnpm run check
-  t:
-    pnpm run test $@
-  b:
-    pnpm run build
-  popd
+  @use scripts meta
 
 sv/:
   pushd packages/sv
@@ -564,42 +234,13 @@ sv/:
     pnpm run build
   popd
 
+pushd apps
 docs/:
-  pushd apps/docs2
-  g:
-    pnpm run generate-demos
-  c:
-    pnpm run check
-  d:
-    pnpm run dev
-  b:
-    pnpm run build
-  p:
-    pnpm run preview
-  popd
+  @use scripts docs2
 
 pl/:
-  pushd apps/playground2
-  d:
-    pnpm run dev
-  c:
-    pnpm run check
-  t:
-    pnpm run test $@
-  b:
-    pnpm run build
-  p:
-    pnpm run preview
-  popd
+  @use scripts playground2
 
 bl/:
-  pushd apps/builder
-  d:
-    pnpm run dev
-  c:
-    pnpm run check
-  b:
-    pnpm run build
-  p:
-    pnpm run preview
-  popd
+  @use scripts builder
+popd
