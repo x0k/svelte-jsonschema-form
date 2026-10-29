@@ -332,3 +332,42 @@ export const dependencyDefaultsSchema = {
     },
   },
 } as const satisfies Schema;
+
+export const arrayItemAnyOfSchema = {
+  type: "array",
+  title: "Array choice",
+  items: {
+    type: "string",
+    title: "Item",
+  },
+  anyOf: [
+    {
+      title: "With text items",
+      contains: {
+        type: "string",
+      },
+    },
+    {
+      title: "Number items",
+      items: {
+        type: "number",
+        title: "Item",
+      },
+    },
+  ],
+} as const satisfies Schema;
+
+export const formattedStringOneOfSchema = {
+  type: "string",
+  format: "date",
+  oneOf: [
+    {
+      title: "First half of the year",
+      pattern: "^\\d{4}-(0[1-6])-\\d{2}$",
+    },
+    {
+      title: "Second half of the year",
+      pattern: "^\\d{4}-(0[7-9]|1[0-2])-\\d{2}$",
+    },
+  ],
+} as const satisfies Schema;

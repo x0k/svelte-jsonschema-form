@@ -53,6 +53,7 @@ export const REQUIRED_KEY = "required";
 export const PATTERN_PROPERTIES_KEY = "patternProperties";
 export const DEFAULT_KEY = "default";
 export const CONST_KEY = "const";
+export const ENUM_KEY = "enum";
 
 export const IF_KEY = "if";
 export const THEN_KEY = "then";
