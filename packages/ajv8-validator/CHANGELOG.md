@@ -1,5 +1,11 @@
 # @sjsf/ajv8-validator
 
+## 3.9.2
+
+### Patch Changes
+
+- Fix async validation with precompiled AJV validators so validation errors are transformed instead of rethrown. ([#518](https://github.com/x0k/svelte-jsonschema-form/pull/518))
+
 ## 3.9.1
 
 No changes in this release.

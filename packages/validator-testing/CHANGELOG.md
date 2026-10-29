@@ -1,5 +1,12 @@
 # validator-testing
 
+## 1.0.35
+
+### Patch Changes
+
+- Updated dependencies [[`c48edfd`](https://github.com/x0k/svelte-jsonschema-form/commit/c48edfdbe0361e2add3ef6ae44a2938d9127255a)]:
+  - @sjsf/form@3.9.2
+
 ## 1.0.34
 
 ### Patch Changes

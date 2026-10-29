@@ -1,5 +1,9 @@
 # @sjsf/zod4-validator
 
+## 3.9.2
+
+No changes in this release.
+
 ## 3.9.1
 
 No changes in this release.
