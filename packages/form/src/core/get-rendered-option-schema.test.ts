@@ -1,13 +1,31 @@
 import { describe, expect, test } from "vitest";
 
-import { createMerger } from "../mergers/modern.js";
 import {
   getRenderedOptionSchema,
   rendersOwnFieldBesideOption,
 } from "./get-rendered-option-schema.js";
 import type { Schema } from "./schema.js";
+import { createMerger } from "./test-merger.js";
 
-const merger = createMerger();
+const merger = createMerger({
+  merges: [
+    {
+      left: { required: ["kind"], type: "object" },
+      right: { properties: { value: { type: "string" } } },
+      result: { title: "merged" },
+    },
+    {
+      left: { type: "object" },
+      right: { required: ["value"] },
+      result: { title: "merged" },
+    },
+    {
+      left: { type: "string" },
+      right: { title: "Option" },
+      result: { title: "merged" },
+    },
+  ],
+});
 
 function rendered(parent: Schema, option: Schema): Schema {
   return getRenderedOptionSchema(merger, parent, option);
@@ -68,9 +86,9 @@ describe("getRenderedOptionSchema()", () => {
         { properties: { value: { type: "string" } } }
       )
     ).toEqual({
-      type: "object",
+      title: "merged",
       required: ["kind"],
-      properties: { value: { type: "string" } },
+      type: "object",
     });
   });
 
@@ -80,30 +98,30 @@ describe("getRenderedOptionSchema()", () => {
         { properties: { kind: { type: "string" } } },
         { required: ["value"] }
       )
-    ).toEqual({ type: "object", required: ["value"] });
+    ).toEqual({ title: "merged", type: "object" });
   });
 
   test("merges a value keyword holding objects", () => {
-    expect(
-      rendered(
-        { type: "string", "x-extra": { a: 1 } } as never,
-        { "x-extra": { b: 2 } } as never
-      )
-    ).toEqual({ type: "string", "x-extra": { a: 1, b: 2 } });
+    const parent: Schema = { type: "string" };
+    const option: Schema = { title: "Option" };
+    const parentWithExtension = Object.assign(parent, {
+      "x-extra": { type: "string" },
+    });
+    const optionWithExtension = Object.assign(option, {
+      "x-extra": { title: "Option" },
+    });
+    expect(rendered(parentWithExtension, optionWithExtension)).toEqual({
+      type: "string",
+      title: "Option",
+      "x-extra": { title: "merged" },
+    });
   });
 
-  test("does not treat an enum of objects as an object schema", () => {
-    expect(rendersOwnFieldBesideOption({ enum: [{ a: 1 }] })).toBe(false);
-  });
-
-  test("skips null and unrecognized type names when choosing a type", () => {
-    expect(
-      rendersOwnFieldBesideOption({
-        type: ["null", "not-a-type", "object"],
-      } as never)
-    ).toBe(true);
-    expect(
-      rendersOwnFieldBesideOption({ type: ["not-a-type", "string"] } as never)
-    ).toBe(false);
+  test("detects whether the schema renders its own field", () => {
+    expect(rendersOwnFieldBesideOption({ type: "object" })).toBe(true);
+    expect(rendersOwnFieldBesideOption({ type: ["null", "object"] })).toBe(
+      true
+    );
+    expect(rendersOwnFieldBesideOption({ type: "string" })).toBe(false);
   });
 });

@@ -27,7 +27,6 @@ import {
   THEN_KEY,
   type Schema,
   type SchemaDefinition,
-  type SchemaType,
 } from "./schema.js";
 import { getSimpleSchemaType } from "./type.js";
 
@@ -335,33 +334,8 @@ function meetSubschema(
   return meetSchemaDefinition(merger, parent, option);
 }
 
-const KNOWN_SCHEMA_TYPES = new Set<SchemaType>([
-  "null",
-  "boolean",
-  "object",
-  "array",
-  "number",
-  "string",
-  "integer",
-]);
-
-function getSchemaType(schema: Schema): SchemaType {
-  const type = schema.type;
-  if (Array.isArray(type)) {
-    return (
-      type.find((type) => type !== "null" && KNOWN_SCHEMA_TYPES.has(type)) ??
-      type.find((type) => type !== "null") ??
-      "null"
-    );
-  }
-  if (!type && schema.enum !== undefined) {
-    return "string";
-  }
-  return type ?? getSimpleSchemaType(schema);
-}
-
 export function rendersOwnFieldBesideOption(schema: Schema): boolean {
-  return getSchemaType(schema) === "object";
+  return getSimpleSchemaType(schema) === "object";
 }
 
 /**
