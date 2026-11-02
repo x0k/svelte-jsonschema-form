@@ -648,6 +648,36 @@ export const swappedParentDefaultsSchema = {
   },
 } as const satisfies Schema;
 
+export const swappedNestedDefaultsSchema = {
+  type: "object",
+  properties: {
+    wrapper: {
+      type: "object",
+      properties: {
+        mode: {
+          type: "string",
+          default: "a",
+        },
+      },
+      if: {
+        properties: {
+          mode: { const: "a" },
+        },
+      },
+      then: {
+        properties: {
+          x: { type: "string", default: "a" },
+        },
+      },
+      else: {
+        properties: {
+          x: { type: "string", default: "b" },
+        },
+      },
+    },
+  },
+} as const satisfies Schema;
+
 export const swappedCfgDefaultsSchema = {
   type: "object",
   properties: {

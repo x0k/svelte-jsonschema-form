@@ -1,4 +1,8 @@
-import { getValueSnapshot } from "@sjsf/form";
+import {
+  getValueSnapshot,
+  setValueAtPath,
+  updateValueAtPath,
+} from "@sjsf/form";
 import {
   createFormMerger,
   type FormMergerOptions,
@@ -36,6 +40,7 @@ import {
   stringOneOfSchema,
   swappedDefaultsSchema,
   swappedCfgDefaultsSchema,
+  swappedNestedDefaultsSchema,
   swappedParentDefaultsSchema,
 } from "./test-data/combination-defaults.js";
 
@@ -584,6 +589,29 @@ describe("combination field contracts", () => {
 
       await userEvent.fill(page.getByRole("textbox").first(), "second");
       expectValue(form, { mode: "second", x: "b" });
+    });
+
+    test("keeps a value changed earlier in the same batch", async () => {
+      const { form } = await renderFieldForm({
+        schema: swappedCfgDefaultsSchema,
+      });
+
+      updateValueAtPath(form, ["cfg", "name"] as any, () => "custom");
+      setValueAtPath(form, ["mode"] as any, "b");
+      await Promise.resolve();
+
+      expectValue(form, { mode: "b", cfg: { name: "custom" } });
+    });
+
+    test("replaces a default swapped by a nested conditional", async () => {
+      const { form } = await renderFieldForm({
+        schema: swappedNestedDefaultsSchema,
+      });
+
+      expectValue(form, { wrapper: { mode: "a", x: "a" } });
+
+      await userEvent.fill(page.getByRole("textbox").first(), "b");
+      expectValue(form, { wrapper: { mode: "b", x: "b" } });
     });
   });
 

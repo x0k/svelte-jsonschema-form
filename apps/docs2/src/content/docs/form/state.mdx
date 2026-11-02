@@ -34,6 +34,14 @@ export interface FormState<T> {
   readonly [FORM_PATHS_TRIE_REF]: PathTrieRef<FieldPath>;
   readonly [FORM_ERRORS]: SvelteMap<FieldPath, string[]>;
   readonly [FORM_MARK_SCHEMA_CHANGE]: () => void;
+  readonly [FORM_SET_VALUE_AT_PATH]: (
+    path: FieldPath,
+    value: FieldValue
+  ) => void;
+  readonly [FORM_UPDATE_VALUE_AT_PATH]: (
+    path: FieldPath,
+    update: (value: FieldValue) => FieldValue
+  ) => void;
   readonly [FORM_KEYED_ARRAYS]: KeyedArraysMap;
   readonly [FORM_FIELDS_VALIDATION_MODE]: number;
   readonly [FORM_SCHEMA]: Schema;
@@ -88,6 +96,11 @@ Use the standalone `validate(form, handlers)` and `reset(form)` functions
 `setFieldStateByPath`, `validateField`, `validateAdditionalPropertyKey`,
 `validateFileList`, `setValue`, `setValueAtPath`, `updateValueAtPath`
 
+Use `setValueAtPath` to write a single field value and `updateValueAtPath` to
+mutate the array or object at a path in place. Both commands record the replaced
+value for conditional-default sanitization, so prefer them over writing into
+form data directly from custom components.
+
 ### `query` vs `command`
 
 In addition to the semantic difference, there is also a behavioral one when used in a **reactive context**.
@@ -121,7 +134,9 @@ you should consider the following aspects:
 It is recommended to initialize the state as follows:
 
 ```ts
-let value = $state(merger.mergeFormDataAndSchemaDefaults(initialValue, schema));
+let value = $state(
+  merger.mergeFormDataAndSchemaDefaults({ formData: initialValue, schema })
+);
 ```
 
 ### Arrays

@@ -14,6 +14,9 @@ import type { FieldValue, FormValue } from "../model.js";
 import type { FormState } from "./state.js";
 
 /**
+ * Writes `value` at `path` and records the previous value, so conditional
+ * defaults can be sanitized against the data as it was before the change.
+ *
  * @command
  */
 export function setValueAtPath<T>(
@@ -27,6 +30,13 @@ export function setValueAtPath<T>(
 }
 
 /**
+ * Applies `update` to the value at `path` in place and records the previous
+ * value. Use this for array and object mutations instead of writing into the
+ * bound value directly.
+ *
+ * The recorded value is a shallow copy, so `update` should only replace
+ * properties or elements of the container it receives.
+ *
  * @command
  */
 export function updateValueAtPath<T>(
