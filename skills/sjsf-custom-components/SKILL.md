@@ -216,4 +216,4 @@ See [UI Options Augmentation Reference](references/ui-options-augmentation.md) f
 3. **Queries vs Commands in Form Context**:
    - Queries (`retrieveUiOption`, `getFieldErrors`, `getId`) track reactive dependencies.
    - Commands (`updateErrors`, `setValue`, `setValueAtPath`, `updateValueAtPath`, `validateField`) do not track dependencies and are used in callbacks.
-   - `setValueAtPath` writes a field value; `updateValueAtPath` mutates the array or object at a path in place. Both record the replaced value for conditional-default sanitization, so prefer them over writing into form data directly.
+   - `setValueAtPath` replaces a value at a path; `updateValueAtPath` applies an in-place array or object mutation (`push`, `splice`, move) while preserving container identity. Both record the replaced value for conditional-default sanitization. A controlled form's bound value is shared application state, so external editors may update it directly; those writes bypass the form's bookkeeping.

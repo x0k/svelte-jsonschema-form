@@ -96,10 +96,15 @@ Use the standalone `validate(form, handlers)` and `reset(form)` functions
 `setFieldStateByPath`, `validateField`, `validateAdditionalPropertyKey`,
 `validateFileList`, `setValue`, `setValueAtPath`, `updateValueAtPath`
 
-Use `setValueAtPath` to write a single field value and `updateValueAtPath` to
-mutate the array or object at a path in place. Both commands record the replaced
-value for conditional-default sanitization, so prefer them over writing into
-form data directly from custom components.
+Use `setValueAtPath` to replace the value at a path and `updateValueAtPath` to
+apply an in-place array or object mutation such as `push` or `splice` while
+keeping the container identity. Both commands record the replaced value for
+conditional-default sanitization.
+
+Only these commands run the form's write bookkeeping. A controlled form binds
+the value to state owned by your application, so other editors may update that
+state directly; such writes bypass default injection and conditional
+sanitization. Use `initialValue` unless you actually need the shared state.
 
 ### `query` vs `command`
 
@@ -126,8 +131,12 @@ Therefore, `ByPath` versions of methods are intended for situations where you **
 
 ## Direct modification of form state
 
-If you are using a [controlled form](/guides/quickstart/#controlled-form),
-you should consider the following aspects:
+This section applies only to a [controlled form](/guides/quickstart/#controlled-form).
+The bound value is shared with the code that owns it, so that code may update
+it directly. Those updates are not form commands: they do not run default
+injection or conditional sanitization.
+
+If you are using a controlled form, you should consider the following aspects:
 
 ### Initialization
 
