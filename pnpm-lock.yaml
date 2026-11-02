@@ -1739,7 +1739,7 @@ importers:
   lab/beercss-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^3.9.1
+        specifier: workspace:^3.10.0
         version: link:../../packages/basic-theme
     devDependencies:
       '@sjsf/ajv8-validator':
@@ -1860,7 +1860,7 @@ importers:
   lab/svar-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^3.9.1
+        specifier: workspace:^3.10.0
         version: link:../../packages/basic-theme
     devDependencies:
       '@sjsf/ajv8-validator':
@@ -1891,7 +1891,7 @@ importers:
   legacy/daisyui-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^3.9.1
+        specifier: workspace:^3.10.0
         version: link:../../packages/basic-theme
     devDependencies:
       '@sjsf/form':
@@ -1964,7 +1964,7 @@ importers:
   legacy/shadcn-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^3.9.1
+        specifier: workspace:^3.10.0
         version: link:../../packages/basic-theme
     devDependencies:
       '@internationalized/date':
@@ -2016,7 +2016,7 @@ importers:
   legacy/skeleton3-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^3.9.1
+        specifier: workspace:^3.10.0
         version: link:../../packages/basic-theme
     devDependencies:
       '@sjsf/ajv8-validator':
@@ -2062,7 +2062,7 @@ importers:
   legacy/skeleton4-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^3.9.1
+        specifier: workspace:^3.10.0
         version: link:../../packages/basic-theme
     devDependencies:
       '@sjsf/ajv8-validator':
@@ -2229,7 +2229,7 @@ importers:
   packages/daisyui5-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^3.9.1
+        specifier: workspace:^3.10.0
         version: link:../basic-theme
     devDependencies:
       '@sjsf/ajv8-validator':
@@ -2312,7 +2312,7 @@ importers:
   packages/flowbite3-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^3.9.1
+        specifier: workspace:^3.10.0
         version: link:../basic-theme
     devDependencies:
       '@sjsf/ajv8-validator':
@@ -2682,7 +2682,7 @@ importers:
   packages/shadcn4-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^3.9.1
+        specifier: workspace:^3.10.0
         version: link:../basic-theme
     devDependencies:
       '@fontsource-variable/inter':
@@ -2746,7 +2746,7 @@ importers:
   packages/skeleton5-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^3.9.1
+        specifier: workspace:^3.10.0
         version: link:../basic-theme
     devDependencies:
       '@sjsf/ajv8-validator':
