@@ -27,7 +27,7 @@ import {
   SCHEMA_WITH_NESTED_CONDITIONS,
   SUPER_SCHEMA,
 } from "./fixtures/test-data.js";
-import type { Merger } from "./merger.js";
+import { type Merger } from "./merger.js";
 import {
   getAllPermutationsOfXxxOf,
   resolveAnyOrOneOfSchemas,
@@ -1396,6 +1396,147 @@ describe("retrieveSchema()", () => {
             },
           });
         });
+
+        it("should resolve a $ref shared by dependencies oneOf branches", () => {
+          testValidator = createValidator({
+            cases: [
+              {
+                schema: {
+                  type: "object",
+                  properties: { protocol: { enum: ["SFTP"] } },
+                },
+                value: { protocol: "FTPS" },
+                result: false,
+              },
+              {
+                schema: {
+                  type: "object",
+                  properties: { protocol: { enum: ["FTPS"] } },
+                },
+                value: { protocol: "FTPS" },
+                result: true,
+              },
+            ],
+          });
+          defaultMerger = createMerger({
+            merges: [
+              {
+                left: {
+                  type: "object",
+                  properties: {
+                    protocol: {
+                      type: "string",
+                      enum: ["SFTP", "FTPS"],
+                    },
+                  },
+                },
+                right: {
+                  properties: {
+                    host: {
+                      type: "string",
+                      title: "Host",
+                      [REF_FLAG]: "#/definitions/host",
+                    },
+                  },
+                  [REF_FLAG]: "#/definitions/ftps",
+                },
+                result: {
+                  type: "object",
+                  properties: {
+                    protocol: {
+                      type: "string",
+                      enum: ["SFTP", "FTPS"],
+                    },
+                    host: {
+                      type: "string",
+                      title: "Host",
+                      [REF_FLAG]: "#/definitions/host",
+                    },
+                  },
+                },
+              },
+            ],
+          });
+          const schema: Schema = {
+            type: "object",
+            properties: {
+              protocol: {
+                type: "string",
+                enum: ["SFTP", "FTPS"],
+              },
+            },
+            dependencies: {
+              protocol: {
+                oneOf: [
+                  { $ref: "#/definitions/sftp" },
+                  { $ref: "#/definitions/ftps" },
+                ],
+              },
+            },
+          };
+          const rootSchema: Schema = {
+            definitions: {
+              host: { type: "string", title: "Host" },
+              sftp: {
+                properties: {
+                  protocol: { enum: ["SFTP"] },
+                  host: { $ref: "#/definitions/host" },
+                },
+              },
+              ftps: {
+                properties: {
+                  protocol: { enum: ["FTPS"] },
+                  host: { $ref: "#/definitions/host" },
+                },
+              },
+            },
+          };
+          expect(
+            retrieveSchema(testValidator, defaultMerger, schema, rootSchema, {
+              protocol: "FTPS",
+            })
+          ).toEqual({
+            type: "object",
+            properties: {
+              protocol: { type: "string", enum: ["SFTP", "FTPS"] },
+              host: {
+                type: "string",
+                title: "Host",
+                [REF_FLAG]: "#/definitions/host",
+              },
+            },
+          });
+        });
+
+        it("should keep a shared $ref DAG linear in anyOf options", () => {
+          const definitions: Record<string, Schema> = {};
+          for (let i = 0; i < 14; i++) {
+            definitions[`L${i}`] = {
+              type: "array",
+              items: {
+                anyOf: [
+                  { $ref: `#/definitions/L${i + 1}` },
+                  { $ref: `#/definitions/L${i + 1}` },
+                ],
+              },
+            };
+          }
+          definitions.L14 = { type: "string" };
+          const rootSchema: Schema = { type: "object", definitions };
+          const results = retrieveSchemaInternal(
+            testValidator,
+            defaultMerger,
+            { $ref: "#/definitions/L0" },
+            rootSchema,
+            {},
+            false,
+            new Set(),
+            true
+          );
+          // Expanding both identical options per level would produce ~2^14
+          // copies of the leaf.
+          expect(JSON.stringify(results).length).toBeLessThan(20_000);
+        });
       });
     });
 
@@ -1896,6 +2037,52 @@ describe("retrieveSchema()", () => {
         type: "string",
       });
     });
+    it("should resolve a $ref shared by allOf entries", () => {
+      const host = {
+        type: "string" as const,
+        title: "Host",
+        [REF_FLAG]: "#/definitions/host",
+      };
+      const schema: Schema = {
+        type: "object",
+        allOf: [
+          { properties: { x: { $ref: "#/definitions/host" } } },
+          { properties: { y: { $ref: "#/definitions/host" } } },
+        ],
+      };
+      const rootSchema: Schema = {
+        definitions: {
+          host: { type: "string", title: "Host" },
+        },
+      };
+      expect(
+        retrieveSchema(
+          testValidator,
+          createMerger({
+            allOfMerges: [
+              {
+                input: {
+                  type: "object",
+                  allOf: [
+                    { properties: { x: host } },
+                    { properties: { y: host } },
+                  ],
+                },
+                result: {
+                  type: "object",
+                  properties: { x: host, y: host },
+                },
+              },
+            ],
+          }),
+          schema,
+          rootSchema
+        )
+      ).toEqual({
+        type: "object",
+        properties: { x: host, y: host },
+      });
+    });
     it.skip("should not merge `allOf.contains` schemas", () => {
       // https://github.com/rjsf-team/react-jsonschema-form/issues/2923#issuecomment-1946034240
       const schema: Schema = {
@@ -2148,6 +2335,98 @@ describe("retrieveSchema()", () => {
       });
     });
   });
+  describe("resolution fixpoint", () => {
+    it("should expand all branches of a recursive conditional reached through a $ref", () => {
+      testValidator = createValidator({
+        cases: [
+          {
+            schema: { properties: { kind: { const: "x" } } },
+            value: { kind: "x" },
+            result: true,
+          },
+        ],
+      });
+      const node: Schema = {
+        type: "object",
+        properties: { kind: { type: "string" } },
+        if: { properties: { kind: { const: "x" } } },
+        then: { $ref: "#/definitions/node" },
+        else: { properties: { other: { type: "string" } } },
+      };
+      const rootSchema: Schema = { definitions: { node } };
+      const conditionalBase: Schema = {
+        type: "object",
+        properties: { kind: { type: "string" } },
+        [REF_FLAG]: "#/definitions/node",
+      };
+      defaultMerger = createMerger({
+        merges: [
+          {
+            left: conditionalBase,
+            right: { $ref: "#/definitions/node" },
+            result: {
+              ...conditionalBase,
+              $ref: "#/definitions/node",
+            },
+          },
+          {
+            left: conditionalBase,
+            right: { properties: { other: { type: "string" } } },
+            result: {
+              type: "object",
+              properties: {
+                kind: { type: "string" },
+                other: { type: "string" },
+              },
+              [REF_FLAG]: "#/definitions/node",
+            },
+          },
+        ],
+      });
+      const results = retrieveSchemaInternal(
+        testValidator,
+        defaultMerger,
+        { $ref: "#/definitions/node" },
+        rootSchema,
+        { kind: "x" },
+        true
+      );
+      expect(results).toHaveLength(2);
+      expect(results[0]).toMatchObject({
+        type: "object",
+        properties: { kind: { type: "string" } },
+        $ref: "#/definitions/node",
+      });
+      expect(results[1]).toMatchObject({
+        type: "object",
+        properties: {
+          kind: { type: "string" },
+          other: { type: "string" },
+        },
+      });
+    });
+
+    it("should collapse to the schema resolved so far when the pass limit is exceeded", () => {
+      const schema: Schema = {
+        definitions: { x: { type: "string" } },
+        $ref: "#/definitions/x",
+      };
+      const [result] = retrieveSchemaInternal(
+        testValidator,
+        defaultMerger,
+        schema,
+        schema,
+        {},
+        false,
+        new Set(),
+        undefined,
+        undefined,
+        101
+      );
+      expect(result).toBe(schema);
+    });
+  });
+
   describe("Conditional schemas (If, Then, Else)", () => {
     it("should resolve if, then", () => {
       // Mock errors so that resolveCondition2 works as expected
