@@ -1,6 +1,6 @@
 {
   "name": "@sjsf/hyperjump-validator",
-  "version": "3.9.0",
+  "version": "3.10.0",
   "description": "The @hyperjump/json-schema based validator for svelte-jsonschema-form",
   "keywords": [
     "hyperjump",
