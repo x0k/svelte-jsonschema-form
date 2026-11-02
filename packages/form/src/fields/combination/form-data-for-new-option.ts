@@ -102,42 +102,46 @@ export function formDataForNewOption<T>(
     const oldData: SchemaObjectValue = isSchemaObjectValue(formData)
       ? formData
       : {};
-    const carriedKeys = Object.keys(sanitizedData).filter(
-      (key) => Object.hasOwn(oldData, key) && oldData[key] !== undefined
-    );
-    if (carriedKeys.length > 0) {
-      const optionDefaults = defaultsForNewOption();
-      const newDefaultsData: SchemaObjectValue = isSchemaObjectValue(
-        optionDefaults
-      )
-        ? optionDefaults
-        : {};
-      const refillableKeys = carriedKeys.filter(
-        (key) =>
-          Object.hasOwn(newDefaultsData, key) &&
-          newDefaultsData[key] !== undefined &&
-          optionDeclaresValueFor(ctx, newOption, key)
-      );
-      if (refillableKeys.length > 0) {
-        const holdsOldDefault = (key: string) => {
-          if (!oldOption || !optionDeclaresValueFor(ctx, oldOption, key)) {
-            return false;
-          }
-          const computed = defaultsForOldOption();
-          return (
-            isSchemaObjectValue(computed) &&
-            Object.hasOwn(computed, key) &&
-            isSchemaValueDeepEqual(computed[key], oldData[key])
-          );
-        };
-        const withoutBlockedKeys = { ...sanitizedData };
-        refillableKeys.forEach((key) => {
-          if (sanitizedData[key] === undefined || holdsOldDefault(key)) {
-            delete withoutBlockedKeys[key];
-          }
-        });
-        newFormData = withoutBlockedKeys;
+    let newDefaultsData: SchemaObjectValue | undefined;
+    const holdsOldDefault = (key: string) => {
+      if (!oldOption || !optionDeclaresValueFor(ctx, oldOption, key)) {
+        return false;
       }
+      const computed = defaultsForOldOption();
+      return (
+        isSchemaObjectValue(computed) &&
+        Object.hasOwn(computed, key) &&
+        isSchemaValueDeepEqual(computed[key], oldData[key])
+      );
+    };
+    let withoutBlockedKeys: SchemaObjectValue | undefined;
+    const keys = Object.keys(sanitizedData);
+    for (let i = 0; i < keys.length; i++) {
+      const key = keys[i]!;
+      if (!Object.hasOwn(oldData, key) || oldData[key] === undefined) {
+        continue;
+      }
+      if (newDefaultsData === undefined) {
+        const optionDefaults = defaultsForNewOption();
+        newDefaultsData = isSchemaObjectValue(optionDefaults)
+          ? optionDefaults
+          : {};
+      }
+      if (
+        !Object.hasOwn(newDefaultsData, key) ||
+        newDefaultsData[key] === undefined ||
+        !optionDeclaresValueFor(ctx, newOption, key)
+      ) {
+        continue;
+      }
+      if (sanitizedData[key] !== undefined && !holdsOldDefault(key)) {
+        continue;
+      }
+      withoutBlockedKeys ??= { ...sanitizedData };
+      delete withoutBlockedKeys[key];
+    }
+    if (withoutBlockedKeys !== undefined) {
+      newFormData = withoutBlockedKeys;
     }
   } else if (
     newFormData !== undefined &&
