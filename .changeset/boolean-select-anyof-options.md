@@ -2,6 +2,6 @@
 "@sjsf/form": patch
 ---
 
-Read `booleanSelectField` options from `anyOf` before `oneOf`, matching the combination selector. Only constant object options are used; otherwise fall back to the boolean `enum` (or the default `Yes`/`No` options). A constant option declared with a single-value `enum` is now labelled by its value.
+Read `booleanSelectField` options from `anyOf` before `oneOf`, falling back to the boolean `enum` unless every option is a constant or a boolean schema. Single-value `enum` constants now use their value as the label.
 
 Port <https://github.com/rjsf-team/react-jsonschema-form/pull/5364>

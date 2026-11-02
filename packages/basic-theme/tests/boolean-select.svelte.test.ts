@@ -121,24 +121,45 @@ describe("boolean select field", () => {
       .toBeInTheDocument();
   });
 
-  test("does not treat boolean anyOf schemas as constant options", async () => {
+  test("reads boolean anyOf schemas as Yes/No options", async () => {
+    const { form } = await renderFieldForm({
+      schema: {
+        type: "boolean",
+        anyOf: [false, true],
+      },
+      uiSchema,
+      resolver: booleanFieldResolver,
+    });
+
+    const select = page.getByRole("combobox");
+    const options = select.getByRole("option");
+    await expect.element(options.nth(0)).toHaveTextContent("No");
+    await expect.element(options.nth(1)).toHaveTextContent("Yes");
+
+    await userEvent.selectOptions(select, "Yes");
+    expectValue(form, true);
+  });
+
+  test("reads boolean oneOf schemas alongside constant options", async () => {
     await renderFieldForm({
       schema: {
         type: "boolean",
-        enum: [true, false],
-        anyOf: [true],
+        oneOf: [true, { const: false, title: "Off" }],
       },
-      uiSchema: enumUiSchema,
+      uiSchema,
       resolver: booleanFieldResolver,
     });
 
     const select = page.getByRole("combobox");
     await expect
-      .element(select.getByRole("option", { name: "Enabled" }))
+      .element(select.getByRole("option", { name: "Yes" }))
       .toBeInTheDocument();
     await expect
-      .element(select.getByRole("option", { name: "Disabled" }))
+      .element(select.getByRole("option", { name: "Off" }))
       .toBeInTheDocument();
+    await expect
+      .element(select.getByRole("option", { name: "No" }))
+      .not.toBeInTheDocument();
   });
 
   test("labels single-value enum options by their value", async () => {

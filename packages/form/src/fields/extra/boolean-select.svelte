@@ -51,23 +51,26 @@
         ? "anyOf"
         : "oneOf";
     const altOptions = config.schema[altKey];
-    if (
-      Array.isArray(altOptions) &&
-      altOptions.length > 0 &&
-      altOptions.every(
-        (option): option is Schema =>
-          typeof option !== "boolean" && isSchemaOfConstantValue(option)
-      )
-    ) {
-      return createFormOptions(ctx, config, uiOption, {
-        [altKey]: altOptions.map((option) => {
+    if (Array.isArray(altOptions) && altOptions.length > 0) {
+      const normalized: Schema[] = [];
+      for (const option of altOptions) {
+        if (typeof option === "boolean") {
+          normalized.push(
+            option ? { const: true, title: yes } : { const: false, title: no }
+          );
+        } else if (isSchemaOfConstantValue(option)) {
           const value = getSchemaConstantValueSafe(option);
-          return {
+          normalized.push({
             ...option,
             title: option.title ?? (value === true ? yes : no),
-          };
-        }),
-      });
+          });
+        }
+      }
+      if (normalized.length === altOptions.length) {
+        return createFormOptions(ctx, config, uiOption, {
+          [altKey]: normalized,
+        });
+      }
     }
     const enumValues = config.schema.enum ?? DEFAULT_BOOLEAN_ENUM;
     if (
