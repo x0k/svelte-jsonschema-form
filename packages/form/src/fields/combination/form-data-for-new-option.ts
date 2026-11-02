@@ -3,7 +3,6 @@ import {
   DEFAULT_KEY,
   isSchemaObjectValue,
   isSchemaValueDeepEqual,
-  type Merger,
   type Schema,
   type SchemaObjectValue,
   type SchemaValue,
@@ -14,18 +13,6 @@ import {
   sanitizeDataForNewSchema,
   type FormState,
 } from "#form/index.js";
-import { FORM_MERGER } from "#form/internals.js";
-
-function withParentRequired(
-  merger: Merger,
-  parentSchema: Schema | undefined,
-  option: Schema | undefined
-) {
-  if (!option || !parentSchema?.required) {
-    return option;
-  }
-  return merger.mergeSchemas({ required: parentSchema.required }, option);
-}
 
 function declaresOwnValue(schema: Schema) {
   return Object.hasOwn(schema, DEFAULT_KEY) || Object.hasOwn(schema, CONST_KEY);
@@ -70,12 +57,18 @@ function defaultsFor<T>(
     : undefined;
 }
 
+/**
+ * Derives the form data for `newOption` from the data of `oldOption`.
+ *
+ * Both options must be the rendered variants from `getRenderedOptionSchema`,
+ * so keywords inherited from the parent schema, especially `required`, are
+ * already present when their defaults are computed.
+ */
 export function formDataForNewOption<T>(
   ctx: FormState<T>,
   formData: SchemaValue | undefined,
   newOption: Schema | undefined,
-  oldOption: Schema | undefined,
-  parentSchema: Schema | undefined
+  oldOption: Schema | undefined
 ): SchemaValue | undefined {
   let newFormData = sanitizeDataForNewSchema(
     ctx,
@@ -83,25 +76,14 @@ export function formDataForNewOption<T>(
     oldOption ?? {},
     formData
   );
-  const merger = ctx[FORM_MERGER];
-  const newOptionForDefaults = withParentRequired(
-    merger,
-    parentSchema,
-    newOption
-  );
-  if (!newOptionForDefaults) {
+  if (!newOption) {
     return newFormData;
   }
-  const oldOptionForDefaults = withParentRequired(
-    merger,
-    parentSchema,
-    oldOption
-  );
   let oldDefaults: SchemaValue | undefined;
   let oldDefaultsComputed = false;
   const defaultsForOldOption = () => {
     if (!oldDefaultsComputed) {
-      oldDefaults = defaultsFor(ctx, oldOptionForDefaults);
+      oldDefaults = defaultsFor(ctx, oldOption);
       oldDefaultsComputed = true;
     }
     return oldDefaults;
@@ -110,7 +92,7 @@ export function formDataForNewOption<T>(
   let newDefaultsComputed = false;
   const defaultsForNewOption = () => {
     if (!newDefaultsComputed) {
-      newDefaults = defaultsFor(ctx, newOptionForDefaults) ?? undefined;
+      newDefaults = defaultsFor(ctx, newOption);
       newDefaultsComputed = true;
     }
     return newDefaults;
@@ -134,14 +116,11 @@ export function formDataForNewOption<T>(
         (key) =>
           Object.hasOwn(newDefaultsData, key) &&
           newDefaultsData[key] !== undefined &&
-          optionDeclaresValueFor(ctx, newOptionForDefaults, key)
+          optionDeclaresValueFor(ctx, newOption, key)
       );
       if (refillableKeys.length > 0) {
         const holdsOldDefault = (key: string) => {
-          if (
-            !oldOptionForDefaults ||
-            !optionDeclaresValueFor(ctx, oldOptionForDefaults, key)
-          ) {
+          if (!oldOption || !optionDeclaresValueFor(ctx, oldOption, key)) {
             return false;
           }
           const computed = defaultsForOldOption();
@@ -162,9 +141,9 @@ export function formDataForNewOption<T>(
     }
   } else if (
     newFormData !== undefined &&
-    oldOptionForDefaults &&
-    declaresOwnValue(newOptionForDefaults) &&
-    declaresOwnValue(oldOptionForDefaults) &&
+    oldOption &&
+    declaresOwnValue(newOption) &&
+    declaresOwnValue(oldOption) &&
     isSchemaValueDeepEqual(defaultsForOldOption(), formData) &&
     defaultsForNewOption() !== undefined
   ) {
@@ -173,7 +152,7 @@ export function formDataForNewOption<T>(
   return newFormData === undefined
     ? defaultsForNewOption()
     : getDefaultFieldState(ctx, {
-        schema: newOptionForDefaults,
+        schema: newOption,
         formData: newFormData,
         includeUndefinedValues: "excludeObjectChildren",
       });

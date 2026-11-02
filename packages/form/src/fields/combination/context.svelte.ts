@@ -208,13 +208,7 @@ export function createCombinationContext<T>({
           includeUndefinedValues: "excludeObjectChildren",
         });
       }
-      return formDataForNewOption(
-        ctx,
-        value(),
-        nextSchema,
-        oldSchema,
-        config().schema
-      );
+      return formDataForNewOption(ctx, value(), nextSchema, oldSchema);
     });
     normalizedSelectedOption = pendingSelected;
     setNormalizedValue(nextValue);
