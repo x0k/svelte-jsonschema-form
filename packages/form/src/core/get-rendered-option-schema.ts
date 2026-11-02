@@ -31,8 +31,10 @@ import {
 import { getSimpleSchemaType } from "./type.js";
 
 type SchemaKey = Exclude<keyof Schema, symbol>;
-type SchemaValue = Schema[SchemaKey];
-type SubschemaValue = SchemaDefinition | SchemaDefinition[];
+// A schema built in code can hold a tuple position that is left `undefined` to
+// declare nothing, so a keyword value can be an array with holes.
+type SchemaValue = Schema[SchemaKey] | SchemaValueArray;
+type SchemaValueArray = (SchemaValue | undefined)[];
 type SchemaObject = Schema & Record<string, SchemaValue | undefined>;
 
 function isStringArray(value: SchemaValue | undefined): value is string[] {
@@ -41,6 +43,12 @@ function isStringArray(value: SchemaValue | undefined): value is string[] {
   );
 }
 
+// CHANGED: Upstream classifies subschemas against a wider keyword set that also
+// holds `prefixItems`, `dependentSchemas`, `unevaluatedItems`,
+// `unevaluatedProperties` and `contentSchema`. They are not part of the
+// draft-07 `Schema`, and the draft-2020-12 converter rewrites them to `items`,
+// `dependencies` and `additionalItems`/`additionalProperties`, or drops them,
+// before core sees a schema.
 function isSubschemaKeyword(key: string): boolean {
   return (
     isSubSchemasRecordKey(key) ||
@@ -65,6 +73,9 @@ function keywordShape(
   return undefined;
 }
 
+// CHANGED: Upstream also leaves `deprecated`, `$anchor`, `$dynamicAnchor` and
+// `$vocabulary` on the parent. They are not draft-07 keywords, and the
+// draft-2020-12 converter drops them, so core schemas do not carry them.
 const KEYWORDS_LEFT_ON_PARENT: ReadonlySet<string> = new Set<string>([
   ANY_OF_KEY,
   ONE_OF_KEY,
@@ -105,6 +116,9 @@ const CONDITIONAL_KEYWORDS: ReadonlySet<string> = new Set<string>([
   THEN_KEY,
   ELSE_KEY,
 ] satisfies SchemaKey[]);
+// CHANGED: Upstream also meets `prefixItems` tuples position by position. It is
+// a draft-2020-12 keyword that the converter maps to `items`, so it never
+// reaches core.
 const POSITIONAL_KEYWORDS: ReadonlySet<string> = new Set<string>([
   ITEMS_KEY,
 ] satisfies SchemaKey[]);
@@ -140,7 +154,8 @@ function meetSchemas(
   if (
     Array.isArray(parentItems) &&
     isSchemaDefinition(parentAdditionalItems) &&
-    isSchemaDefinition(optionItems)
+    isSchemaDefinition(optionItems) &&
+    optionItems !== true
   ) {
     setOwn(
       result,
@@ -149,6 +164,7 @@ function meetSchemas(
     );
   } else if (
     isSchemaDefinition(parentItems) &&
+    typeof parentItems !== "boolean" &&
     Array.isArray(optionItems) &&
     isSchemaDefinition(optionAdditionalItems)
   ) {
@@ -216,13 +232,10 @@ function meetKeyword(
     };
     for (const [name, optionEntry] of Object.entries(optionValue)) {
       if (Object.hasOwn(parentValue, name)) {
-        const parentEntry = parentValue[name];
         setOwn(
           entries,
           name,
-          isSchemaDefinition(parentEntry) && isSchemaDefinition(optionEntry)
-            ? meetSchemaDefinition(merger, parentEntry, optionEntry)
-            : optionEntry
+          meetSubschema(merger, parentValue[name], optionEntry)
         );
       }
     }
@@ -239,20 +252,14 @@ function meetKeyword(
     ) {
       return meetTuples(merger, parentValue, optionValue);
     }
-    if (
-      isSchemaDefinitionArray(parentValue) &&
-      isSchemaDefinition(optionValue)
-    ) {
+    if (isSchemaDefinitionArray(parentValue)) {
       return parentValue.map((position) =>
-        meetSchemaDefinition(merger, position, optionValue)
+        meetSubschema(merger, position, optionValue)
       );
     }
-    if (
-      isSchemaDefinitionArray(optionValue) &&
-      isSchemaDefinition(parentValue)
-    ) {
+    if (isSchemaDefinitionArray(optionValue)) {
       return optionValue.map((position) =>
-        meetSchemaDefinition(merger, parentValue, position)
+        meetSubschema(merger, parentValue, position)
       );
     }
   }
@@ -265,32 +272,33 @@ function isSchemaDefinition(
   return typeof value === "boolean" || isRecord(value);
 }
 
-function isSubschemaValue(
-  value: SchemaValue | undefined
-): value is SubschemaValue {
+function isSubschemaValue(value: SchemaValue | undefined): boolean {
   return isSchemaDefinition(value) || isSchemaDefinitionArray(value);
 }
 
 function isSchemaDefinitionArray(
-  value: SchemaValue | undefined
-): value is SchemaDefinition[] {
-  return Array.isArray(value) && value.every(isSchemaDefinition);
+  value: unknown
+): value is (SchemaDefinition | undefined)[] {
+  return (
+    Array.isArray(value) &&
+    value.every((item) => item === undefined || isSchemaDefinition(item))
+  );
 }
 
 function meetTuples(
   merger: Merger,
-  parent: SchemaDefinition[],
-  option: SchemaDefinition[]
-): SchemaDefinition[] {
+  parent: readonly (SchemaDefinition | undefined)[],
+  option: readonly (SchemaDefinition | undefined)[]
+): SchemaValueArray {
   return Array.from(
     { length: Math.max(parent.length, option.length) },
     (_, index) => {
       if (index >= option.length) {
-        return parent[index]!;
+        return parent[index];
       }
       return index < parent.length
-        ? meetSchemaDefinition(merger, parent[index]!, option[index]!)
-        : option[index]!;
+        ? meetSubschema(merger, parent[index], option[index])
+        : option[index];
     }
   );
 }
@@ -315,7 +323,7 @@ function meetSubschema(
   merger: Merger,
   parent: SchemaValue | undefined,
   option: SchemaValue | undefined
-): SubschemaValue | undefined {
+): SchemaValue | undefined {
   if (parent === undefined) {
     return isSubschemaValue(option) ? option : undefined;
   }
@@ -334,6 +342,12 @@ function meetSubschema(
   return meetSchemaDefinition(merger, parent, option);
 }
 
+// CHANGED: Upstream reads the type with `getSchemaType()`, which infers it only
+// from `const`, `enum` (always `string`), `properties`, `additionalProperties`,
+// `patternProperties` and `unevaluatedProperties`. We reuse
+// `getSimpleSchemaType()`, the helper `restConfig` in
+// `fields/combination/context.svelte.ts` uses, which also infers it from
+// `allOf`/`anyOf`/`oneOf`, the value types of `enum` and `propertyNames`.
 export function rendersOwnFieldBesideOption(schema: Schema): boolean {
   return getSimpleSchemaType(schema) === "object";
 }
