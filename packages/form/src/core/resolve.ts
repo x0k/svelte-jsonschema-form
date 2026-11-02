@@ -34,6 +34,15 @@ import { typeOfValue } from "./type.js";
 import type { Validator } from "./validator.js";
 import { isSchemaObjectValue } from "./value.js";
 
+// Backstop for the `resolveReference` <-> `retrieveSchemaInternal` loop: with
+// the path reconstructed from `REF_FLAG` markers a pass over an already-resolved
+// schema is a no-op, so a resolution that still changes after this many passes
+// over a single schema is not terminating; it collapses to the schema resolved
+// so far instead of overflowing the stack. The count is local to one fixpoint
+// loop: nested allOf, then/else and dependencies branches receive only the
+// caller's re-walk status, so nesting depth alone cannot reach this limit.
+const MAX_RESOLUTION_PASSES = 100;
+
 // WARN: Any change to this function must be synchronized with `validators/precompile`
 export function createConditionSchema(
   dependencyKey: string,
@@ -232,13 +241,20 @@ export function resolveReference(
   preserveDependencies = false,
   passCount = 0
 ): Schema[] {
+  if (passCount > MAX_RESOLUTION_PASSES) {
+    // Backstop: collapse to the schema resolved so far instead of overflowing
+    // the stack. Cycles themselves are detected on the render path from
+    // `REF_FLAG`, so the collapsed schema needs no extra marker.
+    return [schema];
+  }
+  const expandedRefs: string[] = [];
   const resolvedSchema = resolveAllReferences(
     merger,
     schema,
     rootSchema,
     stack,
     resolveAnyOfOrOneOfRefs,
-    undefined,
+    expandedRefs,
     passCount
   );
   if (!isSchemaDeepEqual(schema, resolvedSchema)) {
@@ -409,10 +425,10 @@ export function resolveCondition(
           rootSchema,
           formData,
           expandAllBranches,
-          stack,
+          enclosingRefPath(schema, stack, passCount),
           undefined,
           preserveDependencies,
-          passCount
+          passCount > 0 ? 1 : 0
         )
       );
     }
@@ -425,10 +441,10 @@ export function resolveCondition(
           rootSchema,
           formData,
           expandAllBranches,
-          stack,
+          enclosingRefPath(schema, stack, passCount),
           undefined,
           preserveDependencies,
-          passCount
+          passCount > 0 ? 1 : 0
         )
       );
     }
