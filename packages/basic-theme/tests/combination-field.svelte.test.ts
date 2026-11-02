@@ -7,6 +7,7 @@ import { expectValue, renderFieldForm } from "./helpers.js";
 import {
   ambiguousSchema,
   anyOfDisjointDefaultsSchema,
+  arrayInheritedItemsAnyOfSchema,
   arrayItemAnyOfSchema,
   dependencyDefaultsSchema,
   discriminatedSchema,
@@ -258,12 +259,23 @@ describe("combination field contracts", () => {
   describe("non-object options inherit parent keywords (#5359)", () => {
     test("array option renders the parent's items", async () => {
       await renderFieldForm({
-        schema: arrayItemAnyOfSchema,
+        schema: arrayInheritedItemsAnyOfSchema,
         initialValue: ["one"],
       });
 
       await expect
         .element(page.getByRole("textbox", { name: /Item/ }))
+        .toBeInTheDocument();
+    });
+
+    test("array option renders the selected option's items", async () => {
+      await renderFieldForm({
+        schema: arrayItemAnyOfSchema,
+        initialValue: [5],
+      });
+
+      await expect
+        .element(page.getByRole("spinbutton", { name: /Item/ }))
         .toBeInTheDocument();
     });
 
