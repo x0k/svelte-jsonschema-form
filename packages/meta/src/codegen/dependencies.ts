@@ -110,9 +110,6 @@ export function resolveDependencies<T extends CodegenThemeOrSubTheme>({
         addDependency(extraPackage("esbuild"));
       }
     }
-    if (validator.name === "hyperjump") {
-      addDependency(extraPackage("devalue"));
-    }
   } else {
     if (validator.name === "standard-schema") {
       addDependencies(formPackage.dependencies, [

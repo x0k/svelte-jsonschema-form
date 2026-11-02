@@ -67,7 +67,6 @@
   },
   "dependencies": {
     "@sjsf-lab/beercss-theme": "workspace:*",
-    "@sjsf-lab/hyperjump-validator": "workspace:*",
     "@sjsf-lab/shadcn-extras-theme": "workspace:*",
     "@sjsf-lab/svar-theme": "workspace:*",
     "@sjsf/ajv8-validator": "workspace:*",
@@ -80,6 +79,7 @@
     "@sjsf/flowbite-theme": "workspace:*",
     "@sjsf/flowbite3-theme": "workspace:*",
     "@sjsf/form": "workspace:*",
+    "@sjsf/hyperjump-validator": "workspace:*",
     "@sjsf/lucide-icons": "workspace:*",
     "@sjsf/moving-icons": "workspace:*",
     "@sjsf/radix-icons": "workspace:*",

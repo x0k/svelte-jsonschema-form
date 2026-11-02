@@ -4,9 +4,6 @@ type: package
 packageCodeName: "hyperjump"
 sidebar:
   order: 110
-  badge:
-    text: exp
-    variant: caution
 ---
 
 import { externalValidatorPackage } from "meta";
@@ -22,9 +19,13 @@ Form validator implementation based on [@hyperjump/json-schema](https://github.c
 
 :::note
 
-This validator works only in precompiled mode, but the compilation can be performed at runtime (works
-with CSP
-[`unsafe-eval`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src#unsafe_eval_expressions))
+This validator works only in precompiled mode, but neither compiling nor
+restoring a validator generates code, so it can also be performed at runtime
+(works with CSP
+[`unsafe-eval`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src#unsafe_eval_expressions)).
+The dialect module (`@hyperjump/json-schema/draft-07` here), plus
+`@hyperjump/json-schema/formats-lite` when a schema uses `format`, must be
+imported in the browser bundle as well.
 
 :::
 

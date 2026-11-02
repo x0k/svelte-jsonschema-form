@@ -87,7 +87,8 @@ npx sv add @sjsf
 - [Standard Schema](https://x0k.dev/svelte-jsonschema-form/validators/standard-schema/)
 - [ata-validator](https://x0k.dev/svelte-jsonschema-form/validators/ata/)
   - [Precompiled](https://x0k.dev/svelte-jsonschema-form/validators/ata/#precompiled-validation)
-- [@hyperjump/json-schema](https://x0k.dev/svelte-jsonschema-form/validators/hyperjump/) (experimental)
+- [@hyperjump/json-schema](https://x0k.dev/svelte-jsonschema-form/validators/hyperjump/)
+  - [Precompiled](https://x0k.dev/svelte-jsonschema-form/validators/hyperjump/#schema-precompilation)
 
 ## Integrations
 
