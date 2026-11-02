@@ -16,7 +16,6 @@ import {
   retrieveSchema,
   retrieveUiSchema,
   retrieveUiOption,
-  sanitizeDataForNewSchema,
   uiTitleOption,
   type Config,
   type FormEnumOption,
@@ -30,6 +29,8 @@ import {
   singleOption,
   type EnumValueMapper,
 } from "#options.svelte.js";
+
+import { formDataForNewOption } from "./form-data-for-new-option.js";
 
 export type CombinationKey = typeof ONE_OF_KEY | typeof ANY_OF_KEY;
 
@@ -179,12 +180,13 @@ export function createCombinationContext<T>({
   }
 
   // Syncs pending → normalized. When the pending selection differs from the
-  // normalized one, this effect computes a new form value for the target
-  // option (sanitizing existing data to fit the new schema), then commits it
-  // via setNormalizedValue. The order matters: normalizedSelectedOption is
-  // set before setNormalizedValue so the write-counting in setNormalizedValue
-  // correctly attributes the subsequent value change to this internal
-  // normalization, not to an external edit.
+  // normalized one, this effect derives a new form value for the target option
+  // with formDataForNewOption (sanitizing the current data toward the new
+  // schema and letting its declared defaults replace values the previous
+  // option left behind), then commits it via setNormalizedValue. The order
+  // matters: normalizedSelectedOption is set before setNormalizedValue, so the
+  // write-counting correctly attributes the subsequent value change to this
+  // internal normalization, not to an external edit.
   $effect(() => {
     const pendingSelected = pendingSelectedOption;
     const normalizedSelected = normalizedSelectedOption;
@@ -200,14 +202,14 @@ export function createCombinationContext<T>({
         normalizedSelected !== undefined
           ? renderedOptions[normalizedSelected]
           : undefined;
-      return getDefaultFieldState(ctx, {
-        schema: nextSchema,
-        formData:
-          oldSchema !== undefined
-            ? sanitizeDataForNewSchema(ctx, nextSchema, oldSchema, value())
-            : value(),
-        includeUndefinedValues: "excludeObjectChildren",
-      });
+      if (oldSchema === undefined) {
+        return getDefaultFieldState(ctx, {
+          schema: nextSchema,
+          formData: value(),
+          includeUndefinedValues: "excludeObjectChildren",
+        });
+      }
+      return formDataForNewOption(ctx, value(), nextSchema, oldSchema);
     });
     normalizedSelectedOption = pendingSelected;
     setNormalizedValue(nextValue);
