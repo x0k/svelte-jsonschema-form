@@ -15,7 +15,6 @@
     getFormContext,
     getComponent,
     type ComponentProps,
-    type Schema,
     DEFAULT_BOOLEAN_ENUM,
     getPseudoId,
     getFieldAction,
@@ -42,21 +41,6 @@
   const { options, mapper } = $derived.by(() => {
     const yes = translate("yes", {});
     const no = translate("no", {});
-    if (Array.isArray(config.schema.oneOf)) {
-      return createFormOptions(ctx, config, uiOption, {
-        oneOf: config.schema.oneOf.map((option): Schema => {
-          if (typeof option === "boolean") {
-            return option
-              ? { const: true, title: yes }
-              : { const: false, title: no };
-          }
-          return {
-            ...option,
-            title: option.title ?? (option.const === true ? yes : no),
-          };
-        }),
-      });
-    }
     const enumValues = config.schema.enum ?? DEFAULT_BOOLEAN_ENUM;
     if (
       enumValues.length === 2 &&
