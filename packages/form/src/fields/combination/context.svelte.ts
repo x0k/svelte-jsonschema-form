@@ -180,12 +180,13 @@ export function createCombinationContext<T>({
   }
 
   // Syncs pending → normalized. When the pending selection differs from the
-  // normalized one, this effect computes a new form value for the target
-  // option (sanitizing existing data to fit the new schema), then commits it
-  // via setNormalizedValue. The order matters: normalizedSelectedOption is
-  // set before setNormalizedValue so the write-counting in setNormalizedValue
-  // correctly attributes the subsequent value change to this internal
-  // normalization, not to an external edit.
+  // normalized one, this effect derives a new form value for the target option
+  // with formDataForNewOption (sanitizing the current data toward the new
+  // schema and letting its declared defaults replace values the previous
+  // option left behind), then commits it via setNormalizedValue. The order
+  // matters: normalizedSelectedOption is set before setNormalizedValue, so the
+  // write-counting correctly attributes the subsequent value change to this
+  // internal normalization, not to an external edit.
   $effect(() => {
     const pendingSelected = pendingSelectedOption;
     const normalizedSelected = normalizedSelectedOption;

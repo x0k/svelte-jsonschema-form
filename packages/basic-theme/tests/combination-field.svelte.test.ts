@@ -1,4 +1,8 @@
 import { getValueSnapshot } from "@sjsf/form";
+import {
+  createFormMerger,
+  type FormMergerOptions,
+} from "@sjsf/form/mergers/modern";
 import { StringEnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 import { describe, expect, test } from "vitest";
 import { page, userEvent } from "vitest/browser";
@@ -10,6 +14,8 @@ import {
   arrayDefaultsOneOfSchema,
   arrayInheritedItemsAnyOfSchema,
   arrayItemAnyOfSchema,
+  arrayOfObjectsDefaultOneOfSchema,
+  computedBooleanDefaultOneOfSchema,
   dependencyDefaultsSchema,
   discriminatedSchema,
   discriminatedUiSchema,
@@ -20,7 +26,11 @@ import {
   objectSharedAnyOfSchema,
   objectSharedOneOfSchema,
   oneOfDisjointDefaultsSchema,
+  optionLevelDefaultOneOfSchema,
+  optionRequiredArrayOneOfSchema,
+  parentRequiredArrayOneOfSchema,
   plainOneOfSchema,
+  readOnlyDefaultOneOfSchema,
   refObjectAnyOfSchema,
   refObjectOneOfSchema,
   stringAnyOfSchema,
@@ -36,6 +46,12 @@ const enumUiSchema = {
     },
   },
 };
+
+const mergerWithRequiredOnlyArrays = (options: FormMergerOptions) =>
+  createFormMerger({
+    ...options,
+    arrayMinItems: { populate: "requiredOnly" },
+  });
 
 describe("combination field contracts", () => {
   describe("discriminated oneOf", () => {
@@ -203,6 +219,47 @@ describe("combination field contracts", () => {
         list: [2],
       });
     });
+
+    test("applies an option-level default when switching options", async () => {
+      const { form } = await renderFieldForm({
+        schema: optionLevelDefaultOneOfSchema,
+      });
+
+      await userEvent.selectOptions(
+        page.getByRole("combobox").first(),
+        "Option B"
+      );
+
+      expectValue(form, { kind: "b", runner: { name: "b" } });
+    });
+
+    test("keeps a value equal to a default the old option only computed", async () => {
+      const { form } = await renderFieldForm({
+        schema: computedBooleanDefaultOneOfSchema,
+        initialValue: { kind: "a", flag: false },
+      });
+
+      await userEvent.selectOptions(
+        page.getByRole("combobox").first(),
+        "Option B"
+      );
+
+      expectValue(form, { kind: "b", flag: false });
+    });
+
+    test("replaces a readOnly value edited away from the old default", async () => {
+      const { form } = await renderFieldForm({
+        schema: readOnlyDefaultOneOfSchema,
+        initialValue: { kind: "a", license: "custom" },
+      });
+
+      await userEvent.selectOptions(
+        page.getByRole("combobox").first(),
+        "Option B"
+      );
+
+      expectValue(form, { kind: "b", license: "Apache" });
+    });
   });
 
   describe("array option defaults (rjsf#4476)", () => {
@@ -215,6 +272,63 @@ describe("combination field contracts", () => {
       await userEvent.selectOptions(select, "Second");
 
       expectValue(form, [2]);
+    });
+
+    test("replaces an array-of-objects default", async () => {
+      const { form } = await renderFieldForm({
+        schema: arrayOfObjectsDefaultOneOfSchema,
+      });
+
+      await userEvent.selectOptions(
+        page.getByRole("combobox").first(),
+        "Option B"
+      );
+
+      expectValue(form, [{ name: "b1" }]);
+    });
+
+    test("keeps an array edited away from the old default", async () => {
+      const { form } = await renderFieldForm({
+        schema: arrayDefaultsOneOfSchema,
+        initialValue: [7, 8],
+      });
+
+      await userEvent.selectOptions(
+        page.getByRole("combobox").first(),
+        "Second"
+      );
+
+      expectValue(form, [7, 8]);
+    });
+  });
+
+  describe("required placement when switching options (rjsf#4476)", () => {
+    test("reads required declared on the parent", async () => {
+      const { form } = await renderFieldForm({
+        schema: parentRequiredArrayOneOfSchema,
+        merger: mergerWithRequiredOnlyArrays,
+      });
+
+      await userEvent.selectOptions(
+        page.getByRole("combobox").first(),
+        "Option B"
+      );
+
+      expectValue(form, { kind: "b", arr: ["b1", "z"] });
+    });
+
+    test("reads required declared on the option", async () => {
+      const { form } = await renderFieldForm({
+        schema: optionRequiredArrayOneOfSchema,
+        merger: mergerWithRequiredOnlyArrays,
+      });
+
+      await userEvent.selectOptions(
+        page.getByRole("combobox").first(),
+        "Option B"
+      );
+
+      expectValue(form, { kind: "b", arr: ["b1", "z"] });
     });
   });
 

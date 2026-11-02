@@ -444,3 +444,156 @@ export const formattedStringOneOfSchema = {
     },
   ],
 } as const satisfies Schema;
+
+// An option-level `default` populates its keys exactly as a property-level one
+// does, so it has to count as the option declaring values for them.
+export const optionLevelDefaultOneOfSchema = {
+  oneOf: [
+    {
+      title: "Option A",
+      type: "object",
+      default: { kind: "a", runner: { name: "a" } },
+      properties: {
+        kind: { type: "string", const: "a" },
+        runner: {
+          type: "object",
+          properties: { name: { type: "string" } },
+        },
+      },
+    },
+    {
+      title: "Option B",
+      type: "object",
+      default: { kind: "b", runner: { name: "b" } },
+      properties: {
+        kind: { type: "string", const: "b" },
+        runner: {
+          type: "object",
+          properties: { name: { type: "string" } },
+        },
+      },
+    },
+  ],
+} as const satisfies Schema;
+
+// An array option declares its default on the option itself, so the whole
+// value goes stale on a switch rather than individual keys.
+export const arrayOfObjectsDefaultOneOfSchema = {
+  oneOf: [
+    {
+      title: "Option A",
+      type: "array",
+      default: [{ name: "a1" }],
+      items: {
+        type: "object",
+        properties: { name: { type: "string" } },
+      },
+    },
+    {
+      title: "Option B",
+      type: "array",
+      default: [{ name: "b1" }],
+      items: {
+        type: "object",
+        properties: { name: { type: "string" } },
+      },
+    },
+  ],
+} as const satisfies Schema;
+
+const requiredArrayProperties = (name: string) => ({
+  kind: { type: "string" as const, const: name, default: name },
+  arr: {
+    type: "array" as const,
+    minItems: 2,
+    items: { type: "string" as const, default: "z" },
+    default: [`${name}1`],
+  },
+});
+
+// The two schemas below differ only in where `required` is declared. The field
+// renders each option merged with the parent's keywords, so both placements
+// have to produce the same switch result.
+export const parentRequiredArrayOneOfSchema = {
+  type: "object",
+  required: ["arr"],
+  oneOf: [
+    {
+      title: "Option A",
+      type: "object",
+      properties: requiredArrayProperties("a"),
+    },
+    {
+      title: "Option B",
+      type: "object",
+      properties: requiredArrayProperties("b"),
+    },
+  ],
+} as const satisfies Schema;
+
+export const optionRequiredArrayOneOfSchema = {
+  type: "object",
+  oneOf: [
+    {
+      title: "Option A",
+      type: "object",
+      required: ["arr"],
+      properties: requiredArrayProperties("a"),
+    },
+    {
+      title: "Option B",
+      type: "object",
+      required: ["arr"],
+      properties: requiredArrayProperties("b"),
+    },
+  ],
+} as const satisfies Schema;
+
+// `false` is what the form computes for a required boolean, not something
+// option A declares, so it is the user's value and option B's default must not
+// displace it.
+export const computedBooleanDefaultOneOfSchema = {
+  oneOf: [
+    {
+      title: "Option A",
+      type: "object",
+      required: ["flag"],
+      properties: {
+        kind: { type: "string", const: "a", default: "a" },
+        flag: { type: "boolean" },
+      },
+    },
+    {
+      title: "Option B",
+      type: "object",
+      properties: {
+        kind: { type: "string", const: "b", default: "b" },
+        flag: { type: "boolean", default: true },
+      },
+    },
+  ],
+} as const satisfies Schema;
+
+// Sanitize clears a readOnly value that no longer matches its option's default
+// rather than replacing it, so the new option's default only lands once the key
+// is removed.
+export const readOnlyDefaultOneOfSchema = {
+  oneOf: [
+    {
+      title: "Option A",
+      type: "object",
+      properties: {
+        kind: { type: "string", const: "a", default: "a" },
+        license: { type: "string", default: "MIT", readOnly: true },
+      },
+    },
+    {
+      title: "Option B",
+      type: "object",
+      properties: {
+        kind: { type: "string", const: "b", default: "b" },
+        license: { type: "string", default: "Apache", readOnly: true },
+      },
+    },
+  ],
+} as const satisfies Schema;
