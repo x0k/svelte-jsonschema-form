@@ -214,6 +214,46 @@ describe("calculateIndexScore", () => {
       })
     ).toEqual(2);
   });
+  it("stops following a recursive $ref when the form data runs out", () => {
+    const schema: Schema = {
+      definitions: {
+        Node: {
+          type: "object",
+          properties: {
+            name: { type: "string" },
+            child: { $ref: "#/definitions/Node" },
+          },
+        },
+      },
+      type: "object",
+      properties: { node: { $ref: "#/definitions/Node" } },
+    };
+    expect(
+      calculateIndexScore(testValidator, defaultMerger, schema, schema, {
+        node: { name: "a" },
+      })
+    ).toEqual(1);
+  });
+  it("does not follow a recursive $ref through an inherited property name", () => {
+    const schema: Schema = {
+      definitions: {
+        Node: {
+          type: "object",
+          properties: {
+            name: { type: "string" },
+            toString: { $ref: "#/definitions/Node" },
+          },
+        },
+      },
+      type: "object",
+      properties: { node: { $ref: "#/definitions/Node" } },
+    };
+    expect(
+      calculateIndexScore(testValidator, defaultMerger, schema, schema, {
+        node: { name: "a" },
+      })
+    ).toEqual(1);
+  });
 });
 describe("oneOfMatchingOption", () => {
   it("oneOfSchema, oneOfData data, no options, returns -1", () => {
