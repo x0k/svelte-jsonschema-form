@@ -37,6 +37,11 @@ Recommended pattern for dynamic forms where a selector changes the fields:
 the schema is auto-selected from `initialValue`. Use
 `combinationFieldOptionSelector` UI options to customize the selector.
 
+For a non-object field, value keywords beside `oneOf` / `anyOf` apply to the
+selected option: an array's `items` and `uniqueItems`, or a string's `format`,
+for example. An option's own value of a shared keyword wins, except that the
+stricter bound is kept.
+
 ---
 
 ## 2. Schema Dependencies

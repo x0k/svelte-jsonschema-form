@@ -12,6 +12,7 @@ import {
   getDefaultFieldState,
   getPseudoId,
   getPseudoPath,
+  getRenderedOptionSchema,
   retrieveSchema,
   retrieveUiSchema,
   retrieveUiOption,
@@ -23,7 +24,6 @@ import {
   type FormValue,
   type Translate,
 } from "#form/index.js";
-import { isRecordEmpty } from "#lib/object.js";
 import type { Ref } from "#lib/svelte.svelte.js";
 import {
   IdEnumValueMapperBuilder,
@@ -94,6 +94,12 @@ export function createCombinationContext<T>({
   const retrievedOptions: Schema[] = $derived(
     (config().schema[combinationKey] ?? []).map((s) =>
       typeof s !== "boolean" ? retrieveSchema(ctx, s, value()) : {}
+    )
+  );
+
+  const renderedOptions: Schema[] = $derived(
+    retrievedOptions.map((option) =>
+      getRenderedOptionSchema(ctx, config().schema, option)
     )
   );
 
@@ -186,13 +192,13 @@ export function createCombinationContext<T>({
       return;
     }
     const nextValue = untrack(() => {
-      const nextSchema = retrievedOptions[pendingSelected];
+      const nextSchema = renderedOptions[pendingSelected];
       if (nextSchema === undefined) {
         return undefined;
       }
       const oldSchema =
         normalizedSelected !== undefined
-          ? retrievedOptions[normalizedSelected]
+          ? renderedOptions[normalizedSelected]
           : undefined;
       return getDefaultFieldState(ctx, {
         schema: nextSchema,
@@ -305,29 +311,13 @@ export function createCombinationContext<T>({
     update: (v) => selectOption(v as number),
   });
 
-  // Builds the field config for the currently selected option. Merges the
-  // parent schema's required array into the option schema so that sibling
-  // required properties from the combination schema are enforced.
   const fieldConfig: Config | null = $derived.by(() => {
     const selected = selectedOption;
     if (selected < 0) {
       return null;
     }
     const cfg = config();
-    const schema = retrievedOptions[selected]!;
-    const { required, type } = cfg.schema;
-    const override: Schema = {};
-    if (type !== undefined && schema.type === undefined) {
-      override.type = type;
-    }
-    if (required?.length) {
-      override.required = schema.required?.length
-        ? required.concat(schema.required)
-        : required;
-    }
-    const optionSchema = isRecordEmpty(override)
-      ? schema
-      : { ...schema, ...override };
+    const optionSchema = renderedOptions[selected]!;
     const optionUiSchema =
       selected < optionsUiSchemas.length
         ? optionsUiSchemas[selected]!

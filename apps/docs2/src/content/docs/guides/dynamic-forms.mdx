@@ -25,6 +25,8 @@ This selector **does not modify form data directly** but determines which schema
 
 When the form is initialized with `initialValue`, SJSF **automatically selects the most suitable schema** based on the data.
 
+For non-object schemas, keywords declared beside `oneOf` or `anyOf` also apply to the selected option. For example, an array field's `items` and `uniqueItems`, or a string field's `format`, are inherited by every option. An option's own value of a shared keyword takes precedence, except that the stricter bound is kept.
+
 <Demo name="one-of" client:visible />
 
 ## dependencies

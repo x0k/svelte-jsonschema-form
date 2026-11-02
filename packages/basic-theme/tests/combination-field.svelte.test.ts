@@ -7,9 +7,12 @@ import { expectValue, renderFieldForm } from "./helpers.js";
 import {
   ambiguousSchema,
   anyOfDisjointDefaultsSchema,
+  arrayInheritedItemsAnyOfSchema,
+  arrayItemAnyOfSchema,
   dependencyDefaultsSchema,
   discriminatedSchema,
   discriminatedUiSchema,
+  formattedStringOneOfSchema,
   numberAnyOfSchema,
   numberOneOfSchema,
   objectSharedAnyOfSchema,
@@ -250,6 +253,38 @@ describe("combination field contracts", () => {
       await expect
         .element(page.getByRole("combobox").first())
         .toBeInTheDocument();
+    });
+  });
+
+  describe("non-object options inherit parent keywords (#5359)", () => {
+    test("array option renders the parent's items", async () => {
+      await renderFieldForm({
+        schema: arrayInheritedItemsAnyOfSchema,
+        initialValue: ["one"],
+      });
+
+      await expect
+        .element(page.getByRole("textbox", { name: /Item/ }))
+        .toBeInTheDocument();
+    });
+
+    test("array option renders the selected option's items", async () => {
+      await renderFieldForm({
+        schema: arrayItemAnyOfSchema,
+        initialValue: [5],
+      });
+
+      await expect
+        .element(page.getByRole("spinbutton", { name: /Item/ }))
+        .toBeInTheDocument();
+    });
+
+    test("string option uses the parent's format", async () => {
+      await renderFieldForm({
+        schema: formattedStringOneOfSchema,
+      });
+
+      expect(document.querySelector('input[type="date"]')).not.toBeNull();
     });
   });
 

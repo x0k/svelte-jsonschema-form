@@ -332,3 +332,60 @@ export const dependencyDefaultsSchema = {
     },
   },
 } as const satisfies Schema;
+
+// A parent `items` applies to every option, so each option declares its own
+// item type here instead of contradicting a shared one.
+export const arrayItemAnyOfSchema = {
+  type: "array",
+  title: "Array choice",
+  anyOf: [
+    {
+      title: "With text items",
+      items: {
+        type: "string",
+        title: "Item",
+      },
+    },
+    {
+      title: "Number items",
+      items: {
+        type: "number",
+        title: "Item",
+      },
+    },
+  ],
+} as const satisfies Schema;
+
+export const arrayInheritedItemsAnyOfSchema = {
+  type: "array",
+  title: "Array choice",
+  items: {
+    type: "string",
+    title: "Item",
+  },
+  anyOf: [
+    {
+      title: "Up to three",
+      maxItems: 3,
+    },
+    {
+      title: "Four or more",
+      minItems: 4,
+    },
+  ],
+} as const satisfies Schema;
+
+export const formattedStringOneOfSchema = {
+  type: "string",
+  format: "date",
+  oneOf: [
+    {
+      title: "First half of the year",
+      pattern: "^\\d{4}-(0[1-6])-\\d{2}$",
+    },
+    {
+      title: "Second half of the year",
+      pattern: "^\\d{4}-(0[7-9]|1[0-2])-\\d{2}$",
+    },
+  ],
+} as const satisfies Schema;
