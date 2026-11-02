@@ -9,6 +9,10 @@
 
 <script lang="ts">
   import {
+    getSchemaConstantValueSafe,
+    isSchemaOfConstantValue,
+  } from "#core/index.js";
+  import {
     makeEventHandlers,
     getFieldErrors,
     validateField,
@@ -42,20 +46,31 @@
   const { options, mapper } = $derived.by(() => {
     const yes = translate("yes", {});
     const no = translate("no", {});
-    if (Array.isArray(config.schema.oneOf)) {
-      return createFormOptions(ctx, config, uiOption, {
-        oneOf: config.schema.oneOf.map((option): Schema => {
-          if (typeof option === "boolean") {
-            return option
-              ? { const: true, title: yes }
-              : { const: false, title: no };
-          }
-          return {
+    const altKey =
+      Array.isArray(config.schema.anyOf) && config.schema.anyOf.length > 0
+        ? "anyOf"
+        : "oneOf";
+    const altOptions = config.schema[altKey];
+    if (Array.isArray(altOptions) && altOptions.length > 0) {
+      const normalized: Schema[] = [];
+      for (const option of altOptions) {
+        if (typeof option === "boolean") {
+          normalized.push(
+            option ? { const: true, title: yes } : { const: false, title: no }
+          );
+        } else if (isSchemaOfConstantValue(option)) {
+          const value = getSchemaConstantValueSafe(option);
+          normalized.push({
             ...option,
-            title: option.title ?? (option.const === true ? yes : no),
-          };
-        }),
-      });
+            title: option.title ?? (value === true ? yes : no),
+          });
+        }
+      }
+      if (normalized.length === altOptions.length) {
+        return createFormOptions(ctx, config, uiOption, {
+          [altKey]: normalized,
+        });
+      }
     }
     const enumValues = config.schema.enum ?? DEFAULT_BOOLEAN_ENUM;
     if (
