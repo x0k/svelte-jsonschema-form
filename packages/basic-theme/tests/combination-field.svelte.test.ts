@@ -1,4 +1,8 @@
-import { getValueSnapshot } from "@sjsf/form";
+import {
+  getValueSnapshot,
+  setValueAtPath,
+  updateValueAtPath,
+} from "@sjsf/form";
 import {
   createFormMerger,
   type FormMergerOptions,
@@ -34,6 +38,10 @@ import {
   refObjectOneOfSchema,
   stringAnyOfSchema,
   stringOneOfSchema,
+  swappedDefaultsSchema,
+  swappedCfgDefaultsSchema,
+  swappedNestedDefaultsSchema,
+  swappedParentDefaultsSchema,
 } from "./test-data/combination-defaults.js";
 
 const mergerWithRequiredOnlyArrays = (options: FormMergerOptions) =>
@@ -543,6 +551,67 @@ describe("combination field contracts", () => {
       await userEvent.selectOptions(select, "First method of identification");
 
       expectValue(form, { firstName: "Chuck" });
+    });
+  });
+
+  describe("swapped option defaults (#5349)", () => {
+    test("applies the new branch's default over the old branch's", async () => {
+      const { form } = await renderFieldForm({
+        schema: swappedDefaultsSchema,
+      });
+
+      const select = page.getByRole("combobox").first();
+      expectValue(form, { value: "first" });
+
+      await userEvent.selectOptions(select, "Second default");
+      expectValue(form, { value: "second" });
+
+      await userEvent.selectOptions(select, "First default");
+      expectValue(form, { value: "first" });
+    });
+  });
+
+  describe("swapped dependency defaults (#5349)", () => {
+    test("replaces a dependency-swapped object default", async () => {
+      const { form } = await renderFieldForm({
+        schema: swappedCfgDefaultsSchema,
+      });
+
+      await userEvent.fill(page.getByRole("textbox").first(), "b");
+      expectValue(form, { mode: "b", cfg: { name: "b" } });
+    });
+
+    test("replaces a parent-level default instead of deleting it", async () => {
+      const { form } = await renderFieldForm({
+        schema: swappedParentDefaultsSchema,
+        initialValue: { mode: "first", x: "a" },
+      });
+
+      await userEvent.fill(page.getByRole("textbox").first(), "second");
+      expectValue(form, { mode: "second", x: "b" });
+    });
+
+    test("keeps a value changed earlier in the same batch", async () => {
+      const { form } = await renderFieldForm({
+        schema: swappedCfgDefaultsSchema,
+      });
+
+      updateValueAtPath(form, ["cfg", "name"] as any, () => "custom");
+      setValueAtPath(form, ["mode"] as any, "b");
+      await Promise.resolve();
+
+      expectValue(form, { mode: "b", cfg: { name: "custom" } });
+    });
+
+    test("replaces a default swapped by a nested conditional", async () => {
+      const { form } = await renderFieldForm({
+        schema: swappedNestedDefaultsSchema,
+      });
+
+      expectValue(form, { wrapper: { mode: "a", x: "a" } });
+
+      await userEvent.fill(page.getByRole("textbox").first(), "b");
+      expectValue(form, { wrapper: { mode: "b", x: "b" } });
     });
   });
 
