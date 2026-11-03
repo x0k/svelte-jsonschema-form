@@ -21,4 +21,8 @@
 
 <BasicForm {form} />
 
+<button type="button" onclick={() => (value = "changed outside the form")}>
+  Change outside the form
+</button>
+
 <pre>{JSON.stringify(value, null, 2)}</pre>

@@ -107,10 +107,12 @@ mutate an object in place. Use the array commands to insert, remove, move, or
 swap array items through the array's `KeyedArray`, so item keys stay in sync.
 These commands record the replaced value for conditional-default sanitization.
 
-Only these commands run the form's write bookkeeping. A controlled form binds
-the value to state owned by your application, so other editors may update that
-state directly; such writes bypass default injection and conditional
-sanitization. Use `initialValue` unless you actually need the shared state.
+When the schema can swap `dependencies` or `if`/`then`/`else` defaults, a
+controlled form observes writes made to its bound value directly and records
+them the same way. Code that owns the shared state can keep updating it without
+going through the form commands. The commands are still useful when you already
+have the form object and want to write without waiting for the observation
+pass.
 
 ### `query` vs `command`
 
@@ -139,8 +141,8 @@ Therefore, `ByPath` versions of methods are intended for situations where you **
 
 This section applies only to a [controlled form](/guides/quickstart/#controlled-form).
 The bound value is shared with the code that owns it, so that code may update
-it directly. Those updates are not form commands: they do not run default
-injection or conditional sanitization.
+it directly. When the schema can swap conditional defaults, those updates are
+observed and sanitized like writes made through the form commands.
 
 If you are using a controlled form, you should consider the following aspects:
 

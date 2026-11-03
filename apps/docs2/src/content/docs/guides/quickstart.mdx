@@ -85,9 +85,12 @@ so here is a list of situations in which this approach can be used
 
 :::
 
-:::caution
+:::note
 
-Before using, please read the section - [Direct modification of form state](/form/state/#direct-modification-of-form-state)
+The bound value stays shared application state. When the schema can swap
+conditional defaults, direct writes to it are observed and sanitized too. See
+[Direct modification of form state](/form/state/#direct-modification-of-form-state)
+for the initialization and array rules.
 
 :::
 
