@@ -3,11 +3,13 @@ import { SimpleKeyedArray } from "#lib/keyed-array.svelte.js";
 import { getOrInsertComputed } from "#lib/map.js";
 
 import {
+  copyForChange,
   getValueAtPath,
   updateValueAtPath,
   writeValueAtPath,
 } from "./change-path.js";
 import type { FieldPath } from "./id.js";
+import type { FormValueChange } from "./merger.js";
 import type {
   FieldValue,
   FormValue,
@@ -38,13 +40,23 @@ export interface FormValueStore {
   ): void;
 }
 
+export interface FormValueStoreOptions {
+  valueRef: FormValueRef;
+  keyedArrays: KeyedArraysMap;
+  /**
+   * Called before a write with the value it replaces, so the defaults pass can
+   * tell a user-written value from an untouched default.
+   */
+  onChange?: (change: FormValueChange) => void;
+  onReplace?: () => void;
+}
+
 export function createFormValueStore({
   valueRef,
   keyedArrays,
-}: {
-  valueRef: FormValueRef;
-  keyedArrays: KeyedArraysMap;
-}): FormValueStore {
+  onChange,
+  onReplace,
+}: FormValueStoreOptions): FormValueStore {
   let lastKey = Number.MIN_SAFE_INTEGER;
 
   function getKeyedArray(array: SchemaArrayValue): KeyedFieldValues {
@@ -60,10 +72,15 @@ export function createFormValueStore({
       return valueRef.current;
     },
     replace(value) {
+      onReplace?.();
       valueRef.current = value;
     },
     setAtPath(path, value) {
       const current = valueRef.current;
+      onChange?.({
+        path,
+        oldValue: getValueAtPath(current, path),
+      });
       const next = writeValueAtPath(current, path, value);
       // Non-root writes mutate the current value in place through Svelte's
       // proxy, so reassigning the same root would only invalidate root readers.
@@ -76,6 +93,10 @@ export function createFormValueStore({
       update: (value: V) => V
     ) {
       const current = valueRef.current;
+      onChange?.({
+        path,
+        oldValue: copyForChange(getValueAtPath(current, path)),
+      });
       const next = updateValueAtPath(current, path, update);
       if (next !== current) {
         valueRef.current = next;
@@ -87,6 +108,7 @@ export function createFormValueStore({
         const next: SchemaArrayValue = [];
         update(getKeyedArray(next), next.length);
         if (next.length > 0) {
+          onChange?.({ path, oldValue: current });
           valueRef.current = writeValueAtPath(valueRef.current, path, next);
         }
         return;
@@ -96,6 +118,7 @@ export function createFormValueStore({
           `Cannot update a non-array value at path "${path.join(".")}"`
         );
       }
+      onChange?.({ path, oldValue: copyForChange(current) });
       update(getKeyedArray(current), current.length);
     },
   };
