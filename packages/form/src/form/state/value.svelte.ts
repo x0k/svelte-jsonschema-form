@@ -6,9 +6,7 @@ import type { FieldPath } from "../id.js";
 import {
   FORM_MERGER,
   FORM_SCHEMA,
-  FORM_SET_VALUE_AT_PATH,
-  FORM_UPDATE_ARRAY_AT_PATH,
-  FORM_UPDATE_VALUE_AT_PATH,
+  FORM_VALUE_COMMANDS,
   FORM_VALUE,
 } from "../internals.js";
 import type { FieldValue, FormValue } from "../model.js";
@@ -26,7 +24,7 @@ export function setValueAtPath<T>(
   value: FieldValue
 ) {
   untrack(() => {
-    ctx[FORM_SET_VALUE_AT_PATH](path, value);
+    ctx[FORM_VALUE_COMMANDS].setAtPath(path, value);
   });
 }
 
@@ -47,7 +45,7 @@ export function updateValueAtPath<T>(
   update: (value: FieldValue) => FieldValue
 ) {
   untrack(() => {
-    ctx[FORM_UPDATE_VALUE_AT_PATH](path, update);
+    ctx[FORM_VALUE_COMMANDS].updateAtPath(path, update);
   });
 }
 
@@ -64,7 +62,7 @@ export function insertArrayItem<T>(
   index?: number
 ) {
   untrack(() => {
-    ctx[FORM_UPDATE_ARRAY_AT_PATH](path, (array) => {
+    ctx[FORM_VALUE_COMMANDS].updateArrayAtPath(path, (array) => {
       if (index === undefined) {
         array.push(value);
       } else if (index >= 0 && index <= array.length) {
@@ -86,7 +84,7 @@ export function removeArrayItem<T>(
   index: number
 ) {
   untrack(() => {
-    ctx[FORM_UPDATE_ARRAY_AT_PATH](path, (array) => {
+    ctx[FORM_VALUE_COMMANDS].updateArrayAtPath(path, (array) => {
       if (index >= 0 && index < array.length) {
         array.remove(index);
       }
@@ -108,7 +106,7 @@ export function moveArrayItem<T>(
   to: number
 ) {
   untrack(() => {
-    ctx[FORM_UPDATE_ARRAY_AT_PATH](path, (array) => {
+    ctx[FORM_VALUE_COMMANDS].updateArrayAtPath(path, (array) => {
       if (
         from === to ||
         from < 0 ||
@@ -144,7 +142,7 @@ export function swapArrayItems<T>(
   b: number
 ) {
   untrack(() => {
-    ctx[FORM_UPDATE_ARRAY_AT_PATH](path, (array) => {
+    ctx[FORM_VALUE_COMMANDS].updateArrayAtPath(path, (array) => {
       if (a !== b && a >= 0 && a < array.length && b >= 0 && b < array.length) {
         array.swap(a, b);
       }

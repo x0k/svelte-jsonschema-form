@@ -59,9 +59,7 @@ import {
   FORM_TRANSLATE,
   FORM_ICONS,
   FORM_MARK_SCHEMA_CHANGE,
-  FORM_SET_VALUE_AT_PATH,
-  FORM_UPDATE_ARRAY_AT_PATH,
-  FORM_UPDATE_VALUE_AT_PATH,
+  FORM_VALUE_COMMANDS,
   FORM_FIELDS_STATE_MAP,
   FORM_ID_FROM_PATH,
   internalRegisterFieldPath,
@@ -490,36 +488,38 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       pendingChanges = [];
       valueRef.current = v;
     },
-    [FORM_SET_VALUE_AT_PATH](path, value) {
-      recordChange(path, () => getValueAtPath(valueRef.current, path));
-      writeValueAtPath(path, value);
-    },
-    [FORM_UPDATE_VALUE_AT_PATH](path, update) {
-      const current = getValueAtPath(valueRef.current, path);
-      recordChange(path, () => copyForChange(current));
-      const next = update(current);
-      if (next !== current) {
-        writeValueAtPath(path, next);
-      }
-    },
-    [FORM_UPDATE_ARRAY_AT_PATH](path, update) {
-      const current = getValueAtPath(valueRef.current, path);
-      if (current === undefined || current === null) {
-        const next: SchemaArrayValue = [];
-        update(getOrCreateKeyedArray(next));
-        if (next.length > 0) {
-          recordChange(path, () => current);
+    [FORM_VALUE_COMMANDS]: {
+      setAtPath(path, value) {
+        recordChange(path, () => getValueAtPath(valueRef.current, path));
+        writeValueAtPath(path, value);
+      },
+      updateAtPath(path, update) {
+        const current = getValueAtPath(valueRef.current, path);
+        recordChange(path, () => copyForChange(current));
+        const next = update(current);
+        if (next !== current) {
           writeValueAtPath(path, next);
         }
-        return;
-      }
-      if (!Array.isArray(current)) {
-        throw new Error(
-          `Cannot update a non-array value at path "${path.join(".")}"`
-        );
-      }
-      recordChange(path, () => copyForChange(current));
-      update(getOrCreateKeyedArray(current));
+      },
+      updateArrayAtPath(path, update) {
+        const current = getValueAtPath(valueRef.current, path);
+        if (current === undefined || current === null) {
+          const next: SchemaArrayValue = [];
+          update(getOrCreateKeyedArray(next));
+          if (next.length > 0) {
+            recordChange(path, () => current);
+            writeValueAtPath(path, next);
+          }
+          return;
+        }
+        if (!Array.isArray(current)) {
+          throw new Error(
+            `Cannot update a non-array value at path "${path.join(".")}"`
+          );
+        }
+        recordChange(path, () => copyForChange(current));
+        update(getOrCreateKeyedArray(current));
+      },
     },
     get [FORM_FIELDS_VALIDATION_MODE]() {
       return fieldsValidationMode;

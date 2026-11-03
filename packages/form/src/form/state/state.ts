@@ -23,9 +23,7 @@ import {
   FORM_ICONS,
   FORM_KEYED_ARRAYS,
   FORM_MARK_SCHEMA_CHANGE,
-  FORM_SET_VALUE_AT_PATH,
-  FORM_UPDATE_VALUE_AT_PATH,
-  FORM_UPDATE_ARRAY_AT_PATH,
+  FORM_VALUE_COMMANDS,
   FORM_MERGER,
   FORM_SCHEMA,
   FORM_THEME,
@@ -67,6 +65,22 @@ import {
 import type { FailureValidationResult, FormValidator } from "../validator.js";
 import { getValueSnapshot } from "./value.svelte.js";
 
+/**
+ * Internal write primitives used by the value commands. Grouping them keeps
+ * the form state's value API in one place instead of one symbol per operation.
+ */
+export interface FormValueCommands {
+  setAtPath(path: FieldPath, value: FieldValue): void;
+  updateAtPath(
+    path: FieldPath,
+    update: (value: FieldValue) => FieldValue
+  ): void;
+  updateArrayAtPath(
+    path: FieldPath,
+    update: (array: KeyedFieldValues) => void
+  ): void;
+}
+
 export interface FormState<T> {
   readonly validation: FormValidation<T>;
   readonly fieldsValidation: FieldsValidation;
@@ -80,18 +94,7 @@ export interface FormState<T> {
   readonly [FORM_PATHS_TRIE_REF]: PathTrieRef<FieldPath>;
   readonly [FORM_ERRORS]: FormErrors;
   readonly [FORM_MARK_SCHEMA_CHANGE]: () => void;
-  readonly [FORM_SET_VALUE_AT_PATH]: (
-    path: FieldPath,
-    value: FieldValue
-  ) => void;
-  readonly [FORM_UPDATE_VALUE_AT_PATH]: (
-    path: FieldPath,
-    update: (value: FieldValue) => FieldValue
-  ) => void;
-  readonly [FORM_UPDATE_ARRAY_AT_PATH]: (
-    path: FieldPath,
-    update: (array: KeyedFieldValues) => void
-  ) => void;
+  readonly [FORM_VALUE_COMMANDS]: FormValueCommands;
   readonly [FORM_KEYED_ARRAYS]: KeyedArraysMap;
   readonly [FORM_FIELDS_VALIDATION_MODE]: number;
   readonly [FORM_SCHEMA]: Schema;
