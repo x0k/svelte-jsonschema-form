@@ -13,7 +13,8 @@ import {
   type SchemaDefinition,
   type Validator,
 } from "#core/index.js";
-import type { FormMerger } from "#form/index.js";
+import { dropStaleDefaults } from "#form/drop-stale-defaults.js";
+import type { DropStaleDefaultsOptions, FormMerger } from "#form/index.js";
 import { unique as uniqueItems } from "#lib/array.js";
 import {
   ARRAYS_OF_SUB_SCHEMAS,
@@ -198,6 +199,9 @@ export function createFormMerger(options: FormMergerOptions): FormMerger {
         options,
         initialDefaultsGenerated
       );
+    },
+    dropStaleDefaults(dropOptions: DropStaleDefaultsOptions) {
+      return dropStaleDefaults(merger, dropOptions);
     },
   };
 }
