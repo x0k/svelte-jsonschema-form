@@ -3,11 +3,13 @@ import { SimpleKeyedArray } from "#lib/keyed-array.svelte.js";
 import { getOrInsertComputed } from "#lib/map.js";
 
 import {
+  copyForChange,
   getValueAtPath,
   updateValueAtPath,
   writeValueAtPath,
 } from "./change-path.js";
 import type { FieldPath } from "./id.js";
+import type { FormValueChange } from "./merger.js";
 import type {
   FieldValue,
   FormValue,
@@ -38,13 +40,23 @@ export interface FormValueStore {
   ): void;
 }
 
+export interface FormValueStoreOptions {
+  valueRef: FormValueRef;
+  keyedArrays: KeyedArraysMap;
+  /**
+   * Called before a write with the value it replaces, so the defaults pass can
+   * tell a user-written value from an untouched default.
+   */
+  onChange?: (change: FormValueChange) => void;
+  onReplace?: () => void;
+}
+
 export function createFormValueStore({
   valueRef,
   keyedArrays,
-}: {
-  valueRef: FormValueRef;
-  keyedArrays: KeyedArraysMap;
-}): FormValueStore {
+  onChange,
+  onReplace,
+}: FormValueStoreOptions): FormValueStore {
   let lastKey = Number.MIN_SAFE_INTEGER;
 
   function getKeyedArray(array: SchemaArrayValue): KeyedFieldValues {
@@ -60,15 +72,24 @@ export function createFormValueStore({
       return valueRef.current;
     },
     replace(value) {
+      onReplace?.();
       valueRef.current = value;
     },
     setAtPath(path, value) {
+      onChange?.({
+        path,
+        oldValue: getValueAtPath(valueRef.current, path),
+      });
       valueRef.current = writeValueAtPath(valueRef.current, path, value);
     },
     updateAtPath<V extends FieldValue = FieldValue>(
       path: FieldPath,
       update: (value: V) => V
     ) {
+      onChange?.({
+        path,
+        oldValue: copyForChange(getValueAtPath(valueRef.current, path)),
+      });
       valueRef.current = updateValueAtPath(valueRef.current, path, update);
     },
     updateArrayAtPath(path, update) {
@@ -77,6 +98,7 @@ export function createFormValueStore({
         const next: SchemaArrayValue = [];
         update(getKeyedArray(next), next.length);
         if (next.length > 0) {
+          onChange?.({ path, oldValue: current });
           valueRef.current = writeValueAtPath(valueRef.current, path, next);
         }
         return;
@@ -86,6 +108,7 @@ export function createFormValueStore({
           `Cannot update a non-array value at path "${path.join(".")}"`
         );
       }
+      onChange?.({ path, oldValue: copyForChange(current) });
       update(getKeyedArray(current), current.length);
     },
   };
