@@ -168,29 +168,10 @@ swapArrayItems(form, path, 0, 1);
 `insertArrayItem` appends by default; pass the index as the fourth argument to
 insert at a specific position.
 
-If you are updating the bound value directly, either reassign the array:
+If you are updating the bound value directly, reassign the array:
 
 ```ts
 value.array = value.array.concat(123);
-```
-
-or use the `KeyedArray` API from the `keyedArraysMap`:
-
-```ts
-import { createForm, type KeyedArraysMap } from "@sjsf/form";
-
-const keyedArraysMap: KeyedArraysMap = new WeakMap();
-let value = $state({ array: [] });
-const form = createForm({
-  keyedArraysMap,
-  value: [() => value, (v) => (value = v)],
-  // ...otherOptions
-});
-
-const api = keyedArraysMap.get(value.array);
-if (api) {
-  api.push(123);
-}
 ```
 
 ## Internals

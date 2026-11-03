@@ -237,7 +237,6 @@ export interface FormOptions<T>
     value: FormValue
   ) => void;
   schedulerYield?: SchedulerYield;
-  keyedArraysMap?: KeyedArraysMap;
 }
 
 export function createForm<T>(options: FormOptions<T>): FormState<T> {
@@ -337,9 +336,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   });
   const disabled = $derived(options.disabled ?? false);
   const fieldsValidationMode = $derived(options.fieldsValidationMode ?? 0);
-  const keyedArrays: KeyedArraysMap = $derived(
-    options.keyedArraysMap ?? new WeakMap()
-  );
+  const keyedArrays: KeyedArraysMap = new WeakMap();
   const reconcileFormValue = $derived(
     createFormValueReconciler({
       keyedArraysMap: keyedArrays,

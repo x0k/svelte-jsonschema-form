@@ -139,5 +139,5 @@ See [Form Options Reference](references/form-options.md) for complete configurat
    });
    ```
    Never recreate `form` to apply new options.
-3. **Array Mutation in Controlled Mode**: In Svelte 5 controlled forms, mutating arrays in place (e.g. `data.items.push(x)`) may not trigger SJSF tracking. Always reassign (`data.items = [...data.items, x]`) or use `keyedArraysMap`.
+3. **Array Mutation in Controlled Mode**: In Svelte 5 controlled forms, mutating arrays in place (e.g. `data.items.push(x)`) may not trigger SJSF tracking. Always reassign (`data.items = [...data.items, x]`) or use `insertArrayItem`, `removeArrayItem`, `moveArrayItem`, or `swapArrayItems`.
 4. **Local Definitions in `$ref`**: Only local JSON Pointer fragments (e.g. `#/definitions/address`) are supported for schema `$ref`. External URI `$ref` fetching is not supported.

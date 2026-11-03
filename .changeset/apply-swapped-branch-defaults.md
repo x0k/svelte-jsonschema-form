@@ -9,3 +9,5 @@ A value equal to the old branch's declared `default` or `const` is removed even 
 Add the required `FormMerger.dropStaleDefaults` hook. The built-in modern and legacy mergers implement it. Custom `FormMerger` implementations must delegate `dropStaleDefaults` to the new exported helper or implement the pass themselves.
 
 Add the `setValueAtPath` command for writing a value at a field path, the `updateValueAtPath` command for updating an object in place without replacing its parent container, and the `insertArrayItem`, `removeArrayItem`, `moveArrayItem`, and `swapArrayItems` commands for structural array changes that keep item keys in sync. All these commands record the replaced value so conditional-default sanitization can resolve the form data as it was before the change.
+
+Remove the `keyedArraysMap` form option. Use the array commands instead of mutating a keyed array retrieved from the form.

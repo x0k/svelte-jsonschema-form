@@ -39,7 +39,6 @@ export interface FormOptions<T> {
   initialValue?: DeepPartial<T>;
   value?: [get: () => T, set: (v: T) => void]; // Controlled form tuple (Bind<T>)
   initialErrors?: InitialErrors;
-  keyedArraysMap?: KeyedArraysMap;
 
   // Submission Timings & Combinators
   submissionDelayedMs?: number; // default: 500
@@ -113,13 +112,12 @@ uncontrolled `initialValue` (which auto-merges via
 `merger.mergeFormDataAndSchemaDefaults({ formData, schema })`
 in `create-form.svelte.ts`). Manual pre-merging requires an instantiated
 merger and is not shown here to avoid a no-op copy-paste snippet.
-Modifying arrays in controlled mode requires either reassignment or using `keyedArraysMap`:
+Modifying arrays in controlled mode requires reassignment or an array command:
 
 ```ts
 // 1. Reassignment
 formData.items = [...formData.items, newItem];
 
-// 2. Or using keyedArraysMap
-const api = keyedArraysMap.get(formData.items);
-api?.push(newItem);
+// 2. Or an array command
+insertArrayItem(form, path, newItem);
 ```
