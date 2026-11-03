@@ -1,3 +1,10 @@
+import {
+  insertArrayItem,
+  moveArrayItem,
+  removeArrayItem,
+  swapArrayItems,
+  type KeyedArraysMap,
+} from "@sjsf/form";
 import { describe, expect, test } from "vitest";
 import { page, userEvent } from "vitest/browser";
 
@@ -55,6 +62,38 @@ describe("array field contracts", () => {
       await userEvent.fill(page.getByRole("textbox").nth(2), "third");
 
       expectValue(form, ["first", "second", "third"]);
+    });
+
+    test("mutates a nested array through the dedicated array commands", async () => {
+      let value = $state({ items: ["a", "b"] });
+      const keyedArraysMap: KeyedArraysMap = new WeakMap();
+      const { form } = await renderFieldForm({
+        schema: {
+          type: "object",
+          properties: { items: { type: "array", items: { type: "string" } } },
+        },
+        value: [() => value, (v) => (value = v)],
+        keyedArraysMap,
+      });
+
+      const path = ["items"] as any;
+      const keyed = () => keyedArraysMap.get(value.items)!;
+      const firstKey = keyed().key(0);
+
+      insertArrayItem(form, path, "c");
+      expectValue(form, { items: ["a", "b", "c"] });
+      expect(keyed().key(0)).toBe(firstKey);
+
+      moveArrayItem(form, path, 0, 2);
+      expectValue(form, { items: ["b", "c", "a"] });
+      expect(keyed().key(2)).toBe(firstKey);
+
+      swapArrayItems(form, path, 0, 1);
+      expectValue(form, { items: ["c", "b", "a"] });
+      expect(keyed().key(2)).toBe(firstKey);
+
+      removeArrayItem(form, path, 1);
+      expectValue(form, { items: ["c", "a"] });
     });
   });
 

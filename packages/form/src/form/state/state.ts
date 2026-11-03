@@ -25,6 +25,7 @@ import {
   FORM_MARK_SCHEMA_CHANGE,
   FORM_SET_VALUE_AT_PATH,
   FORM_UPDATE_VALUE_AT_PATH,
+  FORM_UPDATE_ARRAY_AT_PATH,
   FORM_MERGER,
   FORM_SCHEMA,
   FORM_THEME,
@@ -53,6 +54,7 @@ import type {
   FieldValue,
   FormValue,
   KeyedArraysMap,
+  KeyedFieldValues,
   PathTrieRef,
 } from "../model.js";
 import type { Translate, Translation } from "../translation.js";
@@ -85,6 +87,10 @@ export interface FormState<T> {
   readonly [FORM_UPDATE_VALUE_AT_PATH]: (
     path: FieldPath,
     update: (value: FieldValue) => FieldValue
+  ) => void;
+  readonly [FORM_UPDATE_ARRAY_AT_PATH]: (
+    path: FieldPath,
+    update: (array: KeyedFieldValues) => void
   ) => void;
   readonly [FORM_KEYED_ARRAYS]: KeyedArraysMap;
   readonly [FORM_FIELDS_VALIDATION_MODE]: number;

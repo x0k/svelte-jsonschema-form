@@ -4,6 +4,10 @@ import type { FieldValue, KeyedFieldValues } from "#form/index.js";
 export class VirtualKeyedArray implements KeyedFieldValues {
   constructor(protected readonly setValue: (v: SchemaArrayValue) => void) {}
 
+  get length() {
+    return 0;
+  }
+
   key(index: number): number {
     return index;
   }

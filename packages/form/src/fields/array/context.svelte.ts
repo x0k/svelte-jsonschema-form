@@ -30,7 +30,10 @@ import {
   getChildPath,
   type FieldErrors,
   getStableConfig,
-  updateValueAtPath,
+  insertArrayItem,
+  removeArrayItem,
+  setValueAtPath,
+  swapArrayItems,
 } from "#form/index.js";
 import { noop } from "#lib/function.js";
 
@@ -130,41 +133,31 @@ function createItems<T>({
       if (schema === undefined) {
         return;
       }
-      updateValueAtPath(ctx, config().path, (arr) => {
-        keyed.push(
-          getDefaultFieldState(ctx, { schema, formData: undefined }) ??
-            getDefaultValueForType(getSimpleSchemaType(schema))
-        );
-        return arr;
-      });
+      const item =
+        getDefaultFieldState(ctx, { schema, formData: undefined }) ??
+        getDefaultValueForType(getSimpleSchemaType(schema));
+      insertArrayItem(ctx, config().path, item);
       onChange();
     },
     moveItemUp(index) {
-      updateValueAtPath(ctx, config().path, (arr) => {
-        keyed.swap(index, index - 1);
-        return arr;
-      });
+      swapArrayItems(ctx, config().path, index, index - 1);
       onChange();
     },
     moveItemDown(index) {
-      updateValueAtPath(ctx, config().path, (arr) => {
-        keyed.swap(index, index + 1);
-        return arr;
-      });
+      swapArrayItems(ctx, config().path, index, index + 1);
       onChange();
     },
     copyItem(index) {
-      updateValueAtPath(ctx, config().path, (arr) => {
-        keyed.insert(index, $state.snapshot(value()![index]));
-        return arr;
-      });
+      insertArrayItem(
+        ctx,
+        config().path,
+        $state.snapshot(value()![index]),
+        index
+      );
       onChange();
     },
     removeItem(index) {
-      updateValueAtPath(ctx, config().path, (arr) => {
-        keyed.remove(index);
-        return arr;
-      });
+      removeArrayItem(ctx, config().path, index);
       onChange();
     },
   } satisfies Partial<ArrayContext>;
@@ -239,10 +232,7 @@ export function createArrayContext<T>({
     },
     length,
     set(index, itemValue) {
-      updateValueAtPath(ctx, config().path, (value) => {
-        (value as SchemaArrayValue)[index] = itemValue;
-        return value;
-      });
+      setValueAtPath(ctx, getChildPath(ctx, config().path, index), itemValue);
     },
     canAdd() {
       return canAdd;
@@ -343,10 +333,7 @@ export function createTupleContext<T>({
     },
     set(index, itemValue) {
       if (arr) {
-        updateValueAtPath(ctx, config().path, (value) => {
-          (value as SchemaArrayValue)[index] = itemValue;
-          return value;
-        });
+        setValueAtPath(ctx, getChildPath(ctx, config().path, index), itemValue);
       } else {
         initTuple((items) => {
           items[index] = itemValue;

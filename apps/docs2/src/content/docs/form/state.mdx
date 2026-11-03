@@ -42,6 +42,10 @@ export interface FormState<T> {
     path: FieldPath,
     update: (value: FieldValue) => FieldValue
   ) => void;
+  readonly [FORM_UPDATE_ARRAY_AT_PATH]: (
+    path: FieldPath,
+    update: (array: KeyedFieldValues) => void
+  ) => void;
   readonly [FORM_KEYED_ARRAYS]: KeyedArraysMap;
   readonly [FORM_FIELDS_VALIDATION_MODE]: number;
   readonly [FORM_SCHEMA]: Schema;
@@ -94,12 +98,13 @@ Use the standalone `validate(form, handlers)` and `reset(form)` functions
 **Commands:**
 `updateErrors`, `updateFieldErrors`, `updateFieldErrorsByPath`,
 `setFieldStateByPath`, `validateField`, `validateAdditionalPropertyKey`,
-`validateFileList`, `setValue`, `setValueAtPath`, `updateValueAtPath`
+`validateFileList`, `setValue`, `setValueAtPath`, `updateValueAtPath`,
+`insertArrayItem`, `removeArrayItem`, `moveArrayItem`, `swapArrayItems`
 
 Use `setValueAtPath` to replace the value at a path and `updateValueAtPath` to
-apply an in-place array or object mutation such as `push` or `splice` while
-keeping the container identity. Both commands record the replaced value for
-conditional-default sanitization.
+mutate an object in place. Use the array commands to insert, remove, move, or
+swap array items through the array's `KeyedArray`, so item keys stay in sync.
+These commands record the replaced value for conditional-default sanitization.
 
 Only these commands run the form's write bookkeeping. A controlled form binds
 the value to state owned by your application, so other editors may update that
@@ -150,15 +155,26 @@ let value = $state(
 
 ### Arrays
 
-To modify arrays, use one of the following methods:
+Use the array commands to mutate an array through its `KeyedArray` API, so item
+keys stay in sync with the data:
 
-1. Reassign
+```ts
+insertArrayItem(form, path, 123);
+removeArrayItem(form, path, 0);
+moveArrayItem(form, path, 0, 1);
+swapArrayItems(form, path, 0, 1);
+```
+
+`insertArrayItem` appends by default; pass the index as the fourth argument to
+insert at a specific position.
+
+If you are updating the bound value directly, either reassign the array:
 
 ```ts
 value.array = value.array.concat(123);
 ```
 
-2. Use `KeyedArray` API
+or use the `KeyedArray` API from the `keyedArraysMap`:
 
 ```ts
 import { createForm, type KeyedArraysMap } from "@sjsf/form";

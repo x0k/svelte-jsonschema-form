@@ -64,30 +64,6 @@ export interface FormMerger extends Merger {
 Use `createFormMerger` from `@sjsf/form/mergers/modern` for most projects.
 The legacy merger is available for v2 compatibility.
 
-Custom `FormMerger` implementations can delegate `dropStaleDefaults` to the
-exported helper with the same `Merger` instance used for schema merging:
-
-```ts
-import {
-  dropStaleDefaults,
-  type FormMerger,
-  type Merger,
-  type MergeFormDataAndSchemaDefaultsOptions,
-  type SchemaValue,
-} from "@sjsf/form";
-
-declare const baseMerger: Merger;
-declare function mergeDefaults(
-  options: MergeFormDataAndSchemaDefaultsOptions
-): SchemaValue | undefined;
-
-const customMerger: FormMerger = {
-  ...baseMerger,
-  mergeFormDataAndSchemaDefaults: mergeDefaults,
-  dropStaleDefaults: (options) => dropStaleDefaults(baseMerger, options),
-};
-```
-
 <LinkCard
   title="Merger Setup"
   description="Learn how to configure the merger for your project"

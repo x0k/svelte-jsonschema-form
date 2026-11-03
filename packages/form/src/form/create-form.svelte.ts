@@ -10,9 +10,11 @@ import {
   sanitizeDataForNewSchema,
   schemaHasNestedConditional,
   type Schema,
+  type SchemaArrayValue,
   type Validator,
 } from "#core/index.js";
 import { createDataURLtoBlob } from "#lib/file.js";
+import { SimpleKeyedArray } from "#lib/keyed-array.svelte.js";
 import { weakMemoize } from "#lib/memoize.js";
 import { getOwn, setOwn } from "#lib/object.js";
 import type { SchedulerYield } from "#lib/scheduler.js";
@@ -58,6 +60,7 @@ import {
   FORM_ICONS,
   FORM_MARK_SCHEMA_CHANGE,
   FORM_SET_VALUE_AT_PATH,
+  FORM_UPDATE_ARRAY_AT_PATH,
   FORM_UPDATE_VALUE_AT_PATH,
   FORM_FIELDS_STATE_MAP,
   FORM_ID_FROM_PATH,
@@ -81,6 +84,7 @@ import {
   type FormValue,
   type FormValueRef,
   type KeyedArraysMap,
+  type KeyedFieldValues,
   type PathTrieRef,
   type Update,
 } from "./model.js";
@@ -501,6 +505,25 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
         writeValueAtPath(path, next);
       }
     },
+    [FORM_UPDATE_ARRAY_AT_PATH](path, update) {
+      const current = getValueAtPath(valueRef.current, path);
+      if (current === undefined || current === null) {
+        const next: SchemaArrayValue = [];
+        update(getOrCreateKeyedArray(next));
+        if (next.length > 0) {
+          recordChange(path, () => current);
+          writeValueAtPath(path, next);
+        }
+        return;
+      }
+      if (!Array.isArray(current)) {
+        throw new Error(
+          `Cannot update a non-array value at path "${path.join(".")}"`
+        );
+      }
+      recordChange(path, () => copyForChange(current));
+      update(getOrCreateKeyedArray(current));
+    },
     get [FORM_FIELDS_VALIDATION_MODE]() {
       return fieldsValidationMode;
     },
@@ -579,6 +602,15 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       node = getOwn(node, path[i]!) as Record<PropertyKey, unknown>;
     }
     setOwn(node, path[lastIndex]!, value);
+  }
+  let lastKey = Number.MIN_SAFE_INTEGER;
+  function getOrCreateKeyedArray(array: SchemaArrayValue): KeyedFieldValues {
+    let keyed = keyedArrays.get(array);
+    if (keyed === undefined) {
+      keyed = new SimpleKeyedArray(array, () => lastKey++);
+      keyedArrays.set(array, keyed);
+    }
+    return keyed;
   }
   let isDefaultsInjectionQueued = false;
   function scheduleDefaultsInjection() {

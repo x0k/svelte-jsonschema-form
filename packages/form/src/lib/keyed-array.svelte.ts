@@ -1,4 +1,5 @@
 export interface KeyedArray<K, V> {
+  readonly length: number;
   key(index: number): K;
   push(value: V): number;
   swap(a: number, b: number): void;
@@ -22,6 +23,10 @@ export class SimpleKeyedArray<K, T> implements KeyedArray<K, T> {
       keys[i] = nextKey();
     }
     this.keys = keys;
+  }
+
+  get length() {
+    return this.array.length;
   }
 
   key(index: number): K {
