@@ -7,6 +7,7 @@ import {
   isOrderedSchemaDeepEqual,
   isSchemaDeepEqual,
   isSchemaValueDeepEqual,
+  isSchemaValueShallowEqual,
 } from "./deep-equal.js";
 import type { Schema, SchemaValue } from "./schema.js";
 
@@ -127,6 +128,40 @@ describe("isSchemaValueDeepEqual", () => {
     expect(isSchemaValueDeepEqual(asValue(new Date(0)), asValue([1]))).toBe(
       false
     );
+  });
+});
+
+describe("isSchemaValueShallowEqual", () => {
+  const asValue = (v: unknown) => v as SchemaValue;
+
+  it("should compare containers by their own references", () => {
+    const item = { a: 1 };
+    expect(isSchemaValueShallowEqual({ a: item }, { a: item })).toBe(true);
+    expect(isSchemaValueShallowEqual([item], [item])).toBe(true);
+    expect(isSchemaValueShallowEqual({ a: { b: 1 } }, { a: { b: 1 } })).toBe(
+      false
+    );
+    expect(isSchemaValueShallowEqual([{ a: 1 }], [{ a: 1 }])).toBe(false);
+  });
+
+  it("should detect replaced and deleted own properties", () => {
+    expect(isSchemaValueShallowEqual({ a: 1 }, { a: 2 })).toBe(false);
+    expect(isSchemaValueShallowEqual({ a: 1 }, {})).toBe(false);
+    expect(isSchemaValueShallowEqual({}, { a: 1 })).toBe(false);
+  });
+
+  it("should detect array length and element changes", () => {
+    expect(isSchemaValueShallowEqual([1, 2], [1, 2])).toBe(true);
+    expect(isSchemaValueShallowEqual([1, 2], [1, 2, 3])).toBe(false);
+    expect(isSchemaValueShallowEqual([1, 2], [1, 3])).toBe(false);
+  });
+
+  it("should treat non-plain values by reference", () => {
+    const date = new Date(0);
+    expect(isSchemaValueShallowEqual(asValue(date), asValue(date))).toBe(true);
+    expect(
+      isSchemaValueShallowEqual(asValue(new Date(0)), asValue(new Date(0)))
+    ).toBe(false);
   });
 });
 

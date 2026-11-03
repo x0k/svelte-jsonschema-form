@@ -38,6 +38,19 @@ export interface DropStaleDefaultsOptions {
 
 export interface FormMerger extends Merger {
   /**
+   * Compares two form values by reference and by the own properties of their
+   * top-level container.
+   *
+   * The form uses this to detect whether an in-place command changed a
+   * container. The built-in mergers delegate to `isSchemaValueShallowEqual`.
+   * A custom merger can replace it when its values need a different
+   * comparison, such as `Date` or `File` instances.
+   */
+  isValueShallowEqual(
+    a: SchemaValue | undefined,
+    b: SchemaValue | undefined
+  ): boolean;
+  /**
    * Merges defaults of `schema` into `formData`
    */
   mergeFormDataAndSchemaDefaults(

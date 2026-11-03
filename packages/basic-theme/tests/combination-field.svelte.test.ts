@@ -7,6 +7,7 @@ import {
   createFormMerger,
   type FormMergerOptions,
 } from "@sjsf/form/mergers/modern";
+import { tick } from "svelte";
 import { describe, expect, test } from "vitest";
 import { page, userEvent } from "vitest/browser";
 
@@ -616,6 +617,61 @@ describe("combination field contracts", () => {
   });
 
   describe("dependency defaults in controlled forms", () => {
+    async function settle() {
+      await tick();
+      await new Promise((resolve) => setTimeout(resolve));
+      await tick();
+    }
+
+    test("records a value written through the controlled bind", async () => {
+      let value = $state<{ mode: string; x: string }>({
+        mode: "first",
+        x: "a",
+      });
+      const { form } = await renderFieldForm({
+        schema: swappedParentDefaultsSchema,
+        value: [() => value, (v) => (value = v)],
+      });
+
+      value = { mode: "second", x: "a" };
+      await settle();
+
+      expectValue(form, { mode: "second", x: "b" });
+    });
+
+    test("records a nested mutation made through the controlled bind", async () => {
+      let value = $state<{ wrapper: { mode: string; x: string } }>({
+        wrapper: { mode: "a", x: "a" },
+      });
+      const { form } = await renderFieldForm({
+        schema: swappedNestedDefaultsSchema,
+        value: [() => value, (v) => (value = v)],
+      });
+
+      value.wrapper.mode = "b";
+      await settle();
+
+      expectValue(form, { wrapper: { mode: "b", x: "b" } });
+    });
+
+    test("keeps an external edit made before a branch switch", async () => {
+      let value = $state<{ mode: string; x: string }>({
+        mode: "first",
+        x: "a",
+      });
+      const { form } = await renderFieldForm({
+        schema: swappedParentDefaultsSchema,
+        value: [() => value, (v) => (value = v)],
+      });
+
+      value.x = "custom";
+      await settle();
+      value.mode = "second";
+      await settle();
+
+      expectValue(form, { mode: "second", x: "custom" });
+    });
+
     test("preserves an empty array already present when enabling the dependency branch", async () => {
       const { form } = await renderFieldForm({
         schema: dependencyDefaultsSchema,

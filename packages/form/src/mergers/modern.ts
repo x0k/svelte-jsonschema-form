@@ -1,6 +1,7 @@
 import {
   getDefaultFormState,
   isSchemaValueDeepEqual,
+  isSchemaValueShallowEqual,
   type Experimental_DefaultFormStateBehavior,
   type Merger,
   type Validator,
@@ -49,6 +50,7 @@ export function createFormMerger(options: FormMergerOptions): FormMerger {
   const merger = createMerger(options);
   return {
     ...merger,
+    isValueShallowEqual: isSchemaValueShallowEqual,
     mergeFormDataAndSchemaDefaults({
       formData,
       schema,

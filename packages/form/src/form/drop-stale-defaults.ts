@@ -45,7 +45,24 @@ function isChangedAtLevel(
   level: number,
   key: string
 ) {
-  return changedPaths.some((path) => path[level] === key);
+  return changedPaths.some(
+    (path) => path.length <= level || path[level] === key
+  );
+}
+
+/**
+ * A change recorded at a container path owns the whole subtree below it. Keep
+ * such paths while descending so nested defaults are not mistaken for values
+ * that still belong to the previous branch.
+ */
+function changesBelow(
+  changedPaths: readonly FieldPath[],
+  level: number,
+  key: string
+) {
+  return changedPaths.filter(
+    (path) => path.length <= level || path[level] === key
+  );
 }
 
 function copyContainer(
@@ -180,9 +197,7 @@ function dropStaleDefaultsAtLevel(
     }
 
     if (isSchemaObjectValue(current) && isSchemaObjectValue(oldCurrent)) {
-      const nextChangedPaths = changedPaths.filter(
-        (path) => path[level] === key
-      );
+      const nextChangedPaths = changesBelow(changedPaths, level, key);
       const next = dropStaleDefaultsAtLevel(
         validator,
         merger,

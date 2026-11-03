@@ -2,6 +2,7 @@
   import type { Config } from "./config.js";
   import HiddenIdPrefixInput from "./hidden-id-prefix-input.svelte";
   import {
+    FORM_OBSERVE_VALUE,
     FORM_RETRIEVED_SCHEMA,
     FORM_ROOT_PATH,
     FORM_UI_SCHEMA,
@@ -17,6 +18,10 @@
   } from "./state/index.js";
 
   const ctx = getFormContext();
+
+  $effect(() => {
+    ctx[FORM_OBSERVE_VALUE]();
+  });
 
   const config: Config = $derived(
     getStableConfig(ctx, {

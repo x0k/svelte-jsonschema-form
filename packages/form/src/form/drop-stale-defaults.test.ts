@@ -228,6 +228,19 @@ describe("dropStaleDefaults", () => {
     ).toEqual({ mode: "user", value: "kept" });
   });
 
+  it("keeps values below a container the user replaced", () => {
+    const formData = { mode: "second", value: { branch: "first" } };
+
+    expect(
+      drop({
+        oldSchema,
+        newSchema,
+        formData,
+        changes: [change(path("value"), { branch: "first" })],
+      })
+    ).toBe(formData);
+  });
+
   it("does not remove a value changed earlier in the same batch", () => {
     const oldBatchSchema: Schema = {
       type: "object",

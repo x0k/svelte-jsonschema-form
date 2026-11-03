@@ -14,6 +14,7 @@ export function createFormValueReconciler({
   keyedArraysMap,
   valueComparer,
 }: FormValueReconcilerOptions) {
+  let changed = false;
   function reconcile(
     target: SchemaValue | undefined,
     source: SchemaValue | undefined
@@ -21,6 +22,7 @@ export function createFormValueReconciler({
     if (valueComparer.isValueDeepEqual(target, source)) {
       return UNCHANGED;
     }
+    changed = true;
     if (typeof target === "object" && typeof source === "object") {
       const isTArr = Array.isArray(target);
       const isSArr = Array.isArray(source);
@@ -77,9 +79,11 @@ export function createFormValueReconciler({
     return source;
   }
   return (targetRef: FormValueRef, source: SchemaValue | undefined) => {
+    changed = false;
     const change = reconcile(targetRef.current, source);
     if (change !== UNCHANGED) {
       targetRef.current = change;
     }
+    return changed;
   };
 }

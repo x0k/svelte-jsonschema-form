@@ -1,4 +1,4 @@
-import { isObject, isRecordProto } from "#lib/object.js";
+import { getOwn, isObject, isRecord, isRecordProto } from "#lib/object.js";
 
 import type { Schema, SchemaValue } from "./schema.js";
 
@@ -159,3 +159,51 @@ export const isOrderedSchemaDeepEqual = createSchemaValueComparator(
   compareOrderedRecords,
   BOTH_ARE_NAN
 ) as (a: Schema | undefined, b: Schema | undefined) => boolean;
+
+/**
+ * Compares two form values by reference and by the own properties of their
+ * top-level container.
+ *
+ * This is the default implementation of `FormMerger.isValueShallowEqual`. The
+ * form uses it to detect whether an in-place command changed a container. A
+ * custom merger can replace it when its values need a different comparison,
+ * such as `Date` or `File` instances.
+ */
+export function isSchemaValueShallowEqual(
+  a: SchemaValue | undefined,
+  b: SchemaValue | undefined
+): boolean {
+  if (Object.is(a, b)) {
+    return true;
+  }
+  if (Array.isArray(a) && Array.isArray(b)) {
+    if (a.length !== b.length) {
+      return false;
+    }
+    for (let i = 0; i < a.length; i++) {
+      if (!Object.is(a[i], b[i])) {
+        return false;
+      }
+    }
+    return true;
+  }
+  if (
+    isRecord<SchemaValue | undefined>(a) &&
+    isRecord<SchemaValue | undefined>(b)
+  ) {
+    const aKeys = Object.keys(a);
+    if (aKeys.length !== Object.keys(b).length) {
+      return false;
+    }
+    for (const key of aKeys) {
+      if (
+        !Object.hasOwn(b, key) ||
+        !Object.is(getOwn(a, key), getOwn(b, key))
+      ) {
+        return false;
+      }
+    }
+    return true;
+  }
+  return false;
+}

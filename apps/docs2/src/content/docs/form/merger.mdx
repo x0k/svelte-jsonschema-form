@@ -48,6 +48,14 @@ export interface DropStaleDefaultsOptions {
 
 export interface FormMerger extends Merger {
   /**
+   * Compares two form values by reference and by the own properties of their
+   * top-level container.
+   */
+  isValueShallowEqual(
+    a: SchemaValue | undefined,
+    b: SchemaValue | undefined
+  ): boolean;
+  /**
    * Merges defaults of `schema` into `formData`
    */
   mergeFormDataAndSchemaDefaults(
@@ -63,6 +71,12 @@ export interface FormMerger extends Merger {
 
 Use `createFormMerger` from `@sjsf/form/mergers/modern` for most projects.
 The legacy merger is available for v2 compatibility.
+
+`isValueShallowEqual` is used by in-place commands such as
+`updateValueAtPath` to detect whether a command changed a container. The
+built-in mergers delegate to `isSchemaValueShallowEqual` from
+`@sjsf/form/core`. Override it when your form values need a different
+comparison, for example for `Date` or `File` instances.
 
 <LinkCard
   title="Merger Setup"

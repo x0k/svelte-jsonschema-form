@@ -28,7 +28,12 @@ import {
 } from "#lib/task.svelte.js";
 import type { DeepPartial } from "#lib/types.js";
 
-import { copyForChange, getValueAtPath } from "./change-path.js";
+import {
+  collectValueChanges,
+  copyForChange,
+  getValueAtPath,
+  snapshotFormValue,
+} from "./change-path.js";
 import type { Theme } from "./components.js";
 import type { Config } from "./config.js";
 import type { FieldsValidation, FormValidation } from "./errors.js";
@@ -59,6 +64,7 @@ import {
   FORM_TRANSLATE,
   FORM_ICONS,
   FORM_MARK_SCHEMA_CHANGE,
+  FORM_OBSERVE_VALUE,
   FORM_VALUE_COMMANDS,
   FORM_FIELDS_STATE_MAP,
   FORM_ID_FROM_PATH,
@@ -280,6 +286,14 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   // The stale-default search needs to know which values the user wrote and what
   // they replaced, so it can resolve the old schema without cloning form data.
   let pendingChanges: FormValueChange[] = [];
+  // Controlled forms are written from outside the form as well. The component
+  // that renders the root field observes the bound value and records those
+  // writes, so conditional defaults stay sanitized. `formWriteVersion` lets the
+  // observer skip writes made by the form itself.
+  let formWriteVersion = 0;
+  let observedWriteVersion = 0;
+  let observedValue: FormValue | undefined;
+  let hasObservedValue = false;
   const idBuilder: FormIdBuilder = $derived(
     create(options.idBuilder, {
       idPrefix,
@@ -485,20 +499,39 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       return valueRef.current;
     },
     set [FORM_VALUE](v) {
+      if (Object.is(valueRef.current, v)) {
+        return;
+      }
       pendingChanges = [];
+      formWriteVersion += 1;
       valueRef.current = v;
     },
     [FORM_VALUE_COMMANDS]: {
       setAtPath(path, value) {
-        recordChange(path, () => getValueAtPath(valueRef.current, path));
+        const current = getValueAtPath(valueRef.current, path);
+        if (Object.is(current, value)) {
+          return;
+        }
+        recordChange(path, () => current);
         writeValueAtPath(path, value);
       },
       updateAtPath(path, update) {
         const current = getValueAtPath(valueRef.current, path);
-        recordChange(path, () => copyForChange(current));
+        if (!mayDropStaleDefaults) {
+          const next = update(current);
+          if (next !== current) {
+            writeValueAtPath(path, next);
+          }
+          return;
+        }
+        const previous = copyForChange(current);
         const next = update(current);
         if (next !== current) {
+          recordChange(path, () => previous);
           writeValueAtPath(path, next);
+        } else if (!merger.isValueShallowEqual(previous, next)) {
+          recordChange(path, () => previous);
+          formWriteVersion += 1;
         }
       },
       updateArrayAtPath(path, update) {
@@ -517,8 +550,16 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
             `Cannot update a non-array value at path "${path.join(".")}"`
           );
         }
-        recordChange(path, () => copyForChange(current));
+        if (!mayDropStaleDefaults) {
+          update(getOrCreateKeyedArray(current));
+          return;
+        }
+        const previous = copyForChange(current);
         update(getOrCreateKeyedArray(current));
+        if (!merger.isValueShallowEqual(previous, current)) {
+          recordChange(path, () => previous);
+          formWriteVersion += 1;
+        }
       },
     },
     get [FORM_FIELDS_VALIDATION_MODE]() {
@@ -578,9 +619,46 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     [FORM_MARK_SCHEMA_CHANGE]() {
       scheduleDefaultsInjection();
     },
+    [FORM_OBSERVE_VALUE]() {
+      observeControlledValue();
+    },
   };
   const fieldTypeResolver = $derived(options.resolver(formState));
 
+  function observeControlledValue() {
+    if (!options.value || !mayDropStaleDefaults) {
+      hasObservedValue = false;
+      observedValue = undefined;
+      return;
+    }
+    // Reading a snapshot subscribes the caller to every nested value, so a
+    // write made through the controlled bind re-runs the root field effect.
+    const snapshot = snapshotFormValue(valueRef.current);
+    if (!hasObservedValue) {
+      hasObservedValue = true;
+      observedValue = snapshot;
+      observedWriteVersion = formWriteVersion;
+      return;
+    }
+    if (observedWriteVersion !== formWriteVersion) {
+      observedWriteVersion = formWriteVersion;
+      observedValue = snapshot;
+      return;
+    }
+    if (merger.isValueDeepEqual(observedValue, snapshot)) {
+      return;
+    }
+    const changes = collectValueChanges(
+      merger.isValueDeepEqual,
+      observedValue,
+      snapshot
+    );
+    observedValue = snapshot;
+    if (changes.length > 0) {
+      pendingChanges.push(...changes);
+    }
+    scheduleDefaultsInjection();
+  }
   function recordChange(path: FieldPath, oldValue: () => FieldValue) {
     if (!mayDropStaleDefaults) {
       return;
@@ -591,14 +669,15 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   function writeValueAtPath(path: FieldPath, value: FieldValue) {
     if (path.length === 0) {
       valueRef.current = value as FormValue;
-      return;
+    } else {
+      let node = valueRef.current as unknown as Record<PropertyKey, unknown>;
+      const lastIndex = path.length - 1;
+      for (let i = 0; i < lastIndex; i++) {
+        node = getOwn(node, path[i]!) as Record<PropertyKey, unknown>;
+      }
+      setOwn(node, path[lastIndex]!, value);
     }
-    let node = valueRef.current as unknown as Record<PropertyKey, unknown>;
-    const lastIndex = path.length - 1;
-    for (let i = 0; i < lastIndex; i++) {
-      node = getOwn(node, path[i]!) as Record<PropertyKey, unknown>;
-    }
-    setOwn(node, path[lastIndex]!, value);
+    formWriteVersion += 1;
   }
   let lastKey = Number.MIN_SAFE_INTEGER;
   function getOrCreateKeyedArray(array: SchemaArrayValue): KeyedFieldValues {
@@ -703,7 +782,9 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       currentRetrievedSchema = nextRetrievedSchema;
     }
 
-    reconcileFormValue(valueRef, formData);
+    if (reconcileFormValue(valueRef, formData)) {
+      formWriteVersion += 1;
+    }
   }
 
   return formState;

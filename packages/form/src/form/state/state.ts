@@ -23,6 +23,7 @@ import {
   FORM_ICONS,
   FORM_KEYED_ARRAYS,
   FORM_MARK_SCHEMA_CHANGE,
+  FORM_OBSERVE_VALUE,
   FORM_VALUE_COMMANDS,
   FORM_MERGER,
   FORM_SCHEMA,
@@ -94,6 +95,7 @@ export interface FormState<T> {
   readonly [FORM_PATHS_TRIE_REF]: PathTrieRef<FieldPath>;
   readonly [FORM_ERRORS]: FormErrors;
   readonly [FORM_MARK_SCHEMA_CHANGE]: () => void;
+  readonly [FORM_OBSERVE_VALUE]: () => void;
   readonly [FORM_VALUE_COMMANDS]: FormValueCommands;
   readonly [FORM_KEYED_ARRAYS]: KeyedArraysMap;
   readonly [FORM_FIELDS_VALIDATION_MODE]: number;
