@@ -49,10 +49,8 @@ export interface FormMerger extends Merger {
    * the next `mergeFormDataAndSchemaDefaults` call writes the newly selected
    * branch's default.
    *
-   * Optional: a custom merger can omit it to skip the stale-default pass. The
-   * built-in mergers implement it.
+   * A custom merger can delegate to the exported `dropStaleDefaults` helper
+   * with the same `Merger` instance it uses for schema merging.
    */
-  dropStaleDefaults?(
-    options: DropStaleDefaultsOptions
-  ): SchemaValue | undefined;
+  dropStaleDefaults(options: DropStaleDefaultsOptions): SchemaValue | undefined;
 }

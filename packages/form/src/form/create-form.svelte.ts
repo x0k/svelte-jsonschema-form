@@ -309,13 +309,13 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   const hasNestedConditionalSchema = $derived(
     schemaHasNestedConditional(options.schema)
   );
-  // Only dependency and conditional branches can swap a declared default, and
-  // only a merger that implements the optional hook pays for the search.
+  // Only dependency and conditional branches can swap a declared default.
+  // `schemaHasNestedConditional` deliberately ignores the schema's own
+  // top-level keywords, so the root has to be checked separately.
   const mayDropStaleDefaults = $derived(
-    merger.dropStaleDefaults !== undefined &&
-      (hasNestedConditionalSchema ||
-        DEPENDENCIES_KEY in options.schema ||
-        IF_KEY in options.schema)
+    hasNestedConditionalSchema ||
+      DEPENDENCIES_KEY in options.schema ||
+      IF_KEY in options.schema
   );
   const idCache = new WeakMap<FieldPath, Id>();
   const idFromPath = $derived(
@@ -617,7 +617,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       // the newly selected branch's declaration in this same iteration. The old
       // data is rebuilt from the data before this pass, so only the first
       // iteration can resolve the swapped-away schema.
-      if (needsStaleDefaultsDrop && merger.dropStaleDefaults !== undefined) {
+      if (needsStaleDefaultsDrop) {
         needsStaleDefaultsDrop = false;
         const newRetrievedSchema = retrieveSchema(
           validator,

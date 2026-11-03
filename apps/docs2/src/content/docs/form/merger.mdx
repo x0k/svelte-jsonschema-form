@@ -57,19 +57,36 @@ export interface FormMerger extends Merger {
    * Removes values that still hold a `default` or `const` declared by a
    * `dependencies` or `if`/`then`/`else` branch that is no longer selected.
    */
-  dropStaleDefaults?(
-    options: DropStaleDefaultsOptions
-  ): SchemaValue | undefined;
+  dropStaleDefaults(options: DropStaleDefaultsOptions): SchemaValue | undefined;
 }
 ```
 
 Use `createFormMerger` from `@sjsf/form/mergers/modern` for most projects.
 The legacy merger is available for v2 compatibility.
 
-`dropStaleDefaults` is optional. The built-in mergers implement it, so a branch
-swap removes the old branch's default and the next defaults pass writes the new
-one. A custom merger that omits it skips that pass; all other default merging
-still works.
+Custom `FormMerger` implementations can delegate `dropStaleDefaults` to the
+exported helper with the same `Merger` instance used for schema merging:
+
+```ts
+import {
+  dropStaleDefaults,
+  type FormMerger,
+  type Merger,
+  type MergeFormDataAndSchemaDefaultsOptions,
+  type SchemaValue,
+} from "@sjsf/form";
+
+declare const baseMerger: Merger;
+declare function mergeDefaults(
+  options: MergeFormDataAndSchemaDefaultsOptions
+): SchemaValue | undefined;
+
+const customMerger: FormMerger = {
+  ...baseMerger,
+  mergeFormDataAndSchemaDefaults: mergeDefaults,
+  dropStaleDefaults: (options) => dropStaleDefaults(baseMerger, options),
+};
+```
 
 <LinkCard
   title="Merger Setup"
