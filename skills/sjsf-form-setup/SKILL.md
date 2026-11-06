@@ -1,6 +1,6 @@
 ---
 name: sjsf-form-setup
-description: Initialize and configure svelte-jsonschema-form (v3) in Svelte 5 projects. Use when creating new forms, configuring createForm options (validator, theme, merger, idBuilder), setting up reusable defaults, initializing form values, or handling submissions.
+description: Initialize and configure svelte-jsonschema-form (v3) in Svelte 5 projects. Use when creating new forms, configuring createForm options (validator, theme, merger, idBuilder), setting up reusable defaults, choosing uncontrolled vs controlled forms, or handling submissions.
 ---
 
 # SJSF Form Setup
@@ -93,18 +93,27 @@ For quick prototyping without accessing form state directly, use `<SimpleForm>`:
 
 ---
 
-## Step 4: Initialize Form Values
+## Step 4: Controlled Forms (State Binding)
 
-Pass `initialValue` to seed the form. SJSF merges schema defaults into it:
+Prefer uncontrolled forms (`initialValue` + `onSubmit`).
+Use controlled `value` binding only for simultaneous editing from multiple
+locations (e.g. form + sidebar):
 
 ```svelte
 <script lang="ts">
+  import { createForm, BasicForm, type Schema } from "@sjsf/form";
+  import * as defaults from "$lib/sjsf/defaults";
+
+  const initial = { username: "octocat" };
+  let data = $state(initial);
+
   const form = createForm({
     ...defaults,
     schema,
-    initialValue: { username: "octocat" },
-    onSubmit(data) {
-      console.log("Submitted:", data);
+    // Bind tuple: [getter, setter]
+    value: [() => data, (v) => (data = v)],
+    onSubmit(val) {
+      console.log("Submitted:", val);
     },
   });
 </script>
@@ -112,14 +121,7 @@ Pass `initialValue` to seed the form. SJSF merges schema defaults into it:
 <BasicForm {form} />
 ```
 
-Use `setValue(form, value)` to replace the whole form value, `setValueAtPath` /
-`updateValueAtPath` to edit a field, and `reset(form)` to restore
-`initialValue`. Use `getValue(form)` for a live, non-copying read; in a
-reactive context it tracks only the properties you read. Treat it as read-only
-and use the value commands to update the form. Use `getValueSnapshot(form)`
-when you need a detached copy. See
-[Form Options Reference](references/form-options.md) for complete configuration
-options and value mutation guidance.
+See [Form Options Reference](references/form-options.md) for complete configuration options and array mutation guidelines.
 
 ---
 
@@ -137,5 +139,5 @@ options and value mutation guidance.
    });
    ```
    Never recreate `form` to apply new options.
-3. **Array Mutations**: Use `insertArrayItem`, `removeArrayItem`, `moveArrayItem`, or `swapArrayItems` to change arrays so item keys stay in sync. Use `setValueAtPath` to replace an array element and `updateValueAtPath` for in-place object updates; annotate the callback parameter with the expected value type to avoid casts. These value commands accept a plain `RPath` array; passing a registered `FieldPath` skips the path lookup. `getChildPath` and `getPseudoPath` return a `FieldPath`, and `getSubtreePaths` / `getErrors` expose them when you need one.
+3. **Array Mutation in Controlled Mode**: In Svelte 5 controlled forms, mutating arrays in place (e.g. `data.items.push(x)`) may not trigger SJSF tracking. Always reassign (`data.items = [...data.items, x]`) or use `keyedArraysMap`.
 4. **Local Definitions in `$ref`**: Only local JSON Pointer fragments (e.g. `#/definitions/address`) are supported for schema `$ref`. External URI `$ref` fetching is not supported.

@@ -37,7 +37,9 @@ export interface FormOptions<T> {
   // Form State & Values
   disabled?: boolean;
   initialValue?: DeepPartial<T>;
+  value?: [get: () => T, set: (v: T) => void]; // Controlled form tuple (Bind<T>)
   initialErrors?: InitialErrors;
+  keyedArraysMap?: KeyedArraysMap;
 
   // Submission Timings & Combinators
   submissionDelayedMs?: number; // default: 500
@@ -62,10 +64,11 @@ export interface FormOptions<T> {
 
 ---
 
-## Form Values
+## Controlled vs Uncontrolled
 
-The form owns its value. Seed it with `initialValue`; SJSF merges schema
-defaults into it:
+### Uncontrolled Form (Default, Recommended)
+
+Use `initialValue` and receive valid output in `onSubmit`:
 
 ```ts
 const form = createForm({
@@ -76,42 +79,47 @@ const form = createForm({
 });
 ```
 
-Use the exported commands to change the value after creation:
+### Controlled Form
 
-```ts
-import {
-  insertArrayItem,
-  moveArrayItem,
-  removeArrayItem,
-  reset,
-  setValue,
-  setValueAtPath,
-  swapArrayItems,
-  updateValueAtPath,
-} from "@sjsf/form";
-import type { SchemaObjectValue } from "@sjsf/form/core";
+Bind a reactive variable using Svelte 5 `$state`.
+Unlike uncontrolled mode, controlled `value` is used as-is —
+defaults from `schema` are NOT auto-merged:
 
-// Replace the whole value (schema defaults are merged)
-setValue(form, { username: "bob" });
+```svelte
+<script lang="ts">
+  import type { Schema } from "@sjsf/form";
 
-// Paths are plain arrays (RPath); the commands cache the FieldPath internally
-setValueAtPath(form, ["username"], "alice");
+  const schema = {
+    type: "object",
+    properties: {
+      username: { type: "string", default: "alice" },
+    },
+  } as const satisfies Schema;
 
-// Mutate an object in place
-updateValueAtPath(form, ["profile"], (obj: SchemaObjectValue) => {
-  obj.key = "value";
-  return obj;
-});
+  // Define the initial data yourself; no auto-merge happens here.
+  const initialData = { username: "bob" };
+  let formData = $state(initialData);
 
-// Structural array changes keep item keys in sync
-insertArrayItem(form, ["items"], "new item");
-removeArrayItem(form, ["items"], 0);
-moveArrayItem(form, ["items"], 0, 1);
-swapArrayItems(form, ["items"], 0, 1);
-
-// Restore initialValue
-reset(form);
+  const form = createForm({
+    ...defaults,
+    schema,
+    value: [() => formData, (v) => (formData = v)],
+  });
+</script>
 ```
 
-`insertArrayItem` appends by default; pass the index as the fourth argument to
-insert at a specific position.
+If you need schema defaults merged into a controlled value, prefer
+uncontrolled `initialValue` (which auto-merges via
+`merger.mergeFormDataAndSchemaDefaults({ formData, schema })`
+in `create-form.svelte.ts`). Manual pre-merging requires an instantiated
+merger and is not shown here to avoid a no-op copy-paste snippet.
+Modifying arrays in controlled mode requires either reassignment or using `keyedArraysMap`:
+
+```ts
+// 1. Reassignment
+formData.items = [...formData.items, newItem];
+
+// 2. Or using keyedArraysMap
+const api = keyedArraysMap.get(formData.items);
+api?.push(newItem);
+```

@@ -1,7 +1,6 @@
 import type { Config, Schema } from "@sjsf/form";
 import { prefixSchemaRefs, ROOT_SCHEMA_PREFIX } from "@sjsf/form/core";
-import type { MapLike } from "@sjsf/form/lib/map";
-import { memoize, weakMemoize } from "@sjsf/form/lib/memoize";
+import { memoize, weakMemoize, type MapLike } from "@sjsf/form/lib/memoize";
 import type {
   Ajv,
   AnySchema,

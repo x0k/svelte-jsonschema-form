@@ -1,5 +1,4 @@
 import type { SchemaArrayValue } from "#core/index.js";
-import { getOrInsertComputed } from "#lib/map.js";
 
 import { FORM_KEYED_ARRAYS } from "../internals.js";
 import type { KeyedFieldValues } from "../model.js";
@@ -18,9 +17,11 @@ export function createKeyedArrayDeriver<T>(
     if (!v) {
       stored = virtualKeyedArrayFactory();
     } else {
-      stored = getOrInsertComputed(ctx[FORM_KEYED_ARRAYS], v, (array) =>
-        keyedArrayFactory(array, () => lastKey++)
-      );
+      stored = ctx[FORM_KEYED_ARRAYS].get(v);
+      if (stored === undefined) {
+        stored = keyedArrayFactory(v, () => lastKey++);
+        ctx[FORM_KEYED_ARRAYS].set(v, stored);
+      }
     }
     return stored;
   };

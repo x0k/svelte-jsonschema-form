@@ -30,10 +30,6 @@ import {
   getChildPath,
   type FieldErrors,
   getStableConfig,
-  insertArrayItem,
-  removeArrayItem,
-  setValueAtPath,
-  swapArrayItems,
 } from "#form/index.js";
 import { noop } from "#lib/function.js";
 
@@ -133,31 +129,26 @@ function createItems<T>({
       if (schema === undefined) {
         return;
       }
-      const item =
+      keyed.push(
         getDefaultFieldState(ctx, { schema, formData: undefined }) ??
-        getDefaultValueForType(getSimpleSchemaType(schema));
-      insertArrayItem(ctx, config().path, item);
-      onChange();
-    },
-    moveItemUp(index) {
-      swapArrayItems(ctx, config().path, index, index - 1);
-      onChange();
-    },
-    moveItemDown(index) {
-      swapArrayItems(ctx, config().path, index, index + 1);
-      onChange();
-    },
-    copyItem(index) {
-      insertArrayItem(
-        ctx,
-        config().path,
-        $state.snapshot(value()![index]),
-        index
+          getDefaultValueForType(getSimpleSchemaType(schema))
       );
       onChange();
     },
+    moveItemUp(index) {
+      keyed.swap(index, index - 1);
+      onChange();
+    },
+    moveItemDown(index) {
+      keyed.swap(index, index + 1);
+      onChange();
+    },
+    copyItem(index) {
+      keyed.insert(index, $state.snapshot(value()![index]));
+      onChange();
+    },
     removeItem(index) {
-      removeArrayItem(ctx, config().path, index);
+      keyed.remove(index);
       onChange();
     },
   } satisfies Partial<ArrayContext>;
@@ -232,7 +223,7 @@ export function createArrayContext<T>({
     },
     length,
     set(index, itemValue) {
-      setValueAtPath(ctx, getChildPath(ctx, config().path, index), itemValue);
+      arr![index] = itemValue;
     },
     canAdd() {
       return canAdd;
@@ -333,7 +324,7 @@ export function createTupleContext<T>({
     },
     set(index, itemValue) {
       if (arr) {
-        setValueAtPath(ctx, getChildPath(ctx, config().path, index), itemValue);
+        arr[index] = itemValue;
       } else {
         initTuple((items) => {
           items[index] = itemValue;

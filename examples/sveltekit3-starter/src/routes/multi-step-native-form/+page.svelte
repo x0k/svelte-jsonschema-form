@@ -4,7 +4,7 @@
     Content,
     SubmitButton,
     type Config,
-    getValue,
+    getValueSnapshot,
   } from "@sjsf/form";
   import { isRecord } from "@sjsf/form/lib/object";
   import { fromFactories } from "@sjsf/form/lib/resolver";
@@ -25,6 +25,11 @@
           ? {
               "object-property": {
                 get style(): string {
+                  // NOTE: Calling `getValueSnapshot` here will cause the styles
+                  // to be recalculated whenever the form values change.
+                  // If performance is critical for you can use controlled form
+                  const snap = getValueSnapshot(form);
+                  const step = isRecord(snap) && snap[STEP_KEY];
                   return `display: ${
                     config.path[0] === step ? "block" : "none"
                   }`;
@@ -33,13 +38,6 @@
             }
           : undefined,
     }),
-  });
-  // `getValue` returns the live form value, so this derived tracks only the
-  // properties it reads. The style getter then reruns when `step` changes,
-  // not when unrelated fields change.
-  const step = $derived.by(() => {
-    const value = getValue(form);
-    return isRecord(value) ? value[STEP_KEY] : undefined;
   });
   setFormContext(form);
 </script>
