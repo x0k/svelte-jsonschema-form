@@ -58,6 +58,15 @@ export function isRecordEmpty<R extends Record<string, any>>(
 }
 
 /**
+ * Checks that `key` is an integer index inside an array of `length` items.
+ */
+export function isArrayIndex(key: PropertyKey, length: number): key is number {
+  return (
+    typeof key === "number" && Number.isInteger(key) && key >= 0 && key < length
+  );
+}
+
+/**
  * Reads `path` off `from`, returning `defaultValue` when a segment does not resolve.
  *
  * Every segment must be an OWN property, so inherited members are never read:
@@ -73,15 +82,14 @@ export function getValueByPath<T, R>(
 ): R | undefined {
   let result = from as unknown;
   for (const k of path) {
-    if (
-      Array.isArray(result) &&
-      typeof k === "number" &&
-      k >= 0 &&
-      k < result.length
-    ) {
+    if (Array.isArray(result)) {
+      if (!isArrayIndex(k, result.length)) {
+        return defaultValue;
+      }
       result = result[k];
       continue;
-    } else if (isRecord(result) && Object.hasOwn(result, k)) {
+    }
+    if (isRecord(result) && Object.hasOwn(result, k)) {
       result = result[k];
       continue;
     }
