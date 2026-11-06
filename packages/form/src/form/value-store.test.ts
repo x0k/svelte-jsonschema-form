@@ -1,0 +1,59 @@
+import { describe, expect, test } from "vitest";
+
+import type { FieldPath } from "./id.js";
+import type { FormValue } from "./model.js";
+import { createFormValueStore } from "./value-store.js";
+
+function path(...parts: (string | number)[]) {
+  return parts as unknown as FieldPath;
+}
+
+function createStore(initialValue: FormValue) {
+  let value = initialValue;
+  return createFormValueStore({
+    valueRef: {
+      get current() {
+        return value;
+      },
+      set current(v) {
+        value = v;
+      },
+    },
+    keyedArrays: new WeakMap(),
+  });
+}
+
+describe("createFormValueStore", () => {
+  test("setAtPath keeps the root identity for non-root writes", () => {
+    const initial = { a: 1, nested: { b: 2 } };
+    const store = createStore(initial);
+
+    store.setAtPath(path("nested", "b"), 3);
+
+    expect(store.get()).toBe(initial);
+    expect(store.get()).toEqual({ a: 1, nested: { b: 3 } });
+  });
+
+  test("setAtPath replaces the root for an empty path", () => {
+    const initial = { a: 1 };
+    const next = { b: 2 };
+    const store = createStore(initial);
+
+    store.setAtPath(path(), next);
+
+    expect(store.get()).toBe(next);
+  });
+
+  test("updateAtPath keeps the root identity", () => {
+    const initial = { nested: { b: 2 } };
+    const store = createStore(initial);
+
+    store.updateAtPath(path("nested"), (nested) => {
+      (nested as { b: number }).b = 3;
+      return nested;
+    });
+
+    expect(store.get()).toBe(initial);
+    expect(store.get()).toEqual({ nested: { b: 3 } });
+  });
+});
