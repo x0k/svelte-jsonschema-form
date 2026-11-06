@@ -13,7 +13,6 @@ import {
 import { createDataURLtoBlob } from "#lib/file.js";
 import { weakMemoize } from "#lib/memoize.js";
 import type { SchedulerYield } from "#lib/scheduler.js";
-import { refFromBind, type Bind } from "#lib/svelte.svelte.js";
 import {
   abortPrevious,
   createTask,
@@ -25,7 +24,7 @@ import type { DeepPartial } from "#lib/types.js";
 
 import type { Theme } from "./components.js";
 import type { Config } from "./config.js";
-import type { FormValidation, FieldsValidation } from "./errors.js";
+import type { FieldsValidation, FormValidation } from "./errors.js";
 import type { ResolveFieldType } from "./fields.js";
 import type { Icons } from "./icons.js";
 import {
@@ -74,7 +73,7 @@ import {
   type FormValue,
   type FormValueRef,
   type KeyedArraysMap,
-  type PathTrieRef,
+  type RegisteredPathTrieRef,
   type Update,
 } from "./model.js";
 import { createFormValueReconciler } from "./reconcile.js";
@@ -103,6 +102,7 @@ import {
   type ValidationResult,
   type FormValidator,
 } from "./validator.js";
+import { createFormValueStore } from "./value-store.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
 
@@ -179,7 +179,6 @@ export interface FormOptions<T>
   fieldsValidationMode?: FieldsValidationMode;
   disabled?: boolean;
   initialValue?: DeepPartial<T>;
-  value?: Bind<T>;
   initialErrors?: InitialErrors;
   /**
    * @default waitPrevious
@@ -226,7 +225,6 @@ export interface FormOptions<T>
     value: FormValue
   ) => void;
   schedulerYield?: SchedulerYield;
-  keyedArraysMap?: KeyedArraysMap;
 }
 
 export function createForm<T>(options: FormOptions<T>): FormState<T> {
@@ -235,11 +233,12 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   const uiSchemaRoot = $derived(options.uiSchema ?? {});
   const uiSchema = $derived(resolveUiRef(uiSchemaRoot, options.uiSchema) ?? {});
   const uiOptionsRegistry = $derived(options[UI_OPTIONS_REGISTRY_KEY] ?? {});
-  const pathsTrieRef: PathTrieRef<FieldPath> = $derived.by(() => {
+  const pathsTrieRef: RegisteredPathTrieRef<FieldPath> = $derived.by(() => {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     options.schema;
     return {
       current: undefined,
+      registered: new WeakSet(),
     };
   });
   const rootPath = $derived(internalRegisterFieldPath(pathsTrieRef, []));
@@ -260,14 +259,12 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     })
   );
   const valueRef = $derived(
-    options.value
-      ? refFromBind(options.value as unknown as Bind<FormValue>)
-      : createValueRef(
-          merger.mergeFormDataAndSchemaDefaults({
-            formData: options.initialValue as FormValue,
-            schema: options.schema,
-          })
-        )
+    createValueRef(
+      merger.mergeFormDataAndSchemaDefaults({
+        formData: options.initialValue as FormValue,
+        schema: options.schema,
+      })
+    )
   );
   const idBuilder: FormIdBuilder = $derived(
     create(options.idBuilder, {
@@ -315,9 +312,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   });
   const disabled = $derived(options.disabled ?? false);
   const fieldsValidationMode = $derived(options.fieldsValidationMode ?? 0);
-  const keyedArrays: KeyedArraysMap = $derived(
-    options.keyedArraysMap ?? new WeakMap()
-  );
+  const keyedArrays: KeyedArraysMap = new WeakMap();
   const reconcileFormValue = $derived(
     createFormValueReconciler({
       keyedArraysMap: keyedArrays,
@@ -434,6 +429,8 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     },
   });
 
+  const valueStore = createFormValueStore({ valueRef, keyedArrays });
+
   const formState: FormState<T> = {
     validation,
     fieldsValidation,
@@ -464,12 +461,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     get [FORM_ROOT_PATH]() {
       return rootPath;
     },
-    get [FORM_VALUE]() {
-      return valueRef.current;
-    },
-    set [FORM_VALUE](v) {
-      valueRef.current = v;
-    },
+    [FORM_VALUE]: valueStore,
     get [FORM_FIELDS_VALIDATION_MODE]() {
       return fieldsValidationMode;
     },
@@ -524,15 +516,16 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     get [FORM_ICONS]() {
       return options.icons;
     },
-    [FORM_MARK_SCHEMA_CHANGE]() {
-      if (isDefaultsInjectionQueued) return;
-      isDefaultsInjectionQueued = true;
-      queueMicrotask(injectSchemaDefaults);
-    },
+    [FORM_MARK_SCHEMA_CHANGE]: scheduleDefaultsInjection,
   };
   const fieldTypeResolver = $derived(options.resolver(formState));
 
   let isDefaultsInjectionQueued = false;
+  function scheduleDefaultsInjection() {
+    if (isDefaultsInjectionQueued) return;
+    isDefaultsInjectionQueued = true;
+    queueMicrotask(injectSchemaDefaults);
+  }
   function injectSchemaDefaults() {
     isDefaultsInjectionQueued = false;
     let currentRetrievedSchema = previousRetrievedSchema;
