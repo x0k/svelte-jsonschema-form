@@ -97,10 +97,13 @@ All the methods listed below are marked with `@query` or `@command` in their JSD
 `retrieveNestedUiOption`, `uiOptionProps`, `uiOptionNestedProps`,
 `retrieveTranslate`, `getFieldTitle`, `getFieldAction`,
 `getFieldsValidationMode`, `validateFormValue`, `validateFormValueAsync`,
-`getValueSnapshot`
+`getValue`, `getValueSnapshot`
 
-`getValueSnapshot(form)` returns a detached copy of the form value, for example
-to compare against a previous value.
+`getValue(form)` returns the live form value without copying it. In a reactive
+context it tracks only the properties you read. Treat the returned value as
+read-only and use the value commands to update the form. Use
+`getValueSnapshot(form)` when you need a detached copy, for example to compare
+against a previous value.
 
 Use the standalone `validate(form, handlers)` and `reset(form)` functions
 (with the `handlers(form)` form attachment) to validate or reset the whole form.

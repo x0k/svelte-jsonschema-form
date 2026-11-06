@@ -114,8 +114,10 @@ Pass `initialValue` to seed the form. SJSF merges schema defaults into it:
 
 Use `setValue(form, value)` to replace the whole form value, `setValueAtPath` /
 `updateValueAtPath` to edit a field, and `reset(form)` to restore
-`initialValue`. Use `getValueSnapshot(form)` when you need a detached copy of
-the form value. See
+`initialValue`. Use `getValue(form)` for a live, non-copying read; in a
+reactive context it tracks only the properties you read. Treat it as read-only
+and use the value commands to update the form. Use `getValueSnapshot(form)`
+when you need a detached copy. See
 [Form Options Reference](references/form-options.md) for complete configuration
 options and value mutation guidance.
 
