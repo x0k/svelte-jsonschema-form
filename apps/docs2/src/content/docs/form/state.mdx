@@ -21,28 +21,53 @@ export type FieldsValidation = Task<
   unknown
 >;
 
+// Internal value store; use the value queries and commands.
+export interface FormValueStore {
+  get(): FormValue;
+  replace(value: FormValue): void;
+  setAtPath(path: FieldPath, value: FieldValue): void;
+  updateAtPath<V extends FieldValue = FieldValue>(
+    path: FieldPath,
+    update: (value: V) => V
+  ): void;
+  updateArrayAtPath(
+    path: FieldPath,
+    update: (array: KeyedFieldValues, length: number) => void
+  ): void;
+}
+
+// Internal error store; read it through getErrors() / getFieldErrors().
+export interface FormErrors extends Iterable<[FieldPath, string[]]> {
+  getFieldErrors(path: FieldPath): ReadonlyArray<string> | undefined;
+  hasErrors(): boolean;
+}
+
 export interface FormState<T> {
   readonly validation: FormValidation<T>;
   readonly fieldsValidation: FieldsValidation;
 
   // Internals
 
-  [FORM_VALUE]: FormValue;
+  readonly [FORM_VALUE]: FormValueStore;
+  [FORM_INITIAL_DEFAULTS_GENERATED]: boolean;
+  readonly [FORM_INITIAL_VALUE]: DeepPartial<T> | undefined;
   readonly [FORM_ID_PREFIX]: string;
   readonly [FORM_ROOT_PATH]: FieldPath;
   readonly [FORM_ID_FROM_PATH]: (path: FieldPath) => Id;
-  readonly [FORM_PATHS_TRIE_REF]: PathTrieRef<FieldPath>;
-  readonly [FORM_ERRORS]: SvelteMap<FieldPath, string[]>;
+  readonly [FORM_PATHS_TRIE_REF]: RegisteredPathTrieRef<FieldPath>;
+  readonly [FORM_ERRORS]: FormErrors;
   readonly [FORM_MARK_SCHEMA_CHANGE]: () => void;
   readonly [FORM_KEYED_ARRAYS]: KeyedArraysMap;
   readonly [FORM_FIELDS_VALIDATION_MODE]: number;
   readonly [FORM_SCHEMA]: Schema;
+  readonly [FORM_RETRIEVED_SCHEMA]: Schema;
   readonly [FORM_UI_SCHEMA_ROOT]: UiSchemaRoot;
   readonly [FORM_UI_SCHEMA]: UiSchema;
   readonly [FORM_UI_OPTIONS_REGISTRY]: UiOptionsRegistry;
   readonly [FORM_UI_EXTRA_OPTIONS]?: ExtraUiOptions;
-  readonly [FORM_VALIDATOR]: Validator;
+  readonly [FORM_VALIDATOR]: FormValidator<T>;
   readonly [FORM_MERGER]: FormMerger;
+  readonly [FORM_ID_BUILDER]: FormIdBuilder;
   readonly [FORM_ICONS]?: Icons;
   readonly [FORM_DISABLED]: boolean;
   readonly [FORM_DATA_URL_TO_BLOB]: DataURLToBlob;
@@ -51,6 +76,7 @@ export interface FormState<T> {
   readonly [FORM_RESOLVER]: ResolveFieldType;
   readonly [FORM_THEME]: Theme;
   readonly [FORM_FIELDS_STATE_MAP]: SvelteMap<FieldPath, FieldState>;
+  readonly [FORM_CONFIGS_CACHE]: WeakMap<FieldPath, Config>;
 }
 ```
 
@@ -68,10 +94,10 @@ All the methods listed below are marked with `@query` or `@command` in their JSD
 
 **Queries:**
 `getComponent`, `getFieldComponent`, `getStableConfig`, `getFieldErrors`,
-`getFieldErrorsByPath`, `getFieldsErrors`, `getFieldsErrorsByPath`, `hasErrors`,
-`getErrors`, `hasFieldState`, `hasFieldStateByPath`, `getId`, `getSubtreePaths`,
-`getChildPath`, `getPseudoPath`, `getPseudoId`, `getIdByPath`,
-`getPseudoIdByPath`, `isSelect`, `isMultiSelect`, `isFilesArray`,
+`getFieldsErrors`, `hasErrors`,
+`getErrors`, `hasFieldState`, `getId`, `getSubtreePaths`,
+`getChildPath`, `getPseudoPath`, `getPseudoId`,
+`isSelect`, `isMultiSelect`, `isFilesArray`,
 `retrieveSchema`, `getRenderedOptionSchema`, `sanitizeDataForNewSchema`,
 `getClosestMatchingOption`,
 `getDefaultFieldState`, `retrieveUiSchema`, `uiTitleOption`, `retrieveUiOption`,
@@ -80,13 +106,26 @@ All the methods listed below are marked with `@query` or `@command` in their JSD
 `getFieldsValidationMode`, `validateFormValue`, `validateFormValueAsync`,
 `getValueSnapshot`
 
+`getValueSnapshot(form)` returns a detached copy of the form value, for example
+to compare against a previous value.
+
 Use the standalone `validate(form, handlers)` and `reset(form)` functions
 (with the `handlers(form)` form attachment) to validate or reset the whole form.
 
 **Commands:**
-`updateErrors`, `updateFieldErrors`, `updateFieldErrorsByPath`,
-`setFieldStateByPath`, `validateField`, `validateAdditionalPropertyKey`,
-`validateFileList`, `setValue`
+
+- `updateErrors` replaces all field errors with the given validation errors.
+- `updateFieldErrors` replaces one field's errors.
+- `setFieldState` sets a field's state.
+- `validateField` runs field validation for a field config and value.
+- `validateAdditionalPropertyKey` checks an additional-property key and stores the result on the field.
+- `validateFileList` validates a file list asynchronously and stores the result on the field.
+- `setValue` replaces the whole form value and merges schema property defaults; additional-properties defaults are not generated.
+- `setValueAtPath` replaces the value at a path.
+- `updateValueAtPath` applies an update to the value at a path; annotate the callback parameter to work with a specific value type (e.g. `SchemaObjectValue`), and use it to mutate an object in place.
+- `insertArrayItem`, `removeArrayItem`, `moveArrayItem`, and `swapArrayItems` perform structural array changes through the array's `KeyedArray`, so item keys stay in sync. They do nothing when an index is not an integer or is out of bounds.
+
+Use the standalone `reset(form)` function (with the `handlers(form)` form attachment) to restore the form to its `initialValue`.
 
 ### `query` vs `command`
 
@@ -102,56 +141,22 @@ When a `command` is called, the accessed variables **will not be tracked**.
 
 ### `FieldPath` vs `RPath`
 
-You may have noticed that some methods have alternate versions with the `ByPath` suffix.
-Their signatures differ in the type of the `path` argument: `FieldPath` or `RPath`.
-
 Since JavaScript lacks a primitive for **tuples**, the library uses **uniquified paths**.
-When an `RPath` (a regular array) is passed, it is automatically converted into a `FieldPath` and cached in a **prefix tree**.
+When an `RPath` (a regular array) is passed, it is converted into a `FieldPath` and cached in a **prefix tree**.
 Each identical path returns the same reference, allowing `FieldPath` to serve as a stable **identifier** or **key** in `Map`/`WeakMap`.
 
-Therefore, `ByPath` versions of methods are intended for situations where you **don’t have access to a `FieldPath`** or are working with **dynamically generated paths**.
+All path-accepting APIs accept an `RPath`. This includes the path helpers
+(`getId`, `getSubtreePaths`, `getChildPath`, `getPseudoPath`, and
+`getPseudoId`), the value commands (`setValueAtPath`, `updateValueAtPath`,
+`insertArrayItem`, `removeArrayItem`, `moveArrayItem`, and `swapArrayItems`),
+the error helpers (`getFieldErrors`, `getFieldsErrors`, and `updateFieldErrors`),
+and the field-state helpers (`hasFieldState` and `setFieldState`). They register
+the path internally, so a dynamically generated path works everywhere.
 
-## Direct modification of form state
-
-If you are using a [controlled form](/guides/quickstart/#controlled-form),
-you should consider the following aspects:
-
-### Initialization
-
-It is recommended to initialize the state as follows:
-
-```ts
-let value = $state(merger.mergeFormDataAndSchemaDefaults(initialValue, schema));
-```
-
-### Arrays
-
-To modify arrays, use one of the following methods:
-
-1. Reassign
-
-```ts
-value.array = value.array.concat(123);
-```
-
-2. Use `KeyedArray` API
-
-```ts
-import { createForm, type KeyedArraysMap } from "@sjsf/form";
-
-const keyedArraysMap: KeyedArraysMap = new WeakMap();
-let value = $state({ array: [] });
-const form = createForm({
-  keyedArraysMap,
-  value: [() => value, (v) => (value = v)],
-  // ...otherOptions
-});
-
-const api = keyedArraysMap.get(value.array);
-if (api) {
-  api.push(123);
-}
-```
+Passing an already registered `FieldPath` (for example `config.path`) skips the
+lookup and uses it as-is. `getChildPath` and `getPseudoPath` return a
+`FieldPath`, and `getSubtreePaths` and `getErrors` expose them when you need one,
+for example as a stable key in a `Map`.
 
 ## Internals
 

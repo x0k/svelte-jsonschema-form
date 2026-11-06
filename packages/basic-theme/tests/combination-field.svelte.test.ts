@@ -546,7 +546,7 @@ describe("combination field contracts", () => {
     });
   });
 
-  describe("dependency defaults in controlled forms", () => {
+  describe("dependency defaults with initial values", () => {
     test("preserves an empty array already present when enabling the dependency branch", async () => {
       const { form } = await renderFieldForm({
         schema: dependencyDefaultsSchema,
