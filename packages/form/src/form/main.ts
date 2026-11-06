@@ -15,6 +15,7 @@ export * from "./errors.js";
 export * from "./validation.js";
 export * from "./validator.js";
 export * from "./merger.js";
+export { dropStaleDefaults } from "./drop-stale-defaults.js";
 export * from "./id.js";
 export * from "./icons.js";
 export * from "./translation.js";

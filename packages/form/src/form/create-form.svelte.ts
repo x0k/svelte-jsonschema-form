@@ -3,6 +3,8 @@ import { on } from "svelte/events";
 import { SvelteMap } from "svelte/reactivity";
 
 import {
+  DEPENDENCIES_KEY,
+  IF_KEY,
   isSchemaDeepEqual,
   retrieveSchema,
   sanitizeDataForNewSchema,
@@ -66,10 +68,11 @@ import {
   FORM_INITIAL_DEFAULTS_GENERATED,
   FORM_INITIAL_VALUE,
 } from "./internals.js";
-import type { FormMerger } from "./merger.js";
+import type { FormMerger, FormValueChange } from "./merger.js";
 import {
   create,
   type Creatable,
+  type FieldValue,
   type FormValue,
   type FormValueRef,
   type KeyedArraysMap,
@@ -266,6 +269,9 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       })
     )
   );
+  // The stale-default search needs to know which values the user wrote and what
+  // they replaced, so it can resolve the old schema without cloning form data.
+  let pendingChanges: FormValueChange[] = [];
   const idBuilder: FormIdBuilder = $derived(
     create(options.idBuilder, {
       idPrefix,
@@ -295,6 +301,14 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   // sanitization must still be attempted.
   const hasNestedConditionalSchema = $derived(
     schemaHasNestedConditional(options.schema)
+  );
+  // Only dependency and conditional branches can swap a declared default.
+  // `schemaHasNestedConditional` deliberately ignores the schema's own
+  // top-level keywords, so the root has to be checked separately.
+  const mayDropStaleDefaults = $derived(
+    hasNestedConditionalSchema ||
+      DEPENDENCIES_KEY in options.schema ||
+      IF_KEY in options.schema
   );
   const idCache = new WeakMap<FieldPath, Id>();
   const idFromPath = $derived(
@@ -429,7 +443,16 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     },
   });
 
-  const valueStore = createFormValueStore({ valueRef, keyedArrays });
+  const valueStore = createFormValueStore({
+    valueRef,
+    keyedArrays,
+    onChange(change) {
+      recordChange(change.path, change.oldValue);
+    },
+    onReplace() {
+      pendingChanges = [];
+    },
+  });
 
   const formState: FormState<T> = {
     validation,
@@ -520,6 +543,13 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   };
   const fieldTypeResolver = $derived(options.resolver(formState));
 
+  function recordChange(path: FieldPath, oldValue: FieldValue) {
+    if (!mayDropStaleDefaults) {
+      return;
+    }
+    pendingChanges.push({ path, oldValue });
+    scheduleDefaultsInjection();
+  }
   let isDefaultsInjectionQueued = false;
   function scheduleDefaultsInjection() {
     if (isDefaultsInjectionQueued) return;
@@ -546,10 +576,34 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       );
     }
 
+    const changes = pendingChanges;
+    pendingChanges = [];
     let formData = valueRef.current;
+    let needsStaleDefaultsDrop = mayDropStaleDefaults && changes.length > 0;
     const values: FormValue[] = [];
 
     sanitization: while (true) {
+      // Remove a swapped-away branch's default before the fill, so the fill sees
+      // the newly selected branch's declaration in this same iteration. The old
+      // data is rebuilt from the data before this pass, so only the first
+      // iteration can resolve the swapped-away schema.
+      if (needsStaleDefaultsDrop) {
+        needsStaleDefaultsDrop = false;
+        const newRetrievedSchema = retrieveSchema(
+          validator,
+          merger,
+          options.schema,
+          options.schema,
+          formData
+        );
+        formData = merger.dropStaleDefaults({
+          validator,
+          rootSchema: options.schema,
+          newSchema: newRetrievedSchema,
+          formData,
+          changes,
+        });
+      }
       formData = merger.mergeFormDataAndSchemaDefaults({
         formData: formData,
         schema: options.schema,
