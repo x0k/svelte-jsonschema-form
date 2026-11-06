@@ -6,7 +6,7 @@ import { getNodeByKeys, insertValue } from "#lib/trie.js";
 import type { Config } from "./config.js";
 import type { FieldState } from "./field-state.js";
 import type { FieldPath } from "./id.js";
-import type { PathTrieRef, Update } from "./model.js";
+import type { PathTrieRef, RegisteredPathTrieRef, Update } from "./model.js";
 import type { ValidationError } from "./validator.js";
 
 export const FORM_CONTEXT = Symbol("form-context");
@@ -47,20 +47,27 @@ export const FORM_INITIAL_DEFAULTS_GENERATED = Symbol(
 export const FORM_INITIAL_VALUE = Symbol("form-initial-value");
 
 export function internalRegisterFieldPath(
-  ref: PathTrieRef<FieldPath>,
+  ref: RegisteredPathTrieRef<FieldPath>,
   path: RPath
 ): FieldPath {
-  const p = path as unknown as FieldPath;
+  const p = path as FieldPath;
+  // A registered `FieldPath` is already the canonical trie value; skip the
+  // lookup so callers that hold one do not pay for it again.
+  if (ref.registered.has(p)) {
+    return p;
+  }
   const node = getNodeByKeys(ref.current, path);
   if (node === undefined) {
     ref.current = insertValue(ref.current, path, p);
   } else {
     const v = node.value;
     if (v !== undefined) {
+      ref.registered.add(v);
       return v;
     }
     node.value = p;
   }
+  ref.registered.add(p);
   return p;
 }
 
@@ -121,7 +128,7 @@ export class FormErrors {
     }
   >();
 
-  constructor(private readonly ref: PathTrieRef<FieldPath>) {}
+  constructor(private readonly ref: RegisteredPathTrieRef<FieldPath>) {}
 
   assign(entries: Iterable<readonly [FieldPath, string[]]>) {
     this.#map.clear();

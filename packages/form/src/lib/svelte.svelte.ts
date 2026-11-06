@@ -1,21 +1,8 @@
-import { isRecordProto } from "./object.js";
+import { isRecordProto, setOwn } from "./object.js";
 import { abortPrevious, createTask } from "./task.svelte.js";
 
 export interface Ref<T> {
   current: T;
-}
-
-export type Bind<T> = [get: () => T, set: (v: T) => void];
-
-export function refFromBind<T>([get, set]: Bind<T>): Ref<T> {
-  return {
-    get current() {
-      return get();
-    },
-    set current(v) {
-      set(v);
-    },
-  };
 }
 
 export interface AsyncBindingOptions<I, O> {
@@ -114,7 +101,7 @@ function cloneWithSymbols<T>(value: T, seen: Map<unknown, unknown>): T {
     const obj: Record<PropertyKey, unknown> = {};
     seen.set(value, obj);
     for (const key of Reflect.ownKeys(value)) {
-      obj[key] = cloneWithSymbols(value[key], seen);
+      setOwn(obj, key, cloneWithSymbols(value[key], seen));
     }
     return obj as T;
   }
