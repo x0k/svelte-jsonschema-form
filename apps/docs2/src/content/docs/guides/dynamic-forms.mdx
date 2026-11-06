@@ -44,6 +44,21 @@ The `if/then/else` keywords allow you to define conditional schema branches base
 
 <Demo name="if-then-else" client:visible />
 
+## Branch defaults
+
+When a `dependencies` or `if`/`then`/`else` branch swap replaces a property's
+schema, SJSF also replaces the property's value if it still holds the `default`
+or `const` declared by the branch being swapped away. A value edited away from
+that default is kept, as is one that neither branch declares.
+
+The comparison cannot tell how a value equal to the old default was supplied, so
+a matching `initialValue` is replaced too. Values are
+matched per key of the level that declares the default, so a `default` on a
+nested object replaces an untouched leaf while keeping an edited sibling, and a
+`default` declared a level above keeps the whole object once any leaf is edited.
+Array items are not searched, and a conditional declared inside an array item is
+left alone.
+
 ## patternProperties
 
 The `patternProperties` keyword allows you to define schemas for object properties

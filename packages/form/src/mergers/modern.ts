@@ -5,7 +5,12 @@ import {
   type Merger,
   type Validator,
 } from "#core/index.js";
-import type { FormMerger, Schema } from "#form/main.js";
+import { dropStaleDefaults } from "#form/drop-stale-defaults.js";
+import type {
+  DropStaleDefaultsOptions,
+  FormMerger,
+  Schema,
+} from "#form/main.js";
 import {
   createMerger as createJsonSchemaMerger,
   createShallowAllOfMerge,
@@ -60,6 +65,9 @@ export function createFormMerger(options: FormMergerOptions): FormMerger {
         options,
         initialDefaultsGenerated
       );
+    },
+    dropStaleDefaults(dropOptions: DropStaleDefaultsOptions) {
+      return dropStaleDefaults(merger, dropOptions);
     },
   };
 }
