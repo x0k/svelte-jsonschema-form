@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { getOwn, getValueByPath, setOwn } from "./object.js";
+import { getOwn, getValueByPath, isArrayIndex, setOwn } from "./object.js";
 
 describe("getOwn", () => {
   it("reads an own property", () => {
@@ -38,6 +38,20 @@ describe("setOwn", () => {
   });
 });
 
+describe("isArrayIndex", () => {
+  it("accepts an integer index within bounds", () => {
+    expect(isArrayIndex(0, 1)).toBe(true);
+    expect(isArrayIndex(2, 3)).toBe(true);
+  });
+  it("rejects negative, out-of-bounds, non-integer, and non-number keys", () => {
+    expect(isArrayIndex(-1, 3)).toBe(false);
+    expect(isArrayIndex(3, 3)).toBe(false);
+    expect(isArrayIndex(1.5, 3)).toBe(false);
+    expect(isArrayIndex("1", 3)).toBe(false);
+    expect(isArrayIndex(Symbol("1"), 3)).toBe(false);
+  });
+});
+
 describe("getValueByPath", () => {
   it("reads an own property", () => {
     expect(getValueByPath({ a: 1 }, ["a"])).toBe(1);
@@ -59,6 +73,11 @@ describe("getValueByPath", () => {
   });
   it("returns the default value for an out of range array index", () => {
     expect(getValueByPath({ a: ["x"] }, ["a", 5], "fallback")).toBe("fallback");
+  });
+  it("returns the default value for a non-integer array index", () => {
+    expect(getValueByPath({ a: ["x"] }, ["a", 1.5], "fallback")).toBe(
+      "fallback"
+    );
   });
   it("returns the default value for a missing key", () => {
     expect(getValueByPath({ a: 1 }, ["b"], "fallback")).toBe("fallback");
