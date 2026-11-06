@@ -7,6 +7,55 @@ sidebar:
 Before migrating, make sure you are using the latest version of SJSF and
 that you are not using any deprecated APIs.
 
+## Form-owned value
+
+The controlled `value` form option has been removed. The form owns its value:
+seed it with `initialValue`, replace it with `setValue(form, value)`, edit it
+with `setValueAtPath`, `updateValueAtPath`, and the array commands, and restore
+`initialValue` with `reset(form)`. `Bind` and `refFromBind` are removed from
+`@sjsf/form/lib/svelte.svelte`.
+
+The `keyedArraysMap` option is removed. Use `insertArrayItem`,
+`removeArrayItem`, `moveArrayItem`, and `swapArrayItems` to change arrays so
+item keys stay in sync.
+
+The internal `FORM_VALUE` entry is now a `FormValueStore`: read with
+`ctx[FORM_VALUE].get()` and write through its `replace`, `setAtPath`,
+`updateAtPath`, and `updateArrayAtPath` methods. Custom components that used
+`ctx[FORM_VALUE]` as a raw value must add `.get()`.
+
+The value commands accept an `RPath` (a plain array). Passing a registered
+`FieldPath` skips the lookup and uses it as-is.
+
+Use `getValueSnapshot(form)` when you need a detached copy of the form value.
+
+`getIdByPath`, `getPseudoIdByPath`, and the `ByPath` variants of the error and
+field-state helpers are removed. `getId`, `getPseudoId`, `getSubtreePaths`,
+`getChildPath`, `getPseudoPath`, `getFieldErrors`, `getFieldsErrors`,
+`updateFieldErrors`, `hasFieldState`, and `setFieldState` now accept an `RPath`
+and canonicalize it internally; passing a registered `FieldPath` skips the
+lookup.
+
+```ts
+import {
+  insertArrayItem,
+  reset,
+  setValue,
+  setValueAtPath,
+  updateValueAtPath,
+} from "@sjsf/form";
+import type { SchemaObjectValue } from "@sjsf/form/core";
+
+setValue(form, { username: "bob" });
+setValueAtPath(form, ["username"], "alice");
+updateValueAtPath(form, ["profile"], (profile: SchemaObjectValue) => {
+  profile.name = "Alice";
+  return profile;
+});
+insertArrayItem(form, ["items"], "new item");
+reset(form);
+```
+
 ## Validator interface changes
 
 The root schema is now bound at validator creation time instead of being
@@ -58,7 +107,7 @@ use `.current` instead. `SingleSelectOptions.hasInitialValue` has been removed
 - `idMapper()` — use the `enumValueMapperBuilder` UI option with `IdEnumValueMapperBuilder`.
 - `isSchemaExpandable()` — use `isObjectSchemaExpandable()`.
 - `UNDEFINED_ID` — use `EMPTY_VALUE` instead.
-- `FormErrorsMap` type — use `SvelteMap<FieldPath, string[]>` directly.
+- `FormErrorsMap` type — read errors through `getErrors` / `getFieldErrors`, or use `SvelteMap<FieldPath, string[]>` directly.
 - `setFormContext2` — use `setFormContext`.
 - `KeyedArray2` type — use `KeyedArray`.
 - `MapLike` type — moved from `@sjsf/form/lib/memoize` to `@sjsf/form/lib/map`, which also exports `getOrInsertComputed()`.

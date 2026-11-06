@@ -27,6 +27,11 @@ export type FormValueRef = Ref<FormValue>;
 
 export type PathTrieRef<T> = Ref<Trie<RPath[number], T>>;
 
+/** A `PathTrieRef` that also tracks registered paths for O(1) identity checks. */
+export type RegisteredPathTrieRef<T extends object> = PathTrieRef<T> & {
+  registered: WeakSet<T>;
+};
+
 export type FormEnumOption = EnumOption<SchemaValue> & {
   mappedValue: string;
 };
