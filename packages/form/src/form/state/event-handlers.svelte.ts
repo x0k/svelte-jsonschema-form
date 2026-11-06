@@ -10,11 +10,14 @@ import {
   FIELD_INPUTTED,
   type FieldState,
 } from "../field-state.js";
+import type { FieldPath } from "../id.js";
 import {
   FORM_ERRORS,
   FORM_FIELDS_STATE_MAP,
   FORM_FIELDS_VALIDATION_MODE,
+  FORM_PATHS_TRIE_REF,
   internalHasFieldState,
+  internalRegisterFieldPath,
   internalSetFieldState,
 } from "../internals.js";
 import {
@@ -25,22 +28,29 @@ import {
   ON_CHANGE,
   ON_BLUR,
 } from "../validation.js";
-import { getFieldPath } from "./path-internal.js";
 import type { FormState } from "./state.js";
 import { retrieveUiOption } from "./ui-schema.js";
+
+export function setFieldState<T>(
+  ctx: FormState<T>,
+  path: FieldPath,
+  state: FieldState
+) {
+  internalSetFieldState(ctx[FORM_FIELDS_STATE_MAP], path, state);
+}
 
 /**
  * @command
  */
-export function setFieldState<T>(
+export function setFieldStateByPath<T>(
   ctx: FormState<T>,
   path: RPath,
   state: FieldState
-) {
+): void {
   untrack(() => {
-    internalSetFieldState(
-      ctx[FORM_FIELDS_STATE_MAP],
-      getFieldPath(ctx, path),
+    setFieldState(
+      ctx,
+      internalRegisterFieldPath(ctx[FORM_PATHS_TRIE_REF], path),
       state
     );
   });
@@ -51,12 +61,23 @@ export function setFieldState<T>(
  */
 export function hasFieldState<T>(
   ctx: FormState<T>,
+  path: FieldPath,
+  state: FieldState
+) {
+  return internalHasFieldState(ctx[FORM_FIELDS_STATE_MAP], path, state);
+}
+
+/**
+ * @query
+ */
+export function hasFieldStateByPath<T>(
+  ctx: FormState<T>,
   path: RPath,
   state: FieldState
 ) {
-  return internalHasFieldState(
-    ctx[FORM_FIELDS_STATE_MAP],
-    getFieldPath(ctx, path),
+  return hasFieldState(
+    ctx,
+    internalRegisterFieldPath(ctx[FORM_PATHS_TRIE_REF], path),
     state
   );
 }

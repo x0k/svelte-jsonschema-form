@@ -7,8 +7,7 @@ import type {
   Validator,
 } from "@sjsf/form";
 import { ID_KEY, prefixSchemaRefs, ROOT_SCHEMA_PREFIX } from "@sjsf/form/core";
-import type { MapLike } from "@sjsf/form/lib/map";
-import { memoize, weakMemoize } from "@sjsf/form/lib/memoize";
+import { memoize, weakMemoize, type MapLike } from "@sjsf/form/lib/memoize";
 import { Validator as AtaValidator } from "ata-validator";
 
 import { createFormErrorsTransformer, transformFieldErrors } from "./errors.js";

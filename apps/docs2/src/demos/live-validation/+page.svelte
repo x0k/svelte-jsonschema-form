@@ -2,7 +2,7 @@
   import {
     createForm,
     BasicForm,
-    hasFieldState,
+    hasFieldStateByPath,
     type Schema,
     FIELD_INTERACTED,
     updateErrors,
@@ -45,7 +45,9 @@
     updateErrors(
       form,
       untrack(() =>
-        errors.filter((e) => hasFieldState(form, e.path, FIELD_INTERACTED))
+        errors.filter((e) =>
+          hasFieldStateByPath(form, e.path, FIELD_INTERACTED)
+        )
       )
     );
   });

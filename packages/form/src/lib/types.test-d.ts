@@ -1,6 +1,6 @@
 import { expectTypeOf, test } from "vitest";
 
-import type { DeepPartial, DeepReadonly, JsonPaths } from "./types.js";
+import type { DeepPartial, JsonPaths } from "./types.js";
 
 test("JsonPaths", () => {
   interface SimpleFields {
@@ -144,72 +144,5 @@ test("DeepPartial", () => {
   >();
   expectTypeOf<DeepPartial<Record<string, { x: number }>>>().toEqualTypeOf<
     Record<string, { x?: number } | undefined>
-  >();
-});
-
-test("DeepReadonly", () => {
-  expectTypeOf<DeepReadonly<string>>().toEqualTypeOf<string>();
-  expectTypeOf<DeepReadonly<number>>().toEqualTypeOf<number>();
-  expectTypeOf<DeepReadonly<null>>().toEqualTypeOf<null>();
-  expectTypeOf<DeepReadonly<undefined>>().toEqualTypeOf<undefined>();
-
-  expectTypeOf<DeepReadonly<string[]>>().toEqualTypeOf<readonly string[]>();
-  expectTypeOf<DeepReadonly<readonly number[]>>().toEqualTypeOf<
-    readonly number[]
-  >();
-  expectTypeOf<DeepReadonly<[string, number]>>().toEqualTypeOf<
-    readonly [string, number]
-  >();
-  expectTypeOf<DeepReadonly<readonly [string, number]>>().toEqualTypeOf<
-    readonly [string, number]
-  >();
-
-  interface Simple {
-    name: string;
-    age: number;
-  }
-  expectTypeOf<DeepReadonly<Simple>>().toEqualTypeOf<{
-    readonly name: string;
-    readonly age: number;
-  }>();
-
-  interface Nested {
-    user: {
-      name: string;
-      address: {
-        street: string;
-        city: string;
-      };
-    };
-    tags: string[];
-  }
-  expectTypeOf<DeepReadonly<Nested>>().toEqualTypeOf<{
-    readonly user: {
-      readonly name: string;
-      readonly address: {
-        readonly street: string;
-        readonly city: string;
-      };
-    };
-    readonly tags: readonly string[];
-  }>();
-
-  interface WithOptional {
-    required: string;
-    optional?: number;
-  }
-  expectTypeOf<DeepReadonly<WithOptional>>().toEqualTypeOf<{
-    readonly required: string;
-    readonly optional?: number;
-  }>();
-
-  expectTypeOf<DeepReadonly<Record<string, number>>>().toEqualTypeOf<
-    Readonly<Record<string, number>>
-  >();
-  expectTypeOf<DeepReadonly<Record<string, string[]>>>().toEqualTypeOf<
-    Readonly<Record<string, readonly string[]>>
-  >();
-  expectTypeOf<DeepReadonly<Record<string, { x: number }>>>().toEqualTypeOf<
-    Readonly<Record<string, { readonly x: number }>>
   >();
 });

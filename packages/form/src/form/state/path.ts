@@ -7,18 +7,25 @@ import {
   type FieldPseudoElement,
   type Id,
 } from "../id.js";
-import { FORM_ID_FROM_PATH, FORM_PATHS_TRIE_REF } from "../internals.js";
-import { getFieldPath } from "./path-internal.js";
+import {
+  FORM_ID_FROM_PATH,
+  FORM_PATHS_TRIE_REF,
+  internalRegisterFieldPath,
+} from "../internals.js";
 import type { FormState } from "./state.js";
 
 /**
- * Returns the id for `path`. Accepts a plain `RPath` or an already registered
- * `FieldPath`; the latter skips the path lookup.
- *
  * @query
  */
-export function getId<T>(ctx: FormState<T>, path: RPath): Id {
-  return ctx[FORM_ID_FROM_PATH](getFieldPath(ctx, path));
+export function getId<T>(ctx: FormState<T>, path: FieldPath): Id {
+  return ctx[FORM_ID_FROM_PATH](path);
+}
+
+/**
+ * @query
+ */
+function getFieldPath<T>(ctx: FormState<T>, path: RPath): FieldPath {
+  return internalRegisterFieldPath(ctx[FORM_PATHS_TRIE_REF], path);
 }
 
 /**
@@ -39,10 +46,9 @@ function* emitNodeValues(
  * WARN: This method will not react to changes in the subtree.
  * @query
  */
-export function* getSubtreePaths<T>(ctx: FormState<T>, path: RPath) {
-  const fieldPath = getFieldPath(ctx, path);
+export function* getSubtreePaths<T>(ctx: FormState<T>, path: FieldPath) {
   const trie = ctx[FORM_PATHS_TRIE_REF].current;
-  const node = getNodeByKeys(trie, fieldPath);
+  const node = getNodeByKeys(trie, path);
   if (node === undefined) {
     return;
   }
@@ -54,7 +60,7 @@ export function* getSubtreePaths<T>(ctx: FormState<T>, path: RPath) {
  */
 export function getChildPath<T>(
   ctx: FormState<T>,
-  parentPath: RPath,
+  parentPath: FieldPath,
   indexOrProperty: string | number
 ) {
   return getFieldPath(ctx, parentPath.concat(indexOrProperty));
@@ -65,7 +71,7 @@ export function getChildPath<T>(
  */
 export function getPseudoPath<T>(
   ctx: FormState<T>,
-  parentPath: RPath,
+  parentPath: FieldPath,
   element: FieldPseudoElement
 ) {
   return getChildPath(ctx, parentPath, encodePseudoElement(element));
@@ -76,8 +82,26 @@ export function getPseudoPath<T>(
  */
 export function getPseudoId<T>(
   ctx: FormState<T>,
-  path: RPath,
+  path: FieldPath,
   element: FieldPseudoElement
 ): Id {
   return getId(ctx, getPseudoPath(ctx, path, element));
+}
+
+/**
+ * @query
+ */
+export function getIdByPath<T>(ctx: FormState<T>, path: RPath): Id {
+  return getId(ctx, getFieldPath(ctx, path));
+}
+
+/**
+ * @query
+ */
+export function getPseudoIdByPath<T>(
+  ctx: FormState<T>,
+  path: RPath,
+  element: FieldPseudoElement
+): Id {
+  return getIdByPath(ctx, path.concat(encodePseudoElement(element)));
 }

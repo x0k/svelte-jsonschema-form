@@ -1,9 +1,3 @@
-import {
-  insertArrayItem,
-  moveArrayItem,
-  removeArrayItem,
-  swapArrayItems,
-} from "@sjsf/form";
 import { describe, expect, test } from "vitest";
 import { page, userEvent } from "vitest/browser";
 
@@ -61,33 +55,6 @@ describe("array field contracts", () => {
       await userEvent.fill(page.getByRole("textbox").nth(2), "third");
 
       expectValue(form, ["first", "second", "third"]);
-    });
-
-    test("mutates a nested array through the dedicated array commands", async () => {
-      const { form } = await renderFieldForm({
-        schema: {
-          type: "object",
-          properties: { items: { type: "array", items: { type: "string" } } },
-        },
-        initialValue: { items: ["a", "b"] },
-      });
-
-      const path = ["items"];
-
-      insertArrayItem(form, path, "c");
-      expectValue(form, { items: ["a", "b", "c"] });
-
-      insertArrayItem(form, path, "x", 1);
-      expectValue(form, { items: ["a", "x", "b", "c"] });
-
-      moveArrayItem(form, path, 0, 2);
-      expectValue(form, { items: ["x", "b", "a", "c"] });
-
-      swapArrayItems(form, path, 0, 1);
-      expectValue(form, { items: ["b", "x", "a", "c"] });
-
-      removeArrayItem(form, path, 1);
-      expectValue(form, { items: ["b", "a", "c"] });
     });
   });
 
