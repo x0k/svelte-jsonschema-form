@@ -80,6 +80,14 @@ export type DeepPartial<T> = T extends readonly unknown[]
     ? { [K in keyof T]?: DeepPartial<T[K]> }
     : T;
 
+export type DeepReadonly<T> = T extends readonly unknown[]
+  ? T extends readonly [unknown, ...unknown[]] | readonly []
+    ? { readonly [K in keyof T]: DeepReadonly<T[K]> }
+    : ReadonlyArray<DeepReadonly<T[number]>>
+  : T extends object
+    ? { readonly [K in keyof T]: DeepReadonly<T[K]> }
+    : T;
+
 export type OmitItems<
   Args extends unknown[],
   Bind extends unknown[],
