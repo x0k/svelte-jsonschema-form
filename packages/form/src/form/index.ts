@@ -23,6 +23,7 @@ export * from "./field-actions.js";
 
 export * from "./state/index.js";
 
+export type { FormValueStore } from "./value-store.js";
 export * from "./create-form.svelte.js";
 export { default as Content } from "./content.svelte";
 export { default as SubmitButton } from "./submit-button.svelte";
