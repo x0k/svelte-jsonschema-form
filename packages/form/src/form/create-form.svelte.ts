@@ -3,8 +3,6 @@ import { on } from "svelte/events";
 import { SvelteMap } from "svelte/reactivity";
 
 import {
-  DEPENDENCIES_KEY,
-  IF_KEY,
   isSchemaDeepEqual,
   retrieveSchema,
   sanitizeDataForNewSchema,
@@ -15,6 +13,7 @@ import {
 import { createDataURLtoBlob } from "#lib/file.js";
 import { weakMemoize } from "#lib/memoize.js";
 import type { SchedulerYield } from "#lib/scheduler.js";
+import { refFromBind, type Bind } from "#lib/svelte.svelte.js";
 import {
   abortPrevious,
   createTask,
@@ -26,7 +25,7 @@ import type { DeepPartial } from "#lib/types.js";
 
 import type { Theme } from "./components.js";
 import type { Config } from "./config.js";
-import type { FieldsValidation, FormValidation } from "./errors.js";
+import type { FormValidation, FieldsValidation } from "./errors.js";
 import type { ResolveFieldType } from "./fields.js";
 import type { Icons } from "./icons.js";
 import {
@@ -68,15 +67,14 @@ import {
   FORM_INITIAL_DEFAULTS_GENERATED,
   FORM_INITIAL_VALUE,
 } from "./internals.js";
-import type { FormMerger, FormValueChange } from "./merger.js";
+import type { FormMerger } from "./merger.js";
 import {
   create,
   type Creatable,
-  type FieldValue,
   type FormValue,
   type FormValueRef,
   type KeyedArraysMap,
-  type RegisteredPathTrieRef,
+  type PathTrieRef,
   type Update,
 } from "./model.js";
 import { createFormValueReconciler } from "./reconcile.js";
@@ -105,7 +103,6 @@ import {
   type ValidationResult,
   type FormValidator,
 } from "./validator.js";
-import { createFormValueStore } from "./value-store.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
 
@@ -182,6 +179,7 @@ export interface FormOptions<T>
   fieldsValidationMode?: FieldsValidationMode;
   disabled?: boolean;
   initialValue?: DeepPartial<T>;
+  value?: Bind<T>;
   initialErrors?: InitialErrors;
   /**
    * @default waitPrevious
@@ -228,6 +226,7 @@ export interface FormOptions<T>
     value: FormValue
   ) => void;
   schedulerYield?: SchedulerYield;
+  keyedArraysMap?: KeyedArraysMap;
 }
 
 export function createForm<T>(options: FormOptions<T>): FormState<T> {
@@ -236,12 +235,11 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   const uiSchemaRoot = $derived(options.uiSchema ?? {});
   const uiSchema = $derived(resolveUiRef(uiSchemaRoot, options.uiSchema) ?? {});
   const uiOptionsRegistry = $derived(options[UI_OPTIONS_REGISTRY_KEY] ?? {});
-  const pathsTrieRef: RegisteredPathTrieRef<FieldPath> = $derived.by(() => {
+  const pathsTrieRef: PathTrieRef<FieldPath> = $derived.by(() => {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     options.schema;
     return {
       current: undefined,
-      registered: new WeakSet(),
     };
   });
   const rootPath = $derived(internalRegisterFieldPath(pathsTrieRef, []));
@@ -262,16 +260,15 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     })
   );
   const valueRef = $derived(
-    createValueRef(
-      merger.mergeFormDataAndSchemaDefaults({
-        formData: options.initialValue as FormValue,
-        schema: options.schema,
-      })
-    )
+    options.value
+      ? refFromBind(options.value as unknown as Bind<FormValue>)
+      : createValueRef(
+          merger.mergeFormDataAndSchemaDefaults({
+            formData: options.initialValue as FormValue,
+            schema: options.schema,
+          })
+        )
   );
-  // The stale-default search needs to know which values the user wrote and what
-  // they replaced, so it can resolve the old schema without cloning form data.
-  let pendingChanges: FormValueChange[] = [];
   const idBuilder: FormIdBuilder = $derived(
     create(options.idBuilder, {
       idPrefix,
@@ -302,14 +299,6 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   const hasNestedConditionalSchema = $derived(
     schemaHasNestedConditional(options.schema)
   );
-  // Only dependency and conditional branches can swap a declared default.
-  // `schemaHasNestedConditional` deliberately ignores the schema's own
-  // top-level keywords, so the root has to be checked separately.
-  const mayDropStaleDefaults = $derived(
-    hasNestedConditionalSchema ||
-      DEPENDENCIES_KEY in options.schema ||
-      IF_KEY in options.schema
-  );
   const idCache = new WeakMap<FieldPath, Id>();
   const idFromPath = $derived(
     weakMemoize(idCache, (path) => idBuilder.fromPath(path) as Id)
@@ -326,7 +315,9 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   });
   const disabled = $derived(options.disabled ?? false);
   const fieldsValidationMode = $derived(options.fieldsValidationMode ?? 0);
-  const keyedArrays: KeyedArraysMap = new WeakMap();
+  const keyedArrays: KeyedArraysMap = $derived(
+    options.keyedArraysMap ?? new WeakMap()
+  );
   const reconcileFormValue = $derived(
     createFormValueReconciler({
       keyedArraysMap: keyedArrays,
@@ -443,17 +434,6 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     },
   });
 
-  const valueStore = createFormValueStore({
-    valueRef,
-    keyedArrays,
-    onChange(change) {
-      recordChange(change.path, change.oldValue);
-    },
-    onReplace() {
-      pendingChanges = [];
-    },
-  });
-
   const formState: FormState<T> = {
     validation,
     fieldsValidation,
@@ -484,7 +464,12 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     get [FORM_ROOT_PATH]() {
       return rootPath;
     },
-    [FORM_VALUE]: valueStore,
+    get [FORM_VALUE]() {
+      return valueRef.current;
+    },
+    set [FORM_VALUE](v) {
+      valueRef.current = v;
+    },
     get [FORM_FIELDS_VALIDATION_MODE]() {
       return fieldsValidationMode;
     },
@@ -539,23 +524,15 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     get [FORM_ICONS]() {
       return options.icons;
     },
-    [FORM_MARK_SCHEMA_CHANGE]: scheduleDefaultsInjection,
+    [FORM_MARK_SCHEMA_CHANGE]() {
+      if (isDefaultsInjectionQueued) return;
+      isDefaultsInjectionQueued = true;
+      queueMicrotask(injectSchemaDefaults);
+    },
   };
   const fieldTypeResolver = $derived(options.resolver(formState));
 
-  function recordChange(path: FieldPath, oldValue: FieldValue) {
-    if (!mayDropStaleDefaults) {
-      return;
-    }
-    pendingChanges.push({ path, oldValue });
-    scheduleDefaultsInjection();
-  }
   let isDefaultsInjectionQueued = false;
-  function scheduleDefaultsInjection() {
-    if (isDefaultsInjectionQueued) return;
-    isDefaultsInjectionQueued = true;
-    queueMicrotask(injectSchemaDefaults);
-  }
   function injectSchemaDefaults() {
     isDefaultsInjectionQueued = false;
     let currentRetrievedSchema = previousRetrievedSchema;
@@ -576,34 +553,10 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       );
     }
 
-    const changes = pendingChanges;
-    pendingChanges = [];
     let formData = valueRef.current;
-    let needsStaleDefaultsDrop = mayDropStaleDefaults && changes.length > 0;
     const values: FormValue[] = [];
 
     sanitization: while (true) {
-      // Remove a swapped-away branch's default before the fill, so the fill sees
-      // the newly selected branch's declaration in this same iteration. The old
-      // data is rebuilt from the data before this pass, so only the first
-      // iteration can resolve the swapped-away schema.
-      if (needsStaleDefaultsDrop) {
-        needsStaleDefaultsDrop = false;
-        const newRetrievedSchema = retrieveSchema(
-          validator,
-          merger,
-          options.schema,
-          options.schema,
-          formData
-        );
-        formData = merger.dropStaleDefaults({
-          validator,
-          rootSchema: options.schema,
-          newSchema: newRetrievedSchema,
-          formData,
-          changes,
-        });
-      }
       formData = merger.mergeFormDataAndSchemaDefaults({
         formData: formData,
         schema: options.schema,

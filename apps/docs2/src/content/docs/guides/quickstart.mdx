@@ -69,3 +69,26 @@ Use getters to pass reactive parameters.
 <Demo name="form-state" client:visible />
 
 <LinkCard title="Form state" href={withBase("/form/state/")} />
+
+### "Controlled" form
+
+You can also specify the `value` option instead of the `initialValue`
+to access the internal state of the form.
+
+:::note
+
+I believe that such use of the library should be limited,
+so here is a list of situations in which this approach can be used
+(if you doubt it, welcome to the [discussions](https://github.com/x0k/svelte-jsonschema-form/discussions)):
+
+- Simultaneous editing of data from multiple locations (e.g., form + sidebar)
+
+:::
+
+:::caution
+
+Before using, please read the section - [Direct modification of form state](/form/state/#direct-modification-of-form-state)
+
+:::
+
+<Demo name="controlled-form" client:visible />

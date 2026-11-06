@@ -1,6 +1,4 @@
 <script lang="ts">
-  import type { Ref } from "#lib/svelte.svelte.js";
-
   import type { Config } from "./config.js";
   import HiddenIdPrefixInput from "./hidden-id-prefix-input.svelte";
   import {
@@ -9,7 +7,6 @@
     FORM_UI_SCHEMA,
     FORM_VALUE,
   } from "./internals.js";
-  import type { FormValue } from "./model.js";
   import {
     getFormContext,
     getFieldComponent,
@@ -21,15 +18,6 @@
 
   const ctx = getFormContext();
 
-  const valueRef: Ref<FormValue> = {
-    get current() {
-      return ctx[FORM_VALUE].get();
-    },
-    set current(v) {
-      ctx[FORM_VALUE].replace(v);
-    },
-  };
-
   const config: Config = $derived(
     getStableConfig(ctx, {
       path: ctx[FORM_ROOT_PATH],
@@ -40,7 +28,7 @@
       schema: ctx[FORM_RETRIEVED_SCHEMA],
       uiSchema: ctx[FORM_UI_SCHEMA],
       required: true,
-      value: () => ctx[FORM_VALUE].get(),
+      value: () => ctx[FORM_VALUE],
     })
   );
 
@@ -50,7 +38,7 @@
 <HiddenIdPrefixInput form={ctx} />
 <Field
   type="field"
-  bind:value={valueRef.current as undefined}
+  bind:value={ctx[FORM_VALUE] as undefined}
   {config}
   uiOption={(opt) => retrieveUiOption(ctx, config, opt)}
   translate={retrieveTranslate(ctx, config)}

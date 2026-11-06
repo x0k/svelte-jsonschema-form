@@ -16,7 +16,6 @@ export * from "./validation.js";
 export * from "./field-state.js";
 export * from "./validator.js";
 export * from "./merger.js";
-export { dropStaleDefaults } from "./drop-stale-defaults.js";
 export * from "./id.js";
 export * from "./icons.js";
 export * from "./translation.js";
@@ -24,7 +23,6 @@ export * from "./field-actions.js";
 
 export * from "./state/index.js";
 
-export type { FormValueStore } from "./value-store.js";
 export * from "./create-form.svelte.js";
 export { default as Content } from "./content.svelte";
 export { default as SubmitButton } from "./submit-button.svelte";

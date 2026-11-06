@@ -173,7 +173,7 @@ export function getFieldTitle<T>(ctx: FormState<T>, path: RPath) {
     ctx[FORM_SCHEMA],
     ctx[FORM_SCHEMA],
     path,
-    ctx[FORM_VALUE].get()
+    ctx[FORM_VALUE]
   );
   return typeof def === "object" ? def.title : undefined;
 }

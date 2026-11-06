@@ -30,7 +30,6 @@
     retrieveTranslate,
     retrieveUiOption,
     setFormContext,
-    setValueAtPath,
     uiTitleOption,
     type FormState,
   } from "./state/index.js";
@@ -78,14 +77,14 @@
     if (path.length === 0) {
       return {
         get current() {
-          return form[FORM_VALUE].get();
+          return form[FORM_VALUE];
         },
         set current(v) {
-          form[FORM_VALUE].replace(v);
+          form[FORM_VALUE] = v;
         },
       };
     }
-    let node = form[FORM_VALUE].get();
+    let node = form[FORM_VALUE];
     let i = -1;
     const lastIndex = path.length - 1;
     while (isObject(node) && ++i < lastIndex) {
@@ -93,10 +92,7 @@
       node = node[path[i]];
     }
     if (i !== lastIndex) {
-      console.error(
-        "Current form state",
-        $state.snapshot(form[FORM_VALUE].get())
-      );
+      console.error("Current form state", $state.snapshot(form[FORM_VALUE]));
       throw new Error(
         `Path "[${path.join(", ")}]" is not populated or invalid, check current form state`
       );
@@ -108,7 +104,8 @@
         return node[lastKey];
       },
       set current(v) {
-        setValueAtPath(form, path, v);
+        //@ts-expect-error not checked by generic parameter
+        node[lastKey] = v;
       },
     };
   });

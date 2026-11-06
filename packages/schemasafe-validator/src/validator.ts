@@ -17,8 +17,7 @@ import {
   ROOT_SCHEMA_PREFIX,
   type Merger,
 } from "@sjsf/form/core";
-import type { MapLike } from "@sjsf/form/lib/map";
-import { memoize } from "@sjsf/form/lib/memoize";
+import { memoize, type MapLike } from "@sjsf/form/lib/memoize";
 
 import { transformFormErrors, transformFieldErrors } from "./errors.js";
 import { DEFAULT_VALIDATOR_OPTIONS } from "./model.js";
