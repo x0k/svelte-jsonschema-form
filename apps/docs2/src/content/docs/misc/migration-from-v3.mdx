@@ -27,7 +27,9 @@ The internal `FORM_VALUE` entry is now a `FormValueStore`: read with
 The value commands accept an `RPath` (a plain array). Passing a registered
 `FieldPath` skips the lookup and uses it as-is.
 
-Use `getValueSnapshot(form)` when you need a detached copy of the form value.
+Use `getValue(form)` for a live, non-copying read of the form value. In a
+reactive context it tracks only the properties you read. Use
+`getValueSnapshot(form)` when you need a detached copy.
 
 `getIdByPath`, `getPseudoIdByPath`, and the `ByPath` variants of the error and
 field-state helpers are removed. `getId`, `getPseudoId`, `getSubtreePaths`,
