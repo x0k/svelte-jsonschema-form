@@ -9,11 +9,56 @@
  * browser console output in this setup.
  */
 
-import { spawn, spawnSync } from "node:child_process";
+import { spawn, spawnSync, type StdioOptions } from "node:child_process";
 import { cpSync, existsSync, mkdirSync, mkdtempSync, rmSync } from "node:fs";
 import { createServer } from "node:http";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
+
+interface PerfOptions {
+  baseRef: string;
+  headRef: string;
+  fields: string;
+  samples: number;
+  asJson: boolean;
+  keepWorktrees: boolean;
+  skipBuild: boolean;
+}
+
+interface PreparedWorktree {
+  ref: string;
+  sha: string;
+  dir: string;
+  cleanup: boolean;
+}
+
+interface PerfSample {
+  case: string;
+  fields: number;
+  samples: number[];
+}
+
+interface PerfRun {
+  ref: string;
+  sha: string;
+  results: PerfSample[];
+}
+
+interface Summary {
+  median: number;
+  p95: number;
+  min: number;
+  max: number;
+  samples: number;
+}
+
+interface ComparisonRow {
+  case: string;
+  fields: number;
+  base: Summary | undefined;
+  head: Summary | undefined;
+  delta: { median: number; percent: number } | undefined;
+}
 
 const repoRoot = resolve(import.meta.dirname, "../..");
 const suiteSource = join(repoRoot, "packages/basic-theme/tests/benchmarks");
@@ -22,10 +67,10 @@ const configSource = join(
   "packages/basic-theme/vitest.bench.config.ts"
 );
 
-function parseOptions(args) {
-  function argValue(flag, fallback) {
+function parseOptions(args: string[]): PerfOptions {
+  function argValue(flag: string, fallback: string): string {
     const index = args.indexOf(flag);
-    return index === -1 ? fallback : args[index + 1];
+    return index === -1 ? fallback : args[index + 1]!;
   }
   return {
     baseRef: argValue("--base", "origin/main"),
@@ -38,7 +83,14 @@ function parseOptions(args) {
   };
 }
 
-function run(command, commandArgs, { cwd = repoRoot, stdio = "inherit" } = {}) {
+function run(
+  command: string,
+  commandArgs: string[],
+  {
+    cwd = repoRoot,
+    stdio = "inherit",
+  }: { cwd?: string; stdio?: StdioOptions } = {}
+): string {
   const result = spawnSync(command, commandArgs, {
     cwd,
     env: process.env,
@@ -52,14 +104,14 @@ function run(command, commandArgs, { cwd = repoRoot, stdio = "inherit" } = {}) {
   return result.stdout?.toString() ?? "";
 }
 
-function resolveRef(ref) {
+function resolveRef(ref: string): string {
   return run("git", ["rev-parse", "--verify", `${ref}^{commit}`], {
     cwd: repoRoot,
     stdio: ["ignore", "pipe", "inherit"],
   }).trim();
 }
 
-function prepare(ref) {
+function prepare(ref: string): PreparedWorktree {
   if (ref === "worktree" || ref === ".") {
     return { ref, sha: resolveRef("HEAD"), dir: repoRoot, cleanup: false };
   }
@@ -69,7 +121,7 @@ function prepare(ref) {
   return { ref, sha, dir, cleanup: true };
 }
 
-function install(dir) {
+function install(dir: string): void {
   if (dir === repoRoot && existsSync(join(dir, "node_modules"))) {
     return;
   }
@@ -88,7 +140,7 @@ function install(dir) {
   }
 }
 
-function copySuite(dir) {
+function copySuite(dir: string): void {
   if (dir === repoRoot) {
     return;
   }
@@ -102,7 +154,7 @@ function copySuite(dir) {
   );
 }
 
-function build(dir, skipBuild) {
+function build(dir: string, skipBuild: boolean): void {
   if (skipBuild) {
     return;
   }
@@ -119,7 +171,7 @@ function build(dir, skipBuild) {
   run("pnpm", ["--dir", dir, "--filter", "theme-testing", "run", "build"]);
 }
 
-function cleanup(prepared, keepWorktrees) {
+function cleanup(prepared: PreparedWorktree, keepWorktrees: boolean): void {
   if (!prepared.cleanup) {
     return;
   }
@@ -138,17 +190,17 @@ function cleanup(prepared, keepWorktrees) {
   }
 }
 
-function median(values) {
+function median(values: number[]): number {
   const sorted = [...values].sort((a, b) => a - b);
-  return sorted[Math.floor(sorted.length / 2)];
+  return sorted[Math.floor(sorted.length / 2)]!;
 }
 
-function percentile(values, p) {
+function percentile(values: number[], p: number): number {
   const sorted = [...values].sort((a, b) => a - b);
-  return sorted[Math.min(sorted.length - 1, Math.ceil(p * sorted.length) - 1)];
+  return sorted[Math.min(sorted.length - 1, Math.ceil(p * sorted.length) - 1)]!;
 }
 
-function summarize(result) {
+function summarize(result: PerfSample): Summary {
   const values = result.samples;
   return {
     median: median(values),
@@ -159,28 +211,28 @@ function summarize(result) {
   };
 }
 
-function resultKey(result) {
+function resultKey(result: PerfSample): string {
   return `${result.case}\0${result.fields}`;
 }
 
-function sortResults(results) {
+function sortResults(results: PerfSample[]): PerfSample[] {
   return [...results].sort(
     (a, b) => a.case.localeCompare(b.case) || a.fields - b.fields
   );
 }
 
-function formatMs(value) {
+function formatMs(value: number): string {
   return value.toFixed(2);
 }
 
-function formatDelta(base, head) {
+function formatDelta(base: number, head: number): string {
   const delta = head - base;
   const percent = base === 0 ? 0 : (delta / base) * 100;
   const sign = delta >= 0 ? "+" : "";
   return `${sign}${formatMs(delta)} (${sign}${percent.toFixed(1)}%)`;
 }
 
-function printRun(label, run) {
+function printRun(label: string, run: PerfRun): void {
   console.log("");
   console.log(`${label}: ${run.ref} (${run.sha.slice(0, 9)})`);
   console.log("");
@@ -198,19 +250,26 @@ function printRun(label, run) {
   }
 }
 
-function compare(baseResults, headResults) {
+function compare(
+  baseResults: PerfSample[],
+  headResults: PerfSample[]
+): ComparisonRow[] {
   const baseByKey = new Map(baseResults.map((r) => [resultKey(r), r]));
   const headByKey = new Map(headResults.map((r) => [resultKey(r), r]));
   const keys = new Set([...baseByKey.keys(), ...headByKey.keys()]);
-  const rows = [];
+  const rows: ComparisonRow[] = [];
   for (const key of keys) {
     const base = baseByKey.get(key);
     const head = headByKey.get(key);
+    const sample = base ?? head;
+    if (sample === undefined) {
+      continue;
+    }
     const baseSummary = base ? summarize(base) : undefined;
     const headSummary = head ? summarize(head) : undefined;
     rows.push({
-      case: (base ?? head).case,
-      fields: (base ?? head).fields,
+      case: sample.case,
+      fields: sample.fields,
       base: baseSummary,
       head: headSummary,
       delta:
@@ -232,7 +291,13 @@ function compare(baseResults, headResults) {
   );
 }
 
-function printComparison(baseLabel, base, headLabel, head, rows) {
+function printComparison(
+  baseLabel: string,
+  base: PerfRun,
+  headLabel: string,
+  head: PerfRun,
+  rows: ComparisonRow[]
+): void {
   console.log("");
   console.log(
     `Comparison: ${baseLabel} (${base.ref} @ ${base.sha.slice(0, 9)}) -> ${headLabel} (${head.ref} @ ${head.sha.slice(0, 9)})`
@@ -252,7 +317,7 @@ function printComparison(baseLabel, base, headLabel, head, rows) {
       ? formatMs(row.head.median).padStart(8)
       : "     n/a";
     const delta = row.delta
-      ? formatDelta(row.base.median, row.head.median).padEnd(12)
+      ? formatDelta(row.base!.median, row.head!.median).padEnd(12)
       : "n/a         ";
     const baseP95 = row.base ? formatMs(row.base.p95).padStart(8) : "     n/a";
     const headP95 = row.head ? formatMs(row.head.p95).padStart(8) : "     n/a";
@@ -262,9 +327,9 @@ function printComparison(baseLabel, base, headLabel, head, rows) {
   }
 }
 
-export async function main() {
+export async function main(): Promise<void> {
   const options = parseOptions(process.argv.slice(2));
-  const resultsByRef = new Map();
+  const resultsByRef = new Map<string, PerfSample[]>();
   let currentRef = "";
 
   const server = createServer((request, response) => {
@@ -286,7 +351,7 @@ export async function main() {
     request.on("data", (chunk) => (body += chunk));
     request.on("end", () => {
       try {
-        const result = JSON.parse(body);
+        const result = JSON.parse(body) as PerfSample;
         resultsByRef.get(currentRef)?.push(result);
         response.writeHead(200);
         response.end("ok");
@@ -297,12 +362,16 @@ export async function main() {
     });
   });
 
-  await new Promise((resolvePromise) => {
+  await new Promise<void>((resolvePromise) => {
     server.listen(0, "127.0.0.1", resolvePromise);
   });
-  const sinkUrl = `http://127.0.0.1:${server.address().port}`;
+  const address = server.address();
+  if (address === null || typeof address === "string") {
+    throw new Error("Failed to start the benchmark result sink");
+  }
+  const sinkUrl = `http://127.0.0.1:${address.port}`;
 
-  async function measureRef(ref) {
+  async function measureRef(ref: string): Promise<PerfRun> {
     const prepared = prepare(ref);
     try {
       install(prepared.dir);
@@ -334,26 +403,36 @@ export async function main() {
           },
         }
       );
-      const exitCode = await new Promise((resolvePromise) => {
+      const exitCode = await new Promise<number>((resolvePromise) => {
         child.on("exit", (code) => resolvePromise(code ?? 1));
       });
       if (exitCode !== 0) {
         throw new Error(`Benchmark failed for ${ref} (exit code ${exitCode})`);
       }
-      return { ref, sha: prepared.sha, results: resultsByRef.get(ref) };
+      const results = resultsByRef.get(ref);
+      if (results === undefined) {
+        throw new Error(`No results were collected for ${ref}`);
+      }
+      return { ref, sha: prepared.sha, results };
     } finally {
       cleanup(prepared, options.keepWorktrees);
     }
   }
 
-  let base;
-  let head;
+  let base: PerfRun | undefined;
+  let head: PerfRun | undefined;
   try {
     base = await measureRef(options.baseRef);
     head = await measureRef(options.headRef);
   } finally {
     server.close();
     server.closeAllConnections?.();
+  }
+
+  if (base === undefined || head === undefined) {
+    console.error("No benchmark results were collected.");
+    process.exitCode = 1;
+    return;
   }
 
   if (base.results.length === 0 || head.results.length === 0) {

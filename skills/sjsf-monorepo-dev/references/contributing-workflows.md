@@ -72,7 +72,8 @@ wired into CI.
 Both scripts build each ref in an isolated git worktree; `worktree` (or `.`)
 uses the current checkout. Fetch the refs you want to compare first; the
 scripts do not fetch automatically. Defaults are `origin/main` (base) and
-`HEAD` (head). Both print the resolved SHAs.
+`HEAD` (head). Both print the resolved SHAs. The scripts are TypeScript and run
+directly through Node's built-in type stripping.
 
 #### Performance
 

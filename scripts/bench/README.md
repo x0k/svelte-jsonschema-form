@@ -75,6 +75,8 @@ slower if the pnpm store is cold; subsequent runs reuse it.
 
 ## Notes
 
+- Both scripts are TypeScript and run directly through Node's built-in type
+  stripping.
 - Both scripts export `main()` and only run it under `import.meta.main`, so they
   can be imported without executing.
 - Absolute timings and sizes are machine- and commit-specific.

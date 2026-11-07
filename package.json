@@ -17,8 +17,8 @@
     "prepare": "husky",
     "format": "oxfmt",
     "format:check": "oxfmt --check",
-    "bench:perf": "node scripts/bench/perf.mjs",
-    "bench:bundle": "node scripts/bench/bundle-size.mjs",
+    "bench:perf": "node scripts/bench/perf.ts",
+    "bench:bundle": "node scripts/bench/bundle-size.ts",
     "ci:build": "turbo run build test",
     "ci:version": "changeset version && pnpm install --no-frozen-lockfile && pnpm --filter @sjsf/sv --filter meta run test -u"
   },

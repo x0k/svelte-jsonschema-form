@@ -8,7 +8,7 @@
  * `node_modules`, which lets Vite resolve their real `exports` maps.
  */
 
-import { spawnSync } from "node:child_process";
+import { spawnSync, type StdioOptions } from "node:child_process";
 import {
   cpSync,
   existsSync,
@@ -24,13 +24,42 @@ import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { gzipSync } from "node:zlib";
 
+interface BundleOptions {
+  baseRef: string;
+  headRef: string;
+  asJson: boolean;
+  keepWorktrees: boolean;
+}
+
+interface PreparedWorktree {
+  ref: string;
+  sha: string;
+  dir: string;
+  cleanup: boolean;
+}
+
+type EntryName = "form" | "app";
+
+interface EntrySize {
+  files: string[];
+  raw: number;
+  gzip: number;
+}
+
+interface RefSize {
+  ref: string;
+  sha: string;
+  form: EntrySize;
+  app: EntrySize;
+}
+
 const repoRoot = resolve(import.meta.dirname, "../..");
 const fixtureSource = join(repoRoot, "scripts/bench/bundle-fixture");
 
-function parseOptions(args) {
-  function argValue(flag, fallback) {
+function parseOptions(args: string[]): BundleOptions {
+  function argValue(flag: string, fallback: string): string {
     const index = args.indexOf(flag);
-    return index === -1 ? fallback : args[index + 1];
+    return index === -1 ? fallback : args[index + 1]!;
   }
   return {
     baseRef: argValue("--base", "origin/main"),
@@ -40,7 +69,11 @@ function parseOptions(args) {
   };
 }
 
-function run(command, commandArgs, { cwd, stdio = "inherit" } = {}) {
+function run(
+  command: string,
+  commandArgs: string[],
+  { cwd, stdio = "inherit" }: { cwd?: string; stdio?: StdioOptions } = {}
+): string {
   const result = spawnSync(command, commandArgs, {
     cwd,
     env: process.env,
@@ -54,14 +87,14 @@ function run(command, commandArgs, { cwd, stdio = "inherit" } = {}) {
   return result.stdout?.toString() ?? "";
 }
 
-function resolveRef(ref) {
+function resolveRef(ref: string): string {
   return run("git", ["rev-parse", "--verify", `${ref}^{commit}`], {
     cwd: repoRoot,
     stdio: ["ignore", "pipe", "inherit"],
   }).trim();
 }
 
-function prepare(ref) {
+function prepare(ref: string): PreparedWorktree {
   if (ref === "worktree" || ref === ".") {
     return { ref, sha: resolveRef("HEAD"), dir: repoRoot, cleanup: false };
   }
@@ -71,7 +104,7 @@ function prepare(ref) {
   return { ref, sha, dir, cleanup: true };
 }
 
-function install(dir) {
+function install(dir: string): void {
   const installArgs = [
     "install",
     "--dir",
@@ -87,7 +120,7 @@ function install(dir) {
   }
 }
 
-function copyFixture(dir) {
+function copyFixture(dir: string): string {
   const target = join(dir, "scripts/bench/bundle-fixture");
   if (target !== fixtureSource) {
     cpSync(fixtureSource, target, {
@@ -110,12 +143,12 @@ function copyFixture(dir) {
   return target;
 }
 
-function buildPackages(dir) {
+function buildPackages(dir: string): void {
   run("pnpm", ["--dir", dir, "--filter", "@sjsf/form", "run", "build"]);
   run("pnpm", ["--dir", dir, "--filter", "@sjsf/basic-theme", "run", "build"]);
 }
 
-function buildEntry(dir, entry) {
+function buildEntry(dir: string, entry: EntryName): void {
   run(
     "pnpm",
     [
@@ -125,13 +158,13 @@ function buildEntry(dir, entry) {
       "vite",
       "build",
       "--config",
-      `scripts/bench/bundle-fixture/vite.${entry}.config.mjs`,
+      `scripts/bench/bundle-fixture/vite.${entry}.config.ts`,
     ],
     { cwd: dir }
   );
 }
 
-function measure(dir, entry) {
+function measure(dir: string, entry: EntryName): EntrySize {
   const assets = join(
     dir,
     "scripts/bench/bundle-fixture",
@@ -149,7 +182,12 @@ function measure(dir, entry) {
   return { files, raw, gzip };
 }
 
-function measureRef(ref, keepWorktrees) {
+function measureEntry(dir: string, entry: EntryName): EntrySize {
+  buildEntry(dir, entry);
+  return measure(dir, entry);
+}
+
+function measureRef(ref: string, keepWorktrees: boolean): RefSize {
   const prepared = prepare(ref);
   try {
     if (prepared.dir === repoRoot) {
@@ -161,12 +199,12 @@ function measureRef(ref, keepWorktrees) {
     }
     copyFixture(prepared.dir);
     buildPackages(prepared.dir);
-    const result = { ref, sha: prepared.sha };
-    for (const entry of ["form", "app"]) {
-      buildEntry(prepared.dir, entry);
-      result[entry] = measure(prepared.dir, entry);
-    }
-    return result;
+    return {
+      ref,
+      sha: prepared.sha,
+      form: measureEntry(prepared.dir, "form"),
+      app: measureEntry(prepared.dir, "app"),
+    };
   } finally {
     if (prepared.cleanup && !keepWorktrees) {
       try {
@@ -184,18 +222,18 @@ function measureRef(ref, keepWorktrees) {
   }
 }
 
-function formatBytes(bytes) {
+function formatBytes(bytes: number): string {
   return `${(bytes / 1000).toFixed(2)} kB`;
 }
 
-function formatDelta(base, head) {
+function formatDelta(base: number, head: number): string {
   const delta = head - base;
   const percent = base === 0 ? 0 : (delta / base) * 100;
   const sign = delta >= 0 ? "+" : "";
   return `${sign}${formatBytes(delta)} (${sign}${percent.toFixed(1)}%)`;
 }
 
-export function main() {
+export function main(): void {
   const options = parseOptions(process.argv.slice(2));
   const base = measureRef(options.baseRef, options.keepWorktrees);
   const head = measureRef(options.headRef, options.keepWorktrees);
@@ -231,7 +269,7 @@ export function main() {
     console.log(
       "-----   ------------------------   ------------------------   ------------------------------"
     );
-    for (const entry of ["form", "app"]) {
+    for (const entry of ["form", "app"] as const) {
       const b = base[entry];
       const h = head[entry];
       console.log(
