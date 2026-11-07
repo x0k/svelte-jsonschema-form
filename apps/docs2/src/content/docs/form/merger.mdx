@@ -20,14 +20,59 @@ export interface Merger {
   mergeAllOf(schema: Schema): Schema;
 }
 
+export interface MergeFormDataAndSchemaDefaultsOptions {
+  schema: Schema;
+  formData: SchemaValue | undefined;
+  initialDefaultsGenerated?: boolean;
+  includeUndefinedValues?: boolean | "excludeObjectChildren";
+}
+
+export interface FormValueChange {
+  path: FieldPath;
+  oldValue: SchemaValue | undefined;
+}
+
+export interface DropStaleDefaultsOptions {
+  validator: Validator;
+  rootSchema: Schema;
+  /**
+   * The schema resolved for the current form data.
+   */
+  newSchema: Schema;
+  formData: SchemaValue | undefined;
+  /**
+   * Values written since the last defaults pass.
+   */
+  changes: readonly FormValueChange[];
+  /**
+   * The form data as it arrived, before this defaults pass dropped anything.
+   * When omitted, it is rebuilt from `changes`.
+   */
+  oldFormData?: SchemaValue | undefined;
+  /**
+   * The schema resolved for `oldFormData`. When omitted, it is retrieved from
+   * `rootSchema` and `oldFormData`.
+   */
+  oldSchema?: Schema | undefined;
+  /**
+   * Paths this pass has already dropped. They are skipped so a replacement
+   * the defaults fill has written is not dropped again.
+   */
+  droppedPaths?: readonly FieldPath[];
+}
+
 export interface FormMerger extends Merger {
   /**
    * Merges defaults of `schema` into `formData`
    */
   mergeFormDataAndSchemaDefaults(
-    formData: SchemaValue | undefined,
-    schema: Schema
+    options: MergeFormDataAndSchemaDefaultsOptions
   ): SchemaValue | undefined;
+  /**
+   * Removes values that still hold a `default` or `const` declared by a
+   * `dependencies` or `if`/`then`/`else` branch that is no longer selected.
+   */
+  dropStaleDefaults(options: DropStaleDefaultsOptions): SchemaValue | undefined;
 }
 ```
 
