@@ -7,6 +7,9 @@ worktree; `worktree` (or `.`) uses the current checkout. Fetch the refs you want
 to compare first; the scripts do not fetch automatically. The default base is
 `origin/main` and the default head is `HEAD`.
 
+In this repository, `mk bp` and `mk bb` run the same commands with those
+defaults.
+
 ## Performance
 
 ```sh

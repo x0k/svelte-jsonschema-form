@@ -75,6 +75,9 @@ scripts do not fetch automatically. Defaults are `origin/main` (base) and
 `HEAD` (head). Both print the resolved SHAs. The scripts are TypeScript and run
 directly through Node's built-in type stripping.
 
+In this repository, `mk bp` and `mk bb` run the same commands with the same
+defaults.
+
 #### Performance
 
 ```bash
