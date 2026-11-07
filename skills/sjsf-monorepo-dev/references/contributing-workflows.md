@@ -64,6 +64,47 @@ pnpm check
 pnpm --filter @sjsf/form run check
 ```
 
+### 5. Benchmarks
+
+Two manual tools compare arbitrary git refs. They are intentionally **not**
+wired into CI.
+
+Both scripts build each ref in an isolated git worktree; `worktree` (or `.`)
+uses the current checkout. Fetch the refs you want to compare first; the
+scripts do not fetch automatically. Defaults are `origin/main` (base) and
+`HEAD` (head). Both print the resolved SHAs.
+
+#### Performance
+
+```bash
+pnpm bench:perf --base origin/main --head HEAD
+```
+
+- Copies `packages/basic-theme/tests/benchmarks` from the current checkout
+  into each ref's worktree, so both refs run identical cases.
+- Runs headless Chromium and reports median/p95/min/max per ref plus a
+  base-to-head comparison.
+- Cases: `create`, `edit`, `edit-conditional`, `edit-nested`, `branch-swap`.
+- Updates are dispatched as DOM events, so the suite works across refs with
+  different form value APIs.
+- Options: `--fields 100,400,1000`, `--samples 15`, `--json`, `--keep`,
+  `--no-build`.
+
+#### Bundle size
+
+```bash
+pnpm bench:bundle --base origin/main --head HEAD
+```
+
+- Compares minified and gzipped JS for the `form` entry (`@sjsf/form` with
+  Svelte externalized) and the `app` entry (a small `@sjsf/basic-theme` app
+  that bundles Svelte and the theme).
+- Options: `--json`, `--keep`.
+
+Absolute timings and sizes are machine-specific; compare runs from the same
+machine. See `scripts/bench/README.md` for the implementation and fixture
+layout.
+
 ---
 
 ## Adding a New Theme or Validator
