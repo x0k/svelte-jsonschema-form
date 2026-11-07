@@ -6,9 +6,9 @@
  * clearing it when the branch changed the key's type, and a value no fill
  * answered has to go back before the schema is resolved for the next
  * iteration. Those decisions need the dropped paths, the values they held, and
- * the schema each was written under, which the plain `dropStaleDefaults()`
- * hook does not return. This class keeps that state and owns the small
- * path-level helpers the loop needs.
+ * the schema each was written under, which `dropStaleDefaults()` reports as
+ * entries. This class keeps that state and owns the small path-level helpers
+ * the loop needs.
  */
 
 import {
@@ -27,18 +27,8 @@ import { getOwn, isRecord, setOwn } from "#lib/object.js";
 import { pathKey } from "./change-path.js";
 import { replaceAtPath } from "./drop-stale-defaults.js";
 import type { FieldPath } from "./id.js";
-import type { FormMerger, FormValueChange } from "./merger.js";
+import type { DroppedDefault, FormMerger, FormValueChange } from "./merger.js";
 import type { FieldValue, FormValue } from "./model.js";
-
-interface DroppedValue {
-  path: FieldPath;
-  value: FieldValue;
-  /**
-   * The schema that described the key while it held `value`, which is what a
-   * replacement the fill writes is judged against.
-   */
-  writtenUnder: Schema | undefined;
-}
 
 export interface AfterFillResult {
   formData: FormValue;
@@ -217,7 +207,8 @@ function isRefillRejected(
 }
 
 export class StaleDefaultsPass {
-  private readonly dropped = new Map<string, DroppedValue>();
+  private readonly dropped = new Map<string, DroppedDefault>();
+  private readonly droppedPathKeys = new Set<string>();
   private readonly settled = new Set<string>();
   private readonly validator: Validator;
   private readonly merger: FormMerger;
@@ -248,7 +239,7 @@ export class StaleDefaultsPass {
     newSchema: Schema,
     initialDefaultsGenerated: boolean
   ): FormValue {
-    const result = this.merger.dropStaleDefaults({
+    const { formData: result, dropped } = this.merger.dropStaleDefaults({
       validator: this.validator,
       rootSchema: this.rootSchema,
       newSchema,
@@ -256,14 +247,13 @@ export class StaleDefaultsPass {
       changes: this.changes,
       oldFormData: this.oldFormData,
       oldSchema: this.oldSchema,
-      droppedPaths: [...this.dropped.values()].map(({ path }) => path),
+      droppedPaths: this.droppedPathKeys,
       initialDefaultsGenerated,
     });
-    if (!isSchemaObjectValue(result)) {
-      return formData;
+    for (const entry of dropped) {
+      this.recordDrop(entry);
     }
-    this.collectDrops(formData, result, newSchema);
-    return result;
+    return isSchemaObjectValue(result) ? result : formData;
   }
 
   /**
@@ -368,42 +358,11 @@ export class StaleDefaultsPass {
     return result;
   }
 
-  private collectDrops(before: FormValue, after: FormValue, newSchema: Schema) {
-    if (!isSchemaObjectValue(before) || !isSchemaObjectValue(after)) {
-      return;
+  private recordDrop(dropped: DroppedDefault) {
+    const key = pathKey(dropped.path);
+    if (!this.dropped.has(key)) {
+      this.dropped.set(key, dropped);
+      this.droppedPathKeys.add(key);
     }
-    const walk = (
-      oldLevel: Record<string, unknown>,
-      newLevel: Record<string, unknown>,
-      path: FieldPath
-    ) => {
-      for (const key of Object.keys(oldLevel)) {
-        const nextPath = [...path, key] as unknown as FieldPath;
-        if (!Object.hasOwn(newLevel, key)) {
-          const keyId = pathKey(nextPath);
-          if (!this.dropped.has(keyId)) {
-            this.dropped.set(keyId, {
-              path: nextPath,
-              value: getOwn(oldLevel, key) as FieldValue,
-              writtenUnder: resolveSchemaAt(
-                this.validator,
-                this.merger,
-                this.rootSchema,
-                newSchema,
-                nextPath,
-                before
-              ),
-            });
-          }
-        } else {
-          const oldValue = getOwn(oldLevel, key);
-          const newValue = getOwn(newLevel, key);
-          if (isSchemaObjectValue(oldValue) && isSchemaObjectValue(newValue)) {
-            walk(oldValue, newValue, nextPath);
-          }
-        }
-      }
-    };
-    walk(before, after, [] as unknown as FieldPath);
   }
 }

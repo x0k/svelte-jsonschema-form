@@ -34,11 +34,15 @@ import { pathKey } from "./change-path.js";
 import { declaresValueFor } from "./declares-value.js";
 import type { FieldPath } from "./id.js";
 import type {
+  DroppedDefault,
   DropStaleDefaultsOptions,
+  DropStaleDefaultsResult,
   FormMerger,
   FormValueChange,
 } from "./merger.js";
 import type { FieldValue, FormValue } from "./model.js";
+
+const NO_DROPPED_PATHS: ReadonlySet<string> = new Set();
 
 function isSchemaObject(value: unknown): value is Schema {
   return isRecord(value);
@@ -224,7 +228,8 @@ function dropStaleDefaultsAtLevel(
   changedPaths: readonly FieldPath[],
   droppedPaths: ReadonlySet<string>,
   levelPath: FieldPath,
-  initialDefaultsGenerated: boolean
+  initialDefaultsGenerated: boolean,
+  dropped: DroppedDefault[]
 ): SchemaObjectValue {
   const newProperties = newSchema.properties;
   const oldProperties = oldSchema.properties;
@@ -235,8 +240,9 @@ function dropStaleDefaultsAtLevel(
     return formData;
   }
 
-  // Keys whose declarations differ and which are worth a defaults computation.
-  const replaceableKeys: string[] = [];
+  // Keys whose declarations differ and which are worth a defaults computation,
+  // with the schema that describes each one as the data stands.
+  const replaceable: { key: string; writtenUnder: Schema }[] = [];
   const nested: NestedKey[] = [];
   for (const key of Object.keys(newProperties)) {
     if (!Object.hasOwn(oldProperties, key)) {
@@ -309,7 +315,7 @@ function dropStaleDefaultsAtLevel(
       declaresValueFor(newSchema, key, newResolved) &&
       declaresValueFor(oldSchema, key, oldResolved)
     ) {
-      replaceableKeys.push(key);
+      replaceable.push({ key, writtenUnder: newResolved });
     }
 
     if (isSchemaObjectValue(current) && isSchemaObjectValue(oldCurrent)) {
@@ -334,11 +340,12 @@ function dropStaleDefaultsAtLevel(
   // data of its own need not be the one the fill picks for the data there is.
   // Either side disqualifies the level; the walk still descends.
   if (
-    replaceableKeys.length > 0 &&
+    replaceable.length > 0 &&
     !optionsDeclareProperties(validator, merger, newSchema, rootSchema) &&
     (newSchema === oldSchema ||
       !optionsDeclareProperties(validator, merger, oldSchema, rootSchema))
   ) {
+    const replaceableKeys = replaceable.map(({ key }) => key);
     const oldDefaults = levelDefaults(
       merger,
       oldSchema,
@@ -363,7 +370,11 @@ function dropStaleDefaultsAtLevel(
         holdingKeys,
         initialDefaultsGenerated
       );
-      for (const key of holdingKeys) {
+      const holding = new Set(holdingKeys);
+      for (const { key, writtenUnder } of replaceable) {
+        if (!holding.has(key)) {
+          continue;
+        }
         const oldDefault = getOwn(oldDefaults, key);
         const newDefault = getOwn(newDefaults, key);
         if (
@@ -375,6 +386,11 @@ function dropStaleDefaultsAtLevel(
           }
           delete result[key];
           droppedKeys.add(key);
+          dropped.push({
+            path: [...levelPath, key] as unknown as FieldPath,
+            value: getOwn(oldFormData, key) as FieldValue,
+            writtenUnder,
+          });
         }
       }
     }
@@ -400,7 +416,8 @@ function dropStaleDefaultsAtLevel(
       entry.changedPaths,
       droppedPaths,
       [...levelPath, entry.key] as unknown as FieldPath,
-      initialDefaultsGenerated
+      initialDefaultsGenerated,
+      dropped
     );
     if (next !== entry.current) {
       if (result === formData) {
@@ -430,22 +447,23 @@ export function dropStaleDefaults(
     droppedPaths,
     initialDefaultsGenerated = false,
   }: DropStaleDefaultsOptions
-): SchemaValue | undefined {
+): DropStaleDefaultsResult {
   if (!isSchemaObjectValue(formData) || !isSchemaObjectValue(newSchema)) {
-    return formData;
+    return { formData, dropped: [] };
   }
   const oldFormData =
     providedOldFormData ?? rebuildOldFormData(formData, changes);
   if (!isSchemaObjectValue(oldFormData)) {
-    return formData;
+    return { formData, dropped: [] };
   }
   const oldSchema =
     providedOldSchema ??
     retrieveSchema(validator, merger, rootSchema, rootSchema, oldFormData);
   if (!isSchemaObjectValue(oldSchema)) {
-    return formData;
+    return { formData, dropped: [] };
   }
-  return dropStaleDefaultsAtLevel(
+  const dropped: DroppedDefault[] = [];
+  const nextFormData = dropStaleDefaultsAtLevel(
     validator,
     merger,
     rootSchema,
@@ -454,8 +472,10 @@ export function dropStaleDefaults(
     formData,
     oldFormData,
     changes.map(({ path }) => path),
-    new Set((droppedPaths ?? []).map(pathKey)),
+    droppedPaths ?? NO_DROPPED_PATHS,
     [] as unknown as FieldPath,
-    initialDefaultsGenerated
+    initialDefaultsGenerated,
+    dropped
   );
+  return { formData: nextFormData, dropped };
 }

@@ -90,7 +90,7 @@ function drop({
     newSchema,
     formData,
     changes,
-  });
+  }).formData;
 }
 
 const oldSchema: Schema = {
@@ -133,6 +133,25 @@ describe("dropStaleDefaults", () => {
         changes: [change(path("mode"), "first")],
       })
     ).toEqual({ mode: "second" });
+  });
+
+  it("reports the dropped value and the schema it was written under", () => {
+    const formData = { mode: "second", value: { branch: "first" } };
+    const result = dropStaleDefaults(formMerger(createMerger(), oldSchema), {
+      validator: testValidator,
+      rootSchema: oldSchema,
+      newSchema,
+      formData,
+      changes: [change(path("mode"), "first")],
+    });
+
+    expect(result.formData).toEqual({ mode: "second" });
+    expect(result.dropped).toHaveLength(1);
+    expect(result.dropped[0]).toMatchObject({
+      path: path("value"),
+      value: { branch: "first" },
+      writtenUnder: { default: { branch: "second" } },
+    });
   });
 
   it("keeps a value the user changed away from the old default", () => {
@@ -523,7 +542,7 @@ describe("dropStaleDefaults", () => {
         newSchema: newOrderedSchema,
         formData,
         changes: [change(path("mode"), "a")],
-      })
+      }).formData
     ).toBe(formData);
   });
 

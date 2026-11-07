@@ -32,6 +32,25 @@ export interface FormValueChange {
   oldValue: SchemaValue | undefined;
 }
 
+export interface DroppedDefault {
+  path: FieldPath;
+  value: FieldValue;
+  /**
+   * The schema that described the path while it held the value, which is what
+   * a replacement the defaults fill writes is judged against.
+   */
+  writtenUnder: Schema | undefined;
+}
+
+export interface DropStaleDefaultsResult {
+  formData: SchemaValue | undefined;
+  /**
+   * The values removed, in walk order. A path's parent is never listed
+   * alongside it.
+   */
+  dropped: readonly DroppedDefault[];
+}
+
 export interface DropStaleDefaultsOptions {
   validator: Validator;
   rootSchema: Schema;
@@ -56,10 +75,12 @@ export interface DropStaleDefaultsOptions {
    */
   oldSchema?: Schema | undefined;
   /**
-   * Paths this pass has already dropped. They are skipped so a replacement
-   * the defaults fill has written is not dropped again.
+   * Path keys this pass has already dropped. They are skipped so a replacement
+   * the defaults fill has written is not dropped again. The search only tests
+   * membership, so a caller that already keys its drops can pass that record
+   * directly instead of rebuilding one per search.
    */
-  droppedPaths?: readonly FieldPath[];
+  droppedPaths?: ReadonlySet<string>;
   /**
    * The flag the defaults fill is running with. The search computes the same
    * defaults as that fill, so it must use the same flag.
@@ -79,9 +100,10 @@ export interface FormMerger extends Merger {
    * Removes values that still hold a `default` or `const` declared by a
    * `dependencies` or `if`/`then`/`else` branch that is no longer selected, so
    * the next `mergeFormDataAndSchemaDefaults` call writes the newly selected
-   * branch's default.
+   * branch's default. The returned entries let the form put back a value no
+   * fill answered and judge a replacement at its own key.
    */
-  dropStaleDefaults(options: DropStaleDefaultsOptions): SchemaValue | undefined;
+  dropStaleDefaults(options: DropStaleDefaultsOptions): DropStaleDefaultsResult;
 }
 ```
 
@@ -108,10 +130,12 @@ A custom implementation can use the `oldFormData` and `oldSchema` options to
 skip rebuilding the pre-pass data and resolving its schema, and must honor
 `changes`, `droppedPaths`, and `initialDefaultsGenerated` so user edits stay
 distinguishable, a replacement is not dropped again, and the comparison sees
-the same defaults as the fill. It must also gate a replacement on both branches
-declaring a value for the key: the computed defaults also contain nested leaf
-defaults, required placeholders, and `items` defaults repeated to `minItems`,
-none of which are a branch declaring the key's value.
+the same defaults as the fill. Each removal must be reported in `dropped` with
+the value it removed and the schema that described the path while it held that
+value. It must also gate a replacement on both branches declaring a value for
+the key: the computed defaults also contain nested leaf defaults, required
+placeholders, and `items` defaults repeated to `minItems`, none of which are a
+branch declaring the key's value.
 
 <LinkCard
   title="Merger Setup"
