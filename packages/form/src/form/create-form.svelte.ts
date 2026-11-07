@@ -281,8 +281,9 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   // A path is stored once: replaying writes from latest to earliest keeps the
   // first old value, so later writes to the same path add nothing.
   const pendingChanges = new Map<string, FormValueChange>();
-  // A reactive `initialValue` recreates `valueRef`, which discards the history
-  // the pending paths describe.
+  // A reactive `initialValue` recreates `valueRef`, reseeding the form value
+  // like a reset, so history recorded against the previous ref no longer
+  // applies.
   let pendingChangesRef: FormValueRef | undefined;
   const idBuilder: FormIdBuilder = $derived(
     create(options.idBuilder, {
