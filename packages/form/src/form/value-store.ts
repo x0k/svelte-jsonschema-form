@@ -118,8 +118,14 @@ export function createFormValueStore({
           `Cannot update a non-array value at path "${path.join(".")}"`
         );
       }
-      onChange?.({ path, oldValue: copyForChange(current) });
+      const before = current.slice();
       update(getKeyedArray(current), current.length);
+      if (
+        current.length !== before.length ||
+        current.some((value, index) => value !== before[index])
+      ) {
+        onChange?.({ path, oldValue: before });
+      }
     },
   };
 }

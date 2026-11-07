@@ -1,6 +1,13 @@
 import { beforeEach, describe, expect, it } from "vitest";
 
-import type { Merger, Schema, SchemaValue, Validator } from "#core/index.js";
+import {
+  isOrderedSchemaDeepEqual,
+  type Merger,
+  type Schema,
+  type SchemaValue,
+  type Validator,
+  type ValueDeepComparator,
+} from "#core/index.js";
 import { createMerger } from "#core/test-merger.js";
 import { createValidator } from "#core/test-validator.js";
 
@@ -377,5 +384,179 @@ describe("dropStaleDefaults", () => {
 
     expect(Object.hasOwn(result as object, "__proto__")).toBe(false);
     expect(Object.getPrototypeOf(result)).toBe(Object.prototype);
+  });
+
+  it("treats a null property default as a declared default", () => {
+    const oldNullSchema: Schema = {
+      type: "object",
+      properties: {
+        mode: { type: "string" },
+        x: { type: "null", default: null },
+      },
+    };
+    const newNullSchema: Schema = {
+      type: "object",
+      properties: {
+        mode: { type: "string" },
+        x: { type: "string", default: "b" },
+      },
+    };
+
+    expect(
+      drop({
+        oldSchema: oldNullSchema,
+        newSchema: newNullSchema,
+        formData: { mode: "b", x: null },
+        changes: [change(path("mode"), "a")],
+      })
+    ).toEqual({ mode: "b" });
+  });
+
+  it("treats a null property const as a declared default", () => {
+    const oldNullSchema: Schema = {
+      type: "object",
+      properties: {
+        mode: { type: "string" },
+        x: { const: null },
+      },
+    };
+    const newNullSchema: Schema = {
+      type: "object",
+      properties: {
+        mode: { type: "string" },
+        x: { type: "string", default: "b" },
+      },
+    };
+
+    expect(
+      drop({
+        oldSchema: oldNullSchema,
+        newSchema: newNullSchema,
+        formData: { mode: "b", x: null },
+        changes: [change(path("mode"), "a")],
+      })
+    ).toEqual({ mode: "b" });
+  });
+
+  it("prefers a null property declaration over the level default", () => {
+    const oldLevelSchema: Schema = {
+      type: "object",
+      properties: {
+        mode: { type: "string" },
+        x: { type: "null", default: null },
+      },
+      default: { x: "a" },
+    };
+    const newLevelSchema: Schema = {
+      type: "object",
+      properties: {
+        mode: { type: "string" },
+        x: { type: "string", default: "b" },
+      },
+      default: { x: "b" },
+    };
+
+    expect(
+      drop({
+        oldSchema: oldLevelSchema,
+        newSchema: newLevelSchema,
+        formData: { mode: "b", x: null },
+        changes: [change(path("mode"), "a")],
+      })
+    ).toEqual({ mode: "b" });
+  });
+
+  it("uses the merger's value comparer", () => {
+    const orderedMerger: Merger = {
+      ...defaultMerger,
+      isValueDeepEqual: isOrderedSchemaDeepEqual as ValueDeepComparator,
+    };
+    const oldOrderedSchema: Schema = {
+      type: "object",
+      properties: {
+        mode: { type: "string" },
+        cfg: { type: "object", default: { a: 1, b: 2 } },
+      },
+    };
+    const newOrderedSchema: Schema = {
+      type: "object",
+      properties: {
+        mode: { type: "string" },
+        cfg: { type: "object", default: { a: 1, b: 3 } },
+      },
+    };
+    const formData = { mode: "b", cfg: { b: 2, a: 1 } };
+
+    expect(
+      dropStaleDefaults(orderedMerger, {
+        validator: testValidator,
+        rootSchema: oldOrderedSchema,
+        newSchema: newOrderedSchema,
+        formData,
+        changes: [change(path("mode"), "a")],
+      })
+    ).toBe(formData);
+  });
+
+  it("keeps values supplied by a whole-object change", () => {
+    const formData = { mode: "second", value: { branch: "first" } };
+
+    expect(
+      drop({
+        oldSchema,
+        newSchema,
+        formData,
+        changes: [
+          change(path(), { mode: "first", value: { branch: "first" } }),
+        ],
+      })
+    ).toBe(formData);
+  });
+
+  it("keeps values below a whole-object change", () => {
+    const oldNestedSchema: Schema = {
+      type: "object",
+      properties: {
+        cfg: {
+          type: "object",
+          properties: {
+            kind: {
+              type: "object",
+              properties: {
+                branch: { type: "string", default: "first" },
+              },
+              default: { branch: "first" },
+            },
+          },
+        },
+      },
+    };
+    const newNestedSchema: Schema = {
+      type: "object",
+      properties: {
+        cfg: {
+          type: "object",
+          properties: {
+            kind: {
+              type: "object",
+              properties: {
+                branch: { type: "string", default: "second" },
+              },
+              default: { branch: "second" },
+            },
+          },
+        },
+      },
+    };
+    const formData = { cfg: { kind: { branch: "first" } } };
+
+    expect(
+      drop({
+        oldSchema: oldNestedSchema,
+        newSchema: newNestedSchema,
+        formData,
+        changes: [change(path("cfg"), { kind: { branch: "first" } })],
+      })
+    ).toBe(formData);
   });
 });

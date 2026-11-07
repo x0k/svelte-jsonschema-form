@@ -41,7 +41,8 @@ export interface DropStaleDefaultsOptions {
   newSchema: Schema;
   formData: SchemaValue | undefined;
   /**
-   * Values written since the last defaults pass.
+   * Values written since the last defaults pass. A value at one of these paths,
+   * or below one, belongs to the user.
    */
   changes: readonly FormValueChange[];
   /**
@@ -78,6 +79,26 @@ export interface FormMerger extends Merger {
 
 Use `createFormMerger` from `@sjsf/form/mergers/modern` for most projects.
 The legacy merger is available for v2 compatibility.
+
+The built-in mergers implement `dropStaleDefaults` with the exported
+`dropStaleDefaults(merger, options)` helper. A custom `FormMerger` should
+delegate to the same helper:
+
+```typescript
+import { dropStaleDefaults, type DropStaleDefaultsOptions } from "@sjsf/form";
+
+const merger: FormMerger = {
+  // ...
+  dropStaleDefaults(options: DropStaleDefaultsOptions) {
+    return dropStaleDefaults(merger, options);
+  },
+};
+```
+
+A custom implementation can use the `oldFormData` and `oldSchema` options to
+skip rebuilding the pre-pass data and resolving its schema, and must honor
+`changes` and `droppedPaths` so user edits stay distinguishable and a
+replacement is not dropped again.
 
 <LinkCard
   title="Merger Setup"

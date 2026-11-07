@@ -30,8 +30,9 @@ export interface DropStaleDefaultsOptions {
   newSchema: Schema;
   formData: SchemaValue | undefined;
   /**
-   * Values written since the last defaults pass. A value at one of these paths
-   * belongs to the user, even when it equals the replaced branch's default.
+   * Values written since the last defaults pass. A value at one of these paths,
+   * or below one, belongs to the user, even when it equals the replaced
+   * branch's default.
    */
   changes: readonly FormValueChange[];
   /**

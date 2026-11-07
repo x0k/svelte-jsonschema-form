@@ -592,6 +592,51 @@ describe("combination field contracts", () => {
       expectValue(form, { mode: "second", x: "b" });
     });
 
+    test("replaces a null dependency default", async () => {
+      const schema: Schema = {
+        type: "object",
+        properties: {
+          mode: { type: "string", enum: ["first", "second"] },
+        },
+        dependencies: {
+          mode: {
+            oneOf: [
+              {
+                properties: {
+                  mode: { const: "first" },
+                  x: { type: "null", default: null },
+                },
+              },
+              {
+                properties: {
+                  mode: { const: "second" },
+                  x: { type: "string", default: "b" },
+                },
+              },
+            ],
+          },
+        },
+      };
+      const { form } = await renderFieldForm({
+        schema,
+        initialValue: { mode: "first", x: null },
+      });
+
+      await userEvent.fill(page.getByRole("textbox").first(), "second");
+      expectValue(form, { mode: "second", x: "b" });
+    });
+
+    test("keeps values supplied by a whole-object write", async () => {
+      const { form } = await renderFieldForm({
+        schema: swappedParentDefaultsSchema,
+        initialValue: { mode: "first", x: "a" },
+      });
+
+      setValueAtPath(form, [], { mode: "second", x: "a" });
+      await Promise.resolve();
+      expectValue(form, { mode: "second", x: "a" });
+    });
+
     test("keeps a value changed earlier in the same batch", async () => {
       const { form } = await renderFieldForm({
         schema: swappedCfgDefaultsSchema,

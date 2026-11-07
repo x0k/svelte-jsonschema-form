@@ -24,6 +24,7 @@ import {
 } from "#lib/task.svelte.js";
 import type { DeepPartial } from "#lib/types.js";
 
+import { pathKey } from "./change-path.js";
 import type { Theme } from "./components.js";
 import type { Config } from "./config.js";
 import { rebuildOldFormData } from "./drop-stale-defaults.js";
@@ -277,7 +278,12 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   );
   // The stale-default search needs to know which values the user wrote and what
   // they replaced, so it can resolve the old schema without cloning form data.
-  let pendingChanges: FormValueChange[] = [];
+  // A path is stored once: replaying writes from latest to earliest keeps the
+  // first old value, so later writes to the same path add nothing.
+  const pendingChanges = new Map<string, FormValueChange>();
+  // A reactive `initialValue` recreates `valueRef`, which discards the history
+  // the pending paths describe.
+  let pendingChangesRef: FormValueRef | undefined;
   const idBuilder: FormIdBuilder = $derived(
     create(options.idBuilder, {
       idPrefix,
@@ -469,7 +475,8 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       recordChange(change.path, change.oldValue);
     },
     onReplace() {
-      pendingChanges = [];
+      pendingChanges.clear();
+      pendingChangesRef = valueRef;
     },
   });
 
@@ -566,11 +573,27 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     if (!mayDropStaleDefaults) {
       return;
     }
-    pendingChanges.push({ path, oldValue });
+    if (pendingChangesRef !== valueRef) {
+      pendingChanges.clear();
+      pendingChangesRef = valueRef;
+    }
+    const key = pathKey(path);
+    if (!pendingChanges.has(key)) {
+      pendingChanges.set(key, { path, oldValue });
+    }
     const triggerKeys = staleDefaultsTriggerKeys;
     if (triggerKeys === undefined || mayChangeTriggerKey(path, triggerKeys)) {
       scheduleDefaultsInjection();
     }
+  }
+  function takePendingChanges() {
+    if (pendingChangesRef !== valueRef) {
+      pendingChanges.clear();
+      pendingChangesRef = valueRef;
+    }
+    const changes = [...pendingChanges.values()];
+    pendingChanges.clear();
+    return changes;
   }
   // A `dependencies` key counts when it is the first path segment (or part of
   // a root array item path); a nested conditional is attributed to the
@@ -596,8 +619,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   }
   function injectSchemaDefaults() {
     isDefaultsInjectionQueued = false;
-    const changes = pendingChanges;
-    pendingChanges = [];
+    const changes = takePendingChanges();
     let formData = valueRef.current;
     // The schema the data arrived under is resolved for the data before the
     // pending changes, not for the last schema the derived happened to see: a
@@ -622,7 +644,8 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
             merger,
             rootSchema: options.schema,
             changes,
-            formData,
+            oldFormData,
+            oldSchema: currentRetrievedSchema,
           })
         : undefined;
     const values: FormValue[] = [];

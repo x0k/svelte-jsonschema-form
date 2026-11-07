@@ -14,7 +14,6 @@
 import {
   getSchemaDefinitionByPath,
   isSchemaObjectValue,
-  isSchemaValueDeepEqual,
   retrieveSchema,
   sanitizeDataForNewSchema,
   type Merger,
@@ -25,7 +24,7 @@ import {
 import { getOwn, isRecord, setOwn } from "#lib/object.js";
 
 import { pathKey } from "./change-path.js";
-import { rebuildOldFormData, replaceAtPath } from "./drop-stale-defaults.js";
+import { replaceAtPath } from "./drop-stale-defaults.js";
 import type { FieldPath } from "./id.js";
 import type { FormMerger, FormValueChange } from "./merger.js";
 import type { FieldValue, FormValue } from "./model.js";
@@ -56,7 +55,14 @@ export interface StaleDefaultsPassOptions {
   merger: FormMerger;
   rootSchema: Schema;
   changes: readonly FormValueChange[];
-  formData: SchemaValue | undefined;
+  /**
+   * The form data the pending changes started from.
+   */
+  oldFormData: FormValue;
+  /**
+   * The schema resolved for `oldFormData`.
+   */
+  oldSchema: Schema | undefined;
 }
 
 function getAtPath(data: unknown, path: readonly (string | number)[]): unknown {
@@ -205,7 +211,7 @@ function isRefillRejected(
     data
   );
   return (
-    !isSchemaObjectValue(judged) || !isSchemaValueDeepEqual(judged[key], value)
+    !isSchemaObjectValue(judged) || !merger.isValueDeepEqual(judged[key], value)
   );
 }
 
@@ -224,21 +230,15 @@ export class StaleDefaultsPass {
     merger,
     rootSchema,
     changes,
-    formData,
+    oldFormData,
+    oldSchema,
   }: StaleDefaultsPassOptions) {
     this.validator = validator;
     this.merger = merger;
     this.rootSchema = rootSchema;
     this.changes = changes;
-    this.oldFormData = rebuildOldFormData(formData, changes);
-    const oldSchema = retrieveSchema(
-      validator,
-      merger,
-      rootSchema,
-      rootSchema,
-      this.oldFormData
-    );
-    this.oldSchema = isSchemaObjectValue(oldSchema) ? oldSchema : undefined;
+    this.oldFormData = oldFormData;
+    this.oldSchema = oldSchema;
   }
 
   /** Drops every stale path the search reports for `formData`. */
@@ -338,7 +338,7 @@ export class StaleDefaultsPass {
           this.oldFormData,
           dropped.path,
           held,
-          (value) => !isSchemaValueDeepEqual(value, held)
+          (value) => !this.merger.isValueDeepEqual(value, held)
         );
       }
     }

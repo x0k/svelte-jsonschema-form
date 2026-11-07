@@ -1,6 +1,7 @@
 import {
   DEPENDENCIES_KEY,
   IF_KEY,
+  resolveRef,
   type SchemaDefinition,
 } from "#core/index.js";
 import { isSchemaObject } from "#lib/json-schema/index.js";
@@ -357,36 +358,14 @@ function resolveLocalRef(
   rootSchema: SchemaDefinition,
   ref: string
 ): SchemaDefinition | undefined {
-  if (!ref.startsWith("#")) {
+  if (!isSchemaObject(rootSchema)) {
     return undefined;
   }
-  if (ref === "#") {
-    return rootSchema;
-  }
-  if (!ref.startsWith("#/")) {
+  try {
+    return resolveRef(ref, rootSchema);
+  } catch {
     return undefined;
   }
-  let current: unknown = rootSchema;
-  for (const rawPart of ref.slice(2).split("/")) {
-    const part = decodeURIComponent(rawPart)
-      .replace(/~1/g, "/")
-      .replace(/~0/g, "~");
-    if (typeof current !== "object" || current === null) {
-      return undefined;
-    }
-    current = (current as Record<string, unknown>)[part];
-  }
-  if (typeof current === "boolean") {
-    return current;
-  }
-  if (
-    typeof current === "object" &&
-    current !== null &&
-    !Array.isArray(current)
-  ) {
-    return current as SchemaDefinition;
-  }
-  return undefined;
 }
 
 function isSchemaRecord(

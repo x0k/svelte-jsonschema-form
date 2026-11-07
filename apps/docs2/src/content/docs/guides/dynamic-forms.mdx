@@ -56,8 +56,9 @@ a matching `initialValue` is replaced too. Values are
 matched per key of the level that declares the default, so a `default` on a
 nested object replaces an untouched leaf while keeping an edited sibling, and a
 `default` declared a level above keeps the whole object once any leaf is edited.
-Array items are not searched, and a conditional declared inside an array item is
-left alone.
+`default: null` is a declaration like any other. Writing a whole object, at its
+path or at the form root, counts as editing every value inside it. Array items
+are not searched, and a conditional declared inside an array item is left alone.
 
 ## patternProperties
 

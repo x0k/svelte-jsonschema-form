@@ -200,6 +200,17 @@ describe("getStaleDefaultsTriggerKeys()", () => {
     ).toBeUndefined();
   });
 
+  it("returns undefined for a ref to an inherited property", () => {
+    expect(
+      keys({
+        type: "object",
+        properties: {
+          wrapper: { $ref: "#/__proto__" },
+        },
+      })
+    ).toBeUndefined();
+  });
+
   it("unions keys from combinators in a root if", () => {
     expect(
       keys({

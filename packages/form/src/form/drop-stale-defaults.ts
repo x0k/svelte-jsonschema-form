@@ -12,7 +12,6 @@ import {
   ADDITIONAL_PROPERTY_FLAG,
   isSchemaDeepEqual,
   isSchemaObjectValue,
-  isSchemaValueDeepEqual,
   retrieveSchema,
   type Merger,
   type Schema,
@@ -39,15 +38,25 @@ function levelDefault(levelSchema: Schema, key: string) {
 }
 
 function getDeclaredDefault(levelSchema: Schema, key: string, schema: Schema) {
-  return schema.const ?? schema.default ?? levelDefault(levelSchema, key);
+  // A declared `null` is a value, not an absent declaration, so test for the
+  // property rather than its truthiness.
+  if (Object.hasOwn(schema, "const")) {
+    return schema.const;
+  }
+  if (Object.hasOwn(schema, "default")) {
+    return schema.default;
+  }
+  return levelDefault(levelSchema, key);
 }
 
-function isChangedAtLevel(
-  changedPaths: readonly FieldPath[],
-  level: number,
-  key: string
+function isPathPrefix(
+  prefix: readonly (string | number)[],
+  path: readonly (string | number)[]
 ) {
-  return changedPaths.some((path) => path[level] === key);
+  return (
+    prefix.length <= path.length &&
+    prefix.every((part, index) => part === path[index])
+  );
 }
 
 function copyContainer(
@@ -147,12 +156,17 @@ function dropStaleDefaultsAtLevel(
       continue;
     }
 
-    const isChangedKey = isChangedAtLevel(changedPaths, level, key);
+    const isChangedKey = changedPaths.some((path) =>
+      isPathPrefix(path, currentPath)
+    );
+    const hasChangedBelow = changedPaths.some((path) =>
+      isPathPrefix(currentPath, path)
+    );
     // An `additionalProperties` stub is in `properties` only because the data
     // holds the key, and the fill does not write one after the initial defaults
     // have been generated, so dropping it would lose the value outright.
     const isStub = ADDITIONAL_PROPERTY_FLAG in newRaw;
-    if (isStub && !isChangedKey) {
+    if (isStub && !hasChangedBelow) {
       continue;
     }
     const sameKeyedSchema =
@@ -161,9 +175,9 @@ function dropStaleDefaultsAtLevel(
     // nested can differ when the keyed schema and the level's declaration for
     // it are unchanged.
     if (
-      !isChangedKey &&
+      !hasChangedBelow &&
       sameKeyedSchema &&
-      isSchemaValueDeepEqual(
+      merger.isValueDeepEqual(
         levelDefault(oldSchema, key),
         levelDefault(newSchema, key)
       )
@@ -185,13 +199,17 @@ function dropStaleDefaultsAtLevel(
 
     const oldDefault = getDeclaredDefault(oldSchema, key, oldResolved);
     const newDefault = getDeclaredDefault(newSchema, key, newResolved);
+    // `oldCurrent` is the value before the batch, so a change below the key can
+    // make the current value differ from it. Do not drop the property when any
+    // change touches it or a value below it.
     if (
       !isChangedKey &&
+      !hasChangedBelow &&
       !isStub &&
       oldDefault !== undefined &&
       newDefault !== undefined &&
-      !isSchemaValueDeepEqual(oldDefault, newDefault) &&
-      isSchemaValueDeepEqual(oldDefault, oldCurrent)
+      !merger.isValueDeepEqual(oldDefault, newDefault) &&
+      merger.isValueDeepEqual(oldDefault, oldCurrent)
     ) {
       if (result === formData) {
         result = { ...formData };
@@ -202,7 +220,8 @@ function dropStaleDefaultsAtLevel(
 
     if (isSchemaObjectValue(current) && isSchemaObjectValue(oldCurrent)) {
       const nextChangedPaths = changedPaths.filter(
-        (path) => path[level] === key
+        (path) =>
+          isPathPrefix(path, currentPath) || isPathPrefix(currentPath, path)
       );
       const next = dropStaleDefaultsAtLevel(
         validator,
