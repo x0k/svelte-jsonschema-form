@@ -27,17 +27,18 @@ import { gzipSync } from "node:zlib";
 const repoRoot = resolve(import.meta.dirname, "../..");
 const fixtureSource = join(repoRoot, "scripts/bench/bundle-fixture");
 
-const args = process.argv.slice(2);
-
-function argValue(flag, fallback) {
-  const index = args.indexOf(flag);
-  return index === -1 ? fallback : args[index + 1];
+function parseOptions(args) {
+  function argValue(flag, fallback) {
+    const index = args.indexOf(flag);
+    return index === -1 ? fallback : args[index + 1];
+  }
+  return {
+    baseRef: argValue("--base", "origin/main"),
+    headRef: argValue("--head", "HEAD"),
+    asJson: args.includes("--json"),
+    keepWorktrees: args.includes("--keep"),
+  };
 }
-
-const baseRef = argValue("--base", "origin/main");
-const headRef = argValue("--head", "HEAD");
-const asJson = args.includes("--json");
-const keepWorktrees = args.includes("--keep");
 
 function run(command, commandArgs, { cwd, stdio = "inherit" } = {}) {
   const result = spawnSync(command, commandArgs, {
@@ -148,7 +149,7 @@ function measure(dir, entry) {
   return { files, raw, gzip };
 }
 
-function measureRef(ref) {
+function measureRef(ref, keepWorktrees) {
   const prepared = prepare(ref);
   try {
     if (prepared.dir === repoRoot) {
@@ -194,51 +195,58 @@ function formatDelta(base, head) {
   return `${sign}${formatBytes(delta)} (${sign}${percent.toFixed(1)}%)`;
 }
 
-const base = measureRef(baseRef);
-const head = measureRef(headRef);
+export function main() {
+  const options = parseOptions(process.argv.slice(2));
+  const base = measureRef(options.baseRef, options.keepWorktrees);
+  const head = measureRef(options.headRef, options.keepWorktrees);
 
-if (asJson) {
-  console.log(
-    JSON.stringify(
-      {
-        base,
-        head,
-        delta: {
-          form: {
-            raw: head.form.raw - base.form.raw,
-            gzip: head.form.gzip - base.form.gzip,
-          },
-          app: {
-            raw: head.app.raw - base.app.raw,
-            gzip: head.app.gzip - base.app.gzip,
+  if (options.asJson) {
+    console.log(
+      JSON.stringify(
+        {
+          base,
+          head,
+          delta: {
+            form: {
+              raw: head.form.raw - base.form.raw,
+              gzip: head.form.gzip - base.form.gzip,
+            },
+            app: {
+              raw: head.app.raw - base.app.raw,
+              gzip: head.app.gzip - base.app.gzip,
+            },
           },
         },
-      },
-      null,
-      2
-    )
-  );
-} else {
-  console.log("");
-  console.log("Bundle size (JS assets, esbuild minify)");
-  console.log("");
-  console.log(
-    "Entry   Base                       Head                       Delta"
-  );
-  console.log(
-    "-----   ------------------------   ------------------------   ------------------------------"
-  );
-  for (const entry of ["form", "app"]) {
-    const b = base[entry];
-    const h = head[entry];
+        null,
+        2
+      )
+    );
+  } else {
+    console.log("");
+    console.log("Bundle size (JS assets, esbuild minify)");
+    console.log("");
     console.log(
-      `${entry.padEnd(7)} ${`${formatBytes(b.raw)} / ${formatBytes(b.gzip)} gzip`.padEnd(24)}   ${`${formatBytes(h.raw)} / ${formatBytes(h.gzip)} gzip`.padEnd(24)}   ${formatDelta(b.raw, h.raw)} / ${formatDelta(b.gzip, h.gzip)} gzip`
+      "Entry   Base                       Head                       Delta"
+    );
+    console.log(
+      "-----   ------------------------   ------------------------   ------------------------------"
+    );
+    for (const entry of ["form", "app"]) {
+      const b = base[entry];
+      const h = head[entry];
+      console.log(
+        `${entry.padEnd(7)} ${`${formatBytes(b.raw)} / ${formatBytes(b.gzip)} gzip`.padEnd(24)}   ${`${formatBytes(h.raw)} / ${formatBytes(h.gzip)} gzip`.padEnd(24)}   ${formatDelta(b.raw, h.raw)} / ${formatDelta(b.gzip, h.gzip)} gzip`
+      );
+    }
+    console.log("");
+    console.log(`Base: ${base.ref} (${base.sha.slice(0, 9)})`);
+    console.log(`Head: ${head.ref} (${head.sha.slice(0, 9)})`);
+    console.log(
+      "The form entry externalizes Svelte; the app entry bundles Svelte and the basic theme."
     );
   }
-  console.log("");
-  console.log(`Base: ${base.ref} (${base.sha.slice(0, 9)})`);
-  console.log(`Head: ${head.ref} (${head.sha.slice(0, 9)})`);
-  console.log(
-    "The form entry externalizes Svelte; the app entry bundles Svelte and the basic theme."
-  );
+}
+
+if (import.meta.main) {
+  main();
 }

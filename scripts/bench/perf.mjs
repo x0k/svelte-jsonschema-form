@@ -22,20 +22,21 @@ const configSource = join(
   "packages/basic-theme/vitest.bench.config.ts"
 );
 
-const args = process.argv.slice(2);
-
-function argValue(flag, fallback) {
-  const index = args.indexOf(flag);
-  return index === -1 ? fallback : args[index + 1];
+function parseOptions(args) {
+  function argValue(flag, fallback) {
+    const index = args.indexOf(flag);
+    return index === -1 ? fallback : args[index + 1];
+  }
+  return {
+    baseRef: argValue("--base", "origin/main"),
+    headRef: argValue("--head", "HEAD"),
+    fields: argValue("--fields", "100,400,1000"),
+    samples: Number(argValue("--samples", "15")),
+    asJson: args.includes("--json"),
+    keepWorktrees: args.includes("--keep"),
+    skipBuild: args.includes("--no-build"),
+  };
 }
-
-const baseRef = argValue("--base", "origin/main");
-const headRef = argValue("--head", "HEAD");
-const fields = argValue("--fields", "100,400,1000");
-const samples = Number(argValue("--samples", "15"));
-const asJson = args.includes("--json");
-const keepWorktrees = args.includes("--keep");
-const skipBuild = args.includes("--no-build");
 
 function run(command, commandArgs, { cwd = repoRoot, stdio = "inherit" } = {}) {
   const result = spawnSync(command, commandArgs, {
@@ -101,7 +102,7 @@ function copySuite(dir) {
   );
 }
 
-function build(dir) {
+function build(dir, skipBuild) {
   if (skipBuild) {
     return;
   }
@@ -118,7 +119,7 @@ function build(dir) {
   run("pnpm", ["--dir", dir, "--filter", "theme-testing", "run", "build"]);
 }
 
-function cleanup(prepared) {
+function cleanup(prepared, keepWorktrees) {
   if (!prepared.cleanup) {
     return;
   }
@@ -134,88 +135,6 @@ function cleanup(prepared) {
   } catch {
     rmSync(prepared.dir, { recursive: true, force: true });
     run("git", ["worktree", "prune"], { cwd: repoRoot, stdio: "ignore" });
-  }
-}
-
-const resultsByRef = new Map();
-let currentRef = "";
-
-const server = createServer((request, response) => {
-  response.setHeader("Access-Control-Allow-Origin", "*");
-  response.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
-  response.setHeader("Access-Control-Allow-Headers", "content-type");
-  if (request.method === "OPTIONS") {
-    response.writeHead(204);
-    response.end();
-    return;
-  }
-  if (request.method !== "POST") {
-    response.writeHead(405);
-    response.end();
-    return;
-  }
-  let body = "";
-  request.setEncoding("utf8");
-  request.on("data", (chunk) => (body += chunk));
-  request.on("end", () => {
-    try {
-      const result = JSON.parse(body);
-      resultsByRef.get(currentRef)?.push(result);
-      response.writeHead(200);
-      response.end("ok");
-    } catch {
-      response.writeHead(400);
-      response.end("invalid json");
-    }
-  });
-});
-
-await new Promise((resolvePromise) => {
-  server.listen(0, "127.0.0.1", resolvePromise);
-});
-const sinkUrl = `http://127.0.0.1:${server.address().port}`;
-
-async function measureRef(ref) {
-  const prepared = prepare(ref);
-  try {
-    install(prepared.dir);
-    copySuite(prepared.dir);
-    build(prepared.dir);
-    resultsByRef.set(ref, []);
-    currentRef = ref;
-    const child = spawn(
-      "pnpm",
-      [
-        "--dir",
-        prepared.dir,
-        "--filter",
-        "@sjsf/basic-theme",
-        "exec",
-        "vitest",
-        "run",
-        "--config",
-        "vitest.bench.config.ts",
-      ],
-      {
-        cwd: prepared.dir,
-        stdio: "inherit",
-        env: {
-          ...process.env,
-          VITE_SJSF_BENCH_URL: sinkUrl,
-          VITE_SJSF_BENCH_FIELDS: fields,
-          VITE_SJSF_BENCH_SAMPLES: String(samples),
-        },
-      }
-    );
-    const exitCode = await new Promise((resolvePromise) => {
-      child.on("exit", (code) => resolvePromise(code ?? 1));
-    });
-    if (exitCode !== 0) {
-      throw new Error(`Benchmark failed for ${ref} (exit code ${exitCode})`);
-    }
-    return { ref, sha: prepared.sha, results: resultsByRef.get(ref) };
-  } finally {
-    cleanup(prepared);
   }
 }
 
@@ -343,58 +262,148 @@ function printComparison(baseLabel, base, headLabel, head, rows) {
   }
 }
 
-let base;
-let head;
-try {
-  base = await measureRef(baseRef);
-  head = await measureRef(headRef);
-} finally {
-  server.close();
-  server.closeAllConnections?.();
+export async function main() {
+  const options = parseOptions(process.argv.slice(2));
+  const resultsByRef = new Map();
+  let currentRef = "";
+
+  const server = createServer((request, response) => {
+    response.setHeader("Access-Control-Allow-Origin", "*");
+    response.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+    response.setHeader("Access-Control-Allow-Headers", "content-type");
+    if (request.method === "OPTIONS") {
+      response.writeHead(204);
+      response.end();
+      return;
+    }
+    if (request.method !== "POST") {
+      response.writeHead(405);
+      response.end();
+      return;
+    }
+    let body = "";
+    request.setEncoding("utf8");
+    request.on("data", (chunk) => (body += chunk));
+    request.on("end", () => {
+      try {
+        const result = JSON.parse(body);
+        resultsByRef.get(currentRef)?.push(result);
+        response.writeHead(200);
+        response.end("ok");
+      } catch {
+        response.writeHead(400);
+        response.end("invalid json");
+      }
+    });
+  });
+
+  await new Promise((resolvePromise) => {
+    server.listen(0, "127.0.0.1", resolvePromise);
+  });
+  const sinkUrl = `http://127.0.0.1:${server.address().port}`;
+
+  async function measureRef(ref) {
+    const prepared = prepare(ref);
+    try {
+      install(prepared.dir);
+      copySuite(prepared.dir);
+      build(prepared.dir, options.skipBuild);
+      resultsByRef.set(ref, []);
+      currentRef = ref;
+      const child = spawn(
+        "pnpm",
+        [
+          "--dir",
+          prepared.dir,
+          "--filter",
+          "@sjsf/basic-theme",
+          "exec",
+          "vitest",
+          "run",
+          "--config",
+          "vitest.bench.config.ts",
+        ],
+        {
+          cwd: prepared.dir,
+          stdio: "inherit",
+          env: {
+            ...process.env,
+            VITE_SJSF_BENCH_URL: sinkUrl,
+            VITE_SJSF_BENCH_FIELDS: options.fields,
+            VITE_SJSF_BENCH_SAMPLES: String(options.samples),
+          },
+        }
+      );
+      const exitCode = await new Promise((resolvePromise) => {
+        child.on("exit", (code) => resolvePromise(code ?? 1));
+      });
+      if (exitCode !== 0) {
+        throw new Error(`Benchmark failed for ${ref} (exit code ${exitCode})`);
+      }
+      return { ref, sha: prepared.sha, results: resultsByRef.get(ref) };
+    } finally {
+      cleanup(prepared, options.keepWorktrees);
+    }
+  }
+
+  let base;
+  let head;
+  try {
+    base = await measureRef(options.baseRef);
+    head = await measureRef(options.headRef);
+  } finally {
+    server.close();
+    server.closeAllConnections?.();
+  }
+
+  if (base.results.length === 0 || head.results.length === 0) {
+    console.error("No benchmark results were collected.");
+    process.exitCode = 1;
+    return;
+  }
+
+  const comparison = compare(base.results, head.results);
+
+  if (options.asJson) {
+    console.log(
+      JSON.stringify(
+        {
+          base: {
+            ref: base.ref,
+            sha: base.sha,
+            results: sortResults(base.results).map((result) => ({
+              ...result,
+              summary: summarize(result),
+            })),
+          },
+          head: {
+            ref: head.ref,
+            sha: head.sha,
+            results: sortResults(head.results).map((result) => ({
+              ...result,
+              summary: summarize(result),
+            })),
+          },
+          comparison,
+        },
+        null,
+        2
+      )
+    );
+  } else {
+    printRun("Base", base);
+    printRun("Head", head);
+    printComparison("Base", base, "Head", head, comparison);
+    console.log("");
+    console.log(
+      "Times are milliseconds around one DOM update (or form creation) plus a Svelte flush, in Chromium."
+    );
+    console.log(
+      "Run on an idle machine and compare runs from the same machine; absolute numbers are not portable."
+    );
+  }
 }
 
-if (base.results.length === 0 || head.results.length === 0) {
-  console.error("No benchmark results were collected.");
-  process.exit(1);
-}
-
-const comparison = compare(base.results, head.results);
-
-if (asJson) {
-  console.log(
-    JSON.stringify(
-      {
-        base: {
-          ref: base.ref,
-          sha: base.sha,
-          results: sortResults(base.results).map((result) => ({
-            ...result,
-            summary: summarize(result),
-          })),
-        },
-        head: {
-          ref: head.ref,
-          sha: head.sha,
-          results: sortResults(head.results).map((result) => ({
-            ...result,
-            summary: summarize(result),
-          })),
-        },
-        comparison,
-      },
-      null,
-      2
-    )
-  );
-} else {
-  printRun("Base", base);
-  printRun("Head", head);
-  printComparison("Base", base, "Head", head, comparison);
-  console.log("");
-  console.log(
-    "Times are milliseconds around one DOM update (or form creation) plus a Svelte flush, in Chromium."
-  );
-  console.log(
-    "Run on an idle machine and compare runs from the same machine; absolute numbers are not portable."
-  );
+if (import.meta.main) {
+  await main();
 }
