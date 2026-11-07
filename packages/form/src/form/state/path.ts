@@ -40,9 +40,8 @@ function* emitNodeValues(
  * @query
  */
 export function* getSubtreePaths<T>(ctx: FormState<T>, path: RPath) {
-  const fieldPath = getFieldPath(ctx, path);
   const trie = ctx[FORM_PATHS_TRIE_REF].current;
-  const node = getNodeByKeys(trie, fieldPath);
+  const node = getNodeByKeys(trie, path);
   if (node === undefined) {
     return;
   }

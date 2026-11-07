@@ -17,8 +17,8 @@ import type {
 } from "./model.js";
 
 /**
- * The form value state. `get` reads the current value reactively, and the
- * remaining methods are the only write primitives for it.
+ * The form value state. `get` reads the current value reactively; the value
+ * commands write through the remaining methods.
  */
 export interface FormValueStore {
   get(): FormValue;

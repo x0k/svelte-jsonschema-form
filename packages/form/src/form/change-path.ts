@@ -29,31 +29,17 @@ export function getValueAtPath(root: FormValue, path: FieldPath): FieldValue {
   return node as FieldValue;
 }
 
-export function writeValueAtPath(
-  root: FormValue,
-  path: FieldPath,
-  value: FieldValue
-): FormValue {
-  if (path.length === 0) {
-    return value;
-  }
-  let node = root as unknown as Record<PropertyKey, unknown>;
-  const last = path.length - 1;
-  for (let i = 0; i < last; i++) {
-    node = getOwn(node, path[i]!) as Record<PropertyKey, unknown>;
-  }
-  setOwn(node, path[last]!, value);
-  return root;
+interface ResolvedPath {
+  parent: unknown[] | Record<PropertyKey, unknown>;
+  key: FieldPath[number];
 }
 
-export function updateValueAtPath<V extends FieldValue>(
-  root: FormValue,
-  path: FieldPath,
-  update: (value: V) => V
-): FormValue {
-  if (path.length === 0) {
-    return update(root as V);
-  }
+/**
+ * Resolves the parent of the last path segment using the same rules as
+ * `getValueAtPath`: arrays accept only integer indices in bounds, and
+ * intermediate values must be arrays or plain objects.
+ */
+function resolveParent(root: FormValue, path: FieldPath): ResolvedPath {
   let node: unknown = root;
   const last = path.length - 1;
   for (let i = 0; i < last; i++) {
@@ -69,20 +55,48 @@ export function updateValueAtPath<V extends FieldValue>(
       throw pathError(path);
     }
   }
-  const key = path[last]!;
-  let current: FieldValue;
   if (Array.isArray(node)) {
-    current = isArrayIndex(key, node.length)
-      ? (getOwn(node, key) as FieldValue)
-      : undefined;
-  } else if (isRecord(node)) {
-    current = getOwn(node, key) as FieldValue;
-  } else {
+    return { parent: node, key: path[last]! };
+  }
+  if (isRecord(node)) {
+    return { parent: node, key: path[last]! };
+  }
+  throw pathError(path);
+}
+
+export function writeValueAtPath(
+  root: FormValue,
+  path: FieldPath,
+  value: FieldValue
+): FormValue {
+  if (path.length === 0) {
+    return value;
+  }
+  const { parent, key } = resolveParent(root, path);
+  if (Array.isArray(parent) && !isArrayIndex(key, parent.length)) {
     throw pathError(path);
   }
+  setOwn(parent as Record<PropertyKey, unknown>, key, value);
+  return root;
+}
+
+export function updateValueAtPath<V extends FieldValue>(
+  root: FormValue,
+  path: FieldPath,
+  update: (value: V) => V
+): FormValue {
+  if (path.length === 0) {
+    return update(root as V);
+  }
+  const { parent, key } = resolveParent(root, path);
+  if (Array.isArray(parent) && !isArrayIndex(key, parent.length)) {
+    throw pathError(path);
+  }
+  const parentRecord = parent as Record<PropertyKey, unknown>;
+  const current = getOwn(parentRecord, key) as FieldValue;
   const next = update(current as V);
   if (next !== current) {
-    setOwn(node as Record<PropertyKey, unknown>, key, next);
+    setOwn(parentRecord, key, next);
   }
   return root;
 }

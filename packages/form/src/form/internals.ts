@@ -50,21 +50,23 @@ export function internalRegisterFieldPath(
   ref: RegisteredPathTrieRef<FieldPath>,
   path: RPath
 ): FieldPath {
-  const p = path as FieldPath;
   // A registered `FieldPath` is already the canonical trie value; skip the
   // lookup so callers that hold one do not pay for it again.
-  if (ref.registered.has(p)) {
-    return p;
+  if (ref.registered.has(path as FieldPath)) {
+    return path as FieldPath;
   }
   const node = getNodeByKeys(ref.current, path);
+  if (node !== undefined && node.value !== undefined) {
+    ref.registered.add(node.value);
+    return node.value;
+  }
+  // Copy caller-owned paths: the canonical path is used as a `Map` key and as
+  // an identity in the ID cache, so mutating the original array afterwards
+  // must not desynchronize it from the trie.
+  const p = path.slice() as unknown as FieldPath;
   if (node === undefined) {
     ref.current = insertValue(ref.current, path, p);
   } else {
-    const v = node.value;
-    if (v !== undefined) {
-      ref.registered.add(v);
-      return v;
-    }
     node.value = p;
   }
   ref.registered.add(p);

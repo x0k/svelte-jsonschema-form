@@ -124,6 +124,39 @@ describe("writeValueAtPath", () => {
     expect(Object.hasOwn(root, "__proto__")).toBe(true);
     expect(({} as { polluted?: boolean }).polluted).toBeUndefined();
   });
+
+  it("rejects a string array index", () => {
+    const root = [1, 2];
+    expect(() => writeValueAtPath(root, path("0"), 3)).toThrow(
+      'Path "[0]" is not populated'
+    );
+    expect(root).toEqual([1, 2]);
+  });
+
+  it("rejects an out-of-bounds array index", () => {
+    const root = [1, 2];
+    expect(() => writeValueAtPath(root, path(2), 3)).toThrow(
+      'Path "[2]" is not populated'
+    );
+    expect(root).toEqual([1, 2]);
+  });
+
+  it("throws when the path goes through a non-plain object", () => {
+    class Box {
+      own = 1;
+    }
+    const box = new Box();
+    expect(() =>
+      writeValueAtPath({ box } as unknown as FormValue, path("box", "own"), 2)
+    ).toThrow('Path "[box, own]" is not populated');
+    expect(box.own).toBe(1);
+  });
+
+  it("throws when an intermediate path is missing", () => {
+    expect(() => writeValueAtPath({}, path("missing", "child"), 1)).toThrow(
+      'Path "[missing, child]" is not populated'
+    );
+  });
 });
 
 describe("updateValueAtPath", () => {
@@ -161,5 +194,26 @@ describe("updateValueAtPath", () => {
     expect(() => updateValueAtPath({ a: 1 }, path("a", "b"), () => 2)).toThrow(
       'Path "[a, b]" is not populated'
     );
+  });
+
+  it("rejects a string array index", () => {
+    const root = ["a", "b"];
+    let called = false;
+    expect(() =>
+      updateValueAtPath(root, path("0"), () => {
+        called = true;
+        return "c";
+      })
+    ).toThrow('Path "[0]" is not populated');
+    expect(called).toBe(false);
+    expect(root).toEqual(["a", "b"]);
+  });
+
+  it("rejects an out-of-bounds array index", () => {
+    const root = ["a"];
+    expect(() => updateValueAtPath(root, path(1), () => "b")).toThrow(
+      'Path "[1]" is not populated'
+    );
+    expect(root).toEqual(["a"]);
   });
 });
