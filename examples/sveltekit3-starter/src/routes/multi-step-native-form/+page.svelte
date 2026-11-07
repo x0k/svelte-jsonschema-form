@@ -27,7 +27,6 @@
                 get style(): string {
                   // NOTE: Calling `getValueSnapshot` here will cause the styles
                   // to be recalculated whenever the form values change.
-                  // If performance is critical for you can use controlled form
                   const snap = getValueSnapshot(form);
                   const step = isRecord(snap) && snap[STEP_KEY];
                   return `display: ${

@@ -142,7 +142,7 @@ When a `command` is called, the accessed variables **will not be tracked**.
 ### `FieldPath` vs `RPath`
 
 Since JavaScript lacks a primitive for **tuples**, the library uses **uniquified paths**.
-When an `RPath` (a regular array) is passed, it is converted into a `FieldPath` and cached in a **prefix tree**.
+When a helper needs a canonical path, it converts an `RPath` (a regular array) into a `FieldPath` and caches it in a **prefix tree**.
 Each identical path returns the same reference, allowing `FieldPath` to serve as a stable **identifier** or **key** in `Map`/`WeakMap`.
 
 All path-accepting APIs accept an `RPath`. This includes the path helpers
@@ -150,8 +150,11 @@ All path-accepting APIs accept an `RPath`. This includes the path helpers
 `getPseudoId`), the value commands (`setValueAtPath`, `updateValueAtPath`,
 `insertArrayItem`, `removeArrayItem`, `moveArrayItem`, and `swapArrayItems`),
 the error helpers (`getFieldErrors`, `getFieldsErrors`, and `updateFieldErrors`),
-and the field-state helpers (`hasFieldState` and `setFieldState`). They register
-the path internally, so a dynamically generated path works everywhere.
+and the field-state helpers (`hasFieldState` and `setFieldState`). Except for
+`getSubtreePaths`, they register the path internally, so a dynamically generated
+path works everywhere. `getSubtreePaths` is a read-only lookup: it returns the
+paths already registered in the prefix tree and never registers the path you
+pass.
 
 Passing an already registered `FieldPath` (for example `config.path`) skips the
 lookup and uses it as-is. `getChildPath` and `getPseudoPath` return a

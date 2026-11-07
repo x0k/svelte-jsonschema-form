@@ -32,9 +32,11 @@ Use `getValueSnapshot(form)` when you need a detached copy of the form value.
 `getIdByPath`, `getPseudoIdByPath`, and the `ByPath` variants of the error and
 field-state helpers are removed. `getId`, `getPseudoId`, `getSubtreePaths`,
 `getChildPath`, `getPseudoPath`, `getFieldErrors`, `getFieldsErrors`,
-`updateFieldErrors`, `hasFieldState`, and `setFieldState` now accept an `RPath`
-and canonicalize it internally; passing a registered `FieldPath` skips the
-lookup.
+`updateFieldErrors`, `hasFieldState`, and `setFieldState` now accept an `RPath`;
+except for `getSubtreePaths`, they canonicalize it internally, and passing a
+registered `FieldPath` skips the lookup. `getSubtreePaths` is a read-only
+lookup: it returns the paths already registered in the prefix tree and does not
+register the path you pass.
 
 ```ts
 import {
