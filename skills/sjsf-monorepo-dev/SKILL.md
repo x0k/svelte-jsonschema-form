@@ -1,6 +1,6 @@
 ---
 name: sjsf-monorepo-dev
-description: Development and contribution workflows for the svelte-jsonschema-form monorepo. Use when building packages, running vitest browser tests with playwright, adding new themes or validator packages, checking types with turbo/svelte-check, or creating changesets.
+description: Development and contribution workflows for the svelte-jsonschema-form monorepo. Use when building packages, running vitest browser tests with playwright, adding new themes or validator packages, checking types with turbo/svelte-check, benchmarking git refs, or creating changesets.
 ---
 
 # SJSF Monorepo Development & Contributing
@@ -93,6 +93,26 @@ Follow the interactive prompts:
 
 Versioning uses fixed groups (see `.changeset/config.json`):
 bumping one grouped package bumps the whole group.
+
+---
+
+## Step 6: Benchmarking
+
+Two manual ref-to-ref tools compare any two git refs. They are not part of CI:
+
+```bash
+# Browser performance (defaults: origin/main -> HEAD)
+pnpm bench:perf --base origin/main --head HEAD
+
+# Bundle size (minified + gzip)
+pnpm bench:bundle --base origin/main --head HEAD
+```
+
+Both build each ref in an isolated worktree; use `--head worktree` (or `.`) to
+include uncommitted changes. Fetch the refs first; the scripts do not fetch.
+
+See [Benchmarks](references/contributing-workflows.md#benchmarks) for cases,
+options, and caveats.
 
 ---
 

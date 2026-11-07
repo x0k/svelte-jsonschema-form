@@ -12,3 +12,9 @@ For each such change:
 1. Grep `skills/` and `apps/docs2` for references to the changed API.
 2. Update every affected snippet and prose section to match the source.
 3. Keep the `skills/README.md` catalog in sync if skills are added or renamed.
+
+## Benchmarks
+
+Benchmark tooling is manual and must not run in CI. Compare arbitrary git refs
+with `pnpm bench:perf` and `pnpm bench:bundle`; see `scripts/bench/README.md`
+and `skills/sjsf-monorepo-dev`.

@@ -61,6 +61,12 @@ c:
 p:
   pnpm run preview
 
+bp:
+  pnpm run bench:perf $@
+
+bb:
+  pnpm run bench:bundle $@
+
 cs:
   pnpm changeset
 
