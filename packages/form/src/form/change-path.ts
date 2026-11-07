@@ -24,7 +24,7 @@ export function copyForChange(value: FieldValue): FieldValue {
     return value.slice();
   }
   if (isObject(value)) {
-    return { ...(value as object) };
+    return { ...value };
   }
   return value;
 }

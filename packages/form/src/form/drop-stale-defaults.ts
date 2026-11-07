@@ -67,7 +67,7 @@ function copyContainer(
     return value.slice() as unknown as Record<PropertyKey, unknown>;
   }
   if (isObject(value)) {
-    return { ...(value as object) };
+    return { ...value };
   }
   if (value === undefined || value === null) {
     return (typeof nextKey === "number" ? [] : {}) as Record<
