@@ -32,7 +32,6 @@ import { getOwn, isRecord, setOwn } from "#lib/object.js";
 
 import { pathKey } from "./change-path.js";
 import { declaresValueFor } from "./declares-value.js";
-import type { FieldPath } from "./id.js";
 import type {
   DroppedDefault,
   DropStaleDefaultsOptions,
@@ -155,7 +154,7 @@ function isPathPrefix(prefix: RPath, path: RPath) {
 
 function copyContainer(
   value: unknown,
-  nextKey: FieldPath[number]
+  nextKey: RPath[number]
 ): Record<PropertyKey, unknown> {
   if (Array.isArray(value)) {
     return value.slice() as unknown as Record<PropertyKey, unknown>;
@@ -175,7 +174,7 @@ function copyContainer(
 /** Puts `value` back at `path`, copying only the containers along the path. */
 export function replaceAtPath(
   root: FormValue,
-  path: FieldPath,
+  path: RPath,
   value: FieldValue,
   level = 0
 ): FormValue {
@@ -214,7 +213,7 @@ interface NestedKey {
   oldSchema: Schema;
   current: SchemaObjectValue;
   oldCurrent: SchemaObjectValue;
-  changedPaths: readonly FieldPath[];
+  changedPaths: readonly RPath[];
 }
 
 function dropStaleDefaultsAtLevel(
@@ -225,9 +224,9 @@ function dropStaleDefaultsAtLevel(
   oldSchema: Schema,
   formData: SchemaObjectValue,
   oldFormData: SchemaObjectValue,
-  changedPaths: readonly FieldPath[],
+  changedPaths: readonly RPath[],
   droppedPaths: ReadonlySet<string>,
-  levelPath: FieldPath,
+  levelPath: RPath,
   initialDefaultsGenerated: boolean,
   dropped: DroppedDefault[]
 ): SchemaObjectValue {
@@ -248,7 +247,7 @@ function dropStaleDefaultsAtLevel(
     if (!Object.hasOwn(oldProperties, key)) {
       continue;
     }
-    const currentPath = [...levelPath, key] as unknown as FieldPath;
+    const currentPath = [...levelPath, key];
     if (droppedPaths.has(pathKey(currentPath))) {
       continue;
     }
@@ -387,7 +386,7 @@ function dropStaleDefaultsAtLevel(
           delete result[key];
           droppedKeys.add(key);
           dropped.push({
-            path: [...levelPath, key] as unknown as FieldPath,
+            path: [...levelPath, key],
             value: getOwn(oldFormData, key) as FieldValue,
             writtenUnder,
           });
@@ -415,7 +414,7 @@ function dropStaleDefaultsAtLevel(
       entry.oldCurrent,
       entry.changedPaths,
       droppedPaths,
-      [...levelPath, entry.key] as unknown as FieldPath,
+      [...levelPath, entry.key],
       initialDefaultsGenerated,
       dropped
     );
@@ -473,7 +472,7 @@ export function dropStaleDefaults(
     oldFormData,
     changes.map(({ path }) => path),
     droppedPaths ?? NO_DROPPED_PATHS,
-    [] as unknown as FieldPath,
+    [],
     initialDefaultsGenerated,
     dropped
   );

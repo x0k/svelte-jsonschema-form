@@ -1,4 +1,10 @@
-import type { Merger, Schema, SchemaValue, Validator } from "#core/index.js";
+import type {
+  Merger,
+  RPath,
+  Schema,
+  SchemaValue,
+  Validator,
+} from "#core/index.js";
 
 import type { FieldPath } from "./id.js";
 import type { FieldValue } from "./model.js";
@@ -26,7 +32,7 @@ export interface FormValueChange {
  * restore it or judge the replacement the defaults fill writes for it.
  */
 export interface DroppedDefault {
-  path: FieldPath;
+  path: RPath;
   /**
    * The value that was at `path` before the drop.
    */

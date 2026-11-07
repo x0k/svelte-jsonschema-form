@@ -26,7 +26,6 @@ import { getOwn, isRecord, setOwn } from "#lib/object.js";
 
 import { pathKey } from "./change-path.js";
 import { replaceAtPath } from "./drop-stale-defaults.js";
-import type { FieldPath } from "./id.js";
 import type { DroppedDefault, FormMerger, FormValueChange } from "./merger.js";
 import type { FieldValue, FormValue } from "./model.js";
 
@@ -73,11 +72,11 @@ function getAtPath(data: unknown, path: RPath): unknown {
   return node;
 }
 
-function deleteAtPath(data: FormValue, path: FieldPath): FormValue {
+function deleteAtPath(data: FormValue, path: RPath): FormValue {
   if (path.length === 0) {
     return undefined;
   }
-  const parentPath = path.slice(0, -1) as unknown as FieldPath;
+  const parentPath = path.slice(0, -1);
   const parent = parentPath.length === 0 ? data : getAtPath(data, parentPath);
   if (!isSchemaObjectValue(parent)) {
     return data;
@@ -100,14 +99,14 @@ function deleteAtPath(data: FormValue, path: FieldPath): FormValue {
 function putBackAt(
   data: FormValue,
   oldFormData: FormValue,
-  path: FieldPath,
+  path: RPath,
   value: FieldValue,
   isMissing: (held: FieldValue) => boolean
 ): FormValue {
   if (value === undefined) {
     return data;
   }
-  const parentPath = path.slice(0, -1) as unknown as FieldPath;
+  const parentPath = path.slice(0, -1);
   const parent = parentPath.length === 0 ? data : getAtPath(data, parentPath);
   if (!isSchemaObjectValue(parent)) {
     return data;
@@ -151,7 +150,7 @@ function resolveSchemaAt(
   merger: Merger,
   rootSchema: Schema,
   newSchema: Schema,
-  path: FieldPath,
+  path: RPath,
   formData: FormValue
 ): Schema | undefined {
   const definition = getSchemaDefinitionByPath(
@@ -181,7 +180,7 @@ function isRefillRejected(
   validator: Validator,
   merger: Merger,
   rootSchema: Schema,
-  path: FieldPath,
+  path: RPath,
   newSchema: Schema,
   oldSchema: Schema,
   value: FieldValue
