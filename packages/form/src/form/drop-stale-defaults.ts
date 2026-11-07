@@ -9,6 +9,7 @@
  */
 
 import {
+  ADDITIONAL_PROPERTY_FLAG,
   isSchemaDeepEqual,
   isSchemaObjectValue,
   isSchemaValueDeepEqual,
@@ -21,6 +22,7 @@ import {
 } from "#core/index.js";
 import { getOwn, isObject, setOwn } from "#lib/object.js";
 
+import { pathKey } from "./change-path.js";
 import type { FieldPath } from "./id.js";
 import type { DropStaleDefaultsOptions, FormValueChange } from "./merger.js";
 import type { FieldValue, FormValue } from "./model.js";
@@ -68,7 +70,7 @@ function copyContainer(
 }
 
 /** Puts `value` back at `path`, copying only the containers along the path. */
-function replaceAtPath(
+export function replaceAtPath(
   root: FormValue,
   path: FieldPath,
   value: FieldValue,
@@ -86,8 +88,13 @@ function replaceAtPath(
   return copy as FormValue;
 }
 
-function rebuildOldFormData(
-  formData: SchemaValue,
+/**
+ * Rebuilds the data a defaults pass started from by putting back every value
+ * `changes` replaced. Used once per pass, because later iterations have already
+ * dropped values the search still has to see on the old side.
+ */
+export function rebuildOldFormData(
+  formData: SchemaValue | undefined,
   changes: readonly FormValueChange[]
 ): FormValue {
   let oldFormData = formData as FormValue;
@@ -107,6 +114,8 @@ function dropStaleDefaultsAtLevel(
   formData: SchemaObjectValue,
   oldFormData: SchemaObjectValue,
   changedPaths: readonly FieldPath[],
+  droppedPaths: ReadonlySet<string>,
+  levelPath: FieldPath,
   level: number
 ): SchemaObjectValue {
   const newProperties = newSchema.properties;
@@ -123,6 +132,10 @@ function dropStaleDefaultsAtLevel(
     if (!Object.hasOwn(oldProperties, key)) {
       continue;
     }
+    const currentPath = [...levelPath, key] as unknown as FieldPath;
+    if (droppedPaths.has(pathKey(currentPath))) {
+      continue;
+    }
     const newRaw = newProperties[key];
     const oldRaw = oldProperties[key];
     if (!isSchemaObject(newRaw) || !isSchemaObject(oldRaw)) {
@@ -135,6 +148,13 @@ function dropStaleDefaultsAtLevel(
     }
 
     const isChangedKey = isChangedAtLevel(changedPaths, level, key);
+    // An `additionalProperties` stub is in `properties` only because the data
+    // holds the key, and the fill does not write one after the initial defaults
+    // have been generated, so dropping it would lose the value outright.
+    const isStub = ADDITIONAL_PROPERTY_FLAG in newRaw;
+    if (isStub && !isChangedKey) {
+      continue;
+    }
     const sameKeyedSchema =
       oldRaw === newRaw || isSchemaDeepEqual(oldRaw, newRaw);
     // Without a change below this key, neither its own default nor anything
@@ -167,6 +187,7 @@ function dropStaleDefaultsAtLevel(
     const newDefault = getDeclaredDefault(newSchema, key, newResolved);
     if (
       !isChangedKey &&
+      !isStub &&
       oldDefault !== undefined &&
       newDefault !== undefined &&
       !isSchemaValueDeepEqual(oldDefault, newDefault) &&
@@ -192,6 +213,8 @@ function dropStaleDefaultsAtLevel(
         current,
         oldCurrent,
         nextChangedPaths,
+        droppedPaths,
+        currentPath,
         level + 1
       );
       if (next !== current) {
@@ -218,22 +241,22 @@ export function dropStaleDefaults(
     newSchema,
     formData,
     changes,
+    oldFormData: providedOldFormData,
+    oldSchema: providedOldSchema,
+    droppedPaths,
   }: DropStaleDefaultsOptions
 ): SchemaValue | undefined {
   if (!isSchemaObjectValue(formData) || !isSchemaObjectValue(newSchema)) {
     return formData;
   }
-  const oldFormData = rebuildOldFormData(formData, changes);
+  const oldFormData =
+    providedOldFormData ?? rebuildOldFormData(formData, changes);
   if (!isSchemaObjectValue(oldFormData)) {
     return formData;
   }
-  const oldSchema = retrieveSchema(
-    validator,
-    merger,
-    rootSchema,
-    rootSchema,
-    oldFormData
-  );
+  const oldSchema =
+    providedOldSchema ??
+    retrieveSchema(validator, merger, rootSchema, rootSchema, oldFormData);
   if (!isSchemaObjectValue(oldSchema)) {
     return formData;
   }
@@ -246,6 +269,8 @@ export function dropStaleDefaults(
     formData,
     oldFormData,
     changes.map(({ path }) => path),
+    new Set((droppedPaths ?? []).map(pathKey)),
+    [] as unknown as FieldPath,
     0
   );
 }

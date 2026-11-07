@@ -34,6 +34,21 @@ export interface DropStaleDefaultsOptions {
    * belongs to the user, even when it equals the replaced branch's default.
    */
   changes: readonly FormValueChange[];
+  /**
+   * The form data as it arrived, before this defaults pass dropped anything.
+   * When omitted, it is rebuilt from `changes`.
+   */
+  oldFormData?: SchemaValue | undefined;
+  /**
+   * The schema resolved for `oldFormData`. When omitted, it is retrieved from
+   * `rootSchema` and `oldFormData`.
+   */
+  oldSchema?: Schema | undefined;
+  /**
+   * Paths this pass has already dropped. They are skipped so a replacement the
+   * defaults fill has written is not dropped again.
+   */
+  droppedPaths?: readonly FieldPath[];
 }
 
 export interface FormMerger extends Merger {
