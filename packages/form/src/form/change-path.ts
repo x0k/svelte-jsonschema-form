@@ -13,6 +13,11 @@ function pathError(path: FieldPath) {
   return new Error(`Path "[${path.join(", ")}]" is not populated`);
 }
 
+/** A string that identifies `path` in a set, including keys named `__proto__`. */
+export function pathKey(path: readonly (string | number)[]): string {
+  return JSON.stringify(path);
+}
+
 /** Copies a value before an in-place write, so the previous value stays intact. */
 export function copyForChange(value: FieldValue): FieldValue {
   if (Array.isArray(value)) {
