@@ -62,6 +62,25 @@ describe("RJSF #5464 parity", () => {
     ).toEqual({ mode: "b", cfg: { name: "b" } });
   });
 
+  test("merges the new branch's default with its leaf defaults", async () => {
+    const cfgWithRatio = (name: string): Schema => ({
+      type: "object",
+      default: { name },
+      properties: {
+        name: { type: "string" },
+        ratio: { type: "number", default: 0.5 },
+      },
+    });
+    expect(
+      await renderAndSwap(
+        modeSwap(
+          { properties: { cfg: cfgWithRatio("a") } },
+          { properties: { cfg: cfgWithRatio("b") } }
+        )
+      )
+    ).toEqual({ mode: "b", cfg: { name: "b", ratio: 0.5 } });
+  });
+
   test("array default", async () => {
     const numsFor = (mode: string): Schema => ({
       type: "array",
@@ -76,6 +95,23 @@ describe("RJSF #5464 parity", () => {
         )
       )
     ).toEqual({ mode: "b", nums: [2] });
+  });
+
+  test("array default expanded to minItems", async () => {
+    const numsFor = (mode: string): Schema => ({
+      type: "array",
+      items: { type: "number", default: 0 },
+      minItems: 2,
+      default: [mode === "a" ? 1 : 2],
+    });
+    expect(
+      await renderAndSwap(
+        modeSwap(
+          { properties: { nums: numsFor("a") } },
+          { properties: { nums: numsFor("b") } }
+        )
+      )
+    ).toEqual({ mode: "b", nums: [2, 0] });
   });
 
   test("type change object -> array", async () => {
@@ -422,6 +458,168 @@ describe("RJSF #5464 parity", () => {
     await tick();
     expect(getValueSnapshot(form)).toEqual({
       outer: { m: { animal: "Cat", diet: { food: "meat" } } },
+    });
+  });
+
+  test("leaves a required object with no default of its own alone", async () => {
+    const schema = modeSwap(
+      { properties: { cfg: cfgFor("a") } },
+      {
+        required: ["cfg"],
+        properties: {
+          cfg: { type: "object", properties: { name: { type: "string" } } },
+        },
+      }
+    );
+    expect(await renderAndSwap(schema)).toEqual({
+      mode: "b",
+      cfg: { name: "a" },
+    });
+  });
+
+  test("leaves a required array with no default of its own alone", async () => {
+    const numsFor = (defaults: boolean): Schema => ({
+      type: "array",
+      items: { type: "number" },
+      ...(defaults && { default: [1, 2] }),
+    });
+    const schema = modeSwap(
+      { properties: { nums: numsFor(true) } },
+      { required: ["nums"], properties: { nums: numsFor(false) } }
+    );
+    expect(await renderAndSwap(schema)).toEqual({
+      mode: "b",
+      nums: [1, 2],
+    });
+  });
+
+  test("leaves a value alone where only the new branch's leaf defaults differ", async () => {
+    const cfgWithLeaves = (host?: string, port?: number): Schema => ({
+      type: "object",
+      properties: {
+        port: {
+          type: "number",
+          ...(port !== undefined && { default: port }),
+        },
+        host: {
+          type: "string",
+          ...(host !== undefined && { default: host }),
+        },
+      },
+    });
+    const schema = modeSwap(
+      { properties: { cfg: cfgWithLeaves(undefined, 80) } },
+      { properties: { cfg: cfgWithLeaves("h") } }
+    );
+    expect(await renderAndSwap(schema)).toEqual({
+      mode: "b",
+      cfg: { port: 80, host: "h" },
+    });
+  });
+
+  test("leaves an array the new branch only refills to its minItems alone", async () => {
+    const tagsWithMin = (minItems: number): Schema => ({
+      type: "array",
+      items: { type: "string", default: "x" },
+      minItems,
+    });
+    const schema = modeSwap(
+      { properties: { tags: tagsWithMin(2) } },
+      { properties: { tags: tagsWithMin(1) } }
+    );
+    expect(await renderAndSwap(schema)).toEqual({
+      mode: "b",
+      tags: ["x", "x"],
+    });
+  });
+
+  test("leaves a required boolean the old branch declared no default for alone", async () => {
+    const agreeFor = (defaults: boolean): Schema => ({
+      type: "boolean",
+      ...(defaults && { default: true }),
+    });
+    const schema = modeSwap(
+      {
+        required: ["agree"],
+        properties: { agree: agreeFor(false) },
+      },
+      {
+        required: ["agree"],
+        properties: { agree: agreeFor(true) },
+      }
+    );
+    // `false` is what the form computes for a required boolean, so the value is
+    // supplied the way the old branch's fill computes it rather than as a
+    // declaration the branch makes.
+    expect(await renderAndSwap(schema, { mode: "a", agree: false })).toEqual({
+      mode: "b",
+      agree: false,
+    });
+  });
+
+  test("leaves a required array the old branch declared no default for alone", async () => {
+    const numsFor = (defaults: boolean): Schema => ({
+      type: "array",
+      items: { type: "number" },
+      ...(defaults && { default: [7] }),
+    });
+    const schema = modeSwap(
+      { required: ["nums"], properties: { nums: numsFor(false) } },
+      { required: ["nums"], properties: { nums: numsFor(true) } }
+    );
+    expect(await renderAndSwap(schema)).toEqual({
+      mode: "b",
+      nums: [],
+    });
+  });
+
+  test("never looks at a property both branches declare identically", async () => {
+    const meta: Schema = {
+      type: "object",
+      readOnly: true,
+      default: { createdBy: "placeholder" },
+      properties: { createdBy: { type: "string" } },
+    };
+    const schema = modeSwap(
+      { properties: { cfg: cfgFor("a"), meta } },
+      { properties: { cfg: cfgFor("b"), meta } }
+    );
+    expect(
+      await renderAndSwap(schema, {
+        mode: "a",
+        cfg: { name: "a" },
+        meta: { createdBy: "server" },
+      })
+    ).toEqual({
+      mode: "b",
+      cfg: { name: "b" },
+      meta: { createdBy: "server" },
+    });
+  });
+
+  test("swaps alongside a property one branch declares as a boolean subschema", async () => {
+    const schema = modeSwap(
+      {
+        properties: {
+          cfg: cfgFor("a"),
+          anything: true,
+          unvalued: { type: "string" },
+        },
+      },
+      {
+        properties: {
+          cfg: cfgFor("b"),
+          anything: { type: "string" },
+          unvalued: true,
+        },
+      }
+    );
+    expect(
+      await renderAndSwap(schema, { mode: "a", anything: "kept" })
+    ).toEqual({
+      mode: "b",
+      cfg: { name: "b" },
+      anything: "kept",
     });
   });
 });

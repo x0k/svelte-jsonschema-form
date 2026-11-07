@@ -47,7 +47,7 @@ export interface FormMergerOptions
 
 export function createFormMerger(options: FormMergerOptions): FormMerger {
   const merger = createMerger(options);
-  return {
+  const formMerger: FormMerger = {
     ...merger,
     mergeFormDataAndSchemaDefaults({
       formData,
@@ -67,7 +67,8 @@ export function createFormMerger(options: FormMergerOptions): FormMerger {
       );
     },
     dropStaleDefaults(dropOptions: DropStaleDefaultsOptions) {
-      return dropStaleDefaults(merger, dropOptions);
+      return dropStaleDefaults(formMerger, dropOptions);
     },
   };
+  return formMerger;
 }

@@ -1,7 +1,7 @@
 /**
  * Removes values that still hold a swapped-away `dependencies` or
- * `if`/`then`/`else` branch's declared default, so the next defaults fill
- * writes the newly selected branch's declaration.
+ * `if`/`then`/`else` branch's default, so the next defaults fill writes the
+ * newly selected branch's declaration.
  *
  * The form records the values its writes replaced, so this pass can resolve
  * the schema against the data as it was before the change and leave a value the
@@ -10,44 +10,136 @@
 
 import {
   ADDITIONAL_PROPERTY_FLAG,
+  DEFAULT_KEY,
+  getSelectOptionValuesSafe,
+  getXxxOfOptions,
   isSchemaDeepEqual,
   isSchemaObjectValue,
+  isSelect,
+  PROPERTIES_KEY,
+  REF_KEY,
   retrieveSchema,
-  type Merger,
+  typeOfSchema,
   type RPath,
   type Schema,
+  type SchemaDefinition,
   type SchemaObjectValue,
   type SchemaValue,
+  type SchemaType,
   type Validator,
 } from "#core/index.js";
-import { getOwn, isObject, setOwn } from "#lib/object.js";
+import { getOwn, isRecord, setOwn } from "#lib/object.js";
 
 import { pathKey } from "./change-path.js";
+import { declaresValueFor } from "./declares-value.js";
 import type { FieldPath } from "./id.js";
-import type { DropStaleDefaultsOptions, FormValueChange } from "./merger.js";
+import type {
+  DropStaleDefaultsOptions,
+  FormMerger,
+  FormValueChange,
+} from "./merger.js";
 import type { FieldValue, FormValue } from "./model.js";
 
 function isSchemaObject(value: unknown): value is Schema {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
+  return isRecord(value);
 }
 
-function levelDefault(levelSchema: Schema, key: string) {
-  const declared = levelSchema.default;
-  return isSchemaObjectValue(declared) && Object.hasOwn(declared, key)
-    ? getOwn(declared, key)
-    : undefined;
+function isContainerValue(value: SchemaValue | undefined): boolean {
+  return Array.isArray(value) || isSchemaObjectValue(value);
 }
 
-function getDeclaredDefault(levelSchema: Schema, key: string, schema: Schema) {
-  // A declared `null` is a value, not an absent declaration, so test for the
-  // property rather than its truthiness.
-  if (Object.hasOwn(schema, "const")) {
-    return schema.const;
+function isContainerType(type: SchemaType | SchemaType[]): boolean {
+  return (
+    type === "object" ||
+    type === "array" ||
+    (Array.isArray(type) && (type.includes("object") || type.includes("array")))
+  );
+}
+
+/** Mirrors `isWholeValueSelect()` from RJSF: a select over object or array constants holds one of them whole, so it is
+ * a value to replace rather than a level to walk. */
+function isWholeValueSelect(
+  validator: Validator,
+  merger: FormMerger,
+  schema: Schema,
+  rootSchema: Schema
+): boolean {
+  const schemaType = typeOfSchema(schema);
+  const containerType = isContainerType(schemaType);
+  // A declared primitive type rules the schema out before its options are scanned
+  if (
+    (!containerType && schema.type !== undefined) ||
+    !isSelect(validator, merger, schema, rootSchema)
+  ) {
+    return false;
   }
-  if (Object.hasOwn(schema, "default")) {
-    return schema.default;
+  if (containerType) {
+    return true;
   }
-  return levelDefault(levelSchema, key);
+  const values = getSelectOptionValuesSafe(schema) ?? [];
+  return values.some(isContainerValue);
+}
+
+/** Mirrors `optionsDeclareProperties()` from RJSF: a level whose `oneOf`/`anyOf` options describe its properties is
+ * `formDataForNewOption()`'s to switch, so this pass must leave the level's own defaults alone. It still descends into
+ * the level, since a conditional declared on one of its properties is nothing to do with the options here. */
+function optionsDeclareProperties(
+  validator: Validator,
+  merger: FormMerger,
+  level: Schema,
+  rootSchema: Schema
+): boolean {
+  const options = getXxxOfOptions<SchemaDefinition>(level)?.options ?? [];
+  return options.some((option) => {
+    if (typeof option === "boolean") {
+      return false;
+    }
+    if (isSchemaObjectValue(option[PROPERTIES_KEY])) {
+      return true;
+    }
+    if (REF_KEY in option) {
+      const resolved = retrieveSchema(validator, merger, option, rootSchema);
+      return isSchemaObjectValue(resolved[PROPERTIES_KEY]);
+    }
+    return false;
+  });
+}
+
+function levelDefault(level: Schema, key: string): SchemaValue | undefined {
+  const declared = getOwn(level, DEFAULT_KEY);
+  return isSchemaObjectValue(declared) ? getOwn(declared, key) : undefined;
+}
+
+/** Returns `schema` with its `properties` narrowed to `keys`, keeping every other keyword: `default` above all, since
+ * it is what reaches each key as its parent defaults. Narrowing keeps the defaults computation proportional to the
+ * keys that were swapped rather than to the size of the whole level. */
+function onlyProperties(
+  schema: Schema,
+  properties: Record<string, unknown>,
+  keys: string[]
+): Schema {
+  const narrowed: Record<string, unknown> = {};
+  for (const key of keys) {
+    setOwn(narrowed, key, properties[key]);
+  }
+  return { ...schema, properties: narrowed as Schema["properties"] };
+}
+
+/** Computes the defaults `schema` produces for `keys`, the same way the form's own fill does. */
+function levelDefaults(
+  merger: FormMerger,
+  schema: Schema,
+  properties: Record<string, unknown>,
+  keys: string[],
+  initialDefaultsGenerated: boolean
+): SchemaObjectValue {
+  const defaults = merger.mergeFormDataAndSchemaDefaults({
+    schema: onlyProperties(schema, properties, keys),
+    formData: undefined,
+    initialDefaultsGenerated,
+    includeUndefinedValues: false,
+  });
+  return isSchemaObjectValue(defaults) ? defaults : {};
 }
 
 function isPathPrefix(prefix: RPath, path: RPath) {
@@ -64,7 +156,7 @@ function copyContainer(
   if (Array.isArray(value)) {
     return value.slice() as unknown as Record<PropertyKey, unknown>;
   }
-  if (isObject(value)) {
+  if (isRecord(value)) {
     return { ...value };
   }
   if (value === undefined || value === null) {
@@ -112,9 +204,18 @@ export function rebuildOldFormData(
   return oldFormData;
 }
 
+interface NestedKey {
+  key: string;
+  newSchema: Schema;
+  oldSchema: Schema;
+  current: SchemaObjectValue;
+  oldCurrent: SchemaObjectValue;
+  changedPaths: readonly FieldPath[];
+}
+
 function dropStaleDefaultsAtLevel(
   validator: Validator,
-  merger: Merger,
+  merger: FormMerger,
   rootSchema: Schema,
   newSchema: Schema,
   oldSchema: Schema,
@@ -123,7 +224,7 @@ function dropStaleDefaultsAtLevel(
   changedPaths: readonly FieldPath[],
   droppedPaths: ReadonlySet<string>,
   levelPath: FieldPath,
-  level: number
+  initialDefaultsGenerated: boolean
 ): SchemaObjectValue {
   const newProperties = newSchema.properties;
   const oldProperties = oldSchema.properties;
@@ -134,7 +235,9 @@ function dropStaleDefaultsAtLevel(
     return formData;
   }
 
-  let result = formData;
+  // Keys whose declarations differ and which are worth a defaults computation.
+  const replaceableKeys: string[] = [];
+  const nested: NestedKey[] = [];
   for (const key of Object.keys(newProperties)) {
     if (!Object.hasOwn(oldProperties, key)) {
       continue;
@@ -148,7 +251,7 @@ function dropStaleDefaultsAtLevel(
     if (!isSchemaObject(newRaw) || !isSchemaObject(oldRaw)) {
       continue;
     }
-    const current = getOwn(result, key);
+    const current = getOwn(formData, key);
     const oldCurrent = getOwn(oldFormData, key);
     if (current === undefined || oldCurrent === undefined) {
       continue;
@@ -195,51 +298,115 @@ function dropStaleDefaultsAtLevel(
         ? newResolved
         : retrieveSchema(validator, merger, oldRaw, rootSchema, oldCurrent);
 
-    const oldDefault = getDeclaredDefault(oldSchema, key, oldResolved);
-    const newDefault = getDeclaredDefault(newSchema, key, newResolved);
-    // `oldCurrent` is the value before the batch, so a change below the key can
-    // make the current value differ from it. Do not drop the property when any
-    // change touches it or a value below it.
+    // The changed field and everything below it belongs to the user. The
+    // computed defaults are no guide on their own: both sides have to declare a
+    // value for the key before a difference between what they compute means the
+    // key is stale.
     if (
       !isChangedKey &&
       !hasChangedBelow &&
       !isStub &&
-      oldDefault !== undefined &&
-      newDefault !== undefined &&
-      !merger.isValueDeepEqual(oldDefault, newDefault) &&
-      merger.isValueDeepEqual(oldDefault, oldCurrent)
+      declaresValueFor(newSchema, key, newResolved) &&
+      declaresValueFor(oldSchema, key, oldResolved)
     ) {
-      if (result === formData) {
-        result = { ...formData };
-      }
-      delete result[key];
-      continue;
+      replaceableKeys.push(key);
     }
 
     if (isSchemaObjectValue(current) && isSchemaObjectValue(oldCurrent)) {
-      const nextChangedPaths = changedPaths.filter(
-        (path) =>
-          isPathPrefix(path, currentPath) || isPathPrefix(currentPath, path)
-      );
-      const next = dropStaleDefaultsAtLevel(
-        validator,
-        merger,
-        rootSchema,
-        newResolved,
-        oldResolved,
+      nested.push({
+        key,
+        newSchema: newResolved,
+        oldSchema: oldResolved,
         current,
         oldCurrent,
-        nextChangedPaths,
-        droppedPaths,
-        currentPath,
-        level + 1
+        changedPaths: changedPaths.filter(
+          (path) =>
+            isPathPrefix(path, currentPath) || isPathPrefix(currentPath, path)
+        ),
+      });
+    }
+  }
+
+  let result = formData;
+  const droppedKeys = new Set<string>();
+  // A level whose options describe its properties is `formDataForNewOption()`'s
+  // to switch, and the option `computeDefaults()` picks for a level with no
+  // data of its own need not be the one the fill picks for the data there is.
+  // Either side disqualifies the level; the walk still descends.
+  if (
+    replaceableKeys.length > 0 &&
+    !optionsDeclareProperties(validator, merger, newSchema, rootSchema) &&
+    (newSchema === oldSchema ||
+      !optionsDeclareProperties(validator, merger, oldSchema, rootSchema))
+  ) {
+    const oldDefaults = levelDefaults(
+      merger,
+      oldSchema,
+      oldProperties,
+      replaceableKeys,
+      initialDefaultsGenerated
+    );
+    // The old side decides which keys still hold what the branch being swapped
+    // away put there. Once the user has edited them that is none of them, and
+    // the new side's defaults are then never computed at all.
+    const holdingKeys = replaceableKeys.filter((key) =>
+      merger.isValueDeepEqual(
+        getOwn(oldDefaults, key),
+        getOwn(oldFormData, key)
+      )
+    );
+    if (holdingKeys.length > 0) {
+      const newDefaults = levelDefaults(
+        merger,
+        newSchema,
+        newProperties,
+        holdingKeys,
+        initialDefaultsGenerated
       );
-      if (next !== current) {
-        if (result === formData) {
-          result = { ...formData };
+      for (const key of holdingKeys) {
+        const oldDefault = getOwn(oldDefaults, key);
+        const newDefault = getOwn(newDefaults, key);
+        if (
+          newDefault !== undefined &&
+          !merger.isValueDeepEqual(oldDefault, newDefault)
+        ) {
+          if (result === formData) {
+            result = { ...formData };
+          }
+          delete result[key];
+          droppedKeys.add(key);
         }
-        setOwn(result, key, next);
       }
+    }
+  }
+
+  for (const entry of nested) {
+    if (droppedKeys.has(entry.key)) {
+      continue;
+    }
+    // A select over object constants holds one of them whole, so it is a value
+    // to replace rather than a level to walk.
+    if (isWholeValueSelect(validator, merger, entry.newSchema, rootSchema)) {
+      continue;
+    }
+    const next = dropStaleDefaultsAtLevel(
+      validator,
+      merger,
+      rootSchema,
+      entry.newSchema,
+      entry.oldSchema,
+      entry.current,
+      entry.oldCurrent,
+      entry.changedPaths,
+      droppedPaths,
+      [...levelPath, entry.key] as unknown as FieldPath,
+      initialDefaultsGenerated
+    );
+    if (next !== entry.current) {
+      if (result === formData) {
+        result = { ...formData };
+      }
+      setOwn(result, entry.key, next);
     }
   }
   return result;
@@ -251,7 +418,7 @@ function dropStaleDefaultsAtLevel(
  * selected branch's default.
  */
 export function dropStaleDefaults(
-  merger: Merger,
+  merger: FormMerger,
   {
     validator,
     rootSchema,
@@ -261,6 +428,7 @@ export function dropStaleDefaults(
     oldFormData: providedOldFormData,
     oldSchema: providedOldSchema,
     droppedPaths,
+    initialDefaultsGenerated = false,
   }: DropStaleDefaultsOptions
 ): SchemaValue | undefined {
   if (!isSchemaObjectValue(formData) || !isSchemaObjectValue(newSchema)) {
@@ -288,6 +456,6 @@ export function dropStaleDefaults(
     changes.map(({ path }) => path),
     new Set((droppedPaths ?? []).map(pathKey)),
     [] as unknown as FieldPath,
-    0
+    initialDefaultsGenerated
   );
 }

@@ -60,6 +60,12 @@ export interface DropStaleDefaultsOptions {
    * the defaults fill has written is not dropped again.
    */
   droppedPaths?: readonly FieldPath[];
+  /**
+   * The flag the defaults fill is running with. The search computes the same
+   * defaults as that fill, so it must use the same flag.
+   * @default false
+   */
+  initialDefaultsGenerated?: boolean;
 }
 
 export interface FormMerger extends Merger {
@@ -71,7 +77,9 @@ export interface FormMerger extends Merger {
   ): SchemaValue | undefined;
   /**
    * Removes values that still hold a `default` or `const` declared by a
-   * `dependencies` or `if`/`then`/`else` branch that is no longer selected.
+   * `dependencies` or `if`/`then`/`else` branch that is no longer selected, so
+   * the next `mergeFormDataAndSchemaDefaults` call writes the newly selected
+   * branch's default.
    */
   dropStaleDefaults(options: DropStaleDefaultsOptions): SchemaValue | undefined;
 }
@@ -81,8 +89,9 @@ Use `createFormMerger` from `@sjsf/form/mergers/modern` for most projects.
 The legacy merger is available for v2 compatibility.
 
 The built-in mergers implement `dropStaleDefaults` with the exported
-`dropStaleDefaults(merger, options)` helper. A custom `FormMerger` should
-delegate to the same helper:
+`dropStaleDefaults(merger, options)` helper. Pass the `FormMerger` itself so the
+helper computes defaults exactly as your `mergeFormDataAndSchemaDefaults` does.
+A custom `FormMerger` should delegate to the same helper:
 
 ```typescript
 import { dropStaleDefaults, type DropStaleDefaultsOptions } from "@sjsf/form";
@@ -97,8 +106,12 @@ const merger: FormMerger = {
 
 A custom implementation can use the `oldFormData` and `oldSchema` options to
 skip rebuilding the pre-pass data and resolving its schema, and must honor
-`changes` and `droppedPaths` so user edits stay distinguishable and a
-replacement is not dropped again.
+`changes`, `droppedPaths`, and `initialDefaultsGenerated` so user edits stay
+distinguishable, a replacement is not dropped again, and the comparison sees
+the same defaults as the fill. It must also gate a replacement on both branches
+declaring a value for the key: the computed defaults also contain nested leaf
+defaults, required placeholders, and `items` defaults repeated to `minItems`,
+none of which are a branch declaring the key's value.
 
 <LinkCard
   title="Merger Setup"

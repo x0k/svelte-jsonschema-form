@@ -243,7 +243,11 @@ export class StaleDefaultsPass {
   }
 
   /** Drops every stale path the search reports for `formData`. */
-  drop(formData: FormValue, newSchema: Schema): FormValue {
+  drop(
+    formData: FormValue,
+    newSchema: Schema,
+    initialDefaultsGenerated: boolean
+  ): FormValue {
     const result = this.merger.dropStaleDefaults({
       validator: this.validator,
       rootSchema: this.rootSchema,
@@ -253,6 +257,7 @@ export class StaleDefaultsPass {
       oldFormData: this.oldFormData,
       oldSchema: this.oldSchema,
       droppedPaths: [...this.dropped.values()].map(({ path }) => path),
+      initialDefaultsGenerated,
     });
     if (!isSchemaObjectValue(result)) {
       return formData;

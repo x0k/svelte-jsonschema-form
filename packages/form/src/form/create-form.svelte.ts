@@ -664,7 +664,11 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
           options.schema,
           formData
         );
-        formData = staleDefaultsPass.drop(formData, newRetrievedSchema);
+        formData = staleDefaultsPass.drop(
+          formData,
+          newRetrievedSchema,
+          initialDefaultsGenerated
+        );
       }
       formData = merger.mergeFormDataAndSchemaDefaults({
         formData: formData,

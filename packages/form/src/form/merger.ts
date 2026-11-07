@@ -50,6 +50,12 @@ export interface DropStaleDefaultsOptions {
    * defaults fill has written is not dropped again.
    */
   droppedPaths?: readonly FieldPath[];
+  /**
+   * The flag the defaults fill is running with. The search computes the same
+   * defaults as that fill, so it must use the same flag.
+   * @default false
+   */
+  initialDefaultsGenerated?: boolean;
 }
 
 export interface FormMerger extends Merger {
@@ -66,7 +72,8 @@ export interface FormMerger extends Merger {
    * branch's default.
    *
    * A custom merger can delegate to the exported `dropStaleDefaults` helper
-   * with the same `Merger` instance it uses for schema merging.
+   * with itself, so the search computes defaults the same way this merger's
+   * `mergeFormDataAndSchemaDefaults` does.
    */
   dropStaleDefaults(options: DropStaleDefaultsOptions): SchemaValue | undefined;
 }

@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
 
 import {
+  getDefaultFormState,
   isOrderedSchemaDeepEqual,
   type Merger,
   type Schema,
@@ -13,11 +14,10 @@ import { createValidator } from "#core/test-validator.js";
 
 import { dropStaleDefaults } from "./drop-stale-defaults.js";
 import type { FieldPath } from "./id.js";
-import type { FormValueChange } from "./merger.js";
+import type { FormMerger, FormValueChange } from "./merger.js";
 import type { FieldValue } from "./model.js";
 
 let testValidator: Validator;
-let defaultMerger: Merger;
 
 beforeEach(() => {
   testValidator = createValidator({
@@ -34,7 +34,6 @@ beforeEach(() => {
       },
     ],
   });
-  defaultMerger = createMerger();
 });
 
 function path(...parts: (string | number)[]) {
@@ -45,18 +44,47 @@ function change(path: FieldPath, oldValue: FieldValue): FormValueChange {
   return { path, oldValue };
 }
 
+function formMerger(merger: Merger, rootSchema: Schema): FormMerger {
+  const formMerger: FormMerger = {
+    ...merger,
+    mergeFormDataAndSchemaDefaults({
+      schema,
+      formData,
+      initialDefaultsGenerated = false,
+      includeUndefinedValues = false,
+    }) {
+      return getDefaultFormState(
+        testValidator,
+        merger,
+        schema,
+        formData,
+        rootSchema,
+        includeUndefinedValues,
+        {},
+        initialDefaultsGenerated
+      );
+    },
+    dropStaleDefaults(options) {
+      return dropStaleDefaults(formMerger, options);
+    },
+  };
+  return formMerger;
+}
+
 function drop({
   oldSchema,
   newSchema,
   formData,
   changes,
+  merger = createMerger(),
 }: {
   oldSchema: Schema;
   newSchema: Schema;
   formData: SchemaValue;
   changes: FormValueChange[];
+  merger?: Merger;
 }) {
-  return dropStaleDefaults(defaultMerger, {
+  return dropStaleDefaults(formMerger(merger, oldSchema), {
     validator: testValidator,
     rootSchema: oldSchema,
     newSchema,
@@ -336,7 +364,7 @@ describe("dropStaleDefaults", () => {
         },
       },
     };
-    defaultMerger = createMerger({
+    const merger = createMerger({
       merges: [
         {
           left: wrapperBase,
@@ -363,6 +391,7 @@ describe("dropStaleDefaults", () => {
         newSchema: nestedConditionalSchema,
         formData: { wrapper: { mode: "b", x: "a" } },
         changes: [change(path("wrapper", "mode"), "a")],
+        merger,
       })
     ).toEqual({ wrapper: { mode: "b" } });
   });
@@ -467,16 +496,16 @@ describe("dropStaleDefaults", () => {
   });
 
   it("uses the merger's value comparer", () => {
-    const orderedMerger: Merger = {
-      ...defaultMerger,
-      isValueDeepEqual: isOrderedSchemaDeepEqual as ValueDeepComparator,
-    };
     const oldOrderedSchema: Schema = {
       type: "object",
       properties: {
         mode: { type: "string" },
         cfg: { type: "object", default: { a: 1, b: 2 } },
       },
+    };
+    const orderedMerger: FormMerger = {
+      ...formMerger(createMerger(), oldOrderedSchema),
+      isValueDeepEqual: isOrderedSchemaDeepEqual as ValueDeepComparator,
     };
     const newOrderedSchema: Schema = {
       type: "object",
