@@ -14,6 +14,7 @@ import {
   isSchemaObjectValue,
   retrieveSchema,
   type Merger,
+  type RPath,
   type Schema,
   type SchemaObjectValue,
   type SchemaValue,
@@ -49,10 +50,7 @@ function getDeclaredDefault(levelSchema: Schema, key: string, schema: Schema) {
   return levelDefault(levelSchema, key);
 }
 
-function isPathPrefix(
-  prefix: readonly (string | number)[],
-  path: readonly (string | number)[]
-) {
+function isPathPrefix(prefix: RPath, path: RPath) {
   return (
     prefix.length <= path.length &&
     prefix.every((part, index) => part === path[index])

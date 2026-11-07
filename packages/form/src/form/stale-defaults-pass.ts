@@ -17,6 +17,7 @@ import {
   retrieveSchema,
   sanitizeDataForNewSchema,
   type Merger,
+  type RPath,
   type Schema,
   type SchemaValue,
   type Validator,
@@ -65,7 +66,7 @@ export interface StaleDefaultsPassOptions {
   oldSchema: Schema | undefined;
 }
 
-function getAtPath(data: unknown, path: readonly (string | number)[]): unknown {
+function getAtPath(data: unknown, path: RPath): unknown {
   let node = data;
   for (const key of path) {
     if (Array.isArray(node)) {

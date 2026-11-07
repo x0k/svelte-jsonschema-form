@@ -1,3 +1,4 @@
+import type { RPath } from "#core/index.js";
 import {
   getOwn,
   isArrayIndex,
@@ -14,7 +15,7 @@ function pathError(path: FieldPath) {
 }
 
 /** A string that identifies `path` in a set, including keys named `__proto__`. */
-export function pathKey(path: readonly (string | number)[]): string {
+export function pathKey(path: RPath): string {
   return JSON.stringify(path);
 }
 
