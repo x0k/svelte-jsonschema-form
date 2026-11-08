@@ -38,6 +38,23 @@ describe("path queries", () => {
     );
   });
 
+  test("getSubtreePaths does not register the queried path", async () => {
+    const { form } = await renderFieldForm({
+      schema: {
+        type: "object",
+        properties: {
+          name: { type: "string" },
+        },
+      },
+      initialValue: { name: "a" },
+    });
+
+    expect(Array.from(getSubtreePaths(form, ["missing"]))).toEqual([]);
+    expect(Array.from(getSubtreePaths(form, ["missing"]))).toEqual([]);
+    expect(Array.from(getSubtreePaths(form, ["missing", "child"]))).toEqual([]);
+    expect(Array.from(getSubtreePaths(form, ["missing", "child"]))).toEqual([]);
+  });
+
   test("error and field-state helpers accept plain paths", async () => {
     const { form } = await renderFieldForm({
       schema: {
