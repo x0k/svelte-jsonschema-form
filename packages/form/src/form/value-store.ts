@@ -44,8 +44,8 @@ export interface FormValueStoreOptions {
   valueRef: FormValueRef;
   keyedArrays: KeyedArraysMap;
   /**
-   * Called before a write with the value it replaces, so the defaults pass can
-   * tell a user-written value from an untouched default.
+   * Called after a successful write with the value it replaced, so the defaults
+   * pass can tell a user-written value from an untouched default.
    */
   onChange?: (change: FormValueChange) => void;
   onReplace?: () => void;
@@ -77,11 +77,9 @@ export function createFormValueStore({
     },
     setAtPath(path, value) {
       const current = valueRef.current;
-      onChange?.({
-        path,
-        oldValue: getValueAtPath(current, path),
-      });
+      const oldValue = getValueAtPath(current, path);
       const next = writeValueAtPath(current, path, value);
+      onChange?.({ path, oldValue });
       // Non-root writes mutate the current value in place through Svelte's
       // proxy, so reassigning the same root would only invalidate root readers.
       if (next !== current) {
@@ -93,11 +91,9 @@ export function createFormValueStore({
       update: (value: V) => V
     ) {
       const current = valueRef.current;
-      onChange?.({
-        path,
-        oldValue: copyForChange(getValueAtPath(current, path)),
-      });
+      const oldValue = copyForChange(getValueAtPath(current, path));
       const next = updateValueAtPath(current, path, update);
+      onChange?.({ path, oldValue });
       if (next !== current) {
         valueRef.current = next;
       }
@@ -108,8 +104,9 @@ export function createFormValueStore({
         const next: SchemaArrayValue = [];
         update(getKeyedArray(next), next.length);
         if (next.length > 0) {
+          const written = writeValueAtPath(valueRef.current, path, next);
           onChange?.({ path, oldValue: current });
-          valueRef.current = writeValueAtPath(valueRef.current, path, next);
+          valueRef.current = written;
         }
         return;
       }

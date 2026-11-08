@@ -86,4 +86,45 @@ describe("createFormValueStore", () => {
     expect(changes).toEqual([{ path: path("list"), oldValue: [1, 2] }]);
     expect(store.get()).toEqual({ list: [1, 2, 3] });
   });
+
+  test("setAtPath does not record a change when the write throws", () => {
+    const changes: FormValueChange[] = [];
+    const initial = { list: ["a"] };
+    const store = createStore(initial, (change) => changes.push(change));
+
+    expect(() => store.setAtPath(path("list", 1), "b")).toThrow();
+
+    expect(changes).toEqual([]);
+    expect(store.get()).toBe(initial);
+  });
+
+  test("updateAtPath does not record a change when the update throws", () => {
+    const changes: FormValueChange[] = [];
+    const initial = { list: [1] };
+    const store = createStore(initial, (change) => changes.push(change));
+
+    expect(() =>
+      store.updateAtPath(path("list"), () => {
+        throw new Error("update failed");
+      })
+    ).toThrow("update failed");
+
+    expect(changes).toEqual([]);
+    expect(store.get()).toBe(initial);
+  });
+
+  test("updateArrayAtPath does not record a change when the write throws", () => {
+    const changes: FormValueChange[] = [];
+    const initial = { list: [] as string[] };
+    const store = createStore(initial, (change) => changes.push(change));
+
+    expect(() =>
+      store.updateArrayAtPath(path("list", "0"), (array) => {
+        array.push("a");
+      })
+    ).toThrow();
+
+    expect(changes).toEqual([]);
+    expect(store.get()).toBe(initial);
+  });
 });
