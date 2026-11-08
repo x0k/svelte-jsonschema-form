@@ -13,13 +13,13 @@
 
 import {
   getSchemaDefinitionByPath,
+  isSchemaArrayValue,
   isSchemaObjectValue,
   retrieveSchema,
   sanitizeDataForNewSchema,
   type Merger,
   type RPath,
   type Schema,
-  type SchemaValue,
   type Validator,
 } from "#core/index.js";
 import { getOwn, isRecord, setOwn } from "#lib/object.js";
@@ -153,27 +153,41 @@ function resolveSchemaAt(
   path: RPath,
   formData: FormValue
 ): Schema | undefined {
-  const definition = getSchemaDefinitionByPath(
-    validator,
-    merger,
-    rootSchema,
-    newSchema,
-    path,
-    formData
-  );
-  if (typeof definition === "boolean") {
-    return definition ? {} : undefined;
+  let fieldSchema: Schema = newSchema;
+  let fieldData: FormValue = formData;
+  for (const segment of path) {
+    const childSchema = getSchemaDefinitionByPath(
+      validator,
+      merger,
+      rootSchema,
+      fieldSchema,
+      [segment],
+      fieldData
+    );
+    // A boolean `true` schema describes anything, but it is not a schema the
+    // refill can be judged against; RJSF leaves such a key unjudged too.
+    if (!isSchemaObjectValue(childSchema)) {
+      return undefined;
+    }
+    fieldData = isSchemaArrayValue(fieldData)
+      ? typeof segment === "number"
+        ? fieldData[segment]
+        : undefined
+      : isSchemaObjectValue(fieldData)
+        ? getOwn(fieldData, String(segment))
+        : undefined;
+    // Resolve at each level, not only at the leaf: a swap decided inside a
+    // property leaves the root retrieved schema the same object, so the child
+    // declaration has to be retrieved against the data at its own level.
+    fieldSchema = retrieveSchema(
+      validator,
+      merger,
+      childSchema,
+      rootSchema,
+      fieldData
+    );
   }
-  if (!isSchemaObjectValue(definition)) {
-    return undefined;
-  }
-  return retrieveSchema(
-    validator,
-    merger,
-    definition,
-    rootSchema,
-    getAtPath(formData, path) as SchemaValue | undefined
-  );
+  return fieldSchema;
 }
 
 function isRefillRejected(
@@ -328,6 +342,12 @@ export class StaleDefaultsPass {
         });
         result = deleteAtPath(result, dropped.path);
       } else {
+        // The schema that accepted this refill is the one a later movement has
+        // to judge it against, not the schema it was dropped under.
+        this.dropped.set(key, {
+          ...dropped,
+          writtenUnder: resolvedNow ?? writtenUnder,
+        });
         result = putBackAt(
           result,
           this.oldFormData,

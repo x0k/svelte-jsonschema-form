@@ -51,6 +51,23 @@ function isContainerValue(value: SchemaValue | undefined): boolean {
   return Array.isArray(value) || isSchemaObjectValue(value);
 }
 
+/** Mirrors `isSanitizeOwned()` from RJSF: a scalar that no longer matches the
+ * data the pass started from has already been moved by the fill or sanitize,
+ * so dropping it again would record the old value and put it back if no fill
+ * answers. Containers are still the search's to report: sanitize only edits
+ * leaves inside them. */
+function isSanitizeOwned(
+  merger: FormMerger,
+  current: SchemaValue | undefined,
+  oldCurrent: SchemaValue | undefined
+): boolean {
+  return (
+    current !== undefined &&
+    !isContainerValue(current) &&
+    !merger.isValueDeepEqual(current, oldCurrent)
+  );
+}
+
 function isContainerType(type: SchemaType | SchemaType[]): boolean {
   return (
     type === "object" ||
@@ -311,6 +328,7 @@ function dropStaleDefaultsAtLevel(
       !isChangedKey &&
       !hasChangedBelow &&
       !isStub &&
+      !isSanitizeOwned(merger, current, oldCurrent) &&
       declaresValueFor(newSchema, key, newResolved) &&
       declaresValueFor(oldSchema, key, oldResolved)
     ) {

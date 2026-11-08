@@ -9,6 +9,8 @@ import { getSelectOptionValuesSafe } from "./is-select.js";
 import type { Merger } from "./merger.js";
 import { retrieveSchema } from "./resolve.js";
 import {
+  CONST_KEY,
+  DEFAULT_KEY,
   type Schema,
   type SchemaArrayValue,
   type SchemaObjectValue,
@@ -217,9 +219,14 @@ export function sanitizeDataForNewSchema(
             setOwn(nestedData, key, itemData);
           }
         } else {
-          // NOTE: `null` default is treated as `NO_VALUE`
-          const newOptionDefault = newKeyedSchema.default ?? NO_VALUE;
-          const oldOptionDefault = oldKeyedSchema.default ?? NO_VALUE;
+          // `null` is a declared value, not an absent one, so only an absent
+          // key yields `NO_VALUE`.
+          const newOptionDefault = Object.hasOwn(newKeyedSchema, DEFAULT_KEY)
+            ? newKeyedSchema.default
+            : NO_VALUE;
+          const oldOptionDefault = Object.hasOwn(oldKeyedSchema, DEFAULT_KEY)
+            ? oldKeyedSchema.default
+            : NO_VALUE;
           if (newOptionDefault !== NO_VALUE && newOptionDefault !== formValue) {
             if (
               (isNewProperty && formValue === undefined) ||
@@ -232,9 +239,12 @@ export function sanitizeDataForNewSchema(
             }
           }
 
-          // NOTE: `null` const is treated as `NO_VALUE`
-          const newOptionConst = newKeyedSchema.const ?? NO_VALUE;
-          const oldOptionConst = oldKeyedSchema.const ?? NO_VALUE;
+          const newOptionConst = Object.hasOwn(newKeyedSchema, CONST_KEY)
+            ? newKeyedSchema.const
+            : NO_VALUE;
+          const oldOptionConst = Object.hasOwn(oldKeyedSchema, CONST_KEY)
+            ? oldKeyedSchema.const
+            : NO_VALUE;
           if (newOptionConst !== NO_VALUE && newOptionConst !== formValue) {
             setOwn(
               removeOldSchemaData,

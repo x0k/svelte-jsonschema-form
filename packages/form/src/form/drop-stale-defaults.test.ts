@@ -607,4 +607,66 @@ describe("dropStaleDefaults", () => {
       })
     ).toBe(formData);
   });
+
+  it("still drops a scalar that matches the old value", () => {
+    const oldScalarSchema: Schema = {
+      type: "object",
+      properties: {
+        mode: { type: "string" },
+        x: { type: "string", default: "a" },
+      },
+    };
+    const newScalarSchema: Schema = {
+      type: "object",
+      properties: {
+        mode: { type: "string" },
+        x: { type: "string", default: "b" },
+      },
+    };
+    const result = dropStaleDefaults(
+      formMerger(createMerger(), oldScalarSchema),
+      {
+        validator: testValidator,
+        rootSchema: oldScalarSchema,
+        newSchema: newScalarSchema,
+        formData: { mode: "second", x: "a" },
+        oldFormData: { mode: "first", x: "a" },
+        oldSchema: oldScalarSchema,
+        changes: [change(path("mode"), "first")],
+      }
+    );
+    expect(result.formData).toEqual({ mode: "second" });
+    expect(result.dropped).toMatchObject([{ path: path("x"), value: "a" }]);
+  });
+
+  it("leaves a scalar sanitize already moved off the old value alone", () => {
+    const oldScalarSchema: Schema = {
+      type: "object",
+      properties: {
+        mode: { type: "string" },
+        x: { type: "string", default: "a" },
+      },
+    };
+    const newScalarSchema: Schema = {
+      type: "object",
+      properties: {
+        mode: { type: "string" },
+        x: { type: "string", default: "b" },
+      },
+    };
+    const result = dropStaleDefaults(
+      formMerger(createMerger(), oldScalarSchema),
+      {
+        validator: testValidator,
+        rootSchema: oldScalarSchema,
+        newSchema: newScalarSchema,
+        formData: { mode: "second", x: "b" },
+        oldFormData: { mode: "first", x: "a" },
+        oldSchema: oldScalarSchema,
+        changes: [change(path("mode"), "first")],
+      }
+    );
+    expect(result.formData).toEqual({ mode: "second", x: "b" });
+    expect(result.dropped).toHaveLength(0);
+  });
 });

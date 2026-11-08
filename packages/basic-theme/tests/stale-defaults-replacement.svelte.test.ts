@@ -22,6 +22,63 @@ const cfgFor = (name: string): Schema => ({
   properties: { name: { type: "string" } },
 });
 
+const kindFor = (v: string): Schema => ({
+  type: "object",
+  default: { v },
+  properties: { v: { type: "string" } },
+});
+
+/**
+ * Two hops: `mode` swaps `kind`, and the `kind` written for the newly selected
+ * branch retypes `cfg`, whose own refill was written while `kind` was gone.
+ * `finalCfg` is what the second hop retypes `cfg` to.
+ */
+const retypingCascade = (finalCfg: Schema): Schema =>
+  ({
+    type: "object",
+    properties: {
+      mode: { type: "string", enum: ["a", "b"], default: "a" },
+      kind: { type: "object", properties: { v: { type: "string" } } },
+    },
+    allOf: [
+      {
+        if: { properties: { mode: { const: "a" } }, required: ["mode"] },
+        then: { properties: { kind: kindFor("k1") } },
+        else: { properties: { kind: kindFor("k2") } },
+      },
+      {
+        if: {
+          properties: {
+            kind: { properties: { v: { const: "k2" } }, required: ["v"] },
+          },
+          required: ["kind"],
+        },
+        then: { properties: { cfg: finalCfg } },
+        else: {
+          properties: {
+            cfg: { type: "object", properties: { name: { type: "string" } } },
+          },
+          allOf: [
+            {
+              if: {
+                properties: { mode: { const: "a" } },
+                required: ["mode"],
+              },
+              then: { properties: { cfg: cfgFor("a") } },
+              else: { properties: { cfg: cfgFor("mid") } },
+            },
+          ],
+        },
+      },
+    ],
+  }) as Schema;
+
+const retypingCascadeData = {
+  mode: "a",
+  kind: { v: "k1" },
+  cfg: { name: "a" },
+};
+
 function modeSwap(branchA: Schema, branchB: Schema): Schema {
   return {
     type: "object",
@@ -620,6 +677,106 @@ describe("RJSF #5464 parity", () => {
       mode: "b",
       cfg: { name: "b" },
       anything: "kept",
+    });
+  });
+
+  // The second hop retypes the key the first hop replaced: the `kind` written
+  // for the newly selected branch selects a `cfg` that the refill written while
+  // `kind` was gone no longer fits. Each refill is judged at its own key, by
+  // the schema that describes it once the data has settled against the one it
+  // was written under, so this one is dropped again and the fill answers the
+  // schema that rejected it.
+  test("replaces a refill that a later iteration retypes", async () => {
+    const { form } = await renderFieldForm({
+      schema: retypingCascade({ type: "string", default: "final" }),
+      initialValue: retypingCascadeData,
+    });
+    setValueAtPath(form, ["mode"], "b");
+    await tick();
+    expect(getValueSnapshot(form)).toEqual({
+      mode: "b",
+      kind: { v: "k2" },
+      cfg: "final",
+    });
+  });
+
+  // The same two hops, with nothing declared for `cfg` under the schema the
+  // second hop retypes it to, so no fill answers the key. What the drop
+  // recorded is no answer either: it is the value the swap moved away from,
+  // two schema movements out of date, and putting it back would settle the key
+  // on an object a string schema rejects.
+  test("leaves a key empty when the schema that rejected its refill declares nothing", async () => {
+    const { form } = await renderFieldForm({
+      schema: retypingCascade({ type: "string" }),
+      initialValue: retypingCascadeData,
+    });
+    setValueAtPath(form, ["mode"], "b");
+    await tick();
+    expect(getValueSnapshot(form)).toEqual({
+      mode: "b",
+      kind: { v: "k2" },
+    });
+  });
+
+  // `retrieveSchema()` resolves the conditionals of the schema it is handed, so
+  // a swap decided inside a property leaves the root schema the same object
+  // from one iteration to the next. A refill is judged at its own key for that
+  // reason: judged by the root pair, a replacement one level down would be
+  // judged by two schemas that cannot have moved.
+  test("judges a replacement at its own level when the swap is decided inside a property", async () => {
+    // `mode` swaps `kind` and declares `cfg`'s value through the branch's own
+    // `default`, while `kind.v` decides `cfg`'s type — so no state of this
+    // form declares `cfg` twice, and each one is valid on its own terms.
+    const wrapped: Schema = {
+      type: "object",
+      properties: {
+        mode: { type: "string", enum: ["a", "b"], default: "a" },
+        kind: { type: "object", properties: { v: { type: "string" } } },
+      },
+      dependencies: {
+        mode: {
+          oneOf: [
+            {
+              properties: { mode: { const: "a" }, kind: kindFor("k1") },
+              default: { cfg: { name: "a" } },
+            },
+            {
+              properties: { mode: { const: "b" }, kind: kindFor("k2") },
+              default: { cfg: { name: "mid" } },
+            },
+          ],
+        },
+      },
+      allOf: [
+        {
+          if: {
+            properties: {
+              kind: { properties: { v: { const: "k2" } }, required: ["v"] },
+            },
+            required: ["kind"],
+          },
+          then: { properties: { cfg: { type: "string", default: "final" } } },
+          else: {
+            properties: {
+              cfg: {
+                type: "object",
+                properties: { name: { type: "string" } },
+              },
+            },
+          },
+        },
+      ],
+    } as Schema;
+    const { form } = await renderFieldForm({
+      schema: { type: "object", properties: { wrap: wrapped } } as Schema,
+      initialValue: {
+        wrap: { mode: "a", kind: { v: "k1" }, cfg: { name: "a" } },
+      },
+    });
+    setValueAtPath(form, ["wrap", "mode"], "b");
+    await tick();
+    expect(getValueSnapshot(form)).toEqual({
+      wrap: { mode: "b", kind: { v: "k2" } },
     });
   });
 });
