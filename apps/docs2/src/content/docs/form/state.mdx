@@ -130,6 +130,13 @@ Use the standalone `validate(form, handlers)` and `reset(form)` functions
 
 Use the standalone `reset(form)` function (with the `handlers(form)` form attachment) to restore the form to its `initialValue`.
 
+`setValueAtPath`, `updateValueAtPath`, and the structural array commands record
+the replaced value, so the form can resolve the data as it was before the change
+and replace defaults left behind by a swapped `dependencies` or
+`if`/`then`/`else` branch. `setValue` replaces the whole value and clears the
+pending changes instead. Form data cannot be modified directly from outside the
+form; use these commands instead.
+
 ### `query` vs `command`
 
 In addition to the semantic difference, there is also a behavioral one when used in a **reactive context**.

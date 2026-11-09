@@ -1,4 +1,41 @@
-import type { Merger, Schema, SchemaValue } from "#core/index.js";
+import type {
+  Merger,
+  RPath,
+  Schema,
+  SchemaObjectValue,
+  SchemaValue,
+  Validator,
+} from "#core/index.js";
+import { isRecord, setOwn } from "#lib/object.js";
+
+import type { FieldPath } from "./id.js";
+import type { FieldValue } from "./model.js";
+
+/**
+ * Copies a value before an in-place write, so the previous value stays intact.
+ *
+ * The copy is recursive because the update callback may mutate any container
+ * below the path it receives. `copy` is called for every nested value, so a
+ * custom merger can pass a copier that also handles its own container types.
+ * Non-plain values such as `File` are kept by reference: the form treats them
+ * as opaque, and spreading one would lose its internal slots.
+ */
+export function copyForChange(
+  value: FieldValue,
+  copy: (value: FieldValue) => FieldValue = copyForChange
+): FieldValue {
+  if (Array.isArray(value)) {
+    return value.map((item) => copy(item));
+  }
+  if (isRecord(value)) {
+    const result: SchemaObjectValue = {};
+    for (const key of Object.keys(value)) {
+      setOwn(result, key, copy(value[key] as FieldValue));
+    }
+    return result;
+  }
+  return value;
+}
 
 export interface MergeFormDataAndSchemaDefaultsOptions {
   schema: Schema;
@@ -13,11 +50,118 @@ export interface MergeFormDataAndSchemaDefaultsOptions {
   includeUndefinedValues?: boolean | "excludeObjectChildren";
 }
 
+export interface FormValueChange {
+  path: FieldPath;
+  /**
+   * A snapshot of the value at `path` before the change. Later in-place writes
+   * must not alter it.
+   */
+  oldValue: FieldValue;
+  /**
+   * Whether `path` had an own value before the change. A `false` value means
+   * the change created the entry, so replaying the change removes it instead of
+   * writing an own `undefined`.
+   *
+   * Callers that construct a change by hand may omit this; it is then treated
+   * as `true`.
+   */
+  hadOwnValue?: boolean;
+}
+
+/**
+ * A value the stale-defaults search removed, along with what the pass needs to
+ * restore it or judge the replacement the defaults fill writes for it.
+ */
+export interface DroppedDefault {
+  path: FieldPath;
+  /**
+   * The value that was at `path` before the drop.
+   */
+  value: FieldValue;
+  /**
+   * The schema that described `path` while it held `value`, which is what a
+   * replacement the defaults fill writes is judged against.
+   */
+  writtenUnder: Schema | undefined;
+}
+
+export interface DropStaleDefaultsResult {
+  formData: SchemaValue | undefined;
+  /**
+   * The values removed from `formData`, in walk order. A path's parent is never
+   * listed alongside it, since a dropped key is not descended into.
+   */
+  dropped: readonly DroppedDefault[];
+}
+
+export interface DropStaleDefaultsOptions {
+  validator: Validator;
+  rootSchema: Schema;
+  /**
+   * The schema resolved for the current form data.
+   */
+  newSchema: Schema;
+  formData: SchemaValue | undefined;
+  /**
+   * Values written since the last defaults pass. A value at one of these paths,
+   * or below one, belongs to the user, even when it equals the replaced
+   * branch's default.
+   */
+  changes: readonly FormValueChange[];
+  /**
+   * The form data as it arrived, before this defaults pass dropped anything.
+   * When omitted, it is rebuilt from `changes`.
+   */
+  oldFormData?: SchemaValue | undefined;
+  /**
+   * The schema resolved for `oldFormData`. When omitted, it is retrieved from
+   * `rootSchema` and `oldFormData`.
+   */
+  oldSchema?: Schema | undefined;
+  /**
+   * Paths this pass has already dropped. They are skipped so a replacement the
+   * defaults fill has written is not dropped again.
+   */
+  droppedPaths?: ReadonlySet<FieldPath>;
+  /**
+   * Returns the canonical `FieldPath` for `key` below `parentPath`, so
+   * `droppedPaths` can be compared by identity. The form supplies its own.
+   */
+  getChildPath: (parentPath: RPath, key: string | number) => FieldPath;
+  /**
+   * The flag the defaults fill is running with. The search computes the same
+   * defaults as that fill, so it must use the same flag.
+   * @default false
+   */
+  initialDefaultsGenerated?: boolean;
+}
+
 export interface FormMerger extends Merger {
+  /**
+   * Copies `value` before an in-place update so the value recorded as the
+   * previous one stays intact.
+   *
+   * The built-in mergers copy arrays and plain objects recursively and keep
+   * other values, such as `File`, by reference. Override this to copy custom
+   * container types, such as `Map` or `Set`, used by your form data.
+   */
+  copyForChange(value: FieldValue): FieldValue;
   /**
    * Merges defaults of `schema` into `formData`
    */
   mergeFormDataAndSchemaDefaults(
     options: MergeFormDataAndSchemaDefaultsOptions
   ): SchemaValue | undefined;
+  /**
+   * Removes values that still hold a `default` or `const` declared by a
+   * `dependencies` or `if`/`then`/`else` branch that is no longer selected, so
+   * the next `mergeFormDataAndSchemaDefaults` call writes the newly selected
+   * branch's default.
+   *
+   * A custom merger can delegate to the exported `dropStaleDefaults` helper
+   * with itself, so the search computes defaults the same way this merger's
+   * `mergeFormDataAndSchemaDefaults` does. The returned entries let the form
+   * put back a value no fill answered and judge a replacement at its own key.
+   */
+  dropStaleDefaults(options: DropStaleDefaultsOptions): DropStaleDefaultsResult;
 }

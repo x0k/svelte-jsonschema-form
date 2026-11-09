@@ -2,13 +2,15 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { setOwn } from "#lib/object.js";
+import { getOwn, setOwn } from "#lib/object.js";
 
 import { isSchemaDeepEqual, type ValueComparer } from "./deep-equal.js";
 import { getSelectOptionValuesSafe } from "./is-select.js";
 import type { Merger } from "./merger.js";
 import { retrieveSchema } from "./resolve.js";
 import {
+  CONST_KEY,
+  DEFAULT_KEY,
   type Schema,
   type SchemaArrayValue,
   type SchemaObjectValue,
@@ -156,14 +158,11 @@ export function sanitizeDataForNewSchema(
     const keys: string[] = Object.keys(newSchemaProperties);
     const nestedData: SchemaObjectValue = {};
     keys.forEach((key) => {
-      const formValue =
-        isDataObject && Object.hasOwn(data, key) ? data[key] : undefined;
+      const formValue = isDataObject ? getOwn(data, key) : undefined;
       const isNewProperty =
         oldSchemaProperties === undefined ||
         !Object.hasOwn(oldSchemaProperties, key);
-      const oldKeyedSchemaDef = Object.hasOwn(oldSchemaProperties ?? {}, key)
-        ? oldSchemaProperties?.[key]
-        : undefined;
+      const oldKeyedSchemaDef = getOwn(oldSchemaProperties ?? {}, key);
       const oldRawKeyedSchema: Schema =
         typeof oldKeyedSchemaDef === "object" ? oldKeyedSchemaDef : {};
       const newKeyedSchemaDef = newSchemaProperties?.[key];
@@ -217,9 +216,18 @@ export function sanitizeDataForNewSchema(
             setOwn(nestedData, key, itemData);
           }
         } else {
-          // NOTE: `null` default is treated as `NO_VALUE`
-          const newOptionDefault = newKeyedSchema.default ?? NO_VALUE;
-          const oldOptionDefault = oldKeyedSchema.default ?? NO_VALUE;
+          // `null` is a declared value, not an absent one, so only an absent
+          // key yields `NO_VALUE`.
+          const newOptionDefault = getOwn(
+            newKeyedSchema,
+            DEFAULT_KEY,
+            NO_VALUE
+          );
+          const oldOptionDefault = getOwn(
+            oldKeyedSchema,
+            DEFAULT_KEY,
+            NO_VALUE
+          );
           if (newOptionDefault !== NO_VALUE && newOptionDefault !== formValue) {
             if (
               (isNewProperty && formValue === undefined) ||
@@ -232,9 +240,8 @@ export function sanitizeDataForNewSchema(
             }
           }
 
-          // NOTE: `null` const is treated as `NO_VALUE`
-          const newOptionConst = newKeyedSchema.const ?? NO_VALUE;
-          const oldOptionConst = oldKeyedSchema.const ?? NO_VALUE;
+          const newOptionConst = getOwn(newKeyedSchema, CONST_KEY, NO_VALUE);
+          const oldOptionConst = getOwn(oldKeyedSchema, CONST_KEY, NO_VALUE);
           if (newOptionConst !== NO_VALUE && newOptionConst !== formValue) {
             setOwn(
               removeOldSchemaData,

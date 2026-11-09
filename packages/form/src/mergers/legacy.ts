@@ -13,7 +13,9 @@ import {
   type SchemaDefinition,
   type Validator,
 } from "#core/index.js";
-import type { FormMerger } from "#form/index.js";
+import { dropStaleDefaults } from "#form/drop-stale-defaults.js";
+import type { DropStaleDefaultsOptions, FormMerger } from "#form/index.js";
+import { copyForChange } from "#form/merger.js";
 import { unique as uniqueItems } from "#lib/array.js";
 import {
   ARRAYS_OF_SUB_SCHEMAS,
@@ -179,9 +181,9 @@ export type FormMergerOptions = Experimental_DefaultFormStateBehavior & {
 };
 
 export function createFormMerger(options: FormMergerOptions): FormMerger {
-  const merger = createMerger();
-  return {
-    ...merger,
+  const formMerger: FormMerger = {
+    ...createMerger(),
+    copyForChange,
     mergeFormDataAndSchemaDefaults({
       formData,
       schema,
@@ -190,7 +192,7 @@ export function createFormMerger(options: FormMergerOptions): FormMerger {
     }) {
       return getDefaultFormState(
         options.validator,
-        merger,
+        formMerger,
         schema,
         formData,
         options.schema,
@@ -199,5 +201,9 @@ export function createFormMerger(options: FormMergerOptions): FormMerger {
         initialDefaultsGenerated
       );
     },
+    dropStaleDefaults(dropOptions: DropStaleDefaultsOptions) {
+      return dropStaleDefaults(formMerger, dropOptions);
+    },
   };
+  return formMerger;
 }

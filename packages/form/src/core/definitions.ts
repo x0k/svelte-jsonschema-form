@@ -35,15 +35,32 @@ function getByPointer<R>(obj: R, pointer: string): R | undefined {
   return result as R;
 }
 
+/**
+ * Resolves a local reference, returning `undefined` when `ref` is not a local
+ * pointer or points at nothing.
+ */
+export function resolveRefSafe(
+  ref: string,
+  rootSchema: SchemaDefinition
+): SchemaDefinition | undefined {
+  if (!ref.startsWith("#")) {
+    return undefined;
+  }
+  let pointer: string;
+  try {
+    pointer = decodeURIComponent(ref.substring(1));
+  } catch {
+    return undefined;
+  }
+  return getByPointer(rootSchema, pointer);
+}
+
 export function resolveRef(ref: string, rootSchema: Schema) {
   if (!ref.startsWith("#")) {
     throw new Error(`Invalid reference: ${ref}, must start with #`);
   }
 
-  const schemaDef: SchemaDefinition | undefined = getByPointer(
-    rootSchema,
-    decodeURIComponent(ref.substring(1))
-  );
+  const schemaDef = resolveRefSafe(ref, rootSchema);
   if (schemaDef === undefined) {
     throw new Error(`Could not find a definition for ${ref}.`);
   }

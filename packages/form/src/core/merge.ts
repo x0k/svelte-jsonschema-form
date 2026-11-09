@@ -119,7 +119,7 @@ export function mergeSchemaObjects<
 >(obj1: A, obj2: B, concatArrays: boolean | "preventDuplicates" = false) {
   const acc: SchemaObjectValue = Object.assign({}, obj1);
   for (const [key, right] of Object.entries(obj2)) {
-    const left = Object.hasOwn(obj1, key) ? obj1[key] : undefined;
+    const left = getOwn(obj1, key);
     if (isSchemaObjectValue(left) && isSchemaObjectValue(right)) {
       setOwn(acc, key, mergeSchemaObjects(left, right, concatArrays));
     } else if (concatArrays && Array.isArray(left) && Array.isArray(right)) {
