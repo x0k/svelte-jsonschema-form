@@ -1,7 +1,7 @@
 import { untrack } from "svelte";
 
 import type { RPath } from "#core/index.js";
-import type { DeepPartial } from "#lib/types.js";
+import type { DeepPartial, DeepReadonly } from "#lib/types.js";
 
 import { FORM_MERGER, FORM_SCHEMA, FORM_VALUE } from "../internals.js";
 import type { FieldValue, FormValue, KeyedFieldValues } from "../model.js";
@@ -170,6 +170,17 @@ export function setValue<T>(ctx: FormState<T>, value: DeepPartial<T>) {
       })
     );
   });
+}
+
+/**
+ * Returns the current form value without copying it. In a reactive context,
+ * reading a property of the returned value tracks only that property.
+ * Treat the value as read-only; use the value commands to update the form.
+ *
+ * @query
+ */
+export function getValue<T>(ctx: FormState<T>): DeepReadonly<FormValue> {
+  return ctx[FORM_VALUE].get();
 }
 
 /**
