@@ -7,9 +7,8 @@ flowchart TD
   allErrorsRemoved["All validation errors removed"]
   mergeDefaults["merger.mergeFormDataAndSchemaDefaults"]
   mergeArgs["{ formData: options.initialValue,\n  schema: options.schema }"]
-  setValue["valueRef.current = merged value"]
+  setValue["form[FORM_VALUE].replace(merged value)"]
   valueReset["Form value restored to initial state"]
-  reconcile["createFormValueReconciler\n(reconciles keyed arrays)"]
   done["done"]
 
   trigger --> clearTasks
@@ -21,6 +20,5 @@ flowchart TD
   mergeDefaults --> mergeArgs
   mergeArgs --> setValue
   setValue --> valueReset
-  valueReset --> reconcile
-  reconcile --> done
+  valueReset --> done
   allErrorsRemoved --> done

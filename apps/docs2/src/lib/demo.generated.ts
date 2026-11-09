@@ -9,7 +9,6 @@ export type DemoName =
   | "ata"
   | "ata-precompile"
   | "cfworker"
-  | "controlled-form"
   | "custom-keyword"
   | "customizable-text"
   | "dependencies"
@@ -48,7 +47,6 @@ export const DEMOS: Record<DemoName, () => Promise<{ default: DemoData }>> = {
   "ata": () => import("./demos/ata.ts"),
   "ata-precompile": () => import("./demos/ata-precompile.ts"),
   "cfworker": () => import("./demos/cfworker.ts"),
-  "controlled-form": () => import("./demos/controlled-form.ts"),
   "custom-keyword": () => import("./demos/custom-keyword.ts"),
   "customizable-text": () => import("./demos/customizable-text.ts"),
   "dependencies": () => import("./demos/dependencies.ts"),
