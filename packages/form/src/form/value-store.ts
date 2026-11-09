@@ -1,13 +1,10 @@
 import type { SchemaArrayValue } from "#core/index.js";
 import { SimpleKeyedArray } from "#lib/keyed-array.svelte.js";
 import { getOrInsertComputed } from "#lib/map.js";
+import { isObject } from "#lib/object.js";
 
-import {
-  getValueAtPath,
-  updateValueAtPath,
-  writeValueAtPath,
-} from "./change-path.js";
 import type { FieldPath } from "./id.js";
+import type { FormValueChange } from "./merger.js";
 import type {
   FieldValue,
   FormValue,
@@ -15,6 +12,12 @@ import type {
   KeyedArraysMap,
   KeyedFieldValues,
 } from "./model.js";
+import {
+  getValueAtPath,
+  hasOwnValueAtPath,
+  updateValueAtPath,
+  writeValueAtPath,
+} from "./value-path.js";
 
 /**
  * The form value state. `get` reads the current value reactively; the value
@@ -38,13 +41,29 @@ export interface FormValueStore {
   ): void;
 }
 
+export interface FormValueStoreOptions {
+  valueRef: FormValueRef;
+  keyedArrays: KeyedArraysMap;
+  /**
+   * Copies a value before an in-place update, so the value recorded as the
+   * previous one stays intact. The form passes its merger's implementation.
+   */
+  copyForChange: (value: FieldValue) => FieldValue;
+  /**
+   * Called after a successful write with the value it replaced, so the defaults
+   * pass can tell a user-written value from an untouched default.
+   */
+  onChange: (change: FormValueChange) => void;
+  onReplace: () => void;
+}
+
 export function createFormValueStore({
   valueRef,
   keyedArrays,
-}: {
-  valueRef: FormValueRef;
-  keyedArrays: KeyedArraysMap;
-}): FormValueStore {
+  copyForChange,
+  onChange,
+  onReplace,
+}: FormValueStoreOptions): FormValueStore {
   let lastKey = Number.MIN_SAFE_INTEGER;
 
   function getKeyedArray(array: SchemaArrayValue): KeyedFieldValues {
@@ -60,11 +79,23 @@ export function createFormValueStore({
       return valueRef.current;
     },
     replace(value) {
+      onReplace();
       valueRef.current = value;
     },
     setAtPath(path, value) {
       const current = valueRef.current;
+      const oldValue = getValueAtPath(current, path);
+      const change: FormValueChange | undefined = Object.is(oldValue, value)
+        ? undefined
+        : {
+            path,
+            oldValue: copyForChange(oldValue),
+            hadOwnValue: hasOwnValueAtPath(current, path),
+          };
       const next = writeValueAtPath(current, path, value);
+      if (change !== undefined) {
+        onChange(change);
+      }
       // Non-root writes mutate the current value in place through Svelte's
       // proxy, so reassigning the same root would only invalidate root readers.
       if (next !== current) {
@@ -76,18 +107,34 @@ export function createFormValueStore({
       update: (value: V) => V
     ) {
       const current = valueRef.current;
+      const hadOwnValue = hasOwnValueAtPath(current, path);
+      const previous = getValueAtPath(current, path);
+      // The callback may mutate the value in place, so the snapshot has to be
+      // taken before it runs.
+      const oldValue = copyForChange(previous);
       const next = updateValueAtPath(current, path, update);
+      // A callback over a primitive cannot have changed it in place, so an
+      // unchanged result is a no-op, like the other two commands.
+      if (
+        isObject(previous) ||
+        !Object.is(previous, getValueAtPath(next, path))
+      ) {
+        onChange({ path, oldValue, hadOwnValue });
+      }
       if (next !== current) {
         valueRef.current = next;
       }
     },
     updateArrayAtPath(path, update) {
       const current = getValueAtPath(valueRef.current, path);
+      const hadOwnValue = hasOwnValueAtPath(valueRef.current, path);
       if (current === undefined || current === null) {
         const next: SchemaArrayValue = [];
         update(getKeyedArray(next), next.length);
         if (next.length > 0) {
-          valueRef.current = writeValueAtPath(valueRef.current, path, next);
+          const written = writeValueAtPath(valueRef.current, path, next);
+          onChange({ path, oldValue: current, hadOwnValue });
+          valueRef.current = written;
         }
         return;
       }
@@ -96,7 +143,17 @@ export function createFormValueStore({
           `Cannot update a non-array value at path "${path.join(".")}"`
         );
       }
+      const before = current.slice();
+      // The callback can mutate any item in place, so the value recorded for
+      // the change has to be copied before it runs.
+      const oldValue = copyForChange(current);
       update(getKeyedArray(current), current.length);
+      if (
+        current.length !== before.length ||
+        current.some((value, index) => value !== before[index])
+      ) {
+        onChange({ path, oldValue, hadOwnValue });
+      }
     },
   };
 }

@@ -3,8 +3,6 @@
 // Modifications made by Roman Krasilnikov.
 
 import {
-  CONST_KEY,
-  DEFAULT_KEY,
   isSchemaObjectValue,
   isSchemaValueDeepEqual,
   PROPERTIES_KEY,
@@ -12,6 +10,7 @@ import {
   type SchemaObjectValue,
   type SchemaValue,
 } from "#core/index.js";
+import { declaresOwnValue, declaresValueFor } from "#form/declares-value.js";
 import {
   getDefaultFieldState,
   retrieveSchema,
@@ -19,10 +18,6 @@ import {
   type FormState,
 } from "#form/index.js";
 import { getOwn } from "#lib/object.js";
-
-function declaresOwnValue(schema: Schema) {
-  return Object.hasOwn(schema, DEFAULT_KEY) || Object.hasOwn(schema, CONST_KEY);
-}
 
 function propertySchema(option: Schema, key: string): Schema {
   const properties = getOwn(option, PROPERTIES_KEY);
@@ -42,17 +37,10 @@ function optionDeclaresValueFor<T>(
   option: Schema,
   key: string
 ) {
-  const resolvedProperty = retrieveSchema(
-    ctx,
-    propertySchema(option, key),
-    undefined
-  );
-  if (declaresOwnValue(resolvedProperty)) {
-    return true;
-  }
-  const optionDefault = getOwn(option, DEFAULT_KEY);
-  return (
-    isSchemaObjectValue(optionDefault) && Object.hasOwn(optionDefault, key)
+  return declaresValueFor(
+    option,
+    key,
+    retrieveSchema(ctx, propertySchema(option, key), undefined)
   );
 }
 

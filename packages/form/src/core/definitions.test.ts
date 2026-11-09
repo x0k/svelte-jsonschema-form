@@ -4,7 +4,11 @@
 
 import { beforeEach, describe, expect, it } from "vitest";
 
-import { findSchemaDefinition, resolveRef } from "./definitions.js";
+import {
+  findSchemaDefinition,
+  resolveRef,
+  resolveRefSafe,
+} from "./definitions.js";
 import type { Merger } from "./merger.js";
 import type { Schema } from "./schema.js";
 import { createMerger } from "./test-merger.js";
@@ -163,6 +167,35 @@ describe("findSchemaDefinition()", () => {
 
     it.each(cases)("resolves %s", (ref, expected) => {
       expect(resolveRef(ref, rfc6901 as unknown as Schema)).toBe(expected);
+    });
+
+    describe("resolveRefSafe()", () => {
+      it.each(cases)("resolves %s", (ref, expected) => {
+        expect(resolveRefSafe(ref, rfc6901 as unknown as Schema)).toBe(
+          expected
+        );
+      });
+
+      it.each([
+        "definitions/missing",
+        "#/missing",
+        "#/__proto__",
+        "#/constructor",
+        // A malformed percent escape cannot be decoded
+        "#/%",
+      ])("returns undefined for %s", (ref) => {
+        expect(
+          resolveRefSafe(ref, rfc6901 as unknown as Schema)
+        ).toBeUndefined();
+      });
+
+      it("resolves the empty pointer against a boolean root", () => {
+        expect(resolveRefSafe("#", false)).toBe(false);
+      });
+
+      it("returns undefined below a boolean root", () => {
+        expect(resolveRefSafe("#/missing", true)).toBeUndefined();
+      });
     });
 
     it("unescapes `~1` before `~0`", () => {

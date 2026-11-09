@@ -3,6 +3,8 @@ import { on } from "svelte/events";
 import { SvelteMap } from "svelte/reactivity";
 
 import {
+  DEPENDENCIES_KEY,
+  IF_KEY,
   isSchemaDeepEqual,
   retrieveSchema,
   sanitizeDataForNewSchema,
@@ -24,6 +26,7 @@ import type { DeepPartial } from "#lib/types.js";
 
 import type { Theme } from "./components.js";
 import type { Config } from "./config.js";
+import { rebuildOldFormData } from "./drop-stale-defaults.js";
 import type { FieldsValidation, FormValidation } from "./errors.js";
 import type { ResolveFieldType } from "./fields.js";
 import type { Icons } from "./icons.js";
@@ -66,7 +69,7 @@ import {
   FORM_INITIAL_DEFAULTS_GENERATED,
   FORM_INITIAL_VALUE,
 } from "./internals.js";
-import type { FormMerger } from "./merger.js";
+import type { FormMerger, FormValueChange } from "./merger.js";
 import {
   create,
   type Creatable,
@@ -77,7 +80,13 @@ import {
   type Update,
 } from "./model.js";
 import { createFormValueReconciler } from "./reconcile.js";
+import { StaleDefaultsPass } from "./stale-defaults-pass.js";
 import {
+  getStaleDefaultsTriggerKeys,
+  type StaleDefaultsTriggerKeys,
+} from "./stale-defaults-trigger.js";
+import {
+  getChildPath,
   reset,
   updateErrors,
   updateFieldErrors,
@@ -266,6 +275,16 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       })
     )
   );
+  // The stale-default search needs to know which values the user wrote and what
+  // they replaced, so it can resolve the old schema without cloning form data.
+  // A path is stored once: replaying writes from latest to earliest keeps the
+  // first old value, so later writes to the same path add nothing. The value
+  // commands hand out canonical `FieldPath`s, so the path itself is the key.
+  const pendingChanges = new Map<FieldPath, FormValueChange>();
+  // A reactive `initialValue` recreates `valueRef`, reseeding the form value
+  // like a reset, so history recorded against the previous ref no longer
+  // applies.
+  let pendingChangesRef: FormValueRef | undefined;
   const idBuilder: FormIdBuilder = $derived(
     create(options.idBuilder, {
       idPrefix,
@@ -277,24 +296,36 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       valueRef,
     })
   );
-  let previousRetrievedSchema: Schema | undefined = undefined;
-  let __lastRetrievedSchema: Schema | undefined = undefined;
-  const retrievedSchema = $derived.by(() => {
-    previousRetrievedSchema = __lastRetrievedSchema;
-    return (__lastRetrievedSchema = retrieveSchema(
+  const retrievedSchema = $derived(
+    retrieveSchema(
       validator,
       merger,
       options.schema,
       options.schema,
       valueRef.current
-    ));
-  });
+    )
+  );
   // A `dependencies`/`if` branch switch nested inside an object property never changes the ROOT retrieved
   // schema (only the schema's own top-level `dependencies`/`if` get resolved into it), so comparing
   // retrieved schemas below can't detect it (#5250). When the schema has such a nested conditional,
   // sanitization must still be attempted.
   const hasNestedConditionalSchema = $derived(
     schemaHasNestedConditional(options.schema)
+  );
+  // Only dependency and conditional branches can swap a declared default.
+  // `schemaHasNestedConditional` deliberately ignores the schema's own
+  // top-level keywords, so the root has to be checked separately.
+  const mayDropStaleDefaults = $derived(
+    hasNestedConditionalSchema ||
+      DEPENDENCIES_KEY in options.schema ||
+      IF_KEY in options.schema
+  );
+  // The defaults pass is only needed when a change can swap a conditional
+  // branch. Recording every change is still required to tell user edits from
+  // untouched defaults, but scheduling the (linear) pass for unrelated fields
+  // made ordinary typing O(form size).
+  const staleDefaultsTriggerKeys: StaleDefaultsTriggerKeys = $derived(
+    getStaleDefaultsTriggerKeys(options.schema)
   );
   const idCache = new WeakMap<FieldPath, Id>();
   const idFromPath = $derived(
@@ -441,6 +472,14 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       },
     },
     keyedArrays,
+    copyForChange: (value) => merger.copyForChange(value),
+    onChange(change) {
+      recordChange(change);
+    },
+    onReplace() {
+      pendingChanges.clear();
+      pendingChangesRef = valueRef;
+    },
   });
 
   const formState: FormState<T> = {
@@ -532,6 +571,50 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   };
   const fieldTypeResolver = $derived(options.resolver(formState));
 
+  function recordChange(change: FormValueChange) {
+    if (!mayDropStaleDefaults) {
+      return;
+    }
+    if (pendingChangesRef !== valueRef) {
+      pendingChanges.clear();
+      pendingChangesRef = valueRef;
+    }
+    if (!pendingChanges.has(change.path)) {
+      pendingChanges.set(change.path, change);
+    }
+    const triggerKeys = staleDefaultsTriggerKeys;
+    if (
+      triggerKeys === undefined ||
+      mayChangeTriggerKey(change.path, triggerKeys)
+    ) {
+      scheduleDefaultsInjection();
+    }
+  }
+  function takePendingChanges() {
+    if (pendingChangesRef !== valueRef) {
+      pendingChanges.clear();
+      pendingChangesRef = valueRef;
+    }
+    const changes = [...pendingChanges.values()];
+    pendingChanges.clear();
+    return changes;
+  }
+  // A `dependencies` key counts when it is the first path segment (or part of
+  // a root array item path); a nested conditional is attributed to the
+  // top-level property that contains it.
+  function mayChangeTriggerKey(
+    path: FieldPath,
+    triggerKeys: ReadonlySet<string>
+  ) {
+    for (const part of path) {
+      if (typeof part === "string") {
+        return triggerKeys.has(part);
+      }
+    }
+    // Replacing the whole value, or an item of a root-level array, can change
+    // any condition.
+    return true;
+  }
   let isDefaultsInjectionQueued = false;
   function scheduleDefaultsInjection() {
     if (isDefaultsInjectionQueued) return;
@@ -540,28 +623,58 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   }
   function injectSchemaDefaults() {
     isDefaultsInjectionQueued = false;
-    let currentRetrievedSchema = previousRetrievedSchema;
-
-    if (currentRetrievedSchema === undefined) {
-      // `previousRetrievedSchema` is only assigned when the `retrievedSchema` derived above is
-      // (re-)evaluated, which may not have happened yet when a nested conditional fires
-      // `markSchemaChange` before the form-level derived re-runs (#5250). Fall back to resolving
-      // against the current data: without a root-level change the loop below is a no-op unless a
-      // nested conditional requires sanitization, which is exactly the `hasNestedConditionalSchema`
-      // case that keeps the loop running.
-      currentRetrievedSchema = retrieveSchema(
-        validator,
-        merger,
-        options.schema,
-        options.schema,
-        valueRef.current
-      );
-    }
-
+    const changes = takePendingChanges();
     let formData = valueRef.current;
+    // The schema the data arrived under is resolved for the data before the
+    // pending changes, not for the last schema the derived happened to see: a
+    // `markSchemaChange` injection can follow one that has already moved the
+    // data to the new schema, and sanitizing it then from the schema of an
+    // earlier value would clear what that pass just wrote.
+    const oldFormData = rebuildOldFormData(formData, changes);
+    let currentRetrievedSchema = retrieveSchema(
+      validator,
+      merger,
+      options.schema,
+      options.schema,
+      oldFormData
+    );
+    // The old side is fixed for the whole pass. Later iterations have already
+    // dropped values the search must still see on the old side, so rebuilding
+    // it from `changes` on each search would lose them.
+    const staleDefaultsPass =
+      mayDropStaleDefaults && changes.length > 0
+        ? new StaleDefaultsPass({
+            validator,
+            merger,
+            rootSchema: options.schema,
+            changes,
+            getChildPath: (parentPath, key) =>
+              getChildPath(formState, parentPath, key),
+            oldFormData,
+            oldSchema: currentRetrievedSchema,
+          })
+        : undefined;
     const values: FormValue[] = [];
 
     sanitization: while (true) {
+      // Remove a swapped-away branch's default before the fill, so the fill sees
+      // the newly selected branch's declaration in this same iteration. The
+      // search runs on every sanitizing iteration: replacing one key's default
+      // can select a different branch for another key one hop later.
+      if (staleDefaultsPass) {
+        const newRetrievedSchema = retrieveSchema(
+          validator,
+          merger,
+          options.schema,
+          options.schema,
+          formData
+        );
+        formData = staleDefaultsPass.drop(
+          formData,
+          newRetrievedSchema,
+          initialDefaultsGenerated
+        );
+      }
       formData = merger.mergeFormDataAndSchemaDefaults({
         formData: formData,
         schema: options.schema,
@@ -569,9 +682,21 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       });
       initialDefaultsGenerated = true;
 
-      for (let i = values.length - 1; i >= 0; i--) {
-        if (merger.isValueDeepEqual(values[i], formData)) {
-          break sanitization;
+      let hasNewRefill = false;
+      if (staleDefaultsPass) {
+        const afterFill = staleDefaultsPass.afterFill(formData);
+        formData = afterFill.formData;
+        hasNewRefill = afterFill.hasNewRefill;
+      }
+
+      // A replacement the fill has just written was not seen by the fill that
+      // wrote it: that fill ran with the key deleted. Give the key's own
+      // conditionals one more pass over the value that is really there.
+      if (!hasNewRefill) {
+        for (let i = values.length - 1; i >= 0; i--) {
+          if (merger.isValueDeepEqual(values[i], formData)) {
+            break sanitization;
+          }
         }
       }
 
@@ -584,6 +709,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       );
 
       if (
+        !hasNewRefill &&
         !hasNestedConditionalSchema &&
         isSchemaDeepEqual(currentRetrievedSchema, nextRetrievedSchema)
       ) {
@@ -591,6 +717,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       }
 
       values.push(formData);
+      const dataBeforeSanitize = formData;
       formData = sanitizeDataForNewSchema(
         validator,
         merger,
@@ -599,7 +726,18 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
         currentRetrievedSchema,
         formData
       );
+      if (staleDefaultsPass) {
+        formData = staleDefaultsPass.afterSanitize(
+          formData,
+          dataBeforeSanitize,
+          nextRetrievedSchema
+        );
+      }
       currentRetrievedSchema = nextRetrievedSchema;
+    }
+
+    if (staleDefaultsPass) {
+      formData = staleDefaultsPass.restoreUnfilled(formData);
     }
 
     reconcileFormValue(valueRef, formData);

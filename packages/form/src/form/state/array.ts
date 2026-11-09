@@ -1,4 +1,4 @@
-import type { SchemaArrayValue } from "#core/index.js";
+import { isSchemaArrayValue, type SchemaArrayValue } from "#core/index.js";
 import { getOrInsertComputed } from "#lib/map.js";
 
 import { FORM_KEYED_ARRAYS } from "../internals.js";
@@ -15,7 +15,7 @@ export function createKeyedArrayDeriver<T>(
   return () => {
     let stored: KeyedFieldValues | undefined;
     const v = value();
-    if (!v) {
+    if (!isSchemaArrayValue(v)) {
       stored = virtualKeyedArrayFactory();
     } else {
       stored = getOrInsertComputed(ctx[FORM_KEYED_ARRAYS], v, (array) =>

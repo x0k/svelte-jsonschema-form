@@ -20,19 +20,162 @@ export interface Merger {
   mergeAllOf(schema: Schema): Schema;
 }
 
+export interface MergeFormDataAndSchemaDefaultsOptions {
+  schema: Schema;
+  formData: SchemaValue | undefined;
+  initialDefaultsGenerated?: boolean;
+  includeUndefinedValues?: boolean | "excludeObjectChildren";
+}
+
+export interface FormValueChange {
+  path: FieldPath;
+  /**
+   * A snapshot of the value at `path` before the change. Later in-place writes
+   * must not alter it.
+   */
+  oldValue: FieldValue;
+  /**
+   * Whether `path` had an own value before the change. A `false` value means
+   * the change created the entry, so replaying the change removes it instead
+   * of writing an own `undefined`.
+   *
+   * Callers that construct a change by hand may omit this; it is then treated
+   * as `true`.
+   */
+  hadOwnValue?: boolean;
+}
+
+export interface DroppedDefault {
+  path: FieldPath;
+  value: FieldValue;
+  /**
+   * The schema that described the path while it held the value, which is what
+   * a replacement the defaults fill writes is judged against.
+   */
+  writtenUnder: Schema | undefined;
+}
+
+export interface DropStaleDefaultsResult {
+  formData: SchemaValue | undefined;
+  /**
+   * The values removed, in walk order. A path's parent is never listed
+   * alongside it.
+   */
+  dropped: readonly DroppedDefault[];
+}
+
+export interface DropStaleDefaultsOptions {
+  validator: Validator;
+  rootSchema: Schema;
+  /**
+   * The schema resolved for the current form data.
+   */
+  newSchema: Schema;
+  formData: SchemaValue | undefined;
+  /**
+   * Values written since the last defaults pass. A value at one of these paths,
+   * or below one, belongs to the user.
+   */
+  changes: readonly FormValueChange[];
+  /**
+   * The form data as it arrived, before this defaults pass dropped anything.
+   * When omitted, it is rebuilt from `changes`.
+   */
+  oldFormData?: SchemaValue | undefined;
+  /**
+   * The schema resolved for `oldFormData`. When omitted, it is retrieved from
+   * `rootSchema` and `oldFormData`.
+   */
+  oldSchema?: Schema | undefined;
+  /**
+   * Paths this pass has already dropped. They are skipped so a replacement the
+   * defaults fill has written is not dropped again.
+   */
+  droppedPaths?: ReadonlySet<FieldPath>;
+  /**
+   * Returns the canonical `FieldPath` for `key` below `parentPath`, so
+   * `droppedPaths` can be compared by identity. The form supplies its own.
+   */
+  getChildPath: (parentPath: RPath, key: string | number) => FieldPath;
+  /**
+   * The flag the defaults fill is running with. The search computes the same
+   * defaults as that fill, so it must use the same flag.
+   * @default false
+   */
+  initialDefaultsGenerated?: boolean;
+}
+
 export interface FormMerger extends Merger {
+  /**
+   * Copies `value` before an in-place update so the value recorded as the
+   * previous one stays intact.
+   *
+   * The built-in mergers copy arrays and plain objects recursively and keep
+   * other values, such as `File`, by reference. Override this to copy custom
+   * container types, such as `Map` or `Set`, used by your form data.
+   */
+  copyForChange(value: FieldValue): FieldValue;
   /**
    * Merges defaults of `schema` into `formData`
    */
   mergeFormDataAndSchemaDefaults(
-    formData: SchemaValue | undefined,
-    schema: Schema
+    options: MergeFormDataAndSchemaDefaultsOptions
   ): SchemaValue | undefined;
+  /**
+   * Removes values that still hold a `default` or `const` declared by a
+   * `dependencies` or `if`/`then`/`else` branch that is no longer selected, so
+   * the next `mergeFormDataAndSchemaDefaults` call writes the newly selected
+   * branch's default. The returned entries let the form put back a value no
+   * fill answered and judge a replacement at its own key.
+   */
+  dropStaleDefaults(options: DropStaleDefaultsOptions): DropStaleDefaultsResult;
 }
 ```
 
 Use `createFormMerger` from `@sjsf/form/mergers/modern` for most projects.
 The legacy merger is available for v2 compatibility.
+
+The built-in mergers implement `dropStaleDefaults` with the exported
+`dropStaleDefaults(merger, options)` helper. Pass the `FormMerger` itself so the
+helper computes defaults exactly as your `mergeFormDataAndSchemaDefaults` does.
+A custom `FormMerger` should delegate to the same helper:
+
+```typescript
+import {
+  dropStaleDefaults,
+  type DropStaleDefaultsOptions,
+  type FormMerger,
+} from "@sjsf/form";
+
+const merger: FormMerger = {
+  // ...
+  dropStaleDefaults(options: DropStaleDefaultsOptions) {
+    return dropStaleDefaults(merger, options);
+  },
+};
+```
+
+The built-in `copyForChange` copies arrays and plain objects recursively and
+keeps other values, such as `File`, by reference. If your form values contain
+custom containers, override it and delegate nested values to the exported
+helper:
+
+```typescript
+import { copyForChange, type FieldValue, type FormMerger } from "@sjsf/form";
+
+const merger: FormMerger = {
+  // ...
+  copyForChange(value: FieldValue) {
+    if (value instanceof Map) {
+      return new Map(value) as unknown as FieldValue;
+    }
+    return copyForChange(value, (nested) => merger.copyForChange(nested));
+  },
+};
+```
+
+The helper is the reference implementation; the interface comments above
+describe every option and result field a custom implementation must honor.
 
 <LinkCard
   title="Merger Setup"

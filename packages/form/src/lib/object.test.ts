@@ -16,6 +16,17 @@ describe("getOwn", () => {
     const source: Record<string, number> = { a: 1 };
     expect(getOwn(source, "b")).toBe(undefined);
   });
+  it("returns the fallback for a missing property", () => {
+    const source: Record<string, number> = { a: 1 };
+    expect(getOwn(source, "b", 2)).toBe(2);
+  });
+  it("returns the fallback for an inherited property", () => {
+    expect(getOwn(Object.create({ a: 1 }), "a", 2)).toBe(2);
+  });
+  it("returns a declared null or undefined instead of the fallback", () => {
+    expect(getOwn({ a: null }, "a", 2)).toBe(null);
+    expect(getOwn({ a: undefined }, "a", 2)).toBe(undefined);
+  });
 });
 
 describe("setOwn", () => {

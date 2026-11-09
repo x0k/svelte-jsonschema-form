@@ -616,6 +616,78 @@ describe("sanitizeDataForNewSchema", () => {
       )
     ).toEqual({});
   });
+  it("replaces a null old default with the new schema default", () => {
+    const oldSchema: Schema = {
+      type: "object",
+      properties: {
+        defaultField: { type: "string", default: null },
+      },
+    };
+    const newSchema: Schema = {
+      type: "object",
+      properties: {
+        defaultField: { type: "string", default: "yourData" },
+      },
+    };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        oneOfSchema,
+        newSchema,
+        oldSchema,
+        { defaultField: null }
+      )
+    ).toEqual({ defaultField: "yourData" });
+  });
+  it("applies a null default declared by the new schema", () => {
+    const oldSchema: Schema = {
+      type: "object",
+      properties: {
+        defaultField: { type: "string", default: "myData" },
+      },
+    };
+    const newSchema: Schema = {
+      type: "object",
+      properties: {
+        defaultField: { type: "string", default: null },
+      },
+    };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        oneOfSchema,
+        newSchema,
+        oldSchema,
+        { defaultField: "myData" }
+      )
+    ).toEqual({ defaultField: null });
+  });
+  it("applies a null const declared by the new schema", () => {
+    const oldSchema: Schema = {
+      type: "object",
+      properties: {
+        constField: { type: "string", const: "myData" },
+      },
+    };
+    const newSchema: Schema = {
+      type: "object",
+      properties: {
+        constField: { type: "string", const: null },
+      },
+    };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        oneOfSchema,
+        newSchema,
+        oldSchema,
+        { constField: "myData" }
+      )
+    ).toEqual({ constField: null });
+  });
   it("replaces invalid enum data with the only allowed enum value", () => {
     const oldSchema: Schema = {
       type: "object",

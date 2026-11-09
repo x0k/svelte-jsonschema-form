@@ -29,6 +29,39 @@ export function getValueAtPath(root: FormValue, path: FieldPath): FieldValue {
   return node as FieldValue;
 }
 
+/**
+ * Reports whether `path` resolves to an own entry, which distinguishes an
+ * absent key from one that holds `undefined`.
+ */
+export function hasOwnValueAtPath(root: FormValue, path: FieldPath): boolean {
+  if (path.length === 0) {
+    return true;
+  }
+  let node: unknown = root;
+  const last = path.length - 1;
+  for (let i = 0; i < last; i++) {
+    const key = path[i]!;
+    if (Array.isArray(node)) {
+      if (!isArrayIndex(key, node.length)) {
+        throw pathError(path);
+      }
+      node = getOwn(node, key);
+    } else if (isRecord(node)) {
+      node = getOwn(node, key);
+    } else {
+      throw pathError(path);
+    }
+  }
+  if (Array.isArray(node)) {
+    const key = path[last]!;
+    return isArrayIndex(key, node.length) && Object.hasOwn(node, key);
+  }
+  if (isRecord(node)) {
+    return Object.hasOwn(node, path[last]!);
+  }
+  throw pathError(path);
+}
+
 interface ResolvedPath {
   parent: unknown[] | Record<PropertyKey, unknown>;
   key: FieldPath[number];

@@ -115,3 +115,19 @@ Supported for conditional field schemas in Draft-07:
   }
 }
 ```
+
+## 4. Branch Defaults
+
+When a `dependencies` or `if`/`then`/`else` branch swap changes a property's
+schema, SJSF replaces the value if it still equals the old branch's computed
+default and both branches declare the key (`default` or `const` on the property
+or in the level's `default` object; `null` counts). Computed defaults include
+nested leaf defaults, `items` defaults repeated to `minItems`, and required
+placeholders, but only an explicit declaration makes a branch speak for a key.
+
+- Edited values are kept; a matching `initialValue` is replaced too.
+- Matching is per key of the declaring level: a nested default can replace an
+  untouched leaf while keeping an edited sibling, but a default declared a
+  level above keeps the whole object once any leaf is edited. Writing a whole
+  object counts as editing every value inside it.
+- Array items and the conditionals inside them are not searched.
