@@ -13,6 +13,7 @@ import {
   DEFAULT_KEY,
   getSelectOptionValuesSafe,
   getXxxOfOptions,
+  isSchemaArrayValue,
   isSchemaDeepEqual,
   isSchemaObjectValue,
   isSelect,
@@ -22,13 +23,15 @@ import {
   typeOfSchema,
   type RPath,
   type Schema,
+  type SchemaArrayValue,
   type SchemaDefinition,
   type SchemaObjectValue,
   type SchemaValue,
   type SchemaType,
   type Validator,
 } from "#core/index.js";
-import { getOwn, isRecord, setOwn } from "#lib/object.js";
+import { isSchemaObject } from "#lib/json-schema/index.js";
+import { getOwn, getValueByPath, setOwn } from "#lib/object.js";
 
 import { declaresValueFor } from "./declares-value.js";
 import type { FieldPath } from "./id.js";
@@ -42,18 +45,6 @@ import type {
 import type { FieldValue, FormValue } from "./model.js";
 
 const NO_DROPPED_PATHS: ReadonlySet<FieldPath> = new Set();
-
-/** Standalone callers that compare `droppedPaths` by identity pass their own. */
-function defaultGetChildPath(
-  parentPath: RPath,
-  key: string | number
-): FieldPath {
-  return parentPath.concat(key) as unknown as FieldPath;
-}
-
-function isSchemaObject(value: unknown): value is Schema {
-  return isRecord(value);
-}
 
 function isContainerValue(value: SchemaValue | undefined): boolean {
   return Array.isArray(value) || isSchemaObjectValue(value);
@@ -143,21 +134,21 @@ function levelDefault(level: Schema, key: string): SchemaValue | undefined {
  * keys that were swapped rather than to the size of the whole level. */
 function onlyProperties(
   schema: Schema,
-  properties: Record<string, unknown>,
+  properties: Record<string, SchemaDefinition>,
   keys: string[]
 ): Schema {
-  const narrowed: Record<string, unknown> = {};
+  const narrowed: Record<string, SchemaDefinition> = {};
   for (const key of keys) {
-    setOwn(narrowed, key, properties[key]);
+    setOwn(narrowed, key, properties[key]!);
   }
-  return { ...schema, properties: narrowed as Schema["properties"] };
+  return { ...schema, properties: narrowed };
 }
 
 /** Computes the defaults `schema` produces for `keys`, the same way the form's own fill does. */
 function levelDefaults(
   merger: FormMerger,
   schema: Schema,
-  properties: Record<string, unknown>,
+  properties: Record<string, SchemaDefinition>,
   keys: string[],
   initialDefaultsGenerated: boolean
 ): SchemaObjectValue {
@@ -178,41 +169,105 @@ function isPathPrefix(prefix: RPath, path: RPath) {
 }
 
 function copyContainer(
-  value: unknown,
+  value: FormValue,
   nextKey: RPath[number]
-): Record<PropertyKey, unknown> {
-  if (Array.isArray(value)) {
-    return value.slice() as unknown as Record<PropertyKey, unknown>;
+): SchemaObjectValue | SchemaArrayValue {
+  if (isSchemaArrayValue(value)) {
+    return value.slice();
   }
-  if (isRecord(value)) {
+  if (isSchemaObjectValue(value)) {
     return { ...value };
   }
   if (value === undefined || value === null) {
-    return (typeof nextKey === "number" ? [] : {}) as Record<
-      PropertyKey,
-      unknown
-    >;
+    return typeof nextKey === "number" ? [] : {};
   }
   throw new Error("Cannot rebuild data through a primitive value");
+}
+
+function getChild(container: FormValue, key: RPath[number]): FieldValue {
+  if (isSchemaArrayValue(container)) {
+    return typeof key === "number" ? container[key] : undefined;
+  }
+  if (isSchemaObjectValue(container)) {
+    return typeof key === "string" ? getOwn(container, key) : undefined;
+  }
+  return undefined;
+}
+
+function writeChild(
+  container: SchemaObjectValue | SchemaArrayValue,
+  key: RPath[number],
+  value: FieldValue
+): void {
+  if (isSchemaArrayValue(container)) {
+    if (typeof key !== "number") {
+      throw new Error("Cannot write a non-numeric key to an array");
+    }
+    container[key] = value;
+  } else if (typeof key !== "string") {
+    throw new Error("Cannot write a non-string key to an object");
+  } else {
+    setOwn(container, key, value);
+  }
+}
+
+/**
+ * Copies the containers along `path`, linking each copy to the next. The copy
+ * at index `i` is the one that holds `path[i]`, so the last copy is the parent
+ * of the final key.
+ */
+function copyAlongPath(
+  root: FormValue,
+  path: RPath
+): (SchemaObjectValue | SchemaArrayValue)[] {
+  const copies: (SchemaObjectValue | SchemaArrayValue)[] = [];
+  let node = root;
+  for (let i = 0; i < path.length; i++) {
+    const key = path[i]!;
+    const copy = copyContainer(node, key);
+    if (i > 0) {
+      writeChild(copies[i - 1]!, path[i - 1]!, copy);
+    }
+    copies.push(copy);
+    node = getChild(node, key);
+  }
+  return copies;
 }
 
 /** Puts `value` back at `path`, copying only the containers along the path. */
 export function replaceAtPath(
   root: FormValue,
   path: RPath,
-  value: FieldValue,
-  level = 0
+  value: FieldValue
 ): FormValue {
-  if (level === path.length) {
+  if (path.length === 0) {
     return value;
   }
-  const key = path[level]!;
-  const source = root as Record<PropertyKey, unknown> | undefined;
-  const copy = copyContainer(source, key);
-  const child =
-    source === undefined || source === null ? undefined : getOwn(source, key);
-  setOwn(copy, key, replaceAtPath(child as FormValue, path, value, level + 1));
-  return copy as FormValue;
+  const copies = copyAlongPath(root, path);
+  writeChild(copies[copies.length - 1]!, path[path.length - 1]!, value);
+  return copies[0]!;
+}
+
+/** Removes the own property at `path`, copying only the containers along it. */
+export function deleteAtPath(root: FormValue, path: RPath): FormValue {
+  if (path.length === 0) {
+    return undefined;
+  }
+  const parentPath = path.slice(0, -1);
+  const parent =
+    parentPath.length === 0
+      ? root
+      : getValueByPath<FormValue, FieldValue>(root, parentPath);
+  if (!isSchemaObjectValue(parent)) {
+    return root;
+  }
+  const key = path[path.length - 1]!;
+  if (typeof key !== "string") {
+    throw new Error("Cannot delete a non-string key from an object");
+  }
+  const copies = copyAlongPath(root, path);
+  Reflect.deleteProperty(copies[copies.length - 1]!, key);
+  return copies[0]!;
 }
 
 /**
@@ -224,7 +279,7 @@ export function rebuildOldFormData(
   formData: SchemaValue | undefined,
   changes: readonly FormValueChange[]
 ): FormValue {
-  let oldFormData = formData as FormValue;
+  let oldFormData = formData;
   for (let i = changes.length - 1; i >= 0; i--) {
     const change = changes[i]!;
     oldFormData = replaceAtPath(oldFormData, change.path, change.oldValue);
@@ -259,10 +314,7 @@ function dropStaleDefaultsAtLevel(
 ): SchemaObjectValue {
   const newProperties = newSchema.properties;
   const oldProperties = oldSchema.properties;
-  if (
-    !isSchemaObjectValue(newProperties) ||
-    !isSchemaObjectValue(oldProperties)
-  ) {
+  if (newProperties === undefined || oldProperties === undefined) {
     return formData;
   }
 
@@ -303,8 +355,7 @@ function dropStaleDefaultsAtLevel(
     if (isStub && !hasChangedBelow) {
       continue;
     }
-    const sameKeyedSchema =
-      oldRaw === newRaw || isSchemaDeepEqual(oldRaw, newRaw);
+    const sameKeyedSchema = isSchemaDeepEqual(oldRaw, newRaw);
     // Without a change below this key, neither its own default nor anything
     // nested can differ when the keyed schema and the level's declaration for
     // it are unchanged.
@@ -417,7 +468,7 @@ function dropStaleDefaultsAtLevel(
           droppedKeys.add(key);
           dropped.push({
             path,
-            value: getOwn(oldFormData, key) as FieldValue,
+            value: getOwn(oldFormData, key),
             writtenUnder,
           });
         }
@@ -475,7 +526,7 @@ export function dropStaleDefaults(
     oldFormData: providedOldFormData,
     oldSchema: providedOldSchema,
     droppedPaths,
-    getChildPath = defaultGetChildPath,
+    getChildPath,
     initialDefaultsGenerated = false,
   }: DropStaleDefaultsOptions
 ): DropStaleDefaultsResult {

@@ -4,6 +4,7 @@ import {
   getDefaultFormState,
   isOrderedSchemaDeepEqual,
   type Merger,
+  type RPath,
   type Schema,
   type SchemaValue,
   type Validator,
@@ -72,6 +73,15 @@ function formMerger(merger: Merger, rootSchema: Schema): FormMerger {
   return formMerger;
 }
 
+function createPathFactory() {
+  const ref: RegisteredPathTrieRef<FieldPath> = {
+    current: undefined,
+    registered: new WeakSet(),
+  };
+  return (parentPath: RPath, key: string | number) =>
+    internalRegisterFieldPath(ref, parentPath.concat(key));
+}
+
 function drop({
   oldSchema,
   newSchema,
@@ -91,6 +101,7 @@ function drop({
     newSchema,
     formData,
     changes,
+    getChildPath: createPathFactory(),
   }).formData;
 }
 
@@ -144,6 +155,7 @@ describe("dropStaleDefaults", () => {
       newSchema,
       formData,
       changes: [change(path("mode"), "first")],
+      getChildPath: createPathFactory(),
     });
 
     expect(result.formData).toEqual({ mode: "second" });
@@ -564,6 +576,7 @@ describe("dropStaleDefaults", () => {
         newSchema: newOrderedSchema,
         formData,
         changes: [change(path("mode"), "a")],
+        getChildPath: createPathFactory(),
       }).formData
     ).toBe(formData);
   });
@@ -655,6 +668,7 @@ describe("dropStaleDefaults", () => {
         oldFormData: { mode: "first", x: "a" },
         oldSchema: oldScalarSchema,
         changes: [change(path("mode"), "first")],
+        getChildPath: createPathFactory(),
       }
     );
     expect(result.formData).toEqual({ mode: "second" });
@@ -686,6 +700,7 @@ describe("dropStaleDefaults", () => {
         oldFormData: { mode: "first", x: "a" },
         oldSchema: oldScalarSchema,
         changes: [change(path("mode"), "first")],
+        getChildPath: createPathFactory(),
       }
     );
     expect(result.formData).toEqual({ mode: "second", x: "b" });

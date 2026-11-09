@@ -11,8 +11,9 @@ import { createValidator } from "#core/test-validator.js";
 
 import { dropStaleDefaults } from "./drop-stale-defaults.js";
 import type { FieldPath } from "./id.js";
+import { internalRegisterFieldPath } from "./internals.js";
 import type { FormMerger, FormValueChange } from "./merger.js";
-import type { FieldValue } from "./model.js";
+import type { FieldValue, RegisteredPathTrieRef } from "./model.js";
 import { StaleDefaultsPass } from "./stale-defaults-pass.js";
 
 let testValidator: Validator;
@@ -75,11 +76,17 @@ describe("StaleDefaultsPass", () => {
       type: "object",
       properties: { x: { type: "string", default: "d" } },
     };
+    const pathRef: RegisteredPathTrieRef<FieldPath> = {
+      current: undefined,
+      registered: new WeakSet(),
+    };
     const pass = new StaleDefaultsPass({
       validator: testValidator,
       merger: formMerger(merger, rootSchema),
       rootSchema,
       changes: [change(path("mode"), "a")],
+      getChildPath: (parentPath, key) =>
+        internalRegisterFieldPath(pathRef, parentPath.concat(key)),
       oldFormData: { x: "a" },
       oldSchema: rootSchema,
     });

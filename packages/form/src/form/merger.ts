@@ -32,7 +32,7 @@ export interface FormValueChange {
  * restore it or judge the replacement the defaults fill writes for it.
  */
 export interface DroppedDefault {
-  path: RPath;
+  path: FieldPath;
   /**
    * The value that was at `path` before the drop.
    */
@@ -83,10 +83,10 @@ export interface DropStaleDefaultsOptions {
    */
   droppedPaths?: ReadonlySet<FieldPath>;
   /**
-   * Returns the canonical `FieldPath` for `key` below `parentPath`. The form
-   * supplies its own so `droppedPaths` can be compared by identity.
+   * Returns the canonical `FieldPath` for `key` below `parentPath`, so
+   * `droppedPaths` can be compared by identity. The form supplies its own.
    */
-  getChildPath?: (parentPath: RPath, key: string | number) => FieldPath;
+  getChildPath: (parentPath: RPath, key: string | number) => FieldPath;
   /**
    * The flag the defaults fill is running with. The search computes the same
    * defaults as that fill, so it must use the same flag.

@@ -89,7 +89,7 @@ export function isArrayIndex(key: PropertyKey, length: number): key is number {
  */
 export function getValueByPath<T, R>(
   from: T,
-  path: PropertyKey[],
+  path: readonly PropertyKey[],
   defaultValue?: R
 ): R | undefined {
   let result = from as unknown;

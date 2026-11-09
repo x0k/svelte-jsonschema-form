@@ -22,9 +22,9 @@ import {
   type Schema,
   type Validator,
 } from "#core/index.js";
-import { getOwn, isRecord, setOwn } from "#lib/object.js";
+import { getOwn, getValueByPath, setOwn } from "#lib/object.js";
 
-import { replaceAtPath } from "./drop-stale-defaults.js";
+import { deleteAtPath, replaceAtPath } from "./drop-stale-defaults.js";
 import type { FieldPath } from "./id.js";
 import type { DroppedDefault, FormMerger, FormValueChange } from "./merger.js";
 import type { FieldValue, FormValue } from "./model.js";
@@ -60,38 +60,6 @@ export interface StaleDefaultsPassOptions {
   oldSchema: Schema | undefined;
 }
 
-function getAtPath(data: unknown, path: RPath): unknown {
-  let node = data;
-  for (const key of path) {
-    if (Array.isArray(node)) {
-      if (typeof key !== "number" || key < 0 || key >= node.length) {
-        return undefined;
-      }
-      node = getOwn(node, key);
-    } else if (isRecord(node)) {
-      node = getOwn(node, key);
-    } else {
-      return undefined;
-    }
-  }
-  return node;
-}
-
-function deleteAtPath(data: FormValue, path: RPath): FormValue {
-  if (path.length === 0) {
-    return undefined;
-  }
-  const parentPath = path.slice(0, -1);
-  const parent = parentPath.length === 0 ? data : getAtPath(data, parentPath);
-  if (!isSchemaObjectValue(parent)) {
-    return data;
-  }
-  const key = path[path.length - 1]!;
-  const copy = { ...parent };
-  Reflect.deleteProperty(copy, key);
-  return parentPath.length === 0 ? copy : replaceAtPath(data, parentPath, copy);
-}
-
 /**
  * Puts `value` back at `path`, copying only the containers along the path.
  *
@@ -112,11 +80,17 @@ function putBackAt(
     return data;
   }
   const parentPath = path.slice(0, -1);
-  const parent = parentPath.length === 0 ? data : getAtPath(data, parentPath);
+  const parent =
+    parentPath.length === 0
+      ? data
+      : getValueByPath<FormValue, FieldValue>(data, parentPath);
   if (!isSchemaObjectValue(parent)) {
     return data;
   }
   const key = path[path.length - 1]!;
+  if (typeof key !== "string") {
+    throw new Error("Cannot write a non-string key to an object");
+  }
   const held = getOwn(parent, key);
   if (held === value || !isMissing(held)) {
     return data;
@@ -125,29 +99,31 @@ function putBackAt(
     return replaceAtPath(data, path, value);
   }
   const oldParent =
-    parentPath.length === 0 ? oldFormData : getAtPath(oldFormData, parentPath);
+    parentPath.length === 0
+      ? oldFormData
+      : getValueByPath<FormValue, FieldValue>(oldFormData, parentPath);
   const arrivedOrder = isSchemaObjectValue(oldParent)
     ? Object.keys(oldParent)
     : [];
-  const arrivedAt = arrivedOrder.indexOf(String(key));
+  const arrivedAt = arrivedOrder.indexOf(key);
   if (arrivedAt < 0) {
     return replaceAtPath(data, path, value);
   }
-  const ordered: Record<string, unknown> = {};
+  const ordered: Record<string, FieldValue> = {};
   let written = false;
   for (const name of Object.keys(parent)) {
     if (!written && arrivedOrder.indexOf(name) > arrivedAt) {
-      setOwn(ordered, String(key), value);
+      setOwn(ordered, key, value);
       written = true;
     }
     setOwn(ordered, name, getOwn(parent, name));
   }
   if (!written) {
-    setOwn(ordered, String(key), value);
+    setOwn(ordered, key, value);
   }
   return parentPath.length === 0
-    ? (ordered as unknown as FormValue)
-    : replaceAtPath(data, parentPath, ordered as unknown as FormValue);
+    ? ordered
+    : replaceAtPath(data, parentPath, ordered);
 }
 
 function resolveSchemaAt(
@@ -179,7 +155,9 @@ function resolveSchemaAt(
         ? fieldData[segment]
         : undefined
       : isSchemaObjectValue(fieldData)
-        ? getOwn(fieldData, String(segment))
+        ? typeof segment === "string"
+          ? getOwn(fieldData, segment)
+          : undefined
         : undefined;
     // Resolve at each level, not only at the leaf: a swap decided inside a
     // property leaves the root retrieved schema the same object, so the child
@@ -204,7 +182,10 @@ function isRefillRejected(
   oldSchema: Schema,
   value: FieldValue
 ): boolean {
-  const key = String(path[path.length - 1]);
+  const key = path[path.length - 1]!;
+  if (typeof key !== "string") {
+    throw new Error("Cannot judge a non-string key as an object property");
+  }
   const newProperties: Record<string, Schema> = {};
   const oldProperties: Record<string, Schema> = {};
   setOwn(newProperties, key, newSchema);
@@ -289,7 +270,7 @@ export class StaleDefaultsPass {
     let result = formData;
     let hasNewRefill = false;
     for (const [key, dropped] of this.dropped) {
-      const held = getAtPath(result, dropped.path) as FieldValue;
+      const held = getValueByPath<FormValue, FieldValue>(result, dropped.path);
       if (held !== undefined) {
         if (!this.settled.has(key)) {
           this.settled.add(key);
@@ -321,7 +302,10 @@ export class StaleDefaultsPass {
   ): FormValue {
     let result = formData;
     for (const [key, dropped] of this.dropped) {
-      const held = getAtPath(dataBeforeSanitize, dropped.path) as FieldValue;
+      const held = getValueByPath<FormValue, FieldValue>(
+        dataBeforeSanitize,
+        dropped.path
+      );
       if (held === undefined) {
         continue;
       }
@@ -390,9 +374,7 @@ export class StaleDefaultsPass {
   }
 
   private recordDrop(dropped: DroppedDefault) {
-    // The search builds every reported path through `getChildPath`, so it is
-    // already the form's canonical `FieldPath`.
-    const path = dropped.path as FieldPath;
+    const path = dropped.path;
     if (!this.dropped.has(path)) {
       this.dropped.set(path, dropped);
       this.droppedPathKeys.add(path);
