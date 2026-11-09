@@ -4,7 +4,6 @@ flowchart TD
     uiSchema["uiSchema"]
     uiOptionsRegistry["uiOptionsRegistry"]
     initialValue["initialValue"]
-    value["value (Bind)"]
     initialErrors["initialErrors"]
     disabled["disabled"]
     fieldsValidationMode["fieldsValidationMode"]
@@ -19,10 +18,10 @@ flowchart TD
     pathsTrieRef["pathsTrieRef"]
     fieldsStateMap["fieldsStateMap"]
     errors["errors (FormErrors)"]
+    valueStore["FORM_VALUE (FormValueStore)"]
   end
 
   subgraph FormState["FormState"]
-    formValue["value"]
     validation["validation"]
     fieldsValidation["fieldsValidation"]
   end
@@ -37,15 +36,21 @@ flowchart TD
     getFieldComponent["getFieldComponent"]
     retrieveSchema["retrieveSchema"]
     isDisabled["isDisabled"]
-    hasFieldStateByPath["hasFieldStateByPath"]
+    hasFieldState["hasFieldState"]
   end
 
   subgraph Commands["Commands"]
     updateErrors["updateErrors"]
     updateFieldErrors["updateFieldErrors"]
     setValue["setValue"]
+    setValueAtPath["setValueAtPath"]
+    updateValueAtPath["updateValueAtPath"]
+    insertArrayItem["insertArrayItem"]
+    removeArrayItem["removeArrayItem"]
+    moveArrayItem["moveArrayItem"]
+    swapArrayItems["swapArrayItems"]
     validateField["validateField"]
-    setFieldStateByPath["setFieldStateByPath"]
+    setFieldState["setFieldState"]
   end
 
   schema --> validator
@@ -57,10 +62,9 @@ flowchart TD
 
   schema --> pathsTrieRef
 
-  merger --> formValue
-  schema --> formValue
-  value --> formValue
-  initialValue --> formValue
+  merger --> valueStore
+  schema --> valueStore
+  initialValue --> valueStore
 
   pathsTrieRef --> fieldsStateMap
 
@@ -69,19 +73,25 @@ flowchart TD
 
   initialErrors --> errors
 
-  formValue -.-> getValueSnapshot
+  valueStore -.-> getValueSnapshot
   errors -.-> getFieldErrors
   errors -.-> hasErrors
   errors -.-> getErrors
-  formValue -.-> validateFormValue
+  valueStore -.-> validateFormValue
   FormState -.-> getComponent
   FormState -.-> getFieldComponent
   FormState -.-> retrieveSchema
   FormState -.-> isDisabled
-  fieldsStateMap -.-> hasFieldStateByPath
+  fieldsStateMap -.-> hasFieldState
 
   errors -.-> updateErrors
   errors -.-> updateFieldErrors
-  formValue -.-> setValue
+  valueStore -.-> setValue
+  valueStore -.-> setValueAtPath
+  valueStore -.-> updateValueAtPath
+  valueStore -.-> insertArrayItem
+  valueStore -.-> removeArrayItem
+  valueStore -.-> moveArrayItem
+  valueStore -.-> swapArrayItems
   fieldsValidation -.-> validateField
-  fieldsStateMap -.-> setFieldStateByPath
+  fieldsStateMap -.-> setFieldState

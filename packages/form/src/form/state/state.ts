@@ -47,7 +47,11 @@ import {
   FORM_INITIAL_VALUE,
 } from "../internals.js";
 import type { FormMerger } from "../merger.js";
-import type { FormValue, KeyedArraysMap, PathTrieRef } from "../model.js";
+import type {
+  FormValue,
+  KeyedArraysMap,
+  RegisteredPathTrieRef,
+} from "../model.js";
 import type { Translate, Translation } from "../translation.js";
 import {
   type ExtraUiOptions,
@@ -56,19 +60,20 @@ import {
   type UiSchemaRoot,
 } from "../ui-schema.js";
 import type { FailureValidationResult, FormValidator } from "../validator.js";
+import type { FormValueStore } from "../value-store.js";
 import { getValueSnapshot } from "./value.svelte.js";
 
 export interface FormState<T> {
   readonly validation: FormValidation<T>;
   readonly fieldsValidation: FieldsValidation;
   // Internals
-  [FORM_VALUE]: FormValue;
+  readonly [FORM_VALUE]: FormValueStore;
   [FORM_INITIAL_DEFAULTS_GENERATED]: boolean;
   readonly [FORM_INITIAL_VALUE]: DeepPartial<T> | undefined;
   readonly [FORM_ID_PREFIX]: string;
   readonly [FORM_ROOT_PATH]: FieldPath;
   readonly [FORM_ID_FROM_PATH]: (path: FieldPath) => Id;
-  readonly [FORM_PATHS_TRIE_REF]: PathTrieRef<FieldPath>;
+  readonly [FORM_PATHS_TRIE_REF]: RegisteredPathTrieRef<FieldPath>;
   readonly [FORM_ERRORS]: FormErrors;
   readonly [FORM_MARK_SCHEMA_CHANGE]: () => void;
   readonly [FORM_KEYED_ARRAYS]: KeyedArraysMap;
@@ -127,8 +132,10 @@ export function reset<T>(form: FormState<T>) {
   form[FORM_INITIAL_DEFAULTS_GENERATED] = false;
   form[FORM_FIELDS_STATE_MAP].clear();
   form[FORM_ERRORS].clear();
-  form[FORM_VALUE] = form[FORM_MERGER].mergeFormDataAndSchemaDefaults({
-    formData: form[FORM_INITIAL_VALUE] as FormValue,
-    schema: form[FORM_SCHEMA],
-  });
+  form[FORM_VALUE].replace(
+    form[FORM_MERGER].mergeFormDataAndSchemaDefaults({
+      formData: form[FORM_INITIAL_VALUE] as FormValue,
+      schema: form[FORM_SCHEMA],
+    })
+  );
 }
