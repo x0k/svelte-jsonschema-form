@@ -75,7 +75,11 @@ describe("createFormValueStore", () => {
     });
 
     expect(changes).toEqual([
-      { path: path("wrapper"), oldValue: { config: { mode: "a" } } },
+      {
+        path: path("wrapper"),
+        oldValue: { config: { mode: "a" } },
+        hadOwnValue: true,
+      },
     ]);
     expect(store.get()).toEqual({ wrapper: { config: { mode: "b" } } });
   });
@@ -93,11 +97,64 @@ describe("createFormValueStore", () => {
     });
 
     expect(changes).toEqual([
-      { path: path("wrapper"), oldValue: { list: [{ value: 1 }] } },
+      {
+        path: path("wrapper"),
+        oldValue: { list: [{ value: 1 }] },
+        hadOwnValue: true,
+      },
     ]);
     expect(store.get()).toEqual({
       wrapper: { list: [{ value: 2 }, { value: 3 }] },
     });
+  });
+
+  test("setAtPath snapshots the value before a later write mutates it", () => {
+    const changes: FormValueChange[] = [];
+    const initial = { list: [{ x: 1 }] };
+    const store = createStore(initial, (change) => changes.push(change));
+
+    store.setAtPath(path("list"), [...initial.list, { x: 2 }]);
+    store.updateAtPath(path("list", 0), (item) => {
+      (item as { x: number }).x = 2;
+      return item;
+    });
+
+    expect(changes[0]).toEqual({
+      path: path("list"),
+      oldValue: [{ x: 1 }],
+      hadOwnValue: true,
+    });
+  });
+
+  test("updateArrayAtPath snapshots items before a later write mutates them", () => {
+    const changes: FormValueChange[] = [];
+    const initial = { list: [{ x: 1 }] };
+    const store = createStore(initial, (change) => changes.push(change));
+
+    store.updateArrayAtPath(path("list"), (array) => {
+      array.push({ x: 2 });
+    });
+    store.updateAtPath(path("list", 0), (item) => {
+      (item as { x: number }).x = 2;
+      return item;
+    });
+
+    expect(changes[0]).toEqual({
+      path: path("list"),
+      oldValue: [{ x: 1 }],
+      hadOwnValue: true,
+    });
+  });
+
+  test("updateAtPath does not record a primitive no-op", () => {
+    const changes: FormValueChange[] = [];
+    const initial = { x: 1 };
+    const store = createStore(initial, (change) => changes.push(change));
+
+    store.updateAtPath(path("x"), (x) => x);
+
+    expect(changes).toEqual([]);
+    expect(store.get()).toBe(initial);
   });
 
   test("updateAtPath uses the configured copyForChange", () => {
@@ -164,8 +221,47 @@ describe("createFormValueStore", () => {
       array.push(3);
     });
 
-    expect(changes).toEqual([{ path: path("list"), oldValue: [1, 2] }]);
+    expect(changes).toEqual([
+      { path: path("list"), oldValue: [1, 2], hadOwnValue: true },
+    ]);
     expect(store.get()).toEqual({ list: [1, 2, 3] });
+  });
+
+  test("setAtPath records a created key as absent before the change", () => {
+    const changes: FormValueChange[] = [];
+    const store = createStore({}, (change) => changes.push(change));
+
+    store.setAtPath(path("a"), 1);
+
+    expect(changes).toEqual([
+      { path: path("a"), oldValue: undefined, hadOwnValue: false },
+    ]);
+  });
+
+  test("setAtPath records an own undefined value as present", () => {
+    const changes: FormValueChange[] = [];
+    const store = createStore({ a: undefined }, (change) =>
+      changes.push(change)
+    );
+
+    store.setAtPath(path("a"), 1);
+
+    expect(changes).toEqual([
+      { path: path("a"), oldValue: undefined, hadOwnValue: true },
+    ]);
+  });
+
+  test("updateArrayAtPath records a created array as absent before the change", () => {
+    const changes: FormValueChange[] = [];
+    const store = createStore({}, (change) => changes.push(change));
+
+    store.updateArrayAtPath(path("list"), (array) => {
+      array.push(1);
+    });
+
+    expect(changes).toEqual([
+      { path: path("list"), oldValue: undefined, hadOwnValue: false },
+    ]);
   });
 
   test("setAtPath does not record a change when the write throws", () => {

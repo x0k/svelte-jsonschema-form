@@ -73,7 +73,6 @@ import type { FormMerger, FormValueChange } from "./merger.js";
 import {
   create,
   type Creatable,
-  type FieldValue,
   type FormValue,
   type FormValueRef,
   type KeyedArraysMap,
@@ -475,7 +474,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     keyedArrays,
     copyForChange: (value) => merger.copyForChange(value),
     onChange(change) {
-      recordChange(change.path, change.oldValue);
+      recordChange(change);
     },
     onReplace() {
       pendingChanges.clear();
@@ -572,7 +571,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   };
   const fieldTypeResolver = $derived(options.resolver(formState));
 
-  function recordChange(path: FieldPath, oldValue: FieldValue) {
+  function recordChange(change: FormValueChange) {
     if (!mayDropStaleDefaults) {
       return;
     }
@@ -580,11 +579,14 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       pendingChanges.clear();
       pendingChangesRef = valueRef;
     }
-    if (!pendingChanges.has(path)) {
-      pendingChanges.set(path, { path, oldValue });
+    if (!pendingChanges.has(change.path)) {
+      pendingChanges.set(change.path, change);
     }
     const triggerKeys = staleDefaultsTriggerKeys;
-    if (triggerKeys === undefined || mayChangeTriggerKey(path, triggerKeys)) {
+    if (
+      triggerKeys === undefined ||
+      mayChangeTriggerKey(change.path, triggerKeys)
+    ) {
       scheduleDefaultsInjection();
     }
   }

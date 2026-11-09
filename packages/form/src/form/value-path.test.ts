@@ -4,6 +4,7 @@ import type { FieldPath } from "./id.js";
 import type { FormValue } from "./model.js";
 import {
   getValueAtPath,
+  hasOwnValueAtPath,
   updateValueAtPath,
   writeValueAtPath,
 } from "./value-path.js";
@@ -97,6 +98,45 @@ describe("getValueAtPath", () => {
   it("reads an own property of a null-prototype object", () => {
     const value = Object.assign(Object.create(null), { a: 1 });
     expect(getValueAtPath(value, path("a"))).toBe(1);
+  });
+});
+
+describe("hasOwnValueAtPath", () => {
+  it("treats the root as present", () => {
+    expect(hasOwnValueAtPath({ a: 1 }, path())).toBe(true);
+  });
+
+  it("distinguishes a missing key from one holding undefined", () => {
+    const value = { present: undefined };
+    expect(hasOwnValueAtPath(value, path("present"))).toBe(true);
+    expect(hasOwnValueAtPath(value, path("missing"))).toBe(false);
+  });
+
+  it("reads an own property through nested containers", () => {
+    expect(
+      hasOwnValueAtPath({ a: [{ b: undefined }] }, path("a", 0, "b"))
+    ).toBe(true);
+    expect(
+      hasOwnValueAtPath({ a: [{ b: undefined }] }, path("a", 0, "c"))
+    ).toBe(false);
+  });
+
+  it("does not read inherited properties", () => {
+    expect(hasOwnValueAtPath({}, path("toString"))).toBe(false);
+    expect(hasOwnValueAtPath({}, path("__proto__"))).toBe(false);
+  });
+
+  it("checks array indices against the current length", () => {
+    const value = [1];
+    expect(hasOwnValueAtPath(value, path(0))).toBe(true);
+    expect(hasOwnValueAtPath(value, path(1))).toBe(false);
+    expect(hasOwnValueAtPath(value, path("0"))).toBe(false);
+  });
+
+  it("throws when the path goes through a primitive", () => {
+    expect(() => hasOwnValueAtPath({ a: 1 }, path("a", "b"))).toThrow(
+      'Path "[a, b]" is not populated'
+    );
   });
 });
 

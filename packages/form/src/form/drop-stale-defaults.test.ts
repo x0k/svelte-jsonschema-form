@@ -13,7 +13,10 @@ import {
 import { createMerger } from "#core/test-merger.js";
 import { createValidator } from "#core/test-validator.js";
 
-import { dropStaleDefaults } from "./drop-stale-defaults.js";
+import {
+  dropStaleDefaults,
+  rebuildOldFormData,
+} from "./drop-stale-defaults.js";
 import type { FieldPath } from "./id.js";
 import { internalRegisterFieldPath } from "./internals.js";
 import {
@@ -710,5 +713,34 @@ describe("dropStaleDefaults", () => {
     );
     expect(result.formData).toEqual({ mode: "second", x: "b" });
     expect(result.dropped).toHaveLength(0);
+  });
+});
+
+describe("rebuildOldFormData", () => {
+  it("removes a key the change created", () => {
+    const result = rebuildOldFormData({}, [
+      { path: path("a"), oldValue: undefined, hadOwnValue: false },
+    ]);
+
+    expect(result).toEqual({});
+    expect(Object.hasOwn(result as object, "a")).toBe(false);
+  });
+
+  it("restores an own undefined value", () => {
+    const result = rebuildOldFormData({}, [
+      { path: path("a"), oldValue: undefined, hadOwnValue: true },
+    ]);
+
+    expect(result).toEqual({ a: undefined });
+    expect(Object.hasOwn(result as object, "a")).toBe(true);
+  });
+
+  it("replays changes from the newest to the oldest", () => {
+    expect(
+      rebuildOldFormData({ a: 3 }, [
+        { path: path("a"), oldValue: 1, hadOwnValue: true },
+        { path: path("a"), oldValue: 2, hadOwnValue: true },
+      ])
+    ).toEqual({ a: 1 });
   });
 });

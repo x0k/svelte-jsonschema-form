@@ -52,7 +52,20 @@ export interface MergeFormDataAndSchemaDefaultsOptions {
 
 export interface FormValueChange {
   path: FieldPath;
+  /**
+   * A snapshot of the value at `path` before the change. Later in-place writes
+   * must not alter it.
+   */
   oldValue: FieldValue;
+  /**
+   * Whether `path` had an own value before the change. A `false` value means
+   * the change created the entry, so replaying the change removes it instead of
+   * writing an own `undefined`.
+   *
+   * Callers that construct a change by hand may omit this; it is then treated
+   * as `true`.
+   */
+  hadOwnValue?: boolean;
 }
 
 /**

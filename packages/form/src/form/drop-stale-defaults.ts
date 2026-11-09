@@ -282,7 +282,10 @@ export function rebuildOldFormData(
   let oldFormData = formData;
   for (let i = changes.length - 1; i >= 0; i--) {
     const change = changes[i]!;
-    oldFormData = replaceAtPath(oldFormData, change.path, change.oldValue);
+    oldFormData =
+      change.hadOwnValue === false
+        ? deleteAtPath(oldFormData, change.path)
+        : replaceAtPath(oldFormData, change.path, change.oldValue);
   }
   return oldFormData;
 }
