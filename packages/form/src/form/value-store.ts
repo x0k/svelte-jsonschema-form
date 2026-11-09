@@ -12,7 +12,6 @@ import type {
   KeyedFieldValues,
 } from "./model.js";
 import {
-  copyForChange,
   getValueAtPath,
   updateValueAtPath,
   writeValueAtPath,
@@ -44,16 +43,22 @@ export interface FormValueStoreOptions {
   valueRef: FormValueRef;
   keyedArrays: KeyedArraysMap;
   /**
+   * Copies a value before an in-place update, so the value recorded as the
+   * previous one stays intact. The form passes its merger's implementation.
+   */
+  copyForChange: (value: FieldValue) => FieldValue;
+  /**
    * Called after a successful write with the value it replaced, so the defaults
    * pass can tell a user-written value from an untouched default.
    */
-  onChange?: (change: FormValueChange) => void;
-  onReplace?: () => void;
+  onChange: (change: FormValueChange) => void;
+  onReplace: () => void;
 }
 
 export function createFormValueStore({
   valueRef,
   keyedArrays,
+  copyForChange,
   onChange,
   onReplace,
 }: FormValueStoreOptions): FormValueStore {
@@ -72,7 +77,7 @@ export function createFormValueStore({
       return valueRef.current;
     },
     replace(value) {
-      onReplace?.();
+      onReplace();
       valueRef.current = value;
     },
     setAtPath(path, value) {
@@ -80,7 +85,7 @@ export function createFormValueStore({
       const oldValue = getValueAtPath(current, path);
       const next = writeValueAtPath(current, path, value);
       if (!Object.is(oldValue, value)) {
-        onChange?.({ path, oldValue });
+        onChange({ path, oldValue });
       }
       // Non-root writes mutate the current value in place through Svelte's
       // proxy, so reassigning the same root would only invalidate root readers.
@@ -95,7 +100,7 @@ export function createFormValueStore({
       const current = valueRef.current;
       const oldValue = copyForChange(getValueAtPath(current, path));
       const next = updateValueAtPath(current, path, update);
-      onChange?.({ path, oldValue });
+      onChange({ path, oldValue });
       if (next !== current) {
         valueRef.current = next;
       }
@@ -107,7 +112,7 @@ export function createFormValueStore({
         update(getKeyedArray(next), next.length);
         if (next.length > 0) {
           const written = writeValueAtPath(valueRef.current, path, next);
-          onChange?.({ path, oldValue: current });
+          onChange({ path, oldValue: current });
           valueRef.current = written;
         }
         return;
@@ -123,7 +128,7 @@ export function createFormValueStore({
         current.length !== before.length ||
         current.some((value, index) => value !== before[index])
       ) {
-        onChange?.({ path, oldValue: before });
+        onChange({ path, oldValue: before });
       }
     },
   };

@@ -1,8 +1,8 @@
 import { describe, expect, test } from "vitest";
 
 import type { FieldPath } from "./id.js";
-import type { FormValueChange } from "./merger.js";
-import type { FormValue } from "./model.js";
+import { copyForChange, type FormValueChange } from "./merger.js";
+import type { FieldValue, FormValue } from "./model.js";
 import { createFormValueStore } from "./value-store.js";
 
 function path(...parts: (string | number)[]) {
@@ -11,7 +11,8 @@ function path(...parts: (string | number)[]) {
 
 function createStore(
   initialValue: FormValue,
-  onChange?: (change: FormValueChange) => void
+  onChange: (change: FormValueChange) => void = () => {},
+  copy: (value: FieldValue) => FieldValue = copyForChange
 ) {
   let value = initialValue;
   return createFormValueStore({
@@ -24,7 +25,9 @@ function createStore(
       },
     },
     keyedArrays: new WeakMap(),
+    copyForChange: copy,
     onChange,
+    onReplace() {},
   });
 }
 
@@ -75,6 +78,56 @@ describe("createFormValueStore", () => {
       { path: path("wrapper"), oldValue: { config: { mode: "a" } } },
     ]);
     expect(store.get()).toEqual({ wrapper: { config: { mode: "b" } } });
+  });
+
+  test("updateAtPath copies containers below the updated path", () => {
+    const changes: FormValueChange[] = [];
+    const initial = { wrapper: { list: [{ value: 1 }] } };
+    const store = createStore(initial, (change) => changes.push(change));
+
+    store.updateAtPath(path("wrapper"), (wrapper) => {
+      const value = wrapper as { list: { value: number }[] };
+      value.list[0]!.value = 2;
+      value.list.push({ value: 3 });
+      return wrapper;
+    });
+
+    expect(changes).toEqual([
+      { path: path("wrapper"), oldValue: { list: [{ value: 1 }] } },
+    ]);
+    expect(store.get()).toEqual({
+      wrapper: { list: [{ value: 2 }, { value: 3 }] },
+    });
+  });
+
+  test("updateAtPath uses the configured copyForChange", () => {
+    const changes: FormValueChange[] = [];
+    const initial = {
+      wrapper: { map: new Map([["a", 1]]) },
+    } as unknown as FormValue;
+    const copy = (value: FieldValue): FieldValue =>
+      value instanceof Map
+        ? (new Map(value) as unknown as FieldValue)
+        : copyForChange(value, copy);
+    const store = createStore(initial, (change) => changes.push(change), copy);
+
+    store.updateAtPath(path("wrapper"), (wrapper) => {
+      const value = wrapper as unknown as { map: Map<string, number> };
+      value.map.set("a", 2);
+      return wrapper;
+    });
+
+    const oldValue = changes[0]!.oldValue as unknown as {
+      map: Map<string, number>;
+    };
+    expect(oldValue.map).toEqual(new Map([["a", 1]]));
+    expect(oldValue.map).not.toBe(
+      (initial as unknown as { wrapper: { map: Map<string, number> } }).wrapper
+        .map
+    );
+    expect(store.get()).toEqual({
+      wrapper: { map: new Map([["a", 2]]) },
+    });
   });
 
   test("updateAtPath keeps the root identity", () => {

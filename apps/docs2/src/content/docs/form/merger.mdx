@@ -94,6 +94,15 @@ export interface DropStaleDefaultsOptions {
 
 export interface FormMerger extends Merger {
   /**
+   * Copies `value` before an in-place update so the value recorded as the
+   * previous one stays intact.
+   *
+   * The built-in mergers copy arrays and plain objects recursively and keep
+   * other values, such as `File`, by reference. Override this to copy custom
+   * container types, such as `Map` or `Set`, used by your form data.
+   */
+  copyForChange(value: FieldValue): FieldValue;
+  /**
    * Merges defaults of `schema` into `formData`
    */
   mergeFormDataAndSchemaDefaults(
@@ -129,6 +138,25 @@ const merger: FormMerger = {
   // ...
   dropStaleDefaults(options: DropStaleDefaultsOptions) {
     return dropStaleDefaults(merger, options);
+  },
+};
+```
+
+The built-in `copyForChange` copies arrays and plain objects recursively and
+keeps other values, such as `File`, by reference. If your form values contain
+custom containers, override it and delegate nested values to the exported
+helper:
+
+```typescript
+import { copyForChange, type FieldValue, type FormMerger } from "@sjsf/form";
+
+const merger: FormMerger = {
+  // ...
+  copyForChange(value: FieldValue) {
+    if (value instanceof Map) {
+      return new Map(value) as unknown as FieldValue;
+    }
+    return copyForChange(value, (nested) => merger.copyForChange(nested));
   },
 };
 ```

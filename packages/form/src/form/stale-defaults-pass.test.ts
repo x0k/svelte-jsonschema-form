@@ -12,7 +12,11 @@ import { createValidator } from "#core/test-validator.js";
 import { dropStaleDefaults } from "./drop-stale-defaults.js";
 import type { FieldPath } from "./id.js";
 import { internalRegisterFieldPath } from "./internals.js";
-import type { FormMerger, FormValueChange } from "./merger.js";
+import {
+  copyForChange,
+  type FormMerger,
+  type FormValueChange,
+} from "./merger.js";
 import type { FieldValue, RegisteredPathTrieRef } from "./model.js";
 import { StaleDefaultsPass } from "./stale-defaults-pass.js";
 
@@ -33,6 +37,7 @@ function change(path: FieldPath, oldValue: FieldValue): FormValueChange {
 function formMerger(merger: Merger, rootSchema: Schema): FormMerger {
   const formMerger: FormMerger = {
     ...merger,
+    copyForChange,
     mergeFormDataAndSchemaDefaults({
       schema,
       formData,

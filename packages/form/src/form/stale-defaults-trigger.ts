@@ -1,10 +1,11 @@
 import {
   DEPENDENCIES_KEY,
   IF_KEY,
-  resolveRef,
+  resolveRefSafe,
   type SchemaDefinition,
 } from "#core/index.js";
 import { isSchemaObject } from "#lib/json-schema/index.js";
+import { isRecord } from "#lib/object.js";
 
 /**
  * The first value-path segment of every location that can make
@@ -70,7 +71,7 @@ function walkSchema(
 
   const ref = schema.$ref;
   if (typeof ref === "string") {
-    const target = resolveLocalRef(state.rootSchema, ref);
+    const target = resolveRefSafe(ref, state.rootSchema);
     if (target === undefined) {
       state.any = true;
       return;
@@ -93,11 +94,7 @@ function walkSchema(
   }
 
   const dependencies = schema[DEPENDENCIES_KEY];
-  if (
-    typeof dependencies === "object" &&
-    dependencies !== null &&
-    !Array.isArray(dependencies)
-  ) {
+  if (isRecord<SchemaDefinition | string[]>(dependencies)) {
     if (topKey !== undefined) {
       addKey(state, topKey);
     } else if (unknownPath) {
@@ -109,13 +106,8 @@ function walkSchema(
     }
     // A dependency schema can itself declare an `if` or another `dependencies`
     // that reads different keys, e.g. `dependencies: { a: { if: <reads b> } }`.
-    for (const key of Object.keys(dependencies)) {
-      const dependency = dependencies[key];
-      if (
-        typeof dependency === "object" &&
-        dependency !== null &&
-        !Array.isArray(dependency)
-      ) {
+    for (const dependency of Object.values(dependencies)) {
+      if (!Array.isArray(dependency)) {
         walkSchema(state, dependency, topKey, unknownPath);
       }
     }
@@ -143,7 +135,7 @@ function walkSchema(
   }
 
   const properties = schema.properties;
-  if (isSchemaRecord(properties)) {
+  if (isRecord<SchemaDefinition | undefined>(properties)) {
     for (const key of Object.keys(properties)) {
       const property = properties[key];
       if (property !== undefined) {
@@ -158,7 +150,7 @@ function walkSchema(
   }
 
   const patternProperties = schema.patternProperties;
-  if (isSchemaRecord(patternProperties)) {
+  if (isRecord<SchemaDefinition | undefined>(patternProperties)) {
     const nextUnknown = unknownPath || topKey === undefined;
     for (const key of Object.keys(patternProperties)) {
       const property = patternProperties[key];
@@ -241,7 +233,7 @@ function getIfKeys(
 
   const ref = schema.$ref;
   if (typeof ref === "string") {
-    const target = resolveLocalRef(state.rootSchema, ref);
+    const target = resolveRefSafe(ref, state.rootSchema);
     if (target === undefined || activeRefs.has(ref)) {
       return undefined;
     }
@@ -261,7 +253,7 @@ function getIfKeys(
       case "$ref":
         break;
       case "properties":
-        if (!isSchemaRecord(value)) {
+        if (!isRecord(value)) {
           return undefined;
         }
         for (const key of Object.keys(value)) {
@@ -367,24 +359,4 @@ function mergeNestedIfKey(
     keys.add(key);
   }
   return true;
-}
-
-function resolveLocalRef(
-  rootSchema: SchemaDefinition,
-  ref: string
-): SchemaDefinition | undefined {
-  if (!isSchemaObject(rootSchema)) {
-    return undefined;
-  }
-  try {
-    return resolveRef(ref, rootSchema);
-  } catch {
-    return undefined;
-  }
-}
-
-function isSchemaRecord(
-  value: unknown
-): value is Record<string, SchemaDefinition | undefined> {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
 }

@@ -473,6 +473,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       },
     },
     keyedArrays,
+    copyForChange: (value) => merger.copyForChange(value),
     onChange(change) {
       recordChange(change.path, change.oldValue);
     },

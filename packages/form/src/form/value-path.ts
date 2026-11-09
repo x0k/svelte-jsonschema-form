@@ -1,4 +1,3 @@
-import type { SchemaObjectValue } from "#core/index.js";
 import { getOwn, isArrayIndex, isRecord, setOwn } from "#lib/object.js";
 
 import type { FieldPath } from "./id.js";
@@ -6,28 +5,6 @@ import type { FieldValue, FormValue } from "./model.js";
 
 function pathError(path: FieldPath) {
   return new Error(`Path "[${path.join(", ")}]" is not populated`);
-}
-
-/**
- * Copies a value before an in-place write, so the previous value stays intact.
- *
- * The copy is recursive because the update callback may mutate any container
- * below the path it receives. Non-plain values such as `File` are kept by
- * reference: the form treats them as opaque, and spreading one would lose its
- * internal slots.
- */
-export function copyForChange(value: FieldValue): FieldValue {
-  if (Array.isArray(value)) {
-    return value.map((item) => copyForChange(item));
-  }
-  if (isRecord(value)) {
-    const copy: SchemaObjectValue = {};
-    for (const key of Object.keys(value)) {
-      setOwn(copy, key, copyForChange(value[key] as FieldValue));
-    }
-    return copy;
-  }
-  return value;
 }
 
 export function getValueAtPath(root: FormValue, path: FieldPath): FieldValue {
