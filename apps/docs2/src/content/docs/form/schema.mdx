@@ -26,6 +26,23 @@ Some string formats has special meaning:
     for `date` format
 - `data-url` - file field (with `compat` resolver)
 
+## Reference resolution
+
+The core entry point exports two helpers for local `$ref` values:
+
+```typescript
+import { resolveRef, resolveRefSafe } from "@sjsf/form/core";
+
+const schema = resolveRef("#/definitions/address", rootSchema);
+const maybeSchema = resolveRefSafe("#/definitions/address", rootSchema);
+```
+
+`resolveRef` throws when the reference is not local or does not resolve.
+`resolveRefSafe` returns `undefined` instead, so it is useful when walking a
+schema whose references you do not control. Both helpers accept a [JSON
+Pointer](https://datatracker.ietf.org/doc/html/rfc6901) in URI fragment
+identifier format and only read own properties.
+
 ## Details and limitations
 
 - Library only supports local definition referencing. The value in the `$ref` keyword should be a [JSON Pointer](https://datatracker.ietf.org/doc/html/rfc6901) in URI fragment identifier format.

@@ -1,9 +1,9 @@
 import {
   DEPENDENCIES_KEY,
   IF_KEY,
+  resolveRefSafe,
   type SchemaDefinition,
 } from "#core/index.js";
-import { resolveRefSafe } from "#core/resolve-ref-safe.js";
 import { isSchemaObject } from "#lib/json-schema/index.js";
 import { isRecord } from "#lib/object.js";
 

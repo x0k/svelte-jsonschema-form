@@ -4,9 +4,12 @@
 
 import { beforeEach, describe, expect, it } from "vitest";
 
-import { findSchemaDefinition, resolveRef } from "./definitions.js";
+import {
+  findSchemaDefinition,
+  resolveRef,
+  resolveRefSafe,
+} from "./definitions.js";
 import type { Merger } from "./merger.js";
-import { resolveRefSafe } from "./resolve-ref-safe.js";
 import type { Schema } from "./schema.js";
 import { createMerger } from "./test-merger.js";
 // import { findSchemaDefinitionRecursive } from './definitions';
