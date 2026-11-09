@@ -75,12 +75,15 @@ export interface DropStaleDefaultsOptions {
    */
   oldSchema?: Schema | undefined;
   /**
-   * Path keys this pass has already dropped. They are skipped so a replacement
-   * the defaults fill has written is not dropped again. The search only tests
-   * membership, so a caller that already keys its drops can pass that record
-   * directly instead of rebuilding one per search.
+   * Paths this pass has already dropped. They are skipped so a replacement the
+   * defaults fill has written is not dropped again.
    */
-  droppedPaths?: ReadonlySet<string>;
+  droppedPaths?: ReadonlySet<FieldPath>;
+  /**
+   * Returns the canonical `FieldPath` for `key` below `parentPath`. The form
+   * supplies its own so `droppedPaths` can be compared by identity.
+   */
+  getChildPath?: (parentPath: RPath, key: string | number) => FieldPath;
   /**
    * The flag the defaults fill is running with. The search computes the same
    * defaults as that fill, so it must use the same flag.
@@ -116,7 +119,11 @@ helper computes defaults exactly as your `mergeFormDataAndSchemaDefaults` does.
 A custom `FormMerger` should delegate to the same helper:
 
 ```typescript
-import { dropStaleDefaults, type DropStaleDefaultsOptions } from "@sjsf/form";
+import {
+  dropStaleDefaults,
+  type DropStaleDefaultsOptions,
+  type FormMerger,
+} from "@sjsf/form";
 
 const merger: FormMerger = {
   // ...
@@ -126,16 +133,8 @@ const merger: FormMerger = {
 };
 ```
 
-A custom implementation can use the `oldFormData` and `oldSchema` options to
-skip rebuilding the pre-pass data and resolving its schema, and must honor
-`changes`, `droppedPaths`, and `initialDefaultsGenerated` so user edits stay
-distinguishable, a replacement is not dropped again, and the comparison sees
-the same defaults as the fill. Each removal must be reported in `dropped` with
-the value it removed and the schema that described the path while it held that
-value. It must also gate a replacement on both branches declaring a value for
-the key: the computed defaults also contain nested leaf defaults, required
-placeholders, and `items` defaults repeated to `minItems`, none of which are a
-branch declaring the key's value.
+The helper is the reference implementation; the interface comments above
+describe every option and result field a custom implementation must honor.
 
 <LinkCard
   title="Merger Setup"

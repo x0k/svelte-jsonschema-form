@@ -118,24 +118,16 @@ Supported for conditional field schemas in Draft-07:
 
 ## 4. Branch Defaults
 
-When a `dependencies` or `if`/`then`/`else` branch swap replaces a property's
-schema, SJSF also replaces the property's value if it still holds what the
-branch being swapped away computes as its default. A branch only speaks for a
-key when it declares one, either with `default` or `const` on the property's
-schema or in the level's own `default` object, so both branches must declare the
-key before a difference can replace the value. Inside that declaration the
-comparison uses the computed defaults rather than only the literals the branch
-writes: a nested object's leaf defaults, an `items` default repeated to
-`minItems`, and the placeholders a required object, array, or boolean produces
-are part of what the branch computes. None of them declares a key on its own. A
-value edited away from the old computed default is kept, as is a value whose
-branches only compute defaults without declaring the key.
+When a `dependencies` or `if`/`then`/`else` branch swap changes a property's
+schema, SJSF replaces the value if it still equals the old branch's computed
+default and both branches declare the key (`default` or `const` on the property
+or in the level's `default` object; `null` counts). Computed defaults include
+nested leaf defaults, `items` defaults repeated to `minItems`, and required
+placeholders, but only an explicit declaration makes a branch speak for a key.
 
-The comparison cannot tell how a value equal to the old default was supplied, so
-a matching `initialValue` is replaced too. Values are matched per key of the
-level that declares the default, so a `default` on a nested object replaces an
-untouched leaf while keeping an edited sibling, and a `default` declared a level
-above keeps the whole object once any leaf is edited. `default: null` and
-`const: null` are declarations like any other. Writing a whole object, at its
-path or at the form root, counts as editing every value inside it. Array items
-are not searched, and a conditional declared inside an array item is left alone.
+- Edited values are kept; a matching `initialValue` is replaced too.
+- Matching is per key of the declaring level: a nested default can replace an
+  untouched leaf while keeping an edited sibling, but a default declared a
+  level above keeps the whole object once any leaf is edited. Writing a whole
+  object counts as editing every value inside it.
+- Array items and the conditionals inside them are not searched.

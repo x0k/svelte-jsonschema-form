@@ -24,13 +24,25 @@ export function setOwn<T extends object, K extends keyof T>(
 }
 
 /**
- * Reads an own property, returning `undefined` for missing and inherited keys.
+ * Reads an own property, returning `defaultValue` for missing and inherited
+ * keys. The fallback also distinguishes an absent key from one holding
+ * `undefined`.
  */
 export function getOwn<T extends object, K extends keyof T>(
   obj: T,
   key: K
-): T[K] | undefined {
-  return Object.hasOwn(obj, key) ? obj[key] : undefined;
+): T[K] | undefined;
+export function getOwn<T extends object, K extends keyof T, D>(
+  obj: T,
+  key: K,
+  defaultValue: D
+): T[K] | D;
+export function getOwn<T extends object, K extends keyof T, D>(
+  obj: T,
+  key: K,
+  defaultValue?: D
+): T[K] | D | undefined {
+  return Object.hasOwn(obj, key) ? obj[key] : defaultValue;
 }
 
 const objProto = Object.prototype;

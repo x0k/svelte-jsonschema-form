@@ -78,12 +78,15 @@ export interface DropStaleDefaultsOptions {
    */
   oldSchema?: Schema | undefined;
   /**
-   * Path keys this pass has already dropped. They are skipped so a replacement
-   * the defaults fill has written is not dropped again. The search only tests
-   * membership, so a caller that already keys its drops can pass that record
-   * directly instead of rebuilding one per search.
+   * Paths this pass has already dropped. They are skipped so a replacement the
+   * defaults fill has written is not dropped again.
    */
-  droppedPaths?: ReadonlySet<string>;
+  droppedPaths?: ReadonlySet<FieldPath>;
+  /**
+   * Returns the canonical `FieldPath` for `key` below `parentPath`. The form
+   * supplies its own so `droppedPaths` can be compared by identity.
+   */
+  getChildPath?: (parentPath: RPath, key: string | number) => FieldPath;
   /**
    * The flag the defaults fill is running with. The search computes the same
    * defaults as that fill, so it must use the same flag.

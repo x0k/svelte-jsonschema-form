@@ -1,4 +1,9 @@
-import { getValueSnapshot, setValueAtPath, type Schema } from "@sjsf/form";
+import {
+  getValueSnapshot,
+  setValueAtPath,
+  updateValueAtPath,
+  type Schema,
+} from "@sjsf/form";
 import { tick } from "svelte";
 import { describe, expect, test } from "vitest";
 
@@ -777,6 +782,67 @@ describe("RJSF #5464 parity", () => {
     await tick();
     expect(getValueSnapshot(form)).toEqual({
       wrap: { mode: "b", kind: { v: "k2" } },
+    });
+  });
+
+  // `updateValueAtPath()` lets a callback mutate an object in place. The value
+  // recorded for the change has to be the state before that mutation: resolving
+  // the old schema against the mutated value would select the new branch on
+  // both sides, and the stale default in a sibling key would survive.
+  test("replaces a sibling default after an in-place nested edit", async () => {
+    const schema: Schema = {
+      type: "object",
+      properties: {
+        mode: {
+          type: "object",
+          default: { config: { kind: "a" } },
+          properties: {
+            config: {
+              type: "object",
+              default: { kind: "a" },
+              properties: {
+                kind: { type: "string", enum: ["a", "b"], default: "a" },
+              },
+            },
+          },
+        },
+        value: { type: "string" },
+      },
+      if: {
+        properties: {
+          mode: {
+            properties: {
+              config: {
+                properties: { kind: { const: "a" } },
+                required: ["kind"],
+              },
+            },
+            required: ["config"],
+          },
+        },
+        required: ["mode"],
+      },
+      then: { properties: { value: { type: "string", default: "old" } } },
+      else: { properties: { value: { type: "string", default: "new" } } },
+    } as Schema;
+    const { form } = await renderFieldForm({
+      schema,
+      initialValue: {
+        mode: { config: { kind: "a" } },
+        value: "old",
+      },
+    });
+
+    updateValueAtPath(form, ["mode"], (mode) => {
+      const value = mode as { config: { kind: string } };
+      value.config.kind = "b";
+      return mode;
+    });
+    await tick();
+
+    expect(getValueSnapshot(form)).toEqual({
+      mode: { config: { kind: "b" } },
+      value: "new",
     });
   });
 });

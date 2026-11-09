@@ -24,8 +24,8 @@ import {
 } from "#core/index.js";
 import { getOwn, isRecord, setOwn } from "#lib/object.js";
 
-import { pathKey } from "./change-path.js";
 import { replaceAtPath } from "./drop-stale-defaults.js";
+import type { FieldPath } from "./id.js";
 import type { DroppedDefault, FormMerger, FormValueChange } from "./merger.js";
 import type { FieldValue, FormValue } from "./model.js";
 
@@ -45,6 +45,11 @@ export interface StaleDefaultsPassOptions {
   merger: FormMerger;
   rootSchema: Schema;
   changes: readonly FormValueChange[];
+  /**
+   * Returns the form's canonical child path, so dropped paths are compared by
+   * identity.
+   */
+  getChildPath: (parentPath: RPath, key: string | number) => FieldPath;
   /**
    * The form data the pending changes started from.
    */
@@ -220,13 +225,17 @@ function isRefillRejected(
 }
 
 export class StaleDefaultsPass {
-  private readonly dropped = new Map<string, DroppedDefault>();
-  private readonly droppedPathKeys = new Set<string>();
-  private readonly settled = new Set<string>();
+  private readonly dropped = new Map<FieldPath, DroppedDefault>();
+  private readonly droppedPathKeys = new Set<FieldPath>();
+  private readonly settled = new Set<FieldPath>();
   private readonly validator: Validator;
   private readonly merger: FormMerger;
   private readonly rootSchema: Schema;
   private readonly changes: readonly FormValueChange[];
+  private readonly getChildPath: (
+    parentPath: RPath,
+    key: string | number
+  ) => FieldPath;
   private readonly oldFormData: FormValue;
   private readonly oldSchema: Schema | undefined;
 
@@ -235,6 +244,7 @@ export class StaleDefaultsPass {
     merger,
     rootSchema,
     changes,
+    getChildPath,
     oldFormData,
     oldSchema,
   }: StaleDefaultsPassOptions) {
@@ -242,6 +252,7 @@ export class StaleDefaultsPass {
     this.merger = merger;
     this.rootSchema = rootSchema;
     this.changes = changes;
+    this.getChildPath = getChildPath;
     this.oldFormData = oldFormData;
     this.oldSchema = oldSchema;
   }
@@ -261,6 +272,7 @@ export class StaleDefaultsPass {
       oldFormData: this.oldFormData,
       oldSchema: this.oldSchema,
       droppedPaths: this.droppedPathKeys,
+      getChildPath: this.getChildPath,
       initialDefaultsGenerated,
     });
     for (const entry of dropped) {
@@ -378,10 +390,12 @@ export class StaleDefaultsPass {
   }
 
   private recordDrop(dropped: DroppedDefault) {
-    const key = pathKey(dropped.path);
-    if (!this.dropped.has(key)) {
-      this.dropped.set(key, dropped);
-      this.droppedPathKeys.add(key);
+    // The search builds every reported path through `getChildPath`, so it is
+    // already the form's canonical `FieldPath`.
+    const path = dropped.path as FieldPath;
+    if (!this.dropped.has(path)) {
+      this.dropped.set(path, dropped);
+      this.droppedPathKeys.add(path);
     }
   }
 }

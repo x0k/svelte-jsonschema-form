@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { setOwn } from "#lib/object.js";
+import { getOwn, setOwn } from "#lib/object.js";
 
 import { isSchemaDeepEqual, type ValueComparer } from "./deep-equal.js";
 import { getSelectOptionValuesSafe } from "./is-select.js";
@@ -158,14 +158,11 @@ export function sanitizeDataForNewSchema(
     const keys: string[] = Object.keys(newSchemaProperties);
     const nestedData: SchemaObjectValue = {};
     keys.forEach((key) => {
-      const formValue =
-        isDataObject && Object.hasOwn(data, key) ? data[key] : undefined;
+      const formValue = isDataObject ? getOwn(data, key) : undefined;
       const isNewProperty =
         oldSchemaProperties === undefined ||
         !Object.hasOwn(oldSchemaProperties, key);
-      const oldKeyedSchemaDef = Object.hasOwn(oldSchemaProperties ?? {}, key)
-        ? oldSchemaProperties?.[key]
-        : undefined;
+      const oldKeyedSchemaDef = getOwn(oldSchemaProperties ?? {}, key);
       const oldRawKeyedSchema: Schema =
         typeof oldKeyedSchemaDef === "object" ? oldKeyedSchemaDef : {};
       const newKeyedSchemaDef = newSchemaProperties?.[key];
@@ -221,12 +218,16 @@ export function sanitizeDataForNewSchema(
         } else {
           // `null` is a declared value, not an absent one, so only an absent
           // key yields `NO_VALUE`.
-          const newOptionDefault = Object.hasOwn(newKeyedSchema, DEFAULT_KEY)
-            ? newKeyedSchema.default
-            : NO_VALUE;
-          const oldOptionDefault = Object.hasOwn(oldKeyedSchema, DEFAULT_KEY)
-            ? oldKeyedSchema.default
-            : NO_VALUE;
+          const newOptionDefault = getOwn(
+            newKeyedSchema,
+            DEFAULT_KEY,
+            NO_VALUE
+          );
+          const oldOptionDefault = getOwn(
+            oldKeyedSchema,
+            DEFAULT_KEY,
+            NO_VALUE
+          );
           if (newOptionDefault !== NO_VALUE && newOptionDefault !== formValue) {
             if (
               (isNewProperty && formValue === undefined) ||
@@ -239,12 +240,8 @@ export function sanitizeDataForNewSchema(
             }
           }
 
-          const newOptionConst = Object.hasOwn(newKeyedSchema, CONST_KEY)
-            ? newKeyedSchema.const
-            : NO_VALUE;
-          const oldOptionConst = Object.hasOwn(oldKeyedSchema, CONST_KEY)
-            ? oldKeyedSchema.const
-            : NO_VALUE;
+          const newOptionConst = getOwn(newKeyedSchema, CONST_KEY, NO_VALUE);
+          const oldOptionConst = getOwn(oldKeyedSchema, CONST_KEY, NO_VALUE);
           if (newOptionConst !== NO_VALUE && newOptionConst !== formValue) {
             setOwn(
               removeOldSchemaData,

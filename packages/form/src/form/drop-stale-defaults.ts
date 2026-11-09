@@ -30,8 +30,8 @@ import {
 } from "#core/index.js";
 import { getOwn, isRecord, setOwn } from "#lib/object.js";
 
-import { pathKey } from "./change-path.js";
 import { declaresValueFor } from "./declares-value.js";
+import type { FieldPath } from "./id.js";
 import type {
   DroppedDefault,
   DropStaleDefaultsOptions,
@@ -41,7 +41,15 @@ import type {
 } from "./merger.js";
 import type { FieldValue, FormValue } from "./model.js";
 
-const NO_DROPPED_PATHS: ReadonlySet<string> = new Set();
+const NO_DROPPED_PATHS: ReadonlySet<FieldPath> = new Set();
+
+/** Standalone callers that compare `droppedPaths` by identity pass their own. */
+function defaultGetChildPath(
+  parentPath: RPath,
+  key: string | number
+): FieldPath {
+  return parentPath.concat(key) as unknown as FieldPath;
+}
 
 function isSchemaObject(value: unknown): value is Schema {
   return isRecord(value);
@@ -226,6 +234,7 @@ export function rebuildOldFormData(
 
 interface NestedKey {
   key: string;
+  path: FieldPath;
   newSchema: Schema;
   oldSchema: Schema;
   current: SchemaObjectValue;
@@ -242,7 +251,8 @@ function dropStaleDefaultsAtLevel(
   formData: SchemaObjectValue,
   oldFormData: SchemaObjectValue,
   changedPaths: readonly RPath[],
-  droppedPaths: ReadonlySet<string>,
+  droppedPaths: ReadonlySet<FieldPath>,
+  getChildPath: (parentPath: RPath, key: string | number) => FieldPath,
   levelPath: RPath,
   initialDefaultsGenerated: boolean,
   dropped: DroppedDefault[]
@@ -258,14 +268,15 @@ function dropStaleDefaultsAtLevel(
 
   // Keys whose declarations differ and which are worth a defaults computation,
   // with the schema that describes each one as the data stands.
-  const replaceable: { key: string; writtenUnder: Schema }[] = [];
+  const replaceable: { key: string; path: FieldPath; writtenUnder: Schema }[] =
+    [];
   const nested: NestedKey[] = [];
   for (const key of Object.keys(newProperties)) {
     if (!Object.hasOwn(oldProperties, key)) {
       continue;
     }
-    const currentPath = [...levelPath, key];
-    if (droppedPaths.has(pathKey(currentPath))) {
+    const currentPath = getChildPath(levelPath, key);
+    if (droppedPaths.has(currentPath)) {
       continue;
     }
     const newRaw = newProperties[key];
@@ -332,12 +343,13 @@ function dropStaleDefaultsAtLevel(
       declaresValueFor(newSchema, key, newResolved) &&
       declaresValueFor(oldSchema, key, oldResolved)
     ) {
-      replaceable.push({ key, writtenUnder: newResolved });
+      replaceable.push({ key, path: currentPath, writtenUnder: newResolved });
     }
 
     if (isSchemaObjectValue(current) && isSchemaObjectValue(oldCurrent)) {
       nested.push({
         key,
+        path: currentPath,
         newSchema: newResolved,
         oldSchema: oldResolved,
         current,
@@ -388,7 +400,7 @@ function dropStaleDefaultsAtLevel(
         initialDefaultsGenerated
       );
       const holding = new Set(holdingKeys);
-      for (const { key, writtenUnder } of replaceable) {
+      for (const { key, path, writtenUnder } of replaceable) {
         if (!holding.has(key)) {
           continue;
         }
@@ -404,7 +416,7 @@ function dropStaleDefaultsAtLevel(
           delete result[key];
           droppedKeys.add(key);
           dropped.push({
-            path: [...levelPath, key],
+            path,
             value: getOwn(oldFormData, key) as FieldValue,
             writtenUnder,
           });
@@ -432,7 +444,8 @@ function dropStaleDefaultsAtLevel(
       entry.oldCurrent,
       entry.changedPaths,
       droppedPaths,
-      [...levelPath, entry.key],
+      getChildPath,
+      entry.path,
       initialDefaultsGenerated,
       dropped
     );
@@ -462,6 +475,7 @@ export function dropStaleDefaults(
     oldFormData: providedOldFormData,
     oldSchema: providedOldSchema,
     droppedPaths,
+    getChildPath = defaultGetChildPath,
     initialDefaultsGenerated = false,
   }: DropStaleDefaultsOptions
 ): DropStaleDefaultsResult {
@@ -490,6 +504,7 @@ export function dropStaleDefaults(
     oldFormData,
     changes.map(({ path }) => path),
     droppedPaths ?? NO_DROPPED_PATHS,
+    getChildPath,
     [],
     initialDefaultsGenerated,
     dropped

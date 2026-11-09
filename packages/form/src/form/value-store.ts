@@ -2,12 +2,6 @@ import type { SchemaArrayValue } from "#core/index.js";
 import { SimpleKeyedArray } from "#lib/keyed-array.svelte.js";
 import { getOrInsertComputed } from "#lib/map.js";
 
-import {
-  copyForChange,
-  getValueAtPath,
-  updateValueAtPath,
-  writeValueAtPath,
-} from "./change-path.js";
 import type { FieldPath } from "./id.js";
 import type { FormValueChange } from "./merger.js";
 import type {
@@ -17,6 +11,12 @@ import type {
   KeyedArraysMap,
   KeyedFieldValues,
 } from "./model.js";
+import {
+  copyForChange,
+  getValueAtPath,
+  updateValueAtPath,
+  writeValueAtPath,
+} from "./value-path.js";
 
 /**
  * The form value state. `get` reads the current value reactively; the value
@@ -79,7 +79,9 @@ export function createFormValueStore({
       const current = valueRef.current;
       const oldValue = getValueAtPath(current, path);
       const next = writeValueAtPath(current, path, value);
-      onChange?.({ path, oldValue });
+      if (!Object.is(oldValue, value)) {
+        onChange?.({ path, oldValue });
+      }
       // Non-root writes mutate the current value in place through Svelte's
       // proxy, so reassigning the same root would only invalidate root readers.
       if (next !== current) {

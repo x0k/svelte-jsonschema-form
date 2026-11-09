@@ -14,8 +14,9 @@ import { createValidator } from "#core/test-validator.js";
 
 import { dropStaleDefaults } from "./drop-stale-defaults.js";
 import type { FieldPath } from "./id.js";
+import { internalRegisterFieldPath } from "./internals.js";
 import type { FormMerger, FormValueChange } from "./merger.js";
-import type { FieldValue } from "./model.js";
+import type { FieldValue, RegisteredPathTrieRef } from "./model.js";
 
 let testValidator: Validator;
 
@@ -152,6 +153,27 @@ describe("dropStaleDefaults", () => {
       value: { branch: "first" },
       writtenUnder: { default: { branch: "second" } },
     });
+  });
+
+  it("skips a canonical path that was already dropped", () => {
+    const formData = { mode: "second", value: { branch: "first" } };
+    const ref: RegisteredPathTrieRef<FieldPath> = {
+      current: undefined,
+      registered: new WeakSet(),
+    };
+    const result = dropStaleDefaults(formMerger(createMerger(), oldSchema), {
+      validator: testValidator,
+      rootSchema: oldSchema,
+      newSchema,
+      formData,
+      changes: [change(path("mode"), "first")],
+      droppedPaths: new Set([internalRegisterFieldPath(ref, ["value"])]),
+      getChildPath: (parentPath, key) =>
+        internalRegisterFieldPath(ref, parentPath.concat(key)),
+    });
+
+    expect(result.formData).toBe(formData);
+    expect(result.dropped).toHaveLength(0);
   });
 
   it("keeps a value the user changed away from the old default", () => {

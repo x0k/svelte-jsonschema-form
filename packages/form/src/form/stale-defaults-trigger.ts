@@ -79,6 +79,16 @@ function walkSchema(
       state.activeRefs.add(ref);
       walkSchema(state, target, topKey, unknownPath);
       state.activeRefs.delete(ref);
+    } else if (topKey !== undefined) {
+      // A recursive reference re-enters a schema already on the walk stack.
+      // Its conditional applies to the value below `topKey`, so a change
+      // anywhere under that property can swap the branch even though the
+      // target itself is not walked again.
+      addKey(state, topKey);
+    } else if (unknownPath) {
+      // The same schema applies below an unknown key of the root, so no
+      // bounded trigger key can be derived.
+      state.any = true;
     }
   }
 
@@ -215,9 +225,14 @@ function walkSchemaList(
  */
 function getIfKeys(
   state: TriggerState,
-  schema: SchemaDefinition,
+  schema: SchemaDefinition | undefined,
   activeRefs: Set<string>
 ): Set<string> | undefined {
+  if (schema === undefined) {
+    // An optional schema-valued keyword can be present with an `undefined`
+    // value, which declares no condition.
+    return new Set();
+  }
   if (typeof schema === "boolean") {
     // A constant condition can never swap on a value change.
     return new Set();

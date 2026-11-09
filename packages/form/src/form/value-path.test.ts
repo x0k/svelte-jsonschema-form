@@ -1,13 +1,13 @@
 import { describe, expect, it } from "vitest";
 
+import type { FieldPath } from "./id.js";
+import type { FormValue } from "./model.js";
 import {
   copyForChange,
   getValueAtPath,
   updateValueAtPath,
   writeValueAtPath,
-} from "./change-path.js";
-import type { FieldPath } from "./id.js";
-import type { FormValue } from "./model.js";
+} from "./value-path.js";
 
 function path(...parts: (string | number)[]) {
   return parts as unknown as FieldPath;
@@ -30,6 +30,22 @@ describe("copyForChange", () => {
     expect(copy).not.toBe(value);
     delete copy.a;
     expect(value).toEqual({ a: 1 });
+  });
+
+  it("copies nested containers", () => {
+    const value = { nested: { list: [1, 2] } };
+    const copy = copyForChange(value) as typeof value;
+    expect(copy).toEqual(value);
+    expect(copy).not.toBe(value);
+    expect(copy.nested).not.toBe(value.nested);
+    expect(copy.nested.list).not.toBe(value.nested.list);
+    copy.nested.list.push(3);
+    expect(value.nested.list).toEqual([1, 2]);
+  });
+
+  it("returns a File unchanged", () => {
+    const file = new File(["x"], "x.txt");
+    expect(copyForChange(file)).toBe(file);
   });
 
   it("returns a primitive unchanged", () => {

@@ -49,6 +49,34 @@ describe("createFormValueStore", () => {
     expect(store.get()).toBe(next);
   });
 
+  test("setAtPath does not record a no-op write", () => {
+    const changes: FormValueChange[] = [];
+    const initial = { a: 1 };
+    const store = createStore(initial, (change) => changes.push(change));
+
+    store.setAtPath(path("a"), 1);
+
+    expect(changes).toEqual([]);
+    expect(store.get()).toBe(initial);
+  });
+
+  test("updateAtPath records nested values before an in-place mutation", () => {
+    const changes: FormValueChange[] = [];
+    const initial = { wrapper: { config: { mode: "a" } } };
+    const store = createStore(initial, (change) => changes.push(change));
+
+    store.updateAtPath(path("wrapper"), (wrapper) => {
+      const value = wrapper as { config: { mode: string } };
+      value.config.mode = "b";
+      return wrapper;
+    });
+
+    expect(changes).toEqual([
+      { path: path("wrapper"), oldValue: { config: { mode: "a" } } },
+    ]);
+    expect(store.get()).toEqual({ wrapper: { config: { mode: "b" } } });
+  });
+
   test("updateAtPath keeps the root identity", () => {
     const initial = { nested: { b: 2 } };
     const store = createStore(initial);

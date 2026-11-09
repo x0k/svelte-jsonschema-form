@@ -134,6 +134,39 @@ describe("getStaleDefaultsTriggerKeys()", () => {
     ).toEqual(["wrapper"]);
   });
 
+  it("attributes a recursive ref's conditional to the property that re-enters it", () => {
+    expect(
+      keys({
+        $ref: "#/$defs/node",
+        $defs: {
+          node: {
+            type: "object",
+            properties: {
+              mode: { type: "string" },
+              child: { $ref: "#/$defs/node" },
+            },
+            if: { properties: { mode: { const: "a" } } },
+            then: { properties: { x: { type: "string" } } },
+          },
+        },
+      })
+    ).toEqual(["child", "mode"]);
+  });
+
+  it("ignores schema-valued keywords that are explicitly undefined", () => {
+    expect(
+      keys({
+        type: "object",
+        if: {
+          properties: { mode: { const: "a" } },
+          then: undefined,
+          items: undefined,
+        },
+        then: { properties: { x: { type: "string" } } },
+      })
+    ).toEqual(["mode"]);
+  });
+
   it("collects keys from a root if behind a local ref", () => {
     expect(
       keys({

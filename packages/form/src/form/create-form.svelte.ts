@@ -24,7 +24,6 @@ import {
 } from "#lib/task.svelte.js";
 import type { DeepPartial } from "#lib/types.js";
 
-import { pathKey } from "./change-path.js";
 import type { Theme } from "./components.js";
 import type { Config } from "./config.js";
 import { rebuildOldFormData } from "./drop-stale-defaults.js";
@@ -88,6 +87,7 @@ import {
   type StaleDefaultsTriggerKeys,
 } from "./stale-defaults-trigger.js";
 import {
+  getChildPath,
   reset,
   updateErrors,
   updateFieldErrors,
@@ -279,8 +279,9 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   // The stale-default search needs to know which values the user wrote and what
   // they replaced, so it can resolve the old schema without cloning form data.
   // A path is stored once: replaying writes from latest to earliest keeps the
-  // first old value, so later writes to the same path add nothing.
-  const pendingChanges = new Map<string, FormValueChange>();
+  // first old value, so later writes to the same path add nothing. The value
+  // commands hand out canonical `FieldPath`s, so the path itself is the key.
+  const pendingChanges = new Map<FieldPath, FormValueChange>();
   // A reactive `initialValue` recreates `valueRef`, reseeding the form value
   // like a reset, so history recorded against the previous ref no longer
   // applies.
@@ -578,9 +579,8 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       pendingChanges.clear();
       pendingChangesRef = valueRef;
     }
-    const key = pathKey(path);
-    if (!pendingChanges.has(key)) {
-      pendingChanges.set(key, { path, oldValue });
+    if (!pendingChanges.has(path)) {
+      pendingChanges.set(path, { path, oldValue });
     }
     const triggerKeys = staleDefaultsTriggerKeys;
     if (triggerKeys === undefined || mayChangeTriggerKey(path, triggerKeys)) {
@@ -645,6 +645,8 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
             merger,
             rootSchema: options.schema,
             changes,
+            getChildPath: (parentPath, key) =>
+              getChildPath(formState, parentPath, key),
             oldFormData,
             oldSchema: currentRetrievedSchema,
           })
