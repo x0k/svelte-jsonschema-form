@@ -384,7 +384,10 @@ single record; combine it with `chain` when you need a custom fallback order.
 ## Step 5: Add Extra Widgets (Optional)
 
 Extra widgets are input controls beyond the four required ones. `@sjsf/form`
-ships several predefined types; a theme can also define new ones.
+ships several predefined types; a theme can also define new ones. Registering
+a widget only makes it available. Theme docs should state where each extra
+widget is used by default; otherwise it must be selected explicitly in
+`ui:components` or used as a field's default widget.
 
 ### Predefined extra widgets
 
@@ -499,8 +502,6 @@ declare module "@sjsf/form" {
 ```
 
 A widget used only as a `ui:components` replacement does not need this entry.
-Theme docs should state where each extra widget is used by default; otherwise
-it must be selected explicitly.
 
 ## Step 6: Style the Theme
 
