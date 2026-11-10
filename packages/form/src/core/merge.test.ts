@@ -44,6 +44,27 @@ describe("mergeSchemaObjects()", () => {
     ).toEqual({ a: { b: { c: 1 } } });
   });
 
+  it("should replace a primitive on the left with the object on the right", () => {
+    expect(mergeSchemaObjects({ a: 5 }, { a: { b: 1 } })).toEqual({
+      a: { b: 1 },
+    });
+  });
+
+  it("should replace an array on the left with the object on the right", () => {
+    expect(mergeSchemaObjects({ a: [1] }, { a: { b: 1 } })).toEqual({
+      a: { b: 1 },
+    });
+  });
+
+  it("should replace a tuple `items` with an object `items` schema", () => {
+    expect(
+      mergeSchemaObjects(
+        { items: [{ type: "string" }] },
+        { items: { type: "string" } }
+      )
+    ).toEqual({ items: { type: "string" } });
+  });
+
   it("should recursively merge deeply nested objects", () => {
     const obj1 = {
       a: 1,
