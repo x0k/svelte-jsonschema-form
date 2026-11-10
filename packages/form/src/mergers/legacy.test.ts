@@ -77,6 +77,13 @@ describe("mergeSchemas()", () => {
       expect(mergeSchemas(obj1, obj2)).toEqual({ enum: [2] });
     });
 
+    it("should replace an array of items with an object items schema", () => {
+      const obj1: Schema = { items: [{ type: "string" }] };
+      const obj2: Schema = { items: { type: "string" } };
+
+      expect(mergeSchemas(obj1, obj2)).toEqual({ items: { type: "string" } });
+    });
+
     it("should concat arrays under `required` keyword", () => {
       const obj1: Schema = { type: "object", required: ["1"] };
       const obj2: Schema = { type: "object", required: ["2"] };
