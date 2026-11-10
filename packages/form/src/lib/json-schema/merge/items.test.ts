@@ -19,7 +19,7 @@ import { legacyPatternsMerger } from "./patterns.js";
 
 const { compareSchemaValues, compareSchemaDefinitions } = createComparator();
 
-const { mergeArrayOfSchemaDefinitions } = createMerger({
+const { mergeArrayOfSchemaDefinitions, mergeSchemaDefinitions } = createMerger({
   mergePatterns: legacyPatternsMerger,
   intersectJson: createIntersector(compareSchemaValues),
   deduplicateJsonSchemaDef: createDeduplicator(compareSchemaDefinitions),
@@ -378,6 +378,58 @@ describe("items", () => {
             maximum: 20,
           },
         ],
+      });
+    });
+
+    it("applies schema-valued items to elements after the tuple", () => {
+      const branches: JSONSchema7Definition[] = [
+        { items: { type: "string" } },
+        { items: [{ const: "id" }] },
+      ];
+      const original: JSONSchema7Definition = {
+        type: "array",
+        allOf: branches,
+      };
+      const expected: JSONSchema7Definition = {
+        type: "array",
+        items: [{ const: "id", type: "string" }],
+        additionalItems: { type: "string" },
+      };
+
+      // The branch order must not matter.
+      for (const allOf of [branches, [...branches].reverse()]) {
+        const result = deepAllOfMerge({ type: "array", allOf });
+        expect(result).toEqual(expected);
+
+        const ajv = new Ajv({ strictTuples: false });
+        const validateOriginal = ajv.compile(original);
+        const validateMerged = ajv.compile(result);
+        for (const instance of [
+          [],
+          ["id"],
+          ["other"],
+          ["id", "next"],
+          ["id", 5],
+          [5],
+          "not an array",
+        ]) {
+          expect(
+            validateMerged(instance),
+            `merged schema disagrees on ${JSON.stringify(instance)}`
+          ).toBe(validateOriginal(instance));
+        }
+      }
+    });
+
+    it("keeps additionalItems false next to schema-valued items", () => {
+      const result = mergeSchemaDefinitions(
+        { items: [{ const: "id" }], additionalItems: false },
+        { items: { type: "string" } }
+      );
+
+      expect(result).toEqual({
+        items: [{ const: "id", type: "string" }],
+        additionalItems: false,
       });
     });
   });
