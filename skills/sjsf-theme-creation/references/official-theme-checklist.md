@@ -16,8 +16,8 @@ Use this checklist when adding or promoting an official theme.
 - New themes keep sources under `src/lib` (older themes such as
   `basic-theme` use `src`). Use the `#lib` import alias when the package needs
   internal absolute imports.
-- Add a package `README.md` with installation and usage, plus the repository
-  `LICENSE` terms (MIT).
+- Add a package `README.md` with installation and usage. `pnpm pack` includes
+  the repository `LICENSE` automatically.
 
 `package.json` must include:
 
