@@ -255,8 +255,8 @@ catalogs:
       specifier: ^1.33.1
       version: 1.33.1
     fluentui-svelte:
-      specifier: ^0.6.0
-      version: 0.6.0
+      specifier: ^0.7.1
+      version: 0.7.1
     globals:
       specifier: 17.12.0
       version: 17.12.0
@@ -1796,7 +1796,7 @@ importers:
         version: 8.20.0
       fluentui-svelte:
         specifier: 'catalog:'
-        version: 0.6.0(@sveltejs/kit@3.0.0(@sveltejs/vite-plugin-svelte@7.3.0(svelte@5.57.1(@typescript-eslint/types@8.70.0))(vite@8.3.0(@types/node@26.5.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0)))(svelte@5.57.1(@typescript-eslint/types@8.70.0))(typescript@6.0.3)(vite@8.3.0(@types/node@26.5.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0)))(svelte@5.57.1(@typescript-eslint/types@8.70.0))(zod@4.6.2)
+        version: 0.7.1(@sveltejs/kit@3.0.0(@sveltejs/vite-plugin-svelte@7.3.0(svelte@5.57.1(@typescript-eslint/types@8.70.0))(vite@8.3.0(@types/node@26.5.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0)))(svelte@5.57.1(@typescript-eslint/types@8.70.0))(typescript@6.0.3)(vite@8.3.0(@types/node@26.5.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0)))(svelte@5.57.1(@typescript-eslint/types@8.70.0))(zod@4.6.2)
       globals:
         specifier: 'catalog:'
         version: 17.12.0
@@ -6896,8 +6896,8 @@ packages:
     peerDependencies:
       svelte: ^5.0.0
 
-  fluentui-svelte@0.6.0:
-    resolution: {integrity: sha512-l76bc3ijS8JvXvnfsfr0yHwcD1RIzPg6VlHkrqYpy+qaEEJihG05CHQre//cdryoYcUvBmkuul1zfYGbnvSX2Q==}
+  fluentui-svelte@0.7.1:
+    resolution: {integrity: sha512-OvQ+U15dEPbVh6l219STxC1JP+8cnUfRGZGSa1GpGiDyjw5CvySIV6fKxTrHXU0WXamKAY8aYwg7DCDZcueJfQ==}
     engines: {node: '>=24'}
     peerDependencies:
       svelte: ^5.0.0
@@ -8272,6 +8272,18 @@ packages:
     resolution: {integrity: sha512-MeFY73xBW8IueWBm012nNFIGy19WUGPLtknavyUPMpnyt350M47PhGSGrGoSLbidwn+Zlt/O0cp8/OZE3LASWA==}
     peerDependencies:
       '@sveltejs/kit': ^2.21.0
+      svelte: ^5.7.0
+      zod: ^4.1.0
+    peerDependenciesMeta:
+      '@sveltejs/kit':
+        optional: true
+      zod:
+        optional: true
+
+  runed@0.38.0:
+    resolution: {integrity: sha512-FHFj57uf23ORgObMisLloEsFSqP2TMzu7aGmbZSpX9NgVw1+HGoOnKTPuS4vZJ3Rk2QuFoLjt3osXAQdbMfgOw==}
+    peerDependencies:
+      '@sveltejs/kit': ^3.0.0
       svelte: ^5.7.0
       zod: ^4.1.0
     peerDependenciesMeta:
@@ -13857,12 +13869,12 @@ snapshots:
     dependencies:
       svelte: 5.57.1(@typescript-eslint/types@8.70.0)
 
-  fluentui-svelte@0.6.0(@sveltejs/kit@3.0.0(@sveltejs/vite-plugin-svelte@7.3.0(svelte@5.57.1(@typescript-eslint/types@8.70.0))(vite@8.3.0(@types/node@26.5.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0)))(svelte@5.57.1(@typescript-eslint/types@8.70.0))(typescript@6.0.3)(vite@8.3.0(@types/node@26.5.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0)))(svelte@5.57.1(@typescript-eslint/types@8.70.0))(zod@4.6.2):
+  fluentui-svelte@0.7.1(@sveltejs/kit@3.0.0(@sveltejs/vite-plugin-svelte@7.3.0(svelte@5.57.1(@typescript-eslint/types@8.70.0))(vite@8.3.0(@types/node@26.5.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0)))(svelte@5.57.1(@typescript-eslint/types@8.70.0))(typescript@6.0.3)(vite@8.3.0(@types/node@26.5.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0)))(svelte@5.57.1(@typescript-eslint/types@8.70.0))(zod@4.6.2):
     dependencies:
       '@floating-ui/dom': 1.8.0
       fluentui-icons-svelte: 1.2.0(svelte@5.57.1(@typescript-eslint/types@8.70.0))
       mode-watcher: 1.1.0(svelte@5.57.1(@typescript-eslint/types@8.70.0))
-      runed: 0.37.1(@sveltejs/kit@3.0.0(@sveltejs/vite-plugin-svelte@7.3.0(svelte@5.57.1(@typescript-eslint/types@8.70.0))(vite@8.3.0(@types/node@26.5.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0)))(svelte@5.57.1(@typescript-eslint/types@8.70.0))(typescript@6.0.3)(vite@8.3.0(@types/node@26.5.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0)))(svelte@5.57.1(@typescript-eslint/types@8.70.0))(zod@4.6.2)
+      runed: 0.38.0(@sveltejs/kit@3.0.0(@sveltejs/vite-plugin-svelte@7.3.0(svelte@5.57.1(@typescript-eslint/types@8.70.0))(vite@8.3.0(@types/node@26.5.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0)))(svelte@5.57.1(@typescript-eslint/types@8.70.0))(typescript@6.0.3)(vite@8.3.0(@types/node@26.5.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0)))(svelte@5.57.1(@typescript-eslint/types@8.70.0))(zod@4.6.2)
       svelte: 5.57.1(@typescript-eslint/types@8.70.0)
       tabspot: 0.8.0
     transitivePeerDependencies:
@@ -15685,6 +15697,16 @@ snapshots:
       '@sveltejs/kit': 3.0.0(@sveltejs/vite-plugin-svelte@7.3.0(svelte@5.57.1(@typescript-eslint/types@8.70.0))(vite@8.3.0(@types/node@26.5.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0)))(svelte@5.57.1(@typescript-eslint/types@8.70.0))(typescript@6.0.3)(vite@8.3.0(@types/node@26.5.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))
 
   runed@0.37.1(@sveltejs/kit@3.0.0(@sveltejs/vite-plugin-svelte@7.3.0(svelte@5.57.1(@typescript-eslint/types@8.70.0))(vite@8.3.0(@types/node@26.5.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0)))(svelte@5.57.1(@typescript-eslint/types@8.70.0))(typescript@6.0.3)(vite@8.3.0(@types/node@26.5.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0)))(svelte@5.57.1(@typescript-eslint/types@8.70.0))(zod@4.6.2):
+    dependencies:
+      dequal: 2.0.3
+      esm-env: 1.2.2
+      lz-string: 1.5.0
+      svelte: 5.57.1(@typescript-eslint/types@8.70.0)
+    optionalDependencies:
+      '@sveltejs/kit': 3.0.0(@sveltejs/vite-plugin-svelte@7.3.0(svelte@5.57.1(@typescript-eslint/types@8.70.0))(vite@8.3.0(@types/node@26.5.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0)))(svelte@5.57.1(@typescript-eslint/types@8.70.0))(typescript@6.0.3)(vite@8.3.0(@types/node@26.5.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))
+      zod: 4.6.2
+
+  runed@0.38.0(@sveltejs/kit@3.0.0(@sveltejs/vite-plugin-svelte@7.3.0(svelte@5.57.1(@typescript-eslint/types@8.70.0))(vite@8.3.0(@types/node@26.5.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0)))(svelte@5.57.1(@typescript-eslint/types@8.70.0))(typescript@6.0.3)(vite@8.3.0(@types/node@26.5.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0)))(svelte@5.57.1(@typescript-eslint/types@8.70.0))(zod@4.6.2):
     dependencies:
       dequal: 2.0.3
       esm-env: 1.2.2

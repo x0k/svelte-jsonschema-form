@@ -47,39 +47,20 @@
 
   const id = $derived(getId(ctx, config.path));
 
-  // `AutoSuggestBox` has a closed `$props()` destructure and its wrapper `<div>`
-  // has no spread, so `id` and every `aria-*` prop would be silently dropped.
-  // `inputRef` is the only handle on the real `<input>`, so the field state is
-  // applied to it imperatively instead.
+  // `AutoSuggestBox` forwards the remaining attributes to the `TextBox`, which
+  // spreads them onto the real `<input>`, so the field id and aria state land
+  // on the control element directly.
   const attributes = $derived(
     composeProps(
       ctx,
       config,
-      { "aria-invalid": undefined },
+      { "aria-invalid": undefined, onblur: handlers.onblur },
       uiOptionProps("fluentuiCombobox"),
       ariaInvalidProp,
       ariaDescribedByProp,
       ariaRequiredProp
     )
   );
-
-  let inputRef = $state<HTMLInputElement | undefined>();
-
-  $effect(() => {
-    const el = inputRef;
-    if (!el) return;
-    el.id = id;
-    for (const [key, value] of Object.entries(attributes)) {
-      if (key === "aria-invalid" || key.startsWith("aria-")) {
-        el.setAttribute(key, String(value));
-      }
-    }
-    const { onblur } = handlers;
-    if (onblur) el.addEventListener("blur", onblur);
-    return () => {
-      if (onblur) el.removeEventListener("blur", onblur);
-    };
-  });
 
   function onselect(_e: Event, selection: string) {
     mapped.current = selection;
@@ -104,7 +85,8 @@
 </script>
 
 <AutoSuggestBox
-  bind:inputRef
+  {id}
+  {...attributes}
   value={text}
   type="text"
   hideActionButtons

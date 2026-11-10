@@ -252,7 +252,8 @@ export const inputFluentuiCombobox: FieldValidationTrigger = async (l) => {
 
 // `fluentui-svelte`'s `Dropdown` trigger is a `<button role="combobox">` and
 // its options are `role="option"` list items, so the native `selectOptions`
-// path used by `inputSelect` does not apply.
+// path used by `inputSelect` does not apply. The hidden native `<select>` it
+// keeps for form semantics is `aria-hidden`, so it does not match the query.
 export const inputFluentuiSelect: FieldValidationTrigger = async (l) => {
   await userEvent.click(getCombobox(l));
   await userEvent.click(l.getByRole("option").last());

@@ -84,7 +84,7 @@
   },
   "peerDependencies": {
     "@sjsf/form": "workspace:^3.5.0",
-    "fluentui-svelte": "^0.6.0",
+    "fluentui-svelte": "^0.7.1",
     "svelte": "^5.34.8"
   }
 }

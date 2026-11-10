@@ -46,21 +46,14 @@
   );
 
   const dropdownProps = $derived.by(() => {
-    const { value: _bound, ...rest } = attributes;
+    const { value: _bound, multiple: _multiple, ...rest } = attributes;
     return rest;
   });
 
-  // See `select.svelte`: the trigger is a `<button type="button">` and is the
-  // only reachable surface for the aria state.
-  const buttonProps: HTMLButtonAttributes = $derived({
-    type: "button",
-    "aria-invalid": attributes["aria-invalid"],
-    "aria-describedby": attributes["aria-describedby"],
+  // See `select.svelte`: the native `<select>` carries the aria state, and
+  // `Dropdown` mirrors it onto the combobox trigger, save for `aria-readonly`.
+  const buttonAttributes: HTMLButtonAttributes = $derived({
     "aria-readonly": attributes["aria-readonly"],
-    "aria-required": attributes["aria-required"],
-    // See `select.svelte`: the attachment cannot survive `Dropdown`'s closed
-    // destructure, so blur is wired on the trigger itself.
-    onblur: handlers.onblur,
   });
 
   // `Dropdown` sets `toggleOnClick={multiple}`, so a plain click toggles an
@@ -77,7 +70,8 @@
   {...dropdownProps}
   multiple={true}
   placeholder={attributes.placeholder ?? ""}
-  {buttonProps}
+  onblur={handlers.onblur}
+  {buttonAttributes}
 >
   {#each options as option (option.id)}
     <DropdownOption

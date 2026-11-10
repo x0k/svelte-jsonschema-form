@@ -50,26 +50,19 @@
   );
 
   // `DropdownProps` is a discriminated union on `multiple`, and its ui:options
-  // type widens `value` to `string | string[]`. `value` is bound explicitly
-  // below, so it is stripped from the spread to keep the union narrowed.
+  // type widens `value`/`multiple` to the shared shape. Both are set explicitly
+  // below, so they are stripped from the spread to keep the union narrowed.
   const dropdownProps = $derived.by(() => {
-    const { value: _bound, ...rest } = attributes;
+    const { value: _bound, multiple: _multiple, ...rest } = attributes;
     return rest;
   });
 
-  // `Dropdown` has a closed `$props()` destructure, so top-level `aria-*` props
-  // are dropped even though its type claims `& Omit<HTMLInputAttributes>`.
-  // `buttonProps` is the supported channel to the real
-  // `<button type="button">` trigger, which is where the aria state belongs.
-  const buttonProps: HTMLButtonAttributes = $derived({
-    type: "button",
-    "aria-invalid": attributes["aria-invalid"],
-    "aria-describedby": attributes["aria-describedby"],
+  // The native `<select>` is the control element and carries the aria state;
+  // `Dropdown` mirrors the naming and validity state onto its combobox
+  // `<button type="button">` trigger. Only `aria-readonly` needs to be passed
+  // to the trigger directly, as it is not mirrored.
+  const buttonAttributes: HTMLButtonAttributes = $derived({
     "aria-readonly": attributes["aria-readonly"],
-    "aria-required": attributes["aria-required"],
-    // The trigger is the only focusable element, and the attachment cannot
-    // survive `Dropdown`'s closed destructure, so blur is wired here.
-    onblur: handlers.onblur,
   });
 
   // `Dropdown` reports no selection event; `bind:value` is the only channel.
@@ -81,17 +74,16 @@
 </script>
 
 <!--
-  NOTE: `Dropdown` resolves its trigger label from a context that
-  `DropdownOption` populates in `onMount`, so during SSR the trigger renders the
-  raw option value instead of the option label. That is accepted for this
-  experimental package and asserted around in `tests/fields.ssr.test.ts`.
+  `Dropdown` keeps its option list mounted while closed and `DropdownOption`
+  reports its text, so the trigger renders the option label during SSR too.
 -->
 <Dropdown
   bind:value={() => mapped.current, setValue}
   {...dropdownProps}
   multiple={false}
   placeholder={attributes.placeholder ?? (clearable ? "" : config.title)}
-  {buttonProps}
+  onblur={handlers.onblur}
+  {buttonAttributes}
 >
   {#if clearable}
     <DropdownOption value={EMPTY_VALUE} text="" />

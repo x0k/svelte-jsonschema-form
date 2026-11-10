@@ -15,14 +15,10 @@
 
 <script lang="ts">
   import {
-    ariaDescribedByProp,
-    ariaInvalidProp,
-    ariaRequiredProp,
-    composeProps,
+    customInputAttributes,
     getFormContext,
     getId,
     isDisabled,
-    uiOptionProps,
     type ComponentProps,
   } from "@sjsf/form";
 
@@ -38,42 +34,12 @@
 
   const id = $derived(getId(ctx, config.path));
 
-  // `CalendarDatePicker` spreads its attributes onto a wrapper `<div>`; the
-  // focusable trigger is an inner fluent `Button` that receives neither the id
-  // nor the aria state. `bind:triggerRef` is the only handle on it.
+  // `CalendarDatePicker` spreads the remaining attributes onto the native date
+  // input that holds the value, and mirrors the naming and validity state onto
+  // its trigger button.
   const attributes = $derived(
-    composeProps(
-      ctx,
-      config,
-      { "aria-invalid": undefined },
-      uiOptionProps("fluentuiDatePicker"),
-      ariaInvalidProp,
-      ariaDescribedByProp,
-      ariaRequiredProp
-    )
+    customInputAttributes(ctx, config, "fluentuiDatePicker", {})
   );
-
-  let triggerRef = $state<HTMLButtonElement | undefined>();
-
-  $effect(() => {
-    const el = triggerRef;
-    if (!el) return;
-    // The fluent `Button` sets no default `type`, so the trigger would submit
-    // the surrounding form every time the calendar is opened.
-    el.type = "button";
-    el.id = id;
-    el.disabled = isDisabled(ctx) || config.schema.readOnly === true;
-    for (const [key, v] of Object.entries(attributes)) {
-      if (key.startsWith("aria-")) {
-        el.setAttribute(key, String(v));
-      }
-    }
-    const { onblur } = handlers;
-    if (onblur) el.addEventListener("blur", onblur);
-    return () => {
-      if (onblur) el.removeEventListener("blur", onblur);
-    };
-  });
 
   function onChange(_e: Event, date: Date | null) {
     value = date ? toLocalDate(date) : undefined;
@@ -109,8 +75,12 @@
 </script>
 
 <CalendarDatePicker
+  {id}
+  name={id}
   {...attributes}
-  bind:triggerRef
+  disabled={isDisabled(ctx)}
+  readonly={config.schema.readOnly === true}
+  onblur={handlers.onblur}
   value={parsed}
   {minDate}
   {maxDate}
