@@ -699,15 +699,36 @@ const cases: TestCase[] = [
         },
       },
       {
-        // Neither pattern may be looked for past a newline
+        // `[\s\S]` can look past a newline
         value: "a\nb",
         expected: {
-          simplePatternsMerger: false,
+          simplePatternsMerger: true,
           legacyPatternsMerger: false,
         },
       },
       {
         value: "zzz\nzzz",
+        expected: {
+          simplePatternsMerger: false,
+          legacyPatternsMerger: false,
+        },
+      },
+    ],
+  },
+  {
+    name: "Patterns matching after a line terminator",
+    left: "d",
+    right: "a",
+    data: [
+      {
+        value: "a\nd",
+        expected: {
+          simplePatternsMerger: true,
+          legacyPatternsMerger: false,
+        },
+      },
+      {
+        value: "a",
         expected: {
           simplePatternsMerger: false,
           legacyPatternsMerger: false,

@@ -621,6 +621,315 @@ describe("properties", () => {
         },
       });
     });
+
+    it("does not apply `additionalProperties` to names matching the other side's `patternProperties`", () => {
+      const lSchema = {
+        patternProperties: {
+          "^a": {
+            minLength: 1,
+          },
+        },
+      } as const satisfies JSONSchema7Definition;
+      const rSchema = {
+        patternProperties: {
+          "^b": {
+            maxLength: 3,
+          },
+        },
+        additionalProperties: {
+          type: "string",
+        },
+      } as const satisfies JSONSchema7Definition;
+      const values = [
+        {},
+        { a: 1 },
+        { b: 1 },
+        { ab: 1 },
+        { ab: "x" },
+        { ac: 1 },
+        { bc: 1 },
+        { c: 1 },
+      ];
+      for (const [a, b] of [
+        [lSchema, rSchema],
+        [rSchema, lSchema],
+      ] as const) {
+        const result = mergeSchemaDefinitions(
+          structuredClone(a),
+          structuredClone(b)
+        );
+        values.forEach((val) => {
+          validateInputOutput({ allOf: [a, b] }, result, val);
+        });
+      }
+    });
+
+    it("does not overwrite merged `patternProperties` when the other side allows any additional properties", () => {
+      const lSchema = {
+        patternProperties: {
+          "^i": {
+            minLength: 2,
+          },
+        },
+        additionalProperties: true,
+      } as const satisfies JSONSchema7Definition;
+      const rSchema = {
+        patternProperties: {
+          "^i": {
+            type: "string",
+          },
+        },
+        additionalProperties: {
+          maxLength: 3,
+        },
+      } as const satisfies JSONSchema7Definition;
+      const values = [
+        {},
+        { i: "x" },
+        { ix: "x" },
+        { ix: "xx" },
+        { ix: 1 },
+        { b: "x" },
+        { b: "toolong" },
+      ];
+      for (const [a, b] of [
+        [lSchema, rSchema],
+        [rSchema, lSchema],
+      ] as const) {
+        const result = mergeSchemaDefinitions(
+          structuredClone(a),
+          structuredClone(b)
+        );
+        values.forEach((val) => {
+          validateInputOutput({ allOf: [a, b] }, result, val);
+        });
+      }
+    });
+
+    it("subtracts only exact property names, not names with a trailing newline", () => {
+      const { mergeSchemaDefinitions: merge } = createMerger();
+      const lSchema = {
+        properties: {
+          id: true,
+        },
+        additionalProperties: {
+          type: "string",
+        },
+      } as const satisfies JSONSchema7Definition;
+      const rSchema = {
+        patternProperties: {
+          "^i": true,
+        },
+      } as const satisfies JSONSchema7Definition;
+      const values = [{ id: 1 }, { id: "x" }, { "id\n": 1 }, { "id\n": "x" }];
+      for (const [a, b] of [
+        [lSchema, rSchema],
+        [rSchema, lSchema],
+      ] as const) {
+        const result = merge(structuredClone(a), structuredClone(b));
+        values.forEach((val) => {
+          validateInputOutput({ allOf: [a, b] }, result, val);
+        });
+      }
+    });
+
+    it("subtracts names matching the other side's patterns anywhere in the name", () => {
+      const { mergeSchemaDefinitions: merge } = createMerger();
+      const lSchema = {
+        patternProperties: {
+          "^i": true,
+        },
+        additionalProperties: true,
+      } as const satisfies JSONSchema7Definition;
+      const rSchema = {
+        patternProperties: {
+          d: true,
+        },
+        additionalProperties: {
+          type: "number",
+        },
+      } as const satisfies JSONSchema7Definition;
+      const values = [
+        {},
+        { id: "x" },
+        { id: 1 },
+        { "i\nd": "x" },
+        { "i\nd": 1 },
+        { "i\nx": "x" },
+        { "i\nx": 1 },
+      ];
+      for (const [a, b] of [
+        [lSchema, rSchema],
+        [rSchema, lSchema],
+      ] as const) {
+        const result = merge(structuredClone(a), structuredClone(b));
+        values.forEach((val) => {
+          validateInputOutput({ allOf: [a, b] }, result, val);
+        });
+      }
+    });
+
+    it("applies `additionalProperties` to names that match the other side's pattern after a line terminator", () => {
+      const { mergeSchemaDefinitions: merge } = createMerger();
+      const lSchema = {
+        patternProperties: {
+          d: {
+            maxLength: 2,
+          },
+        },
+        additionalProperties: {
+          type: "string",
+        },
+      } as const satisfies JSONSchema7Definition;
+      const rSchema = {
+        patternProperties: {
+          x: true,
+        },
+        additionalProperties: {
+          type: "string",
+        },
+      } as const satisfies JSONSchema7Definition;
+      const values = [
+        {},
+        { d: 1 },
+        { d: "x" },
+        { "a\nd": 1 },
+        { "a\nd": "x" },
+        { "a\nd": "abc" },
+        { x: 1 },
+        { "a\nx": 1 },
+      ];
+      for (const [a, b] of [
+        [lSchema, rSchema],
+        [rSchema, lSchema],
+      ] as const) {
+        const result = merge(structuredClone(a), structuredClone(b));
+        values.forEach((val) => {
+          validateInputOutput({ allOf: [a, b] }, result, val);
+        });
+      }
+    });
+
+    it("escapes regex metacharacters in subtracted property names", () => {
+      const { mergeSchemaDefinitions: merge } = createMerger();
+      const lSchema = {
+        patternProperties: {
+          "^i": true,
+        },
+        additionalProperties: {
+          type: "string",
+        },
+      } as const satisfies JSONSchema7Definition;
+      const rSchema = {
+        properties: {
+          "i.d": true,
+        },
+        additionalProperties: {
+          type: "string",
+          maxLength: 3,
+        },
+      } as const satisfies JSONSchema7Definition;
+      const values = [
+        {},
+        { "i.d": 1 },
+        { "i.d": "x" },
+        { ixd: 1 },
+        { ixd: "x" },
+        { ixd: "toolong" },
+      ];
+      for (const [a, b] of [
+        [lSchema, rSchema],
+        [rSchema, lSchema],
+      ] as const) {
+        const result = merge(structuredClone(a), structuredClone(b));
+        values.forEach((val) => {
+          validateInputOutput({ allOf: [a, b] }, result, val);
+        });
+      }
+    });
+
+    it("does not apply `additionalProperties` to the other side's explicitly declared properties matching `patternProperties`", () => {
+      const lSchema = {
+        type: "object",
+        properties: {
+          id: true,
+        },
+        additionalProperties: {
+          type: "string",
+        },
+      } as const satisfies JSONSchema7Definition;
+      const rSchema = {
+        type: "object",
+        patternProperties: {
+          "^i": true,
+        },
+      } as const satisfies JSONSchema7Definition;
+      const values = [
+        {},
+        { id: 1 },
+        { id: "x" },
+        { ix: 1 },
+        { ix: "x" },
+        { id: 1, ix: "x" },
+        { id: 1, other: 2 },
+      ];
+      for (const [a, b] of [
+        [lSchema, rSchema],
+        [rSchema, lSchema],
+      ] as const) {
+        const result = mergeSchemaDefinitions(
+          structuredClone(a),
+          structuredClone(b)
+        );
+        values.forEach((val) => {
+          validateInputOutput({ allOf: [a, b] }, result, val);
+        });
+      }
+    });
+
+    it("records properties declared on both sides when subtracting patterns", () => {
+      const lSchema = {
+        type: "object",
+        properties: {
+          id: true,
+        },
+        patternProperties: {
+          "^i": {
+            maxLength: 3,
+          },
+        },
+      } as const satisfies JSONSchema7Definition;
+      const rSchema = {
+        type: "object",
+        properties: {
+          id: true,
+        },
+        additionalProperties: {
+          type: "string",
+        },
+      } as const satisfies JSONSchema7Definition;
+      const values = [
+        {},
+        { id: 1 },
+        { id: "x" },
+        { id: "toolong" },
+        { ix: 1 },
+        { ix: "x" },
+        { ix: "toolong" },
+      ];
+      for (const [a, b] of [
+        [lSchema, rSchema],
+        [rSchema, lSchema],
+      ] as const) {
+        const result = mergeSchemaDefinitions(
+          structuredClone(a),
+          structuredClone(b)
+        );
+        values.forEach((val) => {
+          validateInputOutput({ allOf: [a, b] }, result, val);
+        });
+      }
+    });
   });
 
   describe("when only one side has a keyword of the group", () => {
@@ -672,6 +981,53 @@ describe("properties", () => {
       ].forEach((val) => {
         validateInputOutput({ allOf: [lSchema, rSchema] }, result, val);
       });
+    });
+  });
+
+  it("merges equal patterns once when both sides constrain additionalProperties", () => {
+    const { mergeSchemaDefinitions } = createMerger();
+    const lSchema = {
+      patternProperties: {
+        "^x": { minLength: 2 },
+      },
+      additionalProperties: { type: ["string", "number"] },
+    } as const satisfies JSONSchema7Definition;
+    const rSchema = {
+      patternProperties: {
+        "^x": { maxLength: 3 },
+      },
+      additionalProperties: { type: ["string", "number"] },
+    } as const satisfies JSONSchema7Definition;
+    expect(
+      mergeSchemaDefinitions(structuredClone(lSchema), structuredClone(rSchema))
+    ).toEqual({
+      patternProperties: {
+        "^x": { minLength: 2, maxLength: 3 },
+      },
+      additionalProperties: { type: ["string", "number"] },
+    });
+  });
+
+  describe("pattern combination growth", () => {
+    it("does not multiply pattern combinations for unrelated patterns", () => {
+      const { mergeArrayOfSchemaDefinitions } = createMerger();
+      const schemas: JSONSchema7Definition[] = Array.from(
+        { length: 8 },
+        (_, i) => ({
+          patternProperties: { [`^x${i}$`]: { minLength: 1 } },
+          additionalProperties: { maxLength: 100 + i },
+        })
+      );
+      const result = mergeArrayOfSchemaDefinitions(schemas);
+      if (typeof result === "boolean") {
+        throw new Error("Expected an object schema");
+      }
+      // Both plain and enriched patterns are kept, but unrelated pairs must
+      // not be materialized into additional combinations. Without this guard
+      // the pattern count grows by roughly a factor of three per merge.
+      expect(Object.keys(result.patternProperties ?? {}).length).toBeLessThan(
+        1000
+      );
     });
   });
 });
