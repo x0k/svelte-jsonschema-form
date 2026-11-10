@@ -482,8 +482,21 @@ to it:
 ```
 
 `acmeColorWidget` is compatible with `textWidget` because both use
-`WidgetCommonProps<string>`. If the theme calls `getComponent` with this type
-as a foundational type, also add it to `FoundationalComponents`.
+`WidgetCommonProps<string>`.
+
+`FoundationalComponents` marks the component types that `getComponent` can
+resolve and that can be used as keys in `ui:components`. Add the new widget
+there only if the theme needs it as a foundational type:
+
+```ts
+declare module "@sjsf/form" {
+  interface FoundationalComponents {
+    acmeColorWidget: {};
+  }
+}
+```
+
+A widget used only as a `ui:components` replacement does not need this entry.
 
 ## Step 6: Style the Theme
 

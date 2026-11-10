@@ -822,6 +822,10 @@ declare module "@sjsf/form" {
 }
 ```
 
+`FoundationalComponents` marks component types that `getComponent` can resolve
+and that can be used as keys in `ui:components`. A widget used only as a
+`ui:components` replacement does not need this entry.
+
 ## Resolver Composition Cheat Sheet
 
 ```ts
