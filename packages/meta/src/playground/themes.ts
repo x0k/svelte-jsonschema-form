@@ -6,6 +6,7 @@ import {
   beercssTheme,
   daisyui5Theme,
   flowbite3Theme,
+  fluentuiTheme,
   shadcn4Theme,
   skeleton4Theme,
   skeleton5Theme,
@@ -31,4 +32,5 @@ export const PLAYGROUND_SJSF_THEMES = {
   skeleton5: skeleton5Theme,
   svar: svarTheme,
   "shadcn-extras": shadcn_extrasTheme,
+  fluentui: fluentuiTheme,
 } satisfies Record<PlaygroundTheme, Theme>;

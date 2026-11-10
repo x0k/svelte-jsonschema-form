@@ -234,6 +234,35 @@ export const beercssTheme = extendByRecord(beercssBase, {
   textareaWidget: beercss_textareaWidget
 });
 
+import { theme as fluentuiBase } from "@sjsf-lab/fluentui-theme";
+import fluentui_checkboxesWidget from "@sjsf-lab/fluentui-theme/extra-widgets/checkboxes.svelte";
+import "@sjsf-lab/fluentui-theme/extra-widgets/checkboxes.svelte";
+import fluentui_comboboxWidget from "@sjsf-lab/fluentui-theme/extra-widgets/combobox.svelte";
+import "@sjsf-lab/fluentui-theme/extra-widgets/combobox.svelte";
+import fluentui_datePickerWidget from "@sjsf-lab/fluentui-theme/extra-widgets/date-picker.svelte";
+import "@sjsf-lab/fluentui-theme/extra-widgets/date-picker.svelte";
+import fluentui_multiSelectWidget from "@sjsf-lab/fluentui-theme/extra-widgets/multi-select.svelte";
+import "@sjsf-lab/fluentui-theme/extra-widgets/multi-select.svelte";
+import fluentui_radioWidget from "@sjsf-lab/fluentui-theme/extra-widgets/radio.svelte";
+import "@sjsf-lab/fluentui-theme/extra-widgets/radio.svelte";
+import fluentui_rangeWidget from "@sjsf-lab/fluentui-theme/extra-widgets/range.svelte";
+import "@sjsf-lab/fluentui-theme/extra-widgets/range.svelte";
+import fluentui_switchWidget from "@sjsf-lab/fluentui-theme/extra-widgets/switch.svelte";
+import "@sjsf-lab/fluentui-theme/extra-widgets/switch.svelte";
+import fluentui_textareaWidget from "@sjsf-lab/fluentui-theme/extra-widgets/textarea.svelte";
+import "@sjsf-lab/fluentui-theme/extra-widgets/textarea.svelte";
+export const fluentuiTheme = extendByRecord(fluentuiBase, {
+  ...fields,
+  checkboxesWidget: fluentui_checkboxesWidget,
+  comboboxWidget: fluentui_comboboxWidget,
+  datePickerWidget: fluentui_datePickerWidget,
+  multiSelectWidget: fluentui_multiSelectWidget,
+  radioWidget: fluentui_radioWidget,
+  rangeWidget: fluentui_rangeWidget,
+  switchWidget: fluentui_switchWidget,
+  textareaWidget: fluentui_textareaWidget
+});
+
 // import { theme as shadcn_extrasBase } from "@sjsf-lab/shadcn-extras-theme";
 import shadcn_extras_shadcnExtrasFileDropZoneWidget from "@sjsf-lab/shadcn-extras-theme/extra-widgets/file-drop-zone.svelte";
 import "@sjsf-lab/shadcn-extras-theme/extra-widgets/file-drop-zone.svelte";

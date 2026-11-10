@@ -160,6 +160,25 @@ export const WIDGETS = {
     },
     "optionalDeps": {}
   },
+  "fluentui": {
+    "widgets": {
+      "checkbox": "checkboxWidget",
+      "number": "numberWidget",
+      "select": "selectWidget",
+      "text": "textWidget"
+    },
+    "extraWidgets": {
+      "checkboxes": "checkboxesWidget",
+      "combobox": "comboboxWidget",
+      "date-picker": "datePickerWidget",
+      "multi-select": "multiSelectWidget",
+      "radio": "radioWidget",
+      "range": "rangeWidget",
+      "switch": "switchWidget",
+      "textarea": "textareaWidget"
+    },
+    "optionalDeps": {}
+  },
   "shadcn-extras": {
     "widgets": {},
     "extraWidgets": {

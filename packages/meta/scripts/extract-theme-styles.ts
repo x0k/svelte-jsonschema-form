@@ -51,6 +51,9 @@ const THEME_CSS_SOURCES: Record<PlaygroundTheme, ThemeCssSource> = {
   "shadcn-extras": {
     files: ["lab/shadcn-extras-theme/dist/styles.css"],
   },
+  fluentui: {
+    files: ["lab/fluentui-theme/dist/styles.css"],
+  },
 };
 
 const beerCssSettings = `

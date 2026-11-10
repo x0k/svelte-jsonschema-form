@@ -2477,6 +2477,9 @@ importers:
       '@sjsf-lab/beercss-theme':
         specifier: workspace:*
         version: link:../../lab/beercss-theme
+      '@sjsf-lab/fluentui-theme':
+        specifier: workspace:*
+        version: link:../../lab/fluentui-theme
       '@sjsf-lab/shadcn-extras-theme':
         specifier: workspace:*
         version: link:../../lab/shadcn-extras-theme
