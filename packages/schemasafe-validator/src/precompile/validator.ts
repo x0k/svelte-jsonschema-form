@@ -8,7 +8,11 @@ import type {
 import type { Merger } from "@sjsf/form/core";
 import { fromValidators } from "@sjsf/form/validators/precompile";
 
-import { transformFormErrors, transformFieldErrors } from "../errors.js";
+import {
+  transformFormErrors,
+  transformFieldErrors,
+  validateAndGetErrors,
+} from "../errors.js";
 import type { ValueToJSON } from "../validator.js";
 
 export type CompiledValidateFunction = (data: unknown) => boolean;
@@ -79,12 +83,15 @@ export function createFormValueValidator<T>(
   return {
     validateFormValue(rootSchema, formValue) {
       const validate = getValidate(rootSchema);
-      validate(options.valueToJSON(formValue));
+      const errors = validateAndGetErrors(
+        validate,
+        options.valueToJSON(formValue)
+      );
       return transformFormErrors(
         createValidator(options),
         options.merger(),
         rootSchema,
-        validate.errors,
+        errors,
         formValue
       );
     },
@@ -98,8 +105,11 @@ export function createFieldValueValidator(
   return {
     validateFieldValue(field, fieldValue) {
       const validate = getValidate(field.schema);
-      validate(options.valueToJSON(fieldValue));
-      return transformFieldErrors(field, validate.errors, fieldValue);
+      const errors = validateAndGetErrors(
+        validate,
+        options.valueToJSON(fieldValue)
+      );
+      return transformFieldErrors(field, errors, fieldValue);
     },
   };
 }

@@ -19,7 +19,11 @@ import {
 } from "@sjsf/form/core";
 import { memoize, weakMemoize, type MapLike } from "@sjsf/form/lib/memoize";
 
-import { transformFormErrors, transformFieldErrors } from "./errors.js";
+import {
+  transformFormErrors,
+  transformFieldErrors,
+  validateAndGetErrors,
+} from "./errors.js";
 import { DEFAULT_VALIDATOR_OPTIONS } from "./model.js";
 
 export type ValidateFactory = (schema: Schema, rootSchema: Schema) => Validate;
@@ -122,12 +126,15 @@ export function createFormValueValidator<T>(
   return {
     validateFormValue(rootSchema, formValue) {
       const validate = options.createSchemaValidator(rootSchema, rootSchema);
-      validate(options.valueToJSON(formValue));
+      const errors = validateAndGetErrors(
+        validate,
+        options.valueToJSON(formValue)
+      );
       return transformFormErrors(
         createValidator(options),
         options.merger(),
         rootSchema,
-        validate.errors,
+        errors,
         formValue
       );
     },
@@ -145,8 +152,8 @@ export function createFieldValueValidator({
   return {
     validateFieldValue(field, fieldValue) {
       const validate = createFieldSchemaValidator(field);
-      validate(valueToJSON(fieldValue));
-      return transformFieldErrors(field, validate.errors, fieldValue);
+      const errors = validateAndGetErrors(validate, valueToJSON(fieldValue));
+      return transformFieldErrors(field, errors, fieldValue);
     },
   };
 }
