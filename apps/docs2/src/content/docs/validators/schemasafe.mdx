@@ -43,3 +43,7 @@ Run the following command for schema compilation:
 ```shell
 node compile-schema-script.ts
 ```
+
+The adapter filters errors that `@exodus/schemasafe` reports for successful
+`oneOf`/`anyOf` branches ([upstream issue](https://github.com/ExodusOSS/schemasafe/issues/185)),
+so they do not appear as phantom form errors.

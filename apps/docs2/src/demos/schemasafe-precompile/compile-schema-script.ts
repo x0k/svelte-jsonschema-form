@@ -31,6 +31,9 @@ export const schema = ${JSON.stringify(patch.schema, null, 2)} as const satisfie
 
 const schemas = fragmentSchema(patch);
 
+// `multi: true` creates one validator per schema in `schemas` order.
+// The `toModule()` output below relies on that order and exports the validators
+// with names matching their `$id`s.
 // @ts-expect-error Typings for `multi` version are missing
 const validate = validator(schemas, {
   ...DEFAULT_VALIDATOR_OPTIONS,
