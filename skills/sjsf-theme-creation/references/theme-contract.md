@@ -810,9 +810,13 @@ foundational widget to it in the UI schema:
 ```
 
 The mapped type must be compatible with the foundational widget; for example,
-`WidgetCommonProps<string>` is compatible with `textWidget`. If the widget is
-used with `getComponent` as a foundational type, augment
-`FoundationalComponents` too:
+`WidgetCommonProps<string>` is compatible with `textWidget`.
+
+A type belongs in `FoundationalComponents` only when a component calls
+`getComponent` with it. That call site is what makes the type replaceable via
+`ui:components`; registering or replacing a type that nothing resolves has no
+effect. Add the entry only if the theme itself looks the widget up, for example
+from a field that uses it as its default widget:
 
 ```ts
 declare module "@sjsf/form" {
@@ -822,9 +826,8 @@ declare module "@sjsf/form" {
 }
 ```
 
-`FoundationalComponents` marks component types that `getComponent` can resolve
-and that can be used as keys in `ui:components`. A widget used only as a
-`ui:components` replacement does not need this entry.
+A widget used only as a `ui:components` replacement does not need this entry.
+Theme docs should explain where each extra widget is used by default.
 
 ## Resolver Composition Cheat Sheet
 
