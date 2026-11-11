@@ -1221,6 +1221,239 @@ describe("sanitizeDataForNewSchema", () => {
       )
     ).toEqual({ foo: undefined });
   });
+  it("keeps object items when the items schema declares no properties (#5736)", () => {
+    const schema: Schema = { type: "array", items: { type: "object" } };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        {},
+        schema,
+        schema,
+        [{ k: 1 }, "x"]
+      )
+    ).toEqual([{ k: 1 }]);
+  });
+  it("keeps a free-form object list inside items resolved through an if/then (#5736)", () => {
+    const rows: Schema = {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          name: { type: "string" },
+          tags: { type: "array", items: { type: "object" } },
+        },
+        if: { properties: { name: { const: "x" } } },
+        then: {},
+      },
+    };
+    const schema: Schema = { type: "object", properties: { rows } };
+    const formData = { rows: [{ name: "a", tags: [{ k: 1 }] }] };
+    const condition: Schema = { properties: { name: { const: "x" } } };
+    testValidator = createValidator({
+      cases: [
+        { schema: condition, value: formData.rows, result: false },
+        { schema: condition, value: formData.rows[0]!, result: false },
+      ],
+    });
+    const retrieved = retrieveSchema(
+      testValidator,
+      defaultMerger,
+      schema,
+      schema,
+      formData
+    );
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        schema,
+        retrieved,
+        retrieved,
+        formData
+      )
+    ).toEqual(formData);
+  });
+  it("keeps an object item its items enum lists as it is (#5440)", () => {
+    const schema: Schema = {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          id: { type: "string" },
+          opt: { type: "object", properties: { x: { type: "string" } } },
+        },
+        enum: [{ id: "a" }, { id: "b" }],
+      },
+    };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        {},
+        schema,
+        schema,
+        [{ id: "a" }, { id: "c" }]
+      )
+    ).toEqual([{ id: "a" }]);
+  });
+  it("keeps an object item equal to its items const as it is", () => {
+    const schema: Schema = {
+      type: "array",
+      items: {
+        type: "object",
+        const: { k: "a" },
+        properties: {
+          k: { type: "string" },
+          opt: { type: "object", properties: { x: { type: "string" } } },
+        },
+      },
+    };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        {},
+        schema,
+        schema,
+        [{ k: "a" }]
+      )
+    ).toEqual([{ k: "a" }]);
+  });
+  it("keeps an array item equal to its items const as it is, rather than filling its absent object properties (#5440)", () => {
+    const items: Schema = {
+      type: "array",
+      const: [{ k: "a" }],
+      items: {
+        type: "object",
+        properties: {
+          k: { type: "string" },
+          opt: { type: "object", properties: { x: { type: "string" } } },
+        },
+      },
+    };
+    const schema: Schema = { type: "array", items };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        {},
+        schema,
+        schema,
+        [[{ k: "a" }]]
+      )
+    ).toEqual([[{ k: "a" }]]);
+  });
+  it("filters out array items a new array const rejects, unless the old items declared the same const (#5440)", () => {
+    const items: Schema = {
+      type: "array",
+      items: { type: "string" },
+    };
+    const newSchema: Schema = {
+      type: "array",
+      items: { ...items, const: ["x"] },
+    };
+    const oldSchema: Schema = { type: "array", items };
+    const data = [["x"], ["c"]];
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        {},
+        newSchema,
+        oldSchema,
+        data
+      )
+    ).toEqual([["x"]]);
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        {},
+        newSchema,
+        newSchema,
+        data
+      )
+    ).toEqual(data);
+  });
+  it("filters out array items a new array const rejects where the old items declare no type (#5440)", () => {
+    const newSchema: Schema = {
+      type: "array",
+      items: { type: "array", items: { type: "string" }, const: ["x"] },
+    };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        {},
+        newSchema,
+        { type: "array", items: {} },
+        [["x"], ["c"]]
+      )
+    ).toEqual([["x"]]);
+  });
+  it("sanitizes the array items of an array per element, as it does an array property (#5440)", () => {
+    const items = (...keys: string[]): Schema => ({
+      type: "array",
+      items: {
+        type: "object",
+        properties: Object.fromEntries(
+          keys.map((key) => [key, { type: "string" }])
+        ),
+      },
+    });
+    const oldSchema: Schema = { type: "array", items: items("a", "b") };
+    const newSchema: Schema = { type: "array", items: items("a") };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        {},
+        newSchema,
+        oldSchema,
+        [[{ a: "1", b: "2" }], "x"]
+      )
+    ).toEqual([[{ a: "1" }], "x"]);
+  });
+  it("filters the array items of an array by the items const options (#5440)", () => {
+    const schema: Schema = {
+      type: "array",
+      items: {
+        type: "array",
+        oneOf: [{ const: ["a"] }, { const: ["b"] }],
+      },
+    };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        {},
+        schema,
+        schema,
+        [["a"], "junk"]
+      )
+    ).toEqual([["a"]]);
+  });
+  it("keeps an array item whose items the new schema describes differently (#5440)", () => {
+    const oldSchema: Schema = {
+      type: "array",
+      items: { type: "array", items: { type: "string" } },
+    };
+    const newSchema: Schema = {
+      type: "array",
+      items: { type: "array", items: { type: "number" } },
+    };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        {},
+        newSchema,
+        oldSchema,
+        [["1"]]
+      )
+    ).toEqual([["1"]]);
+  });
   it("returns formData when the new schema has field that is not in the old schema", () => {
     const oldSchema: Schema = {
       type: "object",

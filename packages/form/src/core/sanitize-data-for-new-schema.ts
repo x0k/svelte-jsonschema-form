@@ -20,6 +20,18 @@ import { isSchemaObjectValue } from "./value.js";
 const NO_VALUE = Symbol("no Value");
 const NO_OPTIONS: SchemaValue[] = [];
 
+function arrayConstRejects(
+  newSchema: Schema,
+  oldSchema: Schema,
+  data: SchemaValue | undefined
+) {
+  return (
+    Array.isArray(newSchema.const) &&
+    !isSchemaValueDeepEqual(newSchema.const, data) &&
+    !isSchemaValueDeepEqual(oldSchema.const, newSchema.const)
+  );
+}
+
 function replacementForInvalidEnumValue(
   schema: Schema,
   formValue: SchemaValue | undefined
@@ -74,40 +86,99 @@ function sanitizeArrays(
   const newSchemaType = newSchemaItems.type;
   if (!oldSchemaType || oldSchemaType === newSchemaType) {
     const maxItems = newSchema.maxItems ?? -1;
-    if (newSchemaType === "object") {
-      return data.reduce((newValue: SchemaArrayValue, aValue) => {
+    if (newSchemaType === "object" || newSchemaType === "array") {
+      const isObjectItems = newSchemaType === "object";
+      return data.reduce((newValue: SchemaArrayValue, item) => {
+        if (maxItems >= 0 && newValue.length >= maxItems) {
+          return newValue;
+        }
         // Resolve refs, dependencies, if/then/else and allOf against this item's own value, so a conditional
         // nested inside `items` picks the branch that matches this element rather than the whole array (#5250).
         // Keep the raw (pre-resolution) items schema around: it must be re-resolved per element below,
         // against that element's own value, rather than the whole array.
-        const oldItemSchema = retrieveSchema(
+        const newItemSchema = retrieveSchema(
           validator,
           merger,
-          oldSchemaItemsRaw,
+          newSchemaItemsRaw,
           rootSchema,
-          aValue
+          item
         );
-        const newItemSchema = sameItemsSchema
-          ? oldItemSchema
-          : retrieveSchema(
-              validator,
-              merger,
-              newSchemaItemsRaw,
-              rootSchema,
-              aValue
-            );
-        const itemValue = sanitizeDataForNewSchema(
-          validator,
-          merger,
-          rootSchema,
-          newItemSchema,
-          oldItemSchema,
-          aValue
-        );
-        if (
-          itemValue !== undefined &&
-          (maxItems < 0 || newValue.length < maxItems)
-        ) {
+        const listedValues =
+          getSelectOptionValuesSafe(newItemSchema) ?? NO_OPTIONS;
+        let itemValue: SchemaValue | undefined = item;
+        if (listedValues.length > 0) {
+          // An item the options list is one of them as a whole, so it is kept as it is, and one they don't
+          // list is dropped, as a scalar item is, whatever the old schema listed
+          itemValue = listedValues.some((v) => isSchemaValueDeepEqual(v, item))
+            ? item
+            : undefined;
+        } else if (isObjectItems) {
+          if (
+            isSchemaObjectValue(item) &&
+            newItemSchema.properties === undefined
+          ) {
+            // An object item whose schema declares no `properties` has none to
+            // prune, so it is kept as it is (#5736)
+            itemValue = item;
+          } else {
+            const oldItemSchema = sameItemsSchema
+              ? newItemSchema
+              : retrieveSchema(
+                  validator,
+                  merger,
+                  oldSchemaItemsRaw,
+                  rootSchema,
+                  item
+                );
+            if (arrayConstRejects(newItemSchema, oldItemSchema, item)) {
+              // An array const the old items did not declare rejects the item
+              itemValue = undefined;
+            } else if (
+              newItemSchema.const === undefined ||
+              !isSchemaValueDeepEqual(newItemSchema.const, item)
+            ) {
+              itemValue = sanitizeDataForNewSchema(
+                validator,
+                merger,
+                rootSchema,
+                newItemSchema,
+                oldItemSchema,
+                item
+              );
+            }
+          }
+        } else if (Array.isArray(item)) {
+          const oldItemSchema = sameItemsSchema
+            ? newItemSchema
+            : retrieveSchema(
+                validator,
+                merger,
+                oldSchemaItemsRaw,
+                rootSchema,
+                item
+              );
+          if (arrayConstRejects(newItemSchema, oldItemSchema, item)) {
+            // An array const the old items did not declare rejects the item
+            itemValue = undefined;
+          } else if (
+            newItemSchema.const === undefined ||
+            !isSchemaValueDeepEqual(newItemSchema.const, item)
+          ) {
+            // Old items declaring no type describe no array to sanitize against,
+            // so the element is read against the new items schema on both sides
+            // instead of being kept unsanitized for an old side holding no array
+            itemValue =
+              sanitizeDataForNewSchema(
+                validator,
+                merger,
+                rootSchema,
+                newItemSchema,
+                !oldSchemaType ? newItemSchema : oldItemSchema,
+                item
+              ) ?? item;
+          }
+        }
+        if (itemValue !== undefined) {
           newValue.push(itemValue);
         }
         return newValue;
@@ -122,7 +193,7 @@ function sanitizeArrays(
               newItemEnumValues.some((v) => isSchemaValueDeepEqual(v, item))
             )
           : data;
-      // `maxItems` of 0 allows no item at all, which is how the object items path above reads it too
+      // `maxItems` of 0 allows no item at all, which is how the container items path above reads it too
       return maxItems >= 0 && filteredData.length > maxItems
         ? filteredData.slice(0, maxItems)
         : filteredData;
