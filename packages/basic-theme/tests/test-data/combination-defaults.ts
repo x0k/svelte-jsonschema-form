@@ -597,3 +597,252 @@ export const readOnlyDefaultOneOfSchema = {
     },
   ],
 } as const satisfies Schema;
+
+// A free-form object list both options share survives a switch, rather than
+// being cleared with the whole list (rjsf#5736).
+export const freeFormObjectItemsOneOfSchema = {
+  type: "object",
+  oneOf: [
+    {
+      title: "First",
+      type: "object",
+      properties: {
+        tags: {
+          type: "array",
+          title: "Tags",
+          items: { type: "object" },
+        },
+        firstField: { type: "string", title: "First Field" },
+      },
+    },
+    {
+      title: "Second",
+      type: "object",
+      properties: {
+        tags: {
+          type: "array",
+          title: "Tags",
+          items: { type: "object" },
+        },
+        secondField: { type: "string", title: "Second Field" },
+      },
+    },
+  ],
+} as const satisfies Schema;
+
+// Rows are kept when switching to an option whose grid items cannot describe
+// the existing rows, as a row is an array of arrays either way (rjsf#5736).
+export const typelessGridRowsOneOfSchema = {
+  type: "object",
+  oneOf: [
+    {
+      title: "A",
+      type: "object",
+      properties: {
+        grid: {
+          type: "array",
+          items: { type: "array", items: { type: "string" } },
+        },
+      },
+    },
+    {
+      title: "B",
+      type: "object",
+      properties: {
+        grid: { type: "array", items: { type: "array", items: {} } },
+      },
+    },
+  ],
+} as const satisfies Schema;
+
+export const noItemsGridRowsOneOfSchema = {
+  type: "object",
+  oneOf: [
+    {
+      title: "A",
+      type: "object",
+      properties: {
+        grid: {
+          type: "array",
+          items: { type: "array", items: { type: "string" } },
+        },
+      },
+    },
+    {
+      title: "B",
+      type: "object",
+      properties: {
+        grid: { type: "array", items: { type: "array" } },
+      },
+    },
+  ],
+} as const satisfies Schema;
+
+export const nullableGridRowsOneOfSchema = {
+  type: "object",
+  oneOf: [
+    {
+      title: "A",
+      type: "object",
+      properties: {
+        grid: {
+          type: "array",
+          items: { type: "array", items: { type: "string" } },
+        },
+      },
+    },
+    {
+      title: "B",
+      type: "object",
+      properties: {
+        grid: {
+          type: "array",
+          items: { type: "array", items: { type: ["string", "null"] } },
+        },
+      },
+    },
+  ],
+} as const satisfies Schema;
+
+const optionalRowItem = {
+  type: "object",
+  properties: {
+    k: { type: "string" },
+    opt: { type: "object", properties: { level: { type: "string" } } },
+  },
+} as const satisfies Schema;
+
+// An optional object held by a kept array item, after the switch drops an item
+// the new row options do not list (rjsf#5736).
+export const optionalObjectDroppedRowOneOfSchema = {
+  type: "object",
+  properties: {
+    job: {
+      type: "object",
+      oneOf: [
+        {
+          title: "A",
+          properties: {
+            rows: {
+              type: "array",
+              items: { type: "array", items: optionalRowItem },
+            },
+          },
+        },
+        {
+          title: "B",
+          properties: {
+            rows: {
+              type: "array",
+              items: {
+                type: "array",
+                items: optionalRowItem,
+                oneOf: [{ enum: [[{ k: "ok", opt: {} }], []] }],
+              },
+            },
+          },
+        },
+      ],
+    },
+  },
+} as const satisfies Schema;
+
+// The switch cuts the array to `maxItems` (rjsf#5736).
+export const maxItemsRowsOneOfSchema = {
+  type: "object",
+  properties: {
+    job: {
+      type: "object",
+      oneOf: [
+        {
+          title: "A",
+          properties: { rows: { type: "array", items: optionalRowItem } },
+        },
+        {
+          title: "B",
+          properties: {
+            rows: { type: "array", items: optionalRowItem, maxItems: 1 },
+          },
+        },
+      ],
+    },
+  },
+} as const satisfies Schema;
+
+// The switch cuts a `$ref` array to its `maxItems` (rjsf#5736).
+export const refMaxItemsRowsOneOfSchema = {
+  definitions: {
+    shortRows: { type: "array", items: optionalRowItem, maxItems: 1 },
+  },
+  type: "object",
+  properties: {
+    job: {
+      type: "object",
+      oneOf: [
+        {
+          title: "A",
+          properties: { rows: { type: "array", items: optionalRowItem } },
+        },
+        {
+          title: "B",
+          properties: { rows: { $ref: "#/definitions/shortRows" } },
+        },
+      ],
+    },
+  },
+} as const satisfies Schema;
+
+// The switch cuts the array to a `maxItems` its items set (rjsf#5736).
+export const conditionalMaxItemsRowsOneOfSchema = {
+  type: "object",
+  properties: {
+    job: {
+      type: "object",
+      oneOf: [
+        {
+          title: "A",
+          properties: { rows: { type: "array", items: optionalRowItem } },
+        },
+        {
+          title: "B",
+          properties: {
+            rows: {
+              type: "array",
+              items: optionalRowItem,
+              if: {
+                contains: {
+                  properties: { k: { const: "b" } },
+                  required: ["k"],
+                },
+              },
+              then: { maxItems: 1 },
+            },
+          },
+        },
+      ],
+    },
+  },
+} as const satisfies Schema;
+
+// Typing into the root option is kept when another option holds a conditional
+// (rjsf#5567).
+export const rootConditionalOneOfSchema = {
+  oneOf: [
+    {
+      title: "A",
+      type: "object",
+      properties: { animal: { type: "string" } },
+    },
+    {
+      title: "B",
+      type: "object",
+      properties: { animal: { type: "string" } },
+      allOf: [
+        {
+          if: { properties: { animal: { const: "Cat" } } },
+          then: { properties: { food: { type: "string", default: "meat" } } },
+        },
+      ],
+    },
+  ],
+} as const satisfies Schema;
