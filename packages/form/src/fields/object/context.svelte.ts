@@ -46,6 +46,10 @@ import {
   createAdditionalPropertyKey,
   generateNewKey,
   createOriginalKeysOrder,
+  collectHeldKeys,
+  stableKeyOf,
+  withRenamedKey,
+  withoutRenamedKey,
 } from "./model.js";
 
 export interface ObjectContext {
@@ -72,6 +76,10 @@ export interface ObjectContext {
 }
 
 const OBJECT_CONTEXT = Symbol("object-context");
+
+// Shared so `schemaProperties` keeps a stable identity when the schema has
+// no properties
+const EMPTY_SCHEMA_PROPERTIES: Exclude<Schema["properties"], undefined> = {};
 
 export function getObjectContext(): ObjectContext {
   return getContext(OBJECT_CONTEXT);
@@ -114,18 +122,16 @@ export function createObjectContext<T>({
       }
       lastSchemaProperties = snap;
     }
-    return lastSchemaProperties;
+    return lastSchemaProperties ?? EMPTY_SCHEMA_PROPERTIES;
   });
 
   const uiOption: UiOption = (opt) => retrieveUiOption(ctx, config(), opt);
 
   const schemaPropertiesOrder = $derived(
-    isSchemaObjectValue(schemaProperties)
-      ? orderProperties(
-          schemaProperties,
-          uiOption("order") ?? createOriginalKeysOrder(schemaProperties)
-        )
-      : []
+    orderProperties(
+      schemaProperties,
+      uiOption("order") ?? createOriginalKeysOrder(schemaProperties)
+    )
   );
 
   const requiredProperties = $derived(new Set(retrievedSchema.required));
@@ -199,10 +205,7 @@ export function createObjectContext<T>({
     );
     const result = new Set<string>();
     for (const o of options) {
-      if (
-        typeof o.value === "string" &&
-        (schemaProperties === undefined || !(o.value in schemaProperties))
-      ) {
+      if (typeof o.value === "string" && !(o.value in schemaProperties)) {
         result.add(o.value);
       }
     }
@@ -235,10 +238,16 @@ export function createObjectContext<T>({
     uiOption("additionalPropertyKey") ?? createAdditionalPropertyKey
   );
 
-  const lastRenamedProperty = {
-    previousKey: "",
-    currentKey: undefined as string | undefined,
-  };
+  // A rename overrides this derived value. Reading `value` makes a value
+  // replaced from outside recalculate it as an empty map, discarding the
+  // renames made against the replaced object.
+  let renamedKeys = $derived.by<ReadonlyMap<string, string>>(() => {
+    value();
+    return new Map();
+  });
+  const heldRenamedKeys = $derived(
+    collectHeldKeys(renamedKeys, schemaProperties)
+  );
 
   function isEmptyValue(v: SchemaValue | undefined) {
     return (
@@ -266,10 +275,7 @@ export function createObjectContext<T>({
 
   return {
     key(property) {
-      if (lastRenamedProperty.currentKey === property) {
-        return lastRenamedProperty.previousKey;
-      }
-      return property;
+      return stableKeyOf(renamedKeys, property, heldRenamedKeys);
     },
     set(property, v) {
       const obj = value();
@@ -291,10 +297,10 @@ export function createObjectContext<T>({
       return schemaPropertiesOrder;
     },
     isAdditionalProperty(property) {
-      return isAdditionalProperty(schemaProperties!, property);
+      return isAdditionalProperty(schemaProperties, property);
     },
     propertyConfig(config, property, isAdditional) {
-      const definition = schemaProperties![property] ?? false;
+      const definition = schemaProperties[property] ?? false;
       const schema =
         typeof definition === "boolean"
           ? {}
@@ -342,10 +348,6 @@ export function createObjectContext<T>({
         val = { [newKey]: propValue };
         setValue(val);
       }
-      if (lastRenamedProperty.previousKey === newKey) {
-        lastRenamedProperty.currentKey = newKey;
-        lastRenamedProperty.previousKey = crypto.randomUUID();
-      }
       onChange(val);
     },
     removeProperty(prop) {
@@ -353,28 +355,32 @@ export function createObjectContext<T>({
       if (!obj) {
         return;
       }
+      const properties = schemaProperties;
       if (isObjectCanBeRemoved(obj, prop)) {
         removeObject();
       } else {
         delete obj[prop];
         onChange(obj);
       }
+      // The key it held goes free, but a property that took a variant of it
+      // while it was held keeps that variant
+      renamedKeys = withoutRenamedKey(renamedKeys, prop, properties);
     },
     renameProperty(oldProp, newProp = "", fieldConfig) {
       const val = value();
       if (oldProp === newProp || !val) {
         return;
       }
+      // Read before the rename so that the held keys are those of the
+      // properties the rename is applied to, not the ones it creates
+      const heldKeys = heldRenamedKeys;
       const newKey = generateNewKey(val, newProp, additionalPropertyKey);
       if (!validateAdditionalPropertyKey(ctx, config(), newKey, fieldConfig)) {
         return;
       }
       val[newKey] = val[oldProp];
       delete val[oldProp];
-      if (oldProp !== lastRenamedProperty.currentKey) {
-        lastRenamedProperty.previousKey = oldProp;
-      }
-      lastRenamedProperty.currentKey = newKey;
+      renamedKeys = withRenamedKey(renamedKeys, oldProp, newKey, heldKeys);
       onChange(val);
     },
     keyInputSchemas() {
