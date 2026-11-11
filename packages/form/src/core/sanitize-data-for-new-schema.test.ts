@@ -1414,6 +1414,48 @@ describe("sanitizeDataForNewSchema", () => {
         [[{ a: "1", b: "2" }], "x"]
       )
     ).toEqual([[{ a: "1" }], "x"]);
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        {},
+        { type: "object", properties: { list: items("a") } },
+        { type: "object", properties: { list: items("a", "b") } },
+        { list: [{ a: "1", b: "2" }] }
+      )
+    ).toEqual({ list: [{ a: "1" }] });
+  });
+  it("filters out array items a multi-value enum option rejects, as it does object items (#5440)", () => {
+    const schema: Schema = {
+      type: "array",
+      items: { type: "array", oneOf: [{ enum: [["a"], ["b"]] }] },
+    };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        {},
+        schema,
+        schema,
+        [["a"], ["c"]]
+      )
+    ).toEqual([["a"]]);
+  });
+  it("filters out an item of array items that is not an array when the options do not list it", () => {
+    const schema: Schema = {
+      type: "array",
+      items: { type: "array", oneOf: [{ enum: [["a"], ["b"]] }] },
+    };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        {},
+        schema,
+        schema,
+        [["a"], "junk"]
+      )
+    ).toEqual([["a"]]);
   });
   it("filters the array items of an array by the items const options (#5440)", () => {
     const schema: Schema = {
@@ -1439,9 +1481,201 @@ describe("sanitizeDataForNewSchema", () => {
       type: "array",
       items: { type: "array", items: { type: "string" } },
     };
+    const row = (items?: Schema): Schema => ({
+      type: "array",
+      ...(items && { items }),
+    });
+    for (const newItems of [
+      row({ type: "number" }),
+      row({}),
+      // No `items` at all
+      row(),
+    ]) {
+      expect(
+        sanitizeDataForNewSchema(
+          testValidator,
+          defaultMerger,
+          {},
+          { type: "array", items: newItems },
+          oldSchema,
+          [["1"]]
+        )
+      ).toEqual([["1"]]);
+    }
+  });
+  it("keeps an array item whose items name a type list (#5440)", () => {
+    const oldSchema: Schema = {
+      type: "array",
+      items: { type: "array", items: { type: "string" } },
+    };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        {},
+        {
+          type: "array",
+          items: { type: "array", items: { type: ["string", "null"] } },
+        },
+        oldSchema,
+        [["1"]]
+      )
+    ).toEqual([["1"]]);
+  });
+  it("checks an item of array items that is not an array against the options its own value resolves", () => {
+    const items: Schema = {
+      type: ["array", "null"],
+      if: { type: "array" },
+      then: { oneOf: [{ enum: [["a"], ["b"]] }] },
+    };
+    const schema: Schema = { type: "array", items };
+    // The whole array and its `['a']` meet the `if`, and the `null` does not,
+    // so no options apply to it. SJSF checks `null` as `{}` for a condition.
+    testValidator = createValidator({
+      cases: [
+        { schema: { type: "array" }, value: [["a"], null], result: true },
+        { schema: { type: "array" }, value: ["a"], result: true },
+        { schema: { type: "array" }, value: {}, result: false },
+      ],
+    });
+    defaultMerger = createMerger({
+      merges: [
+        {
+          left: { type: ["array", "null"] },
+          right: { oneOf: [{ enum: [["a"], ["b"]] }] },
+          result: {
+            type: ["array", "null"],
+            oneOf: [{ enum: [["a"], ["b"]] }],
+          },
+        },
+      ],
+    });
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        {},
+        schema,
+        schema,
+        [["a"], null]
+      )
+    ).toEqual([["a"], null]);
+  });
+  it("keeps an object item its items enum options list as it is (#5440)", () => {
+    const schema: Schema = {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          id: { type: "string" },
+          opt: { type: "object", properties: { x: { type: "string" } } },
+        },
+        oneOf: [{ enum: [{ id: "a" }, { id: "b" }] }],
+      },
+    };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        {},
+        schema,
+        schema,
+        [{ id: "a" }, { id: "c" }]
+      )
+    ).toEqual([{ id: "a" }]);
+  });
+  it("keeps an object item its items enum options list as it is where the items declare no properties (#5440)", () => {
+    const schema: Schema = {
+      type: "array",
+      items: { type: "object", oneOf: [{ enum: [{ id: "a" }, { id: "b" }] }] },
+    };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        {},
+        schema,
+        schema,
+        [{ id: "a" }, { id: "c" }]
+      )
+    ).toEqual([{ id: "a" }]);
+  });
+  it("filters scalar items by the items enum options, as it does object items (#5440)", () => {
+    const schema: Schema = {
+      type: "array",
+      items: { type: "string", oneOf: [{ enum: ["a", "b"] }] },
+    };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        {},
+        schema,
+        schema,
+        ["a", "c"]
+      )
+    ).toEqual(["a"]);
+  });
+  it("keeps an object item its items const options list as it is (#5440)", () => {
+    const schema: Schema = {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          id: { type: "string" },
+          opt: { type: "object", properties: { x: { type: "string" } } },
+        },
+        oneOf: [{ const: { id: "a" } }, { const: { id: "b" } }],
+      },
+    };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        {},
+        schema,
+        schema,
+        [{ id: "a" }, { id: "c" }]
+      )
+    ).toEqual([{ id: "a" }]);
+  });
+  it("returns trimmed array when the new schema has maxItems < size for array type", () => {
+    const schema: Schema = {
+      type: "array",
+      maxItems: 1,
+      items: { type: "array", items: { type: "string" } },
+    };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        {},
+        schema,
+        schema,
+        [["a"], ["b"]]
+      )
+    ).toEqual([["a"]]);
+  });
+  it("sanitizes an undefined object item rather than dropping it", () => {
+    const schema: Schema = {
+      type: "array",
+      items: { type: "object", properties: { k: { type: "string" } } },
+    };
+    expect(
+      sanitizeDataForNewSchema(
+        testValidator,
+        defaultMerger,
+        {},
+        schema,
+        schema,
+        [undefined, { k: "a" }]
+      )
+    ).toEqual([{}, { k: "a" }]);
+  });
+  it("keeps the array items the new schema describes where the old items declare no type (#5440)", () => {
     const newSchema: Schema = {
       type: "array",
-      items: { type: "array", items: { type: "number" } },
+      items: { type: "array", items: { type: "string" } },
     };
     expect(
       sanitizeDataForNewSchema(
@@ -1449,10 +1683,10 @@ describe("sanitizeDataForNewSchema", () => {
         defaultMerger,
         {},
         newSchema,
-        oldSchema,
-        [["1"]]
+        { type: "array", items: {} },
+        [["a"], ["b", 1]]
       )
-    ).toEqual([["1"]]);
+    ).toEqual([["a"], ["b", 1]]);
   });
   it("returns formData when the new schema has field that is not in the old schema", () => {
     const oldSchema: Schema = {

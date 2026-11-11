@@ -16,25 +16,34 @@ import {
   arrayItemAnyOfSchema,
   arrayOfObjectsDefaultOneOfSchema,
   computedBooleanDefaultOneOfSchema,
+  conditionalMaxItemsRowsOneOfSchema,
   dependencyDefaultsSchema,
   discriminatedSchema,
   discriminatedUiSchema,
   formattedStringOneOfSchema,
+  freeFormObjectItemsOneOfSchema,
+  maxItemsRowsOneOfSchema,
+  noItemsGridRowsOneOfSchema,
+  nullableGridRowsOneOfSchema,
   numberAnyOfSchema,
   numberOneOfSchema,
   objectAndArrayDefaultsOneOfSchema,
   objectSharedAnyOfSchema,
   objectSharedOneOfSchema,
   oneOfDisjointDefaultsSchema,
+  optionalObjectDroppedRowOneOfSchema,
   optionLevelDefaultOneOfSchema,
   optionRequiredArrayOneOfSchema,
   parentRequiredArrayOneOfSchema,
   plainOneOfSchema,
   readOnlyDefaultOneOfSchema,
+  refMaxItemsRowsOneOfSchema,
   refObjectAnyOfSchema,
   refObjectOneOfSchema,
+  rootConditionalOneOfSchema,
   stringAnyOfSchema,
   stringOneOfSchema,
+  typelessGridRowsOneOfSchema,
 } from "./test-data/combination-defaults.js";
 
 const enumUiSchema = {
@@ -171,6 +180,125 @@ describe("combination field contracts", () => {
       await userEvent.selectOptions(select, "First");
 
       expectValue(form, { firstField: "default-first" });
+    });
+  });
+
+  describe("array items kept when switching options (rjsf#5736)", () => {
+    test("keeps free-form object items both options share", async () => {
+      const { form } = await renderFieldForm({
+        schema: freeFormObjectItemsOneOfSchema,
+        initialValue: { firstField: "x", tags: [{ k: 1 }] },
+      });
+
+      await userEvent.selectOptions(
+        page.getByRole("combobox").first(),
+        "Second"
+      );
+
+      expectValue(form, { tags: [{ k: 1 }] });
+    });
+
+    test("keeps an optional object added in an array item after a switch drops an item before it", async () => {
+      const { form } = await renderFieldForm({
+        schema: optionalObjectDroppedRowOneOfSchema,
+        initialValue: {
+          job: { rows: [[{ k: "bad" }], [{ k: "ok", opt: {} }]] },
+        },
+      });
+
+      await userEvent.selectOptions(page.getByRole("combobox").first(), "B");
+
+      expectValue(form, { job: { rows: [[{ k: "ok", opt: {} }]] } });
+    });
+
+    test.skip("leaves out an optional object in an array item kept after a switch cuts the array to maxItems", async () => {
+      // SJSF writes `{}` for an object property the old data doesn't hold and
+      // keeps it, while RJSF strips the empty objects sanitize wrote through
+      // `withoutAddedOptionalObjects()`, which only its optional data controls
+      // need. The divergence predates this port.
+      const { form } = await renderFieldForm({
+        schema: maxItemsRowsOneOfSchema,
+        initialValue: { job: { rows: [{ k: "a" }, { k: "b" }] } },
+      });
+
+      await userEvent.selectOptions(page.getByRole("combobox").first(), "B");
+
+      expectValue(form, { job: { rows: [{ k: "a" }] } });
+    });
+
+    test.skip("leaves out an optional object in an array item kept after a switch cuts a $ref array to its maxItems", async () => {
+      // SJSF writes `{}` for an object property the old data doesn't hold and
+      // keeps it, while RJSF strips the empty objects sanitize wrote through
+      // `withoutAddedOptionalObjects()`, which only its optional data controls
+      // need. The divergence predates this port.
+      const { form } = await renderFieldForm({
+        schema: refMaxItemsRowsOneOfSchema,
+        initialValue: { job: { rows: [{ k: "a" }, { k: "b" }] } },
+      });
+
+      await userEvent.selectOptions(page.getByRole("combobox").first(), "B");
+
+      expectValue(form, { job: { rows: [{ k: "a" }] } });
+    });
+
+    test.skip("leaves out an optional object in an array item kept after a switch cuts the array to a maxItems its items set", async () => {
+      // SJSF writes `{}` for an object property the old data doesn't hold and
+      // keeps it, while RJSF strips the empty objects sanitize wrote through
+      // `withoutAddedOptionalObjects()`, which only its optional data controls
+      // need. The divergence predates this port.
+      const { form } = await renderFieldForm({
+        schema: conditionalMaxItemsRowsOneOfSchema,
+        initialValue: { job: { rows: [{ k: "a" }, { k: "b" }] } },
+      });
+
+      await userEvent.selectOptions(page.getByRole("combobox").first(), "B");
+
+      expectValue(form, { job: { rows: [{ k: "a" }] } });
+    });
+
+    test("keeps grid rows when switching to typeless cells", async () => {
+      const { form } = await renderFieldForm({
+        schema: typelessGridRowsOneOfSchema,
+        initialValue: { grid: [["a", "b"], ["c"]] },
+      });
+
+      await userEvent.selectOptions(page.getByRole("combobox").first(), "B");
+
+      expectValue(form, { grid: [["a", "b"], ["c"]] });
+    });
+
+    test("keeps grid rows when switching to no items", async () => {
+      const { form } = await renderFieldForm({
+        schema: noItemsGridRowsOneOfSchema,
+        initialValue: { grid: [["a", "b"], ["c"]] },
+      });
+
+      await userEvent.selectOptions(page.getByRole("combobox").first(), "B");
+
+      expectValue(form, { grid: [["a", "b"], ["c"]] });
+    });
+
+    test("keeps grid rows when switching to nullable cells", async () => {
+      const { form } = await renderFieldForm({
+        schema: nullableGridRowsOneOfSchema,
+        initialValue: { grid: [["a", "b"], ["c"]] },
+      });
+
+      await userEvent.selectOptions(page.getByRole("combobox").first(), "B");
+
+      expectValue(form, { grid: [["a", "b"], ["c"]] });
+    });
+  });
+
+  describe("root option with a conditional (rjsf#5567)", () => {
+    test("keeps what is typed into a root option when another option holds a conditional", async () => {
+      const { form } = await renderFieldForm({
+        schema: rootConditionalOneOfSchema,
+      });
+
+      await userEvent.fill(page.getByRole("textbox").first(), "Fi");
+
+      expectValue(form, { animal: "Fi" });
     });
   });
 

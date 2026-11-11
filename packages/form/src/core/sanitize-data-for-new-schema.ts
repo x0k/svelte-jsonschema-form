@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
+import { isSchemaObject } from "#lib/json-schema/index.js";
 import { setOwn } from "#lib/object.js";
 
 import { isSchemaDeepEqual, isSchemaValueDeepEqual } from "./deep-equal.js";
@@ -14,11 +15,73 @@ import {
   type SchemaObjectValue,
   type SchemaValue,
 } from "./schema.js";
+import { getSimpleSchemaType } from "./type.js";
 import type { Validator } from "./validator.js";
 import { isSchemaObjectValue } from "./value.js";
 
 const NO_VALUE = Symbol("no Value");
 const NO_OPTIONS: SchemaValue[] = [];
+
+/**
+ * Whether two schemas' `type`s name the same types, ported from RJSF: a list
+ * is compared by what it names rather than by identity or order, since
+ * `['null', 'string']` allows what `['string', 'null']` does.
+ */
+function isSameType(oldType: Schema["type"], newType: Schema["type"]): boolean {
+  if (oldType === newType) {
+    return true;
+  }
+  if (!Array.isArray(oldType) || !Array.isArray(newType)) {
+    return false;
+  }
+  const newTypes = new Set(newType);
+  const oldTypes = new Set(oldType);
+  return (
+    oldTypes.size === newTypes.size &&
+    oldType.every((type) => newTypes.has(type))
+  );
+}
+
+/**
+ * Lists the values a schema's `enum`, `const`, or constant options describe, or
+ * `undefined` where it describes no closed list. Ported from RJSF's
+ * `enumValuesForSchema()` for array items, where RJSF filters a whole item
+ * against any value an option lists. Property replacement keeps using
+ * `getSelectOptionValuesSafe()`, as SJSF reads a `oneOf`/`anyOf` option listing
+ * several values as no enum-like list at all, so a field keeps its data.
+ *
+ * SJSF reads `oneOf` before `anyOf`, as `getSelectOptionValuesSafe()` does,
+ * where RJSF's `getXxxOfKey()` reads `anyOf` first.
+ */
+function enumValuesForSchema(schema: Schema): SchemaValue[] | undefined {
+  // An empty `enum` lists no value to check against, which is how the
+  // `oneOf`/`anyOf` below read one, so it offers no constraint rather than
+  // rejecting everything
+  if (Array.isArray(schema.enum) && schema.enum.length > 0) {
+    return schema.enum;
+  }
+  const altSchemas = schema.oneOf ?? schema.anyOf;
+  if (altSchemas === undefined) {
+    return undefined;
+  }
+  const values: SchemaValue[] = [];
+  for (const altSchema of altSchemas) {
+    // An option with neither a `const` nor an `enum` accepts values beyond the
+    // listed ones, so there is no list to check a value by
+    if (!isSchemaObject(altSchema)) {
+      return undefined;
+    }
+    // A `const` wins over an `enum` beside it, as RJSF reads the two
+    if (altSchema.const !== undefined) {
+      values.push(altSchema.const);
+    } else if (Array.isArray(altSchema.enum)) {
+      values.push(...altSchema.enum);
+    } else {
+      return undefined;
+    }
+  }
+  return values.length > 0 ? values : undefined;
+}
 
 function arrayConstRejects(
   newSchema: Schema,
@@ -36,6 +99,9 @@ function replacementForInvalidEnumValue(
   schema: Schema,
   formValue: SchemaValue | undefined
 ) {
+  // Read through the select helper rather than `enumValuesForSchema()`: an
+  // option listing several values is no enum-like list for SJSF, so a field
+  // that is not a select keeps its data
   const enumValues = getSelectOptionValuesSafe(schema) ?? NO_OPTIONS;
   if (
     enumValues.length === 0 ||
@@ -84,10 +150,57 @@ function sanitizeArrays(
     : retrieveSchema(validator, merger, newSchemaItemsRaw, rootSchema, data);
   const oldSchemaType = oldSchemaItems.type;
   const newSchemaType = newSchemaItems.type;
-  if (!oldSchemaType || oldSchemaType === newSchemaType) {
+
+  // Sanitizes a container item against the items schemas resolved for its own
+  // value, keeping one the new items allow as it is
+  const sanitizeContainerItem = (
+    newItemSchema: Schema,
+    item: SchemaValue | undefined,
+    isArrayItem: boolean
+  ): SchemaValue | undefined => {
+    const oldItemSchema = sameItemsSchema
+      ? newItemSchema
+      : retrieveSchema(validator, merger, oldSchemaItemsRaw, rootSchema, item);
+    if (arrayConstRejects(newItemSchema, oldItemSchema, item)) {
+      // An array const the old items did not declare rejects the item
+      return undefined;
+    }
+    if (
+      newItemSchema.const !== undefined &&
+      isSchemaValueDeepEqual(newItemSchema.const, item)
+    ) {
+      // An item equal to the items const is the only one it allows, so it is
+      // kept as it is rather than sanitized into one the const rejects
+      return item;
+    }
+    const sanitized = sanitizeDataForNewSchema(
+      validator,
+      merger,
+      rootSchema,
+      newItemSchema,
+      // Old items declaring no type describe no array to sanitize against, so
+      // an array element is read against the new items schema on both sides
+      // instead of being kept unsanitized for an old side holding no array
+      isArrayItem && !oldSchemaType ? newItemSchema : oldItemSchema,
+      item
+    );
+    // An array element the new items schema describes nothing for is kept as it
+    // is, as before, rather than dropped
+    return sanitized === undefined && isArrayItem ? item : sanitized;
+  };
+
+  if (!oldSchemaType || isSameType(oldSchemaType, newSchemaType)) {
     const maxItems = newSchema.maxItems ?? -1;
-    if (newSchemaType === "object" || newSchemaType === "array") {
-      const isObjectItems = newSchemaType === "object";
+    // The items' type is read through `getSimpleSchemaType()`, as a field reads it,
+    // so a type list that also allows `null` is sanitized as a plain container
+    // is, when it holds one: a `null` it allows stays as it is. Only a declared
+    // type counts, so a typeless `const` guessed as an array is not sanitized
+    // against `items` it does not declare.
+    const itemsType =
+      newSchemaType === undefined
+        ? undefined
+        : getSimpleSchemaType(newSchemaItems);
+    if (itemsType === "object" || itemsType === "array") {
       return data.reduce((newValue: SchemaArrayValue, item) => {
         if (maxItems >= 0 && newValue.length >= maxItems) {
           return newValue;
@@ -103,80 +216,35 @@ function sanitizeArrays(
           rootSchema,
           item
         );
-        const listedValues =
-          getSelectOptionValuesSafe(newItemSchema) ?? NO_OPTIONS;
+        const listedValues = enumValuesForSchema(newItemSchema);
+        // Only an array item under array items, or an object item under object items (or a value that is an
+        // object where the items' type list allows one), is a container to sanitize. Anything else the type list
+        // allows, such as a `null`, is kept as it is, as RJSF does (rjsf#5440)
+        const isContainerItem =
+          itemsType === "array"
+            ? Array.isArray(item)
+            : newSchemaType === "object" || isSchemaObjectValue(item);
         let itemValue: SchemaValue | undefined = item;
-        if (listedValues.length > 0) {
-          // An item the options list is one of them as a whole, so it is kept as it is, and one they don't
-          // list is dropped, as a scalar item is, whatever the old schema listed
+        if (listedValues !== undefined) {
+          // An item the options list is one of them as a whole, so it is kept
+          // as it is, and one they don't list is dropped, as a scalar item is,
+          // whatever the old schema listed
           itemValue = listedValues.some((v) => isSchemaValueDeepEqual(v, item))
             ? item
             : undefined;
-        } else if (isObjectItems) {
-          if (
-            isSchemaObjectValue(item) &&
-            newItemSchema.properties === undefined
-          ) {
-            // An object item whose schema declares no `properties` has none to
-            // prune, so it is kept as it is (#5736)
-            itemValue = item;
-          } else {
-            const oldItemSchema = sameItemsSchema
-              ? newItemSchema
-              : retrieveSchema(
-                  validator,
-                  merger,
-                  oldSchemaItemsRaw,
-                  rootSchema,
-                  item
-                );
-            if (arrayConstRejects(newItemSchema, oldItemSchema, item)) {
-              // An array const the old items did not declare rejects the item
-              itemValue = undefined;
-            } else if (
-              newItemSchema.const === undefined ||
-              !isSchemaValueDeepEqual(newItemSchema.const, item)
-            ) {
-              itemValue = sanitizeDataForNewSchema(
-                validator,
-                merger,
-                rootSchema,
-                newItemSchema,
-                oldItemSchema,
-                item
-              );
-            }
-          }
-        } else if (Array.isArray(item)) {
-          const oldItemSchema = sameItemsSchema
-            ? newItemSchema
-            : retrieveSchema(
-                validator,
-                merger,
-                oldSchemaItemsRaw,
-                rootSchema,
-                item
-              );
-          if (arrayConstRejects(newItemSchema, oldItemSchema, item)) {
-            // An array const the old items did not declare rejects the item
-            itemValue = undefined;
-          } else if (
-            newItemSchema.const === undefined ||
-            !isSchemaValueDeepEqual(newItemSchema.const, item)
-          ) {
-            // Old items declaring no type describe no array to sanitize against,
-            // so the element is read against the new items schema on both sides
-            // instead of being kept unsanitized for an old side holding no array
-            itemValue =
-              sanitizeDataForNewSchema(
-                validator,
-                merger,
-                rootSchema,
-                newItemSchema,
-                !oldSchemaType ? newItemSchema : oldItemSchema,
-                item
-              ) ?? item;
-          }
+        } else if (
+          isContainerItem &&
+          (itemsType === "array" || newItemSchema.properties !== undefined)
+        ) {
+          itemValue = sanitizeContainerItem(
+            newItemSchema,
+            item,
+            itemsType === "array"
+          );
+        } else if (isContainerItem) {
+          // An object item whose schema declares no `properties` has none to
+          // prune, so a plain object is kept as it is (#5736)
+          itemValue = isSchemaObjectValue(item) ? item : undefined;
         }
         if (itemValue !== undefined) {
           newValue.push(itemValue);
@@ -185,10 +253,9 @@ function sanitizeArrays(
       }, []);
     } else {
       // Filter out items that are no longer valid in the new items schema (e.g., enum values that changed)
-      const newItemEnumValues =
-        getSelectOptionValuesSafe(newSchemaItems) ?? NO_OPTIONS;
+      const newItemEnumValues = enumValuesForSchema(newSchemaItems);
       const filteredData =
-        newItemEnumValues.length > 0
+        newItemEnumValues !== undefined
           ? data.filter((item) =>
               newItemEnumValues.some((v) => isSchemaValueDeepEqual(v, item))
             )
@@ -265,25 +332,37 @@ export function sanitizeDataForNewSchema(
 
       const oldSchemaTypeForKey = oldKeyedSchema.type;
       const newSchemaTypeForKey = newKeyedSchema.type;
-      if (!oldSchemaTypeForKey || oldSchemaTypeForKey === newSchemaTypeForKey) {
+      if (
+        !oldSchemaTypeForKey ||
+        isSameType(oldSchemaTypeForKey, newSchemaTypeForKey)
+      ) {
         if (Object.hasOwn(removeOldSchemaData, key)) {
           delete removeOldSchemaData[key];
         }
-        if (
+        // A container is read through `getSimpleSchemaType()`, as the array items
+        // below read it, so a type list that also allows `null` is sanitized
+        // as a plain object or array is when it holds one, and a `null` it
+        // allows stays as it is. Only a declared type counts, so a schema
+        // guessed from `const` is not read as a container here.
+        const containerType =
+          newSchemaTypeForKey === undefined
+            ? undefined
+            : getSimpleSchemaType(newKeyedSchema);
+        const isArrayValue =
+          containerType === "array" && Array.isArray(formValue);
+        const isObjectValue =
           newSchemaTypeForKey === "object" ||
-          (newSchemaTypeForKey === "array" && Array.isArray(formValue))
-        ) {
+          (containerType === "object" && isSchemaObjectValue(formValue));
+        if (isObjectValue || isArrayValue) {
           const itemData = sanitizeDataForNewSchema(
             validator,
             merger,
             rootSchema,
             newKeyedSchema,
-            isNewProperty && newSchemaTypeForKey === "array"
-              ? newKeyedSchema
-              : oldKeyedSchema,
+            isNewProperty && isArrayValue ? newKeyedSchema : oldKeyedSchema,
             formValue
           );
-          if (itemData !== undefined || newSchemaTypeForKey === "array") {
+          if (itemData !== undefined || isArrayValue) {
             setOwn(nestedData, key, itemData);
           }
         } else {
