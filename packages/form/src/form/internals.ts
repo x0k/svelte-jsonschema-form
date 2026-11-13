@@ -22,15 +22,12 @@ export const FORM_KEYED_ARRAYS = Symbol("form-keyed-arrays");
 export const FORM_FIELDS_VALIDATION_MODE = Symbol(
   "form-fields-validation-mode"
 );
-export const FORM_SCHEMA = Symbol("form-schema");
 export const FORM_RETRIEVED_SCHEMA = Symbol("form-retrieved-schema");
 export const FORM_ROOT_PATH = Symbol("form-root-path");
 export const FORM_UI_SCHEMA_ROOT = Symbol("form-ui-schema-root");
 export const FORM_UI_SCHEMA = Symbol("form-ui-schema");
 export const FORM_UI_OPTIONS_REGISTRY = Symbol("form-ui-options-registry");
 export const FORM_UI_EXTRA_OPTIONS = Symbol("form-ui-extra-options");
-export const FORM_VALIDATOR = Symbol("form-validator");
-export const FORM_MERGER = Symbol("form-merger");
 export const FORM_ID_BUILDER = Symbol("form-id-builder");
 export const FORM_ICONS = Symbol("form-icons");
 export const FORM_DISABLED = Symbol("form-disabled");

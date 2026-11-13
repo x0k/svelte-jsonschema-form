@@ -1,8 +1,10 @@
 import { untrack } from "svelte";
 
+import { CORE_VALIDATOR } from "#core/internals.js";
+
 import type { Config } from "../config.js";
 import { InvalidValidatorError } from "../errors.js";
-import { FORM_FIELDS_VALIDATION_MODE, FORM_VALIDATOR } from "../internals.js";
+import { FORM_FIELDS_VALIDATION_MODE } from "../internals.js";
 import type { FormValue } from "../model.js";
 import {
   isAdditionalPropertyKeyValidator,
@@ -42,7 +44,7 @@ export function validateAdditionalPropertyKey<T>(
   fieldConfig: Config
 ) {
   return untrack(() => {
-    const validator = ctx[FORM_VALIDATOR];
+    const validator = ctx[CORE_VALIDATOR];
     if (!isAdditionalPropertyKeyValidator(validator)) {
       return true;
     }
@@ -61,7 +63,7 @@ export async function validateFileList<T>(
   fileList: FileList
 ): Promise<boolean> {
   const errors = await untrack(() => {
-    const validator = ctx[FORM_VALIDATOR];
+    const validator = ctx[CORE_VALIDATOR];
     if (!isAsyncFileListValidator(validator)) {
       return true;
     }
@@ -74,7 +76,7 @@ export async function validateFileList<T>(
  * @query
  */
 export function validateFormValue<T>(ctx: FormState<T>) {
-  const validator = ctx[FORM_VALIDATOR];
+  const validator = ctx[CORE_VALIDATOR];
   if (!isFormValueValidator<typeof validator, T>(validator)) {
     throw new InvalidValidatorError(`expected sync from validator`);
   }
@@ -88,7 +90,7 @@ export function validateFormValueAsync<T>(
   ctx: FormState<T>,
   signal: AbortSignal
 ) {
-  const validator = ctx[FORM_VALIDATOR];
+  const validator = ctx[CORE_VALIDATOR];
   if (!isAsyncFormValueValidator<typeof validator, T>(validator)) {
     throw new InvalidValidatorError(`expected async form validator`);
   }

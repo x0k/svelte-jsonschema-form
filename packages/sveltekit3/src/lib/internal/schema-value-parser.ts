@@ -8,6 +8,7 @@ import {
   type UiSchemaRoot,
 } from "@sjsf/form";
 import {
+  createCoreContext,
   getClosestMatchingOption,
   getDiscriminatorFieldFromSchema,
   getSimpleSchemaType,
@@ -61,6 +62,7 @@ export function parseSchemaValue<T>(
     codec: { encode, decode },
   }: SchemaValueParserOptions<T>
 ): Promise<SchemaValue | undefined> {
+  const ctx = createCoreContext({ validator, merger, rootSchema });
   const escapedPropertySeparator = escapeRegex(idSeparator);
   const escapedIndexSeparator = escapeRegex(idIndexSeparator);
   const escapedPseudoSeparator = escapeRegex(idPseudoSeparator);
@@ -212,7 +214,7 @@ export function parseSchemaValue<T>(
     let knownProperties: Set<string>;
     const keyStart = pathStr.length + idSeparator.length;
     if (patternProperties !== undefined) {
-      knownProperties ??= new Set(getKnownProperties(schema, rootSchema));
+      knownProperties ??= new Set(getKnownProperties(ctx, schema));
       const encodedKeyToNewDecodedKey = new Map<string, string>();
       const patterns = compilePatterns(patternProperties);
       for (const entry of entriesStack[entriesStack.length - 1]) {
@@ -278,7 +280,7 @@ export function parseSchemaValue<T>(
       }
     }
     if (additionalProperties) {
-      knownProperties ??= new Set(getKnownProperties(schema, rootSchema));
+      knownProperties ??= new Set(getKnownProperties(ctx, schema));
       const encodedKeyToNewDecodedKey = new Map<string, string>();
       for (const entry of entriesStack[entriesStack.length - 1]) {
         const str = entry[0];
@@ -439,16 +441,14 @@ export function parseSchemaValue<T>(
     schema: Schema,
     value: SchemaValue | undefined
   ) {
-    if (isSelect(validator, merger, schema, rootSchema)) {
+    if (isSelect(ctx, schema)) {
       return value;
     }
     pushFilterAndEntries(escapedPseudoSeparator, encode(element), element);
     const bestIndex =
       ((await convert({ type: "integer" }, {})) as number | undefined) ??
       getClosestMatchingOption(
-        validator,
-        merger,
-        rootSchema,
+        ctx,
         value,
         schemas.map((def) => {
           if (typeof def === "boolean") {
@@ -519,7 +519,7 @@ export function parseSchemaValue<T>(
     }
     const { $ref: ref } = schema;
     if (ref !== undefined) {
-      return parseSchemaDef(resolveRef(ref, rootSchema), uiSchema, value);
+      return parseSchemaDef(resolveRef(ctx, ref), uiSchema, value);
     }
     // NOTE: We can execute `handleCombination` before `parseObject` because:
     // - correct schema index is stored under `oneof/anyof` pseduoelement

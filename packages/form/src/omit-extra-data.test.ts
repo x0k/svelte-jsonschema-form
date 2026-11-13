@@ -1,8 +1,11 @@
 import { describe, expect, it, beforeEach } from "vitest";
 
 import type { Merger, Schema, SchemaValue, Validator } from "./core/index.js";
-import { createMerger } from "./core/test-merger.js";
-import { createValidator } from "./core/test-validator.js";
+import {
+  createMerger,
+  createTestContext,
+  createValidator,
+} from "./core/testing.js";
 import { omitExtraData as originalOmitExtraData } from "./omit-extra-data.js";
 
 function omitExtraData(
@@ -12,7 +15,10 @@ function omitExtraData(
   value: SchemaValue | undefined
 ) {
   const clone = structuredClone(value);
-  const result = originalOmitExtraData(validator, merger, rootSchema, value);
+  const result = originalOmitExtraData(
+    createTestContext({ validator, merger, rootSchema }),
+    value
+  );
   expect(value).toEqual(clone);
   return result;
 }

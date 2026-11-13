@@ -6,11 +6,16 @@ import { array } from "#lib/array.js";
 import { isJsonSchemaType } from "#lib/json-schema/index.js";
 import { getOwn, isRecordEmpty, setOwn } from "#lib/object.js";
 
+import {
+  isValid,
+  mergeAllOf,
+  mergeSchemas,
+  type CoreContext,
+} from "./context.js";
 import { isSchemaDeepEqual } from "./deep-equal.js";
 import { findSchemaDefinition } from "./definitions.js";
 import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
 import { getFirstMatchingOption } from "./matching.js";
-import type { Merger } from "./merger.js";
 import {
   ADDITIONAL_PROPERTY_FLAG,
   ALL_OF_KEY,
@@ -29,7 +34,6 @@ import {
   type SchemaWithProperties,
 } from "./schema.js";
 import { typeOfValue } from "./type.js";
-import type { Validator } from "./validator.js";
 import { isSchemaObjectValue } from "./value.js";
 
 // Backstop for the `resolveReference` <-> `retrieveSchemaInternal` loop: with
@@ -55,18 +59,14 @@ export function createConditionSchema(
 }
 
 export function retrieveSchema(
-  validator: Validator,
-  merger: Merger,
+  ctx: CoreContext,
   schema: Schema,
-  rootSchema: Schema = {},
   formData?: SchemaValue,
   resolveAnyOfOrOneOfRefs = false
 ): Schema {
   return retrieveSchemaInternal(
-    validator,
-    merger,
+    ctx,
     schema,
-    rootSchema,
     formData,
     undefined,
     resolveAnyOfOrOneOfRefs
@@ -74,9 +74,8 @@ export function retrieveSchema(
 }
 
 export function resolveAllReferences(
-  merger: Merger,
+  ctx: CoreContext,
   schema: Schema,
-  rootSchema: Schema,
   stack = new Set<string>(),
   resolveAnyOfOrOneOfRefs?: boolean,
   expandedRefs?: string[],
@@ -93,14 +92,13 @@ export function resolveAllReferences(
     path.add(ref);
     expandedRefs?.push(ref);
     const { [REF_KEY]: _, ...resolvedSchemaWithoutRef } = resolvedSchema;
-    const schemaDef = findSchemaDefinition(merger, ref, rootSchema);
+    const schemaDef = findSchemaDefinition(ctx, ref);
     return {
       ...resolveAllReferences(
-        merger,
+        ctx,
         isRecordEmpty(resolvedSchemaWithoutRef)
           ? schemaDef
-          : merger.mergeSchemas(schemaDef, resolvedSchemaWithoutRef),
-        rootSchema,
+          : mergeSchemas(ctx, schemaDef, resolvedSchemaWithoutRef),
         path,
         resolveAnyOfOrOneOfRefs,
         expandedRefs,
@@ -132,9 +130,8 @@ export function resolveAllReferences(
         resolvedProps.set(
           key,
           resolveAllReferences(
-            merger,
+            ctx,
             value,
-            rootSchema,
             path,
             resolveAnyOfOrOneOfRefs,
             expandedRefs,
@@ -154,9 +151,8 @@ export function resolveAllReferences(
     resolvedSchema = {
       ...resolvedSchema,
       items: resolveAllReferences(
-        merger,
+        ctx,
         items,
-        rootSchema,
         path,
         resolveAnyOfOrOneOfRefs,
         expandedRefs,
@@ -184,9 +180,8 @@ export function resolveAllReferences(
           }
           const expandedBefore = expandedRefs?.length ?? 0;
           const option = resolveAllReferences(
-            merger,
+            ctx,
             s,
-            rootSchema,
             optionsPath,
             resolveAnyOfOrOneOfRefs,
             expandedRefs,
@@ -227,10 +222,8 @@ function enclosingRefPath(
 }
 
 export function resolveReference(
-  validator: Validator,
-  merger: Merger,
+  ctx: CoreContext,
   schema: Schema,
-  rootSchema: Schema,
   stack: Set<string>,
   formData?: SchemaValue,
   resolveAnyOfOrOneOfRefs?: boolean,
@@ -245,9 +238,8 @@ export function resolveReference(
   }
   const expandedRefs: string[] = [];
   const resolvedSchema = resolveAllReferences(
-    merger,
+    ctx,
     schema,
-    rootSchema,
     stack,
     resolveAnyOfOrOneOfRefs,
     expandedRefs,
@@ -255,10 +247,8 @@ export function resolveReference(
   );
   if (!isSchemaDeepEqual(schema, resolvedSchema)) {
     return retrieveSchemaInternal(
-      validator,
-      merger,
+      ctx,
       resolvedSchema,
-      rootSchema,
       formData,
       stack,
       resolveAnyOfOrOneOfRefs,
@@ -273,10 +263,8 @@ export function resolveReference(
  * @private
  */
 export function retrieveSchemaInternal(
-  validator: Validator,
-  merger: Merger,
+  ctx: CoreContext,
   schema: Schema,
-  rootSchema: Schema,
   formData?: SchemaValue,
   stack = new Set<string>(),
   resolveAnyOfOrOneOfRefs?: boolean,
@@ -284,10 +272,8 @@ export function retrieveSchemaInternal(
   passCount = 0
 ): Schema[] {
   const resolvedSchemas = resolveSchema(
-    validator,
-    merger,
+    ctx,
     schema,
-    rootSchema,
     stack,
     formData,
     resolveAnyOfOrOneOfRefs,
@@ -298,10 +284,8 @@ export function retrieveSchemaInternal(
     let resolvedSchema = s;
     if (IF_KEY in resolvedSchema) {
       return resolveCondition(
-        validator,
-        merger,
+        ctx,
         resolvedSchema,
-        rootSchema,
         stack,
         formData,
         preserveDependencies,
@@ -313,7 +297,7 @@ export function retrieveSchemaInternal(
       // resolve allOf schemas
       try {
         // CHANGED: No need for `contains` workaround this with modern merger
-        resolvedSchema = merger.mergeAllOf(resolvedSchema);
+        resolvedSchema = mergeAllOf(ctx, resolvedSchema);
       } catch (e) {
         console.warn("could not merge subschemas in allOf:\n", e);
         const { allOf, ...resolvedSchemaWithoutAllOf } = resolvedSchema;
@@ -342,10 +326,8 @@ export function retrieveSchemaInternal(
             properties,
             key,
             retrieveSchemaInternal(
-              validator,
-              merger,
+              ctx,
               { allOf: matchingProperties },
-              rootSchema,
               formDataIsSchemaObjectValue ? formData[key] : undefined,
               undefined,
               undefined,
@@ -356,23 +338,19 @@ export function retrieveSchemaInternal(
       }
     }
     return stubExistingAdditionalProperties(
-      validator,
-      merger,
+      ctx,
       {
         ...resolvedSchema,
         properties,
       },
-      rootSchema,
       formDataIsSchemaObjectValue ? formData : undefined
     );
   });
 }
 
 export function resolveCondition(
-  validator: Validator,
-  merger: Merger,
+  ctx: CoreContext,
   schema: Schema,
-  rootSchema: Schema,
   stack: Set<string>,
   formData?: SchemaValue,
   preserveDependencies = false,
@@ -388,17 +366,15 @@ export function resolveCondition(
   // ignore non-objects, so a `null` would satisfy `if: { required: ["a"] }` and
   // take `then` for an object with no data.
   const conditionValue =
-    expression !== undefined && validator.isValid(expression, formData ?? {});
+    expression !== undefined && isValid(ctx, expression, formData ?? {});
   let resolvedSchemas = [resolvedSchemaLessConditional];
   let schemas: Schema[] = [];
   const conditionalSchema = conditionValue ? then : otherwise;
   if (conditionalSchema !== undefined) {
     schemas = schemas.concat(
       retrieveSchemaInternal(
-        validator,
-        merger,
+        ctx,
         normalizeBooleanSchema(conditionalSchema),
-        rootSchema,
         formData,
         enclosingRefPath(schema, stack, passCount),
         undefined,
@@ -410,16 +386,12 @@ export function resolveCondition(
   if (schemas.length) {
     resolvedSchemas = isRecordEmpty(resolvedSchemaLessConditional)
       ? schemas
-      : schemas.map((s) =>
-          merger.mergeSchemas(resolvedSchemaLessConditional, s)
-        );
+      : schemas.map((s) => mergeSchemas(ctx, resolvedSchemaLessConditional, s));
   }
   return resolvedSchemas.flatMap((s) =>
     retrieveSchemaInternal(
-      validator,
-      merger,
+      ctx,
       s,
-      rootSchema,
       formData,
       stack,
       undefined,
@@ -433,10 +405,8 @@ export function resolveCondition(
  * WARN: This function will mutate `schema.properties` property
  */
 export function stubExistingAdditionalProperties(
-  validator: Validator,
-  merger: Merger,
+  ctx: CoreContext,
   schema: SchemaWithProperties,
-  rootSchema: Schema,
   formData: SchemaObjectValue | undefined
 ): Schema {
   const { additionalProperties, patternProperties } = schema;
@@ -456,10 +426,8 @@ export function stubExistingAdditionalProperties(
         // TODO: Check if the shallow clone can be returned directly
         return {
           ...retrieveSchema(
-            validator,
-            merger,
+            ctx,
             { allOf: matchingProperties },
-            rootSchema,
             formData?.[key]
           ),
         };
@@ -469,10 +437,8 @@ export function stubExistingAdditionalProperties(
       if (REF_KEY in additionalProperties) {
         return {
           ...retrieveSchema(
-            validator,
-            merger,
+            ctx,
             { $ref: additionalProperties[REF_KEY] },
-            rootSchema,
             formData?.[key]
           ),
         };
@@ -517,10 +483,8 @@ export function stubExistingAdditionalProperties(
 }
 
 export function resolveSchema(
-  validator: Validator,
-  merger: Merger,
+  ctx: CoreContext,
   schema: Schema,
-  rootSchema: Schema,
   stack: Set<string>,
   formData?: SchemaValue,
   resolveAnyOfOrOneOfRefs?: boolean,
@@ -528,10 +492,8 @@ export function resolveSchema(
   passCount = 0
 ): Schema[] {
   const updatedSchemas = resolveReference(
-    validator,
-    merger,
+    ctx,
     schema,
-    rootSchema,
     stack,
     formData,
     resolveAnyOfOrOneOfRefs,
@@ -543,20 +505,16 @@ export function resolveSchema(
   }
   if (DEPENDENCIES_KEY in schema && !preserveDependencies) {
     const resolvedSchemas = resolveDependencies(
-      validator,
-      merger,
+      ctx,
       schema,
-      rootSchema,
       stack,
       formData,
       passCount
     );
     return resolvedSchemas.flatMap((s) => {
       return retrieveSchemaInternal(
-        validator,
-        merger,
+        ctx,
         s,
-        rootSchema,
         formData,
         stack,
         undefined,
@@ -570,10 +528,8 @@ export function resolveSchema(
       .filter((s): s is Schema => typeof s !== "boolean")
       .map((allOfSubSchema) =>
         retrieveSchemaInternal(
-          validator,
-          merger,
+          ctx,
           allOfSubSchema,
-          rootSchema,
           formData,
           enclosingRefPath(schema, stack, passCount),
           undefined,
@@ -592,29 +548,23 @@ export function resolveSchema(
 }
 
 export function resolveDependencies(
-  validator: Validator,
-  merger: Merger,
+  ctx: CoreContext,
   schema: Schema,
-  rootSchema: Schema,
   stack: Set<string>,
   formData?: SchemaValue,
   passCount = 0
 ): Schema[] {
   const { dependencies, ...remainingSchema } = schema;
   const resolvedSchemas = resolveAnyOrOneOfSchemas(
-    validator,
-    merger,
+    ctx,
     remainingSchema,
-    rootSchema,
     formData
   );
   return resolvedSchemas.flatMap((resolvedSchema) =>
     processDependencies(
-      validator,
-      merger,
+      ctx,
       dependencies,
       resolvedSchema,
-      rootSchema,
       stack,
       formData,
       passCount
@@ -623,10 +573,8 @@ export function resolveDependencies(
 }
 
 export function resolveAnyOrOneOfSchemas(
-  validator: Validator,
-  merger: Merger,
+  ctx: CoreContext,
   schema: Schema,
-  rootSchema: Schema,
   rawFormData?: SchemaValue
 ) {
   let anyOrOneOf: Schema[] | undefined;
@@ -642,11 +590,11 @@ export function resolveAnyOrOneOfSchemas(
     anyOrOneOf = anyOrOneOf.map((s) => {
       // Due to anyOf/oneOf possibly using the same $ref we always pass a fresh recurse list array so that each option
       // can resolve recursive references independently
-      return resolveAllReferences(merger, s, rootSchema);
+      return resolveAllReferences(ctx, s);
     });
     // Call this to trigger the set of isValid() calls that the schema parser will need
     const option = getFirstMatchingOption(
-      validator,
+      ctx,
       formData,
       anyOrOneOf,
       discriminator
@@ -654,17 +602,15 @@ export function resolveAnyOrOneOfSchemas(
     const isRemainingEmpty = isRecordEmpty(remaining);
     schema = isRemainingEmpty
       ? anyOrOneOf[option]!
-      : merger.mergeSchemas(remaining, anyOrOneOf[option]!);
+      : mergeSchemas(ctx, remaining, anyOrOneOf[option]!);
   }
   return [schema];
 }
 
 export function processDependencies(
-  validator: Validator,
-  merger: Merger,
+  ctx: CoreContext,
   dependencies: Schema[typeof DEPENDENCIES_KEY],
   resolvedSchema: Schema,
-  rootSchema: Schema,
   stack: Set<string>,
   formData?: SchemaValue,
   passCount = 0
@@ -689,15 +635,13 @@ export function processDependencies(
     const { [dependencyKey]: dependencyValue, ...remainingDependencies } =
       dependencies;
     if (Array.isArray(dependencyValue)) {
-      schemas[0] = merger.mergeSchemas(resolvedSchema, {
+      schemas[0] = mergeSchemas(ctx, resolvedSchema, {
         required: dependencyValue,
       });
     } else if (typeof dependencyValue !== "boolean" && dependencyValue) {
       schemas = withDependentSchema(
-        validator,
-        merger,
+        ctx,
         resolvedSchema,
-        rootSchema,
         dependencyKey,
         dependencyValue,
         stack,
@@ -707,11 +651,9 @@ export function processDependencies(
     }
     return schemas.flatMap((schema) =>
       processDependencies(
-        validator,
-        merger,
+        ctx,
         remainingDependencies,
         schema,
-        rootSchema,
         stack,
         formData,
         passCount
@@ -722,10 +664,8 @@ export function processDependencies(
 }
 
 export function withDependentSchema(
-  validator: Validator,
-  merger: Merger,
+  ctx: CoreContext,
   schema: Schema,
-  rootSchema: Schema,
   dependencyKey: string,
   dependencyValue: Schema,
   stack: Set<string>,
@@ -733,10 +673,8 @@ export function withDependentSchema(
   passCount = 0
 ): Schema[] {
   const dependentSchemas = retrieveSchemaInternal(
-    validator,
-    merger,
+    ctx,
     dependencyValue,
-    rootSchema,
     formData,
     enclosingRefPath(schema, stack, passCount),
     undefined,
@@ -747,7 +685,7 @@ export function withDependentSchema(
     const { oneOf, ...dependentSchema } = dependent;
     const mergedSchema = isRecordEmpty(dependentSchema)
       ? schema
-      : merger.mergeSchemas(schema, dependentSchema);
+      : mergeSchemas(ctx, schema, dependentSchema);
     // Since it does not contain oneOf, we return the original schema.
     if (oneOf === undefined) {
       return mergedSchema;
@@ -758,10 +696,8 @@ export function withDependentSchema(
         return [subschema];
       }
       return resolveReference(
-        validator,
-        merger,
+        ctx,
         subschema,
-        rootSchema,
         enclosingRefPath(schema, stack, passCount),
         formData,
         undefined,
@@ -772,10 +708,8 @@ export function withDependentSchema(
     const allPermutations = getAllPermutationsOfXxxOf(resolvedOneOfs);
     return allPermutations.flatMap((resolvedOneOf) =>
       withExactlyOneSubSchema(
-        validator,
-        merger,
+        ctx,
         mergedSchema,
-        rootSchema,
         dependencyKey,
         resolvedOneOf,
         stack,
@@ -787,10 +721,8 @@ export function withDependentSchema(
 }
 
 export function withExactlyOneSubSchema(
-  validator: Validator,
-  merger: Merger,
+  ctx: CoreContext,
   schema: Schema,
-  rootSchema: Schema,
   dependencyKey: string,
   oneOf: Exclude<Schema["oneOf"], undefined>,
   stack: Set<string>,
@@ -808,7 +740,8 @@ export function withExactlyOneSubSchema(
       }
       const { [dependencyKey]: conditionPropertySchema } = subschema.properties;
       if (conditionPropertySchema) {
-        return validator.isValid(
+        return isValid(
+          ctx,
           createConditionSchema(dependencyKey, conditionPropertySchema),
           formData
         );
@@ -828,17 +761,15 @@ export function withExactlyOneSubSchema(
     const { [dependencyKey]: _, ...dependentSubSchema } = subschema.properties;
     const dependentSchema = { ...subschema, properties: dependentSubSchema };
     const schemas = retrieveSchemaInternal(
-      validator,
-      merger,
+      ctx,
       dependentSchema,
-      rootSchema,
       formData,
       enclosingRefPath(schema, stack, passCount),
       undefined,
       undefined,
       passCount > 0 ? 1 : 0
     );
-    return schemas.map((s) => merger.mergeSchemas(schema, s));
+    return schemas.map((s) => mergeSchemas(ctx, schema, s));
   });
 }
 

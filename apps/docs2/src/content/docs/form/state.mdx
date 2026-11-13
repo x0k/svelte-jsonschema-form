@@ -42,7 +42,15 @@ export interface FormErrors extends Iterable<[FieldPath, string[]]> {
   hasErrors(): boolean;
 }
 
-export interface FormState<T> {
+// Dependencies shared by the core schema helpers. The symbol keys are private
+// to the package; use the context functions instead of reading them.
+export interface CoreContext {
+  readonly [CORE_VALIDATOR]: Validator;
+  readonly [CORE_MERGER]: Merger;
+  readonly [CORE_ROOT_SCHEMA]: Schema;
+}
+
+export interface FormState<T> extends CoreContext {
   readonly validation: FormValidation<T>;
   readonly fieldsValidation: FieldsValidation;
 
@@ -59,14 +67,14 @@ export interface FormState<T> {
   readonly [FORM_MARK_SCHEMA_CHANGE]: () => void;
   readonly [FORM_KEYED_ARRAYS]: KeyedArraysMap;
   readonly [FORM_FIELDS_VALIDATION_MODE]: number;
-  readonly [FORM_SCHEMA]: Schema;
+  readonly [CORE_ROOT_SCHEMA]: Schema;
   readonly [FORM_RETRIEVED_SCHEMA]: Schema;
   readonly [FORM_UI_SCHEMA_ROOT]: UiSchemaRoot;
   readonly [FORM_UI_SCHEMA]: UiSchema;
   readonly [FORM_UI_OPTIONS_REGISTRY]: UiOptionsRegistry;
   readonly [FORM_UI_EXTRA_OPTIONS]?: ExtraUiOptions;
-  readonly [FORM_VALIDATOR]: FormValidator<T>;
-  readonly [FORM_MERGER]: FormMerger;
+  readonly [CORE_VALIDATOR]: FormValidator<T>;
+  readonly [CORE_MERGER]: FormMerger;
   readonly [FORM_ID_BUILDER]: FormIdBuilder;
   readonly [FORM_ICONS]?: Icons;
   readonly [FORM_DISABLED]: boolean;
@@ -79,6 +87,22 @@ export interface FormState<T> {
   readonly [FORM_CONFIGS_CACHE]: WeakMap<FieldPath, Config>;
 }
 ```
+
+`CoreContext` holds the dependencies every core schema helper needs. The
+dependencies are stored under internal symbols, so a `FormState` can satisfy
+the interface without exposing them as public properties. The `CORE_*` symbols
+shown above are not part of the `@sjsf/form/core` entry point; import them from
+`@sjsf/form/core/internals` if you build or inspect a context directly. The
+helpers read them through the free functions
+`isValid(ctx, schema, value)`, `mergeSchemas(ctx, a, b)`,
+`mergeAllOf(ctx, schema)`, `isValueDeepEqual(ctx, a, b)`,
+`resolveRef(ctx, ref)`, and `getRootSchema(ctx)`.
+
+Call `createCoreContext({ validator, merger, rootSchema })` to build a standalone
+context for a core helper when you do not have a `FormState`. Every core helper
+that needs these dependencies takes the context as its first argument, for
+example `retrieveSchema(ctx, schema, formData)` or
+`getDefaultFormState(ctx, schema, formData)`.
 
 ## Methods
 
@@ -180,11 +204,13 @@ since they are considered part of the supported API and follow semantic versioni
 
 For advanced cases, you may also access raw internals
 by importing symbols from `@sjsf/form/internals` and using them on a `FormState` instance.
+The core context symbols, needed to build or inspect a `CoreContext` directly,
+are available from `@sjsf/form/core/internals`.
 
 :::caution
 
-Symbols from `@sjsf/form/internals` and the internal state itself
-are not part of the public API.
+Symbols from `@sjsf/form/internals` and `@sjsf/form/core/internals`,
+as well as the internal state itself, are not part of the public API.
 They may change or be removed in any release, including patch versions.
 
 :::

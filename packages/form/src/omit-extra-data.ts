@@ -1,13 +1,15 @@
 import {
+  getRootSchema,
+  isValid,
+  mergeAllOf,
   resolveRef,
   getSimpleSchemaType,
   isSchemaObjectValue,
-  type Merger,
+  type CoreContext,
   type Schema,
   type SchemaDefinition,
   type SchemaObjectValue,
   type SchemaValue,
-  type Validator,
   type SchemaArrayValue,
   isSchemaArrayValue,
   isSelect,
@@ -47,9 +49,7 @@ function computeObjectSchema({
 type ObjectSchema = ReturnType<typeof computeObjectSchema>;
 
 export function omitExtraData(
-  validator: Validator,
-  merger: Merger,
-  rootSchema: Schema,
+  ctx: CoreContext,
   value: SchemaValue | undefined
 ): SchemaValue | undefined {
   function handleObject(
@@ -156,7 +156,7 @@ export function omitExtraData(
       return target;
     }
     const isThenBranch = isSchemaObject(condition)
-      ? validator.isValid(condition, source)
+      ? isValid(ctx, condition, source)
       : condition;
     const branch = isThenBranch ? then : otherwise;
     return branch === undefined ? target : omit(branch, source, target, false);
@@ -168,16 +168,11 @@ export function omitExtraData(
     source: SchemaValue | undefined,
     target: SchemaValue | undefined
   ) {
-    if (
-      !Array.isArray(oneOf) ||
-      isSelect(validator, merger, schema, rootSchema)
-    ) {
+    if (!Array.isArray(oneOf) || isSelect(ctx, schema)) {
       return target;
     }
     const bestIndex = getClosestMatchingOption(
-      validator,
-      merger,
-      rootSchema,
+      ctx,
       source,
       oneOf.map((d) =>
         isSchemaObject(d) && d.additionalProperties === false
@@ -253,15 +248,10 @@ export function omitExtraData(
     }
     const { $ref: ref, allOf } = schema;
     if (ref !== undefined) {
-      return omit(
-        resolveRef(ref, rootSchema),
-        source,
-        target,
-        materializeSource
-      );
+      return omit(resolveRef(ctx, ref), source, target, materializeSource);
     }
     if (allOf) {
-      schema = merger.mergeAllOf(schema);
+      schema = mergeAllOf(ctx, schema);
       // NOTE: When merging schemas with the keywords `if/then/else`,
       // `allOf` may remain
       const remainingAllOf = schema.allOf;
@@ -324,5 +314,5 @@ export function omitExtraData(
     return target ?? (materializeSource ? source : undefined);
   }
 
-  return omit(rootSchema, value);
+  return omit(getRootSchema(ctx), value);
 }

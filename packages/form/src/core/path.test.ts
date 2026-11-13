@@ -1,30 +1,21 @@
-import { describe, it, expect, beforeEach } from "vitest";
+import { describe, it, expect } from "vitest";
 
-import type { Merger } from "./merger.js";
 import { getSchemaDefinitionByPath, type RPath } from "./path.js";
 import type { Schema, SchemaValue } from "./schema.js";
-import { createMerger } from "./test-merger.js";
-import { createValidator } from "./test-validator.js";
-import type { Validator } from "./validator.js";
+import { createMerger, createTestContext } from "./testing.js";
 
 describe("getSchemaDefinitionByPath", () => {
-  let testValidator: Validator;
-  let defaultMerger: Merger;
-
-  beforeEach(() => {
-    testValidator = createValidator();
-    defaultMerger = createMerger();
-  });
-
   const get = (
     schema: Schema,
     path: RPath,
-    value: SchemaValue | undefined = undefined
+    value: SchemaValue | undefined = undefined,
+    merger = createMerger()
   ) =>
     getSchemaDefinitionByPath(
-      testValidator,
-      defaultMerger,
-      schema,
+      createTestContext({
+        merger,
+        rootSchema: schema,
+      }),
       schema,
       path,
       value
@@ -223,7 +214,7 @@ describe("getSchemaDefinitionByPath", () => {
         },
       ],
     };
-    defaultMerger = createMerger({
+    const defaultMerger = createMerger({
       allOfMerges: [
         {
           input: {
@@ -279,7 +270,7 @@ describe("getSchemaDefinitionByPath", () => {
         },
       ],
     });
-    const result = get(schema, ["water"]);
+    const result = get(schema, ["water"], undefined, defaultMerger);
     expect(result).toEqual({
       type: "string",
       enum: ["lake", "sea"],
@@ -294,23 +285,21 @@ describe("getSchemaDefinitionByPath", () => {
 
     // mergeAllOf() is attempted for any schema carrying `allOf`, so the test
     // merger needs a case; merging is not what this group of tests exercises
-    beforeEach(() => {
-      defaultMerger = createMerger({
-        allOfMerges: [{ input: schema, result: schema }],
-      });
+    const defaultMerger = createMerger({
+      allOfMerges: [{ input: schema, result: schema }],
     });
 
     // A path may descend into either group. Reading only one and stopping once it
     // yields nothing meant a property declared solely in the other was not found,
     // so its schema, its defaults and its id were all missing.
     it("finds a property declared only in the allOf branch", () => {
-      expect(get(schema, ["a"])).toEqual({
+      expect(get(schema, ["a"], undefined, defaultMerger)).toEqual({
         type: "string",
         title: "FROM-ALLOF",
       });
     });
     it("finds a property declared only in the oneOf branch", () => {
-      expect(get(schema, ["b"])).toEqual({
+      expect(get(schema, ["b"], undefined, defaultMerger)).toEqual({
         type: "string",
         title: "FROM-ONEOF",
       });
@@ -321,10 +310,13 @@ describe("getSchemaDefinitionByPath", () => {
         allOf: [{ properties: { x: { type: "string", title: "FROM-ALLOF" } } }],
         anyOf: [{ properties: { x: { type: "string", title: "FROM-ANYOF" } } }],
       };
-      defaultMerger = createMerger({
+      const defaultMerger = createMerger({
         allOfMerges: [{ input: both, result: both }],
       });
-      expect(get(both, ["x"])).toEqual({ type: "string", title: "FROM-ALLOF" });
+      expect(get(both, ["x"], undefined, defaultMerger)).toEqual({
+        type: "string",
+        title: "FROM-ALLOF",
+      });
     });
   });
 });

@@ -1,11 +1,12 @@
 import { isSchemaObject } from "#lib/json-schema/index.js";
 
+import { type CoreContext } from "./context.js";
 import { resolveRef } from "./definitions.js";
 import type { Schema } from "./schema.js";
 
 export function* getKnownProperties(
+  ctx: CoreContext,
   { $ref: ref, properties, dependencies, oneOf, allOf, anyOf }: Schema,
-  rootSchema: Schema,
   stack = new Set<string>()
 ): Generator<string> {
   if (ref) {
@@ -13,9 +14,9 @@ export function* getKnownProperties(
       return;
     }
     stack.add(ref);
-    const resolved = resolveRef(ref, rootSchema);
+    const resolved = resolveRef(ctx, ref);
     if (isSchemaObject(resolved)) {
-      yield* getKnownProperties(resolved, rootSchema, stack);
+      yield* getKnownProperties(ctx, resolved, stack);
     }
     return;
   }
@@ -28,7 +29,7 @@ export function* getKnownProperties(
     if (Array.isArray(alternatives)) {
       for (const alternative of alternatives) {
         if (isSchemaObject(alternative)) {
-          yield* getKnownProperties(alternative, rootSchema, stack);
+          yield* getKnownProperties(ctx, alternative, stack);
         }
       }
     }
@@ -36,7 +37,7 @@ export function* getKnownProperties(
   if (dependencies !== undefined) {
     for (const dependency of Object.values(dependencies)) {
       if (!Array.isArray(dependency) && isSchemaObject(dependency)) {
-        yield* getKnownProperties(dependency, rootSchema, stack);
+        yield* getKnownProperties(ctx, dependency, stack);
       }
     }
   }

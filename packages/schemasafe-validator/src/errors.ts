@@ -8,6 +8,7 @@ import type {
   Validator,
 } from "@sjsf/form";
 import {
+  createCoreContext,
   getSchemaDefinitionByPath,
   pathFromLocation,
   pathFromRef,
@@ -30,9 +31,7 @@ function extractKeywordValue(
     return String((schema as Record<string, unknown>)[keyword]);
   }
   const def = getSchemaDefinitionByPath(
-    validator,
-    merger,
-    rootSchema,
+    createCoreContext({ validator, merger, rootSchema }),
     rootSchema,
     instancePath,
     value

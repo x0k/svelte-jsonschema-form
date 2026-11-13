@@ -31,9 +31,11 @@ Some string formats has special meaning:
 The core entry point exports two helpers for local `$ref` values:
 
 ```typescript
-import { resolveRef, resolveRefSafe } from "@sjsf/form/core";
+import { createCoreContext, resolveRef, resolveRefSafe } from "@sjsf/form/core";
 
-const schema = resolveRef("#/definitions/address", rootSchema);
+const ctx = createCoreContext({ validator, merger, rootSchema });
+
+const schema = resolveRef(ctx, "#/definitions/address");
 const maybeSchema = resolveRefSafe("#/definitions/address", rootSchema);
 ```
 
@@ -42,6 +44,42 @@ const maybeSchema = resolveRefSafe("#/definitions/address", rootSchema);
 schema whose references you do not control. Both helpers accept a [JSON
 Pointer](https://datatracker.ietf.org/doc/html/rfc6901) in URI fragment
 identifier format and only read own properties.
+
+## Core context
+
+The schema helpers in `@sjsf/form/core` share their dependencies through a
+`CoreContext`. Create one when you call those helpers directly:
+
+```typescript
+import {
+  createCoreContext,
+  getDefaultFormState,
+  retrieveSchema,
+} from "@sjsf/form/core";
+
+const ctx = createCoreContext({
+  validator,
+  merger,
+  rootSchema: schema,
+});
+
+const retrieved = retrieveSchema(ctx, schema, formData);
+const defaults = getDefaultFormState(ctx, schema, formData);
+```
+
+The context stores its dependencies under internal symbols, so a `FormState` can
+implement the interface without exposing them as public properties. A `FormState`
+can therefore be passed anywhere a `CoreContext` is expected. The symbols
+are not part of the `@sjsf/form/core` entry point; import them from
+`@sjsf/form/core/internals` if you build or inspect a context directly. The
+operations they back are available as free functions with the context as their
+first argument:
+`isValid(ctx, schema, value)`, `mergeSchemas(ctx, a, b)`,
+`mergeAllOf(ctx, schema)`, `isValueDeepEqual(ctx, a, b)`,
+`resolveRef(ctx, ref)`, and `getRootSchema(ctx)`. Every core helper that needs
+the validator or merger takes the context as its first argument. `resolveRef`
+reads the root schema from the context too; `resolveRefSafe` stays a low-level
+pointer helper and continues to take the root schema directly.
 
 ## Details and limitations
 

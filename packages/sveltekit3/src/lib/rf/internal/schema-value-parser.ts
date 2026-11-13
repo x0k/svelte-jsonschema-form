@@ -7,6 +7,7 @@ import {
   type Validator,
 } from "@sjsf/form";
 import {
+  createCoreContext,
   getClosestMatchingOption,
   getDiscriminatorFieldFromSchema,
   getKnownProperties,
@@ -63,6 +64,7 @@ export async function parseSchemaValue<T>(
     codec: { encode, decode },
   }: SchemaValueParserOptions<T>
 ) {
+  const ctx = createCoreContext({ validator, merger, rootSchema });
   const path: Path = [];
   const inputStack: Input<T>[] = [input];
   const encodedPseudoPrefix = encode(pseudoPrefix);
@@ -236,7 +238,7 @@ export async function parseSchemaValue<T>(
     }
     let knownProperties: Set<string>;
     if (patternProperties !== undefined) {
-      knownProperties ??= new Set(getKnownProperties(schema, rootSchema));
+      knownProperties ??= new Set(getKnownProperties(ctx, schema));
       const encodedKeys = Object.keys(input);
       const originalLen = encodedKeys.length;
       let additionalKeys = keyInputStack[keyInputStack.length - 1] as
@@ -282,7 +284,7 @@ export async function parseSchemaValue<T>(
       }
     }
     if (additionalProperties) {
-      knownProperties ??= new Set(getKnownProperties(schema, rootSchema));
+      knownProperties ??= new Set(getKnownProperties(ctx, schema));
       const keys = Object.keys(input);
       let additionalKeys = keyInputStack[keyInputStack.length - 1] as
         | Record<string, Record<string, string>>
@@ -325,7 +327,7 @@ export async function parseSchemaValue<T>(
     schema: Schema,
     value: SchemaValue | undefined
   ) {
-    if (isSelect(validator, merger, schema, rootSchema)) {
+    if (isSelect(ctx, schema)) {
       return value;
     }
     const stack = COMBINATION_STACKS[element];
@@ -339,9 +341,7 @@ export async function parseSchemaValue<T>(
           )) as number | undefined)
         : undefined) ??
       getClosestMatchingOption(
-        validator,
-        merger,
-        rootSchema,
+        ctx,
         value,
         schemas.map((s) => {
           if (typeof s === "boolean") {
@@ -434,7 +434,7 @@ export async function parseSchemaValue<T>(
     }
     const { $ref: ref, oneOf, anyOf, allOf } = schema;
     if (ref !== undefined) {
-      return parseSchemaDef(resolveRef(ref, rootSchema), uiSchema, value);
+      return parseSchemaDef(resolveRef(ctx, ref), uiSchema, value);
     }
     if (oneOf) {
       value = await parseCombination(

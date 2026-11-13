@@ -1,4 +1,5 @@
 import {
+  createCoreContext,
   getDefaultFormState,
   isSchemaValueDeepEqual,
   type Experimental_DefaultFormStateBehavior,
@@ -57,11 +58,13 @@ export function createFormMerger(options: FormMergerOptions): FormMerger {
       includeUndefinedValues = false,
     }) {
       return getDefaultFormState(
-        options.validator,
-        formMerger,
+        createCoreContext({
+          validator: options.validator,
+          merger: formMerger,
+          rootSchema: options.schema,
+        }),
         schema,
         formData,
-        options.schema,
         includeUndefinedValues,
         options,
         initialDefaultsGenerated

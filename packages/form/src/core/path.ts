@@ -5,16 +5,15 @@ import {
 } from "#lib/json-schema/index.js";
 import { isRecord } from "#lib/object.js";
 
+import { mergeAllOf, type CoreContext } from "./context.js";
 import { resolveRef } from "./definitions.js";
 import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
 import { getClosestMatchingOption } from "./matching.js";
-import type { Merger } from "./merger.js";
 import {
   type Schema,
   type SchemaDefinition,
   type SchemaValue,
 } from "./schema.js";
-import type { Validator } from "./validator.js";
 import { isSchemaArrayValue, isSchemaObjectValue } from "./value.js";
 import { getSubSchemaOptions } from "./xxx-of-options.js";
 
@@ -72,9 +71,7 @@ export function pathFromLocation(location: string, data: unknown): Path {
 }
 
 export function getSchemaDefinitionByPath(
-  validator: Validator,
-  merger: Merger,
-  rootSchema: Schema,
+  ctx: CoreContext,
   schema: SchemaDefinition | undefined,
   path: RPath,
   value: SchemaValue | undefined
@@ -86,9 +83,7 @@ export function getSchemaDefinitionByPath(
     value: SchemaValue | undefined
   ) {
     const index = getClosestMatchingOption(
-      validator,
-      merger,
-      rootSchema,
+      ctx,
       value,
       schemaDefs,
       -1,
@@ -128,13 +123,13 @@ export function getSchemaDefinitionByPath(
       }
       if (schema.$ref) {
         return getSchemaDefinition(
-          resolveRef(schema.$ref, rootSchema),
+          resolveRef(ctx, schema.$ref),
           path.slice(i),
           value
         );
       }
       if (schema.allOf) {
-        const merged = merger.mergeAllOf(schema);
+        const merged = mergeAllOf(ctx, schema);
         // NOTE: In the case of merging schemas with `if/then/else`
         // keywords, `allOf` will remain in the schema, in which case
         // it is better to use the `alt` strategy.

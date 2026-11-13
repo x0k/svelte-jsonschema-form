@@ -9,7 +9,7 @@ import {
 } from "#lib/json-schema/index.js";
 import { isRecord, setOwn } from "#lib/object.js";
 
-import type { Merger } from "./merger.js";
+import { mergeSchemas, type CoreContext } from "./context.js";
 import {
   ADDITIONAL_ITEMS_KEY,
   ALL_OF_KEY,
@@ -124,7 +124,7 @@ const POSITIONAL_KEYWORDS: ReadonlySet<string> = new Set<string>([
 ] satisfies SchemaKey[]);
 
 function meetSchemas(
-  merger: Merger,
+  ctx: CoreContext,
   parent: SchemaObject,
   option: SchemaObject
 ): SchemaObject {
@@ -144,7 +144,7 @@ function meetSchemas(
         delete result[key];
       }
     } else if (Object.hasOwn(parent, key) && !CONDITIONAL_KEYWORDS.has(key)) {
-      setOwn(result, key, meetKeyword(merger, key, parent[key], optionValue));
+      setOwn(result, key, meetKeyword(ctx, key, parent[key], optionValue));
     }
   }
   const parentItems = parent[ITEMS_KEY];
@@ -160,7 +160,7 @@ function meetSchemas(
     setOwn(
       result,
       ADDITIONAL_ITEMS_KEY,
-      meetSchemaDefinition(merger, parentAdditionalItems, optionItems)
+      meetSchemaDefinition(ctx, parentAdditionalItems, optionItems)
     );
   } else if (
     isSchemaDefinition(parentItems) &&
@@ -171,7 +171,7 @@ function meetSchemas(
     setOwn(
       result,
       ADDITIONAL_ITEMS_KEY,
-      meetSchemaDefinition(merger, parentItems, optionAdditionalItems)
+      meetSchemaDefinition(ctx, parentItems, optionAdditionalItems)
     );
   }
   if (takesOptionConditional) {
@@ -185,7 +185,7 @@ function meetSchemas(
 }
 
 function meetKeyword(
-  merger: Merger,
+  ctx: CoreContext,
   key: string,
   parentValue: SchemaValue | undefined,
   optionValue: SchemaValue | undefined
@@ -218,7 +218,7 @@ function meetKeyword(
   }
   if (!isSubschemaKeyword(key)) {
     return isRecord(parentValue) && isRecord(optionValue)
-      ? merger.mergeSchemas(parentValue as Schema, optionValue as Schema)
+      ? mergeSchemas(ctx, parentValue as Schema, optionValue as Schema)
       : optionValue;
   }
   if (
@@ -235,7 +235,7 @@ function meetKeyword(
         setOwn(
           entries,
           name,
-          meetSubschema(merger, parentValue[name], optionEntry)
+          meetSubschema(ctx, parentValue[name], optionEntry)
         );
       }
     }
@@ -250,20 +250,20 @@ function meetKeyword(
       isSchemaDefinitionArray(parentValue) &&
       isSchemaDefinitionArray(optionValue)
     ) {
-      return meetTuples(merger, parentValue, optionValue);
+      return meetTuples(ctx, parentValue, optionValue);
     }
     if (isSchemaDefinitionArray(parentValue)) {
       return parentValue.map((position) =>
-        meetSubschema(merger, position, optionValue)
+        meetSubschema(ctx, position, optionValue)
       );
     }
     if (isSchemaDefinitionArray(optionValue)) {
       return optionValue.map((position) =>
-        meetSubschema(merger, parentValue, position)
+        meetSubschema(ctx, parentValue, position)
       );
     }
   }
-  return meetSubschema(merger, parentValue, optionValue);
+  return meetSubschema(ctx, parentValue, optionValue);
 }
 
 function isSchemaDefinition(
@@ -286,7 +286,7 @@ function isSchemaDefinitionArray(
 }
 
 function meetTuples(
-  merger: Merger,
+  ctx: CoreContext,
   parent: readonly (SchemaDefinition | undefined)[],
   option: readonly (SchemaDefinition | undefined)[]
 ): SchemaValueArray {
@@ -297,14 +297,14 @@ function meetTuples(
         return parent[index];
       }
       return index < parent.length
-        ? meetSubschema(merger, parent[index], option[index])
+        ? meetSubschema(ctx, parent[index], option[index])
         : option[index];
     }
   );
 }
 
 function meetSchemaDefinition(
-  merger: Merger,
+  ctx: CoreContext,
   parent: SchemaDefinition,
   option: SchemaDefinition
 ): SchemaDefinition {
@@ -316,11 +316,11 @@ function meetSchemaDefinition(
   }
   return Object.hasOwn(parent, REF_KEY) || Object.hasOwn(option, REF_KEY)
     ? { [ALL_OF_KEY]: [parent, option] }
-    : meetSchemas(merger, parent as SchemaObject, option as SchemaObject);
+    : meetSchemas(ctx, parent as SchemaObject, option as SchemaObject);
 }
 
 function meetSubschema(
-  merger: Merger,
+  ctx: CoreContext,
   parent: SchemaValue | undefined,
   option: SchemaValue | undefined
 ): SchemaValue | undefined {
@@ -339,7 +339,7 @@ function meetSubschema(
   if (!isSchemaDefinition(parent) || !isSchemaDefinition(option)) {
     return isSubschemaValue(option) ? option : undefined;
   }
-  return meetSchemaDefinition(merger, parent, option);
+  return meetSchemaDefinition(ctx, parent, option);
 }
 
 // CHANGED: Upstream reads the type with `getSchemaType()`, which infers it only
@@ -359,7 +359,7 @@ export function rendersOwnFieldBesideOption(schema: Schema): boolean {
  * field to the option, so the option inherits the parent's value keywords.
  */
 export function getRenderedOptionSchema(
-  merger: Merger,
+  ctx: CoreContext,
   parent: Schema,
   option: Schema
 ): Schema {
@@ -385,9 +385,9 @@ export function getRenderedOptionSchema(
     return option;
   }
   if (!rendersOwnField) {
-    return meetSchemas(merger, inherited, optionObject);
+    return meetSchemas(ctx, inherited, optionObject);
   }
-  const merged = merger.mergeSchemas(inherited, optionObject);
+  const merged = mergeSchemas(ctx, inherited, optionObject);
   if (merged.required === undefined && inherited[REQUIRED_KEY] !== undefined) {
     merged.required = inherited[REQUIRED_KEY];
   }

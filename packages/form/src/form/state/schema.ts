@@ -9,13 +9,9 @@ import {
   sanitizeDataForNewSchema as sanitizeDataForNewSchemaInternal,
   getClosestMatchingOption as getClosestMatchingOptionInternal,
 } from "#core/index.js";
+import { CORE_MERGER } from "#core/internals.js";
 
-import {
-  FORM_MARK_SCHEMA_CHANGE,
-  FORM_MERGER,
-  FORM_SCHEMA,
-  FORM_VALIDATOR,
-} from "../internals.js";
+import { FORM_MARK_SCHEMA_CHANGE } from "../internals.js";
 import type { MergeFormDataAndSchemaDefaultsOptions } from "../merger.js";
 import type { FormState } from "./state.js";
 
@@ -23,36 +19,21 @@ import type { FormState } from "./state.js";
  * @query
  */
 export function isSelect<T>(ctx: FormState<T>, schema: Schema) {
-  return isSelectInternal(
-    ctx[FORM_VALIDATOR],
-    ctx[FORM_MERGER],
-    schema,
-    ctx[FORM_SCHEMA]
-  );
+  return isSelectInternal(ctx, schema);
 }
 
 /**
  * @query
  */
 export function isMultiSelect<T>(ctx: FormState<T>, schema: Schema) {
-  return isMultiSelectInternal(
-    ctx[FORM_VALIDATOR],
-    ctx[FORM_MERGER],
-    schema,
-    ctx[FORM_SCHEMA]
-  );
+  return isMultiSelectInternal(ctx, schema);
 }
 
 /**
  * @query
  */
 export function isFilesArray<T>(ctx: FormState<T>, schema: Schema) {
-  return isFilesArrayInternal(
-    ctx[FORM_VALIDATOR],
-    ctx[FORM_MERGER],
-    schema,
-    ctx[FORM_SCHEMA]
-  );
+  return isFilesArrayInternal(ctx, schema);
 }
 
 /**
@@ -64,14 +45,7 @@ export function retrieveSchema<T>(
   formData: SchemaValue | undefined,
   resolveAnyOfOrOneOfRefs?: boolean
 ) {
-  return retrieveSchemaInternal(
-    ctx[FORM_VALIDATOR],
-    ctx[FORM_MERGER],
-    schema,
-    ctx[FORM_SCHEMA],
-    formData,
-    resolveAnyOfOrOneOfRefs
-  );
+  return retrieveSchemaInternal(ctx, schema, formData, resolveAnyOfOrOneOfRefs);
 }
 
 /**
@@ -83,14 +57,7 @@ export function sanitizeDataForNewSchema<T>(
   oldSchema: Schema,
   formData: SchemaValue | undefined
 ) {
-  return sanitizeDataForNewSchemaInternal(
-    ctx[FORM_VALIDATOR],
-    ctx[FORM_MERGER],
-    ctx[FORM_SCHEMA],
-    newSchema,
-    oldSchema,
-    formData
-  );
+  return sanitizeDataForNewSchemaInternal(ctx, newSchema, oldSchema, formData);
 }
 
 /**
@@ -104,9 +71,7 @@ export function getClosestMatchingOption<T>(
   discriminatorField: string | undefined
 ) {
   return getClosestMatchingOptionInternal(
-    ctx[FORM_VALIDATOR],
-    ctx[FORM_MERGER],
-    ctx[FORM_SCHEMA],
+    ctx,
     formData,
     options,
     selectedOption,
@@ -122,7 +87,7 @@ export function getRenderedOptionSchema<T>(
   parent: Schema,
   option: Schema
 ) {
-  return getRenderedOptionSchemaInternal(ctx[FORM_MERGER], parent, option);
+  return getRenderedOptionSchemaInternal(ctx, parent, option);
 }
 
 /**
@@ -132,7 +97,7 @@ export function getDefaultFieldState<T>(
   ctx: FormState<T>,
   options: MergeFormDataAndSchemaDefaultsOptions
 ) {
-  return ctx[FORM_MERGER].mergeFormDataAndSchemaDefaults(options);
+  return ctx[CORE_MERGER].mergeFormDataAndSchemaDefaults(options);
 }
 
 export function markSchemaChange<T>(ctx: FormState<T>) {

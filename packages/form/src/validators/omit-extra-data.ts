@@ -1,3 +1,4 @@
+import { createCoreContext } from "#core/index.js";
 import {
   create,
   isAsyncFormValueValidator,
@@ -16,16 +17,17 @@ export function withOmitExtraData<V extends FormValidator<any>>(
 ) {
   return (options: ValidatorFactoryOptions): V => {
     const v = create(validator, options);
+    const createContext = () =>
+      createCoreContext({
+        validator: v,
+        merger: options.merger(),
+        rootSchema: options.schema,
+      });
     if (isAsyncFormValueValidator(v)) {
       return {
         ...v,
         validateFormValueAsync(signal, formValue) {
-          const cleanData = omitExtraData(
-            v,
-            options.merger(),
-            options.schema,
-            formValue
-          );
+          const cleanData = omitExtraData(createContext(), formValue);
           return v.validateFormValueAsync(signal, cleanData);
         },
       } satisfies AsyncFormValueValidator<any>;
@@ -34,12 +36,7 @@ export function withOmitExtraData<V extends FormValidator<any>>(
       return {
         ...v,
         validateFormValue(formValue) {
-          const cleanData = omitExtraData(
-            v,
-            options.merger(),
-            options.schema,
-            formValue
-          );
+          const cleanData = omitExtraData(createContext(), formValue);
           return v.validateFormValue(cleanData);
         },
       } satisfies FormValueValidator<any>;

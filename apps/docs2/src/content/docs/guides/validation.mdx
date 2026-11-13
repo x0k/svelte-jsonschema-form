@@ -150,6 +150,7 @@ import {
   type FormValueValidator,
   validateFormValue,
 } from "@sjsf/form";
+import { createCoreContext } from "@sjsf/form/core";
 import { omitExtraData } from "@sjsf/form/omit-extra-data";
 
 import * as defaults from "@/lib/form/defaults";
@@ -164,9 +165,11 @@ const form = createForm<FormValue>({
       ...v,
       validateFormValue(formValue) {
         const cleanData = omitExtraData(
-          v,
-          options.merger(),
-          options.schema,
+          createCoreContext({
+            validator: v,
+            merger: options.merger(),
+            rootSchema: options.schema,
+          }),
           formValue
         );
         return v.validateFormValue(cleanData);
@@ -185,6 +188,12 @@ const form = createForm<FormValue>({
 // Obtaining a value with the applied transformation
 const { value } = validateFormValue(form);
 ```
+
+`FormState` extends `CoreContext`, so a callback that runs after the form is
+created can pass the form itself instead of building a context:
+`omitExtraData(form, formValue)`. Annotate the variable
+(`const form: FormState<FormValue> = createForm(...)`) so TypeScript does not
+infer the form type from the callback that references it.
 
 You can also use the `withOmitExtraData(defaults.validator)` function from the
 `@sjsf/form/validators/omit-extra-data` module to achieve the same effect.
