@@ -47,6 +47,7 @@ Instantiates form metadata linking client to server action:
 
 ```ts
 import { createMeta } from "@sjsf/sveltekit3/client";
+
 import type { ActionData, PageData } from "./$types";
 
 const meta = createMeta<ActionData, PageData>().form;

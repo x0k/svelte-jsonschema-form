@@ -27,8 +27,10 @@ In `+page.server.ts`, define your `load` function and action using `createAction
 // src/routes/posts/new/+page.server.ts
 import type { InitialFormData } from "@sjsf/sveltekit3";
 import { createAction } from "@sjsf/sveltekit3/server";
-import type { Actions, PageServerLoad } from "./$types";
+
 import * as defaults from "$lib/sjsf/defaults";
+
+import type { Actions, PageServerLoad } from "./$types";
 
 const schema = {
   type: "object",

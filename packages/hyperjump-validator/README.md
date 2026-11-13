@@ -41,9 +41,9 @@ export const validators = {
 ```
 
 ```typescript
+import { fromValidators } from "@sjsf/form/validators/precompile";
 // form.ts
 import { createFormValidatorFactory } from "@sjsf/hyperjump-validator/precompile";
-import { fromValidators } from "@sjsf/form/validators/precompile";
 
 import { validators } from "./validators.generated";
 

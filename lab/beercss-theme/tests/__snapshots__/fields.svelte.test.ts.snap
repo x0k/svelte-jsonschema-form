@@ -9103,7 +9103,7 @@ exports[`widgets > multiFile > snapshots > disabled 1`] = `
       <input
         aria-describedby="root__description root__help root__errors"
         aria-invalid="false"
-        data-loading="true"
+        data-loading="false"
         data-processing="false"
         disabled=""
         id="root"
@@ -9185,7 +9185,7 @@ exports[`widgets > multiFile > snapshots > error 1`] = `
       <input
         aria-describedby="root__description root__help root__errors"
         aria-invalid="true"
-        data-loading="true"
+        data-loading="false"
         data-processing="false"
         id="root"
         multiple=""
@@ -9279,7 +9279,7 @@ exports[`widgets > multiFile > snapshots > normal 1`] = `
       <input
         aria-describedby="root__description root__help root__errors"
         aria-invalid="false"
-        data-loading="true"
+        data-loading="false"
         data-processing="false"
         id="root"
         multiple=""
@@ -9359,7 +9359,7 @@ exports[`widgets > multiFile > snapshots > readonly 1`] = `
       <input
         aria-describedby="root__description root__help root__errors"
         aria-invalid="false"
-        data-loading="true"
+        data-loading="false"
         data-processing="false"
         id="root"
         multiple=""

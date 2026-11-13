@@ -26,8 +26,8 @@
     "svelte": "catalog:"
   },
   "devDependencies": {
-    "@sveltejs/adapter-node": "catalog:sveltekit3",
-    "@sveltejs/kit": "catalog:sveltekit3",
+    "@sveltejs/adapter-node": "catalog:",
+    "@sveltejs/kit": "catalog:",
     "json-schema-to-ts": "catalog:"
   }
 }

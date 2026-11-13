@@ -34,7 +34,6 @@ In v3, the `validator` option **must** return a `FormValidator<T>`:
 ```ts
 // v2
 import { validator } from "@sjsf/ajv8-validator";
-
 // v3
 import { createFormValidator as validator } from "@sjsf/ajv8-validator";
 ```

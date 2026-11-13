@@ -41,8 +41,8 @@
     "@sveltejs/sv-utils": "catalog:",
     "@types/node": "catalog:",
     "meta": "workspace:*",
-    "sv": "^1.0.1",
-    "tsdown": "^0.23.0",
+    "sv": "^1.3.0",
+    "tsdown": "^0.23.7",
     "vitest": "catalog:"
   },
   "peerDependencies": {

@@ -2543,6 +2543,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                   data-state="closed"
                   id="root_preset"
                   name="root_preset"
+                  role="combobox"
                   type="button"
                 >
                   <!---->
@@ -2869,6 +2870,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                   data-state="closed"
                   id="root_format"
                   name="root_format"
+                  role="combobox"
                   type="button"
                 >
                   <!---->
@@ -3207,6 +3209,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
+                    checked=""
                     name="root_createOnOpen"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                     tabindex="-1"
@@ -3450,6 +3453,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                   data-state="closed"
                   id="root_preset"
                   name="root_preset"
+                  role="combobox"
                   type="button"
                 >
                   <!---->
@@ -3632,6 +3636,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
+                    checked=""
                     name="root_collapseIndexes"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                     tabindex="-1"
@@ -3788,6 +3793,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
+                    checked=""
                     name="root_joinPrimitiveArrayValues"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                     tabindex="-1"
@@ -4100,6 +4106,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
+                    checked=""
                     name="root_stabilizeOrderOfPropertiesInArraysOfObjects"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                     tabindex="-1"
@@ -4641,6 +4648,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                   data-state="closed"
                   id="root_format"
                   name="root_format"
+                  role="combobox"
                   type="button"
                 >
                   <!---->
@@ -4979,6 +4987,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
+                    checked=""
                     name="root_createOnOpen"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                     tabindex="-1"
@@ -12425,7 +12434,7 @@ exports[`default-ui > widgets > multiFile > snapshots > disabled 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-          data-loading="true"
+          data-loading="false"
           data-processing="false"
           disabled=""
           id="root"
@@ -12514,7 +12523,7 @@ exports[`default-ui > widgets > multiFile > snapshots > error 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="true"
           class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-          data-loading="true"
+          data-loading="false"
           data-processing="false"
           id="root"
           multiple=""
@@ -12613,7 +12622,7 @@ exports[`default-ui > widgets > multiFile > snapshots > normal 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-          data-loading="true"
+          data-loading="false"
           data-processing="false"
           id="root"
           multiple=""
@@ -12700,7 +12709,7 @@ exports[`default-ui > widgets > multiFile > snapshots > readonly 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-          data-loading="true"
+          data-loading="false"
           data-processing="false"
           id="root"
           multiple=""
@@ -12805,6 +12814,7 @@ exports[`default-ui > widgets > multiSelect > snapshots > disabled 1`] = `
           disabled=""
           id="root"
           name="root"
+          role="combobox"
           type="button"
         >
           <!---->
@@ -12953,6 +12963,7 @@ exports[`default-ui > widgets > multiSelect > snapshots > error 1`] = `
           data-state="closed"
           id="root"
           name="root"
+          role="combobox"
           type="button"
         >
           <!---->
@@ -13112,6 +13123,7 @@ exports[`default-ui > widgets > multiSelect > snapshots > normal 1`] = `
           data-state="closed"
           id="root"
           name="root"
+          role="combobox"
           type="button"
         >
           <!---->
@@ -13260,6 +13272,7 @@ exports[`default-ui > widgets > multiSelect > snapshots > readonly 1`] = `
           data-state="closed"
           id="root"
           name="root"
+          role="combobox"
           type="button"
         >
           <!---->
@@ -16131,6 +16144,7 @@ exports[`default-ui > widgets > select > snapshots > disabled 1`] = `
           disabled=""
           id="root"
           name="root"
+          role="combobox"
           type="button"
         >
           <!---->
@@ -16277,6 +16291,7 @@ exports[`default-ui > widgets > select > snapshots > error 1`] = `
           data-state="closed"
           id="root"
           name="root"
+          role="combobox"
           type="button"
         >
           <!---->
@@ -16434,6 +16449,7 @@ exports[`default-ui > widgets > select > snapshots > normal 1`] = `
           data-state="closed"
           id="root"
           name="root"
+          role="combobox"
           type="button"
         >
           <!---->
@@ -16580,6 +16596,7 @@ exports[`default-ui > widgets > select > snapshots > readonly 1`] = `
           data-state="closed"
           id="root"
           name="root"
+          role="combobox"
           type="button"
         >
           <!---->
@@ -25509,6 +25526,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                   data-state="closed"
                   id="root_preset"
                   name="root_preset"
+                  role="combobox"
                   type="button"
                 >
                   <!---->
@@ -25835,6 +25853,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                   data-state="closed"
                   id="root_format"
                   name="root_format"
+                  role="combobox"
                   type="button"
                 >
                   <!---->
@@ -26173,6 +26192,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
+                    checked=""
                     name="root_createOnOpen"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                     tabindex="-1"
@@ -26416,6 +26436,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                   data-state="closed"
                   id="root_preset"
                   name="root_preset"
+                  role="combobox"
                   type="button"
                 >
                   <!---->
@@ -26598,6 +26619,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
+                    checked=""
                     name="root_collapseIndexes"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                     tabindex="-1"
@@ -26754,6 +26776,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
+                    checked=""
                     name="root_joinPrimitiveArrayValues"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                     tabindex="-1"
@@ -27066,6 +27089,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
+                    checked=""
                     name="root_stabilizeOrderOfPropertiesInArraysOfObjects"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                     tabindex="-1"
@@ -27607,6 +27631,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                   data-state="closed"
                   id="root_format"
                   name="root_format"
+                  role="combobox"
                   type="button"
                 >
                   <!---->
@@ -27945,6 +27970,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
+                    checked=""
                     name="root_createOnOpen"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                     tabindex="-1"
@@ -35391,7 +35417,7 @@ exports[`new-york-ui > widgets > multiFile > snapshots > disabled 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-          data-loading="true"
+          data-loading="false"
           data-processing="false"
           disabled=""
           id="root"
@@ -35480,7 +35506,7 @@ exports[`new-york-ui > widgets > multiFile > snapshots > error 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="true"
           class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-          data-loading="true"
+          data-loading="false"
           data-processing="false"
           id="root"
           multiple=""
@@ -35579,7 +35605,7 @@ exports[`new-york-ui > widgets > multiFile > snapshots > normal 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-          data-loading="true"
+          data-loading="false"
           data-processing="false"
           id="root"
           multiple=""
@@ -35666,7 +35692,7 @@ exports[`new-york-ui > widgets > multiFile > snapshots > readonly 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-          data-loading="true"
+          data-loading="false"
           data-processing="false"
           id="root"
           multiple=""
@@ -35771,6 +35797,7 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > disabled 1`] = `
           disabled=""
           id="root"
           name="root"
+          role="combobox"
           type="button"
         >
           <!---->
@@ -35919,6 +35946,7 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > error 1`] = `
           data-state="closed"
           id="root"
           name="root"
+          role="combobox"
           type="button"
         >
           <!---->
@@ -36078,6 +36106,7 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > normal 1`] = `
           data-state="closed"
           id="root"
           name="root"
+          role="combobox"
           type="button"
         >
           <!---->
@@ -36226,6 +36255,7 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > readonly 1`] = `
           data-state="closed"
           id="root"
           name="root"
+          role="combobox"
           type="button"
         >
           <!---->
@@ -39097,6 +39127,7 @@ exports[`new-york-ui > widgets > select > snapshots > disabled 1`] = `
           disabled=""
           id="root"
           name="root"
+          role="combobox"
           type="button"
         >
           <!---->
@@ -39243,6 +39274,7 @@ exports[`new-york-ui > widgets > select > snapshots > error 1`] = `
           data-state="closed"
           id="root"
           name="root"
+          role="combobox"
           type="button"
         >
           <!---->
@@ -39400,6 +39432,7 @@ exports[`new-york-ui > widgets > select > snapshots > normal 1`] = `
           data-state="closed"
           id="root"
           name="root"
+          role="combobox"
           type="button"
         >
           <!---->
@@ -39546,6 +39579,7 @@ exports[`new-york-ui > widgets > select > snapshots > readonly 1`] = `
           data-state="closed"
           id="root"
           name="root"
+          role="combobox"
           type="button"
         >
           <!---->

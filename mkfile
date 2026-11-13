@@ -12,6 +12,10 @@ set -xe
     pnpm run preview
   d:
     pnpm run dev
+  l:
+    pnpm run lint
+  f:
+    pnpm run format
   t:
     pnpm run test $@
   tv:

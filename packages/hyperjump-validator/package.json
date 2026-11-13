@@ -48,7 +48,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@hyperjump/json-schema-errors": "^1.0.0"
+    "@hyperjump/json-schema-errors": "^1.0.1"
   },
   "devDependencies": {
     "@hyperjump/json-schema": "catalog:",
