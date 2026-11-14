@@ -4,6 +4,8 @@ import {
   type Draft2020,
   type Precompiled,
 } from "../codegen/index.ts";
+// The playground index eagerly loads browser-only icon modules.
+// eslint-disable-next-line group-index/prefer
 import { playgroundValidatorTitle } from "../playground/model.ts";
 import type { Generated } from "../types.ts";
 

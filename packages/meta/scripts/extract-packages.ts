@@ -3,7 +3,7 @@ import path from "node:path";
 
 import { parse } from "yaml";
 
-import { resolveExactVersion, type AbstractPackage } from "../src/package.ts";
+import { resolveExactVersion, type AbstractPackage } from "../src/index.ts";
 
 interface ExtraPackageMeta {
   name: string;

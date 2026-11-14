@@ -6,7 +6,7 @@ import {
   type SchemaArrayValue,
   type SchemaValue,
 } from "#core/index.js";
-import type { FormEnumOption } from "#form/model.js";
+import type { FormEnumOption } from "#form/main.js";
 import { isObject } from "#lib/object.js";
 import type { Ref } from "#lib/svelte.svelte.js";
 

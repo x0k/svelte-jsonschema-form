@@ -1,7 +1,7 @@
 import { render } from "svelte/server";
 import { describe, expect, it, vi } from "vitest";
 
-import type { InitialFormData, ValidatedFormData } from "#lib/model.js";
+import type { InitialFormData, ValidatedFormData } from "#lib/index.js";
 import type { Page } from "$app/state";
 
 // https://github.com/sveltejs/svelte/issues/16832

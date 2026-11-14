@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 
 import { parse, walk, generate } from "css-tree";
 
-import type { PlaygroundTheme } from "../src/playground/model.ts";
+import type { PlaygroundTheme } from "../src/playground/index.ts";
 
 const ROOT_DIR = path.join(import.meta.dirname, "../../..");
 const META_DIR = path.join(import.meta.dirname, "..");

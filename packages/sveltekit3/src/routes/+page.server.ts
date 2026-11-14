@@ -1,6 +1,6 @@
 import { fail } from "@sveltejs/kit";
 
-import type { InitialFormData } from "#lib/model.js";
+import type { InitialFormData } from "#lib/index.js";
 import { isValid, createFormHandler, createAction } from "#lib/server/index.js";
 
 import type { Actions } from "./$types.js";

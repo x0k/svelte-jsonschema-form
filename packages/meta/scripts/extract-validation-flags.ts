@@ -3,7 +3,7 @@ import path from "node:path";
 
 import ts from "typescript";
 
-import { formPackage } from "../src/form.ts";
+import { formPackage } from "../src/index.ts";
 
 interface FlagEntry {
   name: string;

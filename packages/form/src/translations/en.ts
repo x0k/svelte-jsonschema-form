@@ -1,4 +1,4 @@
-import type { TranslatorDefinitions } from "#form/translation.js";
+import type { TranslatorDefinitions } from "#form/main.js";
 import { fromRecord } from "#lib/resolver.js";
 import type { TaskFailureReason } from "#lib/task.svelte.js";
 

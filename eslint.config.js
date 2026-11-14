@@ -8,7 +8,22 @@ import { defineConfig, includeIgnoreFile } from "eslint/config";
 import globals from "globals";
 import ts from "typescript-eslint";
 
+import groupIndexPlugin from "./eslint-rules/group-index.js";
+
 const gitignorePath = fileURLToPath(new URL("./.gitignore", import.meta.url));
+
+/**
+ * Require imports of a directory that has an `index` module to go through that
+ * index instead of a file inside it. Files inside the group may still import
+ * their siblings directly.
+ * @type {import("eslint").Linter.Config}
+ */
+const groupedImportsConfig = {
+  plugins: { "group-index": groupIndexPlugin },
+  rules: {
+    "group-index/prefer": "error",
+  },
+};
 
 /** Shared ESLint config for Svelte packages in this monorepo. */
 export const svelteConfig = defineConfig(
@@ -42,6 +57,7 @@ export const svelteConfig = defineConfig(
       "svelte/no-unused-props": "off",
     },
   },
+  groupedImportsConfig,
   {
     files: ["**/*.svelte", "**/*.svelte.ts", "**/*.svelte.js"],
     languageOptions: {
@@ -81,7 +97,8 @@ export const tsConfig = defineConfig(
         },
       ],
     },
-  }
+  },
+  groupedImportsConfig
 );
 
 export default defineConfig({ ignores: [] });

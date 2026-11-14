@@ -14,8 +14,7 @@ import {
   type SchemaDefinition,
   type Validator,
 } from "#core/index.js";
-import type { FormMerger } from "#form/main.js";
-import { copyForChange } from "#form/merger.js";
+import { copyForChange, type FormMerger } from "#form/main.js";
 import { unique as uniqueItems } from "#lib/array.js";
 import {
   ARRAYS_OF_SUB_SCHEMAS,

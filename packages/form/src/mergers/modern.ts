@@ -6,8 +6,7 @@ import {
   type Merger,
   type Validator,
 } from "#core/index.js";
-import type { FormMerger, Schema } from "#form/main.js";
-import { copyForChange } from "#form/merger.js";
+import { copyForChange, type FormMerger, type Schema } from "#form/main.js";
 import {
   createMerger as createJsonSchemaMerger,
   createShallowAllOfMerge,

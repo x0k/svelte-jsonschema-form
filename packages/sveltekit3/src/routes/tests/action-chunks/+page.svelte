@@ -1,6 +1,6 @@
 <script lang="ts">
   import { createMeta, SvelteKitForm } from "#lib/client/index.js";
-  import { createFormIdBuilder } from "#lib/id-builder.js";
+  import { createFormIdBuilder } from "#lib/index.js";
 
   import * as defaults from "../../form-defaults.js";
   import type { ActionData, PageData } from "./$types.js";
