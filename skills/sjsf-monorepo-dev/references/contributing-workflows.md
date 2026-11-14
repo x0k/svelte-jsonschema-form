@@ -153,10 +153,9 @@ workspace therefore needs a one-time bootstrap before its first release.
    ```
 
    The Version and Publish workflow runs the check before the changesets
-   action, so a missing package blocks the release PR and the publish run.
-   Regular pull request CI is not affected. If you merge an un-bootstrapped
-   package, the workflow fails on `main` and no release PR is created;
-   bootstrap the reported names and re-run the workflow.
+   action, so a missing package blocks the release PR and the publish run. If
+   you merge an un-bootstrapped package, the workflow fails on `main` and no
+   release PR is created; bootstrap the reported names and re-run the workflow.
 
 2. Bootstrap the missing package from an authenticated npm session:
 
@@ -180,8 +179,7 @@ workspace therefore needs a one-time bootstrap before its first release.
    exist. See `scripts/release/README.md` for details.
 
 3. Merge the package and its changeset, then let the normal **Version and
-   Publish** workflow publish it. Make sure `repository.url` in the package's
-   `package.json` matches the GitHub repository, or the OIDC publish fails.
+   Publish** workflow publish it.
 
 4. After the real version is live, remove the bootstrap stage:
 
@@ -195,5 +193,5 @@ workspace therefore needs a one-time bootstrap before its first release.
    because unpublishing the only published version would remove the package
    and its trusted publisher configuration.
 
-The preflight cannot verify trusted publisher configuration: npm requires an
-authenticated 2FA request to list it. It verifies package existence only.
+The preflight verifies package existence only: npm requires an authenticated
+2FA request to list trusted publisher configuration.

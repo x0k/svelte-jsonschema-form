@@ -9,7 +9,8 @@ release workflow until it has been bootstrapped once.
 ## Requirements
 
 - Node 22.18 or newer (the scripts are TypeScript files run directly by Node).
-- npm 11.15 or newer (`npm stage` and `npm trust`). CI uses Node 26.
+- npm 11.15 or newer (`npm stage` and `npm trust`). The release workflow uses
+  Node 26.
 
 ## Check registry prerequisites
 
@@ -23,9 +24,8 @@ Checks every publishable workspace package (or only the named packages) against
 npm. Missing packages are reported with the bootstrap command to run.
 
 The Version and Publish workflow runs the check before the changesets action,
-so a missing package blocks the release PR and the publish run. Regular pull
-request CI does not run it. The script is dependency-free and can run before
-`pnpm install`.
+so a missing package blocks the release PR and the publish run. The script is
+dependency-free and can run before `pnpm install`.
 
 ## Bootstrap a new package
 
@@ -57,11 +57,6 @@ Publish** workflow.
 > window is missed, the configuration can no longer be used or edited: delete it
 > and run `pnpm release:bootstrap …` (or `npm trust github …`) again.
 
-Keep the bootstrap stage alive until the first release succeeds. Rejecting it
-while it is the only staged entry does not remove the package, because the
-public `0.0.0-stage` placeholder remains; removing that placeholder is what
-would delete the package.
-
 ### Authentication
 
 `npm stage publish` needs an authenticated npm session but does not require
@@ -90,10 +85,8 @@ non-interactive shell, or `--dry-run` to print the commands.
 ## Limitations
 
 - The preflight only checks package existence. npm does not expose trusted
-  publisher configuration without an authenticated 2FA request, so CI cannot
-  verify that every package has a trusted publisher.
-- `npm stage publish` and `npm trust` need registry write access. Fork PRs can
-  run the preflight check, but only maintainers can bootstrap packages.
+  publisher configuration without an authenticated 2FA request, so the preflight
+  cannot verify that every package has a trusted publisher.
 - The scripts resolve the registry like npm does (`.npmrc`, then
   `npm_config_registry`, then `https://registry.npmjs.org/`) and pass it to
   every npm command. Registry reads use `fetch`, which does not honour
