@@ -1,5 +1,38 @@
 # meta
 
+## 1.0.12
+
+### Patch Changes
+
+- Updated dependencies [[`4151da1`](https://github.com/x0k/svelte-jsonschema-form/commit/4151da13f3c394340a82d06aed050f2a9885759c), [`553ee1b`](https://github.com/x0k/svelte-jsonschema-form/commit/553ee1b4b8f4ececb64dd8087c69aedb07c61f5d), [`c6609fc`](https://github.com/x0k/svelte-jsonschema-form/commit/c6609fc1aae02f387267cf839bedf5795fb37afb), [`7ae20b7`](https://github.com/x0k/svelte-jsonschema-form/commit/7ae20b7b57ac3964ea6e206738b26c3240b97a01), [`5e9e47c`](https://github.com/x0k/svelte-jsonschema-form/commit/5e9e47cd54b9fa5da389775e7ef61a87d4c5827f), [`8eef0b3`](https://github.com/x0k/svelte-jsonschema-form/commit/8eef0b3de9686bbd08697b6d264c73762e1fad43), [`c4374ec`](https://github.com/x0k/svelte-jsonschema-form/commit/c4374ecc73a8eeda939c8e7541561596d88935b6), [`4078b90`](https://github.com/x0k/svelte-jsonschema-form/commit/4078b90d83bf30462f5102f32cf7970fb6f99300), [`c48edfd`](https://github.com/x0k/svelte-jsonschema-form/commit/c48edfdbe0361e2add3ef6ae44a2938d9127255a), [`5fd2f77`](https://github.com/x0k/svelte-jsonschema-form/commit/5fd2f77d07cee5bd9b8f1b8ee13baedea53620c1), [`dafc489`](https://github.com/x0k/svelte-jsonschema-form/commit/dafc489cd50d73227597c259e7ceeb1a190f155b), [`b36a7a7`](https://github.com/x0k/svelte-jsonschema-form/commit/b36a7a73e4ffce0f0613f6213434cc50ba81e82c), [`548c374`](https://github.com/x0k/svelte-jsonschema-form/commit/548c37464d9ec7c9e124f7c67076ef8ef6fc8850)]:
+  - @sjsf/ata-validator@3.10.0
+  - @sjsf/form@3.10.0
+  - @sjsf/ajv8-validator@3.10.0
+  - @sjsf/schemasafe-validator@3.10.0
+  - @sjsf/hyperjump-validator@3.10.0
+  - @sjsf-lab/beercss-theme@3.4.0
+  - @sjsf-lab/shadcn-extras-theme@3.4.3
+  - @sjsf-lab/svar-theme@3.3.0
+  - @sjsf/daisyui-theme@3.1.1
+  - @sjsf/flowbite-theme@3.1.1
+  - @sjsf/shadcn-theme@3.1.2
+  - @sjsf/skeleton3-theme@3.1.1
+  - @sjsf/skeleton4-theme@3.7.2
+  - @sjsf/sveltekit@3.8.2
+  - @sjsf/basic-theme@3.10.0
+  - @sjsf/cfworker-validator@3.10.0
+  - @sjsf/daisyui5-theme@3.10.0
+  - @sjsf/flowbite-icons@3.10.0
+  - @sjsf/flowbite3-theme@3.10.0
+  - @sjsf/lucide-icons@3.10.0
+  - @sjsf/moving-icons@3.10.0
+  - @sjsf/radix-icons@3.10.0
+  - @sjsf/shadcn4-theme@3.10.0
+  - @sjsf/skeleton5-theme@3.10.0
+  - @sjsf/sveltekit3@3.10.0
+  - @sjsf/valibot-validator@3.10.0
+  - @sjsf/zod4-validator@3.10.0
+
 ## 1.0.11
 
 ### Patch Changes

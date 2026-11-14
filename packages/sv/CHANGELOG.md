@@ -1,5 +1,14 @@
 # @sjsf/sv
 
+## 3.10.0
+
+### Minor Changes
+
+- Join the stable `@sjsf` release train instead of using a separate `0.x` version ([`500f7d0`](https://github.com/x0k/svelte-jsonschema-form/commit/500f7d00d6562831b05ef8ac8a9608fcb9933d2a))
+  line. The add-on now shares the version of the `@sjsf/form` and theme releases
+  it generates, while `sv add @sjsf` continues to resolve the latest add-on as
+  before.
+
 ## 0.3.0
 
 ### Minor Changes

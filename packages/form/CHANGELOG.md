@@ -1,5 +1,51 @@
 # @sjsf/form
 
+## 3.10.0
+
+### Minor Changes
+
+- Render a non-object `anyOf`/`oneOf` option with the value keywords declared on its parent, such as an array's `items` or a string's `format`, and expose the `getRenderedOptionSchema` query so replaceable combination components can use it without form internals. ([#510](https://github.com/x0k/svelte-jsonschema-form/pull/510))
+
+  Port <https://github.com/rjsf-team/react-jsonschema-form/pull/5484>
+
+- Resolve a `$ref` shared by sibling `dependencies`, `allOf` or condition branches instead of treating it as a recursive cycle. ([#512](https://github.com/x0k/svelte-jsonschema-form/pull/512))
+
+  The exported resolution helpers gained optional trailing parameters, and the `stack` passed to `resolveAllReferences()` and `resolveReference()` now tracks only the current resolution path instead of accumulating references resolved by siblings. Callers that reuse one stack across sibling branches will resolve more of those branches than before.
+
+  Port <https://github.com/rjsf-team/react-jsonschema-form/pull/5435>
+
+### Patch Changes
+
+- Read `booleanSelectField` options from `anyOf` before `oneOf`, falling back to the boolean `enum` unless every option is a constant or a boolean schema. Single-value `enum` constants now use their value as the label. ([#514](https://github.com/x0k/svelte-jsonschema-form/pull/514))
+
+  Port <https://github.com/rjsf-team/react-jsonschema-form/pull/5364>
+
+- Keep array items that sanitizing dropped when switching `anyOf`/`oneOf` options. Object items whose items schema declares no `properties` are kept instead of being cleared with the whole free-form list, an item the items options list (including a `oneOf`/`anyOf` option that lists several values) or a matching items `const` is kept as it is, an array item a new items `const` rejects is dropped, arrays of arrays are sanitized per element rather than left unsanitized, and type lists are compared by what they name, so a `null` a list allows is kept as it is. ([#540](https://github.com/x0k/svelte-jsonschema-form/pull/540))
+
+  Port <https://github.com/rjsf-team/react-jsonschema-form/pull/5754>
+
+- Keep every renamed `additionalProperties` key's field instance instead of only the most recently renamed one. Renaming another key no longer remounts the earlier fields and loses their widget state. ([#539](https://github.com/x0k/svelte-jsonschema-form/pull/539))
+
+  Port <https://github.com/rjsf-team/react-jsonschema-form/pull/5733>
+
+- Fix JSON Schema merge edge cases ported from `@x0k/json-schema-merge` v1.1.1: keep a schema-valued `items` constraint in `additionalItems` when merging with a tuple, match property names containing line terminators in merged `patternProperties`, stop `additionalProperties` from leaking into the other branch's `patternProperties`, and treat prototype-named schema keys such as `constructor` and `__proto__` as own properties. ([#537](https://github.com/x0k/svelte-jsonschema-form/pull/537))
+
+  Port <https://github.com/x0k/json-schema-merge/releases/tag/v1.1.1>
+
+- Preserve form-data and schema keys named `__proto__`, and stop inherited members such as `toString` from being read as form data or schema properties. Merging, default generation, sanitizing, extra-data omission and value reconciliation now write those keys as own properties. ([#515](https://github.com/x0k/svelte-jsonschema-form/pull/515))
+
+  Ports https://github.com/rjsf-team/react-jsonschema-form/pull/5524.
+
+- Apply the new option's declared defaults when switching `oneOf`/`anyOf` options, instead of keeping values left by the previous option. This covers nested object defaults, option-level array defaults (including arrays of objects), and values cleared because the new option has a different type or a `readOnly` property. Values edited away from the previous option's defaults are still kept whenever the new option can hold them. A value equal to the previous option's defaults cannot be told apart from one those defaults wrote, so it is replaced even when it came from the caller. ([#513](https://github.com/x0k/svelte-jsonschema-form/pull/513))
+
+  Port <https://github.com/rjsf-team/react-jsonschema-form/pull/5335>
+
+- Stop scoring a recursive `$ref` once the form data has no value left for it, which could previously overflow the stack. ([#511](https://github.com/x0k/svelte-jsonschema-form/pull/511))
+
+  This also changes the scores returned by the public `calculateIndexScore()` helper for `$ref` properties whose form data is absent: those properties no longer contribute to the score.
+
+  Port <https://github.com/rjsf-team/react-jsonschema-form/pull/5353>
+
 ## 3.9.1
 
 ### Patch Changes
