@@ -132,3 +132,52 @@ layout.
    devDependency of `sv`, so changesets does not bump the add-on by itself.
 7. Run `pnpm --filter @sjsf/sv --filter meta run test -u` if generated
    snapshots change.
+
+---
+
+## Publishing a New Package to npm
+
+The release workflow uses npm trusted publishing (OIDC), which can only publish
+versions of packages that already exist on npm. A package that is added to this
+workspace therefore needs a one-time bootstrap before its first release.
+
+1. Check the registry state:
+
+   ```bash
+   pnpm release:check
+   pnpm release:check @sjsf/new-validator
+   ```
+
+   The release workflow runs the same check before the changesets action, so a
+   missing package blocks both the release PR and the publish run.
+
+2. Bootstrap the missing package from an authenticated npm session:
+
+   ```bash
+   pnpm release:bootstrap @sjsf/new-validator
+   ```
+
+   This stages a throwaway `0.0.0-bootstrap` version (creating the package
+   name) and configures `version-and-publish.yaml` as a trusted publisher. The
+   `npm trust github` step prompts for 2FA and cannot run in CI. Keep the staged
+   version alive until the first real release succeeds; rejecting it while it is
+   the only version removes the package and its trusted publisher.
+
+   Use `--dry-run` to inspect the commands or `--no-trust` to only stage the
+   package. See `scripts/release/README.md` for details.
+
+3. Merge the package and its changeset, then let the normal **Version and
+   Publish** workflow publish it.
+
+4. After the real version is live, remove the bootstrap stage:
+
+   ```bash
+   pnpm release:cleanup @sjsf/new-validator
+   ```
+
+   Cleanup rejects the staged bootstrap entry and removes the
+   `0.0.0-stage` placeholder if it remains. It refuses to run before a real
+   version exists.
+
+The preflight cannot verify trusted publisher configuration: npm requires an
+authenticated 2FA request to list it. It verifies package existence only.
