@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   getDefaultFormState,
   isOrderedSchemaDeepEqual,
+  type Comparator,
   type Merger,
   type RPath,
   type Schema,
@@ -52,7 +53,11 @@ function change(path: FieldPath, oldValue: FieldValue): FormValueChange {
   return { path, oldValue };
 }
 
-function formMerger(merger: Merger, rootSchema: Schema): FormMerger {
+function formMerger(
+  merger: Merger,
+  rootSchema: Schema,
+  comparator: Comparator = testComparator
+): FormMerger {
   const formMerger: FormMerger = {
     ...merger,
     copyForChange,
@@ -66,6 +71,7 @@ function formMerger(merger: Merger, rootSchema: Schema): FormMerger {
         createTestContext({
           validator: testValidator,
           merger,
+          comparator,
           rootSchema,
         }),
         schema,
@@ -76,7 +82,16 @@ function formMerger(merger: Merger, rootSchema: Schema): FormMerger {
       );
     },
     dropStaleDefaults(options) {
-      return dropStaleDefaults(formMerger, options);
+      return dropStaleDefaults(
+        createTestContext({
+          validator: testValidator,
+          merger,
+          comparator,
+          rootSchema,
+        }),
+        formMerger,
+        options
+      );
     },
   };
   return formMerger;
@@ -104,10 +119,7 @@ function drop({
   changes: FormValueChange[];
   merger?: Merger;
 }) {
-  return dropStaleDefaults(formMerger(merger, oldSchema), {
-    validator: testValidator,
-    rootSchema: oldSchema,
-    comparator: testComparator,
+  return formMerger(merger, oldSchema).dropStaleDefaults({
     newSchema,
     formData,
     changes,
@@ -159,10 +171,7 @@ describe("dropStaleDefaults", () => {
 
   it("reports the dropped value and the schema it was written under", () => {
     const formData = { mode: "second", value: { branch: "first" } };
-    const result = dropStaleDefaults(formMerger(createMerger(), oldSchema), {
-      validator: testValidator,
-      rootSchema: oldSchema,
-      comparator: testComparator,
+    const result = formMerger(createMerger(), oldSchema).dropStaleDefaults({
       newSchema,
       formData,
       changes: [change(path("mode"), "first")],
@@ -184,10 +193,7 @@ describe("dropStaleDefaults", () => {
       current: undefined,
       registered: new WeakSet(),
     };
-    const result = dropStaleDefaults(formMerger(createMerger(), oldSchema), {
-      validator: testValidator,
-      rootSchema: oldSchema,
-      comparator: testComparator,
+    const result = formMerger(createMerger(), oldSchema).dropStaleDefaults({
       newSchema,
       formData,
       changes: [change(path("mode"), "first")],
@@ -570,7 +576,8 @@ describe("dropStaleDefaults", () => {
     };
     const orderedMerger: FormMerger = formMerger(
       createMerger(),
-      oldOrderedSchema
+      oldOrderedSchema,
+      { isValueDeepEqual: isOrderedSchemaDeepEqual as ValueDeepComparator }
     );
     const newOrderedSchema: Schema = {
       type: "object",
@@ -582,12 +589,7 @@ describe("dropStaleDefaults", () => {
     const formData = { mode: "b", cfg: { b: 2, a: 1 } };
 
     expect(
-      dropStaleDefaults(orderedMerger, {
-        validator: testValidator,
-        rootSchema: oldOrderedSchema,
-        comparator: {
-          isValueDeepEqual: isOrderedSchemaDeepEqual as ValueDeepComparator,
-        },
+      orderedMerger.dropStaleDefaults({
         newSchema: newOrderedSchema,
         formData,
         changes: [change(path("mode"), "a")],
@@ -673,20 +675,17 @@ describe("dropStaleDefaults", () => {
         x: { type: "string", default: "b" },
       },
     };
-    const result = dropStaleDefaults(
-      formMerger(createMerger(), oldScalarSchema),
-      {
-        validator: testValidator,
-        rootSchema: oldScalarSchema,
-        comparator: testComparator,
-        newSchema: newScalarSchema,
-        formData: { mode: "second", x: "a" },
-        oldFormData: { mode: "first", x: "a" },
-        oldSchema: oldScalarSchema,
-        changes: [change(path("mode"), "first")],
-        getChildPath: createPathFactory(),
-      }
-    );
+    const result = formMerger(
+      createMerger(),
+      oldScalarSchema
+    ).dropStaleDefaults({
+      newSchema: newScalarSchema,
+      formData: { mode: "second", x: "a" },
+      oldFormData: { mode: "first", x: "a" },
+      oldSchema: oldScalarSchema,
+      changes: [change(path("mode"), "first")],
+      getChildPath: createPathFactory(),
+    });
     expect(result.formData).toEqual({ mode: "second" });
     expect(result.dropped).toMatchObject([{ path: path("x"), value: "a" }]);
   });
@@ -706,20 +705,17 @@ describe("dropStaleDefaults", () => {
         x: { type: "string", default: "b" },
       },
     };
-    const result = dropStaleDefaults(
-      formMerger(createMerger(), oldScalarSchema),
-      {
-        validator: testValidator,
-        rootSchema: oldScalarSchema,
-        comparator: testComparator,
-        newSchema: newScalarSchema,
-        formData: { mode: "second", x: "b" },
-        oldFormData: { mode: "first", x: "a" },
-        oldSchema: oldScalarSchema,
-        changes: [change(path("mode"), "first")],
-        getChildPath: createPathFactory(),
-      }
-    );
+    const result = formMerger(
+      createMerger(),
+      oldScalarSchema
+    ).dropStaleDefaults({
+      newSchema: newScalarSchema,
+      formData: { mode: "second", x: "b" },
+      oldFormData: { mode: "first", x: "a" },
+      oldSchema: oldScalarSchema,
+      changes: [change(path("mode"), "first")],
+      getChildPath: createPathFactory(),
+    });
     expect(result.formData).toEqual({ mode: "second", x: "b" });
     expect(result.dropped).toHaveLength(0);
   });

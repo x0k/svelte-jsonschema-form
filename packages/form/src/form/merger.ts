@@ -1,11 +1,9 @@
 import type {
-  Comparator,
   Merger,
   RPath,
   Schema,
   SchemaObjectValue,
   SchemaValue,
-  Validator,
 } from "#core/index.js";
 import { isRecord, setOwn } from "#lib/object.js";
 
@@ -96,12 +94,6 @@ export interface DropStaleDefaultsResult {
 }
 
 export interface DropStaleDefaultsOptions {
-  validator: Validator;
-  rootSchema: Schema;
-  /**
-   * The value comparator used to judge defaults and user edits.
-   */
-  comparator: Comparator;
   /**
    * The schema resolved for the current form data.
    */
@@ -120,7 +112,7 @@ export interface DropStaleDefaultsOptions {
   oldFormData?: SchemaValue | undefined;
   /**
    * The schema resolved for `oldFormData`. When omitted, it is retrieved from
-   * `rootSchema` and `oldFormData`.
+   * the context's root schema and `oldFormData`.
    */
   oldSchema?: Schema | undefined;
   /**
@@ -164,9 +156,10 @@ export interface FormMerger extends Merger {
    * branch's default.
    *
    * A custom merger can delegate to the exported `dropStaleDefaults` helper
-   * with itself, so the search computes defaults the same way this merger's
-   * `mergeFormDataAndSchemaDefaults` does. The returned entries let the form
-   * put back a value no fill answered and judge a replacement at its own key.
+   * with a core context and itself, so the search computes defaults the same
+   * way this merger's `mergeFormDataAndSchemaDefaults` does. The returned
+   * entries let the form put back a value no fill answered and judge a
+   * replacement at its own key.
    */
   dropStaleDefaults(options: DropStaleDefaultsOptions): DropStaleDefaultsResult;
 }

@@ -65,12 +65,6 @@ export interface DropStaleDefaultsResult {
 }
 
 export interface DropStaleDefaultsOptions {
-  validator: Validator;
-  rootSchema: Schema;
-  /**
-   * The value comparator used to judge defaults and user edits.
-   */
-  comparator: Comparator;
   /**
    * The schema resolved for the current form data.
    */
@@ -140,23 +134,43 @@ Use `createFormMerger` from `@sjsf/form/mergers/modern` for most projects.
 The legacy merger is available for v2 compatibility.
 
 The built-in mergers implement `dropStaleDefaults` with the exported
-`dropStaleDefaults(merger, options)` helper. Pass the `FormMerger` itself so the
+`dropStaleDefaults(ctx, merger, options)` helper. The core context supplies the
+validator, comparator, and root schema. Pass the `FormMerger` itself so the
 helper computes defaults exactly as your `mergeFormDataAndSchemaDefaults` does.
-A custom `FormMerger` should delegate to the same helper:
+A custom `FormMerger` should delegate to the same helper with the context built
+from its factory options:
 
 ```typescript
+import { createCoreContext } from "@sjsf/form/core";
 import {
   dropStaleDefaults,
   type DropStaleDefaultsOptions,
   type FormMerger,
+  type MergerFactoryOptions,
 } from "@sjsf/form";
 
-const merger: FormMerger = {
-  // ...
-  dropStaleDefaults(options: DropStaleDefaultsOptions) {
-    return dropStaleDefaults(merger, options);
-  },
-};
+export function merger({
+  schema,
+  validator,
+  comparator,
+}: MergerFactoryOptions): FormMerger {
+  const formMerger: FormMerger = {
+    // ...
+    dropStaleDefaults(options: DropStaleDefaultsOptions) {
+      return dropStaleDefaults(
+        createCoreContext({
+          validator,
+          merger: formMerger,
+          comparator,
+          rootSchema: schema,
+        }),
+        formMerger,
+        options
+      );
+    },
+  };
+  return formMerger;
+}
 ```
 
 The built-in `copyForChange` copies arrays and plain objects recursively and

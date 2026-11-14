@@ -200,10 +200,7 @@ export class StaleDefaultsPass {
   private readonly droppedPathKeys = new Set<FieldPath>();
   private readonly settled = new Set<FieldPath>();
   private readonly ctx: CoreContext;
-  private readonly validator: Validator;
   private readonly merger: FormMerger;
-  private readonly comparator: Comparator;
-  private readonly rootSchema: Schema;
   private readonly changes: readonly FormValueChange[];
   private readonly getChildPath: (
     parentPath: RPath,
@@ -228,10 +225,7 @@ export class StaleDefaultsPass {
       comparator,
       rootSchema,
     });
-    this.validator = validator;
     this.merger = merger;
-    this.comparator = comparator;
-    this.rootSchema = rootSchema;
     this.changes = changes;
     this.getChildPath = getChildPath;
     this.oldFormData = oldFormData;
@@ -245,9 +239,6 @@ export class StaleDefaultsPass {
     initialDefaultsGenerated: boolean
   ): FormValue {
     const { formData: result, dropped } = this.merger.dropStaleDefaults({
-      validator: this.validator,
-      rootSchema: this.rootSchema,
-      comparator: this.comparator,
       newSchema,
       formData,
       changes: this.changes,

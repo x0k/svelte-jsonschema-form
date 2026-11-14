@@ -51,7 +51,11 @@ function formMerger(merger: Merger, rootSchema: Schema): FormMerger {
       );
     },
     dropStaleDefaults(options) {
-      return dropStaleDefaults(formMerger, options);
+      return dropStaleDefaults(
+        createTestContext({ merger, rootSchema }),
+        formMerger,
+        options
+      );
     },
   };
   return formMerger;

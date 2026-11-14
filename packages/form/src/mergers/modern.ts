@@ -72,7 +72,16 @@ export function createFormMerger(options: FormMergerOptions): FormMerger {
       );
     },
     dropStaleDefaults(dropOptions: DropStaleDefaultsOptions) {
-      return dropStaleDefaults(formMerger, dropOptions);
+      return dropStaleDefaults(
+        createCoreContext({
+          validator: options.validator,
+          merger: formMerger,
+          comparator: options.comparator,
+          rootSchema: options.schema,
+        }),
+        formMerger,
+        dropOptions
+      );
     },
   };
   return formMerger;

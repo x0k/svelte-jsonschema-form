@@ -10,8 +10,8 @@
 
 import {
   ADDITIONAL_PROPERTY_FLAG,
-  createCoreContext,
   DEFAULT_KEY,
+  getRootSchema,
   getSelectOptionValuesSafe,
   getXxxOfOptions,
   isSchemaArrayValue,
@@ -497,11 +497,9 @@ function dropStaleDefaultsAtLevel(
  * selected branch's default.
  */
 export function dropStaleDefaults(
+  ctx: CoreContext,
   merger: FormMerger,
   {
-    validator,
-    rootSchema,
-    comparator,
     newSchema,
     formData,
     changes,
@@ -520,7 +518,7 @@ export function dropStaleDefaults(
   if (!isSchemaObjectValue(oldFormData)) {
     return { formData, dropped: [] };
   }
-  const ctx = createCoreContext({ validator, merger, comparator, rootSchema });
+  const rootSchema = getRootSchema(ctx);
   const oldSchema =
     providedOldSchema ?? retrieveSchema(ctx, rootSchema, oldFormData);
   if (!isSchemaObjectValue(oldSchema)) {
