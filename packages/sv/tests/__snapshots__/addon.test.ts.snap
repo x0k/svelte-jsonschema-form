@@ -16,14 +16,18 @@ exports[`@sjsf/sv icons__flowbite kit-ts 1`] = `
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"json-schema-to-ts": "^3.1.1",
-		"svelte": "^5.56.1",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@sjsf/ajv8-validator": "^3.9.1",
@@ -66,7 +70,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { type Schema, type UiSchemaRoot, ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
@@ -154,7 +158,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
@@ -258,8 +262,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </style>
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
-	import * as post from '$lib/post';
+	import * as defaults from '#lib/sjsf/defaults.js';
+	import * as post from '#lib/post.js';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -646,14 +650,18 @@ exports[`@sjsf/sv icons__lucide kit-ts 1`] = `
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"json-schema-to-ts": "^3.1.1",
-		"svelte": "^5.56.1",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@lucide/svelte": "^1.0.0",
@@ -695,7 +703,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { type Schema, type UiSchemaRoot, ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
@@ -783,7 +791,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
@@ -887,8 +895,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </style>
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
-	import * as post from '$lib/post';
+	import * as defaults from '#lib/sjsf/defaults.js';
+	import * as post from '#lib/post.js';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -1269,14 +1277,18 @@ exports[`@sjsf/sv icons__moving kit-ts 1`] = `
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"json-schema-to-ts": "^3.1.1",
-		"svelte": "^5.56.1",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@jis3r/icons": "^2.0.0",
@@ -1318,7 +1330,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { type Schema, type UiSchemaRoot, ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
@@ -1406,7 +1418,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
@@ -1510,8 +1522,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </style>
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
-	import * as post from '$lib/post';
+	import * as defaults from '#lib/sjsf/defaults.js';
+	import * as post from '#lib/post.js';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -1892,14 +1904,18 @@ exports[`@sjsf/sv icons__radix kit-ts 1`] = `
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"json-schema-to-ts": "^3.1.1",
-		"svelte": "^5.56.1",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@sjsf/ajv8-validator": "^3.9.1",
@@ -1941,7 +1957,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { type Schema, type UiSchemaRoot, ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
@@ -2029,7 +2045,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
@@ -2133,8 +2149,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </style>
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
-	import * as post from '$lib/post';
+	import * as defaults from '#lib/sjsf/defaults.js';
+	import * as post from '#lib/post.js';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -2515,25 +2531,28 @@ exports[`@sjsf/sv sveltekit__formActions__ajv8 kit-ts 1`] = `
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
-		"esm-env": "^1.2.0",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"json-schema-to-ts": "^3.1.1",
-		"svelte": "^5.56.1",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@sjsf/ajv8-validator": "^3.9.1",
 		"@sjsf/basic-theme": "^3.9.1",
 		"@sjsf/form": "^3.9.1",
-		"@sjsf/sveltekit": "^3.8.2",
-		"@sveltejs/kit": "^2.48.3",
+		"@sjsf/sveltekit3": "^3.9.1",
+		"@sveltejs/kit": "^3.0.0",
 		"ajv": "^8.17.0",
 		"ajv-formats": "^3.0.1",
-		"svelte": "^5.34.8"
+		"svelte": "^5.57.1"
 	}
 }
 ",
@@ -2565,7 +2584,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { type Schema, type UiSchemaRoot, ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
@@ -2630,7 +2649,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 
 export { translation } from "@sjsf/form/translations/en";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit";
+export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit3";
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -2652,7 +2671,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
@@ -2756,10 +2775,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </style>
 ",
   "src/routes/demo/sjsf/+page.server.ts": "import type { Actions } from "@sveltejs/kit";
-import type { InitialFormData } from "@sjsf/sveltekit";
-import { createAction } from "@sjsf/sveltekit/server";
-import * as post from "$lib/post";
-import * as defaults from "$lib/sjsf/defaults";
+import type { InitialFormData } from "@sjsf/sveltekit3";
+import { createAction } from "@sjsf/sveltekit3/server";
+import * as post from "#lib/post.js";
+import * as defaults from "#lib/sjsf/defaults.js";
 
 export const load = async () => {
 	return { postForm: post satisfies InitialFormData<post.Model> };
@@ -2774,9 +2793,9 @@ export const actions = {
 } satisfies Actions;
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
+	import * as defaults from '#lib/sjsf/defaults.js';
 	import type { ActionData, PageData } from './$types';
-	import { createMeta, setupSvelteKitForm } from '@sjsf/sveltekit/client';
+	import { createMeta, setupSvelteKitForm } from '@sjsf/sveltekit3/client';
 	import { BasicForm } from '@sjsf/form';
 
 	const meta = createMeta<ActionData, PageData>().postForm;
@@ -2836,26 +2855,29 @@ exports[`@sjsf/sv sveltekit__formActions__ajv8_precompiled kit-ts 1`] = `
 		"sjsf:compile": "node scripts/compile-validators.ts"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"esbuild": "^0.28.2",
-		"esm-env": "^1.2.0",
 		"json-schema-to-ts": "^3.1.1",
-		"svelte": "^5.56.1",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@sjsf/ajv8-validator": "^3.9.1",
 		"@sjsf/basic-theme": "^3.9.1",
 		"@sjsf/form": "^3.9.1",
-		"@sjsf/sveltekit": "^3.8.2",
-		"@sveltejs/kit": "^2.48.3",
+		"@sjsf/sveltekit3": "^3.9.1",
+		"@sveltejs/kit": "^3.0.0",
 		"ajv": "^8.17.0",
 		"ajv-formats": "^3.0.1",
-		"svelte": "^5.34.8"
+		"svelte": "^5.57.1"
 	}
 }
 ",
@@ -2984,7 +3006,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post/initial-value.json": "{
 	"title": "New post",
@@ -3058,7 +3080,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 
 export { translation } from "@sjsf/form/translations/en";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit";
+export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit3";
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -3073,7 +3095,7 @@ export const onSubmitError = createFocusOnFirstError();
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
@@ -3177,13 +3199,13 @@ export const onSubmitError = createFocusOnFirstError();
 </style>
 ",
   "src/routes/demo/sjsf/+page.server.ts": "import type { Actions } from "@sveltejs/kit";
-import type { InitialFormData } from "@sjsf/sveltekit";
-import { createAction } from "@sjsf/sveltekit/server";
+import type { InitialFormData } from "@sjsf/sveltekit3";
+import { createAction } from "@sjsf/sveltekit3/server";
 import { fromValidators } from "@sjsf/form/validators/precompile";
 import { createFormValidatorFactory } from "@sjsf/ajv8-validator/precompile";
-import * as validateFunctions from "$lib/post/validators.generated";
-import * as post from "$lib/post/model.generated";
-import * as defaults from "$lib/sjsf/defaults";
+import * as validateFunctions from "#lib/post/validators.generated.js";
+import * as post from "#lib/post/model.generated.js";
+import * as defaults from "#lib/sjsf/defaults.js";
 
 export const load = async () => {
 	return { postForm: post satisfies InitialFormData<post.Model> };
@@ -3207,10 +3229,10 @@ export const actions = {
 } satisfies Actions;
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
+	import * as defaults from '#lib/sjsf/defaults.js';
 	import type { ActionData, PageData } from './$types';
-	import { createMeta, setupSvelteKitForm } from '@sjsf/sveltekit/client';
-	import * as validateFunctions from '$lib/post/validators.generated';
+	import { createMeta, setupSvelteKitForm } from '@sjsf/sveltekit3/client';
+	import * as validateFunctions from '#lib/post/validators.generated.js';
 	import { createFormValidatorFactory } from '@sjsf/ajv8-validator/precompile';
 	import { fromValidators } from '@sjsf/form/validators/precompile';
 	import { BasicForm } from '@sjsf/form';
@@ -3273,24 +3295,27 @@ exports[`@sjsf/sv sveltekit__formActions__hyperjump_preco… kit-ts 1`] = `
 		"sjsf:compile": "node scripts/compile-validators.ts"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
-		"esm-env": "^1.2.0",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"json-schema-to-ts": "^3.1.1",
-		"svelte": "^5.56.1",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@hyperjump/json-schema": "^1.18.0",
 		"@sjsf/basic-theme": "^3.9.1",
 		"@sjsf/form": "^3.9.1",
 		"@sjsf/hyperjump-validator": "^3.9.0",
-		"@sjsf/sveltekit": "^3.8.2",
-		"@sveltejs/kit": "^2.48.3",
-		"svelte": "^5.34.8"
+		"@sjsf/sveltekit3": "^3.9.1",
+		"@sveltejs/kit": "^3.0.0",
+		"svelte": "^5.57.1"
 	}
 }
 ",
@@ -3427,7 +3452,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post/initial-value.json": "{
 	"title": "New post",
@@ -3503,7 +3528,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 
 export { translation } from "@sjsf/form/translations/en";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit";
+export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit3";
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -3518,7 +3543,7 @@ export const onSubmitError = createFocusOnFirstError();
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
@@ -3622,13 +3647,13 @@ export const onSubmitError = createFocusOnFirstError();
 </style>
 ",
   "src/routes/demo/sjsf/+page.server.ts": "import type { Actions } from "@sveltejs/kit";
-import type { InitialFormData } from "@sjsf/sveltekit";
-import { createAction } from "@sjsf/sveltekit/server";
-import * as post from "$lib/post/model.generated";
+import type { InitialFormData } from "@sjsf/sveltekit3";
+import { createAction } from "@sjsf/sveltekit3/server";
+import * as post from "#lib/post/model.generated.js";
 import { fromValidators } from "@sjsf/form/validators/precompile";
 import { createFormValidatorFactory } from "@sjsf/hyperjump-validator/precompile";
-import { validators } from "$lib/post/validators.generated";
-import * as defaults from "$lib/sjsf/defaults";
+import { validators } from "#lib/post/validators.generated.js";
+import * as defaults from "#lib/sjsf/defaults.js";
 
 export const load = async () => {
 	return { postForm: post satisfies InitialFormData<post.Model> };
@@ -3652,13 +3677,13 @@ export const actions = {
 } satisfies Actions;
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
+	import * as defaults from '#lib/sjsf/defaults.js';
 	import type { ActionData, PageData } from './$types';
-	import { createMeta, setupSvelteKitForm } from '@sjsf/sveltekit/client';
-	import { validators } from '$lib/post/validators.generated';
+	import { createMeta, setupSvelteKitForm } from '@sjsf/sveltekit3/client';
+	import { validators } from '#lib/post/validators.generated.js';
 	import { createFormValidatorFactory } from '@sjsf/hyperjump-validator/precompile';
 	import { fromValidators } from '@sjsf/form/validators/precompile';
-	import * as post from '$lib/post/model.generated';
+	import * as post from '#lib/post/model.generated.js';
 	import { BasicForm } from '@sjsf/form';
 
 	const meta = createMeta<ActionData, PageData>().postForm;
@@ -3718,22 +3743,25 @@ exports[`@sjsf/sv sveltekit__formActions__zod4 kit-ts 1`] = `
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
-		"esm-env": "^1.2.0",
-		"svelte": "^5.56.1",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@sjsf/basic-theme": "^3.9.1",
 		"@sjsf/form": "^3.9.1",
-		"@sjsf/sveltekit": "^3.8.2",
+		"@sjsf/sveltekit3": "^3.9.1",
 		"@sjsf/zod4-validator": "^3.9.1",
-		"@sveltejs/kit": "^2.48.3",
-		"svelte": "^5.34.8",
+		"@sveltejs/kit": "^3.0.0",
+		"svelte": "^5.57.1",
 		"zod": "^4.1.0"
 	}
 }
@@ -3766,7 +3794,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { type UiSchemaRoot, ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import * as z from "zod";
@@ -3820,7 +3848,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 
 export { translation } from "@sjsf/form/translations/en";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit";
+export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit3";
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -3835,7 +3863,7 @@ export const onSubmitError = createFocusOnFirstError();
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
@@ -3939,11 +3967,11 @@ export const onSubmitError = createFocusOnFirstError();
 </style>
 ",
   "src/routes/demo/sjsf/+page.server.ts": "import type { Actions } from "@sveltejs/kit";
-import type { InitialFormData } from "@sjsf/sveltekit";
-import { createAction } from "@sjsf/sveltekit/server";
+import type { InitialFormData } from "@sjsf/sveltekit3";
+import { createAction } from "@sjsf/sveltekit3/server";
 import { adapt } from "@sjsf/zod4-validator/classic";
-import * as post from "$lib/post";
-import * as defaults from "$lib/sjsf/defaults";
+import * as post from "#lib/post.js";
+import * as defaults from "#lib/sjsf/defaults.js";
 
 export const load = async () => {
 	const { schema: _, ...initialFormData } = post;
@@ -3970,10 +3998,10 @@ export const actions = {
 } satisfies Actions;
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
+	import * as defaults from '#lib/sjsf/defaults.js';
 	import type { ActionData, PageData } from './$types';
-	import { createMeta, setupSvelteKitForm } from '@sjsf/sveltekit/client';
-	import * as post from '$lib/post';
+	import { createMeta, setupSvelteKitForm } from '@sjsf/sveltekit3/client';
+	import * as post from '#lib/post.js';
 	import { adapt } from '@sjsf/zod4-validator/classic';
 	import { BasicForm } from '@sjsf/form';
 
@@ -4034,25 +4062,28 @@ exports[`@sjsf/sv sveltekit__remoteFunctions__ajv8 kit-ts 1`] = `
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
-		"esm-env": "^1.2.0",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"json-schema-to-ts": "^3.1.1",
-		"svelte": "^5.56.1",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@sjsf/ajv8-validator": "^3.9.1",
 		"@sjsf/basic-theme": "^3.9.1",
 		"@sjsf/form": "^3.9.1",
-		"@sjsf/sveltekit": "^3.8.2",
-		"@sveltejs/kit": "^2.48.3",
+		"@sjsf/sveltekit3": "^3.9.1",
+		"@sveltejs/kit": "^3.0.0",
 		"ajv": "^8.17.0",
 		"ajv-formats": "^3.0.1",
-		"svelte": "^5.34.8"
+		"svelte": "^5.57.1"
 	}
 }
 ",
@@ -4084,7 +4115,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { type Schema, type UiSchemaRoot, ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
@@ -4149,7 +4180,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 
 export { translation } from "@sjsf/form/translations/en";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit/rf";
+export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit3/rf";
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -4171,7 +4202,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
@@ -4275,10 +4306,10 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </style>
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
+	import * as defaults from '#lib/sjsf/defaults.js';
 	import { createPost, getInitialData } from './data.remote';
-	import { connect } from '@sjsf/sveltekit/rf/client';
-	import * as post from '$lib/post';
+	import { connect } from '@sjsf/sveltekit3/rf/client';
+	import * as post from '#lib/post.js';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const initialData = await getInitialData();
@@ -4295,11 +4326,11 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 
 <BasicForm form={form} novalidate />
 ",
-  "src/routes/demo/sjsf/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit";
-import { createServerValidator } from "@sjsf/sveltekit/rf/server";
+  "src/routes/demo/sjsf/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
+import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
 import { form, query } from "$app/server";
-import * as post from "$lib/post";
-import * as defaults from "$lib/sjsf/defaults";
+import * as post from "#lib/post.js";
+import * as defaults from "#lib/sjsf/defaults.js";
 
 export const getInitialData = query(async () => {
 	return post satisfies InitialFormData<post.Model>;
@@ -4335,7 +4366,7 @@ export default defineConfig({
 	],
 	optimizeDeps: {
 		exclude: // https://github.com/sveltejs/kit/issues/14788
-		['@sjsf/form', '@sjsf/sveltekit/rf/client']
+		['@sjsf/form', '@sjsf/sveltekit3/rf/client']
 	}
 });
 ",
@@ -4359,26 +4390,29 @@ exports[`@sjsf/sv sveltekit__remoteFunctions__ajv8_precom… kit-ts 1`] = `
 		"sjsf:compile": "node scripts/compile-validators.ts"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"esbuild": "^0.28.2",
-		"esm-env": "^1.2.0",
 		"json-schema-to-ts": "^3.1.1",
-		"svelte": "^5.56.1",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@sjsf/ajv8-validator": "^3.9.1",
 		"@sjsf/basic-theme": "^3.9.1",
 		"@sjsf/form": "^3.9.1",
-		"@sjsf/sveltekit": "^3.8.2",
-		"@sveltejs/kit": "^2.48.3",
+		"@sjsf/sveltekit3": "^3.9.1",
+		"@sveltejs/kit": "^3.0.0",
 		"ajv": "^8.17.0",
 		"ajv-formats": "^3.0.1",
-		"svelte": "^5.34.8"
+		"svelte": "^5.57.1"
 	}
 }
 ",
@@ -4507,7 +4541,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post/initial-value.json": "{
 	"title": "New post",
@@ -4581,7 +4615,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 
 export { translation } from "@sjsf/form/translations/en";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit/rf";
+export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit3/rf";
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -4596,7 +4630,7 @@ export const onSubmitError = createFocusOnFirstError();
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
@@ -4700,11 +4734,11 @@ export const onSubmitError = createFocusOnFirstError();
 </style>
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
+	import * as defaults from '#lib/sjsf/defaults.js';
 	import { createPost, getInitialData } from './data.remote';
-	import { connect } from '@sjsf/sveltekit/rf/client';
-	import * as post from '$lib/post/model.generated';
-	import * as validateFunctions from '$lib/post/validators.generated';
+	import { connect } from '@sjsf/sveltekit3/rf/client';
+	import * as post from '#lib/post/model.generated.js';
+	import * as validateFunctions from '#lib/post/validators.generated.js';
 	import { createFormValidatorFactory } from '@sjsf/ajv8-validator/precompile';
 	import { fromValidators } from '@sjsf/form/validators/precompile';
 	import { BasicForm, createForm } from '@sjsf/form';
@@ -4727,14 +4761,14 @@ export const onSubmitError = createFocusOnFirstError();
 
 <BasicForm form={form} novalidate />
 ",
-  "src/routes/demo/sjsf/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit";
-import { createServerValidator } from "@sjsf/sveltekit/rf/server";
+  "src/routes/demo/sjsf/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
+import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
 import { form, query } from "$app/server";
 import { fromValidators } from "@sjsf/form/validators/precompile";
 import { createFormValidatorFactory } from "@sjsf/ajv8-validator/precompile";
-import * as validateFunctions from "$lib/post/validators.generated";
-import * as post from "$lib/post/model.generated";
-import * as defaults from "$lib/sjsf/defaults";
+import * as validateFunctions from "#lib/post/validators.generated.js";
+import * as post from "#lib/post/model.generated.js";
+import * as defaults from "#lib/sjsf/defaults.js";
 
 export const getInitialData = query(async () => {
 	return post satisfies InitialFormData<post.Model>;
@@ -4777,7 +4811,7 @@ export default defineConfig({
 	],
 	optimizeDeps: {
 		exclude: // https://github.com/sveltejs/kit/issues/14788
-		['@sjsf/form', '@sjsf/sveltekit/rf/client']
+		['@sjsf/form', '@sjsf/sveltekit3/rf/client']
 	}
 });
 ",
@@ -4801,24 +4835,27 @@ exports[`@sjsf/sv sveltekit__remoteFunctions__hyperjump_p… kit-ts 1`] = `
 		"sjsf:compile": "node scripts/compile-validators.ts"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
-		"esm-env": "^1.2.0",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"json-schema-to-ts": "^3.1.1",
-		"svelte": "^5.56.1",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@hyperjump/json-schema": "^1.18.0",
 		"@sjsf/basic-theme": "^3.9.1",
 		"@sjsf/form": "^3.9.1",
 		"@sjsf/hyperjump-validator": "^3.9.0",
-		"@sjsf/sveltekit": "^3.8.2",
-		"@sveltejs/kit": "^2.48.3",
-		"svelte": "^5.34.8"
+		"@sjsf/sveltekit3": "^3.9.1",
+		"@sveltejs/kit": "^3.0.0",
+		"svelte": "^5.57.1"
 	}
 }
 ",
@@ -4955,7 +4992,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post/initial-value.json": "{
 	"title": "New post",
@@ -5031,7 +5068,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 
 export { translation } from "@sjsf/form/translations/en";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit/rf";
+export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit3/rf";
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -5046,7 +5083,7 @@ export const onSubmitError = createFocusOnFirstError();
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
@@ -5150,13 +5187,13 @@ export const onSubmitError = createFocusOnFirstError();
 </style>
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
+	import * as defaults from '#lib/sjsf/defaults.js';
 	import { createPost, getInitialData } from './data.remote';
-	import { connect } from '@sjsf/sveltekit/rf/client';
-	import { validators } from '$lib/post/validators.generated';
+	import { connect } from '@sjsf/sveltekit3/rf/client';
+	import { validators } from '#lib/post/validators.generated.js';
 	import { createFormValidatorFactory } from '@sjsf/hyperjump-validator/precompile';
 	import { fromValidators } from '@sjsf/form/validators/precompile';
-	import * as post from '$lib/post/model.generated';
+	import * as post from '#lib/post/model.generated.js';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const initialData = await getInitialData();
@@ -5177,14 +5214,14 @@ export const onSubmitError = createFocusOnFirstError();
 
 <BasicForm form={form} novalidate />
 ",
-  "src/routes/demo/sjsf/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit";
-import { createServerValidator } from "@sjsf/sveltekit/rf/server";
+  "src/routes/demo/sjsf/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
+import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
 import { form, query } from "$app/server";
-import * as post from "$lib/post/model.generated";
+import * as post from "#lib/post/model.generated.js";
 import { fromValidators } from "@sjsf/form/validators/precompile";
 import { createFormValidatorFactory } from "@sjsf/hyperjump-validator/precompile";
-import { validators } from "$lib/post/validators.generated";
-import * as defaults from "$lib/sjsf/defaults";
+import { validators } from "#lib/post/validators.generated.js";
+import * as defaults from "#lib/sjsf/defaults.js";
 
 export const getInitialData = query(async () => {
 	return post satisfies InitialFormData<post.Model>;
@@ -5227,7 +5264,7 @@ export default defineConfig({
 	],
 	optimizeDeps: {
 		exclude: // https://github.com/sveltejs/kit/issues/14788
-		['@sjsf/form', '@sjsf/sveltekit/rf/client']
+		['@sjsf/form', '@sjsf/sveltekit3/rf/client']
 	}
 });
 ",
@@ -5250,22 +5287,25 @@ exports[`@sjsf/sv sveltekit__remoteFunctions__zod4 kit-ts 1`] = `
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
-		"esm-env": "^1.2.0",
-		"svelte": "^5.56.1",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@sjsf/basic-theme": "^3.9.1",
 		"@sjsf/form": "^3.9.1",
-		"@sjsf/sveltekit": "^3.8.2",
+		"@sjsf/sveltekit3": "^3.9.1",
 		"@sjsf/zod4-validator": "^3.9.1",
-		"@sveltejs/kit": "^2.48.3",
-		"svelte": "^5.34.8",
+		"@sveltejs/kit": "^3.0.0",
+		"svelte": "^5.57.1",
 		"zod": "^4.1.0"
 	}
 }
@@ -5298,7 +5338,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { type UiSchemaRoot, ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import * as z from "zod";
@@ -5352,7 +5392,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 
 export { translation } from "@sjsf/form/translations/en";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
-export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit/rf";
+export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit3/rf";
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
@@ -5367,7 +5407,7 @@ export const onSubmitError = createFocusOnFirstError();
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
@@ -5471,10 +5511,10 @@ export const onSubmitError = createFocusOnFirstError();
 </style>
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
+	import * as defaults from '#lib/sjsf/defaults.js';
 	import { createPost, getInitialData } from './data.remote';
-	import { connect } from '@sjsf/sveltekit/rf/client';
-	import * as post from '$lib/post';
+	import { connect } from '@sjsf/sveltekit3/rf/client';
+	import * as post from '#lib/post.js';
 	import { adapt } from '@sjsf/zod4-validator/classic';
 	import { BasicForm, createForm } from '@sjsf/form';
 
@@ -5492,12 +5532,12 @@ export const onSubmitError = createFocusOnFirstError();
 
 <BasicForm form={form} novalidate />
 ",
-  "src/routes/demo/sjsf/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit";
-import { createServerValidator } from "@sjsf/sveltekit/rf/server";
+  "src/routes/demo/sjsf/data.remote.ts": "import type { InitialFormData } from "@sjsf/sveltekit3";
+import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
 import { form, query } from "$app/server";
 import { adapt } from "@sjsf/zod4-validator/classic";
-import * as post from "$lib/post";
-import * as defaults from "$lib/sjsf/defaults";
+import * as post from "#lib/post.js";
+import * as defaults from "#lib/sjsf/defaults.js";
 
 export const getInitialData = query(async () => {
 	const { schema: _, ...initialFormData } = post;
@@ -5535,7 +5575,7 @@ export default defineConfig({
 	],
 	optimizeDeps: {
 		exclude: // https://github.com/sveltejs/kit/issues/14788
-		['@sjsf/form', '@sjsf/sveltekit/rf/client']
+		['@sjsf/form', '@sjsf/sveltekit3/rf/client']
 	}
 });
 ",
@@ -5558,14 +5598,18 @@ exports[`@sjsf/sv theme__basic kit-ts 1`] = `
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"json-schema-to-ts": "^3.1.1",
-		"svelte": "^5.56.1",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@sjsf/ajv8-validator": "^3.9.1",
@@ -5605,7 +5649,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { type Schema, type UiSchemaRoot, ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
@@ -5692,7 +5736,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
@@ -5796,8 +5840,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </style>
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
-	import * as post from '$lib/post';
+	import * as defaults from '#lib/sjsf/defaults.js';
+	import * as post from '#lib/post.js';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -6176,14 +6220,18 @@ exports[`@sjsf/sv theme__beercss kit-ts 1`] = `
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"json-schema-to-ts": "^3.1.1",
-		"svelte": "^5.56.1",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@sjsf-lab/beercss-theme": "^3.4.0",
@@ -6224,7 +6272,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { type Schema, type UiSchemaRoot, ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
@@ -6311,7 +6359,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
 	import 'beercss/dist/cdn/beer.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
@@ -6415,8 +6463,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </style>
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
-	import * as post from '$lib/post';
+	import * as defaults from '#lib/sjsf/defaults.js';
+	import * as post from '#lib/post.js';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -6793,16 +6841,20 @@ exports[`@sjsf/sv theme__daisyui5 kit-ts 1`] = `
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"@tailwindcss/vite": "^4.3.5",
 		"json-schema-to-ts": "^3.1.1",
-		"svelte": "^5.56.1",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"tailwindcss": "^4.3.5",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@sjsf/ajv8-validator": "^3.9.1",
@@ -6847,7 +6899,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { type Schema, type UiSchemaRoot, ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
@@ -6940,7 +6992,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
@@ -7044,8 +7096,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </style>
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
-	import * as post from '$lib/post';
+	import * as defaults from '#lib/sjsf/defaults.js';
+	import * as post from '#lib/post.js';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -7441,17 +7493,21 @@ exports[`@sjsf/sv theme__flowbite3 kit-ts 1`] = `
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"@tailwindcss/vite": "^4.3.5",
 		"flowbite": "^3.1.0",
 		"json-schema-to-ts": "^3.1.1",
-		"svelte": "^5.56.1",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"tailwindcss": "^4.3.5",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@sjsf/ajv8-validator": "^3.9.1",
@@ -7495,7 +7551,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { type Schema, type UiSchemaRoot, ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
@@ -7587,7 +7643,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
@@ -7691,8 +7747,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </style>
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
-	import * as post from '$lib/post';
+	import * as defaults from '#lib/sjsf/defaults.js';
+	import * as post from '#lib/post.js';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -8113,14 +8169,18 @@ exports[`@sjsf/sv theme__pico kit-ts 1`] = `
 	},
 	"devDependencies": {
 		"@picocss/pico": "^2.1.1",
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"json-schema-to-ts": "^3.1.1",
-		"svelte": "^5.56.1",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@sjsf/ajv8-validator": "^3.9.1",
@@ -8160,7 +8220,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { type Schema, type UiSchemaRoot, ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
@@ -8247,7 +8307,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
@@ -8351,8 +8411,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </style>
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
-	import * as post from '$lib/post';
+	import * as defaults from '#lib/sjsf/defaults.js';
+	import * as post from '#lib/post.js';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -8738,16 +8798,20 @@ exports[`@sjsf/sv theme__shadcn-extras kit-ts 1`] = `
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"@tailwindcss/vite": "^4.3.5",
 		"json-schema-to-ts": "^3.1.1",
-		"svelte": "^5.56.1",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"tailwindcss": "^4.3.5",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@sjsf-lab/shadcn-extras-theme": "^3.4.3",
@@ -8794,7 +8858,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { type Schema, type UiSchemaRoot, ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
@@ -8969,9 +9033,9 @@ export function setShadcnThemeContext() {
 ",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
-	import { setShadcnThemeContext } from '$lib/sjsf/shadcn';
+	import { setShadcnThemeContext } from '#lib/sjsf/shadcn.js';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 
@@ -9077,8 +9141,8 @@ export function setShadcnThemeContext() {
 </style>
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
-	import * as post from '$lib/post';
+	import * as defaults from '#lib/sjsf/defaults.js';
+	import * as post from '#lib/post.js';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -9692,16 +9756,20 @@ exports[`@sjsf/sv theme__shadcn4 kit-ts 1`] = `
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"@tailwindcss/vite": "^4.3.5",
 		"json-schema-to-ts": "^3.1.1",
-		"svelte": "^5.56.1",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"tailwindcss": "^4.3.5",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@internationalized/date": "^3.10.0",
@@ -9751,7 +9819,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { type Schema, type UiSchemaRoot, ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
@@ -9907,9 +9975,9 @@ export function setShadcnThemeContext() {
 ",
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
-	import { setShadcnThemeContext } from '$lib/sjsf/shadcn';
+	import { setShadcnThemeContext } from '#lib/sjsf/shadcn.js';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 
@@ -10015,8 +10083,8 @@ export function setShadcnThemeContext() {
 </style>
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
-	import * as post from '$lib/post';
+	import * as defaults from '#lib/sjsf/defaults.js';
+	import * as post from '#lib/post.js';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -10608,17 +10676,21 @@ exports[`@sjsf/sv theme__skeleton4 kit-ts 1`] = `
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"@tailwindcss/forms": "^0.5.11",
 		"@tailwindcss/vite": "^4.3.5",
 		"json-schema-to-ts": "^3.1.1",
-		"svelte": "^5.56.1",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"tailwindcss": "^4.3.5",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@sjsf/ajv8-validator": "^3.9.1",
@@ -10663,7 +10735,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { type Schema, type UiSchemaRoot, ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
@@ -10759,7 +10831,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
@@ -10863,8 +10935,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </style>
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
-	import * as post from '$lib/post';
+	import * as defaults from '#lib/sjsf/defaults.js';
+	import * as post from '#lib/post.js';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -11265,17 +11337,21 @@ exports[`@sjsf/sv theme__skeleton5 kit-ts 1`] = `
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"@tailwindcss/forms": "^0.5.11",
 		"@tailwindcss/vite": "^4.3.5",
 		"json-schema-to-ts": "^3.1.1",
-		"svelte": "^5.56.1",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"tailwindcss": "^4.3.5",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@sjsf/ajv8-validator": "^3.9.1",
@@ -11320,7 +11396,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { type Schema, type UiSchemaRoot, ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
@@ -11416,7 +11492,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
@@ -11520,8 +11596,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </style>
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
-	import * as post from '$lib/post';
+	import * as defaults from '#lib/sjsf/defaults.js';
+	import * as post from '#lib/post.js';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -11925,14 +12001,18 @@ exports[`@sjsf/sv theme__svar kit-ts 1`] = `
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"json-schema-to-ts": "^3.1.1",
-		"svelte": "^5.56.1",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@sjsf-lab/svar-theme": "^3.3.0",
@@ -11973,7 +12053,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { type Schema, type UiSchemaRoot, ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
@@ -12065,7 +12145,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
 	import { Willow } from '@svar-ui/svelte-core';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
@@ -12166,8 +12246,8 @@ export function validator<T>(options: ValidatorFactoryOptions) {
 </style>
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
-	import * as post from '$lib/post';
+	import * as defaults from '#lib/sjsf/defaults.js';
+	import * as post from '#lib/post.js';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -12552,15 +12632,19 @@ exports[`@sjsf/sv validator__ajv8_precompiled kit-ts 1`] = `
 		"sjsf:compile": "node scripts/compile-validators.ts"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"esbuild": "^0.28.2",
 		"json-schema-to-ts": "^3.1.1",
-		"svelte": "^5.56.1",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@sjsf/ajv8-validator": "^3.9.1",
@@ -12697,7 +12781,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post/initial-value.json": "{
 	"title": "New post",
@@ -12786,7 +12870,7 @@ export const onSubmitError = createFocusOnFirstError();
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
@@ -12890,9 +12974,9 @@ export const onSubmitError = createFocusOnFirstError();
 </style>
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
-	import * as post from '$lib/post/model.generated';
-	import * as validateFunctions from '$lib/post/validators.generated';
+	import * as defaults from '#lib/sjsf/defaults.js';
+	import * as post from '#lib/post/model.generated.js';
+	import * as validateFunctions from '#lib/post/validators.generated.js';
 	import { createFormValidatorFactory } from '@sjsf/ajv8-validator/precompile';
 	import { fromValidators } from '@sjsf/form/validators/precompile';
 	import { BasicForm, createForm } from '@sjsf/form';
@@ -13388,14 +13472,18 @@ exports[`@sjsf/sv validator__ata kit-ts 1`] = `
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"json-schema-to-ts": "^3.1.1",
-		"svelte": "^5.56.1",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@sjsf/ata-validator": "^3.9.1",
@@ -13434,7 +13522,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { type Schema, type UiSchemaRoot, ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
@@ -13513,7 +13601,7 @@ export { createFormValidator as validator } from "@sjsf/ata-validator";
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
@@ -13617,8 +13705,8 @@ export { createFormValidator as validator } from "@sjsf/ata-validator";
 </style>
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
-	import * as post from '$lib/post';
+	import * as defaults from '#lib/sjsf/defaults.js';
+	import * as post from '#lib/post.js';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -13989,14 +14077,18 @@ exports[`@sjsf/sv validator__ata_precompiled kit-ts 1`] = `
 		"sjsf:compile": "node scripts/compile-validators.ts"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"json-schema-to-ts": "^3.1.1",
-		"svelte": "^5.56.1",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@sjsf/ata-validator": "^3.9.1",
@@ -14105,7 +14197,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post/initial-value.json": "{
 	"title": "New post",
@@ -14194,7 +14286,7 @@ export const onSubmitError = createFocusOnFirstError();
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
@@ -14298,9 +14390,9 @@ export const onSubmitError = createFocusOnFirstError();
 </style>
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
-	import * as post from '$lib/post/model.generated';
-	import * as validateFunctions from '$lib/post/validators.generated';
+	import * as defaults from '#lib/sjsf/defaults.js';
+	import * as post from '#lib/post/model.generated.js';
+	import * as validateFunctions from '#lib/post/validators.generated.js';
 	import { createFormValidatorFactory } from '@sjsf/ata-validator/precompile';
 	import { fromValidators } from '@sjsf/form/validators/precompile';
 	import { BasicForm, createForm } from '@sjsf/form';
@@ -14767,14 +14859,18 @@ exports[`@sjsf/sv validator__cfworker kit-ts 1`] = `
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"json-schema-to-ts": "^3.1.1",
-		"svelte": "^5.56.1",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@cfworker/json-schema": "^4.1.0",
@@ -14813,7 +14909,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { type Schema, type UiSchemaRoot, ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
@@ -14892,7 +14988,7 @@ export { createFormValidator as validator } from "@sjsf/cfworker-validator";
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
@@ -14996,8 +15092,8 @@ export { createFormValidator as validator } from "@sjsf/cfworker-validator";
 </style>
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
-	import * as post from '$lib/post';
+	import * as defaults from '#lib/sjsf/defaults.js';
+	import * as post from '#lib/post.js';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -15368,14 +15464,18 @@ exports[`@sjsf/sv validator__hyperjump_precompiled kit-ts 1`] = `
 		"sjsf:compile": "node scripts/compile-validators.ts"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"json-schema-to-ts": "^3.1.1",
-		"svelte": "^5.56.1",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@hyperjump/json-schema": "^1.18.0",
@@ -15519,7 +15619,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post/initial-value.json": "{
 	"title": "New post",
@@ -15610,7 +15710,7 @@ export const onSubmitError = createFocusOnFirstError();
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
@@ -15714,11 +15814,11 @@ export const onSubmitError = createFocusOnFirstError();
 </style>
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
-	import { validators } from '$lib/post/validators.generated';
+	import * as defaults from '#lib/sjsf/defaults.js';
+	import { validators } from '#lib/post/validators.generated.js';
 	import { createFormValidatorFactory } from '@sjsf/hyperjump-validator/precompile';
 	import { fromValidators } from '@sjsf/form/validators/precompile';
-	import * as post from '$lib/post/model.generated';
+	import * as post from '#lib/post/model.generated.js';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({
@@ -16220,14 +16320,18 @@ exports[`@sjsf/sv validator__noop kit-ts 1`] = `
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"json-schema-to-ts": "^3.1.1",
-		"svelte": "^5.56.1",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@sjsf/basic-theme": "^3.9.1",
@@ -16264,7 +16368,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { type Schema, type UiSchemaRoot, ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
@@ -16343,7 +16447,7 @@ export { createFormValidator as validator } from "@sjsf/form/validators/noop";
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
@@ -16447,8 +16551,8 @@ export { createFormValidator as validator } from "@sjsf/form/validators/noop";
 </style>
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
-	import * as post from '$lib/post';
+	import * as defaults from '#lib/sjsf/defaults.js';
+	import * as post from '#lib/post.js';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -16816,14 +16920,18 @@ exports[`@sjsf/sv validator__schemasafe kit-ts 1`] = `
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"json-schema-to-ts": "^3.1.1",
-		"svelte": "^5.56.1",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@exodus/schemasafe": "^1.3.0",
@@ -16862,7 +16970,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { type Schema, type UiSchemaRoot, ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
@@ -16941,7 +17049,7 @@ export { createFormValidator as validator } from "@sjsf/schemasafe-validator";
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
@@ -17045,8 +17153,8 @@ export { createFormValidator as validator } from "@sjsf/schemasafe-validator";
 </style>
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
-	import * as post from '$lib/post';
+	import * as defaults from '#lib/sjsf/defaults.js';
+	import * as post from '#lib/post.js';
 	import { BasicForm, createForm } from '@sjsf/form';
 
 	const form = createForm<post.Model>({ ...defaults, ...post, onSubmit: console.log });
@@ -17417,14 +17525,18 @@ exports[`@sjsf/sv validator__schemasafe_precompiled kit-ts 1`] = `
 		"sjsf:compile": "node scripts/compile-validators.ts"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"json-schema-to-ts": "^3.1.1",
-		"svelte": "^5.56.1",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@exodus/schemasafe": "^1.3.0",
@@ -17540,7 +17652,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post/initial-value.json": "{
 	"title": "New post",
@@ -17629,7 +17741,7 @@ export const onSubmitError = createFocusOnFirstError();
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
@@ -17733,9 +17845,9 @@ export const onSubmitError = createFocusOnFirstError();
 </style>
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
-	import * as post from '$lib/post/model.generated';
-	import * as validateFunctions from '$lib/post/validators.generated';
+	import * as defaults from '#lib/sjsf/defaults.js';
+	import * as post from '#lib/post/model.generated.js';
+	import * as validateFunctions from '#lib/post/validators.generated.js';
 	import { createFormValidatorFactory } from '@sjsf/schemasafe-validator/precompile';
 	import { fromValidators } from '@sjsf/form/validators/precompile';
 	import { BasicForm, createForm } from '@sjsf/form';
@@ -18209,15 +18321,19 @@ exports[`@sjsf/sv validator__standard-schema kit-ts 1`] = `
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"esm-env": "^1.2.0",
 		"json-schema-to-ts": "^3.1.1",
-		"svelte": "^5.56.1",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@sjsf/basic-theme": "^3.9.1",
@@ -18255,7 +18371,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import type { StandardSchemaV1, StandardJSONSchemaV1 } from "@standard-schema/spec";
 import { type Schema, type UiSchemaRoot, ON_INPUT, ON_CHANGE } from "@sjsf/form";
@@ -18356,7 +18472,7 @@ export const onSubmitError = createFocusOnFirstError();
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
@@ -18460,8 +18576,8 @@ export const onSubmitError = createFocusOnFirstError();
 </style>
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
-	import * as post from '$lib/post';
+	import * as defaults from '#lib/sjsf/defaults.js';
+	import * as post from '#lib/post.js';
 	import { adapt } from '@sjsf/form/validators/standard-schema';
 	import { BasicForm, createForm } from '@sjsf/form';
 
@@ -18865,13 +18981,17 @@ exports[`@sjsf/sv validator__valibot kit-ts 1`] = `
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
-		"svelte": "^5.56.1",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@sjsf/basic-theme": "^3.9.1",
@@ -18911,7 +19031,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { type UiSchemaRoot, ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import * as v from "valibot";
@@ -18984,7 +19104,7 @@ export const onSubmitError = createFocusOnFirstError();
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
@@ -19088,8 +19208,8 @@ export const onSubmitError = createFocusOnFirstError();
 </style>
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
-	import * as post from '$lib/post';
+	import * as defaults from '#lib/sjsf/defaults.js';
+	import * as post from '#lib/post.js';
 	import { adapt } from '@sjsf/valibot-validator';
 	import { BasicForm, createForm } from '@sjsf/form';
 
@@ -19465,13 +19585,17 @@ exports[`@sjsf/sv validator__zod4 kit-ts 1`] = `
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
-		"svelte": "^5.56.1",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
+		"svelte": "^5.56.7",
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"@sjsf/basic-theme": "^3.9.1",
@@ -19510,7 +19634,7 @@ export {};
 </html>
 ",
   "src/lib/assets/favicon.svg": "<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"><title>svelte-logo</title><path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" style="fill:#ff3e00"/><path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" style="fill:#fff"/></svg>",
-  "src/lib/index.ts": "// place files you want to import through the \`$lib\` alias in this folder.
+  "src/lib/index.ts": "// place files you want to import through the \`#lib\` alias in this folder.
 ",
   "src/lib/post.ts": "import { type UiSchemaRoot, ON_INPUT, ON_CHANGE } from "@sjsf/form";
 import * as z from "zod";
@@ -19579,7 +19703,7 @@ export const onSubmitError = createFocusOnFirstError();
   "src/routes/+layout.svelte": "<script lang="ts">
 	import DemoLinks from './demo/DemoLinks.svelte';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
@@ -19683,8 +19807,8 @@ export const onSubmitError = createFocusOnFirstError();
 </style>
 ",
   "src/routes/demo/sjsf/+page.svelte": "<script lang="ts">
-	import * as defaults from '$lib/sjsf/defaults';
-	import * as post from '$lib/post';
+	import * as defaults from '#lib/sjsf/defaults.js';
+	import * as post from '#lib/post.js';
 	import { adapt } from '@sjsf/zod4-validator/classic';
 	import { BasicForm, createForm } from '@sjsf/form';
 
