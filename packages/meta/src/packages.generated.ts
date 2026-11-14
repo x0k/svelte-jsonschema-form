@@ -123,7 +123,7 @@ export const EXTRA_PACKAGES = {
   },
   "effect": {
     "name": "effect",
-    "version": "3.22.4",
+    "version": "4.1.4",
     "dev": false
   }
 } as const satisfies Record<string, AbstractPackage>;

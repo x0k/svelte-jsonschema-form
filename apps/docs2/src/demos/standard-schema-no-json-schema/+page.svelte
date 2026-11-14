@@ -1,28 +1,26 @@
 <script lang="ts">
   import { BasicForm, createForm, getValueSnapshot } from "@sjsf/form";
   import { createFormValidator } from "@sjsf/form/validators/standard-schema";
-  import { JSONSchema, Schema } from "effect";
+  import { Schema } from "effect";
 
   import { getDemoContext } from "@/lib/demo";
 
   const { defaults } = getDemoContext();
 
   const Person = Schema.Struct({
-    name: Schema.propertySignature(Schema.String).annotations({
-      title: "Name",
+    name: Schema.String.annotate({ title: "Name" }),
+    email: Schema.String.check(
+      Schema.isPattern(/^[\w.-]+@[\w.-]+\.\w+$/u)
+    ).annotate({ title: "Email" }),
+    age: Schema.Finite.check(Schema.isGreaterThan(18)).annotate({
+      title: "Age",
     }),
-    email: Schema.propertySignature(
-      Schema.String.pipe(Schema.pattern(/^[\w.-]+@[\w.-]+\.\w+$/))
-    ).annotations({ title: "Email" }),
-    age: Schema.propertySignature(
-      Schema.Number.pipe(Schema.greaterThan(18))
-    ).annotations({ title: "Age" }),
-  }).annotations({ title: "Person" });
+  }).annotate({ title: "Person" });
 
   const form = createForm({
     ...defaults,
-    schema: JSONSchema.make(Person),
-    validator: createFormValidator(Schema.standardSchemaV1(Person)),
+    schema: Schema.toJsonSchemaDocument(Person).schema,
+    validator: createFormValidator(Schema.toStandardSchemaV1(Person)),
   });
 </script>
 

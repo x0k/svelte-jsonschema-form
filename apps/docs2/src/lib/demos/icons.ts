@@ -9,7 +9,7 @@ const meta: DemoMeta = {
   "extraDependencies": [
     {
       "name": "@lucide/svelte",
-      "version": "1.45.0",
+      "version": "1.72.0",
       "dev": false
     }
   ]
