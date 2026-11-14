@@ -385,6 +385,9 @@ catalogs:
     '@internationalized/date':
       specifier: 3.8.1
       version: 3.8.1
+    '@lucide/svelte':
+      specifier: ^0.501.0
+      version: 0.501.0
     '@skeletonlabs/skeleton':
       specifier: ^3.2.2
       version: 3.2.2
@@ -1478,8 +1481,8 @@ importers:
         specifier: catalog:legacy
         version: 3.8.1
       '@lucide/svelte':
-        specifier: 'catalog:'
-        version: 1.72.0(svelte@5.57.3(@typescript-eslint/types@8.72.2))
+        specifier: catalog:legacy
+        version: 0.501.0(svelte@5.57.3(@typescript-eslint/types@8.72.2))
       '@sjsf/ajv8-validator':
         specifier: workspace:*
         version: link:../../packages/ajv8-validator
@@ -2024,8 +2027,8 @@ importers:
         specifier: catalog:legacy
         version: 3.8.1
       '@lucide/svelte':
-        specifier: 'catalog:'
-        version: 1.72.0(svelte@5.57.3(@typescript-eslint/types@8.72.2))
+        specifier: catalog:legacy
+        version: 0.501.0(svelte@5.57.3(@typescript-eslint/types@8.72.2))
       '@sjsf/form':
         specifier: workspace:*
         version: link:../../packages/form
@@ -4016,6 +4019,11 @@ packages:
 
   '@lezer/lr@1.4.12':
     resolution: {integrity: sha512-On9HU4oMMiHPMkQDgoTnGahjgG5n/MkN38CgG77sMraKLL+3JBbeQNi1FcCXV9QRqwF9/BUXP3caHyJC1fBOTQ==}
+
+  '@lucide/svelte@0.501.0':
+    resolution: {integrity: sha512-W3YWDyANY+Gi1wzf4JKK5bRYGqRQFAIDbNmMR1ujZ/TR+/jT+8rj9txn5XEuxygYn0ioEw5EcaVewDWSUOU/bg==}
+    peerDependencies:
+      svelte: ^5
 
   '@lucide/svelte@1.72.0':
     resolution: {integrity: sha512-DRwtZ5p/m5ZRsNlfCzELJRDzd2z19mc76eMs8rwllx/JWfvykmLoTFs3RyzFN519ldQxHt8Jxum/LKukgzuTLQ==}
@@ -10235,6 +10243,10 @@ snapshots:
   '@lezer/lr@1.4.12':
     dependencies:
       '@lezer/common': 1.5.5
+
+  '@lucide/svelte@0.501.0(svelte@5.57.3(@typescript-eslint/types@8.72.2))':
+    dependencies:
+      svelte: 5.57.3(@typescript-eslint/types@8.72.2)
 
   '@lucide/svelte@1.72.0(svelte@5.57.3(@typescript-eslint/types@8.72.2))':
     dependencies:

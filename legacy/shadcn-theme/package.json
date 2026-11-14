@@ -83,7 +83,7 @@
   },
   "devDependencies": {
     "@internationalized/date": "catalog:legacy",
-    "@lucide/svelte": "catalog:",
+    "@lucide/svelte": "catalog:legacy",
     "@sjsf/form": "workspace:*",
     "@sveltejs/kit": "catalog:kit2",
     "autoprefixer": "catalog:",

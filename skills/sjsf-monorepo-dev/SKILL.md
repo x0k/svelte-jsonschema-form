@@ -119,5 +119,5 @@ options, and caveats.
 ## Gotchas & Rules
 
 1. **Browser Testing Requirement**: Unit tests test real DOM rendering via `@vitest/browser` and Playwright. Ensure local browser dependencies are present if running full suites locally.
-2. **Catalog Dependencies**: Shared dependencies (Svelte, Vite, TypeScript) are declared in `pnpm-workspace.yaml` catalog. Reference them in individual `package.json` files using `"catalog:"`.
+2. **Catalog Dependencies**: Shared dependencies (Svelte, Vite, TypeScript) are declared in `pnpm-workspace.yaml` catalog. Reference them in individual `package.json` files using `"catalog:"`. Frozen packages under `legacy/*` and their examples must use the pinned `catalog:legacy`, `catalog:skeleton4`, or `catalog:kit2` catalogs instead of the current-major default catalog. `apps/docs2` and `packages/meta` intentionally install current majors next to legacy ones, so their expected peer mismatches are listed under `peerDependencyRules.allowedVersions`; keep `pnpm peers` green when adding dependencies.
 3. **No Unmatched Formatting Pattern**: Lint-staged runs `oxfmt --no-error-on-unmatched-pattern`. Always format before committing.

@@ -92,6 +92,7 @@ catalogs:
     "@skeletonlabs/skeleton-svelte": ^4.15.2
   legacy:
     "@internationalized/date": 3.8.1
+    "@lucide/svelte": ^0.501.0
     "@skeletonlabs/skeleton": ^3.2.2
     "@skeletonlabs/skeleton-svelte": ^1.5.3
     daisyui: ^4.12.24
@@ -113,6 +114,23 @@ catalogs:
     tailwind-variants: ^3.3.1
     tw-animate-css: ^1.4.0
     yeezy-dates: ^1.1.0
+
+# `apps/docs2`, `packages/meta` and the legacy examples install the current
+# majors alongside the frozen `legacy/*` packages. A single workspace install
+# cannot satisfy both peer ranges, so these mismatches are intentional.
+peerDependencyRules:
+  allowedVersions:
+    "@sjsf/daisyui-theme>daisyui": "5"
+    "@sjsf/flowbite-theme>flowbite": "3"
+    "@sjsf/flowbite-theme>flowbite-svelte": "1"
+    "@sjsf/shadcn-theme>@lucide/svelte": "1"
+    "@sjsf/shadcn-theme>tailwind-merge": "3"
+    "@sjsf/shadcn-theme>tailwind-variants": "3"
+    "@sjsf/skeleton3-theme>@skeletonlabs/skeleton-svelte": "5"
+    "@sjsf/skeleton4-theme>@skeletonlabs/skeleton-svelte": "5"
+    "@sjsf/sveltekit>@sveltejs/kit": "3"
+    # `runed` has not widened its optional SvelteKit peer to v3 yet.
+    "runed>@sveltejs/kit": "3"
 overrides:
   playwright: "catalog:"
   vite: "catalog:"

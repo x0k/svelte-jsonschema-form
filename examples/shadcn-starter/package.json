@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@internationalized/date": "catalog:legacy",
-    "@lucide/svelte": "catalog:",
+    "@lucide/svelte": "catalog:legacy",
     "@sjsf/ajv8-validator": "workspace:*",
     "@sjsf/basic-theme": "workspace:*",
     "@sjsf/form": "workspace:*",
