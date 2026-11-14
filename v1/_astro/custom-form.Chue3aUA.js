@@ -1,0 +1,1 @@
+import{r as m}from"./props.D-KTQNlX.js";import{p,c as a}from"./snippet.QGMnsRVg.js";import"./en.DGEgCmcp.js";import{R as e}from"./raw.DiPEb4E9.js";import{c}from"./custom-form.Dj-vRAbu.js";function C(r,o){p(o,!0);const s=m(o,["$$slots","$$events","$$legacy"]),t=c(s);e(r,{form:t}),a()}export{C};
