@@ -1,0 +1,1 @@
+import{n as e,r as t,t as n}from"./dist.DD6HobgS.js";import{ct as r}from"./core.CW7ZXCkw.js";var i=e(),a=e=>n(e),o=e=>n({...e,factory:(e,n)=>(0,i.validator)(e,{...t,$schemaDefault:`https://json-schema.org/draft/2020-12/schema`,schemas:{[r]:n}})});export{a as draft07,o as draft2020};

@@ -1,0 +1,1 @@
+import{t as e}from"./model.Dfxd4Np2.js";import{t}from"./dist.BSMmxhVD.js";import{t as n}from"./index.browser.CIVpsZIP.js";var r=e=>t(e),i=r=>t({...r,factory:t=>new n(t,e)});export{r as draft07,i as draft2020};

@@ -74,7 +74,8 @@ Install as a community add-on using the Svelte CLI.
 - [Standard Schema](/validators/standard-schema/)
 - [ata-validator](/validators/ata/)
   - [Precompiled](/validators/ata/#precompiled-validation)
-- [@hyperjump/json-schema](/validators/hyperjump/) (experimental)
+- [@hyperjump/json-schema](/validators/hyperjump/)
+  - [Precompiled](/validators/hyperjump/#schema-precompilation)
 
 ## Integrations
 
@@ -147,7 +148,7 @@ import Redirect from "./redirect.astro";
 
 
 
-# @sjsf-lab/hyperjump-validator
+# @sjsf/hyperjump-validator
 
 
 
@@ -660,7 +661,8 @@ All the methods listed below are marked with `@query` or `@command` in their JSD
 `getErrors`, `hasFieldState`, `hasFieldStateByPath`, `getId`, `getSubtreePaths`,
 `getChildPath`, `getPseudoPath`, `getPseudoId`, `getIdByPath`,
 `getPseudoIdByPath`, `isSelect`, `isMultiSelect`, `isFilesArray`,
-`retrieveSchema`, `sanitizeDataForNewSchema`, `getClosestMatchingOption`,
+`retrieveSchema`, `getRenderedOptionSchema`, `sanitizeDataForNewSchema`,
+`getClosestMatchingOption`,
 `getDefaultFieldState`, `retrieveUiSchema`, `uiTitleOption`, `retrieveUiOption`,
 `retrieveNestedUiOption`, `uiOptionProps`, `uiOptionNestedProps`,
 `retrieveTranslate`, `getFieldTitle`, `getFieldAction`,
@@ -2161,6 +2163,10 @@ This selector **does not modify form data directly** but determines which schema
 
 When the form is initialized with `initialValue`, SJSF **automatically selects the most suitable schema** based on the data.
 
+For non-object schemas, keywords declared beside `oneOf` or `anyOf` also apply to the selected option. For example, an array field's `items` and `uniqueItems`, or a string field's `format`, are inherited by every option. An option's own value of a shared keyword takes precedence, except that the stricter bound is kept.
+
+When you switch options, values the new option can hold are carried over and its defaults are applied, including nested object and array defaults, so switching away from an option and back restores them. A value edited away from the previous option's defaults is kept as long as the new option can hold it.
+
 <Demo name="one-of" client:visible />
 
 ## dependencies
@@ -3589,6 +3595,7 @@ We provide official [Agent Skills](https://agentskills.io/) designed to teach AI
 | :----------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `sjsf-form-setup`        | Initialize `createForm`, setup `defaults.ts`, select themes/validators, handle controlled vs uncontrolled forms, and configure submissions.                                       |
 | `sjsf-custom-components` | Create custom widgets, templates, and theme adapters using Svelte 5 runes (`$props`, `$bindable`), override theme components, and augment `UiOptions`.                            |
+| `sjsf-theme-creation`    | Build reusable SJSF theme packages: implement required components/widgets, compose resolvers, add extra widgets, style, test, and follow official-theme conventions.              |
 | `sjsf-schema-patterns`   | Design JSON Schema (Draft-07) and UI Schema, handle dynamic forms (`oneOf`/`anyOf` discriminators, `dependencies`, `if/then/else`), validation modes, and file uploads.           |
 | `sjsf-sveltekit`         | Integrate SJSF with SvelteKit (`@sjsf/sveltekit3`), server form actions (`createAction`), client `<SvelteKitForm>` (`createMeta`), progressive enhancement, and remote functions. |
 | `sjsf-v2-migration`      | Migrate SJSF codebases from v2 to v3, adapt to Svelte 5 runes, replace removed properties (`form.context`, `form.value`, `form.errors`), and update renamed packages.             |
@@ -5420,8 +5427,8 @@ JSON schema validator.
 
 ## Precompiled validation
 
-It is possible to use precompiled validator to avoid issues with `unsafe-eval`
-warnings from the browser caused by strict Content Security Policy settings.
+Precompiled validation avoids `unsafe-eval` warnings caused by strict Content
+Security Policy settings.
 
 <Demo name="ata-precompile" client:visible />
 
@@ -5513,9 +5520,13 @@ Form validator implementation based on [@hyperjump/json-schema](https://github.c
 
 :::note
 
-This validator works only in precompiled mode, but the compilation can be performed at runtime (works
-with CSP
-[`unsafe-eval`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src#unsafe_eval_expressions))
+This validator works only in precompiled mode, but neither compiling nor
+restoring a validator generates code, so it can also be performed at runtime
+(works with CSP
+[`unsafe-eval`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src#unsafe_eval_expressions)).
+The dialect module (`@hyperjump/json-schema/draft-07` here), plus
+`@hyperjump/json-schema/formats-lite` when a schema uses `format`, must be
+imported in the browser bundle as well.
 
 :::
 
@@ -5575,6 +5586,10 @@ Run the following command for schema compilation:
 node compile-schema-script.ts
 ```
 
+The adapter filters errors that `@exodus/schemasafe` reports for successful
+`oneOf`/`anyOf` branches ([upstream issue](https://github.com/ExodusOSS/schemasafe/issues/185)),
+so they do not appear as phantom form errors.
+
 # Standard Schema
 
 import Demo from "@/components/demo.svelte";
@@ -5605,12 +5620,14 @@ import { adaptAsync } from "@sjsf/form/validators/standard-schema";
 const { schema, validator } = adaptAsync(standardSchema);
 ```
 
-## Using with non-JSON Schema libraries
+## Using a library's own JSON Schema generation
 
 Some Standard Schema libraries only implement `StandardSchemaV1`
 for validation, but not `StandardJSONSchemaV1` for schema generation.
+Others provide their own JSON Schema generator in addition to
+Standard JSON Schema support, and you may prefer its output.
 
-In this case, you can use the library's own JSON Schema generation
+In either case, you can use the library's own JSON Schema generation
 alongside `createFormValidator`:
 
 <Demo name="standard-schema-no-json-schema" iconsPicker client:visible />
