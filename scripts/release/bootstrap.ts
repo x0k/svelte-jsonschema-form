@@ -7,6 +7,10 @@
  * configure the OIDC publisher. The real release can then be published by the
  * GitHub Actions workflow.
  *
+ * A trusted publisher must complete its first publish within two days of being
+ * created, otherwise it expires and has to be recreated. Bootstrap immediately
+ * before the first release.
+ *
  * Staging and trust setup require an authenticated npm session. 2FA prompts
  * are intentionally left interactive; everything else is automated.
  */
@@ -16,15 +20,18 @@ import { join } from "node:path";
 import { createInterface } from "node:readline/promises";
 
 import {
+  assertNpmVersion,
   bootstrapDir,
   bootstrapTag,
   bootstrapVersion,
   displayPath,
   errorMessage,
   listStagedEntries,
+  minimumNpmVersion,
   readReleaseConfig,
   realVersions,
-  registryVersions,
+  registryArgs,
+  registryInfo,
   runCommand,
   selectPackages,
   sleep,
@@ -38,6 +45,7 @@ interface BootstrapOptions {
   cleanup: boolean;
   dryRun: boolean;
   trust: boolean;
+  trustExplicit: boolean;
   yes: boolean;
   help: boolean;
   names: string[];
@@ -48,6 +56,7 @@ function parseArgs(args: string[]): BootstrapOptions {
     cleanup: false,
     dryRun: false,
     trust: true,
+    trustExplicit: false,
     yes: false,
     help: false,
     names: [],
@@ -59,8 +68,10 @@ function parseArgs(args: string[]): BootstrapOptions {
       options.dryRun = true;
     } else if (arg === "--no-trust") {
       options.trust = false;
+      options.trustExplicit = true;
     } else if (arg === "--trust") {
       options.trust = true;
+      options.trustExplicit = true;
     } else if (arg === "--yes" || arg === "-y") {
       options.yes = true;
     } else if (arg === "--help" || arg === "-h") {
@@ -76,7 +87,7 @@ function parseArgs(args: string[]): BootstrapOptions {
 
 function printUsage(): void {
   console.log(`Usage:
-  pnpm release:bootstrap [--dry-run] [--no-trust] <package...>
+  pnpm release:bootstrap [--dry-run] [--no-trust|--trust] <package...>
   pnpm release:cleanup [--dry-run] [--yes] <package...>
 
 Bootstraps a new package so npm trusted publishing can release it:
@@ -84,12 +95,18 @@ Bootstraps a new package so npm trusted publishing can release it:
   2. Configures the GitHub Actions trusted publisher.
   3. Prints the release and cleanup steps.
 
+The trusted publisher must complete its first publish within two days or it
+expires and has to be recreated. Bootstrap shortly before the first release.
+
 Cleanup rejects the staged bootstrap entry after a real version is published.
+
+Requires npm ${minimumNpmVersion} or newer.
 
 Options:
   --cleanup   Reject staged bootstrap entries instead of creating them
-  --dry-run   Print commands without running them
+  --dry-run   Print commands without creating or removing files
   --no-trust  Only stage the package; print the npm trust command
+  --trust     Also configure trusted publishing for published packages
   --yes, -y   Skip cleanup confirmation prompts (required in non-TTY shells)
   --help      Show this help
 `);
@@ -98,7 +115,7 @@ Options:
 function createBootstrapManifest(
   pkg: WorkspacePackage,
   config: ReleaseConfig
-): string {
+): void {
   const dir = bootstrapDir(pkg);
   mkdirSync(dir, { recursive: true });
   const manifest = {
@@ -117,7 +134,6 @@ function createBootstrapManifest(
     join(dir, "package.json"),
     `${JSON.stringify(manifest, null, 2)}\n`
   );
-  return dir;
 }
 
 function commandLine(command: string, args: string[]): string {
@@ -131,7 +147,8 @@ async function waitForStaged(name: string): Promise<boolean> {
       if (
         entries.some(
           (entry) =>
-            entry.version === bootstrapVersion && entry.status === "staged"
+            entry.version === bootstrapVersion &&
+            (entry.status === "staged" || entry.status === "validating")
         )
       ) {
         return true;
@@ -152,55 +169,72 @@ async function bootstrap(
   options: BootstrapOptions
 ): Promise<number> {
   let failures = 0;
-  let bootstrapped = 0;
+  let processed = 0;
+  const cleanupNames: string[] = [];
 
   for (const pkg of packages) {
     console.log(`\n${pkg.name}`);
-    const versions = await registryVersions(pkg.name);
+    const info = await registryInfo(pkg.name);
+    const versions = info?.versions ?? null;
+    const published = versions === null ? [] : realVersions(versions);
 
-    if (versions !== null && realVersions(versions).length > 0) {
-      const published = realVersions(versions);
+    if (published.length > 0) {
+      const latest =
+        info?.latest && published.includes(info.latest)
+          ? info.latest
+          : published.at(-1);
       console.log(
-        `  Already published (${published.length} version${published.length === 1 ? "" : "s"}, latest ${published.at(-1)}). Skipping staging.`
+        `  Already published (${published.length} version${published.length === 1 ? "" : "s"}, latest ${latest}). Skipping staging.`
       );
-      console.log("  If trusted publishing is not configured yet, run:");
-      console.log(`    ${commandLine("npm", trustArgs(pkg.name, config))}`);
-      continue;
-    }
-
-    bootstrapped++;
-
-    if (versions === null) {
-      const dir = createBootstrapManifest(pkg, config);
-      const args = [
-        "stage",
-        "publish",
-        dir,
-        "--access",
-        "public",
-        "--tag",
-        bootstrapTag,
-        "--no-provenance",
-      ];
-      console.log(`  Staging ${bootstrapVersion} from ${displayPath(dir)}...`);
-      if (options.dryRun) {
-        console.log(`    ${commandLine("npm", args)}`);
-      } else {
-        const result = runCommand("npm", args);
-        if (result.status !== 0) {
-          failures++;
-          continue;
-        }
-        if (!(await waitForStaged(pkg.name))) {
-          console.warn(
-            `  Warning: ${bootstrapVersion} was staged, but it is not visible in npm stage list yet.`
-          );
-        }
+      if (!options.trust || !options.trustExplicit) {
+        console.log("  If trusted publishing is not configured yet, run:");
+        console.log(`    ${commandLine("npm", trustArgs(pkg.name, config))}`);
+        continue;
       }
-    } else {
       console.log(
-        `  Package already exists with bootstrap-only versions (${versions.join(", ")}). Skipping staging.`
+        "  Configuring trusted publishing for the existing package..."
       );
+      processed++;
+    } else {
+      processed++;
+      cleanupNames.push(pkg.name);
+      if (versions === null) {
+        const dir = bootstrapDir(pkg);
+        const args = [
+          "stage",
+          "publish",
+          dir,
+          "--access",
+          "public",
+          "--tag",
+          bootstrapTag,
+          "--no-provenance",
+          ...registryArgs(),
+        ];
+        console.log(
+          `  Staging ${bootstrapVersion} from ${displayPath(dir)}...`
+        );
+        if (options.dryRun) {
+          console.log(`    ${commandLine("npm", args)}`);
+          console.log("    (the manifest is created before staging)");
+        } else {
+          createBootstrapManifest(pkg, config);
+          const result = runCommand("npm", args);
+          if (result.status !== 0) {
+            failures++;
+            continue;
+          }
+          if (!(await waitForStaged(pkg.name))) {
+            console.warn(
+              `  Warning: ${bootstrapVersion} was staged, but it is not visible in npm stage list yet.`
+            );
+          }
+        }
+      } else {
+        console.log(
+          `  Package already exists with bootstrap-only versions (${versions.join(", ")}). Skipping staging.`
+        );
+      }
     }
 
     if (!options.trust) {
@@ -222,10 +256,14 @@ async function bootstrap(
         "  Could not configure trusted publishing automatically. Run manually:"
       );
       console.error(`    ${commandLine("npm", trustArgs(pkg.name, config))}`);
+    } else {
+      console.log(
+        "  Note: this trusted publisher must complete its first publish within 2 days or it expires."
+      );
     }
   }
 
-  if (bootstrapped === 0) {
+  if (processed === 0) {
     console.log(
       "\nNothing to bootstrap: every specified package already exists on npm."
     );
@@ -233,14 +271,25 @@ async function bootstrap(
   }
 
   console.log("\nNext:");
+  if (cleanupNames.length === 0) {
+    console.log(
+      "  Trusted publishing is configured; the next release can be published by"
+    );
+    console.log('  the "Version and Publish" workflow.');
+    return failures === 0 ? 0 : 1;
+  }
   console.log("  1. Merge the new package and its changeset.");
-  console.log('  2. Run the "Version and Publish" GitHub Actions workflow.');
+  console.log(
+    '  2. Land the first release within 2 days: run the "Version and Publish"'
+  );
+  console.log(
+    "     GitHub Actions workflow. Otherwise the trusted publisher expires and"
+  );
+  console.log("     must be recreated.");
   console.log(
     "  3. After the real version is published, remove the bootstrap stage:"
   );
-  console.log(
-    `       pnpm release:cleanup ${packages.map((pkg) => pkg.name).join(" ")}`
-  );
+  console.log(`       pnpm release:cleanup ${cleanupNames.join(" ")}`);
 
   return failures === 0 ? 0 : 1;
 }
@@ -273,6 +322,81 @@ async function confirmOrSkip(
   return confirm(question);
 }
 
+interface RemovalOutcome {
+  skipped: boolean;
+  failed: boolean;
+}
+
+async function unpublishVersion(
+  pkg: WorkspacePackage,
+  version: string,
+  label: string,
+  options: BootstrapOptions
+): Promise<RemovalOutcome> {
+  const args = [
+    "unpublish",
+    `${pkg.name}@${version}`,
+    "--force",
+    ...registryArgs(),
+  ];
+  if (
+    !(await confirmOrSkip(
+      `Unpublish ${label} ${pkg.name}@${version}?`,
+      options
+    ))
+  ) {
+    console.log(`  Skipped ${label} removal.`);
+    return { skipped: true, failed: false };
+  }
+  const result = runCommand("npm", args);
+  if (result.status !== 0) {
+    console.error(
+      `  Could not remove the ${label}. Run manually:\n    ${commandLine("npm", args)}`
+    );
+    return { skipped: false, failed: true };
+  }
+  console.log(`  Removed ${label} ${pkg.name}@${version}.`);
+  return { skipped: false, failed: false };
+}
+
+async function removeBootstrapArtifacts(
+  pkg: WorkspacePackage,
+  options: BootstrapOptions
+): Promise<RemovalOutcome> {
+  // Staged rejection can take a moment to propagate to the registry.
+  await sleep(1000);
+  const info = await registryInfo(pkg.name);
+  if (info === null) {
+    console.warn(
+      "  Package is no longer visible on the registry; skipping placeholder removal."
+    );
+    return { skipped: true, failed: false };
+  }
+
+  const outcome: RemovalOutcome = { skipped: false, failed: false };
+  const targets = [
+    { version: stagePlaceholderVersion, label: "placeholder" },
+    { version: bootstrapVersion, label: "approved bootstrap version" },
+  ];
+  for (const target of targets) {
+    if (!info.versions.includes(target.version)) {
+      if (target.version === stagePlaceholderVersion) {
+        console.log(`  ${stagePlaceholderVersion} placeholder is gone.`);
+      }
+      continue;
+    }
+    const result = await unpublishVersion(
+      pkg,
+      target.version,
+      target.label,
+      options
+    );
+    outcome.skipped ||= result.skipped;
+    outcome.failed ||= result.failed;
+  }
+  return outcome;
+}
+
 async function cleanup(
   packages: WorkspacePackage[],
   options: BootstrapOptions
@@ -281,18 +405,21 @@ async function cleanup(
 
   for (const pkg of packages) {
     console.log(`\n${pkg.name}`);
-    const versions = await registryVersions(pkg.name);
-    if (versions === null) {
+    const info = await registryInfo(pkg.name);
+    if (info === null) {
       console.log("  Package does not exist on npm; nothing to clean up.");
-      rmSync(bootstrapDir(pkg), { recursive: true, force: true });
+      if (!options.dryRun) {
+        rmSync(bootstrapDir(pkg), { recursive: true, force: true });
+      }
       continue;
     }
 
-    if (realVersions(versions).length === 0) {
+    if (realVersions(info.versions).length === 0) {
       failures++;
       console.error(
         "  Refusing to clean up: no real version is published yet.\n" +
-          "  Rejecting the only staged version would remove the package and its trusted publisher configuration."
+          `  Removing the ${stagePlaceholderVersion} placeholder while it is the only published version\n` +
+          "  would remove the package and its trusted publisher configuration."
       );
       continue;
     }
@@ -303,12 +430,27 @@ async function cleanup(
     if (staged.length === 0) {
       console.log(`  No staged ${bootstrapVersion} entry found.`);
     }
-    for (const entry of staged) {
-      const args = ["stage", "reject", entry.id];
-      if (options.dryRun) {
-        console.log(`  ${commandLine("npm", args)}`);
-        continue;
+
+    if (options.dryRun) {
+      for (const entry of staged) {
+        console.log(
+          `  ${commandLine("npm", ["stage", "reject", entry.id, ...registryArgs()])}`
+        );
       }
+      for (const version of [stagePlaceholderVersion, bootstrapVersion]) {
+        if (info.versions.includes(version)) {
+          console.log(`  If ${version} remains after rejection:`);
+          console.log(
+            `    ${commandLine("npm", ["unpublish", `${pkg.name}@${version}`, "--force", ...registryArgs()])}`
+          );
+        }
+      }
+      continue;
+    }
+
+    let completed = true;
+    for (const entry of staged) {
+      const args = ["stage", "reject", entry.id, ...registryArgs()];
       if (
         !(await confirmOrSkip(
           `Reject staged ${pkg.name}@${entry.version} (${entry.id})?`,
@@ -316,53 +458,28 @@ async function cleanup(
         ))
       ) {
         console.log("  Skipped.");
+        completed = false;
         continue;
       }
       const result = runCommand("npm", args);
       if (result.status !== 0) {
         failures++;
+        completed = false;
       }
     }
 
-    if (options.dryRun) {
-      if (versions.includes(stagePlaceholderVersion)) {
-        console.log(`  If ${stagePlaceholderVersion} remains after rejection:`);
-        console.log(
-          `    ${commandLine("npm", ["unpublish", `${pkg.name}@${stagePlaceholderVersion}`, "--force"])}`
-        );
-      }
-    } else {
-      // Staged rejection can take a moment to propagate to the registry.
-      await sleep(1000);
-      const after = await registryVersions(pkg.name);
-      if (after?.includes(stagePlaceholderVersion)) {
-        const args = [
-          "unpublish",
-          `${pkg.name}@${stagePlaceholderVersion}`,
-          "--force",
-        ];
-        if (
-          await confirmOrSkip(
-            `Unpublish placeholder ${pkg.name}@${stagePlaceholderVersion}?`,
-            options
-          )
-        ) {
-          const result = runCommand("npm", args);
-          if (result.status !== 0) {
-            failures++;
-            console.error(
-              `  Could not remove the placeholder. Run manually:\n    ${commandLine("npm", args)}`
-            );
-          }
-        } else {
-          console.log("  Skipped placeholder removal.");
-        }
-      } else {
-        console.log(`  ${stagePlaceholderVersion} placeholder is gone.`);
-      }
+    const outcome = await removeBootstrapArtifacts(pkg, options);
+    if (outcome.skipped) {
+      completed = false;
+    }
+    if (outcome.failed) {
+      failures++;
+      completed = false;
     }
 
-    rmSync(bootstrapDir(pkg), { recursive: true, force: true });
+    if (completed) {
+      rmSync(bootstrapDir(pkg), { recursive: true, force: true });
+    }
   }
 
   return failures === 0 ? 0 : 1;
@@ -380,6 +497,7 @@ async function main(): Promise<number> {
   }
 
   const packages = selectPackages(options.names);
+  assertNpmVersion(minimumNpmVersion, "These release scripts");
   if (options.cleanup) {
     return cleanup(packages, options);
   }

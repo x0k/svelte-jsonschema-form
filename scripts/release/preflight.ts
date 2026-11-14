@@ -13,8 +13,8 @@ import {
   displayPath,
   errorMessage,
   publishablePackages,
+  registryInfo,
   registryUrl,
-  registryVersions,
   selectPackages,
   type WorkspacePackage,
 } from "./lib.ts";
@@ -27,7 +27,7 @@ interface PreflightOptions {
 
 interface PackageCheck {
   pkg: WorkspacePackage;
-  versions: string[] | null;
+  exists: boolean;
   error: string | null;
 }
 
@@ -135,20 +135,20 @@ async function main(): Promise<number> {
     try {
       return {
         pkg,
-        versions: await registryVersions(pkg.name, registry),
+        exists: (await registryInfo(pkg.name, registry)) !== null,
         error: null,
       } satisfies PackageCheck;
     } catch (error) {
       return {
         pkg,
-        versions: null,
+        exists: false,
         error: errorMessage(error),
       } satisfies PackageCheck;
     }
   });
 
   const missing = checks.filter(
-    (check) => check.versions === null && check.error === null
+    (check) => !check.exists && check.error === null
   );
   const errors = checks.filter((check) => check.error !== null);
 

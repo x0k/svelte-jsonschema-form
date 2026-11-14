@@ -132,6 +132,10 @@ layout.
    devDependency of `sv`, so changesets does not bump the add-on by itself.
 7. Run `pnpm --filter @sjsf/sv --filter meta run test -u` if generated
    snapshots change.
+8. New npm package names must be bootstrapped before merging; see
+   [Publishing a New Package to npm](#publishing-a-new-package-to-npm). The
+   first trusted publish also requires `repository.url` in `package.json` to
+   exactly match the GitHub repository.
 
 ---
 
@@ -148,8 +152,11 @@ workspace therefore needs a one-time bootstrap before its first release.
    pnpm release:check @sjsf/new-validator
    ```
 
-   The release workflow runs the same check before the changesets action, so a
-   missing package blocks both the release PR and the publish run.
+   CI runs the check on pull requests, and the release workflow runs it before
+   the changesets action, so a missing package blocks both the release PR and
+   the publish run. If you merge an un-bootstrapped package, the workflow fails
+   on `main` and no release PR is created; bootstrap the reported names and
+   re-run the workflow.
 
 2. Bootstrap the missing package from an authenticated npm session:
 
@@ -157,17 +164,24 @@ workspace therefore needs a one-time bootstrap before its first release.
    pnpm release:bootstrap @sjsf/new-validator
    ```
 
-   This stages a throwaway `0.0.0-bootstrap` version (creating the package
-   name) and configures `version-and-publish.yaml` as a trusted publisher. The
-   `npm trust github` step prompts for 2FA and cannot run in CI. Keep the staged
-   version alive until the first real release succeeds; rejecting it while it is
-   the only version removes the package and its trusted publisher.
+   This requires npm 11.15+ (`npm stage` / `npm trust`). It stages a throwaway
+   `0.0.0-bootstrap` version (creating the package name and the public
+   `0.0.0-stage` placeholder) and configures `version-and-publish.yaml` as a
+   trusted publisher. The `npm trust github` step prompts for 2FA and cannot
+   run in CI.
+
+   > A new trusted publisher expires two days after creation unless it
+   > completes its first publish. Bootstrap shortly before the first release
+   > and land the release within that window; otherwise delete the expired
+   > configuration and re-run the bootstrap.
 
    Use `--dry-run` to inspect the commands or `--no-trust` to only stage the
-   package. See `scripts/release/README.md` for details.
+   package. `--trust` also configures publishing for packages that already
+   exist. See `scripts/release/README.md` for details.
 
 3. Merge the package and its changeset, then let the normal **Version and
-   Publish** workflow publish it.
+   Publish** workflow publish it. Make sure `repository.url` in the package's
+   `package.json` matches the GitHub repository, or the OIDC publish fails.
 
 4. After the real version is live, remove the bootstrap stage:
 
@@ -175,9 +189,11 @@ workspace therefore needs a one-time bootstrap before its first release.
    pnpm release:cleanup @sjsf/new-validator
    ```
 
-   Cleanup rejects the staged bootstrap entry and removes the
-   `0.0.0-stage` placeholder if it remains. It refuses to run before a real
-   version exists.
+   Cleanup rejects the staged bootstrap entry, removes the `0.0.0-stage`
+   placeholder if it remains, and removes a mistakenly approved
+   `0.0.0-bootstrap` version. It refuses to run before a real version exists,
+   because unpublishing the only published version would remove the package
+   and its trusted publisher configuration.
 
 The preflight cannot verify trusted publisher configuration: npm requires an
 authenticated 2FA request to list it. It verifies package existence only.

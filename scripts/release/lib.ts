@@ -28,12 +28,18 @@ export interface StageEntry {
   status: string;
 }
 
+export interface RegistryInfo {
+  versions: string[];
+  latest: string | null;
+}
+
 export const repoRoot = resolve(import.meta.dirname, "../..");
 export const defaultRegistry = "https://registry.npmjs.org/";
 export const bootstrapVersion = "0.0.0-bootstrap";
 export const bootstrapTag = "bootstrap";
 export const stagePlaceholderVersion = "0.0.0-stage";
 export const releaseWorkflowFile = "version-and-publish.yaml";
+export const minimumNpmVersion = "11.15.0";
 
 export function readReleaseConfig(): ReleaseConfig {
   const path = join(repoRoot, ".changeset/config.json");
@@ -47,12 +53,72 @@ export function readReleaseConfig(): ReleaseConfig {
   return { repo, workflowFile: releaseWorkflowFile };
 }
 
+/**
+ * Resolves the registry the same way npm does (`.npmrc`, env vars) so reads
+ * and writes always target the same place. Falls back to the public registry.
+ */
 export function registryUrl(): string {
+  if (cachedRegistry !== null) {
+    return cachedRegistry;
+  }
   const registry =
-    process.env.npm_config_registry ??
-    process.env.NPM_CONFIG_REGISTRY ??
-    defaultRegistry;
-  return registry.endsWith("/") ? registry : `${registry}/`;
+    environmentRegistry() ?? npmConfigRegistry() ?? defaultRegistry;
+  cachedRegistry = registry.endsWith("/") ? registry : `${registry}/`;
+  return cachedRegistry;
+}
+
+let cachedRegistry: string | null = null;
+
+function environmentRegistry(): string | undefined {
+  const registry =
+    process.env.npm_config_registry ?? process.env.NPM_CONFIG_REGISTRY;
+  const trimmed = registry?.trim();
+  return trimmed ? trimmed : undefined;
+}
+
+function npmConfigRegistry(): string | undefined {
+  try {
+    const result = runCommand("npm", ["config", "get", "registry"], {
+      capture: true,
+    });
+    return result.status === 0 ? result.stdout.trim() || undefined : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+export function registryArgs(): string[] {
+  return ["--registry", registryUrl()];
+}
+
+export function assertNpmVersion(required: string, feature: string): void {
+  const result = runCommand("npm", ["--version"], { capture: true });
+  const version = result.stdout.trim();
+  if (result.status !== 0 || !version) {
+    throw new Error(
+      `Could not determine the npm version (needed for ${feature})`
+    );
+  }
+  if (compareVersions(version, required) < 0) {
+    throw new Error(
+      `${feature} need npm ${required} or newer (found ${version}). ` +
+        "Update npm (Node 26 bundles a recent version) and try again."
+    );
+  }
+}
+
+function compareVersions(a: string, b: string): number {
+  const parse = (version: string) =>
+    version.split(".").map((part) => Number.parseInt(part, 10) || 0);
+  const partsA = parse(a);
+  const partsB = parse(b);
+  for (let index = 0; index < Math.max(partsA.length, partsB.length); index++) {
+    const diff = (partsA[index] ?? 0) - (partsB[index] ?? 0);
+    if (diff !== 0) {
+      return diff;
+    }
+  }
+  return 0;
 }
 
 export function listWorkspacePackages(): WorkspacePackage[] {
@@ -118,7 +184,7 @@ export function displayPath(dir: string): string {
 }
 
 export function bootstrapDir(pkg: WorkspacePackage): string {
-  const directoryName = pkg.name.replace(/^@/, "").replace(/[/\\]/g, "-");
+  const directoryName = pkg.name.replace(/^@/, "").replace(/[/\\]/g, "__");
   return join(repoRoot, ".tmp/release-bootstrap", directoryName);
 }
 
@@ -130,10 +196,10 @@ export function realVersions(versions: string[]): string[] {
   return versions.filter((version) => !isBootstrapVersion(version));
 }
 
-export async function registryVersions(
+export async function registryInfo(
   name: string,
   registry = registryUrl()
-): Promise<string[] | null> {
+): Promise<RegistryInfo | null> {
   const url = `${registry}${encodeURIComponent(name)}`;
   let lastError: unknown;
   for (let attempt = 1; attempt <= 3; attempt++) {
@@ -150,8 +216,13 @@ export async function registryVersions(
       }
       const body = (await response.json()) as {
         versions?: Record<string, unknown>;
+        "dist-tags"?: { latest?: unknown };
       };
-      return Object.keys(body.versions ?? {});
+      const latest = body["dist-tags"]?.latest;
+      return {
+        versions: Object.keys(body.versions ?? {}),
+        latest: typeof latest === "string" ? latest : null,
+      };
     } catch (error) {
       lastError = error;
       if (attempt < 3) {
@@ -163,9 +234,11 @@ export async function registryVersions(
 }
 
 export function listStagedEntries(name: string): StageEntry[] {
-  const result = runCommand("npm", ["stage", "list", name, "--json"], {
-    capture: true,
-  });
+  const result = runCommand(
+    "npm",
+    ["stage", "list", name, "--json", ...registryArgs()],
+    { capture: true }
+  );
   if (result.status !== 0) {
     throw new Error(
       `npm stage list ${name} failed (${result.status}): ${result.stderr.trim()}`
@@ -189,6 +262,7 @@ export function trustArgs(pkg: string, config: ReleaseConfig): string[] {
     config.workflowFile,
     "--allow-publish",
     "--yes",
+    ...registryArgs(),
   ];
 }
 
