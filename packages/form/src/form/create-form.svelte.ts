@@ -3,6 +3,7 @@ import { on } from "svelte/events";
 import { SvelteMap } from "svelte/reactivity";
 
 import {
+  createCoreContext,
   DEPENDENCIES_KEY,
   IF_KEY,
   isSchemaDeepEqual,
@@ -12,6 +13,11 @@ import {
   type Schema,
   type Validator,
 } from "#core/index.js";
+import {
+  CORE_ROOT_SCHEMA,
+  CORE_VALIDATOR,
+  CORE_MERGER,
+} from "#core/internals.js";
 import { createDataURLtoBlob } from "#lib/file.js";
 import { weakMemoize } from "#lib/memoize.js";
 import type { SchedulerYield } from "#lib/scheduler.js";
@@ -41,14 +47,11 @@ import {
   FORM_UI_EXTRA_OPTIONS,
   FORM_FIELDS_VALIDATION_MODE,
   FORM_KEYED_ARRAYS,
-  FORM_SCHEMA,
   FORM_UI_SCHEMA,
   FORM_UI_SCHEMA_ROOT,
   FORM_VALUE,
   FORM_UI_OPTIONS_REGISTRY,
   FORM_DISABLED,
-  FORM_VALIDATOR,
-  FORM_MERGER,
   FORM_RESOLVER,
   FORM_THEME,
   FORM_TRANSLATION,
@@ -267,6 +270,9 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       uiOptionsRegistry,
     })
   );
+  const coreContext = $derived(
+    createCoreContext({ validator, merger, rootSchema: options.schema })
+  );
   const valueRef = $derived(
     createValueRef(
       merger.mergeFormDataAndSchemaDefaults({
@@ -297,13 +303,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     })
   );
   const retrievedSchema = $derived(
-    retrieveSchema(
-      validator,
-      merger,
-      options.schema,
-      options.schema,
-      valueRef.current
-    )
+    retrieveSchema(coreContext, options.schema, valueRef.current)
   );
   // A `dependencies`/`if` branch switch nested inside an object property never changes the ROOT retrieved
   // schema (only the schema's own top-level `dependencies`/`if` get resolved into it), so comparing
@@ -522,7 +522,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     get [FORM_KEYED_ARRAYS]() {
       return keyedArrays;
     },
-    get [FORM_SCHEMA]() {
+    get [CORE_ROOT_SCHEMA]() {
       return options.schema;
     },
     get [FORM_RETRIEVED_SCHEMA]() {
@@ -543,10 +543,10 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     get [FORM_DISABLED]() {
       return disabled;
     },
-    get [FORM_VALIDATOR]() {
+    get [CORE_VALIDATOR]() {
       return validator;
     },
-    get [FORM_MERGER]() {
+    get [CORE_MERGER]() {
       return merger;
     },
     get [FORM_ID_BUILDER]() {
@@ -632,9 +632,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     // earlier value would clear what that pass just wrote.
     const oldFormData = rebuildOldFormData(formData, changes);
     let currentRetrievedSchema = retrieveSchema(
-      validator,
-      merger,
-      options.schema,
+      coreContext,
       options.schema,
       oldFormData
     );
@@ -663,9 +661,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       // can select a different branch for another key one hop later.
       if (staleDefaultsPass) {
         const newRetrievedSchema = retrieveSchema(
-          validator,
-          merger,
-          options.schema,
+          coreContext,
           options.schema,
           formData
         );
@@ -701,9 +697,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       }
 
       const nextRetrievedSchema = retrieveSchema(
-        validator,
-        merger,
-        options.schema,
+        coreContext,
         options.schema,
         formData
       );
@@ -719,9 +713,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       values.push(formData);
       const dataBeforeSanitize = formData;
       formData = sanitizeDataForNewSchema(
-        validator,
-        merger,
-        options.schema,
+        coreContext,
         nextRetrievedSchema,
         currentRetrievedSchema,
         formData

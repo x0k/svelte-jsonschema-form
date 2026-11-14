@@ -4,9 +4,9 @@
 
 import { getOwn, setOwn } from "#lib/object.js";
 
-import { isSchemaDeepEqual, type ValueComparer } from "./deep-equal.js";
+import { isValueDeepEqual, type CoreContext } from "./context.js";
+import { isSchemaDeepEqual } from "./deep-equal.js";
 import { getSelectOptionValuesSafe } from "./is-select.js";
-import type { Merger } from "./merger.js";
 import { retrieveSchema } from "./resolve.js";
 import {
   CONST_KEY,
@@ -16,21 +16,20 @@ import {
   type SchemaObjectValue,
   type SchemaValue,
 } from "./schema.js";
-import type { Validator } from "./validator.js";
 import { isSchemaObjectValue } from "./value.js";
 
 const NO_VALUE = Symbol("no Value");
 const NO_OPTIONS: SchemaValue[] = [];
 
 function replacementForInvalidEnumValue(
-  comparer: ValueComparer,
+  ctx: CoreContext,
   schema: Schema,
   formValue: SchemaValue | undefined
 ) {
   const enumValues = getSelectOptionValuesSafe(schema) ?? NO_OPTIONS;
   if (
     enumValues.length === 0 ||
-    enumValues.some((value) => comparer.isValueDeepEqual(value, formValue))
+    enumValues.some((value) => isValueDeepEqual(ctx, value, formValue))
   ) {
     return NO_VALUE;
   }
@@ -38,7 +37,7 @@ function replacementForInvalidEnumValue(
   const defaultValue = schema.default;
   if (
     defaultValue !== undefined &&
-    enumValues.some((value) => comparer.isValueDeepEqual(value, defaultValue))
+    enumValues.some((value) => isValueDeepEqual(ctx, value, defaultValue))
   ) {
     return defaultValue;
   }
@@ -47,23 +46,15 @@ function replacementForInvalidEnumValue(
 }
 
 function sanitizeArrays(
+  ctx: CoreContext,
   newSchema: Schema,
   oldSchemaItemsRaw: Schema,
   newSchemaItemsRaw: Schema,
-  validator: Validator,
-  merger: Merger,
-  rootSchema: Schema,
   data: SchemaArrayValue
 ) {
   // Resolve refs, dependencies, if/then/else and allOf, not just a direct `$ref`, so the type check below
   // reflects an items schema whose object type is only reachable through one of those keywords (#5250)
-  const oldSchemaItems = retrieveSchema(
-    validator,
-    merger,
-    oldSchemaItemsRaw,
-    rootSchema,
-    data
-  );
+  const oldSchemaItems = retrieveSchema(ctx, oldSchemaItemsRaw, data);
   // The old and new raw items schema are usually identical, so skip resolving a second time in that common case.
   // Neither changes per element, so compare them once rather than inside the per-element loop below.
   const sameItemsSchema = isSchemaDeepEqual(
@@ -72,7 +63,7 @@ function sanitizeArrays(
   );
   const newSchemaItems = sameItemsSchema
     ? oldSchemaItems
-    : retrieveSchema(validator, merger, newSchemaItemsRaw, rootSchema, data);
+    : retrieveSchema(ctx, newSchemaItemsRaw, data);
   const oldSchemaType = oldSchemaItems.type;
   const newSchemaType = newSchemaItems.type;
   if (!oldSchemaType || oldSchemaType === newSchemaType) {
@@ -83,26 +74,12 @@ function sanitizeArrays(
         // nested inside `items` picks the branch that matches this element rather than the whole array (#5250).
         // Keep the raw (pre-resolution) items schema around: it must be re-resolved per element below,
         // against that element's own value, rather than the whole array.
-        const oldItemSchema = retrieveSchema(
-          validator,
-          merger,
-          oldSchemaItemsRaw,
-          rootSchema,
-          aValue
-        );
+        const oldItemSchema = retrieveSchema(ctx, oldSchemaItemsRaw, aValue);
         const newItemSchema = sameItemsSchema
           ? oldItemSchema
-          : retrieveSchema(
-              validator,
-              merger,
-              newSchemaItemsRaw,
-              rootSchema,
-              aValue
-            );
+          : retrieveSchema(ctx, newSchemaItemsRaw, aValue);
         const itemValue = sanitizeDataForNewSchema(
-          validator,
-          merger,
-          rootSchema,
+          ctx,
           newItemSchema,
           oldItemSchema,
           aValue
@@ -122,7 +99,7 @@ function sanitizeArrays(
       const filteredData =
         newItemEnumValues.length > 0
           ? data.filter((item) =>
-              newItemEnumValues.some((v) => merger.isValueDeepEqual(v, item))
+              newItemEnumValues.some((v) => isValueDeepEqual(ctx, v, item))
             )
           : data;
       // `maxItems` of 0 allows no item at all, which is how the object items path above reads it too
@@ -135,9 +112,7 @@ function sanitizeArrays(
 }
 
 export function sanitizeDataForNewSchema(
-  validator: Validator,
-  merger: Merger,
-  rootSchema: Schema,
+  ctx: CoreContext,
   newSchema: Schema,
   oldSchema: Schema,
   data: SchemaValue | undefined
@@ -170,13 +145,7 @@ export function sanitizeDataForNewSchema(
         typeof newKeyedSchemaDef === "object" ? newKeyedSchemaDef : {};
       // Resolve refs, dependencies, if/then/else and allOf so a dependency nested inside this key
       // (not just at the root schema) is taken into account when sanitizing its data (#5250)
-      const oldKeyedSchema = retrieveSchema(
-        validator,
-        merger,
-        oldRawKeyedSchema,
-        rootSchema,
-        formValue
-      );
+      const oldKeyedSchema = retrieveSchema(ctx, oldRawKeyedSchema, formValue);
       // The old and new raw schema for a key are usually identical (most keys aren't touched by whatever changed),
       // so skip resolving (and re-running any oneOf/dependency validity checks) a second time in that common case.
       const newKeyedSchema = isSchemaDeepEqual(
@@ -184,13 +153,7 @@ export function sanitizeDataForNewSchema(
         newRawKeyedSchema
       )
         ? oldKeyedSchema
-        : retrieveSchema(
-            validator,
-            merger,
-            newRawKeyedSchema,
-            rootSchema,
-            formValue
-          );
+        : retrieveSchema(ctx, newRawKeyedSchema, formValue);
 
       const oldSchemaTypeForKey = oldKeyedSchema.type;
       const newSchemaTypeForKey = newKeyedSchema.type;
@@ -203,9 +166,7 @@ export function sanitizeDataForNewSchema(
           (newSchemaTypeForKey === "array" && Array.isArray(formValue))
         ) {
           const itemData = sanitizeDataForNewSchema(
-            validator,
-            merger,
-            rootSchema,
+            ctx,
             newKeyedSchema,
             isNewProperty && newSchemaTypeForKey === "array"
               ? newKeyedSchema
@@ -252,7 +213,7 @@ export function sanitizeDataForNewSchema(
 
           if (isDataObject && Object.hasOwn(data, key)) {
             const enumReplacement = replacementForInvalidEnumValue(
-              merger,
+              ctx,
               newKeyedSchema,
               formValue
             );
@@ -281,12 +242,10 @@ export function sanitizeDataForNewSchema(
       isSchemaObjectValue(newSchemaItems)
     ) {
       const newFormDataArray = sanitizeArrays(
+        ctx,
         newSchema,
         oldSchemaItems,
         newSchemaItems,
-        validator,
-        merger,
-        rootSchema,
         data
       );
       if (newFormDataArray !== NO_VALUE) {

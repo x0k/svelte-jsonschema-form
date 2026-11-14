@@ -6,6 +6,7 @@
     getSchemaDefinitionByPath,
     isSchemaObjectValue,
   } from "#core/index.js";
+  import { CORE_ROOT_SCHEMA } from "#core/internals.js";
   import { isObject } from "#lib/object.js";
   import type { Ref } from "#lib/svelte.svelte.js";
   import type { JsonPaths } from "#lib/types.js";
@@ -14,12 +15,9 @@
   import type { Config } from "./config.js";
   import type { FoundationalFieldType } from "./fields.js";
   import {
-    FORM_MERGER,
     FORM_PATHS_TRIE_REF,
-    FORM_SCHEMA,
     FORM_UI_SCHEMA,
     FORM_UI_SCHEMA_ROOT,
-    FORM_VALIDATOR,
     FORM_VALUE,
     internalRegisterFieldPath,
   } from "./internals.js";
@@ -116,13 +114,11 @@
   const parentSchema = $derived.by(() => {
     const len = path.length;
     if (len < 2) {
-      return form[FORM_SCHEMA];
+      return form[CORE_ROOT_SCHEMA];
     }
     const def = getSchemaDefinitionByPath(
-      form[FORM_VALIDATOR],
-      form[FORM_MERGER],
-      form[FORM_SCHEMA],
-      form[FORM_SCHEMA],
+      form,
+      form[CORE_ROOT_SCHEMA],
       path.slice(0, -1),
       valueRef.current
     );
@@ -131,7 +127,7 @@
 
   const schema = $derived.by(() => {
     if (path.length === 0) {
-      return form[FORM_SCHEMA];
+      return form[CORE_ROOT_SCHEMA];
     }
     let val: FieldValue = valueRef.current;
     const parentPath = path.slice(0, -1);
@@ -144,9 +140,7 @@
       }
     }
     const def = getSchemaDefinitionByPath(
-      form[FORM_VALIDATOR],
-      form[FORM_MERGER],
-      form[FORM_SCHEMA],
+      form,
       parentSchema,
       path.slice(-1),
       val

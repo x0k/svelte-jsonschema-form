@@ -10,6 +10,7 @@ import {
   type Validator,
 } from "@sjsf/form";
 import {
+  createCoreContext,
   getSchemaDefinitionByPath,
   isMultiSelect,
   isSchemaObjectValue,
@@ -49,6 +50,7 @@ export function createFormIdBuilder({
   isPrivate = () => false,
   fieldSuffix,
 }: FormIdBuilderOptions): FormIdBuilder {
+  const ctx = createCoreContext({ validator, merger, rootSchema });
   const parts: string[] = [];
   const encodedIdPrefix = encode(idPrefix);
   const encodedPseudoPrefix = encode(pseudoPrefix);
@@ -74,9 +76,7 @@ export function createFormIdBuilder({
       for (let j = 0; j <= i; j++) {
         const p = path[j]!;
         currentSchema = getSchemaDefinitionByPath(
-          validator,
-          merger,
-          rootSchema,
+          ctx,
           currentSchema,
           [p],
           currentValue
@@ -98,7 +98,7 @@ export function createFormIdBuilder({
         if (
           currentSchema &&
           isSchemaObject(currentSchema) &&
-          isMultiSelect(validator, merger, currentSchema, rootSchema)
+          isMultiSelect(ctx, currentSchema)
         ) {
           parts.push("[]");
         }

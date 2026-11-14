@@ -80,6 +80,41 @@ validation. Fix such schemas to be spec-compliant.
 The unused `expandAllBranches` parameter was removed from the schema-resolution
 functions in `@sjsf/form/core`. Drop the argument from any direct calls.
 
+Core schema helpers now take a shared `CoreContext` as their first argument
+instead of `validator`, `merger`, and `rootSchema` arguments. Build one with
+`createCoreContext({ validator, merger, rootSchema })`:
+
+```typescript
+// Before
+retrieveSchema(validator, merger, schema, rootSchema, formData);
+
+// After
+import { createCoreContext, retrieveSchema } from "@sjsf/form/core";
+
+const ctx = createCoreContext({ validator, merger, rootSchema });
+retrieveSchema(ctx, schema, formData);
+```
+
+`FormState` extends `CoreContext`, so the form-state query wrappers keep taking
+the form state as their first argument. The context operations are available as
+free functions that take the context first: `isValid(ctx, schema, value)`,
+`mergeSchemas(ctx, a, b)`, `mergeAllOf(ctx, schema)`,
+`isValueDeepEqual(ctx, a, b)`, `resolveRef(ctx, ref)`, and
+`getRootSchema(ctx)`.
+
+The context symbols are not part of the `@sjsf/form/core` entry point. If you
+build or inspect a `CoreContext` directly, import `CORE_VALIDATOR`,
+`CORE_MERGER`, and `CORE_ROOT_SCHEMA` from `@sjsf/form/core/internals`.
+
+`FORM_VALIDATOR`, `FORM_MERGER`, and `FORM_SCHEMA` were removed from
+`@sjsf/form/internals`; they were aliases of the corresponding `CORE_*`
+symbols. Use the `CORE_*` names from `@sjsf/form/core/internals` instead.
+
+`getDefaultFormState` no longer falls back to the schema it receives as the
+root schema. A caller that omitted `rootSchema` so that a self-referencing
+subschema resolved against itself must pass that subschema as `rootSchema` when
+creating the context.
+
 ## Enum options
 
 `FormEnumOption.mappedValue` is now required. Use `createMappedOption()`

@@ -41,12 +41,7 @@
       return {
         ...v,
         validateFormValue(formValue) {
-          const cleanData = omitExtraData(
-            v,
-            options.merger(),
-            options.schema,
-            formValue
-          );
+          const cleanData = omitExtraData(form, formValue);
           return v.validateFormValue(cleanData);
         },
       };

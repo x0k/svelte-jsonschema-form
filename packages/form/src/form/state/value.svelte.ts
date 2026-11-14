@@ -1,9 +1,10 @@
 import { untrack } from "svelte";
 
 import type { RPath } from "#core/index.js";
+import { CORE_ROOT_SCHEMA, CORE_MERGER } from "#core/internals.js";
 import type { DeepPartial, DeepReadonly } from "#lib/types.js";
 
-import { FORM_MERGER, FORM_SCHEMA, FORM_VALUE } from "../internals.js";
+import { FORM_VALUE } from "../internals.js";
 import type { FieldValue, FormValue, KeyedFieldValues } from "../model.js";
 import { getFieldPath } from "./internals.js";
 import type { FormState } from "./state.js";
@@ -163,9 +164,9 @@ export function swapArrayItems<T>(
 export function setValue<T>(ctx: FormState<T>, value: DeepPartial<T>) {
   untrack(() => {
     ctx[FORM_VALUE].replace(
-      ctx[FORM_MERGER].mergeFormDataAndSchemaDefaults({
+      ctx[CORE_MERGER].mergeFormDataAndSchemaDefaults({
         formData: value as FormValue,
-        schema: ctx[FORM_SCHEMA],
+        schema: ctx[CORE_ROOT_SCHEMA],
         initialDefaultsGenerated: true,
       })
     );

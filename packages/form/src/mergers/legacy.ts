@@ -1,6 +1,7 @@
 import mergeAllOf, { type Options } from "json-schema-merge-allof";
 
 import {
+  createCoreContext,
   DEPENDENCIES_KEY,
   getDefaultFormState,
   isSchemaObjectValue,
@@ -191,11 +192,13 @@ export function createFormMerger(options: FormMergerOptions): FormMerger {
       includeUndefinedValues = false,
     }) {
       return getDefaultFormState(
-        options.validator,
-        formMerger,
+        createCoreContext({
+          validator: options.validator,
+          merger: formMerger,
+          rootSchema: options.schema,
+        }),
         schema,
         formData,
-        options.schema,
         includeUndefinedValues,
         options,
         initialDefaultsGenerated

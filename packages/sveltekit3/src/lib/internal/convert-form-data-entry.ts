@@ -5,6 +5,7 @@ import {
   type UiSchemaRoot,
 } from "@sjsf/form";
 import {
+  createCoreContext,
   getSchemaConstantValue,
   isNullableSchemaType,
   isSchemaValueDeepEqual,
@@ -106,6 +107,7 @@ export function createFormDataEntryConverter({
   enumItemDecoder,
   convertUnknownEntry,
 }: FormDataConverterOptions): EntryConverter<FormDataEntryValue> {
+  const ctx = createCoreContext({ validator, merger, rootSchema });
   return async (signal, options) => {
     const { path, value, schema, uiSchema } = options;
     if (typeof schema === "boolean") {
@@ -143,7 +145,7 @@ export function createFormDataEntryConverter({
         path
       );
     }
-    if (isSelect(validator, merger, schema, rootSchema)) {
+    if (isSelect(ctx, schema)) {
       const altSchemas = schema.oneOf ?? schema.anyOf;
       const options = Array.isArray(altSchemas)
         ? altSchemas.map((s) =>

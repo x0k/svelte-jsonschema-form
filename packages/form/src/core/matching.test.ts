@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { beforeEach, describe, expect, it } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import {
   oneOfData,
@@ -14,35 +14,28 @@ import {
   OPTIONAL_ONE_OF_SCHEMA_ONEOF,
 } from "./fixtures/test-data.js";
 import { calculateIndexScore, getClosestMatchingOption } from "./matching.js";
-import type { Merger } from "./merger.js";
 import { REF_FLAG, type Schema } from "./schema.js";
-import { createMerger } from "./test-merger.js";
-import { createValidator } from "./test-validator.js";
-import type { Validator } from "./validator.js";
+import { createMerger, createTestContext, createValidator } from "./testing.js";
 
 const firstOption = oneOfSchema.definitions.first_option_def satisfies Schema;
 const secondOption = oneOfSchema.definitions.second_option_def satisfies Schema;
 
-let testValidator: Validator;
-let defaultMerger: Merger;
-
-beforeEach(() => {
-  testValidator = createValidator();
-  defaultMerger = createMerger();
-});
-
 describe("calculateIndexScore", () => {
   it("returns 0 when schema is not specified", () => {
     expect(
-      calculateIndexScore(testValidator, defaultMerger, OPTIONAL_ONE_OF_SCHEMA)
+      calculateIndexScore(
+        createTestContext({
+          rootSchema: OPTIONAL_ONE_OF_SCHEMA,
+        })
+      )
     ).toEqual(0);
   });
   it("returns 0 when schema.properties is undefined", () => {
     expect(
       calculateIndexScore(
-        testValidator,
-        defaultMerger,
-        OPTIONAL_ONE_OF_SCHEMA,
+        createTestContext({
+          rootSchema: OPTIONAL_ONE_OF_SCHEMA,
+        }),
         {}
       )
     ).toEqual(0);
@@ -50,9 +43,9 @@ describe("calculateIndexScore", () => {
   it("returns 0 when schema.properties is not an object", () => {
     expect(
       calculateIndexScore(
-        testValidator,
-        defaultMerger,
-        OPTIONAL_ONE_OF_SCHEMA,
+        createTestContext({
+          rootSchema: OPTIONAL_ONE_OF_SCHEMA,
+        }),
         {
           properties: "foo",
         } as unknown as Schema
@@ -62,9 +55,9 @@ describe("calculateIndexScore", () => {
   it("returns 0 when properties type is boolean", () => {
     expect(
       calculateIndexScore(
-        testValidator,
-        defaultMerger,
-        OPTIONAL_ONE_OF_SCHEMA,
+        createTestContext({
+          rootSchema: OPTIONAL_ONE_OF_SCHEMA,
+        }),
         {
           properties: { foo: true },
         }
@@ -74,9 +67,9 @@ describe("calculateIndexScore", () => {
   it("returns 0 when formData is empty object", () => {
     expect(
       calculateIndexScore(
-        testValidator,
-        defaultMerger,
-        oneOfSchema,
+        createTestContext({
+          rootSchema: oneOfSchema,
+        }),
         firstOption,
         {}
       )
@@ -85,9 +78,9 @@ describe("calculateIndexScore", () => {
   it("returns 1 for first option in oneOf schema", () => {
     expect(
       calculateIndexScore(
-        testValidator,
-        defaultMerger,
-        oneOfSchema,
+        createTestContext({
+          rootSchema: oneOfSchema,
+        }),
         firstOption,
         ONE_OF_SCHEMA_DATA
       )
@@ -100,9 +93,9 @@ describe("calculateIndexScore", () => {
   it("returns 9 for second option in oneOf schema", () => {
     expect(
       calculateIndexScore(
-        testValidator,
-        defaultMerger,
-        oneOfSchema,
+        createTestContext({
+          rootSchema: oneOfSchema,
+        }),
         secondOption,
         ONE_OF_SCHEMA_DATA
       )
@@ -112,9 +105,9 @@ describe("calculateIndexScore", () => {
   it("returns 1 for a schema that has a type matching the formData type", () => {
     expect(
       calculateIndexScore(
-        testValidator,
-        defaultMerger,
-        oneOfSchema,
+        createTestContext({
+          rootSchema: oneOfSchema,
+        }),
         { type: "boolean" },
         true
       )
@@ -123,9 +116,9 @@ describe("calculateIndexScore", () => {
   it("returns 2 for a schema that has a const matching the formData value", () => {
     expect(
       calculateIndexScore(
-        testValidator,
-        defaultMerger,
-        oneOfSchema,
+        createTestContext({
+          rootSchema: oneOfSchema,
+        }),
         { properties: { foo: { type: "string", const: "constValue" } } },
         { foo: "constValue" }
       )
@@ -134,9 +127,9 @@ describe("calculateIndexScore", () => {
   it("returns 0 for a schema that has a const that does not match the formData value", () => {
     expect(
       calculateIndexScore(
-        testValidator,
-        defaultMerger,
-        oneOfSchema,
+        createTestContext({
+          rootSchema: oneOfSchema,
+        }),
         { properties: { foo: { type: "string", const: "constValue" } } },
         { foo: "aValue" }
       )
@@ -147,18 +140,30 @@ describe("calculateIndexScore", () => {
       properties: { flag: { type: "boolean", const: false } },
     };
     expect(
-      calculateIndexScore(testValidator, defaultMerger, oneOfSchema, schema, {
-        flag: false,
-      })
+      calculateIndexScore(
+        createTestContext({
+          rootSchema: oneOfSchema,
+        }),
+        schema,
+        {
+          flag: false,
+        }
+      )
     ).toEqual(2);
     expect(
-      calculateIndexScore(testValidator, defaultMerger, oneOfSchema, schema, {
-        flag: true,
-      })
+      calculateIndexScore(
+        createTestContext({
+          rootSchema: oneOfSchema,
+        }),
+        schema,
+        {
+          flag: true,
+        }
+      )
     ).toEqual(0);
   });
   it("scores a nested oneOf holding a falsy value the way it scores a truthy one", () => {
-    testValidator = createValidator({
+    const testValidator = createValidator({
       cases: [
         { schema: { type: "string" }, value: 0, result: false },
         { schema: { type: "number" }, value: 0, result: true },
@@ -172,14 +177,28 @@ describe("calculateIndexScore", () => {
       },
     };
     expect(
-      calculateIndexScore(testValidator, defaultMerger, oneOfSchema, schema, {
-        value: 0,
-      })
+      calculateIndexScore(
+        createTestContext({
+          validator: testValidator,
+          rootSchema: oneOfSchema,
+        }),
+        schema,
+        {
+          value: 0,
+        }
+      )
     ).toEqual(1);
     expect(
-      calculateIndexScore(testValidator, defaultMerger, oneOfSchema, schema, {
-        value: 5,
-      })
+      calculateIndexScore(
+        createTestContext({
+          validator: testValidator,
+          rootSchema: oneOfSchema,
+        }),
+        schema,
+        {
+          value: 5,
+        }
+      )
     ).toEqual(1);
   });
   it("does not score a nested oneOf against a null value", () => {
@@ -190,15 +209,27 @@ describe("calculateIndexScore", () => {
       },
     };
     expect(
-      calculateIndexScore(testValidator, defaultMerger, oneOfSchema, schema, {
-        name: "a",
-        extra: null,
-      })
+      calculateIndexScore(
+        createTestContext({
+          rootSchema: oneOfSchema,
+        }),
+        schema,
+        {
+          name: "a",
+          extra: null,
+        }
+      )
     ).toEqual(1);
     expect(
-      calculateIndexScore(testValidator, defaultMerger, oneOfSchema, schema, {
-        name: "a",
-      })
+      calculateIndexScore(
+        createTestContext({
+          rootSchema: oneOfSchema,
+        }),
+        schema,
+        {
+          name: "a",
+        }
+      )
     ).toEqual(1);
   });
   it("does not compare a missing value to a const of null", () => {
@@ -206,12 +237,24 @@ describe("calculateIndexScore", () => {
       properties: { n: { type: "null", const: null } },
     };
     expect(
-      calculateIndexScore(testValidator, defaultMerger, oneOfSchema, schema, {})
+      calculateIndexScore(
+        createTestContext({
+          rootSchema: oneOfSchema,
+        }),
+        schema,
+        {}
+      )
     ).toEqual(0);
     expect(
-      calculateIndexScore(testValidator, defaultMerger, oneOfSchema, schema, {
-        n: null,
-      })
+      calculateIndexScore(
+        createTestContext({
+          rootSchema: oneOfSchema,
+        }),
+        schema,
+        {
+          n: null,
+        }
+      )
     ).toEqual(2);
   });
   it("stops following a recursive $ref when the form data runs out", () => {
@@ -229,9 +272,15 @@ describe("calculateIndexScore", () => {
       properties: { node: { $ref: "#/definitions/Node" } },
     };
     expect(
-      calculateIndexScore(testValidator, defaultMerger, schema, schema, {
-        node: { name: "a" },
-      })
+      calculateIndexScore(
+        createTestContext({
+          rootSchema: schema,
+        }),
+        schema,
+        {
+          node: { name: "a" },
+        }
+      )
     ).toEqual(1);
   });
   it("does not follow a recursive $ref through an inherited property name", () => {
@@ -249,9 +298,15 @@ describe("calculateIndexScore", () => {
       properties: { node: { $ref: "#/definitions/Node" } },
     };
     expect(
-      calculateIndexScore(testValidator, defaultMerger, schema, schema, {
-        node: { name: "a" },
-      })
+      calculateIndexScore(
+        createTestContext({
+          rootSchema: schema,
+        }),
+        schema,
+        {
+          node: { name: "a" },
+        }
+      )
     ).toEqual(1);
   });
 });
@@ -259,9 +314,9 @@ describe("oneOfMatchingOption", () => {
   it("oneOfSchema, oneOfData data, no options, returns -1", () => {
     expect(
       getClosestMatchingOption(
-        testValidator,
-        defaultMerger,
-        oneOfSchema,
+        createTestContext({
+          rootSchema: oneOfSchema,
+        }),
         oneOfData,
         []
       )
@@ -270,9 +325,9 @@ describe("oneOfMatchingOption", () => {
   it("oneOfSchema, no data, 2 options, returns -1", () => {
     expect(
       getClosestMatchingOption(
-        testValidator,
-        defaultMerger,
-        oneOfSchema,
+        createTestContext({
+          rootSchema: oneOfSchema,
+        }),
         undefined,
         [{ type: "string" }, { type: "number" }]
       )
@@ -281,9 +336,9 @@ describe("oneOfMatchingOption", () => {
   it("oneOfSchema, oneOfData, no options, selectedOption 2, returns 2", () => {
     expect(
       getClosestMatchingOption(
-        testValidator,
-        defaultMerger,
-        oneOfSchema,
+        createTestContext({
+          rootSchema: oneOfSchema,
+        }),
         oneOfData,
         [],
         2
@@ -293,9 +348,9 @@ describe("oneOfMatchingOption", () => {
   it("oneOfSchema, no data, 2 options, returns -1", () => {
     expect(
       getClosestMatchingOption(
-        testValidator,
-        defaultMerger,
-        oneOfSchema,
+        createTestContext({
+          rootSchema: oneOfSchema,
+        }),
         undefined,
         [{ type: "string" }, { type: "number" }],
         2
@@ -303,7 +358,7 @@ describe("oneOfMatchingOption", () => {
     ).toEqual(2);
   });
   it("returns the first option, which kind of matches the data", () => {
-    testValidator = createValidator({
+    const testValidator = createValidator({
       cases: [
         {
           schema: {
@@ -442,7 +497,7 @@ describe("oneOfMatchingOption", () => {
         },
       ],
     });
-    defaultMerger = createMerger({
+    const defaultMerger = createMerger({
       merges: [
         {
           left: {
@@ -530,9 +585,11 @@ describe("oneOfMatchingOption", () => {
     });
     expect(
       getClosestMatchingOption(
-        testValidator,
-        defaultMerger,
-        oneOfSchema,
+        createTestContext({
+          validator: testValidator,
+          merger: defaultMerger,
+          rootSchema: oneOfSchema,
+        }),
         { flag: true },
         ONE_OF_SCHEMA_OPTIONS
       )
@@ -543,7 +600,7 @@ describe("oneOfMatchingOption", () => {
   });
   it("returns the second option, which exactly matches the data", () => {
     // First 3 are mocked false, with the fourth being true for the real second option
-    testValidator = createValidator({
+    const testValidator = createValidator({
       cases: [
         {
           schema: {
@@ -698,7 +755,7 @@ describe("oneOfMatchingOption", () => {
         },
       ],
     });
-    defaultMerger = createMerger({
+    const defaultMerger = createMerger({
       merges: [
         {
           left: {
@@ -786,16 +843,18 @@ describe("oneOfMatchingOption", () => {
     });
     expect(
       getClosestMatchingOption(
-        testValidator,
-        defaultMerger,
-        oneOfSchema,
+        createTestContext({
+          validator: testValidator,
+          merger: defaultMerger,
+          rootSchema: oneOfSchema,
+        }),
         ONE_OF_SCHEMA_DATA,
         ONE_OF_SCHEMA_OPTIONS
       )
     ).toEqual(1);
   });
   it("returns the first matching option (i.e. second index) when data is ambiguous", () => {
-    testValidator = createValidator({
+    const testValidator = createValidator({
       cases: [
         {
           schema: {
@@ -874,16 +933,17 @@ describe("oneOfMatchingOption", () => {
     const formData = { flag: false };
     expect(
       getClosestMatchingOption(
-        testValidator,
-        defaultMerger,
-        OPTIONAL_ONE_OF_SCHEMA,
+        createTestContext({
+          validator: testValidator,
+          rootSchema: OPTIONAL_ONE_OF_SCHEMA,
+        }),
         formData,
         OPTIONAL_ONE_OF_SCHEMA_ONEOF
       )
     ).toEqual(1);
   });
   it("returns the third index when data is clear", () => {
-    testValidator = createValidator({
+    const testValidator = createValidator({
       cases: [
         {
           schema: {
@@ -961,9 +1021,10 @@ describe("oneOfMatchingOption", () => {
     });
     expect(
       getClosestMatchingOption(
-        testValidator,
-        defaultMerger,
-        OPTIONAL_ONE_OF_SCHEMA,
+        createTestContext({
+          validator: testValidator,
+          rootSchema: OPTIONAL_ONE_OF_SCHEMA,
+        }),
         OPTIONAL_ONE_OF_DATA,
         OPTIONAL_ONE_OF_SCHEMA_ONEOF
       )
@@ -1012,7 +1073,7 @@ describe("oneOfMatchingOption", () => {
     } satisfies Schema;
     const formData = { ipsum: { night: "nicht" } };
     // Mock to return true for the last of the second one-ofs
-    testValidator = createValidator({
+    const testValidator = createValidator({
       cases: [
         {
           schema: {
@@ -1047,9 +1108,10 @@ describe("oneOfMatchingOption", () => {
     });
     expect(
       getClosestMatchingOption(
-        testValidator,
-        defaultMerger,
-        schema as unknown as Schema,
+        createTestContext({
+          validator: testValidator,
+          rootSchema: schema as unknown as Schema,
+        }),
         formData,
         oneOf
       )
@@ -1097,7 +1159,7 @@ describe("oneOfMatchingOption", () => {
     };
     const formData = { ipsum: { night: "nicht" } };
     // Mock to return true for the last of the second anyOfs
-    testValidator = createValidator({
+    const testValidator = createValidator({
       cases: [
         {
           schema: {
@@ -1132,9 +1194,10 @@ describe("oneOfMatchingOption", () => {
     });
     expect(
       getClosestMatchingOption(
-        testValidator,
-        defaultMerger,
-        schema,
+        createTestContext({
+          validator: testValidator,
+          rootSchema: schema,
+        }),
         formData,
         anyOf
       )
@@ -1180,9 +1243,9 @@ describe("oneOfMatchingOption", () => {
     ] as Schema[];
     expect(
       getClosestMatchingOption(
-        testValidator,
-        defaultMerger,
-        schema,
+        createTestContext({
+          rootSchema: schema,
+        }),
         undefined,
         options,
         -1,
@@ -1233,9 +1296,9 @@ describe("oneOfMatchingOption", () => {
     // const schemaUtils = createSchemaUtils(testValidator, schema);
     expect(
       getClosestMatchingOption(
-        testValidator,
-        defaultMerger,
-        oneOfSchema,
+        createTestContext({
+          rootSchema: oneOfSchema,
+        }),
         formData,
         options,
         0,
@@ -1244,7 +1307,7 @@ describe("oneOfMatchingOption", () => {
     ).toEqual(1);
   });
   it("should return -1 for unsuitable schemes", () => {
-    testValidator = createValidator({
+    const testValidator = createValidator({
       cases: [
         {
           schema: {
@@ -1297,9 +1360,10 @@ describe("oneOfMatchingOption", () => {
     };
     expect(
       getClosestMatchingOption(
-        testValidator,
-        defaultMerger,
-        schema,
+        createTestContext({
+          validator: testValidator,
+          rootSchema: schema,
+        }),
         {
           discriminator: "bar",
           keep: false,

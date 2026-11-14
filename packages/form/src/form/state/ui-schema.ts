@@ -1,4 +1,5 @@
 import { getSchemaDefinitionByPath, type RPath } from "#core/index.js";
+import { CORE_ROOT_SCHEMA, CORE_MERGER } from "#core/internals.js";
 import { overrideByRecord } from "#lib/resolver.js";
 import type { ObjectProperties } from "#lib/types.js";
 import {
@@ -13,9 +14,6 @@ import {
   FORM_TRANSLATION,
   FORM_UI_OPTIONS_REGISTRY,
   FORM_UI_SCHEMA_ROOT,
-  FORM_SCHEMA,
-  FORM_VALIDATOR,
-  FORM_MERGER,
   FORM_VALUE,
 } from "../internals.js";
 import { createTranslate } from "../translation.js";
@@ -168,10 +166,8 @@ export function getFieldTitle<T>(ctx: FormState<T>, path: RPath) {
     }
   }
   const def = getSchemaDefinitionByPath(
-    ctx[FORM_VALIDATOR],
-    ctx[FORM_MERGER],
-    ctx[FORM_SCHEMA],
-    ctx[FORM_SCHEMA],
+    ctx,
+    ctx[CORE_ROOT_SCHEMA],
     path,
     ctx[FORM_VALUE].get()
   );
@@ -205,7 +201,7 @@ export function retrieveEnumValueMapperBuilder<T>(
   ctx: FormState<T>,
   config: Config
 ): EnumValueMapperBuilder {
-  const comparer = ctx[FORM_MERGER];
+  const comparer = ctx[CORE_MERGER];
   return (
     retrieveUiOption(ctx, config, "enumValueMapperBuilder")?.(comparer) ??
     new StringEnumValueMapperBuilder(comparer)

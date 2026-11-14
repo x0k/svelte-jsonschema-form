@@ -1,13 +1,12 @@
-import { beforeEach, describe, expect, it } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import {
+  createCoreContext,
   getDefaultFormState,
   type Merger,
   type Schema,
-  type Validator,
 } from "#core/index.js";
-import { createMerger } from "#core/test-merger.js";
-import { createValidator } from "#core/test-validator.js";
+import { createMerger, createValidator } from "#core/testing.js";
 
 import { dropStaleDefaults } from "./drop-stale-defaults.js";
 import type { FieldPath } from "./id.js";
@@ -19,12 +18,6 @@ import {
 } from "./merger.js";
 import type { FieldValue, RegisteredPathTrieRef } from "./model.js";
 import { StaleDefaultsPass } from "./stale-defaults-pass.js";
-
-let testValidator: Validator;
-
-beforeEach(() => {
-  testValidator = createValidator();
-});
 
 function path(...parts: (string | number)[]) {
   return parts as unknown as FieldPath;
@@ -45,11 +38,9 @@ function formMerger(merger: Merger, rootSchema: Schema): FormMerger {
       includeUndefinedValues = false,
     }) {
       return getDefaultFormState(
-        testValidator,
-        merger,
+        createCoreContext({ validator: createValidator(), merger, rootSchema }),
         schema,
         formData,
-        rootSchema,
         includeUndefinedValues,
         {},
         initialDefaultsGenerated
@@ -86,7 +77,7 @@ describe("StaleDefaultsPass", () => {
       registered: new WeakSet(),
     };
     const pass = new StaleDefaultsPass({
-      validator: testValidator,
+      validator: createValidator(),
       merger: formMerger(merger, rootSchema),
       rootSchema,
       changes: [change(path("mode"), "a")],

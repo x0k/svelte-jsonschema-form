@@ -10,6 +10,7 @@
 
 import {
   ADDITIONAL_PROPERTY_FLAG,
+  createCoreContext,
   DEFAULT_KEY,
   getSelectOptionValuesSafe,
   getXxxOfOptions,
@@ -21,6 +22,7 @@ import {
   REF_KEY,
   retrieveSchema,
   typeOfSchema,
+  type CoreContext,
   type RPath,
   type Schema,
   type SchemaArrayValue,
@@ -28,7 +30,6 @@ import {
   type SchemaObjectValue,
   type SchemaValue,
   type SchemaType,
-  type Validator,
 } from "#core/index.js";
 import { isSchemaObject } from "#lib/json-schema/index.js";
 import { getOwn, getValueByPath, setOwn } from "#lib/object.js";
@@ -77,19 +78,11 @@ function isContainerType(type: SchemaType | SchemaType[]): boolean {
 
 /** Mirrors `isWholeValueSelect()` from RJSF: a select over object or array constants holds one of them whole, so it is
  * a value to replace rather than a level to walk. */
-function isWholeValueSelect(
-  validator: Validator,
-  merger: FormMerger,
-  schema: Schema,
-  rootSchema: Schema
-): boolean {
+function isWholeValueSelect(ctx: CoreContext, schema: Schema): boolean {
   const schemaType = typeOfSchema(schema);
   const containerType = isContainerType(schemaType);
   // A declared primitive type rules the schema out before its options are scanned
-  if (
-    (!containerType && schema.type !== undefined) ||
-    !isSelect(validator, merger, schema, rootSchema)
-  ) {
+  if ((!containerType && schema.type !== undefined) || !isSelect(ctx, schema)) {
     return false;
   }
   if (containerType) {
@@ -102,12 +95,7 @@ function isWholeValueSelect(
 /** Mirrors `optionsDeclareProperties()` from RJSF: a level whose `oneOf`/`anyOf` options describe its properties is
  * `formDataForNewOption()`'s to switch, so this pass must leave the level's own defaults alone. It still descends into
  * the level, since a conditional declared on one of its properties is nothing to do with the options here. */
-function optionsDeclareProperties(
-  validator: Validator,
-  merger: FormMerger,
-  level: Schema,
-  rootSchema: Schema
-): boolean {
+function optionsDeclareProperties(ctx: CoreContext, level: Schema): boolean {
   const options = getXxxOfOptions<SchemaDefinition>(level)?.options ?? [];
   return options.some((option) => {
     if (typeof option === "boolean") {
@@ -117,7 +105,7 @@ function optionsDeclareProperties(
       return true;
     }
     if (REF_KEY in option) {
-      const resolved = retrieveSchema(validator, merger, option, rootSchema);
+      const resolved = retrieveSchema(ctx, option, undefined);
       return isSchemaObjectValue(resolved[PROPERTIES_KEY]);
     }
     return false;
@@ -301,9 +289,8 @@ interface NestedKey {
 }
 
 function dropStaleDefaultsAtLevel(
-  validator: Validator,
+  ctx: CoreContext,
   merger: FormMerger,
-  rootSchema: Schema,
   newSchema: Schema,
   oldSchema: Schema,
   formData: SchemaObjectValue,
@@ -373,17 +360,11 @@ function dropStaleDefaultsAtLevel(
       continue;
     }
 
-    const newResolved = retrieveSchema(
-      validator,
-      merger,
-      newRaw,
-      rootSchema,
-      current
-    );
+    const newResolved = retrieveSchema(ctx, newRaw, current);
     const oldResolved =
       sameKeyedSchema && oldCurrent === current
         ? newResolved
-        : retrieveSchema(validator, merger, oldRaw, rootSchema, oldCurrent);
+        : retrieveSchema(ctx, oldRaw, oldCurrent);
 
     // The changed field and everything below it belongs to the user. The
     // computed defaults are no guide on their own: both sides have to declare a
@@ -424,9 +405,8 @@ function dropStaleDefaultsAtLevel(
   // Either side disqualifies the level; the walk still descends.
   if (
     replaceable.length > 0 &&
-    !optionsDeclareProperties(validator, merger, newSchema, rootSchema) &&
-    (newSchema === oldSchema ||
-      !optionsDeclareProperties(validator, merger, oldSchema, rootSchema))
+    !optionsDeclareProperties(ctx, newSchema) &&
+    (newSchema === oldSchema || !optionsDeclareProperties(ctx, oldSchema))
   ) {
     const replaceableKeys = replaceable.map(({ key }) => key);
     const oldDefaults = levelDefaults(
@@ -485,13 +465,12 @@ function dropStaleDefaultsAtLevel(
     }
     // A select over object constants holds one of them whole, so it is a value
     // to replace rather than a level to walk.
-    if (isWholeValueSelect(validator, merger, entry.newSchema, rootSchema)) {
+    if (isWholeValueSelect(ctx, entry.newSchema)) {
       continue;
     }
     const next = dropStaleDefaultsAtLevel(
-      validator,
+      ctx,
       merger,
-      rootSchema,
       entry.newSchema,
       entry.oldSchema,
       entry.current,
@@ -541,17 +520,16 @@ export function dropStaleDefaults(
   if (!isSchemaObjectValue(oldFormData)) {
     return { formData, dropped: [] };
   }
+  const ctx = createCoreContext({ validator, merger, rootSchema });
   const oldSchema =
-    providedOldSchema ??
-    retrieveSchema(validator, merger, rootSchema, rootSchema, oldFormData);
+    providedOldSchema ?? retrieveSchema(ctx, rootSchema, oldFormData);
   if (!isSchemaObjectValue(oldSchema)) {
     return { formData, dropped: [] };
   }
   const dropped: DroppedDefault[] = [];
   const nextFormData = dropStaleDefaultsAtLevel(
-    validator,
+    ctx,
     merger,
-    rootSchema,
     newSchema,
     oldSchema,
     formData,

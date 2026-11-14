@@ -53,6 +53,10 @@
       "types": "./dist/core/index.d.ts",
       "default": "./dist/core/index.js"
     },
+    "./core/internals": {
+      "types": "./dist/core/internals.d.ts",
+      "default": "./dist/core/internals.js"
+    },
     "./internals": {
       "types": "./dist/form/internals.d.ts",
       "default": "./dist/form/internals.js"

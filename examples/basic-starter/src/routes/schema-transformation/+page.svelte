@@ -7,6 +7,7 @@
     type Config,
   } from "@sjsf/form";
   import {
+    createCoreContext,
     isSelect,
     retrieveSchema,
     schemaHash,
@@ -77,6 +78,11 @@
     validator,
     schema: originalSchema,
   });
+  const ctx = createCoreContext({
+    validator,
+    merger,
+    rootSchema: originalSchema,
+  });
 
   // Retrieved schemas are freshly allocated objects, so validators for them
   // are cached by schema hash instead of object identity.
@@ -101,7 +107,7 @@
       }
       const altKeyword = (copy.oneOf && "oneOf") ?? (copy.anyOf && "anyOf");
       const alt = altKeyword && copy[altKeyword];
-      if (!alt || isSelect(validator, merger, copy, originalSchema)) {
+      if (!alt || isSelect(ctx, copy)) {
         return copy;
       }
       const {
@@ -147,13 +153,7 @@
   validator={{
     ...validator,
     validateFormValue(formValue) {
-      const retrievedSchema = retrieveSchema(
-        validator,
-        merger,
-        schema,
-        schema,
-        formValue
-      );
+      const retrievedSchema = retrieveSchema(ctx, schema, formValue);
       return getRetrievedValidator(retrievedSchema).validateFormValue(
         formValue
       );
@@ -162,7 +162,7 @@
   {merger}
   {schema}
   onValid={(value) => {
-    console.log(omitExtraData(validator, merger, originalSchema, value));
+    console.log(omitExtraData(ctx, value));
   }}
   extraUiOptions={fromFactories({
     hideTitle: ({ path }: Config) =>

@@ -1,17 +1,16 @@
-import { beforeEach, describe, expect, it } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import {
+  createCoreContext,
   getDefaultFormState,
   isOrderedSchemaDeepEqual,
   type Merger,
   type RPath,
   type Schema,
   type SchemaValue,
-  type Validator,
   type ValueDeepComparator,
 } from "#core/index.js";
-import { createMerger } from "#core/test-merger.js";
-import { createValidator } from "#core/test-validator.js";
+import { createMerger, createValidator } from "#core/testing.js";
 
 import {
   dropStaleDefaults,
@@ -26,23 +25,19 @@ import {
 } from "./merger.js";
 import type { FieldValue, RegisteredPathTrieRef } from "./model.js";
 
-let testValidator: Validator;
-
-beforeEach(() => {
-  testValidator = createValidator({
-    cases: [
-      {
-        schema: { properties: { mode: { const: "a" } } },
-        value: { mode: "a", x: "a" },
-        result: true,
-      },
-      {
-        schema: { properties: { mode: { const: "a" } } },
-        value: { mode: "b", x: "a" },
-        result: false,
-      },
-    ],
-  });
+const testValidator = createValidator({
+  cases: [
+    {
+      schema: { properties: { mode: { const: "a" } } },
+      value: { mode: "a", x: "a" },
+      result: true,
+    },
+    {
+      schema: { properties: { mode: { const: "a" } } },
+      value: { mode: "b", x: "a" },
+      result: false,
+    },
+  ],
 });
 
 function path(...parts: (string | number)[]) {
@@ -64,11 +59,9 @@ function formMerger(merger: Merger, rootSchema: Schema): FormMerger {
       includeUndefinedValues = false,
     }) {
       return getDefaultFormState(
-        testValidator,
-        merger,
+        createCoreContext({ validator: testValidator, merger, rootSchema }),
         schema,
         formData,
-        rootSchema,
         includeUndefinedValues,
         {},
         initialDefaultsGenerated
