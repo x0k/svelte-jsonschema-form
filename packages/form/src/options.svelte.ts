@@ -1,10 +1,10 @@
 import { DEV } from "esm-env";
 
 import {
+  type Comparator,
   type EnumOption,
   type SchemaArrayValue,
   type SchemaValue,
-  type ValueComparer,
 } from "#core/index.js";
 import type { FormEnumOption } from "#form/model.js";
 import { isObject } from "#lib/object.js";
@@ -49,14 +49,14 @@ abstract class AbstractValueMapperBuilder implements EnumValueMapperBuilder {
   #strToValue = new Map<string, SchemaValue>();
   #valueToStr = new Map<SchemaValue, string>();
 
-  constructor(protected readonly merger: ValueComparer) {}
+  constructor(protected readonly comparator: Comparator) {}
 
   protected abstract optionToStr(option: EnumOption<SchemaValue>): string;
 
   protected assertUniqueMapping(str: string, value: SchemaValue) {
     if (
       this.#strToValue.has(str) &&
-      !this.merger.isValueDeepEqual(this.#strToValue.get(str), value)
+      !this.comparator.isValueDeepEqual(this.#strToValue.get(str), value)
     ) {
       throw new Error(
         DEV
@@ -86,7 +86,7 @@ abstract class AbstractValueMapperBuilder implements EnumValueMapperBuilder {
         return (
           this.#valueToStr
             .entries()
-            .find(([v]) => this.merger.isValueDeepEqual(v, value))?.[1] ??
+            .find(([v]) => this.comparator.isValueDeepEqual(v, value))?.[1] ??
           EMPTY_VALUE
         );
       },

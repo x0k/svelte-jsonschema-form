@@ -91,6 +91,7 @@
     defaults.merger({
       schema,
       validator,
+      comparator: defaults.comparator,
     })
   );
 

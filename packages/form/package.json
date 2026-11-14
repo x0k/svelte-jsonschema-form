@@ -146,6 +146,10 @@
       "types": "./dist/mergers/*.d.ts",
       "default": "./dist/mergers/*.js"
     },
+    "./comparators/*": {
+      "types": "./dist/comparators/*.d.ts",
+      "default": "./dist/comparators/*.js"
+    },
     "./id-builders/*": {
       "types": "./dist/id-builders/*.d.ts",
       "default": "./dist/id-builders/*.js"

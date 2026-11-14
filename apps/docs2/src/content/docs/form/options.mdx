@@ -29,6 +29,7 @@ export interface IdBuilderFactoryOptions {
   uiOptionsRegistry: UiOptionsRegistry;
   validator: Validator;
   merger: FormMerger;
+  comparator: Comparator;
   valueRef: Ref<FormValue>;
 }
 
@@ -40,10 +41,21 @@ export interface ValidatorFactoryOptions {
    * This is a getter that can be used to access the Merger lazily.
    */
   merger: () => FormMerger;
+  /**
+   * The value comparator, for validators that need a core context.
+   */
+  comparator: Comparator;
 }
 
 export interface MergerFactoryOptions {
   validator: Validator;
+  schema: Schema;
+  uiSchema: UiSchemaRoot;
+  uiOptionsRegistry: UiOptionsRegistry;
+  comparator: Comparator;
+}
+
+export interface ComparatorFactoryOptions {
   schema: Schema;
   uiSchema: UiSchemaRoot;
   uiOptionsRegistry: UiOptionsRegistry;
@@ -60,6 +72,7 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
   idBuilder: Creatable<FormIdBuilder, IdBuilderFactoryOptions>;
   validator: Creatable<FormValidator<T>, ValidatorFactoryOptions>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
+  comparator: Creatable<Comparator, ComparatorFactoryOptions>;
   /**
    * @default DEFAULT_ID_PREFIX
    */

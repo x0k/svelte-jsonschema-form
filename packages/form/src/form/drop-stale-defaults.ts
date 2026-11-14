@@ -18,6 +18,7 @@ import {
   isSchemaDeepEqual,
   isSchemaObjectValue,
   isSelect,
+  isValueDeepEqual,
   PROPERTIES_KEY,
   REF_KEY,
   retrieveSchema,
@@ -57,14 +58,14 @@ function isContainerValue(value: SchemaValue | undefined): boolean {
  * answers. Containers are still the search's to report: sanitize only edits
  * leaves inside them. */
 function isSanitizeOwned(
-  merger: FormMerger,
+  ctx: CoreContext,
   current: SchemaValue | undefined,
   oldCurrent: SchemaValue | undefined
 ): boolean {
   return (
     current !== undefined &&
     !isContainerValue(current) &&
-    !merger.isValueDeepEqual(current, oldCurrent)
+    !isValueDeepEqual(ctx, current, oldCurrent)
   );
 }
 
@@ -352,7 +353,8 @@ function dropStaleDefaultsAtLevel(
     if (
       !hasChangedBelow &&
       sameKeyedSchema &&
-      merger.isValueDeepEqual(
+      isValueDeepEqual(
+        ctx,
         levelDefault(oldSchema, key),
         levelDefault(newSchema, key)
       )
@@ -374,7 +376,7 @@ function dropStaleDefaultsAtLevel(
       !isChangedKey &&
       !hasChangedBelow &&
       !isStub &&
-      !isSanitizeOwned(merger, current, oldCurrent) &&
+      !isSanitizeOwned(ctx, current, oldCurrent) &&
       declaresValueFor(newSchema, key, newResolved) &&
       declaresValueFor(oldSchema, key, oldResolved)
     ) {
@@ -420,10 +422,7 @@ function dropStaleDefaultsAtLevel(
     // away put there. Once the user has edited them that is none of them, and
     // the new side's defaults are then never computed at all.
     const holdingKeys = replaceableKeys.filter((key) =>
-      merger.isValueDeepEqual(
-        getOwn(oldDefaults, key),
-        getOwn(oldFormData, key)
-      )
+      isValueDeepEqual(ctx, getOwn(oldDefaults, key), getOwn(oldFormData, key))
     );
     if (holdingKeys.length > 0) {
       const newDefaults = levelDefaults(
@@ -442,7 +441,7 @@ function dropStaleDefaultsAtLevel(
         const newDefault = getOwn(newDefaults, key);
         if (
           newDefault !== undefined &&
-          !merger.isValueDeepEqual(oldDefault, newDefault)
+          !isValueDeepEqual(ctx, oldDefault, newDefault)
         ) {
           if (result === formData) {
             result = { ...formData };
@@ -502,6 +501,7 @@ export function dropStaleDefaults(
   {
     validator,
     rootSchema,
+    comparator,
     newSchema,
     formData,
     changes,
@@ -520,7 +520,7 @@ export function dropStaleDefaults(
   if (!isSchemaObjectValue(oldFormData)) {
     return { formData, dropped: [] };
   }
-  const ctx = createCoreContext({ validator, merger, rootSchema });
+  const ctx = createCoreContext({ validator, merger, comparator, rootSchema });
   const oldSchema =
     providedOldSchema ?? retrieveSchema(ctx, rootSchema, oldFormData);
   if (!isSchemaObjectValue(oldSchema)) {

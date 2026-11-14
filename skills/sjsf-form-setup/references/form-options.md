@@ -14,6 +14,7 @@ export interface FormOptions<T> {
   idBuilder: Creatable<FormIdBuilder, IdBuilderFactoryOptions>;
   validator: Creatable<FormValidator<T>, ValidatorFactoryOptions>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
+  comparator: Creatable<Comparator, ComparatorFactoryOptions>;
 
   // Identification & Styling
   idPrefix?: string; // default: "root"

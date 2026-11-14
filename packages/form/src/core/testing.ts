@@ -1,7 +1,11 @@
 /** Test doubles for the core interfaces and a factory for the shared context. */
 
 import { createCoreContext, type CoreContext } from "./context.js";
-import { isSchemaDeepEqual, isSchemaValueDeepEqual } from "./deep-equal.js";
+import {
+  isSchemaDeepEqual,
+  isSchemaValueDeepEqual,
+  type Comparator,
+} from "./deep-equal.js";
 import type { Merger } from "./merger.js";
 import type { Schema, SchemaValue } from "./schema.js";
 import type { Validator } from "./validator.js";
@@ -74,21 +78,26 @@ export function createMerger({
       }
       return c.result;
     },
-    isValueDeepEqual: isSchemaValueDeepEqual,
   };
 }
 
 export interface TestContextOptions {
   validator?: Validator;
   merger?: Merger;
+  comparator?: Comparator;
   rootSchema?: Schema;
 }
+
+export const testComparator: Comparator = {
+  isValueDeepEqual: isSchemaValueDeepEqual,
+};
 
 /** Builds a `CoreContext` with test doubles for the fields a test does not care about. */
 export function createTestContext({
   validator = createValidator(),
   merger = createMerger(),
+  comparator = testComparator,
   rootSchema = {},
 }: TestContextOptions = {}): CoreContext {
-  return createCoreContext({ validator, merger, rootSchema });
+  return createCoreContext({ validator, merger, comparator, rootSchema });
 }

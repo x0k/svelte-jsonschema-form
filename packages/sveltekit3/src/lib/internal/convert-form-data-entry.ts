@@ -12,6 +12,7 @@ import {
   isSelect,
   pickSchemaType,
   typeOfSchema,
+  type Comparator,
   type Merger,
   type RPath,
   type SchemaValue,
@@ -47,6 +48,7 @@ export class EntryDecodeError extends Error {
 export interface FormDataConverterOptions {
   validator: Validator;
   merger: Merger;
+  comparator: Comparator;
   rootSchema: Schema;
   rootUiSchema: UiSchemaRoot;
   enumItemDecoder: EnumItemDecoder;
@@ -102,12 +104,18 @@ export function createEnumItemDecoder(
 export function createFormDataEntryConverter({
   validator,
   merger,
+  comparator,
   rootSchema,
   rootUiSchema,
   enumItemDecoder,
   convertUnknownEntry,
 }: FormDataConverterOptions): EntryConverter<FormDataEntryValue> {
-  const ctx = createCoreContext({ validator, merger, rootSchema });
+  const ctx = createCoreContext({
+    validator,
+    merger,
+    comparator,
+    rootSchema,
+  });
   return async (signal, options) => {
     const { path, value, schema, uiSchema } = options;
     if (typeof schema === "boolean") {

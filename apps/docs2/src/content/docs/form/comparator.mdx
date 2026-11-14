@@ -1,0 +1,104 @@
+---
+title: Comparator
+sidebar:
+  order: 65
+---
+
+import { LinkCard } from "@astrojs/starlight/components";
+
+import { withBase } from "@/lib/base-path";
+
+The comparator decides whether two form values are equal. The form uses it for
+change detection, stale-default cleanup, value reconciliation, and enum mapping.
+Schema merging does not use it.
+
+## API
+
+```typescript
+export type ValueDeepComparator = (
+  a: SchemaValue | undefined,
+  b: SchemaValue | undefined
+) => boolean;
+
+export interface Comparator {
+  isValueDeepEqual: ValueDeepComparator;
+}
+
+export interface ComparatorFactoryOptions {
+  schema: Schema;
+  uiSchema: UiSchemaRoot;
+  uiOptionsRegistry: UiOptionsRegistry;
+}
+```
+
+`Comparator` is a required service, like `validator` and `merger`:
+
+```typescript
+import { createForm } from "@sjsf/form";
+import { defaultComparator } from "@sjsf/form/comparators/default";
+
+const form = createForm({
+  // ...
+  comparator: defaultComparator,
+});
+```
+
+`defaultComparator` compares plain records and arrays deeply and every other
+pair with strict equality, except that `NaN` equals itself. Values such as
+`File` or `Date` are therefore compared by identity unless you provide a custom
+leaf rule.
+
+## Custom comparator
+
+Pass a `Comparator` directly:
+
+```typescript
+import { defaultComparator } from "@sjsf/form/comparators/default";
+
+const form = createForm({
+  // ...
+  comparator: {
+    ...defaultComparator,
+    isValueDeepEqual(a, b) {
+      return a instanceof Date && b instanceof Date
+        ? a.getTime() === b.getTime()
+        : defaultComparator.isValueDeepEqual(a, b);
+    },
+  },
+});
+```
+
+Or build one from the shared traversal helpers. `createSchemaValueComparator`
+takes the record comparison rule and a leaf rule, and returns a
+`ValueDeepComparator`:
+
+```typescript
+import { createForm } from "@sjsf/form";
+import { compareRecords, createSchemaValueComparator } from "@sjsf/form/core";
+
+const form = createForm({
+  // ...
+  comparator: ({ schema, uiSchema, uiOptionsRegistry }) => ({
+    isValueDeepEqual: createSchemaValueComparator(compareRecords, (a, b) =>
+      a instanceof Date && b instanceof Date
+        ? a.getTime() === b.getTime()
+        : Object.is(a, b)
+    ),
+  }),
+});
+```
+
+Use the factory form when the comparison depends on the schema, UI schema, or
+UI options. The factory receives those values as `ComparatorFactoryOptions`.
+
+<LinkCard
+  title="Form options"
+  href={withBase("/form/options/")}
+  description="See where the comparator is passed to createForm"
+/>
+
+<LinkCard
+  title="Form merger"
+  href={withBase("/form/merger/")}
+  description="Schema merging is a separate service"
+/>

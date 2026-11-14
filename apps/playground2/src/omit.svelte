@@ -1,6 +1,7 @@
 <script lang="ts">
   import AlignLeft from "@lucide/svelte/icons/align-left";
   import { createFormValidator } from "@sjsf/ajv8-validator";
+  import { defaultComparator } from "@sjsf/form/comparators/default";
   import { createCoreContext } from "@sjsf/form/core";
   import { createDeduplicator, createIntersector } from "@sjsf/form/lib/array";
   import { createComparator, createMerger } from "@sjsf/form/lib/json-schema";
@@ -100,6 +101,7 @@
         const ctx = createCoreContext({
           validator,
           merger,
+          comparator: defaultComparator,
           rootSchema: schema,
         });
         const result = omitExtraData(ctx, value);

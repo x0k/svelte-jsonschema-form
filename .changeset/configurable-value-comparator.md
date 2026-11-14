@@ -2,26 +2,18 @@
 "@sjsf/form": major
 ---
 
-Make form value comparison configurable. `Merger` gains a required `isValueDeepEqual`, defaulted to `isSchemaValueDeepEqual`. `@sjsf/form/core` exports `createSchemaValueComparator`, `compareRecords`, `compareOrderedRecords`, `ValueComparer`, `ValueDeepComparator`, `LeafValueComparator` and `RecordsComparator`, so a leaf rule can be swapped without reimplementing the traversal:
+Value comparison is now a required `Comparator` service instead of part of
+`Merger`:
+
+- `Merger` only merges schemas and `allOf`.
+- `FormOptions.comparator` is required. `MergerFactoryOptions`,
+  `ValidatorFactoryOptions`, `IdBuilderFactoryOptions`, and
+  `DropStaleDefaultsOptions` receive it.
+- `defaultComparator` is exported from `@sjsf/form/comparators/default`; the
+  `createSchemaValueComparator` helpers stay in `@sjsf/form/core`.
+- `enumValueMapperBuilder` receives a `Comparator`; `IdEnumValueMapperBuilder`
+  and `StringEnumValueMapperBuilder` require one.
 
 ```ts
-merger: (o) => ({
-  ...createFormMerger(o),
-  isValueDeepEqual: createSchemaValueComparator(compareRecords, equal),
-});
+export { defaultComparator as comparator } from "@sjsf/form/comparators/default";
 ```
-
-Breaking changes:
-
-- `enumValueMapperBuilder` UI option is now `(comparer: ValueComparer) => EnumValueMapperBuilder`, where `comparer` is the form's `Merger`. Pass it to your builder constructor:
-
-  ```ts
-  "ui:options": {
-    enumValueMapperBuilder: (comparer) => new IdEnumValueMapperBuilder(comparer),
-  };
-  ```
-
-- `IdEnumValueMapperBuilder` and `StringEnumValueMapperBuilder` now require a `ValueComparer` constructor argument.
-
-  A factory written for the previous zero-argument signature still typechecks, so
-  pass `comparer` explicitly rather than dropping the parameter.

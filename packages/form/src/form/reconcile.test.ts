@@ -12,14 +12,14 @@ import { createFormValueReconciler } from "./reconcile.js";
 describe("", () => {
   const reconcile = createFormValueReconciler({
     keyedArraysMap: new WeakMap(),
-    valueComparer: {
+    comparator: {
       isValueDeepEqual: isSchemaValueDeepEqual,
     },
   });
 
   const byDate = createFormValueReconciler({
     keyedArraysMap: new WeakMap(),
-    valueComparer: {
+    comparator: {
       isValueDeepEqual: createSchemaValueComparator(compareRecords, (a, b) =>
         a instanceof Date && b instanceof Date
           ? a.getTime() === b.getTime()

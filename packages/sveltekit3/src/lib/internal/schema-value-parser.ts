@@ -17,6 +17,7 @@ import {
   isSelect,
   resolveRef,
   getKnownProperties,
+  type Comparator,
   type Merger,
   type SchemaArrayValue,
   type SchemaDefinition,
@@ -40,6 +41,7 @@ export interface SchemaValueParserOptions<T> {
   idPseudoSeparator: string;
   validator: Validator;
   merger: Merger;
+  comparator: Comparator;
   convertEntry: EntryConverter<T>;
   codec: Codec;
 }
@@ -59,10 +61,16 @@ export function parseSchemaValue<T>(
     uiSchema: rootUiSchema,
     validator,
     merger,
+    comparator,
     codec: { encode, decode },
   }: SchemaValueParserOptions<T>
 ): Promise<SchemaValue | undefined> {
-  const ctx = createCoreContext({ validator, merger, rootSchema });
+  const ctx = createCoreContext({
+    validator,
+    merger,
+    comparator,
+    rootSchema,
+  });
   const escapedPropertySeparator = escapeRegex(idSeparator);
   const escapedIndexSeparator = escapeRegex(idIndexSeparator);
   const escapedPseudoSeparator = escapeRegex(idPseudoSeparator);

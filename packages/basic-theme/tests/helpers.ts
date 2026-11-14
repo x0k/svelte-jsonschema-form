@@ -6,6 +6,7 @@ import {
   type FormOptions,
 } from "@sjsf/form";
 import { DEFAULT_ID_PREFIX } from "@sjsf/form";
+import { defaultComparator } from "@sjsf/form/comparators/default";
 import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
 import { createFormMerger } from "@sjsf/form/mergers/modern";
 import { resolver } from "@sjsf/form/resolvers/basic";
@@ -29,6 +30,7 @@ const defaults = {
   resolver,
   validator: createFormValidator,
   merger: createFormMerger,
+  comparator: defaultComparator,
   idBuilder: createFormIdBuilder({ idPrefix: DEFAULT_ID_PREFIX }),
 };
 

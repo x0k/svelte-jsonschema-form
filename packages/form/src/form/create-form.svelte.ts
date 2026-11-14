@@ -3,13 +3,14 @@ import { on } from "svelte/events";
 import { SvelteMap } from "svelte/reactivity";
 
 import {
-  createCoreContext,
   DEPENDENCIES_KEY,
   IF_KEY,
   isSchemaDeepEqual,
+  isValueDeepEqual,
   retrieveSchema,
   sanitizeDataForNewSchema,
   schemaHasNestedConditional,
+  type Comparator,
   type Schema,
   type Validator,
 } from "#core/index.js";
@@ -17,6 +18,7 @@ import {
   CORE_ROOT_SCHEMA,
   CORE_VALIDATOR,
   CORE_MERGER,
+  CORE_COMPARATOR,
 } from "#core/internals.js";
 import { createDataURLtoBlob } from "#lib/file.js";
 import { weakMemoize } from "#lib/memoize.js";
@@ -152,6 +154,7 @@ export interface IdBuilderFactoryOptions {
   uiOptionsRegistry: UiOptionsRegistry;
   validator: Validator;
   merger: FormMerger;
+  comparator: Comparator;
   valueRef: FormValueRef;
 }
 
@@ -163,10 +166,21 @@ export interface ValidatorFactoryOptions {
    * This is a getter that can be used to access the Merger lazily.
    */
   merger: () => FormMerger;
+  /**
+   * The value comparator, for validators that need a core context.
+   */
+  comparator: Comparator;
 }
 
 export interface MergerFactoryOptions {
   validator: Validator;
+  schema: Schema;
+  uiSchema: UiSchemaRoot;
+  uiOptionsRegistry: UiOptionsRegistry;
+  comparator: Comparator;
+}
+
+export interface ComparatorFactoryOptions {
   schema: Schema;
   uiSchema: UiSchemaRoot;
   uiOptionsRegistry: UiOptionsRegistry;
@@ -181,6 +195,10 @@ export interface FormOptions<T>
   idBuilder: Creatable<FormIdBuilder, IdBuilderFactoryOptions>;
   validator: Creatable<FormValidator<T>, ValidatorFactoryOptions>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
+  /**
+   * Compares form values for change detection.
+   */
+  comparator: Creatable<Comparator, ComparatorFactoryOptions>;
   /**
    * @default DEFAULT_ID_PREFIX
    */
@@ -254,12 +272,20 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     };
   });
   const rootPath = $derived(internalRegisterFieldPath(pathsTrieRef, []));
+  const comparator = $derived(
+    create(options.comparator, {
+      schema: options.schema,
+      uiSchema: uiSchemaRoot,
+      uiOptionsRegistry,
+    })
+  );
   const validator = $derived(
     create(options.validator, {
       uiSchema: uiSchemaRoot,
       uiOptionsRegistry,
       schema: options.schema,
       merger: (): FormMerger => merger,
+      comparator,
     })
   );
   const merger = $derived(
@@ -268,10 +294,8 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       schema: options.schema,
       uiSchema: uiSchemaRoot,
       uiOptionsRegistry,
+      comparator,
     })
-  );
-  const coreContext = $derived(
-    createCoreContext({ validator, merger, rootSchema: options.schema })
   );
   const valueRef = $derived(
     createValueRef(
@@ -299,11 +323,9 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       uiOptionsRegistry,
       merger: merger,
       validator: validator,
+      comparator,
       valueRef,
     })
-  );
-  const retrievedSchema = $derived(
-    retrieveSchema(coreContext, options.schema, valueRef.current)
   );
   // A `dependencies`/`if` branch switch nested inside an object property never changes the ROOT retrieved
   // schema (only the schema's own top-level `dependencies`/`if` get resolved into it), so comparing
@@ -347,7 +369,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   const reconcileFormValue = $derived(
     createFormValueReconciler({
       keyedArraysMap: keyedArrays,
-      valueComparer: merger,
+      comparator,
     })
   );
   const schedulerYield: SchedulerYield = $derived(
@@ -485,9 +507,23 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   const formState: FormState<T> = {
     validation,
     fieldsValidation,
-    // INTERNALS
-    [FORM_FIELDS_STATE_MAP]: fieldsStateMap,
+    // CORE INTERNALS
+    get [CORE_ROOT_SCHEMA]() {
+      return options.schema;
+    },
+    get [CORE_VALIDATOR]() {
+      return validator;
+    },
+    get [CORE_MERGER]() {
+      return merger;
+    },
+    get [CORE_COMPARATOR]() {
+      return comparator;
+    },
+    // FORM INTERNALS
+    [FORM_VALUE]: valueStore,
     [FORM_CONFIGS_CACHE]: new WeakMap(),
+    [FORM_FIELDS_STATE_MAP]: fieldsStateMap,
     get [FORM_INITIAL_VALUE]() {
       return options.initialValue;
     },
@@ -512,7 +548,6 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     get [FORM_ROOT_PATH]() {
       return rootPath;
     },
-    [FORM_VALUE]: valueStore,
     get [FORM_FIELDS_VALIDATION_MODE]() {
       return fieldsValidationMode;
     },
@@ -521,9 +556,6 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     },
     get [FORM_KEYED_ARRAYS]() {
       return keyedArrays;
-    },
-    get [CORE_ROOT_SCHEMA]() {
-      return options.schema;
     },
     get [FORM_RETRIEVED_SCHEMA]() {
       return retrievedSchema;
@@ -542,12 +574,6 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     },
     get [FORM_DISABLED]() {
       return disabled;
-    },
-    get [CORE_VALIDATOR]() {
-      return validator;
-    },
-    get [CORE_MERGER]() {
-      return merger;
     },
     get [FORM_ID_BUILDER]() {
       return idBuilder;
@@ -569,6 +595,9 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     },
     [FORM_MARK_SCHEMA_CHANGE]: scheduleDefaultsInjection,
   };
+  const retrievedSchema = $derived(
+    retrieveSchema(formState, options.schema, valueRef.current)
+  );
   const fieldTypeResolver = $derived(options.resolver(formState));
 
   function recordChange(change: FormValueChange) {
@@ -632,7 +661,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     // earlier value would clear what that pass just wrote.
     const oldFormData = rebuildOldFormData(formData, changes);
     let currentRetrievedSchema = retrieveSchema(
-      coreContext,
+      formState,
       options.schema,
       oldFormData
     );
@@ -644,6 +673,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
         ? new StaleDefaultsPass({
             validator,
             merger,
+            comparator,
             rootSchema: options.schema,
             changes,
             getChildPath: (parentPath, key) =>
@@ -661,7 +691,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       // can select a different branch for another key one hop later.
       if (staleDefaultsPass) {
         const newRetrievedSchema = retrieveSchema(
-          coreContext,
+          formState,
           options.schema,
           formData
         );
@@ -690,14 +720,14 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       // conditionals one more pass over the value that is really there.
       if (!hasNewRefill) {
         for (let i = values.length - 1; i >= 0; i--) {
-          if (merger.isValueDeepEqual(values[i], formData)) {
+          if (isValueDeepEqual(formState, values[i], formData)) {
             break sanitization;
           }
         }
       }
 
       const nextRetrievedSchema = retrieveSchema(
-        coreContext,
+        formState,
         options.schema,
         formData
       );
@@ -713,7 +743,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       values.push(formData);
       const dataBeforeSanitize = formData;
       formData = sanitizeDataForNewSchema(
-        coreContext,
+        formState,
         nextRetrievedSchema,
         currentRetrievedSchema,
         formData

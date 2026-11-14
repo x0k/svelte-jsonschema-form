@@ -1,5 +1,6 @@
 import {
   create,
+  type ComparatorFactoryOptions,
   type Creatable,
   type FormMerger,
   type MergerFactoryOptions,
@@ -10,6 +11,7 @@ import {
   type Validator,
   type ValidatorFactoryOptions,
 } from "@sjsf/form";
+import { type Comparator } from "@sjsf/form/core";
 
 import {
   createEnumItemDecoder,
@@ -29,6 +31,7 @@ export interface SvelteKitDataParserOptions {
   schema: Schema;
   validator: Creatable<Validator, ValidatorFactoryOptions>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
+  comparator: Creatable<Comparator, ComparatorFactoryOptions>;
   uiSchema?: UiSchemaRoot;
   uiOptionsRegistry?: UiOptionsRegistry;
   createEntryConverter?: Creatable<
@@ -45,6 +48,7 @@ export function createSvelteKitDataParser({
   uiSchema = {},
   merger: createMerger,
   validator: createValidator,
+  comparator: createComparator,
   uiOptionsRegistry = {},
   createEntryConverter = createFormDataEntryConverter,
   convertUnknownEntry,
@@ -53,21 +57,29 @@ export function createSvelteKitDataParser({
     createOptionIndexDecoder(encode(pseudoPrefix))
   ),
 }: SvelteKitDataParserOptions) {
+  const comparator = create(createComparator, {
+    schema,
+    uiSchema,
+    uiOptionsRegistry,
+  });
   const validator: Validator = create(createValidator, {
     schema: schema,
     uiSchema: uiSchema,
     uiOptionsRegistry,
     merger: () => merger,
+    comparator,
   });
   const merger = create(createMerger, {
     schema: schema,
     uiSchema: uiSchema,
     validator,
     uiOptionsRegistry,
+    comparator,
   });
   const convertEntry = create(createEntryConverter, {
     validator,
     merger,
+    comparator,
     rootSchema: schema,
     rootUiSchema: uiSchema,
     convertUnknownEntry,
@@ -84,6 +96,7 @@ export function createSvelteKitDataParser({
       convertEntry,
       input: input as Record<string, Input<FormDataEntryValue>>,
       merger,
+      comparator,
       schema: schema,
       uiSchema: uiSchema,
       validator,

@@ -1,8 +1,9 @@
 import { getContext, setContext } from "svelte";
 import type { SvelteMap } from "svelte/reactivity";
 
-import type { CoreContext, Schema } from "#core/index.js";
+import type { Comparator, CoreContext, Schema } from "#core/index.js";
 import {
+  CORE_COMPARATOR,
   CORE_MERGER,
   CORE_ROOT_SCHEMA,
   CORE_VALIDATOR,
@@ -72,6 +73,7 @@ export interface FormState<T> extends CoreContext {
   readonly [CORE_ROOT_SCHEMA]: Schema;
   readonly [CORE_VALIDATOR]: FormValidator<T>;
   readonly [CORE_MERGER]: FormMerger;
+  readonly [CORE_COMPARATOR]: Comparator;
   // Form internals
   readonly [FORM_VALUE]: FormValueStore;
   [FORM_INITIAL_DEFAULTS_GENERATED]: boolean;

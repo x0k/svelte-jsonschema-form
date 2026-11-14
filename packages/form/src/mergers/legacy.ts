@@ -5,9 +5,9 @@ import {
   DEPENDENCIES_KEY,
   getDefaultFormState,
   isSchemaObjectValue,
-  isSchemaValueDeepEqual,
   ITEMS_KEY,
   REQUIRED_KEY,
+  type Comparator,
   type Experimental_DefaultFormStateBehavior,
   type Merger,
   type Schema,
@@ -172,13 +172,13 @@ export function createMerger(): Merger {
     mergeAllOf(schema) {
       return mergeAllOf(schema, { deep: false } as Options) as Schema;
     },
-    isValueDeepEqual: isSchemaValueDeepEqual,
   };
 }
 
 export type FormMergerOptions = Experimental_DefaultFormStateBehavior & {
   validator: Validator;
   schema: Schema;
+  comparator: Comparator;
 };
 
 export function createFormMerger(options: FormMergerOptions): FormMerger {
@@ -195,6 +195,7 @@ export function createFormMerger(options: FormMergerOptions): FormMerger {
         createCoreContext({
           validator: options.validator,
           merger: formMerger,
+          comparator: options.comparator,
           rootSchema: options.schema,
         }),
         schema,

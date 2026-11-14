@@ -19,6 +19,7 @@ import {
   isValueDeepEqual,
   retrieveSchema,
   sanitizeDataForNewSchema,
+  type Comparator,
   type CoreContext,
   type RPath,
   type Schema,
@@ -45,6 +46,7 @@ export interface AfterFillResult {
 export interface StaleDefaultsPassOptions {
   validator: Validator;
   merger: FormMerger;
+  comparator: Comparator;
   rootSchema: Schema;
   changes: readonly FormValueChange[];
   /**
@@ -200,6 +202,7 @@ export class StaleDefaultsPass {
   private readonly ctx: CoreContext;
   private readonly validator: Validator;
   private readonly merger: FormMerger;
+  private readonly comparator: Comparator;
   private readonly rootSchema: Schema;
   private readonly changes: readonly FormValueChange[];
   private readonly getChildPath: (
@@ -212,15 +215,22 @@ export class StaleDefaultsPass {
   constructor({
     validator,
     merger,
+    comparator,
     rootSchema,
     changes,
     getChildPath,
     oldFormData,
     oldSchema,
   }: StaleDefaultsPassOptions) {
-    this.ctx = createCoreContext({ validator, merger, rootSchema });
+    this.ctx = createCoreContext({
+      validator,
+      merger,
+      comparator,
+      rootSchema,
+    });
     this.validator = validator;
     this.merger = merger;
+    this.comparator = comparator;
     this.rootSchema = rootSchema;
     this.changes = changes;
     this.getChildPath = getChildPath;
@@ -237,6 +247,7 @@ export class StaleDefaultsPass {
     const { formData: result, dropped } = this.merger.dropStaleDefaults({
       validator: this.validator,
       rootSchema: this.rootSchema,
+      comparator: this.comparator,
       newSchema,
       formData,
       changes: this.changes,
@@ -335,7 +346,7 @@ export class StaleDefaultsPass {
           this.oldFormData,
           dropped.path,
           held,
-          (value) => !this.merger.isValueDeepEqual(value, held)
+          (value) => !isValueDeepEqual(this.ctx, value, held)
         );
       }
     }

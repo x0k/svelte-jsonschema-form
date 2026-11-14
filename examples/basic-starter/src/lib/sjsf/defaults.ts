@@ -1,4 +1,5 @@
 export { resolver } from "@sjsf/form/resolvers/basic";
+export { defaultComparator as comparator } from "@sjsf/form/comparators/default";
 import "@sjsf/form/fields/extra/enum-include";
 
 export { theme } from "@sjsf/basic-theme";

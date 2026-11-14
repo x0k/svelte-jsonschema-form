@@ -22,6 +22,7 @@
     type FormMerger,
     validate,
   } from "@sjsf/form";
+  import { defaultComparator } from "@sjsf/form/comparators/default";
   import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
   import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
   import { createDeduplicator, createIntersector } from "@sjsf/form/lib/array";
@@ -239,6 +240,7 @@
     createFormMerger({
       schema: validatorState.schema,
       validator: validatorState.validator,
+      comparator: defaultComparator,
       jsonSchemaMerger,
       allOf: data.allOf,
       arrayMinItems: {
@@ -267,6 +269,7 @@
   );
   const form = createForm({
     translation,
+    comparator: defaultComparator,
     idBuilder: createFormIdBuilder,
     get resolver() {
       return PLAYGROUND_RESOLVERS[data.resolver];
@@ -327,9 +330,10 @@
       skeleton5DateRangePickerPortal: portalOptions,
     }),
     uiOptionsRegistry: {
-      stringEnumValueMapper: (comparer) =>
-        new StringEnumValueMapperBuilder(comparer),
-      idEnumValueMapper: (comparer) => new IdEnumValueMapperBuilder(comparer),
+      stringEnumValueMapper: (comparator) =>
+        new StringEnumValueMapperBuilder(comparator),
+      idEnumValueMapper: (comparator) =>
+        new IdEnumValueMapperBuilder(comparator),
     },
   });
   setFormContext(form);

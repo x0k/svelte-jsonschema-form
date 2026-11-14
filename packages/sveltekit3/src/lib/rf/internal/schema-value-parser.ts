@@ -16,6 +16,7 @@ import {
   isSchemaObjectValue,
   isSelect,
   resolveRef,
+  type Comparator,
   type Merger,
   type Path,
   type SchemaArrayValue,
@@ -42,6 +43,7 @@ export interface SchemaValueParserOptions<T> {
   input: Record<string, Input<T>>;
   validator: Validator;
   merger: Merger;
+  comparator: Comparator;
   convertEntry: EntryConverter<T>;
   idPrefix: string;
   pseudoPrefix: string;
@@ -58,13 +60,19 @@ export async function parseSchemaValue<T>(
     input,
     validator,
     merger,
+    comparator,
     convertEntry,
     idPrefix,
     pseudoPrefix,
     codec: { encode, decode },
   }: SchemaValueParserOptions<T>
 ) {
-  const ctx = createCoreContext({ validator, merger, rootSchema });
+  const ctx = createCoreContext({
+    validator,
+    merger,
+    comparator,
+    rootSchema,
+  });
   const path: Path = [];
   const inputStack: Input<T>[] = [input];
   const encodedPseudoPrefix = encode(pseudoPrefix);

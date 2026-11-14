@@ -25,12 +25,12 @@ export type ValueDeepComparator = (
 export type LeafValueComparator = ValueDeepComparator;
 
 /**
- * Compares two form values for change detection.
+ * The value comparison service.
  *
  * Only read by the value comparison paths, such as `sanitizeDataForNewSchema`
  * and the form value reconciler. Schema resolution never consults it.
  */
-export interface ValueComparer {
+export interface Comparator {
   isValueDeepEqual: ValueDeepComparator;
 }
 

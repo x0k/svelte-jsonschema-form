@@ -1,4 +1,10 @@
-import { CORE_MERGER, CORE_ROOT_SCHEMA, CORE_VALIDATOR } from "./internals.js";
+import type { Comparator } from "./deep-equal.js";
+import {
+  CORE_COMPARATOR,
+  CORE_MERGER,
+  CORE_ROOT_SCHEMA,
+  CORE_VALIDATOR,
+} from "./internals.js";
 import type { Merger } from "./merger.js";
 import type { Schema, SchemaDefinition, SchemaValue } from "./schema.js";
 import type { Validator } from "./validator.js";
@@ -12,23 +18,27 @@ import type { Validator } from "./validator.js";
 export interface CoreContext {
   readonly [CORE_VALIDATOR]: Validator;
   readonly [CORE_MERGER]: Merger;
+  readonly [CORE_COMPARATOR]: Comparator;
   readonly [CORE_ROOT_SCHEMA]: Schema;
 }
 
-export interface CreateCoreContextOptions {
+export interface CoreContextOptions {
   rootSchema: Schema;
   validator: Validator;
   merger: Merger;
+  comparator: Comparator;
 }
 
 export function createCoreContext({
   validator,
   merger,
+  comparator,
   rootSchema,
-}: CreateCoreContextOptions): CoreContext {
+}: CoreContextOptions): CoreContext {
   return {
     [CORE_VALIDATOR]: validator,
     [CORE_MERGER]: merger,
+    [CORE_COMPARATOR]: comparator,
     [CORE_ROOT_SCHEMA]: rootSchema,
   };
 }
@@ -58,5 +68,5 @@ export function isValueDeepEqual(
   a: SchemaValue | undefined,
   b: SchemaValue | undefined
 ): boolean {
-  return ctx[CORE_MERGER].isValueDeepEqual(a, b);
+  return ctx[CORE_COMPARATOR].isValueDeepEqual(a, b);
 }

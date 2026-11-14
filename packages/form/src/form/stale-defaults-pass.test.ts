@@ -1,12 +1,12 @@
 import { describe, expect, it } from "vitest";
 
+import { getDefaultFormState, type Merger, type Schema } from "#core/index.js";
 import {
-  createCoreContext,
-  getDefaultFormState,
-  type Merger,
-  type Schema,
-} from "#core/index.js";
-import { createMerger, createValidator } from "#core/testing.js";
+  createMerger,
+  createTestContext,
+  createValidator,
+  testComparator,
+} from "#core/testing.js";
 
 import { dropStaleDefaults } from "./drop-stale-defaults.js";
 import type { FieldPath } from "./id.js";
@@ -38,7 +38,11 @@ function formMerger(merger: Merger, rootSchema: Schema): FormMerger {
       includeUndefinedValues = false,
     }) {
       return getDefaultFormState(
-        createCoreContext({ validator: createValidator(), merger, rootSchema }),
+        createTestContext({
+          validator: createValidator(),
+          merger,
+          rootSchema,
+        }),
         schema,
         formData,
         includeUndefinedValues,
@@ -79,6 +83,7 @@ describe("StaleDefaultsPass", () => {
     const pass = new StaleDefaultsPass({
       validator: createValidator(),
       merger: formMerger(merger, rootSchema),
+      comparator: testComparator,
       rootSchema,
       changes: [change(path("mode"), "a")],
       getChildPath: (parentPath, key) =>

@@ -1,5 +1,6 @@
 import { createFormValidator } from "@sjsf/ajv8-validator";
 import { DEFAULT_ID_PREFIX, SJSF_ID_PREFIX } from "@sjsf/form";
+import { defaultComparator } from "@sjsf/form/comparators/default";
 import { createFormMerger } from "@sjsf/form/mergers/modern";
 import { beforeEach, describe, expect, it } from "vitest";
 
@@ -19,6 +20,7 @@ describe("makeFormDataParser", () => {
     const parse = createFormHandler({
       validator: createFormValidator,
       merger: createFormMerger,
+      comparator: defaultComparator,
       schema: {
         type: "string",
         format: "data-url",
@@ -33,6 +35,7 @@ describe("makeFormDataParser", () => {
     const parse = createFormHandler({
       validator: createFormValidator,
       merger: createFormMerger,
+      comparator: defaultComparator,
       schema: {
         type: "string",
         format: "data-url",
@@ -49,6 +52,7 @@ describe("makeFormDataParser", () => {
     const parse = createFormHandler({
       validator: createFormValidator,
       merger: createFormMerger,
+      comparator: defaultComparator,
       schema: {},
       sendData: true,
     });
@@ -67,6 +71,7 @@ describe("makeFormDataParser", () => {
     const parse = createFormHandler({
       validator: createFormValidator,
       merger: createFormMerger,
+      comparator: defaultComparator,
       schema: {
         type: "object",
         properties: { firstName: { type: "string" } },
@@ -83,6 +88,7 @@ describe("makeFormDataParser", () => {
     const parse = createFormHandler({
       validator: createFormValidator,
       merger: createFormMerger,
+      comparator: defaultComparator,
       schema: {
         type: "object",
         properties: { firstName: { type: "string" } },
@@ -110,6 +116,7 @@ describe("makeFormDataParser", () => {
     const parse = createFormHandler({
       validator: createFormValidator,
       merger: createFormMerger,
+      comparator: defaultComparator,
       // No `convertUnknownEntry`: the chunks branch never runs entry
       // conversion, so this also proves the JSON path skips it.
       schema: { type: "object" },
@@ -126,6 +133,7 @@ describe("makeFormDataParser", () => {
     const parse = createFormHandler({
       validator: createFormValidator,
       merger: createFormMerger,
+      comparator: defaultComparator,
       schema: { type: "object" },
     });
     const c = new AbortController();

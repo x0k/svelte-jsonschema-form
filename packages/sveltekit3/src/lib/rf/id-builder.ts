@@ -14,6 +14,7 @@ import {
   getSchemaDefinitionByPath,
   isMultiSelect,
   isSchemaObjectValue,
+  type Comparator,
   type SchemaDefinition,
 } from "@sjsf/form/core";
 import { isSchemaObject } from "@sjsf/form/lib/json-schema";
@@ -25,6 +26,7 @@ export interface FormIdBuilderOptions {
   schema: Schema;
   validator: Validator;
   merger: FormMerger;
+  comparator: Comparator;
   idPrefix: string;
   pseudoPrefix?: string;
   valueRef: Ref<FormValue>;
@@ -45,12 +47,18 @@ export function createFormIdBuilder({
   idPrefix,
   validator,
   merger,
+  comparator,
   valueRef,
   pseudoPrefix = DEFAULT_PSEUDO_PREFIX,
   isPrivate = () => false,
   fieldSuffix,
 }: FormIdBuilderOptions): FormIdBuilder {
-  const ctx = createCoreContext({ validator, merger, rootSchema });
+  const ctx = createCoreContext({
+    validator,
+    merger,
+    comparator,
+    rootSchema,
+  });
   const parts: string[] = [];
   const encodedIdPrefix = encode(idPrefix);
   const encodedPseudoPrefix = encode(pseudoPrefix);

@@ -8,6 +8,7 @@ import {
   type ExtraFieldFileName,
 } from "../fields.ts";
 import {
+  formComparatorSubPath,
   formCoreSubpath,
   formIdBuilderSubPath,
   formMergerSubPath,
@@ -209,6 +210,11 @@ export function resolver(_ctx) {`
     createReExport(ast, {
       name: "translation",
       source: formTranslationSubPath("en"),
+    });
+    createReExport(ast, {
+      name: "comparator",
+      imported: "defaultComparator",
+      source: formComparatorSubPath,
     });
     if (!isRecordEmpty(merger)) {
       jsApi.imports.addNamed(ast, {
@@ -482,7 +488,7 @@ export const validator = (options) => createFormValidator({
           case "IdEnumValueMapperBuilder":
             importedClasses.add("IdEnumValueMapperBuilder");
             entries.push(
-              `${key}: (comparer) => new IdEnumValueMapperBuilder(comparer)`
+              `${key}: (comparator) => new IdEnumValueMapperBuilder(comparator)`
             );
             break;
         }

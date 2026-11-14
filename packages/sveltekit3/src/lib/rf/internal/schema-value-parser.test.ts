@@ -1,5 +1,6 @@
 import { createFormValidator } from "@sjsf/ajv8-validator";
 import { DEFAULT_ID_PREFIX, SJSF_ID_PREFIX, type Schema } from "@sjsf/form";
+import { defaultComparator } from "@sjsf/form/comparators/default";
 import { createMerger } from "@sjsf/form/mergers/modern";
 import { describe, beforeEach, expect, it } from "vitest";
 
@@ -26,10 +27,12 @@ const opts = ({
   uiSchema = {},
   validator = createFormValidator({ schema }),
   merger = createMerger(),
+  comparator = defaultComparator,
   codec = { encode, decode },
   convertEntry = createFormDataEntryConverter({
     merger,
     validator,
+    comparator,
     rootSchema: schema,
     rootUiSchema: uiSchema,
     enumItemDecoder: createEnumItemDecoder(
@@ -44,6 +47,7 @@ const opts = ({
   uiSchema,
   validator,
   merger,
+  comparator,
   convertEntry,
   idPrefix,
   pseudoPrefix,

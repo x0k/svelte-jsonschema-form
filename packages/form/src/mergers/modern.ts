@@ -1,7 +1,7 @@
 import {
   createCoreContext,
   getDefaultFormState,
-  isSchemaValueDeepEqual,
+  type Comparator,
   type Experimental_DefaultFormStateBehavior,
   type Merger,
   type Validator,
@@ -37,7 +37,6 @@ export function createMerger({
     mergeAllOf(schema) {
       return jsonSchemaAllOfMerge(schema) as Schema;
     },
-    isValueDeepEqual: isSchemaValueDeepEqual,
   };
 }
 
@@ -45,6 +44,7 @@ export interface FormMergerOptions
   extends Experimental_DefaultFormStateBehavior, MergerOptions {
   validator: Validator;
   schema: Schema;
+  comparator: Comparator;
 }
 
 export function createFormMerger(options: FormMergerOptions): FormMerger {
@@ -61,6 +61,7 @@ export function createFormMerger(options: FormMergerOptions): FormMerger {
         createCoreContext({
           validator: options.validator,
           merger: formMerger,
+          comparator: options.comparator,
           rootSchema: options.schema,
         }),
         schema,

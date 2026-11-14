@@ -5,7 +5,7 @@ import type {
   Schema,
   Validator,
 } from "@sjsf/form";
-import type { Merger } from "@sjsf/form/core";
+import type { Comparator, Merger } from "@sjsf/form/core";
 
 import { transformFormErrors, transformFieldErrors } from "../errors.js";
 import type { ValueToJSON } from "../validator.js";
@@ -42,6 +42,7 @@ export function createValidator({
 
 export type FormValueValidatorOptions = ValidatorOptions & {
   merger: () => Merger;
+  comparator: Comparator;
   schema: Schema;
 };
 
@@ -56,6 +57,7 @@ export function createFormValueValidator<T>(
       return transformFormErrors(
         validator,
         options.merger(),
+        options.comparator,
         options.schema,
         validate.errors,
         formValue

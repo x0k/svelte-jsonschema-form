@@ -12,6 +12,7 @@ import {
   getSchemaDefinitionByPath,
   pathFromLocation,
   pathFromRef,
+  type Comparator,
   type Merger,
   type Path,
 } from "@sjsf/form/core";
@@ -20,6 +21,7 @@ import { getValueByPath } from "@sjsf/form/lib/object";
 function extractKeywordValue(
   validator: Validator,
   merger: Merger,
+  comparator: Comparator,
   keyword: string,
   rootSchema: Schema,
   instancePath: Path,
@@ -31,7 +33,12 @@ function extractKeywordValue(
     return String((schema as Record<string, unknown>)[keyword]);
   }
   const def = getSchemaDefinitionByPath(
-    createCoreContext({ validator, merger, rootSchema }),
+    createCoreContext({
+      validator,
+      merger,
+      comparator,
+      rootSchema,
+    }),
     rootSchema,
     instancePath,
     value
@@ -64,6 +71,7 @@ function createErrorMessage(keyword: string, details: string | undefined) {
 export function transformFormErrors<T>(
   validator: Validator,
   merger: Merger,
+  comparator: Comparator,
   rootSchema: Schema,
   errors: ValidationError[] | undefined,
   data: FormValue
@@ -86,6 +94,7 @@ export function transformFormErrors<T>(
           extractKeywordValue(
             validator,
             merger,
+            comparator,
             keyword,
             rootSchema,
             instancePath,

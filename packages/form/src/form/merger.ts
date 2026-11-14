@@ -1,4 +1,5 @@
 import type {
+  Comparator,
   Merger,
   RPath,
   Schema,
@@ -97,6 +98,10 @@ export interface DropStaleDefaultsResult {
 export interface DropStaleDefaultsOptions {
   validator: Validator;
   rootSchema: Schema;
+  /**
+   * The value comparator used to judge defaults and user edits.
+   */
+  comparator: Comparator;
   /**
    * The schema resolved for the current form data.
    */

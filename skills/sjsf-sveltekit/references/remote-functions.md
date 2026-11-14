@@ -11,6 +11,7 @@ export { theme } from "@sjsf/basic-theme";
 import "@sjsf/basic-theme/extra-widgets/textarea-include"; // side-effect includes you use
 export { translation } from "@sjsf/form/translations/en";
 export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit3/rf";
+export { defaultComparator as comparator } from "@sjsf/form/comparators/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormValidator as validator } from "@sjsf/ajv8-validator";
 ```
@@ -18,7 +19,7 @@ export { createFormValidator as validator } from "@sjsf/ajv8-validator";
 ## Server Validator (`data.remote.ts`)
 
 Validate with `createServerValidator` + `form()` from `$app/server`.
-It only takes `{ schema, validator, merger, uiSchema, uiOptionsRegistry, ... }` —
+It only takes `{ schema, validator, merger, comparator, uiSchema, uiOptionsRegistry, ... }` —
 `idBuilder`/`theme`/`translation`/`resolver` are client-only
 and ignored here (spreading is harmless but explicit picks are clearer):
 
@@ -34,6 +35,7 @@ const validator = createServerValidator<PostForm>({
   schema,
   validator: defaults.validator,
   merger: defaults.merger,
+  comparator: defaults.comparator,
   uiSchema,
 });
 

@@ -1,4 +1,5 @@
 export { resolver } from "@sjsf/form/resolvers/basic";
+export { defaultComparator as comparator } from "@sjsf/form/comparators/default";
 
 export { theme } from "@sjsf/basic-theme";
 import "@sjsf/basic-theme/extra-widgets/textarea-include";

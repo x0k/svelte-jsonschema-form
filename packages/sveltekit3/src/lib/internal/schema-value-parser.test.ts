@@ -5,6 +5,7 @@ import {
   type FieldPath,
   type Schema,
 } from "@sjsf/form";
+import { defaultComparator } from "@sjsf/form/comparators/default";
 import { createMerger } from "@sjsf/form/mergers/modern";
 import { beforeEach, describe, expect, it } from "vitest";
 
@@ -33,12 +34,14 @@ const opts = ({
   idPseudoSeparator = "::",
   validator = createFormValidator({ schema }),
   merger = createMerger(),
+  comparator = defaultComparator,
   codec = createCodec({
     sequencesToEncode: [idSeparator, idIndexSeparator, idPseudoSeparator],
   }),
   convertEntry = createFormDataEntryConverter({
     merger,
     validator,
+    comparator,
     rootSchema: schema,
     rootUiSchema: uiSchema,
     enumItemDecoder: createEnumItemDecoder(
@@ -57,6 +60,7 @@ const opts = ({
   idPseudoSeparator,
   validator,
   merger,
+  comparator,
   convertEntry,
   codec,
 });

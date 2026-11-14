@@ -7,4 +7,5 @@
  */
 export const CORE_VALIDATOR = Symbol("core-validator");
 export const CORE_MERGER = Symbol("core-merger");
+export const CORE_COMPARATOR = Symbol("core-comparator");
 export const CORE_ROOT_SCHEMA = Symbol("core-root-schema");

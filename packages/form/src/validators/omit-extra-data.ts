@@ -21,6 +21,7 @@ export function withOmitExtraData<V extends FormValidator<any>>(
       createCoreContext({
         validator: v,
         merger: options.merger(),
+        comparator: options.comparator,
         rootSchema: options.schema,
       });
     if (isAsyncFormValueValidator(v)) {

@@ -1,5 +1,5 @@
 import { getSchemaDefinitionByPath, type RPath } from "#core/index.js";
-import { CORE_ROOT_SCHEMA, CORE_MERGER } from "#core/internals.js";
+import { CORE_COMPARATOR, CORE_ROOT_SCHEMA } from "#core/internals.js";
 import { overrideByRecord } from "#lib/resolver.js";
 import type { ObjectProperties } from "#lib/types.js";
 import {
@@ -201,9 +201,9 @@ export function retrieveEnumValueMapperBuilder<T>(
   ctx: FormState<T>,
   config: Config
 ): EnumValueMapperBuilder {
-  const comparer = ctx[CORE_MERGER];
+  const comparator = ctx[CORE_COMPARATOR];
   return (
-    retrieveUiOption(ctx, config, "enumValueMapperBuilder")?.(comparer) ??
-    new StringEnumValueMapperBuilder(comparer)
+    retrieveUiOption(ctx, config, "enumValueMapperBuilder")?.(comparator) ??
+    new StringEnumValueMapperBuilder(comparator)
   );
 }

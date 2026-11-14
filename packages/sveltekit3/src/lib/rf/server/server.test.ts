@@ -1,5 +1,6 @@
 import { createFormValidator } from "@sjsf/ajv8-validator";
 import { DEFAULT_ID_PREFIX, SJSF_ID_PREFIX, type Schema } from "@sjsf/form";
+import { defaultComparator } from "@sjsf/form/comparators/default";
 import { fromRecord } from "@sjsf/form/lib/resolver";
 import { createFormMerger } from "@sjsf/form/mergers/modern";
 import { describe, expect, it, vi } from "vitest";
@@ -25,9 +26,10 @@ const schema: Schema = {
 
 function opts(overrides?: Record<string, unknown>) {
   return {
-    schema: schema as Schema,
+    schema,
     validator: createFormValidator,
     merger: createFormMerger,
+    comparator: defaultComparator,
     ...overrides,
   };
 }

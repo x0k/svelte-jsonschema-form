@@ -8,11 +8,13 @@ import {
   type FormMerger,
   type UiOptionsRegistry,
   type Creatable,
+  type ComparatorFactoryOptions,
   create,
   SJSF_ID_PREFIX,
   type ValidationResult,
   type FormValidator,
 } from "@sjsf/form";
+import type { Comparator } from "@sjsf/form/core";
 import type { MaybePromise } from "@sjsf/form/lib/types";
 import { fail, type ActionFailure, type RequestEvent } from "@sveltejs/kit";
 
@@ -53,6 +55,7 @@ export interface FormHandlerOptions<T, SD extends SendData> extends Omit<
   idIndexSeparator?: string;
   validator: Creatable<FormValidator<T>, ValidatorFactoryOptions>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
+  comparator: Creatable<Comparator, ComparatorFactoryOptions>;
   createEntryConverter?: Creatable<
     EntryConverter<FormDataEntryValue>,
     FormDataConverterOptions
@@ -82,6 +85,7 @@ export function createFormHandler<T, SD extends SendData>({
   uiOptionsRegistry = {},
   merger: createMerger,
   validator: createValidator,
+  comparator: createComparator,
   createEntryConverter = createFormDataEntryConverter,
   convertUnknownEntry,
   propertySeparator = DEFAULT_PROPERTY_SEPARATOR,
@@ -94,21 +98,29 @@ export function createFormHandler<T, SD extends SendData>({
     createOptionIndexDecoder(pseudoSeparator)
   ),
 }: FormHandlerOptions<T, SD>) {
+  const comparator = create(createComparator, {
+    schema,
+    uiSchema,
+    uiOptionsRegistry,
+  });
   const validator = create(createValidator, {
     schema,
     uiSchema,
     uiOptionsRegistry,
     merger: () => merger,
+    comparator,
   });
   const merger: FormMerger = create(createMerger, {
     schema,
     uiSchema,
     validator,
     uiOptionsRegistry,
+    comparator,
   });
   const convertEntry = create(createEntryConverter, {
     validator,
     merger,
+    comparator,
     rootSchema: schema,
     rootUiSchema: uiSchema,
     convertUnknownEntry,
@@ -162,6 +174,7 @@ export function createFormHandler<T, SD extends SendData>({
           entries: Array.from(formData.entries()),
           validator,
           merger,
+          comparator,
           convertEntry,
           codec: createCodec({
             escapeChar: escapeCharacter,

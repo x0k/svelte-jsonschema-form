@@ -17,6 +17,7 @@ import {
   type Validator,
   type ValidatorFactoryOptions,
 } from "@sjsf/form";
+import { defaultComparator } from "@sjsf/form/comparators/default";
 import {
   createCoreContext,
   getClosestMatchingOption,
@@ -72,6 +73,7 @@ function createInitializer<V extends Validator>(
     const validator = await create(createValidator, {
       idBuilder,
       merger: () => merger,
+      comparator: defaultComparator,
       schema,
       uiOptionsRegistry,
       uiSchema,
@@ -80,6 +82,7 @@ function createInitializer<V extends Validator>(
     const merger = createFormMerger({
       schema,
       validator,
+      comparator: defaultComparator,
     });
     return {
       validator,
@@ -229,7 +232,12 @@ export function validatorTests(
         // Value only has "kind" — original required would reject both branches,
         // but augmented anyOf([{required:["kind"]},{required:["lives"]}]) accepts.
         const index = getFirstMatchingOption(
-          createCoreContext({ validator, merger, rootSchema: schema }),
+          createCoreContext({
+            validator,
+            merger,
+            comparator: defaultComparator,
+            rootSchema: schema,
+          }),
           { kind: "cat" },
           options
         );
@@ -254,7 +262,12 @@ export function validatorTests(
           },
         });
         const index = getFirstMatchingOption(
-          createCoreContext({ validator, merger, rootSchema: schema }),
+          createCoreContext({
+            validator,
+            merger,
+            comparator: defaultComparator,
+            rootSchema: schema,
+          }),
           undefined,
           schema.oneOf as Schema[]
         );
@@ -284,7 +297,12 @@ export function validatorTests(
           },
         });
         const index = getFirstMatchingOption(
-          createCoreContext({ validator, merger, rootSchema: schema }),
+          createCoreContext({
+            validator,
+            merger,
+            comparator: defaultComparator,
+            rootSchema: schema,
+          }),
           { y: "hello" },
           schema.oneOf as Schema[]
         );
@@ -317,7 +335,12 @@ export function validatorTests(
           },
         });
         const index = getClosestMatchingOption(
-          createCoreContext({ validator, merger, rootSchema: schema }),
+          createCoreContext({
+            validator,
+            merger,
+            comparator: defaultComparator,
+            rootSchema: schema,
+          }),
           { kind: "x", count: 3, label: "foo" },
           schema.oneOf as Schema[]
         );
@@ -344,7 +367,12 @@ export function validatorTests(
 
         // Both branches score equally for a value that matches neither specifically.
         const index = getClosestMatchingOption(
-          createCoreContext({ validator, merger, rootSchema: schema }),
+          createCoreContext({
+            validator,
+            merger,
+            comparator: defaultComparator,
+            rootSchema: schema,
+          }),
           {},
           schema.oneOf as Schema[],
           1 // selectedOption
@@ -378,7 +406,12 @@ export function validatorTests(
         // With a discriminator, isOptionMatching validates only the
         // discriminator property schema — createAugmentSchema is NOT called.
         const index = getClosestMatchingOption(
-          createCoreContext({ validator, merger, rootSchema: schema }),
+          createCoreContext({
+            validator,
+            merger,
+            comparator: defaultComparator,
+            rootSchema: schema,
+          }),
           { kind: "rect", width: 100 },
           schema.oneOf as Schema[],
           0,
@@ -427,7 +460,12 @@ export function validatorTests(
         };
 
         const result = omitExtraData(
-          createCoreContext({ validator, merger, rootSchema: schema }),
+          createCoreContext({
+            validator,
+            merger,
+            comparator: defaultComparator,
+            rootSchema: schema,
+          }),
           value
         );
 
@@ -462,7 +500,12 @@ export function validatorTests(
 
         // Branch "a" matched — "y" and "extra" must both be gone
         const result = omitExtraData(
-          createCoreContext({ validator, merger, rootSchema: schema }),
+          createCoreContext({
+            validator,
+            merger,
+            comparator: defaultComparator,
+            rootSchema: schema,
+          }),
           {
             kind: "a",
             x: 42,
@@ -491,7 +534,12 @@ export function validatorTests(
         // getClosestMatchingOption falls back to index 0, but the branch
         // schema type is "object" while source is a string → omit returns undefined
         const result = omitExtraData(
-          createCoreContext({ validator, merger, rootSchema: schema }),
+          createCoreContext({
+            validator,
+            merger,
+            comparator: defaultComparator,
+            rootSchema: schema,
+          }),
           {}
         );
 
@@ -514,7 +562,12 @@ export function validatorTests(
           },
         });
         const result = omitExtraData(
-          createCoreContext({ validator, merger, rootSchema: schema }),
+          createCoreContext({
+            validator,
+            merger,
+            comparator: defaultComparator,
+            rootSchema: schema,
+          }),
           {
             kind: "a",
             extra: "keep me",
@@ -561,7 +614,12 @@ export function validatorTests(
         //   open branch 1: kind="b" passes enum ["b"], extras allowed → true
         // branch 1 wins → q kept, p dropped → correct.
         const result = omitExtraData(
-          createCoreContext({ validator, merger, rootSchema: schema }),
+          createCoreContext({
+            validator,
+            merger,
+            comparator: defaultComparator,
+            rootSchema: schema,
+          }),
           {
             kind: "b",
             p: "cross-branch pollution",

@@ -1,4 +1,5 @@
 import { createFormValidator } from "@sjsf/ajv8-validator";
+import { defaultComparator } from "@sjsf/form/comparators/default";
 import type { RPath, Schema } from "@sjsf/form/core";
 import { createMerger } from "@sjsf/form/mergers/modern";
 import { beforeEach, describe, expect, it } from "vitest";
@@ -16,6 +17,7 @@ import {
 const defaultOptions: FormDataConverterOptions = {
   validator: createFormValidator({ schema: {} }),
   merger: createMerger(),
+  comparator: defaultComparator,
   rootSchema: {},
   rootUiSchema: {},
   enumItemDecoder: createEnumItemDecoder(

@@ -168,6 +168,7 @@ const form = createForm<FormValue>({
           createCoreContext({
             validator: v,
             merger: options.merger(),
+            comparator: options.comparator,
             rootSchema: options.schema,
           }),
           formValue

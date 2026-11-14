@@ -3,11 +3,16 @@
 ---
 
 Add a shared `CoreContext` to `@sjsf/form/core`. Helpers that need a validator,
-merger, or root schema take it as their first argument instead of separate
-arguments:
+merger, comparator, or root schema take it as their first argument instead of
+separate arguments:
 
 ```ts
-const ctx = createCoreContext({ validator, merger, rootSchema });
+const ctx = createCoreContext({
+  validator,
+  merger,
+  comparator,
+  rootSchema,
+});
 retrieveSchema(ctx, schema, formData);
 ```
 
@@ -24,8 +29,8 @@ the context first: `isValid`, `mergeSchemas`, `mergeAllOf`,
   pass the intended root schema to `createCoreContext`
 
 The context stores its dependencies under symbols that are not exported from
-`@sjsf/form/core`. Import `CORE_VALIDATOR`, `CORE_MERGER`, and
-`CORE_ROOT_SCHEMA` from `@sjsf/form/core/internals` when you build or inspect a
-context directly. `FORM_VALIDATOR`, `FORM_MERGER`, and `FORM_SCHEMA` are no
-longer exported from `@sjsf/form/internals`; they were aliases of those
+`@sjsf/form/core`. Import `CORE_VALIDATOR`, `CORE_MERGER`, `CORE_COMPARATOR`,
+and `CORE_ROOT_SCHEMA` from `@sjsf/form/core/internals` when you build or
+inspect a context directly. `FORM_VALIDATOR`, `FORM_MERGER`, and `FORM_SCHEMA`
+are no longer exported from `@sjsf/form/internals`; they were aliases of those
 symbols.

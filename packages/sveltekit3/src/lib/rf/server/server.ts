@@ -2,6 +2,7 @@ import {
   create,
   createTranslate,
   SJSF_ID_PREFIX,
+  type ComparatorFactoryOptions,
   type Creatable,
   type FormMerger,
   type FormValidator,
@@ -11,6 +12,7 @@ import {
   type UiSchemaRoot,
   type ValidatorFactoryOptions,
 } from "@sjsf/form";
+import type { Comparator } from "@sjsf/form/core";
 import { isRecord } from "@sjsf/form/lib/object";
 import type { MaybePromise } from "@sjsf/form/lib/types";
 import type { StandardSchemaV1 } from "@standard-schema/spec";
@@ -34,6 +36,7 @@ export interface SvelteKitFormValidatorOptions<T> {
   schema: Schema;
   validator: Creatable<FormValidator<T>, ValidatorFactoryOptions>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
+  comparator: Creatable<Comparator, ComparatorFactoryOptions>;
   uiSchema?: UiSchemaRoot;
   uiOptionsRegistry?: UiOptionsRegistry;
   createEntryConverter?: Creatable<
@@ -93,6 +96,7 @@ export function createServerValidator<T>({
   uiSchema = {},
   merger: createMerger,
   validator: createValidator,
+  comparator: createComparator,
   uiOptionsRegistry = {},
   createEntryConverter = createFormDataEntryConverter,
   convertUnknownEntry,
@@ -107,23 +111,31 @@ export function createServerValidator<T>({
   ) => MaybePromise<StandardSchemaV1.Result<ValidationResult<T>>>;
 } {
   const t = createTranslate(serverTranslation);
+  const comparator = create(createComparator, {
+    schema,
+    uiSchema,
+    uiOptionsRegistry,
+  });
   const validator = create(createValidator, {
     schema: schema,
     uiSchema: uiSchema,
     uiOptionsRegistry,
     merger: () => merger,
+    comparator,
   });
   const merger: FormMerger = create(createMerger, {
     schema: schema,
     uiSchema: uiSchema,
     validator,
     uiOptionsRegistry,
+    comparator,
   });
   const parseSvelteKitData = createSvelteKitDataParser({
     schema,
     uiSchema,
     merger,
     validator,
+    comparator,
     convertUnknownEntry,
     createEntryConverter,
     pseudoPrefix,
