@@ -27,8 +27,16 @@ function createFakeRemoteForm(actionId: string = FORM_ID) {
     // Kit's attachment returns the cleanup that removes the listeners it added
     // (see `form.svelte.js` in `@sveltejs/kit`), which `connect()` hands back to
     // `onMount`. Counting the calls is what proves the cleanup is not dropped.
-    [ATTACH]: () => () => {
-      detached.push(1);
+    [ATTACH]: (node: HTMLFormElement) => {
+      // Kit intercepts the hidden form's submit to send it with `fetch`;
+      // without this the test iframe navigates away when `connect()` calls
+      // `requestSubmit()`.
+      const preventDefault = (e: Event) => e.preventDefault();
+      node.addEventListener("submit", preventDefault);
+      return () => {
+        node.removeEventListener("submit", preventDefault);
+        detached.push(1);
+      };
     },
     detached,
   };
