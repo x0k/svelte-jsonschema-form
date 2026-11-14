@@ -32,12 +32,14 @@ import { adaptAsync } from "@sjsf/form/validators/standard-schema";
 const { schema, validator } = adaptAsync(standardSchema);
 ```
 
-## Using with non-JSON Schema libraries
+## Using a library's own JSON Schema generation
 
 Some Standard Schema libraries only implement `StandardSchemaV1`
 for validation, but not `StandardJSONSchemaV1` for schema generation.
+Others provide their own JSON Schema generator in addition to
+Standard JSON Schema support, and you may prefer its output.
 
-In this case, you can use the library's own JSON Schema generation
+In either case, you can use the library's own JSON Schema generation
 alongside `createFormValidator`:
 
 <Demo name="standard-schema-no-json-schema" iconsPicker client:visible />

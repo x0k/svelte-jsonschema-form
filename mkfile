@@ -2,8 +2,7 @@
 
 set -xe
 
-@template scripts pkg_dir:
-  pushd pkg_dir
+@template scripts:
   c:
     pnpm run check
   b:
@@ -12,10 +11,22 @@ set -xe
     pnpm run preview
   d:
     pnpm run dev
+  l:
+    pnpm run lint
+  f:
+    pnpm run format
   t:
     pnpm run test $@
+  tu:
+    pnpm run test -u $@
   tv:
     pnpm run test:visual $@
+  ben:
+    pnpm run bench $@
+
+@template pkg_scripts pkg_dir:
+  pushd pkg_dir
+  @use scripts
   popd
 
 update:
@@ -75,74 +86,64 @@ h:
 
 pushd packages
 f/:
-  pushd form
-  l:
-    pnpm run lint
-  f:
-    pnpm run format
-  c:
-    pnpm run check
-  t:
-    pnpm run test $@
-  ben:
-    pnpm run bench $@
-  b:
-    pnpm run build
-  popd
+  @use pkg_scripts form
 
 tt/:
-  @use scripts theme-testing
+  @use pkg_scripts theme-testing
 
 vt/:
-  @use scripts validator-testing
+  @use pkg_scripts validator-testing
 
 ajv/:
-  @use scripts ajv8-validator
+  @use pkg_scripts ajv8-validator
 
 zod/:
-  @use scripts zod4-validator
+  @use pkg_scripts zod4-validator
 
 val/:
-  @use scripts valibot-validator
+  @use pkg_scripts valibot-validator
 
 cfw/:
-  @use scripts cfworker-validator
+  @use pkg_scripts cfworker-validator
 
 safe/:
-  @use scripts schemasafe-validator
+  @use pkg_scripts schemasafe-validator
 
 ata/:
-  @use scripts ata-validator
+  @use pkg_scripts ata-validator
 
 basic/:
-  @use scripts basic-theme
+  @use pkg_scripts basic-theme
 
 daisy/:
-  @use scripts daisyui5-theme
+  @use pkg_scripts daisyui5-theme
 
 skel/:
-  @use scripts skeleton5-theme
+  @use pkg_scripts skeleton5-theme
 
 flow/:
-  @use scripts flowbite3-theme
+  @use pkg_scripts flowbite3-theme
 
 flowi/:
-  @use scripts flowbite-icons
+  @use pkg_scripts flowbite-icons
 
 luci/:
-  @use scripts lucide-icons
+  @use pkg_scripts lucide-icons
 
 movi/:
-  @use scripts moving-icons
+  @use pkg_scripts moving-icons
 
 radi/:
-  @use scripts radix-icons
+  @use pkg_scripts radix-icons
 
 shad/:
-  @use scripts shadcn4-theme
+  @use pkg_scripts shadcn4-theme
 
 kit/:
-  @use scripts sveltekit3
+  @use pkg_scripts sveltekit3
+
+meta/:
+  @use pkg_scripts meta
 popd
 
 sjsf/:
@@ -156,63 +157,60 @@ sjsf/:
 
 pushd lab
 hyper/:
-  @use scripts hyperjump-validator
+  @use pkg_scripts hyperjump-validator
 shade/:
-  @use scripts shadcn-extras-theme
+  @use pkg_scripts shadcn-extras-theme
 svar/:
-  @use scripts svar-theme
+  @use pkg_scripts svar-theme
 beer/:
-  @use scripts beercss-theme
+  @use pkg_scripts beercss-theme
 popd
 
 leg/:
   pushd legacy
   daisy/:
-    @use scripts daisyui-theme
+    @use pkg_scripts daisyui-theme
   skel3/:
-    @use scripts skeleton3-theme
+    @use pkg_scripts skeleton3-theme
   skel/:
-    @use scripts skeleton4-theme
+    @use pkg_scripts skeleton4-theme
   flow/:
-    @use scripts flowbite-theme
+    @use pkg_scripts flowbite-theme
   shad/:
-    @use scripts shadcn-theme
+    @use pkg_scripts shadcn-theme
   kit/:
-    @use scripts sveltekit
+    @use pkg_scripts sveltekit
   popd
 
 e/:
   pushd examples
   basic/:
-    @use scripts basic-starter
+    @use pkg_scripts basic-starter
   daisy/:
-    @use scripts daisyui5-starter
+    @use pkg_scripts daisyui5-starter
   flow/:
-    @use scripts flowbite3-starter
+    @use pkg_scripts flowbite3-starter
   skel/:
-    @use scripts skeleton5-starter
+    @use pkg_scripts skeleton5-starter
   shad/:
-    @use scripts shadcn4-starter
+    @use pkg_scripts shadcn4-starter
   shad-extras/:
-    @use scripts shadcn4-starter
+    @use pkg_scripts shadcn4-starter
   mark/:
-    @use scripts markdown-description
+    @use pkg_scripts markdown-description
   zod/:
-    @use scripts zod-starter
+    @use pkg_scripts zod-starter
   valibot/:
-    @use scripts valibot-starter
+    @use pkg_scripts valibot-starter
   ark/:
-    @use scripts arktype-starter
+    @use pkg_scripts arktype-starter
   type/:
-    @use scripts typebox-starter
+    @use pkg_scripts typebox-starter
   kit2/:
-    @use scripts sveltekit-starter
+    @use pkg_scripts sveltekit-starter
   kit/:
-    @use scripts sveltekit3-starter
+    @use pkg_scripts sveltekit3-starter
   popd
-
-meta/:
-  @use scripts meta
 
 sv/:
   pushd packages/sv
@@ -232,21 +230,16 @@ sv/:
       npm run dev
     popd
   d: dr dc da demo/*
-  c:
-    pnpm run check
-  t:
-    pnpm run test $@
-  b:
-    pnpm run build
+  @use scripts
   popd
 
 pushd apps
 docs/:
-  @use scripts docs2
+  @use pkg_scripts docs2
 
 pl/:
-  @use scripts playground2
+  @use pkg_scripts playground2
 
 bl/:
-  @use scripts builder
+  @use pkg_scripts builder
 popd

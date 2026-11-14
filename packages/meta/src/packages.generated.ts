@@ -28,7 +28,7 @@ export const EXTRA_PACKAGES = {
   },
   "vite": {
     "name": "vite",
-    "version": "8.3.0",
+    "version": "8.3.8",
     "dev": true
   },
   "typescript": {
@@ -38,12 +38,12 @@ export const EXTRA_PACKAGES = {
   },
   "svelteVitePlugin": {
     "name": "@sveltejs/vite-plugin-svelte",
-    "version": "7.3.0",
+    "version": "7.3.1",
     "dev": true
   },
   "svelteAdapterAuto": {
     "name": "@sveltejs/adapter-auto",
-    "version": "8.0.0",
+    "version": "8.0.1",
     "dev": true
   },
   "tailwindcss3": {
@@ -53,32 +53,32 @@ export const EXTRA_PACKAGES = {
   },
   "postcss": {
     "name": "postcss",
-    "version": "8.5.28",
+    "version": "8.5.32",
     "dev": true
   },
   "autoprefixer": {
     "name": "autoprefixer",
-    "version": "10.5.6",
+    "version": "10.6.2",
     "dev": true
   },
   "tailwindcss4": {
     "name": "tailwindcss",
-    "version": "4.3.3",
+    "version": "4.3.5",
     "dev": true
   },
   "tailwindcss4Vite": {
     "name": "@tailwindcss/vite",
-    "version": "4.3.3",
+    "version": "4.3.5",
     "dev": true
   },
   "typebox": {
     "name": "typebox",
-    "version": "1.3.30",
+    "version": "1.4.7",
     "dev": false
   },
   "arktype": {
     "name": "arktype",
-    "version": "2.2.3",
+    "version": "2.2.9",
     "dev": false
   },
   "jsonSchemaTyped": {
@@ -108,12 +108,12 @@ export const EXTRA_PACKAGES = {
   },
   "lucideSvelte": {
     "name": "@lucide/svelte",
-    "version": "1.45.0",
+    "version": "1.72.0",
     "dev": false
   },
   "zod": {
     "name": "zod",
-    "version": "4.6.2",
+    "version": "4.6.7",
     "dev": false
   },
   "valibot": {
@@ -123,7 +123,7 @@ export const EXTRA_PACKAGES = {
   },
   "effect": {
     "name": "effect",
-    "version": "3.22.2",
+    "version": "4.1.4",
     "dev": false
   }
 } as const satisfies Record<string, AbstractPackage>;

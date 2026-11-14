@@ -365,6 +365,7 @@ export function createSvelteKitRequest<
         // NOTE: Kit navigates with `apply_action_navigation`, which also hands
         // the result to the destination's `form` prop. That is an internal
         // `goto` option, so `page.form` is `null` on arrival here.
+        // eslint-disable-next-line svelte/no-navigation-without-resolve
         await goto(destination.href, { refreshAll: shouldRefreshAll });
       }
       return result;

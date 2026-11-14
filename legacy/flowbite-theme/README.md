@@ -20,8 +20,8 @@ There is two ways to setup styles:
 1. Use tailwindcss config
 
 ```typescript
-import flowbite from "flowbite/plugin";
 import { THEME_CONTENT, FLOWBITE_CONTENT } from "@sjsf/flowbite-theme/preset";
+import flowbite from "flowbite/plugin";
 
 /** @type {import('tailwindcss').Config} */
 export default {

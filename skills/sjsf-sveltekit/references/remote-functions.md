@@ -23,9 +23,10 @@ It only takes `{ schema, validator, merger, uiSchema, uiOptionsRegistry, ... }` 
 and ignored here (spreading is harmless but explicit picks are clearer):
 
 ```ts
+import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
+
 // src/routes/posts/data.remote.ts
 import { form } from "$app/server";
-import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
 import * as defaults from "$lib/sjsf/defaults";
 
 import { schema, uiSchema } from "./model";

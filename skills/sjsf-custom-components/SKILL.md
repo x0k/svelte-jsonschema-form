@@ -139,8 +139,9 @@ To use a custom component for a specific field or across the form without alteri
 // src/lib/sjsf/theme.ts
 import { overrideByRecord } from "@sjsf/form/lib/resolver";
 import { theme as baseTheme } from "@sjsf/shadcn4-theme";
-import CustomTextWidget from "./custom-text-widget.svelte";
+
 import CustomFieldTemplate from "./custom-field-template.svelte";
+import CustomTextWidget from "./custom-text-widget.svelte";
 
 export const theme = overrideByRecord(baseTheme, {
   textWidget: CustomTextWidget,

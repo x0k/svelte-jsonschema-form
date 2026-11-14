@@ -366,8 +366,8 @@ import { overrideByRecord } from "@sjsf/form/lib/resolver";
 import { base } from "@sjsf/form/theme";
 
 import * as components from "./components/exports.js";
-import * as widgets from "./widgets/exports.js";
 import CustomFieldTemplate from "./templates/field.svelte";
+import * as widgets from "./widgets/exports.js";
 
 export const theme = overrideByRecord(base, {
   ...components,
@@ -438,8 +438,8 @@ import { extendByRecord } from "@sjsf/form/lib/resolver";
 import { base } from "@sjsf/form/theme";
 
 import * as components from "./components/exports.js";
-import * as widgets from "./widgets/exports.js";
 import RatingWidget from "./extra-widgets/rating.svelte";
+import * as widgets from "./widgets/exports.js";
 
 export const theme = extendByRecord(base, {
   ...components,
