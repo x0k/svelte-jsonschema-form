@@ -33,6 +33,9 @@ jobs:
           node-version: 26
           cache: pnpm
 
+      - name: Check npm registry prerequisites
+        run: node scripts/release/preflight.ts
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
