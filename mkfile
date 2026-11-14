@@ -112,6 +112,9 @@ safe/:
 ata/:
   @use pkg_scripts ata-validator
 
+hyper/:
+  @use pkg_scripts hyperjump-validator
+
 basic/:
   @use pkg_scripts basic-theme
 
@@ -156,8 +159,6 @@ sjsf/:
     pnpm run build ${filter[@]} $@
 
 pushd lab
-hyper/:
-  @use pkg_scripts hyperjump-validator
 shade/:
   @use pkg_scripts shadcn-extras-theme
 svar/:
