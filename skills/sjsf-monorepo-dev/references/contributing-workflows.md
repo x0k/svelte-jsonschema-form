@@ -152,11 +152,11 @@ workspace therefore needs a one-time bootstrap before its first release.
    pnpm release:check @sjsf/new-validator
    ```
 
-   CI runs the check on pull requests, and the release workflow runs it before
-   the changesets action, so a missing package blocks both the release PR and
-   the publish run. If you merge an un-bootstrapped package, the workflow fails
-   on `main` and no release PR is created; bootstrap the reported names and
-   re-run the workflow.
+   The Version and Publish workflow runs the check before the changesets
+   action, so a missing package blocks the release PR and the publish run.
+   Regular pull request CI is not affected. If you merge an un-bootstrapped
+   package, the workflow fails on `main` and no release PR is created;
+   bootstrap the reported names and re-run the workflow.
 
 2. Bootstrap the missing package from an authenticated npm session:
 

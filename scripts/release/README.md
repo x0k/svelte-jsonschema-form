@@ -22,9 +22,10 @@ pnpm release:check --json
 Checks every publishable workspace package (or only the named packages) against
 npm. Missing packages are reported with the bootstrap command to run.
 
-CI runs the check on pull requests, and the release workflow runs it before the
-changesets action, so a missing package blocks both the release PR and the
-publish run. The script is dependency-free and can run before `pnpm install`.
+The Version and Publish workflow runs the check before the changesets action,
+so a missing package blocks the release PR and the publish run. Regular pull
+request CI does not run it. The script is dependency-free and can run before
+`pnpm install`.
 
 ## Bootstrap a new package
 

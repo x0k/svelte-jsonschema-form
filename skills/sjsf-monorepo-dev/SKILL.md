@@ -98,10 +98,11 @@ fixed-group release or include an explicit `@sjsf/sv` changeset (required for
 `lab/` and `legacy/` packages).
 
 New npm packages must be bootstrapped once before their first trusted-publishing
-release. CI runs `pnpm release:check` on pull requests, and
-`pnpm release:bootstrap <name>` stages a placeholder and configures the trusted
-publisher. Bootstrap shortly before the first release: trusted publishers expire
-after two days unless the first publish succeeds. See
+release. The Version and Publish workflow runs `pnpm release:check` before the
+release PR is created, and `pnpm release:bootstrap <name>` stages a placeholder
+and configures the trusted publisher. Bootstrap shortly before the first
+release: trusted publishers expire after two days unless the first publish
+succeeds. See
 [Publishing a New Package to npm](references/contributing-workflows.md#publishing-a-new-package-to-npm).
 
 ---

@@ -42,25 +42,6 @@ jobs:
       - name: Build
         run: pnpm run build
 
-  release-preflight:
-    name: Release preflight
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6.1.0
-
-      - name: Setup Node
-        uses: actions/setup-node@v7
-        with:
-          node-version: 26
-
-      - name: Check npm registry prerequisites
-        run: node scripts/release/preflight.ts
-
   test:
     name: Test
     runs-on: ubuntu-latest
