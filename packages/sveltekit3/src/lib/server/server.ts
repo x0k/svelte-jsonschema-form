@@ -14,7 +14,7 @@ import {
   type ValidationResult,
   type FormValidator,
 } from "@sjsf/form";
-import type { Comparator } from "@sjsf/form/core";
+import { createCoreContext, type Comparator } from "@sjsf/form/core";
 import type { MaybePromise } from "@sjsf/form/lib/types";
 import { fail, type ActionFailure, type RequestEvent } from "@sveltejs/kit";
 
@@ -117,11 +117,14 @@ export function createFormHandler<T, SD extends SendData>({
     uiOptionsRegistry,
     comparator,
   });
-  const convertEntry = create(createEntryConverter, {
+  const ctx = createCoreContext({
     validator,
     merger,
     comparator,
     rootSchema: schema,
+  });
+  const convertEntry = create(createEntryConverter, {
+    ctx,
     rootUiSchema: uiSchema,
     convertUnknownEntry,
     enumItemDecoder,
@@ -169,12 +172,9 @@ export function createFormHandler<T, SD extends SendData>({
           idSeparator: propertySeparator,
           idIndexSeparator: indexSeparator,
           idPseudoSeparator: pseudoSeparator,
-          schema,
+          ctx,
           uiSchema,
           entries: Array.from(formData.entries()),
-          validator,
-          merger,
-          comparator,
           convertEntry,
           codec: createCodec({
             escapeChar: escapeCharacter,

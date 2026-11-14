@@ -671,10 +671,8 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     const staleDefaultsPass =
       mayDropStaleDefaults && changes.length > 0
         ? new StaleDefaultsPass({
-            validator,
+            ctx: formState,
             merger,
-            comparator,
-            rootSchema: options.schema,
             changes,
             getChildPath: (parentPath, key) =>
               getChildPath(formState, parentPath, key),

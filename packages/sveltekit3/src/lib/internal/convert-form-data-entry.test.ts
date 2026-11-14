@@ -1,6 +1,6 @@
 import { createFormValidator } from "@sjsf/ajv8-validator";
 import { defaultComparator } from "@sjsf/form/comparators/default";
-import type { RPath, Schema } from "@sjsf/form/core";
+import { createCoreContext, type RPath, type Schema } from "@sjsf/form/core";
 import { createMerger } from "@sjsf/form/mergers/modern";
 import { beforeEach, describe, expect, it } from "vitest";
 
@@ -14,11 +14,15 @@ import {
   type FormDataConverterOptions,
 } from "./convert-form-data-entry.js";
 
-const defaultOptions: FormDataConverterOptions = {
+const ctx = createCoreContext({
   validator: createFormValidator({ schema: {} }),
   merger: createMerger(),
   comparator: defaultComparator,
   rootSchema: {},
+});
+
+const defaultOptions: FormDataConverterOptions = {
+  ctx,
   rootUiSchema: {},
   enumItemDecoder: createEnumItemDecoder(
     createOptionIndexDecoder(DEFAULT_PSEUDO_SEPARATOR)

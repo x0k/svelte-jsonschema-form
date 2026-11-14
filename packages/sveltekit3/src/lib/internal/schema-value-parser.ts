@@ -8,21 +8,20 @@ import {
   type UiSchemaRoot,
 } from "@sjsf/form";
 import {
-  createCoreContext,
   getClosestMatchingOption,
   getDiscriminatorFieldFromSchema,
+  getRootSchema,
   getSimpleSchemaType,
   isSchemaArrayValue,
   isSchemaObjectValue,
   isSelect,
+  isValid,
   resolveRef,
   getKnownProperties,
-  type Comparator,
-  type Merger,
+  type CoreContext,
   type SchemaArrayValue,
   type SchemaDefinition,
   type SchemaObjectValue,
-  type Validator,
   type Path,
 } from "@sjsf/form/core";
 import { isSchemaObject } from "@sjsf/form/lib/json-schema";
@@ -32,16 +31,13 @@ import { KEY_INPUT_KEY, ONE_OF, ANY_OF, compilePatterns } from "../internal.js";
 import type { Codec, Entries, Entry, EntryConverter } from "../model.js";
 
 export interface SchemaValueParserOptions<T> {
-  schema: Schema;
+  ctx: CoreContext;
   uiSchema: UiSchemaRoot;
   entries: Entries<T>;
   idPrefix: string;
   idSeparator: string;
   idIndexSeparator: string;
   idPseudoSeparator: string;
-  validator: Validator;
-  merger: Merger;
-  comparator: Comparator;
   convertEntry: EntryConverter<T>;
   codec: Codec;
 }
@@ -51,26 +47,18 @@ const KNOWN_PROPERTIES = Symbol("known-properties");
 export function parseSchemaValue<T>(
   signal: AbortSignal,
   {
+    ctx,
     convertEntry,
     entries,
     idPrefix,
     idIndexSeparator,
     idPseudoSeparator,
     idSeparator,
-    schema: rootSchema,
     uiSchema: rootUiSchema,
-    validator,
-    merger,
-    comparator,
     codec: { encode, decode },
   }: SchemaValueParserOptions<T>
 ): Promise<SchemaValue | undefined> {
-  const ctx = createCoreContext({
-    validator,
-    merger,
-    comparator,
-    rootSchema,
-  });
+  const rootSchema = getRootSchema(ctx);
   const escapedPropertySeparator = escapeRegex(idSeparator);
   const escapedIndexSeparator = escapeRegex(idIndexSeparator);
   const escapedPseudoSeparator = escapeRegex(idPseudoSeparator);
@@ -487,7 +475,7 @@ export function parseSchemaValue<T>(
     const isThenBranch =
       typeof expression === "boolean"
         ? expression
-        : validator.isValid(expression, value);
+        : isValid(ctx, expression, value);
     const branch = isThenBranch ? then : otherwise;
     return branch === undefined
       ? value

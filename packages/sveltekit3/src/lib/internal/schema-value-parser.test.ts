@@ -4,8 +4,14 @@ import {
   SJSF_ID_PREFIX,
   type FieldPath,
   type Schema,
+  type Validator,
 } from "@sjsf/form";
 import { defaultComparator } from "@sjsf/form/comparators/default";
+import {
+  createCoreContext,
+  type Comparator,
+  type Merger,
+} from "@sjsf/form/core";
 import { createMerger } from "@sjsf/form/mergers/modern";
 import { beforeEach, describe, expect, it } from "vitest";
 
@@ -38,32 +44,39 @@ const opts = ({
   codec = createCodec({
     sequencesToEncode: [idSeparator, idIndexSeparator, idPseudoSeparator],
   }),
-  convertEntry = createFormDataEntryConverter({
-    merger,
+  convertEntry,
+}: Partial<SchemaValueParserOptions<FormDataEntryValue>> & {
+  schema?: Schema;
+  validator?: Validator;
+  merger?: Merger;
+  comparator?: Comparator;
+} = {}): SchemaValueParserOptions<FormDataEntryValue> => {
+  const ctx = createCoreContext({
     validator,
+    merger,
     comparator,
     rootSchema: schema,
-    rootUiSchema: uiSchema,
-    enumItemDecoder: createEnumItemDecoder(
-      createOptionIndexDecoder(idPseudoSeparator)
-    ),
-  }),
-}: Partial<
-  SchemaValueParserOptions<FormDataEntryValue>
-> = {}): SchemaValueParserOptions<FormDataEntryValue> => ({
-  schema,
-  uiSchema,
-  entries,
-  idPrefix,
-  idSeparator,
-  idIndexSeparator,
-  idPseudoSeparator,
-  validator,
-  merger,
-  comparator,
-  convertEntry,
-  codec,
-});
+  });
+  return {
+    ctx,
+    uiSchema,
+    entries,
+    idPrefix,
+    idSeparator,
+    idIndexSeparator,
+    idPseudoSeparator,
+    convertEntry:
+      convertEntry ??
+      createFormDataEntryConverter({
+        ctx,
+        rootUiSchema: uiSchema,
+        enumItemDecoder: createEnumItemDecoder(
+          createOptionIndexDecoder(idPseudoSeparator)
+        ),
+      }),
+    codec,
+  };
+};
 
 describe("parseSchemaValue", async () => {
   let c: AbortController;

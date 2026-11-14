@@ -4,20 +4,19 @@ import {
   type UiSchema,
   type UiSchemaDefinition,
   type UiSchemaRoot,
-  type Validator,
 } from "@sjsf/form";
 import {
-  createCoreContext,
   getClosestMatchingOption,
   getDiscriminatorFieldFromSchema,
   getKnownProperties,
+  getRootSchema,
   getSimpleSchemaType,
   isSchemaArrayValue,
   isSchemaObjectValue,
   isSelect,
+  isValid,
   resolveRef,
-  type Comparator,
-  type Merger,
+  type CoreContext,
   type Path,
   type SchemaArrayValue,
   type SchemaDefinition,
@@ -38,12 +37,9 @@ import type { Codec, EntryConverter } from "../../model.js";
 export type Input<T> = T | { [key: string]: Input<T> } | Input<T>[] | undefined;
 
 export interface SchemaValueParserOptions<T> {
-  schema: Schema;
+  ctx: CoreContext;
   uiSchema: UiSchemaRoot;
   input: Record<string, Input<T>>;
-  validator: Validator;
-  merger: Merger;
-  comparator: Comparator;
   convertEntry: EntryConverter<T>;
   idPrefix: string;
   pseudoPrefix: string;
@@ -55,24 +51,16 @@ type CombinationIdentifiableElement = typeof ONE_OF | typeof ANY_OF;
 export async function parseSchemaValue<T>(
   signal: AbortSignal,
   {
-    schema: rootSchema,
+    ctx,
     uiSchema: rootUiSchema,
     input,
-    validator,
-    merger,
-    comparator,
     convertEntry,
     idPrefix,
     pseudoPrefix,
     codec: { encode, decode },
   }: SchemaValueParserOptions<T>
 ) {
-  const ctx = createCoreContext({
-    validator,
-    merger,
-    comparator,
-    rootSchema,
-  });
+  const rootSchema = getRootSchema(ctx);
   const path: Path = [];
   const inputStack: Input<T>[] = [input];
   const encodedPseudoPrefix = encode(pseudoPrefix);
@@ -397,7 +385,7 @@ export async function parseSchemaValue<T>(
     const isThenBranch =
       typeof expression === "boolean"
         ? expression
-        : validator.isValid(expression, value);
+        : isValid(ctx, expression, value);
     const branch = isThenBranch ? then : otherwise;
     return branch === undefined
       ? value

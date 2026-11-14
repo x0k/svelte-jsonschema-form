@@ -13,6 +13,7 @@ import type {
   Validator,
 } from "@sjsf/form";
 import {
+  createCoreContext,
   prefixSchemaRefs,
   ROOT_SCHEMA_PREFIX,
   type Comparator,
@@ -112,10 +113,12 @@ export function createFormValueValidator<T>(
     validateFormValue(formValue) {
       validate(options.valueToJSON(formValue));
       return transformFormErrors(
-        validator,
-        options.merger(),
-        options.comparator,
-        options.schema,
+        createCoreContext({
+          validator,
+          merger: options.merger(),
+          comparator: options.comparator,
+          rootSchema: options.schema,
+        }),
         validate.errors,
         formValue
       );

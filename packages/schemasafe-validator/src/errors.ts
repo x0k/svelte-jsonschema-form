@@ -5,44 +5,30 @@ import type {
   FormValue,
   Schema,
   ValidationResult,
-  Validator,
 } from "@sjsf/form";
 import {
-  createCoreContext,
+  getRootSchema,
   getSchemaDefinitionByPath,
   pathFromLocation,
   pathFromRef,
-  type Comparator,
-  type Merger,
+  type CoreContext,
   type Path,
 } from "@sjsf/form/core";
 import { getValueByPath } from "@sjsf/form/lib/object";
 
 function extractKeywordValue(
-  validator: Validator,
-  merger: Merger,
-  comparator: Comparator,
+  ctx: CoreContext,
   keyword: string,
-  rootSchema: Schema,
   instancePath: Path,
   schemaPath: Path,
   value: FieldValue
 ) {
+  const rootSchema = getRootSchema(ctx);
   const schema = getValueByPath(rootSchema, schemaPath);
   if (schema && typeof schema === "object" && keyword in schema) {
     return String((schema as Record<string, unknown>)[keyword]);
   }
-  const def = getSchemaDefinitionByPath(
-    createCoreContext({
-      validator,
-      merger,
-      comparator,
-      rootSchema,
-    }),
-    rootSchema,
-    instancePath,
-    value
-  );
+  const def = getSchemaDefinitionByPath(ctx, rootSchema, instancePath, value);
   if (typeof def === "object" && def[keyword as keyof Schema] !== undefined) {
     return String(def[keyword as keyof Schema]);
   }
@@ -69,10 +55,7 @@ function createErrorMessage(keyword: string, details: string | undefined) {
 }
 
 export function transformFormErrors<T>(
-  validator: Validator,
-  merger: Merger,
-  comparator: Comparator,
-  rootSchema: Schema,
+  ctx: CoreContext,
   errors: ValidationError[] | undefined,
   data: FormValue
 ): ValidationResult<T> {
@@ -91,16 +74,7 @@ export function transformFormErrors<T>(
         path: instancePath,
         message: createErrorMessage(
           keyword,
-          extractKeywordValue(
-            validator,
-            merger,
-            comparator,
-            keyword,
-            rootSchema,
-            instancePath,
-            schemaPath,
-            data
-          )
+          extractKeywordValue(ctx, keyword, instancePath, schemaPath, data)
         ),
       };
     }),

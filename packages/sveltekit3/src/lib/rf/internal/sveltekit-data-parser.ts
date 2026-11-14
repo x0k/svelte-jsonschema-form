@@ -11,7 +11,7 @@ import {
   type Validator,
   type ValidatorFactoryOptions,
 } from "@sjsf/form";
-import { type Comparator } from "@sjsf/form/core";
+import { createCoreContext, type Comparator } from "@sjsf/form/core";
 
 import {
   createEnumItemDecoder,
@@ -76,11 +76,14 @@ export function createSvelteKitDataParser({
     uiOptionsRegistry,
     comparator,
   });
-  const convertEntry = create(createEntryConverter, {
+  const ctx = createCoreContext({
     validator,
     merger,
     comparator,
     rootSchema: schema,
+  });
+  const convertEntry = create(createEntryConverter, {
+    ctx,
     rootUiSchema: uiSchema,
     convertUnknownEntry,
     enumItemDecoder,
@@ -95,11 +98,8 @@ export function createSvelteKitDataParser({
       pseudoPrefix,
       convertEntry,
       input: input as Record<string, Input<FormDataEntryValue>>,
-      merger,
-      comparator,
-      schema: schema,
+      ctx,
       uiSchema: uiSchema,
-      validator,
       codec: { decode, encode },
     });
 }

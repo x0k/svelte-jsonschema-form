@@ -85,10 +85,13 @@ describe("StaleDefaultsPass", () => {
       registered: new WeakSet(),
     };
     const pass = new StaleDefaultsPass({
-      validator: createValidator(),
+      ctx: createTestContext({
+        validator: createValidator(),
+        merger,
+        comparator: testComparator,
+        rootSchema,
+      }),
       merger: formMerger(merger, rootSchema),
-      comparator: testComparator,
-      rootSchema,
       changes: [change(path("mode"), "a")],
       getChildPath: (parentPath, key) =>
         internalRegisterFieldPath(pathRef, parentPath.concat(key)),

@@ -12,18 +12,15 @@
  */
 
 import {
-  createCoreContext,
   getSchemaDefinitionByPath,
   isSchemaArrayValue,
   isSchemaObjectValue,
   isValueDeepEqual,
   retrieveSchema,
   sanitizeDataForNewSchema,
-  type Comparator,
   type CoreContext,
   type RPath,
   type Schema,
-  type Validator,
 } from "#core/index.js";
 import { getOwn, getValueByPath, setOwn } from "#lib/object.js";
 
@@ -44,10 +41,8 @@ export interface AfterFillResult {
 }
 
 export interface StaleDefaultsPassOptions {
-  validator: Validator;
+  ctx: CoreContext;
   merger: FormMerger;
-  comparator: Comparator;
-  rootSchema: Schema;
   changes: readonly FormValueChange[];
   /**
    * Returns the form's canonical child path, so dropped paths are compared by
@@ -210,21 +205,14 @@ export class StaleDefaultsPass {
   private readonly oldSchema: Schema | undefined;
 
   constructor({
-    validator,
+    ctx,
     merger,
-    comparator,
-    rootSchema,
     changes,
     getChildPath,
     oldFormData,
     oldSchema,
   }: StaleDefaultsPassOptions) {
-    this.ctx = createCoreContext({
-      validator,
-      merger,
-      comparator,
-      rootSchema,
-    });
+    this.ctx = ctx;
     this.merger = merger;
     this.changes = changes;
     this.getChildPath = getChildPath;

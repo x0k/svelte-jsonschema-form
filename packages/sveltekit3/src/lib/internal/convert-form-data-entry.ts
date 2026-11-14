@@ -1,22 +1,18 @@
 import {
   DEFAULT_BOOLEAN_ENUM,
   type FieldValue,
-  type Schema,
   type UiSchemaRoot,
 } from "@sjsf/form";
 import {
-  createCoreContext,
   getSchemaConstantValue,
   isNullableSchemaType,
   isSchemaValueDeepEqual,
   isSelect,
   pickSchemaType,
   typeOfSchema,
-  type Comparator,
-  type Merger,
+  type CoreContext,
   type RPath,
   type SchemaValue,
-  type Validator,
 } from "@sjsf/form/core";
 import { fileToDataURL } from "@sjsf/form/lib/file";
 
@@ -46,10 +42,7 @@ export class EntryDecodeError extends Error {
   }
 }
 export interface FormDataConverterOptions {
-  validator: Validator;
-  merger: Merger;
-  comparator: Comparator;
-  rootSchema: Schema;
+  ctx: CoreContext;
   rootUiSchema: UiSchemaRoot;
   enumItemDecoder: EnumItemDecoder;
   convertUnknownEntry?: UnknownEntryConverter;
@@ -102,20 +95,11 @@ export function createEnumItemDecoder(
 }
 
 export function createFormDataEntryConverter({
-  validator,
-  merger,
-  comparator,
-  rootSchema,
+  ctx,
   rootUiSchema,
   enumItemDecoder,
   convertUnknownEntry,
 }: FormDataConverterOptions): EntryConverter<FormDataEntryValue> {
-  const ctx = createCoreContext({
-    validator,
-    merger,
-    comparator,
-    rootSchema,
-  });
   return async (signal, options) => {
     const { path, value, schema, uiSchema } = options;
     if (typeof schema === "boolean") {
