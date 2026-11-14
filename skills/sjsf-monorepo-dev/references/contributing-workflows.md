@@ -7,6 +7,7 @@
   - `basic-theme`, `shadcn4-theme`, `daisyui5-theme`, `flowbite3-theme`, `skeleton5-theme`: Official theme implementations.
   - `ajv8-validator`, `zod4-validator`, `valibot-validator`, `cfworker-validator`, `schemasafe-validator`, `ata-validator`, `hyperjump-validator`: Official validator adapters.
   - `sveltekit3`: SvelteKit form actions and progressive enhancement integration.
+  - `sv`: Svelte CLI add-on; bundles `meta` to generate project files.
   - `theme-testing`, `validator-testing`: Reusable test harnesses.
 - `lab/`: Experimental packages (`beercss-theme`, `shadcn-extras-theme`, `svar-theme`).
 - `apps/`:
@@ -111,10 +112,23 @@ layout.
 
 ---
 
-## Adding a New Theme or Validator
+## Adding a New Theme, Icon Set, or Validator
 
-1. Copy boilerplate from an existing package in `packages/` or `lab/`.
-2. Add dependency on `@sjsf/theme-testing` or `@sjsf/validator-testing`.
-3. Re-export the standard test suites to verify that all foundational fields and widgets satisfy the contract.
+1. Copy boilerplate from an existing package in `packages/` (stable) or `lab/`
+   (experimental): a theme, an icon set, or a validator.
+2. Themes and validators: add a dependency on `@sjsf/theme-testing` or
+   `@sjsf/validator-testing` and re-export the standard test suites so all
+   foundational fields and widgets satisfy the contract. Icon sets follow the
+   existing icon package structure.
+3. Register the package in `meta`: add it to `packages/meta/package.json` and
+   add its `package.json` import and entries to the relevant lists and package
+   maps in `packages/meta/src/themes.ts`, `icons.ts`, or `validators.ts`.
 4. Add an example starter in `examples/`.
-5. Run `pnpm changeset` to record the new package or feature.
+5. If the package is stable, add it to the `fixed` group in
+   `.changeset/config.json`. Its changeset then joins the next group release,
+   which rebuilds `@sjsf/sv` with the new `meta` data.
+6. Run `pnpm changeset` to record the new package or feature. For `lab/` or
+   `legacy/` packages, also add an `@sjsf/sv` changeset: `meta` is only a
+   devDependency of `sv`, so changesets does not bump the add-on by itself.
+7. Run `pnpm --filter @sjsf/sv --filter meta run test -u` if generated
+   snapshots change.

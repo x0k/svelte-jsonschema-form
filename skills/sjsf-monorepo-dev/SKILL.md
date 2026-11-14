@@ -92,7 +92,10 @@ Follow the interactive prompts:
 3. Enter a clear summary of changes.
 
 Versioning uses fixed groups (see `.changeset/config.json`):
-bumping one grouped package bumps the whole group.
+bumping one grouped package bumps the whole group. `@sjsf/sv` is in the group
+and bundles `meta`, so theme/icon/validator metadata changes must either ride a
+fixed-group release or include an explicit `@sjsf/sv` changeset (required for
+`lab/` and `legacy/` packages).
 
 ---
 

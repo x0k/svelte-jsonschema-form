@@ -22,6 +22,7 @@
       "@sjsf/schemasafe-validator",
       "@sjsf/shadcn4-theme",
       "@sjsf/skeleton5-theme",
+      "@sjsf/sv",
       "@sjsf/sveltekit3",
       "@sjsf/valibot-validator",
       "@sjsf/zod4-validator",
