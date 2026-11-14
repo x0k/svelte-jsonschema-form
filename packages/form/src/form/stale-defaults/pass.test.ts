@@ -8,16 +8,16 @@ import {
   testComparator,
 } from "#core/testing.js";
 
-import { dropStaleDefaults } from "./drop-stale-defaults.js";
-import type { FieldPath } from "./id.js";
-import { internalRegisterFieldPath } from "./internals.js";
+import type { FieldPath } from "../id.js";
+import { internalRegisterFieldPath } from "../internals.js";
 import {
   copyForChange,
   type FormMerger,
   type FormValueChange,
-} from "./merger.js";
-import type { FieldValue, RegisteredPathTrieRef } from "./model.js";
-import { StaleDefaultsPass } from "./stale-defaults-pass.js";
+} from "../merger.js";
+import type { FieldValue, RegisteredPathTrieRef } from "../model.js";
+import type { FormState } from "../state/index.js";
+import { StaleDefaultsPass } from "./pass.js";
 
 function path(...parts: (string | number)[]) {
   return parts as unknown as FieldPath;
@@ -27,7 +27,7 @@ function change(path: FieldPath, oldValue: FieldValue): FormValueChange {
   return { path, oldValue };
 }
 
-function formMerger(merger: Merger, rootSchema: Schema): FormMerger {
+function testForm(merger: Merger, rootSchema: Schema): FormState<unknown> {
   const formMerger: FormMerger = {
     ...merger,
     copyForChange,
@@ -50,15 +50,13 @@ function formMerger(merger: Merger, rootSchema: Schema): FormMerger {
         initialDefaultsGenerated
       );
     },
-    dropStaleDefaults(options) {
-      return dropStaleDefaults(
-        createTestContext({ merger, rootSchema }),
-        formMerger,
-        options
-      );
-    },
   };
-  return formMerger;
+  return createTestContext({
+    validator: createValidator(),
+    merger: formMerger,
+    comparator: testComparator,
+    rootSchema,
+  }) as unknown as FormState<unknown>;
 }
 
 describe("StaleDefaultsPass", () => {
@@ -85,13 +83,7 @@ describe("StaleDefaultsPass", () => {
       registered: new WeakSet(),
     };
     const pass = new StaleDefaultsPass({
-      ctx: createTestContext({
-        validator: createValidator(),
-        merger,
-        comparator: testComparator,
-        rootSchema,
-      }),
-      merger: formMerger(merger, rootSchema),
+      form: testForm(merger, rootSchema),
       changes: [change(path("mode"), "a")],
       getChildPath: (parentPath, key) =>
         internalRegisterFieldPath(pathRef, parentPath.concat(key)),

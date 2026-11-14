@@ -14,7 +14,6 @@ import {
   getRootSchema,
   getSelectOptionValuesSafe,
   getXxxOfOptions,
-  isSchemaArrayValue,
   isSchemaDeepEqual,
   isSchemaObjectValue,
   isSelect,
@@ -26,25 +25,86 @@ import {
   type CoreContext,
   type RPath,
   type Schema,
-  type SchemaArrayValue,
   type SchemaDefinition,
   type SchemaObjectValue,
   type SchemaValue,
   type SchemaType,
 } from "#core/index.js";
 import { isSchemaObject } from "#lib/json-schema/index.js";
-import { getOwn, getValueByPath, setOwn } from "#lib/object.js";
+import { getOwn, setOwn } from "#lib/object.js";
 
-import { declaresValueFor } from "./declares-value.js";
-import type { FieldPath } from "./id.js";
-import type {
-  DroppedDefault,
-  DropStaleDefaultsOptions,
-  DropStaleDefaultsResult,
-  FormMerger,
-  FormValueChange,
-} from "./merger.js";
-import type { FieldValue, FormValue } from "./model.js";
+import { declaresValueFor } from "../declares-value.js";
+import type { FieldPath } from "../id.js";
+import type { FormValueChange } from "../merger.js";
+import type { FieldValue } from "../model.js";
+import { getDefaultFieldState, type FormState } from "../state/index.js";
+import { rebuildOldFormData } from "./path.js";
+
+/**
+ * A value the stale-defaults search removed, along with what the pass needs to
+ * restore it or judge the replacement the defaults fill writes for it.
+ */
+export interface DroppedDefault {
+  path: FieldPath;
+  /**
+   * The value that was at `path` before the drop.
+   */
+  value: FieldValue;
+  /**
+   * The schema that described `path` while it held `value`, which is what a
+   * replacement the defaults fill writes is judged against.
+   */
+  writtenUnder: Schema | undefined;
+}
+
+export interface DropStaleDefaultsResult {
+  formData: SchemaValue | undefined;
+  /**
+   * The values removed from `formData`, in walk order. A path's parent is never
+   * listed alongside it, since a dropped key is not descended into.
+   */
+  dropped: readonly DroppedDefault[];
+}
+
+export interface DropStaleDefaultsOptions {
+  /**
+   * The schema resolved for the current form data.
+   */
+  newSchema: Schema;
+  formData: SchemaValue | undefined;
+  /**
+   * Values written since the last defaults pass. A value at one of these paths,
+   * or below one, belongs to the user, even when it equals the replaced
+   * branch's default.
+   */
+  changes: readonly FormValueChange[];
+  /**
+   * The form data as it arrived, before this defaults pass dropped anything.
+   * When omitted, it is rebuilt from `changes`.
+   */
+  oldFormData?: SchemaValue | undefined;
+  /**
+   * The schema resolved for `oldFormData`. When omitted, it is retrieved from
+   * the context's root schema and `oldFormData`.
+   */
+  oldSchema?: Schema | undefined;
+  /**
+   * Paths this pass has already dropped. They are skipped so a replacement the
+   * defaults fill has written is not dropped again.
+   */
+  droppedPaths?: ReadonlySet<FieldPath>;
+  /**
+   * Returns the canonical `FieldPath` for `key` below `parentPath`, so
+   * `droppedPaths` can be compared by identity. The form supplies its own.
+   */
+  getChildPath: (parentPath: RPath, key: string | number) => FieldPath;
+  /**
+   * The flag the defaults fill is running with. The search computes the same
+   * defaults as that fill, so it must use the same flag.
+   * @default false
+   */
+  initialDefaultsGenerated?: boolean;
+}
 
 const NO_DROPPED_PATHS: ReadonlySet<FieldPath> = new Set();
 
@@ -134,14 +194,14 @@ function onlyProperties(
 }
 
 /** Computes the defaults `schema` produces for `keys`, the same way the form's own fill does. */
-function levelDefaults(
-  merger: FormMerger,
+function levelDefaults<T>(
+  form: FormState<T>,
   schema: Schema,
   properties: Record<string, SchemaDefinition>,
   keys: string[],
   initialDefaultsGenerated: boolean
 ): SchemaObjectValue {
-  const defaults = merger.mergeFormDataAndSchemaDefaults({
+  const defaults = getDefaultFieldState(form, {
     schema: onlyProperties(schema, properties, keys),
     formData: undefined,
     initialDefaultsGenerated,
@@ -157,128 +217,6 @@ function isPathPrefix(prefix: RPath, path: RPath) {
   );
 }
 
-function copyContainer(
-  value: FormValue,
-  nextKey: RPath[number]
-): SchemaObjectValue | SchemaArrayValue {
-  if (isSchemaArrayValue(value)) {
-    return value.slice();
-  }
-  if (isSchemaObjectValue(value)) {
-    return { ...value };
-  }
-  if (value === undefined || value === null) {
-    return typeof nextKey === "number" ? [] : {};
-  }
-  throw new Error("Cannot rebuild data through a primitive value");
-}
-
-function getChild(container: FormValue, key: RPath[number]): FieldValue {
-  if (isSchemaArrayValue(container)) {
-    return typeof key === "number" ? container[key] : undefined;
-  }
-  if (isSchemaObjectValue(container)) {
-    return typeof key === "string" ? getOwn(container, key) : undefined;
-  }
-  return undefined;
-}
-
-function writeChild(
-  container: SchemaObjectValue | SchemaArrayValue,
-  key: RPath[number],
-  value: FieldValue
-): void {
-  if (isSchemaArrayValue(container)) {
-    if (typeof key !== "number") {
-      throw new Error("Cannot write a non-numeric key to an array");
-    }
-    container[key] = value;
-  } else if (typeof key !== "string") {
-    throw new Error("Cannot write a non-string key to an object");
-  } else {
-    setOwn(container, key, value);
-  }
-}
-
-/**
- * Copies the containers along `path`, linking each copy to the next. The copy
- * at index `i` is the one that holds `path[i]`, so the last copy is the parent
- * of the final key.
- */
-function copyAlongPath(
-  root: FormValue,
-  path: RPath
-): (SchemaObjectValue | SchemaArrayValue)[] {
-  const copies: (SchemaObjectValue | SchemaArrayValue)[] = [];
-  let node = root;
-  for (let i = 0; i < path.length; i++) {
-    const key = path[i]!;
-    const copy = copyContainer(node, key);
-    if (i > 0) {
-      writeChild(copies[i - 1]!, path[i - 1]!, copy);
-    }
-    copies.push(copy);
-    node = getChild(node, key);
-  }
-  return copies;
-}
-
-/** Puts `value` back at `path`, copying only the containers along the path. */
-export function replaceAtPath(
-  root: FormValue,
-  path: RPath,
-  value: FieldValue
-): FormValue {
-  if (path.length === 0) {
-    return value;
-  }
-  const copies = copyAlongPath(root, path);
-  writeChild(copies[copies.length - 1]!, path[path.length - 1]!, value);
-  return copies[0]!;
-}
-
-/** Removes the own property at `path`, copying only the containers along it. */
-export function deleteAtPath(root: FormValue, path: RPath): FormValue {
-  if (path.length === 0) {
-    return undefined;
-  }
-  const parentPath = path.slice(0, -1);
-  const parent =
-    parentPath.length === 0
-      ? root
-      : getValueByPath<FormValue, FieldValue>(root, parentPath);
-  if (!isSchemaObjectValue(parent)) {
-    return root;
-  }
-  const key = path[path.length - 1]!;
-  if (typeof key !== "string") {
-    throw new Error("Cannot delete a non-string key from an object");
-  }
-  const copies = copyAlongPath(root, path);
-  Reflect.deleteProperty(copies[copies.length - 1]!, key);
-  return copies[0]!;
-}
-
-/**
- * Rebuilds the data a defaults pass started from by putting back every value
- * `changes` replaced. Used once per pass, because later iterations have already
- * dropped values the search still has to see on the old side.
- */
-export function rebuildOldFormData(
-  formData: SchemaValue | undefined,
-  changes: readonly FormValueChange[]
-): FormValue {
-  let oldFormData = formData;
-  for (let i = changes.length - 1; i >= 0; i--) {
-    const change = changes[i]!;
-    oldFormData =
-      change.hadOwnValue === false
-        ? deleteAtPath(oldFormData, change.path)
-        : replaceAtPath(oldFormData, change.path, change.oldValue);
-  }
-  return oldFormData;
-}
-
 interface NestedKey {
   key: string;
   path: FieldPath;
@@ -289,9 +227,8 @@ interface NestedKey {
   changedPaths: readonly RPath[];
 }
 
-function dropStaleDefaultsAtLevel(
-  ctx: CoreContext,
-  merger: FormMerger,
+function dropStaleDefaultsAtLevel<T>(
+  ctx: FormState<T>,
   newSchema: Schema,
   oldSchema: Schema,
   formData: SchemaObjectValue,
@@ -412,7 +349,7 @@ function dropStaleDefaultsAtLevel(
   ) {
     const replaceableKeys = replaceable.map(({ key }) => key);
     const oldDefaults = levelDefaults(
-      merger,
+      ctx,
       oldSchema,
       oldProperties,
       replaceableKeys,
@@ -426,7 +363,7 @@ function dropStaleDefaultsAtLevel(
     );
     if (holdingKeys.length > 0) {
       const newDefaults = levelDefaults(
-        merger,
+        ctx,
         newSchema,
         newProperties,
         holdingKeys,
@@ -469,7 +406,6 @@ function dropStaleDefaultsAtLevel(
     }
     const next = dropStaleDefaultsAtLevel(
       ctx,
-      merger,
       entry.newSchema,
       entry.oldSchema,
       entry.current,
@@ -496,9 +432,8 @@ function dropStaleDefaultsAtLevel(
  * substchema declared differently, so the next defaults fill writes the newly
  * selected branch's default.
  */
-export function dropStaleDefaults(
-  ctx: CoreContext,
-  merger: FormMerger,
+export function dropStaleDefaults<T>(
+  form: FormState<T>,
   {
     newSchema,
     formData,
@@ -518,16 +453,15 @@ export function dropStaleDefaults(
   if (!isSchemaObjectValue(oldFormData)) {
     return { formData, dropped: [] };
   }
-  const rootSchema = getRootSchema(ctx);
+  const rootSchema = getRootSchema(form);
   const oldSchema =
-    providedOldSchema ?? retrieveSchema(ctx, rootSchema, oldFormData);
+    providedOldSchema ?? retrieveSchema(form, rootSchema, oldFormData);
   if (!isSchemaObjectValue(oldSchema)) {
     return { formData, dropped: [] };
   }
   const dropped: DroppedDefault[] = [];
   const nextFormData = dropStaleDefaultsAtLevel(
-    ctx,
-    merger,
+    form,
     newSchema,
     oldSchema,
     formData,

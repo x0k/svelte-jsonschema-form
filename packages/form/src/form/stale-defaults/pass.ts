@@ -24,10 +24,12 @@ import {
 } from "#core/index.js";
 import { getOwn, getValueByPath, setOwn } from "#lib/object.js";
 
-import { deleteAtPath, replaceAtPath } from "./drop-stale-defaults.js";
-import type { FieldPath } from "./id.js";
-import type { DroppedDefault, FormMerger, FormValueChange } from "./merger.js";
-import type { FieldValue, FormValue } from "./model.js";
+import type { FieldPath } from "../id.js";
+import type { FormValueChange } from "../merger.js";
+import type { FieldValue, FormValue } from "../model.js";
+import type { FormState } from "../state/index.js";
+import { dropStaleDefaults, type DroppedDefault } from "./drop.js";
+import { deleteAtPath, replaceAtPath } from "./path.js";
 
 export interface AfterFillResult {
   formData: FormValue;
@@ -40,9 +42,8 @@ export interface AfterFillResult {
   hasNewRefill: boolean;
 }
 
-export interface StaleDefaultsPassOptions {
-  ctx: CoreContext;
-  merger: FormMerger;
+export interface StaleDefaultsPassOptions<T> {
+  form: FormState<T>;
   changes: readonly FormValueChange[];
   /**
    * Returns the form's canonical child path, so dropped paths are compared by
@@ -190,12 +191,11 @@ function isRefillRejected(
   );
 }
 
-export class StaleDefaultsPass {
+export class StaleDefaultsPass<T> {
   private readonly dropped = new Map<FieldPath, DroppedDefault>();
   private readonly droppedPathKeys = new Set<FieldPath>();
   private readonly settled = new Set<FieldPath>();
-  private readonly ctx: CoreContext;
-  private readonly merger: FormMerger;
+  private readonly form: FormState<T>;
   private readonly changes: readonly FormValueChange[];
   private readonly getChildPath: (
     parentPath: RPath,
@@ -205,15 +205,13 @@ export class StaleDefaultsPass {
   private readonly oldSchema: Schema | undefined;
 
   constructor({
-    ctx,
-    merger,
+    form,
     changes,
     getChildPath,
     oldFormData,
     oldSchema,
-  }: StaleDefaultsPassOptions) {
-    this.ctx = ctx;
-    this.merger = merger;
+  }: StaleDefaultsPassOptions<T>) {
+    this.form = form;
     this.changes = changes;
     this.getChildPath = getChildPath;
     this.oldFormData = oldFormData;
@@ -226,7 +224,7 @@ export class StaleDefaultsPass {
     newSchema: Schema,
     initialDefaultsGenerated: boolean
   ): FormValue {
-    const { formData: result, dropped } = this.merger.dropStaleDefaults({
+    const { formData: result, dropped } = dropStaleDefaults(this.form, {
       newSchema,
       formData,
       changes: this.changes,
@@ -290,7 +288,7 @@ export class StaleDefaultsPass {
         continue;
       }
       const resolvedNow = resolveSchemaAt(
-        this.ctx,
+        this.form,
         newSchema,
         dropped.path,
         dataBeforeSanitize
@@ -300,7 +298,7 @@ export class StaleDefaultsPass {
         writtenUnder !== undefined &&
         resolvedNow !== undefined &&
         isRefillRejected(
-          this.ctx,
+          this.form,
           dropped.path,
           resolvedNow,
           writtenUnder,
@@ -325,7 +323,7 @@ export class StaleDefaultsPass {
           this.oldFormData,
           dropped.path,
           held,
-          (value) => !isValueDeepEqual(this.ctx, value, held)
+          (value) => !isValueDeepEqual(this.form, value, held)
         );
       }
     }

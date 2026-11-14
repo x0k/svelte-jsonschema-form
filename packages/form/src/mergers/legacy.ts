@@ -14,8 +14,7 @@ import {
   type SchemaDefinition,
   type Validator,
 } from "#core/index.js";
-import { dropStaleDefaults } from "#form/drop-stale-defaults.js";
-import type { DropStaleDefaultsOptions, FormMerger } from "#form/index.js";
+import type { FormMerger } from "#form/main.js";
 import { copyForChange } from "#form/merger.js";
 import { unique as uniqueItems } from "#lib/array.js";
 import {
@@ -203,18 +202,6 @@ export function createFormMerger(options: FormMergerOptions): FormMerger {
         includeUndefinedValues,
         options,
         initialDefaultsGenerated
-      );
-    },
-    dropStaleDefaults(dropOptions: DropStaleDefaultsOptions) {
-      return dropStaleDefaults(
-        createCoreContext({
-          validator: options.validator,
-          merger: formMerger,
-          comparator: options.comparator,
-          rootSchema: options.schema,
-        }),
-        formMerger,
-        dropOptions
       );
     },
   };

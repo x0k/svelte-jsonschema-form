@@ -668,7 +668,9 @@ describe("combination field contracts", () => {
           note: { type: "string", title: "Note" },
         },
       };
-      let dropCalls = 0;
+      // The search computes branch defaults through a narrowed level schema,
+      // which is how this test observes it now that it is not a merger hook.
+      let searchCalls = 0;
       const { form } = await renderFieldForm({
         schema,
         initialValue: { mode: "first", x: "a" },
@@ -676,9 +678,11 @@ describe("combination field contracts", () => {
           const merger = createFormMerger(options);
           return {
             ...merger,
-            dropStaleDefaults(dropOptions) {
-              dropCalls += 1;
-              return merger.dropStaleDefaults(dropOptions);
+            mergeFormDataAndSchemaDefaults(defaultsOptions) {
+              if (defaultsOptions.schema !== options.schema) {
+                searchCalls += 1;
+              }
+              return merger.mergeFormDataAndSchemaDefaults(defaultsOptions);
             },
           };
         },
@@ -690,12 +694,12 @@ describe("combination field contracts", () => {
       );
       await Promise.resolve();
       expectValue(form, { mode: "first", x: "a", note: "hello" });
-      expect(dropCalls).toBe(0);
+      expect(searchCalls).toBe(0);
 
       await userEvent.fill(page.getByRole("textbox").first(), "second");
       expectValue(form, { mode: "second", x: "b", note: "hello" });
       // A single scheduled pass may search more than once while it settles.
-      expect(dropCalls).toBeGreaterThan(0);
+      expect(searchCalls).toBeGreaterThan(0);
     });
   });
 

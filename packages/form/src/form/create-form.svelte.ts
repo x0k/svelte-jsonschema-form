@@ -34,7 +34,6 @@ import type { DeepPartial } from "#lib/types.js";
 
 import type { Theme } from "./components.js";
 import type { Config } from "./config.js";
-import { rebuildOldFormData } from "./drop-stale-defaults.js";
 import type { FieldsValidation, FormValidation } from "./errors.js";
 import type { ResolveFieldType } from "./fields.js";
 import type { Icons } from "./icons.js";
@@ -85,11 +84,12 @@ import {
   type Update,
 } from "./model.js";
 import { createFormValueReconciler } from "./reconcile.js";
-import { StaleDefaultsPass } from "./stale-defaults-pass.js";
 import {
   getStaleDefaultsTriggerKeys,
+  rebuildOldFormData,
+  StaleDefaultsPass,
   type StaleDefaultsTriggerKeys,
-} from "./stale-defaults-trigger.js";
+} from "./stale-defaults/index.js";
 import {
   getChildPath,
   reset,
@@ -671,8 +671,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     const staleDefaultsPass =
       mayDropStaleDefaults && changes.length > 0
         ? new StaleDefaultsPass({
-            ctx: formState,
-            merger,
+            form: formState,
             changes,
             getChildPath: (parentPath, key) =>
               getChildPath(formState, parentPath, key),

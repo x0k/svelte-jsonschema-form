@@ -6,12 +6,7 @@ import {
   type Merger,
   type Validator,
 } from "#core/index.js";
-import { dropStaleDefaults } from "#form/drop-stale-defaults.js";
-import type {
-  DropStaleDefaultsOptions,
-  FormMerger,
-  Schema,
-} from "#form/main.js";
+import type { FormMerger, Schema } from "#form/main.js";
 import { copyForChange } from "#form/merger.js";
 import {
   createMerger as createJsonSchemaMerger,
@@ -69,18 +64,6 @@ export function createFormMerger(options: FormMergerOptions): FormMerger {
         includeUndefinedValues,
         options,
         initialDefaultsGenerated
-      );
-    },
-    dropStaleDefaults(dropOptions: DropStaleDefaultsOptions) {
-      return dropStaleDefaults(
-        createCoreContext({
-          validator: options.validator,
-          merger: formMerger,
-          comparator: options.comparator,
-          rootSchema: options.schema,
-        }),
-        formMerger,
-        dropOptions
       );
     },
   };
