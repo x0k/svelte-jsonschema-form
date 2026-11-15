@@ -17,7 +17,6 @@ import {
   type Validator,
   type ValidatorFactoryOptions,
 } from "@sjsf/form";
-import { defaultComparator } from "@sjsf/form/comparators/default";
 import {
   createCoreContext,
   getClosestMatchingOption,
@@ -32,6 +31,7 @@ import {
   createIdFactory as defaultCreateIdFactory,
   type IdFactory,
 } from "@sjsf/form/validators/precompile";
+import { defaultFormValueHandler } from "@sjsf/form/value-handlers/default";
 import { expect, it, describe } from "vitest";
 
 const fieldsValidationMode =
@@ -73,7 +73,7 @@ function createInitializer<V extends Validator>(
     const validator = await create(createValidator, {
       idBuilder,
       merger: () => merger,
-      comparator: defaultComparator,
+      valueHandler: defaultFormValueHandler,
       schema,
       uiOptionsRegistry,
       uiSchema,
@@ -82,7 +82,7 @@ function createInitializer<V extends Validator>(
     const merger = createFormMerger({
       schema,
       validator,
-      comparator: defaultComparator,
+      valueHandler: defaultFormValueHandler,
     });
     return {
       validator,
@@ -235,7 +235,7 @@ export function validatorTests(
           createCoreContext({
             validator,
             merger,
-            comparator: defaultComparator,
+            valueHandler: defaultFormValueHandler,
             rootSchema: schema,
           }),
           { kind: "cat" },
@@ -265,7 +265,7 @@ export function validatorTests(
           createCoreContext({
             validator,
             merger,
-            comparator: defaultComparator,
+            valueHandler: defaultFormValueHandler,
             rootSchema: schema,
           }),
           undefined,
@@ -300,7 +300,7 @@ export function validatorTests(
           createCoreContext({
             validator,
             merger,
-            comparator: defaultComparator,
+            valueHandler: defaultFormValueHandler,
             rootSchema: schema,
           }),
           { y: "hello" },
@@ -338,7 +338,7 @@ export function validatorTests(
           createCoreContext({
             validator,
             merger,
-            comparator: defaultComparator,
+            valueHandler: defaultFormValueHandler,
             rootSchema: schema,
           }),
           { kind: "x", count: 3, label: "foo" },
@@ -370,7 +370,7 @@ export function validatorTests(
           createCoreContext({
             validator,
             merger,
-            comparator: defaultComparator,
+            valueHandler: defaultFormValueHandler,
             rootSchema: schema,
           }),
           {},
@@ -409,7 +409,7 @@ export function validatorTests(
           createCoreContext({
             validator,
             merger,
-            comparator: defaultComparator,
+            valueHandler: defaultFormValueHandler,
             rootSchema: schema,
           }),
           { kind: "rect", width: 100 },
@@ -463,7 +463,7 @@ export function validatorTests(
           createCoreContext({
             validator,
             merger,
-            comparator: defaultComparator,
+            valueHandler: defaultFormValueHandler,
             rootSchema: schema,
           }),
           value
@@ -503,7 +503,7 @@ export function validatorTests(
           createCoreContext({
             validator,
             merger,
-            comparator: defaultComparator,
+            valueHandler: defaultFormValueHandler,
             rootSchema: schema,
           }),
           {
@@ -537,7 +537,7 @@ export function validatorTests(
           createCoreContext({
             validator,
             merger,
-            comparator: defaultComparator,
+            valueHandler: defaultFormValueHandler,
             rootSchema: schema,
           }),
           {}
@@ -565,7 +565,7 @@ export function validatorTests(
           createCoreContext({
             validator,
             merger,
-            comparator: defaultComparator,
+            valueHandler: defaultFormValueHandler,
             rootSchema: schema,
           }),
           {
@@ -617,7 +617,7 @@ export function validatorTests(
           createCoreContext({
             validator,
             merger,
-            comparator: defaultComparator,
+            valueHandler: defaultFormValueHandler,
             rootSchema: schema,
           }),
           {

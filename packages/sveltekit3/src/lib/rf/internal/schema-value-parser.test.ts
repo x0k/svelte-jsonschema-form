@@ -5,13 +5,13 @@ import {
   type Schema,
   type Validator,
 } from "@sjsf/form";
-import { defaultComparator } from "@sjsf/form/comparators/default";
 import {
   createCoreContext,
-  type Comparator,
+  type ValueHandler,
   type Merger,
 } from "@sjsf/form/core";
 import { createMerger } from "@sjsf/form/mergers/modern";
+import { defaultFormValueHandler } from "@sjsf/form/value-handlers/default";
 import { describe, beforeEach, expect, it } from "vitest";
 
 import {
@@ -37,19 +37,19 @@ const opts = ({
   uiSchema = {},
   validator = createFormValidator({ schema }),
   merger = createMerger(),
-  comparator = defaultComparator,
+  valueHandler = defaultFormValueHandler,
   codec = { encode, decode },
   convertEntry,
 }: Partial<SchemaValueParserOptions<FormDataEntryValue>> & {
   schema?: Schema;
   validator?: Validator;
   merger?: Merger;
-  comparator?: Comparator;
+  valueHandler?: ValueHandler;
 } = {}): SchemaValueParserOptions<FormDataEntryValue> => {
   const ctx = createCoreContext({
     validator,
     merger,
-    comparator,
+    valueHandler,
     rootSchema: schema,
   });
   return {

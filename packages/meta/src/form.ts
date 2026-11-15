@@ -6,7 +6,7 @@ export const formPackage = fromPackageJson(_packageJson);
 
 export const formCoreSubpath = `${formPackage.name}/core`;
 
-export const formComparatorSubPath = `${formPackage.name}/comparators/default`;
+export const formValueHandlerSubPath = `${formPackage.name}/value-handlers/default`;
 
 const _ID_BUILDERS = ["legacy", "modern"] as const;
 

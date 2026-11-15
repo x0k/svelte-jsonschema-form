@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
 
-import type { EnumOption, SchemaValue, Comparator } from "#core/index.js";
+import type { EnumOption, SchemaValue, ValueHandler } from "#core/index.js";
 
 import { StringEnumValueMapperBuilder } from "./options.svelte.js";
 
-const comparator: Comparator = {
+const valueHandler: ValueHandler = {
   isValueDeepEqual: (a, b) => Object.is(a, b),
 };
 
@@ -18,7 +18,7 @@ function option(value: unknown, id = String(value)): EnumOption<SchemaValue> {
 }
 
 function build(...values: unknown[]) {
-  const builder = new StringEnumValueMapperBuilder(comparator);
+  const builder = new StringEnumValueMapperBuilder(valueHandler);
   for (const value of values) {
     builder.push(option(value));
   }
@@ -45,7 +45,7 @@ describe("StringEnumValueMapperBuilder", () => {
   });
 
   it("allows the same value to be pushed more than once", () => {
-    const builder = new StringEnumValueMapperBuilder(comparator);
+    const builder = new StringEnumValueMapperBuilder(valueHandler);
     builder.push(option("a"));
     expect(() => builder.push(option("a"))).not.toThrow();
   });

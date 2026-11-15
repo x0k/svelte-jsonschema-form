@@ -35,7 +35,7 @@ SJSF favors explicit modular imports over heavy globals. Create a central `defau
 export { resolver } from "@sjsf/form/resolvers/basic";
 export { theme } from "@sjsf/shadcn4-theme"; // Or @sjsf/basic-theme, @sjsf/daisyui5-theme, etc.
 export { translation } from "@sjsf/form/translations/en";
-export { defaultComparator as comparator } from "@sjsf/form/comparators/default";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormValidator as validator } from "@sjsf/ajv8-validator";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";

@@ -1,8 +1,8 @@
 import { createFormValidator } from "@sjsf/ajv8-validator";
 import { DEFAULT_ID_PREFIX, SJSF_ID_PREFIX, type Schema } from "@sjsf/form";
-import { defaultComparator } from "@sjsf/form/comparators/default";
 import { fromRecord } from "@sjsf/form/lib/resolver";
 import { createFormMerger } from "@sjsf/form/mergers/modern";
+import { defaultFormValueHandler } from "@sjsf/form/value-handlers/default";
 import { describe, expect, it, vi } from "vitest";
 
 import { FORM_DATA_FILE_PREFIX, JSON_CHUNKS_KEY } from "../../model.js";
@@ -29,7 +29,7 @@ function opts(overrides?: Record<string, unknown>) {
     schema,
     validator: createFormValidator,
     merger: createFormMerger,
-    comparator: defaultComparator,
+    valueHandler: defaultFormValueHandler,
     ...overrides,
   };
 }

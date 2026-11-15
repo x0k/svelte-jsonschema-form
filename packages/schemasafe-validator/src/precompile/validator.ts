@@ -7,7 +7,7 @@ import type {
 } from "@sjsf/form";
 import {
   createCoreContext,
-  type Comparator,
+  type ValueHandler,
   type Merger,
 } from "@sjsf/form/core";
 
@@ -46,7 +46,7 @@ export function createValidator({
 
 export type FormValueValidatorOptions = ValidatorOptions & {
   merger: () => Merger;
-  comparator: Comparator;
+  valueHandler: ValueHandler;
   schema: Schema;
 };
 
@@ -62,7 +62,7 @@ export function createFormValueValidator<T>(
         createCoreContext({
           validator,
           merger: options.merger(),
-          comparator: options.comparator,
+          valueHandler: options.valueHandler,
           rootSchema: options.schema,
         }),
         validate.errors,

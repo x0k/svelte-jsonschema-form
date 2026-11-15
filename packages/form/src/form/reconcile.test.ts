@@ -12,14 +12,14 @@ import { createFormValueReconciler } from "./reconcile.js";
 describe("", () => {
   const reconcile = createFormValueReconciler({
     keyedArraysMap: new WeakMap(),
-    comparator: {
+    valueHandler: {
       isValueDeepEqual: isSchemaValueDeepEqual,
     },
   });
 
   const byDate = createFormValueReconciler({
     keyedArraysMap: new WeakMap(),
-    comparator: {
+    valueHandler: {
       isValueDeepEqual: createSchemaValueComparator(compareRecords, (a, b) =>
         a instanceof Date && b instanceof Date
           ? a.getTime() === b.getTime()
@@ -66,7 +66,7 @@ describe("", () => {
     expect((value as Record<string, unknown>)["__proto__"]).toEqual({ a: 1 });
   });
 
-  it("should replace a leaf the default comparator cannot match", () => {
+  it("should replace a leaf the default valueHandler cannot match", () => {
     const targetDate = new Date(0);
     const sourceDate = new Date(0);
     const target = { d: targetDate } as unknown as SchemaValue;
@@ -85,7 +85,7 @@ describe("", () => {
     expect((value as { d: Date }).d).toBe(sourceDate);
   });
 
-  it("should keep a leaf a custom comparator declares equal", () => {
+  it("should keep a leaf a custom valueHandler declares equal", () => {
     const targetDate = new Date(0);
     const sourceDate = new Date(0);
     const target = { d: targetDate } as unknown as SchemaValue;

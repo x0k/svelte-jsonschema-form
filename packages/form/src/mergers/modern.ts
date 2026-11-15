@@ -1,12 +1,12 @@
 import {
   createCoreContext,
   getDefaultFormState,
-  type Comparator,
+  type ValueHandler,
   type Experimental_DefaultFormStateBehavior,
   type Merger,
   type Validator,
 } from "#core/index.js";
-import { copyForChange, type FormMerger, type Schema } from "#form/main.js";
+import type { FormMerger, Schema } from "#form/main.js";
 import {
   createMerger as createJsonSchemaMerger,
   createShallowAllOfMerge,
@@ -38,13 +38,12 @@ export interface FormMergerOptions
   extends Experimental_DefaultFormStateBehavior, MergerOptions {
   validator: Validator;
   schema: Schema;
-  comparator: Comparator;
+  valueHandler: ValueHandler;
 }
 
 export function createFormMerger(options: FormMergerOptions): FormMerger {
   const formMerger: FormMerger = {
     ...createMerger(options),
-    copyForChange,
     mergeFormDataAndSchemaDefaults({
       formData,
       schema,
@@ -55,7 +54,7 @@ export function createFormMerger(options: FormMergerOptions): FormMerger {
         createCoreContext({
           validator: options.validator,
           merger: formMerger,
-          comparator: options.comparator,
+          valueHandler: options.valueHandler,
           rootSchema: options.schema,
         }),
         schema,

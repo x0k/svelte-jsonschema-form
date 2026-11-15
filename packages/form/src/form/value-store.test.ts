@@ -1,8 +1,9 @@
 import { describe, expect, test } from "vitest";
 
 import type { FieldPath } from "./id.js";
-import { copyForChange, type FormValueChange } from "./merger.js";
+import type { FormValueChange } from "./merger.js";
 import type { FieldValue, FormValue } from "./model.js";
+import { copyForChange } from "./value-handler.js";
 import { createFormValueStore } from "./value-store.js";
 
 function path(...parts: (string | number)[]) {

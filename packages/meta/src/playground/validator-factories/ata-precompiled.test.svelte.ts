@@ -1,6 +1,6 @@
 import { isFormValueValidator, type FormValue, type Schema } from "@sjsf/form";
-import { defaultComparator } from "@sjsf/form/comparators/default";
 import type { Merger } from "@sjsf/form/core";
+import { defaultFormValueHandler } from "@sjsf/form/value-handlers/default";
 import { describe, expect, it } from "vitest";
 
 import type { ValidatorFactoryOptions } from "../validator-factory.ts";
@@ -34,7 +34,7 @@ describe("ata-precompiled", () => {
     const createValidator = (await draft07([SCHEMA]))({
       schema: SCHEMA,
       merger: () => merger,
-      comparator: defaultComparator,
+      valueHandler: defaultFormValueHandler,
     } as unknown as ValidatorFactoryOptions);
     if (!isFormValueValidator(createValidator)) {
       throw new Error("the compiled validator cannot validate form values");

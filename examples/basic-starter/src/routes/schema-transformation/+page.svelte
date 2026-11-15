@@ -77,12 +77,12 @@
   const merger = defaults.merger({
     validator,
     schema: originalSchema,
-    comparator: defaults.comparator,
+    valueHandler: defaults.valueHandler,
   });
   const ctx = createCoreContext({
     validator,
     merger,
-    comparator: defaults.comparator,
+    valueHandler: defaults.valueHandler,
     rootSchema: originalSchema,
   });
 

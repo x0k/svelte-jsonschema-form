@@ -4,7 +4,7 @@ import { createCoreContext, type CoreContext } from "./context.js";
 import {
   isSchemaDeepEqual,
   isSchemaValueDeepEqual,
-  type Comparator,
+  type ValueHandler,
 } from "./deep-equal.js";
 import type { Merger } from "./merger.js";
 import type { Schema, SchemaValue } from "./schema.js";
@@ -84,11 +84,11 @@ export function createMerger({
 export interface TestContextOptions {
   validator?: Validator;
   merger?: Merger;
-  comparator?: Comparator;
+  valueHandler?: ValueHandler;
   rootSchema?: Schema;
 }
 
-export const testComparator: Comparator = {
+export const testValueHandler: ValueHandler = {
   isValueDeepEqual: isSchemaValueDeepEqual,
 };
 
@@ -96,8 +96,8 @@ export const testComparator: Comparator = {
 export function createTestContext({
   validator = createValidator(),
   merger = createMerger(),
-  comparator = testComparator,
+  valueHandler = testValueHandler,
   rootSchema = {},
 }: TestContextOptions = {}): CoreContext {
-  return createCoreContext({ validator, merger, comparator, rootSchema });
+  return createCoreContext({ validator, merger, valueHandler, rootSchema });
 }

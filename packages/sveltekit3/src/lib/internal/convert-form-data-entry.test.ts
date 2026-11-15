@@ -1,7 +1,7 @@
 import { createFormValidator } from "@sjsf/ajv8-validator";
-import { defaultComparator } from "@sjsf/form/comparators/default";
 import { createCoreContext, type RPath, type Schema } from "@sjsf/form/core";
 import { createMerger } from "@sjsf/form/mergers/modern";
+import { defaultFormValueHandler } from "@sjsf/form/value-handlers/default";
 import { beforeEach, describe, expect, it } from "vitest";
 
 import {
@@ -17,7 +17,7 @@ import {
 const ctx = createCoreContext({
   validator: createFormValidator({ schema: {} }),
   merger: createMerger(),
-  comparator: defaultComparator,
+  valueHandler: defaultFormValueHandler,
   rootSchema: {},
 });
 

@@ -8,13 +8,14 @@ import {
   type FormMerger,
   type UiOptionsRegistry,
   type Creatable,
-  type ComparatorFactoryOptions,
+  type FormValueHandler,
+  type FormValueHandlerOptions,
   create,
   SJSF_ID_PREFIX,
   type ValidationResult,
   type FormValidator,
 } from "@sjsf/form";
-import { createCoreContext, type Comparator } from "@sjsf/form/core";
+import { createCoreContext } from "@sjsf/form/core";
 import type { MaybePromise } from "@sjsf/form/lib/types";
 import { fail, type ActionFailure, type RequestEvent } from "@sveltejs/kit";
 
@@ -55,7 +56,7 @@ export interface FormHandlerOptions<T, SD extends SendData> extends Omit<
   idIndexSeparator?: string;
   validator: Creatable<FormValidator<T>, ValidatorFactoryOptions>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
-  comparator: Creatable<Comparator, ComparatorFactoryOptions>;
+  valueHandler: Creatable<FormValueHandler, FormValueHandlerOptions>;
   createEntryConverter?: Creatable<
     EntryConverter<FormDataEntryValue>,
     FormDataConverterOptions
@@ -85,7 +86,7 @@ export function createFormHandler<T, SD extends SendData>({
   uiOptionsRegistry = {},
   merger: createMerger,
   validator: createValidator,
-  comparator: createComparator,
+  valueHandler: createValueHandler,
   createEntryConverter = createFormDataEntryConverter,
   convertUnknownEntry,
   propertySeparator = DEFAULT_PROPERTY_SEPARATOR,
@@ -98,7 +99,7 @@ export function createFormHandler<T, SD extends SendData>({
     createOptionIndexDecoder(pseudoSeparator)
   ),
 }: FormHandlerOptions<T, SD>) {
-  const comparator = create(createComparator, {
+  const valueHandler = create(createValueHandler, {
     schema,
     uiSchema,
     uiOptionsRegistry,
@@ -108,19 +109,19 @@ export function createFormHandler<T, SD extends SendData>({
     uiSchema,
     uiOptionsRegistry,
     merger: () => merger,
-    comparator,
+    valueHandler,
   });
   const merger: FormMerger = create(createMerger, {
     schema,
     uiSchema,
     validator,
     uiOptionsRegistry,
-    comparator,
+    valueHandler,
   });
   const ctx = createCoreContext({
     validator,
     merger,
-    comparator,
+    valueHandler,
     rootSchema: schema,
   });
   const convertEntry = create(createEntryConverter, {

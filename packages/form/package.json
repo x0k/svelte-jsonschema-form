@@ -146,9 +146,9 @@
       "types": "./dist/mergers/*.d.ts",
       "default": "./dist/mergers/*.js"
     },
-    "./comparators/*": {
-      "types": "./dist/comparators/*.d.ts",
-      "default": "./dist/comparators/*.js"
+    "./value-handlers/*": {
+      "types": "./dist/value-handlers/*.d.ts",
+      "default": "./dist/value-handlers/*.js"
     },
     "./id-builders/*": {
       "types": "./dist/id-builders/*.d.ts",

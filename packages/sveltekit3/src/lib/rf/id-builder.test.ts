@@ -1,7 +1,7 @@
 import { createFormValidator } from "@sjsf/ajv8-validator";
 import { DEFAULT_ID_PREFIX, type FieldPath } from "@sjsf/form";
-import { defaultComparator } from "@sjsf/form/comparators/default";
 import { createFormMerger } from "@sjsf/form/mergers/modern";
+import { defaultFormValueHandler } from "@sjsf/form/value-handlers/default";
 import { describe, expect, it } from "vitest";
 
 import { createFormIdBuilder, createOptionIndexDecoder } from "./id-builder.js";
@@ -26,13 +26,13 @@ function builder({
   const merger = createFormMerger({
     validator,
     schema,
-    comparator: defaultComparator,
+    valueHandler: defaultFormValueHandler,
   });
   return createFormIdBuilder({
     schema,
     validator,
     merger,
-    comparator: defaultComparator,
+    valueHandler: defaultFormValueHandler,
     idPrefix,
     valueRef: { current: value },
     isPrivate,

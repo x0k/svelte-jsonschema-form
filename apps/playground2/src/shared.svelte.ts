@@ -141,6 +141,7 @@ export function createValidatorState(
       return playgroundValidator({
         validator: v,
         merger: validatorOptions.merger,
+        valueHandler: validatorOptions.valueHandler,
         schema,
         uiSchema,
       });

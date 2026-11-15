@@ -1,6 +1,5 @@
 import {
   create,
-  type ComparatorFactoryOptions,
   type Creatable,
   type FormMerger,
   type MergerFactoryOptions,
@@ -10,8 +9,10 @@ import {
   type UiSchemaRoot,
   type Validator,
   type ValidatorFactoryOptions,
+  type FormValueHandler,
+  type FormValueHandlerOptions,
 } from "@sjsf/form";
-import { createCoreContext, type Comparator } from "@sjsf/form/core";
+import { createCoreContext } from "@sjsf/form/core";
 
 import {
   createEnumItemDecoder,
@@ -31,7 +32,7 @@ export interface SvelteKitDataParserOptions {
   schema: Schema;
   validator: Creatable<Validator, ValidatorFactoryOptions>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
-  comparator: Creatable<Comparator, ComparatorFactoryOptions>;
+  valueHandler: Creatable<FormValueHandler, FormValueHandlerOptions>;
   uiSchema?: UiSchemaRoot;
   uiOptionsRegistry?: UiOptionsRegistry;
   createEntryConverter?: Creatable<
@@ -48,7 +49,7 @@ export function createSvelteKitDataParser({
   uiSchema = {},
   merger: createMerger,
   validator: createValidator,
-  comparator: createComparator,
+  valueHandler: createValueHandler,
   uiOptionsRegistry = {},
   createEntryConverter = createFormDataEntryConverter,
   convertUnknownEntry,
@@ -57,7 +58,7 @@ export function createSvelteKitDataParser({
     createOptionIndexDecoder(encode(pseudoPrefix))
   ),
 }: SvelteKitDataParserOptions) {
-  const comparator = create(createComparator, {
+  const values = create(createValueHandler, {
     schema,
     uiSchema,
     uiOptionsRegistry,
@@ -67,19 +68,19 @@ export function createSvelteKitDataParser({
     uiSchema: uiSchema,
     uiOptionsRegistry,
     merger: () => merger,
-    comparator,
+    valueHandler: values,
   });
   const merger = create(createMerger, {
     schema: schema,
     uiSchema: uiSchema,
     validator,
     uiOptionsRegistry,
-    comparator,
+    valueHandler: values,
   });
   const ctx = createCoreContext({
     validator,
     merger,
-    comparator,
+    valueHandler: values,
     rootSchema: schema,
   });
   const convertEntry = create(createEntryConverter, {

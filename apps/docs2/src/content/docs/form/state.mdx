@@ -47,7 +47,7 @@ export interface FormErrors extends Iterable<[FieldPath, string[]]> {
 export interface CoreContext {
   readonly [CORE_VALIDATOR]: Validator;
   readonly [CORE_MERGER]: Merger;
-  readonly [CORE_COMPARATOR]: Comparator;
+  readonly [CORE_VALUE_HANDLER]: ValueHandler;
   readonly [CORE_ROOT_SCHEMA]: Schema;
 }
 
@@ -76,7 +76,7 @@ export interface FormState<T> extends CoreContext {
   readonly [FORM_UI_EXTRA_OPTIONS]?: ExtraUiOptions;
   readonly [CORE_VALIDATOR]: FormValidator<T>;
   readonly [CORE_MERGER]: FormMerger;
-  readonly [CORE_COMPARATOR]: Comparator;
+  readonly [CORE_VALUE_HANDLER]: ValueHandler;
   readonly [FORM_ID_BUILDER]: FormIdBuilder;
   readonly [FORM_ICONS]?: Icons;
   readonly [FORM_DISABLED]: boolean;
@@ -100,7 +100,7 @@ helpers read them through the free functions
 `mergeAllOf(ctx, schema)`, `isValueDeepEqual(ctx, a, b)`,
 `resolveRef(ctx, ref)`, and `getRootSchema(ctx)`.
 
-Call `createCoreContext({ validator, merger, comparator, rootSchema })` to build a standalone
+Call `createCoreContext({ validator, merger, valueHandler, rootSchema })` to build a standalone
 context for a core helper when you do not have a `FormState`. Every core helper
 that needs these dependencies takes the context as its first argument, for
 example `retrieveSchema(ctx, schema, formData)` or

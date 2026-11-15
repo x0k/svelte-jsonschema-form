@@ -2,7 +2,6 @@ import {
   create,
   createTranslate,
   SJSF_ID_PREFIX,
-  type ComparatorFactoryOptions,
   type Creatable,
   type FormMerger,
   type FormValidator,
@@ -11,8 +10,9 @@ import {
   type UiOptionsRegistry,
   type UiSchemaRoot,
   type ValidatorFactoryOptions,
+  type FormValueHandler,
+  type FormValueHandlerOptions,
 } from "@sjsf/form";
-import type { Comparator } from "@sjsf/form/core";
 import { isRecord } from "@sjsf/form/lib/object";
 import type { MaybePromise } from "@sjsf/form/lib/types";
 import type { StandardSchemaV1 } from "@standard-schema/spec";
@@ -36,7 +36,7 @@ export interface SvelteKitFormValidatorOptions<T> {
   schema: Schema;
   validator: Creatable<FormValidator<T>, ValidatorFactoryOptions>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
-  comparator: Creatable<Comparator, ComparatorFactoryOptions>;
+  valueHandler: Creatable<FormValueHandler, FormValueHandlerOptions>;
   uiSchema?: UiSchemaRoot;
   uiOptionsRegistry?: UiOptionsRegistry;
   createEntryConverter?: Creatable<
@@ -96,7 +96,7 @@ export function createServerValidator<T>({
   uiSchema = {},
   merger: createMerger,
   validator: createValidator,
-  comparator: createComparator,
+  valueHandler: createValueHandler,
   uiOptionsRegistry = {},
   createEntryConverter = createFormDataEntryConverter,
   convertUnknownEntry,
@@ -111,7 +111,7 @@ export function createServerValidator<T>({
   ) => MaybePromise<StandardSchemaV1.Result<ValidationResult<T>>>;
 } {
   const t = createTranslate(serverTranslation);
-  const comparator = create(createComparator, {
+  const values = create(createValueHandler, {
     schema,
     uiSchema,
     uiOptionsRegistry,
@@ -121,21 +121,21 @@ export function createServerValidator<T>({
     uiSchema: uiSchema,
     uiOptionsRegistry,
     merger: () => merger,
-    comparator,
+    valueHandler: values,
   });
   const merger: FormMerger = create(createMerger, {
     schema: schema,
     uiSchema: uiSchema,
     validator,
     uiOptionsRegistry,
-    comparator,
+    valueHandler: values,
   });
   const parseSvelteKitData = createSvelteKitDataParser({
     schema,
     uiSchema,
     merger,
     validator,
-    comparator,
+    valueHandler: values,
     convertUnknownEntry,
     createEntryConverter,
     pseudoPrefix,

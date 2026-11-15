@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
-import { copyForChange } from "./merger.js";
 import type { FieldValue } from "./model.js";
+import { copyForChange } from "./value-handler.js";
 
 describe("copyForChange", () => {
   it("copies an array", () => {

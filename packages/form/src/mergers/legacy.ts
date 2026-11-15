@@ -7,14 +7,14 @@ import {
   isSchemaObjectValue,
   ITEMS_KEY,
   REQUIRED_KEY,
-  type Comparator,
+  type ValueHandler,
   type Experimental_DefaultFormStateBehavior,
   type Merger,
   type Schema,
   type SchemaDefinition,
   type Validator,
 } from "#core/index.js";
-import { copyForChange, type FormMerger } from "#form/main.js";
+import type { FormMerger } from "#form/main.js";
 import { unique as uniqueItems } from "#lib/array.js";
 import {
   ARRAYS_OF_SUB_SCHEMAS,
@@ -176,13 +176,12 @@ export function createMerger(): Merger {
 export type FormMergerOptions = Experimental_DefaultFormStateBehavior & {
   validator: Validator;
   schema: Schema;
-  comparator: Comparator;
+  valueHandler: ValueHandler;
 };
 
 export function createFormMerger(options: FormMergerOptions): FormMerger {
   const formMerger: FormMerger = {
     ...createMerger(),
-    copyForChange,
     mergeFormDataAndSchemaDefaults({
       formData,
       schema,
@@ -193,7 +192,7 @@ export function createFormMerger(options: FormMergerOptions): FormMerger {
         createCoreContext({
           validator: options.validator,
           merger: formMerger,
-          comparator: options.comparator,
+          valueHandler: options.valueHandler,
           rootSchema: options.schema,
         }),
         schema,

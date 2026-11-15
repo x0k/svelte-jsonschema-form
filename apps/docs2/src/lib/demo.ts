@@ -12,8 +12,8 @@ import type {
   Theme,
   Translation,
   ValidatorFactoryOptions,
+  FormValueHandler,
 } from "@sjsf/form";
-import type { Comparator } from "@sjsf/form/core";
 import type {
   AbstractPackage,
   ExtraFieldFileName,
@@ -30,7 +30,7 @@ interface Defaults {
   idBuilder: Creatable<FormIdBuilder, IdBuilderFactoryOptions>;
   validator: <T>(options: ValidatorFactoryOptions) => FormValidator<T>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
-  comparator: Comparator;
+  valueHandler: FormValueHandler;
   translation: Translation;
   icons: Icons | undefined;
   extraUiOptions: ExtraUiOptions;

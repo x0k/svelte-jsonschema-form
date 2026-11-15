@@ -1,6 +1,6 @@
 export { translation } from "@sjsf/form/translations/en";
 export { resolver } from "@sjsf/form/resolvers/basic";
-export { defaultComparator as comparator } from "@sjsf/form/comparators/default";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 import "@sjsf/form/fields/extra/enum-include";
 import "@sjsf/form/fields/extra/multi-enum-include";
 import "@sjsf/form/templates/extra/optional-object-include";

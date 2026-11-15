@@ -5,16 +5,12 @@ import {
   createMerger,
   createTestContext,
   createValidator,
-  testComparator,
+  testValueHandler,
 } from "#core/testing.js";
 
 import type { FieldPath } from "../id.js";
 import { internalRegisterFieldPath } from "../internals.js";
-import {
-  copyForChange,
-  type FormMerger,
-  type FormValueChange,
-} from "../merger.js";
+import { type FormMerger, type FormValueChange } from "../merger.js";
 import type { FieldValue, RegisteredPathTrieRef } from "../model.js";
 import type { FormState } from "../state/index.js";
 import { StaleDefaultsPass } from "./pass.js";
@@ -30,7 +26,6 @@ function change(path: FieldPath, oldValue: FieldValue): FormValueChange {
 function testForm(merger: Merger, rootSchema: Schema): FormState<unknown> {
   const formMerger: FormMerger = {
     ...merger,
-    copyForChange,
     mergeFormDataAndSchemaDefaults({
       schema,
       formData,
@@ -54,7 +49,7 @@ function testForm(merger: Merger, rootSchema: Schema): FormState<unknown> {
   return createTestContext({
     validator: createValidator(),
     merger: formMerger,
-    comparator: testComparator,
+    valueHandler: testValueHandler,
     rootSchema,
   }) as unknown as FormState<unknown>;
 }

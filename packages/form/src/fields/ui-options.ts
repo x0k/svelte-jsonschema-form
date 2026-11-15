@@ -1,4 +1,4 @@
-import type { Comparator } from "#core/index.js";
+import type { ValueHandler } from "#core/index.js";
 import type { SchemaValue } from "#form/index.js";
 import type { EnumValueMapperBuilder } from "#options.svelte.js";
 
@@ -19,9 +19,11 @@ declare module "../form/index.js" {
     /**
      * Overrides the enumeration value mapper (required for non-primitive options or
      * enum values that are not string-unique)
-     * @default (comparator) => new StringEnumValueMapperBuilder(comparator)
+     * @default (valueHandler) => new StringEnumValueMapperBuilder(valueHandler)
      */
-    enumValueMapperBuilder?: (comparator: Comparator) => EnumValueMapperBuilder;
+    enumValueMapperBuilder?: (
+      valueHandler: ValueHandler
+    ) => EnumValueMapperBuilder;
     /**
      * Determines whether the current field can be cleared (e.g., the empty option in the select widget)
      */

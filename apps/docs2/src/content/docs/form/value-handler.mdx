@@ -1,0 +1,145 @@
+---
+title: Value handler
+sidebar:
+  order: 65
+---
+
+import { LinkCard } from "@astrojs/starlight/components";
+
+import { withBase } from "@/lib/base-path";
+
+The value handler decides whether two form values are equal and copies a value
+before an in-place update. The form uses the comparison for change detection,
+stale-default cleanup, value reconciliation, and enum mapping. It uses the copy
+to snapshot the replaced value, so later writes cannot alter it. Schema merging
+does not use the service.
+
+## API
+
+```typescript
+export type ValueDeepComparator = (
+  a: SchemaValue | undefined,
+  b: SchemaValue | undefined
+) => boolean;
+
+export interface ValueHandler {
+  isValueDeepEqual: ValueDeepComparator;
+}
+
+export interface FormValueHandler extends ValueHandler {
+  copyForChange(value: FieldValue): FieldValue;
+}
+
+export interface FormValueHandlerOptions {
+  schema: Schema;
+  uiSchema: UiSchemaRoot;
+  uiOptionsRegistry: UiOptionsRegistry;
+}
+```
+
+`ValueHandler` is the core interface: it only compares. `FormValueHandler`
+extends it with the copy the form needs to snapshot a replaced value. A
+`FormValueHandler` is assignable wherever a `ValueHandler` is expected, so core
+helpers, validators, and id builders keep receiving the comparison half.
+
+`valueHandler` is a required service, like `validator` and `merger`:
+
+```typescript
+import { createForm } from "@sjsf/form";
+import { defaultFormValueHandler } from "@sjsf/form/value-handlers/default";
+
+const form = createForm({
+  // ...
+  valueHandler: defaultFormValueHandler,
+});
+```
+
+`defaultFormValueHandler` compares plain records and arrays deeply and every other
+pair with strict equality, except that `NaN` equals itself. Values such as
+`File` or `Date` are therefore compared by identity unless you provide a custom
+leaf rule. It copies arrays and plain objects recursively and keeps other
+values by reference.
+
+## Custom comparison
+
+Pass a `FormValueHandler` directly:
+
+```typescript
+import { defaultFormValueHandler } from "@sjsf/form/value-handlers/default";
+
+const form = createForm({
+  // ...
+  valueHandler: {
+    ...defaultFormValueHandler,
+    isValueDeepEqual(a, b) {
+      return a instanceof Date && b instanceof Date
+        ? a.getTime() === b.getTime()
+        : defaultFormValueHandler.isValueDeepEqual(a, b);
+    },
+  },
+});
+```
+
+Or build the comparison from the shared traversal helpers.
+`createSchemaValueComparator` takes the record comparison rule and a leaf rule,
+and returns a `ValueDeepComparator`. A factory must return the whole service,
+including `copyForChange`:
+
+```typescript
+import { copyForChange, createForm } from "@sjsf/form";
+import { compareRecords, createSchemaValueComparator } from "@sjsf/form/core";
+
+const form = createForm({
+  // ...
+  valueHandler: ({ schema, uiSchema, uiOptionsRegistry }) => ({
+    isValueDeepEqual: createSchemaValueComparator(compareRecords, (a, b) =>
+      a instanceof Date && b instanceof Date
+        ? a.getTime() === b.getTime()
+        : Object.is(a, b)
+    ),
+    copyForChange,
+  }),
+});
+```
+
+Use the factory form when the comparison depends on the schema, UI schema, or
+UI options. The factory receives those values as `FormValueHandlerOptions`.
+
+## Custom copying
+
+Copy the containers your form data uses so the recorded snapshot stays
+detached. Delegate nested values to the exported `copyForChange` helper, which
+applies your copier recursively:
+
+```typescript
+import {
+  copyForChange,
+  type FieldValue,
+  type FormValueHandler,
+} from "@sjsf/form";
+import { defaultFormValueHandler } from "@sjsf/form/value-handlers/default";
+
+const valueHandler: FormValueHandler = {
+  ...defaultFormValueHandler,
+  copyForChange(value: FieldValue) {
+    if (value instanceof Map) {
+      return new Map(value) as unknown as FieldValue;
+    }
+    return copyForChange(value, (nested) => valueHandler.copyForChange(nested));
+  },
+};
+```
+
+Combine both overrides when your values need custom comparison and copying.
+
+<LinkCard
+  title="Form options"
+  href={withBase("/form/options/")}
+  description="See where the value handler is passed to createForm"
+/>
+
+<LinkCard
+  title="Form merger"
+  href={withBase("/form/merger/")}
+  description="Schema merging is a separate service"
+/>

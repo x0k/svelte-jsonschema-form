@@ -30,6 +30,7 @@ import {
   type SchemaValue,
   type SchemaType,
 } from "#core/index.js";
+import { CORE_MERGER } from "#core/internals.js";
 import { isSchemaObject } from "#lib/json-schema/index.js";
 import { getOwn, setOwn } from "#lib/object.js";
 
@@ -37,7 +38,7 @@ import { declaresValueFor } from "../declares-value.js";
 import type { FieldPath } from "../id.js";
 import type { FormValueChange } from "../merger.js";
 import type { FieldValue } from "../model.js";
-import { getDefaultFieldState, type FormState } from "../state/index.js";
+import type { FormState } from "../state/index.js";
 import { rebuildOldFormData } from "./path.js";
 
 /**
@@ -201,7 +202,7 @@ function levelDefaults<T>(
   keys: string[],
   initialDefaultsGenerated: boolean
 ): SchemaObjectValue {
-  const defaults = getDefaultFieldState(form, {
+  const defaults = form[CORE_MERGER].mergeFormDataAndSchemaDefaults({
     schema: onlyProperties(schema, properties, keys),
     formData: undefined,
     initialDefaultsGenerated,

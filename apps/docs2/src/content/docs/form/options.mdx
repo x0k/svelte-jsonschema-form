@@ -29,7 +29,7 @@ export interface IdBuilderFactoryOptions {
   uiOptionsRegistry: UiOptionsRegistry;
   validator: Validator;
   merger: FormMerger;
-  comparator: Comparator;
+  valueHandler: ValueHandler;
   valueRef: Ref<FormValue>;
 }
 
@@ -42,9 +42,9 @@ export interface ValidatorFactoryOptions {
    */
   merger: () => FormMerger;
   /**
-   * The value comparator, for validators that need a core context.
+   * The value handler, for validators that need a core context.
    */
-  comparator: Comparator;
+  valueHandler: ValueHandler;
 }
 
 export interface MergerFactoryOptions {
@@ -52,10 +52,10 @@ export interface MergerFactoryOptions {
   schema: Schema;
   uiSchema: UiSchemaRoot;
   uiOptionsRegistry: UiOptionsRegistry;
-  comparator: Comparator;
+  valueHandler: ValueHandler;
 }
 
-export interface ComparatorFactoryOptions {
+export interface FormValueHandlerOptions {
   schema: Schema;
   uiSchema: UiSchemaRoot;
   uiOptionsRegistry: UiOptionsRegistry;
@@ -72,7 +72,11 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
   idBuilder: Creatable<FormIdBuilder, IdBuilderFactoryOptions>;
   validator: Creatable<FormValidator<T>, ValidatorFactoryOptions>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
-  comparator: Creatable<Comparator, ComparatorFactoryOptions>;
+  /**
+   * Compares values for change detection and copies them before in-place
+   * updates.
+   */
+  valueHandler: Creatable<FormValueHandler, FormValueHandlerOptions>;
   /**
    * @default DEFAULT_ID_PREFIX
    */

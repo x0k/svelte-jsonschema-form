@@ -16,7 +16,7 @@ import {
   createCoreContext,
   prefixSchemaRefs,
   ROOT_SCHEMA_PREFIX,
-  type Comparator,
+  type ValueHandler,
   type Merger,
 } from "@sjsf/form/core";
 import type { MapLike } from "@sjsf/form/lib/map";
@@ -100,7 +100,7 @@ export function createValidator({
 
 export interface FormValueValidatorOptions extends ValidatorOptions {
   merger: () => Merger;
-  comparator: Comparator;
+  valueHandler: ValueHandler;
   schema: Schema;
 }
 
@@ -116,7 +116,7 @@ export function createFormValueValidator<T>(
         createCoreContext({
           validator,
           merger: options.merger(),
-          comparator: options.comparator,
+          valueHandler: options.valueHandler,
           rootSchema: options.schema,
         }),
         validate.errors,
@@ -170,7 +170,7 @@ export function createFormValidator<T>({
 }: Partial<FormValidatorOptions> & {
   schema: Schema;
   merger: () => Merger;
-  comparator: Comparator;
+  valueHandler: ValueHandler;
   factory?: ValidateFactory;
   validatorsCache?: ValidatorsCache;
 }) {

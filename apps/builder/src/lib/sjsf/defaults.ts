@@ -2,7 +2,7 @@ import type { ValidatorFactoryOptions } from "@sjsf/form";
 import { PLAYGROUND_SJSF_THEMES } from "meta/playground";
 
 export { resolver } from "@sjsf/form/resolvers/basic";
-export { defaultComparator as comparator } from "@sjsf/form/comparators/default";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 
 export const theme = PLAYGROUND_SJSF_THEMES["shadcn4"];
 

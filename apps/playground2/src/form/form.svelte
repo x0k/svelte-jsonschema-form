@@ -22,7 +22,6 @@
     type FormMerger,
     validate,
   } from "@sjsf/form";
-  import { defaultComparator } from "@sjsf/form/comparators/default";
   import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
   import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
   import { createDeduplicator, createIntersector } from "@sjsf/form/lib/array";
@@ -40,6 +39,7 @@
   } from "@sjsf/form/options.svelte";
   import { translation } from "@sjsf/form/translations/en";
   import { withOmitExtraData } from "@sjsf/form/validators/omit-extra-data";
+  import { defaultFormValueHandler } from "@sjsf/form/value-handlers/default";
   import { Willow, WillowDark } from "@svar-ui/svelte-core";
   import { BitsConfig } from "bits-ui";
   import { themeOrSubThemeTitle } from "meta";
@@ -231,6 +231,7 @@
 
   const validatorState = createValidatorState(data, {
     merger: () => merger,
+    valueHandler: defaultFormValueHandler,
     get uiSchema() {
       return uiSchemaQuery.value;
     },
@@ -240,7 +241,7 @@
     createFormMerger({
       schema: validatorState.schema,
       validator: validatorState.validator,
-      comparator: defaultComparator,
+      valueHandler: defaultFormValueHandler,
       jsonSchemaMerger,
       allOf: data.allOf,
       arrayMinItems: {
@@ -269,7 +270,7 @@
   );
   const form = createForm({
     translation,
-    comparator: defaultComparator,
+    valueHandler: defaultFormValueHandler,
     idBuilder: createFormIdBuilder,
     get resolver() {
       return PLAYGROUND_RESOLVERS[data.resolver];
@@ -330,10 +331,10 @@
       skeleton5DateRangePickerPortal: portalOptions,
     }),
     uiOptionsRegistry: {
-      stringEnumValueMapper: (comparator) =>
-        new StringEnumValueMapperBuilder(comparator),
-      idEnumValueMapper: (comparator) =>
-        new IdEnumValueMapperBuilder(comparator),
+      stringEnumValueMapper: (valueHandler) =>
+        new StringEnumValueMapperBuilder(valueHandler),
+      idEnumValueMapper: (valueHandler) =>
+        new IdEnumValueMapperBuilder(valueHandler),
     },
   });
   setFormContext(form);

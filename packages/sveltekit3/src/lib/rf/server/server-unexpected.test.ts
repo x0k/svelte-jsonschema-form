@@ -1,7 +1,7 @@
 import { createFormValidator } from "@sjsf/ajv8-validator";
 import type { Schema } from "@sjsf/form";
-import { defaultComparator } from "@sjsf/form/comparators/default";
 import { createFormMerger } from "@sjsf/form/mergers/modern";
+import { defaultFormValueHandler } from "@sjsf/form/value-handlers/default";
 import { describe, expect, it, vi } from "vitest";
 
 vi.mock("$app/server", () => ({
@@ -27,7 +27,7 @@ describe("createServerValidator without a request", () => {
       schema: schema as Schema,
       validator: createFormValidator,
       merger: createFormMerger,
-      comparator: defaultComparator,
+      valueHandler: defaultFormValueHandler,
     });
     const result = await v.validate({ firstName: "John" });
     expect(result.issues).toBeDefined();

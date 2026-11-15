@@ -1,5 +1,5 @@
 export { resolver } from "@sjsf/form/resolvers/basic";
-export { defaultComparator as comparator } from "@sjsf/form/comparators/default";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 
 export { theme } from "@sjsf-lab/svar-theme";
 

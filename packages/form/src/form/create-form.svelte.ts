@@ -10,7 +10,7 @@ import {
   retrieveSchema,
   sanitizeDataForNewSchema,
   schemaHasNestedConditional,
-  type Comparator,
+  type ValueHandler,
   type Schema,
   type Validator,
 } from "#core/index.js";
@@ -18,7 +18,7 @@ import {
   CORE_ROOT_SCHEMA,
   CORE_VALIDATOR,
   CORE_MERGER,
-  CORE_COMPARATOR,
+  CORE_VALUE_HANDLER,
 } from "#core/internals.js";
 import { createDataURLtoBlob } from "#lib/file.js";
 import { weakMemoize } from "#lib/memoize.js";
@@ -116,6 +116,7 @@ import {
   type ValidationResult,
   type FormValidator,
 } from "./validator.js";
+import type { FormValueHandler } from "./value-handler.js";
 import { createFormValueStore } from "./value-store.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
@@ -154,7 +155,7 @@ export interface IdBuilderFactoryOptions {
   uiOptionsRegistry: UiOptionsRegistry;
   validator: Validator;
   merger: FormMerger;
-  comparator: Comparator;
+  valueHandler: ValueHandler;
   valueRef: FormValueRef;
 }
 
@@ -167,9 +168,9 @@ export interface ValidatorFactoryOptions {
    */
   merger: () => FormMerger;
   /**
-   * The value comparator, for validators that need a core context.
+   * The value handler, for validators that need a core context.
    */
-  comparator: Comparator;
+  valueHandler: ValueHandler;
 }
 
 export interface MergerFactoryOptions {
@@ -177,10 +178,10 @@ export interface MergerFactoryOptions {
   schema: Schema;
   uiSchema: UiSchemaRoot;
   uiOptionsRegistry: UiOptionsRegistry;
-  comparator: Comparator;
+  valueHandler: ValueHandler;
 }
 
-export interface ComparatorFactoryOptions {
+export interface FormValueHandlerOptions {
   schema: Schema;
   uiSchema: UiSchemaRoot;
   uiOptionsRegistry: UiOptionsRegistry;
@@ -196,9 +197,10 @@ export interface FormOptions<T>
   validator: Creatable<FormValidator<T>, ValidatorFactoryOptions>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
   /**
-   * Compares form values for change detection.
+   * Compares values for change detection and copies them before in-place
+   * updates.
    */
-  comparator: Creatable<Comparator, ComparatorFactoryOptions>;
+  valueHandler: Creatable<FormValueHandler, FormValueHandlerOptions>;
   /**
    * @default DEFAULT_ID_PREFIX
    */
@@ -272,8 +274,8 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     };
   });
   const rootPath = $derived(internalRegisterFieldPath(pathsTrieRef, []));
-  const comparator = $derived(
-    create(options.comparator, {
+  const valueHandler = $derived(
+    create(options.valueHandler, {
       schema: options.schema,
       uiSchema: uiSchemaRoot,
       uiOptionsRegistry,
@@ -285,7 +287,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       uiOptionsRegistry,
       schema: options.schema,
       merger: (): FormMerger => merger,
-      comparator,
+      valueHandler,
     })
   );
   const merger = $derived(
@@ -294,7 +296,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       schema: options.schema,
       uiSchema: uiSchemaRoot,
       uiOptionsRegistry,
-      comparator,
+      valueHandler,
     })
   );
   const valueRef = $derived(
@@ -323,7 +325,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       uiOptionsRegistry,
       merger: merger,
       validator: validator,
-      comparator,
+      valueHandler,
       valueRef,
     })
   );
@@ -369,7 +371,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   const reconcileFormValue = $derived(
     createFormValueReconciler({
       keyedArraysMap: keyedArrays,
-      comparator,
+      valueHandler,
     })
   );
   const schedulerYield: SchedulerYield = $derived(
@@ -494,7 +496,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       },
     },
     keyedArrays,
-    copyForChange: (value) => merger.copyForChange(value),
+    copyForChange: (value) => valueHandler.copyForChange(value),
     onChange(change) {
       recordChange(change);
     },
@@ -517,8 +519,8 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     get [CORE_MERGER]() {
       return merger;
     },
-    get [CORE_COMPARATOR]() {
-      return comparator;
+    get [CORE_VALUE_HANDLER]() {
+      return valueHandler;
     },
     // FORM INTERNALS
     [FORM_VALUE]: valueStore,

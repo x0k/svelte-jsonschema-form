@@ -1,4 +1,4 @@
-import type { Comparator, SchemaValue } from "#core/index.js";
+import type { ValueHandler, SchemaValue } from "#core/index.js";
 import { isRecordProto, setOwn } from "#lib/object.js";
 
 import type { FieldValue, FormValueRef, KeyedArraysMap } from "./model.js";
@@ -7,18 +7,18 @@ const UNCHANGED = Symbol("unchanged");
 
 export interface FormValueReconcilerOptions {
   keyedArraysMap: KeyedArraysMap;
-  comparator: Comparator;
+  valueHandler: ValueHandler;
 }
 
 export function createFormValueReconciler({
   keyedArraysMap,
-  comparator,
+  valueHandler,
 }: FormValueReconcilerOptions) {
   function reconcile(
     target: SchemaValue | undefined,
     source: SchemaValue | undefined
   ): SchemaValue | undefined | typeof UNCHANGED {
-    if (comparator.isValueDeepEqual(target, source)) {
+    if (valueHandler.isValueDeepEqual(target, source)) {
       return UNCHANGED;
     }
     if (typeof target === "object" && typeof source === "object") {

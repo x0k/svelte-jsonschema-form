@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   getDefaultFormState,
   isOrderedSchemaDeepEqual,
-  type Comparator,
+  type ValueHandler,
   type Merger,
   type RPath,
   type Schema,
@@ -14,16 +14,12 @@ import {
   createMerger,
   createTestContext,
   createValidator,
-  testComparator,
+  testValueHandler,
 } from "#core/testing.js";
 
 import type { FieldPath } from "../id.js";
 import { internalRegisterFieldPath } from "../internals.js";
-import {
-  copyForChange,
-  type FormMerger,
-  type FormValueChange,
-} from "../merger.js";
+import { type FormMerger, type FormValueChange } from "../merger.js";
 import type { FieldValue, RegisteredPathTrieRef } from "../model.js";
 import type { FormState } from "../state/index.js";
 import { dropStaleDefaults } from "./drop.js";
@@ -55,11 +51,10 @@ function change(path: FieldPath, oldValue: FieldValue): FormValueChange {
 function testForm(
   merger: Merger,
   rootSchema: Schema,
-  comparator: Comparator = testComparator
+  valueHandler: ValueHandler = testValueHandler
 ): FormState<unknown> {
   const formMerger: FormMerger = {
     ...merger,
-    copyForChange,
     mergeFormDataAndSchemaDefaults({
       schema,
       formData,
@@ -70,7 +65,7 @@ function testForm(
         createTestContext({
           validator: testValidator,
           merger,
-          comparator,
+          valueHandler,
           rootSchema,
         }),
         schema,
@@ -84,7 +79,7 @@ function testForm(
   return createTestContext({
     validator: testValidator,
     merger: formMerger,
-    comparator,
+    valueHandler,
     rootSchema,
   }) as unknown as FormState<unknown>;
 }
@@ -558,7 +553,7 @@ describe("dropStaleDefaults", () => {
     ).toEqual({ mode: "b" });
   });
 
-  it("uses the configured value comparator", () => {
+  it("uses the configured value handler", () => {
     const oldOrderedSchema: Schema = {
       type: "object",
       properties: {

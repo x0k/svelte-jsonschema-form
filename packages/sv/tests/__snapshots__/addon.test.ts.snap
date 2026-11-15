@@ -134,6 +134,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -572,6 +573,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -767,6 +769,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -1202,6 +1205,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -1394,6 +1398,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -1829,6 +1834,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -2021,6 +2027,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -2456,6 +2463,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -2648,6 +2656,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit3";
 
@@ -3079,6 +3088,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit3";
 
@@ -3527,6 +3537,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit3";
 
@@ -3847,6 +3858,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit3";
 
@@ -4179,6 +4191,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit3/rf";
 
@@ -4614,6 +4627,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit3/rf";
 
@@ -5067,6 +5081,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit3/rf";
 
@@ -5391,6 +5406,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit3/rf";
 
@@ -5713,6 +5729,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -6144,6 +6161,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -6336,6 +6354,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -6765,6 +6784,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -6963,6 +6983,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -7412,6 +7433,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -7615,6 +7637,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -8088,6 +8111,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -8284,6 +8308,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -8718,6 +8743,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -8922,6 +8948,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -9585,6 +9612,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -9883,6 +9911,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -10528,6 +10557,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -10799,6 +10829,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -11253,6 +11284,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -11460,6 +11492,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -11917,6 +11950,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -12117,6 +12151,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -12550,6 +12585,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -12854,6 +12890,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -13395,6 +13432,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -13584,6 +13622,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -14006,6 +14045,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -14270,6 +14310,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -14782,6 +14823,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -14971,6 +15013,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -15393,6 +15436,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -15694,6 +15738,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -16243,6 +16288,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -16430,6 +16476,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -16850,6 +16897,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -17032,6 +17080,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -17454,6 +17503,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -17725,6 +17775,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -18244,6 +18295,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -18456,6 +18508,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -18906,6 +18959,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -19088,6 +19142,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -19510,6 +19565,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -19687,6 +19743,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -20104,6 +20161,7 @@ export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {
 }
 
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 

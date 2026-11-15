@@ -15,6 +15,7 @@ export * from "./errors.js";
 export * from "./validation.js";
 export * from "./validator.js";
 export * from "./merger.js";
+export * from "./value-handler.js";
 export * from "./stale-defaults/index.js";
 export * from "./id.js";
 export * from "./icons.js";
