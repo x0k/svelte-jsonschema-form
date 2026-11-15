@@ -7,12 +7,16 @@ import type {
   ValidationResult,
 } from "@sjsf/form";
 import {
+  ALL_OF_KEY,
+  ANY_OF_KEY,
   getRootSchema,
   getSchemaDefinitionByPath,
   ITEMS_KEY,
   ONE_OF_KEY,
   pathFromLocation,
   pathFromRef,
+  REF_KEY,
+  resolveRefSafe,
   type CoreContext,
   type Path,
 } from "@sjsf/form/core";
@@ -117,12 +121,12 @@ function collectCombinations(
     if (key === REF_KEY) {
       const ref = node[REF_KEY];
       if (typeof ref === "string") {
-        try {
-          node = resolveRef(ref, rootSchema);
-        } catch {
+        const resolved = resolveRefSafe(ref, rootSchema);
+        if (resolved === undefined) {
           // External references cannot be resolved here
           break;
         }
+        node = resolved;
       }
       // A `$ref` that is absent from the schema is a fragment boundary
       // inserted by the precompiled validator. The fragment has the same
@@ -269,7 +273,7 @@ export function transformFormErrors<T>(
 ): ValidationResult<T> {
   // NOTE: According to the compiled output of `schemasafe`
   // errors can be `null`
-  const filteredErrors = filterStaleErrors(rootSchema, errors);
+  const filteredErrors = filterStaleErrors(getRootSchema(ctx), errors);
   if (!filteredErrors || filteredErrors.length === 0) {
     return {
       value: data as T,

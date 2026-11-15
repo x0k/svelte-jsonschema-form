@@ -11,11 +11,7 @@ import {
   type Merger,
 } from "@sjsf/form/core";
 
-import {
-  transformFormErrors,
-  transformFieldErrors,
-  validateAndGetErrors,
-} from "../errors.js";
+import { transformFormErrors, transformFieldErrors } from "../errors.js";
 import type { ValueToJSON } from "../validator.js";
 
 export interface CompiledValidateFunction {

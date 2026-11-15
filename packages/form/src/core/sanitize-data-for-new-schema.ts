@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
+import { isSchemaObject } from "#lib/json-schema/index.js";
 import { getOwn, setOwn } from "#lib/object.js";
 
 import { isValueDeepEqual, type CoreContext } from "./context.js";
@@ -16,6 +17,7 @@ import {
   type SchemaObjectValue,
   type SchemaValue,
 } from "./schema.js";
+import { getSimpleSchemaType } from "./type.js";
 import { isSchemaObjectValue } from "./value.js";
 
 const NO_VALUE = Symbol("no Value");
@@ -83,14 +85,15 @@ function enumValuesForSchema(schema: Schema): SchemaValue[] | undefined {
 }
 
 function arrayConstRejects(
+  ctx: CoreContext,
   newSchema: Schema,
   oldSchema: Schema,
   data: SchemaValue | undefined
 ) {
   return (
     Array.isArray(newSchema.const) &&
-    !isSchemaValueDeepEqual(newSchema.const, data) &&
-    !isSchemaValueDeepEqual(oldSchema.const, newSchema.const)
+    !isValueDeepEqual(ctx, newSchema.const, data) &&
+    !isValueDeepEqual(ctx, oldSchema.const, newSchema.const)
   );
 }
 
@@ -152,23 +155,21 @@ function sanitizeArrays(
   ): SchemaValue | undefined => {
     const oldItemSchema = sameItemsSchema
       ? newItemSchema
-      : retrieveSchema(validator, merger, oldSchemaItemsRaw, rootSchema, item);
-    if (arrayConstRejects(newItemSchema, oldItemSchema, item)) {
+      : retrieveSchema(ctx, oldSchemaItemsRaw, item);
+    if (arrayConstRejects(ctx, newItemSchema, oldItemSchema, item)) {
       // An array const the old items did not declare rejects the item
       return undefined;
     }
     if (
       newItemSchema.const !== undefined &&
-      isSchemaValueDeepEqual(newItemSchema.const, item)
+      isValueDeepEqual(ctx, newItemSchema.const, item)
     ) {
       // An item equal to the items const is the only one it allows, so it is
       // kept as it is rather than sanitized into one the const rejects
       return item;
     }
     const sanitized = sanitizeDataForNewSchema(
-      validator,
-      merger,
-      rootSchema,
+      ctx,
       newItemSchema,
       // Old items declaring no type describe no array to sanitize against, so
       // an array element is read against the new items schema on both sides
@@ -201,19 +202,26 @@ function sanitizeArrays(
         // nested inside `items` picks the branch that matches this element rather than the whole array (#5250).
         // Keep the raw (pre-resolution) items schema around: it must be re-resolved per element below,
         // against that element's own value, rather than the whole array.
-        const oldItemSchema = retrieveSchema(ctx, oldSchemaItemsRaw, aValue);
-        const newItemSchema = sameItemsSchema
-          ? oldItemSchema
-          : retrieveSchema(ctx, newSchemaItemsRaw, aValue);
-        const itemValue = sanitizeDataForNewSchema(
-          ctx,
-          newItemSchema,
-          oldItemSchema,
-          aValue
-        );
-        if (
-          itemValue !== undefined &&
-          (maxItems < 0 || newValue.length < maxItems)
+        const newItemSchema = retrieveSchema(ctx, newSchemaItemsRaw, item);
+        const listedValues = enumValuesForSchema(newItemSchema);
+        // Only an array item under array items, or an object item under object items (or a value that is an
+        // object where the items' type list allows one), is a container to sanitize. Anything else the type list
+        // allows, such as a `null`, is kept as it is, as RJSF does (rjsf#5440)
+        const isContainerItem =
+          itemsType === "array"
+            ? Array.isArray(item)
+            : newSchemaType === "object" || isSchemaObjectValue(item);
+        let itemValue: SchemaValue | undefined = item;
+        if (listedValues !== undefined) {
+          // An item the options list is one of them as a whole, so it is kept
+          // as it is, and one they don't list is dropped, as a scalar item is,
+          // whatever the old schema listed
+          itemValue = listedValues.some((v) => isValueDeepEqual(ctx, v, item))
+            ? item
+            : undefined;
+        } else if (
+          isContainerItem &&
+          (itemsType === "array" || newItemSchema.properties !== undefined)
         ) {
           itemValue = sanitizeContainerItem(
             newItemSchema,

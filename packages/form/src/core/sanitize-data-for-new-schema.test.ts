@@ -1289,9 +1289,9 @@ describe("sanitizeDataForNewSchema", () => {
     const schema: Schema = { type: "array", items: { type: "object" } };
     expect(
       sanitizeDataForNewSchema(
-        testValidator,
-        defaultMerger,
-        {},
+        createTestContext({
+          rootSchema: {},
+        }),
         schema,
         schema,
         [{ k: 1 }, "x"]
@@ -1314,24 +1314,29 @@ describe("sanitizeDataForNewSchema", () => {
     const schema: Schema = { type: "object", properties: { rows } };
     const formData = { rows: [{ name: "a", tags: [{ k: 1 }] }] };
     const condition: Schema = { properties: { name: { const: "x" } } };
-    testValidator = createValidator({
+    const testValidator = createValidator({
       cases: [
         { schema: condition, value: formData.rows, result: false },
         { schema: condition, value: formData.rows[0]!, result: false },
       ],
     });
+    const defaultMerger = createMerger();
     const retrieved = retrieveSchema(
-      testValidator,
-      defaultMerger,
-      schema,
+      createTestContext({
+        validator: testValidator,
+        merger: defaultMerger,
+        rootSchema: schema,
+      }),
       schema,
       formData
     );
     expect(
       sanitizeDataForNewSchema(
-        testValidator,
-        defaultMerger,
-        schema,
+        createTestContext({
+          validator: testValidator,
+          merger: defaultMerger,
+          rootSchema: schema,
+        }),
         retrieved,
         retrieved,
         formData
@@ -1352,9 +1357,9 @@ describe("sanitizeDataForNewSchema", () => {
     };
     expect(
       sanitizeDataForNewSchema(
-        testValidator,
-        defaultMerger,
-        {},
+        createTestContext({
+          rootSchema: {},
+        }),
         schema,
         schema,
         [{ id: "a" }, { id: "c" }]
@@ -1375,9 +1380,9 @@ describe("sanitizeDataForNewSchema", () => {
     };
     expect(
       sanitizeDataForNewSchema(
-        testValidator,
-        defaultMerger,
-        {},
+        createTestContext({
+          rootSchema: {},
+        }),
         schema,
         schema,
         [{ k: "a" }]
@@ -1399,9 +1404,9 @@ describe("sanitizeDataForNewSchema", () => {
     const schema: Schema = { type: "array", items };
     expect(
       sanitizeDataForNewSchema(
-        testValidator,
-        defaultMerger,
-        {},
+        createTestContext({
+          rootSchema: {},
+        }),
         schema,
         schema,
         [[{ k: "a" }]]
@@ -1421,9 +1426,9 @@ describe("sanitizeDataForNewSchema", () => {
     const data = [["x"], ["c"]];
     expect(
       sanitizeDataForNewSchema(
-        testValidator,
-        defaultMerger,
-        {},
+        createTestContext({
+          rootSchema: {},
+        }),
         newSchema,
         oldSchema,
         data
@@ -1431,9 +1436,9 @@ describe("sanitizeDataForNewSchema", () => {
     ).toEqual([["x"]]);
     expect(
       sanitizeDataForNewSchema(
-        testValidator,
-        defaultMerger,
-        {},
+        createTestContext({
+          rootSchema: {},
+        }),
         newSchema,
         newSchema,
         data
@@ -1447,9 +1452,9 @@ describe("sanitizeDataForNewSchema", () => {
     };
     expect(
       sanitizeDataForNewSchema(
-        testValidator,
-        defaultMerger,
-        {},
+        createTestContext({
+          rootSchema: {},
+        }),
         newSchema,
         { type: "array", items: {} },
         [["x"], ["c"]]
@@ -1470,9 +1475,9 @@ describe("sanitizeDataForNewSchema", () => {
     const newSchema: Schema = { type: "array", items: items("a") };
     expect(
       sanitizeDataForNewSchema(
-        testValidator,
-        defaultMerger,
-        {},
+        createTestContext({
+          rootSchema: {},
+        }),
         newSchema,
         oldSchema,
         [[{ a: "1", b: "2" }], "x"]
@@ -1480,9 +1485,9 @@ describe("sanitizeDataForNewSchema", () => {
     ).toEqual([[{ a: "1" }], "x"]);
     expect(
       sanitizeDataForNewSchema(
-        testValidator,
-        defaultMerger,
-        {},
+        createTestContext({
+          rootSchema: {},
+        }),
         { type: "object", properties: { list: items("a") } },
         { type: "object", properties: { list: items("a", "b") } },
         { list: [{ a: "1", b: "2" }] }
@@ -1496,9 +1501,9 @@ describe("sanitizeDataForNewSchema", () => {
     };
     expect(
       sanitizeDataForNewSchema(
-        testValidator,
-        defaultMerger,
-        {},
+        createTestContext({
+          rootSchema: {},
+        }),
         schema,
         schema,
         [["a"], ["c"]]
@@ -1512,9 +1517,9 @@ describe("sanitizeDataForNewSchema", () => {
     };
     expect(
       sanitizeDataForNewSchema(
-        testValidator,
-        defaultMerger,
-        {},
+        createTestContext({
+          rootSchema: {},
+        }),
         schema,
         schema,
         [["a"], "junk"]
@@ -1531,9 +1536,9 @@ describe("sanitizeDataForNewSchema", () => {
     };
     expect(
       sanitizeDataForNewSchema(
-        testValidator,
-        defaultMerger,
-        {},
+        createTestContext({
+          rootSchema: {},
+        }),
         schema,
         schema,
         [["a"], "junk"]
@@ -1557,9 +1562,9 @@ describe("sanitizeDataForNewSchema", () => {
     ]) {
       expect(
         sanitizeDataForNewSchema(
-          testValidator,
-          defaultMerger,
-          {},
+          createTestContext({
+            rootSchema: {},
+          }),
           { type: "array", items: newItems },
           oldSchema,
           [["1"]]
@@ -1574,9 +1579,9 @@ describe("sanitizeDataForNewSchema", () => {
     };
     expect(
       sanitizeDataForNewSchema(
-        testValidator,
-        defaultMerger,
-        {},
+        createTestContext({
+          rootSchema: {},
+        }),
         {
           type: "array",
           items: { type: "array", items: { type: ["string", "null"] } },
@@ -1595,14 +1600,14 @@ describe("sanitizeDataForNewSchema", () => {
     const schema: Schema = { type: "array", items };
     // The whole array and its `['a']` meet the `if`, and the `null` does not,
     // so no options apply to it. SJSF checks `null` as `{}` for a condition.
-    testValidator = createValidator({
+    const testValidator = createValidator({
       cases: [
         { schema: { type: "array" }, value: [["a"], null], result: true },
         { schema: { type: "array" }, value: ["a"], result: true },
         { schema: { type: "array" }, value: {}, result: false },
       ],
     });
-    defaultMerger = createMerger({
+    const defaultMerger = createMerger({
       merges: [
         {
           left: { type: ["array", "null"] },
@@ -1616,9 +1621,11 @@ describe("sanitizeDataForNewSchema", () => {
     });
     expect(
       sanitizeDataForNewSchema(
-        testValidator,
-        defaultMerger,
-        {},
+        createTestContext({
+          validator: testValidator,
+          merger: defaultMerger,
+          rootSchema: {},
+        }),
         schema,
         schema,
         [["a"], null]
@@ -1639,9 +1646,9 @@ describe("sanitizeDataForNewSchema", () => {
     };
     expect(
       sanitizeDataForNewSchema(
-        testValidator,
-        defaultMerger,
-        {},
+        createTestContext({
+          rootSchema: {},
+        }),
         schema,
         schema,
         [{ id: "a" }, { id: "c" }]
@@ -1655,9 +1662,9 @@ describe("sanitizeDataForNewSchema", () => {
     };
     expect(
       sanitizeDataForNewSchema(
-        testValidator,
-        defaultMerger,
-        {},
+        createTestContext({
+          rootSchema: {},
+        }),
         schema,
         schema,
         [{ id: "a" }, { id: "c" }]
@@ -1671,9 +1678,9 @@ describe("sanitizeDataForNewSchema", () => {
     };
     expect(
       sanitizeDataForNewSchema(
-        testValidator,
-        defaultMerger,
-        {},
+        createTestContext({
+          rootSchema: {},
+        }),
         schema,
         schema,
         ["a", "c"]
@@ -1694,9 +1701,9 @@ describe("sanitizeDataForNewSchema", () => {
     };
     expect(
       sanitizeDataForNewSchema(
-        testValidator,
-        defaultMerger,
-        {},
+        createTestContext({
+          rootSchema: {},
+        }),
         schema,
         schema,
         [{ id: "a" }, { id: "c" }]
@@ -1711,9 +1718,9 @@ describe("sanitizeDataForNewSchema", () => {
     };
     expect(
       sanitizeDataForNewSchema(
-        testValidator,
-        defaultMerger,
-        {},
+        createTestContext({
+          rootSchema: {},
+        }),
         schema,
         schema,
         [["a"], ["b"]]
@@ -1727,9 +1734,9 @@ describe("sanitizeDataForNewSchema", () => {
     };
     expect(
       sanitizeDataForNewSchema(
-        testValidator,
-        defaultMerger,
-        {},
+        createTestContext({
+          rootSchema: {},
+        }),
         schema,
         schema,
         [undefined, { k: "a" }]
@@ -1743,9 +1750,9 @@ describe("sanitizeDataForNewSchema", () => {
     };
     expect(
       sanitizeDataForNewSchema(
-        testValidator,
-        defaultMerger,
-        {},
+        createTestContext({
+          rootSchema: {},
+        }),
         newSchema,
         { type: "array", items: {} },
         [["a"], ["b", 1]]

@@ -15,6 +15,7 @@ import {
   fromValidators,
   insertSubSchemaIds,
 } from "@sjsf/form/validators/precompile";
+import { defaultFormValueHandler } from "@sjsf/form/value-handlers/default";
 import { importModule } from "validator-testing";
 import { beforeAll, describe, expect, it } from "vitest";
 
@@ -161,14 +162,25 @@ async function createPrecompiledValidator(schema: Schema) {
   const validateFunctions = await importModule<ValidateFunctions>(code);
   return createFormValidatorFactory({
     validatorRetriever: fromValidators(validateFunctions),
-  })({ merger: () => createMerger() });
+  })({
+    schema: patch.schema,
+    merger: () => createMerger(),
+    valueHandler: defaultFormValueHandler,
+  });
 }
 
 function createValidators(schema: Schema) {
+  const patchedSchema = insertSubSchemaIds(schema, {
+    fieldsValidationMode,
+  }).schema;
   return {
     regular: {
-      schema,
-      validator: createFormValidator({ merger: () => createMerger() }),
+      schema: patchedSchema,
+      validator: createFormValidator({
+        schema: patchedSchema,
+        merger: () => createMerger(),
+        valueHandler: defaultFormValueHandler,
+      }),
     },
     precompiled: createPrecompiledValidator(schema).then((validator) => ({
       schema: insertSubSchemaIds(schema, { fieldsValidationMode }).schema,
@@ -208,8 +220,8 @@ describe("stale anyOf/oneOf errors", () => {
   it.each(["regular", "precompiled"] as const)(
     "Should ignore leaked errors when validation succeeds (%s)",
     (name) => {
-      const { schema, validator } = validators[name];
-      const result = validator.validateFormValue(schema, {
+      const { validator } = validators[name];
+      const result = validator.validateFormValue({
         missing: true,
         single: { choice: "one" },
         any: { choice: "two" },
@@ -222,8 +234,8 @@ describe("stale anyOf/oneOf errors", () => {
   it.each(["regular", "precompiled"] as const)(
     "Should keep unrelated errors and drop successful branch errors (%s)",
     (name) => {
-      const { schema, validator } = validators[name];
-      const result = validator.validateFormValue(schema, {
+      const { validator } = validators[name];
+      const result = validator.validateFormValue({
         single: { choice: "one" },
         any: { choice: "two" },
         nested: "two",
@@ -237,8 +249,8 @@ describe("stale anyOf/oneOf errors", () => {
   it.each(["regular", "precompiled"] as const)(
     "Should keep branch errors when the combination fails (%s)",
     (name) => {
-      const { schema, validator } = validators[name];
-      const result = validator.validateFormValue(schema, {
+      const { validator } = validators[name];
+      const result = validator.validateFormValue({
         single: { choice: "bad" },
         any: { choice: "bad" },
         nested: "bad",
@@ -304,8 +316,8 @@ describe("repeated combinations", () => {
   it.each(["regular", "precompiled"] as const)(
     "Should not keep errors from a matching item when another item fails (%s)",
     (name) => {
-      const { schema, validator } = validators[name];
-      const result = validator.validateFormValue(schema, {
+      const { validator } = validators[name];
+      const result = validator.validateFormValue({
         items: [{ value: 3 }, { value: 2 }],
       });
       const errors = getErrors(result);
@@ -328,10 +340,14 @@ describe("repeated combinations", () => {
 
 describe("field value errors", () => {
   it("Should drop errors from a successful branch", () => {
-    const validator = createFormValidator({ merger: () => createMerger() });
     const schema: Schema = {
       oneOf: [{ const: 1 }, { const: 2 }],
     };
+    const validator = createFormValidator({
+      schema,
+      merger: () => createMerger(),
+      valueHandler: defaultFormValueHandler,
+    });
     const errors = validator.validateFieldValue(
       {
         path: [] as unknown as Config["path"],
@@ -339,6 +355,7 @@ describe("field value errors", () => {
         schema,
         uiSchema: {},
         required: true,
+        value: () => undefined,
       } satisfies Config,
       1
     );
@@ -348,11 +365,13 @@ describe("field value errors", () => {
 
 describe("discriminator errors", () => {
   it("Should keep errors from the selected branch", () => {
-    const validator = createFormValidator({ merger: () => createMerger() });
+    const validator = createFormValidator({
+      schema: discriminatorSchema,
+      merger: () => createMerger(),
+      valueHandler: defaultFormValueHandler,
+    });
     const value: FormValue = { pet: { kind: "cat" } };
-    const errors = getErrors(
-      validator.validateFormValue(discriminatorSchema, value)
-    );
+    const errors = getErrors(validator.validateFormValue(value));
     expect(errors).toContainEqual({
       path: ["pet", "meows"],
       message: "required (kind,meows)",
@@ -383,8 +402,8 @@ describe("tuple combinations", () => {
   it.each(["regular", "precompiled"] as const)(
     "Should drop errors from a successful tuple item combination (%s)",
     (name) => {
-      const { schema, validator } = validators[name];
-      const result = validator.validateFormValue(schema, {
+      const { validator } = validators[name];
+      const result = validator.validateFormValue({
         tuple: [2, "a"],
       });
       expect(getErrors(result).map((error) => error.path)).toEqual([
@@ -417,8 +436,8 @@ describe("nested combinations", () => {
   it.each(["regular", "precompiled"] as const)(
     "Should drop stale errors from a successful nested combination (%s)",
     (name) => {
-      const { schema, validator } = validators[name];
-      const result = validator.validateFormValue(schema, { outer: 2 });
+      const { validator } = validators[name];
+      const result = validator.validateFormValue({ outer: 2 });
       const errors = getErrors(result);
       expect(
         errors.filter((error) => error.path[0] === "missing")

@@ -718,7 +718,6 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
         options.schema,
         formData
       );
-
       if (
         !hasNewRefill &&
         !hasNestedConditionalSchema &&
@@ -729,12 +728,23 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
 
       values.push(formData);
       const dataBeforeSanitize = formData;
-      formData = sanitizeDataForNewSchema(
+      const sanitizedFormData = sanitizeDataForNewSchema(
         formState,
         nextRetrievedSchema,
         currentRetrievedSchema,
         formData
       );
+      // An unchanged retrieved schema that still needs a best-effort pass (a
+      // conditional nested below it) gives `sanitizeDataForNewSchema()` nothing
+      // it can describe when the schema is a combination wrapper with no
+      // `properties` of its own. Keep the value rather than treating the
+      // "nothing to sanitize" result as a request to clear it.
+      if (
+        sanitizedFormData !== undefined ||
+        !isSchemaDeepEqual(currentRetrievedSchema, nextRetrievedSchema)
+      ) {
+        formData = sanitizedFormData;
+      }
       if (staleDefaultsPass) {
         formData = staleDefaultsPass.afterSanitize(
           formData,
@@ -748,7 +758,6 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     if (staleDefaultsPass) {
       formData = staleDefaultsPass.restoreUnfilled(formData);
     }
-
     reconcileFormValue(valueRef, formData);
   }
 

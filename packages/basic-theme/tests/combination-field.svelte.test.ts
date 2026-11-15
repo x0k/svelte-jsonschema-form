@@ -51,6 +51,7 @@ import {
   swappedCfgDefaultsSchema,
   swappedNestedDefaultsSchema,
   swappedParentDefaultsSchema,
+  typelessGridRowsOneOfSchema,
 } from "./test-data/combination-defaults.js";
 
 const mergerWithRequiredOnlyArrays = (options: FormMergerOptions) =>

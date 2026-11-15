@@ -394,10 +394,7 @@ export function createObjectContext<T>({
         delete obj[oldProp];
         return obj;
       });
-      if (oldProp !== lastRenamedProperty.currentKey) {
-        lastRenamedProperty.previousKey = oldProp;
-      }
-      lastRenamedProperty.currentKey = newKey;
+      renamedKeys = withRenamedKey(renamedKeys, oldProp, newKey, heldKeys);
       onChange(val);
     },
     keyInputSchemas() {
