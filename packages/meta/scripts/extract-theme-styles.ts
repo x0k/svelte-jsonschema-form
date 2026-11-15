@@ -1,3 +1,9 @@
+// Generates playground theme CSS from the built theme packages.
+//
+// Svelte scope hashes in the theme CSS are computed from the component name
+// and styles (see `scripts/css-hash.js`), so the output does not depend on the
+// install location or resolved dependency versions. Commit the regenerated
+// file whenever the extracted CSS changes.
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";

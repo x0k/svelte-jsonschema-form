@@ -7,6 +7,8 @@ import { playwright } from "@vitest/browser-playwright";
 import { defaultExclude } from "vitest/config";
 import { defineConfig } from "vitest/config";
 
+import { cssHash } from "../../scripts/css-hash.js";
+
 const vrtPattern = "**/*.vrt.test.[tj]s?(x)";
 const VIRTUAL_MODULE_PREFIX = "virtual-module:";
 
@@ -17,6 +19,7 @@ export default defineConfig({
       adapter: adapter({
         strict: false,
       }),
+      compilerOptions: { cssHash },
     }),
   ],
   optimizeDeps: {
