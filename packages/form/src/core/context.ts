@@ -6,7 +6,12 @@ import {
   CORE_VALIDATOR,
 } from "./internals.js";
 import type { Merger } from "./merger.js";
-import type { Schema, SchemaDefinition, SchemaValue } from "./schema.js";
+import type {
+  Schema,
+  SchemaDefinition,
+  ReadonlySchemaValue,
+  SchemaValue,
+} from "./schema.js";
 import type { Validator } from "./validator.js";
 
 /**
@@ -50,7 +55,7 @@ export function getRootSchema(ctx: CoreContext): Schema {
 export function isValid(
   ctx: CoreContext,
   schema: SchemaDefinition,
-  formData: SchemaValue | undefined
+  formData: ReadonlySchemaValue | undefined
 ): boolean {
   return ctx[CORE_VALIDATOR].isValid(schema, formData);
 }

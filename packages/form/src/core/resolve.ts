@@ -27,10 +27,10 @@ import {
   PROPERTIES_KEY,
   REF_FLAG,
   REF_KEY,
+  type ReadonlySchemaObjectValue,
+  type ReadonlySchemaValue,
   type Schema,
   type SchemaDefinition,
-  type SchemaObjectValue,
-  type SchemaValue,
   type SchemaWithProperties,
 } from "./schema.js";
 import { typeOfValue } from "./type.js";
@@ -61,7 +61,7 @@ export function createConditionSchema(
 export function retrieveSchema(
   ctx: CoreContext,
   schema: Schema,
-  formData?: SchemaValue,
+  formData?: ReadonlySchemaValue,
   resolveAnyOfOrOneOfRefs = false
 ): Schema {
   return retrieveSchemaInternal(
@@ -225,7 +225,7 @@ export function resolveReference(
   ctx: CoreContext,
   schema: Schema,
   stack: Set<string>,
-  formData?: SchemaValue,
+  formData?: ReadonlySchemaValue,
   resolveAnyOfOrOneOfRefs?: boolean,
   preserveDependencies = false,
   passCount = 0
@@ -265,7 +265,7 @@ export function resolveReference(
 export function retrieveSchemaInternal(
   ctx: CoreContext,
   schema: Schema,
-  formData?: SchemaValue,
+  formData?: ReadonlySchemaValue,
   stack = new Set<string>(),
   resolveAnyOfOrOneOfRefs?: boolean,
   preserveDependencies = false,
@@ -352,7 +352,7 @@ export function resolveCondition(
   ctx: CoreContext,
   schema: Schema,
   stack: Set<string>,
-  formData?: SchemaValue,
+  formData?: ReadonlySchemaValue,
   preserveDependencies = false,
   passCount = 0
 ): Schema[] {
@@ -407,7 +407,7 @@ export function resolveCondition(
 export function stubExistingAdditionalProperties(
   ctx: CoreContext,
   schema: SchemaWithProperties,
-  formData: SchemaObjectValue | undefined
+  formData: ReadonlySchemaObjectValue | undefined
 ): Schema {
   const { additionalProperties, patternProperties } = schema;
   const isAdditionalProperties =
@@ -486,7 +486,7 @@ export function resolveSchema(
   ctx: CoreContext,
   schema: Schema,
   stack: Set<string>,
-  formData?: SchemaValue,
+  formData?: ReadonlySchemaValue,
   resolveAnyOfOrOneOfRefs?: boolean,
   preserveDependencies = false,
   passCount = 0
@@ -551,7 +551,7 @@ export function resolveDependencies(
   ctx: CoreContext,
   schema: Schema,
   stack: Set<string>,
-  formData?: SchemaValue,
+  formData?: ReadonlySchemaValue,
   passCount = 0
 ): Schema[] {
   const { dependencies, ...remainingSchema } = schema;
@@ -575,7 +575,7 @@ export function resolveDependencies(
 export function resolveAnyOrOneOfSchemas(
   ctx: CoreContext,
   schema: Schema,
-  rawFormData?: SchemaValue
+  rawFormData?: ReadonlySchemaValue
 ) {
   let anyOrOneOf: Schema[] | undefined;
   const { oneOf, anyOf, ...remaining } = schema;
@@ -612,7 +612,7 @@ export function processDependencies(
   dependencies: Schema[typeof DEPENDENCIES_KEY],
   resolvedSchema: Schema,
   stack: Set<string>,
-  formData?: SchemaValue,
+  formData?: ReadonlySchemaValue,
   passCount = 0
 ): Schema[] {
   let schemas = [resolvedSchema];
@@ -669,7 +669,7 @@ export function withDependentSchema(
   dependencyKey: string,
   dependencyValue: Schema,
   stack: Set<string>,
-  formData?: SchemaValue,
+  formData?: ReadonlySchemaValue,
   passCount = 0
 ): Schema[] {
   const dependentSchemas = retrieveSchemaInternal(
@@ -726,7 +726,7 @@ export function withExactlyOneSubSchema(
   dependencyKey: string,
   oneOf: Exclude<Schema["oneOf"], undefined>,
   stack: Set<string>,
-  formData?: SchemaValue,
+  formData?: ReadonlySchemaValue,
   passCount = 0
 ): Schema[] {
   const validSubSchemas = oneOf.filter(

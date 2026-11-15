@@ -82,6 +82,13 @@ the validator or merger takes the context as its first argument. `resolveRef`
 reads the root schema from the context too; `resolveRefSafe` stays a low-level
 pointer helper and continues to take the root schema directly.
 
+Helpers that only read form data accept `ReadonlySchemaValue`, so a live value
+from `getValue(form)` can be passed directly to `retrieveSchema`,
+`getClosestMatchingOption`, `isValueDeepEqual`, and `isValid`. Mutable form
+values remain assignable to it. `ReadonlySchemaValue` is `DeepReadonly` over
+`SchemaValue`; class instances such as `File` are preserved rather than mapped
+into plain objects.
+
 ## Details and limitations
 
 - Library only supports local definition referencing. The value in the `$ref` keyword should be a [JSON Pointer](https://datatracker.ietf.org/doc/html/rfc6901) in URI fragment identifier format.

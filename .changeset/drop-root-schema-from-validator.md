@@ -12,6 +12,8 @@
 Remove `rootSchema` parameter from `Validator.isValid`, `FormValueValidator.validateFormValue`, and `AsyncFormValueValidator.validateFormValueAsync` methods.
 
 - `isValid(schema, rootSchema, formValue)` → `isValid(schema, formValue)`
+- `formValue` is now typed as `ReadonlySchemaValue | undefined`; validators must
+  treat it as read-only and copy it before applying any transformation.
 - `validateFormValue(rootSchema, formValue)` → `validateFormValue(formValue)`
 - `validateFormValueAsync(signal, rootSchema, formValue)` → `validateFormValueAsync(signal, formValue)`
 

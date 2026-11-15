@@ -1,5 +1,6 @@
 import { getRenderedOptionSchema as getRenderedOptionSchemaInternal } from "#core/get-rendered-option-schema.js";
 import {
+  type ReadonlySchemaValue,
   type Schema,
   type SchemaValue,
   isSelect as isSelectInternal,
@@ -42,7 +43,7 @@ export function isFilesArray<T>(ctx: FormState<T>, schema: Schema) {
 export function retrieveSchema<T>(
   ctx: FormState<T>,
   schema: Schema,
-  formData: SchemaValue | undefined,
+  formData: ReadonlySchemaValue | undefined,
   resolveAnyOfOrOneOfRefs?: boolean
 ) {
   return retrieveSchemaInternal(ctx, schema, formData, resolveAnyOfOrOneOfRefs);
@@ -65,7 +66,7 @@ export function sanitizeDataForNewSchema<T>(
  */
 export function getClosestMatchingOption<T>(
   ctx: FormState<T>,
-  formData: SchemaValue | undefined,
+  formData: ReadonlySchemaValue | undefined,
   options: Schema[],
   selectedOption: number,
   discriminatorField: string | undefined

@@ -145,6 +145,22 @@ test("DeepPartial", () => {
   expectTypeOf<DeepPartial<Record<string, { x: number }>>>().toEqualTypeOf<
     Record<string, { x?: number } | undefined>
   >();
+
+  // `SchemaValues` is augmentable, so form values may be class instances.
+  // They are kept intact instead of having their members made optional.
+  expectTypeOf<DeepPartial<File>>().toEqualTypeOf<File>();
+  expectTypeOf<DeepPartial<Date>>().toEqualTypeOf<Date>();
+
+  class CustomValue {
+    value = 1;
+    getValue() {
+      return this.value;
+    }
+  }
+  expectTypeOf<DeepPartial<CustomValue>>().toEqualTypeOf<CustomValue>();
+  expectTypeOf<DeepPartial<{ custom: CustomValue }>>().toEqualTypeOf<{
+    custom?: CustomValue;
+  }>();
 });
 
 test("DeepReadonly", () => {
@@ -212,4 +228,20 @@ test("DeepReadonly", () => {
   expectTypeOf<DeepReadonly<Record<string, { x: number }>>>().toEqualTypeOf<
     Readonly<Record<string, { readonly x: number }>>
   >();
+
+  // `SchemaValues` is augmentable, so form values may be class instances.
+  // They are kept intact instead of being mapped into plain readonly objects.
+  expectTypeOf<DeepReadonly<File>>().toEqualTypeOf<File>();
+  expectTypeOf<DeepReadonly<Date>>().toEqualTypeOf<Date>();
+
+  class CustomValue {
+    value = 1;
+    getValue() {
+      return this.value;
+    }
+  }
+  expectTypeOf<DeepReadonly<CustomValue>>().toEqualTypeOf<CustomValue>();
+  expectTypeOf<DeepReadonly<{ custom: CustomValue }>>().toEqualTypeOf<{
+    readonly custom: CustomValue;
+  }>();
 });

@@ -21,6 +21,12 @@ expected. The context operations are also available as free functions taking
 the context first: `isValid`, `mergeSchemas`, `mergeAllOf`,
 `isValueDeepEqual`, `resolveRef`, and `getRootSchema`.
 
+Helpers that only read form data accept `ReadonlySchemaValue`, an alias of
+`DeepReadonly<SchemaValue>`, so a live value from `getValue` can be passed to
+`retrieveSchema`, `getClosestMatchingOption`, `isValid`, and
+`isValueDeepEqual`. `DeepPartial` and `DeepReadonly` keep class instances such
+as `File` intact instead of mapping their members.
+
 - `omitExtraData(validator, merger, schema, value)` → `omitExtraData(ctx, value)`
 - `experimental_defaultFormStateBehavior.arrayMinItems.computeSkipPopulate`
   receives `(ctx, schema)`; use `isValid(ctx, schema, value)` inside it

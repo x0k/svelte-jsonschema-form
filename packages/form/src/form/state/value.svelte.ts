@@ -1,8 +1,8 @@
 import { untrack } from "svelte";
 
-import type { RPath } from "#core/index.js";
+import type { RPath, ReadonlySchemaValue } from "#core/index.js";
 import { CORE_ROOT_SCHEMA, CORE_MERGER } from "#core/internals.js";
-import type { DeepPartial, DeepReadonly } from "#lib/types.js";
+import type { DeepPartial } from "#lib/types.js";
 
 import { FORM_VALUE } from "../internals.js";
 import type { FieldValue, FormValue, KeyedFieldValues } from "../model.js";
@@ -180,7 +180,9 @@ export function setValue<T>(ctx: FormState<T>, value: DeepPartial<T>) {
  *
  * @query
  */
-export function getValue<T>(ctx: FormState<T>): DeepReadonly<FormValue> {
+export function getValue<T>(
+  ctx: FormState<T>
+): ReadonlySchemaValue | undefined {
   return ctx[FORM_VALUE].get();
 }
 

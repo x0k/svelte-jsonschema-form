@@ -28,7 +28,10 @@ The value commands accept an `RPath` (a plain array). Passing a registered
 `FieldPath` skips the lookup and uses it as-is.
 
 Use `getValue(form)` for a live, non-copying read of the form value. In a
-reactive context it tracks only the properties you read. Use
+reactive context it tracks only the properties you read. It is typed as
+`ReadonlySchemaValue | undefined`, as are the core helpers that only read form
+data, such as `retrieveSchema`, `getClosestMatchingOption`, `isValid`, and
+`isValueDeepEqual`. Mutable form values remain assignable. Use
 `getValueSnapshot(form)` when you need a detached copy.
 
 `getIdByPath`, `getPseudoIdByPath`, and the `ByPath` variants of the error and
@@ -67,6 +70,10 @@ passed on every call. The `rootSchema` parameter has been removed from
 `Validator.isValid`, `FormValueValidator.validateFormValue` and
 `AsyncFormValueValidator.validateFormValueAsync`.
 
+`Validator.isValid` now receives `ReadonlySchemaValue | undefined` instead of
+`SchemaValue | undefined`. Validators must treat the value as read-only and
+copy it before applying any transformation.
+
 ## Schema errors now surface at form creation
 
 Validators compile the schema eagerly when created. A schema that does not
@@ -102,6 +109,10 @@ export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handle
 extends `ValueHandler`. Custom mergers no longer implement or forward
 `isValueDeepEqual` or `copyForChange`; pass a custom `FormValueHandler` to
 `createForm` instead. See [Value handler](/form/value-handler/).
+
+`ValueDeepComparator` now takes `ReadonlySchemaValue | undefined` for both
+arguments, so it can compare values returned by `getValue`. A custom comparison
+must not mutate its arguments.
 
 ## Schema resolution internals
 
@@ -148,6 +159,20 @@ symbols. Use the `CORE_*` names from `@sjsf/form/core/internals` instead.
 root schema. A caller that omitted `rootSchema` so that a self-referencing
 subschema resolved against itself must pass that subschema as `rootSchema` when
 creating the context.
+
+## Read-only value types
+
+Read-only form values are represented by
+`ReadonlySchemaValue = DeepReadonly<SchemaValue>`. Core helpers that only read
+form data accept it, so `getValue` results can be passed directly to
+`retrieveSchema`, `getClosestMatchingOption`, `isValid`, and
+`isValueDeepEqual`.
+
+`DeepPartial` and `DeepReadonly` now leave class instances intact instead of
+mapping their members. This matters when `SchemaValues` is augmented with
+types such as `File` or `Date`: `DeepPartial<File>` is still `File`, so
+`initialValue` and `setValue` accept such values without casts. Functions are
+preserved too.
 
 ## Enum options
 

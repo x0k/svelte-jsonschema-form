@@ -7,6 +7,7 @@
   import {
     getFormContext,
     getFieldComponent,
+    getValue,
     retrieveSchema,
     retrieveUiOption,
     uiTitleOption,
@@ -17,7 +18,7 @@
   const ctx = getFormContext();
 
   const retrievedSchema = $derived(
-    retrieveSchema(ctx, getRootSchema(ctx), ctx[FORM_VALUE].get())
+    retrieveSchema(ctx, getRootSchema(ctx), getValue(ctx))
   );
 
   const config: Config = $derived(

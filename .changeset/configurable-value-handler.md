@@ -19,6 +19,8 @@ form `FormValueHandler`, instead of living on `Merger`:
   `isSchemaValueDeepEqual` and copies with `copyForChange`. `copyForChange` is
   also exported from `@sjsf/form`.
 - `createSchemaValueComparator` helpers stay in `@sjsf/form/core`.
+- `ValueDeepComparator` receives `ReadonlySchemaValue | undefined`, so it can
+  compare live values from `getValue` without a cast.
 - `enumValueMapperBuilder` receives the form state, so builders can compare
   values through `isValueDeepEqual(ctx, a, b)`; `IdEnumValueMapperBuilder` and
   `StringEnumValueMapperBuilder` take the same context.

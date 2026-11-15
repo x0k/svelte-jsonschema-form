@@ -18,6 +18,7 @@ import {
   type SchemaDefinition,
   type SchemaValue,
   type SchemaWithProperties,
+  type ReadonlySchemaValue,
 } from "./schema.js";
 import { typeOfValue } from "./type.js";
 import { isSchemaObjectValue } from "./value.js";
@@ -53,7 +54,7 @@ const memoizedAugmentSchema = weakMemoize(
 function isOptionMatching(
   ctx: CoreContext,
   option: SchemaDefinition,
-  formData: SchemaValue,
+  formData: ReadonlySchemaValue,
   discriminatorField: string | undefined,
   discriminatorFormData: SchemaValue | undefined
 ): boolean {
@@ -76,7 +77,7 @@ function isOptionMatching(
 
 export function getFirstMatchingOption(
   ctx: CoreContext,
-  formData: SchemaValue | undefined,
+  formData: ReadonlySchemaValue | undefined,
   options: SchemaDefinition[],
   discriminatorField?: string
 ): number {
@@ -116,7 +117,7 @@ export function getFirstMatchingOption(
 export function calculateIndexScore(
   ctx: CoreContext,
   schema?: SchemaDefinition,
-  formData?: SchemaValue
+  formData?: ReadonlySchemaValue
 ): number {
   let totalScore = 0;
   if (typeof schema === "boolean") {
@@ -193,7 +194,7 @@ export function calculateIndexScore(
 
 export function getClosestMatchingOption(
   ctx: CoreContext,
-  formData: SchemaValue | undefined,
+  formData: ReadonlySchemaValue | undefined,
   options: SchemaDefinition[],
   selectedOption = -1,
   discriminatorField?: string

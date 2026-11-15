@@ -18,8 +18,8 @@ does not use the service.
 
 ```typescript
 export type ValueDeepComparator = (
-  a: SchemaValue | undefined,
-  b: SchemaValue | undefined
+  a: ReadonlySchemaValue | undefined,
+  b: ReadonlySchemaValue | undefined
 ) => boolean;
 
 export interface ValueHandler {
