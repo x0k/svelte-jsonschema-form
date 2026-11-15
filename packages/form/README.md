@@ -23,6 +23,7 @@ npx sv add @sjsf
   import { createForm, BasicForm, type Schema } from "@sjsf/form";
   import { resolver } from "@sjsf/form/resolvers/basic";
   import { translation } from "@sjsf/form/translations/en";
+  import { defaultFormValueHandler } from "@sjsf/form/value-handlers/default";
   import { createFormMerger } from "@sjsf/form/mergers/modern";
   import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
   import { createFormValidator } from "@sjsf/ajv8-validator";
@@ -53,6 +54,7 @@ npx sv add @sjsf
     schema,
     resolver,
     translation,
+    valueHandler: defaultFormValueHandler,
     merger: createFormMerger,
     validator: createFormValidator,
     idBuilder: createFormIdBuilder,

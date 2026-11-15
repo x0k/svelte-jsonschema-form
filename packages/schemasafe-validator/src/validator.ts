@@ -7,14 +7,16 @@ import {
 import type {
   Config,
   FieldValueValidator,
-  FormValue,
   FormValueValidator,
+  ReadonlySchemaValue,
   Schema,
   Validator,
 } from "@sjsf/form";
 import {
+  createCoreContext,
   prefixSchemaRefs,
   ROOT_SCHEMA_PREFIX,
+  type ValueHandler,
   type Merger,
 } from "@sjsf/form/core";
 import type { MapLike } from "@sjsf/form/lib/map";
@@ -47,7 +49,7 @@ export const createDefaultValidateFactory = (
 };
 
 export interface ValueToJSON {
-  valueToJSON: (value: FormValue) => Json;
+  valueToJSON: (value: ReadonlySchemaValue | undefined) => Json;
 }
 
 export interface ValidatorOptions extends ValueToJSON {
@@ -102,6 +104,7 @@ export function createValidator({
 
 export interface FormValueValidatorOptions extends ValidatorOptions {
   merger: () => Merger;
+  valueHandler: ValueHandler;
   schema: Schema;
 }
 
@@ -114,9 +117,12 @@ export function createFormValueValidator<T>(
     validateFormValue(formValue) {
       validate(options.valueToJSON(formValue));
       return transformFormErrors(
-        validator,
-        options.merger(),
-        options.schema,
+        createCoreContext({
+          validator,
+          merger: options.merger(),
+          valueHandler: options.valueHandler,
+          rootSchema: options.schema,
+        }),
         validate.errors,
         formValue
       );
@@ -168,6 +174,7 @@ export function createFormValidator<T>({
 }: Partial<FormValidatorOptions> & {
   schema: Schema;
   merger: () => Merger;
+  valueHandler: ValueHandler;
   factory?: ValidateFactory;
   validatorsCache?: ValidatorsCache;
 }) {

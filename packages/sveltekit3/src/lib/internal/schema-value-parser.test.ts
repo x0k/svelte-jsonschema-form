@@ -4,8 +4,15 @@ import {
   SJSF_ID_PREFIX,
   type FieldPath,
   type Schema,
+  type Validator,
 } from "@sjsf/form";
+import {
+  createCoreContext,
+  type ValueHandler,
+  type Merger,
+} from "@sjsf/form/core";
 import { createMerger } from "@sjsf/form/mergers/modern";
+import { defaultFormValueHandler } from "@sjsf/form/value-handlers/default";
 import { beforeEach, describe, expect, it } from "vitest";
 
 import {
@@ -33,33 +40,43 @@ const opts = ({
   idPseudoSeparator = "::",
   validator = createFormValidator({ schema }),
   merger = createMerger(),
+  valueHandler = defaultFormValueHandler,
   codec = createCodec({
     sequencesToEncode: [idSeparator, idIndexSeparator, idPseudoSeparator],
   }),
-  convertEntry = createFormDataEntryConverter({
-    merger,
-    validator,
-    rootSchema: schema,
-    rootUiSchema: uiSchema,
-    enumItemDecoder: createEnumItemDecoder(
-      createOptionIndexDecoder(idPseudoSeparator)
-    ),
-  }),
-}: Partial<
-  SchemaValueParserOptions<FormDataEntryValue>
-> = {}): SchemaValueParserOptions<FormDataEntryValue> => ({
-  schema,
-  uiSchema,
-  entries,
-  idPrefix,
-  idSeparator,
-  idIndexSeparator,
-  idPseudoSeparator,
-  validator,
-  merger,
   convertEntry,
-  codec,
-});
+}: Partial<SchemaValueParserOptions<FormDataEntryValue>> & {
+  schema?: Schema;
+  validator?: Validator;
+  merger?: Merger;
+  valueHandler?: ValueHandler;
+} = {}): SchemaValueParserOptions<FormDataEntryValue> => {
+  const ctx = createCoreContext({
+    validator,
+    merger,
+    valueHandler,
+    rootSchema: schema,
+  });
+  return {
+    ctx,
+    uiSchema,
+    entries,
+    idPrefix,
+    idSeparator,
+    idIndexSeparator,
+    idPseudoSeparator,
+    convertEntry:
+      convertEntry ??
+      createFormDataEntryConverter({
+        ctx,
+        rootUiSchema: uiSchema,
+        enumItemDecoder: createEnumItemDecoder(
+          createOptionIndexDecoder(idPseudoSeparator)
+        ),
+      }),
+    codec,
+  };
+};
 
 describe("parseSchemaValue", async () => {
   let c: AbortController;

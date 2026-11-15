@@ -8,10 +8,9 @@ import {
   getSchemaConstantValueSafe,
   isSchemaOfConstantValue,
 } from "./constant-schema.js";
-import type { Merger } from "./merger.js";
+import type { CoreContext } from "./context.js";
 import { retrieveSchema } from "./resolve.js";
 import type { Schema, SchemaValue } from "./schema.js";
-import type { Validator } from "./validator.js";
 import { isSchemaObjectValue } from "./value.js";
 import { getXxxOfOptions } from "./xxx-of-options.js";
 
@@ -41,13 +40,8 @@ import { getXxxOfOptions } from "./xxx-of-options.js";
  * }
  * ```
  */
-export function isSelect(
-  validator: Validator,
-  merger: Merger,
-  theSchema: Schema,
-  rootSchema: Schema
-) {
-  const schema = retrieveSchema(validator, merger, theSchema, rootSchema);
+export function isSelect(ctx: CoreContext, theSchema: Schema) {
+  const schema = retrieveSchema(ctx, theSchema);
   if (Array.isArray(schema.enum)) {
     return true;
   }
@@ -109,14 +103,10 @@ export function getSelectOptionValuesSafe(
  * ```
  */
 export function isMultiSelect(
-  validator: Validator,
-  merger: Merger,
-  { items, uniqueItems }: Schema,
-  rootSchema: Schema
+  ctx: CoreContext,
+  { items, uniqueItems }: Schema
 ): boolean {
   return (
-    uniqueItems === true &&
-    isSchemaObjectValue(items) &&
-    isSelect(validator, merger, items, rootSchema)
+    uniqueItems === true && isSchemaObjectValue(items) && isSelect(ctx, items)
   );
 }

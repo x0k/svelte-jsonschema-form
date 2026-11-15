@@ -39,6 +39,7 @@
   } from "@sjsf/form/options.svelte";
   import { translation } from "@sjsf/form/translations/en";
   import { withOmitExtraData } from "@sjsf/form/validators/omit-extra-data";
+  import { defaultFormValueHandler } from "@sjsf/form/value-handlers/default";
   import { Willow, WillowDark } from "@svar-ui/svelte-core";
   import { BitsConfig } from "bits-ui";
   import { themeOrSubThemeTitle } from "meta";
@@ -230,6 +231,7 @@
 
   const validatorState = createValidatorState(data, {
     merger: () => merger,
+    valueHandler: defaultFormValueHandler,
     get uiSchema() {
       return uiSchemaQuery.value;
     },
@@ -239,6 +241,7 @@
     createFormMerger({
       schema: validatorState.schema,
       validator: validatorState.validator,
+      valueHandler: defaultFormValueHandler,
       jsonSchemaMerger,
       allOf: data.allOf,
       arrayMinItems: {
@@ -267,6 +270,7 @@
   );
   const form = createForm({
     translation,
+    valueHandler: defaultFormValueHandler,
     idBuilder: createFormIdBuilder,
     get resolver() {
       return PLAYGROUND_RESOLVERS[data.resolver];
@@ -327,9 +331,8 @@
       skeleton5DateRangePickerPortal: portalOptions,
     }),
     uiOptionsRegistry: {
-      stringEnumValueMapper: (comparer) =>
-        new StringEnumValueMapperBuilder(comparer),
-      idEnumValueMapper: (comparer) => new IdEnumValueMapperBuilder(comparer),
+      stringEnumValueMapper: (ctx) => new StringEnumValueMapperBuilder(ctx),
+      idEnumValueMapper: (ctx) => new IdEnumValueMapperBuilder(ctx),
     },
   });
   setFormContext(form);

@@ -5,7 +5,7 @@ import {
   rendersOwnFieldBesideOption,
 } from "./get-rendered-option-schema.js";
 import { ADDITIONAL_PROPERTY_FLAG, REF_FLAG, type Schema } from "./schema.js";
-import { createMerger } from "./test-merger.js";
+import { createMerger, createTestContext } from "./testing.js";
 
 // Upstream `mergeSchemas()` unions `required` and drops keys holding
 // `undefined`; the stub returns those results explicitly.
@@ -44,7 +44,11 @@ const merger = createMerger({
 });
 
 function rendered(parent: Schema, option: Schema): Schema {
-  return getRenderedOptionSchema(merger, parent, option);
+  return getRenderedOptionSchema(
+    createTestContext({ merger: merger }),
+    parent,
+    option
+  );
 }
 
 describe("getRenderedOptionSchema()", () => {

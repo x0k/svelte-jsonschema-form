@@ -18,6 +18,7 @@ import {
   type ValidatorFactoryOptions,
 } from "@sjsf/form";
 import {
+  createCoreContext,
   getClosestMatchingOption,
   getFirstMatchingOption,
 } from "@sjsf/form/core";
@@ -30,6 +31,7 @@ import {
   createIdFactory as defaultCreateIdFactory,
   type IdFactory,
 } from "@sjsf/form/validators/precompile";
+import { defaultFormValueHandler } from "@sjsf/form/value-handlers/default";
 import { expect, it, describe } from "vitest";
 
 const fieldsValidationMode =
@@ -71,6 +73,7 @@ function createInitializer<V extends Validator>(
     const validator = await create(createValidator, {
       idBuilder,
       merger: () => merger,
+      valueHandler: defaultFormValueHandler,
       schema,
       uiOptionsRegistry,
       uiSchema,
@@ -79,6 +82,7 @@ function createInitializer<V extends Validator>(
     const merger = createFormMerger({
       schema,
       validator,
+      valueHandler: defaultFormValueHandler,
     });
     return {
       validator,
@@ -201,7 +205,7 @@ export function validatorTests(
         // missing other required fields. createAugmentSchema strips required
         // and replaces it with anyOf[{ required: [key] }...], so a value
         // with ANY known property satisfies the branch.
-        const { validator, schema } = await init({
+        const { validator, merger, schema } = await init({
           schema: {
             oneOf: [
               {
@@ -228,7 +232,12 @@ export function validatorTests(
         // Value only has "kind" — original required would reject both branches,
         // but augmented anyOf([{required:["kind"]},{required:["lives"]}]) accepts.
         const index = getFirstMatchingOption(
-          validator,
+          createCoreContext({
+            validator,
+            merger,
+            valueHandler: defaultFormValueHandler,
+            rootSchema: schema,
+          }),
           { kind: "cat" },
           options
         );
@@ -236,7 +245,7 @@ export function validatorTests(
       });
 
       it("Should return 0 when formData is undefined", async () => {
-        const { validator, schema } = await init({
+        const { validator, merger, schema } = await init({
           schema: {
             oneOf: [
               {
@@ -253,7 +262,12 @@ export function validatorTests(
           },
         });
         const index = getFirstMatchingOption(
-          validator,
+          createCoreContext({
+            validator,
+            merger,
+            valueHandler: defaultFormValueHandler,
+            rootSchema: schema,
+          }),
           undefined,
           schema.oneOf as Schema[]
         );
@@ -261,7 +275,7 @@ export function validatorTests(
       });
 
       it("Should pick first matching branch among multiple property-bearing schemas", async () => {
-        const { validator, schema } = await init({
+        const { validator, merger, schema } = await init({
           schema: {
             oneOf: [
               {
@@ -283,7 +297,12 @@ export function validatorTests(
           },
         });
         const index = getFirstMatchingOption(
-          validator,
+          createCoreContext({
+            validator,
+            merger,
+            valueHandler: defaultFormValueHandler,
+            rootSchema: schema,
+          }),
           { y: "hello" },
           schema.oneOf as Schema[]
         );
@@ -316,9 +335,12 @@ export function validatorTests(
           },
         });
         const index = getClosestMatchingOption(
-          validator,
-          merger,
-          schema,
+          createCoreContext({
+            validator,
+            merger,
+            valueHandler: defaultFormValueHandler,
+            rootSchema: schema,
+          }),
           { kind: "x", count: 3, label: "foo" },
           schema.oneOf as Schema[]
         );
@@ -345,9 +367,12 @@ export function validatorTests(
 
         // Both branches score equally for a value that matches neither specifically.
         const index = getClosestMatchingOption(
-          validator,
-          merger,
-          schema,
+          createCoreContext({
+            validator,
+            merger,
+            valueHandler: defaultFormValueHandler,
+            rootSchema: schema,
+          }),
           {},
           schema.oneOf as Schema[],
           1 // selectedOption
@@ -381,9 +406,12 @@ export function validatorTests(
         // With a discriminator, isOptionMatching validates only the
         // discriminator property schema — createAugmentSchema is NOT called.
         const index = getClosestMatchingOption(
-          validator,
-          merger,
-          schema,
+          createCoreContext({
+            validator,
+            merger,
+            valueHandler: defaultFormValueHandler,
+            rootSchema: schema,
+          }),
           { kind: "rect", width: 100 },
           schema.oneOf as Schema[],
           0,
@@ -431,7 +459,15 @@ export function validatorTests(
           noise: "should be removed",
         };
 
-        const result = omitExtraData(validator, merger, schema, value);
+        const result = omitExtraData(
+          createCoreContext({
+            validator,
+            merger,
+            valueHandler: defaultFormValueHandler,
+            rootSchema: schema,
+          }),
+          value
+        );
 
         expect(result).toEqual({ kind: "dog", breed: "labrador" });
       });
@@ -463,12 +499,20 @@ export function validatorTests(
         });
 
         // Branch "a" matched — "y" and "extra" must both be gone
-        const result = omitExtraData(validator, merger, schema, {
-          kind: "a",
-          x: 42,
-          y: "belongs to branch b, not a",
-          extra: "also unwanted",
-        });
+        const result = omitExtraData(
+          createCoreContext({
+            validator,
+            merger,
+            valueHandler: defaultFormValueHandler,
+            rootSchema: schema,
+          }),
+          {
+            kind: "a",
+            x: 42,
+            y: "belongs to branch b, not a",
+            extra: "also unwanted",
+          }
+        );
 
         expect(result).toEqual({ kind: "a", x: 42 });
       });
@@ -489,7 +533,15 @@ export function validatorTests(
 
         // getClosestMatchingOption falls back to index 0, but the branch
         // schema type is "object" while source is a string → omit returns undefined
-        const result = omitExtraData(validator, merger, schema, {});
+        const result = omitExtraData(
+          createCoreContext({
+            validator,
+            merger,
+            valueHandler: defaultFormValueHandler,
+            rootSchema: schema,
+          }),
+          {}
+        );
 
         expect(result).toEqual({});
       });
@@ -509,10 +561,18 @@ export function validatorTests(
             ],
           },
         });
-        const result = omitExtraData(validator, merger, schema, {
-          kind: "a",
-          extra: "keep me",
-        });
+        const result = omitExtraData(
+          createCoreContext({
+            validator,
+            merger,
+            valueHandler: defaultFormValueHandler,
+            rootSchema: schema,
+          }),
+          {
+            kind: "a",
+            extra: "keep me",
+          }
+        );
         // "extra" survives because the branch allows additional properties
         expect(result).toEqual({ kind: "a", extra: "keep me" });
       });
@@ -553,12 +613,20 @@ export function validatorTests(
         //   open branch 0: kind="b" fails enum ["a"] → false
         //   open branch 1: kind="b" passes enum ["b"], extras allowed → true
         // branch 1 wins → q kept, p dropped → correct.
-        const result = omitExtraData(validator, merger, schema, {
-          kind: "b",
-          p: "cross-branch pollution",
-          q: 42,
-          noise: "drop",
-        });
+        const result = omitExtraData(
+          createCoreContext({
+            validator,
+            merger,
+            valueHandler: defaultFormValueHandler,
+            rootSchema: schema,
+          }),
+          {
+            kind: "b",
+            p: "cross-branch pollution",
+            q: 42,
+            noise: "drop",
+          }
+        );
 
         expect(result).toEqual({ kind: "b", q: 42 });
       });

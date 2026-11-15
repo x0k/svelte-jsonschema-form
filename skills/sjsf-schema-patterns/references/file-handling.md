@@ -55,7 +55,8 @@ Set `enctype="multipart/form-data"` on the form.
 
 Custom Ajv keyword on `File` instances (see `custom-keyword` demo).
 Augment `Schema` first, keep factory options plumbing
-(`ValidatorFactoryOptions`: `schema`, `uiSchema`, `uiOptionsRegistry`, `merger`):
+(`ValidatorFactoryOptions`: `schema`, `uiSchema`, `uiOptionsRegistry`, `merger`,
+`valueHandler`):
 
 ```ts
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";

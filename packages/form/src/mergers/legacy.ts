@@ -1,21 +1,20 @@
 import mergeAllOf, { type Options } from "json-schema-merge-allof";
 
 import {
+  createCoreContext,
   DEPENDENCIES_KEY,
   getDefaultFormState,
   isSchemaObjectValue,
-  isSchemaValueDeepEqual,
   ITEMS_KEY,
   REQUIRED_KEY,
+  type ValueHandler,
   type Experimental_DefaultFormStateBehavior,
   type Merger,
   type Schema,
   type SchemaDefinition,
   type Validator,
 } from "#core/index.js";
-import { dropStaleDefaults } from "#form/drop-stale-defaults.js";
-import type { DropStaleDefaultsOptions, FormMerger } from "#form/index.js";
-import { copyForChange } from "#form/merger.js";
+import type { FormMerger } from "#form/main.js";
 import { unique as uniqueItems } from "#lib/array.js";
 import {
   ARRAYS_OF_SUB_SCHEMAS,
@@ -171,19 +170,18 @@ export function createMerger(): Merger {
     mergeAllOf(schema) {
       return mergeAllOf(schema, { deep: false } as Options) as Schema;
     },
-    isValueDeepEqual: isSchemaValueDeepEqual,
   };
 }
 
 export type FormMergerOptions = Experimental_DefaultFormStateBehavior & {
   validator: Validator;
   schema: Schema;
+  valueHandler: ValueHandler;
 };
 
 export function createFormMerger(options: FormMergerOptions): FormMerger {
   const formMerger: FormMerger = {
     ...createMerger(),
-    copyForChange,
     mergeFormDataAndSchemaDefaults({
       formData,
       schema,
@@ -191,18 +189,18 @@ export function createFormMerger(options: FormMergerOptions): FormMerger {
       includeUndefinedValues = false,
     }) {
       return getDefaultFormState(
-        options.validator,
-        formMerger,
+        createCoreContext({
+          validator: options.validator,
+          merger: formMerger,
+          valueHandler: options.valueHandler,
+          rootSchema: options.schema,
+        }),
         schema,
         formData,
-        options.schema,
         includeUndefinedValues,
         options,
         initialDefaultsGenerated
       );
-    },
-    dropStaleDefaults(dropOptions: DropStaleDefaultsOptions) {
-      return dropStaleDefaults(formMerger, dropOptions);
     },
   };
   return formMerger;

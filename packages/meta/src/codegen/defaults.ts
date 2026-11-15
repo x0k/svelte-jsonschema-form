@@ -14,6 +14,7 @@ import {
   formPackage,
   formResolverSubPath,
   formTranslationSubPath,
+  formValueHandlerSubPath,
   type Resolver,
 } from "../form.ts";
 import { iconSetPackage } from "../icons.ts";
@@ -209,6 +210,11 @@ export function resolver(_ctx) {`
     createReExport(ast, {
       name: "translation",
       source: formTranslationSubPath("en"),
+    });
+    createReExport(ast, {
+      name: "valueHandler",
+      imported: "defaultFormValueHandler",
+      source: formValueHandlerSubPath,
     });
     if (!isRecordEmpty(merger)) {
       jsApi.imports.addNamed(ast, {
@@ -481,9 +487,7 @@ export const validator = (options) => createFormValidator({
             break;
           case "IdEnumValueMapperBuilder":
             importedClasses.add("IdEnumValueMapperBuilder");
-            entries.push(
-              `${key}: (comparer) => new IdEnumValueMapperBuilder(comparer)`
-            );
+            entries.push(`${key}: (ctx) => new IdEnumValueMapperBuilder(ctx)`);
             break;
         }
       }

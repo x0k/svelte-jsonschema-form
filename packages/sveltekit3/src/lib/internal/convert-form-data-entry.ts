@@ -1,7 +1,6 @@
 import {
   DEFAULT_BOOLEAN_ENUM,
   type FieldValue,
-  type Schema,
   type UiSchemaRoot,
 } from "@sjsf/form";
 import {
@@ -11,10 +10,9 @@ import {
   isSelect,
   pickSchemaType,
   typeOfSchema,
-  type Merger,
+  type CoreContext,
   type RPath,
   type SchemaValue,
-  type Validator,
 } from "@sjsf/form/core";
 import { fileToDataURL } from "@sjsf/form/lib/file";
 
@@ -44,9 +42,7 @@ export class EntryDecodeError extends Error {
   }
 }
 export interface FormDataConverterOptions {
-  validator: Validator;
-  merger: Merger;
-  rootSchema: Schema;
+  ctx: CoreContext;
   rootUiSchema: UiSchemaRoot;
   enumItemDecoder: EnumItemDecoder;
   convertUnknownEntry?: UnknownEntryConverter;
@@ -99,9 +95,7 @@ export function createEnumItemDecoder(
 }
 
 export function createFormDataEntryConverter({
-  validator,
-  merger,
-  rootSchema,
+  ctx,
   rootUiSchema,
   enumItemDecoder,
   convertUnknownEntry,
@@ -143,7 +137,7 @@ export function createFormDataEntryConverter({
         path
       );
     }
-    if (isSelect(validator, merger, schema, rootSchema)) {
+    if (isSelect(ctx, schema)) {
       const altSchemas = schema.oneOf ?? schema.anyOf;
       const options = Array.isArray(altSchemas)
         ? altSchemas.map((s) =>

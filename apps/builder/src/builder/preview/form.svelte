@@ -71,6 +71,7 @@
       return playgroundValidator({
         validator,
         merger: () => merger,
+        valueHandler: defaults.valueHandler,
         schema: schemaObject,
         uiSchema,
       });
@@ -91,6 +92,7 @@
     defaults.merger({
       schema,
       validator,
+      valueHandler: defaults.valueHandler,
     })
   );
 

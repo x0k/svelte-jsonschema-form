@@ -1,6 +1,17 @@
 import { createFormValidator } from "@sjsf/ajv8-validator";
-import { DEFAULT_ID_PREFIX, SJSF_ID_PREFIX, type Schema } from "@sjsf/form";
+import {
+  DEFAULT_ID_PREFIX,
+  SJSF_ID_PREFIX,
+  type Schema,
+  type Validator,
+} from "@sjsf/form";
+import {
+  createCoreContext,
+  type ValueHandler,
+  type Merger,
+} from "@sjsf/form/core";
 import { createMerger } from "@sjsf/form/mergers/modern";
+import { defaultFormValueHandler } from "@sjsf/form/value-handlers/default";
 import { describe, beforeEach, expect, it } from "vitest";
 
 import {
@@ -26,29 +37,39 @@ const opts = ({
   uiSchema = {},
   validator = createFormValidator({ schema }),
   merger = createMerger(),
+  valueHandler = defaultFormValueHandler,
   codec = { encode, decode },
-  convertEntry = createFormDataEntryConverter({
-    merger,
-    validator,
-    rootSchema: schema,
-    rootUiSchema: uiSchema,
-    enumItemDecoder: createEnumItemDecoder(
-      createOptionIndexDecoder(codec.encode(pseudoPrefix))
-    ),
-  }),
-}: Partial<
-  SchemaValueParserOptions<FormDataEntryValue>
-> = {}): SchemaValueParserOptions<FormDataEntryValue> => ({
-  input: { [SJSF_ID_PREFIX]: idPrefix, ...input },
-  schema,
-  uiSchema,
-  validator,
-  merger,
   convertEntry,
-  idPrefix,
-  pseudoPrefix,
-  codec,
-});
+}: Partial<SchemaValueParserOptions<FormDataEntryValue>> & {
+  schema?: Schema;
+  validator?: Validator;
+  merger?: Merger;
+  valueHandler?: ValueHandler;
+} = {}): SchemaValueParserOptions<FormDataEntryValue> => {
+  const ctx = createCoreContext({
+    validator,
+    merger,
+    valueHandler,
+    rootSchema: schema,
+  });
+  return {
+    input: { [SJSF_ID_PREFIX]: idPrefix, ...input },
+    uiSchema,
+    ctx,
+    convertEntry:
+      convertEntry ??
+      createFormDataEntryConverter({
+        ctx,
+        rootUiSchema: uiSchema,
+        enumItemDecoder: createEnumItemDecoder(
+          createOptionIndexDecoder(codec.encode(pseudoPrefix))
+        ),
+      }),
+    idPrefix,
+    pseudoPrefix,
+    codec,
+  };
+};
 
 describe("parseSchemaValue", async () => {
   let c: AbortController;

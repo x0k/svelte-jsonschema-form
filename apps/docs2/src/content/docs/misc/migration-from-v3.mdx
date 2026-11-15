@@ -28,7 +28,10 @@ The value commands accept an `RPath` (a plain array). Passing a registered
 `FieldPath` skips the lookup and uses it as-is.
 
 Use `getValue(form)` for a live, non-copying read of the form value. In a
-reactive context it tracks only the properties you read. Use
+reactive context it tracks only the properties you read. It is typed as
+`ReadonlySchemaValue | undefined`, as are the core helpers that only read form
+data, such as `retrieveSchema`, `getClosestMatchingOption`, `isValid`, and
+`isValueDeepEqual`. Mutable form values remain assignable. Use
 `getValueSnapshot(form)` when you need a detached copy.
 
 `getIdByPath`, `getPseudoIdByPath`, and the `ByPath` variants of the error and
@@ -67,6 +70,10 @@ passed on every call. The `rootSchema` parameter has been removed from
 `Validator.isValid`, `FormValueValidator.validateFormValue` and
 `AsyncFormValueValidator.validateFormValueAsync`.
 
+`Validator.isValid` now receives `ReadonlySchemaValue | undefined` instead of
+`SchemaValue | undefined`. Validators must treat the value as read-only and
+copy it before applying any transformation.
+
 ## Schema errors now surface at form creation
 
 Validators compile the schema eagerly when created. A schema that does not
@@ -75,10 +82,97 @@ property is missing from the branches' `required`, or an empty tuple
 `items: []` in draft-07) now fails at form creation instead of at first
 validation. Fix such schemas to be spec-compliant.
 
+## Value comparison and copying moved out of the merger
+
+`Merger` no longer implements `isValueDeepEqual`; it only merges schemas and
+`allOf` compositions. Value comparison and the copy taken before an in-place
+update are now a required `FormOptions` service:
+
+```typescript
+import { createForm } from "@sjsf/form";
+import { defaultFormValueHandler } from "@sjsf/form/value-handlers/default";
+
+const form = createForm({
+  // ...
+  valueHandler: defaultFormValueHandler,
+});
+```
+
+Reusable defaults can re-export it as before:
+
+```typescript
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
+```
+
+`CoreContext` still carries a value handler under `CORE_VALUE_HANDLER`, and
+`createCoreContext` requires one; a `FormValueHandler` can be passed because it
+extends `ValueHandler`. Custom mergers no longer implement or forward
+`isValueDeepEqual` or `copyForChange`; pass a custom `FormValueHandler` to
+`createForm` instead. See [Value handler](/form/value-handler/).
+
+`ValueDeepComparator` now takes `ReadonlySchemaValue | undefined` for both
+arguments, so it can compare values returned by `getValue`. A custom comparison
+must not mutate its arguments.
+
 ## Schema resolution internals
 
 The unused `expandAllBranches` parameter was removed from the schema-resolution
 functions in `@sjsf/form/core`. Drop the argument from any direct calls.
+
+Core schema helpers now take a shared `CoreContext` as their first argument
+instead of `validator`, `merger`, `rootSchema`, and value-comparison arguments.
+Build one with `createCoreContext({ validator, merger, valueHandler, rootSchema })`:
+
+```typescript
+// Before
+retrieveSchema(validator, merger, schema, rootSchema, formData);
+
+// After
+import { createCoreContext, retrieveSchema } from "@sjsf/form/core";
+
+const ctx = createCoreContext({
+  validator,
+  merger,
+  valueHandler,
+  rootSchema,
+});
+retrieveSchema(ctx, schema, formData);
+```
+
+`FormState` extends `CoreContext`, so the form-state query wrappers keep taking
+the form state as their first argument. The context operations are available as
+free functions that take the context first: `isValid(ctx, schema, value)`,
+`mergeSchemas(ctx, a, b)`, `mergeAllOf(ctx, schema)`,
+`isValueDeepEqual(ctx, a, b)`, `resolveRef(ctx, ref)`, and
+`getRootSchema(ctx)`.
+
+The context symbols are not part of the `@sjsf/form/core` entry point. If you
+build or inspect a `CoreContext` directly, import `CORE_VALIDATOR`,
+`CORE_MERGER`, `CORE_VALUE_HANDLER`, and `CORE_ROOT_SCHEMA` from
+`@sjsf/form/core/internals`.
+
+`FORM_VALIDATOR`, `FORM_MERGER`, and `FORM_SCHEMA` were removed from
+`@sjsf/form/internals`; they were aliases of the corresponding `CORE_*`
+symbols. Use the `CORE_*` names from `@sjsf/form/core/internals` instead.
+
+`getDefaultFormState` no longer falls back to the schema it receives as the
+root schema. A caller that omitted `rootSchema` so that a self-referencing
+subschema resolved against itself must pass that subschema as `rootSchema` when
+creating the context.
+
+## Read-only value types
+
+Read-only form values are represented by
+`ReadonlySchemaValue = DeepReadonly<SchemaValue>`. Core helpers that only read
+form data accept it, so `getValue` results can be passed directly to
+`retrieveSchema`, `getClosestMatchingOption`, `isValid`, and
+`isValueDeepEqual`.
+
+`DeepPartial` and `DeepReadonly` now leave class instances intact instead of
+mapping their members. This matters when `SchemaValues` is augmented with
+types such as `File` or `Date`: `DeepPartial<File>` is still `File`, so
+`initialValue` and `setValue` accept such values without casts. Functions are
+preserved too.
 
 ## Enum options
 
@@ -92,7 +186,8 @@ enum values that are not string-unique, restore ID-based mapping:
 
 ```ts
 "ui:options": {
-  enumValueMapperBuilder: (comparer) => new IdEnumValueMapperBuilder(comparer),
+  enumValueMapperBuilder: (ctx) =>
+    new IdEnumValueMapperBuilder(ctx),
 }
 ```
 

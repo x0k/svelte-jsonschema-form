@@ -1,20 +1,18 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 
-import type { AbstractPackage } from "../src/package.ts";
 import {
   isLegacyTheme,
   isTheme,
+  isThemeClientSideOnlyExtraWidget,
   isThemeExtension,
   themeExtensionOrigin,
   themePackage,
   themes,
-  type Theme,
-} from "../src/themes.ts";
-import {
-  isThemeClientSideOnlyExtraWidget,
+  type AbstractPackage,
   type ExtraWidgetFileNames,
-} from "../src/widgets.ts";
+  type Theme,
+} from "../src/index.ts";
 import { extractComponentPropsIndex, resolveComponentName } from "./analyze.ts";
 
 async function extractWidgetData(

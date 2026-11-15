@@ -5,7 +5,11 @@ import type {
   Schema,
   Validator,
 } from "@sjsf/form";
-import type { Merger } from "@sjsf/form/core";
+import {
+  createCoreContext,
+  type ValueHandler,
+  type Merger,
+} from "@sjsf/form/core";
 
 import {
   transformFormErrors,
@@ -46,6 +50,7 @@ export function createValidator({
 
 export type FormValueValidatorOptions = ValidatorOptions & {
   merger: () => Merger;
+  valueHandler: ValueHandler;
   schema: Schema;
 };
 
@@ -58,9 +63,12 @@ export function createFormValueValidator<T>(
     validateFormValue(formValue) {
       validate(options.valueToJSON(formValue));
       return transformFormErrors(
-        validator,
-        options.merger(),
-        options.schema,
+        createCoreContext({
+          validator,
+          merger: options.merger(),
+          valueHandler: options.valueHandler,
+          rootSchema: options.schema,
+        }),
         validate.errors,
         formValue
       );

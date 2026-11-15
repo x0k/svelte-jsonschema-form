@@ -10,9 +10,11 @@ import {
   type Validator,
 } from "@sjsf/form";
 import {
+  createCoreContext,
   getSchemaDefinitionByPath,
   isMultiSelect,
   isSchemaObjectValue,
+  type ValueHandler,
   type SchemaDefinition,
 } from "@sjsf/form/core";
 import { isSchemaObject } from "@sjsf/form/lib/json-schema";
@@ -24,6 +26,7 @@ export interface FormIdBuilderOptions {
   schema: Schema;
   validator: Validator;
   merger: FormMerger;
+  valueHandler: ValueHandler;
   idPrefix: string;
   pseudoPrefix?: string;
   valueRef: Ref<FormValue>;
@@ -44,11 +47,18 @@ export function createFormIdBuilder({
   idPrefix,
   validator,
   merger,
+  valueHandler,
   valueRef,
   pseudoPrefix = DEFAULT_PSEUDO_PREFIX,
   isPrivate = () => false,
   fieldSuffix,
 }: FormIdBuilderOptions): FormIdBuilder {
+  const ctx = createCoreContext({
+    validator,
+    merger,
+    valueHandler,
+    rootSchema,
+  });
   const parts: string[] = [];
   const encodedIdPrefix = encode(idPrefix);
   const encodedPseudoPrefix = encode(pseudoPrefix);
@@ -74,9 +84,7 @@ export function createFormIdBuilder({
       for (let j = 0; j <= i; j++) {
         const p = path[j]!;
         currentSchema = getSchemaDefinitionByPath(
-          validator,
-          merger,
-          rootSchema,
+          ctx,
           currentSchema,
           [p],
           currentValue
@@ -98,7 +106,7 @@ export function createFormIdBuilder({
         if (
           currentSchema &&
           isSchemaObject(currentSchema) &&
-          isMultiSelect(validator, merger, currentSchema, rootSchema)
+          isMultiSelect(ctx, currentSchema)
         ) {
           parts.push("[]");
         }

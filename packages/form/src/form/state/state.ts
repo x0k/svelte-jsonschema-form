@@ -1,7 +1,13 @@
 import { getContext, setContext } from "svelte";
 import type { SvelteMap } from "svelte/reactivity";
 
-import type { Schema } from "#core/index.js";
+import type { ValueHandler, CoreContext, Schema } from "#core/index.js";
+import {
+  CORE_VALUE_HANDLER,
+  CORE_MERGER,
+  CORE_ROOT_SCHEMA,
+  CORE_VALIDATOR,
+} from "#core/internals.js";
 import type { DataURLToBlob } from "#lib/file.js";
 import { noop } from "#lib/function.js";
 import type { DeepPartial } from "#lib/types.js";
@@ -23,15 +29,12 @@ import {
   FORM_ICONS,
   FORM_KEYED_ARRAYS,
   FORM_MARK_SCHEMA_CHANGE,
-  FORM_MERGER,
-  FORM_SCHEMA,
   FORM_THEME,
   FORM_TRANSLATE,
   FORM_TRANSLATION,
   FORM_UI_OPTIONS_REGISTRY,
   FORM_UI_SCHEMA,
   FORM_UI_SCHEMA_ROOT,
-  FORM_VALIDATOR,
   FORM_VALUE,
   FORM_FIELDS_STATE_MAP,
   FORM_ID_FROM_PATH,
@@ -40,7 +43,6 @@ import {
   FORM_ROOT_PATH,
   FORM_ID_PREFIX,
   FormErrors,
-  FORM_RETRIEVED_SCHEMA,
   FORM_CONFIGS_CACHE,
   FORM_ID_BUILDER,
   FORM_INITIAL_DEFAULTS_GENERATED,
@@ -63,10 +65,15 @@ import type { FailureValidationResult, FormValidator } from "../validator.js";
 import type { FormValueStore } from "../value-store.js";
 import { getValueSnapshot } from "./value.svelte.js";
 
-export interface FormState<T> {
+export interface FormState<T> extends CoreContext {
   readonly validation: FormValidation<T>;
   readonly fieldsValidation: FieldsValidation;
-  // Internals
+  // Core internals extensions
+  readonly [CORE_ROOT_SCHEMA]: Schema;
+  readonly [CORE_VALIDATOR]: FormValidator<T>;
+  readonly [CORE_MERGER]: FormMerger;
+  readonly [CORE_VALUE_HANDLER]: ValueHandler;
+  // Form internals
   readonly [FORM_VALUE]: FormValueStore;
   [FORM_INITIAL_DEFAULTS_GENERATED]: boolean;
   readonly [FORM_INITIAL_VALUE]: DeepPartial<T> | undefined;
@@ -78,14 +85,10 @@ export interface FormState<T> {
   readonly [FORM_MARK_SCHEMA_CHANGE]: () => void;
   readonly [FORM_KEYED_ARRAYS]: KeyedArraysMap;
   readonly [FORM_FIELDS_VALIDATION_MODE]: number;
-  readonly [FORM_SCHEMA]: Schema;
-  readonly [FORM_RETRIEVED_SCHEMA]: Schema;
   readonly [FORM_UI_SCHEMA_ROOT]: UiSchemaRoot;
   readonly [FORM_UI_SCHEMA]: UiSchema;
   readonly [FORM_UI_OPTIONS_REGISTRY]: UiOptionsRegistry;
   readonly [FORM_UI_EXTRA_OPTIONS]?: ExtraUiOptions;
-  readonly [FORM_VALIDATOR]: FormValidator<T>;
-  readonly [FORM_MERGER]: FormMerger;
   readonly [FORM_ID_BUILDER]: FormIdBuilder;
   readonly [FORM_ICONS]?: Icons;
   readonly [FORM_DISABLED]: boolean;
@@ -133,9 +136,9 @@ export function reset<T>(form: FormState<T>) {
   form[FORM_FIELDS_STATE_MAP].clear();
   form[FORM_ERRORS].clear();
   form[FORM_VALUE].replace(
-    form[FORM_MERGER].mergeFormDataAndSchemaDefaults({
+    form[CORE_MERGER].mergeFormDataAndSchemaDefaults({
       formData: form[FORM_INITIAL_VALUE] as FormValue,
-      schema: form[FORM_SCHEMA],
+      schema: form[CORE_ROOT_SCHEMA],
     })
   );
 }

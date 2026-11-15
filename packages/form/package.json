@@ -53,6 +53,10 @@
       "types": "./dist/core/index.d.ts",
       "default": "./dist/core/index.js"
     },
+    "./core/internals": {
+      "types": "./dist/core/internals.d.ts",
+      "default": "./dist/core/internals.js"
+    },
     "./internals": {
       "types": "./dist/form/internals.d.ts",
       "default": "./dist/form/internals.js"
@@ -141,6 +145,10 @@
     "./mergers/*": {
       "types": "./dist/mergers/*.d.ts",
       "default": "./dist/mergers/*.js"
+    },
+    "./value-handlers/*": {
+      "types": "./dist/value-handlers/*.d.ts",
+      "default": "./dist/value-handlers/*.js"
     },
     "./id-builders/*": {
       "types": "./dist/id-builders/*.d.ts",

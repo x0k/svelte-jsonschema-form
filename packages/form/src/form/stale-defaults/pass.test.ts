@@ -1,30 +1,19 @@
-import { beforeEach, describe, expect, it } from "vitest";
+import { describe, expect, it } from "vitest";
 
+import { getDefaultFormState, type Merger, type Schema } from "#core/index.js";
 import {
-  getDefaultFormState,
-  type Merger,
-  type Schema,
-  type Validator,
-} from "#core/index.js";
-import { createMerger } from "#core/test-merger.js";
-import { createValidator } from "#core/test-validator.js";
+  createMerger,
+  createTestContext,
+  createValidator,
+  testValueHandler,
+} from "#core/testing.js";
 
-import { dropStaleDefaults } from "./drop-stale-defaults.js";
-import type { FieldPath } from "./id.js";
-import { internalRegisterFieldPath } from "./internals.js";
-import {
-  copyForChange,
-  type FormMerger,
-  type FormValueChange,
-} from "./merger.js";
-import type { FieldValue, RegisteredPathTrieRef } from "./model.js";
-import { StaleDefaultsPass } from "./stale-defaults-pass.js";
-
-let testValidator: Validator;
-
-beforeEach(() => {
-  testValidator = createValidator();
-});
+import type { FieldPath } from "../id.js";
+import { internalRegisterFieldPath } from "../internals.js";
+import { type FormMerger, type FormValueChange } from "../merger.js";
+import type { FieldValue, RegisteredPathTrieRef } from "../model.js";
+import type { FormState } from "../state/index.js";
+import { StaleDefaultsPass } from "./pass.js";
 
 function path(...parts: (string | number)[]) {
   return parts as unknown as FieldPath;
@@ -34,10 +23,9 @@ function change(path: FieldPath, oldValue: FieldValue): FormValueChange {
   return { path, oldValue };
 }
 
-function formMerger(merger: Merger, rootSchema: Schema): FormMerger {
+function testForm(merger: Merger, rootSchema: Schema): FormState<unknown> {
   const formMerger: FormMerger = {
     ...merger,
-    copyForChange,
     mergeFormDataAndSchemaDefaults({
       schema,
       formData,
@@ -45,21 +33,25 @@ function formMerger(merger: Merger, rootSchema: Schema): FormMerger {
       includeUndefinedValues = false,
     }) {
       return getDefaultFormState(
-        testValidator,
-        merger,
+        createTestContext({
+          validator: createValidator(),
+          merger,
+          rootSchema,
+        }),
         schema,
         formData,
-        rootSchema,
         includeUndefinedValues,
         {},
         initialDefaultsGenerated
       );
     },
-    dropStaleDefaults(options) {
-      return dropStaleDefaults(formMerger, options);
-    },
   };
-  return formMerger;
+  return createTestContext({
+    validator: createValidator(),
+    merger: formMerger,
+    valueHandler: testValueHandler,
+    rootSchema,
+  }) as unknown as FormState<unknown>;
 }
 
 describe("StaleDefaultsPass", () => {
@@ -86,9 +78,7 @@ describe("StaleDefaultsPass", () => {
       registered: new WeakSet(),
     };
     const pass = new StaleDefaultsPass({
-      validator: testValidator,
-      merger: formMerger(merger, rootSchema),
-      rootSchema,
+      form: testForm(merger, rootSchema),
       changes: [change(path("mode"), "a")],
       getChildPath: (parentPath, key) =>
         internalRegisterFieldPath(pathRef, parentPath.concat(key)),

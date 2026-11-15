@@ -6,12 +6,20 @@ import {
   DEPENDENCIES_KEY,
   IF_KEY,
   isSchemaDeepEqual,
+  isValueDeepEqual,
   retrieveSchema,
   sanitizeDataForNewSchema,
   schemaHasNestedConditional,
+  type ValueHandler,
   type Schema,
   type Validator,
 } from "#core/index.js";
+import {
+  CORE_ROOT_SCHEMA,
+  CORE_VALIDATOR,
+  CORE_MERGER,
+  CORE_VALUE_HANDLER,
+} from "#core/internals.js";
 import { createDataURLtoBlob } from "#lib/file.js";
 import { weakMemoize } from "#lib/memoize.js";
 import type { SchedulerYield } from "#lib/scheduler.js";
@@ -26,7 +34,6 @@ import type { DeepPartial } from "#lib/types.js";
 
 import type { Theme } from "./components.js";
 import type { Config } from "./config.js";
-import { rebuildOldFormData } from "./drop-stale-defaults.js";
 import type { FieldsValidation, FormValidation } from "./errors.js";
 import type { ResolveFieldType } from "./fields.js";
 import type { Icons } from "./icons.js";
@@ -41,14 +48,11 @@ import {
   FORM_UI_EXTRA_OPTIONS,
   FORM_FIELDS_VALIDATION_MODE,
   FORM_KEYED_ARRAYS,
-  FORM_SCHEMA,
   FORM_UI_SCHEMA,
   FORM_UI_SCHEMA_ROOT,
   FORM_VALUE,
   FORM_UI_OPTIONS_REGISTRY,
   FORM_DISABLED,
-  FORM_VALIDATOR,
-  FORM_MERGER,
   FORM_RESOLVER,
   FORM_THEME,
   FORM_TRANSLATION,
@@ -63,7 +67,6 @@ import {
   FORM_PATHS_TRIE_REF,
   FORM_ID_PREFIX,
   FormErrors,
-  FORM_RETRIEVED_SCHEMA,
   FORM_CONFIGS_CACHE,
   FORM_ID_BUILDER,
   FORM_INITIAL_DEFAULTS_GENERATED,
@@ -80,11 +83,12 @@ import {
   type Update,
 } from "./model.js";
 import { createFormValueReconciler } from "./reconcile.js";
-import { StaleDefaultsPass } from "./stale-defaults-pass.js";
 import {
   getStaleDefaultsTriggerKeys,
+  rebuildOldFormData,
+  StaleDefaultsPass,
   type StaleDefaultsTriggerKeys,
-} from "./stale-defaults-trigger.js";
+} from "./stale-defaults/index.js";
 import {
   getChildPath,
   reset,
@@ -111,6 +115,7 @@ import {
   type ValidationResult,
   type FormValidator,
 } from "./validator.js";
+import type { FormValueHandler } from "./value-handler.js";
 import { createFormValueStore } from "./value-store.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
@@ -149,6 +154,7 @@ export interface IdBuilderFactoryOptions {
   uiOptionsRegistry: UiOptionsRegistry;
   validator: Validator;
   merger: FormMerger;
+  valueHandler: ValueHandler;
   valueRef: FormValueRef;
 }
 
@@ -160,10 +166,21 @@ export interface ValidatorFactoryOptions {
    * This is a getter that can be used to access the Merger lazily.
    */
   merger: () => FormMerger;
+  /**
+   * The value handler, for validators that need a core context.
+   */
+  valueHandler: ValueHandler;
 }
 
 export interface MergerFactoryOptions {
   validator: Validator;
+  schema: Schema;
+  uiSchema: UiSchemaRoot;
+  uiOptionsRegistry: UiOptionsRegistry;
+  valueHandler: ValueHandler;
+}
+
+export interface FormValueHandlerOptions {
   schema: Schema;
   uiSchema: UiSchemaRoot;
   uiOptionsRegistry: UiOptionsRegistry;
@@ -178,6 +195,11 @@ export interface FormOptions<T>
   idBuilder: Creatable<FormIdBuilder, IdBuilderFactoryOptions>;
   validator: Creatable<FormValidator<T>, ValidatorFactoryOptions>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
+  /**
+   * Compares values for change detection and copies them before in-place
+   * updates.
+   */
+  valueHandler: Creatable<FormValueHandler, FormValueHandlerOptions>;
   /**
    * @default DEFAULT_ID_PREFIX
    */
@@ -251,12 +273,20 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     };
   });
   const rootPath = $derived(internalRegisterFieldPath(pathsTrieRef, []));
+  const valueHandler = $derived(
+    create(options.valueHandler, {
+      schema: options.schema,
+      uiSchema: uiSchemaRoot,
+      uiOptionsRegistry,
+    })
+  );
   const validator = $derived(
     create(options.validator, {
       uiSchema: uiSchemaRoot,
       uiOptionsRegistry,
       schema: options.schema,
       merger: (): FormMerger => merger,
+      valueHandler,
     })
   );
   const merger = $derived(
@@ -265,6 +295,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       schema: options.schema,
       uiSchema: uiSchemaRoot,
       uiOptionsRegistry,
+      valueHandler,
     })
   );
   const valueRef = $derived(
@@ -293,17 +324,9 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       uiOptionsRegistry,
       merger: merger,
       validator: validator,
+      valueHandler,
       valueRef,
     })
-  );
-  const retrievedSchema = $derived(
-    retrieveSchema(
-      validator,
-      merger,
-      options.schema,
-      options.schema,
-      valueRef.current
-    )
   );
   // A `dependencies`/`if` branch switch nested inside an object property never changes the ROOT retrieved
   // schema (only the schema's own top-level `dependencies`/`if` get resolved into it), so comparing
@@ -344,12 +367,6 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   const disabled = $derived(options.disabled ?? false);
   const fieldsValidationMode = $derived(options.fieldsValidationMode ?? 0);
   const keyedArrays: KeyedArraysMap = new WeakMap();
-  const reconcileFormValue = $derived(
-    createFormValueReconciler({
-      keyedArraysMap: keyedArrays,
-      valueComparer: merger,
-    })
-  );
   const schedulerYield: SchedulerYield = $derived(
     (options.schedulerYield ??
       (typeof scheduler !== "undefined" && "yield" in scheduler))
@@ -472,7 +489,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       },
     },
     keyedArrays,
-    copyForChange: (value) => merger.copyForChange(value),
+    copyForChange: (value) => valueHandler.copyForChange(value),
     onChange(change) {
       recordChange(change);
     },
@@ -485,9 +502,23 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   const formState: FormState<T> = {
     validation,
     fieldsValidation,
-    // INTERNALS
-    [FORM_FIELDS_STATE_MAP]: fieldsStateMap,
+    // CORE INTERNALS
+    get [CORE_ROOT_SCHEMA]() {
+      return options.schema;
+    },
+    get [CORE_VALIDATOR]() {
+      return validator;
+    },
+    get [CORE_MERGER]() {
+      return merger;
+    },
+    get [CORE_VALUE_HANDLER]() {
+      return valueHandler;
+    },
+    // FORM INTERNALS
+    [FORM_VALUE]: valueStore,
     [FORM_CONFIGS_CACHE]: new WeakMap(),
+    [FORM_FIELDS_STATE_MAP]: fieldsStateMap,
     get [FORM_INITIAL_VALUE]() {
       return options.initialValue;
     },
@@ -512,7 +543,6 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     get [FORM_ROOT_PATH]() {
       return rootPath;
     },
-    [FORM_VALUE]: valueStore,
     get [FORM_FIELDS_VALIDATION_MODE]() {
       return fieldsValidationMode;
     },
@@ -521,12 +551,6 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     },
     get [FORM_KEYED_ARRAYS]() {
       return keyedArrays;
-    },
-    get [FORM_SCHEMA]() {
-      return options.schema;
-    },
-    get [FORM_RETRIEVED_SCHEMA]() {
-      return retrievedSchema;
     },
     get [FORM_UI_SCHEMA_ROOT]() {
       return uiSchemaRoot;
@@ -542,12 +566,6 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     },
     get [FORM_DISABLED]() {
       return disabled;
-    },
-    get [FORM_VALIDATOR]() {
-      return validator;
-    },
-    get [FORM_MERGER]() {
-      return merger;
     },
     get [FORM_ID_BUILDER]() {
       return idBuilder;
@@ -569,6 +587,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     },
     [FORM_MARK_SCHEMA_CHANGE]: scheduleDefaultsInjection,
   };
+  const reconcileFormValue = $derived(createFormValueReconciler(formState));
   const fieldTypeResolver = $derived(options.resolver(formState));
 
   function recordChange(change: FormValueChange) {
@@ -632,9 +651,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     // earlier value would clear what that pass just wrote.
     const oldFormData = rebuildOldFormData(formData, changes);
     let currentRetrievedSchema = retrieveSchema(
-      validator,
-      merger,
-      options.schema,
+      formState,
       options.schema,
       oldFormData
     );
@@ -644,9 +661,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     const staleDefaultsPass =
       mayDropStaleDefaults && changes.length > 0
         ? new StaleDefaultsPass({
-            validator,
-            merger,
-            rootSchema: options.schema,
+            form: formState,
             changes,
             getChildPath: (parentPath, key) =>
               getChildPath(formState, parentPath, key),
@@ -663,9 +678,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       // can select a different branch for another key one hop later.
       if (staleDefaultsPass) {
         const newRetrievedSchema = retrieveSchema(
-          validator,
-          merger,
-          options.schema,
+          formState,
           options.schema,
           formData
         );
@@ -694,16 +707,14 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       // conditionals one more pass over the value that is really there.
       if (!hasNewRefill) {
         for (let i = values.length - 1; i >= 0; i--) {
-          if (merger.isValueDeepEqual(values[i], formData)) {
+          if (isValueDeepEqual(formState, values[i], formData)) {
             break sanitization;
           }
         }
       }
 
       const nextRetrievedSchema = retrieveSchema(
-        validator,
-        merger,
-        options.schema,
+        formState,
         options.schema,
         formData
       );
@@ -719,9 +730,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       values.push(formData);
       const dataBeforeSanitize = formData;
       formData = sanitizeDataForNewSchema(
-        validator,
-        merger,
-        options.schema,
+        formState,
         nextRetrievedSchema,
         currentRetrievedSchema,
         formData

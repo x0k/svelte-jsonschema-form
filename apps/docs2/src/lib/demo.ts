@@ -12,6 +12,7 @@ import type {
   Theme,
   Translation,
   ValidatorFactoryOptions,
+  FormValueHandler,
 } from "@sjsf/form";
 import type {
   AbstractPackage,
@@ -29,6 +30,7 @@ interface Defaults {
   idBuilder: Creatable<FormIdBuilder, IdBuilderFactoryOptions>;
   validator: <T>(options: ValidatorFactoryOptions) => FormValidator<T>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
+  valueHandler: FormValueHandler;
   translation: Translation;
   icons: Icons | undefined;
   extraUiOptions: ExtraUiOptions;

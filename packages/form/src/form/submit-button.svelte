@@ -1,8 +1,9 @@
 <script lang="ts">
+  import { CORE_ROOT_SCHEMA } from "#core/internals.js";
   import { constUndefined } from "#lib/function.js";
 
   import type { Config } from "./config.js";
-  import { FORM_ROOT_PATH, FORM_SCHEMA, FORM_UI_SCHEMA } from "./internals.js";
+  import { FORM_ROOT_PATH, FORM_UI_SCHEMA } from "./internals.js";
   import {
     getPseudoPath,
     getComponent,
@@ -16,7 +17,7 @@
   const config: Config = $derived({
     path: getPseudoPath(ctx, ctx[FORM_ROOT_PATH], "submit"),
     title: "",
-    schema: ctx[FORM_SCHEMA],
+    schema: ctx[CORE_ROOT_SCHEMA],
     uiSchema: ctx[FORM_UI_SCHEMA],
     required: false,
     value: constUndefined,

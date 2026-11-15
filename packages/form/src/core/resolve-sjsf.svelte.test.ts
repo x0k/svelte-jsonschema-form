@@ -1,19 +1,8 @@
-import { beforeEach, describe, expect, it } from "vitest";
+import { describe, expect, it } from "vitest";
 
-import type { Merger } from "./merger.js";
 import { retrieveSchema } from "./resolve.js";
 import { type Schema, REF_FLAG } from "./schema.js";
-import { createMerger } from "./test-merger.js";
-import { createValidator } from "./test-validator.js";
-import type { Validator } from "./validator.js";
-
-let testValidator: Validator;
-let defaultMerger: Merger;
-
-beforeEach(() => {
-  testValidator = createValidator();
-  defaultMerger = createMerger();
-});
+import { createTestContext } from "./testing.js";
 
 describe("retrieveSchema", () => {
   it("$state.snapshot should preserve symbol properties", () => {
@@ -40,7 +29,12 @@ describe("retrieveSchema", () => {
       },
     };
 
-    const result = retrieveSchema(testValidator, defaultMerger, schema, schema);
+    const result = retrieveSchema(
+      createTestContext({
+        rootSchema: schema,
+      }),
+      schema
+    );
 
     expect(result).toEqual({
       type: "object",
@@ -58,10 +52,10 @@ describe("retrieveSchema", () => {
     const childSchema = result.properties?.child as Schema;
 
     const childResult = retrieveSchema(
-      testValidator,
-      defaultMerger,
-      childSchema,
-      schema
+      createTestContext({
+        rootSchema: schema,
+      }),
+      childSchema
     );
 
     expect(childResult).toEqual({

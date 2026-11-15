@@ -1,6 +1,7 @@
 import type { JSONSchema7, JSONSchema7TypeName } from "json-schema";
 
 import type { TransformedSchema } from "#lib/json-schema/index.js";
+import type { DeepReadonly } from "#lib/types.js";
 
 export interface OpenAPIDiscriminator {
   propertyName: string;
@@ -40,6 +41,10 @@ export interface SchemaObjectValue {
 }
 
 export interface SchemaArrayValue extends Array<SchemaValue | undefined> {}
+
+export type ReadonlySchemaValue = DeepReadonly<SchemaValue>;
+export type ReadonlySchemaObjectValue = DeepReadonly<SchemaObjectValue>;
+export type ReadonlySchemaArrayValue = DeepReadonly<SchemaArrayValue>;
 
 export const REF_KEY = "$ref";
 export const ID_KEY = "$id";

@@ -5,28 +5,36 @@ import {
   createSchemaValueComparator,
   isSchemaValueDeepEqual,
 } from "#core/index.js";
-import type { SchemaValue } from "#core/index.js";
+import type { SchemaValue, ValueHandler } from "#core/index.js";
+import { createTestContext } from "#core/testing.js";
 
+import { FORM_KEYED_ARRAYS } from "./internals.js";
 import { createFormValueReconciler } from "./reconcile.js";
+import type { FormState } from "./state/index.js";
+
+function testFormState(valueHandler: ValueHandler): FormState<unknown> {
+  return {
+    ...createTestContext({ valueHandler }),
+    [FORM_KEYED_ARRAYS]: new WeakMap(),
+  } as unknown as FormState<unknown>;
+}
 
 describe("", () => {
-  const reconcile = createFormValueReconciler({
-    keyedArraysMap: new WeakMap(),
-    valueComparer: {
+  const reconcile = createFormValueReconciler(
+    testFormState({
       isValueDeepEqual: isSchemaValueDeepEqual,
-    },
-  });
+    })
+  );
 
-  const byDate = createFormValueReconciler({
-    keyedArraysMap: new WeakMap(),
-    valueComparer: {
+  const byDate = createFormValueReconciler(
+    testFormState({
       isValueDeepEqual: createSchemaValueComparator(compareRecords, (a, b) =>
         a instanceof Date && b instanceof Date
           ? a.getTime() === b.getTime()
           : Object.is(a, b)
       ),
-    },
-  });
+    })
+  );
 
   it("should preserve undefined values", () => {
     let value = {
@@ -66,7 +74,7 @@ describe("", () => {
     expect((value as Record<string, unknown>)["__proto__"]).toEqual({ a: 1 });
   });
 
-  it("should replace a leaf the default comparator cannot match", () => {
+  it("should replace a leaf the default valueHandler cannot match", () => {
     const targetDate = new Date(0);
     const sourceDate = new Date(0);
     const target = { d: targetDate } as unknown as SchemaValue;
@@ -85,7 +93,7 @@ describe("", () => {
     expect((value as { d: Date }).d).toBe(sourceDate);
   });
 
-  it("should keep a leaf a custom comparator declares equal", () => {
+  it("should keep a leaf a custom valueHandler declares equal", () => {
     const targetDate = new Date(0);
     const sourceDate = new Date(0);
     const target = { d: targetDate } as unknown as SchemaValue;

@@ -14,6 +14,7 @@
     debounce,
   } from "@sjsf/form/lib/task.svelte";
   import { createMerger as createSchemaMerger } from "@sjsf/form/mergers/modern";
+  import { defaultFormValueHandler } from "@sjsf/form/value-handlers/default";
   import { parseFormData, type ValidatorState } from "meta/playground";
   import { Panel, setTilerContext, type Tiles } from "svelte-tiler";
   import { fromRecord } from "svelte-tiler/shared/registry";
@@ -77,6 +78,7 @@
 
   const validatorState = createValidatorState(data, {
     merger: () => merger,
+    valueHandler: defaultFormValueHandler,
   });
 
   const validateTask = createTask<

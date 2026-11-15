@@ -1,4 +1,5 @@
 export { resolver } from "@sjsf/form/resolvers/basic";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 
 export { theme } from "@sjsf/shadcn4-theme";
 

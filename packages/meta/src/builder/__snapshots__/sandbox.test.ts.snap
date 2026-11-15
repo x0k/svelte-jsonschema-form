@@ -77,6 +77,7 @@ import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
+export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -222,6 +223,7 @@ import '@sjsf/form/fields/extra/file-include';
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
+export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -367,6 +369,7 @@ import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
+export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -513,6 +516,7 @@ import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
+export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -661,6 +665,7 @@ import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
+export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -820,6 +825,7 @@ import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
+export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -999,6 +1005,7 @@ import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
+export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -1151,6 +1158,7 @@ import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
+export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -1517,6 +1525,7 @@ import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
+export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -1859,6 +1868,7 @@ import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
+export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -2022,6 +2032,7 @@ import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
+export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -2184,6 +2195,7 @@ import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
+export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -2340,6 +2352,7 @@ import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
+export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -2485,6 +2498,7 @@ import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
+export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -2724,6 +2738,7 @@ if (import.meta.main) {
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
+export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -2866,6 +2881,7 @@ export type Model = FromSchema<typeof schema>;",
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
+export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -3070,6 +3086,7 @@ if (import.meta.main) {
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
+export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -3212,6 +3229,7 @@ export type Model = FromSchema<typeof schema>;",
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
+export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -3453,6 +3471,7 @@ import '@hyperjump/json-schema/formats-lite';
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
+export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -3595,6 +3614,7 @@ export type Model = FromSchema<typeof schema>;",
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
+export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -3806,6 +3826,7 @@ if (import.meta.main) {
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
+export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -3942,6 +3963,7 @@ export type Model = v.InferInput<typeof schema>;",
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
+export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -4075,6 +4097,7 @@ export type Model = z.infer<typeof schema>;",
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
+export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -4219,6 +4242,7 @@ import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
+export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 

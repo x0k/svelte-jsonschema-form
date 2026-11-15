@@ -1,13 +1,13 @@
 import type { ValidationOptions, Validator } from "@hyperjump/json-schema";
 import { JSE, type Json as HyperjumpJson } from "@hyperjump/json-schema-errors";
-import type { FormValue, Schema, SchemaValue } from "@sjsf/form";
+import type { ReadonlySchemaValue, Schema, SchemaValue } from "@sjsf/form";
 
 export interface CoreValidatorOptions extends Partial<ValidationOptions> {
   validatorRetriever: (schema: Schema) => Validator;
 }
 
 export interface ValueToJSON {
-  valueToJSON: (value: FormValue) => SchemaValue;
+  valueToJSON: (value: ReadonlySchemaValue | undefined) => SchemaValue;
 }
 
 export type ValidatorOptions = CoreValidatorOptions & ValueToJSON;
@@ -24,7 +24,7 @@ export interface Context {
 export function createContext(
   options: ValidatorOptions,
   schema: Schema,
-  value: FormValue
+  value: ReadonlySchemaValue | undefined
 ): Context {
   return {
     validator: options.validatorRetriever(schema),

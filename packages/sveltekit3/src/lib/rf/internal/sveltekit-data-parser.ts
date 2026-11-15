@@ -9,7 +9,10 @@ import {
   type UiSchemaRoot,
   type Validator,
   type ValidatorFactoryOptions,
+  type FormValueHandler,
+  type FormValueHandlerOptions,
 } from "@sjsf/form";
+import { createCoreContext } from "@sjsf/form/core";
 
 import {
   createEnumItemDecoder,
@@ -29,6 +32,7 @@ export interface SvelteKitDataParserOptions {
   schema: Schema;
   validator: Creatable<Validator, ValidatorFactoryOptions>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
+  valueHandler: Creatable<FormValueHandler, FormValueHandlerOptions>;
   uiSchema?: UiSchemaRoot;
   uiOptionsRegistry?: UiOptionsRegistry;
   createEntryConverter?: Creatable<
@@ -45,6 +49,7 @@ export function createSvelteKitDataParser({
   uiSchema = {},
   merger: createMerger,
   validator: createValidator,
+  valueHandler: createValueHandler,
   uiOptionsRegistry = {},
   createEntryConverter = createFormDataEntryConverter,
   convertUnknownEntry,
@@ -53,22 +58,33 @@ export function createSvelteKitDataParser({
     createOptionIndexDecoder(encode(pseudoPrefix))
   ),
 }: SvelteKitDataParserOptions) {
+  const values = create(createValueHandler, {
+    schema,
+    uiSchema,
+    uiOptionsRegistry,
+  });
   const validator: Validator = create(createValidator, {
     schema: schema,
     uiSchema: uiSchema,
     uiOptionsRegistry,
     merger: () => merger,
+    valueHandler: values,
   });
   const merger = create(createMerger, {
     schema: schema,
     uiSchema: uiSchema,
     validator,
     uiOptionsRegistry,
+    valueHandler: values,
   });
-  const convertEntry = create(createEntryConverter, {
+  const ctx = createCoreContext({
     validator,
     merger,
+    valueHandler: values,
     rootSchema: schema,
+  });
+  const convertEntry = create(createEntryConverter, {
+    ctx,
     rootUiSchema: uiSchema,
     convertUnknownEntry,
     enumItemDecoder,
@@ -83,10 +99,8 @@ export function createSvelteKitDataParser({
       pseudoPrefix,
       convertEntry,
       input: input as Record<string, Input<FormDataEntryValue>>,
-      merger,
-      schema: schema,
+      ctx,
       uiSchema: uiSchema,
-      validator,
       codec: { decode, encode },
     });
 }

@@ -15,19 +15,21 @@ import {
   getSchemaDefinitionByPath,
   isSchemaArrayValue,
   isSchemaObjectValue,
+  isValueDeepEqual,
   retrieveSchema,
   sanitizeDataForNewSchema,
-  type Merger,
+  type CoreContext,
   type RPath,
   type Schema,
-  type Validator,
 } from "#core/index.js";
 import { getOwn, getValueByPath, setOwn } from "#lib/object.js";
 
-import { deleteAtPath, replaceAtPath } from "./drop-stale-defaults.js";
-import type { FieldPath } from "./id.js";
-import type { DroppedDefault, FormMerger, FormValueChange } from "./merger.js";
-import type { FieldValue, FormValue } from "./model.js";
+import type { FieldPath } from "../id.js";
+import type { FormValueChange } from "../merger.js";
+import type { FieldValue, FormValue } from "../model.js";
+import type { FormState } from "../state/index.js";
+import { dropStaleDefaults, type DroppedDefault } from "./drop.js";
+import { deleteAtPath, replaceAtPath } from "./path.js";
 
 export interface AfterFillResult {
   formData: FormValue;
@@ -40,10 +42,8 @@ export interface AfterFillResult {
   hasNewRefill: boolean;
 }
 
-export interface StaleDefaultsPassOptions {
-  validator: Validator;
-  merger: FormMerger;
-  rootSchema: Schema;
+export interface StaleDefaultsPassOptions<T> {
+  form: FormState<T>;
   changes: readonly FormValueChange[];
   /**
    * Returns the form's canonical child path, so dropped paths are compared by
@@ -127,9 +127,7 @@ function putBackAt(
 }
 
 function resolveSchemaAt(
-  validator: Validator,
-  merger: Merger,
-  rootSchema: Schema,
+  ctx: CoreContext,
   newSchema: Schema,
   path: RPath,
   formData: FormValue
@@ -138,9 +136,7 @@ function resolveSchemaAt(
   let fieldData: FormValue = formData;
   for (const segment of path) {
     const childSchema = getSchemaDefinitionByPath(
-      validator,
-      merger,
-      rootSchema,
+      ctx,
       fieldSchema,
       [segment],
       fieldData
@@ -162,21 +158,13 @@ function resolveSchemaAt(
     // Resolve at each level, not only at the leaf: a swap decided inside a
     // property leaves the root retrieved schema the same object, so the child
     // declaration has to be retrieved against the data at its own level.
-    fieldSchema = retrieveSchema(
-      validator,
-      merger,
-      childSchema,
-      rootSchema,
-      fieldData
-    );
+    fieldSchema = retrieveSchema(ctx, childSchema, fieldData);
   }
   return fieldSchema;
 }
 
 function isRefillRejected(
-  validator: Validator,
-  merger: Merger,
-  rootSchema: Schema,
+  ctx: CoreContext,
   path: RPath,
   newSchema: Schema,
   oldSchema: Schema,
@@ -193,25 +181,21 @@ function isRefillRejected(
   const data: Record<string, FieldValue> = {};
   setOwn(data, key, value);
   const judged = sanitizeDataForNewSchema(
-    validator,
-    merger,
-    rootSchema,
+    ctx,
     { properties: newProperties },
     { properties: oldProperties },
     data
   );
   return (
-    !isSchemaObjectValue(judged) || !merger.isValueDeepEqual(judged[key], value)
+    !isSchemaObjectValue(judged) || !isValueDeepEqual(ctx, judged[key], value)
   );
 }
 
-export class StaleDefaultsPass {
+export class StaleDefaultsPass<T> {
   private readonly dropped = new Map<FieldPath, DroppedDefault>();
   private readonly droppedPathKeys = new Set<FieldPath>();
   private readonly settled = new Set<FieldPath>();
-  private readonly validator: Validator;
-  private readonly merger: FormMerger;
-  private readonly rootSchema: Schema;
+  private readonly form: FormState<T>;
   private readonly changes: readonly FormValueChange[];
   private readonly getChildPath: (
     parentPath: RPath,
@@ -221,17 +205,13 @@ export class StaleDefaultsPass {
   private readonly oldSchema: Schema | undefined;
 
   constructor({
-    validator,
-    merger,
-    rootSchema,
+    form,
     changes,
     getChildPath,
     oldFormData,
     oldSchema,
-  }: StaleDefaultsPassOptions) {
-    this.validator = validator;
-    this.merger = merger;
-    this.rootSchema = rootSchema;
+  }: StaleDefaultsPassOptions<T>) {
+    this.form = form;
     this.changes = changes;
     this.getChildPath = getChildPath;
     this.oldFormData = oldFormData;
@@ -244,9 +224,7 @@ export class StaleDefaultsPass {
     newSchema: Schema,
     initialDefaultsGenerated: boolean
   ): FormValue {
-    const { formData: result, dropped } = this.merger.dropStaleDefaults({
-      validator: this.validator,
-      rootSchema: this.rootSchema,
+    const { formData: result, dropped } = dropStaleDefaults(this.form, {
       newSchema,
       formData,
       changes: this.changes,
@@ -310,9 +288,7 @@ export class StaleDefaultsPass {
         continue;
       }
       const resolvedNow = resolveSchemaAt(
-        this.validator,
-        this.merger,
-        this.rootSchema,
+        this.form,
         newSchema,
         dropped.path,
         dataBeforeSanitize
@@ -322,9 +298,7 @@ export class StaleDefaultsPass {
         writtenUnder !== undefined &&
         resolvedNow !== undefined &&
         isRefillRejected(
-          this.validator,
-          this.merger,
-          this.rootSchema,
+          this.form,
           dropped.path,
           resolvedNow,
           writtenUnder,
@@ -349,7 +323,7 @@ export class StaleDefaultsPass {
           this.oldFormData,
           dropped.path,
           held,
-          (value) => !this.merger.isValueDeepEqual(value, held)
+          (value) => !isValueDeepEqual(this.form, value, held)
         );
       }
     }

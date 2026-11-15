@@ -1,5 +1,5 @@
 import type { FormValidator, Schema, SchemaValue, UiSchema } from "@sjsf/form";
-import { isSchemaValueDeepEqual } from "@sjsf/form/core";
+import { createCoreContext, isSchemaValueDeepEqual } from "@sjsf/form/core";
 import { noop } from "@sjsf/form/lib/function";
 import {
   abortPrevious,
@@ -8,6 +8,7 @@ import {
   debounce,
   type FailedTask,
 } from "@sjsf/form/lib/task.svelte";
+import { createMerger } from "@sjsf/form/mergers/modern";
 import {
   IdEnumValueMapperBuilder,
   singleOption,
@@ -141,6 +142,7 @@ export function createValidatorState(
       return playgroundValidator({
         validator: v,
         merger: validatorOptions.merger,
+        valueHandler: validatorOptions.valueHandler,
         schema,
         uiSchema,
       });
@@ -149,9 +151,14 @@ export function createValidatorState(
   });
   const { schema, validator } = $derived(validatorQuery.current);
 
-  const builder = new IdEnumValueMapperBuilder({
-    isValueDeepEqual: isSchemaValueDeepEqual,
-  });
+  const builder = new IdEnumValueMapperBuilder(
+    createCoreContext({
+      validator: DEFAULT_VALIDATOR,
+      merger: createMerger(),
+      valueHandler: { isValueDeepEqual: isSchemaValueDeepEqual },
+      rootSchema: {},
+    })
+  );
   const items: string[] = [];
   const labels: Record<string, string> = {};
   const labels2020: Record<string, string> = {};

@@ -1,17 +1,12 @@
 import {
+  createCoreContext,
   getDefaultFormState,
-  isSchemaValueDeepEqual,
+  type ValueHandler,
   type Experimental_DefaultFormStateBehavior,
   type Merger,
   type Validator,
 } from "#core/index.js";
-import { dropStaleDefaults } from "#form/drop-stale-defaults.js";
-import type {
-  DropStaleDefaultsOptions,
-  FormMerger,
-  Schema,
-} from "#form/main.js";
-import { copyForChange } from "#form/merger.js";
+import type { FormMerger, Schema } from "#form/main.js";
 import {
   createMerger as createJsonSchemaMerger,
   createShallowAllOfMerge,
@@ -36,7 +31,6 @@ export function createMerger({
     mergeAllOf(schema) {
       return jsonSchemaAllOfMerge(schema) as Schema;
     },
-    isValueDeepEqual: isSchemaValueDeepEqual,
   };
 }
 
@@ -44,12 +38,12 @@ export interface FormMergerOptions
   extends Experimental_DefaultFormStateBehavior, MergerOptions {
   validator: Validator;
   schema: Schema;
+  valueHandler: ValueHandler;
 }
 
 export function createFormMerger(options: FormMergerOptions): FormMerger {
   const formMerger: FormMerger = {
     ...createMerger(options),
-    copyForChange,
     mergeFormDataAndSchemaDefaults({
       formData,
       schema,
@@ -57,18 +51,18 @@ export function createFormMerger(options: FormMergerOptions): FormMerger {
       includeUndefinedValues = false,
     }) {
       return getDefaultFormState(
-        options.validator,
-        formMerger,
+        createCoreContext({
+          validator: options.validator,
+          merger: formMerger,
+          valueHandler: options.valueHandler,
+          rootSchema: options.schema,
+        }),
         schema,
         formData,
-        options.schema,
         includeUndefinedValues,
         options,
         initialDefaultsGenerated
       );
-    },
-    dropStaleDefaults(dropOptions: DropStaleDefaultsOptions) {
-      return dropStaleDefaults(formMerger, dropOptions);
     },
   };
   return formMerger;

@@ -1,6 +1,6 @@
 // NOTE: DO NOT REMOVE
 import type { ComponentProps as _ComponentProps } from "@sjsf/form";
-import type { ValueComparer } from "@sjsf/form/core";
+import type { FormState } from "@sjsf/form";
 import type { EnumValueMapperBuilder } from "@sjsf/form/options.svelte";
 
 declare module "@sjsf/form" {
@@ -13,7 +13,7 @@ declare module "@sjsf/form" {
     transparentLayout: "";
   }
   interface UiOptionsRegistry {
-    stringEnumValueMapper: (comparer: ValueComparer) => EnumValueMapperBuilder;
-    idEnumValueMapper: (comparer: ValueComparer) => EnumValueMapperBuilder;
+    stringEnumValueMapper: <T>(ctx: FormState<T>) => EnumValueMapperBuilder;
+    idEnumValueMapper: <T>(ctx: FormState<T>) => EnumValueMapperBuilder;
   }
 }

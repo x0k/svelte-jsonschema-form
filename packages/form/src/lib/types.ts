@@ -74,19 +74,54 @@ export type JsonPaths<T, D extends number = 10> = D extends -1
           >
         : never;
 
-export type DeepPartial<T> = T extends readonly unknown[]
-  ? { [K in keyof T]: DeepPartial<T[K]> | undefined }
-  : T extends object
-    ? { [K in keyof T]?: DeepPartial<T[K]> }
-    : T;
+/**
+ * Whether `T` has a callable member.
+ *
+ * Class instances such as `File`, `Blob`, or `Date` have methods, while plain
+ * records do not, so this tells them apart at the type level.
+ */
+type HasMethod<T> = true extends {
+  [K in keyof T]-?: T[K] extends (...args: never[]) => unknown ? true : false;
+}[keyof T]
+  ? true
+  : false;
 
-export type DeepReadonly<T> = T extends readonly unknown[]
-  ? T extends readonly [unknown, ...unknown[]] | readonly []
-    ? { readonly [K in keyof T]: DeepReadonly<T[K]> }
-    : ReadonlyArray<DeepReadonly<T[number]>>
-  : T extends object
-    ? { readonly [K in keyof T]: DeepReadonly<T[K]> }
-    : T;
+/**
+ * Recursively marks object properties as optional.
+ *
+ * Class instances are kept as-is: `SchemaValues` is augmentable, so a form
+ * value can be a `File`, a `Date`, or any other custom instance. Making their
+ * members optional would lose their identity and break assignment.
+ */
+export type DeepPartial<T> = T extends (...args: never[]) => unknown
+  ? T
+  : T extends readonly unknown[]
+    ? { [K in keyof T]: DeepPartial<T[K]> | undefined }
+    : T extends object
+      ? HasMethod<T> extends true
+        ? T
+        : { [K in keyof T]?: DeepPartial<T[K]> }
+      : T;
+
+/**
+ * Recursively marks arrays and plain object properties as `readonly`.
+ *
+ * Class instances are kept as-is: `SchemaValues` is augmentable, so a form
+ * value can be a `File`, a `Date`, or any other custom instance. Mapping their
+ * members into a plain readonly object would lose their identity and break
+ * narrowing (`isSchemaObjectValue`) and assignment.
+ */
+export type DeepReadonly<T> = T extends (...args: never[]) => unknown
+  ? T
+  : T extends readonly unknown[]
+    ? T extends readonly [unknown, ...unknown[]] | readonly []
+      ? { readonly [K in keyof T]: DeepReadonly<T[K]> }
+      : ReadonlyArray<DeepReadonly<T[number]>>
+    : T extends object
+      ? HasMethod<T> extends true
+        ? T
+        : { readonly [K in keyof T]: DeepReadonly<T[K]> }
+      : T;
 
 export type OmitItems<
   Args extends unknown[],

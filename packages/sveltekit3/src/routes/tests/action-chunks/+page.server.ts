@@ -1,4 +1,4 @@
-import { createAction } from "#lib/server/server.js";
+import { createAction } from "#lib/server/index.js";
 
 import * as defaults from "../../form-defaults.js";
 import { setLastSubmission } from "../submission-store.js";

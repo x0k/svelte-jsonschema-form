@@ -1,6 +1,6 @@
 import { isObject, isRecordProto } from "#lib/object.js";
 
-import type { Schema, SchemaValue } from "./schema.js";
+import type { ReadonlySchemaValue, Schema } from "./schema.js";
 
 /**
  * Compares two form values.
@@ -10,10 +10,13 @@ import type { Schema, SchemaValue } from "./schema.js";
  * depth. The default leaf rule treats only the same value as equal, `NaN`
  * excepted, so a custom one is the only way to declare two non plain values,
  * such as a `File` or a `Date`, equal.
+ *
+ * Both arguments are read-only: comparison never mutates the values, and
+ * read-only form values (for example `getValue`) must be comparable too.
  */
 export type ValueDeepComparator = (
-  a: SchemaValue | undefined,
-  b: SchemaValue | undefined
+  a: ReadonlySchemaValue | undefined,
+  b: ReadonlySchemaValue | undefined
 ) => boolean;
 
 /**
@@ -25,12 +28,12 @@ export type ValueDeepComparator = (
 export type LeafValueComparator = ValueDeepComparator;
 
 /**
- * Compares two form values for change detection.
+ * The value handling service.
  *
  * Only read by the value comparison paths, such as `sanitizeDataForNewSchema`
  * and the form value reconciler. Schema resolution never consults it.
  */
-export interface ValueComparer {
+export interface ValueHandler {
   isValueDeepEqual: ValueDeepComparator;
 }
 
@@ -39,8 +42,8 @@ export interface ValueComparer {
  * so that nested values keep following the same rules.
  */
 export type RecordsComparator = (
-  a: Record<PropertyKey, SchemaValue | undefined>,
-  b: Record<PropertyKey, SchemaValue | undefined>,
+  a: Record<PropertyKey, ReadonlySchemaValue | undefined>,
+  b: Record<PropertyKey, ReadonlySchemaValue | undefined>,
   compare: ValueDeepComparator
 ) => boolean;
 
@@ -104,8 +107,8 @@ export function createSchemaValueComparator(
   equal: LeafValueComparator
 ): ValueDeepComparator {
   return function compare(
-    a: SchemaValue | undefined,
-    b: SchemaValue | undefined
+    a: ReadonlySchemaValue | undefined,
+    b: ReadonlySchemaValue | undefined
   ): boolean {
     if (a === b) {
       return true;
@@ -132,8 +135,8 @@ export function createSchemaValueComparator(
         return false;
       }
       if (
-        !isRecordProto<SchemaValue | undefined>(a) ||
-        !isRecordProto<SchemaValue | undefined>(b)
+        !isRecordProto<ReadonlySchemaValue | undefined>(a) ||
+        !isRecordProto<ReadonlySchemaValue | undefined>(b)
       ) {
         return equal(a, b);
       }

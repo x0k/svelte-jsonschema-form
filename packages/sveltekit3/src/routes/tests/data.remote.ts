@@ -1,4 +1,4 @@
-import { createServerValidator } from "#lib/rf/server/server.js";
+import { createServerValidator } from "#lib/rf/server/index.js";
 import { form, query } from "$app/server";
 
 import * as defaults from "../form-defaults.js";

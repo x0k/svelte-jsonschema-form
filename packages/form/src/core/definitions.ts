@@ -5,7 +5,7 @@
 import { isSchemaObject } from "#lib/json-schema/index.js";
 import { isObject } from "#lib/object.js";
 
-import type { Merger } from "./merger.js";
+import { getRootSchema, mergeSchemas, type CoreContext } from "./context.js";
 import { REF_KEY, type Schema, type SchemaDefinition } from "./schema.js";
 
 /**
@@ -55,12 +55,12 @@ export function resolveRefSafe(
   return getByPointer(rootSchema, pointer);
 }
 
-export function resolveRef(ref: string, rootSchema: Schema) {
+export function resolveRef(ctx: CoreContext, ref: string): SchemaDefinition {
   if (!ref.startsWith("#")) {
     throw new Error(`Invalid reference: ${ref}, must start with #`);
   }
 
-  const schemaDef = resolveRefSafe(ref, rootSchema);
+  const schemaDef = resolveRefSafe(ref, getRootSchema(ctx));
   if (schemaDef === undefined) {
     throw new Error(`Could not find a definition for ${ref}.`);
   }
@@ -68,12 +68,11 @@ export function resolveRef(ref: string, rootSchema: Schema) {
 }
 
 export function findSchemaDefinition(
-  merger: Merger,
+  ctx: CoreContext,
   ref: string,
-  rootSchema: Schema,
   stack = new Set<string>()
 ): Schema {
-  const current = resolveRef(ref, rootSchema);
+  const current = resolveRef(ctx, ref);
   if (!isSchemaObject(current)) {
     throw new Error(`Definition for ${ref} should be a schema (object)`);
   }
@@ -94,16 +93,15 @@ export function findSchemaDefinition(
       );
     }
     const subSchema = findSchemaDefinition(
-      merger,
+      ctx,
       nextRef,
-      rootSchema,
       new Set(stack).add(ref)
     );
     if (Object.keys(current).length < 2) {
       return subSchema;
     }
     const { [REF_KEY]: _, ...currentSchema } = current;
-    return merger.mergeSchemas(currentSchema, subSchema);
+    return mergeSchemas(ctx, currentSchema, subSchema);
   }
   return current;
 }

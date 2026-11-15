@@ -3,9 +3,9 @@
 // Modifications made by Roman Krasilnikov.
 
 import {
+  type ReadonlySchemaValue,
   type Schema,
   type SchemaDefinition,
-  type SchemaValue,
 } from "./schema.js";
 import { getSimpleSchemaType, isArrayOrObjectSchemaType } from "./type.js";
 import { isSchemaObjectValue } from "./value.js";
@@ -16,7 +16,9 @@ export function getDiscriminatorFieldFromSchema(
   return schema.discriminator?.propertyName;
 }
 
-export function getOptionMatchingSimpleDiscriminator<T extends SchemaValue>(
+export function getOptionMatchingSimpleDiscriminator<
+  T extends ReadonlySchemaValue,
+>(
   formData: T | undefined,
   options: SchemaDefinition[],
   discriminatorField?: string
@@ -43,7 +45,9 @@ export function getOptionMatchingSimpleDiscriminator<T extends SchemaValue>(
       }
       if (
         discriminator.const === value ||
-        (discriminator.enum as SchemaValue[] | undefined)?.includes(value)
+        (discriminator.enum as ReadonlySchemaValue[] | undefined)?.includes(
+          value
+        )
       ) {
         return i;
       }

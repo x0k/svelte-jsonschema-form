@@ -8,7 +8,7 @@ import type {
   Schema,
   FieldValueValidator,
   FormValueValidator,
-  FormValue,
+  ReadonlySchemaValue,
 } from "@sjsf/form";
 import {
   DATA_URL_FORMAT,
@@ -40,7 +40,7 @@ export function setupFormFormats(registry: FormatRegistry) {
 }
 
 export interface ValueToJSON {
-  valueToJSON: (value: FormValue) => SchemaValue;
+  valueToJSON: (value: ReadonlySchemaValue | undefined) => SchemaValue;
 }
 export interface ValidatorOptions extends ValueToJSON {
   createSchemaValidator: (schema: Schema) => CfValidator;

@@ -8,11 +8,14 @@ import {
   type FormMerger,
   type UiOptionsRegistry,
   type Creatable,
+  type FormValueHandler,
+  type FormValueHandlerOptions,
   create,
   SJSF_ID_PREFIX,
   type ValidationResult,
   type FormValidator,
 } from "@sjsf/form";
+import { createCoreContext } from "@sjsf/form/core";
 import type { MaybePromise } from "@sjsf/form/lib/types";
 import { fail, type ActionFailure, type RequestEvent } from "@sveltejs/kit";
 
@@ -53,6 +56,7 @@ export interface FormHandlerOptions<T, SD extends SendData> extends Omit<
   idIndexSeparator?: string;
   validator: Creatable<FormValidator<T>, ValidatorFactoryOptions>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
+  valueHandler: Creatable<FormValueHandler, FormValueHandlerOptions>;
   createEntryConverter?: Creatable<
     EntryConverter<FormDataEntryValue>,
     FormDataConverterOptions
@@ -82,6 +86,7 @@ export function createFormHandler<T, SD extends SendData>({
   uiOptionsRegistry = {},
   merger: createMerger,
   validator: createValidator,
+  valueHandler: createValueHandler,
   createEntryConverter = createFormDataEntryConverter,
   convertUnknownEntry,
   propertySeparator = DEFAULT_PROPERTY_SEPARATOR,
@@ -94,22 +99,33 @@ export function createFormHandler<T, SD extends SendData>({
     createOptionIndexDecoder(pseudoSeparator)
   ),
 }: FormHandlerOptions<T, SD>) {
+  const valueHandler = create(createValueHandler, {
+    schema,
+    uiSchema,
+    uiOptionsRegistry,
+  });
   const validator = create(createValidator, {
     schema,
     uiSchema,
     uiOptionsRegistry,
     merger: () => merger,
+    valueHandler,
   });
   const merger: FormMerger = create(createMerger, {
     schema,
     uiSchema,
     validator,
     uiOptionsRegistry,
+    valueHandler,
   });
-  const convertEntry = create(createEntryConverter, {
+  const ctx = createCoreContext({
     validator,
     merger,
+    valueHandler,
     rootSchema: schema,
+  });
+  const convertEntry = create(createEntryConverter, {
+    ctx,
     rootUiSchema: uiSchema,
     convertUnknownEntry,
     enumItemDecoder,
@@ -157,11 +173,9 @@ export function createFormHandler<T, SD extends SendData>({
           idSeparator: propertySeparator,
           idIndexSeparator: indexSeparator,
           idPseudoSeparator: pseudoSeparator,
-          schema,
+          ctx,
           uiSchema,
           entries: Array.from(formData.entries()),
-          validator,
-          merger,
           convertEntry,
           codec: createCodec({
             escapeChar: escapeCharacter,

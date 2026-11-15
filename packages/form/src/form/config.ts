@@ -1,11 +1,11 @@
 import {
   isOrderedSchemaDeepEqual,
   isSchemaDeepEqual,
+  type ReadonlySchemaValue,
   type Schema,
 } from "#core/index.js";
 
 import type { FieldPath } from "./id.js";
-import type { FieldValue } from "./model.js";
 import type { UiSchema } from "./ui-schema.js";
 
 export interface EventHandlers {
@@ -21,7 +21,7 @@ export interface Config {
   readonly schema: Schema;
   readonly uiSchema: UiSchema;
   readonly required: boolean;
-  readonly value: () => Readonly<FieldValue>;
+  readonly value: () => ReadonlySchemaValue | undefined;
   readonly eventHandlers?: EventHandlers;
 }
 

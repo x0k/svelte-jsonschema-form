@@ -35,6 +35,7 @@ SJSF favors explicit modular imports over heavy globals. Create a central `defau
 export { resolver } from "@sjsf/form/resolvers/basic";
 export { theme } from "@sjsf/shadcn4-theme"; // Or @sjsf/basic-theme, @sjsf/daisyui5-theme, etc.
 export { translation } from "@sjsf/form/translations/en";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormValidator as validator } from "@sjsf/ajv8-validator";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
@@ -115,9 +116,10 @@ Pass `initialValue` to seed the form. SJSF merges schema defaults into it:
 Use `setValue(form, value)` to replace the whole form value, `setValueAtPath` /
 `updateValueAtPath` to edit a field, and `reset(form)` to restore
 `initialValue`. Use `getValue(form)` for a live, non-copying read; in a
-reactive context it tracks only the properties you read. Treat it as read-only
-and use the value commands to update the form. Use `getValueSnapshot(form)`
-when you need a detached copy. See
+reactive context it tracks only the properties you read. It is typed as
+`ReadonlySchemaValue | undefined`, so treat it as read-only and use the value
+commands to update the form. Use `getValueSnapshot(form)` when you need a
+detached copy. See
 [Form Options Reference](references/form-options.md) for complete configuration
 options and value mutation guidance.
 

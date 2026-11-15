@@ -54,7 +54,7 @@ format.phone = (value) => /^\+\d{10,15}$/.test(value);
   consider this overhead.
 
   ```typescript
-  const valueToJSON = (v: FormValue) =>
+  const valueToJSON = (v: ReadonlySchemaValue | undefined) =>
     v === undefined || v === null
       ? null
       : typeof v === "object"

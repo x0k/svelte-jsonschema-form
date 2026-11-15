@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import type { Schema } from "#core/index.js";
 
-import { getStaleDefaultsTriggerKeys } from "./stale-defaults-trigger.js";
+import { getStaleDefaultsTriggerKeys } from "./trigger.js";
 
 function keys(schema: Schema) {
   const result = getStaleDefaultsTriggerKeys(schema);

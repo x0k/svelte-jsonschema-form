@@ -5,44 +5,32 @@ import type {
   FormValue,
   Schema,
   ValidationResult,
-  Validator,
 } from "@sjsf/form";
 import {
-  ALL_OF_KEY,
-  ANY_OF_KEY,
+  getRootSchema,
   getSchemaDefinitionByPath,
   ITEMS_KEY,
   ONE_OF_KEY,
   pathFromLocation,
   pathFromRef,
-  REF_KEY,
-  resolveRef,
-  type Merger,
+  type CoreContext,
   type Path,
 } from "@sjsf/form/core";
 import { getValueByPath } from "@sjsf/form/lib/object";
 
 function extractKeywordValue(
-  validator: Validator,
-  merger: Merger,
+  ctx: CoreContext,
   keyword: string,
-  rootSchema: Schema,
   instancePath: Path,
   schemaPath: Path,
   value: FieldValue
 ) {
+  const rootSchema = getRootSchema(ctx);
   const schema = getValueByPath(rootSchema, schemaPath);
   if (schema && typeof schema === "object" && keyword in schema) {
     return String((schema as Record<string, unknown>)[keyword]);
   }
-  const def = getSchemaDefinitionByPath(
-    validator,
-    merger,
-    rootSchema,
-    rootSchema,
-    instancePath,
-    value
-  );
+  const def = getSchemaDefinitionByPath(ctx, rootSchema, instancePath, value);
   if (typeof def === "object" && def[keyword as keyof Schema] !== undefined) {
     return String(def[keyword as keyof Schema]);
   }
@@ -275,9 +263,7 @@ export function validateAndGetErrors(validate: Validate, value: Json) {
 }
 
 export function transformFormErrors<T>(
-  validator: Validator,
-  merger: Merger,
-  rootSchema: Schema,
+  ctx: CoreContext,
   errors: ValidationError[] | undefined,
   data: FormValue
 ): ValidationResult<T> {
@@ -297,15 +283,7 @@ export function transformFormErrors<T>(
         path: instancePath,
         message: createErrorMessage(
           keyword,
-          extractKeywordValue(
-            validator,
-            merger,
-            keyword,
-            rootSchema,
-            instancePath,
-            schemaPath,
-            data
-          )
+          extractKeywordValue(ctx, keyword, instancePath, schemaPath, data)
         ),
       };
     }),

@@ -11,7 +11,7 @@ import {
 } from "./definitions.js";
 import type { Merger } from "./merger.js";
 import type { Schema } from "./schema.js";
-import { createMerger } from "./test-merger.js";
+import { createMerger, createTestContext } from "./testing.js";
 // import { findSchemaDefinitionRecursive } from './definitions';
 
 const schema: Schema = {
@@ -56,22 +56,34 @@ beforeEach(() => {
 describe("findSchemaDefinition()", () => {
   it("throws error when ref is malformed", () => {
     expect(() =>
-      findSchemaDefinition(testMerger, "definitions/missing", {})
+      findSchemaDefinition(
+        createTestContext({ merger: testMerger, rootSchema: {} }),
+        "definitions/missing"
+      )
     ).toThrow("Invalid reference: definitions/missing");
   });
   it("throws error when ref does not exist", () => {
     expect(() =>
-      findSchemaDefinition(testMerger, "#/definitions/missing", schema)
+      findSchemaDefinition(
+        createTestContext({ merger: testMerger, rootSchema: schema }),
+        "#/definitions/missing"
+      )
     ).toThrow("Could not find a definition for #/definitions/missing");
   });
   it("returns the string ref from its definition", () => {
     expect(
-      findSchemaDefinition(testMerger, "#/definitions/stringRef", schema)
+      findSchemaDefinition(
+        createTestContext({ merger: testMerger, rootSchema: schema }),
+        "#/definitions/stringRef"
+      )
     ).toBe(schema.definitions!.stringRef);
   });
   it("returns the string ref from its nested definition", () => {
     expect(
-      findSchemaDefinition(testMerger, "#/definitions/nestedRef", schema)
+      findSchemaDefinition(
+        createTestContext({ merger: testMerger, rootSchema: schema }),
+        "#/definitions/nestedRef"
+      )
     ).toBe(schema.definitions!.stringRef);
   });
   it("returns a combined schema made from its nested definition with the extra props", () => {
@@ -85,15 +97,17 @@ describe("findSchemaDefinition()", () => {
       ],
     });
     expect(
-      findSchemaDefinition(testMerger, "#/definitions/extraNestedRef", schema)
+      findSchemaDefinition(
+        createTestContext({ merger: testMerger, rootSchema: schema }),
+        "#/definitions/extraNestedRef"
+      )
     ).toEqual(EXTRA_EXPECTED);
   });
   it("throws error when ref is a circular reference", () => {
     expect(() =>
       findSchemaDefinition(
-        testMerger,
-        "#/definitions/badCircularNestedRef",
-        schema
+        createTestContext({ merger: testMerger, rootSchema: schema }),
+        "#/definitions/badCircularNestedRef"
       )
     ).toThrow(
       "Definition for #/definitions/badCircularNestedRef is a circular reference"
@@ -102,9 +116,8 @@ describe("findSchemaDefinition()", () => {
   it("throws error when ref is a deep circular reference", () => {
     expect(() =>
       findSchemaDefinition(
-        testMerger,
-        "#/definitions/badCircularDeepNestedRef",
-        schema
+        createTestContext({ merger: testMerger, rootSchema: schema }),
+        "#/definitions/badCircularDeepNestedRef"
       )
     ).toThrow(
       "Definition for #/definitions/badCircularDeepNestedRef contains a circular reference through #/definitions/badCircularDeepNestedRef -> #/definitions/badCircularDeeperNestedRef -> #/definitions/badCircularDeepestNestedRef -> #/definitions/badCircularDeepNestedRef"
@@ -133,6 +146,10 @@ describe("findSchemaDefinition()", () => {
       tilde: { kind: "a~0b" },
       falsy: false,
     };
+    const rfc6901Ctx = createTestContext({
+      merger: testMerger,
+      rootSchema: rfc6901 as unknown as Schema,
+    });
 
     const cases: [string, unknown][] = [
       ["#", rfc6901],
@@ -166,7 +183,7 @@ describe("findSchemaDefinition()", () => {
     ];
 
     it.each(cases)("resolves %s", (ref, expected) => {
-      expect(resolveRef(ref, rfc6901 as unknown as Schema)).toBe(expected);
+      expect(resolveRef(rfc6901Ctx, ref)).toBe(expected);
     });
 
     describe("resolveRefSafe()", () => {
@@ -199,12 +216,8 @@ describe("findSchemaDefinition()", () => {
     });
 
     it("unescapes `~1` before `~0`", () => {
-      expect(
-        resolveRef("#/slash", rfc6901 as unknown as Schema)
-      ).toHaveProperty("kind", "a~1b");
-      expect(
-        resolveRef("#/tilde", rfc6901 as unknown as Schema)
-      ).toHaveProperty("kind", "a~0b");
+      expect(resolveRef(rfc6901Ctx, "#/slash")).toHaveProperty("kind", "a~1b");
+      expect(resolveRef(rfc6901Ctx, "#/tilde")).toHaveProperty("kind", "a~0b");
     });
 
     it.each([
@@ -222,7 +235,7 @@ describe("findSchemaDefinition()", () => {
       "#foo",
       "#foo/0",
     ])("throws for %s, which points at nothing", (ref) => {
-      expect(() => resolveRef(ref, rfc6901 as unknown as Schema)).toThrow(
+      expect(() => resolveRef(rfc6901Ctx, ref)).toThrow(
         `Could not find a definition for ${ref}.`
       );
     });
@@ -237,7 +250,7 @@ describe("findSchemaDefinition()", () => {
     ])(
       "throws for %s, which is an inherited member and not a schema key",
       (ref) => {
-        expect(() => resolveRef(ref, rfc6901 as unknown as Schema)).toThrow(
+        expect(() => resolveRef(rfc6901Ctx, ref)).toThrow(
           `Could not find a definition for ${ref}.`
         );
       }
@@ -246,9 +259,12 @@ describe("findSchemaDefinition()", () => {
     it.each(["#/__proto__", "#/constructor", "#/toString", "#/valueOf"])(
       "rejects %s through findSchemaDefinition() too",
       (ref) => {
-        expect(() => findSchemaDefinition(testMerger, ref, schema)).toThrow(
-          `Could not find a definition for ${ref}.`
-        );
+        expect(() =>
+          findSchemaDefinition(
+            createTestContext({ merger: testMerger, rootSchema: schema }),
+            ref
+          )
+        ).toThrow(`Could not find a definition for ${ref}.`);
       }
     );
   });

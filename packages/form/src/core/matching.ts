@@ -5,11 +5,11 @@
 import { weakMemoize } from "#lib/memoize.js";
 import { getOwn } from "#lib/object.js";
 
+import { isValid, type CoreContext } from "./context.js";
 import {
   getDiscriminatorFieldFromSchema,
   getOptionMatchingSimpleDiscriminator,
 } from "./discriminator.js";
-import type { Merger } from "./merger.js";
 import { resolveAllReferences, retrieveSchema } from "./resolve.js";
 import {
   isSchemaWithProperties,
@@ -18,9 +18,9 @@ import {
   type SchemaDefinition,
   type SchemaValue,
   type SchemaWithProperties,
+  type ReadonlySchemaValue,
 } from "./schema.js";
 import { typeOfValue } from "./type.js";
-import type { Validator } from "./validator.js";
 import { isSchemaObjectValue } from "./value.js";
 import { getXxxOfOptions } from "./xxx-of-options.js";
 
@@ -52,9 +52,9 @@ const memoizedAugmentSchema = weakMemoize(
 );
 
 function isOptionMatching(
+  ctx: CoreContext,
   option: SchemaDefinition,
-  validator: Validator,
-  formData: SchemaValue,
+  formData: ReadonlySchemaValue,
   discriminatorField: string | undefined,
   discriminatorFormData: SchemaValue | undefined
 ): boolean {
@@ -62,7 +62,7 @@ function isOptionMatching(
     return option;
   }
   if (!isSchemaWithProperties(option)) {
-    return validator.isValid(option, formData);
+    return isValid(ctx, option, formData);
   }
   // WARN: Do not transform into `&&` expression!
   const discriminator =
@@ -70,14 +70,14 @@ function isOptionMatching(
       ? option.properties[discriminatorField]
       : undefined;
   if (discriminator !== undefined) {
-    return validator.isValid(discriminator, discriminatorFormData);
+    return isValid(ctx, discriminator, discriminatorFormData);
   }
-  return validator.isValid(memoizedAugmentSchema(option), formData);
+  return isValid(ctx, memoizedAugmentSchema(option), formData);
 }
 
 export function getFirstMatchingOption(
-  validator: Validator,
-  formData: SchemaValue | undefined,
+  ctx: CoreContext,
+  formData: ReadonlySchemaValue | undefined,
   options: SchemaDefinition[],
   discriminatorField?: string
 ): number {
@@ -101,8 +101,8 @@ export function getFirstMatchingOption(
   for (let i = 0; i < options.length; i++) {
     if (
       isOptionMatching(
+        ctx,
         options[i]!,
-        validator,
         formData,
         isDiscriminatorActual ? discriminatorField : undefined,
         isDiscriminatorActual ? formData[discriminatorField] : undefined
@@ -115,11 +115,9 @@ export function getFirstMatchingOption(
 }
 
 export function calculateIndexScore(
-  validator: Validator,
-  merger: Merger,
-  rootSchema: Schema,
+  ctx: CoreContext,
   schema?: SchemaDefinition,
-  formData?: SchemaValue
+  formData?: ReadonlySchemaValue
 ): number {
   let totalScore = 0;
   if (typeof schema === "boolean") {
@@ -142,29 +140,15 @@ export function calculateIndexScore(
           if (formValue == null) {
             continue;
           }
-          const newSchema = retrieveSchema(
-            validator,
-            merger,
-            propertySchema,
-            rootSchema,
-            formValue
-          );
-          totalScore += calculateIndexScore(
-            validator,
-            merger,
-            rootSchema,
-            newSchema,
-            formValue
-          );
+          const newSchema = retrieveSchema(ctx, propertySchema, formValue);
+          totalScore += calculateIndexScore(ctx, newSchema, formValue);
           continue;
         }
         const altSchemas = getXxxOfOptions(propertySchema)?.options;
         if (altSchemas !== undefined && formValue != null) {
           const discriminator = getDiscriminatorFieldFromSchema(propertySchema);
           totalScore += getClosestMatchingOption(
-            validator,
-            merger,
-            rootSchema,
+            ctx,
             formValue,
             altSchemas,
             -1,
@@ -176,13 +160,7 @@ export function calculateIndexScore(
           if (isSchemaObjectValue(formValue)) {
             totalScore += 1;
           }
-          totalScore += calculateIndexScore(
-            validator,
-            merger,
-            rootSchema,
-            propertySchema,
-            formValue
-          );
+          totalScore += calculateIndexScore(ctx, propertySchema, formValue);
           continue;
         }
         if (
@@ -215,10 +193,8 @@ export function calculateIndexScore(
 }
 
 export function getClosestMatchingOption(
-  validator: Validator,
-  merger: Merger,
-  rootSchema: Schema,
-  formData: SchemaValue | undefined,
+  ctx: CoreContext,
+  formData: ReadonlySchemaValue | undefined,
   options: SchemaDefinition[],
   selectedOption = -1,
   discriminatorField?: string
@@ -228,9 +204,7 @@ export function getClosestMatchingOption(
   }
   // First resolve any refs in the options
   const resolvedOptions = options.map((option) =>
-    typeof option === "boolean"
-      ? option
-      : resolveAllReferences(merger, option, rootSchema)
+    typeof option === "boolean" ? option : resolveAllReferences(ctx, option)
   );
 
   const simpleDiscriminatorMatch = getOptionMatchingSimpleDiscriminator(
@@ -251,8 +225,8 @@ export function getClosestMatchingOption(
     for (let i = 0; i < resolvedOptions.length; i++) {
       if (
         isOptionMatching(
+          ctx,
           resolvedOptions[i]!,
-          validator,
           formData,
           canDiscriminatorBeApplied ? discriminatorField : undefined,
           canDiscriminatorBeApplied ? formData[discriminatorField] : undefined
@@ -280,13 +254,7 @@ export function getClosestMatchingOption(
   for (let i = 0; i < allValidIndexes.length; i++) {
     const index = allValidIndexes[i]!;
     const option = resolvedOptions[index];
-    const score = calculateIndexScore(
-      validator,
-      merger,
-      rootSchema,
-      option,
-      formData
-    );
+    const score = calculateIndexScore(ctx, option, formData);
     scoreCount.add(score);
     if (score > bestScore) {
       bestScore = score;

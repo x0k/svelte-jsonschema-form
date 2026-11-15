@@ -17,6 +17,7 @@ export const actions = {
 - `name`: Form action identifier. Must match client `createMeta().<name>`.
 - `sendData` (`boolean | "withoutClientSideUpdate"`): When `true`, returns validated form data back in the action result.
 - `merger`: SJSF merger factory.
+- `valueHandler`: SJSF value handler factory (value comparison and copying).
 - `uiSchema` / `uiOptionsRegistry`: Optional UI schema passthrough.
 - ID separators (`propertySeparator`, `indexSeparator`, `pseudoSeparator`, `escapeCharacter`) and entry conversion (`createEntryConverter`, `convertUnknownEntry`, `enumItemDecoder`, `createReviver`). No `idBuilder` option.
 

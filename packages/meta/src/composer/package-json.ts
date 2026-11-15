@@ -1,6 +1,6 @@
 import { isRecordEmpty } from "@sjsf/form/lib/object";
 
-import type { Language } from "../codegen/model.ts";
+import type { Language } from "../codegen/index.ts";
 import type { AbstractPackage } from "../package.ts";
 
 export interface PackageJson {

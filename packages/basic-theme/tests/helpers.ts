@@ -16,6 +16,7 @@ import "@sjsf/form/templates/extra/optional-field-include";
 import "@sjsf/form/templates/extra/optional-array-include";
 import "@sjsf/form/templates/extra/optional-multi-field-include";
 import { translation } from "@sjsf/form/translations/en";
+import { defaultFormValueHandler } from "@sjsf/form/value-handlers/default";
 import type { HTMLFormAttributes } from "svelte/elements";
 import { expect } from "vitest";
 import { render } from "vitest-browser-svelte";
@@ -29,6 +30,7 @@ const defaults = {
   resolver,
   validator: createFormValidator,
   merger: createFormMerger,
+  valueHandler: defaultFormValueHandler,
   idBuilder: createFormIdBuilder({ idPrefix: DEFAULT_ID_PREFIX }),
 };
 

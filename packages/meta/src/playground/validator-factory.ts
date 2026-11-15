@@ -10,7 +10,7 @@ import {
   type UiSchema,
 } from "@sjsf/form";
 import { convert } from "@sjsf/form/converters/draft-2020-12";
-import type { Merger } from "@sjsf/form/core";
+import type { ValueHandler, Merger } from "@sjsf/form/core";
 import {
   insertSubSchemaIds,
   createIdFactory as defaultCreateIdFactory,
@@ -25,6 +25,7 @@ export interface ValidatorFactoryOptions {
   schema: Schema;
   uiSchema?: UiSchema;
   merger: () => Merger;
+  valueHandler: ValueHandler;
 }
 
 export type CreatableValidator = <T>(
