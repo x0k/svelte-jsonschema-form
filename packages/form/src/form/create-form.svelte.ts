@@ -67,7 +67,6 @@ import {
   FORM_PATHS_TRIE_REF,
   FORM_ID_PREFIX,
   FormErrors,
-  FORM_RETRIEVED_SCHEMA,
   FORM_CONFIGS_CACHE,
   FORM_ID_BUILDER,
   FORM_INITIAL_DEFAULTS_GENERATED,
@@ -553,9 +552,6 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     get [FORM_KEYED_ARRAYS]() {
       return keyedArrays;
     },
-    get [FORM_RETRIEVED_SCHEMA]() {
-      return retrievedSchema;
-    },
     get [FORM_UI_SCHEMA_ROOT]() {
       return uiSchemaRoot;
     },
@@ -592,9 +588,6 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     [FORM_MARK_SCHEMA_CHANGE]: scheduleDefaultsInjection,
   };
   const reconcileFormValue = $derived(createFormValueReconciler(formState));
-  const retrievedSchema = $derived(
-    retrieveSchema(formState, options.schema, valueRef.current)
-  );
   const fieldTypeResolver = $derived(options.resolver(formState));
 
   function recordChange(change: FormValueChange) {
