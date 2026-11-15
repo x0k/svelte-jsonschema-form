@@ -161,8 +161,8 @@ enum values that are not string-unique, restore ID-based mapping:
 
 ```ts
 "ui:options": {
-  enumValueMapperBuilder: (valueHandler) =>
-    new IdEnumValueMapperBuilder(valueHandler),
+  enumValueMapperBuilder: (ctx) =>
+    new IdEnumValueMapperBuilder(ctx),
 }
 ```
 

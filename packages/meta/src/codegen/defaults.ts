@@ -487,9 +487,7 @@ export const validator = (options) => createFormValidator({
             break;
           case "IdEnumValueMapperBuilder":
             importedClasses.add("IdEnumValueMapperBuilder");
-            entries.push(
-              `${key}: (valueHandler) => new IdEnumValueMapperBuilder(valueHandler)`
-            );
+            entries.push(`${key}: (ctx) => new IdEnumValueMapperBuilder(ctx)`);
             break;
         }
       }

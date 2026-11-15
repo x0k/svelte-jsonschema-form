@@ -1,5 +1,5 @@
 import { getSchemaDefinitionByPath, type RPath } from "#core/index.js";
-import { CORE_VALUE_HANDLER, CORE_ROOT_SCHEMA } from "#core/internals.js";
+import { CORE_ROOT_SCHEMA } from "#core/internals.js";
 import { overrideByRecord } from "#lib/resolver.js";
 import type { ObjectProperties } from "#lib/types.js";
 import {
@@ -201,9 +201,8 @@ export function retrieveEnumValueMapperBuilder<T>(
   ctx: FormState<T>,
   config: Config
 ): EnumValueMapperBuilder {
-  const valueHandler = ctx[CORE_VALUE_HANDLER];
   return (
-    retrieveUiOption(ctx, config, "enumValueMapperBuilder")?.(valueHandler) ??
-    new StringEnumValueMapperBuilder(valueHandler)
+    retrieveUiOption(ctx, config, "enumValueMapperBuilder")?.(ctx) ??
+    new StringEnumValueMapperBuilder(ctx)
   );
 }

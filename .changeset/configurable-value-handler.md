@@ -19,8 +19,9 @@ form `FormValueHandler`, instead of living on `Merger`:
   `isSchemaValueDeepEqual` and copies with `copyForChange`. `copyForChange` is
   also exported from `@sjsf/form`.
 - `createSchemaValueComparator` helpers stay in `@sjsf/form/core`.
-- `enumValueMapperBuilder` receives a `ValueHandler`; `IdEnumValueMapperBuilder`
-  and `StringEnumValueMapperBuilder` require one.
+- `enumValueMapperBuilder` receives the form state, so builders can compare
+  values through `isValueDeepEqual(ctx, a, b)`; `IdEnumValueMapperBuilder` and
+  `StringEnumValueMapperBuilder` take the same context.
 
 ```ts
 export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
