@@ -633,8 +633,7 @@ exports[`default-ui > array fields > checkboxes 1`] = `
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -653,6 +652,8 @@ exports[`default-ui > array fields > checkboxes 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -715,8 +716,7 @@ exports[`default-ui > array fields > checkboxes 1`] = `
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -735,6 +735,8 @@ exports[`default-ui > array fields > checkboxes 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -797,8 +799,7 @@ exports[`default-ui > array fields > checkboxes 1`] = `
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -817,6 +818,8 @@ exports[`default-ui > array fields > checkboxes 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -2590,6 +2593,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                     data-state="closed"
                     id="root_preset"
                     name="root_preset"
+                    role="combobox"
                     type="button"
                   >
                     <!---->
@@ -2599,8 +2603,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                     <!---->
                      
                     <svg
-                      aria-hidden="true"
-                      class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
+                      class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
                       fill="none"
                       height="24"
                       stroke="currentColor"
@@ -2619,6 +2622,8 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                       </path>
                       
                       <!---->
+                      <!---->
+                      
                       <!---->
                     </svg>
                     <!---->
@@ -2740,8 +2745,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                         class="flex size-4 items-center justify-center text-current"
                       >
                         <svg
-                          aria-hidden="true"
-                          class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                          class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                           fill="none"
                           height="24"
                           stroke="currentColor"
@@ -2760,6 +2764,8 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                           </path>
                           
                           <!---->
+                          <!---->
+                          
                           <!---->
                         </svg>
                         <!---->
@@ -2916,6 +2922,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                     data-state="closed"
                     id="root_format"
                     name="root_format"
+                    role="combobox"
                     type="button"
                   >
                     <!---->
@@ -2925,8 +2932,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                     <!---->
                      
                     <svg
-                      aria-hidden="true"
-                      class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
+                      class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
                       fill="none"
                       height="24"
                       stroke="currentColor"
@@ -2945,6 +2951,8 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                       </path>
                       
                       <!---->
+                      <!---->
+                      
                       <!---->
                     </svg>
                     <!---->
@@ -3066,8 +3074,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                         class="flex size-4 items-center justify-center text-current"
                       >
                         <svg
-                          aria-hidden="true"
-                          class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                          class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                           fill="none"
                           height="24"
                           stroke="currentColor"
@@ -3086,6 +3093,8 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                           </path>
                           
                           <!---->
+                          <!---->
+                          
                           <!---->
                         </svg>
                         <!---->
@@ -3222,8 +3231,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                         class="flex size-4 items-center justify-center text-current"
                       >
                         <svg
-                          aria-hidden="true"
-                          class="lucide lucide-check lucide-icon size-3.5"
+                          class="lucide-icon lucide lucide-check size-3.5"
                           fill="none"
                           height="24"
                           stroke="currentColor"
@@ -3243,6 +3251,8 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                           
                           <!---->
                           <!---->
+                          
+                          <!---->
                         </svg>
                         <!---->
                       </div>
@@ -3254,6 +3264,7 @@ exports[`default-ui > object fields > one of defaults > default preset 1`] = `
                     <!---->
                     <input
                       aria-hidden="true"
+                      checked=""
                       name="root_createOnOpen"
                       style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                       tabindex="-1"
@@ -3502,6 +3513,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     data-state="closed"
                     id="root_preset"
                     name="root_preset"
+                    role="combobox"
                     type="button"
                   >
                     <!---->
@@ -3511,8 +3523,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     <!---->
                      
                     <svg
-                      aria-hidden="true"
-                      class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
+                      class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
                       fill="none"
                       height="24"
                       stroke="currentColor"
@@ -3531,6 +3542,8 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                       </path>
                       
                       <!---->
+                      <!---->
+                      
                       <!---->
                     </svg>
                     <!---->
@@ -3652,8 +3665,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                         class="flex size-4 items-center justify-center text-current"
                       >
                         <svg
-                          aria-hidden="true"
-                          class="lucide lucide-check lucide-icon size-3.5"
+                          class="lucide-icon lucide lucide-check size-3.5"
                           fill="none"
                           height="24"
                           stroke="currentColor"
@@ -3673,6 +3685,8 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                           
                           <!---->
                           <!---->
+                          
+                          <!---->
                         </svg>
                         <!---->
                       </div>
@@ -3684,6 +3698,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     <!---->
                     <input
                       aria-hidden="true"
+                      checked=""
                       name="root_collapseIndexes"
                       style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                       tabindex="-1"
@@ -3808,8 +3823,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                         class="flex size-4 items-center justify-center text-current"
                       >
                         <svg
-                          aria-hidden="true"
-                          class="lucide lucide-check lucide-icon size-3.5"
+                          class="lucide-icon lucide lucide-check size-3.5"
                           fill="none"
                           height="24"
                           stroke="currentColor"
@@ -3829,6 +3843,8 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                           
                           <!---->
                           <!---->
+                          
+                          <!---->
                         </svg>
                         <!---->
                       </div>
@@ -3840,6 +3856,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     <!---->
                     <input
                       aria-hidden="true"
+                      checked=""
                       name="root_joinPrimitiveArrayValues"
                       style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                       tabindex="-1"
@@ -3964,8 +3981,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                         class="flex size-4 items-center justify-center text-current"
                       >
                         <svg
-                          aria-hidden="true"
-                          class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                          class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                           fill="none"
                           height="24"
                           stroke="currentColor"
@@ -3984,6 +4000,8 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                           </path>
                           
                           <!---->
+                          <!---->
+                          
                           <!---->
                         </svg>
                         <!---->
@@ -4120,8 +4138,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                         class="flex size-4 items-center justify-center text-current"
                       >
                         <svg
-                          aria-hidden="true"
-                          class="lucide lucide-check lucide-icon size-3.5"
+                          class="lucide-icon lucide lucide-check size-3.5"
                           fill="none"
                           height="24"
                           stroke="currentColor"
@@ -4141,6 +4158,8 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                           
                           <!---->
                           <!---->
+                          
+                          <!---->
                         </svg>
                         <!---->
                       </div>
@@ -4152,6 +4171,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     <!---->
                     <input
                       aria-hidden="true"
+                      checked=""
                       name="root_stabilizeOrderOfPropertiesInArraysOfObjects"
                       style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                       tabindex="-1"
@@ -4517,8 +4537,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                         class="flex size-4 items-center justify-center text-current"
                       >
                         <svg
-                          aria-hidden="true"
-                          class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                          class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                           fill="none"
                           height="24"
                           stroke="currentColor"
@@ -4537,6 +4556,8 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                           </path>
                           
                           <!---->
+                          <!---->
+                          
                           <!---->
                         </svg>
                         <!---->
@@ -4693,6 +4714,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     data-state="closed"
                     id="root_format"
                     name="root_format"
+                    role="combobox"
                     type="button"
                   >
                     <!---->
@@ -4702,8 +4724,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     <!---->
                      
                     <svg
-                      aria-hidden="true"
-                      class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
+                      class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
                       fill="none"
                       height="24"
                       stroke="currentColor"
@@ -4722,6 +4743,8 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                       </path>
                       
                       <!---->
+                      <!---->
+                      
                       <!---->
                     </svg>
                     <!---->
@@ -4843,8 +4866,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                         class="flex size-4 items-center justify-center text-current"
                       >
                         <svg
-                          aria-hidden="true"
-                          class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                          class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                           fill="none"
                           height="24"
                           stroke="currentColor"
@@ -4863,6 +4885,8 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                           </path>
                           
                           <!---->
+                          <!---->
+                          
                           <!---->
                         </svg>
                         <!---->
@@ -4999,8 +5023,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                         class="flex size-4 items-center justify-center text-current"
                       >
                         <svg
-                          aria-hidden="true"
-                          class="lucide lucide-check lucide-icon size-3.5"
+                          class="lucide-icon lucide lucide-check size-3.5"
                           fill="none"
                           height="24"
                           stroke="currentColor"
@@ -5020,6 +5043,8 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                           
                           <!---->
                           <!---->
+                          
+                          <!---->
                         </svg>
                         <!---->
                       </div>
@@ -5031,6 +5056,7 @@ exports[`default-ui > object fields > one of defaults > manual preset 1`] = `
                     <!---->
                     <input
                       aria-hidden="true"
+                      checked=""
                       name="root_createOnOpen"
                       style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                       tabindex="-1"
@@ -8933,8 +8959,7 @@ exports[`default-ui > widgets > checkbox > snapshots > disabled 1`] = `
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -8953,6 +8978,8 @@ exports[`default-ui > widgets > checkbox > snapshots > disabled 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -9093,8 +9120,7 @@ exports[`default-ui > widgets > checkbox > snapshots > error 1`] = `
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -9113,6 +9139,8 @@ exports[`default-ui > widgets > checkbox > snapshots > error 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -9263,8 +9291,7 @@ exports[`default-ui > widgets > checkbox > snapshots > normal 1`] = `
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -9283,6 +9310,8 @@ exports[`default-ui > widgets > checkbox > snapshots > normal 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -9421,8 +9450,7 @@ exports[`default-ui > widgets > checkbox > snapshots > readonly 1`] = `
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -9441,6 +9469,8 @@ exports[`default-ui > widgets > checkbox > snapshots > readonly 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -9582,8 +9612,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -9602,6 +9631,8 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -9667,8 +9698,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -9687,6 +9717,8 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -9752,8 +9784,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -9772,6 +9803,8 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -9837,8 +9870,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -9857,6 +9889,8 @@ exports[`default-ui > widgets > checkboxes > snapshots > disabled 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -9999,8 +10033,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -10019,6 +10052,8 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -10081,8 +10116,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -10101,6 +10135,8 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -10163,8 +10199,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -10183,6 +10218,8 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -10245,8 +10282,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -10265,6 +10301,8 @@ exports[`default-ui > widgets > checkboxes > snapshots > error 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -10417,8 +10455,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -10437,6 +10474,8 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -10499,8 +10538,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -10519,6 +10557,8 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -10581,8 +10621,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -10601,6 +10640,8 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -10663,8 +10704,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -10683,6 +10723,8 @@ exports[`default-ui > widgets > checkboxes > snapshots > normal 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -10823,8 +10865,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -10843,6 +10884,8 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -10905,8 +10948,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -10925,6 +10967,8 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -10987,8 +11031,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -11007,6 +11050,8 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -11069,8 +11114,7 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -11089,6 +11133,8 @@ exports[`default-ui > widgets > checkboxes > snapshots > readonly 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -11228,8 +11274,7 @@ exports[`default-ui > widgets > combobox > snapshots > disabled 1`] = `
           >
              
             <svg
-              aria-hidden="true"
-              class="lucide lucide-chevrons-up-down lucide-icon ml-2 size-4 shrink-0 opacity-50"
+              class="lucide-icon lucide lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -11255,6 +11300,8 @@ exports[`default-ui > widgets > combobox > snapshots > disabled 1`] = `
               </path>
               
               <!---->
+              <!---->
+              
               <!---->
             </svg>
             <!---->
@@ -11373,8 +11420,7 @@ exports[`default-ui > widgets > combobox > snapshots > error 1`] = `
           >
              
             <svg
-              aria-hidden="true"
-              class="lucide lucide-chevrons-up-down lucide-icon ml-2 size-4 shrink-0 opacity-50"
+              class="lucide-icon lucide lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -11400,6 +11446,8 @@ exports[`default-ui > widgets > combobox > snapshots > error 1`] = `
               </path>
               
               <!---->
+              <!---->
+              
               <!---->
             </svg>
             <!---->
@@ -11529,8 +11577,7 @@ exports[`default-ui > widgets > combobox > snapshots > normal 1`] = `
           >
              
             <svg
-              aria-hidden="true"
-              class="lucide lucide-chevrons-up-down lucide-icon ml-2 size-4 shrink-0 opacity-50"
+              class="lucide-icon lucide lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -11556,6 +11603,8 @@ exports[`default-ui > widgets > combobox > snapshots > normal 1`] = `
               </path>
               
               <!---->
+              <!---->
+              
               <!---->
             </svg>
             <!---->
@@ -11673,8 +11722,7 @@ exports[`default-ui > widgets > combobox > snapshots > readonly 1`] = `
           >
              
             <svg
-              aria-hidden="true"
-              class="lucide lucide-chevrons-up-down lucide-icon ml-2 size-4 shrink-0 opacity-50"
+              class="lucide-icon lucide lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -11700,6 +11748,8 @@ exports[`default-ui > widgets > combobox > snapshots > readonly 1`] = `
               </path>
               
               <!---->
+              <!---->
+              
               <!---->
             </svg>
             <!---->
@@ -12642,7 +12692,7 @@ exports[`default-ui > widgets > multiFile > snapshots > disabled 1`] = `
             aria-describedby="root__description root__help root__errors"
             aria-invalid="false"
             class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-            data-loading="true"
+            data-loading="false"
             data-processing="false"
             disabled=""
             id="root"
@@ -12736,7 +12786,7 @@ exports[`default-ui > widgets > multiFile > snapshots > error 1`] = `
             aria-describedby="root__description root__help root__errors"
             aria-invalid="true"
             class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-            data-loading="true"
+            data-loading="false"
             data-processing="false"
             id="root"
             multiple=""
@@ -12840,7 +12890,7 @@ exports[`default-ui > widgets > multiFile > snapshots > normal 1`] = `
             aria-describedby="root__description root__help root__errors"
             aria-invalid="false"
             class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-            data-loading="true"
+            data-loading="false"
             data-processing="false"
             id="root"
             multiple=""
@@ -12932,7 +12982,7 @@ exports[`default-ui > widgets > multiFile > snapshots > readonly 1`] = `
             aria-describedby="root__description root__help root__errors"
             aria-invalid="false"
             class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-            data-loading="true"
+            data-loading="false"
             data-processing="false"
             id="root"
             multiple=""
@@ -13042,6 +13092,7 @@ exports[`default-ui > widgets > multiSelect > snapshots > disabled 1`] = `
             disabled=""
             id="root"
             name="root"
+            role="combobox"
             type="button"
           >
             <!---->
@@ -13051,8 +13102,7 @@ exports[`default-ui > widgets > multiSelect > snapshots > disabled 1`] = `
             <!---->
              
             <svg
-              aria-hidden="true"
-              class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
+              class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -13071,6 +13121,8 @@ exports[`default-ui > widgets > multiSelect > snapshots > disabled 1`] = `
               </path>
               
               <!---->
+              <!---->
+              
               <!---->
             </svg>
             <!---->
@@ -13195,6 +13247,7 @@ exports[`default-ui > widgets > multiSelect > snapshots > error 1`] = `
             data-state="closed"
             id="root"
             name="root"
+            role="combobox"
             type="button"
           >
             <!---->
@@ -13204,8 +13257,7 @@ exports[`default-ui > widgets > multiSelect > snapshots > error 1`] = `
             <!---->
              
             <svg
-              aria-hidden="true"
-              class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
+              class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -13224,6 +13276,8 @@ exports[`default-ui > widgets > multiSelect > snapshots > error 1`] = `
               </path>
               
               <!---->
+              <!---->
+              
               <!---->
             </svg>
             <!---->
@@ -13359,6 +13413,7 @@ exports[`default-ui > widgets > multiSelect > snapshots > normal 1`] = `
             data-state="closed"
             id="root"
             name="root"
+            role="combobox"
             type="button"
           >
             <!---->
@@ -13368,8 +13423,7 @@ exports[`default-ui > widgets > multiSelect > snapshots > normal 1`] = `
             <!---->
              
             <svg
-              aria-hidden="true"
-              class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
+              class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -13388,6 +13442,8 @@ exports[`default-ui > widgets > multiSelect > snapshots > normal 1`] = `
               </path>
               
               <!---->
+              <!---->
+              
               <!---->
             </svg>
             <!---->
@@ -13512,6 +13568,7 @@ exports[`default-ui > widgets > multiSelect > snapshots > readonly 1`] = `
             data-state="closed"
             id="root"
             name="root"
+            role="combobox"
             type="button"
           >
             <!---->
@@ -13521,8 +13578,7 @@ exports[`default-ui > widgets > multiSelect > snapshots > readonly 1`] = `
             <!---->
              
             <svg
-              aria-hidden="true"
-              class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
+              class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -13541,6 +13597,8 @@ exports[`default-ui > widgets > multiSelect > snapshots > readonly 1`] = `
               </path>
               
               <!---->
+              <!---->
+              
               <!---->
             </svg>
             <!---->
@@ -16468,6 +16526,7 @@ exports[`default-ui > widgets > select > snapshots > disabled 1`] = `
             disabled=""
             id="root"
             name="root"
+            role="combobox"
             type="button"
           >
             <!---->
@@ -16477,8 +16536,7 @@ exports[`default-ui > widgets > select > snapshots > disabled 1`] = `
             <!---->
              
             <svg
-              aria-hidden="true"
-              class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
+              class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -16497,6 +16555,8 @@ exports[`default-ui > widgets > select > snapshots > disabled 1`] = `
               </path>
               
               <!---->
+              <!---->
+              
               <!---->
             </svg>
             <!---->
@@ -16619,6 +16679,7 @@ exports[`default-ui > widgets > select > snapshots > error 1`] = `
             data-state="closed"
             id="root"
             name="root"
+            role="combobox"
             type="button"
           >
             <!---->
@@ -16628,8 +16689,7 @@ exports[`default-ui > widgets > select > snapshots > error 1`] = `
             <!---->
              
             <svg
-              aria-hidden="true"
-              class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
+              class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -16648,6 +16708,8 @@ exports[`default-ui > widgets > select > snapshots > error 1`] = `
               </path>
               
               <!---->
+              <!---->
+              
               <!---->
             </svg>
             <!---->
@@ -16781,6 +16843,7 @@ exports[`default-ui > widgets > select > snapshots > normal 1`] = `
             data-state="closed"
             id="root"
             name="root"
+            role="combobox"
             type="button"
           >
             <!---->
@@ -16790,8 +16853,7 @@ exports[`default-ui > widgets > select > snapshots > normal 1`] = `
             <!---->
              
             <svg
-              aria-hidden="true"
-              class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
+              class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -16810,6 +16872,8 @@ exports[`default-ui > widgets > select > snapshots > normal 1`] = `
               </path>
               
               <!---->
+              <!---->
+              
               <!---->
             </svg>
             <!---->
@@ -16932,6 +16996,7 @@ exports[`default-ui > widgets > select > snapshots > readonly 1`] = `
             data-state="closed"
             id="root"
             name="root"
+            role="combobox"
             type="button"
           >
             <!---->
@@ -16941,8 +17006,7 @@ exports[`default-ui > widgets > select > snapshots > readonly 1`] = `
             <!---->
              
             <svg
-              aria-hidden="true"
-              class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
+              class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -16961,6 +17025,8 @@ exports[`default-ui > widgets > select > snapshots > readonly 1`] = `
               </path>
               
               <!---->
+              <!---->
+              
               <!---->
             </svg>
             <!---->
@@ -19046,8 +19112,7 @@ exports[`default-ui > with title and description > checkboxes 1`] = `
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -19066,6 +19131,8 @@ exports[`default-ui > with title and description > checkboxes 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -19128,8 +19195,7 @@ exports[`default-ui > with title and description > checkboxes 1`] = `
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -19148,6 +19214,8 @@ exports[`default-ui > with title and description > checkboxes 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -19210,8 +19278,7 @@ exports[`default-ui > with title and description > checkboxes 1`] = `
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -19230,6 +19297,8 @@ exports[`default-ui > with title and description > checkboxes 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -20424,8 +20493,7 @@ exports[`default-ui > with title and description from both > checkboxes 1`] = `
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -20444,6 +20512,8 @@ exports[`default-ui > with title and description from both > checkboxes 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -20506,8 +20576,7 @@ exports[`default-ui > with title and description from both > checkboxes 1`] = `
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -20526,6 +20595,8 @@ exports[`default-ui > with title and description from both > checkboxes 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -20588,8 +20659,7 @@ exports[`default-ui > with title and description from both > checkboxes 1`] = `
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -20608,6 +20678,8 @@ exports[`default-ui > with title and description from both > checkboxes 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -21802,8 +21874,7 @@ exports[`default-ui > with title and description from uiSchema > checkboxes 1`] 
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -21822,6 +21893,8 @@ exports[`default-ui > with title and description from uiSchema > checkboxes 1`] 
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -21884,8 +21957,7 @@ exports[`default-ui > with title and description from uiSchema > checkboxes 1`] 
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -21904,6 +21976,8 @@ exports[`default-ui > with title and description from uiSchema > checkboxes 1`] 
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -21966,8 +22040,7 @@ exports[`default-ui > with title and description from uiSchema > checkboxes 1`] 
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -21986,6 +22059,8 @@ exports[`default-ui > with title and description from uiSchema > checkboxes 1`] 
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -22974,8 +23049,7 @@ exports[`default-ui > with title and description with global label off > checkbo
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -22994,6 +23068,8 @@ exports[`default-ui > with title and description with global label off > checkbo
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -23056,8 +23132,7 @@ exports[`default-ui > with title and description with global label off > checkbo
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -23076,6 +23151,8 @@ exports[`default-ui > with title and description with global label off > checkbo
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -23138,8 +23215,7 @@ exports[`default-ui > with title and description with global label off > checkbo
                 class="flex size-4 items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-3.5 text-transparent"
+                  class="lucide-icon lucide lucide-check size-3.5 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -23158,6 +23234,8 @@ exports[`default-ui > with title and description with global label off > checkbo
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -24094,8 +24172,7 @@ exports[`new-york-ui > array fields > checkboxes 1`] = `
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -24114,6 +24191,8 @@ exports[`new-york-ui > array fields > checkboxes 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -24176,8 +24255,7 @@ exports[`new-york-ui > array fields > checkboxes 1`] = `
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -24196,6 +24274,8 @@ exports[`new-york-ui > array fields > checkboxes 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -24258,8 +24338,7 @@ exports[`new-york-ui > array fields > checkboxes 1`] = `
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -24278,6 +24357,8 @@ exports[`new-york-ui > array fields > checkboxes 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -26051,6 +26132,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                     data-state="closed"
                     id="root_preset"
                     name="root_preset"
+                    role="combobox"
                     type="button"
                   >
                     <!---->
@@ -26060,8 +26142,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                     <!---->
                      
                     <svg
-                      aria-hidden="true"
-                      class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
+                      class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
                       fill="none"
                       height="24"
                       stroke="currentColor"
@@ -26080,6 +26161,8 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                       </path>
                       
                       <!---->
+                      <!---->
+                      
                       <!---->
                     </svg>
                     <!---->
@@ -26201,8 +26284,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                         class="flex items-center justify-center text-current"
                       >
                         <svg
-                          aria-hidden="true"
-                          class="lucide lucide-check lucide-icon size-4 text-transparent"
+                          class="lucide-icon lucide lucide-check size-4 text-transparent"
                           fill="none"
                           height="24"
                           stroke="currentColor"
@@ -26221,6 +26303,8 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                           </path>
                           
                           <!---->
+                          <!---->
+                          
                           <!---->
                         </svg>
                         <!---->
@@ -26377,6 +26461,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                     data-state="closed"
                     id="root_format"
                     name="root_format"
+                    role="combobox"
                     type="button"
                   >
                     <!---->
@@ -26386,8 +26471,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                     <!---->
                      
                     <svg
-                      aria-hidden="true"
-                      class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
+                      class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
                       fill="none"
                       height="24"
                       stroke="currentColor"
@@ -26406,6 +26490,8 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                       </path>
                       
                       <!---->
+                      <!---->
+                      
                       <!---->
                     </svg>
                     <!---->
@@ -26527,8 +26613,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                         class="flex items-center justify-center text-current"
                       >
                         <svg
-                          aria-hidden="true"
-                          class="lucide lucide-check lucide-icon size-4 text-transparent"
+                          class="lucide-icon lucide lucide-check size-4 text-transparent"
                           fill="none"
                           height="24"
                           stroke="currentColor"
@@ -26547,6 +26632,8 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                           </path>
                           
                           <!---->
+                          <!---->
+                          
                           <!---->
                         </svg>
                         <!---->
@@ -26683,8 +26770,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                         class="flex items-center justify-center text-current"
                       >
                         <svg
-                          aria-hidden="true"
-                          class="lucide lucide-check lucide-icon size-4"
+                          class="lucide-icon lucide lucide-check size-4"
                           fill="none"
                           height="24"
                           stroke="currentColor"
@@ -26704,6 +26790,8 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                           
                           <!---->
                           <!---->
+                          
+                          <!---->
                         </svg>
                         <!---->
                       </span>
@@ -26715,6 +26803,7 @@ exports[`new-york-ui > object fields > one of defaults > default preset 1`] = `
                     <!---->
                     <input
                       aria-hidden="true"
+                      checked=""
                       name="root_createOnOpen"
                       style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                       tabindex="-1"
@@ -26963,6 +27052,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                     data-state="closed"
                     id="root_preset"
                     name="root_preset"
+                    role="combobox"
                     type="button"
                   >
                     <!---->
@@ -26972,8 +27062,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                     <!---->
                      
                     <svg
-                      aria-hidden="true"
-                      class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
+                      class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
                       fill="none"
                       height="24"
                       stroke="currentColor"
@@ -26992,6 +27081,8 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                       </path>
                       
                       <!---->
+                      <!---->
+                      
                       <!---->
                     </svg>
                     <!---->
@@ -27113,8 +27204,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                         class="flex items-center justify-center text-current"
                       >
                         <svg
-                          aria-hidden="true"
-                          class="lucide lucide-check lucide-icon size-4"
+                          class="lucide-icon lucide lucide-check size-4"
                           fill="none"
                           height="24"
                           stroke="currentColor"
@@ -27134,6 +27224,8 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                           
                           <!---->
                           <!---->
+                          
+                          <!---->
                         </svg>
                         <!---->
                       </span>
@@ -27145,6 +27237,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                     <!---->
                     <input
                       aria-hidden="true"
+                      checked=""
                       name="root_collapseIndexes"
                       style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                       tabindex="-1"
@@ -27269,8 +27362,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                         class="flex items-center justify-center text-current"
                       >
                         <svg
-                          aria-hidden="true"
-                          class="lucide lucide-check lucide-icon size-4"
+                          class="lucide-icon lucide lucide-check size-4"
                           fill="none"
                           height="24"
                           stroke="currentColor"
@@ -27290,6 +27382,8 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                           
                           <!---->
                           <!---->
+                          
+                          <!---->
                         </svg>
                         <!---->
                       </span>
@@ -27301,6 +27395,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                     <!---->
                     <input
                       aria-hidden="true"
+                      checked=""
                       name="root_joinPrimitiveArrayValues"
                       style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                       tabindex="-1"
@@ -27425,8 +27520,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                         class="flex items-center justify-center text-current"
                       >
                         <svg
-                          aria-hidden="true"
-                          class="lucide lucide-check lucide-icon size-4 text-transparent"
+                          class="lucide-icon lucide lucide-check size-4 text-transparent"
                           fill="none"
                           height="24"
                           stroke="currentColor"
@@ -27445,6 +27539,8 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                           </path>
                           
                           <!---->
+                          <!---->
+                          
                           <!---->
                         </svg>
                         <!---->
@@ -27581,8 +27677,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                         class="flex items-center justify-center text-current"
                       >
                         <svg
-                          aria-hidden="true"
-                          class="lucide lucide-check lucide-icon size-4"
+                          class="lucide-icon lucide lucide-check size-4"
                           fill="none"
                           height="24"
                           stroke="currentColor"
@@ -27602,6 +27697,8 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                           
                           <!---->
                           <!---->
+                          
+                          <!---->
                         </svg>
                         <!---->
                       </span>
@@ -27613,6 +27710,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                     <!---->
                     <input
                       aria-hidden="true"
+                      checked=""
                       name="root_stabilizeOrderOfPropertiesInArraysOfObjects"
                       style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                       tabindex="-1"
@@ -27978,8 +28076,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                         class="flex items-center justify-center text-current"
                       >
                         <svg
-                          aria-hidden="true"
-                          class="lucide lucide-check lucide-icon size-4 text-transparent"
+                          class="lucide-icon lucide lucide-check size-4 text-transparent"
                           fill="none"
                           height="24"
                           stroke="currentColor"
@@ -27998,6 +28095,8 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                           </path>
                           
                           <!---->
+                          <!---->
+                          
                           <!---->
                         </svg>
                         <!---->
@@ -28154,6 +28253,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                     data-state="closed"
                     id="root_format"
                     name="root_format"
+                    role="combobox"
                     type="button"
                   >
                     <!---->
@@ -28163,8 +28263,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                     <!---->
                      
                     <svg
-                      aria-hidden="true"
-                      class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
+                      class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
                       fill="none"
                       height="24"
                       stroke="currentColor"
@@ -28183,6 +28282,8 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                       </path>
                       
                       <!---->
+                      <!---->
+                      
                       <!---->
                     </svg>
                     <!---->
@@ -28304,8 +28405,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                         class="flex items-center justify-center text-current"
                       >
                         <svg
-                          aria-hidden="true"
-                          class="lucide lucide-check lucide-icon size-4 text-transparent"
+                          class="lucide-icon lucide lucide-check size-4 text-transparent"
                           fill="none"
                           height="24"
                           stroke="currentColor"
@@ -28324,6 +28424,8 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                           </path>
                           
                           <!---->
+                          <!---->
+                          
                           <!---->
                         </svg>
                         <!---->
@@ -28460,8 +28562,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                         class="flex items-center justify-center text-current"
                       >
                         <svg
-                          aria-hidden="true"
-                          class="lucide lucide-check lucide-icon size-4"
+                          class="lucide-icon lucide lucide-check size-4"
                           fill="none"
                           height="24"
                           stroke="currentColor"
@@ -28481,6 +28582,8 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                           
                           <!---->
                           <!---->
+                          
+                          <!---->
                         </svg>
                         <!---->
                       </span>
@@ -28492,6 +28595,7 @@ exports[`new-york-ui > object fields > one of defaults > manual preset 1`] = `
                     <!---->
                     <input
                       aria-hidden="true"
+                      checked=""
                       name="root_createOnOpen"
                       style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                       tabindex="-1"
@@ -32394,8 +32498,7 @@ exports[`new-york-ui > widgets > checkbox > snapshots > disabled 1`] = `
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -32414,6 +32517,8 @@ exports[`new-york-ui > widgets > checkbox > snapshots > disabled 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -32554,8 +32659,7 @@ exports[`new-york-ui > widgets > checkbox > snapshots > error 1`] = `
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -32574,6 +32678,8 @@ exports[`new-york-ui > widgets > checkbox > snapshots > error 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -32724,8 +32830,7 @@ exports[`new-york-ui > widgets > checkbox > snapshots > normal 1`] = `
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -32744,6 +32849,8 @@ exports[`new-york-ui > widgets > checkbox > snapshots > normal 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -32882,8 +32989,7 @@ exports[`new-york-ui > widgets > checkbox > snapshots > readonly 1`] = `
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -32902,6 +33008,8 @@ exports[`new-york-ui > widgets > checkbox > snapshots > readonly 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -33043,8 +33151,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -33063,6 +33170,8 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -33128,8 +33237,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -33148,6 +33256,8 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -33213,8 +33323,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -33233,6 +33342,8 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -33298,8 +33409,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -33318,6 +33428,8 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > disabled 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -33460,8 +33572,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -33480,6 +33591,8 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -33542,8 +33655,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -33562,6 +33674,8 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -33624,8 +33738,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -33644,6 +33757,8 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -33706,8 +33821,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -33726,6 +33840,8 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > error 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -33878,8 +33994,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -33898,6 +34013,8 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -33960,8 +34077,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -33980,6 +34096,8 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -34042,8 +34160,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -34062,6 +34179,8 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -34124,8 +34243,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -34144,6 +34262,8 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > normal 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -34284,8 +34404,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -34304,6 +34423,8 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -34366,8 +34487,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -34386,6 +34506,8 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -34448,8 +34570,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -34468,6 +34589,8 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -34530,8 +34653,7 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -34550,6 +34672,8 @@ exports[`new-york-ui > widgets > checkboxes > snapshots > readonly 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -34689,8 +34813,7 @@ exports[`new-york-ui > widgets > combobox > snapshots > disabled 1`] = `
           >
              
             <svg
-              aria-hidden="true"
-              class="lucide lucide-chevrons-up-down lucide-icon ml-2 size-4 shrink-0 opacity-50"
+              class="lucide-icon lucide lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -34716,6 +34839,8 @@ exports[`new-york-ui > widgets > combobox > snapshots > disabled 1`] = `
               </path>
               
               <!---->
+              <!---->
+              
               <!---->
             </svg>
             <!---->
@@ -34834,8 +34959,7 @@ exports[`new-york-ui > widgets > combobox > snapshots > error 1`] = `
           >
              
             <svg
-              aria-hidden="true"
-              class="lucide lucide-chevrons-up-down lucide-icon ml-2 size-4 shrink-0 opacity-50"
+              class="lucide-icon lucide lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -34861,6 +34985,8 @@ exports[`new-york-ui > widgets > combobox > snapshots > error 1`] = `
               </path>
               
               <!---->
+              <!---->
+              
               <!---->
             </svg>
             <!---->
@@ -34990,8 +35116,7 @@ exports[`new-york-ui > widgets > combobox > snapshots > normal 1`] = `
           >
              
             <svg
-              aria-hidden="true"
-              class="lucide lucide-chevrons-up-down lucide-icon ml-2 size-4 shrink-0 opacity-50"
+              class="lucide-icon lucide lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -35017,6 +35142,8 @@ exports[`new-york-ui > widgets > combobox > snapshots > normal 1`] = `
               </path>
               
               <!---->
+              <!---->
+              
               <!---->
             </svg>
             <!---->
@@ -35134,8 +35261,7 @@ exports[`new-york-ui > widgets > combobox > snapshots > readonly 1`] = `
           >
              
             <svg
-              aria-hidden="true"
-              class="lucide lucide-chevrons-up-down lucide-icon ml-2 size-4 shrink-0 opacity-50"
+              class="lucide-icon lucide lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -35161,6 +35287,8 @@ exports[`new-york-ui > widgets > combobox > snapshots > readonly 1`] = `
               </path>
               
               <!---->
+              <!---->
+              
               <!---->
             </svg>
             <!---->
@@ -36103,7 +36231,7 @@ exports[`new-york-ui > widgets > multiFile > snapshots > disabled 1`] = `
             aria-describedby="root__description root__help root__errors"
             aria-invalid="false"
             class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-            data-loading="true"
+            data-loading="false"
             data-processing="false"
             disabled=""
             id="root"
@@ -36197,7 +36325,7 @@ exports[`new-york-ui > widgets > multiFile > snapshots > error 1`] = `
             aria-describedby="root__description root__help root__errors"
             aria-invalid="true"
             class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-            data-loading="true"
+            data-loading="false"
             data-processing="false"
             id="root"
             multiple=""
@@ -36301,7 +36429,7 @@ exports[`new-york-ui > widgets > multiFile > snapshots > normal 1`] = `
             aria-describedby="root__description root__help root__errors"
             aria-invalid="false"
             class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-            data-loading="true"
+            data-loading="false"
             data-processing="false"
             id="root"
             multiple=""
@@ -36393,7 +36521,7 @@ exports[`new-york-ui > widgets > multiFile > snapshots > readonly 1`] = `
             aria-describedby="root__description root__help root__errors"
             aria-invalid="false"
             class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-            data-loading="true"
+            data-loading="false"
             data-processing="false"
             id="root"
             multiple=""
@@ -36503,6 +36631,7 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > disabled 1`] = `
             disabled=""
             id="root"
             name="root"
+            role="combobox"
             type="button"
           >
             <!---->
@@ -36512,8 +36641,7 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > disabled 1`] = `
             <!---->
              
             <svg
-              aria-hidden="true"
-              class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
+              class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -36532,6 +36660,8 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > disabled 1`] = `
               </path>
               
               <!---->
+              <!---->
+              
               <!---->
             </svg>
             <!---->
@@ -36656,6 +36786,7 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > error 1`] = `
             data-state="closed"
             id="root"
             name="root"
+            role="combobox"
             type="button"
           >
             <!---->
@@ -36665,8 +36796,7 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > error 1`] = `
             <!---->
              
             <svg
-              aria-hidden="true"
-              class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
+              class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -36685,6 +36815,8 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > error 1`] = `
               </path>
               
               <!---->
+              <!---->
+              
               <!---->
             </svg>
             <!---->
@@ -36820,6 +36952,7 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > normal 1`] = `
             data-state="closed"
             id="root"
             name="root"
+            role="combobox"
             type="button"
           >
             <!---->
@@ -36829,8 +36962,7 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > normal 1`] = `
             <!---->
              
             <svg
-              aria-hidden="true"
-              class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
+              class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -36849,6 +36981,8 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > normal 1`] = `
               </path>
               
               <!---->
+              <!---->
+              
               <!---->
             </svg>
             <!---->
@@ -36973,6 +37107,7 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > readonly 1`] = `
             data-state="closed"
             id="root"
             name="root"
+            role="combobox"
             type="button"
           >
             <!---->
@@ -36982,8 +37117,7 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > readonly 1`] = `
             <!---->
              
             <svg
-              aria-hidden="true"
-              class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
+              class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -37002,6 +37136,8 @@ exports[`new-york-ui > widgets > multiSelect > snapshots > readonly 1`] = `
               </path>
               
               <!---->
+              <!---->
+              
               <!---->
             </svg>
             <!---->
@@ -39929,6 +40065,7 @@ exports[`new-york-ui > widgets > select > snapshots > disabled 1`] = `
             disabled=""
             id="root"
             name="root"
+            role="combobox"
             type="button"
           >
             <!---->
@@ -39938,8 +40075,7 @@ exports[`new-york-ui > widgets > select > snapshots > disabled 1`] = `
             <!---->
              
             <svg
-              aria-hidden="true"
-              class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
+              class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -39958,6 +40094,8 @@ exports[`new-york-ui > widgets > select > snapshots > disabled 1`] = `
               </path>
               
               <!---->
+              <!---->
+              
               <!---->
             </svg>
             <!---->
@@ -40080,6 +40218,7 @@ exports[`new-york-ui > widgets > select > snapshots > error 1`] = `
             data-state="closed"
             id="root"
             name="root"
+            role="combobox"
             type="button"
           >
             <!---->
@@ -40089,8 +40228,7 @@ exports[`new-york-ui > widgets > select > snapshots > error 1`] = `
             <!---->
              
             <svg
-              aria-hidden="true"
-              class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
+              class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -40109,6 +40247,8 @@ exports[`new-york-ui > widgets > select > snapshots > error 1`] = `
               </path>
               
               <!---->
+              <!---->
+              
               <!---->
             </svg>
             <!---->
@@ -40242,6 +40382,7 @@ exports[`new-york-ui > widgets > select > snapshots > normal 1`] = `
             data-state="closed"
             id="root"
             name="root"
+            role="combobox"
             type="button"
           >
             <!---->
@@ -40251,8 +40392,7 @@ exports[`new-york-ui > widgets > select > snapshots > normal 1`] = `
             <!---->
              
             <svg
-              aria-hidden="true"
-              class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
+              class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -40271,6 +40411,8 @@ exports[`new-york-ui > widgets > select > snapshots > normal 1`] = `
               </path>
               
               <!---->
+              <!---->
+              
               <!---->
             </svg>
             <!---->
@@ -40393,6 +40535,7 @@ exports[`new-york-ui > widgets > select > snapshots > readonly 1`] = `
             data-state="closed"
             id="root"
             name="root"
+            role="combobox"
             type="button"
           >
             <!---->
@@ -40402,8 +40545,7 @@ exports[`new-york-ui > widgets > select > snapshots > readonly 1`] = `
             <!---->
              
             <svg
-              aria-hidden="true"
-              class="lucide lucide-chevron-down lucide-icon size-4 opacity-50"
+              class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -40422,6 +40564,8 @@ exports[`new-york-ui > widgets > select > snapshots > readonly 1`] = `
               </path>
               
               <!---->
+              <!---->
+              
               <!---->
             </svg>
             <!---->
@@ -42507,8 +42651,7 @@ exports[`new-york-ui > with title and description > checkboxes 1`] = `
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -42527,6 +42670,8 @@ exports[`new-york-ui > with title and description > checkboxes 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -42589,8 +42734,7 @@ exports[`new-york-ui > with title and description > checkboxes 1`] = `
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -42609,6 +42753,8 @@ exports[`new-york-ui > with title and description > checkboxes 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -42671,8 +42817,7 @@ exports[`new-york-ui > with title and description > checkboxes 1`] = `
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -42691,6 +42836,8 @@ exports[`new-york-ui > with title and description > checkboxes 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -43885,8 +44032,7 @@ exports[`new-york-ui > with title and description from both > checkboxes 1`] = `
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -43905,6 +44051,8 @@ exports[`new-york-ui > with title and description from both > checkboxes 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -43967,8 +44115,7 @@ exports[`new-york-ui > with title and description from both > checkboxes 1`] = `
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -43987,6 +44134,8 @@ exports[`new-york-ui > with title and description from both > checkboxes 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -44049,8 +44198,7 @@ exports[`new-york-ui > with title and description from both > checkboxes 1`] = `
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -44069,6 +44217,8 @@ exports[`new-york-ui > with title and description from both > checkboxes 1`] = `
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -45263,8 +45413,7 @@ exports[`new-york-ui > with title and description from uiSchema > checkboxes 1`]
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -45283,6 +45432,8 @@ exports[`new-york-ui > with title and description from uiSchema > checkboxes 1`]
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -45345,8 +45496,7 @@ exports[`new-york-ui > with title and description from uiSchema > checkboxes 1`]
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -45365,6 +45515,8 @@ exports[`new-york-ui > with title and description from uiSchema > checkboxes 1`]
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -45427,8 +45579,7 @@ exports[`new-york-ui > with title and description from uiSchema > checkboxes 1`]
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -45447,6 +45598,8 @@ exports[`new-york-ui > with title and description from uiSchema > checkboxes 1`]
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -46435,8 +46588,7 @@ exports[`new-york-ui > with title and description with global label off > checkb
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -46455,6 +46607,8 @@ exports[`new-york-ui > with title and description with global label off > checkb
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -46517,8 +46671,7 @@ exports[`new-york-ui > with title and description with global label off > checkb
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -46537,6 +46690,8 @@ exports[`new-york-ui > with title and description with global label off > checkb
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->
@@ -46599,8 +46754,7 @@ exports[`new-york-ui > with title and description with global label off > checkb
                 class="flex items-center justify-center text-current"
               >
                 <svg
-                  aria-hidden="true"
-                  class="lucide lucide-check lucide-icon size-4 text-transparent"
+                  class="lucide-icon lucide lucide-check size-4 text-transparent"
                   fill="none"
                   height="24"
                   stroke="currentColor"
@@ -46619,6 +46773,8 @@ exports[`new-york-ui > with title and description with global label off > checkb
                   </path>
                   
                   <!---->
+                  <!---->
+                  
                   <!---->
                 </svg>
                 <!---->

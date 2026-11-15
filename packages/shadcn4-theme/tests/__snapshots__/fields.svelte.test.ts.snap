@@ -3028,6 +3028,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                   data-state="closed"
                   id="root_preset"
                   name="root_preset"
+                  role="combobox"
                   type="button"
                 >
                   <!---->
@@ -3372,6 +3373,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                   data-state="closed"
                   id="root_format"
                   name="root_format"
+                  role="combobox"
                   type="button"
                 >
                   <!---->
@@ -3725,6 +3727,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
+                    checked=""
                     name="root_createOnOpen"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                     tabindex="-1"
@@ -4049,6 +4052,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   data-state="closed"
                   id="root_preset"
                   name="root_preset"
+                  role="combobox"
                   type="button"
                 >
                   <!---->
@@ -4249,6 +4253,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
+                    checked=""
                     name="root_collapseIndexes"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                     tabindex="-1"
@@ -4425,6 +4430,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
+                    checked=""
                     name="root_joinPrimitiveArrayValues"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                     tabindex="-1"
@@ -4754,6 +4760,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
+                    checked=""
                     name="root_stabilizeOrderOfPropertiesInArraysOfObjects"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                     tabindex="-1"
@@ -5359,6 +5366,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   data-state="closed"
                   id="root_format"
                   name="root_format"
+                  role="combobox"
                   type="button"
                 >
                   <!---->
@@ -5712,6 +5720,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                   <!---->
                   <input
                     aria-hidden="true"
+                    checked=""
                     name="root_createOnOpen"
                     style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%); top: 0px; left: 0px;"
                     tabindex="-1"

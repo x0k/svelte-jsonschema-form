@@ -12397,7 +12397,7 @@ exports[`widgets > multiFile > snapshots > disabled 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           class="input"
-          data-loading="true"
+          data-loading="false"
           data-processing="false"
           disabled=""
           id="root"
@@ -12481,7 +12481,7 @@ exports[`widgets > multiFile > snapshots > error 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="true"
           class="input"
-          data-loading="true"
+          data-loading="false"
           data-processing="false"
           id="root"
           multiple=""
@@ -12575,7 +12575,7 @@ exports[`widgets > multiFile > snapshots > normal 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           class="input"
-          data-loading="true"
+          data-loading="false"
           data-processing="false"
           id="root"
           multiple=""
@@ -12657,7 +12657,7 @@ exports[`widgets > multiFile > snapshots > readonly 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
           class="input"
-          data-loading="true"
+          data-loading="false"
           data-processing="false"
           id="root"
           multiple=""
@@ -15629,7 +15629,7 @@ exports[`widgets > rangeSlider > snapshots > disabled 1`] = `
           data-scope="slider"
           dir="ltr"
           id="slider:c37"
-          style="--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-offset-1: calc(0% - -10px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%;"
+          style="--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-offset-1: calc(0% - -10px); --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%; --slider-thumb-width: 20px; --slider-thumb-height: 20px;"
         >
           <!---->
           <!---->
@@ -15829,7 +15829,7 @@ exports[`widgets > rangeSlider > snapshots > error 1`] = `
           data-scope="slider"
           dir="ltr"
           id="slider:c36"
-          style="--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-offset-1: calc(0% - -10px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%;"
+          style="--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-offset-1: calc(0% - -10px); --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%; --slider-thumb-width: 20px; --slider-thumb-height: 20px;"
         >
           <!---->
           <!---->
@@ -16037,7 +16037,7 @@ exports[`widgets > rangeSlider > snapshots > normal 1`] = `
           data-scope="slider"
           dir="ltr"
           id="slider:c35"
-          style="--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-offset-1: calc(0% - -10px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%;"
+          style="--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-offset-1: calc(0% - -10px); --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%; --slider-thumb-width: 20px; --slider-thumb-height: 20px;"
         >
           <!---->
           <!---->
@@ -16231,7 +16231,7 @@ exports[`widgets > rangeSlider > snapshots > readonly 1`] = `
           data-scope="slider"
           dir="ltr"
           id="slider:c38"
-          style="--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-offset-1: calc(0% - -10px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%;"
+          style="--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-offset-1: calc(0% - -10px); --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%; --slider-thumb-width: 20px; --slider-thumb-height: 20px;"
         >
           <!---->
           <!---->
@@ -16442,7 +16442,7 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
             <!---->
             <!---->
             <div
-              aria-checked="true"
+              aria-checked="false"
               aria-disabled="true"
               aria-label="1 stars"
               aria-posinset="1"
@@ -16770,7 +16770,7 @@ exports[`widgets > rating > snapshots > error 1`] = `
             <!---->
             <!---->
             <div
-              aria-checked="true"
+              aria-checked="false"
               aria-disabled="false"
               aria-label="1 stars"
               aria-posinset="1"
@@ -17108,7 +17108,7 @@ exports[`widgets > rating > snapshots > normal 1`] = `
             <!---->
             <!---->
             <div
-              aria-checked="true"
+              aria-checked="false"
               aria-disabled="false"
               aria-label="1 stars"
               aria-posinset="1"
@@ -17437,7 +17437,7 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
             <!---->
             <!---->
             <div
-              aria-checked="true"
+              aria-checked="false"
               aria-disabled="false"
               aria-label="1 stars"
               aria-posinset="1"
@@ -18167,7 +18167,7 @@ exports[`widgets > slider > snapshots > disabled 1`] = `
           data-scope="slider"
           dir="ltr"
           id="slider:c50"
-          style="--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%;"
+          style="--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%; --slider-thumb-width: 20px; --slider-thumb-height: 20px;"
         >
           <!---->
           <!---->
@@ -18333,7 +18333,7 @@ exports[`widgets > slider > snapshots > error 1`] = `
           data-scope="slider"
           dir="ltr"
           id="slider:c49"
-          style="--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%;"
+          style="--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%; --slider-thumb-width: 20px; --slider-thumb-height: 20px;"
         >
           <!---->
           <!---->
@@ -18508,7 +18508,7 @@ exports[`widgets > slider > snapshots > normal 1`] = `
           data-scope="slider"
           dir="ltr"
           id="slider:c48"
-          style="--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%;"
+          style="--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%; --slider-thumb-width: 20px; --slider-thumb-height: 20px;"
         >
           <!---->
           <!---->
@@ -18669,7 +18669,7 @@ exports[`widgets > slider > snapshots > readonly 1`] = `
           data-scope="slider"
           dir="ltr"
           id="slider:c51"
-          style="--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%;"
+          style="--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%; --slider-thumb-width: 20px; --slider-thumb-height: 20px;"
         >
           <!---->
           <!---->
