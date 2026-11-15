@@ -1,8 +1,8 @@
 import type { Json as HyperjumpJson } from "@hyperjump/json-schema-errors";
 import type {
   FieldValueValidator,
-  FormValue,
   FormValueValidator,
+  ReadonlySchemaValue,
   Validator,
 } from "@sjsf/form";
 
@@ -76,7 +76,7 @@ export function createFormValidatorFactory<T>(
       ...vOptions,
       valueToJSON:
         vOptions.valueToJSON ??
-        ((v: FormValue) =>
+        ((v: ReadonlySchemaValue | undefined) =>
           v === undefined || v === null
             ? null
             : typeof v === "object"

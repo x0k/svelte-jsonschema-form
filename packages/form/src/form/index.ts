@@ -1,4 +1,5 @@
 export type {
+  ReadonlySchemaValue,
   Schema,
   SchemaValue,
   Validator,

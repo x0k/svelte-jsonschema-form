@@ -1,8 +1,8 @@
 import type {
   Config,
   FieldValueValidator,
-  FormValue,
   FormValueValidator,
+  ReadonlySchemaValue,
   Schema,
   Validator,
 } from "@sjsf/form";
@@ -16,7 +16,9 @@ import { DEFAULT_VALIDATOR_OPTIONS, type Schemas } from "./model.js";
 
 // https://github.com/rjsf-team/react-jsonschema-form/pull/5063#issuecomment-4413555901
 export interface ValueCloner {
-  cloneValue: (value: FormValue) => FormValue;
+  cloneValue: (
+    value: ReadonlySchemaValue | undefined
+  ) => ReadonlySchemaValue | undefined;
 }
 
 export type AtaValidatorFactory = (schema: Schema) => AtaValidator;

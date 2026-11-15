@@ -7,8 +7,8 @@ import {
 import type {
   Config,
   FieldValueValidator,
-  FormValue,
   FormValueValidator,
+  ReadonlySchemaValue,
   Schema,
   Validator,
 } from "@sjsf/form";
@@ -45,7 +45,7 @@ export const createDefaultValidateFactory = (
 };
 
 export interface ValueToJSON {
-  valueToJSON: (value: FormValue) => Json;
+  valueToJSON: (value: ReadonlySchemaValue | undefined) => Json;
 }
 
 export interface ValidatorOptions extends ValueToJSON {
