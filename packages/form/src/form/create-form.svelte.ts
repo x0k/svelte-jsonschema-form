@@ -368,12 +368,6 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   const disabled = $derived(options.disabled ?? false);
   const fieldsValidationMode = $derived(options.fieldsValidationMode ?? 0);
   const keyedArrays: KeyedArraysMap = new WeakMap();
-  const reconcileFormValue = $derived(
-    createFormValueReconciler({
-      keyedArraysMap: keyedArrays,
-      valueHandler,
-    })
-  );
   const schedulerYield: SchedulerYield = $derived(
     (options.schedulerYield ??
       (typeof scheduler !== "undefined" && "yield" in scheduler))
@@ -597,6 +591,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     },
     [FORM_MARK_SCHEMA_CHANGE]: scheduleDefaultsInjection,
   };
+  const reconcileFormValue = $derived(createFormValueReconciler(formState));
   const retrievedSchema = $derived(
     retrieveSchema(formState, options.schema, valueRef.current)
   );

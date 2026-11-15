@@ -5,28 +5,36 @@ import {
   createSchemaValueComparator,
   isSchemaValueDeepEqual,
 } from "#core/index.js";
-import type { SchemaValue } from "#core/index.js";
+import type { SchemaValue, ValueHandler } from "#core/index.js";
+import { createTestContext } from "#core/testing.js";
 
+import { FORM_KEYED_ARRAYS } from "./internals.js";
 import { createFormValueReconciler } from "./reconcile.js";
+import type { FormState } from "./state/index.js";
+
+function testFormState(valueHandler: ValueHandler): FormState<unknown> {
+  return {
+    ...createTestContext({ valueHandler }),
+    [FORM_KEYED_ARRAYS]: new WeakMap(),
+  } as unknown as FormState<unknown>;
+}
 
 describe("", () => {
-  const reconcile = createFormValueReconciler({
-    keyedArraysMap: new WeakMap(),
-    valueHandler: {
+  const reconcile = createFormValueReconciler(
+    testFormState({
       isValueDeepEqual: isSchemaValueDeepEqual,
-    },
-  });
+    })
+  );
 
-  const byDate = createFormValueReconciler({
-    keyedArraysMap: new WeakMap(),
-    valueHandler: {
+  const byDate = createFormValueReconciler(
+    testFormState({
       isValueDeepEqual: createSchemaValueComparator(compareRecords, (a, b) =>
         a instanceof Date && b instanceof Date
           ? a.getTime() === b.getTime()
           : Object.is(a, b)
       ),
-    },
-  });
+    })
+  );
 
   it("should preserve undefined values", () => {
     let value = {

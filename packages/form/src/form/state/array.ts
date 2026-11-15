@@ -5,6 +5,19 @@ import { FORM_KEYED_ARRAYS } from "../internals.js";
 import type { KeyedFieldValues } from "../model.js";
 import type { FormState } from "./state.js";
 
+/**
+ * The keyed array stored for `array`, if the form tracks one.
+ *
+ * Keyed arrays keep the keys of the edited array, so pushing and splicing
+ * through them preserves the identity of existing items.
+ */
+export function getKeyedArray<T>(
+  ctx: FormState<T>,
+  array: SchemaArrayValue
+): KeyedFieldValues | undefined {
+  return ctx[FORM_KEYED_ARRAYS].get(array);
+}
+
 export function createKeyedArrayDeriver<T>(
   ctx: FormState<T>,
   value: () => SchemaArrayValue | null | undefined,

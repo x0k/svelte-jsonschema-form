@@ -1,24 +1,17 @@
-import type { ValueHandler, SchemaValue } from "#core/index.js";
+import { isValueDeepEqual, type SchemaValue } from "#core/index.js";
 import { isRecordProto, setOwn } from "#lib/object.js";
 
-import type { FieldValue, FormValueRef, KeyedArraysMap } from "./model.js";
+import type { FieldValue, FormValueRef } from "./model.js";
+import { getKeyedArray, type FormState } from "./state/index.js";
 
 const UNCHANGED = Symbol("unchanged");
 
-export interface FormValueReconcilerOptions {
-  keyedArraysMap: KeyedArraysMap;
-  valueHandler: ValueHandler;
-}
-
-export function createFormValueReconciler({
-  keyedArraysMap,
-  valueHandler,
-}: FormValueReconcilerOptions) {
+export function createFormValueReconciler<T>(formState: FormState<T>) {
   function reconcile(
     target: SchemaValue | undefined,
     source: SchemaValue | undefined
   ): SchemaValue | undefined | typeof UNCHANGED {
-    if (valueHandler.isValueDeepEqual(target, source)) {
+    if (isValueDeepEqual(formState, target, source)) {
       return UNCHANGED;
     }
     if (typeof target === "object" && typeof source === "object") {
@@ -34,7 +27,7 @@ export function createFormValueReconciler({
           }
         }
         if (target.length !== source.length) {
-          const keyed = keyedArraysMap.get(target) ?? target;
+          const keyed = getKeyedArray(formState, target) ?? target;
           for (; i < source.length; i++) {
             keyed.push(source[i]);
           }
