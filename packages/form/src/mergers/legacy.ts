@@ -8,7 +8,7 @@ import {
   ITEMS_KEY,
   REQUIRED_KEY,
   type ValueHandler,
-  type Experimental_DefaultFormStateBehavior,
+  type DefaultFormStateBehavior,
   type Merger,
   type Schema,
   type SchemaDefinition,
@@ -173,7 +173,7 @@ export function createMerger(): Merger {
   };
 }
 
-export type FormMergerOptions = Experimental_DefaultFormStateBehavior & {
+export type FormMergerOptions = DefaultFormStateBehavior & {
   validator: Validator;
   schema: Schema;
   valueHandler: ValueHandler;

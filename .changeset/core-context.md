@@ -28,7 +28,7 @@ Helpers that only read form data accept `ReadonlySchemaValue`, an alias of
 as `File` intact instead of mapping their members.
 
 - `omitExtraData(validator, merger, schema, value)` → `omitExtraData(ctx, value)`
-- `experimental_defaultFormStateBehavior.arrayMinItems.computeSkipPopulate`
+- `defaultFormStateBehavior.arrayMinItems.computeSkipPopulate`
   receives `(ctx, schema)`; use `isValid(ctx, schema, value)` inside it
 - `getDefaultFormState` no longer falls back to its `schema` argument as the
   root schema, and the `rootSchema` defaults-computation option was removed;
