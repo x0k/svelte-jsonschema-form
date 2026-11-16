@@ -51,7 +51,7 @@ conventions such as opt-in include modules are covered by the
 | `textWidget`     | `value` (bindable), `config`, `handlers`, `errors`, `uiOption`                                                              | `inputAttributes(ctx, config, option, handlers, defaults)`            |
 | `numberWidget`   | same as `textWidget` with `number`                                                                                          | `inputAttributes(...)`                                                |
 | `selectWidget`   | `value` (bindable `SchemaValue`), `config`, `handlers`, `errors`, `uiOption`, `options`, `mapper?`, `clearable?`, `mapped?` | `selectAttributes(ctx, config, option, handlers, defaults)`           |
-| `checkboxWidget` | same as `textWidget` with `boolean`                                                                                         | `inputAttributes(...)`                                                |
+| `checkboxWidget` | same as `textWidget` with `boolean`, plus `mustBeChecked` (the schema only allows `true`)                                   | `inputAttributes(...)`                                                |
 
 Widget props are typed as `WidgetCommonProps<V>`:
 
@@ -69,6 +69,10 @@ interface WidgetCommonProps<V> {
   uiOption: UiOption;
 }
 ```
+
+Checkbox widgets also receive `mustBeChecked: boolean`. It is `true` only when
+the field is required and the schema only allows `true`, so render the required
+marker only then.
 
 Use `ComponentProps["form"]`, `ComponentProps["textWidget"]`, etc. to avoid
 repeating the prop shapes.
@@ -691,6 +695,7 @@ The basic theme's `UiOptions` declarations live in
     config,
     value = $bindable(),
     handlers,
+    mustBeChecked,
   }: ComponentProps["checkboxWidget"] = $props();
 
   const ctx = getFormContext();
@@ -705,7 +710,7 @@ The basic theme's `UiOptions` declarations live in
     bind:checked={() => value ?? false, (v) => (value = v)}
     {...attributes}
   />
-  {config.title}
+  {config.title}{mustBeChecked ? " *" : ""}
 </label>
 ```
 

@@ -2,7 +2,7 @@ export const FIELDS = {
   "boolean": {
     "name": "booleanField",
     "filename": "boolean",
-    "wrapperOf": "field-base"
+    "wrapperOf": null
   },
   "expand": {
     "name": "expandField",

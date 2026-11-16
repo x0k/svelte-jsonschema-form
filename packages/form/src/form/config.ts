@@ -1,6 +1,7 @@
 import {
   isOrderedSchemaDeepEqual,
   isSchemaDeepEqual,
+  schemaRequiresTrueValue,
   type ReadonlySchemaValue,
   type Schema,
 } from "#core/index.js";
@@ -23,6 +24,15 @@ export interface Config {
   readonly required: boolean;
   readonly value: () => ReadonlySchemaValue | undefined;
   readonly eventHandlers?: EventHandlers;
+}
+
+/**
+ * Whether a checkbox must be marked as required because the schema only allows
+ * `true`. A plain required boolean can validly be `false`, so it must not get
+ * the marker.
+ */
+export function configRequiresTrueValue(config: Config) {
+  return config.required && schemaRequiresTrueValue(config.schema);
 }
 
 export function isConfigEqual(a: Config, b: Config) {

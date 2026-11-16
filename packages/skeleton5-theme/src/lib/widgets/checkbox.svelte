@@ -10,6 +10,7 @@
     config,
     value = $bindable(),
     handlers,
+    mustBeChecked,
   }: ComponentProps["checkboxWidget"] = $props();
 
   const ctx = getFormContext();
@@ -22,5 +23,5 @@
     bind:checked={() => value ?? false, (v) => (value = v)}
     {...inputAttributes(ctx, config, "checkbox", handlers, {})}
   />
-  <p>{config.title}</p>
+  <p>{config.title}{mustBeChecked ? " *" : ""}</p>
 </label>

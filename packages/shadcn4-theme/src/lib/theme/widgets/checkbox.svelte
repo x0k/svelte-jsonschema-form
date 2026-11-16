@@ -24,6 +24,7 @@
     config,
     value = $bindable(),
     handlers,
+    mustBeChecked,
   }: ComponentProps["checkboxWidget"] = $props();
 
   const ctx = getFormContext();
@@ -44,7 +45,7 @@
       handlersAttachment(buttonHandlers)({
         id,
         name: id,
-        required: config.required,
+        required: mustBeChecked,
         onCheckedChange: () => {
           oninput?.();
           onchange?.();
@@ -65,6 +66,6 @@
     {...attributes}
   />
   <FieldLabel for={attributes.id}>
-    {config.title}
+    {config.title}{mustBeChecked ? " *" : ""}
   </FieldLabel>
 </div>

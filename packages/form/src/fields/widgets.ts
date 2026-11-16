@@ -69,7 +69,13 @@ declare module "../form/index.js" {
     textWidget: WidgetCommonProps<string>;
     numberWidget: WidgetCommonProps<number>;
     selectWidget: WidgetCommonProps<SchemaValue> & SingleSelectOptions;
-    checkboxWidget: WidgetCommonProps<boolean>;
+    checkboxWidget: WidgetCommonProps<boolean> & {
+      /**
+       * Whether the checkbox must be marked as required because the schema only
+       * allows `true`. A plain required boolean can validly be `false`.
+       */
+      mustBeChecked: boolean;
+    };
   }
   interface ComponentBindings {
     textWidget: "value";

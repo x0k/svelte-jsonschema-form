@@ -30,3 +30,4 @@ export function fieldTests(theme: Theme, options: FieldTestOptions = {}) {
 }
 
 export { widgetTests } from "./widget-snapshot-tests.js";
+export { requiredCheckboxTests } from "./checkbox-required-tests.js";

@@ -20,6 +20,7 @@
     config,
     value = $bindable(),
     handlers,
+    mustBeChecked,
   }: ComponentProps["checkboxWidget"] = $props();
 
   const ctx = getFormContext();
@@ -28,5 +29,5 @@
 <Checkbox
   bind:checked={() => value ?? false, (v) => (value = v)}
   {...inputAttributes(ctx, config, "flowbite3Checkbox", handlers, {})}
-  >{config.title}</Checkbox
+  >{config.title}{mustBeChecked ? " *" : ""}</Checkbox
 >
