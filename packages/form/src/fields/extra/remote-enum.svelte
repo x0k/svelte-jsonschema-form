@@ -79,6 +79,8 @@
     singleOption,
   } from "#options.svelte.js";
 
+  import { getSelectedOptionDescription } from "../enum.js";
+
   let {
     config,
     value = $bindable(),
@@ -116,6 +118,9 @@
     uiOption("clearable") ??
       (!config.required && mapper.toValue(EMPTY_VALUE) === undefined)
   );
+  const description = $derived(
+    getSelectedOptionDescription(options, mapped.current)
+  );
   const errors = $derived(getFieldErrors(ctx, config.path));
   const action = $derived(getFieldAction(ctx, config, field));
 </script>
@@ -142,6 +147,7 @@
   {uiOption}
   {widgetType}
   {value}
+  {description}
   {config}
   {errors}
   action={action && renderAction}

@@ -13,6 +13,7 @@ import {
   type FormState,
   getPseudoId,
   retrieveEnumValueMapperBuilder,
+  type FormEnumOption,
 } from "#form/index.js";
 import { createMappedOption } from "#options.svelte.js";
 
@@ -56,18 +57,28 @@ export function createFormOptions<T>(
         throw new Error(`Invalid enum definition in anyOf ${index}`);
       }
       const value = getSchemaConstantValue(altSchemaDef);
+      const uiOptions = retrieveUiSchema(ctx, altUiSchemas?.[index])[
+        "ui:options"
+      ];
       const label =
-        retrieveUiSchema(ctx, altUiSchemas?.[index])["ui:options"]?.title ??
-        altSchemaDef.title ??
-        schemaValueToString(value);
+        uiOptions?.title ?? altSchemaDef.title ?? schemaValueToString(value);
       return createMappedOption(builder, {
         id: getPseudoId(ctx, config.path, index),
         schema: altSchemaDef,
         label,
         value,
         disabled: disabledValues.has(value),
+        description: uiOptions?.description ?? altSchemaDef.description,
       });
     }) ?? [];
 
   return { options, mapper: builder.build() };
+}
+
+export function getSelectedOptionDescription(
+  options: FormEnumOption[],
+  mappedValue: string
+) {
+  return options.find((option) => option.mappedValue === mappedValue)
+    ?.description;
 }

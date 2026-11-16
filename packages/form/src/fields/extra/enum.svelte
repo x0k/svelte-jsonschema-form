@@ -20,7 +20,7 @@
   import "#form/extra-fields/enum.js";
   import { EMPTY_VALUE, singleOption } from "#options.svelte.js";
 
-  import { createFormOptions } from "../enum.js";
+  import { createFormOptions, getSelectedOptionDescription } from "../enum.js";
 
   let {
     config,
@@ -52,6 +52,9 @@
     uiOption("clearable") ??
       (!config.required && mapper.toValue(EMPTY_VALUE) === undefined)
   );
+  const description = $derived(
+    getSelectedOptionDescription(options, mapped.current)
+  );
   const errors = $derived(getFieldErrors(ctx, config.path));
   const action = $derived(getFieldAction(ctx, config, field));
 </script>
@@ -78,6 +81,7 @@
   {uiOption}
   {widgetType}
   {value}
+  {description}
   {config}
   {errors}
   action={action && renderAction}

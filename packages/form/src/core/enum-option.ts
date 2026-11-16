@@ -5,6 +5,10 @@ export interface SimpleEnumOption<T> {
   value: T;
   label: string;
   disabled: boolean;
+  /**
+   * Description of the option, rendered while it is selected.
+   */
+  description?: string;
 }
 
 export interface ComplexEnumOption<T> extends SimpleEnumOption<T> {

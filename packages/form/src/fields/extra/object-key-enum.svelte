@@ -27,7 +27,7 @@
   } from "#form/index.js";
   import { singleOption } from "#options.svelte.js";
 
-  import { createFormOptions } from "../enum.js";
+  import { createFormOptions, getSelectedOptionDescription } from "../enum.js";
   import { getObjectContext } from "../object/context.svelte.js";
 
   let {
@@ -66,6 +66,9 @@
         (typeof o.value === "string" && objCtx.isAvailablePropertyKey(o.value))
     )
   );
+  const description = $derived(
+    getSelectedOptionDescription(availableOptions, mapped.current)
+  );
 
   const errors = $derived(getFieldErrors(ctx, config.path));
   const action = $derived(getFieldAction(ctx, config, field));
@@ -92,6 +95,7 @@
   useLabel
   {widgetType}
   {value}
+  {description}
   {config}
   {errors}
   {uiOption}
