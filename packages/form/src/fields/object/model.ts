@@ -1,9 +1,4 @@
-import {
-  ADDITIONAL_PROPERTY_FLAG,
-  type Schema,
-  type SchemaObjectValue,
-} from "#core/index.js";
-import { isSchemaObject } from "#lib/json-schema/index.js";
+import { type Schema, type SchemaObjectValue } from "#core/index.js";
 
 export type AdditionalPropertyKey = (key: string, attempt: number) => string;
 
@@ -133,22 +128,4 @@ export function withoutRenamedKey(
     }
   }
   return next;
-}
-
-export function createOriginalKeysOrder(
-  properties: Exclude<Schema["properties"], undefined>
-): string[] {
-  const order: string[] = [];
-  const keys = Object.keys(properties);
-  for (const key of keys) {
-    const property = properties[key]!;
-    if (!isSchemaObject(property) || ADDITIONAL_PROPERTY_FLAG in property) {
-      continue;
-    }
-    order.push(key);
-  }
-  if (order.length < keys.length) {
-    order.push("*");
-  }
-  return order;
 }

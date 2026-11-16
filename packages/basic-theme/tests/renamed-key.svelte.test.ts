@@ -33,6 +33,27 @@ function remove(id: string) {
 }
 
 describe("renaming an additional property key", () => {
+  test("keeps the position of a key renamed to a numeric string", async () => {
+    await renderFieldForm({
+      schema: {
+        type: "object",
+        patternProperties: {
+          "(.*?)": { type: "string" },
+        },
+      },
+      initialValue: { first: "one", second: "two" },
+    });
+
+    await rename("second", "1");
+
+    const keys = [
+      ...document.querySelectorAll<HTMLInputElement>(
+        'input[id$="__key-input"]'
+      ),
+    ].map((input) => input.value);
+    expect(keys).toEqual(["first", "1"]);
+  });
+
   test("keeps every renamed property's field instance", async () => {
     await renderFieldForm({
       schema: {
