@@ -14,10 +14,44 @@ function hashString(string: string): string {
   return hash.toString(16);
 }
 
-export function schemaHash(schema: Schema) {
-  const allKeys = new Set<string>();
-  // solution source: https://stackoverflow.com/questions/16167581/sort-object-properties-and-json-stringify/53593328#53593328
+function shouldIncludeValue(value: unknown) {
+  return (
+    value !== undefined &&
+    typeof value !== "function" &&
+    typeof value !== "symbol"
+  );
+}
 
-  JSON.stringify(schema, (key, value) => (allKeys.add(key), value));
-  return hashString(JSON.stringify(schema, Array.from(allKeys).sort()));
+/**
+ * Recursively serializes a value to JSON with object keys sorted alphabetically
+ * to produce a stable string representation.
+ *
+ * Array items are kept in place, and `undefined` items are written as
+ * `undefined` so they do not collapse into `null`.
+ */
+function sortedJSONStringify(object: unknown): string {
+  if (Array.isArray(object)) {
+    return `[${object
+      .map((value) =>
+        value === undefined ? "undefined" : sortedJSONStringify(value)
+      )
+      .join(",")}]`;
+  }
+  if (object === null || typeof object !== "object") {
+    // JSON.stringify normalizes functions to null.
+    return JSON.stringify(typeof object === "function" ? null : object);
+  }
+  const record = object as Record<string, unknown>;
+  const values: string[] = [];
+  for (const key of Object.keys(record).sort()) {
+    const value = record[key];
+    if (shouldIncludeValue(value)) {
+      values.push(`${JSON.stringify(key)}:${sortedJSONStringify(value)}`);
+    }
+  }
+  return `{${values.join(",")}}`;
+}
+
+export function schemaHash(schema: Schema) {
+  return hashString(sortedJSONStringify(schema));
 }
