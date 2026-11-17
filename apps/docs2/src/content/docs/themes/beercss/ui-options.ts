@@ -51,6 +51,8 @@ export interface UiOptions {
 
   checkbox?: HTMLInputAttributes;
 
+  dateInput?: HTMLInputAttributes;
+
   number?: HTMLInputAttributes;
 
   select?: HTMLSelectAttributes;

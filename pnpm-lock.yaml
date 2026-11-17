@@ -907,6 +907,9 @@ importers:
       valibot:
         specifier: 'catalog:'
         version: 1.5.0(typescript@6.0.3)
+      vanilla-calendar-pro:
+        specifier: 'catalog:'
+        version: 3.4.0
       zimmerframe:
         specifier: 'catalog:'
         version: 1.1.5

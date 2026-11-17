@@ -100,6 +100,13 @@ export interface UiOptions {
 
   shadcn4Checkbox?: WithoutChildrenOrChild<CheckboxRootProps>;
 
+  shadcn4DateInput?: Omit<
+    WithoutChildrenOrChild<CalendarSingleRootProps>,
+    "type"
+  >;
+  shadcn4DateInputTrigger?: ComponentProps<typeof Button>;
+  shadcn4DateInputFormatter?: (date: Date) => string;
+
   shadcn4Number?: InputProps;
 
   shadcn4Select?: Omit<SelectSingleRootProps, "type">;

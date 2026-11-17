@@ -16,10 +16,28 @@ SJSF expects **JSON Schema Draft-07**. Keep schemas compliant with these engine 
    - `#/$defs/` needs the `@sjsf/form/converters/draft-2020-12` converter.
    - External URLs or remote network schemas are not resolved at runtime.
 2. **String Formats**:
-   - `date-time`: maps to `datetime-local` input.
-   - `date`, `time`, `email`, `color`: map to same-named inputs.
+   - `date-time`: maps to `datetime-local`; the raw input string is stored by default.
+   - `iso-date-time`: maps to `datetime-local`.
+   - `date`, `email`, `color`: map to same-named inputs.
+   - `time`: maps to `time`; the raw input string is stored by default.
+   - `iso-time`: maps to `time`.
    - `uri`: maps to `url` input.
    - `data-url`: file upload widget (requires `compat` resolver).
+   - To store RFC 3339-compliant values, import
+     `@sjsf/form/fields/extra/date-include` and the theme's
+     `extra-widgets/date-input-include` (the theme package is
+     `@sjsf/basic-theme`, `@sjsf-lab/beercss-theme`,
+     `@sjsf/daisyui5-theme`, `@sjsf/flowbite3-theme`,
+     `@sjsf/shadcn4-theme`, `@sjsf/skeleton5-theme`, or
+     `@sjsf-lab/svar-theme`), then select `dateField`; it handles `date`,
+     `date-time`, `iso-date-time`, `time`, and `iso-time`. Without the theme
+     include the field renders `component-not-found`.
+   - `nativeDateField` (via `unknown-native-date-include`) uses the same widget
+     but stores `Date` objects, which are not JSON and skip format validation.
+   - On Flowbite the time control is `Timepicker`, configured by
+     `flowbite3TimeInput`. It only accepts `HH:mm` and cannot clear a time-only
+     field, so editing drops seconds; a `date-time` pair can still be cleared
+     from its date half.
 
 ---
 

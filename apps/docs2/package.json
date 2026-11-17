@@ -78,6 +78,7 @@
     "theme-testing": "workspace:*",
     "typebox": "catalog:",
     "valibot": "catalog:",
+    "vanilla-calendar-pro": "catalog:",
     "zimmerframe": "catalog:",
     "zod": "catalog:"
   },
