@@ -1,4 +1,5 @@
 import "@sjsf/form/fields/extra/array-files-include";
+import "@sjsf/form/fields/extra/date-include";
 import "@sjsf/form/fields/extra/enum-include";
 import "@sjsf/form/fields/extra/multi-enum-include";
 import "@sjsf/form/fields/extra/file-include";

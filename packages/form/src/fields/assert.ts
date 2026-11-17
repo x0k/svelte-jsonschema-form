@@ -37,3 +37,11 @@ export function assertFile(v: unknown): asserts v is File | undefined {
     );
   }
 }
+
+export function assertDate(v: unknown): asserts v is Date | undefined {
+  if (v !== undefined && !(v instanceof Date)) {
+    throw new Error(
+      `expected "Date" or "undefined", but got (${typeof v}: ${JSON.stringify(v)})`
+    );
+  }
+}
