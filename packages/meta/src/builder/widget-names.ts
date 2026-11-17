@@ -17,6 +17,7 @@ export const WIDGET_NAMES: Record<WidgetType, string> = {
   daisyui5FilterRadioButtonsWidget: "Filter radio buttons",
   datePickerWidget: "Date picker",
   dateRangePickerWidget: "Date range picker",
+  dateInputWidget: "Date input",
   fileWidget: "File input",
   flowbite3ToggleRadioButtonsWidget: "Toggle radio buttons",
   multiSelectWidget: "Multi Select",

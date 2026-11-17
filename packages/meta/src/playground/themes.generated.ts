@@ -7,6 +7,8 @@ import "./fields.generated.ts";
 import { theme as basicBase } from "@sjsf/basic-theme";
 import basic_checkboxesWidget from "@sjsf/basic-theme/extra-widgets/checkboxes.svelte";
 import "@sjsf/basic-theme/extra-widgets/checkboxes.svelte";
+import basic_dateInputWidget from "@sjsf/basic-theme/extra-widgets/date-input.svelte";
+import "@sjsf/basic-theme/extra-widgets/date-input.svelte";
 import basic_datePickerWidget from "@sjsf/basic-theme/extra-widgets/date-picker.svelte";
 import "@sjsf/basic-theme/extra-widgets/date-picker.svelte";
 import basic_fileWidget from "@sjsf/basic-theme/extra-widgets/file.svelte";
@@ -22,6 +24,7 @@ import "@sjsf/basic-theme/extra-widgets/textarea.svelte";
 export const basicTheme = extendByRecord(basicBase, {
   ...fields,
   checkboxesWidget: basic_checkboxesWidget,
+  dateInputWidget: basic_dateInputWidget,
   datePickerWidget: basic_datePickerWidget,
   fileWidget: basic_fileWidget,
   multiSelectWidget: basic_multiSelectWidget,
@@ -34,6 +37,8 @@ import { theme as daisyui5Base } from "@sjsf/daisyui5-theme";
 export type * as daisyui5_daisyui5CallyDatePickerWidget from "@sjsf/daisyui5-theme/extra-widgets/cally-date-picker.svelte";
 import daisyui5_checkboxesWidget from "@sjsf/daisyui5-theme/extra-widgets/checkboxes.svelte";
 import "@sjsf/daisyui5-theme/extra-widgets/checkboxes.svelte";
+import daisyui5_dateInputWidget from "@sjsf/daisyui5-theme/extra-widgets/date-input.svelte";
+import "@sjsf/daisyui5-theme/extra-widgets/date-input.svelte";
 import daisyui5_datePickerWidget from "@sjsf/daisyui5-theme/extra-widgets/date-picker.svelte";
 import "@sjsf/daisyui5-theme/extra-widgets/date-picker.svelte";
 import daisyui5_fileWidget from "@sjsf/daisyui5-theme/extra-widgets/file.svelte";
@@ -60,6 +65,7 @@ export const daisyui5Theme = extendByRecord(daisyui5Base, {
   ...fields,
   daisyui5CallyDatePickerWidget: clientOnly(() => import("@sjsf/daisyui5-theme/extra-widgets/cally-date-picker.svelte")),
   checkboxesWidget: daisyui5_checkboxesWidget,
+  dateInputWidget: daisyui5_dateInputWidget,
   datePickerWidget: daisyui5_datePickerWidget,
   fileWidget: daisyui5_fileWidget,
   daisyui5FilterRadioButtonsWidget: daisyui5_daisyui5FilterRadioButtonsWidget,
@@ -76,6 +82,8 @@ export const daisyui5Theme = extendByRecord(daisyui5Base, {
 import { theme as flowbite3Base } from "@sjsf/flowbite3-theme";
 import flowbite3_checkboxesWidget from "@sjsf/flowbite3-theme/extra-widgets/checkboxes.svelte";
 import "@sjsf/flowbite3-theme/extra-widgets/checkboxes.svelte";
+import flowbite3_dateInputWidget from "@sjsf/flowbite3-theme/extra-widgets/date-input.svelte";
+import "@sjsf/flowbite3-theme/extra-widgets/date-input.svelte";
 import flowbite3_datePickerWidget from "@sjsf/flowbite3-theme/extra-widgets/date-picker.svelte";
 import "@sjsf/flowbite3-theme/extra-widgets/date-picker.svelte";
 import flowbite3_dateRangePickerWidget from "@sjsf/flowbite3-theme/extra-widgets/date-range-picker.svelte";
@@ -101,6 +109,7 @@ import "@sjsf/flowbite3-theme/extra-widgets/toggle-radio-buttons.svelte";
 export const flowbite3Theme = extendByRecord(flowbite3Base, {
   ...fields,
   checkboxesWidget: flowbite3_checkboxesWidget,
+  dateInputWidget: flowbite3_dateInputWidget,
   datePickerWidget: flowbite3_datePickerWidget,
   dateRangePickerWidget: flowbite3_dateRangePickerWidget,
   fileWidget: flowbite3_fileWidget,
@@ -119,6 +128,8 @@ import shadcn4_checkboxesWidget from "@sjsf/shadcn4-theme/extra-widgets/checkbox
 import "@sjsf/shadcn4-theme/extra-widgets/checkboxes.svelte";
 import shadcn4_comboboxWidget from "@sjsf/shadcn4-theme/extra-widgets/combobox.svelte";
 import "@sjsf/shadcn4-theme/extra-widgets/combobox.svelte";
+import shadcn4_dateInputWidget from "@sjsf/shadcn4-theme/extra-widgets/date-input.svelte";
+import "@sjsf/shadcn4-theme/extra-widgets/date-input.svelte";
 import shadcn4_datePickerWidget from "@sjsf/shadcn4-theme/extra-widgets/date-picker.svelte";
 import "@sjsf/shadcn4-theme/extra-widgets/date-picker.svelte";
 import shadcn4_dateRangePickerWidget from "@sjsf/shadcn4-theme/extra-widgets/date-range-picker.svelte";
@@ -143,6 +154,7 @@ export const shadcn4Theme = extendByRecord(shadcn4Base, {
   ...fields,
   checkboxesWidget: shadcn4_checkboxesWidget,
   comboboxWidget: shadcn4_comboboxWidget,
+  dateInputWidget: shadcn4_dateInputWidget,
   datePickerWidget: shadcn4_datePickerWidget,
   dateRangePickerWidget: shadcn4_dateRangePickerWidget,
   fileWidget: shadcn4_fileWidget,
@@ -160,6 +172,8 @@ import skeleton5_checkboxesWidget from "@sjsf/skeleton5-theme/extra-widgets/chec
 import "@sjsf/skeleton5-theme/extra-widgets/checkboxes.svelte";
 import skeleton5_comboboxWidget from "@sjsf/skeleton5-theme/extra-widgets/combobox.svelte";
 import "@sjsf/skeleton5-theme/extra-widgets/combobox.svelte";
+import skeleton5_dateInputWidget from "@sjsf/skeleton5-theme/extra-widgets/date-input.svelte";
+import "@sjsf/skeleton5-theme/extra-widgets/date-input.svelte";
 import skeleton5_datePickerWidget from "@sjsf/skeleton5-theme/extra-widgets/date-picker.svelte";
 import "@sjsf/skeleton5-theme/extra-widgets/date-picker.svelte";
 import skeleton5_dateRangePickerWidget from "@sjsf/skeleton5-theme/extra-widgets/date-range-picker.svelte";
@@ -192,6 +206,7 @@ export const skeleton5Theme = extendByRecord(skeleton5Base, {
   ...fields,
   checkboxesWidget: skeleton5_checkboxesWidget,
   comboboxWidget: skeleton5_comboboxWidget,
+  dateInputWidget: skeleton5_dateInputWidget,
   datePickerWidget: skeleton5_datePickerWidget,
   dateRangePickerWidget: skeleton5_dateRangePickerWidget,
   skeleton5FileUploadWidget: skeleton5_skeleton5FileUploadWidget,
@@ -211,6 +226,8 @@ export const skeleton5Theme = extendByRecord(skeleton5Base, {
 import { theme as beercssBase } from "@sjsf-lab/beercss-theme";
 import beercss_checkboxesWidget from "@sjsf-lab/beercss-theme/extra-widgets/checkboxes.svelte";
 import "@sjsf-lab/beercss-theme/extra-widgets/checkboxes.svelte";
+import beercss_dateInputWidget from "@sjsf-lab/beercss-theme/extra-widgets/date-input.svelte";
+import "@sjsf-lab/beercss-theme/extra-widgets/date-input.svelte";
 import beercss_datePickerWidget from "@sjsf-lab/beercss-theme/extra-widgets/date-picker.svelte";
 import "@sjsf-lab/beercss-theme/extra-widgets/date-picker.svelte";
 import beercss_fileWidget from "@sjsf-lab/beercss-theme/extra-widgets/file.svelte";
@@ -226,6 +243,7 @@ import "@sjsf-lab/beercss-theme/extra-widgets/textarea.svelte";
 export const beercssTheme = extendByRecord(beercssBase, {
   ...fields,
   checkboxesWidget: beercss_checkboxesWidget,
+  dateInputWidget: beercss_dateInputWidget,
   datePickerWidget: beercss_datePickerWidget,
   fileWidget: beercss_fileWidget,
   radioWidget: beercss_radioWidget,
@@ -269,6 +287,8 @@ import svar_svarColorSelectWidget from "@sjsf-lab/svar-theme/extra-widgets/color
 import "@sjsf-lab/svar-theme/extra-widgets/color-select.svelte";
 import svar_comboboxWidget from "@sjsf-lab/svar-theme/extra-widgets/combobox.svelte";
 import "@sjsf-lab/svar-theme/extra-widgets/combobox.svelte";
+import svar_dateInputWidget from "@sjsf-lab/svar-theme/extra-widgets/date-input.svelte";
+import "@sjsf-lab/svar-theme/extra-widgets/date-input.svelte";
 import svar_datePickerWidget from "@sjsf-lab/svar-theme/extra-widgets/date-picker.svelte";
 import "@sjsf-lab/svar-theme/extra-widgets/date-picker.svelte";
 import svar_dateRangePickerWidget from "@sjsf-lab/svar-theme/extra-widgets/date-range-picker.svelte";
@@ -291,6 +311,7 @@ export const svarTheme = extendByRecord(svarBase, {
   svarColorPickerWidget: svar_svarColorPickerWidget,
   svarColorSelectWidget: svar_svarColorSelectWidget,
   comboboxWidget: svar_comboboxWidget,
+  dateInputWidget: svar_dateInputWidget,
   datePickerWidget: svar_datePickerWidget,
   dateRangePickerWidget: svar_dateRangePickerWidget,
   multiSelectWidget: svar_multiSelectWidget,

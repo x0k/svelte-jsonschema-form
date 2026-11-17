@@ -10,6 +10,7 @@ const WIDGET_USE_LABEL: Record<WidgetType, boolean | Set<PlaygroundTheme>> = {
   checkboxesWidget: false,
   tagsWidget: true,
   datePickerWidget: true,
+  dateInputWidget: true,
   multiSelectWidget: true,
   radioWidget: false,
   rangeWidget: true,

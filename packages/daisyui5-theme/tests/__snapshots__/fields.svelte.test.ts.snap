@@ -8720,6 +8720,345 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
 </div>
 `;
 
+exports[`widgets > dateInput > snapshots > disabled 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="flex flex-col gap-4"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <fieldset
+        class="fieldset gap-y-2"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="input input-border w-full"
+          disabled=""
+          id="root"
+          name="root"
+          required=""
+          type="text"
+        />
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </fieldset>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="btn btn-primary w-full"
+        disabled=""
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > dateInput > snapshots > error 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="flex flex-col gap-4"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <fieldset
+        class="fieldset gap-y-2"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="true"
+          class="input input-border w-full input-error"
+          id="root"
+          name="root"
+          required=""
+          type="text"
+        />
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <ul
+          class="text-error list-inside list-disc"
+          id="root__errors"
+          tabindex="-1"
+        >
+          <li>
+            error
+          </li>
+          
+        </ul>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </fieldset>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="btn btn-primary w-full"
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > dateInput > snapshots > normal 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="flex flex-col gap-4"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <fieldset
+        class="fieldset gap-y-2"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="input input-border w-full"
+          id="root"
+          name="root"
+          required=""
+          type="text"
+        />
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </fieldset>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="btn btn-primary w-full"
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > dateInput > snapshots > readonly 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="flex flex-col gap-4"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <fieldset
+        class="fieldset gap-y-2"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="input input-border w-full"
+          id="root"
+          name="root"
+          readonly=""
+          required=""
+          type="text"
+        />
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </fieldset>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="btn btn-primary w-full"
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
 exports[`widgets > datePicker > snapshots > disabled 1`] = `
 <div>
   <form>
@@ -9012,6 +9351,345 @@ exports[`widgets > datePicker > snapshots > readonly 1`] = `
           required=""
           type="text"
         />
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </fieldset>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="btn btn-primary w-full"
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > dateTimeInput > snapshots > disabled 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="flex flex-col gap-4"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <fieldset
+        class="fieldset gap-y-2"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="input input-border w-full"
+          disabled=""
+          id="root"
+          name="root"
+          required=""
+          type="text"
+        />
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </fieldset>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="btn btn-primary w-full"
+        disabled=""
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > dateTimeInput > snapshots > error 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="flex flex-col gap-4"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <fieldset
+        class="fieldset gap-y-2"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="true"
+          class="input input-border w-full input-error"
+          id="root"
+          name="root"
+          required=""
+          type="text"
+        />
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <ul
+          class="text-error list-inside list-disc"
+          id="root__errors"
+          tabindex="-1"
+        >
+          <li>
+            error
+          </li>
+          
+        </ul>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </fieldset>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="btn btn-primary w-full"
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > dateTimeInput > snapshots > normal 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="flex flex-col gap-4"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <fieldset
+        class="fieldset gap-y-2"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="input input-border w-full"
+          id="root"
+          name="root"
+          required=""
+          type="text"
+        />
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </fieldset>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="btn btn-primary w-full"
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > dateTimeInput > snapshots > readonly 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="flex flex-col gap-4"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <fieldset
+        class="fieldset gap-y-2"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="input input-border w-full"
+          id="root"
+          name="root"
+          readonly=""
+          required=""
+          type="text"
+        />
+        
         
         
         
@@ -14373,6 +15051,345 @@ exports[`widgets > textarea > snapshots > readonly 1`] = `
           readonly=""
           required=""
         />
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </fieldset>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="btn btn-primary w-full"
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > timeInput > snapshots > disabled 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="flex flex-col gap-4"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <fieldset
+        class="fieldset gap-y-2"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="input input-border w-full"
+          disabled=""
+          id="root"
+          name="root"
+          required=""
+          type="text"
+        />
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </fieldset>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="btn btn-primary w-full"
+        disabled=""
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > timeInput > snapshots > error 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="flex flex-col gap-4"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <fieldset
+        class="fieldset gap-y-2"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="true"
+          class="input input-border w-full input-error"
+          id="root"
+          name="root"
+          required=""
+          type="text"
+        />
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <ul
+          class="text-error list-inside list-disc"
+          id="root__errors"
+          tabindex="-1"
+        >
+          <li>
+            error
+          </li>
+          
+        </ul>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </fieldset>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="btn btn-primary w-full"
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > timeInput > snapshots > normal 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="flex flex-col gap-4"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <fieldset
+        class="fieldset gap-y-2"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="input input-border w-full"
+          id="root"
+          name="root"
+          required=""
+          type="text"
+        />
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </fieldset>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="btn btn-primary w-full"
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > timeInput > snapshots > readonly 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="flex flex-col gap-4"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <fieldset
+        class="fieldset gap-y-2"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          class="input input-border w-full"
+          id="root"
+          name="root"
+          readonly=""
+          required=""
+          type="text"
+        />
+        
         
         
         

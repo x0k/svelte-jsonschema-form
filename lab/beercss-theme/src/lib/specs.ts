@@ -1,6 +1,7 @@
 import { s, DEFAULT_SPECS } from "theme-testing/specs";
 
 import "./extra-widgets/checkboxes-include.js";
+import "./extra-widgets/date-input-include.js";
 import "./extra-widgets/file-include.js";
 import "./extra-widgets/radio-include.js";
 import "./extra-widgets/range-include.js";
@@ -34,6 +35,33 @@ export const specs: s.Specs = {
       // oninput: 'inputSvarCheckbox',
       // onchange: 'changeSvarCheckbox',
       // onblur: "visitSvarCheckbox",
+    },
+  ],
+  dateInput: [
+    s.date,
+    { "ui:components": { stringField: "dateField" } },
+    {
+      oninput: "inputDate",
+      onchange: "changeDate",
+      onblur: "visitDate",
+    },
+  ],
+  dateTimeInput: [
+    s.dateTime,
+    { "ui:components": { stringField: "dateField" } },
+    {
+      oninput: "inputDateTime",
+      onchange: "changeDateTime",
+      onblur: "visitDateTime",
+    },
+  ],
+  timeInput: [
+    s.time,
+    { "ui:components": { stringField: "dateField" } },
+    {
+      oninput: "inputTime",
+      onchange: "changeTime",
+      onblur: "visitTime",
     },
   ],
   datePicker: [

@@ -15,6 +15,63 @@ import {
 } from "../src/index.ts";
 import { extractComponentPropsIndex, resolveComponentName } from "./analyze.ts";
 
+const RELATIVE_IMPORT_RE =
+  /(?:^|[\s;])(?:import|export)\b[^;"']*?["'](\.{1,2}\/[^"']+)["']/g;
+
+async function resolveLocalImport(
+  importer: string,
+  specifier: string
+): Promise<string | undefined> {
+  const filepath = path.resolve(path.dirname(importer), specifier);
+  const candidates = [filepath];
+  if (path.extname(filepath) === ".js") {
+    candidates.push(filepath.slice(0, -".js".length) + ".ts");
+  }
+  for (const suffix of [".svelte", ".ts", ".js"]) {
+    candidates.push(filepath + suffix);
+  }
+  for (const candidate of candidates) {
+    try {
+      if ((await fs.stat(candidate)).isFile()) {
+        return candidate;
+      }
+    } catch {
+      // Try the next candidate
+    }
+  }
+  return undefined;
+}
+
+/**
+ * Extra widgets may be split into local components. Collect the source of
+ * local imports (within the extra widgets directory) so optional dependencies
+ * used by subcomponents are still attributed to the widget.
+ */
+async function collectWidgetSource(
+  filepath: string,
+  extraWidgetsDir: string,
+  seen = new Set<string>()
+): Promise<string> {
+  if (seen.has(filepath)) {
+    return "";
+  }
+  seen.add(filepath);
+  const content = await fs.readFile(filepath, { encoding: "utf-8" });
+  let result = content;
+  for (const match of content.matchAll(RELATIVE_IMPORT_RE)) {
+    const imported = await resolveLocalImport(filepath, match[1]!);
+    if (
+      imported === undefined ||
+      !imported.startsWith(extraWidgetsDir + path.sep)
+    ) {
+      continue;
+    }
+    result +=
+      "\n" + (await collectWidgetSource(imported, extraWidgetsDir, seen));
+  }
+  return result;
+}
+
 async function extractWidgetData(
   extraWidgetsDir: string,
   themeOptionalDeps: AbstractPackage[]
@@ -38,9 +95,10 @@ async function extractWidgetData(
     }
     const widgetFileName = path.basename(e.name, ".svelte");
     widgets[widgetFileName] = name;
+    const source = await collectWidgetSource(widgetFilepath, extraWidgetsDir);
     const optionalDeps: string[] = [];
     for (const d of themeOptionalDeps) {
-      if (!content.includes(d.name)) {
+      if (!source.includes(d.name)) {
         continue;
       }
       optionalDeps.push(d.name);

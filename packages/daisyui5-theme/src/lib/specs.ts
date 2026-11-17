@@ -2,6 +2,7 @@ import { s, DEFAULT_SPECS } from "theme-testing/specs";
 
 import "./extra-widgets/cally-date-picker-include.js";
 import "./extra-widgets/checkboxes-include.js";
+import "./extra-widgets/date-input-include.js";
 import "./extra-widgets/file-include.js";
 import "./extra-widgets/filter-radio-buttons-include.js";
 import "./extra-widgets/multi-select-include.js";
@@ -24,6 +25,32 @@ export const specs: s.Specs = {
     },
     {
       onchange: "changeCallyDatePicker",
+    },
+  ],
+  dateInput: [
+    s.date,
+    { "ui:components": { stringField: "dateField" } },
+    {
+      // Typed text is committed on `change`, so `oninput` validation is not
+      // supported.
+      onchange: "changeDate",
+      onblur: "visitDate",
+    },
+  ],
+  dateTimeInput: [
+    s.dateTime,
+    { "ui:components": { stringField: "dateField" } },
+    {
+      onchange: "changeDateTime",
+      onblur: "visitDateTime",
+    },
+  ],
+  timeInput: [
+    s.time,
+    { "ui:components": { stringField: "dateField" } },
+    {
+      onchange: "changeTime",
+      onblur: "visitTime",
     },
   ],
   datePicker: [

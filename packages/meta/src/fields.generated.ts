@@ -97,6 +97,11 @@ export const EXTRA_FIELDS = {
     "filename": "boolean-select",
     "wrapperOf": null
   },
+  "date": {
+    "name": "dateField",
+    "filename": "date",
+    "wrapperOf": null
+  },
   "enum": {
     "name": "enumField",
     "filename": "enum",
@@ -115,6 +120,11 @@ export const EXTRA_FIELDS = {
   "multi-enum": {
     "name": "multiEnumField",
     "filename": "multi-enum",
+    "wrapperOf": null
+  },
+  "native-date": {
+    "name": "nativeDateField",
+    "filename": "native-date",
     "wrapperOf": null
   },
   "native-file": {
@@ -141,6 +151,11 @@ export const EXTRA_FIELDS = {
     "name": "tagsField",
     "filename": "tags",
     "wrapperOf": null
+  },
+  "unknown-native-date": {
+    "name": "unknownNativeDateField",
+    "filename": "unknown-native-date",
+    "wrapperOf": "native-date"
   },
   "unknown-native-file": {
     "name": "unknownNativeFileField",

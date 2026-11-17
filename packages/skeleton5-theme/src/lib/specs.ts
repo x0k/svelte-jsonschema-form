@@ -5,6 +5,7 @@ import "@sjsf/form/fields/extra/aggregated-include";
 
 import "./extra-widgets/checkboxes-include.js";
 import "./extra-widgets/combobox-include.js";
+import "./extra-widgets/date-input-include.js";
 import "./extra-widgets/date-picker-include.js";
 import "./extra-widgets/date-range-picker-include.js";
 import "./extra-widgets/file-upload-include.js";
@@ -31,6 +32,33 @@ export const specs: s.Specs = {
       },
     },
     {},
+  ],
+  dateInput: [
+    s.date,
+    { "ui:components": { stringField: "dateField" } },
+    {
+      oninput: "inputDate",
+      onchange: "changeDate",
+      onblur: "visitDate",
+    },
+  ],
+  dateTimeInput: [
+    s.dateTime,
+    { "ui:components": { stringField: "dateField" } },
+    {
+      oninput: "inputDateTimePair",
+      onchange: "changeDateTimePair",
+      onblur: "visitDateTimePair",
+    },
+  ],
+  timeInput: [
+    s.time,
+    { "ui:components": { stringField: "dateField" } },
+    {
+      oninput: "inputTime",
+      onchange: "changeTime",
+      onblur: "visitTime",
+    },
   ],
   datePicker: [
     s.text,

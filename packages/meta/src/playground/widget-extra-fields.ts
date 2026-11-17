@@ -21,6 +21,7 @@ export const WIDGET_EXTRA_FIELD: Record<
   daisyui5VcDatePickerWidget: undefined,
   datePickerWidget: undefined,
   dateRangePickerWidget: "aggregated",
+  dateInputWidget: "date",
   fileWidget: undefined,
   flowbite3ToggleRadioButtonsWidget: "enum",
   multiSelectWidget: "multi-enum",

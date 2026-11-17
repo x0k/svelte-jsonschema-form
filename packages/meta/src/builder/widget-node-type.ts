@@ -8,6 +8,7 @@ export const WIDGET_NODE_TYPE: Record<WidgetType, NodeType> = {
   checkboxWidget: NodeType.Boolean,
   textareaWidget: NodeType.String,
   datePickerWidget: NodeType.String,
+  dateInputWidget: NodeType.String,
   radioWidget: NodeType.Enum,
   rangeWidget: NodeType.Number,
   fileWidget: NodeType.File,
