@@ -59,8 +59,6 @@
   }
   &[data-layout="multi-field-controls"] {
     display: flex;
-    gap: 0.5rem;
-    align-items: center;
   }
   &[data-layout="array-item-content"] {
     flex-grow: 1;
@@ -86,7 +84,8 @@
   }
   &[data-layout="field-title-row"],
   &[data-layout="array-field-title-row"],
-  &[data-layout="object-field-title-row"] {
+  &[data-layout="object-field-title-row"],
+  &[data-layout="multi-field-title-row"] {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -96,7 +95,8 @@
     flex-grow: 1;
   }
   &[data-layout="object-field-meta"],
-  &[data-layout="array-field-meta"] {
+  &[data-layout="array-field-meta"],
+  &[data-layout="multi-field-meta"] {
     padding: 0;
   }
   &[data-layout="object-property"] {

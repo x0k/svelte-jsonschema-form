@@ -12,6 +12,12 @@ declare module "../../form/index.js" {
     multiFieldTemplate: TemplateCommonProps<SchemaValue> & {
       optionSelector: Snippet;
       action?: Snippet;
+      /**
+       * Whether the template renders the field's title, description and
+       * action. The combination field sets this to `false` when another field
+       * renders the shared properties, so that field owns the meta instead.
+       */
+      showMeta: boolean;
     };
   }
 

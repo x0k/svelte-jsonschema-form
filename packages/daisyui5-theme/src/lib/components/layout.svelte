@@ -38,7 +38,8 @@
   const isTitleRow = $derived(
     type === "field-title-row" ||
       type === "array-field-title-row" ||
-      type === "object-field-title-row"
+      type === "object-field-title-row" ||
+      type === "multi-field-title-row"
   );
   const isMultiFieldControls = $derived(type === "multi-field-controls");
 
@@ -49,7 +50,7 @@
   );
 </script>
 
-{#if type === "field-content" || (type === "field-meta" && Object.keys(attributes).length < 2)}
+{#if type === "field-content" || ((type === "field-meta" || type === "multi-field-meta") && Object.keys(attributes).length < 2)}
   {@render children()}
 {:else if isField}
   <fieldset
@@ -73,9 +74,9 @@
     class={{
       flex:
         isItem || isControls || isColumn || isTitleRow || isMultiFieldControls,
-      "gap-2": isItem || isColumn || isMultiFieldControls,
+      "gap-2": isItem || isColumn,
       "items-start": isItem || isControls,
-      "items-center": isTitleRow || isMultiFieldControls,
+      "items-center": isTitleRow,
       "justify-between": isTitleRow,
       join: isControls,
       grow:

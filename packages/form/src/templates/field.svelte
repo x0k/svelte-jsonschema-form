@@ -5,6 +5,8 @@
   import "#fields/extra-components/errors-list.js";
   import "#fields/extra-components/help.js";
   import "./field-layouts.js";
+
+  const templateType = "fieldTemplate";
 </script>
 
 <script lang="ts">
@@ -15,8 +17,6 @@
   } from "#form/index.js";
 
   import { getTemplateProps } from "./get-template-props.js";
-
-  const templateType = "fieldTemplate";
 
   const {
     children,

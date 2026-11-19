@@ -60,6 +60,18 @@ const mergerWithRequiredOnlyArrays = (options: FormMergerOptions) =>
     arrayMinItems: { populate: "requiredOnly" },
   });
 
+function titlesWithText(text: string) {
+  return [...document.querySelectorAll("legend.sjsf-title")].filter(
+    (title) => title.textContent?.trim() === text
+  );
+}
+
+function descriptionsWithText(text: string) {
+  return [...document.querySelectorAll(".sjsf-description")].filter(
+    (description) => description.textContent?.trim() === text
+  );
+}
+
 describe("combination field contracts", () => {
   describe("discriminated oneOf", () => {
     test("selects initial option from discriminator value", async () => {
@@ -178,6 +190,81 @@ describe("combination field contracts", () => {
       await userEvent.selectOptions(select, "First");
 
       expectValue(form, { firstField: "default-first" });
+    });
+  });
+
+  describe("meta ownership", () => {
+    test("renders a branch schema description when the branch has no UI schema", async () => {
+      await renderFieldForm({
+        schema: {
+          type: "object",
+          title: "Choice",
+          description: "Parent description",
+          properties: { shared: { type: "string" } },
+          oneOf: [
+            {
+              description: "First branch",
+              properties: { foo: { type: "string" } },
+            },
+            {
+              description: "Second branch",
+              properties: { bar: { type: "string" } },
+            },
+          ],
+        } as Schema,
+      });
+
+      expect(descriptionsWithText("Parent description")).toHaveLength(1);
+      expect(descriptionsWithText("First branch")).toHaveLength(1);
+    });
+
+    test("renders a branch UI schema description instead of the parent's", async () => {
+      await renderFieldForm({
+        schema: {
+          type: "object",
+          description: "Parent description",
+          oneOf: [
+            { properties: { foo: { type: "string" } } },
+            { properties: { bar: { type: "string" } } },
+          ],
+        } as Schema,
+        uiSchema: {
+          oneOf: [
+            {
+              "ui:options": { description: "First branch" },
+            },
+          ],
+        },
+      });
+
+      expect(descriptionsWithText("Parent description")).toHaveLength(1);
+      expect(descriptionsWithText("First branch")).toHaveLength(1);
+    });
+  });
+
+  describe("shared properties field", () => {
+    test("applies the parent UI options and components to shared properties", async () => {
+      await renderFieldForm({
+        schema: {
+          type: "object",
+          properties: {
+            first: { type: "string" },
+            second: { type: "string" },
+          },
+          oneOf: [
+            { properties: { foo: { type: "string" } } },
+            { properties: { bar: { type: "string" } } },
+          ],
+        } as Schema,
+        uiSchema: {
+          "ui:options": { order: ["second", "first"] },
+        },
+        initialValue: { first: "first", second: "second" },
+      });
+
+      await expect
+        .element(page.getByRole("textbox").first())
+        .toHaveValue("second");
     });
   });
 
@@ -555,6 +642,42 @@ describe("combination field contracts", () => {
         .element(page.getByRole("combobox").first())
         .toBeInTheDocument();
     });
+
+    test("renders the field title and description once", async () => {
+      await renderFieldForm({
+        schema: {
+          type: "object",
+          title: "Shared title",
+          description: "Shared description",
+          properties: { shared: { type: "string" } },
+          oneOf: [
+            { properties: { foo: { type: "string" } } },
+            { properties: { bar: { type: "string" } } },
+          ],
+        } as Schema,
+      });
+
+      expect(titlesWithText("Shared title")).toHaveLength(1);
+      expect(descriptionsWithText("Shared description")).toHaveLength(1);
+    });
+
+    test("does not repeat a description set on the parent UI schema", async () => {
+      await renderFieldForm({
+        schema: {
+          type: "object",
+          properties: { shared: { type: "string" } },
+          oneOf: [
+            { properties: { foo: { type: "string" } } },
+            { properties: { bar: { type: "string" } } },
+          ],
+        } as Schema,
+        uiSchema: {
+          "ui:options": { description: "Parent description" },
+        },
+      });
+
+      expect(descriptionsWithText("Parent description")).toHaveLength(1);
+    });
   });
 
   describe("non-object options inherit parent keywords (#5359)", () => {
@@ -639,6 +762,42 @@ describe("combination field contracts", () => {
       await expect
         .element(page.getByRole("combobox").first())
         .toBeInTheDocument();
+    });
+
+    test("renders the field title and description once", async () => {
+      await renderFieldForm({
+        schema: {
+          type: "object",
+          title: "Shared title",
+          description: "Shared description",
+          properties: { shared: { type: "string" } },
+          anyOf: [
+            { properties: { foo: { type: "string" } } },
+            { properties: { bar: { type: "string" } } },
+          ],
+        } as Schema,
+      });
+
+      expect(titlesWithText("Shared title")).toHaveLength(1);
+      expect(descriptionsWithText("Shared description")).toHaveLength(1);
+    });
+
+    test("does not repeat a description set on the parent UI schema", async () => {
+      await renderFieldForm({
+        schema: {
+          type: "object",
+          properties: { shared: { type: "string" } },
+          anyOf: [
+            { properties: { foo: { type: "string" } } },
+            { properties: { bar: { type: "string" } } },
+          ],
+        } as Schema,
+        uiSchema: {
+          "ui:options": { description: "Parent description" },
+        },
+      });
+
+      expect(descriptionsWithText("Parent description")).toHaveLength(1);
     });
   });
 
