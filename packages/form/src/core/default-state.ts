@@ -4,15 +4,15 @@
 
 import { getOwn, isRecordEmpty, isObject, setOwn } from "#lib/object.js";
 
-import { isSchemaOfConstantValue } from "./constant-schema.js";
+import { isConstantValueSchema } from "./constant-schema.js";
 import { isValueDeepEqual, mergeSchemas, type CoreContext } from "./context.js";
 import { findSchemaDefinition } from "./definitions.js";
 import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
-import { isFixedItems } from "./is-fixed-items.js";
+import { isFixedItemsSchema } from "./is-fixed-items.js";
 import {
   getSelectOptionValuesSafe,
-  isMultiSelect,
-  isSelect,
+  isMultiSelectSchema,
+  isSelectSchema,
 } from "./is-select.js";
 import { getClosestMatchingOption } from "./matching.js";
 import { mergeDefaultsWithFormData, mergeSchemaObjects } from "./merge.js";
@@ -308,7 +308,7 @@ export function computeDefaults(
     allOf: schemaAllOf,
   } = schema;
   if (
-    isSchemaOfConstantValue(schema) &&
+    isConstantValueSchema(schema) &&
     defaultFormStateBehavior.constAsDefaults !== "never"
   ) {
     defaults = schema.const !== undefined ? schema.const : schema.enum?.[0];
@@ -385,7 +385,7 @@ export function computeDefaults(
       defaultFormData
     );
     schemaToCompute = resolvedSchema[0]!; // pick the first element from resolve dependencies
-  } else if (!preferParentDefaults && isFixedItems(schema)) {
+  } else if (!preferParentDefaults && isFixedItemsSchema(schema)) {
     // If the schema contains fixed items and parentDefaults does not have precedence
     // Then construct defaults from defaults of array items.
     defaults = schema.items.map((itemSchema, idx) =>
@@ -539,7 +539,7 @@ export function ensureFormDataMatchingSchema(
     ? retrieveSchema(ctx, schema, formData)
     : schema;
   const isSelectField =
-    !isSchemaOfConstantValue(schemaToMatch) && isSelect(ctx, schemaToMatch);
+    !isConstantValueSchema(schemaToMatch) && isSelectSchema(ctx, schemaToMatch);
   let validFormData = formData;
   if (isSelectField) {
     const selectOptionValues = getSelectOptionValuesSafe(schemaToMatch);
@@ -986,7 +986,7 @@ export function getArrayDefaults(
   let arrayDefault: SchemaArrayValue | undefined;
   if (
     !schema.minItems ||
-    isMultiSelect(ctx, schema) ||
+    isMultiSelectSchema(ctx, schema) ||
     computeSkipPopulate(ctx, schema) ||
     schema.minItems <= defaultsLength
   ) {

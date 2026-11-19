@@ -109,7 +109,7 @@ import {
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -148,7 +148,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -915,7 +915,7 @@ import {
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -954,7 +954,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -1128,7 +1128,7 @@ import {
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -1167,7 +1167,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -1930,7 +1930,7 @@ import {
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -1969,7 +1969,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -2140,7 +2140,7 @@ import {
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -2179,7 +2179,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -2942,7 +2942,7 @@ import {
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -2981,7 +2981,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -3152,7 +3152,7 @@ import {
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -3191,7 +3191,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -3954,7 +3954,7 @@ import {
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -3993,7 +3993,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -4164,7 +4164,7 @@ import {
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -4203,7 +4203,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -4614,7 +4614,7 @@ import { isCycleRef, type FormState, type ResolveFieldType } from "@sjsf/form";
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -4653,7 +4653,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -5081,7 +5081,7 @@ import { isCycleRef, type FormState, type ResolveFieldType } from "@sjsf/form";
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -5120,7 +5120,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -5420,7 +5420,7 @@ import { isCycleRef, type FormState, type ResolveFieldType } from "@sjsf/form";
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -5459,7 +5459,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -5777,7 +5777,7 @@ import {
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -5816,7 +5816,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -6231,7 +6231,7 @@ import { isCycleRef, type FormState, type ResolveFieldType } from "@sjsf/form";
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -6270,7 +6270,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -6703,7 +6703,7 @@ import { isCycleRef, type FormState, type ResolveFieldType } from "@sjsf/form";
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -6742,7 +6742,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -7046,7 +7046,7 @@ import { isCycleRef, type FormState, type ResolveFieldType } from "@sjsf/form";
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -7085,7 +7085,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -7393,7 +7393,7 @@ import {
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -7432,7 +7432,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -8191,7 +8191,7 @@ import {
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -8230,7 +8230,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -8401,7 +8401,7 @@ import {
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -8440,7 +8440,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -9197,7 +9197,7 @@ import {
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -9236,7 +9236,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -9413,7 +9413,7 @@ import {
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -9452,7 +9452,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -10230,7 +10230,7 @@ import {
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -10269,7 +10269,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -10451,7 +10451,7 @@ import {
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -10490,7 +10490,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -11292,7 +11292,7 @@ import {
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -11331,7 +11331,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -11506,7 +11506,7 @@ import {
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -11545,7 +11545,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -12307,7 +12307,7 @@ import {
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -12346,7 +12346,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -12529,7 +12529,7 @@ import {
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -12568,7 +12568,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -13560,7 +13560,7 @@ import {
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -13599,7 +13599,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -13876,7 +13876,7 @@ import {
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -13915,7 +13915,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -14889,7 +14889,7 @@ import {
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -14928,7 +14928,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -15178,7 +15178,7 @@ import {
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -15217,7 +15217,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -15999,7 +15999,7 @@ import {
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -16038,7 +16038,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -16223,7 +16223,7 @@ import {
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -16262,7 +16262,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -17048,7 +17048,7 @@ import {
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -17087,7 +17087,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -17266,7 +17266,7 @@ import {
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -17305,7 +17305,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -18066,7 +18066,7 @@ import {
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -18105,7 +18105,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -18382,7 +18382,7 @@ import { isCycleRef, type FormState, type ResolveFieldType } from "@sjsf/form";
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -18421,7 +18421,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -19284,7 +19284,7 @@ import { isCycleRef, type FormState, type ResolveFieldType } from "@sjsf/form";
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -19323,7 +19323,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -19485,7 +19485,7 @@ import { isCycleRef, type FormState, type ResolveFieldType } from "@sjsf/form";
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -19524,7 +19524,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -20268,7 +20268,7 @@ import { isCycleRef, type FormState, type ResolveFieldType } from "@sjsf/form";
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -20307,7 +20307,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -20544,7 +20544,7 @@ import { isCycleRef, type FormState, type ResolveFieldType } from "@sjsf/form";
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -20583,7 +20583,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -21417,7 +21417,7 @@ import { isCycleRef, type FormState, type ResolveFieldType } from "@sjsf/form";
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -21456,7 +21456,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -21618,7 +21618,7 @@ import { isCycleRef, type FormState, type ResolveFieldType } from "@sjsf/form";
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -21657,7 +21657,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -22401,7 +22401,7 @@ import { isCycleRef, type FormState, type ResolveFieldType } from "@sjsf/form";
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -22440,7 +22440,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -22714,7 +22714,7 @@ import { isCycleRef, type FormState, type ResolveFieldType } from "@sjsf/form";
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -22753,7 +22753,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -23624,7 +23624,7 @@ import { isCycleRef, type FormState, type ResolveFieldType } from "@sjsf/form";
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -23663,7 +23663,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -23823,7 +23823,7 @@ import { isCycleRef, type FormState, type ResolveFieldType } from "@sjsf/form";
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -23862,7 +23862,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -24604,7 +24604,7 @@ import { isCycleRef, type FormState, type ResolveFieldType } from "@sjsf/form";
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -24643,7 +24643,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -24798,7 +24798,7 @@ import { isCycleRef, type FormState, type ResolveFieldType } from "@sjsf/form";
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -24837,7 +24837,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -25581,7 +25581,7 @@ import { isCycleRef, type FormState, type ResolveFieldType } from "@sjsf/form";
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -25620,7 +25620,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -25864,7 +25864,7 @@ import { isCycleRef, type FormState, type ResolveFieldType } from "@sjsf/form";
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -25903,7 +25903,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -26744,7 +26744,7 @@ import { isCycleRef, type FormState, type ResolveFieldType } from "@sjsf/form";
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -26783,7 +26783,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -26968,7 +26968,7 @@ import { isCycleRef, type FormState, type ResolveFieldType } from "@sjsf/form";
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -27007,7 +27007,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -27779,7 +27779,7 @@ import { isCycleRef, type FormState, type ResolveFieldType } from "@sjsf/form";
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -27818,7 +27818,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -27973,7 +27973,7 @@ import { isCycleRef, type FormState, type ResolveFieldType } from "@sjsf/form";
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -28012,7 +28012,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -28756,7 +28756,7 @@ import { isCycleRef, type FormState, type ResolveFieldType } from "@sjsf/form";
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -28795,7 +28795,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -28945,7 +28945,7 @@ import { isCycleRef, type FormState, type ResolveFieldType } from "@sjsf/form";
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -28984,7 +28984,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;
@@ -29723,7 +29723,7 @@ import { isCycleRef, type FormState, type ResolveFieldType } from "@sjsf/form";
 import {
 	getSimpleSchemaType,
 	getXxxOfKey,
-	isFixedItems,
+	isFixedItemsSchema,
 	isUnionSchema
 } from "@sjsf/form/core";
 
@@ -29762,7 +29762,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
 		const type = getSimpleSchemaType(schema);
 
 		if (type === "array") {
-			return isFixedItems(schema) ? "tupleField" : "arrayField";
+			return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
 		}
 
 		return \`\${type}Field\`;

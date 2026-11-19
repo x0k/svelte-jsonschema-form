@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getRootSchema } from "#core/index.js";
+  import { getRootSchema, retrieveSchema } from "#core/index.js";
 
   import type { Config } from "./config.js";
   import HiddenIdPrefixInput from "./hidden-id-prefix-input.svelte";
@@ -8,7 +8,6 @@
     getFormContext,
     getFieldComponent,
     getValue,
-    retrieveSchema,
     retrieveUiOption,
     uiTitleOption,
     retrieveTranslate,

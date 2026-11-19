@@ -1,17 +1,17 @@
 import {
   getSimpleSchemaType,
   getXxxOfKey,
+  isFilesArraySchema,
   isFileSchema,
-  isFixedItems,
+  isFixedItemsSchema,
+  isMultiSelectSchema,
+  isSelectSchema,
   isUnionSchema,
 } from "#core/index.js";
 
 import type { ResolveFieldType } from "../fields.js";
 import {
   isCycleRef,
-  isFilesArray,
-  isMultiSelect,
-  isSelect,
   retrieveUiOption,
   type FormState,
 } from "../state/index.js";
@@ -26,7 +26,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
     if (isCycleRef(ctx, config)) {
       return "expandField";
     }
-    if (isSelect(ctx, schema)) {
+    if (isSelectSchema(ctx, schema)) {
       return "enumField";
     }
     if (isUnionSchema(schema)) {
@@ -38,14 +38,14 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
     }
     const type = getSimpleSchemaType(schema);
     if (type === "array") {
-      if (isMultiSelect(ctx, schema)) {
+      if (isMultiSelectSchema(ctx, schema)) {
         return "multiEnumField";
       }
-      if (isFixedItems(schema)) {
+      if (isFixedItemsSchema(schema)) {
         return "tupleField";
       }
       if (
-        isFilesArray(ctx, schema) &&
+        isFilesArraySchema(ctx, schema) &&
         retrieveUiOption(ctx, config, "orderable") !== true
       ) {
         return "filesField";

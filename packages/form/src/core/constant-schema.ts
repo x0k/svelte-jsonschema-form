@@ -4,7 +4,7 @@
 
 import type { Schema, SchemaDefinition } from "./schema.js";
 
-export function isSchemaOfConstantValue(schema: Schema): boolean {
+export function isConstantValueSchema(schema: Schema): boolean {
   return (
     schema.const !== undefined ||
     (Array.isArray(schema.enum) && schema.enum.length === 1)

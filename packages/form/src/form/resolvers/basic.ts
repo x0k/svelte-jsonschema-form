@@ -1,7 +1,7 @@
 import {
   getSimpleSchemaType,
   getXxxOfKey,
-  isFixedItems,
+  isFixedItemsSchema,
   isUnionSchema,
 } from "#core/index.js";
 
@@ -23,7 +23,7 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
     }
     const type = getSimpleSchemaType(schema);
     if (type === "array") {
-      return isFixedItems(schema) ? "tupleField" : "arrayField";
+      return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
     }
     return `${type}Field`;
   };

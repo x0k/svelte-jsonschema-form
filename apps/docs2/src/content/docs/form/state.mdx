@@ -105,6 +105,13 @@ that needs these dependencies takes the context as its first argument, for
 example `retrieveSchema(ctx, schema, formData)` or
 `getDefaultFormState(ctx, schema, formData)`.
 
+The schema helpers `isSelectSchema`, `isMultiSelectSchema`, `isFilesArraySchema`,
+`isFixedItemsSchema`, `isConstantValueSchema`, `retrieveSchema`,
+`getRenderedOptionSchema`, `sanitizeDataForNewSchema` and
+`getClosestMatchingOption` are exported from `@sjsf/form/core`, not from the
+main `@sjsf/form` entry point. Import them from there and pass a `CoreContext`
+or a `FormState` as the first argument.
+
 ## Methods
 
 SJSF provides a set of functions to work with the form state that can either **read** (queries) or **modify** (commands) it.
@@ -122,9 +129,6 @@ All the methods listed below are marked with `@query` or `@command` in their JSD
 `getFieldsErrors`, `hasErrors`,
 `getErrors`, `hasFieldState`, `getId`, `getSubtreePaths`,
 `getChildPath`, `getPseudoPath`, `getPseudoId`,
-`isSelect`, `isMultiSelect`, `isFilesArray`,
-`retrieveSchema`, `getRenderedOptionSchema`, `sanitizeDataForNewSchema`,
-`getClosestMatchingOption`,
 `getDefaultFieldState`, `retrieveUiSchema`, `uiTitleOption`, `retrieveUiOption`,
 `retrieveNestedUiOption`, `uiOptionProps`, `uiOptionNestedProps`,
 `retrieveTranslate`, `getFieldTitle`, `getFieldAction`,

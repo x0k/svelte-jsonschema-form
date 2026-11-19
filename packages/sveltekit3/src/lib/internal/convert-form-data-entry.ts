@@ -7,7 +7,7 @@ import {
   getSchemaConstantValue,
   isNullableSchemaType,
   isSchemaValueDeepEqual,
-  isSelect,
+  isSelectSchema,
   pickSchemaType,
   typeOfSchema,
   type CoreContext,
@@ -137,7 +137,7 @@ export function createFormDataEntryConverter({
         path
       );
     }
-    if (isSelect(ctx, schema)) {
+    if (isSelectSchema(ctx, schema)) {
       const altSchemas = schema.oneOf ?? schema.anyOf;
       const options = Array.isArray(altSchemas)
         ? altSchemas.map((s) =>

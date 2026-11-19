@@ -5,7 +5,7 @@
 import { type Schema } from "./schema.js";
 import { isSchemaObjectValue } from "./value.js";
 
-export function isFixedItems(schema: Schema): schema is Omit<
+export function isFixedItemsSchema(schema: Schema): schema is Omit<
   Schema,
   "items"
 > & {

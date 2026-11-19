@@ -120,6 +120,12 @@ the validator or merger takes the context as its first argument. `resolveRef`
 reads the root schema from the context too; `resolveRefSafe` stays a low-level
 pointer helper and continues to take the root schema directly.
 
+The schema predicates are exported here as `isSelectSchema`,
+`isMultiSelectSchema`, `isFilesArraySchema`, `isFixedItemsSchema` and
+`isConstantValueSchema`. `getRenderedOptionSchema(ctx, parent, option)` is here
+too. They read only the schema (and the context needed to resolve its
+references), so they are not re-exported from the main `@sjsf/form` entry point.
+
 Helpers that only read form data accept `ReadonlySchemaValue`, so a live value
 from `getValue(form)` can be passed directly to `retrieveSchema`,
 `getClosestMatchingOption`, `isValueDeepEqual`, and `isValid`. Mutable form

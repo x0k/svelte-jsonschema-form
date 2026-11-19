@@ -144,7 +144,7 @@ export function createDefaults<T extends CodegenThemeOrSubTheme>({
           imports: [
             "getSimpleSchemaType",
             "getXxxOfKey",
-            "isFixedItems",
+            "isFixedItemsSchema",
             "isUnionSchema",
           ],
           from: formCoreSubpath,
@@ -188,7 +188,7 @@ export function resolver(ctx) {`
     }
     const type = getSimpleSchemaType(schema);
     if (type === "array") {
-      return isFixedItems(schema) ? "tupleField" : "arrayField";
+      return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
     }
     return \`\${type}Field\`;
   };

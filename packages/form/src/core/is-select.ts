@@ -6,7 +6,7 @@ import { isSchemaObject } from "#lib/json-schema/index.js";
 
 import {
   getSchemaConstantValueSafe,
-  isSchemaOfConstantValue,
+  isConstantValueSchema,
 } from "./constant-schema.js";
 import type { CoreContext } from "./context.js";
 import { retrieveSchema } from "./resolve.js";
@@ -40,7 +40,7 @@ import { getXxxOfOptions } from "./xxx-of-options.js";
  * }
  * ```
  */
-export function isSelect(ctx: CoreContext, theSchema: Schema) {
+export function isSelectSchema(ctx: CoreContext, theSchema: Schema) {
   const schema = retrieveSchema(ctx, theSchema);
   if (Array.isArray(schema.enum)) {
     return true;
@@ -49,7 +49,7 @@ export function isSelect(ctx: CoreContext, theSchema: Schema) {
   if (altSchemas !== undefined) {
     return altSchemas.every(
       (altSchemas) =>
-        typeof altSchemas !== "boolean" && isSchemaOfConstantValue(altSchemas)
+        typeof altSchemas !== "boolean" && isConstantValueSchema(altSchemas)
     );
   }
   return false;
@@ -102,11 +102,13 @@ export function getSelectOptionValuesSafe(
  * }
  * ```
  */
-export function isMultiSelect(
+export function isMultiSelectSchema(
   ctx: CoreContext,
   { items, uniqueItems }: Schema
 ): boolean {
   return (
-    uniqueItems === true && isSchemaObjectValue(items) && isSelect(ctx, items)
+    uniqueItems === true &&
+    isSchemaObjectValue(items) &&
+    isSelectSchema(ctx, items)
   );
 }

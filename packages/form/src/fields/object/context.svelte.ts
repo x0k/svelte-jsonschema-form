@@ -8,7 +8,9 @@ import {
   isOrderedSchemaDeepEqual,
   isSchemaNullable,
   isSchemaObjectValue,
+  isSelectSchema,
   orderProperties,
+  retrieveSchema,
   type SchemaObjectValue,
   type SchemaValue,
 } from "#core/index.js";
@@ -20,7 +22,6 @@ import {
   type Config,
   type Schema,
   validateAdditionalPropertyKey,
-  retrieveSchema,
   getFieldErrors,
   retrieveUiSchema,
   type UiSchemaDefinition,
@@ -36,7 +37,6 @@ import {
   getChildPath,
   type FieldErrors,
   getStableConfig,
-  isSelect,
   setValueAtPath,
   updateValueAtPath,
   type UiSchema,
@@ -248,7 +248,7 @@ export function createObjectContext<T>({
   );
 
   const availablePropertyKeys = $derived.by(() => {
-    if (!isSelect(ctx, keyInputSchema)) {
+    if (!isSelectSchema(ctx, keyInputSchema)) {
       return undefined;
     }
     const { options } = createFormOptions(

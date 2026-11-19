@@ -139,12 +139,39 @@ const ctx = createCoreContext({
 retrieveSchema(ctx, schema, formData);
 ```
 
-`FormState` extends `CoreContext`, so the form-state query wrappers keep taking
-the form state as their first argument. The context operations are available as
-free functions that take the context first: `isValid(ctx, schema, value)`,
-`mergeSchemas(ctx, a, b)`, `mergeAllOf(ctx, schema)`,
-`isValueDeepEqual(ctx, a, b)`, `resolveRef(ctx, ref)`, and
-`getRootSchema(ctx)`.
+`FormState` extends `CoreContext`, so a form state can be passed to any core
+helper as its context. The form-state re-exports of `retrieveSchema`,
+`sanitizeDataForNewSchema`, `getClosestMatchingOption` and
+`getRenderedOptionSchema` were removed; import them from `@sjsf/form/core`.
+`getRenderedOptionSchema` is now exported from there. `getDefaultFieldState`
+remains a form-state query.
+
+The schema predicates were renamed to say what they inspect:
+
+```typescript
+// Before
+import {
+  isSelect,
+  isMultiSelect,
+  isFilesArray,
+  isSchemaOfConstantValue,
+  isFixedItems,
+} from "@sjsf/form/core";
+
+// After
+import {
+  isSelectSchema,
+  isMultiSelectSchema,
+  isFilesArraySchema,
+  isConstantValueSchema,
+  isFixedItemsSchema,
+} from "@sjsf/form/core";
+```
+
+The context operations are available as free functions that take the context
+first: `isValid(ctx, schema, value)`, `mergeSchemas(ctx, a, b)`,
+`mergeAllOf(ctx, schema)`, `isValueDeepEqual(ctx, a, b)`,
+`resolveRef(ctx, ref)`, and `getRootSchema(ctx)`.
 
 The context symbols are not part of the `@sjsf/form/core` entry point. If you
 build or inspect a `CoreContext` directly, import `CORE_VALIDATOR`,

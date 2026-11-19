@@ -6,17 +6,14 @@ import {
   isSchemaObjectValue,
   isSchemaValueDeepEqual,
   PROPERTIES_KEY,
+  retrieveSchema,
+  sanitizeDataForNewSchema,
   type Schema,
   type SchemaObjectValue,
   type SchemaValue,
 } from "#core/index.js";
 import { declaresOwnValue, declaresValueFor } from "#form/declares-value.js";
-import {
-  getDefaultFieldState,
-  retrieveSchema,
-  sanitizeDataForNewSchema,
-  type FormState,
-} from "#form/index.js";
+import { getDefaultFieldState, type FormState } from "#form/index.js";
 import { getOwn } from "#lib/object.js";
 
 function propertySchema(option: Schema, key: string): Schema {

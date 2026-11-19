@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { ComponentProps } from "@sjsf/form";
-  import { isFixedItems } from "@sjsf/form/core";
+  import { isFixedItemsSchema } from "@sjsf/form/core";
   import { getArrayContext } from "@sjsf/form/fields/array/context.svelte";
 
   import { theme } from "../sjsf/defaults";
@@ -11,7 +11,7 @@
 
   const arrCtx = getArrayContext();
 
-  const isTuple = $derived(isFixedItems(arrCtx.config().schema));
+  const isTuple = $derived(isFixedItemsSchema(arrCtx.config().schema));
 
   const Layout = $derived(theme("layout", props.config));
 </script>

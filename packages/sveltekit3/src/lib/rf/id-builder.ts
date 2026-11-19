@@ -12,7 +12,7 @@ import {
 import {
   createCoreContext,
   getSchemaDefinitionByPath,
-  isMultiSelect,
+  isMultiSelectSchema,
   isSchemaObjectValue,
   type ValueHandler,
   type SchemaDefinition,
@@ -106,7 +106,7 @@ export function createFormIdBuilder({
         if (
           currentSchema &&
           isSchemaObject(currentSchema) &&
-          isMultiSelect(ctx, currentSchema)
+          isMultiSelectSchema(ctx, currentSchema)
         ) {
           parts.push("[]");
         }

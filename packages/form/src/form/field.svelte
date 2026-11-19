@@ -5,6 +5,7 @@
   import {
     getSchemaDefinitionByPath,
     isSchemaObjectValue,
+    retrieveSchema,
   } from "#core/index.js";
   import { CORE_ROOT_SCHEMA } from "#core/internals.js";
   import { isObject } from "#lib/object.js";
@@ -24,7 +25,6 @@
   import type { FieldValue } from "./model.js";
   import {
     getFieldComponent,
-    retrieveSchema,
     retrieveTranslate,
     retrieveUiOption,
     setFormContext,

@@ -135572,7 +135572,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   } from "@sjsf/form";
   import {
     createCoreContext,
-    isSelect,
+    isSelectSchema,
     retrieveSchema,
     schemaHash,
     type SchemaDefinition,
@@ -135673,7 +135673,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
       }
       const altKeyword = (copy.oneOf && "oneOf") ?? (copy.anyOf && "anyOf");
       const alt = altKeyword && copy[altKeyword];
-      if (!alt || isSelect(ctx, copy)) {
+      if (!alt || isSelectSchema(ctx, copy)) {
         return copy;
       }
       const {
@@ -135866,7 +135866,7 @@ export { createFormValidator as validator } from '@sjsf/ata-validator';",
   } from "@sjsf/form";
   import {
     createCoreContext,
-    isSelect,
+    isSelectSchema,
     retrieveSchema,
     schemaHash,
     type SchemaDefinition,
@@ -135967,7 +135967,7 @@ export { createFormValidator as validator } from '@sjsf/ata-validator';",
       }
       const altKeyword = (copy.oneOf && "oneOf") ?? (copy.anyOf && "anyOf");
       const alt = altKeyword && copy[altKeyword];
-      if (!alt || isSelect(ctx, copy)) {
+      if (!alt || isSelectSchema(ctx, copy)) {
         return copy;
       }
       const {
@@ -136160,7 +136160,7 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
   } from "@sjsf/form";
   import {
     createCoreContext,
-    isSelect,
+    isSelectSchema,
     retrieveSchema,
     schemaHash,
     type SchemaDefinition,
@@ -136261,7 +136261,7 @@ export { createFormValidator as validator } from '@sjsf/cfworker-validator';",
       }
       const altKeyword = (copy.oneOf && "oneOf") ?? (copy.anyOf && "anyOf");
       const alt = altKeyword && copy[altKeyword];
-      if (!alt || isSelect(ctx, copy)) {
+      if (!alt || isSelectSchema(ctx, copy)) {
         return copy;
       }
       const {
@@ -136452,7 +136452,7 @@ export { createFormValidator as validator } from '@sjsf/form/validators/noop';",
   } from "@sjsf/form";
   import {
     createCoreContext,
-    isSelect,
+    isSelectSchema,
     retrieveSchema,
     schemaHash,
     type SchemaDefinition,
@@ -136553,7 +136553,7 @@ export { createFormValidator as validator } from '@sjsf/form/validators/noop';",
       }
       const altKeyword = (copy.oneOf && "oneOf") ?? (copy.anyOf && "anyOf");
       const alt = altKeyword && copy[altKeyword];
-      if (!alt || isSelect(ctx, copy)) {
+      if (!alt || isSelectSchema(ctx, copy)) {
         return copy;
       }
       const {
@@ -136746,7 +136746,7 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
   } from "@sjsf/form";
   import {
     createCoreContext,
-    isSelect,
+    isSelectSchema,
     retrieveSchema,
     schemaHash,
     type SchemaDefinition,
@@ -136847,7 +136847,7 @@ export { createFormValidator as validator } from '@sjsf/schemasafe-validator';",
       }
       const altKeyword = (copy.oneOf && "oneOf") ?? (copy.anyOf && "anyOf");
       const alt = altKeyword && copy[altKeyword];
-      if (!alt || isSelect(ctx, copy)) {
+      if (!alt || isSelectSchema(ctx, copy)) {
         return copy;
       }
       const {
@@ -137039,7 +137039,7 @@ export const onSubmitError = createFocusOnFirstError();",
   } from "@sjsf/form";
   import {
     createCoreContext,
-    isSelect,
+    isSelectSchema,
     retrieveSchema,
     schemaHash,
     type SchemaDefinition,
@@ -137140,7 +137140,7 @@ export const onSubmitError = createFocusOnFirstError();",
       }
       const altKeyword = (copy.oneOf && "oneOf") ?? (copy.anyOf && "anyOf");
       const alt = altKeyword && copy[altKeyword];
-      if (!alt || isSelect(ctx, copy)) {
+      if (!alt || isSelectSchema(ctx, copy)) {
         return copy;
       }
       const {
@@ -137332,7 +137332,7 @@ export const onSubmitError = createFocusOnFirstError();",
   } from "@sjsf/form";
   import {
     createCoreContext,
-    isSelect,
+    isSelectSchema,
     retrieveSchema,
     schemaHash,
     type SchemaDefinition,
@@ -137433,7 +137433,7 @@ export const onSubmitError = createFocusOnFirstError();",
       }
       const altKeyword = (copy.oneOf && "oneOf") ?? (copy.anyOf && "anyOf");
       const alt = altKeyword && copy[altKeyword];
-      if (!alt || isSelect(ctx, copy)) {
+      if (!alt || isSelectSchema(ctx, copy)) {
         return copy;
       }
       const {
@@ -137624,7 +137624,7 @@ export const onSubmitError = createFocusOnFirstError();",
   } from "@sjsf/form";
   import {
     createCoreContext,
-    isSelect,
+    isSelectSchema,
     retrieveSchema,
     schemaHash,
     type SchemaDefinition,
@@ -137725,7 +137725,7 @@ export const onSubmitError = createFocusOnFirstError();",
       }
       const altKeyword = (copy.oneOf && "oneOf") ?? (copy.anyOf && "anyOf");
       const alt = altKeyword && copy[altKeyword];
-      if (!alt || isSelect(ctx, copy)) {
+      if (!alt || isSelectSchema(ctx, copy)) {
         return copy;
       }
       const {
@@ -137929,7 +137929,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   } from "@sjsf/form";
   import {
     createCoreContext,
-    isSelect,
+    isSelectSchema,
     retrieveSchema,
     schemaHash,
     type SchemaDefinition,
@@ -138030,7 +138030,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
       }
       const altKeyword = (copy.oneOf && "oneOf") ?? (copy.anyOf && "anyOf");
       const alt = altKeyword && copy[altKeyword];
-      if (!alt || isSelect(ctx, copy)) {
+      if (!alt || isSelectSchema(ctx, copy)) {
         return copy;
       }
       const {
@@ -138242,7 +138242,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   } from "@sjsf/form";
   import {
     createCoreContext,
-    isSelect,
+    isSelectSchema,
     retrieveSchema,
     schemaHash,
     type SchemaDefinition,
@@ -138343,7 +138343,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
       }
       const altKeyword = (copy.oneOf && "oneOf") ?? (copy.anyOf && "anyOf");
       const alt = altKeyword && copy[altKeyword];
-      if (!alt || isSelect(ctx, copy)) {
+      if (!alt || isSelectSchema(ctx, copy)) {
         return copy;
       }
       const {
@@ -138559,7 +138559,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   } from "@sjsf/form";
   import {
     createCoreContext,
-    isSelect,
+    isSelectSchema,
     retrieveSchema,
     schemaHash,
     type SchemaDefinition,
@@ -138660,7 +138660,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
       }
       const altKeyword = (copy.oneOf && "oneOf") ?? (copy.anyOf && "anyOf");
       const alt = altKeyword && copy[altKeyword];
-      if (!alt || isSelect(ctx, copy)) {
+      if (!alt || isSelectSchema(ctx, copy)) {
         return copy;
       }
       const {
@@ -138892,7 +138892,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   } from "@sjsf/form";
   import {
     createCoreContext,
-    isSelect,
+    isSelectSchema,
     retrieveSchema,
     schemaHash,
     type SchemaDefinition,
@@ -138993,7 +138993,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
       }
       const altKeyword = (copy.oneOf && "oneOf") ?? (copy.anyOf && "anyOf");
       const alt = altKeyword && copy[altKeyword];
-      if (!alt || isSelect(ctx, copy)) {
+      if (!alt || isSelectSchema(ctx, copy)) {
         return copy;
       }
       const {
@@ -139293,7 +139293,7 @@ export function setShadcnThemeContext() {
   } from "@sjsf/form";
   import {
     createCoreContext,
-    isSelect,
+    isSelectSchema,
     retrieveSchema,
     schemaHash,
     type SchemaDefinition,
@@ -139394,7 +139394,7 @@ export function setShadcnThemeContext() {
       }
       const altKeyword = (copy.oneOf && "oneOf") ?? (copy.anyOf && "anyOf");
       const alt = altKeyword && copy[altKeyword];
-      if (!alt || isSelect(ctx, copy)) {
+      if (!alt || isSelectSchema(ctx, copy)) {
         return copy;
       }
       const {
@@ -139799,7 +139799,7 @@ export function setShadcnThemeContext() {
   } from "@sjsf/form";
   import {
     createCoreContext,
-    isSelect,
+    isSelectSchema,
     retrieveSchema,
     schemaHash,
     type SchemaDefinition,
@@ -139900,7 +139900,7 @@ export function setShadcnThemeContext() {
       }
       const altKeyword = (copy.oneOf && "oneOf") ?? (copy.anyOf && "anyOf");
       const alt = altKeyword && copy[altKeyword];
-      if (!alt || isSelect(ctx, copy)) {
+      if (!alt || isSelectSchema(ctx, copy)) {
         return copy;
       }
       const {
@@ -140237,7 +140237,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   } from "@sjsf/form";
   import {
     createCoreContext,
-    isSelect,
+    isSelectSchema,
     retrieveSchema,
     schemaHash,
     type SchemaDefinition,
@@ -140338,7 +140338,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
       }
       const altKeyword = (copy.oneOf && "oneOf") ?? (copy.anyOf && "anyOf");
       const alt = altKeyword && copy[altKeyword];
-      if (!alt || isSelect(ctx, copy)) {
+      if (!alt || isSelectSchema(ctx, copy)) {
         return copy;
       }
       const {
@@ -140559,7 +140559,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   } from "@sjsf/form";
   import {
     createCoreContext,
-    isSelect,
+    isSelectSchema,
     retrieveSchema,
     schemaHash,
     type SchemaDefinition,
@@ -140660,7 +140660,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
       }
       const altKeyword = (copy.oneOf && "oneOf") ?? (copy.anyOf && "anyOf");
       const alt = altKeyword && copy[altKeyword];
-      if (!alt || isSelect(ctx, copy)) {
+      if (!alt || isSelectSchema(ctx, copy)) {
         return copy;
       }
       const {
@@ -140876,7 +140876,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
   } from "@sjsf/form";
   import {
     createCoreContext,
-    isSelect,
+    isSelectSchema,
     retrieveSchema,
     schemaHash,
     type SchemaDefinition,
@@ -140977,7 +140977,7 @@ export function validator<T>(options: ValidatorFactoryOptions) {
       }
       const altKeyword = (copy.oneOf && "oneOf") ?? (copy.anyOf && "anyOf");
       const alt = altKeyword && copy[altKeyword];
-      if (!alt || isSelect(ctx, copy)) {
+      if (!alt || isSelectSchema(ctx, copy)) {
         return copy;
       }
       const {
@@ -144290,7 +144290,7 @@ export { default as Layout } from "./layout.svelte";
 ",
   "src/lib/tabs/layout.svelte": "<script lang="ts">
   import type { ComponentProps } from "@sjsf/form";
-  import { isFixedItems } from "@sjsf/form/core";
+  import { isFixedItemsSchema } from "@sjsf/form/core";
   import { getArrayContext } from "@sjsf/form/fields/array/context.svelte";
 
   import { theme } from "../sjsf/defaults";
@@ -144301,7 +144301,7 @@ export { default as Layout } from "./layout.svelte";
 
   const arrCtx = getArrayContext();
 
-  const isTuple = $derived(isFixedItems(arrCtx.config().schema));
+  const isTuple = $derived(isFixedItemsSchema(arrCtx.config().schema));
 
   const Layout = $derived(theme("layout", props.config));
 </script>
@@ -144819,7 +144819,7 @@ export { default as Layout } from "./layout.svelte";
 ",
   "src/lib/tabs/layout.svelte": "<script lang="ts">
   import type { ComponentProps } from "@sjsf/form";
-  import { isFixedItems } from "@sjsf/form/core";
+  import { isFixedItemsSchema } from "@sjsf/form/core";
   import { getArrayContext } from "@sjsf/form/fields/array/context.svelte";
 
   import { theme } from "../sjsf/defaults";
@@ -144830,7 +144830,7 @@ export { default as Layout } from "./layout.svelte";
 
   const arrCtx = getArrayContext();
 
-  const isTuple = $derived(isFixedItems(arrCtx.config().schema));
+  const isTuple = $derived(isFixedItemsSchema(arrCtx.config().schema));
 
   const Layout = $derived(theme("layout", props.config));
 </script>
@@ -145348,7 +145348,7 @@ export { default as Layout } from "./layout.svelte";
 ",
   "src/lib/tabs/layout.svelte": "<script lang="ts">
   import type { ComponentProps } from "@sjsf/form";
-  import { isFixedItems } from "@sjsf/form/core";
+  import { isFixedItemsSchema } from "@sjsf/form/core";
   import { getArrayContext } from "@sjsf/form/fields/array/context.svelte";
 
   import { theme } from "../sjsf/defaults";
@@ -145359,7 +145359,7 @@ export { default as Layout } from "./layout.svelte";
 
   const arrCtx = getArrayContext();
 
-  const isTuple = $derived(isFixedItems(arrCtx.config().schema));
+  const isTuple = $derived(isFixedItemsSchema(arrCtx.config().schema));
 
   const Layout = $derived(theme("layout", props.config));
 </script>
@@ -145875,7 +145875,7 @@ export { default as Layout } from "./layout.svelte";
 ",
   "src/lib/tabs/layout.svelte": "<script lang="ts">
   import type { ComponentProps } from "@sjsf/form";
-  import { isFixedItems } from "@sjsf/form/core";
+  import { isFixedItemsSchema } from "@sjsf/form/core";
   import { getArrayContext } from "@sjsf/form/fields/array/context.svelte";
 
   import { theme } from "../sjsf/defaults";
@@ -145886,7 +145886,7 @@ export { default as Layout } from "./layout.svelte";
 
   const arrCtx = getArrayContext();
 
-  const isTuple = $derived(isFixedItems(arrCtx.config().schema));
+  const isTuple = $derived(isFixedItemsSchema(arrCtx.config().schema));
 
   const Layout = $derived(theme("layout", props.config));
 </script>
@@ -146404,7 +146404,7 @@ export { default as Layout } from "./layout.svelte";
 ",
   "src/lib/tabs/layout.svelte": "<script lang="ts">
   import type { ComponentProps } from "@sjsf/form";
-  import { isFixedItems } from "@sjsf/form/core";
+  import { isFixedItemsSchema } from "@sjsf/form/core";
   import { getArrayContext } from "@sjsf/form/fields/array/context.svelte";
 
   import { theme } from "../sjsf/defaults";
@@ -146415,7 +146415,7 @@ export { default as Layout } from "./layout.svelte";
 
   const arrCtx = getArrayContext();
 
-  const isTuple = $derived(isFixedItems(arrCtx.config().schema));
+  const isTuple = $derived(isFixedItemsSchema(arrCtx.config().schema));
 
   const Layout = $derived(theme("layout", props.config));
 </script>
@@ -146932,7 +146932,7 @@ export { default as Layout } from "./layout.svelte";
 ",
   "src/lib/tabs/layout.svelte": "<script lang="ts">
   import type { ComponentProps } from "@sjsf/form";
-  import { isFixedItems } from "@sjsf/form/core";
+  import { isFixedItemsSchema } from "@sjsf/form/core";
   import { getArrayContext } from "@sjsf/form/fields/array/context.svelte";
 
   import { theme } from "../sjsf/defaults";
@@ -146943,7 +146943,7 @@ export { default as Layout } from "./layout.svelte";
 
   const arrCtx = getArrayContext();
 
-  const isTuple = $derived(isFixedItems(arrCtx.config().schema));
+  const isTuple = $derived(isFixedItemsSchema(arrCtx.config().schema));
 
   const Layout = $derived(theme("layout", props.config));
 </script>
@@ -147460,7 +147460,7 @@ export { default as Layout } from "./layout.svelte";
 ",
   "src/lib/tabs/layout.svelte": "<script lang="ts">
   import type { ComponentProps } from "@sjsf/form";
-  import { isFixedItems } from "@sjsf/form/core";
+  import { isFixedItemsSchema } from "@sjsf/form/core";
   import { getArrayContext } from "@sjsf/form/fields/array/context.svelte";
 
   import { theme } from "../sjsf/defaults";
@@ -147471,7 +147471,7 @@ export { default as Layout } from "./layout.svelte";
 
   const arrCtx = getArrayContext();
 
-  const isTuple = $derived(isFixedItems(arrCtx.config().schema));
+  const isTuple = $derived(isFixedItemsSchema(arrCtx.config().schema));
 
   const Layout = $derived(theme("layout", props.config));
 </script>
@@ -147987,7 +147987,7 @@ export { default as Layout } from "./layout.svelte";
 ",
   "src/lib/tabs/layout.svelte": "<script lang="ts">
   import type { ComponentProps } from "@sjsf/form";
-  import { isFixedItems } from "@sjsf/form/core";
+  import { isFixedItemsSchema } from "@sjsf/form/core";
   import { getArrayContext } from "@sjsf/form/fields/array/context.svelte";
 
   import { theme } from "../sjsf/defaults";
@@ -147998,7 +147998,7 @@ export { default as Layout } from "./layout.svelte";
 
   const arrCtx = getArrayContext();
 
-  const isTuple = $derived(isFixedItems(arrCtx.config().schema));
+  const isTuple = $derived(isFixedItemsSchema(arrCtx.config().schema));
 
   const Layout = $derived(theme("layout", props.config));
 </script>
@@ -148527,7 +148527,7 @@ export { default as Layout } from "./layout.svelte";
 ",
   "src/lib/tabs/layout.svelte": "<script lang="ts">
   import type { ComponentProps } from "@sjsf/form";
-  import { isFixedItems } from "@sjsf/form/core";
+  import { isFixedItemsSchema } from "@sjsf/form/core";
   import { getArrayContext } from "@sjsf/form/fields/array/context.svelte";
 
   import { theme } from "../sjsf/defaults";
@@ -148538,7 +148538,7 @@ export { default as Layout } from "./layout.svelte";
 
   const arrCtx = getArrayContext();
 
-  const isTuple = $derived(isFixedItems(arrCtx.config().schema));
+  const isTuple = $derived(isFixedItemsSchema(arrCtx.config().schema));
 
   const Layout = $derived(theme("layout", props.config));
 </script>
@@ -149075,7 +149075,7 @@ export { default as Layout } from "./layout.svelte";
 ",
   "src/lib/tabs/layout.svelte": "<script lang="ts">
   import type { ComponentProps } from "@sjsf/form";
-  import { isFixedItems } from "@sjsf/form/core";
+  import { isFixedItemsSchema } from "@sjsf/form/core";
   import { getArrayContext } from "@sjsf/form/fields/array/context.svelte";
 
   import { theme } from "../sjsf/defaults";
@@ -149086,7 +149086,7 @@ export { default as Layout } from "./layout.svelte";
 
   const arrCtx = getArrayContext();
 
-  const isTuple = $derived(isFixedItems(arrCtx.config().schema));
+  const isTuple = $derived(isFixedItemsSchema(arrCtx.config().schema));
 
   const Layout = $derived(theme("layout", props.config));
 </script>
@@ -149627,7 +149627,7 @@ export { default as Layout } from "./layout.svelte";
 ",
   "src/lib/tabs/layout.svelte": "<script lang="ts">
   import type { ComponentProps } from "@sjsf/form";
-  import { isFixedItems } from "@sjsf/form/core";
+  import { isFixedItemsSchema } from "@sjsf/form/core";
   import { getArrayContext } from "@sjsf/form/fields/array/context.svelte";
 
   import { theme } from "../sjsf/defaults";
@@ -149638,7 +149638,7 @@ export { default as Layout } from "./layout.svelte";
 
   const arrCtx = getArrayContext();
 
-  const isTuple = $derived(isFixedItems(arrCtx.config().schema));
+  const isTuple = $derived(isFixedItemsSchema(arrCtx.config().schema));
 
   const Layout = $derived(theme("layout", props.config));
 </script>
@@ -150195,7 +150195,7 @@ export { default as Layout } from "./layout.svelte";
 ",
   "src/lib/tabs/layout.svelte": "<script lang="ts">
   import type { ComponentProps } from "@sjsf/form";
-  import { isFixedItems } from "@sjsf/form/core";
+  import { isFixedItemsSchema } from "@sjsf/form/core";
   import { getArrayContext } from "@sjsf/form/fields/array/context.svelte";
 
   import { theme } from "../sjsf/defaults";
@@ -150206,7 +150206,7 @@ export { default as Layout } from "./layout.svelte";
 
   const arrCtx = getArrayContext();
 
-  const isTuple = $derived(isFixedItems(arrCtx.config().schema));
+  const isTuple = $derived(isFixedItemsSchema(arrCtx.config().schema));
 
   const Layout = $derived(theme("layout", props.config));
 </script>
@@ -150828,7 +150828,7 @@ export { default as Layout } from "./layout.svelte";
 ",
   "src/lib/tabs/layout.svelte": "<script lang="ts">
   import type { ComponentProps } from "@sjsf/form";
-  import { isFixedItems } from "@sjsf/form/core";
+  import { isFixedItemsSchema } from "@sjsf/form/core";
   import { getArrayContext } from "@sjsf/form/fields/array/context.svelte";
 
   import { theme } from "../sjsf/defaults";
@@ -150839,7 +150839,7 @@ export { default as Layout } from "./layout.svelte";
 
   const arrCtx = getArrayContext();
 
-  const isTuple = $derived(isFixedItems(arrCtx.config().schema));
+  const isTuple = $derived(isFixedItemsSchema(arrCtx.config().schema));
 
   const Layout = $derived(theme("layout", props.config));
 </script>
@@ -151569,7 +151569,7 @@ export { default as Layout } from "./layout.svelte";
 ",
   "src/lib/tabs/layout.svelte": "<script lang="ts">
   import type { ComponentProps } from "@sjsf/form";
-  import { isFixedItems } from "@sjsf/form/core";
+  import { isFixedItemsSchema } from "@sjsf/form/core";
   import { getArrayContext } from "@sjsf/form/fields/array/context.svelte";
 
   import { theme } from "../sjsf/defaults";
@@ -151580,7 +151580,7 @@ export { default as Layout } from "./layout.svelte";
 
   const arrCtx = getArrayContext();
 
-  const isTuple = $derived(isFixedItems(arrCtx.config().schema));
+  const isTuple = $derived(isFixedItemsSchema(arrCtx.config().schema));
 
   const Layout = $derived(theme("layout", props.config));
 </script>
@@ -152245,7 +152245,7 @@ export { default as Layout } from "./layout.svelte";
 ",
   "src/lib/tabs/layout.svelte": "<script lang="ts">
   import type { ComponentProps } from "@sjsf/form";
-  import { isFixedItems } from "@sjsf/form/core";
+  import { isFixedItemsSchema } from "@sjsf/form/core";
   import { getArrayContext } from "@sjsf/form/fields/array/context.svelte";
 
   import { theme } from "../sjsf/defaults";
@@ -152256,7 +152256,7 @@ export { default as Layout } from "./layout.svelte";
 
   const arrCtx = getArrayContext();
 
-  const isTuple = $derived(isFixedItems(arrCtx.config().schema));
+  const isTuple = $derived(isFixedItemsSchema(arrCtx.config().schema));
 
   const Layout = $derived(theme("layout", props.config));
 </script>
@@ -152802,7 +152802,7 @@ export { default as Layout } from "./layout.svelte";
 ",
   "src/lib/tabs/layout.svelte": "<script lang="ts">
   import type { ComponentProps } from "@sjsf/form";
-  import { isFixedItems } from "@sjsf/form/core";
+  import { isFixedItemsSchema } from "@sjsf/form/core";
   import { getArrayContext } from "@sjsf/form/fields/array/context.svelte";
 
   import { theme } from "../sjsf/defaults";
@@ -152813,7 +152813,7 @@ export { default as Layout } from "./layout.svelte";
 
   const arrCtx = getArrayContext();
 
-  const isTuple = $derived(isFixedItems(arrCtx.config().schema));
+  const isTuple = $derived(isFixedItemsSchema(arrCtx.config().schema));
 
   const Layout = $derived(theme("layout", props.config));
 </script>
@@ -153354,7 +153354,7 @@ export { default as Layout } from "./layout.svelte";
 ",
   "src/lib/tabs/layout.svelte": "<script lang="ts">
   import type { ComponentProps } from "@sjsf/form";
-  import { isFixedItems } from "@sjsf/form/core";
+  import { isFixedItemsSchema } from "@sjsf/form/core";
   import { getArrayContext } from "@sjsf/form/fields/array/context.svelte";
 
   import { theme } from "../sjsf/defaults";
@@ -153365,7 +153365,7 @@ export { default as Layout } from "./layout.svelte";
 
   const arrCtx = getArrayContext();
 
-  const isTuple = $derived(isFixedItems(arrCtx.config().schema));
+  const isTuple = $derived(isFixedItemsSchema(arrCtx.config().schema));
 
   const Layout = $derived(theme("layout", props.config));
 </script>

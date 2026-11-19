@@ -13,7 +13,7 @@ import {
   getSimpleSchemaType,
   isSchemaArrayValue,
   isSchemaObjectValue,
-  isSelect,
+  isSelectSchema,
   isValid,
   resolveRef,
   type CoreContext,
@@ -323,7 +323,7 @@ export async function parseSchemaValue<T>(
     schema: Schema,
     value: SchemaValue | undefined
   ) {
-    if (isSelect(ctx, schema)) {
+    if (isSelectSchema(ctx, schema)) {
       return value;
     }
     const stack = COMBINATION_STACKS[element];

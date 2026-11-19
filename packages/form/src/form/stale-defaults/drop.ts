@@ -16,7 +16,7 @@ import {
   getXxxOfOptions,
   isSchemaDeepEqual,
   isSchemaObjectValue,
-  isSelect,
+  isSelectSchema,
   isValueDeepEqual,
   PROPERTIES_KEY,
   REF_KEY,
@@ -144,7 +144,10 @@ function isWholeValueSelect(ctx: CoreContext, schema: Schema): boolean {
   const schemaType = typeOfSchema(schema);
   const containerType = isContainerType(schemaType);
   // A declared primitive type rules the schema out before its options are scanned
-  if ((!containerType && schema.type !== undefined) || !isSelect(ctx, schema)) {
+  if (
+    (!containerType && schema.type !== undefined) ||
+    !isSelectSchema(ctx, schema)
+  ) {
     return false;
   }
   if (containerType) {

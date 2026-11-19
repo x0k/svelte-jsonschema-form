@@ -8,7 +8,7 @@
   } from "@sjsf/form";
   import {
     createCoreContext,
-    isSelect,
+    isSelectSchema,
     retrieveSchema,
     schemaHash,
     type SchemaDefinition,
@@ -109,7 +109,7 @@
       }
       const altKeyword = (copy.oneOf && "oneOf") ?? (copy.anyOf && "anyOf");
       const alt = altKeyword && copy[altKeyword];
-      if (!alt || isSelect(ctx, copy)) {
+      if (!alt || isSelectSchema(ctx, copy)) {
         return copy;
       }
       const {
