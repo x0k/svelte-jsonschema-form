@@ -57,4 +57,4 @@ Templates orchestrate field wrappers, array tables/lists, and object field grids
 
 Resolvers map a schema definition to the corresponding field template and widget. The foundational field types are:
 
-- `stringField`, `numberField`, `integerField`, `booleanField`, `objectField`, `arrayField`, `tupleField`, `nullField`, `oneOfField`, `anyOfField`, `unknownField`, `expandField`.
+- `stringField`, `numberField`, `integerField`, `booleanField`, `objectField`, `arrayField`, `tupleField`, `nullField`, `oneOfField`, `anyOfField`, `unionField`, `unknownField`, `expandField`.

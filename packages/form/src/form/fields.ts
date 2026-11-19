@@ -52,6 +52,7 @@ declare module "./components.js" {
     nullField: {};
     oneOfField: {};
     anyOfField: {};
+    unionField: {};
     unknownField: {};
     expandField: {};
   }
@@ -66,6 +67,7 @@ declare module "./components.js" {
     nullField: FieldCommonProps<null>;
     oneOfField: FieldCommonProps<SchemaValue>;
     anyOfField: FieldCommonProps<SchemaValue>;
+    unionField: FieldCommonProps<SchemaValue>;
     unknownField: FieldCommonProps<unknown>;
     expandField: FieldCommonProps<SchemaValue>;
   }
@@ -80,6 +82,7 @@ declare module "./components.js" {
     nullField: "value";
     oneOfField: "value";
     anyOfField: "value";
+    unionField: "value";
     unknownField: "value";
     expandField: "value";
   }

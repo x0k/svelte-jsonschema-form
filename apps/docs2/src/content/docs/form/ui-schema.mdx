@@ -32,6 +32,7 @@ export interface UiSchemaContent {
   items?: UiSchemaDefinition | UiSchemaDefinition[];
   anyOf?: UiSchemaDefinition[];
   oneOf?: UiSchemaDefinition[];
+  union?: UiSchemaDefinition[];
   combinationFieldOptionSelector?: UiSchemaDefinition;
   additionalProperties?: UiSchemaDefinition;
   additionalPropertyKeyInput?: UiSchemaDefinition;
@@ -113,15 +114,45 @@ the additional property key input field.
 
 ### oneOf/anyOf
 
-You can define separate UI schemas for each `oneOf/anyOf` branch
-using the corresponding keyword in the UI schema.
-Otherwise the UI schema of the current field will be used.
+You can define separate UI schemas for each `oneOf/anyOf` branch using the
+corresponding keyword. The field's own UI schema configures the combination
+selector, title and description, not the branches. For an object with shared
+`properties`, its `ui:options` and `ui:components` also apply to the field that
+renders those properties. A branch without an entry uses the defaults.
 
 ```
 {
   oneOf: [<uiSchema>, ...]
 }
 ```
+
+### Multiple types
+
+A schema that lists several types (`type: ["string", "number"]`) renders a
+type selector. Each entry in the `union` keyword describes one of those types,
+in the order the schema lists them:
+
+```
+{
+  union: [<uiSchema>, ...]
+}
+```
+
+Each entry labels its type (`ui:options.title`, falling back to the type name)
+and configures the field that type renders. Types without an entry use the
+defaults; entries without a matching type are ignored.
+
+```ts
+const uiSchema: UiSchema = {
+  union: [
+    { "ui:options": { title: "Text" } },
+    { "ui:options": { title: "Number" } },
+  ],
+};
+```
+
+When the schema also has `oneOf`/`anyOf`, the type selector wraps the option
+selector.
 
 ## UI components
 

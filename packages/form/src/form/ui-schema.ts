@@ -72,6 +72,7 @@ export interface UiSchemaContent {
   items?: UiSchemaDefinition | UiSchemaDefinition[];
   anyOf?: UiSchemaDefinition[];
   oneOf?: UiSchemaDefinition[];
+  union?: UiSchemaDefinition[];
   additionalProperties?: UiSchemaDefinition;
   additionalPropertyKeyInput?: UiSchemaDefinition;
   additionalItems?: UiSchemaDefinition;

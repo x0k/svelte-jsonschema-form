@@ -13,6 +13,7 @@ export interface IdentifiableFieldElement {
   errors: {};
   oneof: {};
   anyof: {};
+  union: {};
   root: {};
   submit: {};
 }

@@ -37,6 +37,12 @@ Recommended pattern for dynamic forms where a selector changes the fields:
 the schema is auto-selected from `initialValue`. Use
 `combinationFieldOptionSelector` UI options to customize the selector.
 
+Each branch is configured by its own entry under the `oneOf`/`anyOf` UI schema
+key; a branch without one uses the defaults. The field's own UI schema configures
+the selector, title and description, not the branches. For an object with shared
+`properties`, its `ui:options`/`ui:components` apply to the field that renders
+them.
+
 For a non-object field, value keywords beside `oneOf` / `anyOf` apply to the
 selected option: an array's `items` and `uniqueItems`, or a string's `format`,
 for example. An option's own value of a shared keyword wins, except that the

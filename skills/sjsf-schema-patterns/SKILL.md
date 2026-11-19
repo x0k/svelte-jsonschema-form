@@ -115,6 +115,28 @@ For dynamic forms, use `oneOf` with `discriminator.propertyName`:
 
 See [Dynamic Schemas Guide](references/dynamic-schemas.md) for conditional `if/then/else` and `dependencies`.
 
+### Multiple types
+
+A schema may list more than one type (`"type": ["string", "number"]`). The
+`basic` and `compat` resolvers render it through `unionField`: a selector offers
+the listed types and the selected type renders the value. A single nullable type
+and values pinned by `enum`/`const` keep their plain field.
+
+Use the `union` UI schema keyword to label the types and configure each type's
+field:
+
+```ts
+const uiSchema: UiSchema = {
+  union: [
+    { "ui:options": { title: "Text" } },
+    { "ui:options": { title: "Number" } },
+  ],
+};
+```
+
+Types without an entry use the defaults. A type list combined with
+`oneOf`/`anyOf` keeps the option selector inside the type selector.
+
 ---
 
 ## Step 4: Validation Configuration

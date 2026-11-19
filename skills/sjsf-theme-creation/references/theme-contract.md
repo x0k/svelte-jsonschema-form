@@ -25,8 +25,8 @@ export const theme = extendByRecord(base, {
 
 - **Fields**: `stringField`, `numberField`, `integerField`, `booleanField`,
   `objectField`, `objectPropertyField`, `arrayField`, `tupleField`,
-  `arrayItemField`, `nullField`, `oneOfField`, `anyOfField`, `unknownField`,
-  `expandField`.
+  `arrayItemField`, `nullField`, `oneOfField`, `anyOfField`, `unionField`,
+  `unknownField`, `expandField`.
 - **Templates**: `fieldTemplate`, `objectTemplate`,
   `objectPropertyTemplate`, `arrayTemplate`, `arrayItemTemplate`,
   `multiFieldTemplate`.
@@ -34,6 +34,9 @@ export const theme = extendByRecord(base, {
 The theme supplies components, widgets, and optional overrides. Official-only
 conventions such as opt-in include modules are covered by the
 [official checklist](official-theme-checklist.md).
+
+A custom `multiFieldTemplate` must accept a required `showMeta: boolean`. When
+`false`, another field renders the title, description and action.
 
 ## Required Types
 

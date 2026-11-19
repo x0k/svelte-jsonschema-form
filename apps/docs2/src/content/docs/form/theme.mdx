@@ -55,7 +55,12 @@ All components can be divided into four **logical** types:
   - `nullField`
   - `oneOfField`
   - `anyOfField`
+  - `unionField`
   - `unknownField`
+
+`multiFieldTemplate` and `optionalMultiFieldTemplate` receive a required
+`showMeta` prop. When it is `false`, another field renders the title,
+description and action, so the template must not repeat them.
 
 Below are examples of the components required to render the following JSON schema:
 

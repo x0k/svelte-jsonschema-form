@@ -127,6 +127,22 @@ values remain assignable to it. `ReadonlySchemaValue` is `DeepReadonly` over
 `SchemaValue`; class instances such as `File` are preserved rather than mapped
 into plain objects.
 
+## Multiple types
+
+A schema can allow more than one type:
+
+```json
+{ "type": ["string", "number"] }
+```
+
+The `basic` and `compat` resolvers render such a schema through `unionField`: a
+selector offers the listed types and the selected type renders the value.
+Switching the type casts the value when possible and clears it otherwise.
+
+A single nullable type (`type: ["string", "null"]`) and a value pinned by
+`enum` or `const` keep their plain field. To customize the selector, see
+[Multiple types](/form/ui-schema/#multiple-types).
+
 ## Details and limitations
 
 - Library only supports local definition referencing. The value in the `$ref` keyword should be a [JSON Pointer](https://datatracker.ietf.org/doc/html/rfc6901) in URI fragment identifier format.

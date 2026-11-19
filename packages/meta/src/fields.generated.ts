@@ -59,6 +59,11 @@ export const FIELDS = {
     "filename": "one-of",
     "wrapperOf": "combination"
   },
+  "union": {
+    "name": "unionField",
+    "filename": "union",
+    "wrapperOf": "combination"
+  },
   "object-field": {
     "name": "objectField",
     "filename": "object-field",

@@ -3,6 +3,7 @@ import {
   getXxxOfKey,
   isFileSchema,
   isFixedItems,
+  isUnionSchema,
 } from "#core/index.js";
 
 import type { ResolveFieldType } from "../fields.js";
@@ -27,6 +28,9 @@ export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
     }
     if (isSelect(ctx, schema)) {
       return "enumField";
+    }
+    if (isUnionSchema(schema)) {
+      return "unionField";
     }
     const xxxOfKey = getXxxOfKey(schema);
     if (xxxOfKey !== undefined) {

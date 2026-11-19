@@ -16,11 +16,17 @@ export function typeOfValue(
   const type = typeof value;
   switch (type) {
     case "boolean":
-    // TODO: Integer type inference ?
-    // eslint-disable-next-line no-fallthrough
-    case "number":
     case "object":
     case "string":
+      return type;
+    // Whole numbers are reported as `"number"`, never `"integer"`: JSON Schema
+    // treats `integer` as a subset of `number`, so a schema declaring `number`
+    // must match an integer value. Callers compare this result to
+    // `schema.type` directly (option matching, additional-property stubs), so
+    // reporting `"integer"` here would make `{ type: "number" }` reject `1`.
+    // The union type selector, which needs the narrower distinction, asks for
+    // both types through `getInitialUnionTypeIndex()`.
+    case "number":
       return type;
     default:
       return "unknown";
