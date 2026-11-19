@@ -7621,315 +7621,6 @@ exports[`object fields > with title and description with global label off > show
 </div>
 `;
 
-exports[`widgets > callyDatePicker > snapshots > disabled 1`] = `
-<div>
-  <form>
-    <!---->
-    <div
-      class="flex flex-col gap-4"
-    >
-      <!---->
-      <!---->
-      <!---->
-      <input
-        name="__sjsf_id_prefix"
-        type="hidden"
-        value="root"
-      />
-      <!---->
-       
-      <!---->
-      <!---->
-      <!---->
-      <fieldset
-        class="fieldset gap-y-2"
-        data-layout="field"
-      >
-        <!---->
-        <!---->
-         
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        
-        
-        
-        
-        
-        
-        <!---->
-         
-        <!---->
-         
-        <!---->
-        <!---->
-      </fieldset>
-      
-      
-      
-      <!---->
-      <!---->
-       
-      <!---->
-      <button
-        class="btn btn-primary w-full"
-        disabled=""
-        type="submit"
-      >
-        <!---->
-        Submit
-        
-        <!---->
-      </button>
-      
-      <!---->
-      
-      <!---->
-    </div>
-    
-    <!---->
-  </form>
-  
-</div>
-`;
-
-exports[`widgets > callyDatePicker > snapshots > error 1`] = `
-<div>
-  <form>
-    <!---->
-    <div
-      class="flex flex-col gap-4"
-    >
-      <!---->
-      <!---->
-      <!---->
-      <input
-        name="__sjsf_id_prefix"
-        type="hidden"
-        value="root"
-      />
-      <!---->
-       
-      <!---->
-      <!---->
-      <!---->
-      <fieldset
-        class="fieldset gap-y-2"
-        data-layout="field"
-      >
-        <!---->
-        <!---->
-         
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        
-        
-        
-        
-        
-        
-        <!---->
-         
-        <!---->
-        <ul
-          class="text-error list-inside list-disc"
-          id="root__errors"
-          tabindex="-1"
-        >
-          <li>
-            error
-          </li>
-          
-        </ul>
-        
-        <!---->
-         
-        <!---->
-        <!---->
-      </fieldset>
-      
-      
-      
-      <!---->
-      <!---->
-       
-      <!---->
-      <button
-        class="btn btn-primary w-full"
-        type="submit"
-      >
-        <!---->
-        Submit
-        
-        <!---->
-      </button>
-      
-      <!---->
-      
-      <!---->
-    </div>
-    
-    <!---->
-  </form>
-  
-</div>
-`;
-
-exports[`widgets > callyDatePicker > snapshots > normal 1`] = `
-<div>
-  <form>
-    <!---->
-    <div
-      class="flex flex-col gap-4"
-    >
-      <!---->
-      <!---->
-      <!---->
-      <input
-        name="__sjsf_id_prefix"
-        type="hidden"
-        value="root"
-      />
-      <!---->
-       
-      <!---->
-      <!---->
-      <!---->
-      <fieldset
-        class="fieldset gap-y-2"
-        data-layout="field"
-      >
-        <!---->
-        <!---->
-         
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        
-        
-        
-        
-        
-        
-        <!---->
-         
-        <!---->
-         
-        <!---->
-        <!---->
-      </fieldset>
-      
-      
-      
-      <!---->
-      <!---->
-       
-      <!---->
-      <button
-        class="btn btn-primary w-full"
-        type="submit"
-      >
-        <!---->
-        Submit
-        
-        <!---->
-      </button>
-      
-      <!---->
-      
-      <!---->
-    </div>
-    
-    <!---->
-  </form>
-  
-</div>
-`;
-
-exports[`widgets > callyDatePicker > snapshots > readonly 1`] = `
-<div>
-  <form>
-    <!---->
-    <div
-      class="flex flex-col gap-4"
-    >
-      <!---->
-      <!---->
-      <!---->
-      <input
-        name="__sjsf_id_prefix"
-        type="hidden"
-        value="root"
-      />
-      <!---->
-       
-      <!---->
-      <!---->
-      <!---->
-      <fieldset
-        class="fieldset gap-y-2"
-        data-layout="field"
-      >
-        <!---->
-        <!---->
-         
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        
-        
-        
-        
-        
-        
-        <!---->
-         
-        <!---->
-         
-        <!---->
-        <!---->
-      </fieldset>
-      
-      
-      
-      <!---->
-      <!---->
-       
-      <!---->
-      <button
-        class="btn btn-primary w-full"
-        type="submit"
-      >
-        <!---->
-        Submit
-        
-        <!---->
-      </button>
-      
-      <!---->
-      
-      <!---->
-    </div>
-    
-    <!---->
-  </form>
-  
-</div>
-`;
-
 exports[`widgets > checkbox > snapshots > disabled 1`] = `
 <div>
   <form>
@@ -9200,16 +8891,10 @@ exports[`widgets > datePicker > snapshots > disabled 1`] = `
         <!---->
         <!---->
         <!---->
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="false"
-          class="input pika-single w-full"
-          disabled=""
-          id="root"
-          name="root"
-          required=""
-          type="text"
-        />
+        <!---->
+        <!---->
+        
+        
         
         
         
@@ -9281,15 +8966,10 @@ exports[`widgets > datePicker > snapshots > error 1`] = `
         <!---->
         <!---->
         <!---->
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="true"
-          class="input pika-single w-full input-error"
-          id="root"
-          name="root"
-          required=""
-          type="text"
-        />
+        <!---->
+        <!---->
+        
+        
         
         
         
@@ -9372,15 +9052,10 @@ exports[`widgets > datePicker > snapshots > normal 1`] = `
         <!---->
         <!---->
         <!---->
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="false"
-          class="input pika-single w-full"
-          id="root"
-          name="root"
-          required=""
-          type="text"
-        />
+        <!---->
+        <!---->
+        
+        
         
         
         
@@ -9451,16 +9126,10 @@ exports[`widgets > datePicker > snapshots > readonly 1`] = `
         <!---->
         <!---->
         <!---->
-        <input
-          aria-describedby="root__description root__help root__errors"
-          aria-invalid="false"
-          class="input pika-single w-full"
-          id="root"
-          name="root"
-          readonly=""
-          required=""
-          type="text"
-        />
+        <!---->
+        <!---->
+        
+        
         
         
         

@@ -26,7 +26,6 @@ export const WIDGETS = {
       "text": "textWidget"
     },
     "extraWidgets": {
-      "cally-date-picker": "daisyui5CallyDatePickerWidget",
       "checkboxes": "checkboxesWidget",
       "date-input": "dateInputWidget",
       "date-picker": "datePickerWidget",
@@ -42,14 +41,11 @@ export const WIDGETS = {
       "vc-date-picker": "daisyui5VcDatePickerWidget"
     },
     "optionalDeps": {
-      "cally": [
-        "cally-date-picker"
-      ],
       "vanilla-calendar-pro": [
         "date-input",
         "vc-date-picker"
       ],
-      "pikaday": [
+      "cally": [
         "date-picker"
       ]
     }

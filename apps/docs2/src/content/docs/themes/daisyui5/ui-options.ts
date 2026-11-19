@@ -1,6 +1,5 @@
 import type { ButtonType, LayoutType } from "@sjsf/form/fields/components";
 import type { CalendarDateProps } from "cally";
-import type { PikadayOptions } from "pikaday";
 import type {
   ClassValue,
   HTMLAttributes,
@@ -113,9 +112,6 @@ export interface UiOptions {
 
   daisyui5Filter?: HTMLAttributes<HTMLDivElement>;
   daisyui5FilterItem?: HTMLInputAttributes;
-
-  daisyui5PikadayCalendar?: HTMLInputAttributes;
-  daisyui5PikadayCalendarOptions?: PikadayOptions;
 
   daisyui5RadioButtons?: HTMLInputAttributes;
 

@@ -9337,8 +9337,8 @@ exports[`@sjsf/sv theme__daisyui5 kit-ts 1`] = `
 		"@sjsf/form": "^3.10.0",
 		"ajv": "^8.17.0",
 		"ajv-formats": "^3.0.1",
+		"cally": "^0.9.0",
 		"daisyui": "^5.4.0",
-		"pikaday": "^1.8.2",
 		"svelte": "^5.34.8"
 	}
 }
@@ -9464,7 +9464,6 @@ export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handle
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
-// import "@sjsf/daisyui5-theme/extra-widgets/cally-date-picker-include";
 // import "@sjsf/daisyui5-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/daisyui5-theme/extra-widgets/date-input-include";
 // import "@sjsf/daisyui5-theme/extra-widgets/date-picker-include";
@@ -9680,8 +9679,8 @@ exports[`@sjsf/sv theme__daisyui5 vite-ts 1`] = `
     "@sjsf/form": "^3.10.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1",
+    "cally": "^0.9.0",
     "daisyui": "^5.4.0",
-    "pikaday": "^1.8.2",
     "svelte": "^5.34.8"
   }
 }
@@ -10281,7 +10280,6 @@ export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handle
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
-// import "@sjsf/daisyui5-theme/extra-widgets/cally-date-picker-include";
 // import "@sjsf/daisyui5-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/daisyui5-theme/extra-widgets/date-input-include";
 // import "@sjsf/daisyui5-theme/extra-widgets/date-picker-include";

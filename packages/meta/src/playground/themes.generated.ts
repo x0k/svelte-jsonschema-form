@@ -34,13 +34,11 @@ export const basicTheme = extendByRecord(basicBase, {
 });
 
 import { theme as daisyui5Base } from "@sjsf/daisyui5-theme";
-export type * as daisyui5_daisyui5CallyDatePickerWidget from "@sjsf/daisyui5-theme/extra-widgets/cally-date-picker.svelte";
 import daisyui5_checkboxesWidget from "@sjsf/daisyui5-theme/extra-widgets/checkboxes.svelte";
 import "@sjsf/daisyui5-theme/extra-widgets/checkboxes.svelte";
 import daisyui5_dateInputWidget from "@sjsf/daisyui5-theme/extra-widgets/date-input.svelte";
 import "@sjsf/daisyui5-theme/extra-widgets/date-input.svelte";
-import daisyui5_datePickerWidget from "@sjsf/daisyui5-theme/extra-widgets/date-picker.svelte";
-import "@sjsf/daisyui5-theme/extra-widgets/date-picker.svelte";
+export type * as daisyui5_datePickerWidget from "@sjsf/daisyui5-theme/extra-widgets/date-picker.svelte";
 import daisyui5_fileWidget from "@sjsf/daisyui5-theme/extra-widgets/file.svelte";
 import "@sjsf/daisyui5-theme/extra-widgets/file.svelte";
 import daisyui5_daisyui5FilterRadioButtonsWidget from "@sjsf/daisyui5-theme/extra-widgets/filter-radio-buttons.svelte";
@@ -63,10 +61,9 @@ import daisyui5_daisyui5VcDatePickerWidget from "@sjsf/daisyui5-theme/extra-widg
 import "@sjsf/daisyui5-theme/extra-widgets/vc-date-picker.svelte";
 export const daisyui5Theme = extendByRecord(daisyui5Base, {
   ...fields,
-  daisyui5CallyDatePickerWidget: clientOnly(() => import("@sjsf/daisyui5-theme/extra-widgets/cally-date-picker.svelte")),
   checkboxesWidget: daisyui5_checkboxesWidget,
   dateInputWidget: daisyui5_dateInputWidget,
-  datePickerWidget: daisyui5_datePickerWidget,
+  datePickerWidget: clientOnly(() => import("@sjsf/daisyui5-theme/extra-widgets/date-picker.svelte")),
   fileWidget: daisyui5_fileWidget,
   daisyui5FilterRadioButtonsWidget: daisyui5_daisyui5FilterRadioButtonsWidget,
   multiSelectWidget: daisyui5_multiSelectWidget,

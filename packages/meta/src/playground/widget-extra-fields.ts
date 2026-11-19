@@ -16,7 +16,6 @@ export const WIDGET_EXTRA_FIELD: Record<
   aggregatedWidget: "aggregated",
   checkboxesWidget: "multi-enum",
   comboboxWidget: "enum",
-  daisyui5CallyDatePickerWidget: undefined,
   daisyui5FilterRadioButtonsWidget: "enum",
   daisyui5VcDatePickerWidget: undefined,
   datePickerWidget: undefined,

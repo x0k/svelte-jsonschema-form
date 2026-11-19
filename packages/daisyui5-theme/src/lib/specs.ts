@@ -1,6 +1,5 @@
 import { s, DEFAULT_SPECS } from "theme-testing/specs";
 
-import "./extra-widgets/cally-date-picker-include.js";
 import "./extra-widgets/checkboxes-include.js";
 import "./extra-widgets/date-input-include.js";
 import "./extra-widgets/file-include.js";
@@ -17,16 +16,6 @@ import "./extra-widgets/vc-date-picker-include.js";
 
 export const specs: s.Specs = {
   ...DEFAULT_SPECS,
-  callyDatePicker: [
-    s.text,
-    {
-      "ui:components": { textWidget: "daisyui5CallyDatePickerWidget" },
-      "ui:options": { useLabel: false },
-    },
-    {
-      onchange: "changeCallyDatePicker",
-    },
-  ],
   dateInput: [
     s.date,
     { "ui:components": { stringField: "dateField" } },
@@ -55,11 +44,12 @@ export const specs: s.Specs = {
   ],
   datePicker: [
     s.text,
-    { "ui:components": { textWidget: "datePickerWidget" } },
     {
-      oninput: "inputDate",
-      onchange: "changeDate",
-      onblur: "visitDate",
+      "ui:components": { textWidget: "datePickerWidget" },
+      "ui:options": { useLabel: false },
+    },
+    {
+      onchange: "changeCallyDatePicker",
     },
   ],
   filterRadioButtons: [

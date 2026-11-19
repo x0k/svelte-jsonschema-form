@@ -22,7 +22,6 @@ export const WIDGET_NODE_TYPE: Record<WidgetType, NodeType> = {
   dateRangePickerWidget: NodeType.Range,
   rangeSliderWidget: NodeType.Range,
   aggregatedWidget: NodeType.Range,
-  daisyui5CallyDatePickerWidget: NodeType.String,
   daisyui5VcDatePickerWidget: NodeType.String,
   daisyui5FilterRadioButtonsWidget: NodeType.Enum,
   flowbite3ToggleRadioButtonsWidget: NodeType.Enum,

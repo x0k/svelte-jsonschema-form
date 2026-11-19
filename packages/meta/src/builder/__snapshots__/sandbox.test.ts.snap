@@ -611,8 +611,8 @@ exports[`builder sandbox-factory > themes > daisyui5 1`] = `
     "@sveltejs/kit": "^3.0.0",
     "svelte": "^5.34.8",
     "@sjsf/daisyui5-theme": "^3.10.0",
+    "cally": "^0.9.0",
     "daisyui": "^5.4.0",
-    "pikaday": "^1.8.2",
     "@sjsf/ajv8-validator": "^3.10.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
@@ -683,7 +683,6 @@ export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handle
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
-// import "@sjsf/daisyui5-theme/extra-widgets/cally-date-picker-include";
 // import "@sjsf/daisyui5-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/daisyui5-theme/extra-widgets/date-input-include";
 // import "@sjsf/daisyui5-theme/extra-widgets/date-picker-include";
