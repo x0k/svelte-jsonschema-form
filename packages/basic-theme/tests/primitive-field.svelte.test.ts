@@ -440,4 +440,58 @@ describe("primitive field contracts", () => {
         .not.toBeInTheDocument();
     });
   });
+
+  describe("select options keyword", () => {
+    const alternatives = [
+      { const: "foo", title: "Foo" },
+      { const: "bar", title: "Bar" },
+    ];
+    // An empty `anyOf` is rejected by the JSON Schema meta-schema, so skip the
+    // real validator and render the field on its own.
+    const validator = { isValid: () => true };
+
+    test("renders a populated oneOf when anyOf is empty", async () => {
+      const { form } = await renderFieldForm({
+        schema: { type: "string", anyOf: [], oneOf: alternatives },
+        resolver: compatResolver,
+        validator,
+        initialValue: "foo",
+      });
+
+      const select = page.getByRole("combobox").first();
+      await expect
+        .element(select.getByRole("option", { name: "Bar" }))
+        .toBeInTheDocument();
+
+      await userEvent.selectOptions(
+        select,
+        select.getByRole("option", { name: "Bar" })
+      );
+      expectValue(form, "bar");
+    });
+
+    test("renders anyOf when both keyword lists are populated", async () => {
+      const { form } = await renderFieldForm({
+        schema: {
+          type: "string",
+          anyOf: alternatives,
+          oneOf: [{ const: "baz", title: "Baz" }],
+        },
+        resolver: compatResolver,
+        validator,
+        initialValue: "foo",
+      });
+
+      const select = page.getByRole("combobox").first();
+      await expect
+        .element(select.getByRole("option", { name: "Baz" }))
+        .not.toBeInTheDocument();
+
+      await userEvent.selectOptions(
+        select,
+        select.getByRole("option", { name: "Bar" })
+      );
+      expectValue(form, "bar");
+    });
+  });
 });

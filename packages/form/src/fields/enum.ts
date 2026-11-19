@@ -1,12 +1,10 @@
 import {
   getSchemaConstantValue,
+  getXxxOfKey,
   schemaValueToString,
   type Schema,
-  type SchemaDefinition,
 } from "#core/index.js";
 import {
-  type UiSchema,
-  type UiSchemaDefinition,
   retrieveUiSchema,
   type Config,
   type UiOption,
@@ -16,15 +14,6 @@ import {
   type FormEnumOption,
 } from "#form/index.js";
 import { createMappedOption } from "#options.svelte.js";
-
-function getAltSchemas(
-  schema: Schema,
-  uiSchema: UiSchema
-): [SchemaDefinition[] | undefined, UiSchemaDefinition[] | undefined] {
-  return schema.anyOf
-    ? [schema.anyOf, uiSchema.anyOf]
-    : [schema.oneOf, uiSchema.oneOf];
-}
 
 export function createFormOptions<T>(
   ctx: FormState<T>,
@@ -50,28 +39,32 @@ export function createFormOptions<T>(
     return { options, mapper: builder.build() };
   }
 
-  const [altSchemas, altUiSchemas] = getAltSchemas(schema, config.uiSchema);
-  const options =
-    altSchemas?.map((altSchemaDef, index) => {
-      if (typeof altSchemaDef === "boolean") {
-        throw new Error(`Invalid enum definition in anyOf ${index}`);
+  const options: FormEnumOption[] = [];
+  const key = getXxxOfKey(schema);
+  if (key !== undefined) {
+    const altSchemas = schema[key]!;
+    const altUiSchemas = config.uiSchema[key];
+    for (let i = 0; i < altSchemas.length; i++) {
+      const schemaDef = altSchemas[i]!;
+      if (typeof schemaDef === "boolean") {
+        throw new Error(`Invalid enum definition in ${key} ${i}`);
       }
-      const value = getSchemaConstantValue(altSchemaDef);
-      const uiOptions = retrieveUiSchema(ctx, altUiSchemas?.[index])[
-        "ui:options"
-      ];
+      const value = getSchemaConstantValue(schemaDef);
+      const uiOptions = retrieveUiSchema(ctx, altUiSchemas?.[i])["ui:options"];
       const label =
-        uiOptions?.title ?? altSchemaDef.title ?? schemaValueToString(value);
-      return createMappedOption(builder, {
-        id: getPseudoId(ctx, config.path, index),
-        schema: altSchemaDef,
-        label,
-        value,
-        disabled: disabledValues.has(value),
-        description: uiOptions?.description ?? altSchemaDef.description,
-      });
-    }) ?? [];
-
+        uiOptions?.title ?? schemaDef.title ?? schemaValueToString(value);
+      options.push(
+        createMappedOption(builder, {
+          id: getPseudoId(ctx, config.path, i),
+          schema: schemaDef,
+          label,
+          value,
+          disabled: disabledValues.has(value),
+          description: uiOptions?.description ?? schemaDef.description,
+        })
+      );
+    }
+  }
   return { options, mapper: builder.build() };
 }
 
