@@ -462,6 +462,11 @@ export function stubExistingAdditionalProperties(
         const type = typeOfValue(value);
         return isJsonSchemaType(type) ? { type } : {};
       }
+      // CHANGED: An undefined value says nothing about its type. Keep the
+      // schema empty so the unknown field reports it, rather than stubbing a
+      // null field that writes `null` back and removes an optional object
+      // holding only this key.
+      return {};
     }
     return { type: "null" };
   }

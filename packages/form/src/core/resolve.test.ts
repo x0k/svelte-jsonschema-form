@@ -3731,6 +3731,28 @@ describe("retrieveSchema()", () => {
         },
       });
     });
+    it("leaves an undefined arbitrary additional property untyped", () => {
+      const schema = {
+        additionalProperties: true,
+        properties: {},
+      } satisfies Schema;
+      expect(
+        stubExistingAdditionalProperties(
+          createTestContext({
+            rootSchema: schema,
+          }),
+          schema,
+          { foo: undefined }
+        )
+      ).toEqual({
+        ...schema,
+        properties: {
+          foo: {
+            [ADDITIONAL_PROPERTY_FLAG]: true,
+          },
+        },
+      });
+    });
     it("stubs an own __proto__ key without changing the properties prototype", () => {
       const schema = {
         additionalProperties: true,
