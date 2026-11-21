@@ -4,373 +4,250 @@ sidebar:
   order: 0
 ---
 
-Before migrating, make sure you are using the latest version of SJSF and
-that you are not using any deprecated APIs.
+v4 makes the form own its value and replaces submission with validation. This
+guide covers the breaking changes and links to the pages that document the new
+APIs. The [form changelog](/changelogs/form/) lists every v4 change.
 
-## Form-owned value
+Upgrade to the latest v3 release and remove deprecated API usage before you
+start; v4 removes those APIs.
 
-The controlled `value` form option has been removed. The form owns its value:
-seed it with `initialValue`, replace it with `setValue(form, value)`, edit it
-with `setValueAtPath`, `updateValueAtPath`, and the array commands, and restore
-`initialValue` with `reset(form)`. `Bind` and `refFromBind` are removed from
-`@sjsf/form/lib/svelte.svelte`.
+## Upgrade all packages
 
-The `keyedArraysMap` option is removed. Use `insertArrayItem`,
-`removeArrayItem`, `moveArrayItem`, and `swapArrayItems` to change arrays so
-item keys stay in sync.
+Upgrade all `@sjsf/*` packages to v4 together; mixing v3 and v4 packages is
+not supported.
 
-The internal `FORM_VALUE` entry is now a `FormValueStore`: read with
-`ctx[FORM_VALUE].get()` and write through its `replace`, `setAtPath`,
-`updateAtPath`, and `updateArrayAtPath` methods. Custom components that used
-`ctx[FORM_VALUE]` as a raw value must add `.get()`.
+## Shared defaults
 
-The value commands accept an `RPath` (a plain array). Passing a registered
-`FieldPath` skips the lookup and uses it as-is.
-
-Use `getValue(form)` for a live, non-copying read of the form value. In a
-reactive context it tracks only the properties you read. It is typed as
-`ReadonlySchemaValue | undefined`, as are the core helpers that only read form
-data, such as `retrieveSchema`, `getClosestMatchingOption`, `isValid`, and
-`isValueDeepEqual`. Mutable form values remain assignable. Use
-`getValueSnapshot(form)` when you need a detached copy.
-
-`getIdByPath`, `getPseudoIdByPath`, and the `ByPath` variants of the error and
-field-state helpers are removed. `getId`, `getPseudoId`, `getSubtreePaths`,
-`getChildPath`, `getPseudoPath`, `getFieldErrors`, `getFieldsErrors`,
-`updateFieldErrors`, `hasFieldState`, and `setFieldState` now accept an `RPath`;
-except for `getSubtreePaths`, they canonicalize it internally, and passing a
-registered `FieldPath` skips the lookup. `getSubtreePaths` is a read-only
-lookup: it returns the paths already registered in the prefix tree and does not
-register the path you pass.
+`createForm` now requires a value handler and a logger. Add both to the defaults
+file you spread into every form:
 
 ```ts
-import {
-  insertArrayItem,
-  reset,
-  setValue,
-  setValueAtPath,
-  updateValueAtPath,
-} from "@sjsf/form";
-import type { SchemaObjectValue } from "@sjsf/form/core";
+export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
+export { createLogger as logger } from "@sjsf/form/loggers/once";
+```
 
+`createLogger` reports each distinct message once per form, so pass the factory
+rather than a shared logger instance. Use `logger` from
+`@sjsf/form/loggers/noop` to silence diagnostics. If you create a validator,
+merger, ID builder, or core context directly, pass the value handler and logger
+to it as well.
+
+See [Reusable defaults](/guides/reusable-defaults/), [Logger](/form/logger/),
+[Value handler](/form/value-handler/), and [Merger](/form/merger/).
+
+## Form-owned values
+
+The controlled `value` option is gone. Seed the form with `initialValue` and
+change it through the value commands from `@sjsf/form`:
+
+```ts
 setValue(form, { username: "bob" });
 setValueAtPath(form, ["username"], "alice");
 updateValueAtPath(form, ["profile"], (profile: SchemaObjectValue) => {
   profile.name = "Alice";
   return profile;
 });
-insertArrayItem(form, ["items"], "new item");
-reset(form);
 ```
 
-## Validator interface changes
+`SchemaObjectValue` is exported from `@sjsf/form/core`. `Bind` and
+`refFromBind` are removed. `keyedArraysMap` is gone; use
+`insertArrayItem`, `removeArrayItem`, `moveArrayItem`, and `swapArrayItems` so
+item keys stay in sync. Read values with `getValue` (live) or
+`getValueSnapshot` (detached), and do not mutate the live value.
 
-The root schema is now bound at validator creation time instead of being
-passed on every call. The `rootSchema` parameter has been removed from
-`Validator.isValid`, `FormValueValidator.validateFormValue` and
-`AsyncFormValueValidator.validateFormValueAsync`.
+In custom components, read `ctx[FORM_VALUE].get()`. Path and error helpers
+accept an `RPath`; their `*ByPath` variants (`getIdByPath`, `getPseudoIdByPath`,
+`getFieldErrorsByPath`, `getFieldsErrorsByPath`, `updateFieldErrorsByPath`) are
+removed.
 
-`Validator.isValid` now receives `ReadonlySchemaValue | undefined` instead of
-`SchemaValue | undefined`. Validators must treat the value as read-only and
-copy it before applying any transformation.
-
-## Schema errors now surface at form creation
-
-Validators compile the schema eagerly when created. A schema that does not
-satisfy its dialect's meta-schema (for example, a `discriminator` whose
-property is missing from the branches' `required`, or an empty tuple
-`items: []` in draft-07) now fails at form creation instead of at first
-validation. Fix such schemas to be spec-compliant.
-
-## Value comparison and copying moved out of the merger
-
-`Merger` no longer implements `isValueDeepEqual`; it only merges schemas and
-`allOf` compositions. Value comparison and the copy taken before an in-place
-update are now a required `FormOptions` service:
-
-```typescript
-import { createForm } from "@sjsf/form";
-import { defaultFormValueHandler } from "@sjsf/form/value-handlers/default";
-
-const form = createForm({
-  // ...
-  valueHandler: defaultFormValueHandler,
-});
-```
-
-Reusable defaults can re-export it as before:
-
-```typescript
-export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
-```
-
-`CoreContext` still carries a value handler under `CORE_VALUE_HANDLER`, and
-`createCoreContext` requires one; a `FormValueHandler` can be passed because it
-extends `ValueHandler`. Custom mergers no longer implement or forward
-`isValueDeepEqual` or `copyForChange`; pass a custom `FormValueHandler` to
-`createForm` instead. See [Value handler](/form/value-handler/).
-
-`ValueDeepComparator` now takes `ReadonlySchemaValue | undefined` for both
-arguments, so it can compare values returned by `getValue`. A custom comparison
-must not mutate its arguments.
-
-## Logger
-
-`createForm` now requires a `logger` service. It receives schema-resolution
-warnings, `<Field>` development diagnostics, and validator failures. Re-export
-the recommended logger from your defaults:
-
-```typescript
-export { createLogger as logger } from "@sjsf/form/loggers/once";
-```
-
-Pass the factory to `createForm` so each form keeps its own record of the
-messages it has already reported:
-
-```typescript
-import { createForm } from "@sjsf/form";
-import { createLogger } from "@sjsf/form/loggers/once";
-
-const form = createForm({
-  // ...
-  logger: createLogger,
-});
-```
-
-Use `logger` from `@sjsf/form/loggers/noop` to silence output. The validator,
-merger, id builder, and `createCoreContext` now require the logger instance;
-`createForm` passes it to them automatically when you use the factory above.
-
-## Schema resolution internals
-
-The unused `expandAllBranches` parameter was removed from the schema-resolution
-functions in `@sjsf/form/core`. Drop the argument from any direct calls.
-
-Core schema helpers now take a shared `CoreContext` as their first argument
-instead of `validator`, `merger`, `rootSchema`, and value-comparison arguments.
-Build one with
-`createCoreContext({ validator, merger, valueHandler, rootSchema, logger })`:
-
-```typescript
-// Before
-retrieveSchema(validator, merger, schema, rootSchema, formData);
-
-// After
-import { createCoreContext, retrieveSchema } from "@sjsf/form/core";
-
-const ctx = createCoreContext({
-  validator,
-  merger,
-  valueHandler,
-  rootSchema,
-  logger,
-});
-retrieveSchema(ctx, schema, formData);
-```
-
-`FormState` extends `CoreContext`, so a form state can be passed to any core
-helper as its context. The form-state re-exports of `retrieveSchema`,
-`sanitizeDataForNewSchema`, `getClosestMatchingOption` and
-`getRenderedOptionSchema` were removed; import them from `@sjsf/form/core`.
-`getRenderedOptionSchema` is now exported from there. `getDefaultFieldState`
-remains a form-state query.
-
-The schema predicates were renamed to say what they inspect:
-
-```typescript
-// Before
-import {
-  isSelect,
-  isMultiSelect,
-  isFilesArray,
-  isSchemaOfConstantValue,
-  isFixedItems,
-} from "@sjsf/form/core";
-
-// After
-import {
-  isSelectSchema,
-  isMultiSelectSchema,
-  isFilesArraySchema,
-  isConstantValueSchema,
-  isFixedItemsSchema,
-} from "@sjsf/form/core";
-```
-
-The context operations are available as free functions that take the context
-first: `isValid(ctx, schema, value)`, `mergeSchemas(ctx, a, b)`,
-`mergeAllOf(ctx, schema)`, `isValueDeepEqual(ctx, a, b)`,
-`resolveRef(ctx, ref)`, and `getRootSchema(ctx)`.
-
-The context symbols are not part of the `@sjsf/form/core` entry point. If you
-build or inspect a `CoreContext` directly, import `CORE_VALIDATOR`,
-`CORE_MERGER`, `CORE_VALUE_HANDLER`, and `CORE_ROOT_SCHEMA` from
-`@sjsf/form/core/internals`.
-
-`FORM_VALIDATOR`, `FORM_MERGER`, and `FORM_SCHEMA` were removed from
-`@sjsf/form/internals`; they were aliases of the corresponding `CORE_*`
-symbols. Use the `CORE_*` names from `@sjsf/form/core/internals` instead.
-
-`getDefaultFormState` no longer falls back to the schema it receives as the
-root schema. A caller that omitted `rootSchema` so that a self-referencing
-subschema resolved against itself must pass that subschema as `rootSchema` when
-creating the context.
-
-## Read-only value types
-
-Read-only form values are represented by
-`ReadonlySchemaValue = DeepReadonly<SchemaValue>`. Core helpers that only read
-form data accept it, so `getValue` results can be passed directly to
-`retrieveSchema`, `getClosestMatchingOption`, `isValid`, and
-`isValueDeepEqual`.
-
-`DeepPartial` and `DeepReadonly` now leave class instances intact instead of
-mapping their members. This matters when `SchemaValues` is augmented with
-types such as `File` or `Date`: `DeepPartial<File>` is still `File`, so
-`initialValue` and `setValue` accept such values without casts. Functions are
-preserved too.
-
-## Enum options
-
-`FormEnumOption.mappedValue` is now required. Use `createMappedOption()`
-from `@sjsf/form/options.svelte` instead of building objects manually.
-
-The default mapper is now `StringEnumValueMapperBuilder` (better autofill).
-It accepts primitive values only and throws when two values map to the same
-string, such as `1` and `"1"` or `null` and `"null"`. To map object values or
-enum values that are not string-unique, restore ID-based mapping:
-
-```ts
-"ui:options": {
-  enumValueMapperBuilder: (ctx) =>
-    new IdEnumValueMapperBuilder(ctx),
-}
-```
-
-## Widget options
-
-`Options.mapper`, `SingleSelectOptions.clearable`, `SingleSelectOptions.mapped`,
-`MultiSelectOptions.mapped`, and `ArrayContextOptions.setValue` are now required.
-The `singleOption()` and
-`multipleOptions()` helpers no longer return a deprecated `.value` property —
-use `.current` instead. `SingleSelectOptions.hasInitialValue` has been removed
-(use `clearable` instead).
-
-## Removed deprecated APIs
-
-- `createOptions()` — use `createFormOptions()`.
-- `idMapper()` — use the `enumValueMapperBuilder` UI option with `IdEnumValueMapperBuilder`.
-- `isSchemaExpandable()` — use `isObjectSchemaExpandable()`.
-- `UNDEFINED_ID` — use `EMPTY_VALUE` instead.
-- `FormErrorsMap` type — read errors through `getErrors` / `getFieldErrors`, or use `SvelteMap<FieldPath, string[]>` directly.
-- `setFormContext2` — use `setFormContext`.
-- `KeyedArray2` type — use `KeyedArray`.
-- `MapLike` type — moved from `@sjsf/form/lib/memoize` to `@sjsf/form/lib/map`, which also exports `getOrInsertComputed()`.
-- `validateByRetrievedSchema` option — use `retrieveSchema` from `@sjsf/form/core`.
-- `DEFAULT_AUGMENT_SUFFIX` — use `idAugmentations` on `FragmentSchemaOptions`.
-- `augmentSuffix` on `FragmentSchemaOptions` — use `idAugmentations`.
-- `Query.result` — use `Query.current`.
-- `getSelectOptionValues()` — use `getSelectOptionValuesSafe()`.
-- `@sjsf/form/fields/any-of` — use `@sjsf/form/fields/combination/any-of`.
-- `@sjsf/form/fields/one-of` — use `@sjsf/form/fields/combination/one-of`.
-- `@sjsf/form/fields/combination` — use `@sjsf/form/fields/combination/combination`.
-- `Config.value` is now required.
-- `removeVirtualAdditionalProperties()` — removed from `@sjsf/form/validators/properties`.
-- `createVirtualAdditionalPropertiesRemover()` — removed from `@sjsf/form/validators/properties`.
-- `createPatternPropertyKeyValidator()` `error` parameter no longer accepts a string — pass a function `(ctx) => string` instead.
-
-## Validator packages
-
-- `LegacyValidatorOptions` (`validateFunctions`, `augmentSuffix`, `ast`) removed — use
-  `validatorRetriever` directly (ajv8, schemasafe, ata, hyperjump).
-- `setupFormValidator` removed — use `adapt` (zod4, valibot).
-- `setupAsyncFormValidator` removed — use `adaptAsync` (zod4, valibot).
-
-## Theme packages
-
-- `skeleton4DateRangePickerWidget` removed — use `dateRangePickerWidget`.
-- `shadcn4DateRangePickerWidget` removed — use `dateRangePickerWidget`.
-- `svarDateRangePickerWidget` removed — use `dateRangePickerWidget`.
-- `daisyui5CallyDatePickerWidget` removed — `datePickerWidget` now renders the
-  Cally date picker.
-- `@sjsf/daisyui5-theme/extra-widgets/cally-date-picker` and
-  `@sjsf/daisyui5-theme/extra-widgets/cally-date-picker-include` removed — use
-  `@sjsf/daisyui5-theme/extra-widgets/date-picker` and
-  `@sjsf/daisyui5-theme/extra-widgets/date-picker-include`.
-- `daisyui5PikadayCalendar` and `daisyui5PikadayCalendarOptions` removed — the
-  Pikaday date picker and its `pikaday` peer dependency are gone; use the
-  Cally options (`daisyui5CallyCalendar*`) instead.
-
-## SvelteKit packages
-
-- `@sjsf/sveltekit` (SvelteKit 2 integration) removed — use `@sjsf/sveltekit3`.
-- `@sjsf/sveltekit/*` imports → `@sjsf/sveltekit3/*`.
-- `$lib` imports → `#lib` imports with explicit `.js` extensions.
-
-## Form layout (`Form` → `Root`)
-
-The customizable `form` foundational component is replaced by a
-platform-agnostic `root` layout slot:
-
-- `Form` export → `Root` export; theme `form.svelte` files → `root.svelte`
-  (layout `<div>`, no form element attributes).
-- `BasicForm` now renders a plain web `<form>` with the `handlers(form)`
-  attachment and `<Root><Content /><SubmitButton /></Root>` inside.
-- `ui:options.form` (`HTMLFormAttributes`) → `ui:options.root`
-  (`HTMLAttributes<HTMLDivElement>`); pass form element attributes
-  (`action`, `method`, `novalidate`, …) directly to `BasicForm` or your
-  own `<form>` element instead.
-- `formAttributes()` helper removed — use `rootAttributes()`.
-- Custom components resolving `"form"` via `getComponent` or overriding it
-  through `ui:components` must be renamed to `"root"`.
+See [Form state](/form/state/) and
+[Programmatic control](/guides/programmatic-control/).
 
 ## Validation replaces submission
 
-- `form.submission` → `form.validation`;
-  `submissionCombinator/DelayedMs/TimeoutMs` →
-  `validationCombinator/DelayedMs/TimeoutMs`.
-- `onSubmit(value, e)` / `onSubmitError(result, e, form)` /
-  `onSubmissionFailure(state, e)` / `onReset(e)` →
-  `onValid(value)` / `onInvalid(result)` / `onValidationProcessError(error)`;
-  `onFieldsValidationFailure` → `onFieldsValidationProcessError`.
-- `form.submit(e)` / `form.reset(e)` removed — use the standalone
-  `validate(form, handlers)` / `reset(form)` functions with the
-  `handlers(form)` form attachment.
-- `AFTER_SUBMITTED` → `AFTER_VALIDATED`;
-  `validate(ctx)` / `validateAsync(ctx, signal)` →
-  `validateFormValue(ctx)` / `validateFormValueAsync(ctx, signal)`.
-- `preventPageReload({ isChanged })` → `preventPageReload(() => boolean)`
-  (getter callback); compare the value snapshot with the initial value
-  to detect unsaved changes.
-- `form.isSubmitted` / `form.isChanged` removed.
+`form.submission` is now `form.validation`, and the `submission*` options are
+`validation*`. The callbacks changed too:
 
-## Focus on first error
+- `onSubmit` / `onSubmitError` / `onSubmissionFailure` → `onValid` / `onInvalid`
+  / `onValidationProcessError`; `onReset` is removed.
+- `onFieldsValidationFailure` → `onFieldsValidationProcessError`.
 
-`createFocusOnFirstError` is curried around the submit event so the
-returned callback fits `validate(form, { onInvalid })`:
+`form.submit(e)` and `form.reset(e)` are removed. Call
+`validate(form, handlers)` and `reset(form)` yourself, or attach
+`handlers(form)` to the `<form>` (as `BasicForm` does) to wire both to the
+form's `onValid` / `onInvalid` options:
 
 ```svelte
-<script lang="ts">
-  import { createForm, setFormContext, validate } from "@sjsf/form";
-  import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+<form novalidate {@attach handlers(form)}>...</form>
+```
 
-  const form = createForm({ ... });
-  setFormContext(form);
-  const focusOnFirstError = createFocusOnFirstError({ form });
-</script>
+For custom submit handling, call `validate(form, { onValid, onInvalid })` from
+`onsubmit`.
 
+`form.isSubmitted` and `form.isChanged` are also removed. Use
+`form.validation.status` (`idle`, `processing`, `success`, or `failed`)
+instead. For unsaved changes, capture a value snapshot when the form is created
+and compare it with the current snapshot; pass the getter to
+`preventPageReload(() => boolean)`.
+
+In v3, `onSubmitError={createFocusOnFirstError()}` focused the first invalid
+field. In v4, bind the form when creating the handler
+(`createFocusOnFirstError({ form })`) and call it with the submit event:
+
+```svelte
 <form
   onsubmit={(e) => {
     e.preventDefault();
     void validate(form, { onInvalid: focusOnFirstError(e) });
   }}
-  novalidate
 >
-  <!-- ... -->
-</form>
 ```
 
-## Etc.
+The `AFTER_SUBMITTED` fields-validation mode flag is now `AFTER_VALIDATED`, and
+the `FIELD_SUBMITTED` field-state flag is removed. The `validate(ctx)` /
+`validateAsync(ctx, signal)` form-state helpers are now
+`validateFormValue(ctx)` / `validateFormValueAsync(ctx, signal)`; call
+`validate(form, handlers)` above to trigger validation.
 
-Feel free to get in touch about migrating to v4 on
+See [Validation](/guides/validation/), [State methods](/form/state/#methods),
+[Prevent page reload](/guides/prevent-page-reload/), and
+[Focus on first error](/guides/validation/#focus-on-first-error).
+
+## Form layout and themes
+
+The customizable `Form` component is now `Root`, a platform-agnostic layout
+slot. Render the actual `<form>` with `BasicForm` or your own element.
+
+- `ui:options.form` → `ui:options.root`; `formAttributes()` →
+  `rootAttributes()`.
+- The `"form"` UI component key and pseudo-element are now `"root"`; rename
+  per-path `ui:components` / `ui:options` overrides and derived IDs keyed on it.
+- Move form element attributes (`action`, `method`, `novalidate`, …) to
+  `BasicForm` or your `<form>`.
+- The `root` component no longer exposes a `ref` binding; bind the `<form>`
+  element through `BasicForm` or your own markup.
+- In a theme, rename `form.svelte` to `root.svelte` and export `root` instead
+  of `form`. Custom themes must also handle the required
+  `checkboxWidget.mustBeChecked` prop (render the marker and set native
+  `required` only when it is `true`) and require `showMeta` in
+  `multiFieldTemplate` / `optionalMultiFieldTemplate`.
+
+daisyUI 5 now uses the Cally date picker for `datePickerWidget`. Replace
+`daisyui5CallyDatePickerWidget` and the `cally-date-picker*` imports with
+`datePickerWidget` and `date-picker*`. Pikaday options and the `pikaday` peer
+dependency are removed. Skeleton 4, shadcn 4, and SVAR should replace
+`skeleton4DateRangePickerWidget`, `shadcn4DateRangePickerWidget`, and
+`svarDateRangePickerWidget` with `dateRangePickerWidget`.
+
+See [Theme](/form/theme/).
+
+## Validators and core helpers
+
+Validators no longer receive the root schema per call: remove the `rootSchema`
+argument from `isValid`, `validateFormValue`, and `validateFormValueAsync`.
+The root schema is bound when the validator is created. Treat form values as
+`ReadonlySchemaValue` and copy them before applying any transformation.
+
+Ajv, schemasafe, ata, and cfworker now compile the root schema when the
+validator is created, so a schema that violates its meta-schema fails during
+form creation instead of at first validation.
+
+Replace `LegacyValidatorOptions` with `validatorRetriever` in the Ajv,
+schemasafe, ata, and Hyperjump validators, and
+`setupFormValidator` / `setupAsyncFormValidator` with `adapt` / `adaptAsync`
+in the Zod and Valibot validators.
+
+Core schema helpers that need form context now take a `CoreContext` (or a
+`FormState`) as their first argument. Build one with
+`createCoreContext({ validator, merger, valueHandler, rootSchema, logger })`.
+Import the helpers from `@sjsf/form/core`, not the main entry point; the
+predicates are now `isSelectSchema`, `isMultiSelectSchema`,
+`isFilesArraySchema`, `isConstantValueSchema`, and `isFixedItemsSchema`.
+
+Replace `FORM_VALIDATOR`, `FORM_MERGER`, and `FORM_SCHEMA` with the `CORE_*`
+symbols from `@sjsf/form/core/internals` (`FORM_SCHEMA` → `CORE_ROOT_SCHEMA`).
+Drop the `expandAllBranches` argument from schema-resolution calls, and remove
+the `validateByRetrievedSchema` option (call `retrieveSchema` in your validator
+extension instead). Rename `Experimental_DefaultFormStateBehavior` to
+`DefaultFormStateBehavior`, `Experimental_ArrayMinItems` to `ArrayMinItems`, and
+the `experimental_defaultFormStateBehavior` parameter to
+`defaultFormStateBehavior`. Change
+`omitExtraData(validator, merger, rootSchema, value)` to
+`omitExtraData(ctx, value)`, and pass the root schema to `createCoreContext`
+instead of relying on `getDefaultFormState`'s schema argument.
+
+See [Validator](/form/validator/) and
+[Core context](/form/schema/#core-context).
+
+## SvelteKit integration
+
+`@sjsf/sveltekit` (the SvelteKit 2 integration) is removed; use
+[`@sjsf/sveltekit3`](/integrations/form-actions/) for SvelteKit 3. With
+`@sjsf/sveltekit3`, `createAction`, `createFormHandler`, and
+`createServerValidator` now require `valueHandler` and `logger`; spreading your
+updated defaults is enough. Update client form options and callbacks to the
+validation API.
+
+See [Form actions](/integrations/form-actions/) and
+[Remote functions](/integrations/remote-functions/).
+
+## Custom components
+
+- Enum options: `FormEnumOption.mappedValue` is required. Create options with
+  `createMappedOption()` from `@sjsf/form/options.svelte`.
+- The default enum mapper is `StringEnumValueMapperBuilder`. Select
+  `IdEnumValueMapperBuilder` through the `enumValueMapperBuilder` UI option for
+  object values or values that do not map to unique strings; `idMapper()` is
+  removed.
+- Add the now-required widget/context fields: `Options.mapper`,
+  `SingleSelectOptions.clearable`, `SingleSelectOptions.mapped`,
+  `MultiSelectOptions.mapped`, and `ArrayContextOptions.setValue`.
+- `Config.value` is now required.
+- Replace `.value` with `.current` from `singleOption()` / `multipleOptions()`,
+  and `hasInitialValue` with `clearable`.
+- Combination fields own their title, description, and action. Put
+  branch-specific options and components in the branch UI schema; parent
+  `ui:options` / `ui:components` apply to the field that renders the shared
+  `properties`.
+- Combination field deep imports moved under `fields/combination`:
+  `@sjsf/form/fields/any-of` → `@sjsf/form/fields/combination/any-of`,
+  `@sjsf/form/fields/one-of` → `@sjsf/form/fields/combination/one-of`, and
+  `@sjsf/form/fields/combination` → `@sjsf/form/fields/combination/combination`.
+- `booleanSelectField` no longer reads `oneOf`; declare an `enum` or use a
+  custom field.
+- Custom ID builders must implement `idPrefixName()`; `resolveIdPrefixName`
+  is removed.
+
+See [Custom components](/guides/custom-components/) and
+[UI options](/form/ui-schema/#ui-options).
+
+## Behavior changes
+
+These changes may pass the type checker but alter runtime behavior:
+
+- A schema with both `oneOf` and `anyOf` now renders from `anyOf` everywhere.
+  Remove one keyword or make the lists agree.
+- `dependencies` and `if`/`then`/`else` branches now drop stale defaults when
+  the selected branch changes. Review forms that depend on the old values.
+- Multi-type schemas now render through `unionField` with a type selector;
+  customize it with the `union` UI schema keyword. A single nullable type and
+  values pinned by `enum` or `const` keep their plain field.
+
+See [Dynamic forms](/guides/dynamic-forms/) and
+[Multiple types](/form/schema/#multiple-types).
+
+## Removed APIs and imports
+
+The [v4 changelog](/changelogs/form/) lists every removed API and its
+replacement. Common removals are `createOptions` → `createFormOptions`,
+`setFormContext2` → `setFormContext`, `UNDEFINED_ID` → `EMPTY_VALUE`, and
+`KeyedArray2` → `KeyedArray`.
+
+Deep imports changed too: `MapLike` moved from `@sjsf/form/lib/memoize` to
+`@sjsf/form/lib/map`.
+
+Run your type checker and tests, then smoke-test value editing, submit, reset,
+dynamic branches, arrays, file uploads, and your SvelteKit actions.
+
+If something is still unclear, ask in
 [GitHub Discussions](https://github.com/x0k/svelte-jsonschema-form/discussions).

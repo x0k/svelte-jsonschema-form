@@ -49,6 +49,7 @@ export interface CoreContext {
   readonly [CORE_MERGER]: Merger;
   readonly [CORE_VALUE_HANDLER]: ValueHandler;
   readonly [CORE_ROOT_SCHEMA]: Schema;
+  readonly [CORE_LOGGER]: Logger;
 }
 
 export interface FormState<T> extends CoreContext {
