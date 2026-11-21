@@ -1295,6 +1295,17 @@ exports[`object fields > additionalProperties 1`] = `
         <!---->
          
         <!---->
+        <button
+          class="small fill"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
+        <!---->
          
         <!---->
         <!---->
@@ -1599,6 +1610,17 @@ exports[`object fields > additionalProperties with error 1`] = `
         
         <!---->
          
+        <!---->
+        <button
+          class="small fill"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
         <!---->
          
         <!---->
@@ -4247,6 +4269,17 @@ exports[`object fields > show add button and fields if additionalProperties is t
         <!---->
          
         <!---->
+        <button
+          class="small fill"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
+        <!---->
          
         <!---->
         <!---->
@@ -4580,6 +4613,17 @@ exports[`object fields > with title and description > additionalProperties 1`] =
         
         <!---->
          
+        <!---->
+        <button
+          class="small fill"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
         <!---->
          
         <!---->
@@ -5257,6 +5301,17 @@ exports[`object fields > with title and description > show add button and fields
         <!---->
          
         <!---->
+        <button
+          class="small fill"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
+        <!---->
          
         <!---->
         <!---->
@@ -5590,6 +5645,17 @@ exports[`object fields > with title and description from both > additionalProper
         
         <!---->
          
+        <!---->
+        <button
+          class="small fill"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
         <!---->
          
         <!---->
@@ -6267,6 +6333,17 @@ exports[`object fields > with title and description from uiSchema > additionalPr
         <!---->
          
         <!---->
+        <button
+          class="small fill"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
+        <!---->
          
         <!---->
         <!---->
@@ -6943,6 +7020,17 @@ exports[`object fields > with title and description from uiSchema > show add but
         <!---->
          
         <!---->
+        <button
+          class="small fill"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
+        <!---->
          
         <!---->
         <!---->
@@ -7164,6 +7252,17 @@ exports[`object fields > with title and description with global label off > addi
         
         <!---->
          
+        <!---->
+        <button
+          class="small fill"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
         <!---->
          
         <!---->
@@ -7603,6 +7702,17 @@ exports[`object fields > with title and description with global label off > show
         
         <!---->
          
+        <!---->
+        <button
+          class="small fill"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
         <!---->
          
         <!---->
