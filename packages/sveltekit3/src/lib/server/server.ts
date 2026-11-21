@@ -10,6 +10,7 @@ import {
   type Creatable,
   type FormValueHandler,
   type FormValueHandlerOptions,
+  type Logger,
   create,
   SJSF_ID_PREFIX,
   type ValidationResult,
@@ -57,6 +58,7 @@ export interface FormHandlerOptions<T, SD extends SendData> extends Omit<
   validator: Creatable<FormValidator<T>, ValidatorFactoryOptions>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
   valueHandler: Creatable<FormValueHandler, FormValueHandlerOptions>;
+  logger: Creatable<Logger, void>;
   createEntryConverter?: Creatable<
     EntryConverter<FormDataEntryValue>,
     FormDataConverterOptions
@@ -87,6 +89,7 @@ export function createFormHandler<T, SD extends SendData>({
   merger: createMerger,
   validator: createValidator,
   valueHandler: createValueHandler,
+  logger: createLogger,
   createEntryConverter = createFormDataEntryConverter,
   convertUnknownEntry,
   propertySeparator = DEFAULT_PROPERTY_SEPARATOR,
@@ -99,6 +102,7 @@ export function createFormHandler<T, SD extends SendData>({
     createOptionIndexDecoder(pseudoSeparator)
   ),
 }: FormHandlerOptions<T, SD>) {
+  const logger = create(createLogger, undefined);
   const valueHandler = create(createValueHandler, {
     schema,
     uiSchema,
@@ -110,6 +114,7 @@ export function createFormHandler<T, SD extends SendData>({
     uiOptionsRegistry,
     merger: () => merger,
     valueHandler,
+    logger,
   });
   const merger: FormMerger = create(createMerger, {
     schema,
@@ -117,12 +122,14 @@ export function createFormHandler<T, SD extends SendData>({
     validator,
     uiOptionsRegistry,
     valueHandler,
+    logger,
   });
   const ctx = createCoreContext({
     validator,
     merger,
     valueHandler,
     rootSchema: schema,
+    logger,
   });
   const convertEntry = create(createEntryConverter, {
     ctx,

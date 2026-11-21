@@ -39,6 +39,7 @@ export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handle
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormValidator as validator } from "@sjsf/ajv8-validator";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+export { createLogger as logger } from "@sjsf/form/loggers/once";
 ```
 
 Add side-effect `include` imports for extra fields/widgets you use

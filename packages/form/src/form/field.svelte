@@ -5,6 +5,8 @@
   import {
     getSchemaDefinitionByPath,
     isSchemaObjectValue,
+    logError,
+    logWarn,
     retrieveSchema,
   } from "#core/index.js";
   import { CORE_ROOT_SCHEMA } from "#core/internals.js";
@@ -63,7 +65,7 @@
   if (DEV) {
     $effect(() => {
       if (providedPath.length === 0 && render === undefined) {
-        console.warn('Use `<Content />` instead of `<Field name="" />`');
+        logWarn(form, "Use `<Content />` instead of `<Field path={[]} />`");
       }
     });
   }
@@ -91,7 +93,8 @@
       node = node[path[i]];
     }
     if (i !== lastIndex) {
-      console.error(
+      logError(
+        form,
         "Current form state",
         $state.snapshot(form[FORM_VALUE].get())
       );

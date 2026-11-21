@@ -1,5 +1,6 @@
 import { tick } from "svelte";
 
+import { logWarn } from "./core/index.js";
 import {
   type Id,
   type FormState,
@@ -68,7 +69,7 @@ export function createFocusOnFirstError<T>(
       }
       const form = e.target;
       if (!(form instanceof HTMLElement)) {
-        console.warn("Expected form to be an HTMLElement, got", form);
+        logWarn(options.form, "Expected form to be an HTMLElement, got", form);
         return false;
       }
       const { path } = errors[0]!;

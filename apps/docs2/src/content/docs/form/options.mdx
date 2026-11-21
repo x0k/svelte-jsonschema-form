@@ -30,6 +30,7 @@ export interface IdBuilderFactoryOptions {
   validator: Validator;
   merger: FormMerger;
   valueHandler: ValueHandler;
+  logger: Logger;
   valueRef: Ref<FormValue>;
 }
 
@@ -45,6 +46,7 @@ export interface ValidatorFactoryOptions {
    * The value handler, for validators that need a core context.
    */
   valueHandler: ValueHandler;
+  logger: Logger;
 }
 
 export interface MergerFactoryOptions {
@@ -53,6 +55,7 @@ export interface MergerFactoryOptions {
   uiSchema: UiSchemaRoot;
   uiOptionsRegistry: UiOptionsRegistry;
   valueHandler: ValueHandler;
+  logger: Logger;
 }
 
 export interface FormValueHandlerOptions {
@@ -60,6 +63,8 @@ export interface FormValueHandlerOptions {
   uiSchema: UiSchemaRoot;
   uiOptionsRegistry: UiOptionsRegistry;
 }
+
+export interface LoggerFactoryOptions extends FormValueHandlerOptions {}
 
 export type Creatable<Result, Options> =
   ((options: Options) => Result) | (() => Result) | Result;
@@ -77,6 +82,17 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
    * updates.
    */
   valueHandler: Creatable<FormValueHandler, FormValueHandlerOptions>;
+  /**
+   * Receives warnings and errors raised while resolving the schema, rendering
+   * fields, and validating data.
+   *
+   * Pass a logger, or a factory that creates one for this form. The factory
+   * receives the form's schema, UI schema and UI options registry. Pass the
+   * factory (such as `createLogger` from `@sjsf/form/loggers/once`) when the
+   * logger keeps per-form state, such as the record of messages it has already
+   * reported.
+   */
+  logger: Creatable<Logger, LoggerFactoryOptions>;
   /**
    * @default DEFAULT_ID_PREFIX
    */
@@ -160,3 +176,6 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
   schedulerYield?: SchedulerYield;
 }
 ```
+
+See [Logger](/form/logger/) for the built-in implementations and the per-form
+factory pattern.

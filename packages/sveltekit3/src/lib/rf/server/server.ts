@@ -12,6 +12,7 @@ import {
   type ValidatorFactoryOptions,
   type FormValueHandler,
   type FormValueHandlerOptions,
+  type Logger,
 } from "@sjsf/form";
 import { isRecord } from "@sjsf/form/lib/object";
 import type { MaybePromise } from "@sjsf/form/lib/types";
@@ -37,6 +38,7 @@ export interface SvelteKitFormValidatorOptions<T> {
   validator: Creatable<FormValidator<T>, ValidatorFactoryOptions>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
   valueHandler: Creatable<FormValueHandler, FormValueHandlerOptions>;
+  logger: Creatable<Logger, void>;
   uiSchema?: UiSchemaRoot;
   uiOptionsRegistry?: UiOptionsRegistry;
   createEntryConverter?: Creatable<
@@ -97,6 +99,7 @@ export function createServerValidator<T>({
   merger: createMerger,
   validator: createValidator,
   valueHandler: createValueHandler,
+  logger: createLogger,
   uiOptionsRegistry = {},
   createEntryConverter = createFormDataEntryConverter,
   convertUnknownEntry,
@@ -110,6 +113,7 @@ export function createServerValidator<T>({
     input: unknown
   ) => MaybePromise<StandardSchemaV1.Result<ValidationResult<T>>>;
 } {
+  const logger = create(createLogger, undefined);
   const t = createTranslate(serverTranslation);
   const values = create(createValueHandler, {
     schema,
@@ -122,6 +126,7 @@ export function createServerValidator<T>({
     uiOptionsRegistry,
     merger: () => merger,
     valueHandler: values,
+    logger,
   });
   const merger: FormMerger = create(createMerger, {
     schema: schema,
@@ -129,6 +134,7 @@ export function createServerValidator<T>({
     validator,
     uiOptionsRegistry,
     valueHandler: values,
+    logger,
   });
   const parseSvelteKitData = createSvelteKitDataParser({
     schema,
@@ -136,6 +142,7 @@ export function createServerValidator<T>({
     merger,
     validator,
     valueHandler: values,
+    logger,
     convertUnknownEntry,
     createEntryConverter,
     pseudoPrefix,

@@ -13,6 +13,8 @@ import type {
   Translation,
   ValidatorFactoryOptions,
   FormValueHandler,
+  Logger,
+  LoggerFactoryOptions,
 } from "@sjsf/form";
 import type {
   AbstractPackage,
@@ -31,6 +33,7 @@ interface Defaults {
   validator: <T>(options: ValidatorFactoryOptions) => FormValidator<T>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
   valueHandler: FormValueHandler;
+  logger: Creatable<Logger, LoggerFactoryOptions>;
   translation: Translation;
   icons: Icons | undefined;
   extraUiOptions: ExtraUiOptions;

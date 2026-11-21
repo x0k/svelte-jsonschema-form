@@ -1,10 +1,15 @@
 import { createFormValidator } from "@sjsf/ajv8-validator";
-import { DEFAULT_ID_PREFIX, type FieldPath } from "@sjsf/form";
+import { DEFAULT_ID_PREFIX, type FieldPath, type Logger } from "@sjsf/form";
 import { createFormMerger } from "@sjsf/form/mergers/modern";
 import { defaultFormValueHandler } from "@sjsf/form/value-handlers/default";
 import { describe, expect, it } from "vitest";
 
 import { createFormIdBuilder, createOptionIndexDecoder } from "./id-builder.js";
+
+const testLogger: Logger = {
+  warn() {},
+  error() {},
+};
 
 const p = (...segments: (string | number)[]) =>
   segments as unknown as FieldPath;
@@ -22,17 +27,19 @@ function builder({
   isPrivate?: (path: FieldPath) => boolean;
   fieldSuffix?: string;
 }) {
-  const validator = createFormValidator({ schema });
+  const validator = createFormValidator({ schema, logger: testLogger });
   const merger = createFormMerger({
     validator,
     schema,
     valueHandler: defaultFormValueHandler,
+    logger: testLogger,
   });
   return createFormIdBuilder({
     schema,
     validator,
     merger,
     valueHandler: defaultFormValueHandler,
+    logger: testLogger,
     idPrefix,
     valueRef: { current: value },
     isPrivate,

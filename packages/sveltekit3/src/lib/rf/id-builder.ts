@@ -6,6 +6,7 @@ import {
   type FormIdBuilder,
   type FormMerger,
   type FormValue,
+  type Logger,
   type Schema,
   type Validator,
 } from "@sjsf/form";
@@ -27,6 +28,7 @@ export interface FormIdBuilderOptions {
   validator: Validator;
   merger: FormMerger;
   valueHandler: ValueHandler;
+  logger: Logger;
   idPrefix: string;
   pseudoPrefix?: string;
   valueRef: Ref<FormValue>;
@@ -48,6 +50,7 @@ export function createFormIdBuilder({
   validator,
   merger,
   valueHandler,
+  logger,
   valueRef,
   pseudoPrefix = DEFAULT_PSEUDO_PREFIX,
   isPrivate = () => false,
@@ -58,6 +61,7 @@ export function createFormIdBuilder({
     merger,
     valueHandler,
     rootSchema,
+    logger,
   });
   const parts: string[] = [];
   const encodedIdPrefix = encode(idPrefix);

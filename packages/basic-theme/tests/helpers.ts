@@ -3,10 +3,11 @@ import {
   BasicForm,
   createForm,
   getValueSnapshot,
+  DEFAULT_ID_PREFIX,
   type FormOptions,
 } from "@sjsf/form";
-import { DEFAULT_ID_PREFIX } from "@sjsf/form";
 import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
+import { logger } from "@sjsf/form/loggers/noop";
 import { createFormMerger } from "@sjsf/form/mergers/modern";
 import { resolver } from "@sjsf/form/resolvers/basic";
 import "@sjsf/form/fields/extra/enum-include";
@@ -31,6 +32,7 @@ const defaults = {
   validator: createFormValidator,
   merger: createFormMerger,
   valueHandler: defaultFormValueHandler,
+  logger,
   idBuilder: createFormIdBuilder({ idPrefix: DEFAULT_ID_PREFIX }),
 };
 

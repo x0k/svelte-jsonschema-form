@@ -13,7 +13,7 @@ This skill guides integrating `svelte-jsonschema-form` with SvelteKit using `@sj
 pnpm add @sjsf/sveltekit3
 ```
 
-Ensure your `src/lib/sjsf/defaults.ts` is configured with a validator, theme, and merger.
+Ensure your `src/lib/sjsf/defaults.ts` is configured with a validator, theme, merger, and logger.
 Use the ID builder from the integration package (`@sjsf/sveltekit3`),
 not `@sjsf/form/id-builders/modern`.
 

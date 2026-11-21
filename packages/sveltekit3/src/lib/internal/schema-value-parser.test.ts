@@ -8,6 +8,7 @@ import {
 } from "@sjsf/form";
 import {
   createCoreContext,
+  type Logger,
   type ValueHandler,
   type Merger,
 } from "@sjsf/form/core";
@@ -30,6 +31,11 @@ import {
   type SchemaValueParserOptions,
 } from "./schema-value-parser.js";
 
+const testLogger: Logger = {
+  warn() {},
+  error() {},
+};
+
 const opts = ({
   schema = {},
   entries = [],
@@ -38,7 +44,7 @@ const opts = ({
   idSeparator = ".",
   idIndexSeparator = "@",
   idPseudoSeparator = "::",
-  validator = createFormValidator({ schema }),
+  validator = createFormValidator({ schema, logger: testLogger }),
   merger = createMerger(),
   valueHandler = defaultFormValueHandler,
   codec = createCodec({
@@ -56,6 +62,7 @@ const opts = ({
     merger,
     valueHandler,
     rootSchema: schema,
+    logger: testLogger,
   });
   return {
     ctx,

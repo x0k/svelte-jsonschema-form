@@ -1,5 +1,10 @@
 import { createFormValidator } from "@sjsf/ajv8-validator";
-import { createCoreContext, type RPath, type Schema } from "@sjsf/form/core";
+import {
+  createCoreContext,
+  type Logger,
+  type RPath,
+  type Schema,
+} from "@sjsf/form/core";
 import { createMerger } from "@sjsf/form/mergers/modern";
 import { defaultFormValueHandler } from "@sjsf/form/value-handlers/default";
 import { beforeEach, describe, expect, it } from "vitest";
@@ -14,11 +19,17 @@ import {
   type FormDataConverterOptions,
 } from "./convert-form-data-entry.js";
 
+const testLogger: Logger = {
+  warn() {},
+  error() {},
+};
+
 const ctx = createCoreContext({
-  validator: createFormValidator({ schema: {} }),
+  validator: createFormValidator({ schema: {}, logger: testLogger }),
   merger: createMerger(),
   valueHandler: defaultFormValueHandler,
   rootSchema: {},
+  logger: testLogger,
 });
 
 const defaultOptions: FormDataConverterOptions = {

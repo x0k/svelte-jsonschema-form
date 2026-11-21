@@ -3,6 +3,7 @@ export type {
   Schema,
   SchemaValue,
   Validator,
+  Logger,
   RPath,
   Path,
 } from "#core/index.js";

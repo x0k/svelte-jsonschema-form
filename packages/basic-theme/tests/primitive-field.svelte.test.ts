@@ -448,7 +448,10 @@ describe("primitive field contracts", () => {
     ];
     // An empty `anyOf` is rejected by the JSON Schema meta-schema, so skip the
     // real validator and render the field on its own.
-    const validator = { isValid: () => true };
+    const validator = {
+      isValid: () => true,
+      validateFormValue: () => ({ value: undefined }),
+    };
 
     test("renders a populated oneOf when anyOf is empty", async () => {
       const { form } = await renderFieldForm({

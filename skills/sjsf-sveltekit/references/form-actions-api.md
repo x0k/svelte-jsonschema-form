@@ -18,6 +18,7 @@ export const actions = {
 - `sendData` (`boolean | "withoutClientSideUpdate"`): When `true`, returns validated form data back in the action result.
 - `merger`: SJSF merger factory.
 - `valueHandler`: SJSF value handler factory (value comparison and copying).
+- `logger`: SJSF logger factory (e.g. `createLogger` from `defaults.ts`). Receives schema-resolution warnings and validator failures.
 - `uiSchema` / `uiOptionsRegistry`: Optional UI schema passthrough.
 - ID separators (`propertySeparator`, `indexSeparator`, `pseudoSeparator`, `escapeCharacter`) and entry conversion (`createEntryConverter`, `convertUnknownEntry`, `enumItemDecoder`, `createReviver`). No `idBuilder` option.
 

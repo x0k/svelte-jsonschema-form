@@ -80,6 +80,7 @@ export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -229,6 +230,7 @@ export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -382,6 +384,7 @@ export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -610,6 +613,7 @@ export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -760,6 +764,7 @@ export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -916,6 +921,7 @@ export { resolver } from "@sjsf/form/resolvers/basic";
 
 export { translation } from "@sjsf/form/translations/en";
 export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
+export { createLogger as logger } from "@sjsf/form/loggers/once";
 
 export function merger(options: FormMergerOptions) {
 	return createFormMerger({
@@ -1076,6 +1082,7 @@ export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -1226,6 +1233,7 @@ export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -1378,6 +1386,7 @@ export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -1540,6 +1549,7 @@ export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -1723,6 +1733,7 @@ export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -1879,6 +1890,7 @@ export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -2249,6 +2261,7 @@ export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -2595,6 +2608,7 @@ export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -2761,6 +2775,7 @@ export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -2927,6 +2942,7 @@ export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -3112,6 +3128,7 @@ export { resolver } from "@sjsf/form/resolvers/basic";
 
 export { translation } from "@sjsf/form/translations/en";
 export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
+export { createLogger as logger } from "@sjsf/form/loggers/once";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -3291,6 +3308,7 @@ export { resolver } from "@sjsf/form/resolvers/basic";
 
 export { translation } from "@sjsf/form/translations/en";
 export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
+export { createLogger as logger } from "@sjsf/form/loggers/once";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -3444,6 +3462,7 @@ export { resolver } from "@sjsf/form/resolvers/basic";
 
 export { translation } from "@sjsf/form/translations/en";
 export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
+export { createLogger as logger } from "@sjsf/form/loggers/once";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -3589,6 +3608,7 @@ export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -3736,6 +3756,7 @@ export { resolver } from "@sjsf/form/resolvers/basic";
 
 export { translation } from "@sjsf/form/translations/en";
 export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
+export { createLogger as logger } from "@sjsf/form/loggers/once";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
@@ -3961,6 +3982,7 @@ export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -4107,6 +4129,7 @@ export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -4352,6 +4375,7 @@ export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -4502,6 +4526,7 @@ export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -4746,6 +4771,7 @@ export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -4896,6 +4922,7 @@ export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -5035,6 +5062,7 @@ export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -5172,6 +5200,7 @@ export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -5323,6 +5352,7 @@ export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -5537,6 +5567,7 @@ export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -5683,6 +5714,7 @@ export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 

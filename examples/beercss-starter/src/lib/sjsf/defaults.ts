@@ -6,6 +6,7 @@ export { theme } from "@sjsf-lab/beercss-theme";
 export { translation } from "@sjsf/form/translations/en";
 
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
+export { createLogger as logger } from "@sjsf/form/loggers/once";
 
 export { createFormValidator as validator } from "@sjsf/ajv8-validator";
 

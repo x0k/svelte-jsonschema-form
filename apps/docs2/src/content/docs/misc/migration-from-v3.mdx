@@ -114,6 +114,33 @@ extends `ValueHandler`. Custom mergers no longer implement or forward
 arguments, so it can compare values returned by `getValue`. A custom comparison
 must not mutate its arguments.
 
+## Logger
+
+`createForm` now requires a `logger` service. It receives schema-resolution
+warnings, `<Field>` development diagnostics, and validator failures. Re-export
+the recommended logger from your defaults:
+
+```typescript
+export { createLogger as logger } from "@sjsf/form/loggers/once";
+```
+
+Pass the factory to `createForm` so each form keeps its own record of the
+messages it has already reported:
+
+```typescript
+import { createForm } from "@sjsf/form";
+import { createLogger } from "@sjsf/form/loggers/once";
+
+const form = createForm({
+  // ...
+  logger: createLogger,
+});
+```
+
+Use `logger` from `@sjsf/form/loggers/noop` to silence output. The validator,
+merger, id builder, and `createCoreContext` now require the logger instance;
+`createForm` passes it to them automatically when you use the factory above.
+
 ## Schema resolution internals
 
 The unused `expandAllBranches` parameter was removed from the schema-resolution
@@ -121,7 +148,8 @@ functions in `@sjsf/form/core`. Drop the argument from any direct calls.
 
 Core schema helpers now take a shared `CoreContext` as their first argument
 instead of `validator`, `merger`, `rootSchema`, and value-comparison arguments.
-Build one with `createCoreContext({ validator, merger, valueHandler, rootSchema })`:
+Build one with
+`createCoreContext({ validator, merger, valueHandler, rootSchema, logger })`:
 
 ```typescript
 // Before
@@ -135,6 +163,7 @@ const ctx = createCoreContext({
   merger,
   valueHandler,
   rootSchema,
+  logger,
 });
 retrieveSchema(ctx, schema, formData);
 ```

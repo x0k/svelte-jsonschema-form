@@ -6,6 +6,7 @@ import {
   ON_INPUT,
   ON_OBJECT_CHANGE,
   type FormValidator,
+  type Logger,
   type Schema,
   type UiSchema,
 } from "@sjsf/form";
@@ -26,6 +27,7 @@ export interface ValidatorFactoryOptions {
   uiSchema?: UiSchema;
   merger: () => Merger;
   valueHandler: ValueHandler;
+  logger: Logger;
 }
 
 export type CreatableValidator = <T>(

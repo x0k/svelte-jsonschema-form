@@ -17,6 +17,7 @@ import type { ValidatorFactoryOptions } from "@sjsf/form";
 import addFormats from "ajv-formats";
 
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
+export { createLogger as logger } from "@sjsf/form/loggers/once";
 
 export { translation } from "@sjsf/form/translations/en";
 

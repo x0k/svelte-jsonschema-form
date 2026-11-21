@@ -10,6 +10,7 @@ import {
 import {
   formCoreSubpath,
   formIdBuilderSubPath,
+  formLoggerSubPath,
   formMergerSubPath,
   formPackage,
   formResolverSubPath,
@@ -230,6 +231,11 @@ export function resolver(ctx) {`
       name: "valueHandler",
       imported: "defaultFormValueHandler",
       source: formValueHandlerSubPath,
+    });
+    createReExport(ast, {
+      name: "logger",
+      imported: "createLogger",
+      source: formLoggerSubPath,
     });
     if (!isRecordEmpty(merger)) {
       jsApi.imports.addNamed(ast, {

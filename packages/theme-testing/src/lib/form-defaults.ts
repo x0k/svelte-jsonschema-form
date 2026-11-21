@@ -9,4 +9,5 @@ import "@sjsf/form/templates/extra/optional-array-include";
 import "@sjsf/form/templates/extra/optional-multi-field-include";
 export { createFormValidator as validator } from "@sjsf/ajv8-validator";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
+export { createLogger as logger } from "@sjsf/form/loggers/once";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";

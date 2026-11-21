@@ -23,6 +23,7 @@ export function withOmitExtraData<V extends FormValidator<any>>(
         merger: options.merger(),
         valueHandler: options.valueHandler,
         rootSchema: options.schema,
+        logger: options.logger,
       });
     if (isAsyncFormValueValidator(v)) {
       return {

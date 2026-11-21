@@ -9,3 +9,4 @@ export const CORE_VALIDATOR = Symbol("core-validator");
 export const CORE_MERGER = Symbol("core-merger");
 export const CORE_VALUE_HANDLER = Symbol("core-value-handler");
 export const CORE_ROOT_SCHEMA = Symbol("core-root-schema");
+export const CORE_LOGGER = Symbol("core-logger");

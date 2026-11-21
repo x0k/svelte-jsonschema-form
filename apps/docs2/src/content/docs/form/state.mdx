@@ -99,7 +99,7 @@ helpers read them through the free functions
 `mergeAllOf(ctx, schema)`, `isValueDeepEqual(ctx, a, b)`,
 `resolveRef(ctx, ref)`, and `getRootSchema(ctx)`.
 
-Call `createCoreContext({ validator, merger, valueHandler, rootSchema })` to build a standalone
+Call `createCoreContext({ validator, merger, valueHandler, rootSchema, logger })` to build a standalone
 context for a core helper when you do not have a `FormState`. Every core helper
 that needs these dependencies takes the context as its first argument, for
 example `retrieveSchema(ctx, schema, formData)` or

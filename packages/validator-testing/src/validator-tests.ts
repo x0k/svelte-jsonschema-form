@@ -11,6 +11,7 @@ import {
   type FormIdBuilder,
   type FormValue,
   type FormValueValidator,
+  type Logger,
   type Schema,
   type UiOptionsRegistry,
   type UiSchemaRoot,
@@ -33,6 +34,11 @@ import {
 } from "@sjsf/form/validators/precompile";
 import { defaultFormValueHandler } from "@sjsf/form/value-handlers/default";
 import { expect, it, describe } from "vitest";
+
+const testLogger: Logger = {
+  warn() {},
+  error() {},
+};
 
 const fieldsValidationMode =
   ON_INPUT | ON_CHANGE | ON_BLUR | ON_ARRAY_CHANGE | ON_OBJECT_CHANGE;
@@ -74,6 +80,7 @@ function createInitializer<V extends Validator>(
       idBuilder,
       merger: () => merger,
       valueHandler: defaultFormValueHandler,
+      logger: testLogger,
       schema,
       uiOptionsRegistry,
       uiSchema,
@@ -83,6 +90,7 @@ function createInitializer<V extends Validator>(
       schema,
       validator,
       valueHandler: defaultFormValueHandler,
+      logger: testLogger,
     });
     return {
       validator,
@@ -237,6 +245,7 @@ export function validatorTests(
             merger,
             valueHandler: defaultFormValueHandler,
             rootSchema: schema,
+            logger: testLogger,
           }),
           { kind: "cat" },
           options
@@ -267,6 +276,7 @@ export function validatorTests(
             merger,
             valueHandler: defaultFormValueHandler,
             rootSchema: schema,
+            logger: testLogger,
           }),
           undefined,
           schema.oneOf as Schema[]
@@ -302,6 +312,7 @@ export function validatorTests(
             merger,
             valueHandler: defaultFormValueHandler,
             rootSchema: schema,
+            logger: testLogger,
           }),
           { y: "hello" },
           schema.oneOf as Schema[]
@@ -340,6 +351,7 @@ export function validatorTests(
             merger,
             valueHandler: defaultFormValueHandler,
             rootSchema: schema,
+            logger: testLogger,
           }),
           { kind: "x", count: 3, label: "foo" },
           schema.oneOf as Schema[]
@@ -372,6 +384,7 @@ export function validatorTests(
             merger,
             valueHandler: defaultFormValueHandler,
             rootSchema: schema,
+            logger: testLogger,
           }),
           {},
           schema.oneOf as Schema[],
@@ -411,6 +424,7 @@ export function validatorTests(
             merger,
             valueHandler: defaultFormValueHandler,
             rootSchema: schema,
+            logger: testLogger,
           }),
           { kind: "rect", width: 100 },
           schema.oneOf as Schema[],
@@ -465,6 +479,7 @@ export function validatorTests(
             merger,
             valueHandler: defaultFormValueHandler,
             rootSchema: schema,
+            logger: testLogger,
           }),
           value
         );
@@ -505,6 +520,7 @@ export function validatorTests(
             merger,
             valueHandler: defaultFormValueHandler,
             rootSchema: schema,
+            logger: testLogger,
           }),
           {
             kind: "a",
@@ -539,6 +555,7 @@ export function validatorTests(
             merger,
             valueHandler: defaultFormValueHandler,
             rootSchema: schema,
+            logger: testLogger,
           }),
           {}
         );
@@ -567,6 +584,7 @@ export function validatorTests(
             merger,
             valueHandler: defaultFormValueHandler,
             rootSchema: schema,
+            logger: testLogger,
           }),
           {
             kind: "a",
@@ -619,6 +637,7 @@ export function validatorTests(
             merger,
             valueHandler: defaultFormValueHandler,
             rootSchema: schema,
+            logger: testLogger,
           }),
           {
             kind: "b",

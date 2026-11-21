@@ -1,10 +1,13 @@
 ---
 "@sjsf/form": major
+"@sjsf/ajv8-validator": major
+"@sjsf/schemasafe-validator": major
+"@sjsf/sveltekit3": major
 ---
 
-Add a shared `CoreContext` to `@sjsf/form/core`. Helpers that need a validator,
-merger, value handler, or root schema take it as their first argument instead of
-separate arguments:
+Add a shared `CoreContext` to `@sjsf/form/core` and a required, form-scoped
+`logger`. Helpers that need a validator, merger, value handler, root schema, or
+logger take the context first, and a `FormState` can be used as one:
 
 ```ts
 const ctx = createCoreContext({
@@ -12,31 +15,24 @@ const ctx = createCoreContext({
   merger,
   valueHandler,
   rootSchema,
+  logger,
 });
 retrieveSchema(ctx, schema, formData);
 ```
 
-`FormState` extends `CoreContext`, so a form can be used where a context is
-expected. The context operations are also available as free functions taking
-the context first: `isValid`, `mergeSchemas`, `mergeAllOf`,
-`isValueDeepEqual`, `resolveRef`, and `getRootSchema`.
+The logger receives schema-resolution warnings, `<Field>` development
+diagnostics, and validator failures, so repeated messages are reported once per
+form. Use `createLogger` from `@sjsf/form/loggers/once`, or the silent `logger`
+from `@sjsf/form/loggers/noop`; pass the factory to `createForm`.
 
-Helpers that only read form data accept `ReadonlySchemaValue`, an alias of
-`DeepReadonly<SchemaValue>`, so a live value from `getValue` can be passed to
-`retrieveSchema`, `getClosestMatchingOption`, `isValid`, and
-`isValueDeepEqual`. `DeepPartial` and `DeepReadonly` keep class instances such
-as `File` intact instead of mapping their members.
+Breaking changes:
 
 - `omitExtraData(validator, merger, schema, value)` → `omitExtraData(ctx, value)`
-- `defaultFormStateBehavior.arrayMinItems.computeSkipPopulate`
-  receives `(ctx, schema)`; use `isValid(ctx, schema, value)` inside it
-- `getDefaultFormState` no longer falls back to its `schema` argument as the
-  root schema, and the `rootSchema` defaults-computation option was removed;
-  pass the intended root schema to `createCoreContext`
-
-The context stores its dependencies under symbols that are not exported from
-`@sjsf/form/core`. Import `CORE_VALIDATOR`, `CORE_MERGER`, `CORE_VALUE_HANDLER`,
-and `CORE_ROOT_SCHEMA` from `@sjsf/form/core/internals` when you build or
-inspect a context directly. `FORM_VALIDATOR`, `FORM_MERGER`, and `FORM_SCHEMA`
-are no longer exported from `@sjsf/form/internals`; they were aliases of those
-symbols.
+- `getDefaultFormState` no longer uses its `schema` argument as the root schema;
+  pass the root schema to `createCoreContext`
+- `defaultFormStateBehavior.arrayMinItems.computeSkipPopulate` receives
+  `(ctx, schema)`
+- The validator and merger factories, `createCoreContext`, and the
+  `@sjsf/sveltekit3` server helpers now take a logger
+- Context dependencies moved to `@sjsf/form/core/internals` under `CORE_*`
+  symbols; the `FORM_VALIDATOR`/`FORM_MERGER`/`FORM_SCHEMA` aliases are gone

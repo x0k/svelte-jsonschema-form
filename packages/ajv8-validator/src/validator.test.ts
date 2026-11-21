@@ -1,4 +1,5 @@
 import type { Schema } from "@sjsf/form";
+import { logger } from "@sjsf/form/loggers/noop";
 import { Ajv } from "ajv";
 import { validatorTests, formValueValidatorTests } from "validator-testing";
 import { describe, it, expect } from "vitest";
@@ -25,7 +26,7 @@ describe("AJV schema cache eviction after compilation error", () => {
   it("repeated isValid calls throw consistently for a schema with $id and invalid anyOf", () => {
     const ajv = new Ajv(DEFAULT_AJV_CONFIG);
     const invalidSchema = { $id: "test-caching-isvalid", anyOf: [] } as Schema;
-    const validator = createFormValidator({ ajv, schema: {} });
+    const validator = createFormValidator({ ajv, schema: {}, logger });
 
     expect(() => validator.isValid(invalidSchema, undefined)).toThrow();
     expect(() => validator.isValid(invalidSchema, undefined)).toThrow();
@@ -37,7 +38,7 @@ describe("AJV schema cache eviction after compilation error", () => {
       type: "object" as const,
       properties: { foo: { type: "string" as const, anyOf: [] } },
     };
-    const validator = createFormValidator({ ajv, schema: {} });
+    const validator = createFormValidator({ ajv, schema: {}, logger });
 
     expect(() => validator.isValid(invalidSchema, undefined)).toThrow();
     expect(() => validator.isValid(invalidSchema, undefined)).toThrow();

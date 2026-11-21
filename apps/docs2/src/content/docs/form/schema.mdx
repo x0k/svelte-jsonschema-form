@@ -71,7 +71,13 @@ The core entry point exports two helpers for local `$ref` values:
 ```typescript
 import { createCoreContext, resolveRef, resolveRefSafe } from "@sjsf/form/core";
 
-const ctx = createCoreContext({ validator, merger, valueHandler, rootSchema });
+const ctx = createCoreContext({
+  validator,
+  merger,
+  valueHandler,
+  rootSchema,
+  logger,
+});
 
 const schema = resolveRef(ctx, "#/definitions/address");
 const maybeSchema = resolveRefSafe("#/definitions/address", rootSchema);
@@ -100,6 +106,7 @@ const ctx = createCoreContext({
   merger,
   valueHandler,
   rootSchema: schema,
+  logger,
 });
 
 const retrieved = retrieveSchema(ctx, schema, formData);

@@ -2,16 +2,7 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import {
-  describe,
-  it,
-  test,
-  expect,
-  afterAll,
-  beforeAll,
-  vi,
-  type MockInstance,
-} from "vitest";
+import { beforeAll, describe, expect, it, test } from "vitest";
 
 import {
   AdditionalItemsHandling,
@@ -27,7 +18,13 @@ import {
 } from "./default-state.js";
 import { RECURSIVE_REF, RECURSIVE_REF_ALLOF } from "./fixtures/test-data.js";
 import { REF_FLAG, type Schema, type SchemaValue } from "./schema.js";
-import { createMerger, createTestContext, createValidator } from "./testing.js";
+import {
+  createMerger,
+  createTestContext,
+  createTestLogger,
+  createValidator,
+  type TestLogMessage,
+} from "./testing.js";
 
 const defaults = {
   isSchemaRoot: true,
@@ -43,14 +40,6 @@ const defaults = {
 };
 
 describe("getDefaultFormState()", () => {
-  let consoleWarnSpy: MockInstance<typeof console.warn>;
-  beforeAll(() => {
-    consoleWarnSpy = vi.spyOn(console, "warn").mockImplementation(() => {}); // mock this to avoid actually warning in the tests
-  });
-  afterAll(() => {
-    consoleWarnSpy.mockRestore();
-  });
-
   test("ignores inherited raw form data properties", () => {
     const schema: Schema = {
       type: "object",
@@ -10610,12 +10599,15 @@ describe("getDefaultFormState()", () => {
           },
         },
       };
+      const messages: TestLogMessage[] = [];
+      const logger = createTestLogger({ messages });
       expect(
         getDefaultFormState(
           createTestContext({
             validator: testValidator,
             merger: defaultMerger,
             rootSchema: schema,
+            logger,
           }),
           schema,
           [
@@ -10643,8 +10635,12 @@ describe("getDefaultFormState()", () => {
           },
         },
       ]);
-      expect(consoleWarnSpy).toHaveBeenCalledWith(
-        "ignoring oneOf in dependencies because there isn't exactly one subschema that is valid"
+      expect(messages).toContainEqual(
+        expect.objectContaining({
+          level: "warn",
+          message:
+            'ignoring oneOf in dependencies because there isn\'t exactly one subschema that is valid for "name"',
+        })
       );
     });
     it("should populate defaults for nested oneOf + dependencies", () => {

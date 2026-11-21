@@ -25,6 +25,7 @@
     ...defaults,
     validator: createFormValidator({
       schema,
+      logger: defaults.logger(),
       ajvOptions: { ...DEFAULT_AJV_CONFIG, messages: false },
       ajvPlugins: (ajv) => addFormats(addFormComponents(ajv)),
       localize: (errors) => {

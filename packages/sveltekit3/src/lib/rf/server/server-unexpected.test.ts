@@ -1,8 +1,13 @@
 import { createFormValidator } from "@sjsf/ajv8-validator";
-import type { Schema } from "@sjsf/form";
+import type { Logger, Schema } from "@sjsf/form";
 import { createFormMerger } from "@sjsf/form/mergers/modern";
 import { defaultFormValueHandler } from "@sjsf/form/value-handlers/default";
 import { describe, expect, it, vi } from "vitest";
+
+const testLogger: Logger = {
+  warn() {},
+  error() {},
+};
 
 vi.mock("$app/server", () => ({
   getRequestEvent: () => {
@@ -28,6 +33,7 @@ describe("createServerValidator without a request", () => {
       validator: createFormValidator,
       merger: createFormMerger,
       valueHandler: defaultFormValueHandler,
+      logger: testLogger,
     });
     const result = await v.validate({ firstName: "John" });
     expect(result.issues).toBeDefined();

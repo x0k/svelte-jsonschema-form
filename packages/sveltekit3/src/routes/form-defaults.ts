@@ -9,6 +9,7 @@ import "@sjsf/form/fields/extra/file-include";
 export { translation } from "@sjsf/form/translations/en";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormValidator as validator } from "@sjsf/ajv8-validator";
+export { createLogger as logger } from "@sjsf/form/loggers/once";
 export { theme } from "@sjsf/basic-theme";
 import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 import "@sjsf/basic-theme/extra-widgets/radio-include";

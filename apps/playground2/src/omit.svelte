@@ -4,6 +4,7 @@
   import { createCoreContext } from "@sjsf/form/core";
   import { createDeduplicator, createIntersector } from "@sjsf/form/lib/array";
   import { createComparator, createMerger } from "@sjsf/form/lib/json-schema";
+  import { createLogger } from "@sjsf/form/loggers/once";
   import { createMerger as createSchemaMerger } from "@sjsf/form/mergers/modern";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
   import { defaultFormValueHandler } from "@sjsf/form/value-handlers/default";
@@ -95,14 +96,17 @@
     const value = inputQuery.value;
     return () => {
       try {
+        const logger = createLogger();
         const validator = createFormValidator({
           schema,
+          logger,
         });
         const ctx = createCoreContext({
           validator,
           merger,
           valueHandler: defaultFormValueHandler,
           rootSchema: schema,
+          logger,
         });
         const result = omitExtraData(ctx, value);
         data.output = JSON.stringify(result, null, 2);

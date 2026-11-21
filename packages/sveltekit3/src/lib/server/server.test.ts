@@ -1,11 +1,16 @@
 import { createFormValidator } from "@sjsf/ajv8-validator";
-import { DEFAULT_ID_PREFIX, SJSF_ID_PREFIX } from "@sjsf/form";
+import { DEFAULT_ID_PREFIX, SJSF_ID_PREFIX, type Logger } from "@sjsf/form";
 import { createFormMerger } from "@sjsf/form/mergers/modern";
 import { defaultFormValueHandler } from "@sjsf/form/value-handlers/default";
 import { beforeEach, describe, expect, it } from "vitest";
 
 import { FORM_DATA_FILE_PREFIX, JSON_CHUNKS_KEY } from "../model.js";
 import { createFormHandler } from "./server.js";
+
+const testLogger: Logger = {
+  warn() {},
+  error() {},
+};
 
 describe("makeFormDataParser", () => {
   let fd: FormData;
@@ -21,6 +26,7 @@ describe("makeFormDataParser", () => {
       validator: createFormValidator,
       merger: createFormMerger,
       valueHandler: defaultFormValueHandler,
+      logger: testLogger,
       schema: {
         type: "string",
         format: "data-url",
@@ -36,6 +42,7 @@ describe("makeFormDataParser", () => {
       validator: createFormValidator,
       merger: createFormMerger,
       valueHandler: defaultFormValueHandler,
+      logger: testLogger,
       schema: {
         type: "string",
         format: "data-url",
@@ -53,6 +60,7 @@ describe("makeFormDataParser", () => {
       validator: createFormValidator,
       merger: createFormMerger,
       valueHandler: defaultFormValueHandler,
+      logger: testLogger,
       schema: {},
       sendData: true,
     });
@@ -72,6 +80,7 @@ describe("makeFormDataParser", () => {
       validator: createFormValidator,
       merger: createFormMerger,
       valueHandler: defaultFormValueHandler,
+      logger: testLogger,
       schema: {
         type: "object",
         properties: { firstName: { type: "string" } },
@@ -89,6 +98,7 @@ describe("makeFormDataParser", () => {
       validator: createFormValidator,
       merger: createFormMerger,
       valueHandler: defaultFormValueHandler,
+      logger: testLogger,
       schema: {
         type: "object",
         properties: { firstName: { type: "string" } },
@@ -117,6 +127,7 @@ describe("makeFormDataParser", () => {
       validator: createFormValidator,
       merger: createFormMerger,
       valueHandler: defaultFormValueHandler,
+      logger: testLogger,
       // No `convertUnknownEntry`: the chunks branch never runs entry
       // conversion, so this also proves the JSON path skips it.
       schema: { type: "object" },
@@ -134,6 +145,7 @@ describe("makeFormDataParser", () => {
       validator: createFormValidator,
       merger: createFormMerger,
       valueHandler: defaultFormValueHandler,
+      logger: testLogger,
       schema: { type: "object" },
     });
     const c = new AbortController();

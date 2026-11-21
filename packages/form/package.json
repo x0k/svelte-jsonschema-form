@@ -146,6 +146,10 @@
       "types": "./dist/mergers/*.d.ts",
       "default": "./dist/mergers/*.js"
     },
+    "./loggers/*": {
+      "types": "./dist/loggers/*.d.ts",
+      "default": "./dist/loggers/*.js"
+    },
     "./value-handlers/*": {
       "types": "./dist/value-handlers/*.d.ts",
       "default": "./dist/value-handlers/*.js"

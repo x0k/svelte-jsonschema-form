@@ -9,6 +9,7 @@ import {
   REQUIRED_KEY,
   type ValueHandler,
   type DefaultFormStateBehavior,
+  type Logger,
   type Merger,
   type Schema,
   type SchemaDefinition,
@@ -177,6 +178,7 @@ export type FormMergerOptions = DefaultFormStateBehavior & {
   validator: Validator;
   schema: Schema;
   valueHandler: ValueHandler;
+  logger: Logger;
 };
 
 export function createFormMerger(options: FormMergerOptions): FormMerger {
@@ -194,6 +196,7 @@ export function createFormMerger(options: FormMergerOptions): FormMerger {
           merger: formMerger,
           valueHandler: options.valueHandler,
           rootSchema: options.schema,
+          logger: options.logger,
         }),
         schema,
         formData,

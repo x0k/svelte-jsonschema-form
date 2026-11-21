@@ -2,6 +2,7 @@ import type { Json, ValidationError } from "@exodus/schemasafe";
 import type {
   FieldValueValidator,
   FormValueValidator,
+  Logger,
   Schema,
   Validator,
 } from "@sjsf/form";
@@ -48,6 +49,7 @@ export type FormValueValidatorOptions = ValidatorOptions & {
   merger: () => Merger;
   valueHandler: ValueHandler;
   schema: Schema;
+  logger: Logger;
 };
 
 export function createFormValueValidator<T>(
@@ -64,6 +66,7 @@ export function createFormValueValidator<T>(
           merger: options.merger(),
           valueHandler: options.valueHandler,
           rootSchema: options.schema,
+          logger: options.logger,
         }),
         validate.errors,
         formValue

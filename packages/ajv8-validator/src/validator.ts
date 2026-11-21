@@ -5,6 +5,7 @@ import type {
   Schema,
   FieldValueValidator,
   FormValueValidator,
+  Logger,
   Validator,
 } from "@sjsf/form";
 import {
@@ -38,9 +39,14 @@ export interface ValidatorOptions {
   compileSchema: (schema: Schema) => ValidateFunction;
 }
 
+export interface LoggerOptions {
+  logger: Logger;
+}
+
 export function createValidator({
   compileSchema,
-}: ValidatorOptions): Validator {
+  logger,
+}: ValidatorOptions & LoggerOptions): Validator {
   return {
     isValid(schemaDef, formValue) {
       if (typeof schemaDef === "boolean") {
@@ -50,7 +56,7 @@ export function createValidator({
       try {
         return validator(formValue);
       } catch (e) {
-        console.warn("Failed to validate", e);
+        logger.warn("Failed to validate", e);
         return false;
       }
     },
@@ -155,7 +161,8 @@ export interface FormValidatorOptions
   extends
     ValidatorOptions,
     FormValueValidatorOptions,
-    FieldValueValidatorOptions {}
+    FieldValueValidatorOptions,
+    LoggerOptions {}
 
 interface AjvConstructor {
   new (options: Options): Ajv;
@@ -163,6 +170,7 @@ interface AjvConstructor {
 
 export function createFormValidator<T>({
   schema,
+  logger,
   ajvOptions = DEFAULT_AJV_CONFIG,
   ajvPlugins = addFormComponents,
   Ajv: AjvConstructor = Ajv,
@@ -173,6 +181,7 @@ export function createFormValidator<T>({
   ...rest
 }: Partial<FormValidatorOptions> & {
   schema: Schema;
+  logger: Logger;
   /**
    * @default `DEFAULT_AJV_CONFIG`
    */
@@ -188,6 +197,7 @@ export function createFormValidator<T>({
   const options: FormValidatorOptions = {
     ...rest,
     schema,
+    logger,
     compileSchema,
     compileFieldSchema,
   };
@@ -202,11 +212,13 @@ export interface AsyncFormValidatorOptions
   extends
     ValidatorOptions,
     AsyncFormValueValidatorOptions,
-    AsyncFieldValueValidatorOptions {}
+    AsyncFieldValueValidatorOptions,
+    LoggerOptions {}
 
 export function createAsyncFormValidator<T>({
   ajv,
   schema,
+  logger,
   validatorsCache,
   compileSchema = createSchemaCompiler(ajv, false, schema, validatorsCache),
   compileAsyncSchema = createSchemaCompiler(ajv, true, schema, validatorsCache),
@@ -215,11 +227,13 @@ export function createAsyncFormValidator<T>({
 }: Partial<AsyncFormValidatorOptions> & {
   ajv: Ajv;
   schema: Schema;
+  logger: Logger;
   validatorsCache?: ValidatorsCache;
 }) {
   const options: AsyncFormValidatorOptions = {
     ...rest,
     schema,
+    logger,
     compileSchema,
     compileAsyncSchema,
     compileAsyncFieldSchema,

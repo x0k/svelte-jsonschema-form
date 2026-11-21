@@ -8,6 +8,7 @@ import { getOwn, isRecordEmpty, setOwn } from "#lib/object.js";
 
 import {
   isValid,
+  logWarn,
   mergeAllOf,
   mergeSchemas,
   type CoreContext,
@@ -299,7 +300,7 @@ export function retrieveSchemaInternal(
         // CHANGED: No need for `contains` workaround this with modern merger
         resolvedSchema = mergeAllOf(ctx, resolvedSchema);
       } catch (e) {
-        console.warn("could not merge subschemas in allOf:\n", e);
+        logWarn(ctx, "could not merge subschemas in allOf", e);
         const { allOf, ...resolvedSchemaWithoutAllOf } = resolvedSchema;
         return resolvedSchemaWithoutAllOf;
       }
@@ -756,8 +757,9 @@ export function withExactlyOneSubSchema(
   );
 
   if (validSubSchemas.length !== 1) {
-    console.warn(
-      "ignoring oneOf in dependencies because there isn't exactly one subschema that is valid"
+    logWarn(
+      ctx,
+      `ignoring oneOf in dependencies because there isn't exactly one subschema that is valid for "${dependencyKey}"`
     );
     return [schema];
   }
