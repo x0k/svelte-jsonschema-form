@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { getExampleSuggestions } from "#core/index.js";
+
   import type { Config } from "./config.js";
 
   const {
@@ -9,21 +11,13 @@
     config: Config;
   } = $props();
 
-  const examples = $derived.by(() => {
-    const { default: defaultValue, examples } = config.schema;
-    if (!Array.isArray(examples) || !id) {
-      return;
-    }
-    return defaultValue !== undefined && !examples.includes(defaultValue)
-      ? [defaultValue].concat(examples)
-      : examples;
-  });
+  const suggestions = $derived(getExampleSuggestions(config.schema));
 </script>
 
-{#if examples}
+{#if id && suggestions.size > 0}
   <datalist {id}>
-    {#each examples as example (example)}
-      <option value={example}></option>
+    {#each suggestions as suggestion (suggestion)}
+      <option value={suggestion}></option>
     {/each}
   </datalist>
 {/if}

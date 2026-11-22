@@ -26,6 +26,60 @@ describe("primitive field contracts", () => {
       expectValue(form, "hello");
     });
 
+    test("datalist suggestions share a String() as one option", async () => {
+      await renderFieldForm({
+        schema: {
+          type: "string",
+          default: "true",
+          examples: [1, "1", true, 2],
+        },
+      });
+
+      const input =
+        document.querySelector<HTMLInputElement>("input.sjsf-text")!;
+      const datalist = document.querySelector("datalist")!;
+      const options =
+        document.querySelectorAll<HTMLOptionElement>("datalist option");
+
+      expect([...options].map((option) => option.value)).toEqual([
+        "1",
+        "true",
+        "2",
+      ]);
+      expect(input.getAttribute("list")).toBe(datalist.id);
+      expect(input.getAttribute("aria-describedby")).toContain("__examples");
+    });
+
+    test("datalist does not suggest null, object or array examples", async () => {
+      await renderFieldForm({
+        schema: {
+          type: "string",
+          default: null,
+          examples: ["a", null, { a: 1 }, [1]],
+        },
+      });
+
+      const options =
+        document.querySelectorAll<HTMLOptionElement>("datalist option");
+
+      expect([...options].map((option) => option.value)).toEqual(["a"]);
+    });
+
+    test("no datalist is rendered or referenced when no suggestion can be shown", async () => {
+      await renderFieldForm({
+        schema: { type: "string", examples: [null, { a: 1 }] },
+      });
+
+      const input =
+        document.querySelector<HTMLInputElement>("input.sjsf-text")!;
+
+      expect(document.querySelector("datalist")).toBeNull();
+      expect(input.hasAttribute("list")).toBe(false);
+      expect(input.getAttribute("aria-describedby")).not.toContain(
+        "__examples"
+      );
+    });
+
     test("user types text and value updates", async () => {
       const { form } = await renderFieldForm({
         schema: { type: "string" },

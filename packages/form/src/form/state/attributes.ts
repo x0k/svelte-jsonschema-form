@@ -8,6 +8,7 @@ import type {
 } from "svelte/elements";
 import { on } from "svelte/events";
 
+import { getExampleSuggestions } from "#core/index.js";
 import { weakMemoize } from "#lib/memoize.js";
 import type { Nullable, ObjectProperties } from "#lib/types.js";
 
@@ -178,7 +179,7 @@ export function ariaDescribedByProp<T extends AriaAttributes, FT>(
   ctx: FormState<FT>
 ): T {
   obj["aria-describedby"] = (
-    Array.isArray(config.schema.examples)
+    getExampleSuggestions(config.schema).size > 0
       ? DEFAULT_DESCRIBE_ELEMENTS_WITH_EXAMPLES
       : DEFAULT_DESCRIBE_ELEMENTS
   )
@@ -245,9 +246,10 @@ export function inputProps<T extends HTMLInputAttributes, FT>(
   props.max = schema.maximum;
   props.step =
     schema.multipleOf ?? (schema.type === "number" ? "any" : undefined);
-  props.list = Array.isArray(schema.examples)
-    ? getPseudoId(ctx, config.path, "examples")
-    : undefined;
+  props.list =
+    getExampleSuggestions(schema).size > 0
+      ? getPseudoId(ctx, config.path, "examples")
+      : undefined;
   props.readonly = schema.readOnly;
   return props;
 }

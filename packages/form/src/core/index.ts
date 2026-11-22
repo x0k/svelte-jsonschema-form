@@ -30,3 +30,4 @@ export * from "./path.js";
 export * from "./deep-equal.js";
 export * from "./known-properties.js";
 export * from "./get-rendered-option-schema.js";
+export * from "./examples.js";
