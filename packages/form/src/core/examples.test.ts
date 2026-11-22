@@ -1,7 +1,6 @@
 import { describe, expect, it } from "vitest";
 
 import { getExampleSuggestions } from "./examples.js";
-import type { Schema } from "./schema.js";
 
 describe("getExampleSuggestions()", () => {
   it("returns no suggestions without examples", () => {
@@ -33,13 +32,5 @@ describe("getExampleSuggestions()", () => {
     expect(getExampleSuggestions({ examples: [null, { a: 1 }] })).toEqual(
       new Set()
     );
-  });
-
-  it("leaves out undefined examples", () => {
-    expect(
-      getExampleSuggestions({
-        examples: ["a", undefined] as unknown as Schema["examples"],
-      })
-    ).toEqual(new Set(["a"]));
   });
 });

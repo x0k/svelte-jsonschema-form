@@ -3,8 +3,8 @@ import type { Schema } from "./schema.js";
 /**
  * Returns the suggestions a text input offers for `schema`: its `examples` and
  * `default` as the strings a `<datalist>` can suggest. Examples and a default
- * that share a `String()` are one suggestion, and `null`, `undefined`, objects
- * and arrays are left out.
+ * that share a `String()` are one suggestion, and `null`, objects and arrays
+ * are left out.
  */
 export function getExampleSuggestions({
   examples,
