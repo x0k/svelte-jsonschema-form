@@ -33,6 +33,9 @@ export function isSchemaValueEmpty<V extends SchemaValue>(
     return value.byteLength === 0;
   }
 
+  if (value instanceof Date) {
+    return false;
+  }
   const proto = Object.getPrototypeOf(value);
   if (proto === Object.prototype || proto === null) {
     return isRecordEmpty(value);

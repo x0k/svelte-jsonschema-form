@@ -8,7 +8,9 @@ import {
   isOrderedSchemaDeepEqual,
   isSchemaNullable,
   isSchemaObjectValue,
+  isSelectSchema,
   orderProperties,
+  retrieveSchema,
   type SchemaObjectValue,
   type SchemaValue,
 } from "#core/index.js";
@@ -20,7 +22,6 @@ import {
   type Config,
   type Schema,
   validateAdditionalPropertyKey,
-  retrieveSchema,
   getFieldErrors,
   retrieveUiSchema,
   type UiSchemaDefinition,
@@ -36,7 +37,6 @@ import {
   getChildPath,
   type FieldErrors,
   getStableConfig,
-  isSelect,
   setValueAtPath,
   updateValueAtPath,
   type UiSchema,
@@ -47,7 +47,6 @@ import { createFormOptions } from "../enum.js";
 import {
   createAdditionalPropertyKey,
   generateNewKey,
-  createOriginalKeysOrder,
   collectHeldKeys,
   stableKeyOf,
   withRenamedKey,
@@ -129,12 +128,65 @@ export function createObjectContext<T>({
 
   const uiOption: UiOption = (opt) => retrieveUiOption(ctx, config(), opt);
 
-  const schemaPropertiesOrder = $derived(
-    orderProperties(
-      schemaProperties,
-      uiOption("order") ?? createOriginalKeysOrder(schemaProperties)
-    )
-  );
+  // Additional and pattern properties are stubbed into `schemaProperties` in
+  // `Object.keys(formData)` order, so a key renamed to an integer-like string
+  // would jump to the front. Keep the order they were added or renamed in.
+  // This is deliberately not reactive state: it only has to survive until the
+  // next `schemaProperties` update, which recalculates this derived value.
+  const additionalPropertyOrder: string[] = [];
+  // Classifying the properties is the expensive part, so keep it separate from
+  // the tracked additional order and the `order` UI option, which can change
+  // without changing `schemaProperties`.
+  const schemaPropertyGroups = $derived.by(() => {
+    // `order` is reused as the regular properties array and must stay
+    // immutable once returned.
+    const order = Object.keys(schemaProperties);
+    const additional = new Set<string>();
+    let definedCount = 0;
+    for (const key of order) {
+      if (isAdditionalProperty(schemaProperties, key)) {
+        additional.add(key);
+      } else {
+        order[definedCount++] = key;
+      }
+    }
+    order.length = definedCount;
+    return { order, additional };
+  });
+
+  const schemaPropertiesOrder = $derived.by(() => {
+    const { order: definedOrder, additional } = schemaPropertyGroups;
+
+    // Reconcile the tracked order in place: drop removed keys, keep the rest in
+    // order, then append new keys in the order `Object.keys` reported them.
+    let write = 0;
+    for (const key of additionalPropertyOrder) {
+      if (additional.has(key)) {
+        additionalPropertyOrder[write++] = key;
+      }
+    }
+    additionalPropertyOrder.length = write;
+    if (additionalPropertyOrder.length !== additional.size) {
+      const tracked = new Set(additionalPropertyOrder);
+      for (const key of additional) {
+        if (!tracked.has(key)) {
+          additionalPropertyOrder.push(key);
+        }
+      }
+    }
+
+    // Reconcile even with a custom order, so the tracked order is correct if
+    // the option is removed later.
+    const uiOrder = uiOption("order");
+    if (uiOrder !== undefined) {
+      return orderProperties(schemaProperties, uiOrder);
+    }
+    const completeOrder = [...definedOrder];
+    for (const key of additionalPropertyOrder) {
+      completeOrder.push(key);
+    }
+    return orderProperties(schemaProperties, completeOrder);
+  });
 
   const requiredProperties = $derived(new Set(retrievedSchema.required));
 
@@ -196,7 +248,7 @@ export function createObjectContext<T>({
   );
 
   const availablePropertyKeys = $derived.by(() => {
-    if (!isSelect(ctx, keyInputSchema)) {
+    if (!isSelectSchema(ctx, keyInputSchema)) {
       return undefined;
     }
     const { options } = createFormOptions(
@@ -356,6 +408,7 @@ export function createObjectContext<T>({
         val = { [newKey]: propValue };
         setValue(val);
       }
+      additionalPropertyOrder.push(newKey);
       onChange(val);
     },
     removeProperty(prop) {
@@ -364,6 +417,10 @@ export function createObjectContext<T>({
         return;
       }
       const properties = schemaProperties;
+      const orderIndex = additionalPropertyOrder.indexOf(prop);
+      if (orderIndex !== -1) {
+        additionalPropertyOrder.splice(orderIndex, 1);
+      }
       if (isObjectCanBeRemoved(obj, prop)) {
         removeObject();
       } else {
@@ -388,6 +445,10 @@ export function createObjectContext<T>({
       const newKey = generateNewKey(val, newProp, additionalPropertyKey);
       if (!validateAdditionalPropertyKey(ctx, config(), newKey, fieldConfig)) {
         return;
+      }
+      const orderIndex = additionalPropertyOrder.indexOf(oldProp);
+      if (orderIndex !== -1) {
+        additionalPropertyOrder[orderIndex] = newKey;
       }
       updateValueAtPath(ctx, config().path, (obj: SchemaObjectValue) => {
         obj[newKey] = obj[oldProp];

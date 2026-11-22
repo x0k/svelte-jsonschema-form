@@ -62,6 +62,27 @@ describe("object field contracts", () => {
       expectValue(form, { name: "Alice", customField: "customValue" });
     });
 
+    test("keeps an optional object when an arbitrary additional property is added", async () => {
+      const { form } = await renderFieldForm({
+        schema: {
+          type: "object",
+          properties: {
+            nested: { type: "object", additionalProperties: true },
+          },
+        },
+        initialValue: { nested: {} },
+      });
+
+      await userEvent.click(
+        page.getByRole("button", { name: /add property/i }).first()
+      );
+
+      expectValue(form, { nested: { "Additional property": undefined } });
+      await expect
+        .element(page.getByText(/doesn’t contain enough information/))
+        .toBeInTheDocument();
+    });
+
     test("typing in additional property input updates form value", async () => {
       const { form } = await renderFieldForm({
         schema: {

@@ -13,6 +13,7 @@
     createTask,
     debounce,
   } from "@sjsf/form/lib/task.svelte";
+  import { createLogger } from "@sjsf/form/loggers/once";
   import { createMerger as createSchemaMerger } from "@sjsf/form/mergers/modern";
   import { defaultFormValueHandler } from "@sjsf/form/value-handlers/default";
   import { parseFormData, type ValidatorState } from "meta/playground";
@@ -79,6 +80,7 @@
   const validatorState = createValidatorState(data, {
     merger: () => merger,
     valueHandler: defaultFormValueHandler,
+    logger: createLogger(),
   });
 
   const validateTask = createTask<

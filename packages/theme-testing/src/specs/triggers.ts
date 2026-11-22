@@ -64,6 +64,23 @@ export const inputDate = fill(getTextbox, "2020-01-01");
 export const changeDate = withTab(inputDate, true);
 export const visitDate = changeDate;
 
+export const inputDateTime = fill(getTextbox, "2020-01-01T12:34");
+export const changeDateTime = withTab(inputDateTime, true);
+export const visitDateTime = changeDateTime;
+
+export const inputTime = fill(getTextbox, "12:34");
+export const changeTime = withTab(inputTime, true);
+export const visitTime = changeTime;
+
+/** Fills the date and time halves of a datetime pair. The date control comes
+ * first in the DOM, so the second textbox is the time input. */
+export const inputDateTimePair: FieldValidationTrigger = async (l) => {
+  await fill(getFirstTextbox, "2020-01-01")(l);
+  await fill((l) => l.getByRole("textbox").nth(1), "12:34")(l);
+};
+export const changeDateTimePair = withTab(inputDateTimePair, true);
+export const visitDateTimePair = changeDateTimePair;
+
 export const getSpinButton = (l: Locator) => l.getByRole("spinbutton");
 export const inputNumber = fill(getSpinButton);
 export const changeNumber = withTab(inputNumber);
@@ -171,6 +188,14 @@ export const inputShadcnDatePicker: FieldValidationTrigger = async (l) => {
 };
 export const changeShadcnDatePicker = inputShadcnDatePicker;
 export const visitShadcnDatePicker = withTab(inputShadcnDatePicker);
+
+/** The shadcn date half is a button, so only the time half is a textbox. */
+export const inputShadcnDateTimePair: FieldValidationTrigger = async (l) => {
+  await inputShadcnDatePicker(l);
+  await fill(getTextbox, "12:34")(l);
+};
+export const changeShadcnDateTimePair = withTab(inputShadcnDateTimePair, true);
+export const visitShadcnDateTimePair = changeShadcnDateTimePair;
 
 export const inputShadcnCombobox: FieldValidationTrigger = async (l) => {
   const cmb = getCombobox(l);

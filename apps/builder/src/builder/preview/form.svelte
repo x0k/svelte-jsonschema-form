@@ -10,6 +10,7 @@
   } from "@sjsf/form";
   import { fromRecord } from "@sjsf/form/lib/resolver";
   import { createQuery, debounce } from "@sjsf/form/lib/task.svelte";
+  import { createLogger } from "@sjsf/form/loggers/once";
   import { formatFileSize } from "@sjsf/form/validators/file-size";
   import { createFormValidator as noop } from "@sjsf/form/validators/noop";
   import { Willow, WillowDark } from "@svar-ui/svelte-core";
@@ -72,6 +73,7 @@
         validator,
         merger: () => merger,
         valueHandler: defaults.valueHandler,
+        logger: defaults.logger,
         schema: schemaObject,
         uiSchema,
       });
@@ -93,11 +95,13 @@
       schema,
       validator,
       valueHandler: defaults.valueHandler,
+      logger: defaults.logger,
     })
   );
 
   const form = createForm({
     ...defaults,
+    logger: createLogger,
     get validator() {
       return validator;
     },

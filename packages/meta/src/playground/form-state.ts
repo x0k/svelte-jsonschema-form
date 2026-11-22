@@ -1,8 +1,5 @@
 import type { FieldsValidationMode } from "@sjsf/form";
-import type {
-  Experimental_ArrayMinItems,
-  Experimental_DefaultFormStateBehavior,
-} from "@sjsf/form/core";
+import type { ArrayMinItems, DefaultFormStateBehavior } from "@sjsf/form/core";
 
 import {
   type PlaygroundValidator,
@@ -35,10 +32,7 @@ export interface FormState {
   nestedDefaultsPrecedence: NestedDefaultsPrecedence;
 }
 
-type ArrayMinItemsPopulate = Exclude<
-  Experimental_ArrayMinItems["populate"],
-  undefined
->;
+type ArrayMinItemsPopulate = Exclude<ArrayMinItems["populate"], undefined>;
 
 export const ARRAY_MIN_ITEMS_POPULATE_TITLES: Record<
   ArrayMinItemsPopulate,
@@ -54,10 +48,7 @@ export const ARRAY_MIN_ITEMS_POPULATE = Object.keys(
   ARRAY_MIN_ITEMS_POPULATE_TITLES
 ) as ArrayMinItemsPopulate[];
 
-type AllOfStateBehavior = Exclude<
-  Experimental_DefaultFormStateBehavior["allOf"],
-  undefined
->;
+type AllOfStateBehavior = Exclude<DefaultFormStateBehavior["allOf"], undefined>;
 
 export const ALL_OF_STATE_BEHAVIOR_TITLES: Record<AllOfStateBehavior, string> =
   {
@@ -70,7 +61,7 @@ export const ALL_OF_STATE_BEHAVIOR = Object.keys(
 ) as AllOfStateBehavior[];
 
 type ConstAsDefaultStateBehavior = Exclude<
-  Experimental_DefaultFormStateBehavior["constAsDefaults"],
+  DefaultFormStateBehavior["constAsDefaults"],
   undefined
 >;
 
@@ -89,7 +80,7 @@ export const CONST_AS_DEFAULT_STATE_BEHAVIOR = Object.keys(
 ) as ConstAsDefaultStateBehavior[];
 
 type EmptyObjectFieldsStateBehavior = Exclude<
-  Experimental_DefaultFormStateBehavior["emptyObjectFields"],
+  DefaultFormStateBehavior["emptyObjectFields"],
   undefined
 >;
 
@@ -110,7 +101,7 @@ export const EMPTY_OBJECT_FIELDS_BEHAVIOR = Object.keys(
 ) as EmptyObjectFieldsStateBehavior[];
 
 type MergeDefaultsIntoFormDataStateBehavior = Exclude<
-  Experimental_DefaultFormStateBehavior["mergeDefaultsIntoFormData"],
+  DefaultFormStateBehavior["mergeDefaultsIntoFormData"],
   undefined
 >;
 
@@ -127,7 +118,7 @@ export const MERGE_DEFAULTS_INTO_FORM = Object.keys(
 ) as MergeDefaultsIntoFormDataStateBehavior[];
 
 type NestedDefaultsPrecedence = Exclude<
-  Experimental_DefaultFormStateBehavior["nestedDefaultsPrecedence"],
+  DefaultFormStateBehavior["nestedDefaultsPrecedence"],
   undefined
 >;
 

@@ -5,6 +5,8 @@
   import "#fields/extra-components/errors-list.js";
   import "#fields/extra-components/help.js";
   import "./field-layouts.js";
+
+  const templateType = "fieldTemplate";
 </script>
 
 <script lang="ts">
@@ -16,8 +18,6 @@
 
   import { getTemplateProps } from "./get-template-props.js";
 
-  const templateType = "fieldTemplate";
-
   const {
     children,
     config,
@@ -26,6 +26,7 @@
     useLabel,
     errors,
     action,
+    description: descriptionOverride,
   }: ComponentProps[typeof templateType] = $props();
 
   const ctx = getFormContext();
@@ -43,7 +44,7 @@
   const Help = $derived(getComponent(ctx, "help", config));
 
   const { title, description, showMeta } = $derived(
-    getTemplateProps(uiOption, config)
+    getTemplateProps(uiOption, config, descriptionOverride)
   );
   const help = $derived(uiOption("help"));
 </script>

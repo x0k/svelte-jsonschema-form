@@ -51,6 +51,7 @@ import {
 } from "$lib/builder/index.js";
 import { mergeSchemas } from "$lib/json-schema.js";
 import { embedCode, highlight, type SupportedLanguage } from "$lib/shiki.js";
+import { logger } from "$lib/sjsf/defaults.js";
 import { mergeUiSchemas } from "$lib/sjsf/ui-schema.js";
 
 import {
@@ -666,6 +667,7 @@ export class BuilderContext {
           const schema = self.nodeSchema(node);
           const result = createFormValidator({
             schema,
+            logger,
             ajvPlugins: (ajv) => addFormComponents(addBuilderFormats(ajv)),
           }).validateFormValue(node.options as FormValue);
           if (result.errors) {

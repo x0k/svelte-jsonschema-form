@@ -8,6 +8,7 @@ export const WIDGETS = {
     },
     "extraWidgets": {
       "checkboxes": "checkboxesWidget",
+      "date-input": "dateInputWidget",
       "date-picker": "datePickerWidget",
       "file": "fileWidget",
       "multi-select": "multiSelectWidget",
@@ -25,8 +26,8 @@ export const WIDGETS = {
       "text": "textWidget"
     },
     "extraWidgets": {
-      "cally-date-picker": "daisyui5CallyDatePickerWidget",
       "checkboxes": "checkboxesWidget",
+      "date-input": "dateInputWidget",
       "date-picker": "datePickerWidget",
       "file": "fileWidget",
       "filter-radio-buttons": "daisyui5FilterRadioButtonsWidget",
@@ -40,14 +41,12 @@ export const WIDGETS = {
       "vc-date-picker": "daisyui5VcDatePickerWidget"
     },
     "optionalDeps": {
-      "cally": [
-        "cally-date-picker"
-      ],
-      "pikaday": [
-        "date-picker"
-      ],
       "vanilla-calendar-pro": [
+        "date-input",
         "vc-date-picker"
+      ],
+      "cally": [
+        "date-picker"
       ]
     }
   },
@@ -60,6 +59,7 @@ export const WIDGETS = {
     },
     "extraWidgets": {
       "checkboxes": "checkboxesWidget",
+      "date-input": "dateInputWidget",
       "date-picker": "datePickerWidget",
       "date-range-picker": "dateRangePickerWidget",
       "file": "fileWidget",
@@ -84,6 +84,7 @@ export const WIDGETS = {
     "extraWidgets": {
       "checkboxes": "checkboxesWidget",
       "combobox": "comboboxWidget",
+      "date-input": "dateInputWidget",
       "date-picker": "datePickerWidget",
       "date-range-picker": "dateRangePickerWidget",
       "file": "fileWidget",
@@ -97,6 +98,7 @@ export const WIDGETS = {
     },
     "optionalDeps": {
       "@internationalized/date": [
+        "date-input",
         "date-picker",
         "date-range-picker"
       ]
@@ -112,6 +114,7 @@ export const WIDGETS = {
     "extraWidgets": {
       "checkboxes": "checkboxesWidget",
       "combobox": "comboboxWidget",
+      "date-input": "dateInputWidget",
       "date-picker": "datePickerWidget",
       "date-range-picker": "dateRangePickerWidget",
       "file-upload": "skeleton5FileUploadWidget",
@@ -130,6 +133,7 @@ export const WIDGETS = {
     "optionalDeps": {
       "@skeletonlabs/skeleton-svelte": [
         "combobox",
+        "date-input",
         "date-picker",
         "date-range-picker",
         "file-upload",
@@ -151,6 +155,7 @@ export const WIDGETS = {
     },
     "extraWidgets": {
       "checkboxes": "checkboxesWidget",
+      "date-input": "dateInputWidget",
       "date-picker": "datePickerWidget",
       "file": "fileWidget",
       "radio": "radioWidget",
@@ -189,6 +194,7 @@ export const WIDGETS = {
       "color-picker": "svarColorPickerWidget",
       "color-select": "svarColorSelectWidget",
       "combobox": "comboboxWidget",
+      "date-input": "dateInputWidget",
       "date-picker": "datePickerWidget",
       "date-range-picker": "dateRangePickerWidget",
       "multi-select": "multiSelectWidget",

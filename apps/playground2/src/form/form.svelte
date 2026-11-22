@@ -32,6 +32,7 @@
     createTask,
     debounce,
   } from "@sjsf/form/lib/task.svelte";
+  import { createLogger } from "@sjsf/form/loggers/once";
   import { createFormMerger } from "@sjsf/form/mergers/modern";
   import {
     IdEnumValueMapperBuilder,
@@ -229,9 +230,12 @@
     defaultValue: {},
   });
 
+  const logger = createLogger();
+
   const validatorState = createValidatorState(data, {
     merger: () => merger,
     valueHandler: defaultFormValueHandler,
+    logger,
     get uiSchema() {
       return uiSchemaQuery.value;
     },
@@ -242,6 +246,7 @@
       schema: validatorState.schema,
       validator: validatorState.validator,
       valueHandler: defaultFormValueHandler,
+      logger,
       jsonSchemaMerger,
       allOf: data.allOf,
       arrayMinItems: {
@@ -271,6 +276,7 @@
   const form = createForm({
     translation,
     valueHandler: defaultFormValueHandler,
+    logger,
     idBuilder: createFormIdBuilder,
     get resolver() {
       return PLAYGROUND_RESOLVERS[data.resolver];

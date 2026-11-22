@@ -15,6 +15,11 @@ declare module "../../form/index.js" {
       useLabel: boolean;
       widgetType: FoundationalComponentType;
       action?: Snippet;
+      /**
+       * Fallback description used when `ui:options.description` is not set.
+       * Takes precedence over the schema description.
+       */
+      description?: string;
     };
   }
   interface ComponentBindings {

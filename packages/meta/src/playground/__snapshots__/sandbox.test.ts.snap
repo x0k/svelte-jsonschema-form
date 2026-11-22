@@ -67,21 +67,25 @@ import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 // import "@sjsf/form/fields/extra/array-native-files-include";
 // import "@sjsf/form/fields/extra/array-tags-include";
 // import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/date-include";
 // import "@sjsf/form/fields/extra/enum-include";
 // import "@sjsf/form/fields/extra/file-include";
 // import "@sjsf/form/fields/extra/multi-enum-include";
 // import "@sjsf/form/fields/extra/object-key-enum-include";
 // import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-date-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-input-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
 // import "@sjsf/basic-theme/extra-widgets/file-include";
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
@@ -213,21 +217,25 @@ import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 // import "@sjsf/form/fields/extra/array-native-files-include";
 // import "@sjsf/form/fields/extra/array-tags-include";
 // import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/date-include";
 // import "@sjsf/form/fields/extra/enum-include";
 // import "@sjsf/form/fields/extra/file-include";
 // import "@sjsf/form/fields/extra/multi-enum-include";
 // import "@sjsf/form/fields/extra/object-key-enum-include";
 // import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-date-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-input-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
 // import "@sjsf/basic-theme/extra-widgets/file-include";
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
@@ -363,21 +371,25 @@ import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 // import "@sjsf/form/fields/extra/array-native-files-include";
 // import "@sjsf/form/fields/extra/array-tags-include";
 // import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/date-include";
 // import "@sjsf/form/fields/extra/enum-include";
 // import "@sjsf/form/fields/extra/file-include";
 // import "@sjsf/form/fields/extra/multi-enum-include";
 // import "@sjsf/form/fields/extra/object-key-enum-include";
 // import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-date-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-input-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
 // import "@sjsf/basic-theme/extra-widgets/file-include";
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
@@ -588,21 +600,25 @@ if (import.meta.main) {
 // import "@sjsf/form/fields/extra/array-native-files-include";
 // import "@sjsf/form/fields/extra/array-tags-include";
 // import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/date-include";
 // import "@sjsf/form/fields/extra/enum-include";
 // import "@sjsf/form/fields/extra/file-include";
 // import "@sjsf/form/fields/extra/multi-enum-include";
 // import "@sjsf/form/fields/extra/object-key-enum-include";
 // import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-date-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-input-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
 // import "@sjsf/basic-theme/extra-widgets/file-include";
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
@@ -735,21 +751,25 @@ import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 // import "@sjsf/form/fields/extra/array-native-files-include";
 // import "@sjsf/form/fields/extra/array-tags-include";
 // import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/date-include";
 // import "@sjsf/form/fields/extra/enum-include";
 // import "@sjsf/form/fields/extra/file-include";
 // import "@sjsf/form/fields/extra/multi-enum-include";
 // import "@sjsf/form/fields/extra/object-key-enum-include";
 // import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-date-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-input-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
 // import "@sjsf/basic-theme/extra-widgets/file-include";
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
@@ -888,17 +908,20 @@ import { createFormMerger, type FormMergerOptions } from "@sjsf/form/mergers/mod
 // import "@sjsf/form/fields/extra/array-native-files-include";
 // import "@sjsf/form/fields/extra/array-tags-include";
 // import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/date-include";
 // import "@sjsf/form/fields/extra/enum-include";
 // import "@sjsf/form/fields/extra/file-include";
 // import "@sjsf/form/fields/extra/multi-enum-include";
 // import "@sjsf/form/fields/extra/object-key-enum-include";
 // import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-date-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
 export { resolver } from "@sjsf/form/resolvers/basic";
 
 export { translation } from "@sjsf/form/translations/en";
 export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
+export { createLogger as logger } from "@sjsf/form/loggers/once";
 
 export function merger(options: FormMergerOptions) {
 	return createFormMerger({
@@ -914,6 +937,7 @@ export function merger(options: FormMergerOptions) {
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-input-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
 // import "@sjsf/basic-theme/extra-widgets/file-include";
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
@@ -1045,21 +1069,25 @@ import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 // import "@sjsf/form/fields/extra/array-native-files-include";
 // import "@sjsf/form/fields/extra/array-tags-include";
 // import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/date-include";
 // import "@sjsf/form/fields/extra/enum-include";
 // import "@sjsf/form/fields/extra/file-include";
 // import "@sjsf/form/fields/extra/multi-enum-include";
 // import "@sjsf/form/fields/extra/object-key-enum-include";
 // import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-date-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-input-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
 // import "@sjsf/basic-theme/extra-widgets/file-include";
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
@@ -1192,21 +1220,25 @@ import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 // import "@sjsf/form/fields/extra/array-native-files-include";
 // import "@sjsf/form/fields/extra/array-tags-include";
 // import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/date-include";
 // import "@sjsf/form/fields/extra/enum-include";
 // import "@sjsf/form/fields/extra/file-include";
 // import "@sjsf/form/fields/extra/multi-enum-include";
 // import "@sjsf/form/fields/extra/object-key-enum-include";
 // import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-date-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf-lab/beercss-theme/extra-widgets/checkboxes-include";
+// import "@sjsf-lab/beercss-theme/extra-widgets/date-input-include";
 // import "@sjsf-lab/beercss-theme/extra-widgets/date-picker-include";
 // import "@sjsf-lab/beercss-theme/extra-widgets/file-include";
 // import "@sjsf-lab/beercss-theme/extra-widgets/radio-include";
@@ -1285,8 +1317,8 @@ exports[`sandbox-factory > themes > daisyui5 1`] = `
     "@sveltejs/kit": "^3.0.0",
     "svelte": "^5.34.8",
     "@sjsf/daisyui5-theme": "^3.10.0",
+    "cally": "^0.9.0",
     "daisyui": "^5.4.0",
-    "pikaday": "^1.8.2",
     "@sjsf/ajv8-validator": "^3.10.0",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.1"
@@ -1341,22 +1373,25 @@ import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 // import "@sjsf/form/fields/extra/array-native-files-include";
 // import "@sjsf/form/fields/extra/array-tags-include";
 // import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/date-include";
 // import "@sjsf/form/fields/extra/enum-include";
 // import "@sjsf/form/fields/extra/file-include";
 // import "@sjsf/form/fields/extra/multi-enum-include";
 // import "@sjsf/form/fields/extra/object-key-enum-include";
 // import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-date-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
-// import "@sjsf/daisyui5-theme/extra-widgets/cally-date-picker-include";
 // import "@sjsf/daisyui5-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/daisyui5-theme/extra-widgets/date-input-include";
 // import "@sjsf/daisyui5-theme/extra-widgets/date-picker-include";
 // import "@sjsf/daisyui5-theme/extra-widgets/file-include";
 // import "@sjsf/daisyui5-theme/extra-widgets/filter-radio-buttons-include";
@@ -1501,21 +1536,25 @@ import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 // import "@sjsf/form/fields/extra/array-native-files-include";
 // import "@sjsf/form/fields/extra/array-tags-include";
 // import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/date-include";
 // import "@sjsf/form/fields/extra/enum-include";
 // import "@sjsf/form/fields/extra/file-include";
 // import "@sjsf/form/fields/extra/multi-enum-include";
 // import "@sjsf/form/fields/extra/object-key-enum-include";
 // import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-date-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/flowbite3-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/flowbite3-theme/extra-widgets/date-input-include";
 // import "@sjsf/flowbite3-theme/extra-widgets/date-picker-include";
 // import "@sjsf/flowbite3-theme/extra-widgets/date-range-picker-include";
 // import "@sjsf/flowbite3-theme/extra-widgets/file-include";
@@ -1681,21 +1720,25 @@ import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 // import "@sjsf/form/fields/extra/array-native-files-include";
 // import "@sjsf/form/fields/extra/array-tags-include";
 // import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/date-include";
 // import "@sjsf/form/fields/extra/enum-include";
 // import "@sjsf/form/fields/extra/file-include";
 // import "@sjsf/form/fields/extra/multi-enum-include";
 // import "@sjsf/form/fields/extra/object-key-enum-include";
 // import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-date-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-input-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
 // import "@sjsf/basic-theme/extra-widgets/file-include";
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
@@ -1834,22 +1877,26 @@ import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 // import "@sjsf/form/fields/extra/array-native-files-include";
 // import "@sjsf/form/fields/extra/array-tags-include";
 // import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/date-include";
 // import "@sjsf/form/fields/extra/enum-include";
 // import "@sjsf/form/fields/extra/file-include";
 // import "@sjsf/form/fields/extra/multi-enum-include";
 // import "@sjsf/form/fields/extra/object-key-enum-include";
 // import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-date-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/shadcn4-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/shadcn4-theme/extra-widgets/combobox-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/date-input-include";
 // import "@sjsf/shadcn4-theme/extra-widgets/date-picker-include";
 // import "@sjsf/shadcn4-theme/extra-widgets/date-range-picker-include";
 // import "@sjsf/shadcn4-theme/extra-widgets/file-include";
@@ -2201,22 +2248,26 @@ import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 // import "@sjsf/form/fields/extra/array-native-files-include";
 // import "@sjsf/form/fields/extra/array-tags-include";
 // import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/date-include";
 // import "@sjsf/form/fields/extra/enum-include";
 // import "@sjsf/form/fields/extra/file-include";
 // import "@sjsf/form/fields/extra/multi-enum-include";
 // import "@sjsf/form/fields/extra/object-key-enum-include";
 // import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-date-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/shadcn4-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/shadcn4-theme/extra-widgets/combobox-include";
+// import "@sjsf/shadcn4-theme/extra-widgets/date-input-include";
 // import "@sjsf/shadcn4-theme/extra-widgets/date-picker-include";
 // import "@sjsf/shadcn4-theme/extra-widgets/date-range-picker-include";
 // import "@sjsf/shadcn4-theme/extra-widgets/file-include";
@@ -2544,17 +2595,20 @@ import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 // import "@sjsf/form/fields/extra/array-native-files-include";
 // import "@sjsf/form/fields/extra/array-tags-include";
 // import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/date-include";
 // import "@sjsf/form/fields/extra/enum-include";
 // import "@sjsf/form/fields/extra/file-include";
 // import "@sjsf/form/fields/extra/multi-enum-include";
 // import "@sjsf/form/fields/extra/object-key-enum-include";
 // import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-date-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -2708,22 +2762,26 @@ import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 // import "@sjsf/form/fields/extra/array-native-files-include";
 // import "@sjsf/form/fields/extra/array-tags-include";
 // import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/date-include";
 // import "@sjsf/form/fields/extra/enum-include";
 // import "@sjsf/form/fields/extra/file-include";
 // import "@sjsf/form/fields/extra/multi-enum-include";
 // import "@sjsf/form/fields/extra/object-key-enum-include";
 // import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-date-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/skeleton5-theme/extra-widgets/checkboxes-include";
 // import "@sjsf/skeleton5-theme/extra-widgets/combobox-include";
+// import "@sjsf/skeleton5-theme/extra-widgets/date-input-include";
 // import "@sjsf/skeleton5-theme/extra-widgets/date-picker-include";
 // import "@sjsf/skeleton5-theme/extra-widgets/date-range-picker-include";
 // import "@sjsf/skeleton5-theme/extra-widgets/file-upload-include";
@@ -2871,17 +2929,20 @@ import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 // import "@sjsf/form/fields/extra/array-native-files-include";
 // import "@sjsf/form/fields/extra/array-tags-include";
 // import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/date-include";
 // import "@sjsf/form/fields/extra/enum-include";
 // import "@sjsf/form/fields/extra/file-include";
 // import "@sjsf/form/fields/extra/multi-enum-include";
 // import "@sjsf/form/fields/extra/object-key-enum-include";
 // import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-date-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
@@ -2889,6 +2950,7 @@ export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern'
 // import "@sjsf-lab/svar-theme/extra-widgets/color-picker-include";
 // import "@sjsf-lab/svar-theme/extra-widgets/color-select-include";
 // import "@sjsf-lab/svar-theme/extra-widgets/combobox-include";
+// import "@sjsf-lab/svar-theme/extra-widgets/date-input-include";
 // import "@sjsf-lab/svar-theme/extra-widgets/date-picker-include";
 // import "@sjsf-lab/svar-theme/extra-widgets/date-range-picker-include";
 // import "@sjsf-lab/svar-theme/extra-widgets/multi-select-include";
@@ -3055,19 +3117,23 @@ import "@sjsf/form/fields/extra/enum-include";
 // import "@sjsf/form/fields/extra/array-native-files-include";
 // import "@sjsf/form/fields/extra/array-tags-include";
 // import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/date-include";
 // import "@sjsf/form/fields/extra/file-include";
 // import "@sjsf/form/fields/extra/object-key-enum-include";
 // import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-date-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
 export { resolver } from "@sjsf/form/resolvers/basic";
 
 export { translation } from "@sjsf/form/translations/en";
 export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
+export { createLogger as logger } from "@sjsf/form/loggers/once";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-input-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
 // import "@sjsf/basic-theme/extra-widgets/file-include";
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
@@ -3230,20 +3296,24 @@ import "@sjsf/form/fields/extra/enum-include";
 // import "@sjsf/form/fields/extra/array-native-files-include";
 // import "@sjsf/form/fields/extra/array-tags-include";
 // import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/date-include";
 // import "@sjsf/form/fields/extra/file-include";
 // import "@sjsf/form/fields/extra/multi-enum-include";
 // import "@sjsf/form/fields/extra/object-key-enum-include";
 // import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-date-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
 export { resolver } from "@sjsf/form/resolvers/basic";
 
 export { translation } from "@sjsf/form/translations/en";
 export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
+export { createLogger as logger } from "@sjsf/form/loggers/once";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-input-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
 // import "@sjsf/basic-theme/extra-widgets/file-include";
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
@@ -3379,21 +3449,25 @@ import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 // import "@sjsf/form/fields/extra/array-native-files-include";
 // import "@sjsf/form/fields/extra/array-tags-include";
 // import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/date-include";
 // import "@sjsf/form/fields/extra/enum-include";
 // import "@sjsf/form/fields/extra/file-include";
 // import "@sjsf/form/fields/extra/multi-enum-include";
 // import "@sjsf/form/fields/extra/object-key-enum-include";
 // import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-date-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
 export { resolver } from "@sjsf/form/resolvers/basic";
 
 export { translation } from "@sjsf/form/translations/en";
 export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
+export { createLogger as logger } from "@sjsf/form/loggers/once";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-input-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
 // import "@sjsf/basic-theme/extra-widgets/file-include";
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
@@ -3521,21 +3595,25 @@ export type Model = FromSchema<typeof schema>;",
 // import "@sjsf/form/fields/extra/array-native-files-include";
 // import "@sjsf/form/fields/extra/array-tags-include";
 // import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/date-include";
 // import "@sjsf/form/fields/extra/enum-include";
 // import "@sjsf/form/fields/extra/file-include";
 // import "@sjsf/form/fields/extra/multi-enum-include";
 // import "@sjsf/form/fields/extra/object-key-enum-include";
 // import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-date-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-input-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
 // import "@sjsf/basic-theme/extra-widgets/file-include";
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
@@ -3665,21 +3743,25 @@ import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 // import "@sjsf/form/fields/extra/array-native-files-include";
 // import "@sjsf/form/fields/extra/array-tags-include";
 // import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/date-include";
 // import "@sjsf/form/fields/extra/enum-include";
 // import "@sjsf/form/fields/extra/file-include";
 // import "@sjsf/form/fields/extra/multi-enum-include";
 // import "@sjsf/form/fields/extra/object-key-enum-include";
 // import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-date-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
 export { resolver } from "@sjsf/form/resolvers/basic";
 
 export { translation } from "@sjsf/form/translations/en";
 export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
+export { createLogger as logger } from "@sjsf/form/loggers/once";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-input-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
 // import "@sjsf/basic-theme/extra-widgets/file-include";
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
@@ -3887,21 +3969,25 @@ if (import.meta.main) {
 // import "@sjsf/form/fields/extra/array-native-files-include";
 // import "@sjsf/form/fields/extra/array-tags-include";
 // import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/date-include";
 // import "@sjsf/form/fields/extra/enum-include";
 // import "@sjsf/form/fields/extra/file-include";
 // import "@sjsf/form/fields/extra/multi-enum-include";
 // import "@sjsf/form/fields/extra/object-key-enum-include";
 // import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-date-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-input-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
 // import "@sjsf/basic-theme/extra-widgets/file-include";
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
@@ -4030,21 +4116,25 @@ export type Model = FromSchema<typeof schema>;",
 // import "@sjsf/form/fields/extra/array-native-files-include";
 // import "@sjsf/form/fields/extra/array-tags-include";
 // import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/date-include";
 // import "@sjsf/form/fields/extra/enum-include";
 // import "@sjsf/form/fields/extra/file-include";
 // import "@sjsf/form/fields/extra/multi-enum-include";
 // import "@sjsf/form/fields/extra/object-key-enum-include";
 // import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-date-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-input-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
 // import "@sjsf/basic-theme/extra-widgets/file-include";
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
@@ -4272,21 +4362,25 @@ import '@hyperjump/json-schema/formats-lite';
 // import "@sjsf/form/fields/extra/array-native-files-include";
 // import "@sjsf/form/fields/extra/array-tags-include";
 // import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/date-include";
 // import "@sjsf/form/fields/extra/enum-include";
 // import "@sjsf/form/fields/extra/file-include";
 // import "@sjsf/form/fields/extra/multi-enum-include";
 // import "@sjsf/form/fields/extra/object-key-enum-include";
 // import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-date-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-input-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
 // import "@sjsf/basic-theme/extra-widgets/file-include";
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
@@ -4419,21 +4513,25 @@ import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 // import "@sjsf/form/fields/extra/array-native-files-include";
 // import "@sjsf/form/fields/extra/array-tags-include";
 // import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/date-include";
 // import "@sjsf/form/fields/extra/enum-include";
 // import "@sjsf/form/fields/extra/file-include";
 // import "@sjsf/form/fields/extra/multi-enum-include";
 // import "@sjsf/form/fields/extra/object-key-enum-include";
 // import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-date-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-input-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
 // import "@sjsf/basic-theme/extra-widgets/file-include";
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
@@ -4660,21 +4758,25 @@ if (import.meta.main) {
 // import "@sjsf/form/fields/extra/array-native-files-include";
 // import "@sjsf/form/fields/extra/array-tags-include";
 // import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/date-include";
 // import "@sjsf/form/fields/extra/enum-include";
 // import "@sjsf/form/fields/extra/file-include";
 // import "@sjsf/form/fields/extra/multi-enum-include";
 // import "@sjsf/form/fields/extra/object-key-enum-include";
 // import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-date-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-input-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
 // import "@sjsf/basic-theme/extra-widgets/file-include";
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
@@ -4807,21 +4909,25 @@ import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 // import "@sjsf/form/fields/extra/array-native-files-include";
 // import "@sjsf/form/fields/extra/array-tags-include";
 // import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/date-include";
 // import "@sjsf/form/fields/extra/enum-include";
 // import "@sjsf/form/fields/extra/file-include";
 // import "@sjsf/form/fields/extra/multi-enum-include";
 // import "@sjsf/form/fields/extra/object-key-enum-include";
 // import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-date-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-input-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
 // import "@sjsf/basic-theme/extra-widgets/file-include";
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
@@ -4943,21 +5049,25 @@ export type Model = v.InferInput<typeof schema>;",
 // import "@sjsf/form/fields/extra/array-native-files-include";
 // import "@sjsf/form/fields/extra/array-tags-include";
 // import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/date-include";
 // import "@sjsf/form/fields/extra/enum-include";
 // import "@sjsf/form/fields/extra/file-include";
 // import "@sjsf/form/fields/extra/multi-enum-include";
 // import "@sjsf/form/fields/extra/object-key-enum-include";
 // import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-date-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-input-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
 // import "@sjsf/basic-theme/extra-widgets/file-include";
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
@@ -5077,21 +5187,25 @@ export type Model = z.infer<typeof schema>;",
 // import "@sjsf/form/fields/extra/array-native-files-include";
 // import "@sjsf/form/fields/extra/array-tags-include";
 // import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/date-include";
 // import "@sjsf/form/fields/extra/enum-include";
 // import "@sjsf/form/fields/extra/file-include";
 // import "@sjsf/form/fields/extra/multi-enum-include";
 // import "@sjsf/form/fields/extra/object-key-enum-include";
 // import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-date-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-input-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
 // import "@sjsf/basic-theme/extra-widgets/file-include";
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
@@ -5225,21 +5339,25 @@ import { createFocusOnFirstError } from '@sjsf/form/focus-on-first-error';
 // import "@sjsf/form/fields/extra/array-native-files-include";
 // import "@sjsf/form/fields/extra/array-tags-include";
 // import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/date-include";
 // import "@sjsf/form/fields/extra/enum-include";
 // import "@sjsf/form/fields/extra/file-include";
 // import "@sjsf/form/fields/extra/multi-enum-include";
 // import "@sjsf/form/fields/extra/object-key-enum-include";
 // import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-date-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-input-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
 // import "@sjsf/basic-theme/extra-widgets/file-include";
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
@@ -5436,21 +5554,25 @@ if (import.meta.main) {
 // import "@sjsf/form/fields/extra/array-native-files-include";
 // import "@sjsf/form/fields/extra/array-tags-include";
 // import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/date-include";
 // import "@sjsf/form/fields/extra/enum-include";
 // import "@sjsf/form/fields/extra/file-include";
 // import "@sjsf/form/fields/extra/multi-enum-include";
 // import "@sjsf/form/fields/extra/object-key-enum-include";
 // import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-date-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-input-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
 // import "@sjsf/basic-theme/extra-widgets/file-include";
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";
@@ -5579,21 +5701,25 @@ export type Model = FromSchema<typeof schema>;",
 // import "@sjsf/form/fields/extra/array-native-files-include";
 // import "@sjsf/form/fields/extra/array-tags-include";
 // import "@sjsf/form/fields/extra/boolean-select-include";
+// import "@sjsf/form/fields/extra/date-include";
 // import "@sjsf/form/fields/extra/enum-include";
 // import "@sjsf/form/fields/extra/file-include";
 // import "@sjsf/form/fields/extra/multi-enum-include";
 // import "@sjsf/form/fields/extra/object-key-enum-include";
 // import "@sjsf/form/fields/extra/remote-enum-include";
+// import "@sjsf/form/fields/extra/unknown-native-date-include";
 // import "@sjsf/form/fields/extra/unknown-native-file-include";
 // https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/
 export { resolver } from '@sjsf/form/resolvers/basic';
 
 export { translation } from '@sjsf/form/translations/en';
 export { defaultFormValueHandler as valueHandler } from '@sjsf/form/value-handlers/default';
+export { createLogger as logger } from '@sjsf/form/loggers/once';
 export { createFormMerger as merger } from '@sjsf/form/mergers/modern';
 export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern';
 
 // import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
+// import "@sjsf/basic-theme/extra-widgets/date-input-include";
 // import "@sjsf/basic-theme/extra-widgets/date-picker-include";
 // import "@sjsf/basic-theme/extra-widgets/file-include";
 // import "@sjsf/basic-theme/extra-widgets/multi-select-include";

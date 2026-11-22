@@ -7,6 +7,7 @@ import {
   ON_OBJECT_CHANGE,
   type Config,
   type FormValue,
+  type Logger,
   type Schema,
 } from "@sjsf/form";
 import { createMerger } from "@sjsf/form/mergers/modern";
@@ -28,6 +29,11 @@ import { createFormValidator } from "./validator.js";
 
 const fieldsValidationMode =
   ON_INPUT | ON_CHANGE | ON_BLUR | ON_ARRAY_CHANGE | ON_OBJECT_CHANGE;
+
+const testLogger: Logger = {
+  warn() {},
+  error() {},
+};
 
 const combinationSchema: Schema = {
   type: "object",
@@ -166,6 +172,7 @@ async function createPrecompiledValidator(schema: Schema) {
     schema: patch.schema,
     merger: () => createMerger(),
     valueHandler: defaultFormValueHandler,
+    logger: testLogger,
   });
 }
 
@@ -180,6 +187,7 @@ function createValidators(schema: Schema) {
         schema: patchedSchema,
         merger: () => createMerger(),
         valueHandler: defaultFormValueHandler,
+        logger: testLogger,
       }),
     },
     precompiled: createPrecompiledValidator(schema).then((validator) => ({
@@ -347,6 +355,7 @@ describe("field value errors", () => {
       schema,
       merger: () => createMerger(),
       valueHandler: defaultFormValueHandler,
+      logger: testLogger,
     });
     const errors = validator.validateFieldValue(
       {
@@ -369,6 +378,7 @@ describe("discriminator errors", () => {
       schema: discriminatorSchema,
       merger: () => createMerger(),
       valueHandler: defaultFormValueHandler,
+      logger: testLogger,
     });
     const value: FormValue = { pet: { kind: "cat" } };
     const errors = getErrors(validator.validateFormValue(value));

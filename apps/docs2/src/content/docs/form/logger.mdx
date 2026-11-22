@@ -1,0 +1,74 @@
+---
+title: Logger
+sidebar:
+  order: 55
+---
+
+The form and its helpers report warnings and errors through the required
+`logger` option.
+
+## API
+
+```typescript
+export interface Logger {
+  warn(message: string, error?: unknown): void;
+  error(message: string, error?: unknown): void;
+}
+
+export interface FormOptions<T> {
+  // ...
+  logger: Creatable<Logger, LoggerFactoryOptions>;
+}
+```
+
+## Usage
+
+Pass a logger instance, or a factory that creates one for the form:
+
+```typescript
+import { createForm } from "@sjsf/form";
+import { createLogger } from "@sjsf/form/loggers/once";
+
+const form = createForm({
+  // ...
+  logger: createLogger,
+});
+```
+
+A factory receives the form's schema, UI schema and UI options registry. Pass
+the factory when the logger keeps per-form state: `createLogger` remembers which
+messages it has already reported, so a shared instance would suppress a message
+in a later form.
+
+`createForm` passes the logger to the validator, merger, and ID builder
+factories. If you create one of them directly, pass the logger in its options;
+`createCoreContext` also requires it.
+
+## Built-in loggers
+
+`createLogger` from `@sjsf/form/loggers/once` writes to `console` and reports
+each distinct message once per logger instance. It accepts a `sink` option:
+
+```typescript
+import { createLogger } from "@sjsf/form/loggers/once";
+
+const logger = createLogger({
+  sink: {
+    warn: (message, error) => report("warning", message, error),
+    error: (message, error) => report("error", message, error),
+  },
+});
+```
+
+The logger keeps up to 1000 distinct messages; when the limit is reached it
+forgets them and starts over, so a render that produces more messages than that
+is not deduplicated.
+
+`logger` from `@sjsf/form/loggers/noop` discards everything. It is useful in
+tests or when the host application handles diagnostics itself.
+
+## Core helpers
+
+Custom core helpers that take a `CoreContext` should report through
+`logWarn(ctx, message, error)` and `logError(ctx, message, error)` from
+`@sjsf/form/core`. They use the logger carried by the context.

@@ -6,17 +6,17 @@ import { describe, it, expect } from "vitest";
 
 import {
   getSelectOptionValuesSafe,
-  isMultiSelect,
-  isSelect,
+  isMultiSelectSchema,
+  isSelectSchema,
 } from "./is-select.js";
 import type { Schema } from "./schema.js";
 import { createMerger, createTestContext } from "./testing.js";
 
-describe("isSelect2()", () => {
+describe("isSelectSchema()", () => {
   it("should be false if items is undefined", () => {
     const schema: Schema = {};
     expect(
-      isSelect(
+      isSelectSchema(
         createTestContext({
           rootSchema: schema,
         }),
@@ -30,7 +30,7 @@ describe("isSelect2()", () => {
         anyOf: [{ type: "string", enum: ["Foo"] }, { type: "string" }],
       };
       expect(
-        isSelect(
+        isSelectSchema(
           createTestContext({
             rootSchema: schema,
           }),
@@ -46,7 +46,7 @@ describe("isSelect2()", () => {
         ],
       };
       expect(
-        isSelect(
+        isSelectSchema(
           createTestContext({
             rootSchema: schema,
           }),
@@ -78,7 +78,7 @@ describe("isSelect2()", () => {
       ],
     });
     expect(
-      isSelect(
+      isSelectSchema(
         createTestContext({
           merger: defaultMerger,
           rootSchema: schema,
@@ -89,7 +89,7 @@ describe("isSelect2()", () => {
   });
 });
 
-describe("isMultiSelect2()", () => {
+describe("isMultiSelectSchema()", () => {
   describe("uniqueItems is true", () => {
     describe("schema items enum is an array", () => {
       it("should be true", () => {
@@ -98,7 +98,7 @@ describe("isMultiSelect2()", () => {
           uniqueItems: true,
         };
         expect(
-          isMultiSelect(
+          isMultiSelectSchema(
             createTestContext({
               rootSchema: schema,
             }),
@@ -110,7 +110,7 @@ describe("isMultiSelect2()", () => {
     it("should be false if items is undefined", () => {
       const schema: Schema = {};
       expect(
-        isMultiSelect(
+        isMultiSelectSchema(
           createTestContext({
             rootSchema: schema,
           }),
@@ -122,7 +122,7 @@ describe("isMultiSelect2()", () => {
       it("should be false if oneOf/anyOf is not in items schema", () => {
         const schema: Schema = { items: {}, uniqueItems: true };
         expect(
-          isMultiSelect(
+          isMultiSelectSchema(
             createTestContext({
               rootSchema: schema,
             }),
@@ -138,7 +138,7 @@ describe("isMultiSelect2()", () => {
           uniqueItems: true,
         };
         expect(
-          isMultiSelect(
+          isMultiSelectSchema(
             createTestContext({
               rootSchema: schema,
             }),
@@ -157,7 +157,7 @@ describe("isMultiSelect2()", () => {
           uniqueItems: true,
         };
         expect(
-          isMultiSelect(
+          isMultiSelectSchema(
             createTestContext({
               rootSchema: schema,
             }),
@@ -175,7 +175,7 @@ describe("isMultiSelect2()", () => {
         uniqueItems: true,
       };
       expect(
-        isMultiSelect(
+        isMultiSelectSchema(
           createTestContext({
             rootSchema: schema,
           }),
@@ -190,7 +190,7 @@ describe("isMultiSelect2()", () => {
       uniqueItems: false,
     };
     expect(
-      isMultiSelect(
+      isMultiSelectSchema(
         createTestContext({
           rootSchema: schema,
         }),
@@ -207,7 +207,7 @@ describe("a schema carrying both oneOf and anyOf", () => {
   it("reads anyOf for the select decision when both lists are populated", () => {
     const schema: Schema = { oneOf: TYPES, anyOf: CONST };
     expect(
-      isSelect(
+      isSelectSchema(
         createTestContext({
           rootSchema: schema,
         }),
@@ -228,7 +228,7 @@ describe("a schema carrying both oneOf and anyOf", () => {
     ["empty anyOf, populated oneOf", { anyOf: [], oneOf: CONST }],
   ])("reads the populated list for %s", (_name, schema) => {
     expect(
-      isSelect(
+      isSelectSchema(
         createTestContext({
           rootSchema: schema,
         }),

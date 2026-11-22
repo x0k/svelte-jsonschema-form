@@ -1,3 +1,4 @@
+import { logger } from "@sjsf/form/loggers/noop";
 import { fromValidators } from "@sjsf/form/validators/precompile";
 import { Ajv } from "ajv";
 import standaloneCode from "ajv/dist/standalone/index.js";
@@ -48,7 +49,7 @@ describe("async precompiled validator", () => {
         test: await compileAsyncValidator(),
       }),
     });
-    const validator = factory({ schema });
+    const validator = factory({ schema, logger });
     const signal = new AbortController().signal;
 
     const invalid = await validator.validateFormValueAsync(signal, {

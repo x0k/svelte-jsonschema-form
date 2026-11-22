@@ -34,7 +34,6 @@ const OPTIONAL_PKG = {
   internationalizedDate: "@internationalized/date",
   standardSchemaSpec: "@standard-schema/spec",
   cally: "cally",
-  pikaday: "pikaday",
 };
 
 export type OptionalPackage = keyof typeof OPTIONAL_PKG;

@@ -8,6 +8,7 @@ import {
   debounce,
   type FailedTask,
 } from "@sjsf/form/lib/task.svelte";
+import { createLogger } from "@sjsf/form/loggers/once";
 import { createMerger } from "@sjsf/form/mergers/modern";
 import {
   IdEnumValueMapperBuilder,
@@ -143,6 +144,7 @@ export function createValidatorState(
         validator: v,
         merger: validatorOptions.merger,
         valueHandler: validatorOptions.valueHandler,
+        logger: validatorOptions.logger,
         schema,
         uiSchema,
       });
@@ -157,6 +159,7 @@ export function createValidatorState(
       merger: createMerger(),
       valueHandler: { isValueDeepEqual: isSchemaValueDeepEqual },
       rootSchema: {},
+      logger: createLogger(),
     })
   );
   const items: string[] = [];

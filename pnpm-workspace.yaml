@@ -33,7 +33,6 @@ catalog:
   "@tailwindcss/vite": ^4.3.5
   "@types/css-tree": ^3.2.0
   "@types/estree": ^1.0.10
-  "@types/pikaday": ^1.7.10
   "@types/node": ^26.6.6
   "@typescript/native": npm:typescript@^7.0.2
   "@typescript-eslint/types": ^8.72.2
@@ -64,7 +63,6 @@ catalog:
   json-schema-to-zod: ^2.8.1
   json-schema-typed: ^8.0.2
   lz-string: ^1.5.0
-  pikaday: ^1.8.2
   vanilla-calendar-pro: ^3.4.0
   playwright: 1.65.0
   postcss: ^8.5.32

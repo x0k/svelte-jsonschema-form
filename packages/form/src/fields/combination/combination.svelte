@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  import type { UiSchemaDefinition } from "#form/index.js";
+  import type { ActionField, Config, UiSchemaDefinition } from "#form/index.js";
 
   import "../extra-templates/multi-field.js";
 
@@ -8,9 +8,19 @@
       combinationFieldOptionSelector?: UiSchemaDefinition;
     }
   }
+
+  type CombinationFields = keyof {
+    [
+      C in ActionField as Expand<ComponentProps[C]> extends Expand<
+        ComponentProps["oneOfField"]
+      >
+        ? C
+        : never
+    ]: C;
+  };
 </script>
 
-<script lang="ts">
+<script lang="ts" generics="F extends CombinationFields">
   import {
     getFormContext,
     getComponent,
@@ -23,41 +33,44 @@
   } from "#form/index.js";
 
   import {
-    createCombinationContext,
     setCombinationContext,
-    type CombinationKey,
+    type CombinationContext,
+    type CombinationContextOptions,
   } from "./context.svelte.js";
 
   let {
     value = $bindable(),
     config,
-    combinationKey,
     uiOption,
+    field,
+    restFieldConfig,
+    createContext,
     translate,
-  }: ComponentProps["anyOfField" | "oneOfField"] & {
-    combinationKey: CombinationKey;
+  }: ComponentProps[F] & {
+    field: F;
+    createContext: <T>(
+      options: Omit<
+        CombinationContextOptions<T>,
+        "schemas" | "uiSchemas" | "pseudoSuffix"
+      >
+    ) => CombinationContext;
+    restFieldConfig?: Config;
   } = $props();
 
   const ctx = getFormContext();
-
-  const combinationCtx = createCombinationContext({
+  // svelte-ignore state_referenced_locally
+  const combinationCtx = createContext({
     ctx,
     config: () => config,
     value: () => value,
     setValue: (v) => (value = v),
-    get combinationKey() {
-      return combinationKey;
-    },
-    get translate() {
-      return translate;
-    },
+    translate: () => translate,
   });
   setCombinationContext(combinationCtx);
 
   const Template = $derived(getComponent(ctx, "multiFieldTemplate", config));
   const Widget = $derived(getComponent(ctx, "selectWidget", config));
 
-  const restFieldConfig = $derived(combinationCtx.restConfig());
   const RestSchemaField = $derived(
     restFieldConfig && getFieldComponent(ctx, restFieldConfig)
   );
@@ -67,9 +80,7 @@
     combinationFieldConfig && getFieldComponent(ctx, combinationFieldConfig)
   );
 
-  const action = $derived(
-    getFieldAction(ctx, config, `${combinationKey}Field`)
-  );
+  const action = $derived(getFieldAction(ctx, config, field));
   const errors = $derived(getFieldErrors(ctx, config.path));
 </script>
 
@@ -104,6 +115,7 @@
   {errors}
   {uiOption}
   action={action && renderAction}
+  showMeta={restFieldConfig === undefined}
 >
   {#snippet optionSelector()}
     {@const props = combinationCtx.optionSelectorProps()}

@@ -141,6 +141,17 @@
           },
         },
       },
+      union: {
+        type: ["string", "number"],
+        title: "Union",
+        description: "A field that accepts either a string or a number",
+      },
+      unionObject: {
+        type: ["string", "object"],
+        title: "Union with object",
+        description: "A field that accepts either a string or an object",
+        additionalProperties: true,
+      },
     },
     additionalProperties: {
       type: "string",
@@ -218,6 +229,10 @@
       optionalArray: ["foo"],
       array: ["fixed", 123],
       additional: "value",
+      union: 42,
+      unionObject: {
+        anything: "goes",
+      },
     },
     initialErrors: [
       {

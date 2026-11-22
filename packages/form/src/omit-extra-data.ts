@@ -12,7 +12,7 @@ import {
   type SchemaValue,
   type SchemaArrayValue,
   isSchemaArrayValue,
-  isSelect,
+  isSelectSchema,
   getClosestMatchingOption,
   getDiscriminatorFieldFromSchema,
 } from "#core/index.js";
@@ -168,7 +168,7 @@ export function omitExtraData(
     source: SchemaValue | undefined,
     target: SchemaValue | undefined
   ) {
-    if (!Array.isArray(oneOf) || isSelect(ctx, schema)) {
+    if (!Array.isArray(oneOf) || isSelectSchema(ctx, schema)) {
       return target;
     }
     const bestIndex = getClosestMatchingOption(

@@ -1,4 +1,4 @@
-import { fieldTests } from "theme-testing/tests";
+import { fieldTests, requiredCheckboxTests } from "theme-testing/tests";
 
 import { theme } from "../src/index.js";
 import { specs } from "../src/specs.js";
@@ -8,3 +8,5 @@ fieldTests(theme, {
   specs,
   Form,
 });
+
+requiredCheckboxTests(theme, { Form });

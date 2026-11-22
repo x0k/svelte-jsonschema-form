@@ -16,6 +16,9 @@ export interface FormOptions<T> {
   merger: Creatable<FormMerger, MergerFactoryOptions>;
   valueHandler: Creatable<FormValueHandler, FormValueHandlerOptions>;
 
+  // Logging
+  logger: Creatable<Logger, LoggerFactoryOptions>;
+
   // Identification & Styling
   idPrefix?: string; // default: "root"
   icons?: Icons;

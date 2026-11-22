@@ -7,6 +7,7 @@ import "./extra-widgets/checkboxes-include.js";
 import "./extra-widgets/color-picker-include.js";
 import "./extra-widgets/color-select-include.js";
 import "./extra-widgets/combobox-include.js";
+import "./extra-widgets/date-input-include.js";
 import "./extra-widgets/date-picker-include.js";
 import "./extra-widgets/date-range-picker-include.js";
 import "./extra-widgets/multi-select-include.js";
@@ -62,6 +63,27 @@ export const specs: s.Specs = {
       },
     },
     {},
+  ],
+  dateInput: [
+    s.date,
+    { "ui:components": { stringField: "dateField" } },
+    {
+      onchange: "changeDate",
+    },
+  ],
+  dateTimeInput: [
+    s.dateTime,
+    { "ui:components": { stringField: "dateField" } },
+    {
+      onchange: "changeDateTimePair",
+    },
+  ],
+  timeInput: [
+    s.time,
+    { "ui:components": { stringField: "dateField" } },
+    {
+      onchange: "changeTime",
+    },
   ],
   datePicker: [
     s.text,

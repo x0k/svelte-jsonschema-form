@@ -13,12 +13,14 @@ import {
   type ValueHandler,
   type Schema,
   type Validator,
+  type Logger,
 } from "#core/index.js";
 import {
   CORE_ROOT_SCHEMA,
   CORE_VALIDATOR,
   CORE_MERGER,
   CORE_VALUE_HANDLER,
+  CORE_LOGGER,
 } from "#core/internals.js";
 import { createDataURLtoBlob } from "#lib/file.js";
 import { weakMemoize } from "#lib/memoize.js";
@@ -156,6 +158,7 @@ export interface IdBuilderFactoryOptions {
   merger: FormMerger;
   valueHandler: ValueHandler;
   valueRef: FormValueRef;
+  logger: Logger;
 }
 
 export interface ValidatorFactoryOptions {
@@ -170,6 +173,7 @@ export interface ValidatorFactoryOptions {
    * The value handler, for validators that need a core context.
    */
   valueHandler: ValueHandler;
+  logger: Logger;
 }
 
 export interface MergerFactoryOptions {
@@ -178,6 +182,7 @@ export interface MergerFactoryOptions {
   uiSchema: UiSchemaRoot;
   uiOptionsRegistry: UiOptionsRegistry;
   valueHandler: ValueHandler;
+  logger: Logger;
 }
 
 export interface FormValueHandlerOptions {
@@ -185,6 +190,8 @@ export interface FormValueHandlerOptions {
   uiSchema: UiSchemaRoot;
   uiOptionsRegistry: UiOptionsRegistry;
 }
+
+export interface LoggerFactoryOptions extends FormValueHandlerOptions {}
 
 export interface FormOptions<T>
   extends ValidateHandlers<T, FailedTask<unknown>>, UiOptionsRegistryOption {
@@ -200,6 +207,16 @@ export interface FormOptions<T>
    * updates.
    */
   valueHandler: Creatable<FormValueHandler, FormValueHandlerOptions>;
+  /**
+   * Receives warnings and errors raised while resolving the schema, rendering
+   * fields, and validating data.
+   *
+   * Pass a logger, or a factory that creates one for this form. The factory
+   * receives the form's schema, UI schema and UI options registry. Pass a
+   * factory when the logger keeps per-form state, such as the record of
+   * messages it has already reported.
+   */
+  logger: Creatable<Logger, LoggerFactoryOptions>;
   /**
    * @default DEFAULT_ID_PREFIX
    */
@@ -273,6 +290,13 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     };
   });
   const rootPath = $derived(internalRegisterFieldPath(pathsTrieRef, []));
+  const logger = $derived(
+    create(options.logger, {
+      schema: options.schema,
+      uiSchema: uiSchemaRoot,
+      uiOptionsRegistry,
+    })
+  );
   const valueHandler = $derived(
     create(options.valueHandler, {
       schema: options.schema,
@@ -287,6 +311,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       schema: options.schema,
       merger: (): FormMerger => merger,
       valueHandler,
+      logger,
     })
   );
   const merger = $derived(
@@ -296,6 +321,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       uiSchema: uiSchemaRoot,
       uiOptionsRegistry,
       valueHandler,
+      logger,
     })
   );
   const valueRef = $derived(
@@ -326,6 +352,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       validator: validator,
       valueHandler,
       valueRef,
+      logger,
     })
   );
   // A `dependencies`/`if` branch switch nested inside an object property never changes the ROOT retrieved
@@ -514,6 +541,9 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     },
     get [CORE_VALUE_HANDLER]() {
       return valueHandler;
+    },
+    get [CORE_LOGGER]() {
+      return logger;
     },
     // FORM INTERNALS
     [FORM_VALUE]: valueStore,

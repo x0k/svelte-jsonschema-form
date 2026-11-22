@@ -78,7 +78,7 @@ export function resolveDependencies<T extends CodegenThemeOrSubTheme>({
     }
   } else {
     optionalDeps.push(
-      optionalPackageName("pikaday"),
+      optionalPackageName("cally"),
       optionalPackageName("skeletonSvelte"),
       optionalPackageName("internationalizedDate")
     );

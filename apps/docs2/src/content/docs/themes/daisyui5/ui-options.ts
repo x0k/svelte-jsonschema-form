@@ -1,6 +1,5 @@
 import type { ButtonType, LayoutType } from "@sjsf/form/fields/components";
 import type { CalendarDateProps } from "cally";
-import type { PikadayOptions } from "pikaday";
 import type {
   ClassValue,
   HTMLAttributes,
@@ -12,6 +11,7 @@ import type {
   HTMLSelectAttributes,
   HTMLTextareaAttributes,
 } from "svelte/elements";
+import type { Options } from "vanilla-calendar-pro";
 
 type MapEvents<T> = {
   [K in keyof T as K extends `on${infer E}` ? `on:${Lowercase<E>}` : K]: T[K];
@@ -84,6 +84,8 @@ export interface UiOptions {
 
   checkbox?: HTMLInputAttributes;
 
+  dateInput?: HTMLInputAttributes;
+
   number?: HTMLInputAttributes;
 
   select?: HTMLSelectAttributes;
@@ -106,11 +108,10 @@ export interface UiOptions {
   daisyui5CallyCalendarTrigger?: HTMLButtonAttributes;
   daisyui5CallyCalendar?: CalendarProps;
 
+  daisyui5DateInputOptions?: Options;
+
   daisyui5Filter?: HTMLAttributes<HTMLDivElement>;
   daisyui5FilterItem?: HTMLInputAttributes;
-
-  daisyui5PikadayCalendar?: HTMLInputAttributes;
-  daisyui5PikadayCalendarOptions?: PikadayOptions;
 
   daisyui5RadioButtons?: HTMLInputAttributes;
 

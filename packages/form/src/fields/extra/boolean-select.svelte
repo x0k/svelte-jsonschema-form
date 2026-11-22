@@ -23,7 +23,7 @@
   import "#form/extra-fields/boolean-select.js";
   import { createMappedOption, singleOption } from "#options.svelte.js";
 
-  import { createFormOptions } from "../enum.js";
+  import { createFormOptions, getSelectedOptionDescription } from "../enum.js";
 
   const ctx = getFormContext();
 
@@ -72,6 +72,9 @@
     update: (v) => (value = v === undefined ? undefined : Boolean(v)),
   });
   const clearable = $derived(uiOption("clearable") ?? !config.required);
+  const description = $derived(
+    getSelectedOptionDescription(options, mapped.current)
+  );
 
   const handlers = makeEventHandlers(
     ctx,
@@ -104,6 +107,7 @@
   {uiOption}
   {widgetType}
   {value}
+  {description}
   {config}
   {errors}
   action={action && renderAction}

@@ -17,6 +17,7 @@ import type {
   SelectProps,
   TagsProps,
   TextareaProps,
+  TimepickerProps,
   ToggleProps,
 } from "flowbite-svelte";
 import type {
@@ -69,6 +70,10 @@ export interface UiOptions {
   titleAttributes?: HTMLAttributes<HTMLDivElement>;
 
   flowbite3Checkbox?: CheckboxProps;
+
+  flowbite3DateInput?: DatepickerProps;
+
+  flowbite3TimeInput?: TimepickerProps;
 
   flowbite3Number?: InputProps<number | undefined>;
 

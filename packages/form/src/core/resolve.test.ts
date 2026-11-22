@@ -2,16 +2,7 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import {
-  afterAll,
-  afterEach,
-  beforeAll,
-  describe,
-  expect,
-  it,
-  vi,
-  type MockInstance,
-} from "vitest";
+import { beforeAll, describe, expect, it } from "vitest";
 
 import {
   PROPERTY_DEPENDENCIES,
@@ -36,7 +27,13 @@ import {
   withExactlyOneSubSchema,
 } from "./resolve.js";
 import { type Schema, ADDITIONAL_PROPERTY_FLAG, REF_FLAG } from "./schema.js";
-import { createMerger, createTestContext, createValidator } from "./testing.js";
+import {
+  createMerger,
+  createTestContext,
+  createTestLogger,
+  createValidator,
+  type TestLogMessage,
+} from "./testing.js";
 
 describe("resolveDependencies()", () => {
   it("test an object with dependencies", () => {
@@ -176,16 +173,6 @@ describe("resolveDependencies()", () => {
   });
 });
 describe("retrieveSchema()", () => {
-  let consoleWarnSpy: MockInstance<typeof console.warn>;
-  beforeAll(() => {
-    consoleWarnSpy = vi.spyOn(console, "warn").mockImplementation(() => {}); // mock this to avoid actually warning in the tests
-  });
-  afterAll(() => {
-    consoleWarnSpy.mockRestore();
-  });
-  afterEach(() => {
-    consoleWarnSpy.mockClear();
-  });
   it("should `resolve` a schema which contains definitions", () => {
     const schema: Schema = { $ref: "#/definitions/address" };
     const address: Schema = {
@@ -1818,11 +1805,14 @@ describe("retrieveSchema()", () => {
               employee_accounts: false,
               update_absences: "BOTH",
             };
+            const messages: TestLogMessage[] = [];
+            const logger = createTestLogger({ messages });
             expect(
               retrieveSchema(
                 createTestContext({
                   validator: testValidator,
                   rootSchema: rootSchema,
+                  logger,
                 }),
                 schema,
                 formData
@@ -1836,8 +1826,12 @@ describe("retrieveSchema()", () => {
                 },
               },
             });
-            expect(consoleWarnSpy).toHaveBeenCalledWith(
-              "ignoring oneOf in dependencies because there isn't exactly one subschema that is valid"
+            expect(messages).toContainEqual(
+              expect.objectContaining({
+                level: "warn",
+                message:
+                  'ignoring oneOf in dependencies because there isn\'t exactly one subschema that is valid for "employee_accounts"',
+              })
             );
           });
 
@@ -2292,18 +2286,24 @@ describe("retrieveSchema()", () => {
       };
       const rootSchema: Schema = { definitions: {} };
       const formData = {};
+      const messages: TestLogMessage[] = [];
+      const logger = createTestLogger({ messages });
       expect(
         retrieveSchema(
           createTestContext({
             rootSchema: rootSchema,
+            logger,
           }),
           schema,
           formData
         )
       ).toEqual({});
-      expect(consoleWarnSpy).toHaveBeenCalledWith(
-        expect.stringMatching(/could not merge subschemas in allOf/),
-        expect.any(Error)
+      expect(messages).toContainEqual(
+        expect.objectContaining({
+          level: "warn",
+          message: "could not merge subschemas in allOf",
+          error: expect.any(Error),
+        })
       );
     });
     it("should merge types with $ref in them", () => {
@@ -3726,6 +3726,28 @@ describe("retrieveSchema()", () => {
           },
           foo: {
             type: "string",
+            [ADDITIONAL_PROPERTY_FLAG]: true,
+          },
+        },
+      });
+    });
+    it("leaves an undefined arbitrary additional property untyped", () => {
+      const schema = {
+        additionalProperties: true,
+        properties: {},
+      } satisfies Schema;
+      expect(
+        stubExistingAdditionalProperties(
+          createTestContext({
+            rootSchema: schema,
+          }),
+          schema,
+          { foo: undefined }
+        )
+      ).toEqual({
+        ...schema,
+        properties: {
+          foo: {
             [ADDITIONAL_PROPERTY_FLAG]: true,
           },
         },

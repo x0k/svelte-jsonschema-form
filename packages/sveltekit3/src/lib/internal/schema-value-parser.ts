@@ -14,7 +14,7 @@ import {
   getSimpleSchemaType,
   isSchemaArrayValue,
   isSchemaObjectValue,
-  isSelect,
+  isSelectSchema,
   isValid,
   resolveRef,
   getKnownProperties,
@@ -437,7 +437,7 @@ export function parseSchemaValue<T>(
     schema: Schema,
     value: SchemaValue | undefined
   ) {
-    if (isSelect(ctx, schema)) {
+    if (isSelectSchema(ctx, schema)) {
       return value;
     }
     pushFilterAndEntries(escapedPseudoSeparator, encode(element), element);

@@ -54,6 +54,21 @@ export const text: Schema = {
   type: "string",
 };
 
+export const date: Schema = {
+  type: "string",
+  format: "date",
+};
+
+export const dateTime: Schema = {
+  type: "string",
+  format: "date-time",
+};
+
+export const time: Schema = {
+  type: "string",
+  format: "time",
+};
+
 export const range = (schema: Schema): Schema => ({
   type: "object",
   properties: {

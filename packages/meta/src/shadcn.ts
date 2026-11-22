@@ -98,6 +98,12 @@ const SHADCN4_EXTRA_WIDGET_COMPONENTS = {
       "CommandItem",
     ],
   },
+  "date-input": {
+    ...INPUT_COMPONENTS,
+    ...BUTTON_COMPONENTS,
+    ...POPOVER_COMPONENTS,
+    calendar: ["Calendar"],
+  },
   "date-picker": {
     ...BUTTON_COMPONENTS,
     ...POPOVER_COMPONENTS,

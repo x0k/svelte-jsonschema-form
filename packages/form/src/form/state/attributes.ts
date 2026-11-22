@@ -208,14 +208,17 @@ export function ariaRequiredProp<T extends AriaAttributes, FT>(
 export function inputType(format: string | undefined) {
   switch (format) {
     case "date-time":
+    case "iso-date-time":
       return "datetime-local";
     case "uri":
       return "url";
     case "color":
     case "date":
-    case "time":
     case "email":
       return format;
+    case "time":
+    case "iso-time":
+      return "time";
     default:
       return undefined;
   }

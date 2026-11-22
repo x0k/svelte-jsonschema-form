@@ -22,11 +22,14 @@
     config,
     value = $bindable(),
     handlers,
+    mustBeChecked,
   }: ComponentProps["checkboxWidget"] = $props();
 
   const ctx = getFormContext();
 
   const id = $derived(getId(ctx, config.path));
+
+  const label = $derived(mustBeChecked ? `${config.title} *` : config.title);
 
   function onchange() {
     handlers.oninput?.();
@@ -39,7 +42,7 @@
   {...uiOptionProps("svarCheckbox")(
     {
       id,
-      label: config.title,
+      label,
       disabled: isDisabled(ctx),
       onchange,
     },

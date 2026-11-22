@@ -2,7 +2,8 @@ import {
   createCoreContext,
   getDefaultFormState,
   type ValueHandler,
-  type Experimental_DefaultFormStateBehavior,
+  type DefaultFormStateBehavior,
+  type Logger,
   type Merger,
   type Validator,
 } from "#core/index.js";
@@ -35,10 +36,11 @@ export function createMerger({
 }
 
 export interface FormMergerOptions
-  extends Experimental_DefaultFormStateBehavior, MergerOptions {
+  extends DefaultFormStateBehavior, MergerOptions {
   validator: Validator;
   schema: Schema;
   valueHandler: ValueHandler;
+  logger: Logger;
 }
 
 export function createFormMerger(options: FormMergerOptions): FormMerger {
@@ -56,6 +58,7 @@ export function createFormMerger(options: FormMergerOptions): FormMerger {
           merger: formMerger,
           valueHandler: options.valueHandler,
           rootSchema: options.schema,
+          logger: options.logger,
         }),
         schema,
         formData,

@@ -24,16 +24,16 @@ Structural UI building blocks that do not directly manage form values:
 
 Direct input elements handling value changes:
 
-| Widget Name      | Typical Schema Target             | Key Props                                                                                        |
-| :--------------- | :-------------------------------- | :----------------------------------------------------------------------------------------------- |
-| `textWidget`     | `string`                          | `value = $bindable()`, `config`, `handlers: { oninput, onblur, onchange }`, `uiOption`, `errors` |
-| `numberWidget`   | `number`, `integer`               | `value = $bindable()`, `config`, `handlers: { oninput, onblur, onchange }`, `uiOption`, `errors` |
-| `checkboxWidget` | `boolean`                         | `value = $bindable()`, `config`, `handlers: { oninput, onblur, onchange }`, `uiOption`, `errors` |
-| `selectWidget`   | `string` or `number` with `enum`  | `value = $bindable()`, `config`, `handlers: { oninput, onblur, onchange }`, `uiOption`, `errors` |
-| `radioWidget`    | `string` or `number` with `enum`  | `value = $bindable()`, `config`, `handlers: { oninput, onblur, onchange }`, `uiOption`, `errors` |
-| `fileWidget`     | `string` with format `data-url`   | `value = $bindable()`, `config`, `handlers: { oninput, onblur, onchange }`, `uiOption`, `errors` |
-| `rangeWidget`    | `number` with `minimum`/`maximum` | `value = $bindable()`, `config`, `handlers: { oninput, onblur, onchange }`, `uiOption`, `errors` |
-| `textareaWidget` | Multi-line text                   | `value = $bindable()`, `config`, `handlers: { oninput, onblur, onchange }`, `uiOption`, `errors` |
+| Widget Name      | Typical Schema Target             | Key Props                                                                                                         |
+| :--------------- | :-------------------------------- | :---------------------------------------------------------------------------------------------------------------- |
+| `textWidget`     | `string`                          | `value = $bindable()`, `config`, `handlers: { oninput, onblur, onchange }`, `uiOption`, `errors`                  |
+| `numberWidget`   | `number`, `integer`               | `value = $bindable()`, `config`, `handlers: { oninput, onblur, onchange }`, `uiOption`, `errors`                  |
+| `checkboxWidget` | `boolean`                         | `value = $bindable()`, `config`, `handlers: { oninput, onblur, onchange }`, `uiOption`, `errors`, `mustBeChecked` |
+| `selectWidget`   | `string` or `number` with `enum`  | `value = $bindable()`, `config`, `handlers: { oninput, onblur, onchange }`, `uiOption`, `errors`                  |
+| `radioWidget`    | `string` or `number` with `enum`  | `value = $bindable()`, `config`, `handlers: { oninput, onblur, onchange }`, `uiOption`, `errors`                  |
+| `fileWidget`     | `string` with format `data-url`   | `value = $bindable()`, `config`, `handlers: { oninput, onblur, onchange }`, `uiOption`, `errors`                  |
+| `rangeWidget`    | `number` with `minimum`/`maximum` | `value = $bindable()`, `config`, `handlers: { oninput, onblur, onchange }`, `uiOption`, `errors`                  |
+| `textareaWidget` | Multi-line text                   | `value = $bindable()`, `config`, `handlers: { oninput, onblur, onchange }`, `uiOption`, `errors`                  |
 
 `WidgetCommonProps<V>`: `{ type: "widget", config, value: V | undefined, handlers, errors, uiOption }`. `Config` has no `id`/`disabled`; use `getId(ctx, config.path)` and `isDisabled(ctx)`.
 
@@ -57,4 +57,4 @@ Templates orchestrate field wrappers, array tables/lists, and object field grids
 
 Resolvers map a schema definition to the corresponding field template and widget. The foundational field types are:
 
-- `stringField`, `numberField`, `integerField`, `booleanField`, `objectField`, `arrayField`, `tupleField`, `nullField`, `oneOfField`, `anyOfField`, `unknownField`, `expandField`.
+- `stringField`, `numberField`, `integerField`, `booleanField`, `objectField`, `arrayField`, `tupleField`, `nullField`, `oneOfField`, `anyOfField`, `unionField`, `unknownField`, `expandField`.

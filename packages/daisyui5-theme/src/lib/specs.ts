@@ -1,7 +1,7 @@
 import { s, DEFAULT_SPECS } from "theme-testing/specs";
 
-import "./extra-widgets/cally-date-picker-include.js";
 import "./extra-widgets/checkboxes-include.js";
+import "./extra-widgets/date-input-include.js";
 import "./extra-widgets/file-include.js";
 import "./extra-widgets/filter-radio-buttons-include.js";
 import "./extra-widgets/multi-select-include.js";
@@ -16,23 +16,40 @@ import "./extra-widgets/vc-date-picker-include.js";
 
 export const specs: s.Specs = {
   ...DEFAULT_SPECS,
-  callyDatePicker: [
-    s.text,
+  dateInput: [
+    s.date,
+    { "ui:components": { stringField: "dateField" } },
     {
-      "ui:components": { textWidget: "daisyui5CallyDatePickerWidget" },
-      "ui:options": { useLabel: false },
+      // Typed text is committed on `change`, so `oninput` validation is not
+      // supported.
+      onchange: "changeDate",
+      onblur: "visitDate",
     },
+  ],
+  dateTimeInput: [
+    s.dateTime,
+    { "ui:components": { stringField: "dateField" } },
     {
-      onchange: "changeCallyDatePicker",
+      onchange: "changeDateTime",
+      onblur: "visitDateTime",
+    },
+  ],
+  timeInput: [
+    s.time,
+    { "ui:components": { stringField: "dateField" } },
+    {
+      onchange: "changeTime",
+      onblur: "visitTime",
     },
   ],
   datePicker: [
     s.text,
-    { "ui:components": { textWidget: "datePickerWidget" } },
     {
-      oninput: "inputDate",
-      onchange: "changeDate",
-      onblur: "visitDate",
+      "ui:components": { textWidget: "datePickerWidget" },
+      "ui:options": { useLabel: false },
+    },
+    {
+      onchange: "changeCallyDatePicker",
     },
   ],
   filterRadioButtons: [

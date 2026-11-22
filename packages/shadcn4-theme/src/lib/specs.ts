@@ -3,6 +3,7 @@ import "@sjsf/form/fields/extra/aggregated-include";
 
 import "./theme/extra-widgets/checkboxes-include.js";
 import "./theme/extra-widgets/combobox-include.js";
+import "./theme/extra-widgets/date-input-include.js";
 import "./theme/extra-widgets/date-picker-include.js";
 import "./theme/extra-widgets/date-range-picker-include.js";
 import "./theme/extra-widgets/file-include.js";
@@ -42,6 +43,41 @@ export const specs: s.Specs = {
       oninput: "inputShadcnCombobox",
       onchange: "changeShadcnCombobox",
       onblur: "visitShadcnCombobox",
+    },
+  ],
+  dateInput: [
+    s.date,
+    // NOTE: DatePicker is a button
+    {
+      "ui:components": { stringField: "dateField" },
+      "ui:options": { useLabel: false },
+    },
+    {
+      oninput: "inputShadcnDatePicker",
+      onchange: "changeShadcnDatePicker",
+      onblur: "visitShadcnDatePicker",
+    },
+  ],
+  dateTimeInput: [
+    s.dateTime,
+    // NOTE: DatePicker is a button
+    {
+      "ui:components": { stringField: "dateField" },
+      "ui:options": { useLabel: false },
+    },
+    {
+      oninput: "inputShadcnDateTimePair",
+      onchange: "changeShadcnDateTimePair",
+      onblur: "visitShadcnDateTimePair",
+    },
+  ],
+  timeInput: [
+    s.time,
+    { "ui:components": { stringField: "dateField" } },
+    {
+      oninput: "inputTime",
+      onchange: "changeTime",
+      onblur: "visitTime",
     },
   ],
   datePicker: [

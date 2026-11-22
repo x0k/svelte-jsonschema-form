@@ -16,6 +16,7 @@ import {
   Switch as SvarSwitch,
   TextArea as SvarTextArea,
   Text as SvarText,
+  TimePicker as SvarTimePicker,
 } from "@svar-ui/svelte-core";
 import type { ComponentProps as SvelteComponentProps } from "svelte";
 
@@ -52,6 +53,14 @@ export interface UiOptions {
    * Overrides the props of the combobox widget.
    */
   svarCombobox?: SvelteComponentProps<typeof Combo>;
+  /**
+   * Overrides the props of the date input widget.
+   */
+  svarDateInput?: SvelteComponentProps<typeof SvarDatePicker>;
+  /**
+   * Overrides the props of the time input widget.
+   */
+  svarTimeInput?: SvelteComponentProps<typeof SvarTimePicker>;
   /**
    * Overrides the props of the date picker widget.
    */

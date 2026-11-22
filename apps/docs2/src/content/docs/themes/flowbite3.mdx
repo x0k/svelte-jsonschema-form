@@ -77,6 +77,15 @@ or used in the field as the default widget.
 
 <Code lang="ts" code={createExtraImports("flowbite3", extraWidgets)} />
 
+### Date and time inputs
+
+`dateField` renders a date picker plus a time input for `date-time`, and the
+kit's `Timepicker` for `time` and for the time half. `Timepicker` only accepts
+`HH:mm` and cannot represent an empty value, so editing drops seconds and a
+time-only field cannot be cleared from the control. The date half of a
+`date-time` pair can still clear the whole value. Configure the time control
+with `flowbite3TimeInput`.
+
 ## Widgets demo
 
 <Tabs>

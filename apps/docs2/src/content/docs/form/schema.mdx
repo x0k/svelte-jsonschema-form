@@ -16,34 +16,53 @@ See the <OpenInSandbox client:visible example="Draft 2020-12" /> example for det
 
 ## String formats
 
-Some string formats has special meaning:
+Some string formats have special meaning:
 
-- `date-time` - `datetime-local` input type
+- `date-time`, `iso-date-time` - `datetime-local` input type
 - `uri` - `url` input type
-- `color`, `date`, `time`, `email` - corresponding input type
+- `color`, `date`, `email` - corresponding input type
   - You can use `useDatePickerForDateFormat` function from
     `@sjsf/form/fields/extra-widgets/date-picker` to use `datePickerWidget`
     for `date` format
+- `time`, `iso-time` - `time` input type
 - `data-url` - file field (with `compat` resolver)
 
-## Reference resolution
+Native `date`, `time`, and `datetime-local` inputs store the raw input string
+by default. Import `@sjsf/form/fields/extra/date-include` and select
+`dateField` to store RFC 3339-compliant strings instead:
 
-The core entry point exports two helpers for local `$ref` values:
+```ts
+import "@sjsf/form/fields/extra/date-include";
 
-```typescript
-import { createCoreContext, resolveRef, resolveRefSafe } from "@sjsf/form/core";
-
-const ctx = createCoreContext({ validator, merger, valueHandler, rootSchema });
-
-const schema = resolveRef(ctx, "#/definitions/address");
-const maybeSchema = resolveRefSafe("#/definitions/address", rootSchema);
+const uiSchema = {
+  "ui:components": {
+    stringField: "dateField",
+  },
+};
 ```
 
-`resolveRef` throws when the reference is not local or does not resolve.
-`resolveRefSafe` returns `undefined` instead, so it is useful when walking a
-schema whose references you do not control. Both helpers accept a [JSON
-Pointer](https://datatracker.ietf.org/doc/html/rfc6901) in URI fragment
-identifier format and only read own properties.
+`dateField` handles `date`, `date-time`, `iso-date-time`, `time`, and
+`iso-time`. It renders the matching Date-valued input and stores `date` as a
+local calendar day, `date-time` as UTC with seconds, `iso-date-time` without an
+offset, `time` with the current offset, and `iso-time` without one.
+
+The widget itself is a theme extra widget, so import your theme's include as
+well:
+
+```ts
+import "@sjsf/basic-theme/extra-widgets/date-input-include";
+import "@sjsf-lab/beercss-theme/extra-widgets/date-input-include";
+import "@sjsf/daisyui5-theme/extra-widgets/date-input-include";
+import "@sjsf/flowbite3-theme/extra-widgets/date-input-include";
+import "@sjsf/shadcn4-theme/extra-widgets/date-input-include";
+import "@sjsf/skeleton5-theme/extra-widgets/date-input-include";
+import "@sjsf-lab/svar-theme/extra-widgets/date-input-include";
+```
+
+Import only the include for the theme you use.
+
+Without the theme include, selecting `dateField` renders the
+`component-not-found` message.
 
 ## Core context
 
@@ -62,25 +81,28 @@ const ctx = createCoreContext({
   merger,
   valueHandler,
   rootSchema: schema,
+  logger,
 });
 
 const retrieved = retrieveSchema(ctx, schema, formData);
 const defaults = getDefaultFormState(ctx, schema, formData);
 ```
 
-The context stores its dependencies under internal symbols, so a `FormState` can
-implement the interface without exposing them as public properties. A `FormState`
-can therefore be passed anywhere a `CoreContext` is expected. The symbols
-are not part of the `@sjsf/form/core` entry point; import them from
-`@sjsf/form/core/internals` if you build or inspect a context directly. The
-operations they back are available as free functions with the context as their
-first argument:
-`isValid(ctx, schema, value)`, `mergeSchemas(ctx, a, b)`,
+A `FormState` extends `CoreContext`, so a form can be passed anywhere a context
+is expected. The dependencies are stored under internal symbols, so they are
+not public properties of the form; import the `CORE_*` symbols from
+`@sjsf/form/core/internals` only when you build or inspect a context directly.
+
+The context operations are exported as free functions that take the context
+first: `isValid(ctx, schema, value)`, `mergeSchemas(ctx, a, b)`,
 `mergeAllOf(ctx, schema)`, `isValueDeepEqual(ctx, a, b)`,
-`resolveRef(ctx, ref)`, and `getRootSchema(ctx)`. Every core helper that needs
-the validator or merger takes the context as its first argument. `resolveRef`
-reads the root schema from the context too; `resolveRefSafe` stays a low-level
-pointer helper and continues to take the root schema directly.
+`resolveRef(ctx, ref)`, and `getRootSchema(ctx)`.
+
+The schema predicates are exported here as `isSelectSchema`,
+`isMultiSelectSchema`, `isFilesArraySchema`, `isFixedItemsSchema` and
+`isConstantValueSchema`. `getRenderedOptionSchema(ctx, parent, option)` is here
+too. They read only the schema (and the context needed to resolve its
+references), so they are not re-exported from the main `@sjsf/form` entry point.
 
 Helpers that only read form data accept `ReadonlySchemaValue`, so a live value
 from `getValue(form)` can be passed directly to `retrieveSchema`,
@@ -88,6 +110,39 @@ from `getValue(form)` can be passed directly to `retrieveSchema`,
 values remain assignable to it. `ReadonlySchemaValue` is `DeepReadonly` over
 `SchemaValue`; class instances such as `File` are preserved rather than mapped
 into plain objects.
+
+## Reference resolution
+
+`resolveRef(ctx, ref)` reads the root schema from the context. It throws when
+the reference is not local or does not resolve. `resolveRefSafe(ref, rootSchema)`
+returns `undefined` instead, so it is useful when walking a schema whose
+references you do not control:
+
+```typescript
+import { resolveRef, resolveRefSafe } from "@sjsf/form/core";
+
+const address = resolveRef(ctx, "#/definitions/address");
+const maybeAddress = resolveRefSafe("#/definitions/address", rootSchema);
+```
+
+Both helpers accept a [JSON Pointer](https://datatracker.ietf.org/doc/html/rfc6901)
+in URI fragment identifier format and only read own properties.
+
+## Multiple types
+
+A schema can allow more than one type:
+
+```json
+{ "type": ["string", "number"] }
+```
+
+The `basic` and `compat` resolvers render such a schema through `unionField`: a
+selector offers the listed types and the selected type renders the value.
+Switching the type casts the value when possible and clears it otherwise.
+
+A single nullable type (`type: ["string", "null"]`) and a value pinned by
+`enum` or `const` keep their plain field. To customize the selector, see
+[Multiple types](/form/ui-schema/#multiple-types).
 
 ## Details and limitations
 

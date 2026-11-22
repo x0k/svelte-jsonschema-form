@@ -3,6 +3,7 @@ import "@sjsf/form/fields/extra/array-tags-include";
 import "@sjsf/form/fields/extra/aggregated-include";
 
 import "./extra-widgets/checkboxes-include.js";
+import "./extra-widgets/date-input-include.js";
 import "./extra-widgets/date-picker-include.js";
 import "./extra-widgets/date-range-picker-include.js";
 import "./extra-widgets/file-include.js";
@@ -17,6 +18,32 @@ import "./extra-widgets/toggle-radio-buttons-include.js";
 
 export const specs: s.Specs = {
   ...DEFAULT_SPECS,
+  dateInput: [
+    s.date,
+    { "ui:components": { stringField: "dateField" } },
+    {
+      oninput: "inputDate",
+      onchange: "changeDate",
+      onblur: "visitDate",
+    },
+  ],
+  dateTimeInput: [
+    s.dateTime,
+    { "ui:components": { stringField: "dateField" } },
+    {
+      oninput: "inputDateTimePair",
+      onchange: "changeDateTimePair",
+      onblur: "visitDateTimePair",
+    },
+  ],
+  timeInput: [
+    s.time,
+    { "ui:components": { stringField: "dateField" } },
+    {
+      oninput: "inputTime",
+      onchange: "changeTime",
+    },
+  ],
   datePicker: [
     s.text,
     {

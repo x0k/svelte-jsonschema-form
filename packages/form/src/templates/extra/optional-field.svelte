@@ -29,6 +29,7 @@
     errors,
     value,
     action,
+    description: descriptionOverride,
   }: ComponentProps[typeof templateType] = $props();
 
   const ctx = getFormContext();
@@ -46,7 +47,7 @@
   const Help = $derived(getComponent(ctx, "help", config));
 
   const { title, description, showMeta } = $derived(
-    getTemplateProps(uiOption, config)
+    getTemplateProps(uiOption, config, descriptionOverride)
   );
   const help = $derived(uiOption("help"));
 </script>

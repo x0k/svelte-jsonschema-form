@@ -1591,6 +1591,23 @@ exports[`default-ui > object fields > additionalProperties 1`] = `
         <!---->
          
         <!---->
+        <!---->
+        <!---->
+        <button
+          class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+          type="button"
+        >
+          <!---->
+          <!---->
+          Add property
+          
+          
+          <!---->
+        </button>
+        
+        
+        
+        <!---->
          
         <!---->
         <!---->
@@ -1910,6 +1927,23 @@ exports[`default-ui > object fields > additionalProperties with error 1`] = `
         </div>
         <!---->
          
+        <!---->
+        <!---->
+        <!---->
+        <button
+          class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+          type="button"
+        >
+          <!---->
+          <!---->
+          Add property
+          
+          
+          <!---->
+        </button>
+        
+        
+        
         <!---->
          
         <!---->
@@ -5424,6 +5458,23 @@ exports[`default-ui > object fields > show add button and fields if additionalPr
         <!---->
          
         <!---->
+        <!---->
+        <!---->
+        <button
+          class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+          type="button"
+        >
+          <!---->
+          <!---->
+          Add property
+          
+          
+          <!---->
+        </button>
+        
+        
+        
+        <!---->
          
         <!---->
         <!---->
@@ -5767,6 +5818,23 @@ exports[`default-ui > object fields > with title and description > additionalPro
         </div>
         <!---->
          
+        <!---->
+        <!---->
+        <!---->
+        <button
+          class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+          type="button"
+        >
+          <!---->
+          <!---->
+          Add property
+          
+          
+          <!---->
+        </button>
+        
+        
+        
         <!---->
          
         <!---->
@@ -6460,6 +6528,23 @@ exports[`default-ui > object fields > with title and description > show add butt
         <!---->
          
         <!---->
+        <!---->
+        <!---->
+        <button
+          class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+          type="button"
+        >
+          <!---->
+          <!---->
+          Add property
+          
+          
+          <!---->
+        </button>
+        
+        
+        
+        <!---->
          
         <!---->
         <!---->
@@ -6803,6 +6888,23 @@ exports[`default-ui > object fields > with title and description from both > add
         </div>
         <!---->
          
+        <!---->
+        <!---->
+        <!---->
+        <button
+          class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+          type="button"
+        >
+          <!---->
+          <!---->
+          Add property
+          
+          
+          <!---->
+        </button>
+        
+        
+        
         <!---->
          
         <!---->
@@ -7496,6 +7598,23 @@ exports[`default-ui > object fields > with title and description from uiSchema >
         <!---->
          
         <!---->
+        <!---->
+        <!---->
+        <button
+          class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+          type="button"
+        >
+          <!---->
+          <!---->
+          Add property
+          
+          
+          <!---->
+        </button>
+        
+        
+        
+        <!---->
          
         <!---->
         <!---->
@@ -8188,6 +8307,23 @@ exports[`default-ui > object fields > with title and description from uiSchema >
         <!---->
          
         <!---->
+        <!---->
+        <!---->
+        <button
+          class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+          type="button"
+        >
+          <!---->
+          <!---->
+          Add property
+          
+          
+          <!---->
+        </button>
+        
+        
+        
+        <!---->
          
         <!---->
         <!---->
@@ -8416,6 +8552,23 @@ exports[`default-ui > object fields > with title and description with global lab
         </div>
         <!---->
          
+        <!---->
+        <!---->
+        <!---->
+        <button
+          class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+          type="button"
+        >
+          <!---->
+          <!---->
+          Add property
+          
+          
+          <!---->
+        </button>
+        
+        
+        
         <!---->
          
         <!---->
@@ -8865,6 +9018,23 @@ exports[`default-ui > object fields > with title and description with global lab
         </div>
         <!---->
          
+        <!---->
+        <!---->
+        <!---->
+        <button
+          class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+          type="button"
+        >
+          <!---->
+          <!---->
+          Add property
+          
+          
+          <!---->
+        </button>
+        
+        
+        
         <!---->
          
         <!---->
@@ -25130,6 +25300,23 @@ exports[`new-york-ui > object fields > additionalProperties 1`] = `
         <!---->
          
         <!---->
+        <!---->
+        <!---->
+        <button
+          class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+          type="button"
+        >
+          <!---->
+          <!---->
+          Add property
+          
+          
+          <!---->
+        </button>
+        
+        
+        
+        <!---->
          
         <!---->
         <!---->
@@ -25449,6 +25636,23 @@ exports[`new-york-ui > object fields > additionalProperties with error 1`] = `
         </div>
         <!---->
          
+        <!---->
+        <!---->
+        <!---->
+        <button
+          class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+          type="button"
+        >
+          <!---->
+          <!---->
+          Add property
+          
+          
+          <!---->
+        </button>
+        
+        
+        
         <!---->
          
         <!---->
@@ -28963,6 +29167,23 @@ exports[`new-york-ui > object fields > show add button and fields if additionalP
         <!---->
          
         <!---->
+        <!---->
+        <!---->
+        <button
+          class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+          type="button"
+        >
+          <!---->
+          <!---->
+          Add property
+          
+          
+          <!---->
+        </button>
+        
+        
+        
+        <!---->
          
         <!---->
         <!---->
@@ -29306,6 +29527,23 @@ exports[`new-york-ui > object fields > with title and description > additionalPr
         </div>
         <!---->
          
+        <!---->
+        <!---->
+        <!---->
+        <button
+          class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+          type="button"
+        >
+          <!---->
+          <!---->
+          Add property
+          
+          
+          <!---->
+        </button>
+        
+        
+        
         <!---->
          
         <!---->
@@ -29999,6 +30237,23 @@ exports[`new-york-ui > object fields > with title and description > show add but
         <!---->
          
         <!---->
+        <!---->
+        <!---->
+        <button
+          class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+          type="button"
+        >
+          <!---->
+          <!---->
+          Add property
+          
+          
+          <!---->
+        </button>
+        
+        
+        
+        <!---->
          
         <!---->
         <!---->
@@ -30342,6 +30597,23 @@ exports[`new-york-ui > object fields > with title and description from both > ad
         </div>
         <!---->
          
+        <!---->
+        <!---->
+        <!---->
+        <button
+          class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+          type="button"
+        >
+          <!---->
+          <!---->
+          Add property
+          
+          
+          <!---->
+        </button>
+        
+        
+        
         <!---->
          
         <!---->
@@ -31035,6 +31307,23 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
         <!---->
          
         <!---->
+        <!---->
+        <!---->
+        <button
+          class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+          type="button"
+        >
+          <!---->
+          <!---->
+          Add property
+          
+          
+          <!---->
+        </button>
+        
+        
+        
+        <!---->
          
         <!---->
         <!---->
@@ -31727,6 +32016,23 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
         <!---->
          
         <!---->
+        <!---->
+        <!---->
+        <button
+          class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+          type="button"
+        >
+          <!---->
+          <!---->
+          Add property
+          
+          
+          <!---->
+        </button>
+        
+        
+        
+        <!---->
          
         <!---->
         <!---->
@@ -31955,6 +32261,23 @@ exports[`new-york-ui > object fields > with title and description with global la
         </div>
         <!---->
          
+        <!---->
+        <!---->
+        <!---->
+        <button
+          class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+          type="button"
+        >
+          <!---->
+          <!---->
+          Add property
+          
+          
+          <!---->
+        </button>
+        
+        
+        
         <!---->
          
         <!---->
@@ -32404,6 +32727,23 @@ exports[`new-york-ui > object fields > with title and description with global la
         </div>
         <!---->
          
+        <!---->
+        <!---->
+        <!---->
+        <button
+          class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+          type="button"
+        >
+          <!---->
+          <!---->
+          Add property
+          
+          
+          <!---->
+        </button>
+        
+        
+        
         <!---->
          
         <!---->

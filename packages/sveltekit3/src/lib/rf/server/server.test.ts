@@ -1,5 +1,10 @@
 import { createFormValidator } from "@sjsf/ajv8-validator";
-import { DEFAULT_ID_PREFIX, SJSF_ID_PREFIX, type Schema } from "@sjsf/form";
+import {
+  DEFAULT_ID_PREFIX,
+  SJSF_ID_PREFIX,
+  type Logger,
+  type Schema,
+} from "@sjsf/form";
 import { fromRecord } from "@sjsf/form/lib/resolver";
 import { createFormMerger } from "@sjsf/form/mergers/modern";
 import { defaultFormValueHandler } from "@sjsf/form/value-handlers/default";
@@ -7,6 +12,11 @@ import { describe, expect, it, vi } from "vitest";
 
 import { FORM_DATA_FILE_PREFIX, JSON_CHUNKS_KEY } from "../../model.js";
 import { encode } from "../internal/codec.js";
+
+const testLogger: Logger = {
+  warn() {},
+  error() {},
+};
 
 const mockRequest = new Request("http://localhost");
 vi.mock("$app/server", () => ({
@@ -30,6 +40,7 @@ function opts(overrides?: Record<string, unknown>) {
     validator: createFormValidator,
     merger: createFormMerger,
     valueHandler: defaultFormValueHandler,
+    logger: testLogger,
     ...overrides,
   };
 }

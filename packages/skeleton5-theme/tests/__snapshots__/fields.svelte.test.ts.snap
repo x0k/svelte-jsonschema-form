@@ -1309,6 +1309,17 @@ exports[`object fields > additionalProperties 1`] = `
         <!---->
          
         <!---->
+        <button
+          class="btn preset-filled"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
+        <!---->
          
         <!---->
         <!---->
@@ -1614,6 +1625,17 @@ exports[`object fields > additionalProperties with error 1`] = `
         
         <!---->
          
+        <!---->
+        <button
+          class="btn preset-filled"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
         <!---->
          
         <!---->
@@ -4290,6 +4312,17 @@ exports[`object fields > show add button and fields if additionalProperties is t
         <!---->
          
         <!---->
+        <button
+          class="btn preset-filled"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
+        <!---->
          
         <!---->
         <!---->
@@ -4625,6 +4658,17 @@ exports[`object fields > with title and description > additionalProperties 1`] =
         
         <!---->
          
+        <!---->
+        <button
+          class="btn preset-filled"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
         <!---->
          
         <!---->
@@ -5307,6 +5351,17 @@ exports[`object fields > with title and description > show add button and fields
         <!---->
          
         <!---->
+        <button
+          class="btn preset-filled"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
+        <!---->
          
         <!---->
         <!---->
@@ -5642,6 +5697,17 @@ exports[`object fields > with title and description from both > additionalProper
         
         <!---->
          
+        <!---->
+        <button
+          class="btn preset-filled"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
         <!---->
          
         <!---->
@@ -6324,6 +6390,17 @@ exports[`object fields > with title and description from uiSchema > additionalPr
         <!---->
          
         <!---->
+        <button
+          class="btn preset-filled"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
+        <!---->
          
         <!---->
         <!---->
@@ -7005,6 +7082,17 @@ exports[`object fields > with title and description from uiSchema > show add but
         <!---->
          
         <!---->
+        <button
+          class="btn preset-filled"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
+        <!---->
          
         <!---->
         <!---->
@@ -7227,6 +7315,17 @@ exports[`object fields > with title and description with global label off > addi
         
         <!---->
          
+        <!---->
+        <button
+          class="btn preset-filled"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
         <!---->
          
         <!---->
@@ -7669,6 +7768,17 @@ exports[`object fields > with title and description with global label off > show
         
         <!---->
          
+        <!---->
+        <button
+          class="btn preset-filled"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
         <!---->
          
         <!---->
@@ -9307,7 +9417,7 @@ exports[`widgets > combobox > snapshots > readonly 1`] = `
 </div>
 `;
 
-exports[`widgets > datePicker > snapshots > disabled 1`] = `
+exports[`widgets > dateInput > snapshots > disabled 1`] = `
 <div>
   <form>
     <!---->
@@ -9334,6 +9444,7 @@ exports[`widgets > datePicker > snapshots > disabled 1`] = `
         <!---->
         <!---->
          
+        <!---->
         <!---->
         <!---->
         <!---->
@@ -9396,6 +9507,709 @@ exports[`widgets > datePicker > snapshots > disabled 1`] = `
               dir="ltr"
               disabled=""
               id="datepicker:c7:trigger"
+              type="button"
+            >
+              <svg
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8 2v4"
+                />
+                <path
+                  d="M16 2v4"
+                />
+                <rect
+                  height="18"
+                  rx="2"
+                  width="18"
+                  x="3"
+                  y="4"
+                />
+                <path
+                  d="M3 10h18"
+                />
+              </svg>
+              <!---->
+            </button>
+            
+            <!---->
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="btn preset-filled-primary-500 w-full"
+        disabled=""
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > dateInput > snapshots > error 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="flex flex-col gap-4"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="true"
+          aria-required="true"
+          class="w-full"
+          data-empty=""
+          data-part="root"
+          data-scope="date-picker"
+          data-state="closed"
+          dir="ltr"
+          id="datepicker:c6"
+        >
+          <!---->
+          <!---->
+          <div
+            data-part="control"
+            data-placeholder-shown=""
+            data-scope="date-picker"
+            dir="ltr"
+            id="datepicker:c6:control"
+          >
+            <!---->
+            <!---->
+            <input
+              autocomplete="off"
+              autocorrect="off"
+              data-index="0"
+              data-part="input"
+              data-placeholder-shown=""
+              data-scope="date-picker"
+              data-state="closed"
+              dir="ltr"
+              id="root"
+              name="root"
+              placeholder="mm/dd/yyyy"
+              required=""
+              spellcheck="false"
+            />
+            
+            <!---->
+             
+            <!---->
+            <button
+              aria-controls="datepicker:c6:content"
+              aria-expanded="false"
+              aria-haspopup="grid"
+              aria-label="Open calendar"
+              data-part="trigger"
+              data-placeholder-shown=""
+              data-scope="date-picker"
+              data-state="closed"
+              dir="ltr"
+              id="datepicker:c6:trigger"
+              type="button"
+            >
+              <svg
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8 2v4"
+                />
+                <path
+                  d="M16 2v4"
+                />
+                <rect
+                  height="18"
+                  rx="2"
+                  width="18"
+                  x="3"
+                  y="4"
+                />
+                <path
+                  d="M3 10h18"
+                />
+              </svg>
+              <!---->
+            </button>
+            
+            <!---->
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <ul
+          class="text-error-500 list-inside list-disc"
+          id="root__errors"
+          tabindex="-1"
+        >
+          <li>
+            error
+          </li>
+          
+        </ul>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="btn preset-filled-primary-500 w-full"
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > dateInput > snapshots > normal 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="flex flex-col gap-4"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          aria-required="true"
+          class="w-full"
+          data-empty=""
+          data-part="root"
+          data-scope="date-picker"
+          data-state="closed"
+          dir="ltr"
+          id="datepicker:c5"
+        >
+          <!---->
+          <!---->
+          <div
+            data-part="control"
+            data-placeholder-shown=""
+            data-scope="date-picker"
+            dir="ltr"
+            id="datepicker:c5:control"
+          >
+            <!---->
+            <!---->
+            <input
+              autocomplete="off"
+              autocorrect="off"
+              data-index="0"
+              data-part="input"
+              data-placeholder-shown=""
+              data-scope="date-picker"
+              data-state="closed"
+              dir="ltr"
+              id="root"
+              name="root"
+              placeholder="mm/dd/yyyy"
+              required=""
+              spellcheck="false"
+            />
+            
+            <!---->
+             
+            <!---->
+            <button
+              aria-controls="datepicker:c5:content"
+              aria-expanded="false"
+              aria-haspopup="grid"
+              aria-label="Open calendar"
+              data-part="trigger"
+              data-placeholder-shown=""
+              data-scope="date-picker"
+              data-state="closed"
+              dir="ltr"
+              id="datepicker:c5:trigger"
+              type="button"
+            >
+              <svg
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8 2v4"
+                />
+                <path
+                  d="M16 2v4"
+                />
+                <rect
+                  height="18"
+                  rx="2"
+                  width="18"
+                  x="3"
+                  y="4"
+                />
+                <path
+                  d="M3 10h18"
+                />
+              </svg>
+              <!---->
+            </button>
+            
+            <!---->
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="btn preset-filled-primary-500 w-full"
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > dateInput > snapshots > readonly 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="flex flex-col gap-4"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          aria-readonly="true"
+          aria-required="true"
+          class="w-full"
+          data-empty=""
+          data-part="root"
+          data-readonly=""
+          data-scope="date-picker"
+          data-state="closed"
+          dir="ltr"
+          id="datepicker:c8"
+        >
+          <!---->
+          <!---->
+          <div
+            data-part="control"
+            data-placeholder-shown=""
+            data-scope="date-picker"
+            dir="ltr"
+            id="datepicker:c8:control"
+          >
+            <!---->
+            <!---->
+            <input
+              autocomplete="off"
+              autocorrect="off"
+              data-index="0"
+              data-part="input"
+              data-placeholder-shown=""
+              data-scope="date-picker"
+              data-state="closed"
+              dir="ltr"
+              id="root"
+              name="root"
+              placeholder="mm/dd/yyyy"
+              readonly=""
+              required=""
+              spellcheck="false"
+            />
+            
+            <!---->
+             
+            <!---->
+            <button
+              aria-controls="datepicker:c8:content"
+              aria-expanded="false"
+              aria-haspopup="grid"
+              aria-label="Open calendar"
+              data-part="trigger"
+              data-placeholder-shown=""
+              data-scope="date-picker"
+              data-state="closed"
+              dir="ltr"
+              id="datepicker:c8:trigger"
+              type="button"
+            >
+              <svg
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8 2v4"
+                />
+                <path
+                  d="M16 2v4"
+                />
+                <rect
+                  height="18"
+                  rx="2"
+                  width="18"
+                  x="3"
+                  y="4"
+                />
+                <path
+                  d="M3 10h18"
+                />
+              </svg>
+              <!---->
+            </button>
+            
+            <!---->
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="btn preset-filled-primary-500 w-full"
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > datePicker > snapshots > disabled 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="flex flex-col gap-4"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          aria-required="true"
+          class="w-full"
+          data-disabled=""
+          data-empty=""
+          data-part="root"
+          data-scope="date-picker"
+          data-state="closed"
+          dir="ltr"
+          id="datepicker:c21"
+        >
+          <!---->
+          <!---->
+          <div
+            data-disabled=""
+            data-part="control"
+            data-placeholder-shown=""
+            data-scope="date-picker"
+            dir="ltr"
+            id="datepicker:c21:control"
+          >
+            <!---->
+            <!---->
+            <input
+              autocomplete="off"
+              autocorrect="off"
+              data-index="0"
+              data-part="input"
+              data-placeholder-shown=""
+              data-scope="date-picker"
+              data-state="closed"
+              dir="ltr"
+              disabled=""
+              id="root"
+              name="root"
+              placeholder="mm/dd/yyyy"
+              required=""
+              spellcheck="false"
+            />
+            
+            <!---->
+             
+            <!---->
+            <button
+              aria-controls="datepicker:c21:content"
+              aria-expanded="false"
+              aria-haspopup="grid"
+              aria-label="Open calendar"
+              data-part="trigger"
+              data-placeholder-shown=""
+              data-scope="date-picker"
+              data-state="closed"
+              dir="ltr"
+              disabled=""
+              id="datepicker:c21:trigger"
               type="button"
             >
               <svg
@@ -9523,7 +10337,7 @@ exports[`widgets > datePicker > snapshots > error 1`] = `
           data-scope="date-picker"
           data-state="closed"
           dir="ltr"
-          id="datepicker:c6"
+          id="datepicker:c20"
         >
           <!---->
           <!---->
@@ -9532,7 +10346,7 @@ exports[`widgets > datePicker > snapshots > error 1`] = `
             data-placeholder-shown=""
             data-scope="date-picker"
             dir="ltr"
-            id="datepicker:c6:control"
+            id="datepicker:c20:control"
           >
             <!---->
             <!---->
@@ -9556,7 +10370,7 @@ exports[`widgets > datePicker > snapshots > error 1`] = `
              
             <!---->
             <button
-              aria-controls="datepicker:c6:content"
+              aria-controls="datepicker:c20:content"
               aria-expanded="false"
               aria-haspopup="grid"
               aria-label="Open calendar"
@@ -9565,7 +10379,7 @@ exports[`widgets > datePicker > snapshots > error 1`] = `
               data-scope="date-picker"
               data-state="closed"
               dir="ltr"
-              id="datepicker:c6:trigger"
+              id="datepicker:c20:trigger"
               type="button"
             >
               <svg
@@ -9704,7 +10518,7 @@ exports[`widgets > datePicker > snapshots > normal 1`] = `
           data-scope="date-picker"
           data-state="closed"
           dir="ltr"
-          id="datepicker:c5"
+          id="datepicker:c19"
         >
           <!---->
           <!---->
@@ -9713,7 +10527,7 @@ exports[`widgets > datePicker > snapshots > normal 1`] = `
             data-placeholder-shown=""
             data-scope="date-picker"
             dir="ltr"
-            id="datepicker:c5:control"
+            id="datepicker:c19:control"
           >
             <!---->
             <!---->
@@ -9737,7 +10551,7 @@ exports[`widgets > datePicker > snapshots > normal 1`] = `
              
             <!---->
             <button
-              aria-controls="datepicker:c5:content"
+              aria-controls="datepicker:c19:content"
               aria-expanded="false"
               aria-haspopup="grid"
               aria-label="Open calendar"
@@ -9746,7 +10560,7 @@ exports[`widgets > datePicker > snapshots > normal 1`] = `
               data-scope="date-picker"
               data-state="closed"
               dir="ltr"
-              id="datepicker:c5:trigger"
+              id="datepicker:c19:trigger"
               type="button"
             >
               <svg
@@ -9875,7 +10689,7 @@ exports[`widgets > datePicker > snapshots > readonly 1`] = `
           data-scope="date-picker"
           data-state="closed"
           dir="ltr"
-          id="datepicker:c8"
+          id="datepicker:c22"
         >
           <!---->
           <!---->
@@ -9884,7 +10698,7 @@ exports[`widgets > datePicker > snapshots > readonly 1`] = `
             data-placeholder-shown=""
             data-scope="date-picker"
             dir="ltr"
-            id="datepicker:c8:control"
+            id="datepicker:c22:control"
           >
             <!---->
             <!---->
@@ -9909,7 +10723,7 @@ exports[`widgets > datePicker > snapshots > readonly 1`] = `
              
             <!---->
             <button
-              aria-controls="datepicker:c8:content"
+              aria-controls="datepicker:c22:content"
               aria-expanded="false"
               aria-haspopup="grid"
               aria-label="Open calendar"
@@ -9918,7 +10732,7 @@ exports[`widgets > datePicker > snapshots > readonly 1`] = `
               data-scope="date-picker"
               data-state="closed"
               dir="ltr"
-              id="datepicker:c8:trigger"
+              id="datepicker:c22:trigger"
               type="button"
             >
               <svg
@@ -10046,7 +10860,7 @@ exports[`widgets > dateRangePicker > snapshots > disabled 1`] = `
           data-scope="date-picker"
           data-state="closed"
           dir="ltr"
-          id="datepicker:c14"
+          id="datepicker:c28"
         >
           <!---->
           <!---->
@@ -10056,7 +10870,7 @@ exports[`widgets > dateRangePicker > snapshots > disabled 1`] = `
             data-placeholder-shown=""
             data-scope="date-picker"
             dir="ltr"
-            id="datepicker:c14:control"
+            id="datepicker:c28:control"
           >
             <!---->
             <!---->
@@ -10099,7 +10913,7 @@ exports[`widgets > dateRangePicker > snapshots > disabled 1`] = `
              
             <!---->
             <button
-              aria-controls="datepicker:c14:content"
+              aria-controls="datepicker:c28:content"
               aria-expanded="false"
               aria-haspopup="grid"
               aria-label="Open calendar"
@@ -10109,7 +10923,7 @@ exports[`widgets > dateRangePicker > snapshots > disabled 1`] = `
               data-state="closed"
               dir="ltr"
               disabled=""
-              id="datepicker:c14:trigger"
+              id="datepicker:c28:trigger"
               type="button"
             >
               <svg
@@ -10237,7 +11051,7 @@ exports[`widgets > dateRangePicker > snapshots > error 1`] = `
           data-scope="date-picker"
           data-state="closed"
           dir="ltr"
-          id="datepicker:c13"
+          id="datepicker:c27"
         >
           <!---->
           <!---->
@@ -10246,7 +11060,7 @@ exports[`widgets > dateRangePicker > snapshots > error 1`] = `
             data-placeholder-shown=""
             data-scope="date-picker"
             dir="ltr"
-            id="datepicker:c13:control"
+            id="datepicker:c27:control"
           >
             <!---->
             <!---->
@@ -10287,7 +11101,7 @@ exports[`widgets > dateRangePicker > snapshots > error 1`] = `
              
             <!---->
             <button
-              aria-controls="datepicker:c13:content"
+              aria-controls="datepicker:c27:content"
               aria-expanded="false"
               aria-haspopup="grid"
               aria-label="Open calendar"
@@ -10296,7 +11110,7 @@ exports[`widgets > dateRangePicker > snapshots > error 1`] = `
               data-scope="date-picker"
               data-state="closed"
               dir="ltr"
-              id="datepicker:c13:trigger"
+              id="datepicker:c27:trigger"
               type="button"
             >
               <svg
@@ -10435,7 +11249,7 @@ exports[`widgets > dateRangePicker > snapshots > normal 1`] = `
           data-scope="date-picker"
           data-state="closed"
           dir="ltr"
-          id="datepicker:c12"
+          id="datepicker:c26"
         >
           <!---->
           <!---->
@@ -10444,7 +11258,7 @@ exports[`widgets > dateRangePicker > snapshots > normal 1`] = `
             data-placeholder-shown=""
             data-scope="date-picker"
             dir="ltr"
-            id="datepicker:c12:control"
+            id="datepicker:c26:control"
           >
             <!---->
             <!---->
@@ -10485,7 +11299,7 @@ exports[`widgets > dateRangePicker > snapshots > normal 1`] = `
              
             <!---->
             <button
-              aria-controls="datepicker:c12:content"
+              aria-controls="datepicker:c26:content"
               aria-expanded="false"
               aria-haspopup="grid"
               aria-label="Open calendar"
@@ -10494,7 +11308,7 @@ exports[`widgets > dateRangePicker > snapshots > normal 1`] = `
               data-scope="date-picker"
               data-state="closed"
               dir="ltr"
-              id="datepicker:c12:trigger"
+              id="datepicker:c26:trigger"
               type="button"
             >
               <svg
@@ -10623,7 +11437,7 @@ exports[`widgets > dateRangePicker > snapshots > readonly 1`] = `
           data-scope="date-picker"
           data-state="closed"
           dir="ltr"
-          id="datepicker:c15"
+          id="datepicker:c29"
         >
           <!---->
           <!---->
@@ -10632,7 +11446,7 @@ exports[`widgets > dateRangePicker > snapshots > readonly 1`] = `
             data-placeholder-shown=""
             data-scope="date-picker"
             dir="ltr"
-            id="datepicker:c15:control"
+            id="datepicker:c29:control"
           >
             <!---->
             <!---->
@@ -10675,7 +11489,7 @@ exports[`widgets > dateRangePicker > snapshots > readonly 1`] = `
              
             <!---->
             <button
-              aria-controls="datepicker:c15:content"
+              aria-controls="datepicker:c29:content"
               aria-expanded="false"
               aria-haspopup="grid"
               aria-label="Open calendar"
@@ -10684,7 +11498,7 @@ exports[`widgets > dateRangePicker > snapshots > readonly 1`] = `
               data-scope="date-picker"
               data-state="closed"
               dir="ltr"
-              id="datepicker:c15:trigger"
+              id="datepicker:c29:trigger"
               type="button"
             >
               <svg
@@ -10728,6 +11542,812 @@ exports[`widgets > dateRangePicker > snapshots > readonly 1`] = `
           
           <!---->
           <!---->
+        </div>
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="btn preset-filled-primary-500 w-full"
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > dateTimeInput > snapshots > disabled 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="flex flex-col gap-4"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex w-full items-center gap-2"
+        >
+          <div
+            class="grow"
+          >
+            <!---->
+            <div
+              aria-describedby="root__description root__help root__errors"
+              aria-invalid="false"
+              aria-required="true"
+              class="w-full"
+              data-disabled=""
+              data-empty=""
+              data-part="root"
+              data-scope="date-picker"
+              data-state="closed"
+              dir="ltr"
+              id="datepicker:c14"
+            >
+              <!---->
+              <!---->
+              <div
+                data-disabled=""
+                data-part="control"
+                data-placeholder-shown=""
+                data-scope="date-picker"
+                dir="ltr"
+                id="datepicker:c14:control"
+              >
+                <!---->
+                <!---->
+                <input
+                  autocomplete="off"
+                  autocorrect="off"
+                  data-index="0"
+                  data-part="input"
+                  data-placeholder-shown=""
+                  data-scope="date-picker"
+                  data-state="closed"
+                  dir="ltr"
+                  disabled=""
+                  id="root"
+                  name="root"
+                  placeholder="mm/dd/yyyy"
+                  required=""
+                  spellcheck="false"
+                />
+                
+                <!---->
+                 
+                <!---->
+                <button
+                  aria-controls="datepicker:c14:content"
+                  aria-expanded="false"
+                  aria-haspopup="grid"
+                  aria-label="Open calendar"
+                  data-part="trigger"
+                  data-placeholder-shown=""
+                  data-scope="date-picker"
+                  data-state="closed"
+                  dir="ltr"
+                  disabled=""
+                  id="datepicker:c14:trigger"
+                  type="button"
+                >
+                  <svg
+                    fill="none"
+                    height="24"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 2v4"
+                    />
+                    <path
+                      d="M16 2v4"
+                    />
+                    <rect
+                      height="18"
+                      rx="2"
+                      width="18"
+                      x="3"
+                      y="4"
+                    />
+                    <path
+                      d="M3 10h18"
+                    />
+                  </svg>
+                  <!---->
+                </button>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <!---->
+              
+              <!---->
+              <!---->
+            </div>
+            
+            <!---->
+          </div>
+           
+          <div
+            class="w-36 shrink-0"
+          >
+            <input
+              aria-invalid="false"
+              aria-label=""
+              class="input"
+              disabled=""
+              id="root-time"
+              name="root-time"
+              required=""
+              step="1"
+              type="time"
+            />
+            <!---->
+          </div>
+        </div>
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="btn preset-filled-primary-500 w-full"
+        disabled=""
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > dateTimeInput > snapshots > error 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="flex flex-col gap-4"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex w-full items-center gap-2"
+        >
+          <div
+            class="grow"
+          >
+            <!---->
+            <div
+              aria-describedby="root__description root__help root__errors"
+              aria-invalid="true"
+              aria-required="true"
+              class="w-full"
+              data-empty=""
+              data-part="root"
+              data-scope="date-picker"
+              data-state="closed"
+              dir="ltr"
+              id="datepicker:c13"
+            >
+              <!---->
+              <!---->
+              <div
+                data-part="control"
+                data-placeholder-shown=""
+                data-scope="date-picker"
+                dir="ltr"
+                id="datepicker:c13:control"
+              >
+                <!---->
+                <!---->
+                <input
+                  autocomplete="off"
+                  autocorrect="off"
+                  data-index="0"
+                  data-part="input"
+                  data-placeholder-shown=""
+                  data-scope="date-picker"
+                  data-state="closed"
+                  dir="ltr"
+                  id="root"
+                  name="root"
+                  placeholder="mm/dd/yyyy"
+                  required=""
+                  spellcheck="false"
+                />
+                
+                <!---->
+                 
+                <!---->
+                <button
+                  aria-controls="datepicker:c13:content"
+                  aria-expanded="false"
+                  aria-haspopup="grid"
+                  aria-label="Open calendar"
+                  data-part="trigger"
+                  data-placeholder-shown=""
+                  data-scope="date-picker"
+                  data-state="closed"
+                  dir="ltr"
+                  id="datepicker:c13:trigger"
+                  type="button"
+                >
+                  <svg
+                    fill="none"
+                    height="24"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 2v4"
+                    />
+                    <path
+                      d="M16 2v4"
+                    />
+                    <rect
+                      height="18"
+                      rx="2"
+                      width="18"
+                      x="3"
+                      y="4"
+                    />
+                    <path
+                      d="M3 10h18"
+                    />
+                  </svg>
+                  <!---->
+                </button>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <!---->
+              
+              <!---->
+              <!---->
+            </div>
+            
+            <!---->
+          </div>
+           
+          <div
+            class="w-36 shrink-0"
+          >
+            <input
+              aria-invalid="true"
+              aria-label=""
+              class="input"
+              id="root-time"
+              name="root-time"
+              required=""
+              step="1"
+              type="time"
+            />
+            <!---->
+          </div>
+        </div>
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <ul
+          class="text-error-500 list-inside list-disc"
+          id="root__errors"
+          tabindex="-1"
+        >
+          <li>
+            error
+          </li>
+          
+        </ul>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="btn preset-filled-primary-500 w-full"
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > dateTimeInput > snapshots > normal 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="flex flex-col gap-4"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex w-full items-center gap-2"
+        >
+          <div
+            class="grow"
+          >
+            <!---->
+            <div
+              aria-describedby="root__description root__help root__errors"
+              aria-invalid="false"
+              aria-required="true"
+              class="w-full"
+              data-empty=""
+              data-part="root"
+              data-scope="date-picker"
+              data-state="closed"
+              dir="ltr"
+              id="datepicker:c12"
+            >
+              <!---->
+              <!---->
+              <div
+                data-part="control"
+                data-placeholder-shown=""
+                data-scope="date-picker"
+                dir="ltr"
+                id="datepicker:c12:control"
+              >
+                <!---->
+                <!---->
+                <input
+                  autocomplete="off"
+                  autocorrect="off"
+                  data-index="0"
+                  data-part="input"
+                  data-placeholder-shown=""
+                  data-scope="date-picker"
+                  data-state="closed"
+                  dir="ltr"
+                  id="root"
+                  name="root"
+                  placeholder="mm/dd/yyyy"
+                  required=""
+                  spellcheck="false"
+                />
+                
+                <!---->
+                 
+                <!---->
+                <button
+                  aria-controls="datepicker:c12:content"
+                  aria-expanded="false"
+                  aria-haspopup="grid"
+                  aria-label="Open calendar"
+                  data-part="trigger"
+                  data-placeholder-shown=""
+                  data-scope="date-picker"
+                  data-state="closed"
+                  dir="ltr"
+                  id="datepicker:c12:trigger"
+                  type="button"
+                >
+                  <svg
+                    fill="none"
+                    height="24"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 2v4"
+                    />
+                    <path
+                      d="M16 2v4"
+                    />
+                    <rect
+                      height="18"
+                      rx="2"
+                      width="18"
+                      x="3"
+                      y="4"
+                    />
+                    <path
+                      d="M3 10h18"
+                    />
+                  </svg>
+                  <!---->
+                </button>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <!---->
+              
+              <!---->
+              <!---->
+            </div>
+            
+            <!---->
+          </div>
+           
+          <div
+            class="w-36 shrink-0"
+          >
+            <input
+              aria-invalid="false"
+              aria-label=""
+              class="input"
+              id="root-time"
+              name="root-time"
+              required=""
+              step="1"
+              type="time"
+            />
+            <!---->
+          </div>
+        </div>
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="btn preset-filled-primary-500 w-full"
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > dateTimeInput > snapshots > readonly 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="flex flex-col gap-4"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex w-full items-center gap-2"
+        >
+          <div
+            class="grow"
+          >
+            <!---->
+            <div
+              aria-describedby="root__description root__help root__errors"
+              aria-invalid="false"
+              aria-readonly="true"
+              aria-required="true"
+              class="w-full"
+              data-empty=""
+              data-part="root"
+              data-readonly=""
+              data-scope="date-picker"
+              data-state="closed"
+              dir="ltr"
+              id="datepicker:c15"
+            >
+              <!---->
+              <!---->
+              <div
+                data-part="control"
+                data-placeholder-shown=""
+                data-scope="date-picker"
+                dir="ltr"
+                id="datepicker:c15:control"
+              >
+                <!---->
+                <!---->
+                <input
+                  autocomplete="off"
+                  autocorrect="off"
+                  data-index="0"
+                  data-part="input"
+                  data-placeholder-shown=""
+                  data-scope="date-picker"
+                  data-state="closed"
+                  dir="ltr"
+                  id="root"
+                  name="root"
+                  placeholder="mm/dd/yyyy"
+                  readonly=""
+                  required=""
+                  spellcheck="false"
+                />
+                
+                <!---->
+                 
+                <!---->
+                <button
+                  aria-controls="datepicker:c15:content"
+                  aria-expanded="false"
+                  aria-haspopup="grid"
+                  aria-label="Open calendar"
+                  data-part="trigger"
+                  data-placeholder-shown=""
+                  data-scope="date-picker"
+                  data-state="closed"
+                  dir="ltr"
+                  id="datepicker:c15:trigger"
+                  type="button"
+                >
+                  <svg
+                    fill="none"
+                    height="24"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 2v4"
+                    />
+                    <path
+                      d="M16 2v4"
+                    />
+                    <rect
+                      height="18"
+                      rx="2"
+                      width="18"
+                      x="3"
+                      y="4"
+                    />
+                    <path
+                      d="M3 10h18"
+                    />
+                  </svg>
+                  <!---->
+                </button>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <!---->
+              
+              <!---->
+              <!---->
+            </div>
+            
+            <!---->
+          </div>
+           
+          <div
+            class="w-36 shrink-0"
+          >
+            <input
+              aria-invalid="false"
+              aria-label=""
+              class="input"
+              id="root-time"
+              name="root-time"
+              readonly=""
+              required=""
+              step="1"
+              type="time"
+            />
+            <!---->
+          </div>
         </div>
         
         
@@ -11150,7 +12770,7 @@ exports[`widgets > fileUpload > snapshots > disabled 1`] = `
           data-scope="file-upload"
           dir="ltr"
           disabled="true"
-          id="file:c21"
+          id="file:c35"
         >
           <!---->
           <!---->
@@ -11159,7 +12779,7 @@ exports[`widgets > fileUpload > snapshots > disabled 1`] = `
             data-part="dropzone"
             data-scope="file-upload"
             dir="ltr"
-            id="file:c21:dropzone"
+            id="file:c35:dropzone"
             role="button"
             tabindex="0"
           >
@@ -11172,7 +12792,7 @@ exports[`widgets > fileUpload > snapshots > disabled 1`] = `
               data-part="trigger"
               data-scope="file-upload"
               dir="ltr"
-              id="file:c21:trigger"
+              id="file:c35:trigger"
               type="button"
             >
               Browse Files
@@ -11302,7 +12922,7 @@ exports[`widgets > fileUpload > snapshots > error 1`] = `
           data-scope="file-upload"
           dir="ltr"
           disabled="false"
-          id="file:c20"
+          id="file:c34"
         >
           <!---->
           <!---->
@@ -11312,7 +12932,7 @@ exports[`widgets > fileUpload > snapshots > error 1`] = `
             data-part="dropzone"
             data-scope="file-upload"
             dir="ltr"
-            id="file:c20:dropzone"
+            id="file:c34:dropzone"
             role="button"
             tabindex="0"
           >
@@ -11326,7 +12946,7 @@ exports[`widgets > fileUpload > snapshots > error 1`] = `
               data-part="trigger"
               data-scope="file-upload"
               dir="ltr"
-              id="file:c20:trigger"
+              id="file:c34:trigger"
               type="button"
             >
               Browse Files
@@ -11467,7 +13087,7 @@ exports[`widgets > fileUpload > snapshots > normal 1`] = `
           data-scope="file-upload"
           dir="ltr"
           disabled="false"
-          id="file:c19"
+          id="file:c33"
         >
           <!---->
           <!---->
@@ -11476,7 +13096,7 @@ exports[`widgets > fileUpload > snapshots > normal 1`] = `
             data-part="dropzone"
             data-scope="file-upload"
             dir="ltr"
-            id="file:c19:dropzone"
+            id="file:c33:dropzone"
             role="button"
             tabindex="0"
           >
@@ -11489,7 +13109,7 @@ exports[`widgets > fileUpload > snapshots > normal 1`] = `
               data-part="trigger"
               data-scope="file-upload"
               dir="ltr"
-              id="file:c19:trigger"
+              id="file:c33:trigger"
               type="button"
             >
               Browse Files
@@ -11620,7 +13240,7 @@ exports[`widgets > fileUpload > snapshots > readonly 1`] = `
           data-scope="file-upload"
           dir="ltr"
           disabled="false"
-          id="file:c22"
+          id="file:c36"
         >
           <!---->
           <!---->
@@ -11631,7 +13251,7 @@ exports[`widgets > fileUpload > snapshots > readonly 1`] = `
             data-readonly=""
             data-scope="file-upload"
             dir="ltr"
-            id="file:c22:dropzone"
+            id="file:c36:dropzone"
             role="button"
           >
             <span>
@@ -11645,7 +13265,7 @@ exports[`widgets > fileUpload > snapshots > readonly 1`] = `
               data-scope="file-upload"
               dir="ltr"
               disabled=""
-              id="file:c22:trigger"
+              id="file:c36:trigger"
               type="button"
             >
               Browse Files
@@ -11775,7 +13395,7 @@ exports[`widgets > fileUploadMultiple > snapshots > disabled 1`] = `
           data-scope="file-upload"
           dir="ltr"
           disabled="true"
-          id="file:c26"
+          id="file:c40"
         >
           <!---->
           <!---->
@@ -11784,7 +13404,7 @@ exports[`widgets > fileUploadMultiple > snapshots > disabled 1`] = `
             data-part="dropzone"
             data-scope="file-upload"
             dir="ltr"
-            id="file:c26:dropzone"
+            id="file:c40:dropzone"
             role="button"
             tabindex="0"
           >
@@ -11797,7 +13417,7 @@ exports[`widgets > fileUploadMultiple > snapshots > disabled 1`] = `
               data-part="trigger"
               data-scope="file-upload"
               dir="ltr"
-              id="file:c26:trigger"
+              id="file:c40:trigger"
               type="button"
             >
               Browse Files
@@ -11928,7 +13548,7 @@ exports[`widgets > fileUploadMultiple > snapshots > error 1`] = `
           data-scope="file-upload"
           dir="ltr"
           disabled="false"
-          id="file:c25"
+          id="file:c39"
         >
           <!---->
           <!---->
@@ -11938,7 +13558,7 @@ exports[`widgets > fileUploadMultiple > snapshots > error 1`] = `
             data-part="dropzone"
             data-scope="file-upload"
             dir="ltr"
-            id="file:c25:dropzone"
+            id="file:c39:dropzone"
             role="button"
             tabindex="0"
           >
@@ -11952,7 +13572,7 @@ exports[`widgets > fileUploadMultiple > snapshots > error 1`] = `
               data-part="trigger"
               data-scope="file-upload"
               dir="ltr"
-              id="file:c25:trigger"
+              id="file:c39:trigger"
               type="button"
             >
               Browse Files
@@ -12094,7 +13714,7 @@ exports[`widgets > fileUploadMultiple > snapshots > normal 1`] = `
           data-scope="file-upload"
           dir="ltr"
           disabled="false"
-          id="file:c24"
+          id="file:c38"
         >
           <!---->
           <!---->
@@ -12103,7 +13723,7 @@ exports[`widgets > fileUploadMultiple > snapshots > normal 1`] = `
             data-part="dropzone"
             data-scope="file-upload"
             dir="ltr"
-            id="file:c24:dropzone"
+            id="file:c38:dropzone"
             role="button"
             tabindex="0"
           >
@@ -12116,7 +13736,7 @@ exports[`widgets > fileUploadMultiple > snapshots > normal 1`] = `
               data-part="trigger"
               data-scope="file-upload"
               dir="ltr"
-              id="file:c24:trigger"
+              id="file:c38:trigger"
               type="button"
             >
               Browse Files
@@ -12248,7 +13868,7 @@ exports[`widgets > fileUploadMultiple > snapshots > readonly 1`] = `
           data-scope="file-upload"
           dir="ltr"
           disabled="false"
-          id="file:c27"
+          id="file:c41"
         >
           <!---->
           <!---->
@@ -12259,7 +13879,7 @@ exports[`widgets > fileUploadMultiple > snapshots > readonly 1`] = `
             data-readonly=""
             data-scope="file-upload"
             dir="ltr"
-            id="file:c27:dropzone"
+            id="file:c41:dropzone"
             role="button"
           >
             <span>
@@ -12273,7 +13893,7 @@ exports[`widgets > fileUploadMultiple > snapshots > readonly 1`] = `
               data-scope="file-upload"
               dir="ltr"
               disabled=""
-              id="file:c27:trigger"
+              id="file:c41:trigger"
               type="button"
             >
               Browse Files
@@ -14107,7 +15727,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
           aria-describedby="root__description root__help root__errors"
           aria-disabled="true"
           aria-invalid="false"
-          aria-labelledby="radio-group:c31:label"
+          aria-labelledby="radio-group:c45:label"
           aria-orientation="horizontal"
           aria-required="true"
           data-disabled=""
@@ -14134,7 +15754,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
               data-scope="radio-group"
               dir="ltr"
               hidden=""
-              id="radio-group:c31:indicator"
+              id="radio-group:c45:indicator"
               style="--transition-property: left, top, width, height; position: absolute; will-change: auto; transition-property: none; transition-duration: 0ms; transition-timing-function: var(--transition-timing-function); left: var(--left);"
             />
             
@@ -14149,8 +15769,8 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               dir="ltr"
-              for="radio-group:c31:radio:input:foo"
-              id="radio-group:c31:radio:foo"
+              for="radio-group:c45:radio:input:foo"
+              id="radio-group:c45:radio:foo"
             >
               <!---->
               <!---->
@@ -14161,7 +15781,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
                 data-scope="radio-group"
                 data-state="unchecked"
                 dir="ltr"
-                id="radio-group:c31:radio:label:foo"
+                id="radio-group:c45:radio:label:foo"
               >
                 foo
                 <!---->
@@ -14171,10 +15791,10 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
                
               <!---->
               <input
-                aria-labelledby="radio-group:c31:radio:label:foo"
+                aria-labelledby="radio-group:c45:radio:label:foo"
                 data-ownedby="root"
                 disabled=""
-                id="radio-group:c31:radio:input:foo"
+                id="radio-group:c45:radio:input:foo"
                 name="root"
                 style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
                 type="radio"
@@ -14195,8 +15815,8 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               dir="ltr"
-              for="radio-group:c31:radio:input:bar"
-              id="radio-group:c31:radio:bar"
+              for="radio-group:c45:radio:input:bar"
+              id="radio-group:c45:radio:bar"
             >
               <!---->
               <!---->
@@ -14207,7 +15827,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
                 data-scope="radio-group"
                 data-state="unchecked"
                 dir="ltr"
-                id="radio-group:c31:radio:label:bar"
+                id="radio-group:c45:radio:label:bar"
               >
                 bar
                 <!---->
@@ -14217,10 +15837,10 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
                
               <!---->
               <input
-                aria-labelledby="radio-group:c31:radio:label:bar"
+                aria-labelledby="radio-group:c45:radio:label:bar"
                 data-ownedby="root"
                 disabled=""
-                id="radio-group:c31:radio:input:bar"
+                id="radio-group:c45:radio:input:bar"
                 name="root"
                 style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
                 type="radio"
@@ -14241,8 +15861,8 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               dir="ltr"
-              for="radio-group:c31:radio:input:fuzz"
-              id="radio-group:c31:radio:fuzz"
+              for="radio-group:c45:radio:input:fuzz"
+              id="radio-group:c45:radio:fuzz"
             >
               <!---->
               <!---->
@@ -14253,7 +15873,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
                 data-scope="radio-group"
                 data-state="unchecked"
                 dir="ltr"
-                id="radio-group:c31:radio:label:fuzz"
+                id="radio-group:c45:radio:label:fuzz"
               >
                 fuzz
                 <!---->
@@ -14263,10 +15883,10 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
                
               <!---->
               <input
-                aria-labelledby="radio-group:c31:radio:label:fuzz"
+                aria-labelledby="radio-group:c45:radio:label:fuzz"
                 data-ownedby="root"
                 disabled=""
-                id="radio-group:c31:radio:input:fuzz"
+                id="radio-group:c45:radio:input:fuzz"
                 name="root"
                 style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
                 type="radio"
@@ -14287,8 +15907,8 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               dir="ltr"
-              for="radio-group:c31:radio:input:qux"
-              id="radio-group:c31:radio:qux"
+              for="radio-group:c45:radio:input:qux"
+              id="radio-group:c45:radio:qux"
             >
               <!---->
               <!---->
@@ -14299,7 +15919,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
                 data-scope="radio-group"
                 data-state="unchecked"
                 dir="ltr"
-                id="radio-group:c31:radio:label:qux"
+                id="radio-group:c45:radio:label:qux"
               >
                 qux
                 <!---->
@@ -14309,10 +15929,10 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
                
               <!---->
               <input
-                aria-labelledby="radio-group:c31:radio:label:qux"
+                aria-labelledby="radio-group:c45:radio:label:qux"
                 data-ownedby="root"
                 disabled=""
-                id="radio-group:c31:radio:input:qux"
+                id="radio-group:c45:radio:input:qux"
                 name="root"
                 style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
                 type="radio"
@@ -14407,7 +16027,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
         <div
           aria-describedby="root__description root__help root__errors"
           aria-invalid="true"
-          aria-labelledby="radio-group:c30:label"
+          aria-labelledby="radio-group:c44:label"
           aria-orientation="horizontal"
           aria-required="true"
           data-orientation="horizontal"
@@ -14432,7 +16052,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
               data-scope="radio-group"
               dir="ltr"
               hidden=""
-              id="radio-group:c30:indicator"
+              id="radio-group:c44:indicator"
               style="--transition-property: left, top, width, height; position: absolute; will-change: auto; transition-property: none; transition-duration: 0ms; transition-timing-function: var(--transition-timing-function); left: var(--left);"
             />
             
@@ -14446,8 +16066,8 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               dir="ltr"
-              for="radio-group:c30:radio:input:foo"
-              id="radio-group:c30:radio:foo"
+              for="radio-group:c44:radio:input:foo"
+              id="radio-group:c44:radio:foo"
             >
               <!---->
               <!---->
@@ -14457,7 +16077,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
                 data-scope="radio-group"
                 data-state="unchecked"
                 dir="ltr"
-                id="radio-group:c30:radio:label:foo"
+                id="radio-group:c44:radio:label:foo"
               >
                 foo
                 <!---->
@@ -14467,9 +16087,9 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
                
               <!---->
               <input
-                aria-labelledby="radio-group:c30:radio:label:foo"
+                aria-labelledby="radio-group:c44:radio:label:foo"
                 data-ownedby="root"
-                id="radio-group:c30:radio:input:foo"
+                id="radio-group:c44:radio:input:foo"
                 name="root"
                 style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
                 type="radio"
@@ -14489,8 +16109,8 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               dir="ltr"
-              for="radio-group:c30:radio:input:bar"
-              id="radio-group:c30:radio:bar"
+              for="radio-group:c44:radio:input:bar"
+              id="radio-group:c44:radio:bar"
             >
               <!---->
               <!---->
@@ -14500,7 +16120,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
                 data-scope="radio-group"
                 data-state="unchecked"
                 dir="ltr"
-                id="radio-group:c30:radio:label:bar"
+                id="radio-group:c44:radio:label:bar"
               >
                 bar
                 <!---->
@@ -14510,9 +16130,9 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
                
               <!---->
               <input
-                aria-labelledby="radio-group:c30:radio:label:bar"
+                aria-labelledby="radio-group:c44:radio:label:bar"
                 data-ownedby="root"
-                id="radio-group:c30:radio:input:bar"
+                id="radio-group:c44:radio:input:bar"
                 name="root"
                 style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
                 type="radio"
@@ -14532,8 +16152,8 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               dir="ltr"
-              for="radio-group:c30:radio:input:fuzz"
-              id="radio-group:c30:radio:fuzz"
+              for="radio-group:c44:radio:input:fuzz"
+              id="radio-group:c44:radio:fuzz"
             >
               <!---->
               <!---->
@@ -14543,7 +16163,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
                 data-scope="radio-group"
                 data-state="unchecked"
                 dir="ltr"
-                id="radio-group:c30:radio:label:fuzz"
+                id="radio-group:c44:radio:label:fuzz"
               >
                 fuzz
                 <!---->
@@ -14553,9 +16173,9 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
                
               <!---->
               <input
-                aria-labelledby="radio-group:c30:radio:label:fuzz"
+                aria-labelledby="radio-group:c44:radio:label:fuzz"
                 data-ownedby="root"
-                id="radio-group:c30:radio:input:fuzz"
+                id="radio-group:c44:radio:input:fuzz"
                 name="root"
                 style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
                 type="radio"
@@ -14575,8 +16195,8 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               dir="ltr"
-              for="radio-group:c30:radio:input:qux"
-              id="radio-group:c30:radio:qux"
+              for="radio-group:c44:radio:input:qux"
+              id="radio-group:c44:radio:qux"
             >
               <!---->
               <!---->
@@ -14586,7 +16206,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
                 data-scope="radio-group"
                 data-state="unchecked"
                 dir="ltr"
-                id="radio-group:c30:radio:label:qux"
+                id="radio-group:c44:radio:label:qux"
               >
                 qux
                 <!---->
@@ -14596,9 +16216,9 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
                
               <!---->
               <input
-                aria-labelledby="radio-group:c30:radio:label:qux"
+                aria-labelledby="radio-group:c44:radio:label:qux"
                 data-ownedby="root"
-                id="radio-group:c30:radio:input:qux"
+                id="radio-group:c44:radio:input:qux"
                 name="root"
                 style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
                 type="radio"
@@ -14704,7 +16324,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
         <div
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
-          aria-labelledby="radio-group:c29:label"
+          aria-labelledby="radio-group:c43:label"
           aria-orientation="horizontal"
           aria-required="true"
           data-orientation="horizontal"
@@ -14729,7 +16349,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
               data-scope="radio-group"
               dir="ltr"
               hidden=""
-              id="radio-group:c29:indicator"
+              id="radio-group:c43:indicator"
               style="--transition-property: left, top, width, height; position: absolute; will-change: auto; transition-property: none; transition-duration: 0ms; transition-timing-function: var(--transition-timing-function); left: var(--left);"
             />
             
@@ -14743,8 +16363,8 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               dir="ltr"
-              for="radio-group:c29:radio:input:foo"
-              id="radio-group:c29:radio:foo"
+              for="radio-group:c43:radio:input:foo"
+              id="radio-group:c43:radio:foo"
             >
               <!---->
               <!---->
@@ -14754,7 +16374,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
                 data-scope="radio-group"
                 data-state="unchecked"
                 dir="ltr"
-                id="radio-group:c29:radio:label:foo"
+                id="radio-group:c43:radio:label:foo"
               >
                 foo
                 <!---->
@@ -14764,9 +16384,9 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
                
               <!---->
               <input
-                aria-labelledby="radio-group:c29:radio:label:foo"
+                aria-labelledby="radio-group:c43:radio:label:foo"
                 data-ownedby="root"
-                id="radio-group:c29:radio:input:foo"
+                id="radio-group:c43:radio:input:foo"
                 name="root"
                 style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
                 type="radio"
@@ -14786,8 +16406,8 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               dir="ltr"
-              for="radio-group:c29:radio:input:bar"
-              id="radio-group:c29:radio:bar"
+              for="radio-group:c43:radio:input:bar"
+              id="radio-group:c43:radio:bar"
             >
               <!---->
               <!---->
@@ -14797,7 +16417,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
                 data-scope="radio-group"
                 data-state="unchecked"
                 dir="ltr"
-                id="radio-group:c29:radio:label:bar"
+                id="radio-group:c43:radio:label:bar"
               >
                 bar
                 <!---->
@@ -14807,9 +16427,9 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
                
               <!---->
               <input
-                aria-labelledby="radio-group:c29:radio:label:bar"
+                aria-labelledby="radio-group:c43:radio:label:bar"
                 data-ownedby="root"
-                id="radio-group:c29:radio:input:bar"
+                id="radio-group:c43:radio:input:bar"
                 name="root"
                 style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
                 type="radio"
@@ -14829,8 +16449,8 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               dir="ltr"
-              for="radio-group:c29:radio:input:fuzz"
-              id="radio-group:c29:radio:fuzz"
+              for="radio-group:c43:radio:input:fuzz"
+              id="radio-group:c43:radio:fuzz"
             >
               <!---->
               <!---->
@@ -14840,7 +16460,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
                 data-scope="radio-group"
                 data-state="unchecked"
                 dir="ltr"
-                id="radio-group:c29:radio:label:fuzz"
+                id="radio-group:c43:radio:label:fuzz"
               >
                 fuzz
                 <!---->
@@ -14850,9 +16470,9 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
                
               <!---->
               <input
-                aria-labelledby="radio-group:c29:radio:label:fuzz"
+                aria-labelledby="radio-group:c43:radio:label:fuzz"
                 data-ownedby="root"
-                id="radio-group:c29:radio:input:fuzz"
+                id="radio-group:c43:radio:input:fuzz"
                 name="root"
                 style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
                 type="radio"
@@ -14872,8 +16492,8 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               dir="ltr"
-              for="radio-group:c29:radio:input:qux"
-              id="radio-group:c29:radio:qux"
+              for="radio-group:c43:radio:input:qux"
+              id="radio-group:c43:radio:qux"
             >
               <!---->
               <!---->
@@ -14883,7 +16503,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
                 data-scope="radio-group"
                 data-state="unchecked"
                 dir="ltr"
-                id="radio-group:c29:radio:label:qux"
+                id="radio-group:c43:radio:label:qux"
               >
                 qux
                 <!---->
@@ -14893,9 +16513,9 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
                
               <!---->
               <input
-                aria-labelledby="radio-group:c29:radio:label:qux"
+                aria-labelledby="radio-group:c43:radio:label:qux"
                 data-ownedby="root"
-                id="radio-group:c29:radio:input:qux"
+                id="radio-group:c43:radio:input:qux"
                 name="root"
                 style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
                 type="radio"
@@ -14989,7 +16609,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
         <div
           aria-describedby="root__description root__help root__errors"
           aria-invalid="false"
-          aria-labelledby="radio-group:c32:label"
+          aria-labelledby="radio-group:c46:label"
           aria-orientation="horizontal"
           aria-readonly="true"
           aria-required="true"
@@ -15015,7 +16635,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
               data-scope="radio-group"
               dir="ltr"
               hidden=""
-              id="radio-group:c32:indicator"
+              id="radio-group:c46:indicator"
               style="--transition-property: left, top, width, height; position: absolute; will-change: auto; transition-property: none; transition-duration: 0ms; transition-timing-function: var(--transition-timing-function); left: var(--left);"
             />
             
@@ -15030,8 +16650,8 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               dir="ltr"
-              for="radio-group:c32:radio:input:foo"
-              id="radio-group:c32:radio:foo"
+              for="radio-group:c46:radio:input:foo"
+              id="radio-group:c46:radio:foo"
             >
               <!---->
               <!---->
@@ -15042,7 +16662,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
                 data-scope="radio-group"
                 data-state="unchecked"
                 dir="ltr"
-                id="radio-group:c32:radio:label:foo"
+                id="radio-group:c46:radio:label:foo"
               >
                 foo
                 <!---->
@@ -15052,10 +16672,10 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
                
               <!---->
               <input
-                aria-labelledby="radio-group:c32:radio:label:foo"
+                aria-labelledby="radio-group:c46:radio:label:foo"
                 data-ownedby="root"
                 disabled=""
-                id="radio-group:c32:radio:input:foo"
+                id="radio-group:c46:radio:input:foo"
                 name="root"
                 style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
                 type="radio"
@@ -15076,8 +16696,8 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               dir="ltr"
-              for="radio-group:c32:radio:input:bar"
-              id="radio-group:c32:radio:bar"
+              for="radio-group:c46:radio:input:bar"
+              id="radio-group:c46:radio:bar"
             >
               <!---->
               <!---->
@@ -15088,7 +16708,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
                 data-scope="radio-group"
                 data-state="unchecked"
                 dir="ltr"
-                id="radio-group:c32:radio:label:bar"
+                id="radio-group:c46:radio:label:bar"
               >
                 bar
                 <!---->
@@ -15098,10 +16718,10 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
                
               <!---->
               <input
-                aria-labelledby="radio-group:c32:radio:label:bar"
+                aria-labelledby="radio-group:c46:radio:label:bar"
                 data-ownedby="root"
                 disabled=""
-                id="radio-group:c32:radio:input:bar"
+                id="radio-group:c46:radio:input:bar"
                 name="root"
                 style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
                 type="radio"
@@ -15122,8 +16742,8 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               dir="ltr"
-              for="radio-group:c32:radio:input:fuzz"
-              id="radio-group:c32:radio:fuzz"
+              for="radio-group:c46:radio:input:fuzz"
+              id="radio-group:c46:radio:fuzz"
             >
               <!---->
               <!---->
@@ -15134,7 +16754,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
                 data-scope="radio-group"
                 data-state="unchecked"
                 dir="ltr"
-                id="radio-group:c32:radio:label:fuzz"
+                id="radio-group:c46:radio:label:fuzz"
               >
                 fuzz
                 <!---->
@@ -15144,10 +16764,10 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
                
               <!---->
               <input
-                aria-labelledby="radio-group:c32:radio:label:fuzz"
+                aria-labelledby="radio-group:c46:radio:label:fuzz"
                 data-ownedby="root"
                 disabled=""
-                id="radio-group:c32:radio:input:fuzz"
+                id="radio-group:c46:radio:input:fuzz"
                 name="root"
                 style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
                 type="radio"
@@ -15168,8 +16788,8 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               dir="ltr"
-              for="radio-group:c32:radio:input:qux"
-              id="radio-group:c32:radio:qux"
+              for="radio-group:c46:radio:input:qux"
+              id="radio-group:c46:radio:qux"
             >
               <!---->
               <!---->
@@ -15180,7 +16800,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
                 data-scope="radio-group"
                 data-state="unchecked"
                 dir="ltr"
-                id="radio-group:c32:radio:label:qux"
+                id="radio-group:c46:radio:label:qux"
               >
                 qux
                 <!---->
@@ -15190,10 +16810,10 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
                
               <!---->
               <input
-                aria-labelledby="radio-group:c32:radio:label:qux"
+                aria-labelledby="radio-group:c46:radio:label:qux"
                 data-ownedby="root"
                 disabled=""
-                id="radio-group:c32:radio:input:qux"
+                id="radio-group:c46:radio:input:qux"
                 name="root"
                 style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
                 type="radio"
@@ -15628,7 +17248,7 @@ exports[`widgets > rangeSlider > snapshots > disabled 1`] = `
           data-part="root"
           data-scope="slider"
           dir="ltr"
-          id="slider:c37"
+          id="slider:c51"
           style="--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-offset-1: calc(0% - -10px); --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%; --slider-thumb-width: 20px; --slider-thumb-height: 20px;"
         >
           <!---->
@@ -15639,7 +17259,7 @@ exports[`widgets > rangeSlider > snapshots > disabled 1`] = `
             data-part="control"
             data-scope="slider"
             dir="ltr"
-            id="slider:c37:control"
+            id="slider:c51:control"
             style="touch-action: none; user-select: none; position: relative;"
           >
             <!---->
@@ -15650,7 +17270,7 @@ exports[`widgets > rangeSlider > snapshots > disabled 1`] = `
               data-part="track"
               data-scope="slider"
               dir="ltr"
-              id="slider:c37:track"
+              id="slider:c51:track"
               style="position: relative;"
             >
               <!---->
@@ -15661,7 +17281,7 @@ exports[`widgets > rangeSlider > snapshots > disabled 1`] = `
                 data-part="range"
                 data-scope="slider"
                 dir="ltr"
-                id="slider:c37:range"
+                id="slider:c51:range"
                 style="position: absolute; left: var(--slider-range-start); right: var(--slider-range-end);"
               >
                 <!---->
@@ -15676,7 +17296,7 @@ exports[`widgets > rangeSlider > snapshots > disabled 1`] = `
             <!---->
             <div
               aria-disabled="true"
-              aria-labelledby="slider:c37:label"
+              aria-labelledby="slider:c51:label"
               aria-orientation="horizontal"
               aria-valuemax="0"
               aria-valuemin="0"
@@ -15688,7 +17308,7 @@ exports[`widgets > rangeSlider > snapshots > disabled 1`] = `
               data-scope="slider"
               dir="ltr"
               draggable="false"
-              id="slider:c37:thumb:0"
+              id="slider:c51:thumb:0"
               role="slider"
               style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-0);"
             >
@@ -15710,7 +17330,7 @@ exports[`widgets > rangeSlider > snapshots > disabled 1`] = `
             <!---->
             <div
               aria-disabled="true"
-              aria-labelledby="slider:c37:label"
+              aria-labelledby="slider:c51:label"
               aria-orientation="horizontal"
               aria-valuemax="100"
               aria-valuemin="0"
@@ -15722,7 +17342,7 @@ exports[`widgets > rangeSlider > snapshots > disabled 1`] = `
               data-scope="slider"
               dir="ltr"
               draggable="false"
-              id="slider:c37:thumb:1"
+              id="slider:c51:thumb:1"
               role="slider"
               style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-1);"
             >
@@ -15828,7 +17448,7 @@ exports[`widgets > rangeSlider > snapshots > error 1`] = `
           data-part="root"
           data-scope="slider"
           dir="ltr"
-          id="slider:c36"
+          id="slider:c50"
           style="--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-offset-1: calc(0% - -10px); --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%; --slider-thumb-width: 20px; --slider-thumb-height: 20px;"
         >
           <!---->
@@ -15839,7 +17459,7 @@ exports[`widgets > rangeSlider > snapshots > error 1`] = `
             data-part="control"
             data-scope="slider"
             dir="ltr"
-            id="slider:c36:control"
+            id="slider:c50:control"
             style="touch-action: none; user-select: none; position: relative;"
           >
             <!---->
@@ -15850,7 +17470,7 @@ exports[`widgets > rangeSlider > snapshots > error 1`] = `
               data-part="track"
               data-scope="slider"
               dir="ltr"
-              id="slider:c36:track"
+              id="slider:c50:track"
               style="position: relative;"
             >
               <!---->
@@ -15861,7 +17481,7 @@ exports[`widgets > rangeSlider > snapshots > error 1`] = `
                 data-part="range"
                 data-scope="slider"
                 dir="ltr"
-                id="slider:c36:range"
+                id="slider:c50:range"
                 style="position: absolute; left: var(--slider-range-start); right: var(--slider-range-end);"
               >
                 <!---->
@@ -15875,7 +17495,7 @@ exports[`widgets > rangeSlider > snapshots > error 1`] = `
              
             <!---->
             <div
-              aria-labelledby="slider:c36:label"
+              aria-labelledby="slider:c50:label"
               aria-orientation="horizontal"
               aria-valuemax="0"
               aria-valuemin="0"
@@ -15886,7 +17506,7 @@ exports[`widgets > rangeSlider > snapshots > error 1`] = `
               data-scope="slider"
               dir="ltr"
               draggable="false"
-              id="slider:c36:thumb:0"
+              id="slider:c50:thumb:0"
               role="slider"
               style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-0);"
               tabindex="0"
@@ -15908,7 +17528,7 @@ exports[`widgets > rangeSlider > snapshots > error 1`] = `
              
             <!---->
             <div
-              aria-labelledby="slider:c36:label"
+              aria-labelledby="slider:c50:label"
               aria-orientation="horizontal"
               aria-valuemax="100"
               aria-valuemin="0"
@@ -15919,7 +17539,7 @@ exports[`widgets > rangeSlider > snapshots > error 1`] = `
               data-scope="slider"
               dir="ltr"
               draggable="false"
-              id="slider:c36:thumb:1"
+              id="slider:c50:thumb:1"
               role="slider"
               style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-1);"
               tabindex="0"
@@ -16036,7 +17656,7 @@ exports[`widgets > rangeSlider > snapshots > normal 1`] = `
           data-part="root"
           data-scope="slider"
           dir="ltr"
-          id="slider:c35"
+          id="slider:c49"
           style="--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-offset-1: calc(0% - -10px); --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%; --slider-thumb-width: 20px; --slider-thumb-height: 20px;"
         >
           <!---->
@@ -16046,7 +17666,7 @@ exports[`widgets > rangeSlider > snapshots > normal 1`] = `
             data-part="control"
             data-scope="slider"
             dir="ltr"
-            id="slider:c35:control"
+            id="slider:c49:control"
             style="touch-action: none; user-select: none; position: relative;"
           >
             <!---->
@@ -16056,7 +17676,7 @@ exports[`widgets > rangeSlider > snapshots > normal 1`] = `
               data-part="track"
               data-scope="slider"
               dir="ltr"
-              id="slider:c35:track"
+              id="slider:c49:track"
               style="position: relative;"
             >
               <!---->
@@ -16066,7 +17686,7 @@ exports[`widgets > rangeSlider > snapshots > normal 1`] = `
                 data-part="range"
                 data-scope="slider"
                 dir="ltr"
-                id="slider:c35:range"
+                id="slider:c49:range"
                 style="position: absolute; left: var(--slider-range-start); right: var(--slider-range-end);"
               >
                 <!---->
@@ -16080,7 +17700,7 @@ exports[`widgets > rangeSlider > snapshots > normal 1`] = `
              
             <!---->
             <div
-              aria-labelledby="slider:c35:label"
+              aria-labelledby="slider:c49:label"
               aria-orientation="horizontal"
               aria-valuemax="0"
               aria-valuemin="0"
@@ -16091,7 +17711,7 @@ exports[`widgets > rangeSlider > snapshots > normal 1`] = `
               data-scope="slider"
               dir="ltr"
               draggable="false"
-              id="slider:c35:thumb:0"
+              id="slider:c49:thumb:0"
               role="slider"
               style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-0);"
               tabindex="0"
@@ -16113,7 +17733,7 @@ exports[`widgets > rangeSlider > snapshots > normal 1`] = `
              
             <!---->
             <div
-              aria-labelledby="slider:c35:label"
+              aria-labelledby="slider:c49:label"
               aria-orientation="horizontal"
               aria-valuemax="100"
               aria-valuemin="0"
@@ -16124,7 +17744,7 @@ exports[`widgets > rangeSlider > snapshots > normal 1`] = `
               data-scope="slider"
               dir="ltr"
               draggable="false"
-              id="slider:c35:thumb:1"
+              id="slider:c49:thumb:1"
               role="slider"
               style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-1);"
               tabindex="0"
@@ -16230,7 +17850,7 @@ exports[`widgets > rangeSlider > snapshots > readonly 1`] = `
           data-part="root"
           data-scope="slider"
           dir="ltr"
-          id="slider:c38"
+          id="slider:c52"
           style="--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-offset-1: calc(0% - -10px); --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%; --slider-thumb-width: 20px; --slider-thumb-height: 20px;"
         >
           <!---->
@@ -16240,7 +17860,7 @@ exports[`widgets > rangeSlider > snapshots > readonly 1`] = `
             data-part="control"
             data-scope="slider"
             dir="ltr"
-            id="slider:c38:control"
+            id="slider:c52:control"
             style="touch-action: none; user-select: none; position: relative;"
           >
             <!---->
@@ -16250,7 +17870,7 @@ exports[`widgets > rangeSlider > snapshots > readonly 1`] = `
               data-part="track"
               data-scope="slider"
               dir="ltr"
-              id="slider:c38:track"
+              id="slider:c52:track"
               style="position: relative;"
             >
               <!---->
@@ -16260,7 +17880,7 @@ exports[`widgets > rangeSlider > snapshots > readonly 1`] = `
                 data-part="range"
                 data-scope="slider"
                 dir="ltr"
-                id="slider:c38:range"
+                id="slider:c52:range"
                 style="position: absolute; left: var(--slider-range-start); right: var(--slider-range-end);"
               >
                 <!---->
@@ -16274,7 +17894,7 @@ exports[`widgets > rangeSlider > snapshots > readonly 1`] = `
              
             <!---->
             <div
-              aria-labelledby="slider:c38:label"
+              aria-labelledby="slider:c52:label"
               aria-orientation="horizontal"
               aria-valuemax="0"
               aria-valuemin="0"
@@ -16285,7 +17905,7 @@ exports[`widgets > rangeSlider > snapshots > readonly 1`] = `
               data-scope="slider"
               dir="ltr"
               draggable="false"
-              id="slider:c38:thumb:0"
+              id="slider:c52:thumb:0"
               role="slider"
               style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-0);"
               tabindex="0"
@@ -16307,7 +17927,7 @@ exports[`widgets > rangeSlider > snapshots > readonly 1`] = `
              
             <!---->
             <div
-              aria-labelledby="slider:c38:label"
+              aria-labelledby="slider:c52:label"
               aria-orientation="horizontal"
               aria-valuemax="100"
               aria-valuemin="0"
@@ -16318,7 +17938,7 @@ exports[`widgets > rangeSlider > snapshots > readonly 1`] = `
               data-scope="slider"
               dir="ltr"
               draggable="false"
-              id="slider:c38:thumb:1"
+              id="slider:c52:thumb:1"
               role="slider"
               style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-1);"
               tabindex="0"
@@ -16422,18 +18042,18 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
           data-part="root"
           data-scope="rating-group"
           dir="ltr"
-          id="rating:c44"
+          id="rating:c58"
         >
           <!---->
           <!---->
           <div
-            aria-labelledby="rating:c44:label"
+            aria-labelledby="rating:c58:label"
             aria-orientation="horizontal"
             data-disabled=""
             data-part="control"
             data-scope="rating-group"
             dir="ltr"
-            id="rating:c44:control"
+            id="rating:c58:control"
             role="radiogroup"
           >
             <!---->
@@ -16453,7 +18073,7 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
               data-part="item"
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c44:item:1"
+              id="rating:c58:item:1"
               role="radio"
             >
               <!---->
@@ -16495,7 +18115,7 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
               data-part="item"
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c44:item:2"
+              id="rating:c58:item:2"
               role="radio"
             >
               <!---->
@@ -16537,7 +18157,7 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
               data-part="item"
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c44:item:3"
+              id="rating:c58:item:3"
               role="radio"
             >
               <!---->
@@ -16579,7 +18199,7 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
               data-part="item"
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c44:item:4"
+              id="rating:c58:item:4"
               role="radio"
             >
               <!---->
@@ -16621,7 +18241,7 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
               data-part="item"
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c44:item:5"
+              id="rating:c58:item:5"
               role="radio"
             >
               <!---->
@@ -16751,17 +18371,17 @@ exports[`widgets > rating > snapshots > error 1`] = `
           data-part="root"
           data-scope="rating-group"
           dir="ltr"
-          id="rating:c43"
+          id="rating:c57"
         >
           <!---->
           <!---->
           <div
-            aria-labelledby="rating:c43:label"
+            aria-labelledby="rating:c57:label"
             aria-orientation="horizontal"
             data-part="control"
             data-scope="rating-group"
             dir="ltr"
-            id="rating:c43:control"
+            id="rating:c57:control"
             role="radiogroup"
           >
             <!---->
@@ -16780,7 +18400,7 @@ exports[`widgets > rating > snapshots > error 1`] = `
               data-part="item"
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c43:item:1"
+              id="rating:c57:item:1"
               role="radio"
               tabindex="0"
             >
@@ -16822,7 +18442,7 @@ exports[`widgets > rating > snapshots > error 1`] = `
               data-part="item"
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c43:item:2"
+              id="rating:c57:item:2"
               role="radio"
               tabindex="-1"
             >
@@ -16864,7 +18484,7 @@ exports[`widgets > rating > snapshots > error 1`] = `
               data-part="item"
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c43:item:3"
+              id="rating:c57:item:3"
               role="radio"
               tabindex="-1"
             >
@@ -16906,7 +18526,7 @@ exports[`widgets > rating > snapshots > error 1`] = `
               data-part="item"
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c43:item:4"
+              id="rating:c57:item:4"
               role="radio"
               tabindex="-1"
             >
@@ -16948,7 +18568,7 @@ exports[`widgets > rating > snapshots > error 1`] = `
               data-part="item"
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c43:item:5"
+              id="rating:c57:item:5"
               role="radio"
               tabindex="-1"
             >
@@ -17089,17 +18709,17 @@ exports[`widgets > rating > snapshots > normal 1`] = `
           data-part="root"
           data-scope="rating-group"
           dir="ltr"
-          id="rating:c42"
+          id="rating:c56"
         >
           <!---->
           <!---->
           <div
-            aria-labelledby="rating:c42:label"
+            aria-labelledby="rating:c56:label"
             aria-orientation="horizontal"
             data-part="control"
             data-scope="rating-group"
             dir="ltr"
-            id="rating:c42:control"
+            id="rating:c56:control"
             role="radiogroup"
           >
             <!---->
@@ -17118,7 +18738,7 @@ exports[`widgets > rating > snapshots > normal 1`] = `
               data-part="item"
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c42:item:1"
+              id="rating:c56:item:1"
               role="radio"
               tabindex="0"
             >
@@ -17160,7 +18780,7 @@ exports[`widgets > rating > snapshots > normal 1`] = `
               data-part="item"
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c42:item:2"
+              id="rating:c56:item:2"
               role="radio"
               tabindex="-1"
             >
@@ -17202,7 +18822,7 @@ exports[`widgets > rating > snapshots > normal 1`] = `
               data-part="item"
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c42:item:3"
+              id="rating:c56:item:3"
               role="radio"
               tabindex="-1"
             >
@@ -17244,7 +18864,7 @@ exports[`widgets > rating > snapshots > normal 1`] = `
               data-part="item"
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c42:item:4"
+              id="rating:c56:item:4"
               role="radio"
               tabindex="-1"
             >
@@ -17286,7 +18906,7 @@ exports[`widgets > rating > snapshots > normal 1`] = `
               data-part="item"
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c42:item:5"
+              id="rating:c56:item:5"
               role="radio"
               tabindex="-1"
             >
@@ -17416,19 +19036,19 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
           data-part="root"
           data-scope="rating-group"
           dir="ltr"
-          id="rating:c45"
+          id="rating:c59"
         >
           <!---->
           <!---->
           <div
-            aria-labelledby="rating:c45:label"
+            aria-labelledby="rating:c59:label"
             aria-orientation="horizontal"
             aria-readonly="true"
             data-part="control"
             data-readonly=""
             data-scope="rating-group"
             dir="ltr"
-            id="rating:c45:control"
+            id="rating:c59:control"
             role="radiogroup"
           >
             <!---->
@@ -17448,7 +19068,7 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
               data-readonly=""
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c45:item:1"
+              id="rating:c59:item:1"
               role="radio"
               tabindex="0"
             >
@@ -17491,7 +19111,7 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
               data-readonly=""
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c45:item:2"
+              id="rating:c59:item:2"
               role="radio"
             >
               <!---->
@@ -17533,7 +19153,7 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
               data-readonly=""
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c45:item:3"
+              id="rating:c59:item:3"
               role="radio"
             >
               <!---->
@@ -17575,7 +19195,7 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
               data-readonly=""
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c45:item:4"
+              id="rating:c59:item:4"
               role="radio"
             >
               <!---->
@@ -17617,7 +19237,7 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
               data-readonly=""
               data-scope="rating-group"
               dir="ltr"
-              id="rating:c45:item:5"
+              id="rating:c59:item:5"
               role="radio"
             >
               <!---->
@@ -18166,7 +19786,7 @@ exports[`widgets > slider > snapshots > disabled 1`] = `
           data-part="root"
           data-scope="slider"
           dir="ltr"
-          id="slider:c50"
+          id="slider:c64"
           style="--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%; --slider-thumb-width: 20px; --slider-thumb-height: 20px;"
         >
           <!---->
@@ -18177,7 +19797,7 @@ exports[`widgets > slider > snapshots > disabled 1`] = `
             data-part="control"
             data-scope="slider"
             dir="ltr"
-            id="slider:c50:control"
+            id="slider:c64:control"
             style="touch-action: none; user-select: none; position: relative;"
           >
             <!---->
@@ -18188,7 +19808,7 @@ exports[`widgets > slider > snapshots > disabled 1`] = `
               data-part="track"
               data-scope="slider"
               dir="ltr"
-              id="slider:c50:track"
+              id="slider:c64:track"
               style="position: relative;"
             >
               <!---->
@@ -18199,7 +19819,7 @@ exports[`widgets > slider > snapshots > disabled 1`] = `
                 data-part="range"
                 data-scope="slider"
                 dir="ltr"
-                id="slider:c50:range"
+                id="slider:c64:range"
                 style="position: absolute; left: var(--slider-range-start); right: var(--slider-range-end);"
               >
                 <!---->
@@ -18214,7 +19834,7 @@ exports[`widgets > slider > snapshots > disabled 1`] = `
             <!---->
             <div
               aria-disabled="true"
-              aria-labelledby="slider:c50:label"
+              aria-labelledby="slider:c64:label"
               aria-orientation="horizontal"
               aria-valuemax="100"
               aria-valuemin="0"
@@ -18226,7 +19846,7 @@ exports[`widgets > slider > snapshots > disabled 1`] = `
               data-scope="slider"
               dir="ltr"
               draggable="false"
-              id="slider:c50:thumb:0"
+              id="slider:c64:thumb:0"
               role="slider"
               style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-0);"
             >
@@ -18332,7 +19952,7 @@ exports[`widgets > slider > snapshots > error 1`] = `
           data-part="root"
           data-scope="slider"
           dir="ltr"
-          id="slider:c49"
+          id="slider:c63"
           style="--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%; --slider-thumb-width: 20px; --slider-thumb-height: 20px;"
         >
           <!---->
@@ -18343,7 +19963,7 @@ exports[`widgets > slider > snapshots > error 1`] = `
             data-part="control"
             data-scope="slider"
             dir="ltr"
-            id="slider:c49:control"
+            id="slider:c63:control"
             style="touch-action: none; user-select: none; position: relative;"
           >
             <!---->
@@ -18354,7 +19974,7 @@ exports[`widgets > slider > snapshots > error 1`] = `
               data-part="track"
               data-scope="slider"
               dir="ltr"
-              id="slider:c49:track"
+              id="slider:c63:track"
               style="position: relative;"
             >
               <!---->
@@ -18365,7 +19985,7 @@ exports[`widgets > slider > snapshots > error 1`] = `
                 data-part="range"
                 data-scope="slider"
                 dir="ltr"
-                id="slider:c49:range"
+                id="slider:c63:range"
                 style="position: absolute; left: var(--slider-range-start); right: var(--slider-range-end);"
               >
                 <!---->
@@ -18379,7 +19999,7 @@ exports[`widgets > slider > snapshots > error 1`] = `
              
             <!---->
             <div
-              aria-labelledby="slider:c49:label"
+              aria-labelledby="slider:c63:label"
               aria-orientation="horizontal"
               aria-valuemax="100"
               aria-valuemin="0"
@@ -18390,7 +20010,7 @@ exports[`widgets > slider > snapshots > error 1`] = `
               data-scope="slider"
               dir="ltr"
               draggable="false"
-              id="slider:c49:thumb:0"
+              id="slider:c63:thumb:0"
               role="slider"
               style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-0);"
               tabindex="0"
@@ -18507,7 +20127,7 @@ exports[`widgets > slider > snapshots > normal 1`] = `
           data-part="root"
           data-scope="slider"
           dir="ltr"
-          id="slider:c48"
+          id="slider:c62"
           style="--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%; --slider-thumb-width: 20px; --slider-thumb-height: 20px;"
         >
           <!---->
@@ -18517,7 +20137,7 @@ exports[`widgets > slider > snapshots > normal 1`] = `
             data-part="control"
             data-scope="slider"
             dir="ltr"
-            id="slider:c48:control"
+            id="slider:c62:control"
             style="touch-action: none; user-select: none; position: relative;"
           >
             <!---->
@@ -18527,7 +20147,7 @@ exports[`widgets > slider > snapshots > normal 1`] = `
               data-part="track"
               data-scope="slider"
               dir="ltr"
-              id="slider:c48:track"
+              id="slider:c62:track"
               style="position: relative;"
             >
               <!---->
@@ -18537,7 +20157,7 @@ exports[`widgets > slider > snapshots > normal 1`] = `
                 data-part="range"
                 data-scope="slider"
                 dir="ltr"
-                id="slider:c48:range"
+                id="slider:c62:range"
                 style="position: absolute; left: var(--slider-range-start); right: var(--slider-range-end);"
               >
                 <!---->
@@ -18551,7 +20171,7 @@ exports[`widgets > slider > snapshots > normal 1`] = `
              
             <!---->
             <div
-              aria-labelledby="slider:c48:label"
+              aria-labelledby="slider:c62:label"
               aria-orientation="horizontal"
               aria-valuemax="100"
               aria-valuemin="0"
@@ -18562,7 +20182,7 @@ exports[`widgets > slider > snapshots > normal 1`] = `
               data-scope="slider"
               dir="ltr"
               draggable="false"
-              id="slider:c48:thumb:0"
+              id="slider:c62:thumb:0"
               role="slider"
               style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-0);"
               tabindex="0"
@@ -18668,7 +20288,7 @@ exports[`widgets > slider > snapshots > readonly 1`] = `
           data-part="root"
           data-scope="slider"
           dir="ltr"
-          id="slider:c51"
+          id="slider:c65"
           style="--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%; --slider-thumb-width: 20px; --slider-thumb-height: 20px;"
         >
           <!---->
@@ -18678,7 +20298,7 @@ exports[`widgets > slider > snapshots > readonly 1`] = `
             data-part="control"
             data-scope="slider"
             dir="ltr"
-            id="slider:c51:control"
+            id="slider:c65:control"
             style="touch-action: none; user-select: none; position: relative;"
           >
             <!---->
@@ -18688,7 +20308,7 @@ exports[`widgets > slider > snapshots > readonly 1`] = `
               data-part="track"
               data-scope="slider"
               dir="ltr"
-              id="slider:c51:track"
+              id="slider:c65:track"
               style="position: relative;"
             >
               <!---->
@@ -18698,7 +20318,7 @@ exports[`widgets > slider > snapshots > readonly 1`] = `
                 data-part="range"
                 data-scope="slider"
                 dir="ltr"
-                id="slider:c51:range"
+                id="slider:c65:range"
                 style="position: absolute; left: var(--slider-range-start); right: var(--slider-range-end);"
               >
                 <!---->
@@ -18712,7 +20332,7 @@ exports[`widgets > slider > snapshots > readonly 1`] = `
              
             <!---->
             <div
-              aria-labelledby="slider:c51:label"
+              aria-labelledby="slider:c65:label"
               aria-orientation="horizontal"
               aria-valuemax="100"
               aria-valuemin="0"
@@ -18723,7 +20343,7 @@ exports[`widgets > slider > snapshots > readonly 1`] = `
               data-scope="slider"
               dir="ltr"
               draggable="false"
-              id="slider:c51:thumb:0"
+              id="slider:c65:thumb:0"
               role="slider"
               style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-0);"
               tabindex="0"
@@ -18831,7 +20451,7 @@ exports[`widgets > switch > snapshots > disabled 1`] = `
           data-state="unchecked"
           dir="ltr"
           for="root"
-          id="switch:c57"
+          id="switch:c71"
         >
           <!---->
           <!---->
@@ -18843,7 +20463,7 @@ exports[`widgets > switch > snapshots > disabled 1`] = `
             data-scope="switch"
             data-state="unchecked"
             dir="ltr"
-            id="switch:c57:control"
+            id="switch:c71:control"
           >
             <!---->
             <!---->
@@ -18855,7 +20475,7 @@ exports[`widgets > switch > snapshots > disabled 1`] = `
               data-scope="switch"
               data-state="unchecked"
               dir="ltr"
-              id="switch:c57:thumb"
+              id="switch:c71:thumb"
             >
               <!---->
             </span>
@@ -18874,7 +20494,7 @@ exports[`widgets > switch > snapshots > disabled 1`] = `
             data-scope="switch"
             data-state="unchecked"
             dir="ltr"
-            id="switch:c57:label"
+            id="switch:c71:label"
           >
             switch
             <!---->
@@ -18885,7 +20505,7 @@ exports[`widgets > switch > snapshots > disabled 1`] = `
           <!---->
           <input
             aria-invalid="false"
-            aria-labelledby="switch:c57:label"
+            aria-labelledby="switch:c71:label"
             disabled=""
             id="root"
             name="root"
@@ -18982,7 +20602,7 @@ exports[`widgets > switch > snapshots > error 1`] = `
           data-state="unchecked"
           dir="ltr"
           for="root"
-          id="switch:c56"
+          id="switch:c70"
         >
           <!---->
           <!---->
@@ -18994,7 +20614,7 @@ exports[`widgets > switch > snapshots > error 1`] = `
             data-scope="switch"
             data-state="unchecked"
             dir="ltr"
-            id="switch:c56:control"
+            id="switch:c70:control"
           >
             <!---->
             <!---->
@@ -19006,7 +20626,7 @@ exports[`widgets > switch > snapshots > error 1`] = `
               data-scope="switch"
               data-state="unchecked"
               dir="ltr"
-              id="switch:c56:thumb"
+              id="switch:c70:thumb"
             >
               <!---->
             </span>
@@ -19025,7 +20645,7 @@ exports[`widgets > switch > snapshots > error 1`] = `
             data-scope="switch"
             data-state="unchecked"
             dir="ltr"
-            id="switch:c56:label"
+            id="switch:c70:label"
           >
             switch
             <!---->
@@ -19036,7 +20656,7 @@ exports[`widgets > switch > snapshots > error 1`] = `
           <!---->
           <input
             aria-invalid="true"
-            aria-labelledby="switch:c56:label"
+            aria-labelledby="switch:c70:label"
             id="root"
             name="root"
             required=""
@@ -19142,7 +20762,7 @@ exports[`widgets > switch > snapshots > normal 1`] = `
           data-state="unchecked"
           dir="ltr"
           for="root"
-          id="switch:c55"
+          id="switch:c69"
         >
           <!---->
           <!---->
@@ -19153,7 +20773,7 @@ exports[`widgets > switch > snapshots > normal 1`] = `
             data-scope="switch"
             data-state="unchecked"
             dir="ltr"
-            id="switch:c55:control"
+            id="switch:c69:control"
           >
             <!---->
             <!---->
@@ -19164,7 +20784,7 @@ exports[`widgets > switch > snapshots > normal 1`] = `
               data-scope="switch"
               data-state="unchecked"
               dir="ltr"
-              id="switch:c55:thumb"
+              id="switch:c69:thumb"
             >
               <!---->
             </span>
@@ -19182,7 +20802,7 @@ exports[`widgets > switch > snapshots > normal 1`] = `
             data-scope="switch"
             data-state="unchecked"
             dir="ltr"
-            id="switch:c55:label"
+            id="switch:c69:label"
           >
             switch
             <!---->
@@ -19193,7 +20813,7 @@ exports[`widgets > switch > snapshots > normal 1`] = `
           <!---->
           <input
             aria-invalid="false"
-            aria-labelledby="switch:c55:label"
+            aria-labelledby="switch:c69:label"
             id="root"
             name="root"
             required=""
@@ -19289,7 +20909,7 @@ exports[`widgets > switch > snapshots > readonly 1`] = `
           data-state="unchecked"
           dir="ltr"
           for="root"
-          id="switch:c58"
+          id="switch:c72"
         >
           <!---->
           <!---->
@@ -19301,7 +20921,7 @@ exports[`widgets > switch > snapshots > readonly 1`] = `
             data-scope="switch"
             data-state="unchecked"
             dir="ltr"
-            id="switch:c58:control"
+            id="switch:c72:control"
           >
             <!---->
             <!---->
@@ -19313,7 +20933,7 @@ exports[`widgets > switch > snapshots > readonly 1`] = `
               data-scope="switch"
               data-state="unchecked"
               dir="ltr"
-              id="switch:c58:thumb"
+              id="switch:c72:thumb"
             >
               <!---->
             </span>
@@ -19332,7 +20952,7 @@ exports[`widgets > switch > snapshots > readonly 1`] = `
             data-scope="switch"
             data-state="unchecked"
             dir="ltr"
-            id="switch:c58:label"
+            id="switch:c72:label"
           >
             switch
             <!---->
@@ -19343,7 +20963,7 @@ exports[`widgets > switch > snapshots > readonly 1`] = `
           <!---->
           <input
             aria-invalid="false"
-            aria-labelledby="switch:c58:label"
+            aria-labelledby="switch:c72:label"
             id="root"
             name="root"
             required=""
@@ -19436,7 +21056,7 @@ exports[`widgets > tags > snapshots > disabled 1`] = `
           data-part="root"
           data-scope="tags-input"
           dir="ltr"
-          id="tags-input:c63"
+          id="tags-input:c77"
         >
           <!---->
           <!---->
@@ -19445,7 +21065,7 @@ exports[`widgets > tags > snapshots > disabled 1`] = `
             data-part="control"
             data-scope="tags-input"
             dir="ltr"
-            id="tags-input:c63:control"
+            id="tags-input:c77:control"
           >
             <!---->
             <!---->
@@ -19478,7 +21098,7 @@ exports[`widgets > tags > snapshots > disabled 1`] = `
           <input
             disabled=""
             hidden=""
-            id="tags-input:c63:hidden-input"
+            id="tags-input:c77:hidden-input"
             name="root"
             required=""
             type="text"
@@ -19569,7 +21189,7 @@ exports[`widgets > tags > snapshots > error 1`] = `
           data-part="root"
           data-scope="tags-input"
           dir="ltr"
-          id="tags-input:c62"
+          id="tags-input:c76"
         >
           <!---->
           <!---->
@@ -19578,7 +21198,7 @@ exports[`widgets > tags > snapshots > error 1`] = `
             data-part="control"
             data-scope="tags-input"
             dir="ltr"
-            id="tags-input:c62:control"
+            id="tags-input:c76:control"
           >
             <!---->
             <!---->
@@ -19611,7 +21231,7 @@ exports[`widgets > tags > snapshots > error 1`] = `
           <!---->
           <input
             hidden=""
-            id="tags-input:c62:hidden-input"
+            id="tags-input:c76:hidden-input"
             name="root"
             required=""
             type="text"
@@ -19712,7 +21332,7 @@ exports[`widgets > tags > snapshots > normal 1`] = `
           data-part="root"
           data-scope="tags-input"
           dir="ltr"
-          id="tags-input:c61"
+          id="tags-input:c75"
         >
           <!---->
           <!---->
@@ -19720,7 +21340,7 @@ exports[`widgets > tags > snapshots > normal 1`] = `
             data-part="control"
             data-scope="tags-input"
             dir="ltr"
-            id="tags-input:c61:control"
+            id="tags-input:c75:control"
           >
             <!---->
             <!---->
@@ -19751,7 +21371,7 @@ exports[`widgets > tags > snapshots > normal 1`] = `
           <!---->
           <input
             hidden=""
-            id="tags-input:c61:hidden-input"
+            id="tags-input:c75:hidden-input"
             name="root"
             required=""
             type="text"
@@ -19842,7 +21462,7 @@ exports[`widgets > tags > snapshots > readonly 1`] = `
           data-readonly=""
           data-scope="tags-input"
           dir="ltr"
-          id="tags-input:c64"
+          id="tags-input:c78"
         >
           <!---->
           <!---->
@@ -19851,7 +21471,7 @@ exports[`widgets > tags > snapshots > readonly 1`] = `
             data-readonly=""
             data-scope="tags-input"
             dir="ltr"
-            id="tags-input:c64:control"
+            id="tags-input:c78:control"
             tabindex="0"
           >
             <!---->
@@ -19885,7 +21505,7 @@ exports[`widgets > tags > snapshots > readonly 1`] = `
           <!---->
           <input
             hidden=""
-            id="tags-input:c64:hidden-input"
+            id="tags-input:c78:hidden-input"
             name="root"
             readonly=""
             required=""
@@ -20570,6 +22190,345 @@ exports[`widgets > textarea > snapshots > readonly 1`] = `
           readonly=""
           required=""
         />
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="btn preset-filled-primary-500 w-full"
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > timeInput > snapshots > disabled 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="flex flex-col gap-4"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-invalid="false"
+          class="input"
+          disabled=""
+          id="root"
+          name="root"
+          required=""
+          step="1"
+          type="time"
+        />
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="btn preset-filled-primary-500 w-full"
+        disabled=""
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > timeInput > snapshots > error 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="flex flex-col gap-4"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-invalid="true"
+          class="input"
+          id="root"
+          name="root"
+          required=""
+          step="1"
+          type="time"
+        />
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <ul
+          class="text-error-500 list-inside list-disc"
+          id="root__errors"
+          tabindex="-1"
+        >
+          <li>
+            error
+          </li>
+          
+        </ul>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="btn preset-filled-primary-500 w-full"
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > timeInput > snapshots > normal 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="flex flex-col gap-4"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-invalid="false"
+          class="input"
+          id="root"
+          name="root"
+          required=""
+          step="1"
+          type="time"
+        />
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="btn preset-filled-primary-500 w-full"
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > timeInput > snapshots > readonly 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="flex flex-col gap-4"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-invalid="false"
+          class="input"
+          id="root"
+          name="root"
+          readonly=""
+          required=""
+          step="1"
+          type="time"
+        />
+        
         
         
         

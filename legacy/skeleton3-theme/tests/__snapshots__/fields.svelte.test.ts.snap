@@ -1238,6 +1238,17 @@ exports[`object fields > additionalProperties 1`] = `
         <!---->
          
         <!---->
+        <button
+          class="btn preset-filled"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
+        <!---->
          
         <!---->
         <!---->
@@ -1523,6 +1534,17 @@ exports[`object fields > additionalProperties with error 1`] = `
         </div>
         <!---->
          
+        <!---->
+        <button
+          class="btn preset-filled"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
         <!---->
          
         <!---->
@@ -4021,6 +4043,17 @@ exports[`object fields > show add button and fields if additionalProperties is t
         <!---->
          
         <!---->
+        <button
+          class="btn preset-filled"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
+        <!---->
          
         <!---->
         <!---->
@@ -4331,6 +4364,17 @@ exports[`object fields > with title and description > additionalProperties 1`] =
         </div>
         <!---->
          
+        <!---->
+        <button
+          class="btn preset-filled"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
         <!---->
          
         <!---->
@@ -4963,6 +5007,17 @@ exports[`object fields > with title and description > show add button and fields
         <!---->
          
         <!---->
+        <button
+          class="btn preset-filled"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
+        <!---->
          
         <!---->
         <!---->
@@ -5273,6 +5328,17 @@ exports[`object fields > with title and description from both > additionalProper
         </div>
         <!---->
          
+        <!---->
+        <button
+          class="btn preset-filled"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
         <!---->
          
         <!---->
@@ -5905,6 +5971,17 @@ exports[`object fields > with title and description from uiSchema > additionalPr
         <!---->
          
         <!---->
+        <button
+          class="btn preset-filled"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
+        <!---->
          
         <!---->
         <!---->
@@ -6536,6 +6613,17 @@ exports[`object fields > with title and description from uiSchema > show add but
         <!---->
          
         <!---->
+        <button
+          class="btn preset-filled"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
+        <!---->
          
         <!---->
         <!---->
@@ -6746,6 +6834,17 @@ exports[`object fields > with title and description with global label off > addi
         </div>
         <!---->
          
+        <!---->
+        <button
+          class="btn preset-filled"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
         <!---->
          
         <!---->
@@ -7164,6 +7263,17 @@ exports[`object fields > with title and description with global label off > show
         </div>
         <!---->
          
+        <!---->
+        <button
+          class="btn preset-filled"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
         <!---->
          
         <!---->

@@ -1,6 +1,8 @@
+import { clientOnly } from "@sjsf/form/lib/env";
+
 import { definitions } from "../definitions.js";
-import DatePicker from "./date-picker.svelte";
-import "./date-picker.svelte";
+
+export type * as __preserveDatePickerTypes from "./date-picker.svelte";
 
 declare module "../definitions.js" {
   interface ExtraWidgets {
@@ -8,4 +10,4 @@ declare module "../definitions.js" {
   }
 }
 
-definitions.datePickerWidget = DatePicker;
+definitions.datePickerWidget = clientOnly(() => import("./date-picker.svelte"));

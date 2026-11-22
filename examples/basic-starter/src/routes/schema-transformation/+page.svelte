@@ -8,7 +8,7 @@
   } from "@sjsf/form";
   import {
     createCoreContext,
-    isSelect,
+    isSelectSchema,
     retrieveSchema,
     schemaHash,
     type SchemaDefinition,
@@ -71,19 +71,23 @@
     ],
   };
 
+  const logger = defaults.logger();
   const validator = defaults.validator<FormValue>({
     schema: originalSchema,
+    logger,
   });
   const merger = defaults.merger({
     validator,
     schema: originalSchema,
     valueHandler: defaults.valueHandler,
+    logger,
   });
   const ctx = createCoreContext({
     validator,
     merger,
     valueHandler: defaults.valueHandler,
     rootSchema: originalSchema,
+    logger,
   });
 
   // Retrieved schemas are freshly allocated objects, so validators for them
@@ -94,7 +98,7 @@
       store: new LRUCache({ maxSize: 10 }),
     }),
     (retrievedSchema: Schema) =>
-      defaults.validator<FormValue>({ schema: retrievedSchema })
+      defaults.validator<FormValue>({ schema: retrievedSchema, logger })
   );
 
   const VIRTUAL_PROPERTY = "__sjsf_virtual_property";
@@ -109,7 +113,7 @@
       }
       const altKeyword = (copy.oneOf && "oneOf") ?? (copy.anyOf && "anyOf");
       const alt = altKeyword && copy[altKeyword];
-      if (!alt || isSelect(ctx, copy)) {
+      if (!alt || isSelectSchema(ctx, copy)) {
         return copy;
       }
       const {

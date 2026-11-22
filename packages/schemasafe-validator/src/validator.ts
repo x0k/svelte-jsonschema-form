@@ -8,6 +8,7 @@ import type {
   Config,
   FieldValueValidator,
   FormValueValidator,
+  Logger,
   ReadonlySchemaValue,
   Schema,
   Validator,
@@ -106,6 +107,7 @@ export interface FormValueValidatorOptions extends ValidatorOptions {
   merger: () => Merger;
   valueHandler: ValueHandler;
   schema: Schema;
+  logger: Logger;
 }
 
 export function createFormValueValidator<T>(
@@ -122,6 +124,7 @@ export function createFormValueValidator<T>(
           merger: options.merger(),
           valueHandler: options.valueHandler,
           rootSchema: options.schema,
+          logger: options.logger,
         }),
         validate.errors,
         formValue
@@ -156,6 +159,7 @@ export interface FormValidatorOptions
 export function createFormValidator<T>({
   schema,
   merger,
+  logger,
   factory = createDefaultValidateFactory(schema),
   validatorsCache,
   createSchemaValidator = createSchemaValidatorFactory(
@@ -175,6 +179,7 @@ export function createFormValidator<T>({
   schema: Schema;
   merger: () => Merger;
   valueHandler: ValueHandler;
+  logger: Logger;
   factory?: ValidateFactory;
   validatorsCache?: ValidatorsCache;
 }) {
@@ -182,6 +187,7 @@ export function createFormValidator<T>({
     ...rest,
     schema,
     merger,
+    logger,
     valueToJSON,
     createSchemaValidator,
     createFieldSchemaValidator,

@@ -1295,6 +1295,17 @@ exports[`object fields > additionalProperties 1`] = `
         <!---->
          
         <!---->
+        <button
+          class="small fill"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
+        <!---->
          
         <!---->
         <!---->
@@ -1599,6 +1610,17 @@ exports[`object fields > additionalProperties with error 1`] = `
         
         <!---->
          
+        <!---->
+        <button
+          class="small fill"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
         <!---->
          
         <!---->
@@ -4247,6 +4269,17 @@ exports[`object fields > show add button and fields if additionalProperties is t
         <!---->
          
         <!---->
+        <button
+          class="small fill"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
+        <!---->
          
         <!---->
         <!---->
@@ -4580,6 +4613,17 @@ exports[`object fields > with title and description > additionalProperties 1`] =
         
         <!---->
          
+        <!---->
+        <button
+          class="small fill"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
         <!---->
          
         <!---->
@@ -5257,6 +5301,17 @@ exports[`object fields > with title and description > show add button and fields
         <!---->
          
         <!---->
+        <button
+          class="small fill"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
+        <!---->
          
         <!---->
         <!---->
@@ -5590,6 +5645,17 @@ exports[`object fields > with title and description from both > additionalProper
         
         <!---->
          
+        <!---->
+        <button
+          class="small fill"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
         <!---->
          
         <!---->
@@ -6267,6 +6333,17 @@ exports[`object fields > with title and description from uiSchema > additionalPr
         <!---->
          
         <!---->
+        <button
+          class="small fill"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
+        <!---->
          
         <!---->
         <!---->
@@ -6943,6 +7020,17 @@ exports[`object fields > with title and description from uiSchema > show add but
         <!---->
          
         <!---->
+        <button
+          class="small fill"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
+        <!---->
          
         <!---->
         <!---->
@@ -7164,6 +7252,17 @@ exports[`object fields > with title and description with global label off > addi
         
         <!---->
          
+        <!---->
+        <button
+          class="small fill"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
         <!---->
          
         <!---->
@@ -7603,6 +7702,17 @@ exports[`object fields > with title and description with global label off > show
         
         <!---->
          
+        <!---->
+        <button
+          class="small fill"
+          type="button"
+        >
+          <!---->
+          Add property
+          
+          <!---->
+        </button>
+        
         <!---->
          
         <!---->
@@ -8584,6 +8694,343 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
 </div>
 `;
 
+exports[`widgets > dateInput > snapshots > disabled 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="svelte-yys650"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="field border svelte-1fixc4e"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          disabled=""
+          id="root"
+          name="root"
+          required=""
+          type="date"
+        />
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="responsive"
+        disabled=""
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > dateInput > snapshots > error 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="svelte-yys650"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="field border invalid svelte-1fixc4e"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="true"
+          id="root"
+          name="root"
+          required=""
+          type="date"
+        />
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <ul
+          class="errors-list svelte-ulrohq"
+          id="root__errors"
+          tabindex="-1"
+        >
+          <li
+            class="error-text"
+          >
+            error
+          </li>
+          
+        </ul>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="responsive"
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > dateInput > snapshots > normal 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="svelte-yys650"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="field border svelte-1fixc4e"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          id="root"
+          name="root"
+          required=""
+          type="date"
+        />
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="responsive"
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > dateInput > snapshots > readonly 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="svelte-yys650"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="field border svelte-1fixc4e"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          id="root"
+          name="root"
+          readonly=""
+          required=""
+          type="date"
+        />
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="responsive"
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
 exports[`widgets > datePicker > snapshots > disabled 1`] = `
 <div>
   <form>
@@ -8874,6 +9321,347 @@ exports[`widgets > datePicker > snapshots > readonly 1`] = `
           required=""
           type="date"
         />
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="responsive"
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > dateTimeInput > snapshots > disabled 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="svelte-yys650"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="field border svelte-1fixc4e"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          disabled=""
+          id="root"
+          name="root"
+          required=""
+          step="1"
+          type="datetime-local"
+        />
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="responsive"
+        disabled=""
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > dateTimeInput > snapshots > error 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="svelte-yys650"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="field border invalid svelte-1fixc4e"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="true"
+          id="root"
+          name="root"
+          required=""
+          step="1"
+          type="datetime-local"
+        />
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <ul
+          class="errors-list svelte-ulrohq"
+          id="root__errors"
+          tabindex="-1"
+        >
+          <li
+            class="error-text"
+          >
+            error
+          </li>
+          
+        </ul>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="responsive"
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > dateTimeInput > snapshots > normal 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="svelte-yys650"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="field border svelte-1fixc4e"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          id="root"
+          name="root"
+          required=""
+          step="1"
+          type="datetime-local"
+        />
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="responsive"
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > dateTimeInput > snapshots > readonly 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="svelte-yys650"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="field border svelte-1fixc4e"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          id="root"
+          name="root"
+          readonly=""
+          required=""
+          step="1"
+          type="datetime-local"
+        />
+        
         
         
         
@@ -12332,6 +13120,347 @@ exports[`widgets > textarea > snapshots > readonly 1`] = `
           readonly=""
           required=""
         />
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="responsive"
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > timeInput > snapshots > disabled 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="svelte-yys650"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="field border svelte-1fixc4e"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          disabled=""
+          id="root"
+          name="root"
+          required=""
+          step="1"
+          type="time"
+        />
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="responsive"
+        disabled=""
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > timeInput > snapshots > error 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="svelte-yys650"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="field border invalid svelte-1fixc4e"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="true"
+          id="root"
+          name="root"
+          required=""
+          step="1"
+          type="time"
+        />
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <ul
+          class="errors-list svelte-ulrohq"
+          id="root__errors"
+          tabindex="-1"
+        >
+          <li
+            class="error-text"
+          >
+            error
+          </li>
+          
+        </ul>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="responsive"
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > timeInput > snapshots > normal 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="svelte-yys650"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="field border svelte-1fixc4e"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          id="root"
+          name="root"
+          required=""
+          step="1"
+          type="time"
+        />
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+       
+      <!---->
+      <button
+        class="responsive"
+        type="submit"
+      >
+        <!---->
+        Submit
+        
+        <!---->
+      </button>
+      
+      <!---->
+      
+      <!---->
+    </div>
+    
+    <!---->
+  </form>
+  
+</div>
+`;
+
+exports[`widgets > timeInput > snapshots > readonly 1`] = `
+<div>
+  <form>
+    <!---->
+    <div
+      class="svelte-yys650"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <input
+        name="__sjsf_id_prefix"
+        type="hidden"
+        value="root"
+      />
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="field border svelte-1fixc4e"
+        data-layout="field"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root__description root__help root__errors"
+          aria-invalid="false"
+          id="root"
+          name="root"
+          readonly=""
+          required=""
+          step="1"
+          type="time"
+        />
+        
         
         
         

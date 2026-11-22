@@ -1,4 +1,5 @@
 import type { ValidatorFactoryOptions } from "@sjsf/form";
+import { createLogger } from "@sjsf/form/loggers/once";
 import { PLAYGROUND_SJSF_THEMES } from "meta/playground";
 
 export { resolver } from "@sjsf/form/resolvers/basic";
@@ -13,6 +14,7 @@ export { icons } from "@sjsf/lucide-icons";
 export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/legacy";
 
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
+export const logger = createLogger();
 
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 

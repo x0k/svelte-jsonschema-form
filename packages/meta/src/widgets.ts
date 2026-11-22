@@ -76,7 +76,7 @@ export function themeExtraWidgetSubPath<T extends Theme>(
 const CLIENT_SIDE_ONLY_EXTRA_WIDGETS: {
   [T in Theme]?: ExtraWidgetFileNames[T][];
 } = {
-  daisyui5: ["cally-date-picker"],
+  daisyui5: ["date-picker"],
 };
 
 export function isThemeClientSideOnlyExtraWidget<T extends Theme>(

@@ -3,6 +3,7 @@ import type {
   AsyncFormValueValidator,
   FieldValueValidator,
   FormValueValidator,
+  Logger,
   Schema,
   Validator,
 } from "@sjsf/form";
@@ -29,9 +30,14 @@ export type ValidatorOptions = {
   validatorRetriever: (schema: Schema) => CompiledValidateFunction;
 };
 
+export interface LoggerOptions {
+  logger: Logger;
+}
+
 export function createValidator({
   validatorRetriever,
-}: ValidatorOptions): Validator {
+  logger,
+}: ValidatorOptions & LoggerOptions): Validator {
   return {
     isValid(schema, formValue) {
       if (typeof schema === "boolean") {
@@ -40,7 +46,7 @@ export function createValidator({
       try {
         return validatorRetriever(schema)(formValue);
       } catch (e) {
-        console.warn("Failed to validate", e);
+        logger.warn("Failed to validate", e);
         return false;
       }
     },
@@ -117,7 +123,9 @@ export function createAsyncFieldValueValidator({
   };
 }
 
-export type FormValidatorOptions = ValidatorOptions & FormValueValidatorOptions;
+export type FormValidatorOptions = ValidatorOptions &
+  FormValueValidatorOptions &
+  LoggerOptions;
 
 export function createFormValidatorFactory<T>(vOptions: ValidatorOptions) {
   return (options: Omit<FormValidatorOptions, keyof ValidatorOptions>) => {

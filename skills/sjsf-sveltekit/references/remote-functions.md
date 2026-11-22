@@ -13,15 +13,15 @@ export { translation } from "@sjsf/form/translations/en";
 export { createFormIdBuilder as idBuilder } from "@sjsf/sveltekit3/rf";
 export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handlers/default";
 export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
+export { createLogger as logger } from "@sjsf/form/loggers/once";
 export { createFormValidator as validator } from "@sjsf/ajv8-validator";
 ```
 
 ## Server Validator (`data.remote.ts`)
 
 Validate with `createServerValidator` + `form()` from `$app/server`.
-It only takes `{ schema, validator, merger, valueHandler, uiSchema, uiOptionsRegistry, ... }` —
-`idBuilder`/`theme`/`translation`/`resolver` are client-only
-and ignored here (spreading is harmless but explicit picks are clearer):
+It accepts the server-side subset of the form options; client-only options are
+ignored, so spread your defaults:
 
 ```ts
 import { createServerValidator } from "@sjsf/sveltekit3/rf/server";
@@ -33,10 +33,8 @@ import * as defaults from "$lib/sjsf/defaults";
 import { schema, uiSchema } from "./model";
 
 const validator = createServerValidator<PostForm>({
+  ...defaults,
   schema,
-  validator: defaults.validator,
-  merger: defaults.merger,
-  valueHandler: defaults.valueHandler,
   uiSchema,
 });
 

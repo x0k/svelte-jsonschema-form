@@ -168,6 +168,15 @@ Enhanced and native submissions carry the same parts, so validation results matc
 Pass `useJsonChunks` to the request to submit the form data as JSON. This needs JavaScript:
 without it the browser submits the fields on its own, so the submission may look different from the JSON one.
 
+### Date and time fields
+
+The default submission reads the rendered form controls, not the form value.
+The opt-in [`dateField`](/form/schema/#string-formats) stores RFC 3339 strings
+that differ from what its control displays: a combined `datetime` control shows
+local wall-clock time, so it submits the control's local date/time text, and a
+split date/time pair submits two entries. Pass `useJsonChunks` for forms that
+contain `dateField`; JSON chunks serialize the form value instead.
+
 ## Comparison with Superforms
 
 Unlike [Superforms](https://github.com/ciscoheat/sveltekit-superforms),

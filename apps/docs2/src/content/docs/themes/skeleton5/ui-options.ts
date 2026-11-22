@@ -70,6 +70,8 @@ export interface UiOptions {
 
   checkbox?: HTMLInputAttributes;
 
+  skeleton5DateInput?: DatePickerRootProps;
+
   number?: HTMLInputAttributes;
 
   select?: HTMLSelectAttributes;

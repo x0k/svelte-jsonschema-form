@@ -2,16 +2,7 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import {
-  describe,
-  it,
-  test,
-  expect,
-  afterAll,
-  beforeAll,
-  vi,
-  type MockInstance,
-} from "vitest";
+import { beforeAll, describe, expect, it, test } from "vitest";
 
 import {
   AdditionalItemsHandling,
@@ -23,11 +14,17 @@ import {
   getInnerSchemaForArrayItem,
   getObjectDefaults,
   computeDefaultBasedOnSchemaTypeAndDefaults,
-  type Experimental_DefaultFormStateBehavior,
+  type DefaultFormStateBehavior,
 } from "./default-state.js";
 import { RECURSIVE_REF, RECURSIVE_REF_ALLOF } from "./fixtures/test-data.js";
 import { REF_FLAG, type Schema, type SchemaValue } from "./schema.js";
-import { createMerger, createTestContext, createValidator } from "./testing.js";
+import {
+  createMerger,
+  createTestContext,
+  createTestLogger,
+  createValidator,
+  type TestLogMessage,
+} from "./testing.js";
 
 const defaults = {
   isSchemaRoot: true,
@@ -36,21 +33,13 @@ const defaults = {
   // CHANGED: We use `required: true` at the root instead of `requiredAsRoot`
   required: true,
   parentDefaults: undefined,
-  experimental_defaultFormStateBehavior: {},
+  defaultFormStateBehavior: {},
   rawFormData: undefined,
   shouldMergeDefaultsIntoFormData: false,
   initialDefaultsGenerated: false,
 };
 
 describe("getDefaultFormState()", () => {
-  let consoleWarnSpy: MockInstance<typeof console.warn>;
-  beforeAll(() => {
-    consoleWarnSpy = vi.spyOn(console, "warn").mockImplementation(() => {}); // mock this to avoid actually warning in the tests
-  });
-  afterAll(() => {
-    consoleWarnSpy.mockRestore();
-  });
-
   test("ignores inherited raw form data properties", () => {
     const schema: Schema = {
       type: "object",
@@ -422,10 +411,9 @@ describe("getDefaultFormState()", () => {
       });
 
       describe("constAsDefaults is never", () => {
-        const experimental_defaultFormStateBehavior: Experimental_DefaultFormStateBehavior =
-          {
-            constAsDefaults: "never",
-          };
+        const defaultFormStateBehavior: DefaultFormStateBehavior = {
+          constAsDefaults: "never",
+        };
         const expected = {};
 
         test("getDefaultFormState", () => {
@@ -437,7 +425,7 @@ describe("getDefaultFormState()", () => {
               schema,
               undefined,
               undefined,
-              experimental_defaultFormStateBehavior
+              defaultFormStateBehavior
             )
           ).toEqual(expected);
         });
@@ -451,7 +439,7 @@ describe("getDefaultFormState()", () => {
               schema,
               {
                 ...defaults,
-                experimental_defaultFormStateBehavior,
+                defaultFormStateBehavior,
               }
             )
           ).toEqual(expected);
@@ -466,7 +454,7 @@ describe("getDefaultFormState()", () => {
               schema,
               {
                 ...defaults,
-                experimental_defaultFormStateBehavior,
+                defaultFormStateBehavior,
               },
               undefined
             )
@@ -483,7 +471,7 @@ describe("getDefaultFormState()", () => {
               {
                 ...defaults,
                 rawFormData: {},
-                experimental_defaultFormStateBehavior,
+                defaultFormStateBehavior,
               },
               undefined
             )
@@ -2019,10 +2007,9 @@ describe("getDefaultFormState()", () => {
           fromFormData: "fromFormData",
         };
         const includeUndefinedValues = false;
-        const experimental_defaultFormStateBehavior: Experimental_DefaultFormStateBehavior =
-          {
-            emptyObjectFields: "skipDefaults",
-          };
+        const defaultFormStateBehavior: DefaultFormStateBehavior = {
+          emptyObjectFields: "skipDefaults",
+        };
 
         test("getDefaultFormState", () => {
           expect(
@@ -2033,7 +2020,7 @@ describe("getDefaultFormState()", () => {
               schema,
               rawFormData,
               includeUndefinedValues,
-              experimental_defaultFormStateBehavior
+              defaultFormStateBehavior
             )
           ).toEqual({
             localConst: "local",
@@ -2057,7 +2044,7 @@ describe("getDefaultFormState()", () => {
                 ...defaults,
                 rawFormData,
                 includeUndefinedValues,
-                experimental_defaultFormStateBehavior,
+                defaultFormStateBehavior,
               }
             )
           ).toEqual({
@@ -2081,7 +2068,7 @@ describe("getDefaultFormState()", () => {
                 ...defaults,
                 rawFormData,
                 includeUndefinedValues,
-                experimental_defaultFormStateBehavior,
+                defaultFormStateBehavior,
               },
               undefined
             )
@@ -2106,7 +2093,7 @@ describe("getDefaultFormState()", () => {
                 ...defaults,
                 rawFormData,
                 includeUndefinedValues,
-                experimental_defaultFormStateBehavior,
+                defaultFormStateBehavior,
               },
               undefined
             )
@@ -2121,11 +2108,10 @@ describe("getDefaultFormState()", () => {
         });
 
         describe("constAsDefault is never", () => {
-          const experimental_defaultFormStateBehavior: Experimental_DefaultFormStateBehavior =
-            {
-              emptyObjectFields: "skipDefaults",
-              constAsDefaults: "never",
-            };
+          const defaultFormStateBehavior: DefaultFormStateBehavior = {
+            emptyObjectFields: "skipDefaults",
+            constAsDefaults: "never",
+          };
 
           test("getDefaultFormState", () => {
             expect(
@@ -2136,7 +2122,7 @@ describe("getDefaultFormState()", () => {
                 schema,
                 rawFormData,
                 includeUndefinedValues,
-                experimental_defaultFormStateBehavior
+                defaultFormStateBehavior
               )
             ).toEqual({
               fromFormData: "fromFormData",
@@ -2154,7 +2140,7 @@ describe("getDefaultFormState()", () => {
                   ...defaults,
                   rawFormData,
                   includeUndefinedValues,
-                  experimental_defaultFormStateBehavior,
+                  defaultFormStateBehavior,
                 }
               )
             ).toEqual({});
@@ -2169,7 +2155,7 @@ describe("getDefaultFormState()", () => {
                 schema,
                 {
                   ...defaults,
-                  experimental_defaultFormStateBehavior,
+                  defaultFormStateBehavior,
                 },
                 undefined
               )
@@ -2186,7 +2172,7 @@ describe("getDefaultFormState()", () => {
                 {
                   ...defaults,
                   rawFormData: {},
-                  experimental_defaultFormStateBehavior,
+                  defaultFormStateBehavior,
                 },
                 undefined
               )
@@ -2391,10 +2377,9 @@ describe("getDefaultFormState()", () => {
       });
 
       describe('mergeDefaultsIntoFormData set to "useDefaultIfFormDataUndefined"', () => {
-        const experimental_defaultFormStateBehavior: Experimental_DefaultFormStateBehavior =
-          {
-            mergeDefaultsIntoFormData: "useDefaultIfFormDataUndefined",
-          };
+        const defaultFormStateBehavior: DefaultFormStateBehavior = {
+          mergeDefaultsIntoFormData: "useDefaultIfFormDataUndefined",
+        };
         const expected = {
           animal: "Fish",
           food: "worms",
@@ -2412,7 +2397,7 @@ describe("getDefaultFormState()", () => {
               schema,
               rawFormData,
               undefined,
-              experimental_defaultFormStateBehavior
+              defaultFormStateBehavior
             )
           ).toEqual(expected);
         });
@@ -2429,7 +2414,7 @@ describe("getDefaultFormState()", () => {
               {
                 ...defaults,
                 rawFormData,
-                experimental_defaultFormStateBehavior,
+                defaultFormStateBehavior,
                 shouldMergeDefaultsIntoFormData,
               }
             )
@@ -2449,7 +2434,7 @@ describe("getDefaultFormState()", () => {
                 ...defaults,
                 rawFormData,
                 shouldMergeDefaultsIntoFormData,
-                experimental_defaultFormStateBehavior,
+                defaultFormStateBehavior,
               },
               undefined
             )
@@ -2471,7 +2456,7 @@ describe("getDefaultFormState()", () => {
                 ...defaults,
                 rawFormData,
                 shouldMergeDefaultsIntoFormData,
-                experimental_defaultFormStateBehavior,
+                defaultFormStateBehavior,
               },
               undefined
             )
@@ -2537,10 +2522,9 @@ describe("getDefaultFormState()", () => {
       };
 
       describe("constAsDefaults is always", () => {
-        const experimental_defaultFormStateBehavior: Experimental_DefaultFormStateBehavior =
-          {
-            constAsDefaults: "always",
-          };
+        const defaultFormStateBehavior: DefaultFormStateBehavior = {
+          constAsDefaults: "always",
+        };
         const expected = {
           oneOfField: "username",
         };
@@ -2568,7 +2552,7 @@ describe("getDefaultFormState()", () => {
               schema,
               undefined,
               undefined,
-              experimental_defaultFormStateBehavior
+              defaultFormStateBehavior
             )
           ).toEqual(expected);
         });
@@ -2596,7 +2580,7 @@ describe("getDefaultFormState()", () => {
               schema,
               {
                 ...defaults,
-                experimental_defaultFormStateBehavior,
+                defaultFormStateBehavior,
               }
             )
           ).toEqual(expected);
@@ -2625,7 +2609,7 @@ describe("getDefaultFormState()", () => {
               schema,
               {
                 ...defaults,
-                experimental_defaultFormStateBehavior,
+                defaultFormStateBehavior,
               },
               undefined
             )
@@ -2656,7 +2640,7 @@ describe("getDefaultFormState()", () => {
               {
                 ...defaults,
                 rawFormData: {},
-                experimental_defaultFormStateBehavior,
+                defaultFormStateBehavior,
               },
               undefined
             )
@@ -2665,10 +2649,9 @@ describe("getDefaultFormState()", () => {
       });
 
       describe("constAsDefaults is skipOneOf", () => {
-        const experimental_defaultFormStateBehavior: Experimental_DefaultFormStateBehavior =
-          {
-            constAsDefaults: "skipOneOf",
-          };
+        const defaultFormStateBehavior: DefaultFormStateBehavior = {
+          constAsDefaults: "skipOneOf",
+        };
         const expected = {};
 
         test("getDefaultFormState", () => {
@@ -2694,7 +2677,7 @@ describe("getDefaultFormState()", () => {
               schema,
               undefined,
               undefined,
-              experimental_defaultFormStateBehavior
+              defaultFormStateBehavior
             )
           ).toEqual(expected);
         });
@@ -2722,7 +2705,7 @@ describe("getDefaultFormState()", () => {
               schema,
               {
                 ...defaults,
-                experimental_defaultFormStateBehavior,
+                defaultFormStateBehavior,
               }
             )
           ).toEqual(expected);
@@ -2751,7 +2734,7 @@ describe("getDefaultFormState()", () => {
               schema,
               {
                 ...defaults,
-                experimental_defaultFormStateBehavior,
+                defaultFormStateBehavior,
               },
               undefined
             )
@@ -2782,7 +2765,7 @@ describe("getDefaultFormState()", () => {
               {
                 ...defaults,
                 rawFormData: {},
-                experimental_defaultFormStateBehavior,
+                defaultFormStateBehavior,
               },
               undefined
             )
@@ -2791,10 +2774,9 @@ describe("getDefaultFormState()", () => {
       });
 
       describe("constAsDefaults is never", () => {
-        const experimental_defaultFormStateBehavior: Experimental_DefaultFormStateBehavior =
-          {
-            constAsDefaults: "never",
-          };
+        const defaultFormStateBehavior: DefaultFormStateBehavior = {
+          constAsDefaults: "never",
+        };
         const expected = {};
 
         test("getDefaultFormState", () => {
@@ -2820,7 +2802,7 @@ describe("getDefaultFormState()", () => {
               schema,
               undefined,
               undefined,
-              experimental_defaultFormStateBehavior
+              defaultFormStateBehavior
             )
           ).toEqual(expected);
         });
@@ -2848,7 +2830,7 @@ describe("getDefaultFormState()", () => {
               schema,
               {
                 ...defaults,
-                experimental_defaultFormStateBehavior,
+                defaultFormStateBehavior,
               }
             )
           ).toEqual(expected);
@@ -2877,7 +2859,7 @@ describe("getDefaultFormState()", () => {
               schema,
               {
                 ...defaults,
-                experimental_defaultFormStateBehavior,
+                defaultFormStateBehavior,
               },
               undefined
             )
@@ -2908,7 +2890,7 @@ describe("getDefaultFormState()", () => {
               {
                 ...defaults,
                 rawFormData: {},
-                experimental_defaultFormStateBehavior,
+                defaultFormStateBehavior,
               },
               undefined
             )
@@ -2930,10 +2912,9 @@ describe("getDefaultFormState()", () => {
       const rawFormData = {
         stringField: "fromFormData",
       };
-      const experimental_defaultFormStateBehavior: Experimental_DefaultFormStateBehavior =
-        {
-          constAsDefaults: "always",
-        };
+      const defaultFormStateBehavior: DefaultFormStateBehavior = {
+        constAsDefaults: "always",
+      };
       const expected = {
         stringField: "fromConst",
       };
@@ -2947,7 +2928,7 @@ describe("getDefaultFormState()", () => {
             schema,
             rawFormData,
             undefined,
-            experimental_defaultFormStateBehavior
+            defaultFormStateBehavior
           )
         ).toEqual(expected);
       });
@@ -2962,7 +2943,7 @@ describe("getDefaultFormState()", () => {
             {
               ...defaults,
               rawFormData,
-              experimental_defaultFormStateBehavior,
+              defaultFormStateBehavior,
             }
           )
         ).toEqual(expected);
@@ -2978,7 +2959,7 @@ describe("getDefaultFormState()", () => {
             {
               ...defaults,
               rawFormData,
-              experimental_defaultFormStateBehavior,
+              defaultFormStateBehavior,
             },
             undefined
           )
@@ -2995,7 +2976,7 @@ describe("getDefaultFormState()", () => {
             {
               ...defaults,
               rawFormData,
-              experimental_defaultFormStateBehavior,
+              defaultFormStateBehavior,
             },
             undefined
           )
@@ -3239,13 +3220,12 @@ describe("getDefaultFormState()", () => {
 
       describe("with empty array as formData", () => {
         const rawFormData: never[] = [];
-        const experimental_defaultFormStateBehavior: Experimental_DefaultFormStateBehavior =
-          {
-            arrayMinItems: {
-              mergeExtraDefaults: true,
-              populate: "all",
-            },
-          };
+        const defaultFormStateBehavior: DefaultFormStateBehavior = {
+          arrayMinItems: {
+            mergeExtraDefaults: true,
+            populate: "all",
+          },
+        };
 
         test("getDefaultFormState", () => {
           expect(
@@ -3257,7 +3237,7 @@ describe("getDefaultFormState()", () => {
               schema,
               undefined,
               includeUndefinedValues,
-              experimental_defaultFormStateBehavior
+              defaultFormStateBehavior
             )
           ).toEqual(expected);
         });
@@ -3273,7 +3253,7 @@ describe("getDefaultFormState()", () => {
                 ...defaults,
                 rawFormData,
                 includeUndefinedValues,
-                experimental_defaultFormStateBehavior,
+                defaultFormStateBehavior,
               }
             )
           ).toEqual(expected);
@@ -3290,7 +3270,7 @@ describe("getDefaultFormState()", () => {
                 ...defaults,
                 rawFormData,
                 includeUndefinedValues,
-                experimental_defaultFormStateBehavior,
+                defaultFormStateBehavior,
               },
               ["Raphael", "Michaelangelo"]
             )
@@ -3308,7 +3288,7 @@ describe("getDefaultFormState()", () => {
                 ...defaults,
                 rawFormData,
                 includeUndefinedValues,
-                experimental_defaultFormStateBehavior,
+                defaultFormStateBehavior,
               },
               ["Raphael", "Michaelangelo"]
             )
@@ -4161,7 +4141,7 @@ describe("getDefaultFormState()", () => {
   //       computeDefaults3(testValidator, defaultMerger, schema, {
   //         ...defaults,
   //         rootSchema: schema,
-  //         experimental_defaultFormStateBehavior: { emptyObjectFields: 'populateRequiredDefaults' },
+  //         defaultFormStateBehavior: { emptyObjectFields: 'populateRequiredDefaults' },
   //       })
   //     ).toEqual({});
   //   });
@@ -4170,7 +4150,7 @@ describe("getDefaultFormState()", () => {
   //       computeDefaults3(testValidator, defaultMerger, schema, {
   //         ...defaults,
   //         rootSchema: schema,
-  //         experimental_defaultFormStateBehavior: { emptyObjectFields: 'skipEmptyDefaults' },
+  //         defaultFormStateBehavior: { emptyObjectFields: 'skipEmptyDefaults' },
   //       })
   //     ).toEqual({});
   //   });
@@ -4179,7 +4159,7 @@ describe("getDefaultFormState()", () => {
   //       computeDefaults3(testValidator, defaultMerger, schema, {
   //         ...defaults,
   //         rootSchema: schema,
-  //         experimental_defaultFormStateBehavior: { emptyObjectFields: 'skipDefaults' },
+  //         defaultFormStateBehavior: { emptyObjectFields: 'skipDefaults' },
   //       })
   //     ).toEqual({});
   //   });
@@ -4204,7 +4184,7 @@ describe("getDefaultFormState()", () => {
           schema,
           {
             ...defaults,
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               arrayMinItems: { populate: "requiredOnly" },
             },
           }
@@ -4230,7 +4210,7 @@ describe("getDefaultFormState()", () => {
           {
             ...defaults,
             rawFormData: { optionalArray: [] },
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               arrayMinItems: { populate: "requiredOnly" },
             },
           }
@@ -4257,7 +4237,7 @@ describe("getDefaultFormState()", () => {
           schema,
           {
             ...defaults,
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               arrayMinItems: { populate: "requiredOnly" },
             },
           }
@@ -4285,7 +4265,7 @@ describe("getDefaultFormState()", () => {
           schema,
           {
             ...defaults,
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               arrayMinItems: { populate: "requiredOnly" },
             },
           }
@@ -4314,7 +4294,7 @@ describe("getDefaultFormState()", () => {
           {
             ...defaults,
             rawFormData: { requiredArray: ["raw0"] },
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               arrayMinItems: { populate: "requiredOnly" },
             },
           }
@@ -4345,7 +4325,7 @@ describe("getDefaultFormState()", () => {
           schema,
           {
             ...defaults,
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               arrayMinItems: { populate: "never" },
             },
           }
@@ -4371,7 +4351,7 @@ describe("getDefaultFormState()", () => {
           schema,
           {
             ...defaults,
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               arrayMinItems: { populate: "never" },
             },
           }
@@ -4400,7 +4380,7 @@ describe("getDefaultFormState()", () => {
           schema,
           {
             ...defaults,
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               arrayMinItems: { populate: "never" },
             },
           }
@@ -4428,7 +4408,7 @@ describe("getDefaultFormState()", () => {
           schema,
           {
             ...defaults,
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               arrayMinItems: { populate: "never" },
             },
           }
@@ -4457,7 +4437,7 @@ describe("getDefaultFormState()", () => {
           {
             ...defaults,
             rawFormData: { nonRequiredArray: ["raw1"] },
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               arrayMinItems: { populate: "never" },
             },
           }
@@ -4485,7 +4465,7 @@ describe("getDefaultFormState()", () => {
           {
             ...defaults,
             rawFormData: { nonRequiredArray: ["not add"] },
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               arrayMinItems: { populate: "never" },
             },
           }
@@ -4512,7 +4492,7 @@ describe("getDefaultFormState()", () => {
           schema,
           {
             ...defaults,
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               arrayMinItems: { populate: "never" },
             },
           }
@@ -4537,7 +4517,7 @@ describe("getDefaultFormState()", () => {
           schema,
           {
             ...defaults,
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               arrayMinItems: { populate: "never" },
             },
           }
@@ -4570,7 +4550,7 @@ describe("getDefaultFormState()", () => {
           schema,
           {
             ...defaults,
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               arrayMinItems: { populate: "never" },
             },
           }
@@ -4613,7 +4593,7 @@ describe("getDefaultFormState()", () => {
                 },
               ],
             },
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               arrayMinItems: { populate: "never" },
             },
           }
@@ -4643,10 +4623,9 @@ describe("getDefaultFormState()", () => {
             },
           },
         };
-        const defaultFormStateBehavior: Experimental_DefaultFormStateBehavior =
-          {
-            arrayMinItems: { populate: "never" },
-          };
+        const defaultFormStateBehavior: DefaultFormStateBehavior = {
+          arrayMinItems: { populate: "never" },
+        };
 
         expect(
           getDefaultFormState(
@@ -4672,10 +4651,9 @@ describe("getDefaultFormState()", () => {
             },
           },
         };
-        const defaultFormStateBehavior: Experimental_DefaultFormStateBehavior =
-          {
-            arrayMinItems: { populate: "never" },
-          };
+        const defaultFormStateBehavior: DefaultFormStateBehavior = {
+          arrayMinItems: { populate: "never" },
+        };
         expect(
           getDefaultFormState(
             createTestContext({
@@ -4700,10 +4678,9 @@ describe("getDefaultFormState()", () => {
             },
           },
         };
-        const defaultFormStateBehavior: Experimental_DefaultFormStateBehavior =
-          {
-            arrayMinItems: { populate: "never" },
-          };
+        const defaultFormStateBehavior: DefaultFormStateBehavior = {
+          arrayMinItems: { populate: "never" },
+        };
         expect(
           getDefaultFormState(
             createTestContext({
@@ -4729,10 +4706,9 @@ describe("getDefaultFormState()", () => {
           },
           required: ["tags"],
         };
-        const defaultFormStateBehavior: Experimental_DefaultFormStateBehavior =
-          {
-            arrayMinItems: { populate: "never" },
-          };
+        const defaultFormStateBehavior: DefaultFormStateBehavior = {
+          arrayMinItems: { populate: "never" },
+        };
 
         expect(
           getDefaultFormState(
@@ -4780,7 +4756,7 @@ describe("getDefaultFormState()", () => {
           schema,
           {
             ...defaults,
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               emptyObjectFields: "populateRequiredDefaults",
             },
           }
@@ -4820,7 +4796,7 @@ describe("getDefaultFormState()", () => {
           schema,
           {
             ...defaults,
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               emptyObjectFields: "populateRequiredDefaults",
             },
           }
@@ -4862,7 +4838,7 @@ describe("getDefaultFormState()", () => {
           schema,
           {
             ...defaults,
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               emptyObjectFields: "populateRequiredDefaults",
             },
           }
@@ -4898,7 +4874,7 @@ describe("getDefaultFormState()", () => {
           schema,
           {
             ...defaults,
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               emptyObjectFields: "populateRequiredDefaults",
             },
           }
@@ -4944,7 +4920,7 @@ describe("getDefaultFormState()", () => {
           schema,
           {
             ...defaults,
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               emptyObjectFields: "populateRequiredDefaults",
             },
           }
@@ -4989,7 +4965,7 @@ describe("getDefaultFormState()", () => {
           {
             ...defaults,
             includeUndefinedValues: true,
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               emptyObjectFields: "populateRequiredDefaults",
             },
           }
@@ -5040,7 +5016,7 @@ describe("getDefaultFormState()", () => {
           {
             ...defaults,
             includeUndefinedValues: "excludeObjectChildren",
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               emptyObjectFields: "populateRequiredDefaults",
             },
           }
@@ -5080,7 +5056,7 @@ describe("getDefaultFormState()", () => {
           schema,
           {
             ...defaults,
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               emptyObjectFields: "skipDefaults",
             },
           }
@@ -5116,7 +5092,7 @@ describe("getDefaultFormState()", () => {
           schema,
           {
             ...defaults,
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               emptyObjectFields: "skipDefaults",
             },
           }
@@ -5157,7 +5133,7 @@ describe("getDefaultFormState()", () => {
           {
             ...defaults,
             includeUndefinedValues: true,
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               emptyObjectFields: "skipDefaults",
             },
           }
@@ -5208,7 +5184,7 @@ describe("getDefaultFormState()", () => {
           {
             ...defaults,
             includeUndefinedValues: "excludeObjectChildren",
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               emptyObjectFields: "skipDefaults",
             },
           }
@@ -5248,7 +5224,7 @@ describe("getDefaultFormState()", () => {
           schema,
           {
             ...defaults,
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               emptyObjectFields: "skipEmptyDefaults",
             },
           }
@@ -5288,7 +5264,7 @@ describe("getDefaultFormState()", () => {
           schema,
           {
             ...defaults,
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               emptyObjectFields: "skipEmptyDefaults",
             },
           }
@@ -5330,7 +5306,7 @@ describe("getDefaultFormState()", () => {
           schema,
           {
             ...defaults,
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               emptyObjectFields: "skipEmptyDefaults",
             },
           }
@@ -5371,7 +5347,7 @@ describe("getDefaultFormState()", () => {
           schema,
           {
             ...defaults,
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               emptyObjectFields: "skipEmptyDefaults",
             },
           }
@@ -5417,7 +5393,7 @@ describe("getDefaultFormState()", () => {
           {
             ...defaults,
             includeUndefinedValues: true,
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               emptyObjectFields: "skipEmptyDefaults",
             },
           }
@@ -5468,7 +5444,7 @@ describe("getDefaultFormState()", () => {
           {
             ...defaults,
             includeUndefinedValues: "excludeObjectChildren",
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               emptyObjectFields: "skipEmptyDefaults",
             },
           }
@@ -5522,7 +5498,7 @@ describe("getDefaultFormState()", () => {
           {
             ...defaults,
             includeUndefinedValues: "excludeObjectChildren",
-            experimental_defaultFormStateBehavior: {
+            defaultFormStateBehavior: {
               emptyObjectFields: "skipEmptyDefaults",
             },
           }
@@ -6777,10 +6753,9 @@ describe("getDefaultFormState()", () => {
       });
     });
     describe("nestedDefaultsPrecedence is ancestorWins", () => {
-      const experimental_defaultFormStateBehavior: Experimental_DefaultFormStateBehavior =
-        {
-          nestedDefaultsPrecedence: "ancestorWins",
-        };
+      const defaultFormStateBehavior: DefaultFormStateBehavior = {
+        nestedDefaultsPrecedence: "ancestorWins",
+      };
       it("should default to empty object if no properties are defined", () => {
         expect(
           getDefaultFormState(
@@ -6792,7 +6767,7 @@ describe("getDefaultFormState()", () => {
             },
             undefined,
             undefined,
-            experimental_defaultFormStateBehavior
+            defaultFormStateBehavior
           )
         ).toEqual({});
       });
@@ -6818,7 +6793,7 @@ describe("getDefaultFormState()", () => {
             },
             undefined,
             undefined,
-            experimental_defaultFormStateBehavior
+            defaultFormStateBehavior
           )
         ).toEqual({ object: { string: "foo" } });
       });
@@ -6842,7 +6817,7 @@ describe("getDefaultFormState()", () => {
             },
             undefined,
             undefined,
-            experimental_defaultFormStateBehavior
+            defaultFormStateBehavior
           )
         ).toEqual({ array: ["foo", "bar"] });
       });
@@ -6871,7 +6846,7 @@ describe("getDefaultFormState()", () => {
             },
             undefined,
             undefined,
-            experimental_defaultFormStateBehavior
+            defaultFormStateBehavior
           )
         ).toEqual({ object: { array: ["foo", "bar"] } });
       });
@@ -6905,7 +6880,7 @@ describe("getDefaultFormState()", () => {
             schema,
             {},
             undefined,
-            experimental_defaultFormStateBehavior
+            defaultFormStateBehavior
           )
         ).toEqual({
           object: { array: ["foo", "bar"], bool: true },
@@ -6954,7 +6929,7 @@ describe("getDefaultFormState()", () => {
               level1: { level2: { leaf4: 4 } },
             },
             undefined,
-            experimental_defaultFormStateBehavior
+            defaultFormStateBehavior
           )
         ).toEqual({
           level1: {
@@ -7015,7 +6990,7 @@ describe("getDefaultFormState()", () => {
             schema,
             formData,
             undefined,
-            experimental_defaultFormStateBehavior
+            defaultFormStateBehavior
           )
         ).toEqual({
           level1: { level2: { leaf1: "a" } },
@@ -7040,7 +7015,7 @@ describe("getDefaultFormState()", () => {
             schema,
             {},
             undefined,
-            experimental_defaultFormStateBehavior
+            defaultFormStateBehavior
           )
         ).toEqual({
           level1: [1, 2, 3],
@@ -7065,7 +7040,7 @@ describe("getDefaultFormState()", () => {
             schema,
             {},
             undefined,
-            experimental_defaultFormStateBehavior
+            defaultFormStateBehavior
           )
         ).toEqual({
           level1: [1, 2, 3],
@@ -7097,7 +7072,7 @@ describe("getDefaultFormState()", () => {
             schema,
             {},
             undefined,
-            experimental_defaultFormStateBehavior
+            defaultFormStateBehavior
           )
         ).toEqual({
           array: ["foo", undefined],
@@ -7138,7 +7113,7 @@ describe("getDefaultFormState()", () => {
             schema,
             {},
             undefined,
-            experimental_defaultFormStateBehavior
+            defaultFormStateBehavior
           )
         ).toEqual({
           level1: { level2: ["root-default-1", "root-default-2"] },
@@ -7181,7 +7156,7 @@ describe("getDefaultFormState()", () => {
             schema,
             {},
             undefined,
-            experimental_defaultFormStateBehavior
+            defaultFormStateBehavior
           )
         ).toEqual({
           level1: {
@@ -7215,7 +7190,7 @@ describe("getDefaultFormState()", () => {
             schema,
             {},
             undefined,
-            experimental_defaultFormStateBehavior
+            defaultFormStateBehavior
           )
         ).toEqual({
           level1: ["property-default-1", "property-default-2"],
@@ -7264,7 +7239,7 @@ describe("getDefaultFormState()", () => {
             schema,
             {},
             undefined,
-            experimental_defaultFormStateBehavior
+            defaultFormStateBehavior
           )
         ).toEqual({
           level1: [
@@ -7342,7 +7317,7 @@ describe("getDefaultFormState()", () => {
             schema,
             {},
             undefined,
-            experimental_defaultFormStateBehavior
+            defaultFormStateBehavior
           )
         ).toEqual({
           level1: [
@@ -7432,7 +7407,7 @@ describe("getDefaultFormState()", () => {
             schema,
             undefined,
             undefined,
-            experimental_defaultFormStateBehavior
+            defaultFormStateBehavior
           )
         ).toEqual({
           foo: 42,
@@ -7511,7 +7486,7 @@ describe("getDefaultFormState()", () => {
             schema,
             undefined,
             undefined,
-            experimental_defaultFormStateBehavior
+            defaultFormStateBehavior
           )
         ).toEqual({
           foo: 42,
@@ -7740,7 +7715,7 @@ describe("getDefaultFormState()", () => {
             schema,
             { fooProp: "fooProp" },
             undefined,
-            experimental_defaultFormStateBehavior
+            defaultFormStateBehavior
           )
         ).toEqual({
           fooProp: "fooProp",
@@ -7756,7 +7731,7 @@ describe("getDefaultFormState()", () => {
             schema,
             { barProp: "barProp" },
             undefined,
-            experimental_defaultFormStateBehavior
+            defaultFormStateBehavior
           )
         ).toEqual({
           barProp: "barProp",
@@ -7786,7 +7761,7 @@ describe("getDefaultFormState()", () => {
             schema,
             {},
             undefined,
-            experimental_defaultFormStateBehavior
+            defaultFormStateBehavior
           )
         ).toEqual({
           array: ["foo"],
@@ -7815,7 +7790,7 @@ describe("getDefaultFormState()", () => {
             schema,
             { array: ["bar"] },
             undefined,
-            experimental_defaultFormStateBehavior
+            defaultFormStateBehavior
           )
         ).toEqual({
           array: ["bar"],
@@ -7843,7 +7818,7 @@ describe("getDefaultFormState()", () => {
             schema,
             [{}],
             undefined,
-            experimental_defaultFormStateBehavior
+            defaultFormStateBehavior
           )
         ).toEqual([{ item: "foo" }]);
       });
@@ -7871,7 +7846,7 @@ describe("getDefaultFormState()", () => {
             schema,
             {},
             undefined,
-            experimental_defaultFormStateBehavior
+            defaultFormStateBehavior
           )
         ).toEqual({
           array: ["foo", "qux"],
@@ -7901,7 +7876,7 @@ describe("getDefaultFormState()", () => {
             schema,
             {},
             undefined,
-            experimental_defaultFormStateBehavior
+            defaultFormStateBehavior
           )
         ).toEqual({
           array: [],
@@ -7930,7 +7905,7 @@ describe("getDefaultFormState()", () => {
             schema,
             {},
             undefined,
-            experimental_defaultFormStateBehavior
+            defaultFormStateBehavior
           )
         ).toEqual({});
       });
@@ -7957,7 +7932,7 @@ describe("getDefaultFormState()", () => {
             schema,
             {},
             undefined,
-            experimental_defaultFormStateBehavior
+            defaultFormStateBehavior
           )
         ).toEqual({
           turtles: ["Raphael", "Michaelangelo", "Unknown", "Unknown"],
@@ -8127,7 +8102,7 @@ describe("getDefaultFormState()", () => {
             schema,
             {
               ...defaults,
-              experimental_defaultFormStateBehavior: {
+              defaultFormStateBehavior: {
                 allOf: "populateDefaults",
               },
             }
@@ -8136,11 +8111,10 @@ describe("getDefaultFormState()", () => {
       });
 
       it("should apply conditional const defaults consistently for root and nested allOf schemas", () => {
-        const experimental_defaultFormStateBehavior: Experimental_DefaultFormStateBehavior =
-          {
-            allOf: "populateDefaults",
-            constAsDefaults: "always",
-          };
+        const defaultFormStateBehavior: DefaultFormStateBehavior = {
+          allOf: "populateDefaults",
+          constAsDefaults: "always",
+        };
         const conditionalSchema = {
           type: "object",
           properties: {
@@ -8231,7 +8205,7 @@ describe("getDefaultFormState()", () => {
         //     formData,
         //     conditionalSchema,
         //     undefined,
-        //     experimental_defaultFormStateBehavior,
+        //     defaultFormStateBehavior,
         //   ),
         // ).toEqual({
         //   animal: "Cat",
@@ -8256,7 +8230,7 @@ describe("getDefaultFormState()", () => {
             nestedSchema,
             { nested: formData },
             undefined,
-            experimental_defaultFormStateBehavior
+            defaultFormStateBehavior
           )
         ).toEqual({
           nested: {
@@ -8304,7 +8278,7 @@ describe("getDefaultFormState()", () => {
             schema,
             {
               ...defaults,
-              experimental_defaultFormStateBehavior: {
+              defaultFormStateBehavior: {
                 allOf: "populateDefaults",
               },
             }
@@ -8345,7 +8319,7 @@ describe("getDefaultFormState()", () => {
             schema,
             {
               ...defaults,
-              experimental_defaultFormStateBehavior: {
+              defaultFormStateBehavior: {
                 allOf: "populateDefaults",
               },
             }
@@ -8391,7 +8365,7 @@ describe("getDefaultFormState()", () => {
             schema,
             {
               ...defaults,
-              experimental_defaultFormStateBehavior: {
+              defaultFormStateBehavior: {
                 allOf: "populateDefaults",
               },
             }
@@ -8410,7 +8384,7 @@ describe("getDefaultFormState()", () => {
             schema,
             {
               ...defaults,
-              experimental_defaultFormStateBehavior: { allOf: "skipDefaults" },
+              defaultFormStateBehavior: { allOf: "skipDefaults" },
             }
           )
         ).toEqual({ animalInfo: { animal: "Cat" } });
@@ -8445,7 +8419,7 @@ describe("getDefaultFormState()", () => {
             schema,
             {
               ...defaults,
-              experimental_defaultFormStateBehavior: { allOf: "skipDefaults" },
+              defaultFormStateBehavior: { allOf: "skipDefaults" },
             }
           )
         ).toEqual({});
@@ -10625,12 +10599,15 @@ describe("getDefaultFormState()", () => {
           },
         },
       };
+      const messages: TestLogMessage[] = [];
+      const logger = createTestLogger({ messages });
       expect(
         getDefaultFormState(
           createTestContext({
             validator: testValidator,
             merger: defaultMerger,
             rootSchema: schema,
+            logger,
           }),
           schema,
           [
@@ -10658,8 +10635,12 @@ describe("getDefaultFormState()", () => {
           },
         },
       ]);
-      expect(consoleWarnSpy).toHaveBeenCalledWith(
-        "ignoring oneOf in dependencies because there isn't exactly one subschema that is valid"
+      expect(messages).toContainEqual(
+        expect.objectContaining({
+          level: "warn",
+          message:
+            'ignoring oneOf in dependencies because there isn\'t exactly one subschema that is valid for "name"',
+        })
       );
     });
     it("should populate defaults for nested oneOf + dependencies", () => {

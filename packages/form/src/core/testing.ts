@@ -6,6 +6,7 @@ import {
   isSchemaValueDeepEqual,
   type ValueHandler,
 } from "./deep-equal.js";
+import type { Logger } from "./logger.js";
 import type { Merger } from "./merger.js";
 import type { Schema, SchemaValue } from "./schema.js";
 import type { Validator } from "./validator.js";
@@ -86,11 +87,39 @@ export interface TestContextOptions {
   merger?: Merger;
   valueHandler?: ValueHandler;
   rootSchema?: Schema;
+  logger?: Logger;
 }
 
 export const testValueHandler: ValueHandler = {
   isValueDeepEqual: isSchemaValueDeepEqual,
 };
+
+export const testLogger: Logger = {
+  warn() {},
+  error() {},
+};
+
+export interface TestLogMessage {
+  level: "warn" | "error";
+  message: string;
+  error: unknown;
+}
+
+export interface TestLoggerOptions {
+  messages?: TestLogMessage[];
+}
+
+/** Creates a logger that records what it is given, for tests that assert on it. */
+export function createTestLogger({ messages }: TestLoggerOptions): Logger {
+  return {
+    warn(message, error) {
+      messages?.push({ level: "warn", message, error });
+    },
+    error(message, error) {
+      messages?.push({ level: "error", message, error });
+    },
+  };
+}
 
 /** Builds a `CoreContext` with test doubles for the fields a test does not care about. */
 export function createTestContext({
@@ -98,6 +127,13 @@ export function createTestContext({
   merger = createMerger(),
   valueHandler = testValueHandler,
   rootSchema = {},
+  logger = testLogger,
 }: TestContextOptions = {}): CoreContext {
-  return createCoreContext({ validator, merger, valueHandler, rootSchema });
+  return createCoreContext({
+    validator,
+    merger,
+    valueHandler,
+    rootSchema,
+    logger,
+  });
 }

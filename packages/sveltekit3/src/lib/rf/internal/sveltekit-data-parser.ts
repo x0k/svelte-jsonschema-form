@@ -11,6 +11,7 @@ import {
   type ValidatorFactoryOptions,
   type FormValueHandler,
   type FormValueHandlerOptions,
+  type Logger,
 } from "@sjsf/form";
 import { createCoreContext } from "@sjsf/form/core";
 
@@ -33,6 +34,7 @@ export interface SvelteKitDataParserOptions {
   validator: Creatable<Validator, ValidatorFactoryOptions>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
   valueHandler: Creatable<FormValueHandler, FormValueHandlerOptions>;
+  logger: Creatable<Logger, void>;
   uiSchema?: UiSchemaRoot;
   uiOptionsRegistry?: UiOptionsRegistry;
   createEntryConverter?: Creatable<
@@ -50,6 +52,7 @@ export function createSvelteKitDataParser({
   merger: createMerger,
   validator: createValidator,
   valueHandler: createValueHandler,
+  logger: createLogger,
   uiOptionsRegistry = {},
   createEntryConverter = createFormDataEntryConverter,
   convertUnknownEntry,
@@ -58,6 +61,7 @@ export function createSvelteKitDataParser({
     createOptionIndexDecoder(encode(pseudoPrefix))
   ),
 }: SvelteKitDataParserOptions) {
+  const logger = create(createLogger, undefined);
   const values = create(createValueHandler, {
     schema,
     uiSchema,
@@ -69,6 +73,7 @@ export function createSvelteKitDataParser({
     uiOptionsRegistry,
     merger: () => merger,
     valueHandler: values,
+    logger,
   });
   const merger = create(createMerger, {
     schema: schema,
@@ -76,12 +81,14 @@ export function createSvelteKitDataParser({
     validator,
     uiOptionsRegistry,
     valueHandler: values,
+    logger,
   });
   const ctx = createCoreContext({
     validator,
     merger,
     valueHandler: values,
     rootSchema: schema,
+    logger,
   });
   const convertEntry = create(createEntryConverter, {
     ctx,

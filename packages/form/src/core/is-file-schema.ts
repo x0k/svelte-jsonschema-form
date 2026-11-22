@@ -10,7 +10,7 @@ export function isFileSchema({ type, format }: Schema) {
   return type === "string" && format === DATA_URL_FORMAT;
 }
 
-export function isFilesArray(ctx: CoreContext, schema: Schema) {
+export function isFilesArraySchema(ctx: CoreContext, schema: Schema) {
   const { items } = schema;
   if (isNormalArrayItems(items)) {
     const itemsSchema = retrieveSchema(ctx, items);

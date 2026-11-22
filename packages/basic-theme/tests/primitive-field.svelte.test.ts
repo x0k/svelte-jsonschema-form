@@ -1,4 +1,5 @@
 import type { Schema, UiSchema } from "@sjsf/form";
+import { resolver as compatResolver } from "@sjsf/form/resolvers/compat";
 import { tick } from "svelte";
 import { describe, expect, test, vi } from "vitest";
 import { page, userEvent } from "vitest/browser";
@@ -289,6 +290,211 @@ describe("primitive field contracts", () => {
       });
 
       await expect.element(page.getByRole("combobox").first()).toBeDisabled();
+    });
+  });
+
+  describe("select option descriptions", () => {
+    const alternatives = [
+      { const: "foo", title: "Foo", description: "Foo description" },
+      { const: "bar", title: "Bar", description: "Bar description" },
+    ];
+    const oneOfSchema: Schema = { type: "string", oneOf: alternatives };
+    const anyOfSchema: Schema = { type: "string", anyOf: alternatives };
+
+    test.each([
+      ["oneOf", oneOfSchema],
+      ["anyOf", anyOfSchema],
+    ])("renders the selected %s option description", async (_key, schema) => {
+      const { form } = await renderFieldForm({
+        schema,
+        resolver: compatResolver,
+        initialValue: "foo",
+      });
+
+      await expect
+        .element(page.getByText("Foo description"))
+        .toBeInTheDocument();
+      await expect
+        .element(page.getByText("Bar description"))
+        .not.toBeInTheDocument();
+
+      const select = page.getByRole("combobox").first();
+      await userEvent.selectOptions(
+        select,
+        select.getByRole("option", { name: "Bar" })
+      );
+
+      await expect
+        .element(page.getByText("Bar description"))
+        .toBeInTheDocument();
+      await expect
+        .element(page.getByText("Foo description"))
+        .not.toBeInTheDocument();
+      expectValue(form, "bar");
+    });
+
+    const optionUiSchemas: NonNullable<UiSchema["oneOf"]> = [
+      { "ui:options": { description: "Foo UI description" } },
+      { "ui:options": { description: "Bar UI description" } },
+    ];
+
+    test.each<[string, Schema, UiSchema]>([
+      ["oneOf", oneOfSchema, { oneOf: optionUiSchemas }],
+      ["anyOf", anyOfSchema, { anyOf: optionUiSchemas }],
+    ])(
+      "uses the %s option's ui:options.description",
+      async (_key, schema, uiSchema) => {
+        await renderFieldForm({
+          schema,
+          resolver: compatResolver,
+          initialValue: "foo",
+          uiSchema,
+        });
+
+        await expect
+          .element(page.getByText("Foo UI description"))
+          .toBeInTheDocument();
+        await expect
+          .element(page.getByText("Foo description"))
+          .not.toBeInTheDocument();
+        await expect
+          .element(page.getByText("Bar UI description"))
+          .not.toBeInTheDocument();
+
+        const select = page.getByRole("combobox").first();
+        await userEvent.selectOptions(
+          select,
+          select.getByRole("option", { name: "Bar" })
+        );
+
+        await expect
+          .element(page.getByText("Bar UI description"))
+          .toBeInTheDocument();
+        await expect
+          .element(page.getByText("Foo UI description"))
+          .not.toBeInTheDocument();
+      }
+    );
+
+    test("selected option description is used instead of the schema description", async () => {
+      await renderFieldForm({
+        schema: { ...oneOfSchema, description: "Schema description" },
+        resolver: compatResolver,
+        initialValue: "foo",
+      });
+
+      await expect
+        .element(page.getByText("Foo description"))
+        .toBeInTheDocument();
+      await expect
+        .element(page.getByText("Schema description"))
+        .not.toBeInTheDocument();
+    });
+
+    test("ui:options.description is used instead of the selected option description", async () => {
+      await renderFieldForm({
+        schema: { ...oneOfSchema, description: "Schema description" },
+        resolver: compatResolver,
+        initialValue: "foo",
+        uiSchema: { "ui:options": { description: "UI description" } },
+      });
+
+      await expect
+        .element(page.getByText("UI description"))
+        .toBeInTheDocument();
+      await expect
+        .element(page.getByText("Foo description"))
+        .not.toBeInTheDocument();
+      await expect
+        .element(page.getByText("Schema description"))
+        .not.toBeInTheDocument();
+    });
+
+    test("does not render the selected description when the title is hidden", async () => {
+      await renderFieldForm({
+        schema: oneOfSchema,
+        resolver: compatResolver,
+        initialValue: "foo",
+        uiSchema: { "ui:options": { hideTitle: true } },
+      });
+
+      await expect
+        .element(page.getByText("Foo description"))
+        .not.toBeInTheDocument();
+    });
+
+    test("does not render selected descriptions for a multi-select", async () => {
+      await renderFieldForm({
+        schema: {
+          type: "array",
+          uniqueItems: true,
+          items: oneOfSchema,
+        },
+        resolver: compatResolver,
+        initialValue: ["foo"],
+      });
+
+      await expect.element(page.getByText("Foo")).toBeInTheDocument();
+      await expect
+        .element(page.getByText("Foo description"))
+        .not.toBeInTheDocument();
+    });
+  });
+
+  describe("select options keyword", () => {
+    const alternatives = [
+      { const: "foo", title: "Foo" },
+      { const: "bar", title: "Bar" },
+    ];
+    // An empty `anyOf` is rejected by the JSON Schema meta-schema, so skip the
+    // real validator and render the field on its own.
+    const validator = {
+      isValid: () => true,
+      validateFormValue: () => ({ value: undefined }),
+    };
+
+    test("renders a populated oneOf when anyOf is empty", async () => {
+      const { form } = await renderFieldForm({
+        schema: { type: "string", anyOf: [], oneOf: alternatives },
+        resolver: compatResolver,
+        validator,
+        initialValue: "foo",
+      });
+
+      const select = page.getByRole("combobox").first();
+      await expect
+        .element(select.getByRole("option", { name: "Bar" }))
+        .toBeInTheDocument();
+
+      await userEvent.selectOptions(
+        select,
+        select.getByRole("option", { name: "Bar" })
+      );
+      expectValue(form, "bar");
+    });
+
+    test("renders anyOf when both keyword lists are populated", async () => {
+      const { form } = await renderFieldForm({
+        schema: {
+          type: "string",
+          anyOf: alternatives,
+          oneOf: [{ const: "baz", title: "Baz" }],
+        },
+        resolver: compatResolver,
+        validator,
+        initialValue: "foo",
+      });
+
+      const select = page.getByRole("combobox").first();
+      await expect
+        .element(select.getByRole("option", { name: "Baz" }))
+        .not.toBeInTheDocument();
+
+      await userEvent.selectOptions(
+        select,
+        select.getByRole("option", { name: "Bar" })
+      );
+      expectValue(form, "bar");
     });
   });
 });

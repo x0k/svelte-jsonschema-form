@@ -4,6 +4,7 @@ import { arrayFieldSsrTests } from "./array-field-ssr-tests.js";
 import { combinationFieldSsrTests } from "./combination-field-ssr-tests.js";
 import { objectFieldSsrTests } from "./object-field-ssr-tests.js";
 import { primitiveFieldSsrTests } from "./primitive-field-ssr-tests.js";
+import { unionFieldSsrTests } from "./union-field-ssr-tests.js";
 
 export interface FieldSsrTestContext {
   context?: Map<any, any>;
@@ -15,4 +16,5 @@ export function fieldSsrTests(theme: Theme, options: FieldSsrTestContext = {}) {
   arrayFieldSsrTests(theme, options);
   objectFieldSsrTests(theme, options);
   combinationFieldSsrTests(theme, options);
+  unionFieldSsrTests(theme, options);
 }

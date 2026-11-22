@@ -54,7 +54,8 @@
   const isMeta = $derived(
     type === "field-meta" ||
       type === "array-field-meta" ||
-      type === "object-field-meta"
+      type === "object-field-meta" ||
+      type === "multi-field-meta"
   );
   const isMultiFieldControls = $derived(type === "multi-field-controls");
 
@@ -95,7 +96,7 @@
   >
     {@render children()}
   </Field>
-{:else if type === "field-title-row"}
+{:else if type === "field-title-row" || type === "multi-field-title-row"}
   <div class="flex w-full items-center justify-between" {...attributes}>
     {@render children()}
   </div>
@@ -111,7 +112,7 @@
   <div
     class={{
       grow: isGrowable,
-      "flex items-center gap-2": isMultiFieldControls,
+      flex: isMultiFieldControls,
       "flex items-start gap-1.5": isItem,
       "grid grid-cols-1 grid-rows-[1fr] items-start gap-x-1.5 [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto]":
         isObjectProperty,

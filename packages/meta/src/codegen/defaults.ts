@@ -10,6 +10,7 @@ import {
 import {
   formCoreSubpath,
   formIdBuilderSubPath,
+  formLoggerSubPath,
   formMergerSubPath,
   formPackage,
   formResolverSubPath,
@@ -141,8 +142,17 @@ export function createDefaults<T extends CodegenThemeOrSubTheme>({
     if (resolver === "inline") {
       if (!getTopLevelFunction(ast, "resolver")) {
         jsApi.imports.addNamed(ast, {
-          imports: ["getSimpleSchemaType", "isFixedItems"],
+          imports: [
+            "getSimpleSchemaType",
+            "getXxxOfKey",
+            "isFixedItemsSchema",
+            "isUnionSchema",
+          ],
           from: formCoreSubpath,
+        });
+        jsApi.imports.addNamed(ast, {
+          imports: ["isCycleRef"],
+          from: formPackage.name,
         });
         if (isTs) {
           jsApi.imports.addNamed(ast, {
@@ -151,29 +161,35 @@ export function createDefaults<T extends CodegenThemeOrSubTheme>({
             isType: true,
           });
         }
+        // Keep in sync with `packages/form/src/form/resolvers/basic.ts`.
         const extraFieldImports = Array.from(
           extraFields({ wrappedFields: false }),
           (f) => `// import "${extraFieldSubPath(f, true)}";`
         );
         const resolverCode = `${extraFieldImports.join("\n")}\n${LINK_COMMENT}\n${ts(
-          `export function resolver<T>(_ctx: FormState<T>): ResolveFieldType {`,
+          `export function resolver<T>(ctx: FormState<T>): ResolveFieldType {`,
           `/**
  * @template T
  * @param {import("@sjsf/form").FormState<T>} ctx
  * @returns {import("@sjsf/form").ResolveFieldType}
  */
-export function resolver(_ctx) {`
+export function resolver(ctx) {`
         )}
-  return ({ schema }) => {
-    if (schema.oneOf !== undefined) {
-      return "oneOfField";
+  return (config) => {
+    const { schema } = config;
+    if (isCycleRef(ctx, config)) {
+      return "expandField";
     }
-    if (schema.anyOf !== undefined) {
-      return "anyOfField";
+    if (isUnionSchema(schema)) {
+      return "unionField";
+    }
+    const xxxOfKey = getXxxOfKey(schema);
+    if (xxxOfKey !== undefined) {
+      return \`\${xxxOfKey}Field\`;
     }
     const type = getSimpleSchemaType(schema);
     if (type === "array") {
-      return isFixedItems(schema) ? "tupleField" : "arrayField";
+      return isFixedItemsSchema(schema) ? "tupleField" : "arrayField";
     }
     return \`\${type}Field\`;
   };
@@ -215,6 +231,11 @@ export function resolver(_ctx) {`
       name: "valueHandler",
       imported: "defaultFormValueHandler",
       source: formValueHandlerSubPath,
+    });
+    createReExport(ast, {
+      name: "logger",
+      imported: "createLogger",
+      source: formLoggerSubPath,
     });
     if (!isRecordEmpty(merger)) {
       jsApi.imports.addNamed(ast, {

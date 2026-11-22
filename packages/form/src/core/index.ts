@@ -1,7 +1,9 @@
 export * from "./context.js";
+export * from "./logger.js";
 export * from "./schema.js";
 export * from "./validator.js";
 export * from "./type.js";
+export * from "./union.js";
 export * from "./resolve.js";
 export * from "./value.js";
 export * from "./is-select.js";
@@ -27,3 +29,4 @@ export * from "./schema-value-traverser.js";
 export * from "./path.js";
 export * from "./deep-equal.js";
 export * from "./known-properties.js";
+export * from "./get-rendered-option-schema.js";
