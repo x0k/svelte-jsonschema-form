@@ -9,8 +9,8 @@ import { Code } from "@astrojs/starlight/components";
 import defaultsCode from "@/lib/sjsf/defaults.ts?raw";
 
 Even with a simple setup, resulting code is very verbose.
-Therefore, it is convenient to create a file that re-exports the selected
-resolver, theme, validator, merger and translation.
+Therefore, it is convenient to create a file that re-exports the options every
+form shares.
 
 <Code code={defaultsCode} lang="typescript" title="lib/sjsf/defaults.ts" />
 

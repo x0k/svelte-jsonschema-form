@@ -64,31 +64,6 @@ Import only the include for the theme you use.
 Without the theme include, selecting `dateField` renders the
 `component-not-found` message.
 
-## Reference resolution
-
-The core entry point exports two helpers for local `$ref` values:
-
-```typescript
-import { createCoreContext, resolveRef, resolveRefSafe } from "@sjsf/form/core";
-
-const ctx = createCoreContext({
-  validator,
-  merger,
-  valueHandler,
-  rootSchema,
-  logger,
-});
-
-const schema = resolveRef(ctx, "#/definitions/address");
-const maybeSchema = resolveRefSafe("#/definitions/address", rootSchema);
-```
-
-`resolveRef` throws when the reference is not local or does not resolve.
-`resolveRefSafe` returns `undefined` instead, so it is useful when walking a
-schema whose references you do not control. Both helpers accept a [JSON
-Pointer](https://datatracker.ietf.org/doc/html/rfc6901) in URI fragment
-identifier format and only read own properties.
-
 ## Core context
 
 The schema helpers in `@sjsf/form/core` share their dependencies through a
@@ -113,19 +88,15 @@ const retrieved = retrieveSchema(ctx, schema, formData);
 const defaults = getDefaultFormState(ctx, schema, formData);
 ```
 
-The context stores its dependencies under internal symbols, so a `FormState` can
-implement the interface without exposing them as public properties. A `FormState`
-can therefore be passed anywhere a `CoreContext` is expected. The symbols
-are not part of the `@sjsf/form/core` entry point; import them from
-`@sjsf/form/core/internals` if you build or inspect a context directly. The
-operations they back are available as free functions with the context as their
-first argument:
-`isValid(ctx, schema, value)`, `mergeSchemas(ctx, a, b)`,
+A `FormState` extends `CoreContext`, so a form can be passed anywhere a context
+is expected. The dependencies are stored under internal symbols, so they are
+not public properties of the form; import the `CORE_*` symbols from
+`@sjsf/form/core/internals` only when you build or inspect a context directly.
+
+The context operations are exported as free functions that take the context
+first: `isValid(ctx, schema, value)`, `mergeSchemas(ctx, a, b)`,
 `mergeAllOf(ctx, schema)`, `isValueDeepEqual(ctx, a, b)`,
-`resolveRef(ctx, ref)`, and `getRootSchema(ctx)`. Every core helper that needs
-the validator or merger takes the context as its first argument. `resolveRef`
-reads the root schema from the context too; `resolveRefSafe` stays a low-level
-pointer helper and continues to take the root schema directly.
+`resolveRef(ctx, ref)`, and `getRootSchema(ctx)`.
 
 The schema predicates are exported here as `isSelectSchema`,
 `isMultiSelectSchema`, `isFilesArraySchema`, `isFixedItemsSchema` and
@@ -139,6 +110,23 @@ from `getValue(form)` can be passed directly to `retrieveSchema`,
 values remain assignable to it. `ReadonlySchemaValue` is `DeepReadonly` over
 `SchemaValue`; class instances such as `File` are preserved rather than mapped
 into plain objects.
+
+## Reference resolution
+
+`resolveRef(ctx, ref)` reads the root schema from the context. It throws when
+the reference is not local or does not resolve. `resolveRefSafe(ref, rootSchema)`
+returns `undefined` instead, so it is useful when walking a schema whose
+references you do not control:
+
+```typescript
+import { resolveRef, resolveRefSafe } from "@sjsf/form/core";
+
+const address = resolveRef(ctx, "#/definitions/address");
+const maybeAddress = resolveRefSafe("#/definitions/address", rootSchema);
+```
+
+Both helpers accept a [JSON Pointer](https://datatracker.ietf.org/doc/html/rfc6901)
+in URI fragment identifier format and only read own properties.
 
 ## Multiple types
 

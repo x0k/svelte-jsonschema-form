@@ -83,14 +83,9 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
    */
   valueHandler: Creatable<FormValueHandler, FormValueHandlerOptions>;
   /**
-   * Receives warnings and errors raised while resolving the schema, rendering
-   * fields, and validating data.
+   * Receives warnings and errors raised by the form and its helpers.
    *
-   * Pass a logger, or a factory that creates one for this form. The factory
-   * receives the form's schema, UI schema and UI options registry. Pass the
-   * factory (such as `createLogger` from `@sjsf/form/loggers/once`) when the
-   * logger keeps per-form state, such as the record of messages it has already
-   * reported.
+   * Pass a factory when the logger keeps per-form state.
    */
   logger: Creatable<Logger, LoggerFactoryOptions>;
   /**

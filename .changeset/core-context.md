@@ -5,34 +5,30 @@
 "@sjsf/sveltekit3": major
 ---
 
-Add a shared `CoreContext` to `@sjsf/form/core` and a required, form-scoped
-`logger`. Helpers that need a validator, merger, value handler, root schema, or
-logger take the context first, and a `FormState` can be used as one:
+Add `CoreContext` to `@sjsf/form/core` and make `logger` a required form option.
+
+Core helpers that need shared dependencies now take a `CoreContext` as their
+first argument. A `FormState` can be passed in its place, and
+`createCoreContext(options)` builds a standalone one:
 
 ```ts
-const ctx = createCoreContext({
-  validator,
-  merger,
-  valueHandler,
-  rootSchema,
-  logger,
-});
+const ctx = createCoreContext(options);
 retrieveSchema(ctx, schema, formData);
 ```
 
-The logger receives schema-resolution warnings, `<Field>` development
-diagnostics, and validator failures, so repeated messages are reported once per
-form. Use `createLogger` from `@sjsf/form/loggers/once`, or the silent `logger`
-from `@sjsf/form/loggers/noop`; pass the factory to `createForm`.
+Warnings and errors raised by the form and its helpers go through the logger.
+`createLogger` from `@sjsf/form/loggers/once` reports each distinct message
+once; `logger` from `@sjsf/form/loggers/noop` discards diagnostics. Pass the
+factory when the logger keeps per-form state.
 
 Breaking changes:
 
-- `omitExtraData(validator, merger, schema, value)` → `omitExtraData(ctx, value)`
+- `omitExtraData(validator, merger, rootSchema, value)` → `omitExtraData(ctx, value)`
 - `getDefaultFormState` no longer uses its `schema` argument as the root schema;
   pass the root schema to `createCoreContext`
 - `defaultFormStateBehavior.arrayMinItems.computeSkipPopulate` receives
   `(ctx, schema)`
-- The validator and merger factories, `createCoreContext`, and the
-  `@sjsf/sveltekit3` server helpers now take a logger
+- The validator, merger, and ID builder factories, `createCoreContext`, and the
+  `@sjsf/sveltekit3` server helpers now take `logger`
 - Context dependencies moved to `@sjsf/form/core/internals` under `CORE_*`
   symbols; the `FORM_VALIDATOR`/`FORM_MERGER`/`FORM_SCHEMA` aliases are gone

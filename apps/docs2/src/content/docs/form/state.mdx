@@ -90,28 +90,17 @@ export interface FormState<T> extends CoreContext {
 }
 ```
 
-`CoreContext` holds the dependencies every core schema helper needs. The
-dependencies are stored under internal symbols, so a `FormState` can satisfy
-the interface without exposing them as public properties. The `CORE_*` symbols
-shown above are not part of the `@sjsf/form/core` entry point; import them from
-`@sjsf/form/core/internals` if you build or inspect a context directly. The
-helpers read them through the free functions
-`isValid(ctx, schema, value)`, `mergeSchemas(ctx, a, b)`,
-`mergeAllOf(ctx, schema)`, `isValueDeepEqual(ctx, a, b)`,
-`resolveRef(ctx, ref)`, and `getRootSchema(ctx)`.
+`CoreContext` is the dependency bundle shared by the core schema helpers.
+`FormState` extends it, so a form can be passed wherever a context is expected.
+The dependencies are stored under internal symbols, so they are not public
+properties of the form; import the `CORE_*` symbols from
+`@sjsf/form/core/internals` only when you build or inspect a context directly.
 
-Call `createCoreContext({ validator, merger, valueHandler, rootSchema, logger })` to build a standalone
-context for a core helper when you do not have a `FormState`. Every core helper
-that needs these dependencies takes the context as its first argument, for
-example `retrieveSchema(ctx, schema, formData)` or
-`getDefaultFormState(ctx, schema, formData)`.
-
-The schema helpers `isSelectSchema`, `isMultiSelectSchema`, `isFilesArraySchema`,
-`isFixedItemsSchema`, `isConstantValueSchema`, `retrieveSchema`,
-`getRenderedOptionSchema`, `sanitizeDataForNewSchema` and
-`getClosestMatchingOption` are exported from `@sjsf/form/core`, not from the
-main `@sjsf/form` entry point. Import them from there and pass a `CoreContext`
-or a `FormState` as the first argument.
+Build a standalone context with `createCoreContext(options)` when you do not
+have a `FormState`. Core schema helpers take a `CoreContext` or `FormState` as
+their first argument and are exported from `@sjsf/form/core`, not the main
+`@sjsf/form` entry point. See [Schema § Core context](/form/schema/#core-context)
+for the helpers and an example.
 
 ## Methods
 

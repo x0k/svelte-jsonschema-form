@@ -10,10 +10,9 @@ form `FormValueHandler`, instead of living on `Merger`:
   snapshots a value before an in-place write.
 - `Merger` only merges schemas and `allOf`; it no longer implements
   `isValueDeepEqual` or `copyForChange`.
-- `FormOptions.valueHandler` is required. `MergerFactoryOptions`,
-  `ValidatorFactoryOptions`, `IdBuilderFactoryOptions`, and
-  `CoreContextOptions` receive a `valueHandler`; a `FormValueHandler` can be
-  passed because it extends `ValueHandler`.
+- `FormOptions.valueHandler` is required. The validator, merger, and ID builder
+  factories and `CoreContextOptions` receive a `valueHandler`; a
+  `FormValueHandler` can be passed because it extends `ValueHandler`.
 - `defaultFormValueHandler` is exported from
   `@sjsf/form/value-handlers/default`; it compares like
   `isSchemaValueDeepEqual` and copies with `copyForChange`. `copyForChange` is

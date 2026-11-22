@@ -4,9 +4,8 @@ sidebar:
   order: 55
 ---
 
-The logger receives warnings and errors raised while resolving the schema,
-rendering fields, and validating data. It is a required form service, like the
-validator, merger, and value handler.
+The form and its helpers report warnings and errors through the required
+`logger` option.
 
 ## API
 
@@ -14,12 +13,6 @@ validator, merger, and value handler.
 export interface Logger {
   warn(message: string, error?: unknown): void;
   error(message: string, error?: unknown): void;
-}
-
-export interface LoggerFactoryOptions {
-  schema: Schema;
-  uiSchema: UiSchemaRoot;
-  uiOptionsRegistry: UiOptionsRegistry;
 }
 
 export interface FormOptions<T> {
@@ -43,13 +36,13 @@ const form = createForm({
 ```
 
 A factory receives the form's schema, UI schema and UI options registry. Pass
-the factory rather than an instance when the logger keeps per-form state:
-`createLogger` remembers which messages it has already reported, so a shared
-instance would suppress a message in a later form.
+the factory when the logger keeps per-form state: `createLogger` remembers which
+messages it has already reported, so a shared instance would suppress a message
+in a later form.
 
 `createForm` passes the logger to the validator, merger, and ID builder
-factories. If you create those services directly, pass the logger instance in
-their options; `createCoreContext` also requires it.
+factories. If you create one of them directly, pass the logger in its options;
+`createCoreContext` also requires it.
 
 ## Built-in loggers
 
@@ -78,5 +71,4 @@ tests or when the host application handles diagnostics itself.
 
 Custom core helpers that take a `CoreContext` should report through
 `logWarn(ctx, message, error)` and `logError(ctx, message, error)` from
-`@sjsf/form/core`. They use the logger carried by the context, so the message
-is attributed to the form that called the helper.
+`@sjsf/form/core`. They use the logger carried by the context.

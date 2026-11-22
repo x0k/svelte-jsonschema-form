@@ -26,11 +26,10 @@ export { defaultFormValueHandler as valueHandler } from "@sjsf/form/value-handle
 export { createLogger as logger } from "@sjsf/form/loggers/once";
 ```
 
-`createLogger` reports each distinct message once per form, so pass the factory
-rather than a shared logger instance. Use `logger` from
-`@sjsf/form/loggers/noop` to silence diagnostics. If you create a validator,
-merger, ID builder, or core context directly, pass the value handler and logger
-to it as well.
+Pass the logger factory rather than a shared instance when the logger keeps
+per-form state; see [Logger](/form/logger/) for the built-in implementations. If
+you create a validator, merger, ID builder, or core context directly, pass the
+value handler and logger to it as well.
 
 See [Reusable defaults](/guides/reusable-defaults/), [Logger](/form/logger/),
 [Value handler](/form/value-handler/), and [Merger](/form/merger/).
@@ -158,11 +157,11 @@ schemasafe, ata, and Hyperjump validators, and
 in the Zod and Valibot validators.
 
 Core schema helpers that need form context now take a `CoreContext` (or a
-`FormState`) as their first argument. Build one with
-`createCoreContext({ validator, merger, valueHandler, rootSchema, logger })`.
-Import the helpers from `@sjsf/form/core`, not the main entry point; the
-predicates are now `isSelectSchema`, `isMultiSelectSchema`,
-`isFilesArraySchema`, `isConstantValueSchema`, and `isFixedItemsSchema`.
+`FormState`) as their first argument. Build one with `createCoreContext`; see
+[Core context](/form/schema/#core-context). Import the helpers from
+`@sjsf/form/core`, not the main entry point; the predicates are now
+`isSelectSchema`, `isMultiSelectSchema`, `isFilesArraySchema`,
+`isConstantValueSchema`, and `isFixedItemsSchema`.
 
 Replace `FORM_VALIDATOR`, `FORM_MERGER`, and `FORM_SCHEMA` with the `CORE_*`
 symbols from `@sjsf/form/core/internals` (`FORM_SCHEMA` → `CORE_ROOT_SCHEMA`).

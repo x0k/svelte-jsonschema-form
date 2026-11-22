@@ -12,7 +12,6 @@ import type {
   Schema,
   SchemaDefinition,
   ReadonlySchemaValue,
-  SchemaValue,
 } from "./schema.js";
 import type { Validator } from "./validator.js";
 
@@ -92,8 +91,8 @@ export function mergeAllOf(ctx: CoreContext, schema: Schema): Schema {
 
 export function isValueDeepEqual(
   ctx: CoreContext,
-  a: SchemaValue | undefined,
-  b: SchemaValue | undefined
+  a: ReadonlySchemaValue | undefined,
+  b: ReadonlySchemaValue | undefined
 ): boolean {
   return ctx[CORE_VALUE_HANDLER].isValueDeepEqual(a, b);
 }
