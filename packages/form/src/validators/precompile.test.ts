@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { pathFromRef } from "#core/index.js";
+import { pathFromRef, type Logger } from "#core/index.js";
 import {
   ON_ARRAY_CHANGE,
   ON_INPUT,
@@ -10,6 +10,7 @@ import {
 import { createMerger } from "#lib/json-schema/index.js";
 import { insertValue } from "#lib/trie.js";
 
+import { createMerger as createModernMerger } from "../mergers/modern.js";
 import {
   createValidatorRetriever,
   fragmentSchema,
@@ -147,7 +148,9 @@ describe("insertSubSchemaIds", () => {
   });
   it("should inset ids properly 3", () => {
     expect(
-      insertSubSchemaIds(inputSchema, { fieldsValidationMode: ON_ARRAY_CHANGE })
+      insertSubSchemaIds(inputSchema, {
+        fieldsValidationMode: ON_ARRAY_CHANGE,
+      })
     ).toEqual({
       subSchemas: subSchemas({
         "#": { id: "v0", combinationBranch: false },
@@ -215,9 +218,24 @@ describe("insertSubSchemaIds", () => {
   });
 });
 
+const testLogger: Logger = {
+  warn() {},
+  error() {},
+};
+const defaultMerger = createModernMerger();
+
+function compileSchema(
+  patch: ReturnType<typeof insertSubSchemaIds>,
+  merger = defaultMerger,
+  logger = testLogger
+) {
+  // HEAD's `fragmentSchema()` ignores these; the implementation requires them.
+  return fragmentSchema(Object.assign({}, patch, { merger, logger }));
+}
+
 describe("fragmentSchema", () => {
   it("should properly fragment schema", () => {
-    expect(fragmentSchema(insertSubSchemaIds(inputSchema))).toEqual([
+    expect(compileSchema(insertSubSchemaIds(inputSchema))).toEqual([
       {
         $id: "v1",
         properties: {
@@ -318,7 +336,7 @@ describe("fragmentSchema", () => {
     const data = insertSubSchemaIds(inputSchema, {
       fieldsValidationMode: ON_INPUT | ON_ARRAY_CHANGE | ON_OBJECT_CHANGE,
     });
-    expect(fragmentSchema(data)).toEqual([
+    expect(compileSchema(data)).toEqual([
       {
         $id: "v6",
         title: "First name",
@@ -459,7 +477,7 @@ describe("fragmentSchema", () => {
         fieldsValidationMode: ON_INPUT | ON_ARRAY_CHANGE | ON_OBJECT_CHANGE,
       }
     );
-    expect(fragmentSchema(data)).toEqual([
+    expect(compileSchema(data)).toEqual([
       { type: "string", enum: ["cat"], $id: "v2" },
       { type: "number", $id: "v3" },
       {
@@ -526,7 +544,7 @@ describe("fragmentSchema", () => {
     const data = insertSubSchemaIds(depSchema, {
       fieldsValidationMode: ON_INPUT | ON_ARRAY_CHANGE | ON_OBJECT_CHANGE,
     });
-    const fragments = fragmentSchema(data);
+    const fragments = compileSchema(data);
     const conditionFragments = fragments.filter(
       (f) => typeof f === "object" && f.$id?.endsWith("cond")
     );
@@ -567,7 +585,7 @@ describe("fragmentSchema", () => {
     const oneOfOpt = (deps?.employee_accounts as Schema).oneOf?.[0] as Schema;
     const propInOption = oneOfOpt?.properties?.employee_accounts as Schema;
     expect(propInOption?.$id).toBeDefined();
-    const fragments = fragmentSchema(data);
+    const fragments = compileSchema(data);
     const conditionFragments = fragments.filter(
       (f) => typeof f === "object" && f.$id?.endsWith("cond")
     );
@@ -608,7 +626,7 @@ describe("fragmentSchema", () => {
     const data = insertSubSchemaIds(depSchema, {
       fieldsValidationMode: ON_INPUT | ON_ARRAY_CHANGE | ON_OBJECT_CHANGE,
     });
-    const fragments = fragmentSchema(data);
+    const fragments = compileSchema(data);
     const conditionFragments = fragments.filter(
       (f) => typeof f === "object" && f.$id?.endsWith("cond")
     );
@@ -620,6 +638,84 @@ describe("fragmentSchema", () => {
         a: expect.objectContaining({ $id: expect.any(String) }),
       },
     });
+  });
+
+  it.only("merges a property constraint added by an ancestor allOf", () => {
+    const patch = insertSubSchemaIds(
+      {
+        type: "object",
+        properties: { name: { type: "string" } },
+        allOf: [{ properties: { name: { minLength: 3 } } }],
+      },
+      { fieldsValidationMode: ON_INPUT | ON_OBJECT_CHANGE }
+    );
+    const fragments = compileSchema(patch);
+    const name = fragments.find(
+      (fragment) => fragment.type === "string" && fragment.minLength === 3
+    );
+    expect(name).toBeDefined();
+    expect(fragments).toContainEqual(
+      expect.objectContaining({
+        properties: {
+          name: { $ref: `${name!.$id}#` },
+        },
+      })
+    );
+  });
+
+  it("merges an array item constraint added by an ancestor allOf", () => {
+    const patch = insertSubSchemaIds(
+      {
+        type: "object",
+        properties: {
+          items: { type: "array", items: { type: "string" } },
+        },
+        allOf: [{ properties: { items: { items: { minLength: 3 } } } }],
+      },
+      { fieldsValidationMode: ON_INPUT | ON_ARRAY_CHANGE | ON_OBJECT_CHANGE }
+    );
+    const fragments = compileSchema(patch);
+    const item = fragments.find(
+      (fragment) => fragment.type === "string" && fragment.minLength === 3
+    );
+    expect(item).toBeDefined();
+    expect(fragments).toContainEqual(
+      expect.objectContaining({
+        type: "array",
+        items: { $ref: `${item!.$id}#` },
+      })
+    );
+  });
+
+  it("merges a nested identified schema changed by an ancestor allOf", () => {
+    const patch = insertSubSchemaIds(
+      {
+        type: "object",
+        properties: {
+          foo: {
+            type: "object",
+            properties: { bar: { type: "string" } },
+            allOf: [{ properties: { bar: { minLength: 2 } } }],
+          },
+        },
+        allOf: [{ properties: { foo: { required: ["bar"] } } }],
+      },
+      { fieldsValidationMode: ON_INPUT | ON_OBJECT_CHANGE }
+    );
+    const fragments = compileSchema(patch);
+    const bar = fragments.find(
+      (fragment) => fragment.type === "string" && fragment.minLength === 2
+    );
+    expect(bar).toBeDefined();
+    expect(fragments).toContainEqual(
+      expect.objectContaining({
+        type: "object",
+        properties: {
+          bar: { $ref: `${bar!.$id}#` },
+        },
+        required: ["bar"],
+      })
+    );
   });
 });
 
@@ -713,6 +809,10 @@ describe("createValidatorRetriever", () => {
       createValidatorRetriever({
         registry: {
           get: (id) => {
+            // The content hash is not registered for a synthetic schema.
+            if (/^[0-9a-f]{16}$/.test(id)) {
+              return undefined;
+            }
             combinedId = id;
             return combinedValidator;
           },
