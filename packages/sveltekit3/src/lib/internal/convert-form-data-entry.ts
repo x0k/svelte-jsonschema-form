@@ -106,9 +106,7 @@ export function createFormDataEntryConverter({
       return schema ? (value as FieldValue) : undefined;
     }
     const typeOrTypes = typeOfSchema(schema);
-    const type = Array.isArray(typeOrTypes)
-      ? pickSchemaType(typeOrTypes)
-      : typeOrTypes;
+    const type = pickSchemaType(typeOrTypes);
     if (value === undefined) {
       if (type === "boolean") {
         return false;

@@ -79,7 +79,10 @@ export function isSchemaNullable(schema: Schema): boolean {
   return isNullableSchemaType(typeOfSchema(schema));
 }
 
-export function pickSchemaType(types: SchemaType[]): SchemaType {
+export function pickSchemaType(types: SchemaType | SchemaType[]): SchemaType {
+  if (!Array.isArray(types)) {
+    return types;
+  }
   if (types.length === 0) {
     throw new Error(`Unsupported schema types: empty type array`);
   }
@@ -93,10 +96,22 @@ export function pickSchemaType(types: SchemaType[]): SchemaType {
   return first;
 }
 
-export const getSimpleSchemaType = (schema: Schema): SchemaType => {
-  const type = typeOfSchema(schema);
-  return Array.isArray(type) ? pickSchemaType(type) : type;
-};
+export function getSimpleSchemaType(schema: Schema): SchemaType {
+  return pickSchemaType(typeOfSchema(schema));
+}
+
+export function matchSchemaType(
+  types: SchemaType | SchemaType[],
+  type: SchemaType
+): SchemaType | undefined {
+  if (types.includes(type)) {
+    return type;
+  }
+  if (type === "number" && types.includes("integer")) {
+    return "integer";
+  }
+  return undefined;
+}
 
 export function isPrimitiveSchemaType(type: SchemaType): boolean {
   return (

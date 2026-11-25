@@ -388,6 +388,61 @@ describe("omitExtraData", () => {
     );
   });
 
+  it("keeps a value of any type a type list allows, pruning an object one by its properties", () => {
+    const schema: Schema = {
+      type: "object",
+      properties: {
+        v: {
+          type: ["null", "object", "string", "array", "integer"],
+          properties: { a: { type: "string" } },
+        },
+      },
+    };
+    for (const v of [null, "abc", [1, 2], 3]) {
+      expect(omitExtraData(validator, defaultMerger, schema, { v })).toEqual({
+        v,
+      });
+    }
+    expect(
+      omitExtraData(validator, defaultMerger, schema, {
+        v: { a: "x", b: "y" },
+      })
+    ).toEqual({ v: { a: "x" } });
+    expect(
+      omitExtraData(validator, defaultMerger, schema, { v: true })
+    ).toEqual({});
+  });
+
+  it("keeps a container value whole under a type list that resolves to another type", () => {
+    const schema: Schema = {
+      type: "object",
+      properties: {
+        o: { type: ["string", "object"] },
+        a: {
+          type: ["string", "array"],
+          items: { type: "object", properties: {} },
+        },
+      },
+    };
+    const formData = { o: { k: 1 }, a: [{ k: 1 }] };
+    expect(omitExtraData(validator, defaultMerger, schema, formData)).toEqual(
+      formData
+    );
+  });
+
+  it.each([
+    { type: ["null", "object"], properties: { a: { type: "string" } } },
+    { type: ["null", "array"], items: { type: "string" } },
+  ] as Schema[])("keeps a null held by a type list", (propertySchema) => {
+    const schema: Schema = {
+      type: "object",
+      properties: { v: propertySchema },
+    };
+    expect(
+      omitExtraData(validator, defaultMerger, schema, { v: null })
+    ).toEqual({ v: null });
+  });
+
   describe("object type", () => {
     it("should remove extra properties from objects", () => {
       const schema: Schema = {

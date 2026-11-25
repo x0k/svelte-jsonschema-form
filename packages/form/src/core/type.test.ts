@@ -4,8 +4,8 @@
 
 import { expect, describe, it } from "vitest";
 
-import type { Schema } from "./schema.js";
-import { getSimpleSchemaType } from "./type.js";
+import type { Schema, SchemaType } from "./schema.js";
+import { getSimpleSchemaType, matchSchemaType } from "./type.js";
 
 const cases: { schema: Schema; expected: string }[] = [
   {
@@ -141,4 +141,43 @@ describe("typeOfSchema", () => {
       ).toBe("number");
     });
   });
+});
+
+const matchCases: [
+  SchemaType | SchemaType[],
+  SchemaType,
+  SchemaType | undefined,
+][] = [
+  // A value of any listed type is read as its own type, even when the list
+  // resolves to another one. That is what keeps such a value whole in
+  // `omitExtraData()` and out of the resolved container's defaults.
+  [["null", "object", "string"], "string", "string"],
+  [["null", "object", "string"], "object", "object"],
+  [["null", "object", "string"], "null", "null"],
+  // Whole numbers are reported as `"number"`, so a list naming only `integer`
+  // reads them as `integer`.
+  [["null", "integer", "object"], "number", "integer"],
+  // A list naming both keeps `number` rather than narrowing it.
+  [["null", "integer", "number"], "number", "number"],
+  // A type the list does not name has no match; callers then fall back to the
+  // type the list resolves to.
+  [["null", "object", "string"], "boolean", undefined],
+  [["null", "object"], "number", undefined],
+  [["null", "object", "string"], "unknown", undefined],
+  // A single type behaves like a one-element list.
+  ["object", "object", "object"],
+  ["integer", "integer", "integer"],
+  ["integer", "number", "integer"],
+  ["string", "object", undefined],
+  // The `number` -> `integer` fallback is one-way.
+  ["number", "integer", undefined],
+];
+
+describe("matchSchemaType", () => {
+  it.each(matchCases)(
+    "matches %j against %s as %s",
+    (types, type, expected) => {
+      expect(matchSchemaType(types, type)).toBe(expected);
+    }
+  );
 });

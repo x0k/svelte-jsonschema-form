@@ -3829,6 +3829,105 @@ describe("getDefaultFormState()", () => {
     });
   });
 
+  // A type list resolves to one type, but it allows a value or a default of
+  // any type it lists. Those must not be filled in as the resolved container.
+  describe("a type list holding a value of another listed type", () => {
+    const state = (schema: Schema) => createTestContext({ rootSchema: schema });
+
+    it("spreads no array defaults into an object held by a list resolving to array", () => {
+      const schema: Schema = {
+        type: "object",
+        properties: {
+          v: {
+            type: ["null", "array", "object"],
+            items: { type: "string", default: "q" },
+            minItems: 2,
+          },
+        },
+      };
+      expect(
+        getDefaultFormState(state(schema), schema, { v: { a: "x" } })
+      ).toEqual({ v: { a: "x" } });
+    });
+
+    it.each([
+      {
+        type: ["null", "object", "string"],
+        properties: { a: { type: "string", default: "x" } },
+      },
+      {
+        type: ["null", "object"],
+        properties: { a: { type: "string", default: "x" } },
+      },
+      {
+        type: ["null", "array", "string"],
+        items: { type: "string" },
+        minItems: 1,
+      },
+    ] as Schema[])(
+      "keeps a null held by a list resolving to a container",
+      (propertySchema) => {
+        expect(
+          getDefaultFormState(state(propertySchema), propertySchema, null)
+        ).toBe(null);
+      }
+    );
+
+    it.each([
+      {
+        type: ["null", "object", "string"],
+        default: "abc",
+        properties: { a: { type: "string", default: "x" } },
+      },
+      {
+        type: ["null", "array", "string"],
+        default: "abc",
+        items: { type: "string" },
+        minItems: 1,
+      },
+    ] as Schema[])("keeps a default of another listed type", (schema) => {
+      expect(getDefaultFormState(state(schema), schema)).toBe("abc");
+    });
+
+    it("fills in the defaults when the list holds no value yet", () => {
+      const schema: Schema = {
+        type: ["null", "object", "string"],
+        properties: { a: { type: "string", default: "x" } },
+      };
+      expect(getDefaultFormState(state(schema), schema)).toEqual({ a: "x" });
+    });
+
+    it("fills in the array defaults of a list naming object behind a oneOf", () => {
+      const schema: Schema = {
+        type: "object",
+        properties: {
+          list: {
+            oneOf: [
+              {
+                type: ["array", "object"],
+                items: { type: "string", default: "x" },
+                minItems: 2,
+              },
+            ],
+          },
+        },
+      };
+      expect(getDefaultFormState(state(schema), schema)).toEqual({
+        list: ["x", "x"],
+      });
+    });
+
+    it("fills in the array defaults of a list naming object with dependencies", () => {
+      const schema: Schema = {
+        type: ["array", "object"],
+        items: { type: "string", default: "x" },
+        minItems: 2,
+        dependencies: {},
+      };
+      expect(getDefaultFormState(state(schema), schema)).toEqual(["x", "x"]);
+    });
+  });
+
   it("getInnerSchemaForArrayItem() item of type boolean returns empty schema", () => {
     expect(
       getInnerSchemaForArrayItem(

@@ -33,9 +33,13 @@ import {
   type SchemaValue,
 } from "./schema.js";
 import {
+  matchSchemaType,
   getSimpleSchemaType,
+  isArrayOrObjectSchemaType,
   isPrimitiveSchemaType,
+  pickSchemaType,
   typeOfSchema,
+  typeOfValue,
 } from "./type.js";
 import { isSchemaObjectValue, isSchemaValueEmpty } from "./value.js";
 
@@ -295,8 +299,6 @@ export function computeDefaults(
     defaultFormStateBehavior?.nestedDefaultsPrecedence === "ancestorWins";
   // If we get a new schema, then we need to recompute defaults again for the new schema found.
   let schemaToCompute: Schema | null = null;
-  // CHANGED: introduced to typesafely adapt https://github.com/rjsf-team/react-jsonschema-form/pull/4626
-  let schemaToComputeFormData: SchemaValue | undefined = formData;
   let behaviorToCompute = defaultFormStateBehavior;
   let nextStack = stack;
 
@@ -352,16 +354,6 @@ export function computeDefaults(
     const hasNoExistingData = isRecordEmpty(formData);
     if (schemaToCompute && defaults === undefined && hasNoExistingData) {
       defaults = schemaDefault;
-    }
-    // If shouldMergeDefaultsIntoFormData is true
-    // And the schemaToCompute is set and the rawFormData is not an object
-    // Then set the formData to the rawFormData
-    if (
-      shouldMergeDefaultsIntoFormData &&
-      schemaToCompute &&
-      !rawDataIsObject
-    ) {
-      schemaToComputeFormData = rawFormData;
     }
   } else if (DEPENDENCIES_KEY in schema) {
     // Get the default if set from properties to ensure the dependencies conditions are resolved based on it
@@ -477,7 +469,7 @@ export function computeDefaults(
       stack: nextStack,
       defaultFormStateBehavior: behaviorToCompute,
       parentDefaults: defaults,
-      rawFormData: rawFormData ?? schemaToComputeFormData,
+      rawFormData,
       required,
       shouldMergeDefaultsIntoFormData,
       initialDefaultsGenerated,
@@ -717,7 +709,22 @@ export function getDefaultBasedOnSchemaType(
   computeDefaultsProps: ComputeDefaultsProps,
   defaults: SchemaValue | undefined
 ): SchemaValue | undefined {
-  switch (getSimpleSchemaType(rawSchema)) {
+  const types = typeOfSchema(rawSchema);
+  const schemaType = pickSchemaType(types);
+  // A type list can hold a value of another type it names, or a default of
+  // another such type. Neither is a container whose contents need filling.
+  if (isArrayOrObjectSchemaType(schemaType)) {
+    const { rawFormData } = computeDefaultsProps;
+    const value =
+      rawFormData === undefined && defaults !== null ? defaults : rawFormData;
+    if (
+      value !== undefined &&
+      (matchSchemaType(types, typeOfValue(value)) ?? schemaType) !== schemaType
+    ) {
+      return undefined;
+    }
+  }
+  switch (schemaType) {
     // We need to recurse for object schema inner default values.
     case "object": {
       const { rawFormData } = computeDefaultsProps;

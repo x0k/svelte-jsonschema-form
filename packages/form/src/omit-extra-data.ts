@@ -3,7 +3,6 @@ import {
   isValid,
   mergeAllOf,
   resolveRef,
-  getSimpleSchemaType,
   isSchemaObjectValue,
   type CoreContext,
   type Schema,
@@ -15,6 +14,10 @@ import {
   isSelectSchema,
   getClosestMatchingOption,
   getDiscriminatorFieldFromSchema,
+  pickSchemaType,
+  typeOfSchema,
+  matchSchemaType,
+  typeOfValue,
 } from "#core/index.js";
 import { isSchemaObject } from "#lib/json-schema/index.js";
 import { getOwn, isObject, isRecordEmpty, setOwn } from "#lib/object.js";
@@ -266,7 +269,17 @@ export function omitExtraData(
       source,
       handleOneOf(schema.oneOf, schema, source, target)
     );
-    const type = getSimpleSchemaType(schema);
+    // A select holds one whole value, with no contents to prune. A value of
+    // another type a type list allows is also kept whole, rather than being
+    // pruned or dropped as the type the list resolves to.
+    const types = typeOfSchema(schema);
+    const schemaType = pickSchemaType(types);
+    // `undefined` means the value's type is not listed at all, so the normal
+    // object/array pruning still applies to it.
+    const type =
+      (matchSchemaType(types, typeOfValue(source)) ?? schemaType) === schemaType
+        ? schemaType
+        : undefined;
     let objectSchema: ObjectSchema | undefined;
     if (type === "object") {
       if (!isSchemaObjectValue(source)) {
