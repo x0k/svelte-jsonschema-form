@@ -7,6 +7,11 @@ import { isJsonSchemaType } from "#lib/json-schema/index.js";
 import { getOwn, isRecordEmpty, setOwn } from "#lib/object.js";
 
 import {
+  additionalPropertiesKeyword,
+  getAdditionalPropertySchema,
+  getMatchingPatternProperties,
+} from "./additional-properties.js";
+import {
   isValid,
   logWarn,
   mergeAllOf,
@@ -34,7 +39,7 @@ import {
   type SchemaDefinition,
   type SchemaWithProperties,
 } from "./schema.js";
-import { typeOfValue } from "./type.js";
+import { getAdditionalPropertyType, typeOfValue } from "./type.js";
 import { isSchemaObjectValue } from "./value.js";
 
 // Backstop for the `resolveReference` <-> `retrieveSchemaInternal` loop: with
@@ -307,9 +312,9 @@ export function retrieveSchemaInternal(
     }
     const patternProperties = resolvedSchema.patternProperties;
     const hasPatternProperties = patternProperties !== undefined;
+    const extraKeyword = additionalPropertiesKeyword(resolvedSchema);
     const hasAdditionalProperties =
-      resolvedSchema.additionalProperties !== undefined &&
-      resolvedSchema.additionalProperties !== false;
+      extraKeyword !== undefined && extraKeyword !== false;
     if (!hasPatternProperties && !hasAdditionalProperties) {
       return resolvedSchema;
     }
@@ -410,66 +415,71 @@ export function stubExistingAdditionalProperties(
   schema: SchemaWithProperties,
   formData: ReadonlySchemaObjectValue | undefined
 ): Schema {
-  const { additionalProperties, patternProperties } = schema;
-  const isAdditionalProperties =
-    typeof additionalProperties !== "boolean" && additionalProperties;
-  const isArbitraryAdditionalProperty =
-    additionalProperties === true ||
-    (isAdditionalProperties && Object.keys(additionalProperties).length === 0);
-
-  function getAdditionalPropertySchemaShallowClone(key: string): Schema {
-    if (patternProperties !== undefined) {
-      const matchingProperties = getMatchingPatternProperties(
-        patternProperties,
-        key
-      );
-      if (matchingProperties.length > 0) {
-        // TODO: Check if the shallow clone can be returned directly
-        return {
-          ...retrieveSchema(
-            ctx,
-            { allOf: matchingProperties },
-            formData?.[key]
-          ),
-        };
-      }
-    }
-    if (isAdditionalProperties) {
-      if (REF_KEY in additionalProperties) {
-        return {
-          ...retrieveSchema(
-            ctx,
-            { $ref: additionalProperties[REF_KEY] },
-            formData?.[key]
-          ),
-        };
-      }
-      if ("type" in additionalProperties) {
-        return { ...additionalProperties };
-      }
-      if (
-        ANY_OF_KEY in additionalProperties ||
-        ONE_OF_KEY in additionalProperties
-      ) {
-        return {
-          type: "object",
-          ...additionalProperties,
-        };
-      }
-    }
-    if (isArbitraryAdditionalProperty) {
-      const value = formData?.[key];
-      if (value !== undefined) {
-        const type = typeOfValue(value);
-        return isJsonSchemaType(type) ? { type } : {};
-      }
-      // CHANGED: An undefined value says nothing about its type. Keep the
-      // schema empty so the unknown field reports it, rather than stubbing a
-      // null field that writes `null` back and removes an optional object
-      // holding only this key.
+  function stubFromValue(value: ReadonlySchemaValue | undefined): Schema {
+    // CHANGED: upstream #5429 marks a type guessed from the data with
+    // `GUESSED_TYPE_FLAG` and strips identifier keywords from the stub; v4 has
+    // neither, so the stub is just the inferred type.
+    if (value === undefined) {
+      // An undefined value says nothing about its type. Keep the schema empty
+      // so the unknown field reports it, rather than stubbing a null field
+      // that writes `null` back and removes an optional object holding only
+      // this key.
       return {};
     }
-    return { type: "null" };
+    const type = typeOfValue(value);
+    return isJsonSchemaType(type) ? { type } : {};
+  }
+
+  function withValueType(
+    result: Schema,
+    value: ReadonlySchemaValue | undefined
+  ): Schema {
+    if ("type" in result) {
+      return result;
+    }
+    const inferred = getAdditionalPropertyType(result);
+    const type =
+      inferred ?? (value === undefined ? undefined : typeOfValue(value));
+    return type !== undefined && isJsonSchemaType(type)
+      ? { ...result, type }
+      : result;
+  }
+
+  function getAdditionalPropertySchemaShallowClone(key: string): Schema {
+    const value = formData?.[key];
+    const keySchema = getAdditionalPropertySchema(schema, key);
+    if (keySchema === false) {
+      // The schema forbids the key, so no field can hold a value under it.
+      return { type: "null" };
+    }
+    if (keySchema === true || Object.keys(keySchema).length === 0) {
+      // No pattern or extra-key keyword describes the value. An absent
+      // `additionalProperties` permits the key as `true` does, so the held
+      // value supplies the field's type.
+      return stubFromValue(value);
+    }
+    if (ALL_OF_KEY in keySchema) {
+      // A key matching several patterns is described by all of them.
+      return withValueType({ ...retrieveSchema(ctx, keySchema, value) }, value);
+    }
+    if (REF_KEY in keySchema) {
+      // CHANGED: upstream #5429 resolves the whole subschema so keywords beside
+      // the `$ref` are layered over the definition; v4 still resolves the
+      // `$ref` alone.
+      return {
+        ...retrieveSchema(ctx, { $ref: keySchema[REF_KEY]! }, value),
+      };
+    }
+    if ("type" in keySchema) {
+      return { ...keySchema };
+    }
+    if (ANY_OF_KEY in keySchema || ONE_OF_KEY in keySchema) {
+      const type = getAdditionalPropertyType(keySchema);
+      return type === undefined ? { ...keySchema } : { ...keySchema, type };
+    }
+    // A subschema that says something about the value but names no type keeps
+    // what it says, with the held value supplying the type.
+    return withValueType({ ...keySchema }, value);
   }
 
   if (formData !== undefined) {
@@ -799,19 +809,6 @@ export function getAllPermutationsOfXxxOf(listOfLists: SchemaDefinition[][]) {
   );
 
   return allPermutations;
-}
-
-export function getMatchingPatternProperties(
-  patternProperties: Exclude<Schema["patternProperties"], undefined>,
-  key: string
-) {
-  const schemas: SchemaDefinition[] = [];
-  for (const [p, d] of Object.entries(patternProperties)) {
-    if (new RegExp(p).test(key)) {
-      schemas.push(d);
-    }
-  }
-  return schemas;
 }
 
 function normalizeBooleanSchema(schema: SchemaDefinition): Schema {

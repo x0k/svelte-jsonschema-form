@@ -31,6 +31,26 @@ describe("isObjectSchemaExpandable", () => {
     ).toBe(true);
   });
 
+  it("allows adding keys when unevaluatedProperties describes them", () => {
+    expect(
+      isObjectSchemaExpandable(
+        {
+          unevaluatedProperties: { type: "string" },
+        } satisfies Schema,
+        undefined
+      )
+    ).toBe(true);
+    expect(
+      isObjectSchemaExpandable(
+        {
+          additionalProperties: false,
+          unevaluatedProperties: { type: "string" },
+        } satisfies Schema,
+        undefined
+      )
+    ).toBe(false);
+  });
+
   it("allows adding keys when patternProperties is defined", () => {
     expect(
       isObjectSchemaExpandable(

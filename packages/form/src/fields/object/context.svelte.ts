@@ -1,13 +1,14 @@
 import { getContext, setContext } from "svelte";
 
 import {
+  additionalPropertiesKeyword,
+  getAdditionalPropertySchema as getSchemaForAdditionalProperty,
   getDefaultValueForType,
   getSimpleSchemaType,
   isAdditionalProperty,
   isObjectSchemaExpandable,
   isOrderedSchemaDeepEqual,
   isSchemaNullable,
-  isSchemaObjectValue,
   isSelectSchema,
   orderProperties,
   retrieveSchema,
@@ -190,42 +191,20 @@ export function createObjectContext<T>({
 
   const requiredProperties = $derived(new Set(retrievedSchema.required));
 
-  const getAdditionalPropertySchema = $derived.by(
-    (): ((
-      val: SchemaObjectValue | null | undefined,
-      key: string
-    ) => Schema) => {
-      const { additionalProperties, patternProperties } = retrievedSchema;
-
-      let patterns: string[];
-      if (
-        patternProperties !== undefined &&
-        ((patterns = Object.keys(patternProperties)), patterns.length > 0)
-      ) {
-        const pairs = patterns.map((pattern) => {
-          const property = patternProperties[pattern]!;
-          return [
-            new RegExp(pattern),
-            typeof property === "boolean" ? {} : property,
-          ] as const;
-        });
-        const getDefaultSchema = isSchemaObjectValue(additionalProperties)
-          ? (val: SchemaObjectValue | null | undefined) =>
-              retrieveSchema(ctx, additionalProperties, val)
-          : () => pairs[0]![1];
-        return (val, key) =>
-          retrieveSchema(
-            ctx,
-            pairs.find(([p]) => p.test(key))?.[1] ?? getDefaultSchema(val),
-            val
-          );
-      }
-      if (isSchemaObjectValue(additionalProperties)) {
-        return (val) => retrieveSchema(ctx, additionalProperties, val);
-      }
-      return () => ({});
+  // Keep the seed in step with the stub `retrieveSchema` puts in `properties`.
+  function getAdditionalPropertySchema(
+    val: SchemaObjectValue | null | undefined,
+    key: string
+  ): Schema {
+    const keySchema = getSchemaForAdditionalProperty(retrievedSchema, key);
+    if (keySchema === false) {
+      return { type: "null" };
     }
-  );
+    if (keySchema === true) {
+      return {};
+    }
+    return retrieveSchema(ctx, keySchema, val);
+  }
 
   const keyInputSchema: Schema = $derived.by(() => {
     const { propertyNames } = config().schema;
@@ -383,16 +362,14 @@ export function createObjectContext<T>({
         ? generateNewKey(val, newKeyPrefix, additionalPropertyKey)
         : additionalPropertyKey(newKeyPrefix, 0);
       const additionalPropertySchema = getAdditionalPropertySchema(val, newKey);
-      // When `additionalProperties` is a `$ref` and carries a sibling `default`,
+      // When the extra-key keyword is a `$ref` and carries a sibling `default`,
       // forward that sibling's value as the seed formData so that
       // `getDefaultFormState` merges it with the defaults computed from the
       // resolved referenced schema (matching RJSF's ObjectField behavior).
       // NOTE: $ref + any other keyword => invalid draft 07 schema
-      const { additionalProperties } = retrievedSchema;
+      const extraKeyword = additionalPropertiesKeyword(retrievedSchema);
       const siblingDefault =
-        typeof additionalProperties === "object"
-          ? additionalProperties.default
-          : undefined;
+        typeof extraKeyword === "object" ? extraKeyword.default : undefined;
       const propValue =
         getDefaultFieldState(ctx, {
           schema: additionalPropertySchema,

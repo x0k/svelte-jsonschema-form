@@ -8,10 +8,13 @@ export interface OpenAPIDiscriminator {
   // mapping?: Record<string, string>;
 }
 
+export const UNEVALUATED_PROPERTIES_KEY = "unevaluatedProperties";
+
 export interface Schema extends TransformedSchema<
   SchemaDefinition,
   JSONSchema7
 > {
+  [UNEVALUATED_PROPERTIES_KEY]?: SchemaDefinition;
   discriminator?: OpenAPIDiscriminator;
   [ADDITIONAL_PROPERTY_FLAG]?: true;
   [REF_FLAG]?: string;
@@ -22,7 +25,9 @@ export type SchemaWithProperties = Schema & {
   properties: Exclude<Schema["properties"], undefined>;
 };
 
-export type SchemaType = JSONSchema7TypeName | "unknown";
+export type SchemaTypeBase = JSONSchema7TypeName;
+
+export type SchemaType = SchemaTypeBase | "unknown";
 
 export interface SchemaValues {
   null: null;

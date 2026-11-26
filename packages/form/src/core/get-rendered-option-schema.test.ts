@@ -40,6 +40,11 @@ const merger = createMerger({
       right: { maxItems: 9 },
       result: { maxItems: 9 },
     },
+    {
+      left: { type: "string" },
+      right: { minLength: 1 },
+      result: { type: "string", minLength: 1 },
+    },
   ],
 });
 
@@ -765,6 +770,53 @@ describe("getRenderedOptionSchema()", () => {
         rendered({ type: ["object", "null"], properties }, { required: ["a"] })
       ).toEqual({ type: ["object", "null"], required: ["a"] });
     });
+  });
+
+  describe("2020-12 subschema keywords", () => {
+    test("meets a subschema map by name", () => {
+      expect(
+        rendered(
+          {
+            type: "string",
+            dependentSchemas: { a: { type: "string" } },
+          } as Schema,
+          { dependentSchemas: { b: { type: "number" } } } as Schema
+        )
+      ).toEqual({
+        type: "string",
+        dependentSchemas: {
+          a: { type: "string" },
+          b: { type: "number" },
+        },
+      });
+    });
+
+    test("meets a tuple position by position", () => {
+      expect(
+        rendered(
+          { type: "string", prefixItems: [{ type: "string" }] } as Schema,
+          { prefixItems: [{ minLength: 1 }] } as Schema
+        )
+      ).toEqual({
+        type: "string",
+        prefixItems: [{ type: "string", minLength: 1 }],
+      });
+    });
+
+    test.each(["unevaluatedItems", "unevaluatedProperties", "contentSchema"])(
+      "meets %s as a subschema",
+      (keyword) => {
+        expect(
+          rendered(
+            { type: "string", [keyword]: false },
+            { [keyword]: { type: "string" } }
+          )
+        ).toEqual({
+          type: "string",
+          [keyword]: false,
+        });
+      }
+    );
   });
 });
 

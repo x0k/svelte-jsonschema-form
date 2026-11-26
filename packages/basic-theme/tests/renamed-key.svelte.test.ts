@@ -33,6 +33,22 @@ function remove(id: string) {
 }
 
 describe("renaming an additional property key", () => {
+  test("keeps a key that matches no pattern editable", async () => {
+    await renderFieldForm({
+      schema: {
+        type: "object",
+        patternProperties: { "^a": { type: "string" } },
+      },
+      initialValue: { abc: "hello" },
+    });
+
+    await rename("abc", "xyz");
+
+    const input = element("xyz") as HTMLInputElement | null;
+    expect(input).not.toBeNull();
+    expect(input!.value).toBe("hello");
+  });
+
   test("keeps the position of a key renamed to a numeric string", async () => {
     await renderFieldForm({
       schema: {

@@ -25,6 +25,7 @@ import {
   REF_KEY,
   REQUIRED_KEY,
   THEN_KEY,
+  UNEVALUATED_PROPERTIES_KEY,
   type Schema,
   type SchemaDefinition,
 } from "./schema.js";
@@ -43,17 +44,24 @@ function isStringArray(value: SchemaValue | undefined): value is string[] {
   );
 }
 
-// CHANGED: Upstream classifies subschemas against a wider keyword set that also
-// holds `prefixItems`, `dependentSchemas`, `unevaluatedItems`,
-// `unevaluatedProperties` and `contentSchema`. They are not part of the
-// draft-07 `Schema`, and the draft-2020-12 converter rewrites them to `items`,
-// `dependencies` and `additionalItems`/`additionalProperties`, or drops them,
-// before core sees a schema.
+// The 2020-12 words for subschemas. `lib/json-schema` describes draft-07 and
+// stays free of which drafts a form accepts, so these live here.
+const SUBSCHEMA_MAP_KEYS = new Set<string>(["dependentSchemas"]);
+const SUBSCHEMA_ARRAY_KEYS = new Set<string>(["prefixItems"]);
+const SUBSCHEMA_SINGLE_KEYS = new Set<string>([
+  "unevaluatedItems",
+  UNEVALUATED_PROPERTIES_KEY,
+  "contentSchema",
+]);
+
 function isSubschemaKeyword(key: string): boolean {
   return (
     isSubSchemasRecordKey(key) ||
+    SUBSCHEMA_MAP_KEYS.has(key) ||
     isSubSchemasArrayKey(key) ||
-    isSubSchemaKey(key)
+    SUBSCHEMA_ARRAY_KEYS.has(key) ||
+    isSubSchemaKey(key) ||
+    SUBSCHEMA_SINGLE_KEYS.has(key)
   );
 }
 
@@ -61,13 +69,22 @@ function keywordShape(
   key: string,
   value: SchemaValue | undefined
 ): "map" | "array" | "single" | undefined {
-  if (isSubSchemasRecordKey(key) && isRecord(value)) {
+  if (
+    (isSubSchemasRecordKey(key) || SUBSCHEMA_MAP_KEYS.has(key)) &&
+    isRecord(value)
+  ) {
     return "map";
   }
-  if (isSubSchemasArrayKey(key) && Array.isArray(value)) {
+  if (
+    (isSubSchemasArrayKey(key) || SUBSCHEMA_ARRAY_KEYS.has(key)) &&
+    Array.isArray(value)
+  ) {
     return "array";
   }
-  if (isSubSchemaKey(key) && isRecord(value)) {
+  if (
+    (isSubSchemaKey(key) || SUBSCHEMA_SINGLE_KEYS.has(key)) &&
+    isRecord(value)
+  ) {
     return "single";
   }
   return undefined;
@@ -116,12 +133,10 @@ const CONDITIONAL_KEYWORDS: ReadonlySet<string> = new Set<string>([
   THEN_KEY,
   ELSE_KEY,
 ] satisfies SchemaKey[]);
-// CHANGED: Upstream also meets `prefixItems` tuples position by position. It is
-// a draft-2020-12 keyword that the converter maps to `items`, so it never
-// reaches core.
 const POSITIONAL_KEYWORDS: ReadonlySet<string> = new Set<string>([
   ITEMS_KEY,
-] satisfies SchemaKey[]);
+  "prefixItems",
+]);
 
 function meetSchemas(
   ctx: CoreContext,

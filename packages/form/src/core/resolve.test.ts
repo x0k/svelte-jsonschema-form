@@ -563,7 +563,6 @@ describe("retrieveSchema()", () => {
       ...schema,
       properties: {
         newKey: {
-          type: "object",
           oneOf,
           [ADDITIONAL_PROPERTY_FLAG]: true,
         },
@@ -599,10 +598,52 @@ describe("retrieveSchema()", () => {
       ...schema,
       properties: {
         newKey: {
-          type: "object",
           anyOf,
           [ADDITIONAL_PROPERTY_FLAG]: true,
         },
+      },
+    });
+  });
+  it("stubs a type the anyOf options agree on", () => {
+    const anyOf: Schema[] = [
+      { type: "string", minLength: 1 },
+      { type: "string", maxLength: 5 },
+    ];
+    const schema: Schema = {
+      additionalProperties: { anyOf },
+      type: "object",
+    };
+    expect(
+      retrieveSchema(createTestContext({ rootSchema: {} }), schema, {
+        newKey: "x",
+      })
+    ).toEqual({
+      ...schema,
+      properties: {
+        newKey: {
+          anyOf,
+          type: "string",
+          [ADDITIONAL_PROPERTY_FLAG]: true,
+        },
+      },
+    });
+  });
+  it("stubs a key described only by unevaluatedProperties", () => {
+    const schema: Schema = {
+      type: "object",
+      properties: { foo: { type: "string" } },
+      unevaluatedProperties: { type: "string" },
+    };
+    expect(
+      retrieveSchema(createTestContext({ rootSchema: schema }), schema, {
+        foo: "a",
+        bar: "b",
+      })
+    ).toEqual({
+      ...schema,
+      properties: {
+        foo: { type: "string" },
+        bar: { type: "string", [ADDITIONAL_PROPERTY_FLAG]: true },
       },
     });
   });
@@ -3913,7 +3954,129 @@ describe("retrieveSchema()", () => {
         ...schema,
         properties: {
           baz: {
+            type: "number",
+            [ADDITIONAL_PROPERTY_FLAG]: true,
+          },
+        },
+      });
+    });
+    it("has property keys that does not match patternProperties, additionalProperties is false", () => {
+      const schema = {
+        patternProperties: { "^foo": { type: "string" } },
+        additionalProperties: false,
+        properties: {},
+      } satisfies Schema;
+      expect(
+        stubExistingAdditionalProperties(
+          createTestContext({ rootSchema: schema }),
+          schema,
+          { baz: 1 }
+        )
+      ).toEqual({
+        ...schema,
+        properties: {
+          baz: {
             type: "null",
+            [ADDITIONAL_PROPERTY_FLAG]: true,
+          },
+        },
+      });
+    });
+    it("has property keys that does not match patternProperties, unevaluatedProperties is false", () => {
+      const schema = {
+        patternProperties: { "^foo": { type: "string" } },
+        unevaluatedProperties: false,
+        properties: {},
+      } satisfies Schema;
+      expect(
+        stubExistingAdditionalProperties(
+          createTestContext({ rootSchema: schema }),
+          schema,
+          { baz: 1 }
+        )
+      ).toEqual({
+        ...schema,
+        properties: {
+          baz: {
+            type: "null",
+            [ADDITIONAL_PROPERTY_FLAG]: true,
+          },
+        },
+      });
+    });
+    it("has property keys that does not match patternProperties, unevaluatedProperties is false beside an additionalProperties schema", () => {
+      const schema = {
+        patternProperties: { "^foo": { type: "string" } },
+        additionalProperties: { type: "number" },
+        unevaluatedProperties: false,
+        properties: {},
+      } satisfies Schema;
+      expect(
+        stubExistingAdditionalProperties(
+          createTestContext({ rootSchema: schema }),
+          schema,
+          { baz: 1 }
+        )
+      ).toEqual({
+        ...schema,
+        properties: {
+          baz: {
+            type: "number",
+            [ADDITIONAL_PROPERTY_FLAG]: true,
+          },
+        },
+      });
+    });
+    it("stubs a typeless matching pattern from the held value", () => {
+      const pattern = { enum: [1, 2] };
+      const schema = {
+        patternProperties: { "^foo": pattern },
+        properties: {},
+      } satisfies Schema;
+      expect(
+        stubExistingAdditionalProperties(
+          createTestContext({
+            merger: createMerger({
+              allOfMerges: [{ input: { allOf: [pattern] }, result: pattern }],
+            }),
+            rootSchema: schema,
+          }),
+          schema,
+          { fooBar: 2 }
+        )
+      ).toEqual({
+        ...schema,
+        properties: {
+          fooBar: {
+            type: "number",
+            enum: [1, 2],
+            [ADDITIONAL_PROPERTY_FLAG]: true,
+          },
+        },
+      });
+    });
+    it("stubs a typeless matching pattern with no type when the value is undefined", () => {
+      const pattern = { minLength: 2 };
+      const schema = {
+        patternProperties: { "^foo": pattern },
+        properties: {},
+      } satisfies Schema;
+      expect(
+        stubExistingAdditionalProperties(
+          createTestContext({
+            merger: createMerger({
+              allOfMerges: [{ input: { allOf: [pattern] }, result: pattern }],
+            }),
+            rootSchema: schema,
+          }),
+          schema,
+          { fooBar: undefined }
+        )
+      ).toEqual({
+        ...schema,
+        properties: {
+          fooBar: {
+            minLength: 2,
             [ADDITIONAL_PROPERTY_FLAG]: true,
           },
         },

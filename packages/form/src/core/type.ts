@@ -1,74 +1,166 @@
-import { unique } from "#lib/array.js";
-import { isSchemaObject } from "#lib/json-schema/index.js";
-
-import type { Schema, SchemaDefinition, SchemaType } from "./schema.js";
+import { additionalPropertiesKeyword } from "./additional-properties.js";
+import type {
+  Schema,
+  SchemaDefinition,
+  SchemaType,
+  SchemaTypeBase,
+} from "./schema.js";
 import { getAllOfOptions, getXxxOfOptions } from "./xxx-of-options.js";
+
+const SCHEMA_TYPES: SchemaTypeBase[] = [
+  "string", // 0
+  "number", // 1
+  "integer", // 2
+  "boolean", // 3
+  "object", // 4
+  "array", // 5
+  "null", // 6
+];
+
+function getValueTypeIndex(
+  value: null | boolean | number | string | object
+): number {
+  if (value === null) {
+    return 6;
+  }
+  if (Array.isArray(value)) {
+    return 5;
+  }
+  const type = typeof value;
+  // `1` is a `number`, not an `integer`. In JSON Schema `integer` is a subset
+  // of `number`, and callers compare this name straight to `schema.type`, so
+  // calling `1` an `integer` would reject it under `{ type: "number" }`.
+  // Only the union selector needs the narrower name; it asks for both.
+  switch (type) {
+    case "string":
+      return 0;
+    case "number":
+      return 1;
+    case "boolean":
+      return 3;
+    case "object":
+      return 4;
+    default:
+      return -1;
+  }
+}
+
+function getSchemaOwnType(schema: Schema, out: SchemaTypeBase[]) {
+  if (schema.type !== undefined) {
+    if (Array.isArray(schema.type)) {
+      // TODO: deduplication
+      for (let i = 0; i < schema.type.length; i++) {
+        out.push(schema.type[i]!);
+      }
+    } else {
+      out.push(schema.type);
+    }
+    return;
+  }
+  if (schema.const !== undefined) {
+    out.push(SCHEMA_TYPES[getValueTypeIndex(schema.const)]!);
+    return;
+  }
+  if (
+    schema.properties ||
+    additionalPropertiesKeyword(schema) ||
+    schema.propertyNames ||
+    schema.patternProperties
+  ) {
+    out.push("object");
+    return;
+  }
+  if (!Array.isArray(schema.enum)) {
+    return;
+  }
+  let mask = 0;
+  for (let i = 0; i < schema.enum.length; i++) {
+    const id = getValueTypeIndex(schema.enum[i]!);
+    const shifted = 1 << id;
+    if (!(mask & shifted)) {
+      out.push(SCHEMA_TYPES[id]!);
+      mask |= shifted;
+    }
+  }
+}
+
+function getSchemaType(schema: Schema, out: SchemaTypeBase[]) {
+  getSchemaOwnType(schema, out);
+  if (out.length > 0) {
+    return;
+  }
+  // `oneOf`/`anyOf` describe the alternatives a value can take, so they answer
+  // first; `allOf` is the fallback when they say nothing.
+  const alt = getXxxOfOptions(schema)?.options ?? getAllOfOptions(schema);
+  if (alt === undefined) {
+    return;
+  }
+  for (let i = 0; i < alt.length; i++) {
+    const item = alt[i]!;
+    if (typeof item === "boolean") {
+      continue;
+    }
+    getSchemaType(item, out);
+  }
+}
 
 export function typeOfValue(
   value: null | boolean | number | string | object
 ): SchemaType {
-  if (value === null) {
-    return "null";
-  }
-  if (Array.isArray(value)) {
-    return "array";
-  }
-  const type = typeof value;
-  switch (type) {
-    case "boolean":
-    case "object":
-    case "string":
-      return type;
-    // Whole numbers are reported as `"number"`, never `"integer"`: JSON Schema
-    // treats `integer` as a subset of `number`, so a schema declaring `number`
-    // must match an integer value. Callers compare this result to
-    // `schema.type` directly (option matching, additional-property stubs), so
-    // reporting `"integer"` here would make `{ type: "number" }` reject `1`.
-    // The union type selector, which needs the narrower distinction, asks for
-    // both types through `getInitialUnionTypeIndex()`.
-    case "number":
-      return type;
-    default:
-      return "unknown";
-  }
+  return SCHEMA_TYPES[getValueTypeIndex(value)] ?? "unknown";
 }
 
-export function typeOfSchema(schema: Schema): SchemaType | SchemaType[] {
-  if (schema.type) {
-    return schema.type;
-  }
-  if (schema.const !== undefined) {
-    return typeOfValue(schema.const);
-  }
-  if (
-    schema.properties ||
-    schema.additionalProperties ||
-    schema.propertyNames ||
-    schema.patternProperties
-  ) {
-    return "object";
-  }
-  if (Array.isArray(schema.enum) && schema.enum.length > 0) {
-    return unique(schema.enum.map(typeOfValue));
-  }
-  // `allOf` keeps its own precedence, so only the `oneOf`/`anyOf` pair is read
-  // through `getXxxOfOptions()`. An empty list offers no type to take, so a
-  // schema carrying only empty lists falls through to `"unknown"` rather than
-  // reaching `pickSchemaType()` with an empty array.
-  const alt: SchemaDefinition[] | undefined =
-    getAllOfOptions(schema) ?? getXxxOfOptions(schema)?.options;
-  if (alt !== undefined) {
-    let types: SchemaType[] = [];
-    for (let i = 0; i < alt.length; i++) {
-      const item = alt[i]!;
-      if (!isSchemaObject(item)) {
-        continue;
-      }
-      types = types.concat(typeOfSchema(item));
+export function typeOfSchema(schema: Schema): SchemaType | SchemaTypeBase[] {
+  const types: SchemaTypeBase[] = [];
+  getSchemaType(schema, types);
+  return types.length > 0 ? types : "unknown";
+}
+
+/** Reads a combinator's option types: `oneOf`/`anyOf` need every option to
+ * agree, `allOf` takes the first typed entry. Boolean and typeless options
+ * count as no type, so an `xxxOf` with any of those falls through to `allOf`. */
+function readOptionTypes(
+  options: SchemaDefinition[],
+  agree: boolean
+): SchemaTypeBase | undefined {
+  let found: SchemaTypeBase | undefined;
+  let typed = 0;
+  for (let i = 0; i < options.length; i++) {
+    const option = options[i]!;
+    const type =
+      typeof option === "boolean"
+        ? undefined
+        : getAdditionalPropertyType(option);
+    if (type === undefined) {
+      if (agree) return undefined;
+      continue;
     }
-    return unique(types);
+    if (!agree) return type;
+    if (found !== undefined && found !== type) return undefined;
+    found = type;
+    typed++;
   }
-  return "unknown";
+  return typed === options.length ? found : undefined;
+}
+
+/** The type an additional-property schema agrees on, or `undefined` when only
+ * the value can say. A `oneOf`/`anyOf` with disagreeing options leaves the type
+ * to the field that chooses between them. */
+export function getAdditionalPropertyType(
+  schema: Schema
+): SchemaTypeBase | undefined {
+  const own: SchemaTypeBase[] = [];
+  getSchemaOwnType(schema, own);
+  if (own.length > 0) {
+    return pickSchemaType(own);
+  }
+  const xxxOf = getXxxOfOptions(schema)?.options;
+  if (xxxOf !== undefined) {
+    const type = readOptionTypes(xxxOf, true);
+    if (type !== undefined) return type;
+  }
+  const allOf = getAllOfOptions(schema);
+  return allOf === undefined ? undefined : readOptionTypes(allOf, false);
 }
 
 export function isNullableSchemaType(type: SchemaType | SchemaType[]): boolean {
@@ -79,7 +171,7 @@ export function isSchemaNullable(schema: Schema): boolean {
   return isNullableSchemaType(typeOfSchema(schema));
 }
 
-export function pickSchemaType(types: SchemaType | SchemaType[]): SchemaType {
+export function pickSchemaType<T extends SchemaType>(types: T | T[]): T {
   if (!Array.isArray(types)) {
     return types;
   }

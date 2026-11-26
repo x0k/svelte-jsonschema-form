@@ -600,6 +600,58 @@ describe("omitExtraData", () => {
           baz: "not a number",
         });
       });
+
+      it("should use unevaluatedProperties for keys no pattern matches", () => {
+        const schema = {
+          type: "object",
+          patternProperties: { "^foo": { type: "string" } },
+          unevaluatedProperties: { type: "number" },
+        } satisfies Schema;
+        const value = { foo1: "a", bar: 42 };
+        expect(omitExtraData(validator, defaultMerger, schema, value)).toEqual({
+          foo1: "a",
+          bar: 42,
+        });
+      });
+
+      it("should omit keys no pattern matches when unevaluatedProperties is false", () => {
+        const schema = {
+          type: "object",
+          patternProperties: { "^foo": { type: "string" } },
+          unevaluatedProperties: false,
+        } satisfies Schema;
+        const value = { foo1: "a", bar: 42 };
+        expect(omitExtraData(validator, defaultMerger, schema, value)).toEqual({
+          foo1: "a",
+        });
+      });
+
+      it("should prefer additionalProperties over unevaluatedProperties", () => {
+        const schema = {
+          type: "object",
+          patternProperties: { "^foo": { type: "string" } },
+          additionalProperties: { type: "number" },
+          unevaluatedProperties: false,
+        } satisfies Schema;
+        const value = { foo1: "a", bar: 42 };
+        expect(omitExtraData(validator, defaultMerger, schema, value)).toEqual({
+          foo1: "a",
+          bar: 42,
+        });
+      });
+    });
+
+    it("should use unevaluatedProperties for keys no property declares", () => {
+      const schema = {
+        type: "object",
+        properties: { foo: { type: "string" } },
+        unevaluatedProperties: { type: "number" },
+      } satisfies Schema;
+      const value = { foo: "a", bar: 42 };
+      expect(omitExtraData(validator, defaultMerger, schema, value)).toEqual({
+        foo: "a",
+        bar: 42,
+      });
     });
   });
 

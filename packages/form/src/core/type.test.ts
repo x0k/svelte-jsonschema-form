@@ -5,7 +5,7 @@
 import { expect, describe, it } from "vitest";
 
 import type { Schema, SchemaType } from "./schema.js";
-import { getSimpleSchemaType, matchSchemaType } from "./type.js";
+import { getSimpleSchemaType, matchSchemaType, typeOfSchema } from "./type.js";
 
 const cases: { schema: Schema; expected: string }[] = [
   {
@@ -73,6 +73,10 @@ const cases: { schema: Schema; expected: string }[] = [
     expected: "object",
   },
   {
+    schema: { unevaluatedProperties: {} },
+    expected: "object",
+  },
+  {
     schema: { patternProperties: { "^foo": {} } },
     expected: "object",
   },
@@ -87,6 +91,10 @@ const cases: { schema: Schema; expected: string }[] = [
 ];
 
 describe("typeOfSchema", () => {
+  it("dedupes enum value types", () => {
+    expect(typeOfSchema({ enum: ["a", 1, 2] })).toEqual(["string", "number"]);
+  });
+
   it.each(cases.map((c) => [c.expected, c.schema]))(
     `should correctly guess the type "%s" of a schema %j`,
     (expected, schema) => expect(getSimpleSchemaType(schema)).toBe(expected)
@@ -122,13 +130,13 @@ describe("typeOfSchema", () => {
       ).toBe("number");
     });
 
-    it("keeps allOf ahead of oneOf/anyOf", () => {
+    it("keeps oneOf/anyOf ahead of allOf", () => {
       expect(
         getSimpleSchemaType({
           allOf: [{ type: "number" }],
           oneOf: [{ type: "string" }],
         })
-      ).toBe("number");
+      ).toBe("string");
     });
 
     it("falls through to allOf when every oneOf/anyOf list is empty", () => {

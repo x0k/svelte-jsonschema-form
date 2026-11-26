@@ -65,11 +65,10 @@ export function getXxxOfOptions<T>(
 /**
  * Returns `schema`'s non-empty `allOf` members, if it has any.
  *
- * A reader that infers a single type wants `allOf` to win over `oneOf`/`anyOf`,
- * because every `allOf` member applies while only one `oneOf`/`anyOf` option
- * does. Collecting both, as {@link getSubSchemaOptions} does, would make
- * `isSchemaNullable()` report an `allOf`-constrained object as nullable because
- * some `oneOf` option allows `null`.
+ * Every member applies to the same value, so this is what a reader uses for
+ * the constraints on that value rather than the alternatives a user chooses
+ * between ({@link getXxxOfOptions}). {@link getSubSchemaOptions} collects both
+ * for path walks.
  */
 export function getAllOfOptions<T>(schema: {
   allOf?: T[] | undefined;

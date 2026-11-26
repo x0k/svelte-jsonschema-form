@@ -1,6 +1,8 @@
 import {
+  additionalPropertiesKeyword,
   getRootSchema,
   isValid,
+  patternRegExp,
   mergeAllOf,
   resolveRef,
   isSchemaObjectValue,
@@ -27,16 +29,13 @@ export function allowAdditionalProperties(s: Schema): Schema {
   return { ...s, additionalProperties: true };
 }
 
-function computeObjectSchema({
-  properties,
-  patternProperties,
-  additionalProperties,
-}: Schema) {
+function computeObjectSchema(schema: Schema) {
+  const { properties, patternProperties } = schema;
   const localProperties = new Set(properties && Object.keys(properties));
   const patterns = patternProperties
     ? Object.entries(patternProperties).map(
         ([pattern, schemaDef]): [RegExp, SchemaDefinition] => [
-          new RegExp(pattern),
+          patternRegExp(pattern),
           schemaDef,
         ]
       )
@@ -45,7 +44,7 @@ function computeObjectSchema({
     properties,
     localProperties,
     patterns,
-    additionalProperties,
+    additionalProperties: additionalPropertiesKeyword(schema),
   };
 }
 
@@ -312,7 +311,10 @@ export function omitExtraData(
     );
 
     // Prune additional properties
-    if (schema.additionalProperties === false && isSchemaObjectValue(target)) {
+    if (
+      additionalPropertiesKeyword(schema) === false &&
+      isSchemaObjectValue(target)
+    ) {
       objectSchema ??= computeObjectSchema(schema);
       for (const key of Object.keys(target)) {
         if (
